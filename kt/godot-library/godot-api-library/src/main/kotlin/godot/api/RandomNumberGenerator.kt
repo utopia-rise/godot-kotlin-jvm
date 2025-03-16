@@ -27,31 +27,38 @@ import kotlin.jvm.JvmOverloads
 /**
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses
  * [url=https://www.pcg-random.org/]PCG32[/url].
+ *
  * **Note:** The underlying algorithm is an implementation detail and should not be depended upon.
+ *
  * To generate a random float number (within a given range) based on a time-dependent seed:
- * [codeblock]
+ *
+ * ```
  * var rng = RandomNumberGenerator.new()
  * func _ready():
  *     var my_random_number = rng.randf_range(-10.0, 10.0)
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class RandomNumberGenerator : RefCounted() {
   /**
    * Initializes the random number generator state based on the given seed value. A given seed will
    * give a reproducible sequence of pseudo-random numbers.
+   *
    * **Note:** The RNG does not have an avalanche effect, and can output similar random streams
    * given similar seeds. Consider using a hash function to improve your seed quality if they're
    * sourced externally.
+   *
    * **Note:** Setting this property produces a side effect of changing the internal [state], so
    * make sure to initialize the seed *before* modifying the [state]:
+   *
    * **Note:** The default value of this property is pseudo-random, and changes when calling
    * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
-   * [codeblock]
+   *
+   * ```
    * var rng = RandomNumberGenerator.new()
    * rng.seed = hash("Godot")
    * rng.state = 100 # Restore to some previously saved state.
-   * [/codeblock]
+   * ```
    */
   public final inline var seed: Long
     @JvmName("seedProperty")
@@ -64,18 +71,21 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * The current state of the random number generator. Save and restore this property to restore the
    * generator to a previous state:
-   * [codeblock]
+   *
+   * ```
    * var rng = RandomNumberGenerator.new()
    * print(rng.randf())
    * var saved_state = rng.state # Store current state.
    * print(rng.randf()) # Advance internal state.
    * rng.state = saved_state # Restore the state.
    * print(rng.randf()) # Prints the same value as previously.
-   * [/codeblock]
+   * ```
+   *
    * **Note:** Do not set state to arbitrary values, since the random number generator requires the
    * state to have certain qualities to behave properly. It should only be set to values that came from
    * the state property itself. To initialize the random number generator with arbitrary input, use
    * [seed] instead.
+   *
    * **Note:** The default value of this property is pseudo-random, and changes when calling
    * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    */
@@ -135,6 +145,7 @@ public open class RandomNumberGenerator : RefCounted() {
    * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url],
    * pseudo-random floating-point number from the specified [mean] and a standard [deviation]. This is
    * also known as a Gaussian distribution.
+   *
    * **Note:** This method uses the
    * [url=https://en.wikipedia.org/wiki/Box&#37;E2&#37;80&#37;93Muller_transform]Box-Muller
    * transform[/url] algorithm.
@@ -168,8 +179,8 @@ public open class RandomNumberGenerator : RefCounted() {
    * Returns a random index with non-uniform weights. Prints an error and returns `-1` if the array
    * is empty.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var rng = RandomNumberGenerator.new()
    *
    * var my_array = ["one", "two", "three", "four"]

@@ -25,6 +25,7 @@ import kotlin.jvm.JvmName
 /**
  * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
  * remote node) in the scene.
+ *
  * It can be set to update another Node's position, rotation and/or scale. It can use either global
  * or local coordinates.
  */

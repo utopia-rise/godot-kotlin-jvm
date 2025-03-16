@@ -37,8 +37,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * A class stored as a resource. A script extends the functionality of all objects that instantiate
  * it.
+ *
  * This is the base class for all scripts and should not be used directly. Trying to create a new
  * script with this class will result in an error.
+ *
  * The `new` method of a script subclass creates a new instance. [Object.setScript] extends an
  * existing object, if that object's class matches one of the script's base classes.
  */
@@ -80,6 +82,7 @@ public open class Script internal constructor() : Resource() {
 
   /**
    * Returns `true` if the script contains non-empty source code.
+   *
    * **Note:** If a script does not have source code, this does not mean that it is invalid or
    * unusable. For example, a [GDScript] that was exported with binary tokenization has no source code,
    * but still behaves as expected and could be instantiated. This can be checked with
@@ -133,16 +136,18 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the class name associated with the script, if there is one. Returns an empty string
    * otherwise.
+   *
    * To give the script a global name, you can use the `class_name` keyword in GDScript and the
    * `[GlobalClass]` attribute in C#.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * class_name MyNode
    * extends Node
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * using Godot;
    *
    * [GlobalClass]

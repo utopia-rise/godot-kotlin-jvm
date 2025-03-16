@@ -131,8 +131,10 @@ public open class AudioStreamPlayback : RefCounted() {
   /**
    * Mixes up to [frames] of audio from the stream from the current position, at a rate of
    * [rateScale], advancing the stream.
+   *
    * Returns a [PackedVector2Array] where each element holds the left and right channel volume
    * levels of each frame.
+   *
    * **Note:** Can return fewer frames than requested, make sure to use the size of the return
    * value.
    */

@@ -51,8 +51,10 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the left margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the left border of
    * the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginLeft] if it is negative.
    */
   public final inline var textureMarginLeft: Float
@@ -65,8 +67,10 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the top margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the top border of
    * the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginTop] if it is negative.
    */
   public final inline var textureMarginTop: Float
@@ -79,8 +83,10 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the right margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the right border of
    * the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginRight] if it is negative.
    */
   public final inline var textureMarginRight: Float
@@ -93,8 +99,10 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the bottom margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the bottom border
    * of the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginBottom] if it is negative.
    */
   public final inline var textureMarginBottom: Float
@@ -179,7 +187,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * The region to use from the [texture].
+   *
    * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   *
    * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    */
   @CoreTypeLocalCopy
@@ -220,7 +230,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * The region to use from the [texture].
+   *
    * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   *
    * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    *
    * This is a helper function to make dealing with local copies easier.

@@ -7,6 +7,7 @@ import godot.codegen.generation.rule.BitfieldExtensionRule
 import godot.codegen.generation.rule.ConstantRule
 import godot.codegen.generation.rule.CoreRule
 import godot.codegen.generation.rule.CoreTypeHelperRule
+import godot.codegen.generation.rule.DocumentationRule
 import godot.codegen.generation.rule.EnumRule
 import godot.codegen.generation.rule.FileRule
 import godot.codegen.generation.rule.HeaderCommentRule
@@ -44,6 +45,7 @@ class ApiGenerationService(
     val context = Context(classRepository, enumRepository, nativeStructureRepository)
 
     private fun RuleSet<Context, ApiTask>.apiRuleSet() {
+        rule(::DocumentationRule)
         subRules(ApiTask::files) {
             rule(::FileRule)
             subRules(FileTask::classes) {

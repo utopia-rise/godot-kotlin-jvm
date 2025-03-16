@@ -32,6 +32,7 @@ import kotlin.jvm.JvmStatic
 
 /**
  * The translation server is the API backend that manages all language translations.
+ *
  * Translations are stored in [TranslationDomain]s, which can be accessed by name. The most commonly
  * used translation domain is the main translation domain. It always exists and can be accessed using
  * an empty [StringName]. The translation server provides wrapper methods for accessing the main
@@ -61,6 +62,7 @@ public object TranslationServer : Object() {
   /**
    * Sets the locale of the project. The [locale] string will be standardized to match known locales
    * (e.g. `en-US` would be matched to `en_US`).
+   *
    * If translations have been loaded beforehand for the new locale, they will be applied.
    */
   @JvmStatic
@@ -71,6 +73,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale of the project.
+   *
    * See also [OS.getLocale] and [OS.getLocaleLanguage] to query the locale of the user system.
    */
   @JvmStatic
@@ -82,6 +85,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale of the editor.
+   *
    * **Note:** When called from an exported project returns the same value as [getLocale].
    */
   @JvmStatic
@@ -187,6 +191,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale's translation for the given message and context.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
@@ -199,8 +204,10 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale's translation for the given message, plural message and context.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
@@ -267,6 +274,7 @@ public object TranslationServer : Object() {
 
   /**
    * Removes the translation domain with the specified name.
+   *
    * **Note:** Trying to remove the main translation domain is an error.
    */
   @JvmStatic
@@ -319,6 +327,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the pseudolocalized string based on the [message] passed in.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
@@ -330,6 +339,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale's translation for the given message and context.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
@@ -338,8 +348,10 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale's translation for the given message, plural message and context.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
@@ -367,6 +379,7 @@ public object TranslationServer : Object() {
 
   /**
    * Removes the translation domain with the specified name.
+   *
    * **Note:** Trying to remove the main translation domain is an error.
    */
   @JvmStatic
@@ -374,6 +387,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the pseudolocalized string based on the [message] passed in.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic

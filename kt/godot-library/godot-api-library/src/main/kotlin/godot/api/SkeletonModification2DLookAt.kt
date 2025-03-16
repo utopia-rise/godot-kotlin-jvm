@@ -178,6 +178,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
 
   /**
    * When `true`, the modification will use an inverted joint constraint.
+   *
    * An inverted joint constraint only constraints the [Bone2D] to the angles *outside of* the
    * inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint
    * constraint, as it constraints the joint to the outside of the inputted values.

@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
 public open class VideoStream : Resource() {
   /**
    * The video file path or URI that this [VideoStream] resource handles.
+   *
    * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv`
    * extension.
    */

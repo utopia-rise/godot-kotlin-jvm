@@ -23,10 +23,11 @@ import kotlin.Unit
  * [PacketPeerUDP] to [PacketPeerDTLS] accepting them via [takeConnection] as DTLS clients. Under the
  * hood, this class is used to store the DTLS state and cookies of the server. The reason of why the
  * state and cookies are needed is outside of the scope of this documentation.
+ *
  * Below a small example of how to use it:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # server_node.gd
  * extends Node
  *
@@ -57,8 +58,9 @@ import kotlin.Unit
  * p.get_packet().get_string_from_utf8())
  *                 p.put_packet("Hello DTLS client".to_utf8_buffer())
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // ServerNode.cs
  * using Godot;
  *
@@ -109,8 +111,8 @@ import kotlin.Unit
  * ```
  *
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # client_node.gd
  * extends Node
  *
@@ -132,8 +134,9 @@ import kotlin.Unit
  *             print("Connected: &#37;s" &#37; dtls.get_packet().get_string_from_utf8())
  *             connected = true
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // ClientNode.cs
  * using Godot;
  * using System.Text;
@@ -189,6 +192,7 @@ public open class DTLSServer : RefCounted() {
   /**
    * Try to initiate the DTLS handshake with the given [udpPeer] which must be already connected
    * (see [PacketPeerUDP.connectToHost]).
+   *
    * **Note:** You must check that the state of the return PacketPeerUDP is
    * [PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50&#37; of the new connections will be
    * invalid due to cookie exchange.

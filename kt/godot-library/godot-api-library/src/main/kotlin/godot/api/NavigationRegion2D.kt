@@ -33,17 +33,23 @@ import kotlin.jvm.JvmOverloads
 /**
  * A traversable 2D region based on a [NavigationPolygon] that [NavigationAgent2D]s can use for
  * pathfinding.
+ *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum
  * distance between two vertices required to connect two edges by using
  * [NavigationServer2D.mapSetEdgeConnectionMargin].
+ *
  * **Note:** Overlapping two regions' navigation polygons is not enough for connecting two regions.
  * They must share a similar edge.
+ *
  * The pathfinding cost of entering a region from another region can be controlled with the
  * [enterCost] value.
+ *
  * **Note:** This value is not added to the path cost when the start position is already inside this
  * region.
+ *
  * The pathfinding cost of traveling distances inside this region can be controlled with the
  * [travelCost] multiplier.
+ *
  * **Note:** This node caches changes to its properties, so if you make changes to the underlying
  * region [RID] in [NavigationServer2D], they will not be reflected in this node's properties.
  */

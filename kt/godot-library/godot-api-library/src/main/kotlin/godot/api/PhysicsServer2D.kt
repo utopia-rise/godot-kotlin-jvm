@@ -38,25 +38,32 @@ import kotlin.jvm.JvmStatic
 /**
  * PhysicsServer2D is the server responsible for all 2D physics. It can directly create and
  * manipulate all physics objects:
+ *
  * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and
  * joints. Its state can be queried for collision and intersection information, and several parameters
  * of the simulation can be modified.
+ *
  * - A *shape* is a geometric shape such as a circle, a rectangle, a capsule, or a polygon. It can
  * be used for collision detection by adding it to a body/area, possibly with an extra transformation
  * relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to
  * them, and a single shape can be added to bodies/areas multiple times with different local
  * transformations.
+ *
  * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such
  * as position and velocity) can be queried and updated. A force integration callback can be set to
  * customize the body's physics.
+ *
  * - An *area* is a region in space which can be used to detect bodies and areas entering and
  * exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and
  * similarly an area monitoring callback can be set. Gravity and damping can be overridden within the
  * area by setting area parameters.
+ *
  * - A *joint* is a constraint, either between two bodies or on one body relative to a point.
  * Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
+ *
  * Physics objects in [PhysicsServer2D] may be created and manipulated independently; they do not
  * have to be tied to nodes in the scene tree.
+ *
  * **Note:** All the 2D physics nodes use the physics server internally. Adding a physics node to
  * the scene tree will cause a corresponding physics object to be created in the physics server. A
  * rigid body node registers a callback that updates the node's transform with the transform of the
@@ -161,23 +168,32 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the shape data that defines the configuration of the shape. The [data] to be passed
    * depends on the shape's type (see [shapeGetType]):
+   *
    * - [SHAPE_WORLD_BOUNDARY]: an array of length two containing a [Vector2] `normal` direction and
    * a [float] distance `d`,
+   *
    * - [SHAPE_SEPARATION_RAY]: a dictionary containing the key `length` with a [float] value and the
    * key `slide_on_slope` with a [bool] value,
+   *
    * - [SHAPE_SEGMENT]: a [Rect2] `rect` containing the first point of the segment in
    * `rect.position` and the second point of the segment in `rect.size`,
+   *
    * - [SHAPE_CIRCLE]: a [float] `radius`,
+   *
    * - [SHAPE_RECTANGLE]: a [Vector2] `half_extents`,
+   *
    * - [SHAPE_CAPSULE]: an array of length two (or a [Vector2]) containing a [float] `height` and a
    * [float] `radius`,
+   *
    * - [SHAPE_CONVEX_POLYGON]: either a [PackedVector2Array] of points defining a convex polygon in
    * counterclockwise order (the clockwise outward normal of each segment formed by consecutive points
    * is calculated internally), or a [PackedFloat32Array] of length divisible by four so that every
    * 4-tuple of [float]s contains the coordinates of a point followed by the coordinates of the
    * clockwise outward normal vector to the segment between the current point and the next point,
+   *
    * - [SHAPE_CONCAVE_POLYGON]: a [PackedVector2Array] of length divisible by two (each pair of
    * points forms one segment).
+   *
    * **Warning:** In the case of [SHAPE_CONVEX_POLYGON], this method does not check if the points
    * supplied actually form a convex polygon (unlike the [CollisionPolygon2D.polygon] property).
    */
@@ -281,6 +297,7 @@ public object PhysicsServer2D : Object() {
    * Creates a 2D area object in the physics server, and returns the [RID] that identifies it. The
    * default settings for the created area include a collision layer and mask set to `1`, and
    * `monitorable` set to `false`.
+   *
    * Use [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use
    * [areaSetSpace] to add the area to a space. If you want the area to be detectable use
    * [areaSetMonitorable].
@@ -295,6 +312,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds the area to the given space, after removing the area from the previously assigned space
    * (if any).
+   *
    * **Note:** To remove an area from a space without immediately adding it back elsewhere, use
    * `PhysicsServer2D.area_set_space(area, RID())`.
    */
@@ -553,14 +571,20 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
    * body enters or exits (a shape of) the given area, and must take the following five parameters:
+   *
    * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
    * the other body shape entered or exited the area,
+   *
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
+   *
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
+   *
    * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
    * area,
+   *
    * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or
    * exited.
+   *
    * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a
    * body (with all its shapes) is entering for the first time or exiting for the last time.
    */
@@ -573,14 +597,20 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the area's area monitor callback. This callback will be called when any other (shape of
    * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
+   *
    * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
    * the other area's shape entered or exited the area,
+   *
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
+   *
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
+   *
    * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
    * the area,
+   *
    * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered
    * or exited.
+   *
    * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an
    * area (with all its shapes) is entering for the first time or exiting for the last time.
    */
@@ -604,6 +634,7 @@ public object PhysicsServer2D : Object() {
    * Creates a 2D body object in the physics server, and returns the [RID] that identifies it. The
    * default settings for the created area include a collision layer and mask set to `1`, and body mode
    * set to [BODY_MODE_RIGID].
+   *
    * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
    * [bodySetSpace] to add the body to a space.
    */
@@ -618,10 +649,13 @@ public object PhysicsServer2D : Object() {
    * Adds the body to the given space, after removing the body from the previously assigned space
    * (if any). If the body's mode is set to [BODY_MODE_RIGID], then adding the body to a space will
    * have the following additional effects:
+   *
    * - If the parameter [BODY_PARAM_CENTER_OF_MASS] has never been set explicitly, then the value of
    * that parameter will be recalculated based on the body's shapes.
+   *
    * - If the parameter [BODY_PARAM_INERTIA] is set to a value `<= 0.0`, then the value of that
    * parameter will be recalculated based on the body's shapes, mass, and center of mass.
+   *
    * **Note:** To remove a body from a space without immediately adding it back elsewhere, use
    * `PhysicsServer2D.body_set_space(body, RID())`.
    */
@@ -833,6 +867,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Sets the continuous collision detection mode using one of the [CCDMode] constants.
+   *
    * Continuous collision detection tries to predict where a moving body would collide in between
    * physics updates, instead of moving it and correcting its movement if it collided.
    */
@@ -948,6 +983,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Sets the value of a body's state. See [BodyState] for the list of available states.
+   *
    * **Note:** The state change doesn't take effect immediately. The state will change on the next
    * physics frame.
    */
@@ -975,9 +1011,11 @@ public object PhysicsServer2D : Object() {
   /**
    * Applies a directional impulse to the body, at the body's center of mass. The impulse does not
    * affect rotation.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * This is equivalent to using [bodyApplyImpulse] at the body's center of mass.
    */
   @JvmStatic
@@ -988,6 +1026,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Applies a rotational impulse to the body. The impulse does not affect position.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
@@ -1001,9 +1040,11 @@ public object PhysicsServer2D : Object() {
   /**
    * Applies a positioned impulse to the body. The impulse can affect rotation if [position] is
    * different from the body's center of mass.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -1020,6 +1061,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Applies a directional force to the body, at the body's center of mass. The force does not
    * affect rotation. A force is time dependent and meant to be applied every physics update.
+   *
    * This is equivalent to using [bodyApplyForce] at the body's center of mass.
    */
   @JvmStatic
@@ -1032,6 +1074,7 @@ public object PhysicsServer2D : Object() {
    * Applies a positioned force to the body. The force can affect rotation if [position] is
    * different from the body's center of mass. A force is time dependent and meant to be applied every
    * physics update.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -1059,6 +1102,7 @@ public object PhysicsServer2D : Object() {
    * Adds a constant directional force to the body. The force does not affect rotation. The force
    * remains applied over time until cleared with `PhysicsServer2D.body_set_constant_force(body,
    * Vector2(0, 0))`.
+   *
    * This is equivalent to using [bodyAddConstantForce] at the body's center of mass.
    */
   @JvmStatic
@@ -1071,6 +1115,7 @@ public object PhysicsServer2D : Object() {
    * Adds a constant positioned force to the body. The force can affect rotation if [position] is
    * different from the body's center of mass. The force remains applied over time until cleared with
    * `PhysicsServer2D.body_set_constant_force(body, Vector2(0, 0))`.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -1096,6 +1141,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Sets the body's total constant positional force applied during each physics update.
+   *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   @JvmStatic
@@ -1106,6 +1152,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Returns the body's total constant positional force applied during each physics update.
+   *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   @JvmStatic
@@ -1117,6 +1164,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Sets the body's total constant rotational force applied during each physics update.
+   *
    * See [bodyAddConstantTorque].
    */
   @JvmStatic
@@ -1127,6 +1175,7 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Returns the body's total constant rotational force applied during each physics update.
+   *
    * See [bodyAddConstantTorque].
    */
   @JvmStatic
@@ -1193,6 +1242,7 @@ public object PhysicsServer2D : Object() {
    * will not automatically use applied forces, torques, and damping to update the body's linear and
    * angular velocity. In this case, [bodySetForceIntegrationCallback] can be used to manually update
    * the linear and angular velocity instead.
+   *
    * This method is called when the property [RigidBody2D.customIntegrator] is set.
    */
   @JvmStatic
@@ -1215,10 +1265,13 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the body's state synchronization callback function to [callable]. Use an empty [Callable]
    * ([code skip-lint]Callable()[/code]) to clear the callback.
+   *
    * The function [callable] will be called every physics frame, assuming that the body was active
    * during the previous physics tick, and can be used to fetch the latest state from the physics
    * server.
+   *
    * The function [callable] must take the following parameters:
+   *
    * 1. `state`: a [PhysicsDirectBodyState2D], used to retrieve the body's state.
    */
   @JvmStatic
@@ -1230,13 +1283,18 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the body's custom force integration callback function to [callable]. Use an empty
    * [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback.
+   *
    * The function [callable] will be called every physics tick, before the standard force
    * integration (see [bodySetOmitForceIntegration]). It can be used for example to update the body's
    * linear and angular velocity based on contact with other bodies.
+   *
    * If [userdata] is not `null`, the function [callable] must take the following two parameters:
+   *
    * 1. `state`: a [PhysicsDirectBodyState2D] used to retrieve and modify the body's state,
+   *
    * 2. [code skip-lint]userdata[/code]: a [Variant]; its value will be the [userdata] passed into
    * this method.
+   *
    * If [userdata] is `null`, then [callable] must take only the `state` parameter.
    */
   @JvmOverloads
@@ -1676,6 +1734,7 @@ public object PhysicsServer2D : Object() {
      * have falloff according to the inverse square law, so in the example, at 200 pixels from the
      * center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it
      * will be 16.0 px/s² (half the distance, 4x the gravity), and so on.
+     *
      * The above is true only when the unit distance is a positive number. When the unit distance is
      * set to 0.0, the gravity will be constant regardless of distance. The default value of this
      * parameter is `0.0`.
@@ -1808,8 +1867,10 @@ public object PhysicsServer2D : Object() {
      * Constant to set/get a body's mass. The default value of this parameter is `1.0`. If the
      * body's mode is set to [BODY_MODE_RIGID], then setting this parameter will have the following
      * additional effects:
+     *
      * - If the parameter [BODY_PARAM_CENTER_OF_MASS] has never been set explicitly, then the value
      * of that parameter will be recalculated based on the body's shapes.
+     *
      * - If the parameter [BODY_PARAM_INERTIA] is set to a value `<= 0.0`, then the value of that
      * parameter will be recalculated based on the body's shapes, mass, and center of mass.
      */
@@ -1964,18 +2025,21 @@ public object PhysicsServer2D : Object() {
      * Constant to set/get how fast the joint pulls the bodies back to satisfy the joint constraint.
      * The lower the value, the more the two bodies can pull on the joint. The default value of this
      * parameter is `0.0`.
+     *
      * **Note:** In Godot Physics, this parameter is only used for pin joints and groove joints.
      */
     BIAS(0),
     /**
      * Constant to set/get the maximum speed with which the joint can apply corrections. The default
      * value of this parameter is `3.40282e+38`.
+     *
      * **Note:** In Godot Physics, this parameter is only used for groove joints.
      */
     MAX_BIAS(1),
     /**
      * Constant to set/get the maximum force that the joint can use to act on the two bodies. The
      * default value of this parameter is `3.40282e+38`.
+     *
      * **Note:** In Godot Physics, this parameter is only used for groove joints.
      */
     MAX_FORCE(2),

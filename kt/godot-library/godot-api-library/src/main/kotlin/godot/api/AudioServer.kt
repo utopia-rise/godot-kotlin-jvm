@@ -85,6 +85,7 @@ public object AudioServer : Object() {
    * audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input
    * device. The value `"Default"` will record audio on the system-wide default audio input. If an
    * invalid device name is set, the value will be reverted back to `"Default"`.
+   *
    * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
    * See also that setting's description for caveats related to permissions and operating system
    * privacy settings.
@@ -218,6 +219,7 @@ public object AudioServer : Object() {
 
   /**
    * Sets the volume as a linear value of the bus at index [busIdx] to [volumeLinear].
+   *
    * **Note:** Using this method is equivalent to calling [setBusVolumeDb] with the result of
    * [@GlobalScope.linearToDb] on a value.
    */
@@ -229,6 +231,7 @@ public object AudioServer : Object() {
 
   /**
    * Returns the volume of the bus at index [busIdx] as a linear value.
+   *
    * **Note:** The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on the
    * result of [getBusVolumeDb].
    */
@@ -445,6 +448,7 @@ public object AudioServer : Object() {
 
   /**
    * Locks the audio driver's main loop.
+   *
    * **Note:** Remember to unlock it afterwards.
    */
   @JvmStatic
@@ -553,6 +557,7 @@ public object AudioServer : Object() {
    * Returns the audio driver's effective output latency. This is based on
    * [ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending
    * on the operating system and audio driver.
+   *
    * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
   @JvmStatic
@@ -564,6 +569,7 @@ public object AudioServer : Object() {
 
   /**
    * Returns the names of all audio input devices detected on the system.
+   *
    * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
    * See also that setting's description for caveats related to permissions and operating system
    * privacy settings.
@@ -610,6 +616,7 @@ public object AudioServer : Object() {
   /**
    * If set to `true`, all instances of [AudioStreamPlayback] will call
    * [AudioStreamPlayback.TagUsedStreams] every mix step.
+   *
    * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the
    * audio stream previews.
    */
@@ -622,6 +629,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the stream is registered as a sample. The engine will not have to register it before
    * playing the sample.
+   *
    * If `false`, the stream will have to be registered before playing it. To prevent lag spikes,
    * register the stream as sample with [registerStreamAsSample].
    */
@@ -634,6 +642,7 @@ public object AudioServer : Object() {
 
   /**
    * Forces the registration of a stream as a sample.
+   *
    * **Note:** Lag spikes may occur when calling this method, especially on single-threaded builds.
    * It is suggested to call this method while loading assets, where the lag spike could be masked,
    * instead of registering the sample right before it needs to be played.
@@ -704,7 +713,9 @@ public object AudioServer : Object() {
     /**
      * Force the playback to be considered as a sample. This can provide lower latency and more
      * stable playback (with less risk of audio crackling), at the cost of having less flexibility.
+     *
      * **Note:** Only currently supported on the web platform.
+     *
      * **Note:** [AudioEffect]s are not supported when playback is considered as a sample.
      */
     SAMPLE(2),

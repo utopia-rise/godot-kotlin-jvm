@@ -35,6 +35,7 @@ import kotlin.jvm.JvmOverloads
  * This animation node may contain a sub-tree of any other type animation nodes, such as
  * [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot],
  * etc. This is one of the most commonly used animation node roots.
+ *
  * An [AnimationNodeOutput] node named `output` is created by default.
  */
 @GodotBaseType

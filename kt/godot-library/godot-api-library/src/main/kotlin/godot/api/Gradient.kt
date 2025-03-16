@@ -30,6 +30,7 @@ import kotlin.jvm.JvmName
 /**
  * This resource describes a color transition by defining a set of colored points and how to
  * interpolate between them.
+ *
  * See also [Curve] which supports more complex easing methods, but does not support colors.
  */
 @GodotBaseType
@@ -49,6 +50,7 @@ public open class Gradient : Resource() {
   /**
    * The color space used to interpolate between points of the gradient. It does not affect the
    * returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
+   *
    * **Note:** This setting has no effect when [interpolationMode] is set to
    * [GRADIENT_INTERPOLATE_CONSTANT].
    */
@@ -62,6 +64,7 @@ public open class Gradient : Resource() {
 
   /**
    * Gradient's offsets as a [PackedFloat32Array].
+   *
    * **Note:** Setting this property updates all offsets at once. To update any offset individually
    * use [setOffset].
    */
@@ -75,6 +78,7 @@ public open class Gradient : Resource() {
 
   /**
    * Gradient's colors as a [PackedColorArray].
+   *
    * **Note:** Setting this property updates all colors at once. To update any color individually
    * use [setColor].
    */
@@ -125,6 +129,7 @@ public open class Gradient : Resource() {
 
   /**
    * Reverses/mirrors the gradient.
+   *
    * **Note:** This method mirrors all points around the middle of the gradient, which may produce
    * unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */

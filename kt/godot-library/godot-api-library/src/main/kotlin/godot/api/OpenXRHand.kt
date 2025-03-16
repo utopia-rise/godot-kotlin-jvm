@@ -27,11 +27,14 @@ import kotlin.jvm.JvmName
  * [XROrigin3D] node, tracking will update its position to the player's tracked hand Palm joint
  * location (the center of the middle finger's metacarpal bone). This node also updates the skeleton of
  * a properly skinned hand or avatar model.
+ *
  * If the skeleton is a hand (one of the hand bones is the root node of the skeleton), then the
  * skeleton will be placed relative to the hand palm location and the hand mesh and skeleton should be
  * children of the OpenXRHand node.
+ *
  * If the hand bones are part of a full skeleton, then the root of the hand will keep its location
  * with the assumption that IK is used to position the hand and arm.
+ *
  * By default the skeleton hand bones are repositioned to match the size of the tracked hand. To
  * preserve the modeled bone sizes change [boneUpdate] to apply rotation only.
  */

@@ -65,46 +65,57 @@ public infix fun Long.and(other: Node.ProcessThreadMessages): Long = this.and(ot
  * Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting
  * in a tree arrangement. A given node can contain any number of nodes as children with the requirement
  * that all siblings (direct children of a node) should have unique names.
+ *
  * A tree of nodes is called a *scene*. Scenes can be saved to the disk and then instantiated into
  * other scenes. This allows for very high flexibility in the architecture and data model of Godot
  * projects.
+ *
  * **Scene tree:** The [SceneTree] contains the active tree of nodes. When a node is added to the
  * scene tree, it receives the [NOTIFICATION_ENTER_TREE] notification and its [_enterTree] callback is
  * triggered. Child nodes are always added *after* their parent node, i.e. the [_enterTree] callback of
  * a parent node will be triggered before its child's.
+ *
  * Once all nodes have been added in the scene tree, they receive the [NOTIFICATION_READY]
  * notification and their respective [_ready] callbacks are triggered. For groups of nodes, the
  * [_ready] callback is called in reverse order, starting with the children and moving up to the parent
  * nodes.
+ *
  * This means that when adding a node to the scene tree, the following order will be used for the
  * callbacks: [_enterTree] of the parent, [_enterTree] of the children, [_ready] of the children and
  * finally [_ready] of the parent (recursively for the entire scene tree).
+ *
  * **Processing:** Nodes can override the "process" state, so that they receive a callback on each
  * frame requesting them to process (do something). Normal processing (callback [_process], toggled
  * with [setProcess]) happens as fast as possible and is dependent on the frame rate, so the processing
  * time *delta* (in seconds) is passed as an argument. Physics processing (callback [_physicsProcess],
  * toggled with [setPhysicsProcess]) happens a fixed number of times per second (60 by default) and is
  * useful for code related to the physics engine.
+ *
  * Nodes can also process input events. When present, the [_input] function will be called for each
  * input that the program receives. In many cases, this can be overkill (unless used for simple
  * projects), and the [_unhandledInput] function might be preferred; it is called when the input event
  * was not handled by anyone else (typically, GUI [Control] nodes), ensuring that the node only
  * receives the events that were meant for it.
+ *
  * To keep track of the scene hierarchy (especially when instantiating scenes into other scenes), an
  * "owner" can be set for the node with the [owner] property. This keeps track of who instantiated
  * what. This is mostly useful when writing editors and tools, though.
+ *
  * Finally, when a node is freed with [Object.free] or [queueFree], it will also free all its
  * children.
+ *
  * **Groups:** Nodes can be added to as many groups as you want to be easy to manage, you could
  * create groups like "enemies" or "collectables" for example, depending on your game. See
  * [addToGroup], [isInGroup] and [removeFromGroup]. You can then retrieve all nodes in these groups,
  * iterate them and even call methods on groups via the methods on [SceneTree].
+ *
  * **Networking with nodes:** After connecting to a server (or making one, see
  * [ENetMultiplayerPeer]), it is possible to use the built-in RPC (remote procedure call) system to
  * communicate over the network. By calling [rpc] with a method name, it will be called locally and in
  * all connected peers (peers = clients and the server that accepts connections). To identify which
  * node receives the RPC call, Godot will use its [NodePath] (make sure node names are the same on all
  * peers). Also, take a look at the high-level networking tutorial and corresponding demos.
+ *
  * **Note:** The `script` property is part of the [Object] class, not [Node]. It isn't exposed like
  * most properties but does have a setter and getter (see [Object.setScript] and [Object.getScript]).
  */
@@ -122,6 +133,7 @@ public open class Node : Object() {
 
   /**
    * Emitted when the node enters the tree.
+   *
    * This signal is emitted *after* the related [NOTIFICATION_ENTER_TREE] notification.
    */
   public val treeEntered: Signal0 by Signal0
@@ -129,6 +141,7 @@ public open class Node : Object() {
   /**
    * Emitted when the node is just about to exit the tree. The node is still valid. As such, this is
    * the right place for de-initialization (or a "destructor", if you will).
+   *
    * This signal is emitted *after* the node's [_exitTree], and *before* the related
    * [NOTIFICATION_EXIT_TREE].
    */
@@ -136,6 +149,7 @@ public open class Node : Object() {
 
   /**
    * Emitted after the node exits the tree and is no longer active.
+   *
    * This signal is emitted *after* the related [NOTIFICATION_EXIT_TREE] notification.
    */
   public val treeExited: Signal0 by Signal0
@@ -143,6 +157,7 @@ public open class Node : Object() {
   /**
    * Emitted when the child [node] enters the [SceneTree], usually because this node entered the
    * tree (see [signal tree_entered]), or [addChild] has been called.
+   *
    * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [signal
    * tree_entered].
    */
@@ -152,6 +167,7 @@ public open class Node : Object() {
    * Emitted when the child [node] is about to exit the [SceneTree], usually because this node is
    * exiting the tree (see [signal tree_exiting]), or because the child [node] is being removed or
    * freed.
+   *
    * When this signal is received, the child [node] is still accessible inside the tree. This signal
    * is emitted *after* the child node's own [signal tree_exiting] and [NOTIFICATION_EXIT_TREE].
    */
@@ -165,6 +181,7 @@ public open class Node : Object() {
 
   /**
    * Emitted when this node is being replaced by the [node], see [replaceBy].
+   *
    * This signal is emitted *after* [node] has been added as a child of the original parent node,
    * but *before* all original child nodes have been reparented to [node].
    */
@@ -184,6 +201,7 @@ public open class Node : Object() {
   /**
    * The name of the node. This name must be unique among the siblings (other child nodes from the
    * same parent). When set to an existing sibling's name, the node is automatically renamed.
+   *
    * **Note:** When changing the name, the following characters will be replaced with an underscore:
    * (`.` `:` `@` `/` `"` `&#37;`). In particular, the `@` character is reserved for auto-generated
    * names. See also [String.validateNodeName].
@@ -195,6 +213,7 @@ public open class Node : Object() {
   /**
    * If `true`, the node can be accessed from any node sharing the same [owner] or from the [owner]
    * itself, with special `&#37;Name` syntax in [getNode].
+   *
    * **Note:** If another node with the same [owner] shares the same [name] as this node, the other
    * node will no longer be accessible as unique.
    */
@@ -221,6 +240,7 @@ public open class Node : Object() {
   /**
    * The owner of this node. The owner must be an ancestor of this node. When packing the owner node
    * in a [PackedScene], all the nodes it owns are also saved with it. See also [uniqueNameInOwner].
+   *
    * **Note:** In the editor, nodes not owned by the scene root are usually not displayed in the
    * Scene dock, and will **not** be saved. To prevent this, remember to set the owner after calling
    * [addChild].
@@ -235,6 +255,7 @@ public open class Node : Object() {
 
   /**
    * The [MultiplayerAPI] instance associated with this node. See [SceneTree.getMultiplayer].
+   *
    * **Note:** Renaming the node, or moving it in the tree, will not move the [MultiplayerAPI] to
    * the new path, you will have to update this manually.
    */
@@ -283,6 +304,7 @@ public open class Node : Object() {
    * Set the process thread group for this node (basically, whether it receives
    * [NOTIFICATION_PROCESS], [NOTIFICATION_PHYSICS_PROCESS], [_process] or [_physicsProcess] (and the
    * internal versions) on the main thread or in a sub-thread.
+   *
    * By default, the thread group is [PROCESS_THREAD_GROUP_INHERIT], which means that this node
    * belongs to the same thread group as the parent node. The thread groups means that nodes in a
    * specific thread group will process together, separate to other thread groups (depending on
@@ -291,10 +313,12 @@ public open class Node : Object() {
    * [PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or
    * grandparent node set to something other than inherit, the node will belong to the *default thread
    * group*. This default group will process on the main thread and its group order is 0.
+   *
    * During processing in a sub-thread, accessing most functions in nodes outside the thread group
    * is forbidden (and it will result in an error in debug mode). Use [Object.callDeferred],
    * [callThreadSafe], [callDeferredThreadGroup] and the likes in order to communicate from the thread
    * groups to the main thread (or to other thread groups).
+   *
    * To better understand process thread groups, the idea is that any node set to any other value
    * than [PROCESS_THREAD_GROUP_INHERIT] will include any child (and grandchild) nodes set to inherit
    * into its process thread group. This means that the processing of all the nodes in the group will
@@ -339,6 +363,7 @@ public open class Node : Object() {
    * than turning physics interpolation on and off globally. See
    * [ProjectSettings.physics/common/physicsInterpolation] and [SceneTree.physicsInterpolation] for the
    * global setting.
+   *
    * **Note:** When teleporting a node to a distant position you should temporarily disable
    * interpolation with [Node.resetPhysicsInterpolation].
    */
@@ -354,6 +379,7 @@ public open class Node : Object() {
    * Defines if any text should automatically change to its translated version depending on the
    * current locale (for nodes such as [Label], [RichTextLabel], [Window], etc.). Also decides if the
    * node's strings should be parsed for POT generation.
+   *
    * **Note:** For the root node, auto translate mode can also be set via
    * [ProjectSettings.internationalization/rendering/rootNodeAutoTranslate].
    */
@@ -606,14 +632,19 @@ public open class Node : Object() {
    * Called during the processing step of the main loop. Processing happens at every frame and as
    * fast as possible, so the [delta] time since the previous frame is not constant. [delta] is in
    * seconds.
+   *
    * It is only called if processing is enabled, which is done automatically if this method is
    * overridden, and can be toggled with [setProcess].
+   *
    * Processing happens in order of [processPriority], lower priority values are called first. Nodes
    * with the same priority are processed in tree order, or top to bottom as seen in the editor (also
    * known as pre-order traversal).
+   *
    * Corresponds to the [NOTIFICATION_PROCESS] notification in [Object.Notification].
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
+   *
    * **Note:** [delta] will be larger than expected if running at a framerate lower than
    * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
    * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
@@ -629,14 +660,19 @@ public open class Node : Object() {
    * Called during the physics processing step of the main loop. Physics processing means that the
    * frame rate is synced to the physics, i.e. the [delta] parameter will *generally* be constant (see
    * exceptions below). [delta] is in seconds.
+   *
    * It is only called if physics processing is enabled, which is done automatically if this method
    * is overridden, and can be toggled with [setPhysicsProcess].
+   *
    * Processing happens in order of [processPhysicsPriority], lower priority values are called
    * first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the
    * editor (also known as pre-order traversal).
+   *
    * Corresponds to the [NOTIFICATION_PHYSICS_PROCESS] notification in [Object.Notification].
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
+   *
    * **Note:** [delta] will be larger than expected if running at a framerate lower than
    * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
    * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
@@ -652,6 +688,7 @@ public open class Node : Object() {
    * Called when the node enters the [SceneTree] (e.g. upon instantiating, scene changing, or after
    * calling [addChild] in a script). If the node has children, its [_enterTree] callback will be
    * called first, and then that of the children.
+   *
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
    */
   public open fun _enterTree(): Unit {
@@ -662,6 +699,7 @@ public open class Node : Object() {
    * Called when the node is about to leave the [SceneTree] (e.g. upon freeing, scene changing, or
    * after calling [removeChild] in a script). If the node has children, its [_exitTree] callback will
    * be called last, after all its children have left the tree.
+   *
    * Corresponds to the [NOTIFICATION_EXIT_TREE] notification in [Object.Notification] and signal
    * [signal tree_exiting]. To get notified when the node has already left the active tree, connect to
    * the [signal tree_exited].
@@ -674,10 +712,13 @@ public open class Node : Object() {
    * Called when the node is "ready", i.e. when both the node and its children have entered the
    * scene tree. If the node has children, their [_ready] callbacks get triggered first, and the parent
    * node will receive the ready notification afterwards.
+   *
    * Corresponds to the [NOTIFICATION_READY] notification in [Object.Notification]. See also the
    * `@onready` annotation for variables.
+   *
    * Usually used for initialization. For even earlier initialization, [Object.Init] may be used.
    * See also [_enterTree].
+   *
    * **Note:** This method may be called only once for each node. After removing a node from the
    * scene tree and adding it again, [_ready] will **not** be called a second time. This can be
    * bypassed by requesting another call with [requestReady], which may be called anywhere before
@@ -690,9 +731,12 @@ public open class Node : Object() {
   /**
    * The elements in the array returned from this method are displayed as warnings in the Scene dock
    * if the script that overrides it is a `tool` script.
+   *
    * Returning an empty array produces no warnings.
+   *
    * Call [updateConfigurationWarnings] when the warnings need to be updated for this node.
-   * [codeblock]
+   *
+   * ```
    * @export var energy = 0:
    *     set(value):
    *         energy = value
@@ -703,7 +747,7 @@ public open class Node : Object() {
    *         return ["Energy must be 0 or greater."]
    *     else:
    *         return []
-   * [/codeblock]
+   * ```
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
     throw NotImplementedError("_getConfigurationWarnings is not implemented for Node")
@@ -712,12 +756,16 @@ public open class Node : Object() {
   /**
    * Called when there is an input event. The input event propagates up through the node tree until
    * a node consumes it.
+   *
    * It is only called if input processing is enabled, which is done automatically if this method is
    * overridden, and can be toggled with [setProcessInput].
+   *
    * To consume the input event and stop it propagating further to other nodes,
    * [Viewport.setInputAsHandled] can be called.
+   *
    * For gameplay input, [_unhandledInput] and [_unhandledKeyInput] are usually a better fit as they
    * allow the GUI to intercept the events first.
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
@@ -729,12 +777,16 @@ public open class Node : Object() {
    * Called when an [InputEventKey], [InputEventShortcut], or [InputEventJoypadButton] hasn't been
    * consumed by [_input] or any GUI [Control] item. It is called before [_unhandledKeyInput] and
    * [_unhandledInput]. The input event propagates up through the node tree until a node consumes it.
+   *
    * It is only called if shortcut processing is enabled, which is done automatically if this method
    * is overridden, and can be toggled with [setProcessShortcutInput].
+   *
    * To consume the input event and stop it propagating further to other nodes,
    * [Viewport.setInputAsHandled] can be called.
+   *
    * This method can be used to handle shortcuts. For generic GUI events, use [_input] instead.
    * Gameplay events should usually be handled with either [_unhandledInput] or [_unhandledKeyInput].
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * orphan).
    */
@@ -746,14 +798,18 @@ public open class Node : Object() {
    * Called when an [InputEvent] hasn't been consumed by [_input] or any GUI [Control] item. It is
    * called after [_shortcutInput] and after [_unhandledKeyInput]. The input event propagates up
    * through the node tree until a node consumes it.
+   *
    * It is only called if unhandled input processing is enabled, which is done automatically if this
    * method is overridden, and can be toggled with [setProcessUnhandledInput].
+   *
    * To consume the input event and stop it propagating further to other nodes,
    * [Viewport.setInputAsHandled] can be called.
+   *
    * For gameplay input, this method is usually a better fit than [_input], as GUI events need a
    * higher priority. For keyboard shortcuts, consider using [_shortcutInput] instead, as it is called
    * before this method. Finally, to handle keyboard events, consider using [_unhandledKeyInput] for
    * performance reasons.
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
@@ -765,16 +821,21 @@ public open class Node : Object() {
    * Called when an [InputEventKey] hasn't been consumed by [_input] or any GUI [Control] item. It
    * is called after [_shortcutInput] but before [_unhandledInput]. The input event propagates up
    * through the node tree until a node consumes it.
+   *
    * It is only called if unhandled key input processing is enabled, which is done automatically if
    * this method is overridden, and can be toggled with [setProcessUnhandledKeyInput].
+   *
    * To consume the input event and stop it propagating further to other nodes,
    * [Viewport.setInputAsHandled] can be called.
+   *
    * This method can be used to handle Unicode character input with [kbd]Alt[/kbd], [kbd]Alt +
    * Ctrl[/kbd], and [kbd]Alt + Shift[/kbd] modifiers, after shortcuts were handled.
+   *
    * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input], as GUI
    * events should be handled first. This method also performs better than [_unhandledInput], since
    * unrelated events such as [InputEventMouseMotion] are automatically filtered. For shortcuts,
    * consider using [_shortcutInput] instead.
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
@@ -784,12 +845,15 @@ public open class Node : Object() {
 
   /**
    * Adds a [sibling] node to this node's parent, and moves the added sibling right below this node.
+   *
    * If [forceReadableName] is `true`, improves the readability of the added [sibling]. If not
    * named, the [sibling] is renamed to its type, and if it shares [name] with a sibling, a number is
    * suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this
    * to `false`, which assigns a dummy name featuring `@` in both situations.
+   *
    * Use [addChild] instead of this method if you don't need the child node to be added below a
    * specific node in the list of children.
+   *
    * **Note:** If this node is internal, the added sibling will be internal too (see [addChild]'s
    * `internal` parameter).
    */
@@ -814,27 +878,31 @@ public open class Node : Object() {
    * Adds a child [node]. Nodes can have any number of children, but every child must have a unique
    * name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene
    * can be removed by deleting its topmost node.
+   *
    * If [forceReadableName] is `true`, improves the readability of the added [node]. If not named,
    * the [node] is renamed to its type, and if it shares [name] with a sibling, a number is suffixed
    * more appropriately. This operation is very slow. As such, it is recommended leaving this to
    * `false`, which assigns a dummy name featuring `@` in both situations.
+   *
    * If [internal] is different than [INTERNAL_MODE_DISABLED], the child will be added as internal
    * node. These nodes are ignored by methods like [getChildren], unless their parameter
    * `include_internal` is `true`. The intended usage is to hide the internal nodes from the user, so
    * the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [ColorPicker]. See
    * [InternalMode] for available modes.
+   *
    * **Note:** If [node] already has a parent, this method will fail. Use [removeChild] first to
    * remove [node] from its current parent. For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var child_node = get_child(0)
    * if child_node.get_parent():
    *     child_node.get_parent().remove_child(child_node)
    * add_child(child_node)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Node childNode = GetChild(0);
    * if (childNode.GetParent() != null)
    * {
@@ -845,6 +913,7 @@ public open class Node : Object() {
    *
    * If you need the child node to be added below a specific node in the list of children, use
    * [addSibling] instead of this method.
+   *
    * **Note:** If you want a child to be persisted to a [PackedScene], you must set [owner] in
    * addition to calling [addChild]. This is typically relevant for
    * [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]tool scripts[/url] and
@@ -865,6 +934,7 @@ public open class Node : Object() {
   /**
    * Removes a child [node]. The [node], along with its children, are **not** deleted. To delete a
    * node, see [queueFree].
+   *
    * **Note:** When this node is inside the tree, this method sets the [owner] of the removed [node]
    * (or its descendants) to `null`, if their [owner] is no longer an ancestor (see [isAncestorOf]).
    */
@@ -877,6 +947,7 @@ public open class Node : Object() {
    * Changes the parent of this [Node] to the [newParent]. The node needs to already have a parent.
    * The node's [owner] is preserved if its owner is still reachable from the new location (i.e., the
    * node is still a descendant of the new parent after the operation).
+   *
    * If [keepGlobalTransform] is `true`, the node's global transform will be preserved if supported.
    * [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
    */
@@ -888,6 +959,7 @@ public open class Node : Object() {
 
   /**
    * Returns the number of children of this node.
+   *
    * If [includeInternal] is `false`, internal children are not counted (see [addChild]'s `internal`
    * parameter).
    */
@@ -900,6 +972,7 @@ public open class Node : Object() {
 
   /**
    * Returns all children of this node inside an [Array].
+   *
    * If [includeInternal] is `false`, excludes internal children from the returned array (see
    * [addChild]'s `internal` parameter).
    */
@@ -916,9 +989,11 @@ public open class Node : Object() {
    * of the list. This method can be used in combination with [getChildCount] to iterate over this
    * node's children. If no child exists at the given index, this method returns `null` and an error is
    * generated.
+   *
    * If [includeInternal] is `false`, internal children are ignored (see [addChild]'s `internal`
    * parameter).
-   * [codeblock]
+   *
+   * ```
    * # Assuming the following are children of this node, in order:
    * # First, Middle, Last.
    *
@@ -926,7 +1001,8 @@ public open class Node : Object() {
    * var b = get_child(1).name  # b is "Middle"
    * var b = get_child(2).name  # b is "Last"
    * var c = get_child(-1).name # c is "Last"
-   * [/codeblock]
+   * ```
+   *
    * **Note:** To fetch a node by [NodePath], use [getNode].
    */
   @JvmOverloads
@@ -950,36 +1026,62 @@ public open class Node : Object() {
    * path (from the [SceneTree.root]) to a node. If [path] does not point to a valid node, generates an
    * error and returns `null`. Attempts to access methods on the return value will result in an
    * *"Attempt to call <method> on a null instance."* error.
+   *
    * **Note:** Fetching by absolute path only works when the node is inside the scene tree (see
    * [isInsideTree]).
+   *
    * **Example:** Assume this method is called from the Character node, inside the following tree:
+   *
    * [codeblock lang=text]
+   *
    *  ┖╴root
+   *
    *     ┠╴Character (you are here!)
+   *
    *     ┃  ┠╴Sword
+   *
    *     ┃  ┖╴Backpack
+   *
    *     ┃     ┖╴Dagger
+   *
    *     ┠╴MyGame
+   *
    *     ┖╴Swamp
+   *
    *        ┠╴Alligator
+   *
    *        ┠╴Mosquito
+   *
    *        ┖╴Goblin
-   * [/codeblock]
+   *
+   * ```
    * The following calls will return a valid node:
    *
-   * gdscript:
    * ```gdscript
+   *
+   * //gdscript
+   *
    * get_node("Sword")
+   *
    * get_node("Backpack/Dagger")
+   *
    * get_node("../Swamp/Alligator")
+   *
    * get_node("/root/MyGame")
+   *
    * ```
-   * csharp:
    * ```csharp
+   *
+   * //csharp
+   *
    * GetNode("Sword");
+   *
    * GetNode("Backpack/Dagger");
+   *
    * GetNode("../Swamp/Alligator");
+   *
    * GetNode("/root/MyGame");
+   *
    * ```
    */
   public final fun getNode(path: NodePath): Node? {
@@ -1012,13 +1114,17 @@ public open class Node : Object() {
    * match is found. The matching is done against node names, *not* their paths, through
    * [String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"`
    * matches any single character.
+   *
    * If [recursive] is `false`, only this node's direct children are checked. Nodes are checked in
    * tree order, so this node's first direct child is checked first, then its own direct children,
    * etc., before moving to the second direct child, and so on. Internal children are also included in
    * the search (see `internal` parameter in [addChild]).
+   *
    * If [owned] is `true`, only descendants with a valid [owner] node are checked.
+   *
    * **Note:** This method can be very slow. Consider storing a reference to the found node in a
    * variable. Alternatively, use [getNode] with unique names (see [uniqueNameInOwner]).
+   *
    * **Note:** To find all descendant nodes matching a pattern or a class type, see [findChildren].
    */
   @JvmOverloads
@@ -1037,15 +1143,20 @@ public open class Node : Object() {
    * no match is found. The matching is done against node names, *not* their paths, through
    * [String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"`
    * matches any single character.
+   *
    * If [type] is not empty, only ancestors inheriting from [type] are included (see
    * [Object.isClass]).
+   *
    * If [recursive] is `false`, only this node's direct children are checked. Nodes are checked in
    * tree order, so this node's first direct child is checked first, then its own direct children,
    * etc., before moving to the second direct child, and so on. Internal children are also included in
    * the search (see `internal` parameter in [addChild]).
+   *
    * If [owned] is `true`, only descendants with a valid [owner] node are checked.
+   *
    * **Note:** This method can be very slow. Consider storing references to the found nodes in a
    * variable.
+   *
    * **Note:** To find a single descendant node matching a pattern, see [findChild].
    */
   @JvmOverloads
@@ -1065,6 +1176,7 @@ public open class Node : Object() {
    * match is found. The matching is done through [String.match]. As such, it is case-sensitive, `"*"`
    * matches zero or more characters, and `"?"` matches any single character. See also [findChild] and
    * [findChildren].
+   *
    * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply
    * nested nodes. Consider storing a reference to the found node in a variable. Alternatively, use
    * [getNode] with unique names (see [uniqueNameInOwner]).
@@ -1089,14 +1201,18 @@ public open class Node : Object() {
   /**
    * Fetches a node and its most nested resource as specified by the [NodePath]'s subname. Returns
    * an [Array] of size `3` where:
+   *
    * - Element `0` is the [Node], or `null` if not found;
+   *
    * - Element `1` is the subname's last nested [Resource], or `null` if not found;
+   *
    * - Element `2` is the remaining [NodePath], referring to an existing, non-[Resource] property
    * (see [Object.getIndexed]).
+   *
    * **Example:** Assume that the child's [Sprite2D.texture] has been assigned a [AtlasTexture]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var a = get_node_and_resource("Area2D/Sprite2D")
    * print(a[0].name) # Prints Sprite2D
    * print(a[1])      # Prints <null>
@@ -1112,8 +1228,9 @@ public open class Node : Object() {
    * print(c[1].get_class()) # Prints AtlasTexture
    * print(c[2])             # Prints ^":region"
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var a = GetNodeAndResource(NodePath("Area2D/Sprite2D"));
    * GD.Print(a[0].Name); // Prints Sprite2D
    * GD.Print(a[1]);      // Prints <null>
@@ -1187,8 +1304,10 @@ public open class Node : Object() {
    * Returns the relative [NodePath] from this node to the specified [node]. Both nodes must be in
    * the same [SceneTree] or scene hierarchy, otherwise this method fails and returns an empty
    * [NodePath].
+   *
    * If [useUniquePath] is `true`, returns the shortest path accounting for this node's unique name
    * (see [uniqueNameInOwner]).
+   *
    * **Note:** If you get a relative path which starts from a unique node, the path may be longer
    * than a normal relative path, due to the addition of the unique node's name.
    */
@@ -1203,10 +1322,13 @@ public open class Node : Object() {
    * Adds the node to the [group]. Groups can be helpful to organize a subset of nodes, for example
    * `"enemies"` or `"collectables"`. See notes in the description, and the group methods in
    * [SceneTree].
+   *
    * If [persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All
    * groups created and displayed in the Node dock are persistent.
+   *
    * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
    * between project runs. Therefore, do not rely on the group order.
+   *
    * **Note:** [SceneTree]'s group methods will *not* work on this node if not inside the tree (see
    * [isInsideTree]).
    */
@@ -1239,6 +1361,7 @@ public open class Node : Object() {
    * Moves [childNode] to the given index. A node's index is the order among its siblings. If
    * [toIndex] is negative, the index is counted from the end of the list. See also [getChild] and
    * [getIndex].
+   *
    * **Note:** The processing order of several engine callbacks ([_ready], [_process], etc.) and
    * notifications sent through [propagateNotification] is affected by tree order. [CanvasItem] nodes
    * are also rendered in tree order. See also [processPriority].
@@ -1250,22 +1373,25 @@ public open class Node : Object() {
 
   /**
    * Returns an [Array] of group names that the node has been added to.
+   *
    * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
    * between project runs. Therefore, do not rely on the group order.
+   *
    * **Note:** This method may also return some group names starting with an underscore (`_`). These
    * are internally used by the engine. To avoid conflicts, do not use custom groups starting with
    * underscores. To exclude internal groups, see the following code snippet:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * # Stores the node's non-internal groups only (as an array of StringNames).
    * var non_internal_groups = []
    * for group in get_groups():
    *     if not str(group).begins_with("_"):
    *         non_internal_groups.push_back(group)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * // Stores the node's non-internal groups only (as a List of StringNames).
    * List<string> nonInternalGroups = new List<string>();
    * foreach (string group in GetGroups())
@@ -1295,6 +1421,7 @@ public open class Node : Object() {
   /**
    * Returns this node's order among its siblings. The first node's index is `0`. See also
    * [getChild].
+   *
    * If [includeInternal] is `false`, returns the index ignoring internal children. The first,
    * non-internal child will have an index of `0` (see [addChild]'s `internal` parameter).
    */
@@ -1309,15 +1436,24 @@ public open class Node : Object() {
    * Prints the node and its children to the console, recursively. The node does not have to be
    * inside the tree. This method outputs [NodePath]s relative to this node, and is good for
    * copy/pasting into [getNode]. See also [printTreePretty].
+   *
    * May print, for example:
+   *
    * [codeblock lang=text]
+   *
    * .
+   *
    * Menu
+   *
    * Menu/Label
+   *
    * Menu/Camera2D
+   *
    * SplashScreen
+   *
    * SplashScreen/Camera2D
-   * [/codeblock]
+   *
+   * ```
    */
   public final fun printTree(): Unit {
     TransferContext.writeArguments()
@@ -1328,15 +1464,24 @@ public open class Node : Object() {
    * Prints the node and its children to the console, recursively. The node does not have to be
    * inside the tree. Similar to [printTree], but the graphical representation looks like what is
    * displayed in the editor's Scene dock. It is useful for inspecting larger trees.
+   *
    * May print, for example:
+   *
    * [codeblock lang=text]
+   *
    *  ┖╴TheGame
+   *
    *     ┠╴Menu
+   *
    *     ┃  ┠╴Label
+   *
    *     ┃  ┖╴Camera2D
+   *
    *     ┖╴SplashScreen
+   *
    *        ┖╴Camera2D
-   * [/codeblock]
+   *
+   * ```
    */
   public final fun printTreePretty(): Unit {
     TransferContext.writeArguments()
@@ -1347,15 +1492,24 @@ public open class Node : Object() {
    * Returns the tree as a [String]. Used mainly for debugging purposes. This version displays the
    * path relative to the current node, and is good for copy/pasting into the [getNode] function. It
    * also can be used in game UI/UX.
+   *
    * May print, for example:
+   *
    * [codeblock lang=text]
+   *
    * TheGame
+   *
    * TheGame/Menu
+   *
    * TheGame/Menu/Label
+   *
    * TheGame/Menu/Camera2D
+   *
    * TheGame/SplashScreen
+   *
    * TheGame/SplashScreen/Camera2D
-   * [/codeblock]
+   *
+   * ```
    */
   public final fun getTreeString(): String {
     TransferContext.writeArguments()
@@ -1367,15 +1521,24 @@ public open class Node : Object() {
    * Similar to [getTreeString], this returns the tree as a [String]. This version displays a more
    * graphical representation similar to what is displayed in the Scene Dock. It is useful for
    * inspecting larger trees.
+   *
    * May print, for example:
+   *
    * [codeblock lang=text]
+   *
    *  ┖╴TheGame
+   *
    *     ┠╴Menu
+   *
    *     ┃  ┠╴Label
+   *
    *     ┃  ┖╴Camera2D
+   *
    *     ┖╴SplashScreen
+   *
    *        ┖╴Camera2D
-   * [/codeblock]
+   *
+   * ```
    */
   public final fun getTreeStringPretty(): String {
     TransferContext.writeArguments()
@@ -1405,6 +1568,7 @@ public open class Node : Object() {
   /**
    * Calls the given [method] name, passing [args] as arguments, on this node and all of its
    * children, recursively.
+   *
    * If [parentFirst] is `true`, the method is called on this node first, then on all of its
    * children. If `false`, the children's methods are called first.
    */
@@ -1423,6 +1587,7 @@ public open class Node : Object() {
    * it will receive a [NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see
    * [Engine.physicsTicksPerSecond] to change) interval (and the [_physicsProcess] callback will be
    * called if it exists).
+   *
    * **Note:** If [_physicsProcess] is overridden, this will be automatically enabled before
    * [_ready] is called.
    */
@@ -1435,6 +1600,7 @@ public open class Node : Object() {
    * Returns the time elapsed (in seconds) since the last physics callback. This value is identical
    * to [_physicsProcess]'s `delta` parameter, and is often consistent at run-time, unless
    * [Engine.physicsTicksPerSecond] is changed. See also [NOTIFICATION_PHYSICS_PROCESS].
+   *
    * **Note:** The returned value will be larger than expected if running at a framerate lower than
    * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
    * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
@@ -1461,6 +1627,7 @@ public open class Node : Object() {
    * Returns the time elapsed (in seconds) since the last process callback. This value is identical
    * to [_process]'s `delta` parameter, and may vary from frame to frame. See also
    * [NOTIFICATION_PROCESS].
+   *
    * **Note:** The returned value will be larger than expected if running at a framerate lower than
    * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
    * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
@@ -1478,8 +1645,10 @@ public open class Node : Object() {
    * If set to `true`, enables processing. When a node is being processed, it will receive a
    * [NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if it
    * exists).
+   *
    * **Note:** If [_process] is overridden, this will be automatically enabled before [_ready] is
    * called.
+   *
    * **Note:** This method only affects the [_process] callback, i.e. it has no effect on other
    * callbacks like [_physicsProcess]. If you want to disable all processing for the node, set
    * [processMode] to [PROCESS_MODE_DISABLED].
@@ -1522,6 +1691,7 @@ public open class Node : Object() {
 
   /**
    * If set to `true`, enables input processing.
+   *
    * **Note:** If [_input] is overridden, this will be automatically enabled before [_ready] is
    * called. Input processing is also already enabled for GUI controls, such as [Button] and
    * [TextEdit].
@@ -1542,6 +1712,7 @@ public open class Node : Object() {
 
   /**
    * If set to `true`, enables shortcut processing for this node.
+   *
    * **Note:** If [_shortcutInput] is overridden, this will be automatically enabled before [_ready]
    * is called.
    */
@@ -1562,6 +1733,7 @@ public open class Node : Object() {
   /**
    * If set to `true`, enables unhandled input processing. It enables the node to receive all input
    * that was not previously handled (usually by a [Control]).
+   *
    * **Note:** If [_unhandledInput] is overridden, this will be automatically enabled before
    * [_ready] is called. Unhandled input processing is also already enabled for GUI controls, such as
    * [Button] and [TextEdit].
@@ -1582,6 +1754,7 @@ public open class Node : Object() {
 
   /**
    * If set to `true`, enables unhandled key input processing.
+   *
    * **Note:** If [_unhandledKeyInput] is overridden, this will be automatically enabled before
    * [_ready] is called.
    */
@@ -1615,14 +1788,20 @@ public open class Node : Object() {
    * Returns `true` if the node can receive processing notifications and input callbacks
    * ([NOTIFICATION_PROCESS], [_input], etc.) from the [SceneTree] and [Viewport]. The returned value
    * depends on [processMode]:
+   *
    * - If set to [PROCESS_MODE_PAUSABLE], returns `true` when the game is processing, i.e.
    * [SceneTree.paused] is `false`;
+   *
    * - If set to [PROCESS_MODE_WHEN_PAUSED], returns `true` when the game is paused, i.e.
    * [SceneTree.paused] is `true`;
+   *
    * - If set to [PROCESS_MODE_ALWAYS], always returns `true`;
+   *
    * - If set to [PROCESS_MODE_DISABLED], always returns `false`;
+   *
    * - If set to [PROCESS_MODE_INHERIT], use the parent node's [processMode] to determine the
    * result.
+   *
    * If the node is not inside the tree, returns `false` no matter the value of [processMode].
    */
   public final fun canProcess(): Boolean {
@@ -1689,6 +1868,7 @@ public open class Node : Object() {
    * isolation from the normal [_process] calls and is used by some nodes internally to guarantee
    * proper functioning even if the node is paused or processing is disabled for scripting
    * ([setProcess]).
+   *
    * **Warning:** Built-in nodes rely on internal processing for their internal logic. Disabling it
    * is unsafe and may lead to unexpected behavior. Use this method if you know what you are doing.
    */
@@ -1711,6 +1891,7 @@ public open class Node : Object() {
    * in isolation from the normal [_physicsProcess] calls and is used by some nodes internally to
    * guarantee proper functioning even if the node is paused or physics processing is disabled for
    * scripting ([setPhysicsProcess]).
+   *
    * **Warning:** Built-in nodes rely on internal processing for their internal logic. Disabling it
    * is unsafe and may lead to unexpected behavior. Use this method if you know what you are doing.
    */
@@ -1742,6 +1923,7 @@ public open class Node : Object() {
   /**
    * Returns `true` if physics interpolation is enabled for this node (see
    * [physicsInterpolationMode]).
+   *
    * **Note:** Interpolation will only be active if both the flag is set **and** physics
    * interpolation is enabled within the [SceneTree]. This can be tested using
    * [isPhysicsInterpolatedAndEnabled].
@@ -1755,8 +1937,10 @@ public open class Node : Object() {
   /**
    * Returns `true` if physics interpolation is enabled (see [physicsInterpolationMode]) **and**
    * enabled in the [SceneTree].
+   *
    * This is a convenience version of [isPhysicsInterpolated] that also checks whether physics
    * interpolation is enabled globally.
+   *
    * See [SceneTree.physicsInterpolation] and [ProjectSettings.physics/common/physicsInterpolation].
    */
   public final fun isPhysicsInterpolatedAndEnabled(): Boolean {
@@ -1769,10 +1953,13 @@ public open class Node : Object() {
    * When physics interpolation is active, moving a node to a radically different transform (such as
    * placement within a level) can result in a visible glitch as the object is rendered moving from the
    * old to new position over the physics tick.
+   *
    * That glitch can be prevented by calling this method, which temporarily disables interpolation
    * until the physics tick is complete.
+   *
    * The notification [NOTIFICATION_RESET_PHYSICS_INTERPOLATION] will be received by the node and
    * all children recursively.
+   *
    * **Note:** This function should be called **after** moving the node, rather than before.
    */
   public final fun resetPhysicsInterpolation(): Unit {
@@ -1794,6 +1981,7 @@ public open class Node : Object() {
   /**
    * Makes this node inherit the translation domain from its parent node. If this node has no
    * parent, the main translation domain will be used.
+   *
    * This is the default behavior for all nodes. Calling [Object.setTranslationDomain] disables this
    * behavior.
    */
@@ -1834,19 +2022,22 @@ public open class Node : Object() {
 
   /**
    * Creates a new [Tween] and binds it to this node.
+   *
    * This is the equivalent of doing:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * get_tree().create_tween().bind_node(self)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GetTree().CreateTween().BindNode(this);
    * ```
    *
    * The Tween will start automatically on the next process frame or physics frame (depending on
    * [Tween.TweenProcessMode]). See [Tween.bindNode] for more info on Tweens bound to nodes.
+   *
    * **Note:** The method can still be used when the node is not inside [SceneTree]. It can fail in
    * an unlikely case of using a custom [MainLoop].
    */
@@ -1860,6 +2051,7 @@ public open class Node : Object() {
    * Duplicates the node, returning a new node with all of its properties, signals, groups, and
    * children copied from the original. The behavior can be tweaked through the [flags] (see
    * [DuplicateFlags]).
+   *
    * **Note:** For nodes with a [Script] attached, if [Object.Init] has been defined with required
    * parameters, the duplicated node will not have a [Script].
    */
@@ -1872,8 +2064,10 @@ public open class Node : Object() {
 
   /**
    * Replaces this node by the given [node]. All children of this node are moved to [node].
+   *
    * If [keepGroups] is `true`, the [node] is added to the same groups that the replaced node is in
    * (see [addToGroup]).
+   *
    * **Warning:** The replaced node is removed from the tree, but it is **not** deleted. To prevent
    * memory leaks, store a reference to the node in a variable, or use [Object.free].
    */
@@ -1935,9 +2129,11 @@ public open class Node : Object() {
   /**
    * Queues this node to be deleted at the end of the current frame. When deleted, all of its
    * children are deleted as well, and all references to the node and its children become invalid.
+   *
    * Unlike with [Object.free], the node is not deleted instantly, and it can still be accessed
    * before deletion. It is also safe to call [queueFree] multiple times. Use
    * [Object.isQueuedForDeletion] to check if the node will be deleted at the end of the frame.
+   *
    * **Note:** The node will only be freed after all other deferred calls are finished. Using this
    * method is not always the same as calling [Object.free] through [Object.callDeferred].
    */
@@ -1949,6 +2145,7 @@ public open class Node : Object() {
   /**
    * Requests [_ready] to be called again the next time the node enters the tree. Does **not**
    * immediately call [_ready].
+   *
    * **Note:** This method only affects the current node. If the node's children also need to
    * request ready, this method needs to be called for each one of them. When the node and its children
    * enter the tree again, the order of [_ready] callbacks will be the same as normal.
@@ -1961,6 +2158,7 @@ public open class Node : Object() {
   /**
    * Returns `true` if the node is ready, i.e. it's inside scene tree and all its children are
    * initialized.
+   *
    * [requestReady] resets it back to `false`.
    */
   public final fun isNodeReady(): Boolean {
@@ -1973,8 +2171,10 @@ public open class Node : Object() {
    * Sets the node's multiplayer authority to the peer with the given peer [id]. The multiplayer
    * authority is the peer that has authority over the node on the network. Defaults to peer ID 1 (the
    * server). Useful in conjunction with [rpcConfig] and the [MultiplayerAPI].
+   *
    * If [recursive] is `true`, the given peer is recursively set as the authority for all children
    * of this node.
+   *
    * **Warning:** This does **not** automatically replicate the new authority to other peers. It is
    * the developer's responsibility to do so. You may replicate the new authority's information using
    * [MultiplayerSpawner.spawnFunction], an RPC, or a [MultiplayerSynchronizer]. Furthermore, the
@@ -2013,10 +2213,15 @@ public open class Node : Object() {
   /**
    * Changes the RPC configuration for the given [method]. [config] should either be `null` to
    * disable the feature (as by default), or a [Dictionary] containing the following entries:
+   *
    * - `rpc_mode`: see [MultiplayerAPI.RPCMode];
+   *
    * - `transfer_mode`: see [MultiplayerPeer.TransferMode];
+   *
    * - `call_local`: if `true`, the method will also be called locally;
+   *
    * - `channel`: an [int] representing the channel to send the RPC on.
+   *
    * **Note:** In GDScript, this method corresponds to the [annotation @GDScript.@rpc] annotation,
    * with various parameters passed (`@rpc(any)`, `@rpc(authority)`...). See also the
    * [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url]
@@ -2064,10 +2269,13 @@ public open class Node : Object() {
    * Further [context] can be specified to help with the translation. Note that most [Control] nodes
    * automatically translate their strings, so this method is mostly useful for formatted strings or
    * custom drawn text.
+   *
    * This method works the same as [Object.tr], with the addition of respecting the
    * [autoTranslateMode] state.
+   *
    * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
    * returns the [message] without changes. See [Object.setMessageTranslation].
+   *
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
    */
@@ -2080,14 +2288,19 @@ public open class Node : Object() {
   /**
    * Translates a [message] or [pluralMessage], using the translation catalogs configured in the
    * Project Settings. Further [context] can be specified to help with the translation.
+   *
    * This method works the same as [Object.trN], with the addition of respecting the
    * [autoTranslateMode] state.
+   *
    * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
    * returns [message] or [pluralMessage], without changes. See [Object.setMessageTranslation].
+   *
    * The [n] is the number, or amount, of the message's subject. It is used by the translation
    * system to fetch the correct plural form for the current language.
+   *
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
+   *
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
    * recommended to handle these cases with [atr].
    */
@@ -2108,10 +2321,12 @@ public open class Node : Object() {
    * be received by nodes with the same [NodePath], including the exact same [name]. Behavior depends
    * on the RPC configuration for the given [method] (see [rpcConfig] and [annotation @GDScript.@rpc]).
    * By default, methods are not exposed to RPCs.
+   *
    * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
    * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
    * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
    * not available.
+   *
    * **Note:** You can only safely use RPCs on clients after you received the [signal
    * MultiplayerAPI.connected_to_server] signal from the [MultiplayerAPI]. You also need to keep track
    * of the connection state, either by the [MultiplayerAPI] signals like [signal
@@ -2126,6 +2341,7 @@ public open class Node : Object() {
 
   /**
    * Sends a [rpc] to a specific peer identified by [peerId] (see [MultiplayerPeer.setTargetPeer]).
+   *
    * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
    * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
    * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
@@ -2216,36 +2432,62 @@ public open class Node : Object() {
    * path (from the [SceneTree.root]) to a node. If [path] does not point to a valid node, generates an
    * error and returns `null`. Attempts to access methods on the return value will result in an
    * *"Attempt to call <method> on a null instance."* error.
+   *
    * **Note:** Fetching by absolute path only works when the node is inside the scene tree (see
    * [isInsideTree]).
+   *
    * **Example:** Assume this method is called from the Character node, inside the following tree:
+   *
    * [codeblock lang=text]
+   *
    *  ┖╴root
+   *
    *     ┠╴Character (you are here!)
+   *
    *     ┃  ┠╴Sword
+   *
    *     ┃  ┖╴Backpack
+   *
    *     ┃     ┖╴Dagger
+   *
    *     ┠╴MyGame
+   *
    *     ┖╴Swamp
+   *
    *        ┠╴Alligator
+   *
    *        ┠╴Mosquito
+   *
    *        ┖╴Goblin
-   * [/codeblock]
+   *
+   * ```
    * The following calls will return a valid node:
    *
-   * gdscript:
    * ```gdscript
+   *
+   * //gdscript
+   *
    * get_node("Sword")
+   *
    * get_node("Backpack/Dagger")
+   *
    * get_node("../Swamp/Alligator")
+   *
    * get_node("/root/MyGame")
+   *
    * ```
-   * csharp:
    * ```csharp
+   *
+   * //csharp
+   *
    * GetNode("Sword");
+   *
    * GetNode("Backpack/Dagger");
+   *
    * GetNode("../Swamp/Alligator");
+   *
    * GetNode("/root/MyGame");
+   *
    * ```
    */
   public final fun getNode(path: String): Node? = getNode(path.asCachedNodePath())
@@ -2267,14 +2509,18 @@ public open class Node : Object() {
   /**
    * Fetches a node and its most nested resource as specified by the [NodePath]'s subname. Returns
    * an [Array] of size `3` where:
+   *
    * - Element `0` is the [Node], or `null` if not found;
+   *
    * - Element `1` is the subname's last nested [Resource], or `null` if not found;
+   *
    * - Element `2` is the remaining [NodePath], referring to an existing, non-[Resource] property
    * (see [Object.getIndexed]).
+   *
    * **Example:** Assume that the child's [Sprite2D.texture] has been assigned a [AtlasTexture]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var a = get_node_and_resource("Area2D/Sprite2D")
    * print(a[0].name) # Prints Sprite2D
    * print(a[1])      # Prints <null>
@@ -2290,8 +2536,9 @@ public open class Node : Object() {
    * print(c[1].get_class()) # Prints AtlasTexture
    * print(c[2])             # Prints ^":region"
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var a = GetNodeAndResource(NodePath("Area2D/Sprite2D"));
    * GD.Print(a[0].Name); // Prints Sprite2D
    * GD.Print(a[1]);      // Prints <null>
@@ -2315,10 +2562,13 @@ public open class Node : Object() {
    * Adds the node to the [group]. Groups can be helpful to organize a subset of nodes, for example
    * `"enemies"` or `"collectables"`. See notes in the description, and the group methods in
    * [SceneTree].
+   *
    * If [persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All
    * groups created and displayed in the Node dock are persistent.
+   *
    * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
    * between project runs. Therefore, do not rely on the group order.
+   *
    * **Note:** [SceneTree]'s group methods will *not* work on this node if not inside the tree (see
    * [isInsideTree]).
    */
@@ -2341,6 +2591,7 @@ public open class Node : Object() {
   /**
    * Calls the given [method] name, passing [args] as arguments, on this node and all of its
    * children, recursively.
+   *
    * If [parentFirst] is `true`, the method is called on this node first, then on all of its
    * children. If `false`, the children's methods are called first.
    */
@@ -2354,10 +2605,15 @@ public open class Node : Object() {
   /**
    * Changes the RPC configuration for the given [method]. [config] should either be `null` to
    * disable the feature (as by default), or a [Dictionary] containing the following entries:
+   *
    * - `rpc_mode`: see [MultiplayerAPI.RPCMode];
+   *
    * - `transfer_mode`: see [MultiplayerPeer.TransferMode];
+   *
    * - `call_local`: if `true`, the method will also be called locally;
+   *
    * - `channel`: an [int] representing the channel to send the RPC on.
+   *
    * **Note:** In GDScript, this method corresponds to the [annotation @GDScript.@rpc] annotation,
    * with various parameters passed (`@rpc(any)`, `@rpc(authority)`...). See also the
    * [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url]
@@ -2371,10 +2627,13 @@ public open class Node : Object() {
    * Further [context] can be specified to help with the translation. Note that most [Control] nodes
    * automatically translate their strings, so this method is mostly useful for formatted strings or
    * custom drawn text.
+   *
    * This method works the same as [Object.tr], with the addition of respecting the
    * [autoTranslateMode] state.
+   *
    * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
    * returns the [message] without changes. See [Object.setMessageTranslation].
+   *
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
    */
@@ -2384,14 +2643,19 @@ public open class Node : Object() {
   /**
    * Translates a [message] or [pluralMessage], using the translation catalogs configured in the
    * Project Settings. Further [context] can be specified to help with the translation.
+   *
    * This method works the same as [Object.trN], with the addition of respecting the
    * [autoTranslateMode] state.
+   *
    * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
    * returns [message] or [pluralMessage], without changes. See [Object.setMessageTranslation].
+   *
    * The [n] is the number, or amount, of the message's subject. It is used by the translation
    * system to fetch the correct plural form for the current language.
+   *
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
+   *
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
    * recommended to handle these cases with [atr].
    */
@@ -2408,10 +2672,12 @@ public open class Node : Object() {
    * be received by nodes with the same [NodePath], including the exact same [name]. Behavior depends
    * on the RPC configuration for the given [method] (see [rpcConfig] and [annotation @GDScript.@rpc]).
    * By default, methods are not exposed to RPCs.
+   *
    * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
    * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
    * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
    * not available.
+   *
    * **Note:** You can only safely use RPCs on clients after you received the [signal
    * MultiplayerAPI.connected_to_server] signal from the [MultiplayerAPI]. You also need to keep track
    * of the connection state, either by the [MultiplayerAPI] signals like [signal
@@ -2423,6 +2689,7 @@ public open class Node : Object() {
 
   /**
    * Sends a [rpc] to a specific peer identified by [peerId] (see [MultiplayerPeer.setTargetPeer]).
+   *
    * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
    * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
    * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
@@ -2694,6 +2961,7 @@ public open class Node : Object() {
     ALWAYS(1),
     /**
      * Never automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_ALWAYS].
+     *
      * String parsing for POT generation will be skipped for this node and children that are set to
      * [AUTO_TRANSLATE_MODE_INHERIT].
      */
@@ -2713,12 +2981,14 @@ public open class Node : Object() {
   public companion object {
     /**
      * Notification received when the node enters a [SceneTree]. See [_enterTree].
+     *
      * This notification is received *before* the related [signal tree_entered] signal.
      */
     public final const val NOTIFICATION_ENTER_TREE: Long = 10
 
     /**
      * Notification received when the node is about to exit a [SceneTree]. See [_exitTree].
+     *
      * This notification is received *after* the related [signal tree_exiting] signal.
      */
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
@@ -2755,12 +3025,14 @@ public open class Node : Object() {
     /**
      * Notification received when the node is set as a child of another node (see [addChild] and
      * [addSibling]).
+     *
      * **Note:** This does *not* mean that the node entered the [SceneTree].
      */
     public final const val NOTIFICATION_PARENTED: Long = 18
 
     /**
      * Notification received when the parent node calls [removeChild] on this node.
+     *
      * **Note:** This does *not* mean that the node exited the [SceneTree].
      */
     public final const val NOTIFICATION_UNPARENTED: Long = 19
@@ -2774,14 +3046,17 @@ public open class Node : Object() {
     /**
      * Notification received when a drag operation begins. All nodes receive this notification, not
      * only the dragged one.
+     *
      * Can be triggered either by dragging a [Control] that provides drag data (see
      * [Control.GetDragData]) or using [Control.forceDrag].
+     *
      * Use [Viewport.guiGetDragData] to get the dragged data.
      */
     public final const val NOTIFICATION_DRAG_BEGIN: Long = 21
 
     /**
      * Notification received when a drag operation ends.
+     *
      * Use [Viewport.guiIsDragSuccessful] to check if the drag succeeded.
      */
     public final const val NOTIFICATION_DRAG_END: Long = 22
@@ -2847,12 +3122,14 @@ public open class Node : Object() {
 
     /**
      * Notification received when the mouse enters the window.
+     *
      * Implemented for embedded windows and on desktop and web platforms.
      */
     public final const val NOTIFICATION_WM_MOUSE_ENTER: Long = 1002
 
     /**
      * Notification received when the mouse leaves the window.
+     *
      * Implemented for embedded windows and on desktop and web platforms.
      */
     public final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
@@ -2862,6 +3139,7 @@ public open class Node : Object() {
      * change of focus between two windows of the same engine instance, or from the OS desktop or a
      * third-party application to a window of the game (in which case
      * [NOTIFICATION_APPLICATION_FOCUS_IN] is also received).
+     *
      * A [Window] node receives this notification when it is focused.
      */
     public final const val NOTIFICATION_WM_WINDOW_FOCUS_IN: Long = 1004
@@ -2871,6 +3149,7 @@ public open class Node : Object() {
      * a change of focus between two windows of the same engine instance, or from a window of the game
      * to the OS desktop or a third-party application (in which case
      * [NOTIFICATION_APPLICATION_FOCUS_OUT] is also received).
+     *
      * A [Window] node receives this notification when it is defocused.
      */
     public final const val NOTIFICATION_WM_WINDOW_FOCUS_OUT: Long = 1005
@@ -2878,6 +3157,7 @@ public open class Node : Object() {
     /**
      * Notification received from the OS when a close request is sent (e.g. closing the window with
      * a "Close" button or [kbd]Alt + F4[/kbd]).
+     *
      * Implemented on desktop platforms.
      */
     public final const val NOTIFICATION_WM_CLOSE_REQUEST: Long = 1006
@@ -2885,12 +3165,14 @@ public open class Node : Object() {
     /**
      * Notification received from the OS when a go back request is sent (e.g. pressing the "Back"
      * button on Android).
+     *
      * Implemented only on Android.
      */
     public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
 
     /**
      * Notification received when the window is resized.
+     *
      * **Note:** Only the resized [Window] node receives this notification, and it's not propagated
      * to the child nodes.
      */
@@ -2918,6 +3200,7 @@ public open class Node : Object() {
 
     /**
      * Notification received from the OS when the application is exceeding its allocated memory.
+     *
      * Implemented only on iOS.
      */
     public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 2009
@@ -2927,28 +3210,32 @@ public open class Node : Object() {
      * changing the locale, changing [autoTranslateMode] or when the node enters the scene tree. Can be
      * used to respond to language changes, for example to change the UI strings on the fly. Useful
      * when working with the built-in translation support, like [Object.tr].
+     *
      * **Note:** This notification is received alongside [NOTIFICATION_ENTER_TREE], so if you are
      * instantiating a scene, the child nodes will not be initialized yet. You can use it to setup
      * translations for this node, child nodes created from script, or if you want to access child
      * nodes added in the editor, make sure the node is ready using [isNodeReady].
-     * [codeblock]
+     *
+     * ```
      * func _notification(what):
      *     if what == NOTIFICATION_TRANSLATION_CHANGED:
      *         if not is_node_ready():
      *             await ready # Wait until ready signal.
      *         $Label.text = atr("&#37;d Bananas") &#37; banana_counter
-     * [/codeblock]
+     * ```
      */
     public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 2010
 
     /**
      * Notification received from the OS when a request for "About" information is sent.
+     *
      * Implemented only on macOS.
      */
     public final const val NOTIFICATION_WM_ABOUT: Long = 2011
 
     /**
      * Notification received from Godot's crash handler when the engine is about to crash.
+     *
      * Implemented on desktop platforms, if the crash handler is enabled.
      */
     public final const val NOTIFICATION_CRASH: Long = 2012
@@ -2956,19 +3243,23 @@ public open class Node : Object() {
     /**
      * Notification received from the OS when an update of the Input Method Engine occurs (e.g.
      * change of IME cursor position or composition string).
+     *
      * Implemented only on macOS.
      */
     public final const val NOTIFICATION_OS_IME_UPDATE: Long = 2013
 
     /**
      * Notification received from the OS when the application is resumed.
+     *
      * Specific to the Android and iOS platforms.
      */
     public final const val NOTIFICATION_APPLICATION_RESUMED: Long = 2014
 
     /**
      * Notification received from the OS when the application is paused.
+     *
      * Specific to the Android and iOS platforms.
+     *
      * **Note:** On iOS, you only have approximately 5 seconds to finish a task started by this
      * signal. If you go over this allotment, iOS will kill the app instead of pausing it.
      */
@@ -2977,6 +3268,7 @@ public open class Node : Object() {
     /**
      * Notification received from the OS when the application is focused, i.e. when changing the
      * focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
+     *
      * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_IN: Long = 2016
@@ -2984,6 +3276,7 @@ public open class Node : Object() {
     /**
      * Notification received from the OS when the application is defocused, i.e. when changing the
      * focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
+     *
      * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_OUT: Long = 2017
@@ -2995,6 +3288,7 @@ public open class Node : Object() {
 
     /**
      * Prints all orphan nodes (nodes outside the [SceneTree]). Useful for debugging.
+     *
      * **Note:** This method only works in debug builds. Does nothing in a project exported in
      * release mode.
      */

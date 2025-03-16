@@ -59,6 +59,7 @@ public open class Joint2D internal constructor() : Node2D() {
    * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint
    * pulls them back to their original position. The lower the [bias] the more the two bodies can pull
    * on the joint.
+   *
    * When set to `0`, the default value from
    * [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */

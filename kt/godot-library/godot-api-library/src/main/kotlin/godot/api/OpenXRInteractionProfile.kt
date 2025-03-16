@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
 /**
  * This object stores suggested bindings for an interaction profile. Interaction profiles define the
  * metadata for a tracked XR device such as an XR controller.
+ *
  * For more information see the
  * [url=https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#semantic-path-interaction-profiles]interaction
  * profiles info in the OpenXR specification[/url].

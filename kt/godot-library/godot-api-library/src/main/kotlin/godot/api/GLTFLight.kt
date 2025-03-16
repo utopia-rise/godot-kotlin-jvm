@@ -91,6 +91,7 @@ public open class GLTFLight : Resource() {
 
   /**
    * The inner angle of the cone in a spotlight. Must be less than or equal to the outer cone angle.
+   *
    * Within this angle, the light is at full brightness. Between the inner and outer cone angles,
    * there is a transition from full brightness to zero brightness. When creating a Godot
    * [SpotLight3D], the ratio between the inner and outer cone angles is used to calculate the
@@ -106,6 +107,7 @@ public open class GLTFLight : Resource() {
 
   /**
    * The outer angle of the cone in a spotlight. Must be greater than or equal to the inner angle.
+   *
    * At this angle, the light drops off to zero brightness. Between the inner and outer cone angles,
    * there is a transition from full brightness to zero brightness. If this angle is a half turn, then
    * the spotlight emits in all directions. When creating a Godot [SpotLight3D], the outer cone angle

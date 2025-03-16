@@ -140,6 +140,7 @@ public open class AspectRatioContainer : Container() {
     /**
      * The width and height of child controls is automatically adjusted to make their bounding
      * rectangle cover the entire area of the container while keeping the aspect ratio.
+     *
      * When the bounding rectangle of child controls exceed the container's size and
      * [Control.clipContents] is enabled, this allows to show only the container's area restricted by
      * its own bounding rectangle.

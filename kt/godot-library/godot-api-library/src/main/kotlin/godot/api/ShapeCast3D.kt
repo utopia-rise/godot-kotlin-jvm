@@ -40,10 +40,12 @@ import kotlin.jvm.JvmName
  * determined by [targetPosition]. This is similar to [RayCast3D], but it allows for sweeping a region
  * of space, rather than just a straight line. [ShapeCast3D] can detect multiple collision objects. It
  * is useful for things like wide laser beams or snapping a simple shape to a floor.
+ *
  * Immediate collision overlaps can be done with the [targetPosition] set to `Vector3(0, 0, 0)` and
  * by calling [forceShapecastUpdate] within the same physics frame. This helps to overcome some
  * limitations of [Area3D] when used as an instantaneous detection area, as collision information isn't
  * immediately available to it.
+ *
  * **Note:** Shape casting is more computationally expensive than ray casting.
  */
 @GodotBaseType
@@ -164,6 +166,7 @@ public open class ShapeCast3D : Node3D() {
    * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
    * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
    * [ShapeCast3D] is colliding with something.
+   *
    * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
    * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
@@ -208,6 +211,7 @@ public open class ShapeCast3D : Node3D() {
    * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
    * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
    * [ShapeCast3D] is colliding with something.
+   *
    * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
    * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    *
@@ -321,6 +325,7 @@ public open class ShapeCast3D : Node3D() {
    * Updates the collision information for the shape immediately, without waiting for the next
    * `_physics_process` call. Use this method, for example, when the shape or its parent has changed
    * state.
+   *
    * **Note:** Setting [enabled] to `true` is not required for this to work.
    */
   public final fun forceShapecastUpdate(): Unit {
@@ -360,6 +365,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Returns the collision point of one of the multiple collisions at [index] where the shape
    * intersects the colliding object.
+   *
    * **Note:** This point is in the **global** coordinate system.
    */
   public final fun getCollisionPoint(index: Int): Vector3 {
@@ -390,6 +396,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Returns the fraction from this cast's origin to its [targetPosition] of how far the shape must
    * move to trigger a collision, as a value between `0.0` and `1.0`.
+   *
    * In ideal conditions this would be the same as [getClosestCollisionSafeFraction], however shape
    * casting is calculated in discrete steps, so the precise point of collision can occur between two
    * calculated positions.

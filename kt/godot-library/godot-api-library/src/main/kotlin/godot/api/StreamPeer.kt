@@ -36,6 +36,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It
  * provides an API for sending and receiving data through streams as raw data or strings.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -212,14 +213,16 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer
    * representing its size.
+   *
    * **Note:** To put an ASCII string without prepending its size, you can use [putData]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * put_data("Hello world".to_ascii_buffer())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * PutData("Hello World".ToAsciiBuffer());
    * ```
    */
@@ -231,14 +234,16 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer
    * representing its size.
+   *
    * **Note:** To put a UTF-8 string without prepending its size, you can use [putData]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * put_data("Hello world".to_utf8_buffer())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * PutData("Hello World".ToUtf8Buffer());
    * ```
    */
@@ -250,6 +255,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a Variant into the stream. If [fullObjects] is `true` encoding objects is allowed (and can
    * potentially include code).
+   *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
@@ -382,7 +388,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
 
   /**
    * Gets a Variant from the stream. If [allowObjects] is `true`, decoding objects is allowed.
+   *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
+   *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
    * if the serialized object comes from untrusted sources to avoid potential security threats such as
    * remote code execution.

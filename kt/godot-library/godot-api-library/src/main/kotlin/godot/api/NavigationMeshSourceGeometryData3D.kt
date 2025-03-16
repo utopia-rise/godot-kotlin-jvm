@@ -69,6 +69,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Sets the parsed source geometry data vertices. The vertices need to be matched with
    * appropriated indices.
+   *
    * **Warning:** Inappropriate data can crash the baking process of the involved third-party
    * libraries.
    */
@@ -89,6 +90,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Sets the parsed source geometry data indices. The indices need to be matched with appropriated
    * vertices.
+   *
    * **Warning:** Inappropriate data can crash the baking process of the involved third-party
    * libraries.
    */
@@ -201,8 +203,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Sets the projected obstructions with an Array of Dictionaries with the following key value
    * pairs:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * "vertices" : PackedFloat32Array
    * "elevation" : float
    * "height" : float
@@ -217,9 +219,13 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Returns the projected obstructions as an [Array] of dictionaries. Each [Dictionary] contains
    * the following entries:
+   *
    * - `vertices` - A [PackedFloat32Array] that defines the outline points of the projected shape.
+   *
    * - `elevation` - A [float] that defines the projected shape placement on the y-axis.
+   *
    * - `height` - A [float] that defines how much the projected shape is extruded along the y-axis.
+   *
    * - `carve` - A [bool] that defines how the obstacle affects the navigation mesh baking. If
    * `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */

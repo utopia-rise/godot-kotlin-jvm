@@ -35,6 +35,7 @@ import kotlin.jvm.JvmName
  * skeleton bone to give motion to the rest of the skeleton. This allows animating characters in a way
  * where steps actually match the floor below. It also allows precise interaction with objects during
  * cinematics. See also [AnimationMixer].
+ *
  * **Note:** [RootMotionView] is only visible in the editor. It will be hidden automatically in the
  * running project.
  */

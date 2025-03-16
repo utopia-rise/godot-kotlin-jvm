@@ -39,13 +39,16 @@ import kotlin.jvm.JvmOverloads
 /**
  * An animation player is used for general-purpose playback of animations. It contains a dictionary
  * of [AnimationLibrary] resources and custom blend times between animation transitions.
+ *
  * Some methods and properties use a single key to reference an animation directly. These keys are
  * formatted as the key for the library, followed by a forward slash, then the key for the animation
  * within the library, for example `"movement/run"`. If the library's key is an empty string (known as
  * the default library), the forward slash is omitted, being the same key used by the library.
+ *
  * [AnimationPlayer] is better-suited than [Tween] for more complex animations, for example ones
  * with non-trivial timings. It can also be used over [Tween] if the animation track editor is more
  * convenient than doing it in code.
+ *
  * Updating the target properties of animations occurs at the process frame.
  */
 @GodotBaseType
@@ -58,6 +61,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Emitted when a queued animation plays after the previous animation finished. See also
    * [AnimationPlayer.queue].
+   *
    * **Note:** The signal is not emitted when the animation is changed via [AnimationPlayer.play] or
    * by an [AnimationTree].
    */
@@ -67,6 +71,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * The key of the currently playing animation. If no animation is playing, the property's value is
    * an empty string. Changing this value does not restart the animation. See [play] for more
    * information on playing animations.
+   *
    * **Note:** While this property appears in the Inspector, it's not meant to be edited, and it's
    * not saved in the scene. This property is mainly used to get the currently playing animation, and
    * internally for animation playback tracks. For more information, see [Animation].
@@ -119,6 +124,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * If `true`, performs [AnimationMixer.capture] before playback automatically. This means just
    * [playWithCapture] is executed with default arguments instead of [play].
+   *
    * **Note:** Capture interpolation is only performed if the animation contains a capture track.
    * See also [Animation.UPDATE_CAPTURE].
    */
@@ -132,6 +138,7 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * See also [playWithCapture] and [AnimationMixer.capture].
+   *
    * If [playbackAutoCaptureDuration] is negative value, the duration is set to the interval between
    * the current position and the first key.
    */
@@ -179,6 +186,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal
    * speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
+   *
    * If set to a negative value, the animation is played in reverse. If set to `0`, the animation
    * will not advance.
    */
@@ -194,6 +202,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * If `true` and the engine is running in Movie Maker mode (see [MovieWriter]), exits the engine
    * with [SceneTree.quit] as soon as an animation is done playing in this [AnimationPlayer]. A message
    * is printed when the engine quits for this reason.
+   *
    * **Note:** This obeys the same logic as the [signal AnimationMixer.animation_finished] signal,
    * so it will not quit the engine if the animation is set to be looping.
    */
@@ -305,13 +314,16 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * Plays the animation with key [name]. Custom blend times and speed can be set.
+   *
    * The [fromEnd] option only affects when switching to a new animation track, or if the same track
    * but at the start or end. It does not affect resuming playback that was paused in the middle of an
    * animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards
    * (which is equivalent to calling [playBackwards]).
+   *
    * The [AnimationPlayer] keeps track of its current or last played animation with
    * [assignedAnimation]. If this method is called with that same animation [name], or with no [name]
    * parameter, the assigned animation will resume playing if it was paused.
+   *
    * **Note:** The animation will be updated the next time the [AnimationPlayer] is processed. If
    * other variables are updated at the same time this is called, they may be updated too early. To
    * perform the update immediately, call `advance(0)`.
@@ -330,6 +342,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startMarker] and ending on
    * [endMarker].
+   *
    * If the start marker is empty, the section starts from the beginning of the animation. If the
    * end marker is empty, the section ends on the end of the animation. See also [play].
    */
@@ -349,6 +362,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startTime] and ending on
    * [endTime]. See also [play].
+   *
    * Setting [startTime] to a value outside the range of the animation means the start of the
    * animation will be used instead, and setting [endTime] to a value outside the range of the
    * animation means the end of the animation will be used instead. [startTime] cannot be equal to
@@ -369,6 +383,7 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * Plays the animation with key [name] in reverse.
+   *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */
@@ -382,6 +397,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startMarker] and ending on
    * [endMarker] in reverse.
+   *
    * This method is a shorthand for [playSectionWithMarkers] with `custom_speed = -1.0` and
    * `from_end = true`, see its description for more information.
    */
@@ -399,6 +415,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startTime] and ending on
    * [endTime] in reverse.
+   *
    * This method is a shorthand for [playSection] with `custom_speed = -1.0` and `from_end = true`,
    * see its description for more information.
    */
@@ -415,17 +432,22 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * See also [AnimationMixer.capture].
+   *
    * You can use this method to use more detailed options for capture than those performed by
    * [playbackAutoCapture]. When [playbackAutoCapture] is `false`, this method is almost the same as
    * the following:
-   * [codeblock]
+   *
+   * ```
    * capture(name, duration, trans_type, ease_type)
    * play(name, custom_blend, custom_speed, from_end)
-   * [/codeblock]
+   * ```
+   *
    * If [name] is blank, it specifies [assignedAnimation].
+   *
    * If [duration] is a negative value, the duration is set to the interval between the current
    * position and the first key, when [fromEnd] is `true`, uses the interval between the current
    * position and the last key instead.
+   *
    * **Note:** The [duration] takes [speedScale] into account, but [customSpeed] does not, because
    * the capture cache is interpolated with the blend result and the result may contain multiple
    * animations.
@@ -448,6 +470,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Pauses the currently playing animation. The [currentAnimationPosition] will be kept and calling
    * [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation]
    * will resume the animation.
+   *
    * See also [stop].
    */
   public final fun pause(): Unit {
@@ -458,7 +481,9 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Stops the currently playing animation. The animation position is reset to `0` and the
    * `custom_speed` is reset to `1.0`. See also [pause].
+   *
    * If [keepState] is `true`, the animation state is not updated visually.
+   *
    * **Note:** The method / audio / animation playback tracks will not be processed by this method.
    */
   @JvmOverloads
@@ -502,6 +527,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Queues an animation for playback once the current animation and all previously queued
    * animations are done.
+   *
    * **Note:** If a looped animation is currently playing, the queued animation will never play
    * unless the looped animation is stopped somehow.
    */
@@ -542,6 +568,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns the actual playing speed of current animation or `0` if not playing. This speed is the
    * [speedScale] property multiplied by `custom_speed` argument specified when calling the [play]
    * method.
+   *
    * Returns a negative value if the current animation is playing backwards.
    */
   public final fun getPlayingSpeed(): Float {
@@ -587,6 +614,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Changes the start and end markers of the section being played. The current playback position
    * will be clamped within the new section. See also [playSectionWithMarkers].
+   *
    * If the argument is empty, the section uses the beginning or end of the animation. If both are
    * empty, it means that the section is not set.
    */
@@ -645,8 +673,10 @@ public open class AnimationPlayer : AnimationMixer() {
    * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the
    * animation updates too, otherwise it updates at process time. Events between the current frame and
    * [seconds] are skipped.
+   *
    * If [updateOnly] is `true`, the method / audio / animation playback tracks will not be
    * processed.
+   *
    * **Note:** Seeking to the end of the animation doesn't emit [signal
    * AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use
    * [AnimationMixer.advance].
@@ -741,13 +771,16 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * Plays the animation with key [name]. Custom blend times and speed can be set.
+   *
    * The [fromEnd] option only affects when switching to a new animation track, or if the same track
    * but at the start or end. It does not affect resuming playback that was paused in the middle of an
    * animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards
    * (which is equivalent to calling [playBackwards]).
+   *
    * The [AnimationPlayer] keeps track of its current or last played animation with
    * [assignedAnimation]. If this method is called with that same animation [name], or with no [name]
    * parameter, the assigned animation will resume playing if it was paused.
+   *
    * **Note:** The animation will be updated the next time the [AnimationPlayer] is processed. If
    * other variables are updated at the same time this is called, they may be updated too early. To
    * perform the update immediately, call `advance(0)`.
@@ -763,6 +796,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startMarker] and ending on
    * [endMarker].
+   *
    * If the start marker is empty, the section starts from the beginning of the animation. If the
    * end marker is empty, the section ends on the end of the animation. See also [play].
    */
@@ -780,6 +814,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startTime] and ending on
    * [endTime]. See also [play].
+   *
    * Setting [startTime] to a value outside the range of the animation means the start of the
    * animation will be used instead, and setting [endTime] to a value outside the range of the
    * animation means the end of the animation will be used instead. [startTime] cannot be equal to
@@ -797,6 +832,7 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * Plays the animation with key [name] in reverse.
+   *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */
@@ -807,6 +843,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startMarker] and ending on
    * [endMarker] in reverse.
+   *
    * This method is a shorthand for [playSectionWithMarkers] with `custom_speed = -1.0` and
    * `from_end = true`, see its description for more information.
    */
@@ -822,6 +859,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Plays the animation with key [name] and the section starting from [startTime] and ending on
    * [endTime] in reverse.
+   *
    * This method is a shorthand for [playSection] with `custom_speed = -1.0` and `from_end = true`,
    * see its description for more information.
    */
@@ -835,17 +873,22 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * See also [AnimationMixer.capture].
+   *
    * You can use this method to use more detailed options for capture than those performed by
    * [playbackAutoCapture]. When [playbackAutoCapture] is `false`, this method is almost the same as
    * the following:
-   * [codeblock]
+   *
+   * ```
    * capture(name, duration, trans_type, ease_type)
    * play(name, custom_blend, custom_speed, from_end)
-   * [/codeblock]
+   * ```
+   *
    * If [name] is blank, it specifies [assignedAnimation].
+   *
    * If [duration] is a negative value, the duration is set to the interval between the current
    * position and the first key, when [fromEnd] is `true`, uses the interval between the current
    * position and the last key instead.
+   *
    * **Note:** The [duration] takes [speedScale] into account, but [customSpeed] does not, because
    * the capture cache is interpolated with the blend result and the result may contain multiple
    * animations.
@@ -857,14 +900,15 @@ public open class AnimationPlayer : AnimationMixer() {
     customBlend: Double = -1.0,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
-    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+    transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.IN,
   ) =
       playWithCapture(name.asCachedStringName(), duration, customBlend, customSpeed, fromEnd, transType, easeType)
 
   /**
    * Queues an animation for playback once the current animation and all previously queued
    * animations are done.
+   *
    * **Note:** If a looped animation is currently playing, the queued animation will never play
    * unless the looped animation is stopped somehow.
    */
@@ -873,6 +917,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Changes the start and end markers of the section being played. The current playback position
    * will be clamped within the new section. See also [playSectionWithMarkers].
+   *
    * If the argument is empty, the section uses the beginning or end of the animation. If both are
    * empty, it means that the section is not set.
    */

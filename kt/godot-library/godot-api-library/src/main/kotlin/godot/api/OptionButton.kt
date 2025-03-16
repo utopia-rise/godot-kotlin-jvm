@@ -30,9 +30,12 @@ import kotlin.jvm.JvmOverloads
 /**
  * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed.
  * The item selected becomes the "current" item and is displayed as the button text.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
  * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ *
  * **Note:** The [Button.text] and [Button.icon] properties are set automatically based on the
  * selected item. They shouldn't be changed manually.
  */
@@ -41,6 +44,7 @@ public open class OptionButton : Button() {
   /**
    * Emitted when the current item has been changed by the user. The index of the item selected is
    * passed as argument.
+   *
    * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by Signal1
@@ -62,6 +66,7 @@ public open class OptionButton : Button() {
   /**
    * If `true`, minimum size will be determined by the longest item's text, instead of the currently
    * selected one's.
+   *
    * **Note:** For performance reasons, the minimum size doesn't update immediately when adding,
    * removing or modifying items.
    */
@@ -141,6 +146,7 @@ public open class OptionButton : Button() {
 
   /**
    * Sets whether the item at index [idx] is disabled.
+   *
    * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the
    * current selected item is set as disabled, it will remain selected.
    */
@@ -269,6 +275,7 @@ public open class OptionButton : Button() {
   /**
    * Selects an item by index and makes it the current item. This will work even if the item is
    * disabled.
+   *
    * Passing `-1` as the index deselects any currently selected item.
    */
   public final fun select(idx: Int): Unit {
@@ -310,6 +317,7 @@ public open class OptionButton : Button() {
 
   /**
    * Returns the [PopupMenu] contained in this button.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
@@ -352,6 +360,7 @@ public open class OptionButton : Button() {
   /**
    * Returns the index of the first item which is not disabled, or marked as a separator. If
    * [fromLast] is `true`, the items will be searched in reverse order.
+   *
    * Returns `-1` if no item is found.
    */
   @JvmOverloads

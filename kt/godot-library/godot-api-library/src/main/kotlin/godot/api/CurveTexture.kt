@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 /**
  * A 1D texture where pixel brightness corresponds to points on a unit [Curve] resource, either in
  * grayscale or in red. This visual representation simplifies the task of saving curves as image files.
+ *
  * If you need to store up to 3 curves within a single texture, use [CurveXYZTexture] instead. See
  * also [GradientTexture1D] and [GradientTexture2D].
  */

@@ -19,6 +19,7 @@ import kotlin.Unit
 
 /**
  * Abstract render data object, exists for the duration of rendering a single viewport.
+ *
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType

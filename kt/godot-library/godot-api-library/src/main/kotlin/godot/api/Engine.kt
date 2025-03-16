@@ -48,8 +48,10 @@ public object Engine : Object() {
    * If `false`, stops printing error and warning messages to the console and editor Output log.
    * This can be used to hide error and warning messages during unit test suite runs. This property is
    * equivalent to the [ProjectSettings.application/run/disableStderr] project setting.
+   *
    * **Note:** This property does not impact the editor's Errors tab when running a project from the
    * editor.
+   *
    * **Warning:** If set to `false` anywhere in the project, important error messages may be hidden
    * even if they are emitted from other scripts. In a `@tool` script, this will also impact the editor
    * itself. Do *not* report bugs before ensuring error messages are enabled (as they are by default).
@@ -67,6 +69,7 @@ public object Engine : Object() {
    * If `false`, stops printing messages (for example using [@GlobalScope.print]) to the console,
    * log files, and editor Output log. This property is equivalent to the
    * [ProjectSettings.application/run/disableStdout] project setting.
+   *
    * **Note:** This does not stop printing errors or warnings produced by scripts to the console or
    * log files, for more details see [printErrorMessages].
    */
@@ -86,6 +89,7 @@ public object Engine : Object() {
    * stuttery. This value can be increased to make input more reactive or work around collision
    * tunneling issues, but keep in mind doing so will increase CPU usage. See also [maxFps] and
    * [ProjectSettings.physics/common/physicsTicksPerSecond].
+   *
    * **Note:** Only [maxPhysicsStepsPerFrame] physics ticks may be simulated per rendered frame at
    * most. If more physics ticks have to be simulated per rendered frame to keep up with rendering, the
    * project will appear to slow down (even if `delta` is used consistently in physics calculations).
@@ -103,6 +107,7 @@ public object Engine : Object() {
 
   /**
    * The maximum number of physics steps that can be simulated each rendered frame.
+   *
    * **Note:** The default value is tuned to prevent expensive physics simulations from triggering
    * even more expensive simulations indefinitely. However, the game will appear to slow down if the
    * rendering FPS is less than `1 / max_physics_steps_per_frame` of [physicsTicksPerSecond]. This
@@ -122,17 +127,23 @@ public object Engine : Object() {
   /**
    * The maximum number of frames that can be rendered every second (FPS). A value of `0` means the
    * framerate is uncapped.
+   *
    * Limiting the FPS can be useful to reduce the host machine's power consumption, which reduces
    * heat, noise emissions, and improves battery life.
+   *
    * If [ProjectSettings.display/window/vsync/vsyncMode] is **Enabled** or **Adaptive**, the setting
    * takes precedence and the max FPS number cannot exceed the monitor's refresh rate.
+   *
    * If [ProjectSettings.display/window/vsync/vsyncMode] is **Enabled**, on monitors with variable
    * refresh rate enabled (G-Sync/FreeSync), using an FPS limit a few frames lower than the monitor's
    * refresh rate will [url=https://blurbusters.com/howto-low-lag-vsync-on/]reduce input lag while
    * avoiding tearing[/url].
+   *
    * See also [physicsTicksPerSecond] and [ProjectSettings.application/run/maxFps].
+   *
    * **Note:** The actual number of frames per second may still be below this value if the CPU or
    * GPU cannot keep up with the project's logic and rendering.
+   *
    * **Note:** If [ProjectSettings.display/window/vsync/vsyncMode] is **Disabled**, limiting the FPS
    * to a high value that can be consistently reached on the system can reduce input lag compared to an
    * uncapped framerate. Since this works by ensuring the GPU load is lower than 100&#37;, this latency
@@ -150,12 +161,16 @@ public object Engine : Object() {
   /**
    * The speed multiplier at which the in-game clock updates, compared to real time. For example, if
    * set to `2.0` the game runs twice as fast, and if set to `0.5` the game runs half as fast.
+   *
    * This value affects [Timer], [SceneTreeTimer], and all other simulations that make use of
    * `delta` time (such as [Node.Process] and [Node.PhysicsProcess]).
+   *
    * **Note:** It's recommended to keep this property above `0.0`, as the game may behave
    * unexpectedly otherwise.
+   *
    * **Note:** This does not affect audio playback speed. Use [AudioServer.playbackSpeedScale] to
    * adjust audio playback speed independently of [Engine.timeScale].
+   *
    * **Note:** This does not automatically adjust [physicsTicksPerSecond]. With values above `1.0`
    * physics simulation may become less precise, as each physics tick will stretch over a larger period
    * of engine time. If you're modifying [Engine.timeScale] to speed up simulation by a large factor,
@@ -174,8 +189,10 @@ public object Engine : Object() {
    * How much physics ticks are synchronized with real time. If `0` or less, the ticks are fully
    * synchronized. Higher values cause the in-game clock to deviate more from the real clock, but they
    * smooth out framerate jitters.
+   *
    * **Note:** The default value of `0.5` should be good enough for most cases; values above `2`
    * could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+   *
    * **Note:** When using a custom physics interpolation solution, or within a network game, it's
    * recommended to disable the physics jitter fix by setting this property to `0`.
    */
@@ -270,6 +287,7 @@ public object Engine : Object() {
 
   /**
    * Returns the total number of frames drawn since the engine started.
+   *
    * **Note:** On headless platforms, or if rendering is disabled with `--disable-render-loop` via
    * command line, this method always returns `0`. See also [getProcessFrames].
    */
@@ -293,16 +311,18 @@ public object Engine : Object() {
   /**
    * Returns the total number of frames passed since the engine started. This number is increased
    * every **physics frame**. See also [getProcessFrames].
+   *
    * This method can be used to run expensive logic less often without relying on a [Timer]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _physics_process(_delta):
    *     if Engine.get_physics_frames() &#37; 2 == 0:
    *         pass # Run expensive logic only once every 2 physics frames here.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _PhysicsProcess(double delta)
    * {
    *     base._PhysicsProcess(delta);
@@ -325,16 +345,18 @@ public object Engine : Object() {
    * Returns the total number of frames passed since the engine started. This number is increased
    * every **process frame**, regardless of whether the render loop is enabled. See also
    * [getFramesDrawn] and [getPhysicsFrames].
+   *
    * This method can be used to run expensive logic less often without relying on a [Timer]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _process(_delta):
    *     if Engine.get_process_frames() &#37; 5 == 0:
    *         pass # Run expensive logic only once every 5 process (render) frames here.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Process(double delta)
    * {
    *     base._Process(delta);
@@ -356,6 +378,7 @@ public object Engine : Object() {
   /**
    * Returns the instance of the [MainLoop]. This is usually the main [SceneTree] and is the same as
    * [Node.getTree].
+   *
    * **Note:** The type instantiated as the main loop can changed with
    * [ProjectSettings.application/run/mainLoopType].
    */
@@ -369,32 +392,44 @@ public object Engine : Object() {
   /**
    * Returns the current engine version information as a [Dictionary] containing the following
    * entries:
+   *
    * - `major` - Major version number as an int;
+   *
    * - `minor` - Minor version number as an int;
+   *
    * - `patch` - Patch version number as an int;
+   *
    * - `hex` - Full version encoded as a hexadecimal int with one byte (2 hex digits) per number
    * (see example below);
+   *
    * - `status` - Status (such as "beta", "rc1", "rc2", "stable", etc.) as a String;
+   *
    * - `build` - Build name (e.g. "custom_build") as a String;
+   *
    * - `hash` - Full Git commit hash as a String;
+   *
    * - `timestamp` - Holds the Git commit date UNIX timestamp in seconds as an int, or `0` if
    * unavailable;
+   *
    * - `string` - `major`, `minor`, `patch`, `status`, and `build` in a single String.
+   *
    * The `hex` value is encoded as follows, from left to right: one byte for the major, one byte for
    * the minor, one byte for the patch version. For example, "3.1.12" would be `0x03010C`.
+   *
    * **Note:** The `hex` value is still an [int] internally, and printing it will give you its
    * decimal representation, which is not particularly meaningful. Use hexadecimal literals for quick
    * version comparisons from code:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * if Engine.get_version_info().hex >= 0x040100:
    *     pass # Do things specific to version 4.1 or later.
    * else:
    *     pass # Do things specific to versions before 4.1.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * if ((int)Engine.GetVersionInfo()["hex"] >= 0x040100)
    * {
    *     // Do things specific to version 4.1 or later.
@@ -427,10 +462,14 @@ public object Engine : Object() {
   /**
    * Returns an [Array] of dictionaries with copyright information for every component of Godot's
    * source code.
+   *
    * Every [Dictionary] contains a `name` identifier, and a `parts` array of dictionaries. It
    * describes the component in detail with the following entries:
+   *
    * - `files` - [Array] of file paths from the source code affected by this component;
+   *
    * - `copyright` - [Array] of owners of this component;
+   *
    * - `license` - The license applied to this component (such as
    * "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]" or
    * "[url=https://creativecommons.org/licenses/by/4.0/]CC-BY-4.0[/url]").
@@ -444,6 +483,7 @@ public object Engine : Object() {
 
   /**
    * Returns a [Dictionary] of categorized donor names. Each entry is an [Array] of strings:
+   *
    * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`,
    * `gold_donors`, `silver_donors`, `bronze_donors`}
    */
@@ -481,10 +521,12 @@ public object Engine : Object() {
    * Returns the name of the CPU architecture the Godot binary was built for. Possible return values
    * include `"x86_64"`, `"x86_32"`, `"arm64"`, `"arm32"`, `"rv64"`, `"riscv"`, `"ppc64"`, `"ppc"`,
    * `"wasm64"`, and `"wasm32"`.
+   *
    * To detect whether the current build is 64-bit, or the type of architecture, don't use the
    * architecture name. Instead, use [OS.hasFeature] to check for the `"64"` feature tag, or tags such
    * as `"x86"` or `"arm"`. See the [url=$DOCS_URL/tutorials/export/feature_tags.html]Feature
    * Tags[/url] documentation for more details.
+   *
    * **Note:** This method does *not* return the name of the system's CPU architecture (like
    * [OS.getProcessorName]). For example, when running an `x86_32` Godot binary on an `x86_64` system,
    * the returned value will still be `"x86_32"`.
@@ -498,7 +540,8 @@ public object Engine : Object() {
 
   /**
    * Returns `true` if the engine is inside the fixed physics process step of the main loop.
-   * [codeblock]
+   *
+   * ```
    * func _enter_tree():
    *     # Depending on when the node is added to the tree,
    *     # prints either "true" or "false".
@@ -509,7 +552,7 @@ public object Engine : Object() {
    *
    * func _physics_process(delta):
    *     print(Engine.is_in_physics_frame()) # Prints true
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun isInPhysicsFrame(): Boolean {
@@ -522,15 +565,16 @@ public object Engine : Object() {
    * Returns `true` if a singleton with the given [name] exists in the global scope. See also
    * [getSingleton].
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * print(Engine.has_singleton("OS"))          # Prints true
    * print(Engine.has_singleton("Engine"))      # Prints true
    * print(Engine.has_singleton("AudioServer")) # Prints true
    * print(Engine.has_singleton("Unknown"))     # Prints false
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GD.Print(Engine.HasSingleton("OS"));          // Prints True
    * GD.Print(Engine.HasSingleton("Engine"));      // Prints True
    * GD.Print(Engine.HasSingleton("AudioServer")); // Prints True
@@ -550,6 +594,7 @@ public object Engine : Object() {
   /**
    * Returns the global singleton with the given [name], or `null` if it does not exist. Often used
    * for plugins. See also [hasSingleton] and [getSingletonList].
+   *
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
    * project settings.
    */
@@ -592,10 +637,14 @@ public object Engine : Object() {
 
   /**
    * Registers a [ScriptLanguage] instance to be available with `ScriptServer`.
+   *
    * Returns:
+   *
    * - [OK] on success;
+   *
    * - [ERR_UNAVAILABLE] if `ScriptServer` has reached the limit and cannot register any new
    * language;
+   *
    * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type.
    */
@@ -608,8 +657,11 @@ public object Engine : Object() {
 
   /**
    * Unregisters the [ScriptLanguage] instance from `ScriptServer`.
+   *
    * Returns:
+   *
    * - [OK] on success;
+   *
    * - [ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.
    */
   @JvmStatic
@@ -644,15 +696,16 @@ public object Engine : Object() {
    * This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally
    * running "game" code that would affect the scene state while in the editor:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * if Engine.is_editor_hint():
    *     draw_gizmos()
    * else:
    *     simulate_physics()
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * if (Engine.IsEditorHint())
    *     DrawGizmos();
    * else
@@ -661,6 +714,7 @@ public object Engine : Object() {
    *
    * See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the
    * editor[/url] in the documentation for more information.
+   *
    * **Note:** To detect whether the script is running on an editor *build* (such as when pressing
    * [kbd]F5[/kbd]), use [OS.hasFeature] with the `"editor"` argument instead.
    * `OS.has_feature("editor")` evaluate to `true` both when the script is running in the editor and
@@ -727,15 +781,16 @@ public object Engine : Object() {
    * Returns `true` if a singleton with the given [name] exists in the global scope. See also
    * [getSingleton].
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * print(Engine.has_singleton("OS"))          # Prints true
    * print(Engine.has_singleton("Engine"))      # Prints true
    * print(Engine.has_singleton("AudioServer")) # Prints true
    * print(Engine.has_singleton("Unknown"))     # Prints false
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GD.Print(Engine.HasSingleton("OS"));          // Prints True
    * GD.Print(Engine.HasSingleton("Engine"));      // Prints True
    * GD.Print(Engine.HasSingleton("AudioServer")); // Prints True
@@ -751,6 +806,7 @@ public object Engine : Object() {
   /**
    * Returns the global singleton with the given [name], or `null` if it does not exist. Often used
    * for plugins. See also [hasSingleton] and [getSingletonList].
+   *
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
    * project settings.
    */

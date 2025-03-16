@@ -207,6 +207,7 @@ public open class Mesh : Resource() {
 
   /**
    * Returns the smallest [AABB] enclosing this mesh in local space. Not affected by `custom_aabb`.
+   *
    * **Note:** This is only implemented for [ArrayMesh] and [PrimitiveMesh].
    */
   public final fun getAabb(): AABB {
@@ -256,6 +257,7 @@ public open class Mesh : Resource() {
 
   /**
    * Sets a [Material] for a given surface. Surface will be rendered using this material.
+   *
    * **Note:** This assigns the material within the [Mesh] resource, not the [Material] associated
    * to the [MeshInstance3D]'s Surface Material Override properties. To set the [Material] associated
    * to the [MeshInstance3D]'s Surface Material Override properties, use
@@ -268,6 +270,7 @@ public open class Mesh : Resource() {
 
   /**
    * Returns a [Material] in a given surface. Surface is rendered using this material.
+   *
    * **Note:** This returns the material within the [Mesh] resource, not the [Material] associated
    * to the [MeshInstance3D]'s Surface Material Override properties. To get the [Material] associated
    * to the [MeshInstance3D]'s Surface Material Override properties, use
@@ -299,8 +302,10 @@ public open class Mesh : Resource() {
 
   /**
    * Calculate a [ConvexPolygonShape3D] from the mesh.
+   *
    * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
    * can set it to `false` to make the process faster if not needed.
+   *
    * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
    * vertices. Disabled by default.
    */
@@ -314,6 +319,7 @@ public open class Mesh : Resource() {
 
   /**
    * Calculate an outline mesh at a defined offset (margin) from the original mesh.
+   *
    * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to
    * counterclockwise).
    */
@@ -377,6 +383,7 @@ public open class Mesh : Resource() {
     VERTEX(0),
     /**
      * [PackedVector3Array] of vertex normals.
+     *
      * **Note:** The array has to consist of normal vectors, otherwise they will be normalized by
      * the engine, potentially causing visual discrepancies.
      */
@@ -444,6 +451,7 @@ public open class Mesh : Resource() {
      * the function into "index mode," where the index selects the *i*'th vertex, normal, tangent,
      * color, UV, etc. This means if you want to have different normals or colors along an edge, you
      * have to duplicate the vertices.
+     *
      * For triangles, the index array is interpreted as triples, referring to the vertices of each
      * triangle. For lines, the index array is in pairs indicating the start and end of each line.
      */

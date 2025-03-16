@@ -139,6 +139,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    * If a texture is discardable, its contents do not need to be preserved between frames. This flag
    * is only relevant when the texture is used as target in a draw list.
+   *
    * This information is used by [RenderingDevice] to figure out if a texture's contents can be
    * discarded, eliminating unnecessary writes to memory and boosting performance.
    */

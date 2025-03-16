@@ -42,6 +42,7 @@ public open class SeparationRayShape3D : Shape3D() {
 
   /**
    * If `false` (default), the shape always separates and returns a normal along its own direction.
+   *
    * If `true`, the shape can return the correct normal and separate in any direction, allowing
    * sliding motion on slopes.
    */

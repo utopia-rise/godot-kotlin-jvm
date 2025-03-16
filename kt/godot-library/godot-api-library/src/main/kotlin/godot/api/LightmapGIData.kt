@@ -105,6 +105,7 @@ public open class LightmapGIData : Resource() {
   /**
    * If [usesSphericalHarmonics] is `true`, tells the engine to treat the lightmap data as if it was
    * baked with directional information.
+   *
    * **Note:** Changing this value on already baked lightmaps will not cause them to be baked again.
    * This means the material appearance will look incorrect until lightmaps are baked again, in which
    * case the value set here is discarded as the entire [LightmapGIData] resource is replaced by the

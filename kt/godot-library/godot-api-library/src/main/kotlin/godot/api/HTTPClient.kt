@@ -36,32 +36,41 @@ import kotlin.jvm.JvmOverloads
  * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests
  * to download web content, upload files and other data or to communicate with various services, among
  * other use cases.
+ *
  * See the [HTTPRequest] node for a higher-level alternative.
+ *
  * **Note:** This client only needs to connect to a host once (see [connectToHost]) to send multiple
  * requests. Because of this, methods that take URLs usually take just the part after the host instead
  * of the full URL, as the client is already connected to a host. See [request] for a full example and
  * to get started.
+ *
  * A [HTTPClient] should be reused between multiple requests or to connect to different hosts
  * instead of creating one client per request. Supports Transport Layer Security (TLS), including
  * server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx
  * redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx
  * something went wrong on the server's side.
+ *
  * For more information on HTTP, see [url=https://developer.mozilla.org/en-US/docs/Web/HTTP]MDN's
  * documentation on HTTP[/url] (or read [url=https://tools.ietf.org/html/rfc2616]RFC 2616[/url] to get
  * it straight from the source).
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
+ *
  * **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive
  * information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST
  * requests or HTTP headers for such information instead.
+ *
  * **Note:** When performing HTTP requests from a project exported to Web, keep in mind the remote
  * server may not allow requests from foreign origins due to
  * [url=https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS]CORS[/url]. If you host the server in
  * question, you should modify its backend to allow requests from foreign origins by adding the
  * `Access-Control-Allow-Origin: *` HTTP header.
+ *
  * **Note:** TLS support is currently limited to TLSv1.2 and TLSv1.3. Attempting to connect to a
  * server that only supports older (insecure) TLS versions will return an error.
+ *
  * **Warning:** TLS certificate revocation and certificate pinning are currently not supported.
  * Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may
  * want to use automatically managed certificates with a short validity period.
@@ -108,6 +117,7 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Connects to a host. This needs to be done before any requests are sent.
+   *
    * If no [port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for
    * HTTPS. You can pass the optional [tlsOptions] parameter to customize the trusted certification
    * authorities, or the common name verification when using HTTPS. See [TLSOptions.client] and
@@ -137,12 +147,15 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Sends a raw request to the connected host.
+   *
    * The URL parameter is usually just the part after the host, so for
    * `https://example.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
    * server, it should be an absolute URL. For [HTTPClient.METHOD_OPTIONS] requests, `*` is also
    * allowed. For [HTTPClient.METHOD_CONNECT] requests, it should be the authority component
    * (`host:port`).
+   *
    * Headers are HTTP request headers. For available HTTP methods, see [Method].
+   *
    * Sends the body data raw, as a byte array and does not encode it in any way.
    */
   public final fun requestRaw(
@@ -158,24 +171,28 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Sends a request to the connected host.
+   *
    * The URL parameter is usually just the part after the host, so for
    * `https://example.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
    * server, it should be an absolute URL. For [HTTPClient.METHOD_OPTIONS] requests, `*` is also
    * allowed. For [HTTPClient.METHOD_CONNECT] requests, it should be the authority component
    * (`host:port`).
+   *
    * Headers are HTTP request headers. For available HTTP methods, see [Method].
+   *
    * To create a POST request with query strings to push to the server, do:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var fields = {"username" : "user", "password" : "pass"}
    * var query_string = http_client.query_string_from_dict(fields)
    * var headers = ["Content-Type: application/x-www-form-urlencoded", "Content-Length: " +
    * str(query_string.length())]
    * var result = http_client.request(http_client.METHOD_POST, "/index.php", headers, query_string)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var fields = new Godot.Collections.Dictionary { { "username", "user" }, { "password", "pass" }
    * };
    * string queryString = new HttpClient().QueryStringFromDict(fields);
@@ -249,12 +266,13 @@ public open class HTTPClient : RefCounted() {
    * Returns all response headers as a [Dictionary]. Each entry is composed by the header name, and
    * a [String] containing the values separated by `"; "`. The casing is kept the same as the headers
    * were received.
-   * [codeblock]
+   *
+   * ```
    * {
    *     "content-length": 12,
    *     "Content-Type": "application/json; charset=UTF-8",
    * }
-   * [/codeblock]
+   * ```
    */
   public final fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -264,8 +282,10 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Returns the response's body length.
+   *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be
    * `-1`. If using chunked transfer encoding, the body length will also be `-1`.
+   *
    * **Note:** This function always returns `-1` on the Web platform due to browsers limitations.
    */
   public final fun getResponseBodyLength(): Long {
@@ -325,6 +345,7 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Sets the proxy server for HTTP requests.
+   *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public final fun setHttpProxy(host: String, port: Int): Unit {
@@ -334,6 +355,7 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Sets the proxy server for HTTPS requests.
+   *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public final fun setHttpsProxy(host: String, port: Int): Unit {
@@ -345,14 +367,15 @@ public open class HTTPClient : RefCounted() {
    * Generates a GET/POST application/x-www-form-urlencoded style query string from a provided
    * dictionary, e.g.:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var fields = {"username": "user", "password": "pass"}
    * var query_string = http_client.query_string_from_dict(fields)
    * # Returns "username=user&password=pass"
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var fields = new Godot.Collections.Dictionary { { "username", "user" }, { "password", "pass" }
    * };
    * string queryString = httpClient.QueryStringFromDict(fields);
@@ -362,14 +385,15 @@ public open class HTTPClient : RefCounted() {
    * Furthermore, if a key has a `null` value, only the key itself is added, without equal sign and
    * value. If the value is an array, for each value in it a pair with the same key is added.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var fields = {"single": 123, "not_valued": null, "multiple": [22, 33, 44]}
    * var query_string = http_client.query_string_from_dict(fields)
    * # Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var fields = new Godot.Collections.Dictionary
    * {
    *     { "single", 123 },
@@ -527,10 +551,14 @@ public open class HTTPClient : RefCounted() {
     /**
      * HTTP status code `200 OK`. The request has succeeded. Default response for successful
      * requests. Meaning varies depending on the request:
+     *
      * - [METHOD_GET]: The resource has been fetched and is transmitted in the message body.
+     *
      * - [METHOD_HEAD]: The entity headers are in the message body.
+     *
      * - [METHOD_POST]: The resource describing the result of the action is transmitted in the
      * message body.
+     *
      * - [METHOD_TRACE]: The message body contains the request message as received by the server.
      */
     OK(200),

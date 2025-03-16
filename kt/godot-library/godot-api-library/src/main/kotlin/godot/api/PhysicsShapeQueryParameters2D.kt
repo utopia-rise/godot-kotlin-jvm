@@ -57,6 +57,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
    * to get the [RID] associated with a [CollisionObject2D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -109,8 +110,8 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * The queried shape's [RID] that will be used for collision/intersection queries. Use this over
    * [shape] if you want to optimize for performance using the Servers API:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var shape_rid = PhysicsServer2D.circle_shape_create()
    * var radius = 64
    * PhysicsServer2D.shape_set_data(shape_rid, radius)
@@ -123,8 +124,9 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * # Release the shape when done with physics queries.
    * PhysicsServer2D.free_rid(shape_rid)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * RID shapeRid = PhysicsServer2D.CircleShapeCreate();
    * int radius = 64;
    * PhysicsServer2D.ShapeSetData(shapeRid, radius);

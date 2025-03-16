@@ -21,6 +21,7 @@ import kotlin.jvm.JvmName
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
  * single player.
+ *
  * Playback control is done via the [AudioStreamPlaybackPolyphonic] instance set inside the player,
  * which can be obtained via [AudioStreamPlayer.getStreamPlayback],
  * [AudioStreamPlayer2D.getStreamPlayback] or [AudioStreamPlayer3D.getStreamPlayback] methods.

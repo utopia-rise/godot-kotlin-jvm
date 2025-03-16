@@ -30,6 +30,7 @@ import kotlin.Unit
 /**
  * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest
  * pose and acts as a single point of access to its bones.
+ *
  * To set up different types of inverse kinematics for the given Skeleton2D, a
  * [SkeletonModificationStack2D] should be created. The inverse kinematics be applied by increasing
  * [SkeletonModificationStack2D.modificationCount] and creating the desired number of modifications.
@@ -103,8 +104,10 @@ public open class Skeleton2D : Node2D() {
 
   /**
    * Sets the local pose transform, [overridePose], for the bone at [boneIdx].
+   *
    * [strength] is the interpolation strength that will be used when applying the pose, and
    * [persistent] determines if the applied pose will remain.
+   *
    * **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at
    * [boneIdx]!
    */

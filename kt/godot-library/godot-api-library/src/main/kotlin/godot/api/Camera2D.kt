@@ -33,13 +33,16 @@ import kotlin.jvm.JvmName
  * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node.
  * This makes it easier (and faster) to program scrollable scenes than manually changing the position
  * of [CanvasItem]-based nodes.
+ *
  * Cameras register themselves in the nearest [Viewport] node (when ascending the tree). Only one
  * camera can be active per viewport. If no viewport is available ascending the tree, the camera will
  * register in the global viewport.
+ *
  * This node is intended to be a simple helper to get things going quickly, but more functionality
  * may be desired to change how the camera works. To make your own custom camera node, inherit it from
  * [Node2D] and change the transform of the canvas by setting [Viewport.canvasTransform] in [Viewport]
  * (you can obtain the current [Viewport] by using [Node.getViewport]).
+ *
  * Note that the [Camera2D] node's `position` doesn't represent the actual position of the screen,
  * which may differ due to applied smoothing or limits. You can use [getScreenCenterPosition] to get
  * the real position.
@@ -87,6 +90,7 @@ public open class Camera2D : Node2D() {
    * Controls whether the camera can be active or not. If `true`, the [Camera2D] will become the
    * main camera when it enters the scene tree and there is no active camera currently (see
    * [Viewport.getCamera2d]).
+   *
    * When the camera is currently active and [enabled] is set to `false`, the next enabled
    * [Camera2D] in the scene tree will become active.
    */
@@ -101,6 +105,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
    * `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   *
    * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that
    * zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
    * pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure
@@ -192,7 +197,9 @@ public open class Camera2D : Node2D() {
 
   /**
    * If `true`, the camera smoothly stops when reaches its limits.
+   *
    * This property has no effect if [positionSmoothingEnabled] is `false`.
+   *
    * **Note:** To immediately update the camera's position to be within limits without smoothing,
    * even with this setting enabled, invoke [resetSmoothing].
    */
@@ -231,6 +238,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera's view smoothly rotates, via asymptotic smoothing, to align with its
    * target rotation at [rotationSmoothingSpeed].
+   *
    * **Note:** This property has no effect if [ignoreRotation] is `true`.
    */
   public final inline var rotationSmoothingEnabled: Boolean
@@ -280,6 +288,7 @@ public open class Camera2D : Node2D() {
   /**
    * The relative horizontal drag offset of the camera between the right (`-1`) and left (`1`) drag
    * margins.
+   *
    * **Note:** Used to set the initial horizontal drag offset; determine the current offset; or
    * force the current offset. It's not automatically updated when [dragHorizontalEnabled] is `true` or
    * the drag margins are changed.
@@ -295,6 +304,7 @@ public open class Camera2D : Node2D() {
   /**
    * The relative vertical drag offset of the camera between the bottom (`-1`) and top (`1`) drag
    * margins.
+   *
    * **Note:** Used to set the initial vertical drag offset; determine the current offset; or force
    * the current offset. It's not automatically updated when [dragVerticalEnabled] is `true` or the
    * drag margins are changed.
@@ -421,6 +431,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
    * `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   *
    * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that
    * zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
    * pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure
@@ -618,6 +629,7 @@ public open class Camera2D : Node2D() {
 
   /**
    * Returns this camera's target position, in global coordinates.
+   *
    * **Note:** The returned value is not the same as [Node2D.globalPosition], as it is affected by
    * the drag properties. It is also not the same as the current position if [positionSmoothingEnabled]
    * is `true` (see [getScreenCenterPosition]).
@@ -630,6 +642,7 @@ public open class Camera2D : Node2D() {
 
   /**
    * Returns the center of the screen from this camera's point of view, in global coordinates.
+   *
    * **Note:** The exact targeted position of the camera may be different. See [getTargetPosition].
    */
   public final fun getScreenCenterPosition(): Vector2 {
@@ -714,6 +727,7 @@ public open class Camera2D : Node2D() {
 
   /**
    * Sets the camera's position immediately to its current smoothing destination.
+   *
    * This method has no effect if [positionSmoothingEnabled] is `false`.
    */
   public final fun resetSmoothing(): Unit {

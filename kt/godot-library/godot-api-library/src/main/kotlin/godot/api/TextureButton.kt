@@ -25,7 +25,9 @@ import kotlin.jvm.JvmName
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
  * [Theme] resource. It is faster to create, but it doesn't support localization like more complex
  * [Control]s.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * **Note:** Setting a texture for the "normal" state ([textureNormal]) is recommended. If
  * [textureNormal] is not set, the [TextureButton] will still receive input events and be clickable,
  * but the user will not be able to see it unless they activate another one of its states with a

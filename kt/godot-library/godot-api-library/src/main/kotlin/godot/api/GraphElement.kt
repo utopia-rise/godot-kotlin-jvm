@@ -88,6 +88,7 @@ public open class GraphElement : Container() {
 
   /**
    * If `true`, the user can resize the GraphElement.
+   *
    * **Note:** Dragging the handle will only emit the [signal resize_request] and [signal
    * resize_end] signals, the GraphElement needs to be resized manually.
    */

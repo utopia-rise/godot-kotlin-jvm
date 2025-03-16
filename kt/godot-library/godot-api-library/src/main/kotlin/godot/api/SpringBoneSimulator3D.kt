@@ -35,16 +35,22 @@ import kotlin.jvm.JvmName
  * This [SkeletonModifier3D] can be used to wiggle hair, cloth, and tails. This modifier behaves
  * differently from [PhysicalBoneSimulator3D] as it attempts to return the original pose after
  * modification.
+ *
  * If you setup [setRootBone] and [setEndBone], it is treated as one bone chain. Note that it does
  * not support a branched chain like Y-shaped chains.
+ *
  * When a bone chain is created, an array is generated from the bones that exist in between and
  * listed in the joint list.
+ *
  * Several properties can be applied to each joint, such as [setJointStiffness], [setJointDrag], and
  * [setJointGravity].
+ *
  * For simplicity, you can set values to all joints at the same time by using a [Curve]. If you want
  * to specify detailed values individually, set [setIndividualConfig] to `true`.
+ *
  * For physical simulation, [SpringBoneSimulator3D] can have children as self-standing collisions
  * that are not related to [PhysicsServer3D], see also [SpringBoneCollision3D].
+ *
  * **Warning:** A scaled [SpringBoneSimulator3D] will likely not behave as expected. Make sure that
  * the parent [Skeleton3D] and its bones are not scaled.
  */
@@ -101,6 +107,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Sets the end bone name of the bone chain.
+   *
    * **Note:** End bone must be the root bone or a child of the root bone. If they are the same, the
    * tail must be extended by [setExtendEndBone] to jiggle the bone.
    */
@@ -137,7 +144,9 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * If [enabled] is `true`, the end bone is extended to have the tail.
+   *
    * The extended tail config is allocated to the last element in the joint list.
+   *
    * In other words, if you set [enabled] is `false`, the config of last element in the joint list
    * has no effect in the simulated result.
    */
@@ -191,10 +200,13 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Sets what the center originates from in the bone chain.
+   *
    * Bone movement is calculated based on the difference in relative distance between center and
    * bone in the previous and next frames.
+   *
    * For example, if the parent [Skeleton3D] is used as the center, the bones are considered to have
    * not moved if the [Skeleton3D] moves in the world.
+   *
    * In this case, only a change in the bone pose is considered to be a bone movement.
    */
   public final fun setCenterFrom(index: Int, centerFrom: CenterFrom): Unit {
@@ -265,6 +277,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Sets the joint radius of the bone chain. It is used to move and slide with the
    * [SpringBoneCollision3D] in the collision list.
+   *
    * The value is scaled by [setRadiusDampingCurve] and cached in each joint setting in the joint
    * list.
    */
@@ -284,7 +297,9 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Sets the rotation axis of the bone chain. If sets a specific axis, it acts like a hinge joint.
+   *
    * The value is cached in each joint setting in the joint list.
+   *
    * **Note:** The rotation axis and the forward vector shouldn't be colinear to avoid unintended
    * rotation since [SpringBoneSimulator3D] does not factor in twisting forces.
    */
@@ -322,7 +337,9 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Sets the stiffness force of the bone chain. The greater the value, the faster it recovers to
    * its initial pose.
+   *
    * If [stiffness] is `0`, the modified pose will not return to the original pose.
+   *
    * The value is scaled by [setStiffnessDampingCurve] and cached in each joint setting in the joint
    * list.
    */
@@ -359,6 +376,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Sets the drag force of the bone chain. The greater the value, the more suppressed the wiggling.
+   *
    * The value is scaled by [setDragDampingCurve] and cached in each joint setting in the joint
    * list.
    */
@@ -396,8 +414,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Sets the gravity amount of the bone chain. This value is not an acceleration, but a constant
    * velocity of movement in [setGravityDirection].
+   *
    * If [gravity] is not `0`, the modified pose will not return to the original pose since it is
    * always affected by gravity.
+   *
    * The value is scaled by [setGravityDampingCurve] and cached in each joint setting in the joint
    * list.
    */
@@ -435,6 +455,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Sets the gravity direction of the bone chain. This value is internally normalized and then
    * multiplied by [setGravity].
+   *
    * The value is cached in each joint setting in the joint list.
    */
   public final fun setGravityDirection(index: Int, gravityDirection: Vector3): Unit {
@@ -649,6 +670,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * If sets [enabled] to `true`, the all child [SpringBoneCollision3D]s are collided and
    * [setExcludeCollisionPath] is enabled as an exclusion list at [index] in the settings.
+   *
    * If sets [enabled] to `false`, you need to manually register all valid collisions with
    * [setCollisionPath].
    */
@@ -771,6 +793,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Resets a simulating state with respect to the current bone pose.
+   *
    * It is useful to prevent the simulation result getting violent. For example, calling this
    * immediately after a call to [AnimationPlayer.play] without a fading, or within the previous
    * [signal SkeletonModifier3D.modification_processed] signal if it's condition changes significantly.
@@ -858,12 +881,14 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     WORLD_ORIGIN(0),
     /**
      * The [Node3D] specified by [setCenterNode] is defined as center.
+     *
      * If [Node3D] is not found, the parent [Skeleton3D] is treated as center.
      */
     NODE(1),
     /**
      * The bone pose origin of the parent [Skeleton3D] specified by [setCenterBone] is defined as
      * center.
+     *
      * If [Node3D] is not found, the parent [Skeleton3D] is treated as center.
      */
     BONE(2),

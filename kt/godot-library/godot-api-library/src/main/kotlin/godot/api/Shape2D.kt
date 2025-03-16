@@ -36,6 +36,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
+ *
  * **Performance:** Primitive shapes, especially [CircleShape2D], are fast to check collisions
  * against. [ConvexPolygonShape2D] is slower, and [ConcavePolygonShape2D] is the slowest.
  */
@@ -44,6 +45,7 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * The shape's custom solver bias. Defines how much bodies react to enforce contact separation
    * when this shape is involved.
+   *
    * When set to `0`, the default value from [ProjectSettings.physics/2d/solver/defaultContactBias]
    * is used.
    */
@@ -72,6 +74,7 @@ public open class Shape2D internal constructor() : Resource() {
 
   /**
    * Returns `true` if this shape is colliding with another.
+   *
    * This method needs the transformation matrix for this shape ([localXform]), the shape to check
    * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
@@ -87,6 +90,7 @@ public open class Shape2D internal constructor() : Resource() {
 
   /**
    * Returns whether this shape would collide with another, if a given movement was applied.
+   *
    * This method needs the transformation matrix for this shape ([localXform]), the movement to test
    * on this shape ([localMotion]), the shape to check collisions with ([withShape]), the
    * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
@@ -106,12 +110,15 @@ public open class Shape2D internal constructor() : Resource() {
 
   /**
    * Returns a list of contact point pairs where this shape touches another.
+   *
    * If there are no collisions, the returned list is empty. Otherwise, the returned list contains
    * contact points arranged in pairs, with entries alternating between points on the boundary of this
    * shape and points on the boundary of [withShape].
+   *
    * A collision pair A, B can be used to calculate the collision normal with `(B -
    * A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically
    * used to separate shapes, particularly in collision solvers.
+   *
    * This method needs the transformation matrix for this shape ([localXform]), the shape to check
    * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
@@ -128,12 +135,15 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns a list of contact point pairs where this shape would touch another, if a given movement
    * was applied.
+   *
    * If there would be no collisions, the returned list is empty. Otherwise, the returned list
    * contains contact points arranged in pairs, with entries alternating between points on the boundary
    * of this shape and points on the boundary of [withShape].
+   *
    * A collision pair A, B can be used to calculate the collision normal with `(B -
    * A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically
    * used to separate shapes, particularly in collision solvers.
+   *
    * This method needs the transformation matrix for this shape ([localXform]), the movement to test
    * on this shape ([localMotion]), the shape to check collisions with ([withShape]), the
    * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object

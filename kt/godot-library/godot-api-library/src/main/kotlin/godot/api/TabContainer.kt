@@ -33,6 +33,7 @@ import kotlin.jvm.JvmName
  * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's
  * corresponding control is made visible, while all other child controls are hidden. Ignores
  * non-control children.
+ *
  * **Note:** The drawing of the clickable tabs is handled by this node; [TabBar] is not needed.
  */
 @GodotBaseType
@@ -87,6 +88,7 @@ public open class TabContainer : Container() {
   /**
    * The current tab index. When set, this index's [Control] node's `visible` property is set to
    * `true` and all others are set to `false`.
+   *
    * A value of `-1` means that no tab is selected.
    */
   public final inline var currentTab: Int
@@ -157,6 +159,7 @@ public open class TabContainer : Container() {
   /**
    * [TabContainer]s with the same rearrange group ID will allow dragging the tabs between them.
    * Enable drag with [dragToRearrangeEnabled].
+   *
    * Setting this to `-1` will disable rearranging between [TabContainer]s.
    */
   public final inline var tabsRearrangeGroup: Int
@@ -193,6 +196,7 @@ public open class TabContainer : Container() {
   /**
    * If `true`, all tabs can be deselected so that no tab is selected. Click on the [currentTab] to
    * deselect it.
+   *
    * Only the tab header will be shown if no tabs are selected.
    */
   public final inline var deselectEnabled: Boolean
@@ -267,6 +271,7 @@ public open class TabContainer : Container() {
 
   /**
    * Returns the [TabBar] contained in this container.
+   *
    * **Warning:** This is a required internal node, removing and freeing it or editing its tabs may
    * cause a crash. If you wish to edit the tabs, use the methods provided in [TabContainer].
    */
@@ -361,6 +366,7 @@ public open class TabContainer : Container() {
 
   /**
    * Sets a custom tooltip text for tab at index [tabIdx].
+   *
    * **Note:** By default, if the [tooltip] is empty and the tab text is truncated (not all
    * characters fit into the tab), the title will be displayed as a tooltip. To hide the tooltip,
    * assign `" "` as the [tooltip] text.
@@ -517,6 +523,7 @@ public open class TabContainer : Container() {
 
   /**
    * Returns the [Popup] node instance if one has been set already with [setPopup].
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */

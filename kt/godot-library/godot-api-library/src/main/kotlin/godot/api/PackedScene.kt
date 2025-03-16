@@ -24,20 +24,24 @@ import kotlin.jvm.JvmOverloads
 /**
  * A simplified interface to a scene file. Provides access to operations and checks that can be
  * performed on the scene resource itself.
+ *
  * Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get
  * saved (see [Node.owner] property).
+ *
  * **Note:** The node doesn't need to own itself.
+ *
  * **Example:** Load a saved scene:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # Use load() instead of preload() if the path isn't known at compile-time.
  * var scene = preload("res://scene.tscn").instantiate()
  * # Add the node as a child of the node the script is attached to.
  * add_child(scene)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // C# has no preload, so you have to always use ResourceLoader.Load<PackedScene>().
  * var scene = ResourceLoader.Load<PackedScene>("res://scene.tscn").Instantiate();
  * // Add the node as a child of the node the script is attached to.
@@ -49,8 +53,8 @@ import kotlin.jvm.JvmOverloads
  * `body` which is a child of `node`. Only `body` is owned by `node` and [pack] will therefore only
  * save those two nodes, but not `collision`.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # Create the objects.
  * var node = Node2D.new()
  * var body = RigidBody2D.new()
@@ -71,8 +75,9 @@ import kotlin.jvm.JvmOverloads
  *     if error != OK:
  *         push_error("An error occurred while saving the scene to disk.")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // Create the objects.
  * var node = new Node2D();
  * var body = new RigidBody2D();
@@ -152,18 +157,21 @@ public open class PackedScene : Resource() {
     DISABLED(0),
     /**
      * If passed to [instantiate], provides local scene resources to the local scene.
+     *
      * **Note:** Only available in editor builds.
      */
     INSTANCE(1),
     /**
      * If passed to [instantiate], provides local scene resources to the local scene. Only the main
      * scene should receive the main edit state.
+     *
      * **Note:** Only available in editor builds.
      */
     MAIN(2),
     /**
      * It's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated
      * to be the base of another one.
+     *
      * **Note:** Only available in editor builds.
      */
     MAIN_INHERITED(3),

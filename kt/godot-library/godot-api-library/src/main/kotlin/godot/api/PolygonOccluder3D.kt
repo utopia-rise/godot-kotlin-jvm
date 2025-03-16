@@ -25,6 +25,7 @@ import kotlin.jvm.JvmName
  * the same 2D plane, which means it is not possible to create arbitrary 3D shapes with a single
  * [PolygonOccluder3D]. To use arbitrary 3D shapes as occluders, use [ArrayOccluder3D] or
  * [OccluderInstance3D]'s baking feature instead.
+ *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
@@ -32,6 +33,7 @@ public open class PolygonOccluder3D : Occluder3D() {
   /**
    * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
    * have as few points as possible to maximize performance.
+   *
    * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
    * error message printed).
    */

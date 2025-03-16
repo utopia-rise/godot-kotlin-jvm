@@ -23,6 +23,7 @@ import kotlin.Unit
  * [url=https://en.wikipedia.org/wiki/Shared_library]shared library[/url] which can expand the
  * functionality of the engine. The [GDExtensionManager] singleton is responsible for loading,
  * reloading, and unloading [GDExtension] resources.
+ *
  * **Note:** GDExtension itself is not a scripting language and has no relation to [GDScript]
  * resources.
  */

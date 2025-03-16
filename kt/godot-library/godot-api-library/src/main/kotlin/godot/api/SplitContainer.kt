@@ -94,6 +94,7 @@ public open class SplitContainer : Container() {
 
   /**
    * If `true`, the [SplitContainer] will arrange its children vertically, rather than horizontally.
+   *
    * Can't be changed when using [HSplitContainer] and [VSplitContainer].
    */
   public final inline var vertical: Boolean
@@ -268,13 +269,16 @@ public open class SplitContainer : Container() {
    * Returns the drag area [Control]. For example, you can move a pre-configured button into the
    * drag area [Control] so that it rides along with the split bar. Try setting the [Button] anchors to
    * `center` prior to the `reparent()` call.
-   * [codeblock]
+   *
+   * ```
    * $BarnacleButton.reparent($SplitContainer.get_drag_area_control())
-   * [/codeblock]
+   * ```
+   *
    * **Note:** The drag area [Control] is drawn over the [SplitContainer]'s children, so
    * [CanvasItem] draw objects called from the [Control] and children added to the [Control] will also
    * appear over the [SplitContainer]'s children. Try setting [Control.mouseFilter] of custom children
    * to [Control.MOUSE_FILTER_IGNORE] to prevent blocking the mouse from dragging if desired.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash.
    */
   public final fun getDragAreaControl(): Control? {
@@ -289,13 +293,16 @@ public open class SplitContainer : Container() {
     /**
      * The split dragger icon is always visible when [theme_item autohide] is `false`, otherwise
      * visible only when the cursor hovers it.
+     *
      * The size of the grabber icon determines the minimum [theme_item separation].
+     *
      * The dragger icon is automatically hidden if the length of the grabber icon is longer than the
      * split bar.
      */
     VISIBLE(0),
     /**
      * The split dragger icon is never visible regardless of the value of [theme_item autohide].
+     *
      * The size of the grabber icon determines the minimum [theme_item separation].
      */
     HIDDEN(1),

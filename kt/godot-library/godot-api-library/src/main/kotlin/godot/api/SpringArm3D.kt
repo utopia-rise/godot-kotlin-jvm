@@ -49,6 +49,7 @@ public open class SpringArm3D : Node3D() {
 
   /**
    * The [Shape3D] to use for the SpringArm3D.
+   *
    * When the shape is set, the SpringArm3D will cast the [Shape3D] on its z axis instead of
    * performing a ray cast.
    */
@@ -63,6 +64,7 @@ public open class SpringArm3D : Node3D() {
   /**
    * The maximum extent of the SpringArm3D. This is used as a length for both the ray and the shape
    * cast used internally to calculate the desired position of the SpringArm3D's child nodes.
+   *
    * To know more about how to perform a shape cast or a ray cast, please consult the
    * [PhysicsDirectSpaceState3D] documentation.
    */
@@ -76,8 +78,10 @@ public open class SpringArm3D : Node3D() {
 
   /**
    * When the collision check is made, a candidate length for the SpringArm3D is given.
+   *
    * The margin is then subtracted to this length and the translation is applied to the child
    * objects of the SpringArm3D.
+   *
    * This margin is useful for when the SpringArm3D has a [Camera3D] as a child node: without the
    * margin, the [Camera3D] would be placed on the exact point of collision, while with the margin the
    * [Camera3D] would be placed close to the point of collision.

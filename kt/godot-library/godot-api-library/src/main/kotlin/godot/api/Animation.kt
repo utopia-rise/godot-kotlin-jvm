@@ -51,8 +51,8 @@ import kotlin.jvm.JvmOverloads
  * divided into tracks and each track must be linked to a node. The state of that node can be changed
  * through time, by adding timed keys (events) to the track.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # This creates an animation that makes the node "Enemy" move to the right by
  * # 100 pixels in 2.0 seconds.
  * var animation = Animation.new()
@@ -62,8 +62,9 @@ import kotlin.jvm.JvmOverloads
  * animation.track_insert_key(track_index, 2.0, 100)
  * animation.length = 2.0
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // This creates an animation that makes the node "Enemy" move to the right by
  * // 100 pixels in 2.0 seconds.
  * var animation = new Animation();
@@ -77,6 +78,7 @@ import kotlin.jvm.JvmOverloads
  * Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] to
  * be played back. Animation tracks have different types, each with its own set of dedicated methods.
  * Check [TrackType] to see available types.
+ *
  * **Note:** For 3D position/rotation/scale, using the dedicated [TYPE_POSITION_3D],
  * [TYPE_ROTATION_3D] and [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for
  * performance reasons.
@@ -85,6 +87,7 @@ import kotlin.jvm.JvmOverloads
 public open class Animation : Resource() {
   /**
    * The total length of the animation (in seconds).
+   *
    * **Note:** Length is not delimited by the last key, as this one may be before or after the end
    * to ensure correct interpolation and looping.
    */
@@ -181,6 +184,7 @@ public open class Animation : Resource() {
    * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
    * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
    * properties or bones must append their name after the path, separated by `":"`.
+   *
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
   public final fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
@@ -483,9 +487,12 @@ public open class Animation : Resource() {
   /**
    * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time
    * is given.
+   *
    * If [limit] is `true`, it does not return keys outside the animation range.
+   *
    * If [backward] is `true`, the direction is reversed in methods that rely on one directional
    * processing.
+   *
    * For example, in case [findMode] is [FIND_MODE_NEAREST], if there is no key in the current
    * position just after seeked, the first key found is retrieved by searching before the position, but
    * if [backward] is `true`, the first key found is retrieved after the position.
@@ -568,6 +575,7 @@ public open class Animation : Resource() {
   /**
    * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index
    * of a value track.
+   *
    * A [backward] mainly affects the direction of key retrieval of the track with [UPDATE_DISCRETE]
    * converted by [AnimationMixer.ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to match the
    * result with [trackFindKey].
@@ -604,6 +612,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of
    * a Bezier Track.
+   *
    * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the
    * right-side one, while [value] is the actual value at this point.
    */
@@ -706,6 +715,7 @@ public open class Animation : Resource() {
   /**
    * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of
    * an Audio Track.
+   *
    * [stream] is the [AudioStream] resource to play. [startOffset] is the number of seconds cut off
    * at the beginning of the audio stream, while [endOffset] is at the ending.
    */
@@ -774,6 +784,7 @@ public open class Animation : Resource() {
   /**
    * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
    * an Audio Track.
+   *
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
   public final fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -785,6 +796,7 @@ public open class Animation : Resource() {
   /**
    * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
    * an Audio Track.
+   *
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
   public final fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -1006,6 +1018,7 @@ public open class Animation : Resource() {
    * are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D
    * software. Compression is lossy, but the difference is usually not noticeable in real world
    * conditions.
+   *
    * **Note:** Compressed tracks have various limitations (such as not being editable from the
    * editor), so only use compressed animations if you actually need them.
    */
@@ -1029,6 +1042,7 @@ public open class Animation : Resource() {
    * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
    * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
    * properties or bones must append their name after the path, separated by `":"`.
+   *
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
   public final fun trackSetPath(trackIdx: Int, path: String) =
@@ -1166,11 +1180,13 @@ public open class Animation : Resource() {
     CUBIC(2),
     /**
      * Linear interpolation with shortest path rotation.
+     *
      * **Note:** The result value is always normalized and may not match the key value.
      */
     LINEAR_ANGLE(3),
     /**
      * Cubic interpolation with shortest path rotation.
+     *
      * **Note:** The result value is always normalized and may not match the key value.
      */
     CUBIC_ANGLE(4),

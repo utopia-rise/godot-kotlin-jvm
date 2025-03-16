@@ -28,10 +28,11 @@ import kotlin.jvm.JvmName
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them
  * according to the current [Theme].
+ *
  * **Example:** Create a button and connect a method that will be called when the button is pressed:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * func _ready():
  *     var button = Button.new()
  *     button.text = "Click me"
@@ -41,8 +42,9 @@ import kotlin.jvm.JvmName
  * func _button_pressed():
  *     print("Hello world!")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public override void _Ready()
  * {
  *     var button = new Button();
@@ -58,6 +60,7 @@ import kotlin.jvm.JvmName
  * ```
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * **Note:** Buttons do not detect touch input and therefore don't support multitouch, since mouse
  * emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that
  * trigger gameplay movement or actions.
@@ -77,6 +80,7 @@ public open class Button : BaseButton() {
 
   /**
    * Button's icon, if text is present the icon will be placed before the text.
+   *
    * To edit margin and spacing of the icon, use [theme_item h_separation] theme property and
    * `content_margin_*` properties of the used [StyleBox]es.
    */

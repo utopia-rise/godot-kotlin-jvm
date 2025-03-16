@@ -129,6 +129,7 @@ public open class RDSamplerState : RefCounted() {
    * Higher values result in a sharper sampler at oblique angles, at the cost of performance (due to
    * memory bandwidth). This value may be limited by the graphics hardware in use. Most graphics
    * hardware only supports values up to `16.0`.
+   *
    * If [anisotropyMax] is `1.0`, forcibly disables anisotropy even if [useAnisotropy] is `true`.
    */
   public final inline var anisotropyMax: Float

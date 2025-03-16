@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
  * [Material] is a base resource used for coloring and shading geometry. All materials inherit from
  * it and almost all [VisualInstance3D] derived nodes carry a [Material]. A few flags and parameters
  * are shared between all material types and are configured here.
+ *
  * Importantly, you can inherit from [Material] to create your own custom material type in script or
  * in GDExtension.
  */
@@ -35,7 +36,9 @@ public open class Material : Resource() {
    * Sets the render priority for objects in 3D scenes. Higher priority objects will be sorted in
    * front of lower priority objects. In other words, all objects with [renderPriority] `1` will render
    * before all objects with [renderPriority] `0`.
+   *
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
+   *
    * **Note:** This will not impact how transparent objects are sorted relative to opaque objects or
    * how dynamic meshes will be sorted relative to other opaque meshes. This is because all transparent
    * objects are drawn after all opaque objects and all dynamic opaque meshes are drawn before other
@@ -52,9 +55,11 @@ public open class Material : Resource() {
   /**
    * Sets the [Material] to be used for the next pass. This renders the object again using a
    * different material.
+   *
    * **Note:** [nextPass] materials are not necessarily drawn immediately after the source
    * [Material]. Draw order is determined by material properties, [renderPriority], and distance to
    * camera.
+   *
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    */
   public final inline var nextPass: Material?

@@ -29,6 +29,7 @@ import kotlin.jvm.JvmName
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
  * polygon can be concave or convex. This can give a detection shape to an [Area2D], turn
  * [PhysicsBody2D] into a solid object, or give a hollow shape to a [StaticBody2D].
+ *
  * **Warning:** A non-uniformly scaled [CollisionPolygon2D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its polygon instead.
  */
@@ -48,6 +49,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * The polygon's list of vertices. Each point will be connected to the next, and the final point
    * will be connected to the first.
+   *
    * **Note:** The returned vertices are in the local coordinate space of the given
    * [CollisionPolygon2D].
    */
@@ -73,6 +75,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * If `true`, only edges that face up, relative to [CollisionPolygon2D]'s rotation, will collide
    * with other objects.
+   *
    * **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D]
    * node.
    */

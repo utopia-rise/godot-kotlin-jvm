@@ -24,10 +24,11 @@ import kotlin.jvm.JvmName
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
  * instead, it expects a script to generate audio data for it. See also [AudioStreamGeneratorPlayback].
+ *
  * Here's a sample on how to use it to generate a sine wave:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var playback # Will hold the AudioStreamGeneratorPlayback.
  * @onready var sample_hz = $AudioStreamPlayer.stream.mix_rate
  * var pulse_hz = 440.0 # The frequency of the sound wave.
@@ -46,8 +47,9 @@ import kotlin.jvm.JvmName
  *         playback.push_frame(Vector2.ONE * sin(phase * TAU))
  *         phase = fmod(phase + increment, 1.0)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * [Export] public AudioStreamPlayer Player { get; set; }
  *
  * private AudioStreamGeneratorPlayback _playback; // Will hold the AudioStreamGeneratorPlayback.
@@ -82,7 +84,9 @@ import kotlin.jvm.JvmName
  *
  * In the example above, the "AudioStreamPlayer" node must use an [AudioStreamGenerator] as its
  * stream. The `fill_buffer` function provides audio data for approximating a sine wave.
+ *
  * See also [AudioEffectSpectrumAnalyzer] for performing real-time audio spectrum analysis.
+ *
  * **Note:** Due to performance constraints, this class is best used from C# or from a compiled
  * language via GDExtension. If you still want to use this class from GDScript, consider using a lower
  * [mixRate] such as 11,025 Hz or 22,050 Hz.
@@ -104,16 +108,20 @@ public open class AudioStreamGenerator : AudioStream() {
   /**
    * The sample rate to use (in Hz). Higher values are more demanding for the CPU to generate, but
    * result in better quality.
+   *
    * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and
    * `48000`.
+   *
    * According to the
    * [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon
    * sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz
    * (since most humans can only hear up to ~20,000 Hz, often less). If you are generating
    * lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable
    * with no loss in quality.
+   *
    * **Note:** [AudioStreamGenerator] is not automatically resampling input data, to produce
    * expected result [mixRateMode] should match the sampling rate of input data.
+   *
    * **Note:** If you are using [AudioEffectCapture] as the source of your data, set [mixRateMode]
    * to [MIX_RATE_INPUT] or [MIX_RATE_OUTPUT] to automatically match current [AudioServer] mixing rate.
    */

@@ -117,8 +117,10 @@ public object EngineDebugger : Object() {
   /**
    * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
    * with "my_message:" will be called with the given callable.
+   *
    * The callable must accept a message string and a data array as argument. The callable should
    * return `true` if the message is recognized.
+   *
    * **Note:** The callable will receive the message with the prefix stripped, unlike
    * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
    */
@@ -325,8 +327,10 @@ public object EngineDebugger : Object() {
   /**
    * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
    * with "my_message:" will be called with the given callable.
+   *
    * The callable must accept a message string and a data array as argument. The callable should
    * return `true` if the message is recognized.
+   *
    * **Note:** The callable will receive the message with the prefix stripped, unlike
    * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
    */

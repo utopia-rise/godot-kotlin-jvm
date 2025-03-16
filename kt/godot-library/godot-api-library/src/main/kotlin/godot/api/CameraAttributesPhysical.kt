@@ -22,14 +22,17 @@ import kotlin.jvm.JvmName
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's
  * settings. It is responsible for exposure, auto-exposure, and depth of field.
+ *
  * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and
  * depth of field that will be used by all cameras without their own [CameraAttributes], including the
  * editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the
  * [WorldEnvironment] and will override the [Camera3D]s [Camera3D.far], [Camera3D.near],
  * [Camera3D.fov], and [Camera3D.keepAspect] properties. When used in [VoxelGI] or [LightmapGI], only
  * the exposure settings will be used.
+ *
  * The default settings are intended for use in an outdoor environment, tips for settings for use in
  * an indoor environment can be found in each setting's documentation.
+ *
  * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not
  * Compatibility.
  */
@@ -96,6 +99,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * results in a wide aperture which lets in more light resulting in a brighter, less-focused image.
    * Default is appropriate for outdoors at daytime (i.e. for use with a default [DirectionalLight3D]),
    * for indoor lighting, a value between 2 and 4 is more appropriate.
+   *
    * Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is
    * enabled.
    */
@@ -111,6 +115,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * Time for shutter to open and close, evaluated as `1 / shutter_speed` seconds. A higher value
    * will allow less light (leading to a darker image), while a lower value will allow more light
    * (leading to a brighter image).
+   *
    * Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is
    * enabled.
    */

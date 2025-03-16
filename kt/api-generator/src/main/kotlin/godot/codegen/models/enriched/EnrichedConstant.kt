@@ -9,7 +9,7 @@ class EnrichedConstant(model: Constant) : TypedTrait, IDocumented {
     override val type = model.type?.sanitizeApiType() ?: "int"
     val name = model.name
     val value = model.value
-    override val description = model.description
+    override var description = model.description
 }
 
 fun List<Constant>.toEnriched() = map { EnrichedConstant(it) }

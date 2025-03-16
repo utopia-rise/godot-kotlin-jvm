@@ -26,10 +26,12 @@ import kotlin.jvm.JvmName
 
 /**
  * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.
+ *
  * This controls the order of the modifications and how they are applied. Modification order is
  * especially important for full-body IK setups, as you need to execute the modifications in the
  * correct order to get the desired results. For example, you want to execute a modification on the
  * spine *before* the arms on a humanoid skeleton.
+ *
  * This resource also controls how strongly all of the modifications are applied to the
  * [Skeleton2D].
  */
@@ -87,6 +89,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as
    * the passed-in [executionMode], starting from index `0` to [modificationCount].
+   *
    * **Note:** The order of the modifications can matter depending on the modifications. For
    * example, modifications on a spine should operate before modifications on the arms in order to get
    * proper results.

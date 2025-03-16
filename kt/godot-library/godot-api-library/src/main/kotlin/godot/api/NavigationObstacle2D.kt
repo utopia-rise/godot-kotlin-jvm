@@ -34,11 +34,13 @@ import kotlin.jvm.JvmName
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
  * can not cross or overlap.
+ *
  * Obstacles can be included in the navigation mesh baking process when [affectNavigationMesh] is
  * enabled. They do not add walkable geometry, instead their role is to discard other source geometry
  * inside the shape. This can be used to prevent navigation mesh from appearing in unwanted places. If
  * [carveNavigationMesh] is enabled the baked shape will not be affected by offsets of the navigation
  * mesh baking, e.g. the agent radius.
+ *
  * With [avoidanceEnabled] the obstacle can constrain the avoidance velocities of avoidance using
  * agents. If the obstacle's vertices are wound in clockwise order, avoidance agents will be pushed in
  * by the obstacle, otherwise, avoidance agents will be pushed out. Obstacles using vertices and
@@ -87,8 +89,10 @@ public open class NavigationObstacle2D : Node2D() {
   /**
    * If enabled the obstacle vertices will carve into the baked navigation mesh with the shape
    * unaffected by additional offsets (e.g. agent radius).
+   *
    * It will still be affected by further postprocessing of the baking process, like edge and
    * polygon simplification.
+   *
    * Requires [affectNavigationMesh] to be enabled.
    */
   public final inline var carveNavigationMesh: Boolean

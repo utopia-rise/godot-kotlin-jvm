@@ -59,6 +59,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * Absolute character range in the string, corresponding to the glyph.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
   @CoreTypeLocalCopy
@@ -74,6 +75,7 @@ public open class CharFXTransform : RefCounted() {
    * The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops
    * when the [RichTextLabel] is paused (see [Node.processMode]). Resets when the text in the
    * [RichTextLabel] is changed.
+   *
    * **Note:** Time still passes while the [RichTextLabel] is hidden.
    */
   public final inline var elapsedTime: Double
@@ -99,6 +101,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * If `true`, FX transform is called for outline drawing.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var outline: Boolean
@@ -139,11 +142,13 @@ public open class CharFXTransform : RefCounted() {
    * automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color].
    * String arguments may not contain spaces, even if they're quoted. If present, quotes will also be
    * present in the final string.
+   *
    * For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will
    * map to the following [Dictionary]:
-   * [codeblock]
+   *
+   * ```
    * {"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
-   * [/codeblock]
+   * ```
    */
   public final inline var env: Dictionary<Any?, Any?>
     @JvmName("envProperty")
@@ -167,6 +172,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var glyphCount: Int
@@ -179,6 +185,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * Glyph flags. See [TextServer.GraphemeFlag] for more info.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var glyphFlags: Int
@@ -191,6 +198,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * The character offset of the glyph, relative to the current [RichTextEffect] custom block.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var relativeIndex: Int
@@ -204,6 +212,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * [TextServer] RID of the font used to render glyph, this value can be used with
    * `TextServer.font_*` methods to retrieve font information.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var font: RID
@@ -246,6 +255,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * Absolute character range in the string, corresponding to the glyph.
+   *
    * **Note:** Read-only. Setting this property won't affect drawing.
    *
    * This is a helper function to make dealing with local copies easier.

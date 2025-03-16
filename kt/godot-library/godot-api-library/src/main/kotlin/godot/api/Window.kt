@@ -49,6 +49,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * A node that creates a window. The window can either be a native system window or embedded inside
  * another [Window] (see [Viewport.guiEmbedSubwindows]).
+ *
  * At runtime, [Window]s will not close automatically when requested. You need to handle it manually
  * using the [signal close_requested] signal (this applies both to pressing the close button and
  * clicking outside of a popup).
@@ -64,13 +65,15 @@ public open class Window : Viewport() {
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The
    * argument is a list of file paths.
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     get_window().files_dropped.connect(on_files_dropped)
    *
    * func on_files_dropped(files):
    *     print(files)
-   * [/codeblock]
+   * ```
+   *
    * **Note:** This signal only works with native windows, i.e. the main window and [Window]-derived
    * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
@@ -103,6 +106,7 @@ public open class Window : Viewport() {
   /**
    * Emitted when the [Window]'s close button is pressed or when [popupWindow] is enabled and user
    * clicks outside the window.
+   *
    * This signal can be used to handle window closing, e.g. by connecting it to [hide].
    */
   public val closeRequested: Signal0 by Signal0
@@ -131,6 +135,7 @@ public open class Window : Viewport() {
   /**
    * Emitted when the [Window]'s DPI changes as a result of OS-level changes (e.g. moving the window
    * from a Retina display to a lower resolution one).
+   *
    * **Note:** Only implemented on macOS.
    */
   public val dpiChanged: Signal0 by Signal0
@@ -148,7 +153,9 @@ public open class Window : Viewport() {
 
   /**
    * Set's the window's current mode.
+   *
    * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
+   *
    * **Note:** This method only works with native windows, i.e. the main window and [Window]-derived
    * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
@@ -184,9 +191,11 @@ public open class Window : Viewport() {
 
   /**
    * The window's position in pixels.
+   *
    * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
    * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
    * the window's position is in the coordinates of its parent [Viewport].
+   *
    * **Note:** This property only works if [initialPosition] is set to
    * [WINDOW_INITIAL_POSITION_ABSOLUTE].
    */
@@ -225,11 +234,12 @@ public open class Window : Viewport() {
   /**
    * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
    * region will be passed through.
+   *
    * Passing an empty array will disable passthrough support (all mouse events will be intercepted
    * by the window, which is the default behavior).
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * # Set region, using Path2D node.
    * $Window.mouse_passthrough_polygon = $Path2D.curve.get_baked_points()
    *
@@ -239,8 +249,9 @@ public open class Window : Viewport() {
    * # Reset region to default.
    * $Window.mouse_passthrough_polygon = []
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * // Set region, using Path2D node.
    * GetNode<Window>("Window").MousePassthroughPolygon =
    * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
@@ -253,8 +264,10 @@ public open class Window : Viewport() {
    * ```
    *
    * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
+   *
    * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
    * on Linux (X11) and macOS it is.
+   *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
    */
   public final inline var mousePassthroughPolygon: PackedVector2Array
@@ -279,6 +292,7 @@ public open class Window : Viewport() {
   /**
    * If `true`, the window's size will automatically update when a child node is added or removed,
    * ignoring [minSize] if the new size is bigger.
+   *
    * If `false`, you need to call [childControlsChanged] manually.
    */
   public final inline var wrapControls: Boolean
@@ -294,6 +308,7 @@ public open class Window : Viewport() {
    * transient window will be destroyed with its transient parent and will return focus to their parent
    * when closed. The transient window is displayed on top of a non-exclusive full-screen parent
    * window. Transient windows can't enter full-screen mode.
+   *
    * Note that behavior might be different depending on the platform.
    */
   public final inline var transient: Boolean
@@ -321,6 +336,7 @@ public open class Window : Viewport() {
   /**
    * If `true`, the [Window] will be in exclusive mode. Exclusive windows are always on top of their
    * parent and will block all input going to the parent [Window].
+   *
    * Needs [transient] enabled to work.
    */
   public final inline var exclusive: Boolean
@@ -368,8 +384,10 @@ public open class Window : Viewport() {
   /**
    * If `true`, the [Window]'s background can be transparent. This is best used with embedded
    * windows.
+   *
    * **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability
    * might vary depending on GPU driver, display manager, and compositor capabilities.
+   *
    * **Note:** This property has no effect if
    * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
    */
@@ -408,7 +426,9 @@ public open class Window : Viewport() {
   /**
    * If `true`, the [Window] contents is expanded to the full size of the window, window title bar
    * is transparent.
+   *
    * **Note:** This property is implemented only on macOS.
+   *
    * **Note:** This property only works with native windows.
    */
   public final inline var extendToTitle: Boolean
@@ -422,7 +442,9 @@ public open class Window : Viewport() {
   /**
    * If `true`, all mouse events will be passed to the underlying window of the same application.
    * See also [mousePassthroughPolygon].
+   *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   *
    * **Note:** This property only works with native windows.
    */
   public final inline var mousePassthrough: Boolean
@@ -435,7 +457,9 @@ public open class Window : Viewport() {
 
   /**
    * If `true`, the [Window] will override the OS window style to display sharp corners.
+   *
    * **Note:** This property is implemented only on Windows (11).
+   *
    * **Note:** This property only works with native windows.
    */
   public final inline var sharpCorners: Boolean
@@ -471,6 +495,7 @@ public open class Window : Viewport() {
 
   /**
    * If non-zero, the [Window] can't be resized to be smaller than this size.
+   *
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
    * is enabled and if its size is bigger.
    */
@@ -485,6 +510,7 @@ public open class Window : Viewport() {
 
   /**
    * If non-zero, the [Window] can't be resized to be bigger than this size.
+   *
    * **Note:** This property will be ignored if the value is lower than [minSize].
    */
   @CoreTypeLocalCopy
@@ -584,6 +610,7 @@ public open class Window : Viewport() {
    * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node
    * has its own [Theme] resource set, theme items are merged with child's definitions having higher
    * priority.
+   *
    * **Note:** [Window] styles will have no effect unless the window is embedded.
    */
   public final inline var theme: Theme?
@@ -612,9 +639,11 @@ public open class Window : Viewport() {
 
   /**
    * The window's position in pixels.
+   *
    * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
    * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
    * the window's position is in the coordinates of its parent [Viewport].
+   *
    * **Note:** This property only works if [initialPosition] is set to
    * [WINDOW_INITIAL_POSITION_ABSOLUTE].
    *
@@ -665,6 +694,7 @@ public open class Window : Viewport() {
 
   /**
    * If non-zero, the [Window] can't be resized to be smaller than this size.
+   *
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
    * is enabled and if its size is bigger.
    *
@@ -691,6 +721,7 @@ public open class Window : Viewport() {
 
   /**
    * If non-zero, the [Window] can't be resized to be bigger than this size.
+   *
    * **Note:** This property will be ignored if the value is lower than [minSize].
    *
    * This is a helper function to make dealing with local copies easier.
@@ -833,6 +864,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns the window's position including its border.
+   *
    * **Note:** If [visible] is `false`, this method returns the same value as [position].
    */
   public final fun getPositionWithDecorations(): Vector2i {
@@ -843,6 +875,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns the window's size including its border.
+   *
    * **Note:** If [visible] is `false`, this method returns the same value as [size].
    */
   public final fun getSizeWithDecorations(): Vector2i {
@@ -991,6 +1024,7 @@ public open class Window : Viewport() {
 
   /**
    * If [unparent] is `true`, the window is automatically unparented when going invisible.
+   *
    * **Note:** Make sure to keep a reference to the node, otherwise it will be orphaned. You also
    * need to manually call [Node.queueFree] to free the window if it's not parented.
    */
@@ -1074,6 +1108,7 @@ public open class Window : Viewport() {
   /**
    * Returns the combined minimum size from the child [Control] nodes of the window. Use
    * [childControlsChanged] to update it when child nodes have changed.
+   *
    * The value returned by this method can be overridden with [_getContentsMinimumSize].
    */
   public final fun getContentsMinimumSize(): Vector2 {
@@ -1250,6 +1285,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme icon with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeIconOverride].
+   *
    * See also [getThemeIcon].
    */
   public final fun addThemeIconOverride(name: StringName, texture: Texture2D?): Unit {
@@ -1261,6 +1297,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeStyleboxOverride].
+   *
    * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
    */
   public final fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox?): Unit {
@@ -1272,6 +1309,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontOverride].
+   *
    * See also [getThemeFont].
    */
   public final fun addThemeFontOverride(name: StringName, font: Font?): Unit {
@@ -1283,6 +1321,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme font size with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontSizeOverride].
+   *
    * See also [getThemeFontSize].
    */
   public final fun addThemeFontSizeOverride(name: StringName, fontSize: Int): Unit {
@@ -1294,6 +1333,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeColorOverride].
+   *
    * See also [getThemeColor] and [Control.addThemeColorOverride] for more details.
    */
   public final fun addThemeColorOverride(name: StringName, color: Color): Unit {
@@ -1305,6 +1345,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme constant with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeConstantOverride].
+   *
    * See also [getThemeConstant].
    */
   public final fun addThemeConstantOverride(name: StringName, constant: Int): Unit {
@@ -1369,6 +1410,7 @@ public open class Window : Viewport() {
   /**
    * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
    * with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
@@ -1381,6 +1423,7 @@ public open class Window : Viewport() {
   /**
    * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
    * item with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
@@ -1393,6 +1436,7 @@ public open class Window : Viewport() {
   /**
    * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
    * with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
@@ -1404,6 +1448,7 @@ public open class Window : Viewport() {
   /**
    * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
    * item with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Int {
@@ -1415,6 +1460,7 @@ public open class Window : Viewport() {
   /**
    * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
    * with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for more details.
    */
   public final fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
@@ -1426,6 +1472,7 @@ public open class Window : Viewport() {
   /**
    * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
    * item with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for more details.
    */
   public final fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Int {
@@ -1437,6 +1484,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme icon with the specified [name] in this
    * [Control] node.
+   *
    * See [addThemeIconOverride].
    */
   public final fun hasThemeIconOverride(name: StringName): Boolean {
@@ -1448,6 +1496,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeStyleboxOverride].
    */
   public final fun hasThemeStyleboxOverride(name: StringName): Boolean {
@@ -1459,6 +1508,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeFontOverride].
    */
   public final fun hasThemeFontOverride(name: StringName): Boolean {
@@ -1470,6 +1520,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme font size with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeFontSizeOverride].
    */
   public final fun hasThemeFontSizeOverride(name: StringName): Boolean {
@@ -1481,6 +1532,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeColorOverride].
    */
   public final fun hasThemeColorOverride(name: StringName): Boolean {
@@ -1492,6 +1544,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme constant with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeConstantOverride].
    */
   public final fun hasThemeConstantOverride(name: StringName): Boolean {
@@ -1503,6 +1556,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
@@ -1514,6 +1568,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
@@ -1526,6 +1581,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
@@ -1537,6 +1593,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
@@ -1549,6 +1606,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")):
@@ -1561,6 +1619,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
@@ -1573,6 +1632,7 @@ public open class Window : Viewport() {
   /**
    * Returns the default base scale value from the first matching [Theme] in the tree if that
    * [Theme] has a valid [Theme.defaultBaseScale] value.
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultBaseScale(): Float {
@@ -1584,6 +1644,7 @@ public open class Window : Viewport() {
   /**
    * Returns the default font from the first matching [Theme] in the tree if that [Theme] has a
    * valid [Theme.defaultFont] value.
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultFont(): Font? {
@@ -1595,6 +1656,7 @@ public open class Window : Viewport() {
   /**
    * Returns the default font size value from the first matching [Theme] in the tree if that [Theme]
    * has a valid [Theme.defaultFontSize] value.
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultFontSize(): Int {
@@ -1644,14 +1706,17 @@ public open class Window : Viewport() {
   /**
    * Shows the [Window] and makes it transient (see [transient]). If [rect] is provided, it will be
    * set as the [Window]'s size. Fails if called on the main window.
+   *
    * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `true` (single-window mode),
    * [rect]'s coordinates are global and relative to the main window's top-left corner (excluding
    * window decorations). If [rect]'s position coordinates are negative, the window will be located
    * outside the main window and may not be visible as a result.
+   *
    * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false` (multi-window mode),
    * [rect]'s coordinates are global and relative to the top-left corner of the leftmost screen. If
    * [rect]'s position coordinates are negative, the window will be placed at the top-left corner of
    * the screen.
+   *
    * **Note:** [rect] must be in global coordinates if specified.
    */
   @JvmOverloads
@@ -1672,6 +1737,7 @@ public open class Window : Viewport() {
   /**
    * Popups the [Window] at the center of the current screen, with optionally given minimum size. If
    * the [Window] is embedded, it will be centered in the parent [Viewport] instead.
+   *
    * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with
    * [size].
    */
@@ -1684,6 +1750,7 @@ public open class Window : Viewport() {
   /**
    * If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as
    * a [ratio] of embedder's size.
+   *
    * If [Window] is a native window, popups the [Window] centered inside the screen of its parent
    * [Window] and sets its size as a [ratio] of the screen size.
    */
@@ -1696,6 +1763,7 @@ public open class Window : Viewport() {
   /**
    * Popups the [Window] centered inside its parent [Window]. [fallbackRatio] determines the maximum
    * size of the [Window], in relation to its parent.
+   *
    * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with
    * [size].
    */
@@ -1709,6 +1777,7 @@ public open class Window : Viewport() {
   /**
    * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
    * calls [Window.popup] on it. The dialog must have no current parent, otherwise the method fails.
+   *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1721,6 +1790,7 @@ public open class Window : Viewport() {
    * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
    * calls [Window.popupOnParent] on it. The dialog must have no current parent, otherwise the method
    * fails.
+   *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   public final fun popupExclusiveOnParent(fromNode: Node?, parentRect: Rect2i): Unit {
@@ -1732,6 +1802,7 @@ public open class Window : Viewport() {
    * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
    * calls [Window.popupCentered] on it. The dialog must have no current parent, otherwise the method
    * fails.
+   *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1745,6 +1816,7 @@ public open class Window : Viewport() {
    * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
    * calls [Window.popupCenteredRatio] on it. The dialog must have no current parent, otherwise the
    * method fails.
+   *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1757,6 +1829,7 @@ public open class Window : Viewport() {
    * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
    * calls [Window.popupCenteredClamped] on it. The dialog must have no current parent, otherwise the
    * method fails.
+   *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1776,6 +1849,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme icon with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeIconOverride].
+   *
    * See also [getThemeIcon].
    */
   public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
@@ -1785,6 +1859,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeStyleboxOverride].
+   *
    * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
    */
   public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
@@ -1794,6 +1869,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontOverride].
+   *
    * See also [getThemeFont].
    */
   public final fun addThemeFontOverride(name: String, font: Font?) =
@@ -1803,6 +1879,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme font size with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontSizeOverride].
+   *
    * See also [getThemeFontSize].
    */
   public final fun addThemeFontSizeOverride(name: String, fontSize: Int) =
@@ -1812,6 +1889,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeColorOverride].
+   *
    * See also [getThemeColor] and [Control.addThemeColorOverride] for more details.
    */
   public final fun addThemeColorOverride(name: String, color: Color) =
@@ -1821,6 +1899,7 @@ public open class Window : Viewport() {
    * Creates a local override for a theme constant with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeConstantOverride].
+   *
    * See also [getThemeConstant].
    */
   public final fun addThemeConstantOverride(name: String, constant: Int) =
@@ -1871,6 +1950,7 @@ public open class Window : Viewport() {
   /**
    * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
    * with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeIcon(name: String, themeType: String): Texture2D? =
@@ -1879,6 +1959,7 @@ public open class Window : Viewport() {
   /**
    * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
    * item with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeStylebox(name: String, themeType: String): StyleBox? =
@@ -1887,6 +1968,7 @@ public open class Window : Viewport() {
   /**
    * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
    * with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeFont(name: String, themeType: String): Font? =
@@ -1895,6 +1977,7 @@ public open class Window : Viewport() {
   /**
    * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
    * item with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeFontSize(name: String, themeType: String): Int =
@@ -1903,6 +1986,7 @@ public open class Window : Viewport() {
   /**
    * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
    * with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for more details.
    */
   public final fun getThemeColor(name: String, themeType: String): Color =
@@ -1911,6 +1995,7 @@ public open class Window : Viewport() {
   /**
    * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
    * item with the specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for more details.
    */
   public final fun getThemeConstant(name: String, themeType: String): Int =
@@ -1919,6 +2004,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme icon with the specified [name] in this
    * [Control] node.
+   *
    * See [addThemeIconOverride].
    */
   public final fun hasThemeIconOverride(name: String): Boolean =
@@ -1927,6 +2013,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeStyleboxOverride].
    */
   public final fun hasThemeStyleboxOverride(name: String): Boolean =
@@ -1935,6 +2022,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeFontOverride].
    */
   public final fun hasThemeFontOverride(name: String): Boolean =
@@ -1943,6 +2031,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme font size with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeFontSizeOverride].
    */
   public final fun hasThemeFontSizeOverride(name: String): Boolean =
@@ -1951,6 +2040,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeColorOverride].
    */
   public final fun hasThemeColorOverride(name: String): Boolean =
@@ -1959,6 +2049,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a local override for a theme constant with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeConstantOverride].
    */
   public final fun hasThemeConstantOverride(name: String): Boolean =
@@ -1967,6 +2058,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeIcon(name: String, themeType: String): Boolean =
@@ -1975,6 +2067,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeStylebox(name: String, themeType: String): Boolean =
@@ -1983,6 +2076,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeFont(name: String, themeType: String): Boolean =
@@ -1991,6 +2085,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeFontSize(name: String, themeType: String): Boolean =
@@ -1999,6 +2094,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeColor(name: String, themeType: String): Boolean =
@@ -2007,6 +2103,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
    * specified [name] and [themeType].
+   *
    * See [Control.getThemeColor] for details.
    */
   public final fun hasThemeConstant(name: String, themeType: String): Boolean =
@@ -2032,12 +2129,17 @@ public open class Window : Viewport() {
     MAXIMIZED(2),
     /**
      * Full screen mode with full multi-window support.
+     *
      * Full screen window covers the entire display area of a screen and has no decorations. The
      * display's video mode is not changed.
+     *
      * **On Android:** This enables immersive mode.
+     *
      * **On Windows:** Multi-window full-screen mode has a 1px border of the
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
+     *
      * **On macOS:** A new desktop is used to display the running project.
+     *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to
      * match the monitor's size. Therefore, make sure your project supports
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
@@ -2048,15 +2150,21 @@ public open class Window : Viewport() {
      * A single window full screen mode. This mode has less overhead, but only one window can be
      * open on a given screen at a time (opening a child window or application switching will trigger a
      * full screen transition).
+     *
      * Full screen window covers the entire display area of a screen and has no border or
      * decorations. The display's video mode is not changed.
+     *
      * **On Android:** This enables immersive mode.
+     *
      * **On Windows:** Depending on video driver, full screen transition might cause screens to go
      * black for a moment.
+     *
      * **On macOS:** A new desktop is used to display the running project. Exclusive full screen
      * mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the
      * screen.
+     *
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
+     *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to
      * match the monitor's size. Therefore, make sure your project supports
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
@@ -2095,6 +2203,7 @@ public open class Window : Viewport() {
     ALWAYS_ON_TOP(2),
     /**
      * The window background can be transparent. Set with [transparent].
+     *
      * **Note:** This flag has no effect if either
      * [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's
      * [Viewport.transparentBg] is set to `false`.
@@ -2110,6 +2219,7 @@ public open class Window : Viewport() {
      * is visible. An active popup window will exclusively receive all input, without stealing focus
      * from its parent. Popup windows are automatically closed when uses click outside it, or when an
      * application is switched. Popup window must have transient parent set (see [transient]).
+     *
      * **Note:** This flag has no effect in embedded windows (unless said window is a [Popup]).
      */
     POPUP(5),
@@ -2117,25 +2227,32 @@ public open class Window : Viewport() {
      * Window content is expanded to the full size of the window. Unlike borderless window, the
      * frame is left intact and can be used to resize the window, title bar is transparent, but have
      * minimize/maximize/close buttons. Set with [extendToTitle].
+     *
      * **Note:** This flag is implemented only on macOS.
+     *
      * **Note:** This flag has no effect in embedded windows.
      */
     EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
+     *
      * **Note:** This flag has no effect in embedded windows.
      */
     MOUSE_PASSTHROUGH(7),
     /**
      * Window style is overridden, forcing sharp corners.
+     *
      * **Note:** This flag has no effect in embedded windows.
+     *
      * **Note:** This flag is implemented only on Windows (11).
      */
     SHARP_CORNERS(8),
     /**
      * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
      * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
+     *
      * **Note:** This flag is implemented on macOS and Windows.
+     *
      * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
      * should not be used as a security measure.
      */
@@ -2339,9 +2456,13 @@ public open class Window : Viewport() {
     /**
      * Sent when the node needs to refresh its theme items. This happens in one of the following
      * cases:
+     *
      * - The [theme] property is changed on this node or any of its ancestors.
+     *
      * - The [themeTypeVariation] property is changed on this node.
+     *
      * - The node enters the scene tree.
+     *
      * **Note:** As an optimization, this notification won't be sent from changes that occur while
      * this node is outside of the scene tree. Instead, all of the theme item updates can be applied at
      * once when the node enters the scene tree.

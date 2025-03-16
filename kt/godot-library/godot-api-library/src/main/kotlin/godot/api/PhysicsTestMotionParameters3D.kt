@@ -89,6 +89,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * If set to `true`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to detect
    * collisions and can stop the motion. Can be useful when snapping to the ground.
+   *
    * If set to `false`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for
    * separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
@@ -127,6 +128,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is
    * used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.
+   *
    * If set to `false`, only collisions resulting from the motion are reported, which is generally
    * the desired behavior.
    */

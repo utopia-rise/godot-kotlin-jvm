@@ -26,6 +26,7 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].
+ *
  * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative
  * coordinates.
  */

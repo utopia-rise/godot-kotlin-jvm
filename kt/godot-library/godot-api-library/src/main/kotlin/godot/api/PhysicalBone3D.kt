@@ -34,6 +34,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]
  * react to physics.
+ *
  * **Note:** In order to detect physical bones with raycasts, the [SkeletonModifier3D.active]
  * property of the parent [PhysicalBoneSimulator3D] must be `true` and the [Skeleton3D]'s bone must be
  * assigned to [PhysicalBone3D] correctly; it means that [getBoneId] should return a valid id (`>= 0`).
@@ -111,6 +112,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
+   *
    * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
    * angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [bounce]
    * to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to
@@ -141,6 +143,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * If `true`, the standard force integration (like gravity or damping) will be disabled for this
    * body. Other than collision response, the body will only move as determined by the
    * [_integrateForces] method, if that virtual method is overridden.
+   *
    * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration]
    * internally.
    */
@@ -168,6 +171,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [ProjectSettings.physics/3d/defaultLinearDamp] or any value override set by an [Area3D] the body
    * is in. Depending on [linearDampMode], [linearDamp] may be added to or replace the body's damping
    * value.
+   *
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public final inline var linearDamp: Float
@@ -194,6 +198,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an
    * [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to
    * or to replace the body's damping value.
+   *
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public final inline var angularDamp: Float
@@ -382,9 +387,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Applies a directional impulse without affecting rotation.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_integrate_forces" functions otherwise).
+   *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   public final fun applyCentralImpulse(impulse: Vector3): Unit {
@@ -394,9 +401,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Applies a positioned impulse to the PhysicsBone3D.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_integrate_forces" functions otherwise).
+   *
    * [position] is the offset from the PhysicsBone3D origin in global coordinates.
    */
   @JvmOverloads

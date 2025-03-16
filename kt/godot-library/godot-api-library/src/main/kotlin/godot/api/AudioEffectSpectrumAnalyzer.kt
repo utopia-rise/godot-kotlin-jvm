@@ -24,8 +24,10 @@ import kotlin.jvm.JvmName
 /**
  * This audio effect does not affect sound output, but can be used for real-time audio
  * visualizations.
+ *
  * This resource configures an [AudioEffectSpectrumAnalyzerInstance], which performs the actual
  * analysis at runtime. An instance can be obtained with [AudioServer.getBusEffectInstance].
+ *
  * See also [AudioStreamGenerator] for procedurally generating sounds.
  */
 @GodotBaseType

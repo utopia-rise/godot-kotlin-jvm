@@ -30,9 +30,11 @@ import kotlin.jvm.JvmName
  * DPad emulation will be activated. You should **not** combine dpad inputs with normal inputs in the
  * same action set for the same control, this will result in an error being returned when suggested
  * bindings are submitted to OpenXR.
+ *
  * See
  * [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_EXT_dpad_binding]XR_EXT_dpad_binding[/url]
  * for in-depth details.
+ *
  * **Note:** If the DPad binding modifier extension is enabled, all dpad binding paths will be
  * available in the action map. Adding the modifier to an interaction profile allows you to further
  * customize the behavior.
@@ -108,6 +110,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
 
   /**
    * If `false`, when the joystick enters a new dpad zone this becomes true.
+   *
    * If `true`, when the joystick remains in active dpad zone, this remains true even if we overlap
    * with another zone.
    */

@@ -34,58 +34,72 @@ import kotlin.jvm.JvmStatic
  * follow a specific pattern, such as URLs, email addresses, complete sentences, etc. For example, a
  * regex of `ab[0-9]` would find any string that is `ab` followed by any number from `0` to `9`. For a
  * more in-depth look, you can easily find various tutorials and detailed explanations on the Internet.
+ *
  * To begin, the RegEx object needs to be compiled with the search pattern using [compile] before it
  * can be used.
- * [codeblock]
+ *
+ * ```
  * var regex = RegEx.new()
  * regex.compile("\\w-(\\d+)")
- * [/codeblock]
+ * ```
+ *
  * The search pattern must be escaped first for GDScript before it is escaped for the expression.
  * For example, `compile("\\d+")` would be read by RegEx as `\d+`. Similarly,
  * `compile("\"(?:\\\\.|[^\"])*\"")` would be read as `"(?:\\.|[^"])*"`. In GDScript, you can also use
  * raw string literals (r-strings). For example, `compile(r'"(?:\\.|[^"])*"')` would be read the same.
+ *
  * Using [search], you can find the pattern within the given text. If a pattern is found,
  * [RegExMatch] is returned and you can retrieve details of the results using methods such as
  * [RegExMatch.getString] and [RegExMatch.getStart].
- * [codeblock]
+ *
+ * ```
  * var regex = RegEx.new()
  * regex.compile("\\w-(\\d+)")
  * var result = regex.search("abc n-0123")
  * if result:
  *     print(result.get_string()) # Would print n-0123
- * [/codeblock]
+ * ```
+ *
  * The results of capturing groups `()` can be retrieved by passing the group number to the various
  * methods in [RegExMatch]. Group 0 is the default and will always refer to the entire pattern. In the
  * above example, calling `result.get_string(1)` would give you `0123`.
+ *
  * This version of RegEx also supports named capturing groups, and the names can be used to retrieve
  * the results. If two or more groups have the same name, the name would only refer to the first one
  * with a match.
- * [codeblock]
+ *
+ * ```
  * var regex = RegEx.new()
  * regex.compile("d(?<digit>[0-9]+)|x(?<digit>[0-9a-f]+)")
  * var result = regex.search("the number is x2f")
  * if result:
  *     print(result.get_string("digit")) # Would print 2f
- * [/codeblock]
+ * ```
+ *
  * If you need to process multiple results, [searchAll] generates a list of all non-overlapping
  * results. This can be combined with a `for` loop for convenience.
- * [codeblock]
+ *
+ * ```
  * for result in regex.search_all("d01, d03, d0c, x3f and x42"):
  *     print(result.get_string("digit"))
  * # Would print 01 03 0 3f 42
- * [/codeblock]
+ * ```
+ *
  * **Example:** Split a string using a RegEx:
- * [codeblock]
+ *
+ * ```
  * var regex = RegEx.new()
  * regex.compile("\\S+") # Negated whitespace character class.
  * var results = []
  * for result in regex.search_all("One  Two \n\tThree"):
  *     results.push_back(result.get_string())
  * # The `results` array now contains "One", "Two", and "Three".
- * [/codeblock]
+ * ```
+ *
  * **Note:** Godot's regex implementation is based on the [url=https://www.pcre.org/]PCRE2[/url]
  * library. You can view the full pattern reference
  * [url=https://www.pcre.org/current/doc/html/pcre2pattern.html]here[/url].
+ *
  * **Tip:** You can use [url=https://regexr.com/]Regexr[/url] to test regular expressions online.
  */
 @GodotBaseType
@@ -118,6 +132,7 @@ public open class RegEx : RefCounted() {
   /**
    * Searches the text for the compiled pattern. Returns a [RegExMatch] container of the first
    * matching result if found, otherwise `null`.
+   *
    * The region to search within can be specified with [offset] and [end]. This is useful when
    * searching for another match in the same [subject] by calling this method again after a previous
    * success. Note that setting these parameters differs from passing over a shortened string. For
@@ -138,6 +153,7 @@ public open class RegEx : RefCounted() {
   /**
    * Searches the text for the compiled pattern. Returns an array of [RegExMatch] containers for
    * each non-overlapping result. If no results were found, an empty array is returned instead.
+   *
    * The region to search within can be specified with [offset] and [end]. This is useful when
    * searching for another match in the same [subject] by calling this method again after a previous
    * success. Note that setting these parameters differs from passing over a shortened string. For
@@ -159,6 +175,7 @@ public open class RegEx : RefCounted() {
    * Searches the text for the compiled pattern and replaces it with the specified string. Escapes
    * and backreferences such as `$1` and `$name` are expanded and resolved. By default, only the first
    * instance is replaced, but it can be changed for all instances (global replacement).
+   *
    * The region to search within can be specified with [offset] and [end]. This is useful when
    * searching for another match in the same [subject] by calling this method again after a previous
    * success. Note that setting these parameters differs from passing over a shortened string. For

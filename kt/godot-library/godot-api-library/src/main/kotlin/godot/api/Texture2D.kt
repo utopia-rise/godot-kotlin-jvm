@@ -33,8 +33,11 @@ import kotlin.jvm.JvmOverloads
 /**
  * A texture works by registering an image in the video hardware, which then can be used in 3D
  * models or 2D [Sprite2D] or GUI [Control].
+ *
  * Textures are often created by loading them from a file. See [@GDScript.load].
+ *
  * [Texture2D] is a base for other resources. It cannot be used directly.
+ *
  * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.
  * Larger textures may fail to import.
  */
@@ -78,6 +81,7 @@ public open class Texture2D : Texture() {
    * top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn,
    * while [transpose] specifies whether drawing should be performed in column-major order instead of
    * row-major order (resulting in 90-degree clockwise rotation).
+   *
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _draw(
@@ -94,6 +98,7 @@ public open class Texture2D : Texture() {
    * [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether
    * drawing should be performed in column-major order instead of row-major order (resulting in
    * 90-degree clockwise rotation).
+   *
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRect(
@@ -111,6 +116,7 @@ public open class Texture2D : Texture() {
    * drawn onto [CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being
    * drawn, while [transpose] specifies whether drawing should be performed in column-major order
    * instead of row-major order (resulting in 90-degree clockwise rotation).
+   *
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRectRegion(
@@ -209,7 +215,9 @@ public open class Texture2D : Texture() {
   /**
    * Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each
    * time). [Image]s can be accessed and manipulated directly.
+   *
    * **Note:** This will return `null` if this [Texture2D] is invalid.
+   *
    * **Note:** This will fetch the texture data from the GPU, which might cause performance problems
    * when overused. Avoid calling [getImage] every frame, especially on large textures.
    */

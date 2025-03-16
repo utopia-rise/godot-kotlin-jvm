@@ -54,35 +54,40 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
   ) {
     /**
      * Produce a screen effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
-     * [/codeblock]
+     * ```
      */
     SCREEN(0),
     /**
      * Produce a difference effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * result = abs(a - b);
-     * [/codeblock]
+     * ```
      */
     DIFFERENCE(1),
     /**
      * Produce a darken effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * result = min(a, b);
-     * [/codeblock]
+     * ```
      */
     DARKEN(2),
     /**
      * Produce a lighten effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * result = max(a, b);
-     * [/codeblock]
+     * ```
      */
     LIGHTEN(3),
     /**
      * Produce an overlay effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * for (int i = 0; i < 3; i++) {
      *     float base = a[i];
      *     float blend = b[i];
@@ -92,26 +97,29 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      *         result[i] = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
      *     }
      * }
-     * [/codeblock]
+     * ```
      */
     OVERLAY(4),
     /**
      * Produce a dodge effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * result = a / (vec3(1.0) - b);
-     * [/codeblock]
+     * ```
      */
     DODGE(5),
     /**
      * Produce a burn effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * result = vec3(1.0) - (vec3(1.0) - a) / b;
-     * [/codeblock]
+     * ```
      */
     BURN(6),
     /**
      * Produce a soft light effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * for (int i = 0; i < 3; i++) {
      *     float base = a[i];
      *     float blend = b[i];
@@ -121,12 +129,13 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      *         result[i] = 1.0 - (1.0 - base) * (1.0 - (blend - 0.5));
      *     }
      * }
-     * [/codeblock]
+     * ```
      */
     SOFT_LIGHT(7),
     /**
      * Produce a hard light effect with the following formula:
-     * [codeblock]
+     *
+     * ```
      * for (int i = 0; i < 3; i++) {
      *     float base = a[i];
      *     float blend = b[i];
@@ -136,7 +145,7 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      *         result[i] = 1.0 - (1.0 - base) * (1.0 - 2.0 * (blend - 0.5));
      *     }
      * }
-     * [/codeblock]
+     * ```
      */
     HARD_LIGHT(8),
     /**

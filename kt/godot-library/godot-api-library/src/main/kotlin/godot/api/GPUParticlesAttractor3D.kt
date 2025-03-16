@@ -24,9 +24,12 @@ import kotlin.jvm.JvmName
 /**
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push
  * them away from the attractor's origin.
+ *
  * Particle attractors work in real-time and can be moved, rotated and scaled during gameplay.
  * Unlike collision shapes, non-uniform scaling of attractors is also supported.
+ *
  * Attractors can be temporarily disabled by hiding them, or by setting their [strength] to `0.0`.
+ *
  * **Note:** Particle attractors only affect [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
@@ -61,6 +64,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * Adjusts how directional the attractor is. At `0.0`, the attractor is not directional at all: it
    * will attract particles towards its center. At `1.0`, the attractor is fully directional: particles
    * will always be pushed towards local -Z (or +Z if [strength] is negative).
+   *
    * **Note:** If [directionality] is greater than `0.0`, the direction in which particles are
    * pushed can be changed by rotating the [GPUParticlesAttractor3D] node.
    */
@@ -75,10 +79,12 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   /**
    * The particle rendering layers ([VisualInstance3D.layers]) that will be affected by the
    * attractor. By default, all particles are affected by an attractor.
+   *
    * After configuring particle nodes accordingly, specific layers can be unchecked to prevent
    * certain particles from being affected by attractors. For example, this can be used if you're using
    * an attractor as part of a spell effect but don't want the attractor to affect unrelated weather
    * particles at the same position.
+   *
    * Particle attraction can also be disabled on a per-process material basis by setting
    * [ParticleProcessMaterial.attractorInteractionEnabled] on the [GPUParticles3D] node.
    */

@@ -31,6 +31,7 @@ import kotlin.jvm.JvmName
  * and specular maps in any node that inherits from [CanvasItem]. [CanvasTexture] also allows
  * overriding the texture's filter and repeat mode independently of the node's properties (or the
  * project settings).
+ *
  * **Note:** [CanvasTexture] cannot be used in 3D. It will not display correctly when applied to any
  * [VisualInstance3D], such as [Sprite3D] or [Decal]. For physically-based materials in 3D, use
  * [BaseMaterial3D] instead.
@@ -51,6 +52,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The normal map texture to use. Only has a visible effect if [Light2D]s are affecting this
    * [CanvasTexture].
+   *
    * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See
    * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
    * page[/url] for a comparison of normal map coordinates expected by popular engines.

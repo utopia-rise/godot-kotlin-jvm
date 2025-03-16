@@ -209,6 +209,7 @@ public open class Label : Control() {
   /**
    * The number of characters to display. If set to `-1`, all characters are displayed. This can be
    * useful when animating the text appearing in a dialog box.
+   *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public final inline var visibleCharacters: Int
@@ -236,6 +237,7 @@ public open class Label : Control() {
    * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
    * half of the characters will be displayed. This can be useful when animating the text appearing in
    * a dialog box.
+   *
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public final inline var visibleRatio: Float
@@ -451,7 +453,9 @@ public open class Label : Control() {
 
   /**
    * Returns the height of the line [line].
+   *
    * If [line] is set to `-1`, returns the biggest line height.
+   *
    * If there are no lines, returns font size in pixels.
    */
   @JvmOverloads

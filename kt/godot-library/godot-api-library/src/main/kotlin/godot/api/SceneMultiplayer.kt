@@ -39,12 +39,16 @@ import kotlin.jvm.JvmOverloads
 /**
  * This class is the default implementation of [MultiplayerAPI], used to provide multiplayer
  * functionalities in Godot Engine.
+ *
  * This implementation supports RPCs via [Node.rpc] and [Node.rpcId] and requires
  * [MultiplayerAPI.rpc] to be passed a [Node] (it will fail for other object types).
+ *
  * This implementation additionally provide [SceneTree] replication via the [MultiplayerSpawner] and
  * [MultiplayerSynchronizer] nodes, and the [SceneReplicationConfig] resource.
+ *
  * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to
  * be used by non-Godot servers. It may change without notice.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -76,6 +80,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   /**
    * The root path to use for RPCs and replication. Instead of an absolute path, a relative path
    * will be used to find the node upon which the RPC should be executed.
+   *
    * This effectively allows to have different branches of the scene tree to be managed by different
    * MultiplayerAPI, allowing for example to run both client and server in the same scene.
    */
@@ -114,6 +119,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
 
   /**
    * If `true`, the MultiplayerAPI will allow encoding and decoding of object during RPCs.
+   *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
    * if the serialized object comes from untrusted sources to avoid potential security threat such as
    * remote code execution.
@@ -143,8 +149,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * connection/disconnection, and relays messages between them. When this option is `false`, clients
    * won't be automatically notified of other peers and won't be able to send them packets through the
    * server.
+   *
    * **Note:** Changing this option while other peers are connected may lead to unexpected
    * behaviors.
+   *
    * **Note:** Support for this feature may depend on the current [MultiplayerPeer] configuration.
    * See [MultiplayerPeer.isServerRelaySupported].
    */
@@ -240,6 +248,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also
    * completes the authentication. No further authentication messages are expected to be received from
    * this peer.
+   *
    * If a peer disconnects before completing authentication, either due to a network issue, the
    * [authTimeout] expiring, or manually calling [disconnectPeer], the [signal
    * peer_authentication_failed] signal will be emitted instead of [signal

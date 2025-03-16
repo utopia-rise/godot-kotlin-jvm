@@ -339,9 +339,11 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Applies a directional impulse without affecting rotation.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   @JvmOverloads
@@ -352,9 +354,11 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Applies a positioned impulse to the body.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -365,9 +369,11 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Applies a rotational impulse to the body without affecting the position.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
    * [CollisionShape3D] must be a child of the node, or you can manually set [inverseInertia].
    */
@@ -379,6 +385,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Applies a directional force without affecting rotation. A force is time dependent and meant to
    * be applied every physics update.
+   *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
   @JvmOverloads
@@ -390,6 +397,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -401,6 +409,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to
    * be applied every physics update.
+   *
    * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
    * [CollisionShape3D] must be a child of the node, or you can manually set [inverseInertia].
    */
@@ -412,6 +421,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Adds a constant directional force without affecting rotation that keeps being applied over time
    * until cleared with `constant_force = Vector3(0, 0, 0)`.
+   *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
   @JvmOverloads
@@ -423,6 +433,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `constant_force = Vector3(0, 0, 0)`.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -442,6 +453,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Sets the body's total constant positional forces applied during each physics update.
+   *
    * See [addConstantForce] and [addConstantCentralForce].
    */
   public final fun setConstantForce(force: Vector3): Unit {
@@ -451,6 +463,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Returns the body's total constant positional forces applied during each physics update.
+   *
    * See [addConstantForce] and [addConstantCentralForce].
    */
   public final fun getConstantForce(): Vector3 {
@@ -461,6 +474,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Sets the body's total constant rotational forces applied during each physics update.
+   *
    * See [addConstantTorque].
    */
   public final fun setConstantTorque(torque: Vector3): Unit {
@@ -470,6 +484,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Returns the body's total constant rotational forces applied during each physics update.
+   *
    * See [addConstantTorque].
    */
   public final fun getConstantTorque(): Vector3 {
@@ -491,6 +506,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Returns the number of contacts this body has with other bodies.
+   *
    * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See
    * [RigidBody3D.contactMonitor].
    */

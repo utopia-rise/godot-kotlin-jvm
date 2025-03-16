@@ -33,6 +33,7 @@ import kotlin.jvm.JvmOverloads
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including
  * physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and
  * rotate children in a 2D project. Also gives control of the node's render order.
+ *
  * **Note:** Since both [Node2D] and [Control] inherit from [CanvasItem], they share several
  * concepts from the class such as the [CanvasItem.zIndex] and [CanvasItem.visible] properties.
  */
@@ -52,6 +53,7 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Rotation in radians, relative to the node's parent. See also [globalRotation].
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    */
@@ -78,6 +80,7 @@ public open class Node2D : CanvasItem() {
   /**
    * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
    * [globalScale].
+   *
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
    * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
    * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
@@ -94,7 +97,9 @@ public open class Node2D : CanvasItem() {
   /**
    * If set to a non-zero value, slants the node in one direction or another. This can be used for
    * pseudo-3D effects. See also [globalSkew].
+   *
    * **Note:** Skew is performed on the X axis only, and *between* rotation and scaling.
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use `skew = deg_to_rad(value_in_degrees)`.
    */
@@ -219,6 +224,7 @@ public open class Node2D : CanvasItem() {
   /**
    * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
    * [globalScale].
+   *
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
    * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
    * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
@@ -516,6 +522,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Rotates the node so that its local +X axis points towards the [point], which is expected to use
    * global coordinates.
+   *
    * [point] should not be the same as the node's position, otherwise the node always looks to the
    * right.
    */
@@ -526,6 +533,7 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Returns the angle between the node and the [point] in radians.
+   *
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png]Illustration
    * of the returned angle.[/url]
    */

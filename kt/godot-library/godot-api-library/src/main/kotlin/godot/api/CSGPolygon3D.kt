@@ -33,6 +33,7 @@ import kotlin.jvm.JvmName
 /**
  * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also
  * [CSGMesh3D] for using 3D meshes as CSG nodes.
+ *
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
  * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
  * node within another CSG node also has a significant CPU cost, so it should be avoided during
@@ -44,6 +45,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * The point array that defines the 2D polygon that is extruded. This can be a convex or concave
    * polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise,
    * triangulation will fail and no mesh will be generated.
+   *
    * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
    */
   public final inline var polygon: PackedVector2Array
@@ -469,11 +471,13 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   ) {
     /**
      * The [polygon] shape is not rotated.
+     *
      * **Note:** Requires the path Z coordinates to continually decrease to ensure viable shapes.
      */
     POLYGON(0),
     /**
      * The [polygon] shape is rotated along the path, but it is not rotated around the path axis.
+     *
      * **Note:** Requires the path Z coordinates to continually decrease to ensure viable shapes.
      */
     PATH(1),

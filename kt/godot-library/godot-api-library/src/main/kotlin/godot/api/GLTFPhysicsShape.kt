@@ -95,6 +95,7 @@ public open class GLTFPhysicsShape : Resource() {
   /**
    * If `true`, indicates that this shape is a trigger. For Godot, this means that the shape should
    * be a child of an Area3D node.
+   *
    * This is the only variable not used in the [toNode] method, it's intended to be used alongside
    * when deciding where to add the generated node as a child.
    */

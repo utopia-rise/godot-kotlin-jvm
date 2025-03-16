@@ -49,8 +49,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and
  * animation (see [Animation]). It can also use ragdoll physics.
+ *
  * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone
  * rest defines the initial transform of the bone pose.
+ *
  * Note that "global pose" below refers to the overall transform of the bone with respect to
  * skeleton, so it is not the actual global/world transform of the bone.
  */
@@ -63,6 +65,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Emitted when the pose is updated.
+   *
    * **Note:** During the update process, this signal is not fired, so modification by
    * [SkeletonModifier3D] is not detected.
    */
@@ -71,6 +74,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Emitted when the final pose has been calculated will be applied to the skin in the update
    * process.
+   *
    * This means that all [SkeletonModifier3D] processing is complete. In order to detect the
    * completion of the processing of each [SkeletonModifier3D], use [signal
    * SkeletonModifier3D.modification_processed].
@@ -92,6 +96,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Multiplies the 3D position track animation.
+   *
    * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual
    * position value.
    */
@@ -130,6 +135,7 @@ public open class Skeleton3D : Node3D() {
    * If you follow the recommended workflow and explicitly have [PhysicalBoneSimulator3D] as a child
    * of [Skeleton3D], you can control whether it is affected by raycasting without running
    * [physicalBonesStartSimulation], by its [SkeletonModifier3D.active].
+   *
    * However, for old (deprecated) configurations, [Skeleton3D] has an internal virtual
    * [PhysicalBoneSimulator3D] for compatibility. This property controls the internal virtual
    * [PhysicalBoneSimulator3D]'s [SkeletonModifier3D.active].
@@ -149,6 +155,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Adds a new bone with the given name. Returns the new bone's index, or `-1` if this method
    * fails.
+   *
    * **Note:** Bone names should be unique, non empty, and cannot include the `:` and `/`
    * characters.
    */
@@ -226,6 +233,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Returns all bone names concatenated with commas (`,`) as a single [StringName].
+   *
    * It is useful to set it as a hint for the enum property.
    */
   public final fun getConcatenatedBoneNames(): StringName {
@@ -237,6 +245,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns the bone index which is the parent of the bone at [boneIdx]. If -1, then bone has no
    * parent.
+   *
    * **Note:** The parent bone returned will always be less than [boneIdx].
    */
   public final fun getBoneParent(boneIdx: Int): Int {
@@ -248,6 +257,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the bone index [parentIdx] as the parent of the bone at [boneIdx]. If -1, then bone has no
    * parent.
+   *
    * **Note:** [parentIdx] must be less than [boneIdx].
    */
   public final fun setBoneParent(boneIdx: Int, parentIdx: Int): Unit {
@@ -267,7 +277,9 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns the number of times the bone hierarchy has changed within this skeleton, including
    * renames.
+   *
    * The Skeleton version is not serialized: only use within a single instance of Skeleton3D.
+   *
    * Use for invalidating caches in IK solvers and other nodes which process bones.
    */
   public final fun getVersion(): Long {
@@ -365,6 +377,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Returns the pose transform of the specified bone.
+   *
    * **Note:** This is the pose you set to the skeleton in the process, the final pose can get
    * overridden by modifiers in the deferred process, if you want to access the final pose, use [signal
    * SkeletonModifier3D.modification_processed].
@@ -476,6 +489,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns the overall transform of the specified bone, with respect to the skeleton. Being
    * relative to the skeleton frame, this is not the actual "global" transform of the bone.
+   *
    * **Note:** This is the global pose you set to the skeleton in the process, the final global pose
    * can get overridden by modifiers in the deferred process, if you want to access the final global
    * pose, use [signal SkeletonModifier3D.modification_processed].
@@ -488,6 +502,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Sets the global pose transform, [pose], for the bone at [boneIdx].
+   *
    * **Note:** If other bone poses have been changed, this method executes a dirty poses
    * recalculation and will cause performance to deteriorate. If you know that multiple global poses
    * will be applied, consider using [setBonePose] with precalculation.
@@ -556,8 +571,10 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Sets the global pose transform, [pose], for the bone at [boneIdx].
+   *
    * [amount] is the interpolation strength that will be used when applying the pose, and
    * [persistent] determines if the applied pose will remain.
+   *
    * **Note:** The pose transform needs to be a global pose! To convert a world transform from a
    * [Node3D] to a global bone pose, multiply the [Transform3D.affineInverse] of the node's
    * [Node3D.globalTransform] by the desired world transform.
@@ -615,6 +632,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the
    * physics world.
+   *
    * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be
    * simulated.
    */
@@ -627,6 +645,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Adds a collision exception to the physical bone.
+   *
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesAddCollisionException(exception: RID): Unit {
@@ -636,6 +655,7 @@ public open class Skeleton3D : Node3D() {
 
   /**
    * Removes a collision exception to the physical bone.
+   *
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {

@@ -30,12 +30,15 @@ import kotlin.jvm.JvmName
 /**
  * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
  * [CollisionObject2D] along its path, if it intersects any.
+ *
  * [RayCast2D] can ignore some objects by adding them to an exception list, by making its detection
  * reporting ignore [Area2D]s ([collideWithAreas]) or [PhysicsBody2D]s ([collideWithBodies]), or by
  * configuring physics layers.
+ *
  * [RayCast2D] calculates intersection every physics frame, and it holds the result until the next
  * physics frame. For an immediate raycast, or if you want to configure a [RayCast2D] multiple times
  * within the same physics frame, use [forceRaycastUpdate].
+ *
  * To sweep over a region of 2D space, you can approximate the region with multiple [RayCast2D]s or
  * use [ShapeCast2D].
  */
@@ -187,6 +190,7 @@ public open class RayCast2D : Node2D() {
    * Updates the collision information for the ray immediately, without waiting for the next
    * `_physics_process` call. Use this method, for example, when the ray or its parent has changed
    * state.
+   *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
   public final fun forceRaycastUpdate(): Unit {
@@ -217,17 +221,19 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is
    * intersecting the ray (i.e. [isColliding] returns `false`).
+   *
    * To get the intersected shape node, for a [CollisionObject2D] target, use:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var target = get_collider() # A CollisionObject2D.
    * var shape_id = get_collider_shape() # The shape index in the collider.
    * var owner_id = target.shape_find_owner(shape_id) # The owner ID in the collider.
    * var shape = target.shape_owner_get_owner(owner_id)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var target = (CollisionObject2D)GetCollider(); // A CollisionObject2D.
    * var shapeId = GetColliderShape(); // The shape index in the collider.
    * var ownerId = target.ShapeFindOwner(shapeId); // The owner ID in the collider.
@@ -244,6 +250,7 @@ public open class RayCast2D : Node2D() {
    * Returns the collision point at which the ray intersects the closest object, in the global
    * coordinate system. If [hitFromInside] is `true` and the ray starts inside of a collision shape,
    * this function will return the origin point of the ray.
+   *
    * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
    * returned point is valid and up-to-date.
    */
@@ -256,6 +263,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the normal of the intersecting object's shape at the collision point, or `Vector2(0,
    * 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
+   *
    * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
    * returned normal is valid and up-to-date.
    */

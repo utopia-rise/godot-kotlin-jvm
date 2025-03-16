@@ -91,6 +91,7 @@ public open class RegExMatch : RefCounted() {
    * Returns the substring of the match from the source string. Capturing groups can be retrieved by
    * providing its group number as an integer or its string name (if it's a named group). The default
    * value of 0 refers to the whole pattern.
+   *
    * Returns an empty string if the group did not match or doesn't exist.
    */
   @JvmOverloads
@@ -104,6 +105,7 @@ public open class RegExMatch : RefCounted() {
    * Returns the starting position of the match within the source string. The starting position of
    * capturing groups can be retrieved by providing its group number as an integer or its string name
    * (if it's a named group). The default value of 0 refers to the whole pattern.
+   *
    * Returns -1 if the group did not match or doesn't exist.
    */
   @JvmOverloads
@@ -117,6 +119,7 @@ public open class RegExMatch : RefCounted() {
    * Returns the end position of the match within the source string. The end position of capturing
    * groups can be retrieved by providing its group number as an integer or its string name (if it's a
    * named group). The default value of 0 refers to the whole pattern.
+   *
    * Returns -1 if the group did not match or doesn't exist.
    */
   @JvmOverloads

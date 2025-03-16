@@ -44,6 +44,7 @@ public infix fun Long.and(other: OpenXRInterface.HandJointFlags): Long = this.an
 /**
  * The OpenXR interface allows Godot to interact with OpenXR runtimes and make it possible to create
  * XR experiences and games.
+ *
  * Due to the needs of OpenXR this interface works slightly different than other plugin based XR
  * interfaces. It needs to be initialized when Godot starts. You need to enable OpenXR, settings for
  * this can be found in your games project settings under the XR heading. You do need to mark a
@@ -89,6 +90,7 @@ public open class OpenXRInterface : XRInterface() {
 
   /**
    * Informs the user the HMD refresh rate has changed.
+   *
    * **Note:** Only emitted if XR runtime supports the refresh rate extension.
    */
   public val refreshRateChanged: Signal1<Double> by Signal1
@@ -120,6 +122,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is
    * accessible.
+   *
    * **Note:** Only works on compatibility renderer.
    */
   public final inline var foveationLevel: Int
@@ -133,6 +136,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Enable dynamic foveation adjustment, the interface must be initialized before this is
    * accessible. If enabled foveation will automatically adjusted between low and [foveationLevel].
+   *
    * **Note:** Only works on compatibility renderer.
    */
   public final inline var foveationDynamic: Boolean
@@ -146,6 +150,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
    * percentage of screen size.
+   *
    * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
    * [Viewport.VRS_XR].
    */
@@ -160,6 +165,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * The strength used to calculate the VRS density map. The greater this value, the more noticeable
    * VRS is. This improves performance at the cost of quality.
+   *
    * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
    * [Viewport.VRS_XR].
    */
@@ -200,6 +206,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Returns `true` if OpenXR's foveation extension is supported, the interface must be initialized
    * before this returns a valid value.
+   *
    * **Note:** This feature is only available on the compatibility renderer and currently only
    * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
    */
@@ -357,6 +364,7 @@ public open class OpenXRInterface : XRInterface() {
 
   /**
    * Returns `true` if OpenXR's hand tracking is supported and enabled.
+   *
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isHandTrackingSupported(): Boolean {
@@ -367,6 +375,7 @@ public open class OpenXRInterface : XRInterface() {
 
   /**
    * Returns `true` if OpenXR's hand interaction profile is supported and enabled.
+   *
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isHandInteractionSupported(): Boolean {
@@ -377,6 +386,7 @@ public open class OpenXRInterface : XRInterface() {
 
   /**
    * Returns the capabilities of the eye gaze interaction extension.
+   *
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isEyeGazeInteractionSupported(): Boolean {

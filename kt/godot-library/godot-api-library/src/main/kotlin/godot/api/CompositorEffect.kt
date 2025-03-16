@@ -56,11 +56,13 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` and MSAA is enabled, this will trigger a color buffer resolve before the effect is
    * run.
+   *
    * **Note:** In [_renderCallback], to access the resolved buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var color_buffer = render_scene_buffers.get_texture("render_buffers", "color")
-   * [/codeblock]
+   * ```
    */
   public final inline var accessResolvedColor: Boolean
     @JvmName("accessResolvedColorProperty")
@@ -73,11 +75,13 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` and MSAA is enabled, this will trigger a depth buffer resolve before the effect is
    * run.
+   *
    * **Note:** In [_renderCallback], to access the resolved buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var depth_buffer = render_scene_buffers.get_texture("render_buffers", "depth")
-   * [/codeblock]
+   * ```
    */
   public final inline var accessResolvedDepth: Boolean
     @JvmName("accessResolvedDepthProperty")
@@ -89,11 +93,13 @@ public open class CompositorEffect : Resource() {
 
   /**
    * If `true` this triggers motion vectors being calculated during the opaque render state.
+   *
    * **Note:** In [_renderCallback], to access the motion vector buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var motion_buffer = render_scene_buffers.get_velocity_texture()
-   * [/codeblock]
+   * ```
    */
   public final inline var needsMotionVectors: Boolean
     @JvmName("needsMotionVectorsProperty")
@@ -106,17 +112,21 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` this triggers normal and roughness data to be output during our depth pre-pass, only
    * applicable for the Forward+ renderer.
+   *
    * **Note:** In [_renderCallback], to access the roughness buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var roughness_buffer = render_scene_buffers.get_texture("forward_clustered",
    * "normal_roughness")
-   * [/codeblock]
+   * ```
+   *
    * The raw normal and roughness buffer is stored in an optimized format, different than the one
    * available in Spatial shaders. When sampling the buffer, a conversion function must be applied. Use
    * this function, copied from
    * [url=https://github.com/godotengine/godot/blob/da5f39889f155658cef7f7ec3cc1abb94e17d815/servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl#L334-L341]here[/url]:
-   * [codeblock]
+   *
+   * ```
    * vec4 normal_roughness_compatibility(vec4 p_normal_roughness) {
    *     float roughness = p_normal_roughness.w;
    *     if (roughness > 0.5) {
@@ -125,7 +135,7 @@ public open class CompositorEffect : Resource() {
    *     roughness /= (127.0 / 255.0);
    *     return vec4(normalize(p_normal_roughness.xyz * 2.0 - 1.0) * 0.5 + 0.5, roughness);
    * }
-   * [/codeblock]
+   * ```
    */
   public final inline var needsNormalRoughness: Boolean
     @JvmName("needsNormalRoughnessProperty")

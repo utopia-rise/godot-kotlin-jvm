@@ -34,6 +34,7 @@ import kotlin.jvm.JvmName
  * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in
  * [Skeleton3D], [Skin], [Animation], and some other nodes are rewritten based on the parameters of
  * [SkeletonProfile].
+ *
  * **Note:** These parameters need to be set only when creating a custom profile. In
  * [SkeletonProfileHumanoid], they are defined internally as read-only values.
  */
@@ -42,6 +43,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * This signal is emitted when change the value in profile. This is used to update key name in the
    * [BoneMap] and to redraw the [BoneMap] editor.
+   *
    * **Note:** This signal is not connected directly to editor to simplify the reference, instead it
    * is passed on to editor through the [BoneMap].
    */
@@ -74,6 +76,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * The amount of groups of bones in retargeting section's [BoneMap] editor. For example,
    * [SkeletonProfileHumanoid] has 4 groups.
+   *
    * This property exists to separate the bone list into several sections in the editor.
    */
   public final inline var groupSize: Int
@@ -87,6 +90,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * The amount of bones in retargeting section's [BoneMap] editor. For example,
    * [SkeletonProfileHumanoid] has 56 bones.
+   *
    * The size of elements in [BoneMap] updates when changing this property in it's assigned
    * [SkeletonProfile].
    */
@@ -195,6 +199,7 @@ public open class SkeletonProfile : Resource() {
 
   /**
    * Returns the name of the bone at [boneIdx] that will be the key name in the [BoneMap].
+   *
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public final fun getBoneName(boneIdx: Int): StringName {
@@ -205,6 +210,7 @@ public open class SkeletonProfile : Resource() {
 
   /**
    * Sets the name of the bone at [boneIdx] that will be the key name in the [BoneMap].
+   *
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
   public final fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
@@ -242,6 +248,7 @@ public open class SkeletonProfile : Resource() {
 
   /**
    * Sets the tail direction of the bone at [boneIdx].
+   *
    * **Note:** This only specifies the method of calculation. The actual coordinates required should
    * be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
@@ -287,6 +294,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the offset of the bone at [boneIdx] that will be the button position in the [BoneMap]
    * editor.
+   *
    * This is the offset with origin at the top left corner of the square.
    */
   public final fun getHandleOffset(boneIdx: Int): Vector2 {
@@ -298,6 +306,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the offset of the bone at [boneIdx] that will be the button position in the [BoneMap]
    * editor.
+   *
    * This is the offset with origin at the top left corner of the square.
    */
   public final fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
@@ -324,6 +333,7 @@ public open class SkeletonProfile : Resource() {
 
   /**
    * Returns whether the bone at [boneIdx] is required for retargeting.
+   *
    * This value is used by the bone map editor. If this method returns `true`, and no bone is
    * assigned, the handle color will be red on the bone map editor.
    */
@@ -360,6 +370,7 @@ public open class SkeletonProfile : Resource() {
 
   /**
    * Sets the name of the bone at [boneIdx] that will be the key name in the [BoneMap].
+   *
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
   public final fun setBoneName(boneIdx: Int, boneName: String) =

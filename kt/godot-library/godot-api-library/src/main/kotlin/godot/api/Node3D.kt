@@ -46,13 +46,16 @@ import kotlin.jvm.JvmOverloads
  * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game
  * objects inherit from [Node3D]. Use [Node3D] as a parent node to move, scale, rotate and show/hide
  * children in a 3D project.
+ *
  * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless
  * the [Node3D] object is set as top-level. Affine operations in this coordinate system correspond to
  * direct affine operations on the [Node3D]'s transform. The word local below refers to this coordinate
  * system. The coordinate system that is attached to the [Node3D] object itself is referred to as
  * object-local coordinate system.
+ *
  * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles
  * specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
+ *
  * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot
  * 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
  */
@@ -103,11 +106,13 @@ public open class Node3D : Node() {
   /**
    * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
    * angles construct a rotation in the order specified by the [rotationOrder] property.
+   *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
    * angles, which are the three independent parameters of the Euler-angle parametrization of the
    * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
    * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
    * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    */
@@ -159,9 +164,11 @@ public open class Node3D : Node() {
 
   /**
    * Scale part of the local transformation.
+   *
    * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
    * to the way scale is represented with transformation matrices in Godot, the scale values will
    * either be all positive or all negative.
+   *
    * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
    * are not visually affected by [scale].
    */
@@ -236,6 +243,7 @@ public open class Node3D : Node() {
   /**
    * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
    * in the format (X angle, Y angle, Z angle).
+   *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
    * angles, which are the three independent parameters of the Euler-angle parametrization of the
    * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
@@ -372,11 +380,13 @@ public open class Node3D : Node() {
   /**
    * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
    * angles construct a rotation in the order specified by the [rotationOrder] property.
+   *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
    * angles, which are the three independent parameters of the Euler-angle parametrization of the
    * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
    * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
    * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    *
@@ -477,9 +487,11 @@ public open class Node3D : Node() {
 
   /**
    * Scale part of the local transformation.
+   *
    * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
    * to the way scale is represented with transformation matrices in Godot, the scale values will
    * either be all positive or all negative.
+   *
    * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
    * are not visually affected by [scale].
    *
@@ -555,6 +567,7 @@ public open class Node3D : Node() {
   /**
    * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
    * in the format (X angle, Y angle, Z angle).
+   *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
    * angles, which are the three independent parameters of the Euler-angle parametrization of the
    * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
@@ -721,9 +734,11 @@ public open class Node3D : Node() {
    * When using physics interpolation, there will be circumstances in which you want to know the
    * interpolated (displayed) transform of a node rather than the standard transform (which may only be
    * accurate to the most recent physics tick).
+   *
    * This is particularly important for frame-based operations that take place in [Node.Process],
    * rather than [Node.PhysicsProcess]. Examples include [Camera3D]s focusing on a node, or finding
    * where to fire lasers from on a frame rather than physics tick.
+   *
    * **Note:** This function creates an interpolation pump on the [Node3D] the first time it is
    * called, which can respond to physics interpolation resets. If you get problems with "streaking"
    * when initially following a [Node3D], be sure to call [getGlobalTransformInterpolated] at least
@@ -782,6 +797,7 @@ public open class Node3D : Node() {
   /**
    * Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D],
    * or [topLevel] is `true`.
+   *
    * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not
    * take [topLevel] into account.
    */
@@ -868,6 +884,7 @@ public open class Node3D : Node() {
 
   /**
    * Attach an editor gizmo to this [Node3D].
+   *
    * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
    * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
@@ -895,6 +912,7 @@ public open class Node3D : Node() {
 
   /**
    * Set subgizmo selection for this node in the editor.
+   *
    * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
    * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
@@ -931,8 +949,10 @@ public open class Node3D : Node() {
    * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
    * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
    * the scene tree.
+   *
    * Visibility is checked only in parent nodes that inherit from [Node3D]. If the parent is of any
    * other type (such as [Node], [AnimationPlayer], or [Node2D]), it is assumed to be visible.
+   *
    * **Note:** This method does not take [VisualInstance3D.layers] into account, so even if this
    * method returns `true`, the node might end up not being rendered.
    */
@@ -1081,6 +1101,7 @@ public open class Node3D : Node() {
 
   /**
    * Changes the node's position by the given offset [Vector3].
+   *
    * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10,
    * 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X
    * coordinate.
@@ -1110,14 +1131,19 @@ public open class Node3D : Node() {
   /**
    * Rotates the node so that the local forward axis (-Z, [Vector3.FORWARD]) points toward the
    * [target] position.
+   *
    * The local up axis (+Y) points as close to the [up] vector as possible while staying
    * perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is
    * preserved. Non-uniform scaling may not work correctly.
+   *
    * The [target] position cannot be the same as the node's position, the [up] vector cannot be
    * zero.
+   *
    * The [target] and the [up] cannot be [Vector3.ZERO], and shouldn't be colinear to avoid
    * unintended rotation around local Z axis.
+   *
    * Operations take place in global space, which means that the node must be in the scene tree.
+   *
    * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is
    * left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated
    * as forward (implies +X is right).
@@ -1198,6 +1224,7 @@ public open class Node3D : Node() {
     /**
      * [Node3D] nodes receive this notification when their global transform changes. This means that
      * either the current or a parent node changed its transform.
+     *
      * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with
      * [setNotifyTransform]. The notification is also sent if the node is in the editor context and it
      * has at least one valid gizmo.
@@ -1223,6 +1250,7 @@ public open class Node3D : Node() {
     /**
      * [Node3D] nodes receive this notification when their local transform changes. This is not
      * received when the transform of a parent node is changed.
+     *
      * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it,
      * with [setNotifyLocalTransform].
      */

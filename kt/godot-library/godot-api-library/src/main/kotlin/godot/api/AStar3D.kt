@@ -35,17 +35,20 @@ import kotlin.jvm.JvmOverloads
  * plotting short paths among vertices (points), passing through a given set of edges (segments). It
  * enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in
  * 3D space and Euclidean distances by default.
+ *
  * You must add points manually with [addPoint] and create segments manually with [connectPoints].
  * Once done, you can test if there is a path between two points with the [arePointsConnected]
  * function, get a path containing indices by [getIdPath], or one containing actual coordinates with
  * [getPointPath].
+ *
  * It is also possible to use non-Euclidean distances. To do so, create a script that extends
  * [AStar3D] and override the methods [_computeCost] and [_estimateCost]. Both should take two point
  * IDs and return the distance between the corresponding points.
+ *
  * **Example:** Use Manhattan distance instead of Euclidean distance:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * class_name MyAStar3D
  * extends AStar3D
  *
@@ -59,8 +62,9 @@ import kotlin.jvm.JvmOverloads
  *     var v_pos = get_point_position(v)
  *     return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * using Godot;
  *
  * [GlobalClass]
@@ -89,6 +93,7 @@ import kotlin.jvm.JvmOverloads
  * _compute_cost(u, v)`. This serves as a hint to the algorithm because the custom [_computeCost] might
  * be computation-heavy. If this is not the case, make [_estimateCost] return the same value as
  * [_computeCost] to provide the algorithm with the most accurate information.
+ *
  * If the default [_estimateCost] and [_computeCost] methods are used, or if the supplied
  * [_estimateCost] method returns a lower bound of the cost, then the paths returned by A* will be the
  * lowest-cost paths. Here, the cost of a path equals the sum of the [_computeCost] results of all
@@ -104,6 +109,7 @@ public open class AStar3D : RefCounted() {
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
+   *
    * Note that this function is hidden in the default [AStar3D] class.
    */
   public open fun _estimateCost(fromId: Long, endId: Long): Float {
@@ -112,6 +118,7 @@ public open class AStar3D : RefCounted() {
 
   /**
    * Called when computing the cost between two connected points.
+   *
    * Note that this function is hidden in the default [AStar3D] class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Float {
@@ -130,17 +137,19 @@ public open class AStar3D : RefCounted() {
   /**
    * Adds a new point at the given position with the given identifier. The [id] must be 0 or larger,
    * and the [weightScale] must be 0.0 or greater.
+   *
    * The [weightScale] is multiplied by the result of [_computeCost] when determining the overall
    * cost of traveling across a segment from a neighboring point to this point. Thus, all else being
    * equal, the algorithm prefers points with lower [weightScale]s to form a path.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar3D.new()
    * astar.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar3D();
    * astar.AddPoint(1, new Vector3(1, 0, 0), 4); // Adds the point (1, 0, 0) with weight_scale 4 and
    * id 1
@@ -215,8 +224,8 @@ public open class AStar3D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the connection with the given point.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar3D.new()
    * astar.add_point(1, Vector3(0, 0, 0))
    * astar.add_point(2, Vector3(0, 1, 0))
@@ -228,8 +237,9 @@ public open class AStar3D : RefCounted() {
    *
    * var neighbors = astar.get_point_connections(1) # Returns [2, 3]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar3D();
    * astar.AddPoint(1, new Vector3(0, 0, 0));
    * astar.AddPoint(2, new Vector3(0, 1, 0));
@@ -279,15 +289,16 @@ public open class AStar3D : RefCounted() {
    * Creates a segment between the given points. If [bidirectional] is `false`, only movement from
    * [id] to [toId] is allowed, not the reverse direction.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar3D.new()
    * astar.add_point(1, Vector3(1, 1, 0))
    * astar.add_point(2, Vector3(0, 5, 0))
    * astar.connect_points(1, 2, false)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar3D();
    * astar.AddPoint(1, new Vector3(1, 1, 0));
    * astar.AddPoint(2, new Vector3(0, 5, 0));
@@ -373,6 +384,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Returns the ID of the closest point to [toPosition], optionally taking disabled points into
    * account. Returns `-1` if there are no points in the points pool.
+   *
    * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will
    * be returned, ensuring a deterministic result.
    */
@@ -387,16 +399,17 @@ public open class AStar3D : RefCounted() {
    * Returns the closest position to [toPosition] that resides inside a segment between two
    * connected points.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar3D.new()
    * astar.add_point(1, Vector3(0, 0, 0))
    * astar.add_point(2, Vector3(0, 5, 0))
    * astar.connect_points(1, 2)
    * var res = astar.get_closest_position_in_segment(Vector3(3, 3, 0)) # Returns (0, 3, 0)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar3D();
    * astar.AddPoint(1, new Vector3(0, 0, 0));
    * astar.AddPoint(2, new Vector3(0, 5, 0));
@@ -416,10 +429,13 @@ public open class AStar3D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by AStar3D between the given
    * points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   *
    * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.
    */
@@ -437,13 +453,15 @@ public open class AStar3D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the path found by AStar3D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar3D.new()
    * astar.add_point(1, Vector3(0, 0, 0))
    * astar.add_point(2, Vector3(0, 1, 0), 1) # Default weight is 1
@@ -457,8 +475,9 @@ public open class AStar3D : RefCounted() {
    *
    * var res = astar.get_id_path(1, 3) # Returns [1, 2, 3]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar3D();
    * astar.AddPoint(1, new Vector3(0, 0, 0));
    * astar.AddPoint(2, new Vector3(0, 1, 0), 1); // Default weight is 1

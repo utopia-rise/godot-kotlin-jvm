@@ -28,13 +28,15 @@ import kotlin.jvm.JvmOverloads
 /**
  * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new
  * packets. See also [PacketPeerUDP.connectToHost].
+ *
  * After starting the server ([listen]), you will need to [poll] it at regular intervals (e.g.
  * inside [Node.Process]) for it to process new packets, delivering them to the appropriate
  * [PacketPeerUDP], and taking new connections.
+ *
  * Below a small example of how it can be used:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # server_node.gd
  * class_name ServerNode
  * extends Node
@@ -61,8 +63,9 @@ import kotlin.jvm.JvmOverloads
  *     for i in range(0, peers.size()):
  *         pass # Do something with the connected peers.
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // ServerNode.cs
  * using Godot;
  * using System.Collections.Generic;
@@ -100,8 +103,8 @@ import kotlin.jvm.JvmOverloads
  * ```
  *
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # client_node.gd
  * class_name ClientNode
  * extends Node
@@ -120,8 +123,9 @@ import kotlin.jvm.JvmOverloads
  *         print("Connected: &#37;s" &#37; udp.get_packet().get_string_from_utf8())
  *         connected = true
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // ClientNode.cs
  * using Godot;
  *

@@ -73,6 +73,7 @@ public open class AcceptDialog : Window() {
    * If `true`, the dialog is hidden when the OK button is pressed. You can set it to `false` if you
    * want to do e.g. input validation when receiving the [signal confirmed] signal, and handle hiding
    * the dialog in your own logic.
+   *
    * **Note:** Some nodes derived from this class can have a different default value, and
    * potentially their own built-in logic overriding this setting. For example [FileDialog] defaults to
    * `false`, and has its own input validation code that is called when you press OK, which eventually
@@ -115,6 +116,7 @@ public open class AcceptDialog : Window() {
 
   /**
    * Returns the OK [Button] instance.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -126,6 +128,7 @@ public open class AcceptDialog : Window() {
 
   /**
    * Returns the label used for built-in text.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -160,7 +163,9 @@ public open class AcceptDialog : Window() {
   /**
    * Adds a button with label [text] and a custom [action] to the dialog and returns the created
    * button. [action] will be passed to the [signal custom_action] signal when pressed.
+   *
    * If `true`, [right] will place the button to the right of any sibling buttons.
+   *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   @JvmOverloads
@@ -177,6 +182,7 @@ public open class AcceptDialog : Window() {
   /**
    * Adds a button with label [name] and a cancel action to the dialog and returns the created
    * button.
+   *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   public final fun addCancelButton(name: String): Button? {

@@ -45,6 +45,7 @@ public open class ParticleProcessMaterial : Material() {
    * Emitted when this material's emission shape is changed in any way. This includes changes to
    * [emissionShape], [emissionShapeScale], or [emissionSphereRadius], and any other property that
    * affects the emission shape's offset, size, scale, or orientation.
+   *
    * **Note:** This signal is only emitted inside the editor for performance reasons.
    */
   public val emissionShapeChanged: Signal0 by Signal0
@@ -155,6 +156,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   *
    * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
    * in both directions. The size is twice the area of the extents.
    */
@@ -198,6 +200,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Particle color will be modulated by color determined by sampling this texture at the same point
    * as the [emissionPointTexture].
+   *
    * **Note:** [emissionColorTexture] multiplies the particle mesh's vertex colors. To have a
    * visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`.
    * For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()`
@@ -272,6 +275,7 @@ public open class ParticleProcessMaterial : Material() {
    * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90
    * degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will
    * result in a ring where one end is larger than the other.
+   *
    * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is
    * reached to form a perfect cone.
    */
@@ -305,6 +309,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum initial rotation applied to each particle, in degrees.
+   *
    * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
    * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
    */
@@ -440,6 +445,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
    * second.
+   *
    * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
    * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
    */
@@ -474,6 +480,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum directional velocity value, which is multiplied by [directionalVelocityCurve].
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -487,6 +494,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum directional velocity value, which is multiplied by [directionalVelocityCurve].
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -501,6 +509,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * A curve that specifies the velocity along each of the axes of the particle system along its
    * lifetime.
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -523,6 +532,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum equivalent of [orbitVelocityMax].
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -537,6 +547,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum orbital velocity applied to each particle. Makes the particles circle around origin.
    * Specified in number of full rotations around origin per second.
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -550,7 +561,9 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Each particle's orbital velocity will vary along this [CurveTexture].
+   *
    * **Note:** For 3D orbital velocity, use a [CurveXYZTexture].
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -574,6 +587,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Minimum radial velocity applied to each particle. Makes particles move away from the
    * [velocityPivot], or toward it if negative.
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -588,6 +602,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum radial velocity applied to each particle. Makes particles move away from the
    * [velocityPivot], or toward it if negative.
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -602,6 +617,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * A [CurveTexture] that defines the velocity over the particle's lifetime away (or toward) the
    * [velocityPivot].
+   *
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
@@ -873,6 +889,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum velocity value reference for [scaleOverVelocityCurve].
+   *
    * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and
    * [scaleOverVelocityMax].
    */
@@ -886,6 +903,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum velocity value reference for [scaleOverVelocityCurve].
+   *
    * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and
    * [scaleOverVelocityMax].
    */
@@ -911,6 +929,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
    * multiplied by this color.
+   *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -928,6 +947,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied
    * with [color]).
+   *
    * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
    * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -944,6 +964,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
    * [color]).
+   *
    * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -960,6 +981,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The alpha value of each particle's color will be multiplied by this [CurveTexture] over its
    * lifetime.
+   *
    * **Note:** [alphaCurve] multiplies the particle mesh's vertex colors. To have a visible effect
    * on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -975,6 +997,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Each particle's color will be multiplied by this [CurveTexture] over its lifetime.
+   *
    * **Note:** [emissionCurve] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -1053,6 +1076,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum particle animation speed. Animation speed of `1` means that the particles will make
    * full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
+   *
    * With animation speed greater than `1`, remember to enable
    * [CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
    */
@@ -1123,6 +1147,7 @@ public open class ParticleProcessMaterial : Material() {
    * movement according to its position (based on a 3D noise pattern). In 3D,
    * [GPUParticlesAttractorVectorField3D] with [NoiseTexture3D] can be used as an alternative to
    * turbulence that works in world space and with multiple particle systems reacting in the same way.
+   *
    * **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on
    * a few particle systems at once at most, and consider disabling it when targeting mobile/web
    * platforms.
@@ -1149,6 +1174,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * This value controls the overall scale/frequency of the turbulence noise pattern.
+   *
    * A small scale will result in smaller features with more detail while a high scale will result
    * in smoother noise with larger features.
    */
@@ -1163,6 +1189,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
    * move in over time.
+   *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
   @CoreTypeLocalCopy
@@ -1177,6 +1204,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The in-place rate of change of the turbulence field. This defines how quickly the noise pattern
    * varies over time.
+   *
    * A value of 0.0 will result in a fixed pattern.
    */
   public final inline var turbulenceNoiseSpeedRandom: Float
@@ -1198,6 +1226,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum turbulence influence on each particle.
+   *
    * The actual amount of turbulence influence on each particle is calculated as a random value
    * between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of
    * turbulence influence from [turbulenceInfluenceOverLife].
@@ -1212,6 +1241,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum turbulence influence on each particle.
+   *
    * The actual amount of turbulence influence on each particle is calculated as a random value
    * between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of
    * turbulence influence from [turbulenceInfluenceOverLife].
@@ -1235,6 +1265,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum displacement of each particle's spawn position by the turbulence.
+   *
    * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a
    * random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
    */
@@ -1248,6 +1279,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum displacement of each particle's spawn position by the turbulence.
+   *
    * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a
    * random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
    */
@@ -1273,10 +1305,12 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The particles' collision mode.
+   *
    * **Note:** 3D Particles can only collide with [GPUParticlesCollision3D] nodes, not
    * [PhysicsBody3D] nodes. To make particles collide with various objects, you can add
    * [GPUParticlesCollision3D] nodes as children of [PhysicsBody3D] nodes. In 3D, collisions only occur
    * within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
+   *
    * **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D]
    * nodes.
    */
@@ -1338,6 +1372,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The frequency at which particles should be emitted from the subemitter node. One particle will
    * be spawned every [subEmitterFrequency] seconds.
+   *
    * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
    * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
    * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
@@ -1353,6 +1388,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The amount of particles to spawn from the subemitter node when the particle expires.
+   *
    * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
    * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
    * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
@@ -1370,6 +1406,7 @@ public open class ParticleProcessMaterial : Material() {
    * The amount of particles to spawn from the subemitter node when a collision occurs. When
    * combined with [COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to
    * achieve effects such as raindrops hitting the ground.
+   *
    * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
    * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
    * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
@@ -1385,6 +1422,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The amount of particles to spawn from the subemitter node when the particle spawns.
+   *
    * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
    * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
    * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
@@ -1465,6 +1503,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   *
    * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
    * in both directions. The size is twice the area of the extents.
    *
@@ -1859,6 +1898,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
    * multiplied by this color.
+   *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -1954,6 +1994,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
    * move in over time.
+   *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    *
    * This is a helper function to make dealing with local copies easier.
@@ -2070,6 +2111,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Sets the minimum and maximum values of the given [param].
+   *
    * The `x` component of the argument vector corresponds to minimum and the `y` component
    * corresponds to maximum.
    */
@@ -2080,6 +2122,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Returns the minimum and maximum values of the given [param] as a vector.
+   *
    * The `x` component of the returned vector corresponds to minimum and the `y` component
    * corresponds to maximum.
    */

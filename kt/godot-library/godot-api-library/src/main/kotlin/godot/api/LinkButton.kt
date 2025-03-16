@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 /**
  * A button that represents a link. This type of button is primarily used for interactions that
  * cause a context change (like linking to a web page).
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
@@ -58,14 +59,15 @@ public open class LinkButton : BaseButton() {
    * system's default program for the protocol (via [OS.shellOpen]). HTTP and HTTPS URLs open the
    * default web browser.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * uri = "https://godotengine.org"  # Opens the URL in the default web browser.
    * uri = "C:\SomeFolder"  # Opens the file explorer at the given path.
    * uri = "C:\SomeImage.png"  # Opens the given image in the default viewing app.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Uri = "https://godotengine.org"; // Opens the URL in the default web browser.
    * Uri = "C:\SomeFolder"; // Opens the file explorer at the given path.
    * Uri = "C:\SomeImage.png"; // Opens the given image in the default viewing app.

@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * low-level intermediate shader representation. This intermediate representation is not used directly
  * by GPUs for rendering, but it can be compiled into binary shaders that GPUs can understand. Unlike
  * compiled shaders, SPIR-V is portable across GPU models and driver versions.
+ *
  * This object is used by [RenderingDevice].
  */
 @GodotBaseType

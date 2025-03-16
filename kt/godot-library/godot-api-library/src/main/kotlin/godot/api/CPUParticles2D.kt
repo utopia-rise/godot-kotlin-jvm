@@ -38,6 +38,7 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
+ *
  * See also [GPUParticles2D], which provides the same functionality with hardware acceleration, but
  * may not run on older devices.
  */
@@ -661,6 +662,7 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Each particle's horizontal scale will vary along this [Curve]. Should be a unit [Curve].
+   *
    * [splitScale] must be enabled.
    */
   public final inline var scaleCurveX: Curve?
@@ -673,6 +675,7 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Each particle's vertical scale will vary along this [Curve]. Should be a unit [Curve].
+   *
    * [splitScale] must be enabled.
    */
   public final inline var scaleCurveY: Curve?
@@ -765,6 +768,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Maximum particle animation speed. Animation speed of `1` means that the particles will make
    * full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
+   *
    * With animation speed greater than `1`, remember to enable
    * [CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
    */
@@ -984,6 +988,7 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Requests the particles to process for extra process time during a single frame.
+   *
    * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
    * [restart] with parameter `keep_seed` set to `true`.
    */
@@ -1110,6 +1115,7 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Restarts the particle emitter.
+   *
    * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
    * playback.
    */

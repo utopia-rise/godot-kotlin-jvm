@@ -63,11 +63,14 @@ public open class Camera3D : Node3D() {
   /**
    * The culling mask that describes which [VisualInstance3D.layers] are rendered by this camera. By
    * default, all 20 user-visible layers are rendered.
+   *
    * **Note:** Since the [cullMask] allows for 32 layers to be stored in total, there are an
    * additional 12 layers that are only used internally by the engine and aren't exposed in the editor.
    * Setting [cullMask] using a script allows you to toggle those reserved layers, which can be useful
    * for editor plugins.
+   *
    * To adjust [cullMask] more easily using a script, use [getCullMaskValue] and [setCullMaskValue].
+   *
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
    * [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and
@@ -164,6 +167,7 @@ public open class Camera3D : Node3D() {
 
   /**
    * If `true`, the ancestor [Viewport] is currently using this camera.
+   *
    * If multiple cameras are in the scene, one will always be made current. For example, if two
    * [Camera3D] nodes are present in the scene and only one is current, setting one camera's [current]
    * to `false` will cause the other camera to be made current.
@@ -179,11 +183,16 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's field of view angle (in degrees). Only applicable in perspective mode. Since
    * [keepAspect] locks one axis, [fov] sets the other axis' field of view angle.
+   *
    * For reference, the default vertical field of view value (`75.0`) is equivalent to a horizontal
    * FOV of:
+   *
    * - ~91.31 degrees in a 4:3 viewport
+   *
    * - ~101.67 degrees in a 16:10 viewport
+   *
    * - ~107.51 degrees in a 16:9 viewport
+   *
    * - ~121.63 degrees in a 21:9 viewport
    */
   public final inline var fov: Float
@@ -209,6 +218,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
+   *
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   @CoreTypeLocalCopy
@@ -253,6 +263,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
+   *
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    *
    * This is a helper function to make dealing with local copies easier.
@@ -311,15 +322,17 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the 2D coordinate in the [Viewport] rectangle that maps to the given 3D point in world
    * space.
+   *
    * **Note:** When using this to position GUI elements over a 3D viewport, use [isPositionBehind]
    * to prevent them from appearing if the 3D point is behind the camera:
-   * [codeblock]
+   *
+   * ```
    * # This code block is part of a script that inherits from Node3D.
    * # `control` is a reference to a node inheriting from Control.
    * control.visible = not
    * get_viewport().get_camera_3d().is_position_behind(global_transform.origin)
    * control.position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
-   * [/codeblock]
+   * ```
    */
   public final fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
@@ -332,6 +345,7 @@ public open class Camera3D : Node3D() {
    * diagram).
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/camera3d_position_frustum.png]See
    * this diagram[/url] for an overview of position query methods.
+   *
    * **Note:** A position which returns `false` may still be outside the camera's field of view.
    */
   public final fun isPositionBehind(worldPoint: Vector3): Boolean {

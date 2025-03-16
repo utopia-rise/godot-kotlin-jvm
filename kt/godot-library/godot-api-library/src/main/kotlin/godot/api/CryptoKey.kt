@@ -25,6 +25,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
  * [Resource].
+ *
  * They can be used to generate a self-signed [X509Certificate] via
  * [Crypto.generateSelfSignedCertificate] and as private key in [StreamPeerTLS.acceptStream] along with
  * the appropriate certificate.
@@ -37,6 +38,7 @@ public open class CryptoKey : Resource() {
 
   /**
    * Saves a key to the given [path]. If [publicOnly] is `true`, only the public key will be saved.
+   *
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
@@ -48,6 +50,7 @@ public open class CryptoKey : Resource() {
 
   /**
    * Loads a key from [path]. If [publicOnly] is `true`, only the public key will be loaded.
+   *
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads

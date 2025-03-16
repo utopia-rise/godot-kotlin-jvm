@@ -54,6 +54,7 @@ public open class PhysicsMaterial : Resource() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
+   *
    * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
    * angular damping. To have a physics body that preserves all its energy over time, set [bounce] to
    * `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`, its

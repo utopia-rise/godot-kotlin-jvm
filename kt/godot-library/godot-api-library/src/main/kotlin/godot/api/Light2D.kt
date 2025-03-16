@@ -136,6 +136,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The layer mask. Only objects with a matching [CanvasItem.lightMask] will be affected by the
    * Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
+   *
    * **Note:** [rangeItemCullMask] is ignored by [DirectionalLight2D], which will always light a 2D
    * node regardless of the 2D node's [CanvasItem.lightMask].
    */

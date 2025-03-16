@@ -53,6 +53,7 @@ public open class TextureProgressBar : Range() {
    * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
    * equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the
    * texture fills and tends towards [radialFillDegrees].
+   *
    * **Note:** [radialInitialAngle] is wrapped between `0` and `360` degrees (inclusive).
    */
   public final inline var radialInitialAngle: Float
@@ -67,6 +68,7 @@ public open class TextureProgressBar : Range() {
    * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE],
    * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
    * equal to its `max_value`, the texture fills up to this angle.
+   *
    * See [Range.value], [Range.maxValue].
    */
   public final inline var radialFillDegrees: Float
@@ -80,6 +82,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   *
    * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
    * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
    * empty space where needed.
@@ -180,6 +183,7 @@ public open class TextureProgressBar : Range() {
    * [Texture2D] that clips based on the node's `value` and [fillMode]. As `value` increased, the
    * texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if
    * `value` is equal to `min_value`.
+   *
    * The `value` property comes from [Range]. See [Range.value], [Range.minValue], [Range.maxValue].
    */
   public final inline var textureProgress: Texture2D?
@@ -247,6 +251,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   *
    * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
    * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
    * empty space where needed.

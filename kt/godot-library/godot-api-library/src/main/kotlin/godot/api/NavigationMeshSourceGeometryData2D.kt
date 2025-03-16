@@ -179,8 +179,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Sets the projected obstructions with an Array of Dictionaries with the following key value
    * pairs:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * "vertices" : PackedFloat32Array
    * "carve" : bool
    * ```
@@ -193,7 +193,9 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
   /**
    * Returns the projected obstructions as an [Array] of dictionaries. Each [Dictionary] contains
    * the following entries:
+   *
    * - `vertices` - A [PackedFloat32Array] that defines the outline points of the projected shape.
+   *
    * - `carve` - A [bool] that defines how the projected shape affects the navigation mesh baking.
    * If `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */

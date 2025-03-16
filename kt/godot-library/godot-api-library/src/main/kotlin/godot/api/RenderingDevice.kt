@@ -94,10 +94,13 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
  * APIs while reducing the amount of code duplication required. [RenderingDevice] can also be used in
  * your own projects to perform things that are not exposed by [RenderingServer] or high-level nodes,
  * such as using compute shaders.
+ *
  * On startup, Godot creates a global [RenderingDevice] which can be retrieved using
  * [RenderingServer.getRenderingDevice]. This global [RenderingDevice] performs drawing to the screen.
+ *
  * **Local RenderingDevices:** Using [RenderingServer.createLocalRenderingDevice], you can create
  * "secondary" rendering devices to perform drawing and GPU compute operations on separate threads.
+ *
  * **Note:** [RenderingDevice] assumes intermediate knowledge of modern graphics APIs such as
  * Vulkan, Direct3D 12, Metal or WebGPU. These graphics APIs are lower-level than OpenGL or Direct3D
  * 11, requiring you to perform what was previously done by the graphics driver itself. If you have
@@ -105,6 +108,7 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
  * [url=https://vulkan-tutorial.com/]Vulkan Tutorial[/url] or [url=https://vkguide.dev/]Vulkan
  * Guide[/url]. It's recommended to have existing modern OpenGL or Direct3D 11 knowledge before
  * attempting to learn a low-level graphics API.
+ *
  * **Note:** [RenderingDevice] is not available when running in headless mode or when using the
  * Compatibility rendering method.
  */
@@ -116,8 +120,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new texture. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
    * **Note:** Not to be confused with [RenderingServer.texture2dCreate], which creates the
    * Godot-specific [Texture2D] resource as opposed to the graphics API's own texture type.
    */
@@ -147,7 +153,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * [withTexture]'s [layer] and [mipmap]. The number of included mipmaps from the original texture can
    * be controlled using the [mipmaps] parameter. Only relevant for textures with multiple layers, such
    * as 3D textures, texture arrays and cubemaps. For single-layer textures, use [textureCreateShared].
+   *
    * For 2D textures (which only have one layer), [layer] must be `0`.
+   *
    * **Note:** Layer slicing is only supported for 2D texture arrays, not 3D textures or cubemaps.
    */
   @JvmOverloads
@@ -190,10 +198,13 @@ public open class RenderingDevice internal constructor() : Object() {
    * data must have the same dimensions and format. For 2D textures (which only have one layer),
    * [layer] must be `0`. Returns [@GlobalScope.OK] if the update was successful,
    * [@GlobalScope.ERR_INVALID_PARAMETER] otherwise.
+   *
    * **Note:** Updating textures is forbidden during creation of a draw or compute list.
+   *
    * **Note:** The existing [texture] can't be updated while a draw list that uses it as part of a
    * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
    * using it is not set to [FINAL_ACTION_CONTINUE]) to update this texture.
+   *
    * **Note:** The existing [texture] requires the [TEXTURE_USAGE_CAN_UPDATE_BIT] to be updatable.
    */
   public final fun textureUpdate(
@@ -209,12 +220,15 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the [texture] data for the specified [layer] as raw binary data. For 2D textures (which
    * only have one layer), [layer] must be `0`.
+   *
    * **Note:** [texture] can't be retrieved while a draw list that uses it as part of a framebuffer
    * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
    * not set to [FINAL_ACTION_CONTINUE]) to retrieve this texture. Otherwise, an error is printed and a
    * empty [PackedByteArray] is returned.
+   *
    * **Note:** [texture] requires the [TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved. Otherwise,
    * an error is printed and a empty [PackedByteArray] is returned.
+   *
    * **Note:** This method will block the GPU from working until the data is retrieved. Refer to
    * [textureGetDataAsync] for an alternative that returns the data in more performant way.
    */
@@ -227,22 +241,25 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Asynchronous version of [textureGetData]. RenderingDevice will call [callback] in a certain
    * amount of frames with the data the texture had at the time of the request.
+   *
    * **Note:** At the moment, the delay corresponds to the amount of frames specified by
    * [ProjectSettings.rendering/renderingDevice/vsync/frameQueueSize].
+   *
    * **Note:** Downloading large textures can have a prohibitive cost for real-time even when using
    * the asynchronous method due to hardware bandwidth limitations. When dealing with large resources,
    * you can adjust settings such as
    * [ProjectSettings.rendering/renderingDevice/stagingBuffer/textureDownloadRegionSizePx] and
    * [ProjectSettings.rendering/renderingDevice/stagingBuffer/blockSizeKb] to improve the transfer
    * speed at the cost of extra memory.
-   * [codeblock]
+   *
+   * ```
    * func _texture_get_data_callback(array):
    *     value = array.decode_u32(0)
    *
    * ...
    *
    * rd.texture_get_data_async(texture, 0, _texture_get_data_callback)
-   * [/codeblock]
+   * ```
    */
   public final fun textureGetDataAsync(
     texture: RID,
@@ -285,8 +302,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Updates the discardable property of [texture].
+   *
    * If a texture is discardable, its contents do not need to be preserved between frames. This flag
    * is only relevant when the texture is used as target in a draw list.
+   *
    * This information is used by [RenderingDevice] to figure out if a texture's contents can be
    * discarded, eliminating unnecessary writes to memory and boosting performance.
    */
@@ -311,14 +330,19 @@ public open class RenderingDevice internal constructor() : Object() {
    * textures. Source and destination mipmaps/layers must also be specified, with these parameters
    * being `0` for textures without mipmaps or single-layer textures. Returns [@GlobalScope.OK] if the
    * texture copy was successful or [@GlobalScope.ERR_INVALID_PARAMETER] otherwise.
+   *
    * **Note:** [fromTexture] texture can't be copied while a draw list that uses it as part of a
    * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
    * using it is not set to [FINAL_ACTION_CONTINUE]) to copy this texture.
+   *
    * **Note:** [fromTexture] texture requires the [TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved.
+   *
    * **Note:** [toTexture] can't be copied while a draw list that uses it as part of a framebuffer
    * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
    * not set to [FINAL_ACTION_CONTINUE]) to copy this texture.
+   *
    * **Note:** [toTexture] requires the [TEXTURE_USAGE_CAN_COPY_TO_BIT] to be retrieved.
+   *
    * **Note:** [fromTexture] and [toTexture] must be of the same type (color or depth).
    */
   public final fun textureCopy(
@@ -343,6 +367,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * operation, while [baseLayer] and [layerCount] determine which layers of a 3D texture (or texture
    * array) are affected by this clear operation. For 2D textures (which only have one layer by
    * design), [baseLayer] must be `0` and [layerCount] must be `1`.
+   *
    * **Note:** [texture] can't be cleared while a draw list that uses it as part of a framebuffer is
    * being created. Ensure the draw list is finalized (and that the color/depth texture using it is not
    * set to [FINAL_ACTION_CONTINUE]) to clear this texture.
@@ -364,18 +389,25 @@ public open class RenderingDevice internal constructor() : Object() {
    * Resolves the [fromTexture] texture onto [toTexture] with multisample antialiasing enabled. This
    * must be used when rendering a framebuffer for MSAA to work. Returns [@GlobalScope.OK] if
    * successful, [@GlobalScope.ERR_INVALID_PARAMETER] otherwise.
+   *
    * **Note:** [fromTexture] and [toTexture] textures must have the same dimension, format and type
    * (color or depth).
+   *
    * **Note:** [fromTexture] can't be copied while a draw list that uses it as part of a framebuffer
    * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
    * not set to [FINAL_ACTION_CONTINUE]) to resolve this texture.
+   *
    * **Note:** [fromTexture] requires the [TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved.
+   *
    * **Note:** [fromTexture] must be multisampled and must also be 2D (or a slice of a 3D/cubemap
    * texture).
+   *
    * **Note:** [toTexture] can't be copied while a draw list that uses it as part of a framebuffer
    * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
    * not set to [FINAL_ACTION_CONTINUE]) to resolve this texture.
+   *
    * **Note:** [toTexture] texture requires the [TEXTURE_USAGE_CAN_COPY_TO_BIT] to be retrieved.
+   *
    * **Note:** [toTexture] texture must **not** be multisampled and must also be 2D (or a slice of a
    * 3D/cubemap texture).
    */
@@ -397,6 +429,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the internal graphics handle for this texture object. For use when communicating with
    * third-party APIs mostly with GDExtension.
+   *
    * **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or
    * `VkImage` (Vulkan).
    */
@@ -409,6 +442,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a new framebuffer format with the specified [attachments] and [viewCount]. Returns the
    * new framebuffer's unique framebuffer format ID.
+   *
    * If [viewCount] is greater than or equal to `2`, enables multiview which is used for VR
    * rendering. This requires support for the Vulkan multiview extension.
    */
@@ -462,6 +496,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new framebuffer. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -478,6 +513,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new multipass framebuffer. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -495,6 +531,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new empty framebuffer. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -531,6 +568,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new sampler. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -553,6 +591,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -595,6 +634,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new index buffer. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -613,6 +653,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new index array. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -631,6 +672,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [RDShaderSPIRV]. This intermediate language shader is portable across different GPU models and
    * driver versions, but cannot be run directly by GPUs until compiled into a binary shader using
    * [shaderCompileBinaryFromSpirv].
+   *
    * If [allowCache] is `true`, make use of the shader cache generated by Godot. This avoids a
    * potentially lengthy shader compilation step if the shader is already in cache. If [allowCache] is
    * `false`, Godot's shader cache is ignored and the shader will always be recompiled.
@@ -648,6 +690,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [PackedByteArray]. This compiled shader is specific to the GPU model and driver version used; it
    * will not work on different GPU models or even different driver versions. See also
    * [shaderCompileSpirvFromSource].
+   *
    * [name] is an optional human-readable name that can be given to the compiled shader for
    * organizational purposes.
    */
@@ -663,6 +706,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a new shader instance from SPIR-V intermediate code. It can be accessed with the RID
    * that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method. See also [shaderCompileSpirvFromSource] and [shaderCreateFromBytecode].
    */
@@ -676,6 +720,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a new shader instance from a binary compiled shader. It can be accessed with the RID
    * that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method. See also [shaderCompileBinaryFromSpirv] and [shaderCreateFromSpirv].
    */
@@ -711,6 +756,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new uniform buffer. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -728,6 +774,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffer[/url] with
    * the specified [data] and [usage]. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -745,6 +792,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new texture buffer. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -761,6 +809,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new uniform set. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -785,9 +834,13 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Copies [size] bytes from the [srcBuffer] at [srcOffset] into [dstBuffer] at [dstOffset].
+   *
    * Prints an error if:
+   *
    * - [size] exceeds the size of either [srcBuffer] or [dstBuffer] at their corresponding offsets
+   *
    * - a draw list is currently active (created by [drawListBegin])
+   *
    * - a compute list is currently active (created by [computeListBegin])
    */
   public final fun bufferCopy(
@@ -805,9 +858,13 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Updates a region of [sizeBytes] bytes, starting at [offset], in the buffer, with the specified
    * [data].
+   *
    * Prints an error if:
+   *
    * - the region specified by [offset] + [sizeBytes] exceeds the buffer
+   *
    * - a draw list is currently active (created by [drawListBegin])
+   *
    * - a compute list is currently active (created by [computeListBegin])
    */
   public final fun bufferUpdate(
@@ -823,10 +880,15 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Clears the contents of the [buffer], clearing [sizeBytes] bytes, starting at [offset].
+   *
    * Prints an error if:
+   *
    * - the size isn't a multiple of four
+   *
    * - the region specified by [offset] + [sizeBytes] exceeds the buffer
+   *
    * - a draw list is currently active (created by [drawListBegin])
+   *
    * - a compute list is currently active (created by [computeListBegin])
    */
   public final fun bufferClear(
@@ -842,6 +904,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns a copy of the data of the specified [buffer], optionally [offsetBytes] and [sizeBytes]
    * can be set to copy only a portion of the buffer.
+   *
    * **Note:** This method will block the GPU from working until the data is retrieved. Refer to
    * [bufferGetDataAsync] for an alternative that returns the data in more performant way.
    */
@@ -859,21 +922,24 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Asynchronous version of [bufferGetData]. RenderingDevice will call [callback] in a certain
    * amount of frames with the data the buffer had at the time of the request.
+   *
    * **Note:** At the moment, the delay corresponds to the amount of frames specified by
    * [ProjectSettings.rendering/renderingDevice/vsync/frameQueueSize].
+   *
    * **Note:** Downloading large buffers can have a prohibitive cost for real-time even when using
    * the asynchronous method due to hardware bandwidth limitations. When dealing with large resources,
    * you can adjust settings such as
    * [ProjectSettings.rendering/renderingDevice/stagingBuffer/blockSizeKb] to improve the transfer
    * speed at the cost of extra memory.
-   * [codeblock]
+   *
+   * ```
    * func _buffer_get_data_callback(array):
    *     value = array.decode_u32(0)
    *
    * ...
    *
    * rd.buffer_get_data_async(buffer, _buffer_get_data_callback)
-   * [/codeblock]
+   * ```
    */
   @JvmOverloads
   public final fun bufferGetDataAsync(
@@ -890,6 +956,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns the address of the given [buffer] which can be passed to shaders in any way to access
    * underlying data. Buffer must have been created with this feature enabled.
+   *
    * **Note:** You must check that the GPU supports this functionality by calling [hasFeature] with
    * [SUPPORTS_BUFFER_DEVICE_ADDRESS] as a parameter.
    */
@@ -901,6 +968,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new render pipeline. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -936,6 +1004,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a new compute pipeline. It can be accessed with the RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -962,6 +1031,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the window width matching the graphics API context for the given window ID (in pixels).
    * Despite the parameter being named [screen], this returns the *window* size. See also
    * [screenGetHeight].
+   *
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
    * a width. If called on a local [RenderingDevice], this method prints an error and returns
    * [INVALID_ID].
@@ -977,6 +1047,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the window height matching the graphics API context for the given window ID (in
    * pixels). Despite the parameter being named [screen], this returns the *window* size. See also
    * [screenGetWidth].
+   *
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
    * a height. If called on a local [RenderingDevice], this method prints an error and returns
    * [INVALID_ID].
@@ -990,6 +1061,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns the framebuffer format of the given screen.
+   *
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
    * a format. If called on a local [RenderingDevice], this method prints an error and returns
    * [INVALID_ID].
@@ -1004,6 +1076,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * High-level variant of [drawListBegin], with the parameters automatically being adjusted for
    * drawing onto the window specified by the [screen] ID.
+   *
    * **Note:** Cannot be used with local RenderingDevices, as these don't have a screen. If called
    * on a local RenderingDevice, [drawListBeginForScreen] returns [INVALID_ID].
    */
@@ -1018,10 +1091,13 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Starts a list of raster drawing commands created with the `draw_*` methods. The returned value
    * should be passed to other `draw_list_*` functions.
+   *
    * Multiple draw lists cannot be created at the same time; you must finish the previous draw list
    * first using [drawListEnd].
+   *
    * A simple drawing operation might look like this (code is not a complete example):
-   * [codeblock]
+   *
+   * ```
    * var rd = RenderingDevice.new()
    * var clear_colors = PackedColorArray([Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)])
    * var draw_list = rd.draw_list_begin(framebuffers[i], RenderingDevice.CLEAR_COLOR_ALL,
@@ -1039,7 +1115,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * rd.draw_list_draw(draw_list, false, 1, slice_triangle_count[i] * 3)
    *
    * rd.draw_list_end()
-   * [/codeblock]
+   * ```
+   *
    * The [drawFlags] indicates if the texture attachments of the framebuffer should be cleared or
    * ignored. Only one of the two flags can be used for each individual attachment. Ignoring an
    * attachment means that any contents that existed before the draw list will be completely discarded,
@@ -1047,17 +1124,20 @@ public open class RenderingDevice internal constructor() : Object() {
    * aren't replaced. The default behavior allows the engine to figure out the right operation to use
    * if the texture is discardable, which can result in increased performance. See [RDTextureFormat] or
    * [textureSetDiscardable].
+   *
    * The [breadcrumb] parameter can be an arbitrary 32-bit integer that is useful to diagnose GPU
    * crashes. If Godot is built in dev or debug mode; when the GPU crashes Godot will dump all shaders
    * that were being executed at the time of the crash and the breadcrumb is useful to diagnose what
    * passes did those shaders belong to.
+   *
    * It does not affect rendering behavior and can be set to 0. It is recommended to use
    * [BreadcrumbMarker] enumerations for consistency but it's not required. It is also possible to use
    * bitwise operations to add extra data. e.g.
-   * [codeblock]
+   *
+   * ```
    * rd.draw_list_begin(fb[i], RenderingDevice.CLEAR_COLOR_ALL, clear_colors, true, 1.0f, true, 0,
    * Rect2(), RenderingDevice.OPAQUE_PASS | 5)
-   * [/codeblock]
+   * ```
    */
   @JvmOverloads
   public final fun drawListBegin(
@@ -1194,6 +1274,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Creates a scissor rectangle and enables it for the specified [drawList]. Scissor rectangles are
    * used for clipping by discarding fragments that fall outside a specified rectangular portion of the
    * screen. See also [drawListDisableScissor].
+   *
    * **Note:** The specified [rect] is automatically intersected with the screen's dimensions, which
    * means it cannot exceed the screen's dimensions.
    */
@@ -1243,10 +1324,13 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Starts a list of compute commands created with the `compute_*` methods. The returned value
    * should be passed to other `compute_list_*` functions.
+   *
    * Multiple compute lists cannot be created at the same time; you must finish the previous compute
    * list first using [computeListEnd].
+   *
    * A simple compute operation might look like this (code is not a complete example):
-   * [codeblock]
+   *
+   * ```
    * var rd = RenderingDevice.new()
    * var compute_list = rd.compute_list_begin()
    *
@@ -1260,7 +1344,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *     # No barrier, let them run all together.
    *
    * rd.compute_list_end()
-   * [/codeblock]
+   * ```
    */
   public final fun computeListBegin(): Long {
     TransferContext.writeArguments()
@@ -1432,6 +1516,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the value of the specified [limit]. This limit varies depending on the current graphics
    * hardware (and sometimes the driver version). If the given limit is exceeded, rendering errors will
    * occur.
+   *
    * Limits for various graphics hardware can be found in the
    * [url=https://vulkan.gpuinfo.org/]Vulkan Hardware Database[/url].
    */
@@ -1455,6 +1540,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Pushes the frame setup and draw command buffers then marks the local device as currently
    * processing (which allows calling [sync]).
+   *
    * **Note:** Only available in local RenderingDevices.
    */
   public final fun submit(): Unit {
@@ -1465,7 +1551,9 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Forces a synchronization between the CPU and GPU, which may be required in certain cases. Only
    * call this when needed, as CPU-GPU synchronization has a performance cost.
+   *
    * **Note:** Only available in local RenderingDevices.
+   *
    * **Note:** [sync] can only be called after a [submit].
    */
   public final fun sync(): Unit {
@@ -1504,10 +1592,12 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Sets the resource name for [id] to [name]. This is used for debugging with third-party tools
    * such as [url=https://renderdoc.org/]RenderDoc[/url].
+   *
    * The following types of resources can be named: texture, sampler, vertex buffer, index buffer,
    * uniform buffer, texture buffer, storage buffer, uniform set buffer, shader, render pipeline and
    * compute pipeline. Framebuffers cannot be named. Attempting to name an incompatible resource type
    * will print an error.
+   *
    * **Note:** Resource names are only set when the engine runs in verbose mode
    * ([OS.isStdoutVerbose] = `true`), or when using an engine build compiled with the `dev_mode=yes`
    * SCons option. The graphics driver must also support the `VK_EXT_DEBUG_UTILS_EXTENSION_NAME` Vulkan
@@ -1523,6 +1613,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [url=https://renderdoc.org/]RenderDoc[/url]. All regions must be ended with a
    * [drawCommandEndLabel] call. When viewed from the linear series of submissions to a single queue,
    * calls to [drawCommandBeginLabel] and [drawCommandEndLabel] must be matched and balanced.
+   *
    * The `VK_EXT_DEBUG_UTILS_EXTENSION_NAME` Vulkan extension must be available and enabled for
    * command buffer debug label region to work. See also [drawCommandEndLabel].
    */
@@ -1617,16 +1708,27 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns string report in CSV format using the following methods:
+   *
    * - [getTrackedObjectName]
+   *
    * - [getTrackedObjectTypeCount]
+   *
    * - [getDriverTotalMemory]
+   *
    * - [getDriverAllocationCount]
+   *
    * - [getDriverMemoryByObjectType]
+   *
    * - [getDriverAllocsByObjectType]
+   *
    * - [getDeviceTotalMemory]
+   *
    * - [getDeviceAllocationCount]
+   *
    * - [getDeviceMemoryByObjectType]
+   *
    * - [getDeviceAllocsByObjectType]
+   *
    * This is only used by Vulkan in debug builds. Godot must also be started with the
    * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
    * line argument[/url].
@@ -1641,15 +1743,22 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the name of the type of object for the given [typeIndex]. This value must be in range
    * `[0; get_tracked_object_type_count - 1]`. If [getTrackedObjectTypeCount] is 0, then type argument
    * is ignored and always returns the same string.
+   *
    * The return value is important because it gives meaning to the types passed to
    * [getDriverMemoryByObjectType], [getDriverAllocsByObjectType], [getDeviceMemoryByObjectType], and
    * [getDeviceAllocsByObjectType]. Examples of strings it can return (not exhaustive):
+   *
    * - DEVICE_MEMORY
+   *
    * - PIPELINE_CACHE
+   *
    * - SWAPCHAIN_KHR
+   *
    * - COMMAND_POOL
+   *
    * Thus if e.g. `get_tracked_object_name(5)` returns "COMMAND_POOL", then
    * `get_device_memory_by_object_type(5)` returns the bytes used by the GPU for command pools.
+   *
    * This is only used by Vulkan in debug builds. Godot must also be started with the
    * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
    * line argument[/url].
@@ -1662,6 +1771,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns how many types of trackable objects are.
+   *
    * This is only used by Vulkan in debug builds. Godot must also be started with the
    * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
    * line argument[/url].
@@ -1674,6 +1784,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns how much bytes the GPU driver is using for internal driver structures.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1685,6 +1796,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns how many allocations the GPU driver has performed for internal driver structures.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1696,8 +1808,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Same as [getDriverTotalMemory] but filtered for a given object type.
+   *
    * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
    * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1709,8 +1823,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Same as [getDriverAllocationCount] but filtered for a given object type.
+   *
    * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
    * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1722,6 +1838,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns how much bytes the GPU is using.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1733,6 +1850,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns how many allocations the GPU has performed for internal driver structures.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1744,8 +1862,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Same as [getDeviceTotalMemory] but filtered for a given object type.
+   *
    * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
    * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1757,8 +1877,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Same as [getDeviceAllocationCount] but filtered for a given object type.
+   *
    * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
    * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   *
    * This is only used by Vulkan in debug builds and can return 0 when this information is not
    * tracked or unknown.
    */
@@ -1821,26 +1943,31 @@ public open class RenderingDevice internal constructor() : Object() {
   ) {
     /**
      * Specific device object based on a physical device.
+     *
      * - Vulkan: Vulkan device driver resource (`VkDevice`). (`rid` argument doesn't apply.)
      */
     LOGICAL_DEVICE(0),
     /**
      * Physical device the specific logical device is based on.
+     *
      * - Vulkan: `VkDevice`. (`rid` argument doesn't apply.)
      */
     PHYSICAL_DEVICE(1),
     /**
      * Top-most graphics API entry object.
+     *
      * - Vulkan: `VkInstance`. (`rid` argument doesn't apply.)
      */
     TOPMOST_OBJECT(2),
     /**
      * The main graphics-compute command queue.
+     *
      * - Vulkan: `VkQueue`. (`rid` argument doesn't apply.)
      */
     COMMAND_QUEUE(3),
     /**
      * The specific family the main queue belongs to.
+     *
      * - Vulkan: the queue family index, an `uint32_t`. (`rid` argument doesn't apply.)
      */
     QUEUE_FAMILY(4),
@@ -1850,11 +1977,13 @@ public open class RenderingDevice internal constructor() : Object() {
     TEXTURE(5),
     /**
      * The view of an owned or shared texture.
+     *
      * - Vulkan: `VkImageView`.
      */
     TEXTURE_VIEW(6),
     /**
      * The native id of the data format of the texture.
+     *
      * - Vulkan: `VkFormat`.
      */
     TEXTURE_DATA_FORMAT(7),
@@ -1868,6 +1997,7 @@ public open class RenderingDevice internal constructor() : Object() {
     UNIFORM_SET(9),
     /**
      * Buffer of any kind of (storage, vertex, etc.).
+     *
      * - Vulkan: `VkBuffer`.
      */
     BUFFER(10),
@@ -1910,6 +2040,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * 4-bit-per-channel red/green channel data format, packed into 8 bits. Values are in the `[0.0,
      * 1.0]` range.
+     *
      * **Note:** More information on all data formats can be found on the
      * [url=https://registry.khronos.org/vulkan/specs/1.1/html/vkspec.html#_identification_of_formats]Identification
      * of formats[/url] section of the Vulkan specification, as well as the
@@ -3705,8 +3836,8 @@ public open class RenderingDevice internal constructor() : Object() {
        * Optionally, set this flag if you wish to use [bufferGetDeviceAddress] functionality. You
        * must first check the GPU supports it:
        *
-       * gdscript:
        * ```gdscript
+       * //gdscript
        * rd = RenderingServer.get_rendering_device()
        *
        * if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
@@ -3800,6 +3931,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists-with-adjacency]Line
      * list rendering primitive with adjacency.[/url]
+     *
      * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
     LINES_WITH_ADJACENCY(2),
@@ -3810,6 +3942,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips-with-adjacency]Line
      * strip rendering primitive with adjacency.[/url]
+     *
      * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
     LINESTRIPS_WITH_ADJACENCY(4),
@@ -3820,6 +3953,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency]Triangle
      * list rendering primitive with adjacency.[/url]
+     *
      *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
     TRIANGLES_WITH_ADJACENCY(6),
@@ -3830,6 +3964,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips-with-adjacency]Triangle
      * strip rendering primitive with adjacency.[/url]
+     *
      * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
     TRIANGLE_STRIPS_WITH_AJACENCY(8),
@@ -3837,6 +3972,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * Triangle strip rendering primitive with *primitive restart* enabled. Triangles drawn are
      * connected to the previous triangle, but a primitive restart index can be specified before
      * drawing to create a second triangle strip after the specified index.
+     *
      * **Note:** Only compatible with indexed draws.
      */
     TRIANGLE_STRIPS_WITH_RESTART_INDEX(9),
@@ -4674,6 +4810,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Returns the smallest value for [ProjectSettings.rendering/scaling3d/scale] when using the
      * MetalFX temporal upscaler.
+     *
      * **Note:** The returned value is multiplied by a factor of `1000000` to preserve 6 digits of
      * precision. It must be divided by `1000000.0` to convert the value to a floating point number.
      */
@@ -4681,6 +4818,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Returns the largest value for [ProjectSettings.rendering/scaling3d/scale] when using the
      * MetalFX temporal upscaler.
+     *
      * **Note:** The returned value is multiplied by a factor of `1000000` to preserve 6 digits of
      * precision. It must be divided by `1000000.0` to convert the value to a floating point number.
      */

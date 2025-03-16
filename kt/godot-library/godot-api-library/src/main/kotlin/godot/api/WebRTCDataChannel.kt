@@ -106,6 +106,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   /**
    * Returns the ID assigned to this channel during creation (or auto-assigned during negotiation).
+   *
    * If the channel is not negotiated out-of-band the ID will only be available after the connection
    * is established (will return `65535` until then).
    */
@@ -117,6 +118,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   /**
    * Returns the `maxPacketLifeTime` value assigned to this channel during creation.
+   *
    * Will be `65535` if not specified.
    */
   public final fun getMaxPacketLifeTime(): Int {
@@ -127,6 +129,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   /**
    * Returns the `maxRetransmits` value assigned to this channel during creation.
+   *
    * Will be `65535` if not specified.
    */
   public final fun getMaxRetransmits(): Int {

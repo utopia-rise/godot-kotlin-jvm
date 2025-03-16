@@ -31,10 +31,12 @@ public infix fun Long.and(other: RetargetModifier3D.TransformFlag): Long = this.
 /**
  * Retrieves the pose (or global pose) relative to the parent Skeleton's rest in model space and
  * transfers it to the child Skeleton.
+ *
  * This modifier rewrites the pose of the child skeleton directly in the parent skeleton's update
  * process. This means that it overwrites the mapped bone pose set in the normal process on the target
  * skeleton. If you want to set the target skeleton bone pose after retargeting, you will need to add a
  * [SkeletonModifier3D] child to the target skeleton and thereby modify the pose.
+ *
  * **Note:** When the [useGlobalPose] is enabled, even if it is an unmapped bone, it can cause
  * visual problems because the global pose is applied ignoring the parent bone's pose **if it has
  * mapped bone children**. See also [useGlobalPose].
@@ -55,12 +57,16 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   /**
    * If `false`, in case the target skeleton has fewer bones than the source skeleton, the source
    * bone parent's transform will be ignored.
+   *
    * Instead, it is possible to retarget between models with different body shapes, and position,
    * rotation, and scale can be retargeted separately.
+   *
    * If `true`, retargeting is performed taking into account global pose.
+   *
    * In case the target skeleton has fewer bones than the source skeleton, the source bone parent's
    * transform is taken into account. However, bone length between skeletons must match exactly, if
    * not, the bones will be forced to expand or shrink.
+   *
    * This is useful for using dummy bone with length `0` to match postures when retargeting between
    * models with different number of bones.
    */

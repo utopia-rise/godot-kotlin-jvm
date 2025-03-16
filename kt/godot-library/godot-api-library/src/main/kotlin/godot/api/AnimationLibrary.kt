@@ -53,6 +53,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have
    * changed paths. [name] is the key of the animation that was changed.
+   *
    * See also [signal Resource.changed], which this acts as a relay for.
    */
   public val animationChanged: Signal1<StringName> by Signal1

@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as
  * given by [Object.getInstanceId]. This ID can then be used to retrieve the object instance with
  * [@GlobalScope.instanceFromId].
+ *
  * This class is used internally by the editor inspector and script debugger, but can also be used
  * in plugins to pass and display objects as their IDs.
  */

@@ -98,6 +98,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The material's blend mode.
+   *
    * **Note:** Values other than `Mix` force the object into the transparent pipeline. See
    * [BlendMode].
    */
@@ -169,6 +170,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The method for rendering the specular blob. See [SpecularMode].
+   *
    * **Note:** [specularMode] only applies to the specular blob. It does not affect specular
    * reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To
    * disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
@@ -220,6 +222,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, vertex colors are considered to be stored in sRGB color space and are converted to
    * linear color space during rendering. If `false`, vertex colors are considered to be stored in
    * linear color space and are rendered as-is. See also [albedoTextureForceSrgb].
+   *
    * **Note:** Only effective when using the Forward+ and Mobile rendering methods, not
    * Compatibility.
    */
@@ -233,6 +236,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The material's base color.
+   *
    * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
    * will *not* modulate the detail texture. This can be used to color partial areas of a material by
    * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
@@ -248,6 +252,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Texture to multiply by [albedoColor]. Used for basic texturing of objects.
+   *
    * If the texture appears unexpectedly too dark or too bright, check [albedoTextureForceSrgb].
    */
   public final inline var albedoTexture: Texture2D?
@@ -261,6 +266,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, forces a conversion of the [albedoTexture] from sRGB color space to linear color
    * space. See also [vertexColorIsSrgb].
+   *
    * This should only be enabled when needed (typically when using a [ViewportTexture] as
    * [albedoTexture]). If [albedoTextureForceSrgb] is `true` when it shouldn't be, the texture will
    * appear to be too dark. If [albedoTextureForceSrgb] is `false` when it shouldn't be, the texture
@@ -322,6 +328,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * When set to `0.0`, no specular reflections will be visible. This differs from the
    * [SPECULAR_DISABLED] [SpecularMode] as [SPECULAR_DISABLED] only applies to the specular lobe from
    * the light source.
+   *
    * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in
    * most cases. See also [roughness].
    */
@@ -505,13 +512,16 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture used to specify the normal at a given pixel. The [normalTexture] only uses the red and
    * green channels; the blue and alpha channels are ignored. The normal read from [normalTexture] is
    * oriented around the surface normal provided by the [Mesh].
+   *
    * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise,
    * the normal map won't render correctly and will only appear to darken the whole surface. If
    * creating geometry with [SurfaceTool], you can use [SurfaceTool.generateNormals] and
    * [SurfaceTool.generateTangents] to automatically generate normals and tangents respectively.
+   *
    * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See
    * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
    * page[/url] for a comparison of normal map coordinates expected by popular engines.
+   *
    * **Note:** If [detailEnabled] is `true`, the [detailAlbedo] texture is drawn *below* the
    * [normalTexture]. To display a normal map *above* the [detailAlbedo] texture, use [detailNormal]
    * instead.
@@ -527,6 +537,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on
    * an object.
+   *
    * **Note:** Rim lighting is not visible if the material's [shadingMode] is
    * [SHADING_MODE_UNSHADED].
    */
@@ -576,6 +587,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting
    * calculation resulting in an added specular blob. This makes materials appear as if they have a
    * clear layer on them that can be either glossy or rough.
+   *
    * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is
    * [SHADING_MODE_UNSHADED].
    */
@@ -626,8 +638,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns
    * it to tangent space. This is useful for brushed aluminum and hair reflections.
+   *
    * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain
    * tangents, the anisotropy effect will appear broken.
+   *
    * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering,
    * which can be enabled by setting [textureFilter] to
    * [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
@@ -658,6 +672,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * derivative map, with the red channel representing distortion on the X axis and green channel
    * representing distortion on the Y axis. Values below 0.5 will result in negative distortion,
    * whereas values above 0.5 will result in positive distortion.
+   *
    * If present, the texture's alpha channel will be used to multiply the strength of the
    * [anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while
    * fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue
@@ -737,6 +752,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, height mapping is enabled (also called "parallax mapping" or "depth mapping"). See
    * also [normalEnabled]. Height mapping is a demanding feature on the GPU, so it should only be used
    * on materials where it makes a significant visual difference.
+   *
    * **Note:** Height mapping is not supported if triplanar mapping is used on the same material.
    * The value of [heightmapEnabled] will be ignored if [uv1Triplanar] is enabled.
    */
@@ -756,6 +772,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * values can be used to invert the parallax effect, but this is different from inverting the texture
    * using [heightmapFlipTexture] as the material will also appear to be "closer" to the camera. In
    * most cases, [heightmapScale] should be kept to a positive value.
+   *
    * **Note:** If the height map effect looks strange regardless of this value, try adjusting
    * [heightmapFlipBinormal] and [heightmapFlipTangent]. See also [heightmapTexture] for
    * recommendations on authoring heightmap textures, as the way the heightmap texture is authored
@@ -788,6 +805,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * material. Higher values result in a more convincing depth effect, especially in materials that
    * have steep height changes. Higher values have a significant cost on the GPU, so it should only be
    * increased on materials where it makes a significant visual difference.
+   *
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
   public final inline var heightmapMinLayers: Int
@@ -803,6 +821,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * material. Higher values result in a more convincing depth effect, especially in materials that
    * have steep height changes. Higher values have a significant cost on the GPU, so it should only be
    * increased on materials where it makes a significant visual difference.
+   *
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
   public final inline var heightmapMaxLayers: Int
@@ -841,10 +860,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The texture to use as a height map. See also [heightmapEnabled].
+   *
    * For best results, the texture should be normalized (with [heightmapScale] reduced to
    * compensate). In [url=https://gimp.org]GIMP[/url], this can be done using **Colors > Auto >
    * Equalize**. If the texture only uses a small part of its available range, the parallax effect may
    * look strange, especially when the camera moves.
+   *
    * **Note:** To reduce memory usage and improve loading times, you may be able to use a
    * lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.
    */
@@ -859,6 +880,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, interprets the height map texture as a depth map, with brighter values appearing to
    * be "lower" in altitude compared to darker values.
+   *
    * This can be enabled for compatibility with some materials authored for Godot 3.x. This is not
    * necessary if the Invert import option was used to invert the depth map in Godot 3.x, in which case
    * [heightmapFlipTexture] should remain `false`.
@@ -1017,6 +1039,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind
    * the object.
+   *
    * **Note:** Refraction is implemented using the screen texture. Only opaque materials will appear
    * in the refraction, since transparent materials do not appear in the screen texture.
    */
@@ -1117,6 +1140,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture that specifies the color of the detail overlay. [detailAlbedo]'s alpha channel is used
    * as a mask, even when the material is opaque. To use a dedicated texture as a mask, see
    * [detailMask].
+   *
    * **Note:** [detailAlbedo] is *not* modulated by [albedoColor].
    */
   public final inline var detailAlbedo: Texture2D?
@@ -1131,6 +1155,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture that specifies the per-pixel normal of the detail overlay. The [detailNormal] texture
    * only uses the red and green channels; the blue and alpha channels are ignored. The normal read
    * from [detailNormal] is oriented around the surface normal provided by the [Mesh].
+   *
    * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See
    * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
    * page[/url] for a comparison of normal map coordinates expected by popular engines.
@@ -1191,6 +1216,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * A lower number blends the texture more softly while a higher number blends the texture more
    * sharply.
+   *
    * **Note:** [uv1TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values
    * outside that range can look broken depending on the mesh.
    */
@@ -1262,6 +1288,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * A lower number blends the texture more softly while a higher number blends the texture more
    * sharply.
+   *
    * **Note:** [uv2TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values
    * outside that range can look broken depending on the mesh.
    */
@@ -1287,6 +1314,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Filter flags for the texture. See [TextureFilter] for options.
+   *
    * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor
    * filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need
    * sharper height transitions between pixels, resize the heightmap texture in an image editor with
@@ -1337,6 +1365,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Controls how the object faces the camera. See [BillboardMode].
+   *
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is
    * not horizontal when the screen is attached to your head instead of on the table. See
    * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
@@ -1400,6 +1429,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, enables the vertex grow setting. This can be used to create mesh-based outlines
    * using a second material pass and its [cullMode] set to [CULL_FRONT]. See also [growAmount].
+   *
    * **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in
    * sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively
    * using [url=http://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in the
@@ -1438,6 +1468,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * If `true`, render point size can be changed.
+   *
    * **Note:** This is only effective for objects whose geometry is point-based rather than
    * triangle-based. See also [pointSize].
    */
@@ -1535,6 +1566,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Distance at which the object starts to become visible. If the object is less than this distance
    * away, it will be invisible.
+   *
    * **Note:** If [distanceFadeMinDistance] is greater than [distanceFadeMaxDistance], the behavior
    * will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully
    * disappear once it reaches [distanceFadeMinDistance].
@@ -1549,6 +1581,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Distance at which the object appears fully opaque.
+   *
    * **Note:** If [distanceFadeMaxDistance] is less than [distanceFadeMinDistance], the behavior
    * will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully
    * disappear once it reaches [distanceFadeMinDistance].
@@ -1567,6 +1600,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The material's base color.
+   *
    * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
    * will *not* modulate the detail texture. This can be used to color partial areas of a material by
    * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
@@ -2943,6 +2977,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Objects will write to depth during the opaque and the transparent passes. Transparent objects
      * that are close to the camera may obscure other transparent objects behind them.
+     *
      * **Note:** This does not influence whether transparent objects are included in the depth
      * prepass or not. For that, see [Transparency].
      */
@@ -3011,6 +3046,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Vertex colors are considered to be stored in sRGB color space and are converted to linear
      * color space during rendering. See also [vertexColorIsSrgb].
+     *
      * **Note:** Only effective when using the Forward+ and Mobile rendering methods.
      */
     SRGB_VERTEX_COLOR(2),
@@ -3191,6 +3227,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Used for particle systems when assigned to [GPUParticles3D] and [CPUParticles3D] nodes
      * (flipbook animation). Enables `particles_anim_*` properties.
+     *
      * The [ParticleProcessMaterial.animSpeedMin] or [CPUParticles3D.animSpeedMin] should also be
      * set to a value bigger than zero for the animation to play.
      */

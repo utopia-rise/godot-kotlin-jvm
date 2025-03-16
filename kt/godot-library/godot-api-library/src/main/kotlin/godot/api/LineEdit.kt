@@ -34,40 +34,69 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * [LineEdit] provides an input field for editing a single line of text.
+ *
  * - When the [LineEdit] control is focused using the keyboard arrow keys, it will only gain focus
  * and not enter edit mode.
+ *
  * - To enter edit mode, click on the control with the mouse, see also [keepEditingOnTextSubmit].
+ *
  * - To exit edit mode, press `ui_text_submit` or `ui_cancel` (by default [kbd]Escape[/kbd])
  * actions.
+ *
  * - Check [edit], [unedit], [isEditing], and [signal editing_toggled] for more information.
+ *
  * **Important:**
+ *
  * - Focusing the [LineEdit] with `ui_focus_next` (by default [kbd]Tab[/kbd]) or `ui_focus_prev` (by
  * default [kbd]Shift + Tab[/kbd]) or [Control.grabFocus] still enters edit mode (for compatibility).
+ *
  * [LineEdit] features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps
  * to [kbd]Cmd[/kbd] on macOS):
+ *
  * - [kbd]Ctrl + C[/kbd]: Copy
+ *
  * - [kbd]Ctrl + X[/kbd]: Cut
+ *
  * - [kbd]Ctrl + V[/kbd] or [kbd]Ctrl + Y[/kbd]: Paste/"yank"
+ *
  * - [kbd]Ctrl + Z[/kbd]: Undo
+ *
  * - [kbd]Ctrl + ~[/kbd]: Swap input direction.
+ *
  * - [kbd]Ctrl + Shift + Z[/kbd]: Redo
+ *
  * - [kbd]Ctrl + U[/kbd]: Delete text from the caret position to the beginning of the line
+ *
  * - [kbd]Ctrl + K[/kbd]: Delete text from the caret position to the end of the line
+ *
  * - [kbd]Ctrl + A[/kbd]: Select all text
+ *
  * - [kbd]Up Arrow[/kbd]/[kbd]Down Arrow[/kbd]: Move the caret to the beginning/end of the line
+ *
  * On macOS, some extra keyboard shortcuts are available:
+ *
  * - [kbd]Cmd + F[/kbd]: Same as [kbd]Right Arrow[/kbd], move the caret one character right
+ *
  * - [kbd]Cmd + B[/kbd]: Same as [kbd]Left Arrow[/kbd], move the caret one character left
+ *
  * - [kbd]Cmd + P[/kbd]: Same as [kbd]Up Arrow[/kbd], move the caret to the previous line
+ *
  * - [kbd]Cmd + N[/kbd]: Same as [kbd]Down Arrow[/kbd], move the caret to the next line
+ *
  * - [kbd]Cmd + D[/kbd]: Same as [kbd]Delete[/kbd], delete the character on the right side of caret
+ *
  * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the
  * caret
+ *
  * - [kbd]Cmd + A[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
+ *
  * - [kbd]Cmd + E[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
+ *
  * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the
  * line
+ *
  * - [kbd]Cmd + Right Arrow[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
+ *
  * **Note:** Caret movement shortcuts listed above are not affected by [shortcutKeysEnabled].
  */
 @GodotBaseType
@@ -96,6 +125,7 @@ public open class LineEdit : Control() {
 
   /**
    * String value of the [LineEdit].
+   *
    * **Note:** Changing text using this property won't emit the [signal text_changed] signal.
    */
   public final inline var text: String
@@ -132,14 +162,16 @@ public open class LineEdit : Control() {
   /**
    * Maximum number of characters that can be entered inside the [LineEdit]. If `0`, there is no
    * limit.
+   *
    * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens
    * both for existing [text] contents when setting the max length, or for new text inserted in the
    * [LineEdit], including pasting.
+   *
    * If any input text is truncated, the [signal text_change_rejected] signal is emitted with the
    * truncated substring as parameter:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * text = "Hello world"
    * max_length = 5
    * # `text` becomes "Hello".
@@ -148,8 +180,9 @@ public open class LineEdit : Control() {
    * # `text` becomes "Hello good".
    * # `text_change_rejected` is emitted with "bye" as parameter.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Text = "Hello world";
    * MaxLength = 5;
    * // `Text` becomes "Hello".
@@ -272,6 +305,7 @@ public open class LineEdit : Control() {
 
   /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
+   *
    * **Note:** This method is only implemented on Linux.
    */
   public final inline var middleMousePasteEnabled: Boolean
@@ -407,6 +441,7 @@ public open class LineEdit : Control() {
 
   /**
    * Allow moving caret, selecting and removing the individual composite character components.
+   *
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
   public final inline var caretMidGrapheme: Boolean
@@ -531,6 +566,7 @@ public open class LineEdit : Control() {
 
   /**
    * Allows entering edit mode whether the [LineEdit] is focused or not.
+   *
    * See also [keepEditingOnTextSubmit].
    */
   public final fun edit(): Unit {
@@ -578,15 +614,16 @@ public open class LineEdit : Control() {
    * Selects characters inside [LineEdit] between [from] and [to]. By default, [from] is at the
    * beginning and [to] at the end.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * text = "Welcome"
    * select() # Will select "Welcome".
    * select(4) # Will select "ome".
    * select(2, 5) # Will select "lco".
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Text = "Welcome";
    * Select(); // Will select "Welcome".
    * Select(4); // Will select "ome".
@@ -903,11 +940,12 @@ public open class LineEdit : Control() {
   /**
    * Returns the [PopupMenu] of this [LineEdit]. By default, this menu is displayed when
    * right-clicking on the [LineEdit].
+   *
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
    * the standard ones (see [MenuItems]). For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     var menu = get_menu()
    *     # Remove all items after "Redo".
@@ -922,8 +960,9 @@ public open class LineEdit : Control() {
    *     if id == MENU_MAX + 1:
    *         insert_text_at_caret(Time.get_date_string_from_system())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     var menu = GetMenu();
@@ -1120,6 +1159,7 @@ public open class LineEdit : Control() {
     COPY(1),
     /**
      * Pastes the clipboard text over the selected text (or at the caret's position).
+     *
      * Non-printable escape characters are automatically stripped from the OS clipboard via
      * [String.stripEscapes].
      */
@@ -1282,6 +1322,7 @@ public open class LineEdit : Control() {
     /**
      * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
      * and autocapitalization.
+     *
      * **Note:** This is not supported on Web. Instead, this behaves identically to
      * [KEYBOARD_TYPE_DEFAULT].
      */

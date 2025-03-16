@@ -30,6 +30,7 @@ import kotlin.jvm.JvmName
 /**
  * This class generates noise using the FastNoiseLite library, which is a collection of several
  * noise algorithms including Cellular, Perlin, Value, and more.
+ *
  * Most generated noise values are in the range of `[-1, 1]`, but not always. Some of the cellular
  * noise algorithms return results above `1`.
  */
@@ -117,6 +118,7 @@ public open class FastNoiseLite : Noise() {
 
   /**
    * Determines the strength of each subsequent layer of noise in fractal noise.
+   *
    * A low value places more emphasis on the lower frequency base layers, while a high value puts
    * more emphasis on the higher frequency layers.
    */
@@ -268,6 +270,7 @@ public open class FastNoiseLite : Noise() {
 
   /**
    * Determines the strength of each subsequent layer of the noise which is used to warp the space.
+   *
    * A low value places more emphasis on the lower frequency base layers, while a high value puts
    * more emphasis on the higher frequency layers.
    */
@@ -547,6 +550,7 @@ public open class FastNoiseLite : Noise() {
     TYPE_VALUE(5),
     /**
      * Similar to Value noise, but slower. Has more variance in peaks and valleys.
+     *
      * Cubic noise can be used to avoid certain artifacts when using value noise to create a
      * bumpmap. In general, you should always use this mode if the value noise is being used for a
      * heightmap or bumpmap.

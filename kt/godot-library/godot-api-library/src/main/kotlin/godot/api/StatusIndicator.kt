@@ -60,6 +60,7 @@ public open class StatusIndicator : Node() {
 
   /**
    * Status indicator native popup menu. If this is set, the [signal pressed] signal is not emitted.
+   *
    * **Note:** Native popup is only supported if [NativeMenu] supports
    * [NativeMenu.FEATURE_POPUP_MENU] feature.
    */

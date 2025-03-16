@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
  * GLTFAccessor is a data structure representing a glTF `accessor` that would be found in the
  * `"accessors"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer. An
  * accessor is a typed interpretation of the data in a buffer view.
+ *
  * Most custom data stored in glTF does not need accessors, only buffer views (see
  * [GLTFBufferView]). Accessors are for more advanced use cases such as interleaved mesh data encoded
  * for the GPU.

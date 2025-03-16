@@ -29,6 +29,7 @@ import kotlin.jvm.JvmOverloads
  * This resource describes a mathematical curve by defining a set of points and tangents at each
  * point. By default, it ranges between `0` and `1` on the X and Y axes, but these ranges can be
  * changed.
+ *
  * Please note that many resources and nodes assume they are given *unit curves*. A unit curve is a
  * curve whose domain (the X axis) is between `0` and `1`. Some examples of unit curve usage are
  * [CPUParticles2D.angleCurve] and [Line2D.widthCurve].

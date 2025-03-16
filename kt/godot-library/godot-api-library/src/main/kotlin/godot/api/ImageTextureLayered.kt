@@ -35,8 +35,10 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * Creates an [ImageTextureLayered] from an array of [Image]s. See [Image.create] for the expected
    * data format. The first image decides the width, height, image format and mipmapping setting. The
    * other images *must* have the same width, height, image format and mipmapping setting.
+   *
    * Each [Image] represents one `layer`.
-   * [codeblock]
+   *
+   * ```
    * # Fill in an array of Images with different colors.
    * var images = []
    * const LAYERS = 6
@@ -68,7 +70,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * var cubemap_array = CubemapArray.new()
    * cubemap_array.create_from_images(images)
    * ResourceSaver.save(cubemap_array, "res://cubemap_array.res", ResourceSaver.FLAG_COMPRESS)
-   * [/codeblock]
+   * ```
    */
   public final fun createFromImages(images: VariantArray<Image>): Error {
     TransferContext.writeArguments(ARRAY to images)
@@ -78,10 +80,13 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
 
   /**
    * Replaces the existing [Image] data at the given [layer] with this new image.
+   *
    * The given [Image] must have the same width, height, image format, and mipmapping flag as the
    * rest of the referenced images.
+   *
    * If the image format is unsupported, it will be decompressed and converted to a similar and
    * supported [Image.Format].
+   *
    * The update is immediate: it's synchronized with drawing.
    */
   public final fun updateLayer(image: Image?, layer: Int): Unit {

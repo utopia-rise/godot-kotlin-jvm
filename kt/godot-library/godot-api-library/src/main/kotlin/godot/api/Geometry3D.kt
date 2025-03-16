@@ -157,6 +157,7 @@ public object Geometry3D : Object() {
    * triangle's different vertices ([a], [b] and [c]). This is useful for interpolating between the
    * data of different vertices in a triangle. One example use case is using this to smoothly rotate
    * over a mesh instead of relying solely on face normals.
+   *
    * [url=https://en.wikipedia.org/wiki/Barycentric_coordinate_system]Here is a more detailed
    * explanation of barycentric coordinates.[/url]
    */

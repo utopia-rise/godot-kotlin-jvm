@@ -14,9 +14,11 @@ public enum class Error(
 ) {
   /**
    * Methods that return [Error] return [OK] when no error occurred.
+   *
    * Since [OK] has value `0`, and all other error constants are positive integers, it can also be
    * used in boolean checks.
-   * [codeblock]
+   *
+   * ```
    * var error = method_that_returns_error()
    * if error != OK:
    *     printerr("Failure!")
@@ -24,7 +26,8 @@ public enum class Error(
    * # Or, alternatively:
    * if error:
    *     printerr("Still failing!")
-   * [/codeblock]
+   * ```
+   *
    * **Note:** Many functions do not return an error code, but will print error messages to standard
    * output.
    */
@@ -215,6 +218,7 @@ public enum class Error(
   HELP(46),
   /**
    * Bug error, caused by an implementation issue in the method.
+   *
    * **Note:** If a built-in method returns this code, please open an issue on
    * [url=https://github.com/godotengine/godot/issues]the GitHub Issue Tracker[/url].
    */

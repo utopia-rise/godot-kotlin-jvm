@@ -44,22 +44,29 @@ import kotlin.jvm.JvmStatic
 /**
  * NavigationServer2D is the server that handles navigation maps, regions and agents. It does not
  * handle A* navigation from [AStar2D] or [AStarGrid2D].
+ *
  * Maps are divided into regions, which are composed of navigation polygons. Together, they define
  * the traversable areas in the 2D world.
+ *
  * **Note:** Most [NavigationServer2D] changes take effect after the next physics frame and not
  * immediately. This includes all changes made to maps, regions or agents by navigation-related nodes
  * in the scene tree or made through scripts.
+ *
  * For two regions to be connected to each other, they must share a similar edge. An edge is
  * considered connected to another if both of its two vertices are at a distance less than
  * `edge_connection_margin` to the respective other edge's vertex.
+ *
  * You may assign navigation layers to regions with [NavigationServer2D.regionSetNavigationLayers],
  * which then can be checked upon when requesting a path with [NavigationServer2D.mapGetPath]. This can
  * be used to allow or deny certain areas for some objects.
+ *
  * To use the collision avoidance system, you may use agents. You can set an agent's target
  * velocity, then the servers will emit a callback with a modified velocity.
+ *
  * **Note:** The collision avoidance system ignores regions. Using the modified velocity directly
  * may move an agent outside of the traversable area. This is a limitation of the collision avoidance
  * system, any more complex situation may require the use of the physics engine.
+ *
  * This server keeps tracks of any call and executes them during the sync phase. This means that you
  * can request any change to the map, using any thread, without worrying.
  */
@@ -294,6 +301,7 @@ public object NavigationServer2D : Object() {
    * be used to immediately (re)calculate all the navigation meshes and region connections of the
    * navigation map. This makes it possible to query a navigation path for a changed map immediately
    * and in the same frame (multiple times if needed).
+   *
    * Due to technical restrictions the current NavigationServer command queue will be flushed. This
    * means all already queued update commands for this physics frame will be executed, even those
    * intended for other maps, regions and agents not part of the specified map. The expensive
@@ -301,8 +309,10 @@ public object NavigationServer2D : Object() {
    * specified map. Other maps will receive the normal synchronization at the end of the physics frame.
    * Should the specified map receive changes after the forced update it will update again as well when
    * the other maps receive their update.
+   *
    * Avoidance processing and dispatch of the `safe_velocity` signals is unaffected by this function
    * and continues to happen for all maps and agents at the end of the physics frame.
+   *
    * **Note:** With great power comes great responsibility. This function should only be used by
    * users that really know what they are doing and have a good reason for it. Forcing an immediate
    * update of a navigation map requires locking the NavigationServer and flushing the entire
@@ -319,6 +329,7 @@ public object NavigationServer2D : Object() {
    * Returns the current iteration id of the navigation map. Every time the navigation map changes
    * and synchronizes the iteration id increases. An iteration id of 0 means the navigation map has
    * never synchronized.
+   *
    * **Note:** The iteration id will wrap back to 1 after reaching its range limit.
    */
   @JvmStatic
@@ -351,8 +362,10 @@ public object NavigationServer2D : Object() {
 
   /**
    * Returns a random position picked from all map region polygons with matching [navigationLayers].
+   *
    * If [uniformly] is `true`, all map regions, polygons, and faces are weighted by their surface
    * area (slower).
+   *
    * If [uniformly] is `false`, just a random region and a random polygon are picked (faster).
    */
   @JvmStatic
@@ -496,9 +509,11 @@ public object NavigationServer2D : Object() {
    * faces has a possible position at the closest distance to this point compared to all other
    * navigation meshes from other navigation regions that are also registered on the navigation map of
    * the provided region.
+   *
    * If multiple navigation meshes have positions at equal distance the navigation region whose
    * polygons are processed first wins the ownership. Polygons are processed in the same order that
    * navigation regions were registered on the NavigationServer.
+   *
    * **Note:** If navigation meshes from different navigation regions overlap (which should be
    * avoided in general) the result might not be what is expected.
    */
@@ -622,8 +637,10 @@ public object NavigationServer2D : Object() {
 
   /**
    * Returns a random position picked from all region polygons with matching [navigationLayers].
+   *
    * If [uniformly] is `true`, all region polygons and faces are weighted by their surface area
    * (slower).
+   *
    * If [uniformly] is `false`, just a random polygon and face is picked (faster).
    */
   @JvmStatic
@@ -1092,6 +1109,7 @@ public object NavigationServer2D : Object() {
    * Sets the callback [Callable] that gets called after each avoidance processing step for the
    * [agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before
    * the physics calculations.
+   *
    * **Note:** Created callbacks are always processed independently of the SceneTree state as long
    * as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an
    * agent use [agentSetAvoidanceCallback] again with an empty [Callable].
@@ -1153,6 +1171,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the agent's `avoidance_priority` with a [priority] between 0.0 (lowest priority) to 1.0
    * (highest priority).
+   *
    * The specified [agent] does not adjust the velocity for other agents that would match the
    * `avoidance_mask` but have a lower `avoidance_priority`. This in turn makes the other agents with
    * lower priority adjust their velocities even more to avoid collision with this agent.
@@ -1343,8 +1362,10 @@ public object NavigationServer2D : Object() {
    * Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then
    * be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished
    * the optional [callback] will be called.
+   *
    * **Note:** This function needs to run on the main thread or with a deferred call as the
    * SceneTree is not thread-safe.
+   *
    * **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the
    * frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer]
    * in the process. For performance prefer the use of e.g. collision shapes or creating the data
@@ -1418,10 +1439,13 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [callback] [Callable] for the specific source geometry [parser]. The [Callable] will
    * receive a call with the following parameters:
+   *
    * - `navigation_mesh` - The [NavigationPolygon] reference used to define the parse settings. Do
    * NOT edit or add directly to the navigation mesh.
+   *
    * - `source_geometry_data` - The [NavigationMeshSourceGeometryData2D] reference. Add custom
    * source geometry for navigation mesh baking to this object.
+   *
    * - `node` - The [Node] that is parsed.
    */
   @JvmStatic
@@ -1434,6 +1458,7 @@ public object NavigationServer2D : Object() {
    * Returns a simplified version of [path] with less critical path points removed. The
    * simplification amount is in worlds units and controlled by [epsilon]. The simplification uses a
    * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   *
    * Path simplification can be helpful to mitigate various path following issues that can arise
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".

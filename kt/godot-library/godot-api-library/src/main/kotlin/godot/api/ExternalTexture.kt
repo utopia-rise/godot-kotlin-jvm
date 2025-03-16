@@ -24,11 +24,13 @@ import kotlin.jvm.JvmName
 
 /**
  * Displays the content of an external buffer provided by the platform.
+ *
  * Requires the
  * [url=https://registry.khronos.org/OpenGL/extensions/OES/OES_EGL_image_external.txt]OES_EGL_image_external[/url]
  * extension (OpenGL) or
  * [url=https://registry.khronos.org/vulkan/specs/1.1-extensions/html/vkspec.html#VK_ANDROID_external_memory_android_hardware_buffer]VK_ANDROID_external_memory_android_hardware_buffer[/url]
  * extension (Vulkan).
+ *
  * **Note:** This is currently only supported in Android builds.
  */
 @GodotBaseType
@@ -80,6 +82,7 @@ public open class ExternalTexture : Texture2D() {
 
   /**
    * Returns the external texture ID.
+   *
    * Depending on your use case, you may need to pass this to platform APIs, for example, when
    * creating an `android.graphics.SurfaceTexture` on Android.
    */
@@ -91,6 +94,7 @@ public open class ExternalTexture : Texture2D() {
 
   /**
    * Sets the external buffer ID.
+   *
    * Depending on your use case, you may need to call this with data received from a platform API,
    * for example, `SurfaceTexture.getHardwareBuffer()` on Android.
    */

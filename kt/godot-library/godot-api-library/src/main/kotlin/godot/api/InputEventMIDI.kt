@@ -23,14 +23,16 @@ import kotlin.jvm.JvmName
  * InputEventMIDI stores information about messages from
  * [url=https://en.wikipedia.org/wiki/MIDI]MIDI[/url] (Musical Instrument Digital Interface) devices.
  * These may include musical keyboards, synthesizers, and drum machines.
+ *
  * MIDI messages can be received over a 5-pin MIDI connector or over USB. If your device supports
  * both be sure to check the settings in the device to see which output it is using.
+ *
  * By default, Godot does not detect MIDI devices. You need to call [OS.openMidiInputs], first. You
  * can check which devices are detected with [OS.getConnectedMidiInputs], and close the connection with
  * [OS.closeMidiInputs].
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * func _ready():
  *     OS.open_midi_inputs()
  *     print(OS.get_connected_midi_inputs())
@@ -50,8 +52,9 @@ import kotlin.jvm.JvmName
  *     print("Controller number: ", midi_event.controller_number)
  *     print("Controller value: ", midi_event.controller_value)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public override void _Ready()
  * {
  *     OS.OpenMidiInputs();
@@ -82,6 +85,7 @@ import kotlin.jvm.JvmName
  *
  * **Note:** Godot does not support MIDI output, so there is no way to emit MIDI messages from
  * Godot. Only MIDI input is supported.
+ *
  * **Note:** On the Web platform, using MIDI input requires a browser permission to be granted
  * first. This permission request is performed when calling [OS.openMidiInputs]. MIDI input will not
  * work until the user accepts the permission request.
@@ -102,6 +106,7 @@ public open class InputEventMIDI : InputEvent() {
 
   /**
    * Represents the type of MIDI message (see the [MIDIMessage] enum).
+   *
    * For more information, see the
    * [url=https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes]MIDI
    * message status byte list chart[/url].
@@ -116,6 +121,7 @@ public open class InputEventMIDI : InputEvent() {
 
   /**
    * The pitch index number of this MIDI message. This value ranges from `0` to `127`.
+   *
    * On a piano, the **middle C** is `60`, followed by a **C-sharp** (`61`), then a **D** (`62`),
    * and so on. Each octave is split in offsets of 12. See the "MIDI note number" column of the
    * [url=https://en.wikipedia.org/wiki/Piano_key_frequencies]piano key frequency chart[/url] a full
@@ -132,15 +138,17 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The velocity of the MIDI message. This value ranges from `0` to `127`. For a musical keyboard,
    * this corresponds to how quickly the key was pressed, and is rarely above `110` in practice.
+   *
    * **Note:** Some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with `0` velocity and
    * expect it to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message. If necessary, this can be
    * handled with a few lines of code:
-   * [codeblock]
+   *
+   * ```
    * func _input(event):
    *     if event is InputEventMIDI:
    *         if event.message == MIDI_MESSAGE_NOTE_ON and event.velocity > 0:
    *             print("Note pressed!")
-   * [/codeblock]
+   * ```
    */
   public final inline var velocity: Int
     @JvmName("velocityProperty")
@@ -153,6 +161,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The instrument (also called *program* or *preset*) used on this MIDI message. This value ranges
    * from `0` to `127`.
+   *
    * To see what each value means, refer to the
    * [url=https://en.wikipedia.org/wiki/General_MIDI#Program_change_events]General MIDI's instrument
    * list[/url]. Keep in mind that the list is off by 1 because it does not begin from 0. A value of
@@ -168,6 +177,7 @@ public open class InputEventMIDI : InputEvent() {
 
   /**
    * The strength of the key being pressed. This value ranges from `0` to `127`.
+   *
    * **Note:** For many devices, this value is always `0`. Other devices such as musical keyboards
    * may simulate pressure by changing the [velocity], instead.
    */

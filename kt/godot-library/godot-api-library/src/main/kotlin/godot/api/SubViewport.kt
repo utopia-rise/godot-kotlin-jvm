@@ -27,9 +27,11 @@ import kotlin.jvm.JvmName
 /**
  * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
  * used, for example, to display UI in 3D space.
+ *
  * **Note:** [SubViewport] is a [Viewport] that isn't a [Window], i.e. it doesn't draw anything by
  * itself. To display anything, [SubViewport] must have a non-zero size and be either put inside a
  * [SubViewportContainer] or assigned to a [ViewportTexture].
+ *
  * **Note:** [InputEvent]s are not passed to a standalone [SubViewport] by default. To ensure
  * [InputEvent] propagation, a [SubViewport] can be placed inside of a [SubViewportContainer].
  */
@@ -38,6 +40,7 @@ public open class SubViewport : Viewport() {
   /**
    * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
    * pixels on both dimensions. Otherwise, nothing will be displayed.
+   *
    * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
    * is `true`, the viewport size cannot be changed manually.
    */
@@ -76,6 +79,7 @@ public open class SubViewport : Viewport() {
 
   /**
    * The clear mode when the sub-viewport is used as a render target.
+   *
    * **Note:** This property is intended for 2D usage.
    */
   public final inline var renderTargetClearMode: ClearMode
@@ -104,6 +108,7 @@ public open class SubViewport : Viewport() {
   /**
    * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
    * pixels on both dimensions. Otherwise, nothing will be displayed.
+   *
    * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
    * is `true`, the viewport size cannot be changed manually.
    *

@@ -48,6 +48,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * If different from `0`, restricts the query to a specific canvas layer specified by its instance
    * ID. See [Object.getInstanceId].
+   *
    * If `0`, restricts the query to the Viewport's default canvas layer.
    */
   public final inline var canvasInstanceId: Long
@@ -75,6 +76,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
    * to get the [RID] associated with a [CollisionObject2D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.

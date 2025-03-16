@@ -31,6 +31,7 @@ import kotlin.jvm.JvmName
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
  * allows to edit it. The polygon can be concave or convex. This can give a detection shape to an
  * [Area3D] or turn [PhysicsBody3D] into a solid object.
+ *
  * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its shape resource instead.
  */
@@ -84,6 +85,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
@@ -116,6 +118,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.

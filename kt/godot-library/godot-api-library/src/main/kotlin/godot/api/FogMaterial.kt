@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 
 /**
  * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.
+ *
  * If you need more advanced effects, use a custom
  * [url=$DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html]fog shader[/url].
  */
@@ -35,6 +36,7 @@ public open class FogMaterial : Material() {
    * The density of the [FogVolume]. Denser objects are more opaque, but may suffer from
    * under-sampling artifacts that look like stripes. Negative values can be used to subtract fog from
    * other [FogVolume]s or global volumetric fog.
+   *
    * **Note:** Due to limited precision, [density] values between `-0.001` and `0.001` (exclusive)
    * act like `0.0`. This does not apply to [Environment.volumetricFogDensity].
    */

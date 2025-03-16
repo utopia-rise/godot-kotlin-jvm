@@ -32,7 +32,9 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * Spawnable scenes can be configured in the editor or through code (see [addSpawnableScene]).
+ *
  * Also supports custom node spawns through [spawn], calling [spawnFunction] on all peers.
+ *
  * Internally, [MultiplayerSpawner] uses [MultiplayerAPI.objectConfigurationAdd] to notify spawns
  * passing the spawned node as the `object` and itself as the `configuration`, and
  * [MultiplayerAPI.objectConfigurationRemove] to notify despawns in a similar way.
@@ -66,6 +68,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    * Maximum number of nodes allowed to be spawned by this spawner. Includes both spawnable scenes
    * and custom spawns.
+   *
    * When set to `0` (the default), there is no limit.
    */
   public final inline var spawnLimit: Long
@@ -79,6 +82,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    * Method called on all peers when a custom [spawn] is requested by the authority. Will receive
    * the `data` parameter, and should return a [Node] that is not in the scene tree.
+   *
    * **Note:** The returned node should **not** be added to the scene with [Node.addChild]. This is
    * done automatically.
    */
@@ -133,6 +137,7 @@ public open class MultiplayerSpawner : Node() {
    * Requests a custom spawn, with [data] passed to [spawnFunction] on all peers. Returns the
    * locally spawned node instance already inside the scene tree, and added as a child of the node
    * pointed by [spawnPath].
+   *
    * **Note:** Spawnable scenes are spawned automatically. [spawn] is only needed for custom spawns.
    */
   @JvmOverloads

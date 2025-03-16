@@ -33,6 +33,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * A custom shader program implemented in the Godot shading language, saved with the `.gdshader`
  * extension.
+ *
  * This class is used by a [ShaderMaterial] and allows you to write your own custom behavior for
  * rendering visual items or updating particle information. For a detailed explanation and usage,
  * please see the tutorials linked below.
@@ -78,7 +79,9 @@ public open class Shader : Resource() {
   /**
    * Sets the default texture to be used with a texture uniform. The default is used if a texture is
    * not set in the [ShaderMaterial].
+   *
    * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -93,7 +96,9 @@ public open class Shader : Resource() {
 
   /**
    * Returns the texture that is set as default for the specified parameter.
+   *
    * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -108,6 +113,7 @@ public open class Shader : Resource() {
    * [ShaderMaterial.setShaderParameter] and [ShaderMaterial.getShaderParameter]. The parameters
    * returned are contained in dictionaries in a similar format to the ones returned by
    * [Object.getPropertyList].
+   *
    * If argument [getGroups] is `true`, parameter grouping hints are also included in the list.
    */
   @JvmOverloads
@@ -130,7 +136,9 @@ public open class Shader : Resource() {
   /**
    * Sets the default texture to be used with a texture uniform. The default is used if a texture is
    * not set in the [ShaderMaterial].
+   *
    * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -142,7 +150,9 @@ public open class Shader : Resource() {
 
   /**
    * Returns the texture that is set as default for the specified parameter.
+   *
    * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads

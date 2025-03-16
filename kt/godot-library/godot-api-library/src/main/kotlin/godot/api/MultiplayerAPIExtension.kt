@@ -20,11 +20,12 @@ import kotlin.Unit
 /**
  * This class can be used to extend or replace the default [MultiplayerAPI] implementation via
  * script or extensions.
+ *
  * The following example extend the default implementation ([SceneMultiplayer]) by logging every RPC
  * being made, and every object being configured for replication.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * extends MultiplayerAPIExtension
  * class_name LogMultiplayer
  *
@@ -88,8 +89,8 @@ import kotlin.Unit
  * Then in your main scene or in an autoload call [SceneTree.setMultiplayer] to start using your
  * custom [MultiplayerAPI]:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # autoload.gd
  * func _enter_tree():
  *     # Sets our custom multiplayer as the main one in SceneTree.

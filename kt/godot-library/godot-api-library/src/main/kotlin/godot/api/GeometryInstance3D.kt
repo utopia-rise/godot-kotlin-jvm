@@ -41,6 +41,7 @@ import kotlin.jvm.JvmName
 public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The material override for the whole geometry.
+   *
    * If a material is assigned to this property, it will be used instead of any material set in any
    * material slot of the mesh.
    */
@@ -54,6 +55,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   /**
    * The material overlay for the whole geometry.
+   *
    * If a material is assigned to this property, it will be rendered on top of any other active
    * material for all the surfaces.
    */
@@ -72,9 +74,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * slower to render and can exhibit rendering issues due to incorrect transparency sorting. However,
    * unlike using a transparent material, setting [transparency] to a value greater than `0.0`
    * (exclusive) will *not* disable shadow rendering.
+   *
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
+   *
    * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
    * make transparent materials more opaque than they originally are.
+   *
    * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
    * Compatibility rendering method, [transparency] is ignored and is considered as always being `0.0`.
    */
@@ -131,6 +136,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force
    * the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger
    * values will keep the mesh in a higher level of detail at farther distances.
+   *
    * Useful for testing level of detail transitions in the editor.
    */
   public final inline var lodBias: Float
@@ -144,6 +150,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * If `true`, disables occlusion culling for this instance. Useful for gizmos that must be
    * rendered even when occlusion culling is in use.
+   *
    * **Note:** [ignoreOcclusionCulling] does not affect frustum culling (which is what happens when
    * an object is not visible given the camera's angle). To avoid frustum culling, set [customAabb] to
    * a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000,
@@ -160,6 +167,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The global illumination mode to use for the whole geometry. To avoid inconsistent results, use
    * a mode that matches the purpose of the mesh during gameplay (static/dynamic).
+   *
    * **Note:** Lights' bake mode will also affect the global illumination rendering. See
    * [Light3D.lightBakeMode].
    */
@@ -178,6 +186,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * mesh in the lightmap texture, which increases the memory, storage, and bake time requirements.
    * When using a single mesh at different scales, consider adjusting this value to keep the lightmap
    * texel density consistent across meshes.
+   *
    * For example, doubling [giLightmapTexelScale] doubles the lightmap texture resolution for this
    * object *on each axis*, so it will *quadruple* the texel count.
    */
@@ -216,6 +225,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeBegin] threshold. The GeometryInstance3D will only change its
    * visibility state when it goes over or under the [visibilityRangeBegin] threshold by this amount.
+   *
    * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis
    * distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or
    * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
@@ -244,6 +254,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeEnd] threshold. The GeometryInstance3D will only change its
    * visibility state when it goes over or under the [visibilityRangeEnd] threshold by this amount.
+   *
    * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis
    * distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or
    * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
@@ -418,10 +429,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
    * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
    * using the same [ShaderMaterial].
+   *
    * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
    * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   *
    * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
    * (not the capitalized name in the inspector).
+   *
    * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
    * but not for Fog, Sky, or Particles shaders.
    */
@@ -510,10 +524,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
    * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
    * using the same [ShaderMaterial].
+   *
    * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
    * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   *
    * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
    * (not the capitalized name in the inspector).
+   *
    * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
    * but not for Fog, Sky, or Particles shaders.
    */
@@ -536,18 +553,21 @@ public open class GeometryInstance3D : VisualInstance3D() {
     OFF(0),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
+     *
      * Will take culling into account, so faces not being rendered will not be taken into account
      * when shadow casting.
      */
     ON(1),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
+     *
      * Will not take culling into account, so all faces will be taken into account when shadow
      * casting.
      */
     DOUBLE_SIDED(2),
     /**
      * Will only show the shadows casted from this object.
+     *
      * In other words, the actual mesh will not be visible, only the shadows casted from the mesh
      * will be.
      */
@@ -651,6 +671,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Will fade-out itself when reaching the limits of its own visibility range. This is slower
      * than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range
      * is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     *
      * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
@@ -661,6 +682,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it
      * can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin]
      * and [visibilityRangeEndMargin].
+     *
      * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.

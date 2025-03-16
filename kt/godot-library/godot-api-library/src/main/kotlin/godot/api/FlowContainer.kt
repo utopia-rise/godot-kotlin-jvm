@@ -54,6 +54,7 @@ public open class FlowContainer : Container() {
 
   /**
    * If `true`, the [FlowContainer] will arrange its children vertically, rather than horizontally.
+   *
    * Can't be changed when using [HFlowContainer] and [VFlowContainer].
    */
   public final inline var vertical: Boolean
@@ -67,6 +68,7 @@ public open class FlowContainer : Container() {
   /**
    * If `true`, reverses fill direction. Horizontal [FlowContainer]s will fill rows bottom to top,
    * vertical [FlowContainer]s will fill columns right to left.
+   *
    * When using a vertical [FlowContainer] with a right to left [Control.layoutDirection], columns
    * will fill left to right instead.
    */

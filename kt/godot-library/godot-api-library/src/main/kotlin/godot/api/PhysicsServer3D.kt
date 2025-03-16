@@ -39,25 +39,32 @@ import kotlin.jvm.JvmStatic
 /**
  * PhysicsServer3D is the server responsible for all 3D physics. It can directly create and
  * manipulate all physics objects:
+ *
  * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and
  * joints. Its state can be queried for collision and intersection information, and several parameters
  * of the simulation can be modified.
+ *
  * - A *shape* is a geometric shape such as a sphere, a box, a cylinder, or a polygon. It can be
  * used for collision detection by adding it to a body/area, possibly with an extra transformation
  * relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to
  * them, and a single shape can be added to bodies/areas multiple times with different local
  * transformations.
+ *
  * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such
  * as position and velocity) can be queried and updated. A force integration callback can be set to
  * customize the body's physics.
+ *
  * - An *area* is a region in space which can be used to detect bodies and areas entering and
  * exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and
  * similarly an area monitoring callback can be set. Gravity and damping can be overridden within the
  * area by setting area parameters.
+ *
  * - A *joint* is a constraint, either between two bodies or on one body relative to a point.
  * Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
+ *
  * Physics objects in [PhysicsServer3D] may be created and manipulated independently; they do not
  * have to be tied to nodes in the scene tree.
+ *
  * **Note:** All the 3D physics nodes use the physics server internally. Adding a physics node to
  * the scene tree will cause a corresponding physics object to be created in the physics server. A
  * rigid body node registers a callback that updates the node's transform with the transform of the
@@ -153,6 +160,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Sets the collision margin for the shape.
+   *
    * **Note:** This is not used in Godot Physics.
    */
   @JvmStatic
@@ -183,6 +191,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Returns the collision margin for the shape.
+   *
    * **Note:** This is not used in Godot Physics, so will always return `0`.
    */
   @JvmStatic
@@ -262,6 +271,7 @@ public object PhysicsServer3D : Object() {
    * Creates a 3D area object in the physics server, and returns the [RID] that identifies it. The
    * default settings for the created area include a collision layer and mask set to `1`, and
    * `monitorable` set to `false`.
+   *
    * Use [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use
    * [areaSetSpace] to add the area to a space. If you want the area to be detectable use
    * [areaSetMonitorable].
@@ -498,14 +508,20 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
    * body enters or exits (a shape of) the given area, and must take the following five parameters:
+   *
    * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
    * the other body shape entered or exited the area,
+   *
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
+   *
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
+   *
    * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
    * area,
+   *
    * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or
    * exited.
+   *
    * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a
    * body (with all its shapes) is entering for the first time or exiting for the last time.
    */
@@ -518,14 +534,20 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the area's area monitor callback. This callback will be called when any other (shape of
    * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
+   *
    * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
    * the other area's shape entered or exited the area,
+   *
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
+   *
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
+   *
    * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
    * the area,
+   *
    * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered
    * or exited.
+   *
    * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an
    * area (with all its shapes) is entering for the first time or exiting for the last time.
    */
@@ -554,6 +576,7 @@ public object PhysicsServer3D : Object() {
    * Creates a 3D body object in the physics server, and returns the [RID] that identifies it. The
    * default settings for the created area include a collision layer and mask set to `1`, and body mode
    * set to [BODY_MODE_RIGID].
+   *
    * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
    * [bodySetSpace] to add the body to a space.
    */
@@ -781,6 +804,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * If `true`, the continuous collision detection mode is enabled.
+   *
    * Continuous collision detection tries to predict where a moving body will collide, instead of
    * moving it and correcting its movement if it collided.
    */
@@ -861,9 +885,11 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Applies a directional impulse without affecting rotation.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * This is equivalent to using [bodyApplyImpulse] at the body's center of mass.
    */
   @JvmStatic
@@ -874,9 +900,11 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Applies a positioned impulse to the body.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -892,6 +920,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Applies a rotational impulse to the body without affecting the position.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
@@ -905,6 +934,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a directional force without affecting rotation. A force is time dependent and meant to
    * be applied every physics update.
+   *
    * This is equivalent to using [bodyApplyForce] at the body's center of mass.
    */
   @JvmStatic
@@ -916,6 +946,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -942,6 +973,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a constant directional force without affecting rotation that keeps being applied over time
    * until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
+   *
    * This is equivalent to using [bodyAddConstantForce] at the body's center of mass.
    */
   @JvmStatic
@@ -953,6 +985,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `body_set_constant_force(body, Vector3(0, 0, 0))`.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -978,6 +1011,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Sets the body's total constant positional forces applied during each physics update.
+   *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   @JvmStatic
@@ -988,6 +1022,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Returns the body's total constant positional forces applied during each physics update.
+   *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   @JvmStatic
@@ -999,6 +1034,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Sets the body's total constant rotational forces applied during each physics update.
+   *
    * See [bodyAddConstantTorque].
    */
   @JvmStatic
@@ -1009,6 +1045,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Returns the body's total constant rotational forces applied during each physics update.
+   *
    * See [bodyAddConstantTorque].
    */
   @JvmStatic
@@ -1056,6 +1093,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Removes a body from the list of bodies exempt from collisions.
+   *
    * Continuous collision detection tries to predict where a moving body will collide, instead of
    * moving it and correcting its movement if it collided.
    */
@@ -1090,6 +1128,7 @@ public object PhysicsServer3D : Object() {
    * will not automatically use applied forces, torques, and damping to update the body's linear and
    * angular velocity. In this case, [bodySetForceIntegrationCallback] can be used to manually update
    * the linear and angular velocity instead.
+   *
    * This method is called when the property [RigidBody3D.customIntegrator] is set.
    */
   @JvmStatic
@@ -1112,10 +1151,13 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the body's state synchronization callback function to [callable]. Use an empty [Callable]
    * ([code skip-lint]Callable()[/code]) to clear the callback.
+   *
    * The function [callable] will be called every physics frame, assuming that the body was active
    * during the previous physics tick, and can be used to fetch the latest state from the physics
    * server.
+   *
    * The function [callable] must take the following parameters:
+   *
    * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve the body's state.
    */
   @JvmStatic
@@ -1127,13 +1169,18 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the body's custom force integration callback function to [callable]. Use an empty
    * [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback.
+   *
    * The function [callable] will be called every physics tick, before the standard force
    * integration (see [bodySetOmitForceIntegration]). It can be used for example to update the body's
    * linear and angular velocity based on contact with other bodies.
+   *
    * If [userdata] is not `null`, the function [callable] must take the following two parameters:
+   *
    * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve and modify the body's state,
+   *
    * 2. [code skip-lint]userdata[/code]: a [Variant]; its value will be the [userdata] passed into
    * this method.
+   *
    * If [userdata] is `null`, then [callable] must take only the `state` parameter.
    */
   @JvmOverloads
@@ -1302,6 +1349,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Sets the given body state for the given body (see [BodyState] constants).
+   *
    * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
    * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
    */
@@ -1317,6 +1365,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Returns the given soft body state (see [BodyState] constants).
+   *
    * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
    * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
    */
@@ -1448,6 +1497,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the drag coefficient of the given soft body. Higher values increase this body's air
    * resistance.
+   *
    * **Note:** This value is currently unused by Godot's default physics implementation.
    */
   @JvmStatic
@@ -1500,6 +1550,7 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Pins or unpins the given soft body point based on the value of [pin].
+   *
    * **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by
    * forces, but you can still move it using [softBodyMovePoint].
    */
@@ -1935,11 +1986,13 @@ public object PhysicsServer3D : Object() {
   ) {
     /**
      * The strength with which the pinned objects try to stay in positional relation to each other.
+     *
      * The higher, the stronger.
      */
     BIAS(0),
     /**
      * The strength with which the pinned objects try to stay in velocity relation to each other.
+     *
      * The higher, the stronger.
      */
     DAMPING(1),
@@ -2143,18 +2196,23 @@ public object PhysicsServer3D : Object() {
   ) {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
+     *
      * The swing span defines, how much rotation will not get corrected along the swing axis.
+     *
      * Could be defined as looseness in the [ConeTwistJoint3D].
+     *
      * If below 0.05, this behavior is locked.
      */
     SWING_SPAN(0),
     /**
      * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
+     *
      * Twist is locked if below 0.05.
      */
     TWIST_SPAN(1),
     /**
      * The speed with which the swing or twist will take place.
+     *
      * The higher, the faster.
      */
     BIAS(2),
@@ -2396,6 +2454,7 @@ public object PhysicsServer3D : Object() {
      * have falloff according to the inverse square law, so in the example, at 200 meters from the
      * center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it
      * will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
+     *
      * The above is true only when the unit distance is a positive number. When this is set to 0.0,
      * the gravity will be constant regardless of distance.
      */

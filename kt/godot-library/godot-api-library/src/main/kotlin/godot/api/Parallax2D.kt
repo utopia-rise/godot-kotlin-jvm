@@ -28,6 +28,7 @@ import kotlin.jvm.JvmName
  * A [Parallax2D] is used to create a parallax effect. It can move at a different speed relative to
  * the camera movement using [scrollScale]. This creates an illusion of depth in a 2D game. If manual
  * scrolling is desired, the [Camera2D] position can be ignored with [ignoreCameraScroll].
+ *
  * **Note:** Any changes to this node's position made after it enters the scene tree will be
  * overridden if [ignoreCameraScroll] is `false` or [screenOffset] is modified.
  */
@@ -36,6 +37,7 @@ public open class Parallax2D : Node2D() {
   /**
    * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the
    * camera.
+   *
    * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
    * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
    * further, and a value of `0` stops the objects completely.
@@ -52,6 +54,7 @@ public open class Parallax2D : Node2D() {
   /**
    * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be
    * overridden.
+   *
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    */
   @CoreTypeLocalCopy
@@ -173,6 +176,7 @@ public open class Parallax2D : Node2D() {
   /**
    * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the
    * camera.
+   *
    * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
    * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
    * further, and a value of `0` stops the objects completely.
@@ -201,6 +205,7 @@ public open class Parallax2D : Node2D() {
   /**
    * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be
    * overridden.
+   *
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    *
    * This is a helper function to make dealing with local copies easier.

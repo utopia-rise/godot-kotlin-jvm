@@ -25,7 +25,9 @@ import kotlin.Unit
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
  * more usage information.
+ *
  * The tweener will finish automatically if the target object is freed.
+ *
  * **Note:** [Tween.tweenProperty] is the only correct way to create [PropertyTweener]. Any
  * [PropertyTweener] created manually will not function correctly.
  */
@@ -37,15 +39,17 @@ public open class PropertyTweener : Tweener() {
 
   /**
    * Sets a custom initial value to the [PropertyTweener].
+   *
    * **Example:** Move the node from position `(100, 100)` to `(200, 100)`.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var tween = get_tree().create_tween()
    * tween.tween_property(self, "position", Vector2(200, 100), 1).from(Vector2(100, 100))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Tween tween = GetTree().CreateTween();
    * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).From(new
    * Vector2(100.0f, 100.0f));
@@ -62,13 +66,14 @@ public open class PropertyTweener : Tweener() {
    * [PropertyTweener]) as a starting point. This is equivalent of using [from] with the current value.
    * These two calls will do the same:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * tween.tween_property(self, "position", Vector2(200, 100), 1).from(position)
    * tween.tween_property(self, "position", Vector2(200, 100), 1).from_current()
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).From(Position);
    * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).FromCurrent();
    * ```
@@ -81,15 +86,17 @@ public open class PropertyTweener : Tweener() {
 
   /**
    * When called, the final value will be used as a relative value instead.
+   *
    * **Example:** Move the node by `100` pixels to the right.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var tween = get_tree().create_tween()
    * tween.tween_property(self, "position", Vector2.RIGHT * 100, 1).as_relative()
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Tween tween = GetTree().CreateTween();
    * tween.TweenProperty(this, "position", Vector2.Right * 100.0f, 1.0f).AsRelative();
    * ```
@@ -127,8 +134,8 @@ public open class PropertyTweener : Tweener() {
    * method is then used for interpolation between initial and final value. Note that the parameter
    * passed to the method is still subject to the tweener's own easing.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * @export var curve: Curve
    *
    * func _ready():
@@ -140,8 +147,9 @@ public open class PropertyTweener : Tweener() {
    * func tween_curve(v):
    *     return curve.sample_baked(v)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * [Export]
    * public Curve Curve { get; set; }
    *

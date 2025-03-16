@@ -128,6 +128,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
    * If `true` a simplified version of the path will be returned with less critical path points
    * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
    * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   *
    * Path simplification can be helpful to mitigate various path following issues that can arise
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".

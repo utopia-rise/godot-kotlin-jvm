@@ -34,6 +34,7 @@ import kotlin.jvm.JvmName
  * [VoxelGIData] contains baked voxel global illumination for use in a [VoxelGI] node. [VoxelGIData]
  * also offers several properties to adjust the final appearance of the global illumination. These
  * properties can be adjusted at run-time without having to bake the [VoxelGI] node again.
+ *
  * **Note:** To prevent text-based scene files (`.tscn`) from growing too much and becoming slow to
  * load and save, always save [VoxelGIData] to an external binary resource file (`.res`) instead of
  * embedding it within the scene. This can be done by clicking the dropdown arrow next to the
@@ -159,6 +160,7 @@ public open class VoxelGIData : Resource() {
   /**
    * Returns the bounds of the baked voxel data as an [AABB], which should match [VoxelGI.size]
    * after being baked (which only contains the size as a [Vector3]).
+   *
    * **Note:** If the size was modified without baking the VoxelGI data, then the value of
    * [getBounds] and [VoxelGI.size] will not match.
    */

@@ -36,6 +36,7 @@ import kotlin.jvm.JvmStatic
  * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the
  * browser's JavaScript context. This allows interaction with embedding pages or calling third-party
  * JavaScript APIs.
+ *
  * **Note:** This singleton can be disabled at build-time to improve security. By default, the
  * JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge
  * singleton enabled. See
@@ -59,6 +60,7 @@ public object JavaScriptBridge : Object() {
   /**
    * Execute the string ` as JavaScript code within the browser window. This is a call to the actual
    * global JavaScript function [code skip-lint]eval()`.
+   *
    * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution
    * context. Otherwise, it is evaluated in the execution context of a function within the engine's
    * runtime environment.
@@ -87,6 +89,7 @@ public object JavaScriptBridge : Object() {
    * Creates a reference to a [Callable] that can be used as a callback by JavaScript. The reference
    * must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for
    * usage.
+   *
    * **Note:** The callback function must take exactly one [Array] argument, which is going to be
    * the JavaScript
    * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments]arguments
@@ -138,10 +141,13 @@ public object JavaScriptBridge : Object() {
   /**
    * Prompts the user to download a file containing the specified [buffer]. The file will have the
    * given [name] and [mime] type.
+   *
    * **Note:** The browser may override the [url=https://en.wikipedia.org/wiki/Media_type]MIME
    * type[/url] provided based on the file [name]'s extension.
+   *
    * **Note:** Browsers might block the download if [downloadBuffer] is not being called from a user
    * interaction (e.g. button click).
+   *
    * **Note:** Browsers might ask the user for permission or block the download if multiple download
    * requests are made in a quick succession.
    */
@@ -158,6 +164,7 @@ public object JavaScriptBridge : Object() {
 
   /**
    * Returns `true` if a new version of the progressive web app is waiting to be activated.
+   *
    * **Note:** Only relevant when exported as a Progressive Web App.
    */
   @JvmStatic
@@ -170,7 +177,9 @@ public object JavaScriptBridge : Object() {
   /**
    * Performs the live update of the progressive web app. Forcing the new version to be installed
    * and the page to be reloaded.
+   *
    * **Note:** Your application will be **reloaded in all browser tabs**.
+   *
    * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
    * `true`.
    */
@@ -183,6 +192,7 @@ public object JavaScriptBridge : Object() {
 
   /**
    * Force synchronization of the persistent file system (when enabled).
+   *
    * **Note:** This is only useful for modules or extensions that can't use [FileAccess] to write
    * files.
    */

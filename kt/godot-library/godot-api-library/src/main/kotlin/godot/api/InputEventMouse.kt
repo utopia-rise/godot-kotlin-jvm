@@ -43,6 +43,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
    * local coordinate system of the [Control].
    */
@@ -58,6 +59,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * root [Viewport] using the coordinate system of the root [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
    * [Control] is in using the coordinate system of the [CanvasLayer].
    */
@@ -77,6 +79,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
    * local coordinate system of the [Control].
    *
@@ -104,6 +107,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * root [Viewport] using the coordinate system of the root [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
    * [Control] is in using the coordinate system of the [CanvasLayer].
    *

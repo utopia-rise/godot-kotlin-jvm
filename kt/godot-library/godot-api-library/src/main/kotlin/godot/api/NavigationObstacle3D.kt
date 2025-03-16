@@ -36,11 +36,13 @@ import kotlin.jvm.JvmName
  * can not cross or overlap and are restricted to a plane projection. This means the y-axis of the
  * vertices is ignored, instead the obstacle's global y-axis position is used for placement. The
  * projected shape is extruded by the obstacles height along the y-axis.
+ *
  * Obstacles can be included in the navigation mesh baking process when [affectNavigationMesh] is
  * enabled. They do not add walkable geometry, instead their role is to discard other source geometry
  * inside the shape. This can be used to prevent navigation mesh from appearing in unwanted places,
  * e.g. inside "solid" geometry or on top of it. If [carveNavigationMesh] is enabled the baked shape
  * will not be affected by offsets of the navigation mesh baking, e.g. the agent radius.
+ *
  * With [avoidanceEnabled] the obstacle can constrain the avoidance velocities of avoidance using
  * agents. If the obstacle's vertices are wound in clockwise order, avoidance agents will be pushed in
  * by the obstacle, otherwise, avoidance agents will be pushed out. Obstacles using vertices and
@@ -101,8 +103,10 @@ public open class NavigationObstacle3D : Node3D() {
   /**
    * If enabled the obstacle vertices will carve into the baked navigation mesh with the shape
    * unaffected by additional offsets (e.g. agent radius).
+   *
    * It will still be affected by further postprocessing of the baking process, like edge and
    * polygon simplification.
+   *
    * Requires [affectNavigationMesh] to be enabled.
    */
   public final inline var carveNavigationMesh: Boolean
@@ -152,6 +156,7 @@ public open class NavigationObstacle3D : Node3D() {
 
   /**
    * If `true` the obstacle affects 3D avoidance using agent's with obstacle [radius].
+   *
    * If `false` the obstacle affects 2D avoidance using agent's with both obstacle [vertices] as
    * well as obstacle [radius].
    */

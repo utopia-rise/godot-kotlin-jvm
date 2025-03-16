@@ -38,11 +38,12 @@ import kotlin.jvm.JvmOverloads
  * A control used to show a set of internal [TreeItem]s in a hierarchical structure. The tree items
  * can be selected, expanded and collapsed. The tree can have multiple columns with custom controls
  * like [LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
+ *
  * Trees are built via code, using [TreeItem] objects to create the structure. They have a single
  * root, but multiple roots can be simulated with [hideRoot]:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * func _ready():
  *     var tree = Tree.new()
  *     var root = tree.create_item()
@@ -52,8 +53,9 @@ import kotlin.jvm.JvmOverloads
  *     var subchild1 = tree.create_item(child1)
  *     subchild1.set_text(0, "Subchild1")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public override void _Ready()
  * {
  *     var tree = new Tree();
@@ -69,6 +71,7 @@ import kotlin.jvm.JvmOverloads
  * To iterate over all the [TreeItem] objects in a [Tree] object, use [TreeItem.getNext] and
  * [TreeItem.getFirstChild] after getting the root through [getRoot]. You can use [Object.free] on a
  * [TreeItem] to remove it from the [Tree].
+ *
  * **Incremental search:** Like [ItemList] and [PopupMenu], [Tree] supports searching within the
  * list while the control is focused. Press a key that matches the first letter of an item's name to
  * select the first item starting with the given letter. After that point, there are two ways to
@@ -255,6 +258,7 @@ public open class Tree : Control() {
   /**
    * The drop mode as an OR combination of flags. See [DropModeFlags] constants. Once dropping is
    * done, reverts to [DROP_MODE_DISABLED]. Setting this during [Control.CanDropData] is recommended.
+   *
    * This controls the drop sections, i.e. the decision and drawing of possible drop locations based
    * on the mouse position.
    */
@@ -326,8 +330,10 @@ public open class Tree : Control() {
   /**
    * Creates an item in the tree and adds it as a child of [parent], which can be either a valid
    * [TreeItem] or `null`.
+   *
    * If [parent] is `null`, the root item will be the parent, or the new item will be the root
    * itself if the tree is empty.
+   *
    * The new item will be the [index]-th child of parent, or it will be the last child if there are
    * not enough siblings.
    */
@@ -432,6 +438,7 @@ public open class Tree : Control() {
 
   /**
    * Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.
+   *
    * If [from] is `null`, this returns the first selected item.
    */
   public final fun getNextSelected(from: TreeItem?): TreeItem? {
@@ -442,9 +449,11 @@ public open class Tree : Control() {
 
   /**
    * Returns the currently focused item, or `null` if no item is focused.
+   *
    * In [SELECT_ROW] and [SELECT_SINGLE] modes, the focused item is same as the selected item. In
    * [SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily
    * selected.
+   *
    * To get the currently selected item(s), use [getNextSelected].
    */
   public final fun getSelected(): TreeItem? {
@@ -463,9 +472,11 @@ public open class Tree : Control() {
 
   /**
    * Returns the currently focused column, or -1 if no column is focused.
+   *
    * In [SELECT_SINGLE] mode, the focused column is the selected column. In [SELECT_ROW] mode, the
    * focused column is always 0 if any item is selected. In [SELECT_MULTI] mode, the focused column is
    * the column under the focus cursor, and there are not necessarily any column selected.
+   *
    * To tell whether a column of an item is selected, use [TreeItem.isSelected].
    */
   public final fun getSelectedColumn(): Int {
@@ -518,16 +529,17 @@ public open class Tree : Control() {
    * Returns the currently edited item. Can be used with [signal item_edited] to get the item that
    * was modified.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     $Tree.item_edited.connect(on_Tree_item_edited)
    *
    * func on_Tree_item_edited():
    *     print($Tree.get_edited()) # This item just got edited (e.g. checked).
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     GetNode<Tree>("Tree").ItemEdited += OnTreeItemEdited;
@@ -556,7 +568,9 @@ public open class Tree : Control() {
 
   /**
    * Edits the selected tree item as if it was clicked.
+   *
    * Either the item must be set editable with [TreeItem.setEditable] or [forceEdit] must be `true`.
+   *
    * Returns `true` if the item could be edited. Fails if no item is selected.
    */
   @JvmOverloads
@@ -612,8 +626,10 @@ public open class Tree : Control() {
 
   /**
    * Returns the drop section at [position], or -100 if no item is there.
+   *
    * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop
    * sections, respectively. See [DropModeFlags] for a description of each drop section.
+   *
    * To get the item which the returned drop section is relative to, use [getItemAtPosition].
    */
   public final fun getDropSectionAtPosition(position: Vector2): Int {
@@ -633,8 +649,10 @@ public open class Tree : Control() {
 
   /**
    * Makes the currently focused cell visible.
+   *
    * This will scroll the tree if necessary. In [SELECT_ROW] mode, this will not do horizontal
    * scrolling, as all the cells in the selected row is focused logically.
+   *
    * **Note:** Despite the name of this method, the focus cursor itself is only visible in
    * [SELECT_MULTI] mode.
    */
@@ -847,6 +865,7 @@ public open class Tree : Control() {
     /**
      * Allows selection of a single cell at a time. From the perspective of items, only a single
      * item is allowed to be selected. And there is only one column selected in the selected item.
+     *
      * The focus cursor is always hidden in this mode, but it is positioned at the current
      * selection, making the currently selected item the currently focused item.
      */
@@ -854,6 +873,7 @@ public open class Tree : Control() {
     /**
      * Allows selection of a single row at a time. From the perspective of items, only a single
      * items is allowed to be selected. And all the columns are selected in the selected item.
+     *
      * The focus cursor is always hidden in this mode, but it is positioned at the first column of
      * the current selection, making the currently selected item the currently focused item.
      */
@@ -862,6 +882,7 @@ public open class Tree : Control() {
      * Allows selection of multiple cells at the same time. From the perspective of items, multiple
      * items are allowed to be selected. And there can be multiple columns selected in each selected
      * item.
+     *
      * The focus cursor is visible in this mode, the item or column under the cursor is not
      * necessarily selected.
      */
@@ -884,11 +905,13 @@ public open class Tree : Control() {
     /**
      * Disables all drop sections, but still allows to detect the "on item" drop section by
      * [getDropSectionAtPosition].
+     *
      * **Note:** This is the default flag, it has no effect when combined with other flags.
      */
     DISABLED(0),
     /**
      * Enables the "on item" drop section. This drop section covers the entire item.
+     *
      * When combined with [DROP_MODE_INBETWEEN], this drop section halves the height and stays
      * centered vertically.
      */
@@ -896,6 +919,7 @@ public open class Tree : Control() {
     /**
      * Enables "above item" and "below item" drop sections. The "above item" drop section covers the
      * top half of the item, and the "below item" drop section covers the bottom half.
+     *
      * When combined with [DROP_MODE_ON_ITEM], these drop sections halves the height and stays on
      * top / bottom accordingly.
      */

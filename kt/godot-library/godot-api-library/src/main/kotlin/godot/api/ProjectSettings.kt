@@ -38,11 +38,14 @@ import kotlin.jvm.JvmStatic
  * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or
  * [hasSetting] to access them. Variables stored in `project.godot` are also loaded into
  * [ProjectSettings], making this object very useful for reading custom game configuration options.
+ *
  * When naming a Project Settings property, use the full path to the setting including the category.
  * For example, `"application/config/name"` for the project name. Category and property names can be
  * viewed in the Project Settings dialog.
+ *
  * **Feature tags:** Project settings can be overridden for specific platforms and configurations
  * (debug, release, ...) using [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url].
+ *
  * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in
  * the project's root directory. This can also be used in exported projects by placing this file in the
  * same directory as the project binary. Overriding will still take the base project settings'
@@ -75,12 +78,13 @@ public object ProjectSettings : Object() {
   /**
    * Sets the value of a setting.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * ProjectSettings.set_setting("application/config/name", "Example")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * ProjectSettings.SetSetting("application/config/name", "Example");
    * ```
    *
@@ -98,14 +102,15 @@ public object ProjectSettings : Object() {
    * [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is
    * returned.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * print(ProjectSettings.get_setting("application/config/name"))
    * print(ProjectSettings.get_setting("application/config/custom_description", "No description
    * specified."))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GD.Print(ProjectSettings.GetSetting("application/config/name"));
    * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description
    * specified."));
@@ -124,16 +129,18 @@ public object ProjectSettings : Object() {
 
   /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
+   *
    * **Example:** If the setting override `"application/config/name.windows"` exists, and the
    * following code is executed on a *Windows* operating system, the overridden setting is printed
    * instead:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * print(ProjectSettings.get_setting_with_override("application/config/name"))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GD.Print(ProjectSettings.GetSettingWithOverride("application/config/name"));
    * ```
    */
@@ -147,11 +154,17 @@ public object ProjectSettings : Object() {
   /**
    * Returns an [Array] of registered global classes. Each global class is represented as a
    * [Dictionary] that contains the following entries:
+   *
    * - `base` is a name of the base class;
+   *
    * - `class` is a name of the registered global class;
+   *
    * - `icon` is a path to a custom icon of the global class, if it has any;
+   *
    * - `language` is a name of a programming language in which the global class is written;
+   *
    * - `path` is a path to a file containing the global class.
+   *
    * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they
    * start with `res://`.
    */
@@ -214,12 +227,15 @@ public object ProjectSettings : Object() {
 
   /**
    * Adds a custom property info to a property. The dictionary must contain:
+   *
    * - `"name"`: [String] (the property's name)
+   *
    * - `"type"`: [int] (see [Variant.Type])
+   *
    * - optionally `"hint"`: [int] (see [PropertyHint]) and `"hint_string"`: [String]
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * ProjectSettings.set("category/property_name", 0)
    *
    * var property_info = {
@@ -231,8 +247,9 @@ public object ProjectSettings : Object() {
    *
    * ProjectSettings.add_property_info(property_info)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * ProjectSettings.Singleton.Set("category/property_name", 0);
    *
    * var propertyInfo = new Godot.Collections.Dictionary
@@ -254,6 +271,7 @@ public object ProjectSettings : Object() {
 
   /**
    * Sets whether a setting requires restarting the editor to properly take effect.
+   *
    * **Note:** This is just a hint to display to the user that the editor must be restarted for
    * changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when
    * changed.
@@ -289,9 +307,11 @@ public object ProjectSettings : Object() {
    * `res://` or `user://`). The returned path will vary depending on the operating system and user
    * preferences. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] to
    * see what those paths convert to. See also [localizePath].
+   *
    * **Note:** [globalizePath] with `res://` will not work in an exported project. Instead, prepend
    * the executable's base directory to the path when running from an exported project:
-   * [codeblock]
+   *
+   * ```
    * var path = ""
    * if OS.has_feature("editor"):
    *     # Running from an editor binary.
@@ -303,7 +323,7 @@ public object ProjectSettings : Object() {
    *     # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
    *     # but is close enough in spirit.
    *     path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun globalizePath(path: String): String {
@@ -314,6 +334,7 @@ public object ProjectSettings : Object() {
 
   /**
    * Saves the configuration to the `project.godot` file.
+   *
    * **Note:** This method is intended to be used by editor plugins, as modified [ProjectSettings]
    * can't be loaded back in the running app. If you want to change project settings in exported
    * projects, use [saveCustom] to save `override.cfg` file.
@@ -328,11 +349,14 @@ public object ProjectSettings : Object() {
   /**
    * Loads the contents of the .pck or .zip file specified by [pack] into the resource filesystem
    * (`res://`). Returns `true` on success.
+   *
    * **Note:** If a file from [pack] shares the same path as a file already in the resource
    * filesystem, any attempts to load that file will use the file from [pack] unless [replaceFiles] is
    * set to `false`.
+   *
    * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the
    * start of the resource pack. This is only supported for .pck files.
+   *
    * **Note:** [DirAccess] will not show changes made to the contents of `res://` after calling this
    * function.
    */
@@ -363,16 +387,18 @@ public object ProjectSettings : Object() {
 
   /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
+   *
    * **Example:** If the setting override `"application/config/name.windows"` exists, and the
    * following code is executed on a *Windows* operating system, the overridden setting is printed
    * instead:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * print(ProjectSettings.get_setting_with_override("application/config/name"))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GD.Print(ProjectSettings.GetSettingWithOverride("application/config/name"));
    * ```
    */

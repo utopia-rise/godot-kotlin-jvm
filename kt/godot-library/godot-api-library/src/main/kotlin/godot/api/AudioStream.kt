@@ -74,6 +74,7 @@ public open class AudioStream : Resource() {
   /**
    * Overridable method. Should return the tempo of this audio stream, in beats per minute (BPM).
    * Used by the engine to determine the position of every beat.
+   *
    * Ideally, the returned value should be based off the stream's sample rate
    * ([AudioStreamWAV.mixRate], for example).
    */
@@ -84,6 +85,7 @@ public open class AudioStream : Resource() {
   /**
    * Overridable method. Should return the total number of beats of this audio stream. Used by the
    * engine to determine the position of every beat.
+   *
    * Ideally, the returned value should be based off the stream's sample rate
    * ([AudioStreamWAV.mixRate], for example).
    */

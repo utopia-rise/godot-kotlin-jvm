@@ -62,6 +62,7 @@ public object InputMap : Object() {
 
   /**
    * Adds an empty action to the [InputMap] with a configurable [deadzone].
+   *
    * An [InputEvent] can then be added to this action with [actionAddEvent].
    */
   @JvmOverloads
@@ -138,6 +139,7 @@ public object InputMap : Object() {
 
   /**
    * Returns an array of [InputEvent]s associated with a given action.
+   *
    * **Note:** When used in the editor (e.g. a tool script or [EditorPlugin]), this method will
    * return events for the editor action. If you want to access your project's input binds from the
    * editor, read the `input&#47;*` settings from [ProjectSettings].
@@ -153,6 +155,7 @@ public object InputMap : Object() {
    * Returns `true` if the given event is part of an existing action. This method ignores keyboard
    * modifiers if the given [InputEvent] is not pressed (for proper release detection). See
    * [actionHasEvent] if you don't want this behavior.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
@@ -185,6 +188,7 @@ public object InputMap : Object() {
 
   /**
    * Adds an empty action to the [InputMap] with a configurable [deadzone].
+   *
    * An [InputEvent] can then be added to this action with [actionAddEvent].
    */
   @JvmOverloads
@@ -242,6 +246,7 @@ public object InputMap : Object() {
 
   /**
    * Returns an array of [InputEvent]s associated with a given action.
+   *
    * **Note:** When used in the editor (e.g. a tool script or [EditorPlugin]), this method will
    * return events for the editor action. If you want to access your project's input binds from the
    * editor, read the `input&#47;*` settings from [ProjectSettings].
@@ -254,6 +259,7 @@ public object InputMap : Object() {
    * Returns `true` if the given event is part of an existing action. This method ignores keyboard
    * modifiers if the given [InputEvent] is not pressed (for proper release detection). See
    * [actionHasEvent] if you don't want this behavior.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */

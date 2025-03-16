@@ -75,7 +75,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Starting position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
    */
@@ -90,7 +92,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Ending position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
    */
@@ -133,7 +137,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Starting position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
    *
@@ -160,7 +166,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Ending position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
    *

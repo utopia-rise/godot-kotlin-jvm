@@ -18,6 +18,7 @@ public enum class MIDIMessage(
   NONE(0),
   /**
    * MIDI message sent when a note is released.
+   *
    * **Note:** Not all MIDI devices send this message; some may send [MIDI_MESSAGE_NOTE_ON] with
    * [InputEventMIDI.velocity] set to `0`.
    */
@@ -57,22 +58,26 @@ public enum class MIDIMessage(
   /**
    * MIDI system exclusive (SysEx) message. This type of message is not standardized and it's highly
    * dependent on the MIDI device sending it.
+   *
    * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   SYSTEM_EXCLUSIVE(240),
   /**
    * MIDI message sent every quarter frame to keep connected MIDI devices synchronized. Related to
    * [MIDI_MESSAGE_TIMING_CLOCK].
+   *
    * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   QUARTER_FRAME(241),
   /**
    * MIDI message sent to jump onto a new position in the current sequence or song.
+   *
    * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   SONG_POSITION_POINTER(242),
   /**
    * MIDI message sent to select a sequence or song to play.
+   *
    * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   SONG_SELECT(243),

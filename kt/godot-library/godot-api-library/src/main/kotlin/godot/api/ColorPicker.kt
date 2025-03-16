@@ -30,6 +30,7 @@ import kotlin.jvm.JvmName
 /**
  * A widget that provides an interface for selecting or modifying a color. It can optionally provide
  * functionalities like a color sampler (eyedropper), color modes, and presets.
+ *
  * **Note:** This control is the color picker widget itself. You can use a [ColorPickerButton]
  * instead if you need a button that brings up a [ColorPicker] in a popup.
  */
@@ -315,6 +316,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Adds the given color to a list of color presets. The presets are displayed in the color picker
    * and the user will be able to select them.
+   *
    * **Note:** The presets list is only for *this* color picker.
    */
   public final fun addPreset(color: Color): Unit {
@@ -343,6 +345,7 @@ public open class ColorPicker : VBoxContainer() {
    * Adds the given color to a list of color recent presets so that it can be picked later. Recent
    * presets are the colors that were picked recently, a new preset is automatically created and added
    * to recent presets when you pick a new color.
+   *
    * **Note:** The recent presets list is only for *this* color picker.
    */
   public final fun addRecentPreset(color: Color): Unit {
@@ -396,9 +399,11 @@ public open class ColorPicker : VBoxContainer() {
     MODE_RAW(2),
     /**
      * Allows editing the color with Hue/Saturation/Lightness sliders.
+     *
      * OKHSL is a new color space similar to HSL but that better match perception by leveraging the
      * Oklab color space which is designed to be simple to use, while doing a good job at predicting
      * perceived lightness, chroma and hue.
+     *
      * [url=https://bottosson.github.io/posts/colorpicker/]Okhsv and Okhsl color spaces[/url]
      */
     MODE_OKHSL(3),

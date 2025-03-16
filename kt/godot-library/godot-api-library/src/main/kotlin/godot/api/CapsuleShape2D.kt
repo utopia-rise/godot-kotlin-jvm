@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 /**
  * A 2D capsule shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
+ *
  * **Performance:** [CapsuleShape2D] is fast to check collisions against, but it is slower than
  * [RectangleShape2D] and [CircleShape2D].
  */

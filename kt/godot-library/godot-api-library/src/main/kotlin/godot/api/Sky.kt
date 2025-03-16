@@ -53,7 +53,9 @@ public open class Sky : Resource() {
   /**
    * The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting
    * from the [Sky] will be.
+   *
    * See [RadianceSize] constants for values.
+   *
    * **Note:** Some hardware will have trouble with higher radiance sizes, especially
    * [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
@@ -179,6 +181,7 @@ public open class Sky : Resource() {
      * lower quality, but substantially faster run times. If you need better quality, but still need to
      * update the sky every frame, consider turning on
      * [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
+     *
      * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must
      * be set to [RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size
      * is ignored.

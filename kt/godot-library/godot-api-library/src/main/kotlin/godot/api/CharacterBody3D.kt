@@ -37,6 +37,7 @@ import kotlin.jvm.JvmOverloads
  * [PhysicsBody3D.moveAndCollide]. This makes it useful for highly configurable physics bodies that
  * must move in specific ways and collide with the world, as is often the case with user-controlled
  * characters.
+ *
  * For game objects that don't require complex movement or collision detection, such as moving
  * platforms, [AnimatableBody3D] is simpler to configure.
  */
@@ -122,6 +123,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * If `true`, the body will not slide on slopes when calling [moveAndSlide] when the body is
    * standing still.
+   *
    * If `false`, the body will slide on floor's slopes when [velocity] applies a downward force.
    */
   public final inline var floorStopOnSlope: Boolean
@@ -135,6 +137,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * If `false` (by default), the body will move faster on downward slopes and slower on upward
    * slopes.
+   *
    * If `true`, the body will always move at the same speed on the ground no matter the slope. Note
    * that you need to use [floorSnapLength] to stick along a downward slope at constant speed.
    */
@@ -174,6 +177,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached
    * to slopes when calling [moveAndSlide]. The snapping vector is determined by the given distance
    * along the opposite direction of the [upDirection].
+   *
    * As long as the snapping vector is in contact with the ground and the body moves against
    * [upDirection], the body will remain attached to the surface. Snapping is not applied if the body
    * moves along [upDirection], meaning it contains vertical rising velocity, so it will be able to
@@ -228,10 +232,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Extra margin used for collision recovery when calling [moveAndSlide].
+   *
    * If the body is at least this close to another body, it will consider them to be colliding and
    * will be pushed away before performing the actual motion.
+   *
    * A higher value means it's more flexible for detecting collision, which helps with consistently
    * detecting walls and floors.
+   *
    * A lower value forces the collision algorithm to use more exact detection, so it can be used in
    * cases that specifically require precision, e.g at very low scale to avoid visible jittering, or
    * for stability with a stack of character bodies.
@@ -305,12 +312,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * other body rather than stop immediately. If the other body is a [CharacterBody3D] or
    * [RigidBody3D], it will also be affected by the motion of the other body. You can use this to make
    * moving and rotating platforms, or to make nodes push other nodes.
+   *
    * Modifies [velocity] if a slide collision occurred. To get the latest collision call
    * [getLastSlideCollision], for more detailed information about collisions that occurred, use
    * [getSlideCollision].
+   *
    * When the body touches a moving platform, the platform's velocity is automatically added to the
    * body motion. If a collision occurs due to the platform's motion, it will always be first in the
    * slide collisions.
+   *
    * Returns `true` if the body collided, otherwise, returns `false`.
    */
   public final fun moveAndSlide(): Boolean {
@@ -562,6 +572,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Returns the collision normal of the floor at the last collision point. Only valid after calling
    * [moveAndSlide] and when [isOnFloor] returns `true`.
+   *
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getFloorNormal(): Vector3 {
@@ -573,6 +584,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Returns the collision normal of the wall at the last collision point. Only valid after calling
    * [moveAndSlide] and when [isOnWall] returns `true`.
+   *
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getWallNormal(): Vector3 {

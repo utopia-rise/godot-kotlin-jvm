@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
  * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],
  * use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's
  * inspector.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
@@ -64,6 +65,7 @@ public open class MenuButton : Button() {
 
   /**
    * Returns the [PopupMenu] contained in this button.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */

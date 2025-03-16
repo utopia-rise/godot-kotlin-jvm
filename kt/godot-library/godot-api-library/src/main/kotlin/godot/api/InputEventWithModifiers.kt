@@ -25,6 +25,7 @@ import kotlin.jvm.JvmName
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
  * information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See
  * [Node.Input].
+ *
  * **Note:** Modifier keys are considered modifiers only when used in combination with another key.
  * As a result, their corresponding member variables, such as [ctrlPressed], will return `false` if the
  * key is pressed on its own.
@@ -105,6 +106,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
 
   /**
    * On macOS, returns `true` if [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) is pressed.
+   *
    * On other platforms, returns `true` if [kbd]Ctrl[/kbd] is pressed.
    */
   public final fun isCommandOrControlPressed(): Boolean {

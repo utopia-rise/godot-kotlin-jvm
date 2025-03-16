@@ -31,8 +31,11 @@ import kotlin.jvm.JvmName
 public open class ConeTwistJoint3D : Joint3D() {
   /**
    * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
+   *
    * The swing span defines, how much rotation will not get corrected along the swing axis.
+   *
    * Could be defined as looseness in the [ConeTwistJoint3D].
+   *
    * If below 0.05, this behavior is locked.
    */
   public final inline var swingSpan: Float
@@ -45,6 +48,7 @@ public open class ConeTwistJoint3D : Joint3D() {
 
   /**
    * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
+   *
    * Twist is locked if below 0.05.
    */
   public final inline var twistSpan: Float
@@ -57,6 +61,7 @@ public open class ConeTwistJoint3D : Joint3D() {
 
   /**
    * The speed with which the swing or twist will take place.
+   *
    * The higher, the faster.
    */
   public final inline var bias: Float
@@ -116,18 +121,23 @@ public open class ConeTwistJoint3D : Joint3D() {
   ) {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
+     *
      * The swing span defines, how much rotation will not get corrected along the swing axis.
+     *
      * Could be defined as looseness in the [ConeTwistJoint3D].
+     *
      * If below 0.05, this behavior is locked.
      */
     SWING_SPAN(0),
     /**
      * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
+     *
      * Twist is locked if below 0.05.
      */
     TWIST_SPAN(1),
     /**
      * The speed with which the swing or twist will take place.
+     *
      * The higher, the faster.
      */
     BIAS(2),

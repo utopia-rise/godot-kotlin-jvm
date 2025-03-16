@@ -110,6 +110,7 @@ public open class GLTFPhysicsBody : Resource() {
    * The inertia strength of the physics body, in kilogram meter squared (kg⋅m²). This represents
    * the inertia around the principle axes, the diagonal of the inertia tensor matrix. This is only
    * used when the body type is "rigid" or "vehicle".
+   *
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
    */
@@ -139,6 +140,7 @@ public open class GLTFPhysicsBody : Resource() {
   /**
    * The inertia tensor of the physics body, in kilogram meter squared (kg⋅m²). This is only used
    * when the body type is "rigid" or "vehicle".
+   *
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
    */
@@ -235,6 +237,7 @@ public open class GLTFPhysicsBody : Resource() {
    * The inertia strength of the physics body, in kilogram meter squared (kg⋅m²). This represents
    * the inertia around the principle axes, the diagonal of the inertia tensor matrix. This is only
    * used when the body type is "rigid" or "vehicle".
+   *
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
    *
@@ -290,6 +293,7 @@ public open class GLTFPhysicsBody : Resource() {
   /**
    * The inertia tensor of the physics body, in kilogram meter squared (kg⋅m²). This is only used
    * when the body type is "rigid" or "vehicle".
+   *
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
    *

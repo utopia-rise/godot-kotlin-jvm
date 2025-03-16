@@ -25,13 +25,15 @@ import kotlin.jvm.JvmName
 /**
  * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine].
  * Animations can be connected to the inputs and transition times can be specified.
+ *
  * After setting the request and changing the animation playback, the transition node automatically
  * clears the request on the next process frame by setting its `transition_request` value to empty.
+ *
  * **Note:** When using a cross-fade, `current_state` and `current_index` change to the next state
  * immediately after the cross-fade begins.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # Play child animation connected to "state_2" port.
  * animation_tree.set("parameters/Transition/transition_request", "state_2")
  * # Alternative syntax (same result as above).
@@ -47,8 +49,9 @@ import kotlin.jvm.JvmName
  * # Alternative syntax (same result as above).
  * animation_tree["parameters/Transition/current_index"]
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // Play child animation connected to "state_2" port.
  * animationTree.Set("parameters/Transition/transition_request", "state_2");
  *
@@ -63,6 +66,7 @@ import kotlin.jvm.JvmName
 public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Cross-fading time (in seconds) between each animation connected to the inputs.
+   *
    * **Note:** [AnimationNodeTransition] transitions the current state immediately after the start
    * of the fading. The precise remaining time can only be inferred from the main animation. When
    * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled

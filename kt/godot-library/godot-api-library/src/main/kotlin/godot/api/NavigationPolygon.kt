@@ -41,11 +41,12 @@ import kotlin.jvm.JvmName
 /**
  * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],
  * or by adding vertices and convex polygon indices arrays manually.
+ *
  * To bake a navigation mesh at least one outline needs to be added that defines the outer bounds of
  * the baked area.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
  * var bounding_outline = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
  * Vector2(50, 0)])
@@ -54,8 +55,9 @@ import kotlin.jvm.JvmName
  * NavigationMeshSourceGeometryData2D.new());
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var newNavigationMesh = new NavigationPolygon();
  * Vector2[] boundingOutline = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
  * Vector2(50, 0)];
@@ -67,8 +69,8 @@ import kotlin.jvm.JvmName
  *
  * Adding vertices and polygon indices manually.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
  * var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
  * Vector2(50, 0)])
@@ -77,8 +79,9 @@ import kotlin.jvm.JvmName
  * new_navigation_mesh.add_polygon(new_polygon_indices)
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var newNavigationMesh = new NavigationPolygon();
  * Vector2[] newVertices = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
  * Vector2(50, 0)];
@@ -124,6 +127,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
+   *
    * Only used when [parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
    * [PARSED_GEOMETRY_BOTH].
    */
@@ -148,6 +152,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The group name of nodes that should be parsed for baking source geometry.
+   *
    * Only used when [sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
@@ -174,6 +179,7 @@ public open class NavigationPolygon : Resource() {
   /**
    * The size of the non-navigable border around the bake bounding area defined by the [bakingRect]
    * [Rect2].
+   *
    * In conjunction with the [bakingRect] the border size can be used to bake tile aligned
    * navigation meshes without the tile edges being shrunk by [agentRadius].
    */
@@ -583,6 +589,7 @@ public open class NavigationPolygon : Resource() {
     /**
      * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
      * [MultiMeshInstance2D], and [TileMap] nodes.
+     *
      * Meshes are only parsed when they use a 2D vertices surface format.
      */
     MESH_INSTANCES(0),

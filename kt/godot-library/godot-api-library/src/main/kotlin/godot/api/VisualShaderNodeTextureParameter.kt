@@ -228,6 +228,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look pixelated from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
@@ -238,6 +239,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look smooth from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
@@ -251,6 +253,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * quality on surfaces that are almost in line with the camera, but is slightly slower. The
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     *
      * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_NEAREST_MIPMAP] is
      * usually more appropriate in this case.
      */
@@ -263,6 +266,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * quality on surfaces that are almost in line with the camera, but is slightly slower. The
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     *
      * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_LINEAR_MIPMAP] is
      * usually more appropriate in this case.
      */

@@ -366,6 +366,7 @@ public open class TileData : Object() {
   /**
    * Returns the occluder polygon at index [polygonIndex] from the TileSet occlusion layer with
    * index [layerId].
+   *
    * The [flipH], [flipV], and [transpose] parameters can be `true` to transform the returned
    * polygon.
    */
@@ -392,6 +393,7 @@ public open class TileData : Object() {
 
   /**
    * Returns the occluder polygon of the tile for the TileSet occlusion layer with index [layerId].
+   *
    * [flipH], [flipV], and [transpose] allow transforming the returned polygon.
    */
   @JvmOverloads
@@ -606,6 +608,7 @@ public open class TileData : Object() {
   /**
    * Returns the navigation polygon of the tile for the TileSet navigation layer with index
    * [layerId].
+   *
    * [flipH], [flipV], and [transpose] allow transforming the returned polygon.
    */
   @JvmOverloads
