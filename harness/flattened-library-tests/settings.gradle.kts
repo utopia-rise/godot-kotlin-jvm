@@ -19,7 +19,12 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-kotlin-symbol-processor")).using(project(":godot-kotlin-symbol-processor"))
         substitute(module("com.utopia-rise:godot-entry-generator")).using(project(":godot-entry-generator"))
         substitute(module("com.utopia-rise:godot-build-props")).using(project(":godot-build-props"))
-        substitute(module("com.utopia-rise:common")).using(project(":common"))
+    }
+}
+
+includeBuild("../../kt/common") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:common")).using(project(":"))
     }
 }
 
