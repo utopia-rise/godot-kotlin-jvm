@@ -122,6 +122,16 @@ jobs:
         run: |
           modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-coroutine-library:publish -Prelease
 
+      - name: Publish godot-library debug
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-library:publish -Pdebug
+
+      - name: Publish godot-library release
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-library:publish -Prelease
+
       - name: Publish godot-plugins-common
         shell: sh
         run: |
