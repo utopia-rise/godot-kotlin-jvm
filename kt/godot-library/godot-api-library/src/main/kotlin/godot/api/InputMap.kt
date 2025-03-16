@@ -35,7 +35,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(18)
+    getSingleton(11)
   }
 
   /**

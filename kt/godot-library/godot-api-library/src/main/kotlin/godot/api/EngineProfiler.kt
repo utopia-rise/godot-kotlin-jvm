@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(235, scriptIndex)
+    createNativeObject(205, scriptIndex)
   }
 
   /**

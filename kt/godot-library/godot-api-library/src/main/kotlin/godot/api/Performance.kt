@@ -47,7 +47,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Performance : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(0)
+    getSingleton(20)
   }
 
   /**

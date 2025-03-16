@@ -31,6 +31,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a light as defined by the `KHR_lights_punctual` glTF extension.
@@ -118,7 +119,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(260, scriptIndex)
+    createNativeObject(231, scriptIndex)
   }
 
   /**
@@ -244,6 +245,7 @@ public open class GLTFLight : Resource() {
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
      */
+    @JvmStatic
     public final fun fromNode(lightNode: Light3D?): GLTFLight? {
       TransferContext.writeArguments(OBJECT to lightNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
@@ -253,6 +255,7 @@ public open class GLTFLight : Resource() {
     /**
      * Creates a new GLTFLight instance by parsing the given [Dictionary].
      */
+    @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFLight? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
@@ -261,14 +264,8 @@ public open class GLTFLight : Resource() {
   }
 
   public object MethodBindings {
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
-
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary", 3102165223)
@@ -314,5 +311,11 @@ public open class GLTFLight : Resource() {
 
     internal val setAdditionalDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data", 3776071444)
+
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
   }
 }

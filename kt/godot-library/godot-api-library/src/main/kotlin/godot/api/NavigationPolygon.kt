@@ -220,7 +220,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(407, scriptIndex)
+    createNativeObject(388, scriptIndex)
   }
 
   /**

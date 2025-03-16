@@ -36,7 +36,7 @@ public open class CenterContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(178, scriptIndex)
+    createNativeObject(144, scriptIndex)
   }
 
   public final fun setUseTopLeft(enable: Boolean): Unit {

@@ -296,7 +296,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(170, scriptIndex)
+    createNativeObject(136, scriptIndex)
   }
 
   /**
@@ -930,7 +930,7 @@ public open class CanvasItem internal constructor() : Node() {
     width: Float = -1.0f,
     fontSize: Int = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
@@ -953,8 +953,8 @@ public open class CanvasItem internal constructor() : Node() {
     fontSize: Int = 16,
     maxLines: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
@@ -977,7 +977,7 @@ public open class CanvasItem internal constructor() : Node() {
     fontSize: Int = 16,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
@@ -1001,8 +1001,8 @@ public open class CanvasItem internal constructor() : Node() {
     maxLines: Int = -1,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {

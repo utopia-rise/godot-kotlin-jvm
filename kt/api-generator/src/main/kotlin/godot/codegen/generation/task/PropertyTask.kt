@@ -1,0 +1,19 @@
+package godot.codegen.generation.task
+
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.PropertySpec
+import godot.codegen.models.enriched.EnrichedProperty
+
+class PropertyTask(
+    val property: EnrichedProperty,
+) : GenerationTask<PropertySpec.Builder, PropertySpec>() {
+
+    override val generator = run {
+        // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.
+        val argumentIndex = if (property.isIndexed) 1 else 0
+        val propertyTypeName = (property.getterMethod ?: property.setterMethod!!.arguments[argumentIndex]).getCastedType().typeName
+        PropertySpec.builder(property.name, propertyTypeName).addModifiers(KModifier.FINAL)
+    }
+
+    override fun executeSingle() = generator.build()
+}

@@ -101,7 +101,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(160, scriptIndex)
+    createNativeObject(125, scriptIndex)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

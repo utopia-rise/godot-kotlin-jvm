@@ -3,8 +3,8 @@ package godot.codegen.models.enriched
 import godot.codegen.models.NativeStructure
 import godot.codegen.traits.TypedTrait
 
-class EnrichedNativeStructure(val internal: NativeStructure) : TypedTrait {
-    override val type = internal.name
+class EnrichedNativeStructure(model: NativeStructure) : TypedTrait {
+    override val type = model.name
 }
 
 fun List<NativeStructure>.toEnriched() = map { EnrichedNativeStructure(it) }

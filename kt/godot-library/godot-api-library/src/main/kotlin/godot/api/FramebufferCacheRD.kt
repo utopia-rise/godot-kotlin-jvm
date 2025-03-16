@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Framebuffer cache manager for Rendering Device based renderers. Provides a way to create a
@@ -28,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(250, scriptIndex)
+    createNativeObject(220, scriptIndex)
   }
 
   public companion object {
@@ -38,6 +39,7 @@ public open class FramebufferCacheRD : Object() {
      * textures are allocated depending on their usage flags. [views] defines the number of views used
      * when rendering.
      */
+    @JvmStatic
     public final fun getCacheMultipass(
       textures: VariantArray<RID>,
       passes: VariantArray<RDFramebufferPass>,
