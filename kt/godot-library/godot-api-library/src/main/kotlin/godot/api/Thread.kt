@@ -50,8 +50,7 @@ public open class Thread : RefCounted() {
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
   @JvmOverloads
-  public final fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
-      Error {
+  public final fun start(callable: Callable, priority: Priority = Thread.Priority.NORMAL): Error {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -109,15 +108,15 @@ public open class Thread : RefCounted() {
     /**
      * A thread running with lower priority than normally.
      */
-    PRIORITY_LOW(0),
+    LOW(0),
     /**
      * A thread with a standard priority.
      */
-    PRIORITY_NORMAL(1),
+    NORMAL(1),
     /**
      * A thread running with higher priority than normally.
      */
-    PRIORITY_HIGH(2),
+    HIGH(2),
     ;
 
     public val id: Long

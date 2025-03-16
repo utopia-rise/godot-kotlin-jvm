@@ -48,20 +48,64 @@ fun String.convertToSnakeCase(): String =
         else accumulator.append(character)
     }.toString()
 
-fun String.removeSuffixWords(wordWithDashes: String): String {
+fun String.toUpperSnakeCase(): String {
+    if (this.isEmpty()) return this
+    val originalString = this
+
+    val result = buildString {
+        for (i in originalString.indices) {
+            val currentChar = originalString[i]
+            if (i > 0 && currentChar.isUpperCase()) {
+                val prevChar = originalString[i - 1]
+                // Insert underscore if the previous character is lowercase
+                // OR if the previous character is uppercase but the next character exists and is lowercase
+                if (prevChar.isLowerCase() || (prevChar.isUpperCase() && i < originalString.lastIndex && originalString[i + 1].isLowerCase())) {
+                    append('_')
+                }
+            }
+            append(currentChar)
+        }
+    }
+    return result.uppercase(Locale.getDefault())
+}
+
+fun String.removePrefixWords(snakeCaseString: String): String {
     // We split the 2 strings into different "words"
-    val otherWords = wordWithDashes.split('_')
+    val otherWords = snakeCaseString.split('_')
+    val valueWords = this.split('_')
+
+    var index = 0
+    for (enumWord in otherWords) {
+        if (index >= valueWords.size) break
+        val valueWord = valueWords[index]
+        // Remove the word if the receiver word is not longer than the parameter word
+        // and the parameter word starts with the entire receiver word.
+        if (valueWord.length <= enumWord.length && enumWord.startsWith(valueWord)) {
+            index++
+        } else {
+            break
+        }
+    }
+    // Join the remaining words with underscores.
+    return valueWords.drop(index).joinToString("_")
+}
+
+fun String.removeWords(other: String) = replace("_" + other + "_", "_")
+
+fun String.removeSuffixWords(snakeCaseString: String): String {
+    // We split the 2 strings into different "words"
+    val otherWords = snakeCaseString.split('_')
     val valueWords = this.split('_')
 
     var valueIndex = valueWords.size - 1
     var enumIndex = otherWords.size - 1
 
-    // Remove matching words from the end of the other value.
+    // Remove matching words from the end of the parameter value.
     while (valueIndex >= 0 && enumIndex >= 0) {
         val valueWord = valueWords[valueIndex]
         val enumWord = otherWords[enumIndex]
-        // If the receiver word is not longer than the other word and the other word starts with the receiver word,
-        // we consider it a match.
+        // Remove the word if the receiver word is not longer than the parameter word
+        // and the parameter word starts with the entire receiver word.
         if (valueWord.length <= enumWord.length && enumWord.startsWith(valueWord)) {
             valueIndex--
             enumIndex--

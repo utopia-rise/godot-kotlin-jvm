@@ -798,17 +798,17 @@ public open class GPUParticles2D : Node2D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
      * the lowest lifetime is drawn at the front.
      */
-    DRAW_ORDER_REVERSE_LIFETIME(2),
+    REVERSE_LIFETIME(2),
     ;
 
     public val id: Long
@@ -827,24 +827,24 @@ public open class GPUParticles2D : Node2D() {
     /**
      * Particle starts at the specified position.
      */
-    EMIT_FLAG_POSITION(1),
+    POSITION(1),
     /**
      * Particle starts with specified rotation and scale.
      */
-    EMIT_FLAG_ROTATION_SCALE(2),
+    ROTATION_SCALE(2),
     /**
      * Particle starts with the specified velocity vector, which defines the emission direction and
      * speed.
      */
-    EMIT_FLAG_VELOCITY(4),
+    VELOCITY(4),
     /**
      * Particle starts with specified color.
      */
-    EMIT_FLAG_COLOR(8),
+    COLOR(8),
     /**
      * Particle starts with specified `CUSTOM` data.
      */
-    EMIT_FLAG_CUSTOM(16),
+    CUSTOM(16),
     ;
 
     public val id: Long

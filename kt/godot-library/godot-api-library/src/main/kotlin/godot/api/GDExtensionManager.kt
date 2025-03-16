@@ -131,24 +131,24 @@ public object GDExtensionManager : Object() {
     /**
      * The extension has loaded successfully.
      */
-    LOAD_STATUS_OK(0),
+    OK(0),
     /**
      * The extension has failed to load, possibly because it does not exist or has missing
      * dependencies.
      */
-    LOAD_STATUS_FAILED(1),
+    FAILED(1),
     /**
      * The extension has already been loaded.
      */
-    LOAD_STATUS_ALREADY_LOADED(2),
+    ALREADY_LOADED(2),
     /**
      * The extension has not been loaded.
      */
-    LOAD_STATUS_NOT_LOADED(3),
+    NOT_LOADED(3),
     /**
      * The extension requires the application to restart to fully load.
      */
-    LOAD_STATUS_NEEDS_RESTART(4),
+    NEEDS_RESTART(4),
     ;
 
     public val id: Long

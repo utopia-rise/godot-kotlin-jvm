@@ -326,11 +326,11 @@ class TestAABB {
     fun `Get longest and shortest axis`() {
         val aabb = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(4.0, 5.0, 6.0))
         checkMessage(aabb.getLongestAxisVector() == (Vector3(0.0, 0.0, 1.0))) { "get_longest_axis() should return the expected value." }
-        checkMessage(aabb.getLongestAxis() == Vector3.Axis.AXIS_Z) { "get_longest_axis_index() should return the expected value." }
+        checkMessage(aabb.getLongestAxis() == Vector3.Axis.Z) { "get_longest_axis_index() should return the expected value." }
         checkMessage(aabb.getLongestAxisSize() == 6.0) { "get_longest_axis_size() should return the expected value." }
 
         checkMessage(aabb.getShortestAxisVector() == (Vector3(1.0, 0.0, 0.0))) { "get_shortest_axis() should return the expected value." }
-        checkMessage(aabb.getShortestAxis() == Vector3.Axis.AXIS_X) { "get_shortest_axis_index() should return the expected value." }
+        checkMessage(aabb.getShortestAxis() == Vector3.Axis.X) { "get_shortest_axis_index() should return the expected value." }
         checkMessage(aabb.getShortestAxisSize() == 4.0) { "get_shortest_axis_size() should return the expected value." }
     }
 

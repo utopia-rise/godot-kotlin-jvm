@@ -231,7 +231,7 @@ public open class VoxelGI : VisualInstance3D() {
     /**
      * Represents the size of the [Subdiv] enum.
      */
-    SUBDIV_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long

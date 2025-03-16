@@ -52,7 +52,7 @@ public value class KeyModifierMask(
     /**
      * Key Code mask.
      */
-    public val KEY_CODE_MASK: KeyModifierMask = KeyModifierMask(8388607)
+    public val CODE: KeyModifierMask = KeyModifierMask(8388607)
 
     /**
      * Modifier key mask.
@@ -63,36 +63,36 @@ public value class KeyModifierMask(
      * Automatically remapped to [KEY_META] on macOS and [KEY_CTRL] on other platforms, this mask is
      * never set in the actual events, and should be used for key mapping only.
      */
-    public val KEY_MASK_CMD_OR_CTRL: KeyModifierMask = KeyModifierMask(16777216)
+    public val MASK_CMD_OR_CTRL: KeyModifierMask = KeyModifierMask(16777216)
 
     /**
      * Shift key mask.
      */
-    public val KEY_MASK_SHIFT: KeyModifierMask = KeyModifierMask(33554432)
+    public val MASK_SHIFT: KeyModifierMask = KeyModifierMask(33554432)
 
     /**
      * Alt or Option (on macOS) key mask.
      */
-    public val KEY_MASK_ALT: KeyModifierMask = KeyModifierMask(67108864)
+    public val MASK_ALT: KeyModifierMask = KeyModifierMask(67108864)
 
     /**
      * Command (on macOS) or Meta/Windows key mask.
      */
-    public val KEY_MASK_META: KeyModifierMask = KeyModifierMask(134217728)
+    public val MASK_META: KeyModifierMask = KeyModifierMask(134217728)
 
     /**
      * Control key mask.
      */
-    public val KEY_MASK_CTRL: KeyModifierMask = KeyModifierMask(268435456)
+    public val MASK_CTRL: KeyModifierMask = KeyModifierMask(268435456)
 
     /**
      * Keypad key mask.
      */
-    public val KEY_MASK_KPAD: KeyModifierMask = KeyModifierMask(536870912)
+    public val MASK_KPAD: KeyModifierMask = KeyModifierMask(536870912)
 
     /**
      * Group Switch key mask.
      */
-    public val KEY_MASK_GROUP_SWITCH: KeyModifierMask = KeyModifierMask(1073741824)
+    public val MASK_GROUP_SWITCH: KeyModifierMask = KeyModifierMask(1073741824)
   }
 }

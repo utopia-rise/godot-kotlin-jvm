@@ -15,19 +15,19 @@ public enum class VerticalAlignment(
   /**
    * Vertical top alignment, usually for text-derived classes.
    */
-  VERTICAL_ALIGNMENT_TOP(0),
+  TOP(0),
   /**
    * Vertical center alignment, usually for text-derived classes.
    */
-  VERTICAL_ALIGNMENT_CENTER(1),
+  CENTER(1),
   /**
    * Vertical bottom alignment, usually for text-derived classes.
    */
-  VERTICAL_ALIGNMENT_BOTTOM(2),
+  BOTTOM(2),
   /**
    * Expand rows to fit height, usually for text-derived classes.
    */
-  VERTICAL_ALIGNMENT_FILL(3),
+  FILL(3),
   ;
 
   public val id: Long

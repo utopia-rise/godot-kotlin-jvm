@@ -15,12 +15,12 @@ class TestBasis {
 
     private fun getRotOrderName(ro: EulerOrder): String {
         return when (ro) {
-            EulerOrder.EULER_ORDER_XYZ -> "XYZ"
-            EulerOrder.EULER_ORDER_XZY -> "XZY"
-            EulerOrder.EULER_ORDER_YZX -> "YZX"
-            EulerOrder.EULER_ORDER_YXZ -> "YXZ"
-            EulerOrder.EULER_ORDER_ZXY -> "ZXY"
-            EulerOrder.EULER_ORDER_ZYX -> "ZYX"
+            EulerOrder.XYZ -> "XYZ"
+            EulerOrder.XZY -> "XZY"
+            EulerOrder.YZX -> "YZX"
+            EulerOrder.YXZ -> "YXZ"
+            EulerOrder.ZXY -> "ZXY"
+            EulerOrder.ZYX -> "ZYX"
             else -> "[Not supported]"
         }
     }
@@ -58,8 +58,8 @@ class TestBasis {
         checkMessage((res.getColumn(2) - Vector3(0.0, 0.0, 1.0)).length() <= 0.001) { "Fail due to Z ${res.getColumn(2)}" }
 
         // Double check `toRotation` decomposing with XYZ rotation order.
-        val eulerXyzFromRotation = toRotation.getEuler(EulerOrder.EULER_ORDER_XYZ)
-        val rotationFromXyzComputedEuler = Basis.fromEuler(eulerXyzFromRotation, EulerOrder.EULER_ORDER_XYZ)
+        val eulerXyzFromRotation = toRotation.getEuler(EulerOrder.XYZ)
+        val rotationFromXyzComputedEuler = Basis.fromEuler(eulerXyzFromRotation, EulerOrder.XYZ)
 
         val res2 = toRotation.inverse() * rotationFromXyzComputedEuler
 
@@ -76,12 +76,12 @@ class TestBasis {
     @Test
     fun `Euler conversions`() {
         val eulerOrderToTest = listOf(
-            EulerOrder.EULER_ORDER_XYZ,
-            EulerOrder.EULER_ORDER_XZY,
-            EulerOrder.EULER_ORDER_YZX,
-            EulerOrder.EULER_ORDER_YXZ,
-            EulerOrder.EULER_ORDER_ZXY,
-            EulerOrder.EULER_ORDER_ZYX
+            EulerOrder.XYZ,
+            EulerOrder.XZY,
+            EulerOrder.YZX,
+            EulerOrder.YXZ,
+            EulerOrder.ZXY,
+            EulerOrder.ZYX
         )
 
         val vectorsToTest = mutableListOf(
@@ -155,12 +155,12 @@ class TestBasis {
     @Test
     fun `Stress Euler conversions`() {
         val eulerOrderToTest = listOf(
-            EulerOrder.EULER_ORDER_XYZ,
-            EulerOrder.EULER_ORDER_XZY,
-            EulerOrder.EULER_ORDER_YZX,
-            EulerOrder.EULER_ORDER_YXZ,
-            EulerOrder.EULER_ORDER_ZXY,
-            EulerOrder.EULER_ORDER_ZYX
+            EulerOrder.XYZ,
+            EulerOrder.XZY,
+            EulerOrder.YZX,
+            EulerOrder.YXZ,
+            EulerOrder.ZXY,
+            EulerOrder.ZYX
         )
 
         val vectorsToTest = mutableListOf<Vector3>()
