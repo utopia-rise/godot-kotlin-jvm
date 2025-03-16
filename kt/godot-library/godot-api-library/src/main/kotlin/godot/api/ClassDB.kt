@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object ClassDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(14)
+    getSingleton(2)
   }
 
   /**

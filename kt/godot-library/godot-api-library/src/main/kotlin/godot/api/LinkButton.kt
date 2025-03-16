@@ -125,7 +125,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(363, scriptIndex)
+    createNativeObject(341, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

@@ -206,7 +206,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(253, scriptIndex)
+    createNativeObject(224, scriptIndex)
   }
 
   public final fun getBufferView(): Int {

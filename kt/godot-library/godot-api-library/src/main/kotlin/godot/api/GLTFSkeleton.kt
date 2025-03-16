@@ -62,7 +62,7 @@ public open class GLTFSkeleton : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(266, scriptIndex)
+    createNativeObject(237, scriptIndex)
   }
 
   public final fun getJoints(): PackedInt32Array {

@@ -61,7 +61,7 @@ public open class AnimationNodeTimeSeek : AnimationNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(69, scriptIndex)
+    createNativeObject(33, scriptIndex)
   }
 
   public final fun setExplicitElapse(enable: Boolean): Unit {

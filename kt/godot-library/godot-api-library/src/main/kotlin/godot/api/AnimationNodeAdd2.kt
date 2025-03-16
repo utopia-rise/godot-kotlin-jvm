@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeAdd2 : AnimationNodeSync() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(52, scriptIndex)
+    createNativeObject(16, scriptIndex)
   }
 
   public companion object

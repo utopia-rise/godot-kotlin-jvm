@@ -16,7 +16,6 @@ import godot.core.Dictionary
 import godot.core.Error
 import godot.core.Key
 import godot.core.MouseButtonMask
-import godot.core.MouseButtonMaskValue
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
@@ -112,7 +111,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(28)
+    getSingleton(3)
   }
 
   /**
@@ -1258,7 +1257,7 @@ public object DisplayServer : Object() {
   public final fun mouseGetButtonState(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.mouseGetButtonStatePtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

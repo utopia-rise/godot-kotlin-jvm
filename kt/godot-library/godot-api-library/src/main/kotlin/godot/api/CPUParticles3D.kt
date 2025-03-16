@@ -949,7 +949,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(151, scriptIndex)
+    createNativeObject(116, scriptIndex)
   }
 
   /**

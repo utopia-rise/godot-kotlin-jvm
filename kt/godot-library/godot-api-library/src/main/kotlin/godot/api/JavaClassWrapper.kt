@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(24)
+    getSingleton(12)
   }
 
   /**

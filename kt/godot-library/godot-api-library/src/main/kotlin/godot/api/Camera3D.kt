@@ -247,7 +247,7 @@ public open class Camera3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(163, scriptIndex)
+    createNativeObject(128, scriptIndex)
   }
 
   /**
