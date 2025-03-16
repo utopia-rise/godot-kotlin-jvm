@@ -46,7 +46,8 @@ import kotlin.jvm.JvmOverloads
  * `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this
  * overwrites any bone transform from [Animation]s or bone custom poses set by users. The applied
  * amount can be controlled with the [SkeletonModifier3D.influence] property.
- * [codeblock]
+ *
+ * ```
  * # Apply IK effect automatically on every new frame (not the current)
  * skeleton_ik_node.start()
  *
@@ -65,7 +66,7 @@ import kotlin.jvm.JvmOverloads
  * # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on
  * Skeleton)
  * skeleton_ik_node.set_influence(0.0)
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class SkeletonIK3D : SkeletonModifier3D() {

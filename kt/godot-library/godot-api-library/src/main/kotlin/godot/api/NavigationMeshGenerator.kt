@@ -24,9 +24,11 @@ import kotlin.jvm.JvmStatic
  * This class is responsible for creating and clearing 3D navigation meshes used as [NavigationMesh]
  * resources inside [NavigationRegion3D]. The [NavigationMeshGenerator] has very limited to no use for
  * 2D as the navigation mesh baking process expects 3D node types and 3D source geometry to parse.
+ *
  * The entire navigation mesh baking is best done in a separate thread as the voxelization,
  * collision tests and mesh optimization steps involved are very slow and performance-intensive
  * operations.
+ *
  * Navigation mesh baking happens in multiple steps and the result depends on 3D source geometry and
  * properties of the [NavigationMesh] resource. In the first step, starting from a root node and
  * depending on [NavigationMesh] properties all valid 3D source geometry nodes are collected from the
@@ -43,8 +45,10 @@ import kotlin.jvm.JvmStatic
  * combined mesh is then passed to the Recast Navigation Object to test the source geometry for
  * walkable terrain suitable to [NavigationMesh] agent properties by creating a voxel world around the
  * meshes bounding area.
+ *
  * The finalized navigation mesh is then returned and stored inside the [NavigationMesh] for use as
  * a resource inside [NavigationRegion3D] nodes.
+ *
  * **Note:** Using meshes to not only define walkable surfaces but also obstruct navigation baking
  * does not always work. The navigation baking has no concept of what is a geometry "inside" when
  * dealing with mesh source geometry and this is intentional. Depending on current baking parameters,
@@ -80,8 +84,10 @@ public object NavigationMeshGenerator : Object() {
    * Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then
    * be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished
    * the optional [callback] will be called.
+   *
    * **Note:** This function needs to run on the main thread or with a deferred call as the
    * SceneTree is not thread-safe.
+   *
    * **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the
    * frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer]
    * in the process. For performance prefer the use of e.g. collision shapes or creating the data

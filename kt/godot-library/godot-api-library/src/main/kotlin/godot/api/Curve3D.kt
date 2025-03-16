@@ -35,6 +35,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * This class describes a Bézier curve in 3D space. It is mainly used to give a shape to a [Path3D],
  * but can be manually sampled for other purposes.
+ *
  * It keeps a cache of precalculated points along the curve, to speed up further calculations.
  */
 @GodotBaseType
@@ -106,6 +107,7 @@ public open class Curve3D : Resource() {
   /**
    * Adds a point with the specified [position] relative to the curve's own position, with control
    * points [in] and [out]. Appends the new point at the end of the point list.
+   *
    * If [index] is given, the new point is inserted before the existing point identified by index
    * [index]. Every existing point starting from [index] is shifted further down the list of points.
    * The index must be greater than or equal to `0` and must not exceed the number of existing points
@@ -144,6 +146,7 @@ public open class Curve3D : Resource() {
   /**
    * Sets the tilt angle in radians for the point [idx]. If the index is out of bounds, the function
    * sends an error to the console.
+   *
    * The tilt controls the rotation along the look-at axis an object traveling the path would have.
    * In the case of a curve controlling a [PathFollow3D], this tilt is an offset over the natural tilt
    * the [PathFollow3D] calculates.
@@ -224,6 +227,7 @@ public open class Curve3D : Resource() {
    * Returns the position between the vertex [idx] and the vertex `idx + 1`, where [t] controls if
    * the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of
    * [t] outside the range (`0.0 >= t <=1`) give strange, but predictable results.
+   *
    * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If
    * the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
@@ -291,6 +295,7 @@ public open class Curve3D : Resource() {
    * in 3D units along the curve. To do that, it finds the two cached points where the [offset] lies
    * between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or
    * linear if set to `false`.
+   *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise
    * enough).
    */
@@ -322,6 +327,7 @@ public open class Curve3D : Resource() {
    * distance in 3D units along the curve. To do that, it finds the two cached up vectors where the
    * [offset] lies between, then interpolates the values. If [applyTilt] is `true`, an interpolated
    * tilt is applied to the interpolated up vector.
+   *
    * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1,
    * 0)`.
    */
@@ -352,6 +358,7 @@ public open class Curve3D : Resource() {
 
   /**
    * Returns the cache of up vectors as a [PackedVector3Array].
+   *
    * If [upVectorEnabled] is `false`, the cache will be empty.
    */
   public final fun getBakedUpVectors(): PackedVector3Array {
@@ -362,6 +369,7 @@ public open class Curve3D : Resource() {
 
   /**
    * Returns the closest point on baked segments (in curve's local space) to [toPoint].
+   *
    * [toPoint] must be in this curve's local space.
    */
   public final fun getClosestPoint(toPoint: Vector3): Vector3 {
@@ -373,6 +381,7 @@ public open class Curve3D : Resource() {
   /**
    * Returns the closest offset to [toPoint]. This offset is meant to be used in [sampleBaked] or
    * [sampleBakedUpVector].
+   *
    * [toPoint] must be in this curve's local space.
    */
   public final fun getClosestOffset(toPoint: Vector3): Float {
@@ -384,11 +393,14 @@ public open class Curve3D : Resource() {
   /**
    * Returns a list of points along the curve, with a curvature controlled point density. That is,
    * the curvier parts will have more points than the straighter parts.
+   *
    * This approximation makes straight segments between each point, then subdivides those segments
    * until the resulting shape is similar enough.
+   *
    * [maxStages] controls how many subdivisions a curve segment may face before it is considered
    * approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean
    * up to 32 subdivisions per curve segment. Increase with care!
+   *
    * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the
    * real curve, before the segment has to be subdivided.
    */
@@ -405,6 +417,7 @@ public open class Curve3D : Resource() {
    * many subdivisions a curve segment may face before it is considered approximate enough. Each
    * subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per
    * curve segment. Increase with care!
+   *
    * [toleranceLength] controls the maximal distance between two neighboring points, before the
    * segment has to be subdivided.
    */

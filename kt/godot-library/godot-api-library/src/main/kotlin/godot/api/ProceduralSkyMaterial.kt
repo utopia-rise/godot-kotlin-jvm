@@ -32,10 +32,12 @@ import kotlin.jvm.JvmName
  * color, a color at the horizon, and an easing curve to interpolate between them. Suns are described
  * by a position in the sky, a color, and a max angle from the sun at which the easing curve ends. The
  * max angle therefore defines the size of the sun in the sky.
+ *
  * [ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and
  * angular distance of the first four [DirectionalLight3D] nodes in the scene. This means that the suns
  * are defined individually by the properties of their corresponding [DirectionalLight3D]s and globally
  * by [sunAngleMax] and [sunCurve].
+ *
  * [ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for
  * real-time updates. This makes it a great option for a sky that is simple and computationally cheap,
  * but unrealistic. If you need a more realistic procedural option, use [PhysicalSkyMaterial].

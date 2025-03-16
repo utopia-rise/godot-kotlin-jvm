@@ -44,17 +44,21 @@ import kotlin.jvm.JvmOverloads
 /**
  * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create
  * custom ones with custom blending formulas.
+ *
  * Inherit this when creating animation nodes mainly for use in [AnimationNodeBlendTree], otherwise
  * [AnimationRootNode] should be used instead.
+ *
  * You can access the time information as read-only parameter which is processed and stored in the
  * previous frame for all nodes except [AnimationNodeOutput].
+ *
  * **Note:** If multiple inputs exist in the [AnimationNode], which time information takes
  * precedence depends on the type of [AnimationNode].
- * [codeblock]
+ *
+ * ```
  * var current_length = $AnimationTree[parameters/AnimationNodeName/current_length]
  * var current_position = $AnimationTree[parameters/AnimationNodeName/current_position]
  * var current_delta = $AnimationTree[parameters/AnimationNodeName/current_delta]
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class AnimationNode : Resource() {
@@ -145,8 +149,10 @@ public open class AnimationNode : Resource() {
    * When inheriting from [AnimationRootNode], implement this virtual method to run some code when
    * this animation node is processed. The [time] parameter is a relative delta, unless [seek] is
    * `true`, in which case it is absolute.
+   *
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use
    * [getParameter] and [setParameter] to modify local memory.
+   *
    * This function should return the delta.
    */
   public open fun _process(
@@ -259,6 +265,7 @@ public open class AnimationNode : Resource() {
 
   /**
    * Returns the object id of the [AnimationTree] that owns this node.
+   *
    * **Note:** This method should only be called from within the
    * [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
    */
@@ -280,6 +287,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
    * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   *
    * A [loopedFlag] is used by internal processing immediately after the loop. See also
    * [Animation.LoopedFlag].
    */
@@ -374,6 +382,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
    * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   *
    * A [loopedFlag] is used by internal processing immediately after the loop. See also
    * [Animation.LoopedFlag].
    */
@@ -385,7 +394,7 @@ public open class AnimationNode : Resource() {
     seeked: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
   ) =
       blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
 
@@ -402,7 +411,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double =

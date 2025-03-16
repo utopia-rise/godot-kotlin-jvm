@@ -29,6 +29,7 @@ import kotlin.jvm.JvmOverloads
  * Holds collision data from the movement of a [PhysicsBody3D], usually from
  * [PhysicsBody3D.moveAndCollide]. When a [PhysicsBody3D] is moved, it stops if it detects a collision
  * with another body. If a collision is detected, a [KinematicCollision3D] object is returned.
+ *
  * The collision data includes the colliding object, the remaining motion, and the collision
  * position. This data can be used to determine a custom response to the collision.
  */

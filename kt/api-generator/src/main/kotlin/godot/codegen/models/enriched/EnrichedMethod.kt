@@ -33,7 +33,7 @@ class EnrichedMethod(model: Method) : CallableTrait, IDocumented {
     override val meta: String? = model.returnValue?.meta
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
 
-    override val description = model.description
+    override var description = model.description
 
     init {
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {

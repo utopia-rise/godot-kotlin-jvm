@@ -79,17 +79,22 @@ public operator fun Long.rem(other: godot.api.RichTextLabel.ImageUpdateMask): Lo
  * A control for displaying text that can contain custom fonts, images, and basic formatting.
  * [RichTextLabel] manages these as an internal tag stack. It also adapts itself to given
  * width/heights.
+ *
  * **Note:** [newline], [pushParagraph], `"\n"`, `"\r\n"`, `p` tag, and alignment tags start a new
  * paragraph. Each paragraph is processed independently, in its own BiDi context. If you want to force
  * line wrapping within paragraph, any other line breaking character can be used, for example, Form
  * Feed (U+000C), Next Line (U+0085), Line Separator (U+2028).
+ *
  * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's
  * contents. Any edits made to [text] will erase previous edits made from other manual sources such as
  * [appendText] and the `push_*` / [pop] methods.
+ *
  * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using
  * [code skip-lint]**bold*bold italic**italic*[/code], use [code skip-lint]**bold*bold
  * italic****italic*[/code].
+ *
  * **Note:** `push_*&#92;pop_*` functions won't affect BBCode.
+ *
  * **Note:** Unlike [Label], [RichTextLabel] doesn't have a *property* to horizontally align text to
  * the center. Instead, enable [bbcodeEnabled] and surround the text in a [code
  * skip-lint][center][/code] tag as follows: [code skip-lint][center]Example[/center][/code]. There is
@@ -105,11 +110,12 @@ public open class RichTextLabel : Control() {
    * [pushMeta] method must be used to manually insert the data into the tag stack. Alternatively, you
    * can convert the [String] input to the desired type based on its contents (such as calling
    * [JSON.parse] on it).
+   *
    * For example, the following method can be connected to [signal meta_clicked] to open clicked
    * URLs using the user's default web browser:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * # This assumes RichTextLabel's `meta_clicked` signal was connected to
    * # the function below using the signal connection dialog.
    * func _richtextlabel_on_meta_clicked(meta):
@@ -131,6 +137,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Triggered when the document is fully loaded.
+   *
    * **Note:** This can happen before the text is processed for drawing. Scrolling values may not be
    * valid until the document is drawn for the first time after this signal.
    */
@@ -138,6 +145,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * If `true`, the label uses BBCode formatting.
+   *
    * **Note:** This only affects the contents of [text], not the tag stack.
    */
   public final inline var bbcodeEnabled: Boolean
@@ -151,6 +159,7 @@ public open class RichTextLabel : Control() {
   /**
    * The label's text in BBCode format. Is not representative of manual modifications to the
    * internal tag stack. Erases changes made by other methods when edited.
+   *
    * **Note:** If [bbcodeEnabled] is `true`, it is unadvised to use the `+=` operator with [text]
    * (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also
    * erase all BBCode that was added to stack using `push_*` methods. Use [appendText] for adding text
@@ -294,6 +303,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * The currently installed custom effects. This is an array of [RichTextEffect]s.
+   *
    * To add a custom effect, it's more convenient to use [installEffect].
    */
   public final inline var customEffects: VariantArray<Any?>
@@ -342,6 +352,7 @@ public open class RichTextLabel : Control() {
   /**
    * The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to
    * disable progress bar entirely.
+   *
    * **Note:** Progress bar is displayed only if [threaded] is enabled.
    */
   public final inline var progressBarDelay: Int
@@ -388,6 +399,7 @@ public open class RichTextLabel : Control() {
   /**
    * The number of characters to display. If set to `-1`, all characters are displayed. This can be
    * useful when animating the text appearing in a dialog box.
+   *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public final inline var visibleCharacters: Int
@@ -415,6 +427,7 @@ public open class RichTextLabel : Control() {
    * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
    * half of the characters will be displayed. This can be useful when animating the text appearing in
    * a dialog box.
+   *
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public final inline var visibleRatio: Float
@@ -500,12 +513,17 @@ public open class RichTextLabel : Control() {
    * Adds an image's opening and closing tags to the tag stack, optionally providing a [width] and
    * [height] to resize the image, a [color] to tint the image and a [region] to only use parts of the
    * image.
+   *
    * If [width] or [height] is set to 0, the image size will be adjusted in order to keep the
    * original aspect ratio.
+   *
    * If [width] and [height] are not set, but [region] is, the region's rect will be used.
+   *
    * [key] is an optional identifier, that can be used to modify the image via [updateImage].
+   *
    * If [pad] is set, and the image is smaller than the size specified by [width] and [height], the
    * image padding is added to match the size instead of upscaling.
+   *
    * If [sizeInPercent] is set, [width] and [height] values are percentages of the control width
    * instead of pixels.
    */
@@ -558,8 +576,10 @@ public open class RichTextLabel : Control() {
 
   /**
    * Removes a paragraph of content from the label. Returns `true` if the paragraph exists.
+   *
    * The [paragraph] argument is the index of the paragraph to remove, it can take values in the
    * interval `[0, get_paragraph_count() - 1]`.
+   *
    * If [noInvalidate] is set to `true`, cache for the subsequent paragraphs is not invalidated. Use
    * it for faster updates if deleted paragraph is fully self-contained (have no unclosed tags), or
    * this call is part of the complex edit operation and [invalidateParagraph] will be called at the
@@ -584,6 +604,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a [code skip-lint][font][/code] tag to the tag stack. Overrides default fonts for its
    * duration.
+   *
    * Passing `0` to [fontSize] will use the existing default font size.
    */
   @JvmOverloads
@@ -714,8 +735,10 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a meta tag to the tag stack. Similar to the BBCode [code
    * skip-lint][url=something]{text}[/url][/code], but supports non-[String] metadata types.
+   *
    * If [metaUnderlined] is `true`, meta tags display an underline. This behavior can be customized
    * with [underlineMode].
+   *
    * **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked,
    * connect [signal meta_clicked] to a function that is called when the meta tag is clicked.
    */
@@ -797,8 +820,10 @@ public open class RichTextLabel : Control() {
   /**
    * Edits the selected column's expansion options. If [expand] is `true`, the column expands in
    * proportion to its expansion ratio versus the other columns' ratios.
+   *
    * For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30
    * and 40 pixels, respectively.
+   *
    * If [expand] is `false`, the column will not contribute to the total ratio.
    */
   @JvmOverloads
@@ -917,6 +942,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Clears the tag stack, causing the label to display nothing.
+   *
    * **Note:** This method does not affect [text], and its contents will show again if the label is
    * redrawn. However, setting [text] to an empty [String] also clears the stack.
    */
@@ -1070,6 +1096,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical scrollbar.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -1211,6 +1238,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Select all the text.
+   *
    * If [selectionEnabled] is `false`, no selection will occur.
    */
   public final fun selectAll(): Unit {
@@ -1245,6 +1273,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Parses [bbcode] and adds tags to the tag stack as needed.
+   *
    * **Note:** Using this method, you can't close a tag that was opened in a previous [appendText]
    * call. This is done to improve performance, especially when updating large RichTextLabels since
    * rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a
@@ -1340,6 +1369,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the line number of the character position provided. Line and character numbers are both
    * zero-indexed.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1352,6 +1382,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the paragraph number of the character position provided. Paragraph and character
    * numbers are both zero-indexed.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1383,8 +1414,10 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
+   *
    * **Note:** If [visibleCharactersBehavior] is set to [TextServer.VC_CHARS_BEFORE_SHAPING] only
    * visible wrapped lines are counted.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1397,8 +1430,10 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the indexes of the first and last visible characters for the given [line], as a
    * [Vector2i].
+   *
    * **Note:** If [visibleCharactersBehavior] is set to [TextServer.VC_CHARS_BEFORE_SHAPING] only
    * visible wrapped lines are counted.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1410,6 +1445,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the number of visible lines.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1432,6 +1468,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of
    * its lines is visible.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1443,6 +1480,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the height of the content.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1454,6 +1492,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the width of the content.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1465,6 +1504,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical offset of the line found at the provided index.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1476,6 +1516,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical offset of the paragraph found at the provided index.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1509,8 +1550,10 @@ public open class RichTextLabel : Control() {
   /**
    * Installs a custom effect. This can also be done in the Inspector through the [customEffects]
    * property. [effect] should be a valid [RichTextEffect].
+   *
    * **Example:** With the following script extending from [RichTextEffect]:
-   * [codeblock]
+   *
+   * ```
    * # effect.gd
    * class_name MyCustomEffect
    * extends RichTextEffect
@@ -1518,9 +1561,11 @@ public open class RichTextLabel : Control() {
    * var bbcode = "my_custom_effect"
    *
    * # ...
-   * [/codeblock]
+   * ```
+   *
    * The above effect can be installed in [RichTextLabel] from a script:
-   * [codeblock]
+   *
+   * ```
    * # rich_text_label.gd
    * extends RichTextLabel
    *
@@ -1529,7 +1574,7 @@ public open class RichTextLabel : Control() {
    *
    *     # Alternatively, if not using `class_name` in the script that extends RichTextEffect:
    *     install_effect(preload("res://effect.gd").new())
-   * [/codeblock]
+   * ```
    */
   public final fun installEffect(effect: Any?): Unit {
     TransferContext.writeArguments(ANY to effect)
@@ -1539,11 +1584,12 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when
    * right-clicking on the [RichTextLabel].
+   *
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
    * the standard ones (see [MenuItems]). For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     var menu = get_menu()
    *     # Remove "Select All" item.
@@ -1558,8 +1604,9 @@ public open class RichTextLabel : Control() {
    *     if id == MENU_MAX + 1:
    *         add_text("\n" + get_parsed_text())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     var menu = GetMenu();

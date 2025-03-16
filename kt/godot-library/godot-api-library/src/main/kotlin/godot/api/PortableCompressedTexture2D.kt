@@ -30,12 +30,16 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * This class allows storing compressed textures as self contained (not imported) resources.
+ *
  * For 2D usage (compressed on disk, uncompressed on VRAM), the lossy and lossless modes are
  * recommended. For 3D usage (compressed on VRAM) it depends on the target platform.
+ *
  * If you intend to only use desktop, S3TC or BPTC are recommended. For only mobile, ETC2 is
  * recommended.
+ *
  * For portable, self contained 3D textures that work on both desktop and mobile, Basis Universal is
  * recommended (although it has a small quality cost and longer compression time as a tradeoff).
+ *
  * This resource is intended to be created from code.
  */
 @GodotBaseType
@@ -55,6 +59,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * When running on the editor, this class will keep the source compressed data in memory.
    * Otherwise, the source compressed data is lost after loading and the resource can't be re saved.
+   *
    * This flag allows to keep the compressed data in memory if you intend it to persist after
    * loading.
    */
@@ -96,8 +101,10 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   /**
    * Initializes the compressed texture from a base image. The compression mode must be provided.
+   *
    * [normalMap] is recommended to ensure optimum quality if this image will be used as a normal
    * map.
+   *
    * If lossy compression is requested, the quality setting can optionally be provided. This maps to
    * Lossy WebP compression quality.
    */

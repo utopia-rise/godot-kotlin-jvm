@@ -29,6 +29,7 @@ import kotlin.jvm.JvmName
  * of a number of cylindrical sections, each with the same [sectionLength] and number of
  * [sectionRings]. A [curve] is sampled along the total length of the tube, meaning that the curve
  * determines the radius of the tube along its length.
+ *
  * This primitive mesh is usually used for particle trails.
  */
 @GodotBaseType

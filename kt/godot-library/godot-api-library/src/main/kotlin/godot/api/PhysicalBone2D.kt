@@ -28,8 +28,10 @@ import kotlin.jvm.JvmName
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
  * [Skeleton2D] react to physics.
+ *
  * **Note:** To make the [Bone2D]s visually follow the [PhysicalBone2D] node, use a
  * [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] parent.
+ *
  * **Note:** The [PhysicalBone2D] node does not automatically create a [Joint2D] node to keep
  * [PhysicalBone2D] nodes together. They must be created manually. For most cases, you want to use a
  * [PinJoint2D] node. The [PhysicalBone2D] node will automatically configure the [Joint2D] node once
@@ -75,6 +77,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   /**
    * If `true`, the [PhysicalBone2D] will start simulating using physics. If `false`, the
    * [PhysicalBone2D] will follow the transform of the [Bone2D] node.
+   *
    * **Note:** To have the [Bone2D]s visually follow the [PhysicalBone2D], use a
    * [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] node with the [Bone2D]
    * nodes.

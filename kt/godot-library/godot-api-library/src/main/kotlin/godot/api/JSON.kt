@@ -30,12 +30,15 @@ import kotlin.jvm.JvmStatic
 /**
  * The [JSON] class enables all data types to be converted to and from a JSON string. This is useful
  * for serializing data, e.g. to save to a file or send over the network.
+ *
  * [stringify] is used to convert any data type into a JSON string.
+ *
  * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot.
  * If successfully parsed, use [data] to retrieve the [Variant], and use [@GlobalScope.typeof] to check
  * if the Variant's type is what you expect. JSON Objects are converted into a [Dictionary], but JSON
  * data can be used to store [Array]s, numbers, [String]s and even just a boolean.
- * [codeblock]
+ *
+ * ```
  * var data_to_send = ["a", "b", "c"]
  * var json_string = JSON.stringify(data_to_send)
  * # Save data
@@ -52,18 +55,25 @@ import kotlin.jvm.JvmStatic
  * else:
  *     print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ",
  * json.get_error_line())
- * [/codeblock]
+ * ```
+ *
  * Alternatively, you can parse strings using the static [parseString] method, but it doesn't handle
  * errors.
- * [codeblock]
+ *
+ * ```
  * var data = JSON.parse_string(json_string) # Returns null if parsing failed.
- * [/codeblock]
+ * ```
+ *
  * **Note:** Both parse methods do not fully comply with the JSON specification:
+ *
  * - Trailing commas in arrays or objects are ignored, instead of causing a parser error.
+ *
  * - New line and tab characters are accepted in string literals, and are treated like their
  * corresponding escape sequences `\n` and `\t`.
+ *
  * - Numbers are parsed using [String.toFloat] which is generally more lax than the JSON
  * specification.
+ *
  * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the
  * string is cleaned up and an error is logged to the console.
  */
@@ -86,10 +96,13 @@ public open class JSON : Resource() {
 
   /**
    * Attempts to parse the [jsonText] provided.
+   *
    * Returns an [Error]. If the parse was successful, it returns [OK] and the result can be
    * retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] to identify the
    * source of the failure.
+   *
    * Non-static variant of [parseString], if you want custom error handling.
+   *
    * The optional [keepText] argument instructs the parser to keep a copy of the original text. This
    * text can be obtained later by using the [getParsedText] function and is used when saving the
    * resource (instead of generating new text from [data]).
@@ -145,16 +158,21 @@ public open class JSON : Resource() {
     /**
      * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to
      * store or send over the network.
+     *
      * **Note:** The JSON specification does not define integer or float types, but only a *number*
      * type. Therefore, converting a Variant to JSON text will convert all numerical values to [float]
      * types.
+     *
      * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are
      * stringified in addition to the reliable digits to guarantee exact decoding.
+     *
      * The [indent] parameter controls if and how something is indented; its contents will be used
      * where there should be an indent in the output. Even spaces like `"   "` will work. `\t` and `\n`
      * can also be used for a tab indent, or to make a newline for each indent respectively.
+     *
      * **Example output:**
-     * [codeblock]
+     *
+     * ```
      * ## JSON.stringify(my_dictionary)
      * {"name":"my_dictionary","version":"1.0.0","entities":[{"name":"entity_0","value":"value_0"},{"name":"entity_1","value":"value_1"}]}
      *
@@ -189,7 +207,7 @@ public open class JSON : Resource() {
      * ......}
      * ...]
      * }
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
     @JvmStatic
@@ -217,12 +235,15 @@ public open class JSON : Resource() {
 
     /**
      * Converts a native engine type to a JSON-compliant value.
+     *
      * By default, objects are ignored for security reasons, unless [fullObjects] is `true`.
+     *
      * You can convert a native value to a JSON string like this:
-     * [codeblock]
+     *
+     * ```
      * func encode_data(value, full_objects = false):
      *     return JSON.stringify(JSON.from_native(value, full_objects))
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
     @JvmStatic
@@ -235,12 +256,15 @@ public open class JSON : Resource() {
     /**
      * Converts a JSON-compliant value that was created with [fromNative] back to native engine
      * types.
+     *
      * By default, objects are ignored for security reasons, unless [allowObjects] is `true`.
+     *
      * You can convert a JSON string back to a native value like this:
-     * [codeblock]
+     *
+     * ```
      * func decode_data(string, allow_objects = false):
      *     return JSON.to_native(JSON.parse_string(string), allow_objects)
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
     @JvmStatic

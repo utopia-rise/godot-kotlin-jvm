@@ -39,11 +39,13 @@ import kotlin.jvm.JvmStatic
 /**
  * GLTFDocument supports reading data from a glTF file, buffer, or Godot scene. This data can then
  * be written to the filesystem, buffer, or used to create a Godot scene.
+ *
  * All of the data in a glTF scene is stored in the [GLTFState] class. GLTFDocument processes state
  * objects, but does not contain any scene data itself. GLTFDocument has member variables to store
  * export configuration settings such as the image format, but is otherwise stateless. Multiple scenes
  * can be processed with the same settings using the same GLTFDocument object and different [GLTFState]
  * objects.
+ *
  * GLTFDocument can be extended with arbitrary functionality by extending the
  * [GLTFDocumentExtension] class and registering it with GLTFDocument via
  * [registerGltfDocumentExtension]. This allows for custom data to be imported and exported.
@@ -53,6 +55,7 @@ public open class GLTFDocument : Resource() {
   /**
    * The user-friendly name of the export image format. This is used when exporting the glTF file,
    * including writing to a file and writing to a byte array.
+   *
    * By default, Godot allows the following options: "None", "PNG", "JPEG", "Lossless WebP", and
    * "Lossy WebP". Support for more image formats can be added in [GLTFDocumentExtension] classes.
    */
@@ -80,6 +83,7 @@ public open class GLTFDocument : Resource() {
   /**
    * How to process the root node during export. See [RootNodeMode] for details. The default and
    * recommended value is [ROOT_NODE_MODE_SINGLE_ROOT].
+   *
    * **Note:** Regardless of how the glTF file is exported, when importing, the root node type and
    * name can be overridden in the scene import settings tab.
    */
@@ -131,6 +135,7 @@ public open class GLTFDocument : Resource() {
   /**
    * Takes a path to a glTF file and imports the data at that file path to the given [GLTFState]
    * object through the [state] parameter.
+   *
    * **Note:** The [basePath] tells [appendFromFile] where to find dependencies and can be empty.
    */
   @JvmOverloads
@@ -148,6 +153,7 @@ public open class GLTFDocument : Resource() {
   /**
    * Takes a [PackedByteArray] defining a glTF and imports the data to the given [GLTFState] object
    * through the [state] parameter.
+   *
    * **Note:** The [basePath] tells [appendFromBuffer] where to find dependencies and can be empty.
    */
   @JvmOverloads
@@ -179,6 +185,7 @@ public open class GLTFDocument : Resource() {
 
   /**
    * Takes a [GLTFState] object through the [state] parameter and returns a Godot Engine scene node.
+   *
    * The [bakeFps] parameter overrides the bake_fps in [state].
    */
   @JvmOverloads
@@ -205,6 +212,7 @@ public open class GLTFDocument : Resource() {
   /**
    * Takes a [GLTFState] object through the [state] parameter and writes a glTF file to the
    * filesystem.
+   *
    * **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf text
    * file.
    */
@@ -284,6 +292,7 @@ public open class GLTFDocument : Resource() {
     /**
      * Registers the given [GLTFDocumentExtension] instance with GLTFDocument. If [firstPriority] is
      * `true`, this extension will be run first. Otherwise, it will be run last.
+     *
      * **Note:** Like GLTFDocument itself, all GLTFDocumentExtension classes must be stateless in
      * order to function properly. If you need to store data, use the `set_additional_data` and
      * `get_additional_data` methods in [GLTFState] or [GLTFNode].
@@ -308,6 +317,7 @@ public open class GLTFDocument : Resource() {
     /**
      * Returns a list of all support glTF extensions, including extensions supported directly by the
      * engine, and extensions supported by user plugins registering [GLTFDocumentExtension] classes.
+     *
      * **Note:** If this method is run before a GLTFDocumentExtension is registered, its extensions
      * won't be included in the list. Be sure to only run this method after all extensions are
      * registered. If you run this when the engine starts, consider waiting a frame before calling this

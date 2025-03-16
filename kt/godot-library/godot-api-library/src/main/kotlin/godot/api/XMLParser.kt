@@ -28,14 +28,16 @@ import kotlin.Unit
  * Provides a low-level interface for creating parsers for
  * [url=https://en.wikipedia.org/wiki/XML]XML[/url] files. This class can serve as base to make custom
  * XML parsers.
+ *
  * To parse XML, you must open a file with the [open] method or a buffer with the [openBuffer]
  * method. Then, the [read] method must be called to parse the next nodes. Most of the methods take
  * into consideration the currently parsed node.
+ *
  * Here is an example of using [XMLParser] to parse an SVG file (which is based on XML), printing
  * each element and its attributes as a dictionary:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var parser = XMLParser.new()
  * parser.open("path/to/file.svg")
  * while parser.read() != ERR_FILE_EOF:
@@ -46,8 +48,9 @@ import kotlin.Unit
  *             attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
  *         print("The ", node_name, " element has the following attributes: ", attributes_dict)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var parser = new XmlParser();
  * parser.Open("path/to/file.svg");
  * while (parser.Read() != Error.FileEof)
@@ -92,6 +95,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns the name of a node. This method will raise an error if the currently parsed node is a
    * text node.
+   *
    * **Note:** The content of a [NODE_CDATA] node and the comment string of a [NODE_COMMENT] node
    * are also considered names.
    */
@@ -123,6 +127,7 @@ public open class XMLParser : RefCounted() {
 
   /**
    * Returns the number of attributes in the currently parsed element.
+   *
    * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or
    * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */

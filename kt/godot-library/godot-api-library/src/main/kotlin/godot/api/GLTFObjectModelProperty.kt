@@ -37,11 +37,13 @@ import kotlin.jvm.JvmName
  * NodePath in the Godot scene tree. This can be used to animate properties in a glTF file using the
  * `KHR_animation_pointer` extension, or to access them through an engine-agnostic script such as a
  * behavior graph as defined by the `KHR_interactivity` extension.
+ *
  * The glTF property is identified by JSON pointer(s) stored in [jsonPointers], while the Godot
  * property it maps to is defined by [nodePaths]. In most cases [jsonPointers] and [nodePaths] will
  * each only have one item, but in some cases a single glTF JSON pointer will map to multiple Godot
  * properties, or a single Godot property will be mapped to multiple glTF JSON pointers, or it might be
  * a many-to-many relationship.
+ *
  * [Expression] objects can be used to define conversions between the data, such as when glTF
  * defines an angle in radians and Godot uses degrees. The [objectModelType] property defines the type
  * of data stored in the glTF file as defined by the object model, see [GLTFObjectModelType] for
@@ -81,6 +83,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * An array of [NodePath]s that point to a property, or multiple properties, in the Godot scene
    * tree. On import, this will either be set by [GLTFDocument], or by a [GLTFDocumentExtension] class.
    * For simple cases, use [appendPathToProperty] to add properties to this array.
+   *
    * In most cases [nodePaths] will only have one item, but in some cases a single glTF JSON pointer
    * will map to multiple Godot properties. For example, a [GLTFCamera] or [GLTFLight] used on multiple
    * glTF nodes will be represented by multiple Godot nodes.

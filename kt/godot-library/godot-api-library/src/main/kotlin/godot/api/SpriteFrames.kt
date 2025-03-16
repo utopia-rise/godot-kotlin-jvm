@@ -190,9 +190,11 @@ public open class SpriteFrames : Resource() {
    * example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of
    * `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following
    * formula:
-   * [codeblock]
+   *
+   * ```
    * absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
-   * [/codeblock]
+   * ```
+   *
    * In this example, `playing_speed` refers to either [AnimatedSprite2D.getPlayingSpeed] or
    * [AnimatedSprite3D.getPlayingSpeed].
    */
@@ -318,9 +320,11 @@ public open class SpriteFrames : Resource() {
    * example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of
    * `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following
    * formula:
-   * [codeblock]
+   *
+   * ```
    * absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
-   * [/codeblock]
+   * ```
+   *
    * In this example, `playing_speed` refers to either [AnimatedSprite2D.getPlayingSpeed] or
    * [AnimatedSprite3D.getPlayingSpeed].
    */

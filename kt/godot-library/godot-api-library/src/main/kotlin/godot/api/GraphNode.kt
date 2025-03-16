@@ -36,14 +36,17 @@ import kotlin.jvm.JvmOverloads
  * child controls. [GraphNode] is derived from [Container] and it is responsible for placing its
  * children on screen. This works similar to [VBoxContainer]. Children, in turn, provide [GraphNode]
  * with so-called slots, each of which can have a connection port on either side.
+ *
  * Each [GraphNode] slot is defined by its index and can provide the node with up to two ports: one
  * on the left, and one on the right. By convention the left port is also referred to as the **input
  * port** and the right port is referred to as the **output port**. Each port can be enabled and
  * configured individually, using different type and color. The type is an arbitrary value that you can
  * define using your own considerations. The parent [GraphEdit] will receive this information on each
  * connect and disconnect request.
+ *
  * Slots can be configured in the Inspector dock once you add at least one child [Control]. The
  * properties are grouped by each slot's index in the "Slot" section.
+ *
  * **Note:** While GraphNode is set up using slots and slot indices, connections are made between
  * the ports which are enabled. Because of that [GraphEdit] uses the port's index and not the slot's
  * index. You can use [getInputPortSlot] and [getOutputPortSlot] to get the slot index from the port
@@ -116,19 +119,25 @@ public open class GraphNode : GraphElement() {
 
   /**
    * Sets properties of the slot with the given [slotIndex].
+   *
    * If [enableLeftPort]/[enableRightPort] is `true`, a port will appear and the slot will be able
    * to be connected from this side.
+   *
    * With [typeLeft]/[typeRight] an arbitrary type can be assigned to each port. Two ports can be
    * connected if they share the same type, or if the connection between their types is allowed in the
    * parent [GraphEdit] (see [GraphEdit.addValidConnectionType]). Keep in mind that the [GraphEdit] has
    * the final say in accepting the connection. Type compatibility simply allows the [signal
    * GraphEdit.connection_request] signal to be emitted.
+   *
    * Ports can be further customized using [colorLeft]/[colorRight] and
    * [customIconLeft]/[customIconRight]. The color parameter adds a tint to the icon. The custom icon
    * can be used to override the default port dot.
+   *
    * Additionally, [drawStylebox] can be used to enable or disable drawing of the background
    * stylebox for each slot. See [theme_item slot].
+   *
    * Individual properties can also be set using one of the `set_slot_*` methods.
+   *
    * **Note:** This method only sets properties of the slot. To create the slot itself, add a
    * [Control]-derived child to the GraphNode.
    */

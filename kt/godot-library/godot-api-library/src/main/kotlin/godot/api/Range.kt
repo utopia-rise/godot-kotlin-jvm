@@ -36,6 +36,7 @@ public open class Range : Control() {
    * dragging (potentially every frame). If you are performing an expensive operation in a function
    * connected to [signal value_changed], consider using a *debouncing* [Timer] to call the function
    * less often.
+   *
    * **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also
    * emitted when [value] is set directly via code.
    */

@@ -31,6 +31,7 @@ import kotlin.jvm.JvmName
 /**
  * [TranslationDomain] is a self-contained collection of [Translation] resources. Translations can
  * be added to or removed from it.
+ *
  * If you're working with the main translation domain, it is more convenient to use the wrap methods
  * on [TranslationServer].
  */
@@ -40,6 +41,7 @@ public open class TranslationDomain : RefCounted() {
    * If `true`, enables pseudolocalization for the project. This can be used to spot untranslatable
    * strings or layout issues that may occur once the project is localized to languages that have
    * longer strings than the source language.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -54,6 +56,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Replace all characters with their accented variants during pseudolocalization.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -69,6 +72,7 @@ public open class TranslationDomain : RefCounted() {
   /**
    * Double vowels in strings during pseudolocalization to simulate the lengthening of text due to
    * localization.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -85,6 +89,7 @@ public open class TranslationDomain : RefCounted() {
    * If `true`, emulate bidirectional (right-to-left) text when pseudolocalization is enabled. This
    * can be used to spot issues with RTL layout and UI mirroring that will crop up if the project is
    * localized to RTL languages such as Arabic or Hebrew.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -99,6 +104,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Replace all characters in the string with `*`. Useful for finding non-localizable strings.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -114,6 +120,7 @@ public open class TranslationDomain : RefCounted() {
   /**
    * Skip placeholders for string formatting like `&#37;s` or `&#37;f` during pseudolocalization.
    * Useful to identify strings which need additional control characters to display correctly.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -129,6 +136,7 @@ public open class TranslationDomain : RefCounted() {
   /**
    * The expansion ratio to use during pseudolocalization. A value of `0.3` is sufficient for most
    * practical purposes, and will increase the length of each string by 30&#37;.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -143,6 +151,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Prefix that will be prepended to the pseudolocalized string.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -157,6 +166,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Suffix that will be appended to the pseudolocalized string.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -219,6 +229,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Returns the current locale's translation for the given message, plural message and context.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */
@@ -351,6 +362,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Returns the current locale's translation for the given message, plural message and context.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */

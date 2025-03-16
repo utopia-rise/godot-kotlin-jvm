@@ -20,7 +20,9 @@ public enum class PropertyHint(
    * Hints that an [int] or [float] property should be within a range specified via the hint string
    * `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or
    * `"or_less"` to allow manual input going respectively above the max or below the min values.
+   *
    * **Example:** `"-360,360,1,or_greater,or_less"`.
+   *
    * Additionally, other keywords can be included: `"exp"` for exponential range editing,
    * `"radians_as_degrees"` for editing radian angles in degrees (the range values are also in
    * degrees), `"degrees"` to hint at an angle and `"hide_slider"` to hide the slider.
@@ -29,6 +31,7 @@ public enum class PropertyHint(
   /**
    * Hints that an [int] or [String] property is an enumerated value to pick in a list specified via
    * a hint string.
+   *
    * The hint string is a comma separated list of names such as `"Hello,Something,Else"`.
    * Whitespaces are **not** removed from either end of a name. For integer properties, the first name
    * in the list has value 0, the next 1, and so on. Explicit values can also be specified by appending
@@ -38,6 +41,7 @@ public enum class PropertyHint(
   /**
    * Hints that a [String] property can be an enumerated value to pick in a list specified via a
    * hint string such as `"Hello,Something,Else"`.
+   *
    * Unlike [PROPERTY_HINT_ENUM], a property with this hint still accepts arbitrary values and can
    * be empty. The list of values serves to suggest possible values.
    */
@@ -55,11 +59,14 @@ public enum class PropertyHint(
   LINK(5),
   /**
    * Hints that an [int] property is a bitmask with named bit flags.
+   *
    * The hint string is a comma separated list of names such as `"Bit0,Bit1,Bit2,Bit3"`. Whitespaces
    * are **not** removed from either end of a name. The first name in the list has value 1, the next 2,
    * then 4, 8, 16 and so on. Explicit values can also be specified by appending `:integer` to the
    * name, e.g. `"A:4,B:8,C:16"`. You can also combine several flags (`"A:4,B:8,AB:12,C:16"`).
+   *
    * **Note:** A flag value must be at least `1` and at most `2 ** 32 - 1`.
+   *
    * **Note:** Unlike [PROPERTY_HINT_ENUM], the previous explicit value is not taken into account.
    * For the hint `"A:16,B,C"`, A is 16, B is 2, C is 4.
    */
@@ -147,11 +154,12 @@ public enum class PropertyHint(
    * If a property is [String], hints that the property represents a particular type (class). This
    * allows to select a type from the create dialog. The property will store the selected type as a
    * string.
+   *
    * If a property is [Array], hints the editor how to show elements. The `hint_string` must encode
    * nested types using `":"` and `"/"`.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * # Array of elem_type.
    * hint_string = "&#37;d:" &#37; [elem_type]
    * hint_string = "&#37;d/&#37;d:&#37;s" &#37; [elem_type, elem_hint, elem_hint_string]
@@ -164,8 +172,9 @@ public enum class PropertyHint(
    * hint_string = "&#37;d:&#37;d:&#37;d/&#37;d:&#37;s" &#37; [TYPE_ARRAY, TYPE_ARRAY, elem_type,
    * elem_hint, elem_hint_string]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * // Array of elemType.
    * hintString = $"{elemType:D}:";
    * hintString = $"{elemType:}/{elemHint:D}:{elemHintString}";
@@ -180,8 +189,8 @@ public enum class PropertyHint(
    *
    * **Examples:**
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * hint_string = "&#37;d:" &#37; [TYPE_INT] # Array of integers.
    * hint_string = "&#37;d/&#37;d:1,10,1" &#37; [TYPE_INT, PROPERTY_HINT_RANGE] # Array of integers
    * (in range from 1 to 10).
@@ -203,8 +212,9 @@ public enum class PropertyHint(
    * hint_string = "&#37;d:&#37;d/&#37;d:Texture2D" &#37; [TYPE_ARRAY, TYPE_OBJECT,
    * PROPERTY_HINT_RESOURCE_TYPE] # Two-dimensional array of textures.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * hintString = $"{Variant.Type.Int:D}/{PropertyHint.Range:D}:1,10,1"; // Array of integers (in
    * range from 1 to 10).
    * hintString = $"{Variant.Type.Int:D}/{PropertyHint.Enum:D}:Zero,One,Two"; // Array of integers
@@ -294,10 +304,15 @@ public enum class PropertyHint(
    * Hints that a [Callable] property should be displayed as a clickable button. When the button is
    * pressed, the callable is called. The hint string specifies the button text and optionally an icon
    * from the `"EditorIcons"` theme type.
+   *
    * [codeblock lang=text]
+   *
    * "Click me!" - A button with the text "Click me!" and the default "Callable" icon.
+   *
    * "Click me!,ColorRect" - A button with the text "Click me!" and the "ColorRect" icon.
-   * [/codeblock]
+   *
+   * ```
+   *
    * **Note:** A [Callable] cannot be properly serialized and stored in a file, so it is recommended
    * to use [PROPERTY_USAGE_EDITOR] instead of [PROPERTY_USAGE_DEFAULT].
    */

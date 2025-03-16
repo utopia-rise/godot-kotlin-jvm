@@ -27,6 +27,7 @@ public open class AudioEffectInstance : RefCounted() {
 
   /**
    * Override this method to customize the processing behavior of this effect instance.
+   *
    * Should return `true` to force the [AudioServer] to always call [_process], even if the bus has
    * been muted or cannot otherwise be heard.
    */

@@ -33,6 +33,7 @@ public open class BaseButton : Control() {
   /**
    * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode]
    * is [ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
+   *
    * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
    * toggled] instead.
    */
@@ -80,6 +81,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if
    * [toggleMode] is active). Only works if [toggleMode] is `true`.
+   *
    * **Note:** Changing the value of [buttonPressed] will result in [signal toggled] to be emitted.
    * If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
@@ -104,6 +106,7 @@ public open class BaseButton : Control() {
 
   /**
    * Binary mask to choose which mouse buttons this button will respond to.
+   *
    * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT |
    * MOUSE_BUTTON_MASK_RIGHT`.
    */
@@ -118,6 +121,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button stays pressed when moving the cursor outside the button while pressing
    * it.
+   *
    * **Note:** This property only affects the button's visual appearance. Signals will be emitted at
    * the same moment regardless of this property's value.
    */
@@ -131,6 +135,7 @@ public open class BaseButton : Control() {
 
   /**
    * The [ButtonGroup] associated with the button. Not to be confused with node groups.
+   *
    * **Note:** The button will be configured as a radio button if a [ButtonGroup] is assigned to it.
    */
   public final inline var buttonGroup: ButtonGroup?
@@ -166,6 +171,7 @@ public open class BaseButton : Control() {
 
   /**
    * If `true`, the button will add information about its shortcut in the tooltip.
+   *
    * **Note:** This property does nothing when the tooltip control is customized using
    * [Control.MakeCustomTooltip].
    */
@@ -211,6 +217,7 @@ public open class BaseButton : Control() {
    * Changes the [buttonPressed] state of the button, without emitting [signal toggled]. Use when
    * you just want to change the state of the button without sending the pressed event (e.g. when
    * initializing scene). Only works if [toggleMode] is `true`.
+   *
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
   public final fun setPressedNoSignal(pressed: Boolean): Unit {

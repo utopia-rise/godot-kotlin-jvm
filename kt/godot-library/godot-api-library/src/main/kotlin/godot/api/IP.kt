@@ -140,15 +140,17 @@ public object IP : Object() {
 
   /**
    * Returns all network adapters as an array.
+   *
    * Each adapter is a dictionary of the form:
-   * [codeblock]
+   *
+   * ```
    * {
    *     "index": "1", # Interface index.
    *     "name": "eth0", # Interface name.
    *     "friendly": "Ethernet One", # A friendly name (might be empty).
    *     "addresses": ["192.168.1.101"], # An array of IP addresses associated to this interface.
    * }
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {

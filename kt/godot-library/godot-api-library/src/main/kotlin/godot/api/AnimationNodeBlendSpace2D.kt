@@ -31,10 +31,12 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A resource used by [AnimationNodeBlendTree].
+ *
  * [AnimationNodeBlendSpace2D] represents a virtual 2D space on which [AnimationRootNode]s are
  * placed. Outputs the linear blend of the three adjacent animations using a [Vector2] weight. Adjacent
  * in this context means the three [AnimationRootNode]s making up the triangle that contains the
  * current value.
+ *
  * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by
  * setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate
  * the blend space by hand.
@@ -130,6 +132,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
+   *
    * If `true`, forcing the blended animations to advance frame.
    */
   public final inline var sync: Boolean

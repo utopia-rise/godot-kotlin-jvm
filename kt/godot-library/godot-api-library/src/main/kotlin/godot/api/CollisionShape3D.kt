@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 /**
  * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can
  * give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
+ *
  * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its [shape] resource instead.
  */
@@ -56,6 +57,7 @@ public open class CollisionShape3D : Node3D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
@@ -88,6 +90,7 @@ public open class CollisionShape3D : Node3D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.

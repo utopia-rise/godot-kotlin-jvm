@@ -44,8 +44,10 @@ public operator fun Long.rem(other: godot.api.XRBodyModifier3D.BodyUpdate): Long
 
 /**
  * This node uses body tracking data from an [XRBodyTracker] to pose the skeleton of a body mesh.
+ *
  * Positioning of the body is performed by creating an [XRNode3D] ancestor of the body mesh driven
  * by the same [XRBodyTracker].
+ *
  * The body tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the
  * skeleton, which can be used to adjust the tracked body to match the scale of the body model.
  */

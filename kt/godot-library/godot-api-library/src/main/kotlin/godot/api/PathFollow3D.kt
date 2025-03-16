@@ -28,6 +28,7 @@ import kotlin.jvm.JvmName
 /**
  * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
  * distance from the first vertex.
+ *
  * It is useful for making other nodes follow a path, without coding the movement pattern. For that,
  * the nodes must be children of this node. The descendant nodes will then move accordingly when
  * setting the [progress] in this node.
@@ -50,6 +51,7 @@ public open class PathFollow3D : Node3D() {
    * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last.
    * This is just another way of expressing the progress within the path, as the progress supplied is
    * multiplied internally by the path's length.
+   *
    * It can be set or get only if the [PathFollow3D] is the child of a [Path3D] which is part of the
    * scene tree, and that this [Path3D] has a [Curve3D] with a non-zero length. Otherwise, trying to
    * set this field will print an error, and getting this field will return `0.0`.
@@ -111,10 +113,12 @@ public open class PathFollow3D : Node3D() {
   /**
    * If `true`, the position between two cached points is interpolated cubically, and linearly
    * otherwise.
+   *
    * The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster
    * calculations. The point at the requested offset is then calculated interpolating between two
    * adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached
    * points may not follow the curve closely enough.
+   *
    * There are two answers to this problem: either increase the number of cached points and increase
    * memory consumption, or make a cubic interpolation between two points at the cost of (slightly)
    * slower calculations.

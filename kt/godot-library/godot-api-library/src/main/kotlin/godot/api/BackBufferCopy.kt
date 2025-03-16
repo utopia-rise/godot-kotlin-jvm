@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen
  * according to the [copyMode]. It can be accessed in shader scripts using the screen texture (i.e. a
  * uniform sampler with `hint_screen_texture`).
+ *
  * **Note:** Since this node inherits from [Node2D] (and not [Control]), anchors and margins won't
  * apply to child [Control]-derived nodes. This can be problematic when resizing the window. To avoid
  * this, add [Control]-derived nodes as *siblings* to the [BackBufferCopy] node instead of adding them

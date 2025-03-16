@@ -20,7 +20,8 @@ import kotlin.Unit
  * When packing nested containers using [PackedDataContainer], they are recursively packed into
  * [PackedDataContainerRef] (only applies to [Array] and [Dictionary]). Their data can be retrieved the
  * same way as from [PackedDataContainer].
- * [codeblock]
+ *
+ * ```
  * var packed = PackedDataContainer.new()
  * packed.pack([1, 2, 3, ["nested1", "nested2"], 4, 5, 6])
  *
@@ -30,18 +31,29 @@ import kotlin.Unit
  *             print("::", subelement)
  *     else:
  *         print(element)
- * [/codeblock]
+ * ```
+ *
  * Prints:
+ *
  * [codeblock lang=text]
+ *
  * 1
+ *
  * 2
+ *
  * 3
+ *
  * ::nested1
+ *
  * ::nested2
+ *
  * 4
+ *
  * 5
+ *
  * 6
- * [/codeblock]
+ *
+ * ```
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {

@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Shader source code in text form.
+ *
  * See also [RDShaderFile]. [RDShaderSource] is only meant to be used with the [RenderingDevice]
  * API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various
  * nodes use for high-level shader programming.
@@ -102,6 +103,7 @@ public open class RDShaderSource : RefCounted() {
    * Sets [source] code for the specified shader [stage]. Equivalent to setting one of
    * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
    * [sourceVertex].
+   *
    * **Note:** If you set the compute shader source code using this method directly, remember to
    * remove the Godot-specific hint `#[compute]`.
    */

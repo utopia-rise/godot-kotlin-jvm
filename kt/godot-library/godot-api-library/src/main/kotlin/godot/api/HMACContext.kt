@@ -23,8 +23,8 @@ import kotlin.Unit
  * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
  * supports creating the message over time rather than providing it all at once.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * extends Node
  * var ctx = HMACContext.new()
  *
@@ -42,8 +42,9 @@ import kotlin.Unit
  *     print(hmac.hex_encode())
  *
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * using Godot;
  * using System.Diagnostics;
  *

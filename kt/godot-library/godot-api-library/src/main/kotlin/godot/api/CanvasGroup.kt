@@ -25,10 +25,12 @@ import kotlin.jvm.JvmName
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
  * overlapping translucent 2D nodes without blending (set [CanvasItem.selfModulate] property of
  * [CanvasGroup] to achieve this effect).
+ *
  * **Note:** The [CanvasGroup] uses a custom shader to read from the backbuffer to draw its
  * children. Assigning a [Material] to the [CanvasGroup] overrides the builtin shader. To duplicate the
  * behavior of the builtin shader in a custom [Shader] use the following:
- * [codeblock]
+ *
+ * ```
  * shader_type canvas_item;
  * render_mode unshaded;
  *
@@ -43,7 +45,8 @@ import kotlin.jvm.JvmName
  *
  *     COLOR *= c;
  * }
- * [/codeblock]
+ * ```
+ *
  * **Note:** Since [CanvasGroup] and [CanvasItem.clipChildren] both utilize the backbuffer, children
  * of a [CanvasGroup] who have their [CanvasItem.clipChildren] set to anything other than
  * [CanvasItem.CLIP_CHILDREN_DISABLED] will not function correctly.

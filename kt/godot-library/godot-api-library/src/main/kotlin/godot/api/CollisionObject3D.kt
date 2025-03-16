@@ -38,6 +38,7 @@ import kotlin.jvm.JvmName
  * Abstract base class for 3D physics objects. [CollisionObject3D] can hold any number of [Shape3D]s
  * for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not
  * appear in the editor, but are accessible through code using the `shape_owner_*` methods.
+ *
  * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is
  * advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
@@ -53,6 +54,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable]
    * to be `true` and at least one [collisionLayer] bit to be set.
+   *
    * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in
    * the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small.
    * This signal may also not be emitted if another [CollisionObject3D] is overlapping the
@@ -63,6 +65,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to
    * be `true` and at least one [collisionLayer] bit to be set.
+   *
    * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in
    * the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small.
    * This signal may also not be emitted if another [CollisionObject3D] is overlapping the
@@ -85,6 +88,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * The physics layers this CollisionObject3D **is in**. Collision objects can exist in one or more
    * of 32 different layers. See also [collisionMask].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -101,6 +105,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * The physics layers this CollisionObject3D **scans**. Collision objects can scan one or more of
    * 32 different layers. See also [collisionLayer].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -160,6 +165,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * Receives unhandled [InputEvent]s. [eventPosition] is the location in world space of the mouse
    * pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the
    * surface at that point. Connect to the [signal input_event] signal to easily pick up these events.
+   *
    * **Note:** [_inputEvent] requires [inputRayPickable] to be `true` and at least one
    * [collisionLayer] bit to be set.
    */
@@ -441,12 +447,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [CollisionObject3D].
+     *
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     REMOVE(0),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], make the body static. Doesn't
      * affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
+     *
      * Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed
      * again.
      */

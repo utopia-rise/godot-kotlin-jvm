@@ -59,6 +59,7 @@ public open class Sprite2D : Node2D() {
 
   /**
    * If `true`, texture is centered.
+   *
    * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered.
    * This is caused by their position being between pixels. To prevent this, set this property to
    * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
@@ -339,6 +340,7 @@ public open class Sprite2D : Node2D() {
   /**
    * Returns `true`, if the pixel at the given position is opaque and `false` in other case. The
    * position is in local coordinates.
+   *
    * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
    * is invalid.
    */
@@ -416,18 +418,20 @@ public open class Sprite2D : Node2D() {
 
   /**
    * Returns a [Rect2] representing the Sprite2D's boundary in local coordinates.
+   *
    * **Example:** Detect if the Sprite2D was clicked:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _input(event):
    *     if event is InputEventMouseButton and event.pressed and event.button_index ==
    * MOUSE_BUTTON_LEFT:
    *         if get_rect().has_point(to_local(event.position)):
    *             print("A click!")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Input(InputEvent @event)
    * {
    *     if (@event is InputEventMouseButton inputEventMouse)

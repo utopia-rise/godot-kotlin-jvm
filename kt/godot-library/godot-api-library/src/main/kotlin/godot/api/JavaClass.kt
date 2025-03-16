@@ -23,7 +23,9 @@ import kotlin.Unit
 
 /**
  * Represents a class from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
+ *
  * **Note:** This class only works on Android. On any other platform, this class does nothing.
+ *
  * **Note:** This class is not to be confused with [JavaScriptObject].
  */
 @GodotBaseType

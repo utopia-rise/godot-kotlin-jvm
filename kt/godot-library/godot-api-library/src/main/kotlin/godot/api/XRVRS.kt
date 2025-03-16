@@ -135,6 +135,7 @@ public open class XRVRS : Object() {
   /**
    * Generates the VRS texture based on a render [targetSize] adjusted by our VRS tile size. For
    * each eyes focal point passed in [eyeFoci] a layer is created. Focal point should be in NDC.
+   *
    * The result will be cached, requesting a VRS texture with unchanged parameters and settings will
    * return the cached RID.
    */

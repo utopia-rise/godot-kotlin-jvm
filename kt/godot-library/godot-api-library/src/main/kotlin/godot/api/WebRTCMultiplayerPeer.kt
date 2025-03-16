@@ -30,13 +30,16 @@ import kotlin.jvm.JvmOverloads
 /**
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that
  * can be used as a [MultiplayerAPI.multiplayerPeer].
+ *
  * You can add each [WebRTCPeerConnection] via [addPeer] or remove them via [removePeer]. Peers must
  * be added in [WebRTCPeerConnection.STATE_NEW] state to allow it to create the appropriate channels.
  * This class will not create offers nor set descriptions, it will only poll them, and notify
  * connections and disconnections.
+ *
  * When creating the peer via [createClient] or [createServer] the
  * [MultiplayerPeer.isServerRelaySupported] method will return `true` enabling peer exchange and packet
  * relaying when supported by the [MultiplayerAPI] implementation.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -51,6 +54,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables
    * [MultiplayerPeer.isServerRelaySupported], allowing the upper [MultiplayerAPI] layer to perform
    * peer exchange and packet relaying.
+   *
    * You can optionally specify a [channelsConfig] array of [MultiplayerPeer.TransferMode] which
    * will be used to create extra channels (WebRTC only supports one transfer mode per channel).
    */
@@ -67,6 +71,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * 2147483647). In this mode, you should only call [addPeer] once and with [peerId] of `1`. This mode
    * enables [MultiplayerPeer.isServerRelaySupported], allowing the upper [MultiplayerAPI] layer to
    * perform peer exchange and packet relaying.
+   *
    * You can optionally specify a [channelsConfig] array of [MultiplayerPeer.TransferMode] which
    * will be used to create extra channels (WebRTC only supports one transfer mode per channel).
    */
@@ -93,6 +98,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   /**
    * Add a new peer to the mesh with the given [peerId]. The [WebRTCPeerConnection] must be in state
    * [WebRTCPeerConnection.STATE_NEW].
+   *
    * Three channels will be created for reliable, unreliable, and ordered transport. The value of
    * [unreliableLifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable
    * and ordered channels (see [WebRTCPeerConnection.createDataChannel]).

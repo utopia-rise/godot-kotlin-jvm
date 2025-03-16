@@ -29,20 +29,26 @@ import kotlin.jvm.JvmOverloads
  * commands on them, like managing port mappings (for port forwarding/NAT traversal) and querying the
  * local and remote network IP address. Note that methods on this class are synchronous and block the
  * calling thread.
+ *
  * To forward a specific port (here `7777`, note both [discover] and [addPortMapping] can return
  * errors that should be checked):
- * [codeblock]
+ *
+ * ```
  * var upnp = UPNP.new()
  * upnp.discover()
  * upnp.add_port_mapping(7777)
- * [/codeblock]
+ * ```
+ *
  * To close a specific port (e.g. after you have finished using it):
- * [codeblock]
+ *
+ * ```
  * upnp.delete_port_mapping(port)
- * [/codeblock]
+ * ```
+ *
  * **Note:** UPnP discovery blocks the current thread. To perform discovery without blocking the
  * main thread, use [Thread]s like this:
- * [codeblock]
+ *
+ * ```
  * # Emitted when UPnP port mapping setup is completed (regardless of success or failure).
  * signal upnp_completed(error)
  *
@@ -74,28 +80,36 @@ import kotlin.jvm.JvmOverloads
  * func _exit_tree():
  *     # Wait for thread finish here to handle game exit while the thread is running.
  *     thread.wait_to_finish()
- * [/codeblock]
+ * ```
+ *
  * **Terminology:** In the context of UPnP networking, "gateway" (or "internet gateway device",
  * short IGD) refers to network devices that allow computers in the local network to access the
  * internet ("wide area network", WAN). These gateways are often also called "routers".
+ *
  * **Pitfalls:**
+ *
  * - As explained above, these calls are blocking and shouldn't be run on the main thread,
  * especially as they can block for multiple seconds at a time. Use threading!
+ *
  * - Networking is physical and messy. Packets get lost in transit or get filtered, addresses, free
  * ports and assigned mappings change, and devices may leave or join the network at any time. Be
  * mindful of this, be diligent when checking and handling errors, and handle these gracefully if you
  * can: add clear error UI, timeouts and re-try handling.
+ *
  * - Port mappings may change (and be removed) at any time, and the remote/external IP address of
  * the gateway can change likewise. You should consider re-querying the external IP and try to
  * update/refresh the port mapping periodically (for example, every 5 minutes and on networking
  * failures).
+ *
  * - Not all devices support UPnP, and some users disable UPnP support. You need to handle this
  * (e.g. documenting and requiring the user to manually forward ports, or adding alternative methods of
  * NAT traversal, like a relay/mirror server, or NAT hole punching, STUN/TURN, etc.).
+ *
  * - Consider what happens on mapping conflicts. Maybe multiple users on the same network would like
  * to play your game at the same time, or maybe another application uses the same port. Make the port
  * configurable, and optimally choose a port automatically (re-trying with a different port on
  * failure).
+ *
  * **Further reading:** If you want to know more about UPnP (and the Internet Gateway Device (IGD)
  * and Port Control Protocol (PCP) specifically),
  * [url=https://en.wikipedia.org/wiki/Universal_Plug_and_Play]Wikipedia[/url] is a good first stop, the
@@ -207,9 +221,11 @@ public open class UPNP : RefCounted() {
 
   /**
    * Discovers local [UPNPDevice]s. Clears the list of previously discovered devices.
+   *
    * Filters for IGD (InternetGatewayDevice) type devices by default, as those manage port
    * forwarding. [timeout] is the time to wait for responses in milliseconds. [ttl] is the
    * time-to-live; only touch this if you know what you're doing.
+   *
    * See [UPNPResult] for possible return values.
    */
   @JvmOverloads
@@ -241,14 +257,18 @@ public open class UPNP : RefCounted() {
    * this method tries to overwrite it. If that is not desired, you can retrieve the gateway manually
    * with [getGateway] and call [addPortMapping] on it, if any. Note that forwarding a well-known port
    * (below 1024) with UPnP may fail depending on the device.
+   *
    * Depending on the gateway device, if a mapping for that port already exists, it will either be
    * updated or it will refuse this command due to that conflict, especially if the existing mapping
    * for that port wasn't created via UPnP or points to a different network address (or device) than
    * this one.
+   *
    * If [portInternal] is `0` (the default), the same port number is used for both the external and
    * the internal port (the [port] value).
+   *
    * The description ([desc]) is shown in some routers management UIs and can be used to point out
    * which application added the mapping.
+   *
    * The mapping's lease [duration] can be limited by specifying a duration in seconds. The default
    * of `0` means no duration, i.e. a permanent lease and notably some devices only support these
    * permanent leases. Note that whether permanent or not, this is only a request and the gateway may
@@ -256,6 +276,7 @@ public open class UPNP : RefCounted() {
    * when its external IP address changes, or on some models when it detects a port mapping has become
    * inactive, i.e. had no traffic for multiple minutes). If not `0` (permanent), the allowed range
    * according to spec is between `120` (2 minutes) and `86400` seconds (24 hours).
+   *
    * See [UPNPResult] for possible return values.
    */
   @JvmOverloads

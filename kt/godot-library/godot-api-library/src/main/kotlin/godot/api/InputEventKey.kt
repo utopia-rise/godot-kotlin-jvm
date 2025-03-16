@@ -27,8 +27,10 @@ import kotlin.jvm.JvmName
 /**
  * An input event for keys on a keyboard. Supports key presses, key releases and [echo] events. It
  * can also be received in [Node.UnhandledKeyInput].
+ *
  * **Note:** Events received from the keyboard usually have all properties set. Event mappings
  * should have only one of the [keycode], [physicalKeycode] or [unicode] set.
+ *
  * When events are compared, properties are checked in the following priority - [keycode],
  * [physicalKeycode] and [unicode]. Events with the first matching value will be considered equal.
  */
@@ -48,14 +50,21 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Latin label printed on the key in the current keyboard layout, which corresponds to one of the
    * [Key] constants.
+   *
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.keycode)` where `event` is the [InputEventKey].
+   *
    * [codeblock lang=text]
+   *
    *     +-----+ +-----+
+   *
    *     | Q   | | Q   | - "Q" - keycode
+   *
    *     |   Й | |  ض | - "Й" and "ض" - key_label
+   *
    *     +-----+ +-----+
-   * [/codeblock]
+   *
+   * ```
    */
   public final inline var keycode: Key
     @JvmName("keycodeProperty")
@@ -68,18 +77,20 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Represents the physical location of a key on the 101/102-key US QWERTY keyboard, which
    * corresponds to one of the [Key] constants.
+   *
    * To get a human-readable representation of the [InputEventKey], use [OS.getKeycodeString] in
    * combination with [DisplayServer.keyboardGetKeycodeFromPhysical]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _input(event):
    *     if event is InputEventKey:
    *         var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
    *         print(OS.get_keycode_string(keycode))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Input(InputEvent @event)
    * {
    *     if (@event is InputEventKey inputEventKey)
@@ -102,15 +113,23 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Represents the localized label printed on the key in the current keyboard layout, which
    * corresponds to one of the [Key] constants or any valid Unicode character.
+   *
    * For keyboard layouts with a single label on the key, it is equivalent to [keycode].
+   *
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.key_label)` where `event` is the [InputEventKey].
+   *
    * [codeblock lang=text]
+   *
    *     +-----+ +-----+
+   *
    *     | Q   | | Q   | - "Q" - keycode
+   *
    *     |   Й | |  ض | - "Й" and "ض" - key_label
+   *
    *     +-----+ +-----+
-   * [/codeblock]
+   *
+   * ```
    */
   public final inline var keyLabel: Key
     @JvmName("keyLabelProperty")
@@ -148,6 +167,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * If `true`, the key was already pressed before this event. An echo event is a repeated key event
    * sent when the user is holding down the key.
+   *
    * **Note:** The rate at which echo events are sent is typically around 20 events per second
    * (after holding down the key for roughly half a second). However, the key repeat delay/speed can be
    * changed by the user or disabled entirely in the operating system settings. To ensure your project
@@ -234,6 +254,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Returns the Latin keycode combined with modifier keys such as [kbd]Shift[/kbd] or
    * [kbd]Alt[/kbd]. See also [InputEventWithModifiers].
+   *
    * To get a human-readable representation of the [InputEventKey] with modifiers, use
    * `OS.get_keycode_string(event.get_keycode_with_modifiers())` where `event` is the [InputEventKey].
    */
@@ -246,6 +267,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Returns the physical keycode combined with modifier keys such as [kbd]Shift[/kbd] or
    * [kbd]Alt[/kbd]. See also [InputEventWithModifiers].
+   *
    * To get a human-readable representation of the [InputEventKey] with modifiers, use
    * `OS.get_keycode_string(event.get_physical_keycode_with_modifiers())` where `event` is the
    * [InputEventKey].
@@ -259,6 +281,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Returns the localized key label combined with modifier keys such as [kbd]Shift[/kbd] or
    * [kbd]Alt[/kbd]. See also [InputEventWithModifiers].
+   *
    * To get a human-readable representation of the [InputEventKey] with modifiers, use
    * `OS.get_keycode_string(event.get_key_label_with_modifiers())` where `event` is the
    * [InputEventKey].
