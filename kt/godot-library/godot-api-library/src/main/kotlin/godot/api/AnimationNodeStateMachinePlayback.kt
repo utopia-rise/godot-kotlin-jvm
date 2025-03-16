@@ -17,10 +17,12 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -146,6 +148,25 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getTravelPathPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
+
+  /**
+   * Transitions from the current state to another one, following the shortest path.
+   * If the path does not connect from the current state, the animation will play after the state
+   * teleports.
+   * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel
+   * cause a teleportation.
+   */
+  @JvmOverloads
+  public final fun travel(toNode: String, resetOnTeleport: Boolean = true) =
+      travel(toNode.asCachedStringName(), resetOnTeleport)
+
+  /**
+   * Starts playing the given animation.
+   * If [reset] is `true`, the animation is played from the beginning.
+   */
+  @JvmOverloads
+  public final fun start(node: String, reset: Boolean = true) =
+      start(node.asCachedStringName(), reset)
 
   public companion object
 

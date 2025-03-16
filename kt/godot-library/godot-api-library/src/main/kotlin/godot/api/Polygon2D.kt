@@ -31,12 +31,14 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedNodePath
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -562,6 +564,20 @@ public open class Polygon2D : Node2D() {
     TransferContext.callMethod(ptr, MethodBindings.getInternalVertexCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  /**
+   * Adds a bone with the specified [path] and [weights].
+   */
+  public final fun addBone(path: String, weights: PackedFloat32Array) =
+      addBone(path.asCachedNodePath(), weights)
+
+  /**
+   * Sets the path to the node associated with the specified bone.
+   */
+  public final fun setBonePath(index: Int, path: String) =
+      setBonePath(index, path.asCachedNodePath())
+
+  public final fun setSkeleton(skeleton: String) = setSkeleton(skeleton.asCachedNodePath())
 
   public companion object
 

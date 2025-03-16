@@ -9,7 +9,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
 import godot.codegen.generation.Context
 import godot.codegen.generation.task.ApiTask
-import godot.codegen.generation.task.ClassTask
+import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.rpc.RpcFunctionMode
 import godot.tools.common.constants.GODOT_ERROR
@@ -53,8 +53,8 @@ class ApiRule : GodotApiRule<ApiTask>() {
     }
 }
 
-class ObjectRule : GodotApiRule<ClassTask>() {
-    override fun apply(task: ClassTask, context: Context) = task.configure {
+class ObjectRule : GodotApiRule<EnrichedClassTask>() {
+    override fun apply(task: EnrichedClassTask, context: Context) = task.configure {
         val type = task.clazz.type
         if (type == GodotTypes.node) {
             generateTypesafeRpc()

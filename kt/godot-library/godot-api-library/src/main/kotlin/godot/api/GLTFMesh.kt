@@ -20,6 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Int
 import kotlin.String
@@ -148,6 +149,25 @@ public open class GLTFMesh : Resource() {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 

@@ -155,6 +155,7 @@ public open class Mesh : Resource() {
    * extending [Mesh].
    */
   public open fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+    throw NotImplementedError("_surfaceSetMaterial is not implemented for Mesh")
   }
 
   /**
@@ -183,6 +184,7 @@ public open class Mesh : Resource() {
    * Virtual method to override the names of blend shapes for a custom class extending [Mesh].
    */
   public open fun _setBlendShapeName(index: Int, name: StringName): Unit {
+    throw NotImplementedError("_setBlendShapeName is not implemented for Mesh")
   }
 
   /**

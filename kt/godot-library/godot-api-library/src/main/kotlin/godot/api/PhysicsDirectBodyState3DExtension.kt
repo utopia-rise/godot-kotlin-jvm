@@ -68,6 +68,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _setLinearVelocity(velocity: Vector3): Unit {
+    throw NotImplementedError("_setLinearVelocity is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _getLinearVelocity(): Vector3 {
@@ -75,6 +76,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _setAngularVelocity(velocity: Vector3): Unit {
+    throw NotImplementedError("_setAngularVelocity is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _getAngularVelocity(): Vector3 {
@@ -82,6 +84,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _setTransform(transform: Transform3D): Unit {
+    throw NotImplementedError("_setTransform is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _getTransform(): Transform3D {
@@ -93,33 +96,43 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _applyCentralImpulse(impulse: Vector3): Unit {
+    throw NotImplementedError("_applyCentralImpulse is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _applyImpulse(impulse: Vector3, position: Vector3): Unit {
+    throw NotImplementedError("_applyImpulse is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _applyTorqueImpulse(impulse: Vector3): Unit {
+    throw NotImplementedError("_applyTorqueImpulse is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _applyCentralForce(force: Vector3): Unit {
+    throw NotImplementedError("_applyCentralForce is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _applyForce(force: Vector3, position: Vector3): Unit {
+    throw NotImplementedError("_applyForce is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _applyTorque(torque: Vector3): Unit {
+    throw NotImplementedError("_applyTorque is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _addConstantCentralForce(force: Vector3): Unit {
+    throw NotImplementedError("_addConstantCentralForce is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _addConstantForce(force: Vector3, position: Vector3): Unit {
+    throw NotImplementedError("_addConstantForce is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _addConstantTorque(torque: Vector3): Unit {
+    throw NotImplementedError("_addConstantTorque is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _setConstantForce(force: Vector3): Unit {
+    throw NotImplementedError("_setConstantForce is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _getConstantForce(): Vector3 {
@@ -127,6 +140,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _setConstantTorque(torque: Vector3): Unit {
+    throw NotImplementedError("_setConstantTorque is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _getConstantTorque(): Vector3 {
@@ -134,6 +148,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _setSleepState(enabled: Boolean): Unit {
+    throw NotImplementedError("_setSleepState is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _isSleeping(): Boolean {
@@ -193,6 +208,7 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
   }
 
   public open fun _integrateForces(): Unit {
+    throw NotImplementedError("_integrateForces is not implemented for PhysicsDirectBodyState3DExtension")
   }
 
   public open fun _getSpaceState(): PhysicsDirectSpaceState3D? {

@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -350,6 +351,8 @@ public open class VideoStreamPlayer : Control() {
     TransferContext.callMethod(ptr, MethodBindings.getVideoTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
+
+  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public companion object
 

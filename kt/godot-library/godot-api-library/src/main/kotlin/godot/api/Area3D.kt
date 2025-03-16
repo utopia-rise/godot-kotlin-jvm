@@ -28,11 +28,14 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -780,6 +783,13 @@ public open class Area3D : CollisionObject3D() {
     TransferContext.callMethod(ptr, MethodBindings.getReverbUniformityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
+
+  public final fun setWindSourcePath(windSourcePath: String) =
+      setWindSourcePath(windSourcePath.asCachedNodePath())
+
+  public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
+
+  public final fun setReverbBusName(name: String) = setReverbBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
     id: Long,

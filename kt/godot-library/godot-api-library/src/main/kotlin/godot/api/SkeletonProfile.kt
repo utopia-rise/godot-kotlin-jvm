@@ -21,9 +21,11 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -338,6 +340,49 @@ public open class SkeletonProfile : Resource() {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to required)
     TransferContext.callMethod(ptr, MethodBindings.setRequiredPtr, NIL)
   }
+
+  public final fun setRootBone(boneName: String) = setRootBone(boneName.asCachedStringName())
+
+  public final fun setScaleBaseBone(boneName: String) =
+      setScaleBaseBone(boneName.asCachedStringName())
+
+  /**
+   * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
+   * editor.
+   */
+  public final fun setGroupName(groupIdx: Int, groupName: String) =
+      setGroupName(groupIdx, groupName.asCachedStringName())
+
+  /**
+   * Returns the bone index that matches [boneName] as its name.
+   */
+  public final fun findBone(boneName: String): Int = findBone(boneName.asCachedStringName())
+
+  /**
+   * Sets the name of the bone at [boneIdx] that will be the key name in the [BoneMap].
+   * In the retargeting process, the setting bone name is the bone name of the target skeleton.
+   */
+  public final fun setBoneName(boneIdx: Int, boneName: String) =
+      setBoneName(boneIdx, boneName.asCachedStringName())
+
+  /**
+   * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string
+   * is passed, then the bone has no parent.
+   */
+  public final fun setBoneParent(boneIdx: Int, boneParent: String) =
+      setBoneParent(boneIdx, boneParent.asCachedStringName())
+
+  /**
+   * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
+   */
+  public final fun setBoneTail(boneIdx: Int, boneTail: String) =
+      setBoneTail(boneIdx, boneTail.asCachedStringName())
+
+  /**
+   * Sets the group of the bone at [boneIdx].
+   */
+  public final fun setGroup(boneIdx: Int, group: String) =
+      setGroup(boneIdx, group.asCachedStringName())
 
   public enum class TailDirection(
     id: Long,

@@ -22,6 +22,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -360,9 +361,20 @@ public open class WebRTCPeerConnection : RefCounted() {
       TransferContext.writeArguments(STRING_NAME to extensionClass)
       TransferContext.callMethod(0, MethodBindings.setDefaultExtensionPtr, NIL)
     }
+
+    /**
+     * Sets the [extensionClass] as the default [WebRTCPeerConnectionExtension] returned when
+     * creating a new [WebRTCPeerConnection].
+     */
+    @JvmStatic
+    public final fun setDefaultExtension(extensionClass: String) =
+        setDefaultExtension(extensionClass.asCachedStringName())
   }
 
   public object MethodBindings {
+    internal val setDefaultExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
+
     internal val initializePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebRTCPeerConnection", "initialize", 2625064318)
 
@@ -395,8 +407,5 @@ public open class WebRTCPeerConnection : RefCounted() {
 
     internal val getSignalingStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebRTCPeerConnection", "get_signaling_state", 3342956226)
-
-    internal val setDefaultExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
   }
 }

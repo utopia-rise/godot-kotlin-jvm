@@ -37,6 +37,7 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.stop]. [_isPlaying] should return `false` once stopped.
    */
   public open fun _stop(): Unit {
+    throw NotImplementedError("_stop is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -45,6 +46,7 @@ public open class VideoStreamPlayback : Resource() {
    * should return `true` once playing.
    */
   public open fun _play(): Unit {
+    throw NotImplementedError("_play is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -59,6 +61,7 @@ public open class VideoStreamPlayback : Resource() {
    * to the [VideoStreamPlayer.paused] setter.
    */
   public open fun _setPaused(paused: Boolean): Unit {
+    throw NotImplementedError("_setPaused is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -87,6 +90,7 @@ public open class VideoStreamPlayback : Resource() {
    * Seeks to [time] seconds. Called in response to the [VideoStreamPlayer.streamPosition] setter.
    */
   public open fun _seek(time: Double): Unit {
+    throw NotImplementedError("_seek is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -94,6 +98,7 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.audioTrack] setter.
    */
   public open fun _setAudioTrack(idx: Int): Unit {
+    throw NotImplementedError("_setAudioTrack is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -108,6 +113,7 @@ public open class VideoStreamPlayback : Resource() {
    * [_isPlaying] return `true`.
    */
   public open fun _update(delta: Double): Unit {
+    throw NotImplementedError("_update is not implemented for VideoStreamPlayback")
   }
 
   /**

@@ -3,8 +3,8 @@ package godot.codegen.generation.rule
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.generation.Context
-import godot.codegen.generation.task.ClassTask
-import godot.codegen.generation.task.EnumTask
+import godot.codegen.generation.task.EnrichedClassTask
+import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedEnum
@@ -14,9 +14,9 @@ class FileRule : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: Context) {
         val type = task.type
         if (type is EnrichedClass) {
-            task.classes += ClassTask(type)
+            task.classes += EnrichedClassTask(type)
         } else if (type is EnrichedEnum) {
-            task.enums += EnumTask(type)
+            task.enums += EnrichedEnumTask(type)
         }
     }
 }
@@ -52,11 +52,10 @@ class WarningRule() : GodotApiRule<FileTask>() {
     }
 }
 
-
 class StaticRule : GodotApiRule<FileTask>() {
     override fun apply(fileTask: FileTask, context: Context) = fileTask.configure {
         for (classTask in fileTask.classes) {
-            for (method in classTask.staticMethods) {
+            for (method in classTask.enrichedStaticMethods) {
                 method.generator.addAnnotation(JvmStatic::class)
             }
 
@@ -67,9 +66,6 @@ class StaticRule : GodotApiRule<FileTask>() {
                 }
                 for (property in classTask.properties) {
                     property.generator.addAnnotation(JvmStatic::class)
-                }
-                for (signal in classTask.signals) {
-                    signal.generator.addAnnotation(JvmStatic::class)
                 }
             }
         }

@@ -17,12 +17,12 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmOverloads
 
 /**
  * Compiled shader file in SPIR-V form.
@@ -52,7 +52,6 @@ public open class RDShaderFile : Resource() {
   /**
    * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
-  @JvmOverloads
   public final fun setBytecode(bytecode: RDShaderSPIRV?, version: StringName = StringName("")):
       Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
@@ -62,7 +61,6 @@ public open class RDShaderFile : Resource() {
   /**
    * Returns the SPIR-V intermediate representation for the specified shader [version].
    */
-  @JvmOverloads
   public final fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
     TransferContext.callMethod(ptr, MethodBindings.getSpirvPtr, OBJECT)
@@ -88,6 +86,18 @@ public open class RDShaderFile : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getBaseErrorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
+
+  /**
+   * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
+   */
+  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: String) =
+      setBytecode(bytecode, version.asCachedStringName())
+
+  /**
+   * Returns the SPIR-V intermediate representation for the specified shader [version].
+   */
+  public final fun getSpirv(version: String): RDShaderSPIRV? =
+      getSpirv(version.asCachedStringName())
 
   public companion object
 

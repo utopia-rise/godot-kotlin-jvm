@@ -62,6 +62,7 @@ import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -6429,6 +6430,170 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns the default value for the specified shader uniform. This is usually the value written
+   * in the shader source code.
+   */
+  @JvmStatic
+  public final fun shaderGetParameterDefault(shader: RID, name: String): Any? =
+      shaderGetParameterDefault(shader, name.asCachedStringName())
+
+  /**
+   * Sets a shader's default texture. Overwrites the texture given by name.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun shaderSetDefaultTextureParameter(
+    shader: RID,
+    name: String,
+    texture: RID,
+    index: Int = 0,
+  ) = shaderSetDefaultTextureParameter(shader, name.asCachedStringName(), texture, index)
+
+  /**
+   * Returns a default texture from a shader searched by name.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun shaderGetDefaultTextureParameter(
+    shader: RID,
+    name: String,
+    index: Int = 0,
+  ): RID = shaderGetDefaultTextureParameter(shader, name.asCachedStringName(), index)
+
+  /**
+   * Sets a material's parameter.
+   */
+  @JvmStatic
+  public final fun materialSetParam(
+    material: RID,
+    parameter: String,
+    `value`: Any?,
+  ) = materialSetParam(material, parameter.asCachedStringName(), value)
+
+  /**
+   * Returns the value of a certain material's parameter.
+   */
+  @JvmStatic
+  public final fun materialGetParam(material: RID, parameter: String): Any? =
+      materialGetParam(material, parameter.asCachedStringName())
+
+  /**
+   * Sets the per-instance shader uniform on the specified 3D geometry instance. Equivalent to
+   * [GeometryInstance3D.setInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun instanceGeometrySetShaderParameter(
+    instance: RID,
+    parameter: String,
+    `value`: Any?,
+  ) = instanceGeometrySetShaderParameter(instance, parameter.asCachedStringName(), value)
+
+  /**
+   * Returns the value of the per-instance shader uniform from the specified 3D geometry instance.
+   * Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
+   * **Note:** Per-instance shader parameter names are case-sensitive.
+   */
+  @JvmStatic
+  public final fun instanceGeometryGetShaderParameter(instance: RID, parameter: String): Any? =
+      instanceGeometryGetShaderParameter(instance, parameter.asCachedStringName())
+
+  /**
+   * Returns the default value of the per-instance shader uniform from the specified 3D geometry
+   * instance. Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun instanceGeometryGetShaderParameterDefaultValue(instance: RID, parameter: String):
+      Any? =
+      instanceGeometryGetShaderParameterDefaultValue(instance, parameter.asCachedStringName())
+
+  /**
+   * Sets the per-instance shader uniform on the specified canvas item instance. Equivalent to
+   * [CanvasItem.setInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemSetInstanceShaderParameter(
+    instance: RID,
+    parameter: String,
+    `value`: Any?,
+  ) = canvasItemSetInstanceShaderParameter(instance, parameter.asCachedStringName(), value)
+
+  /**
+   * Returns the value of the per-instance shader uniform from the specified canvas item instance.
+   * Equivalent to [CanvasItem.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameter(instance: RID, parameter: String): Any? =
+      canvasItemGetInstanceShaderParameter(instance, parameter.asCachedStringName())
+
+  /**
+   * Returns the default value of the per-instance shader uniform from the specified canvas item
+   * instance. Equivalent to [CanvasItem.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameterDefaultValue(instance: RID,
+      parameter: String): Any? =
+      canvasItemGetInstanceShaderParameterDefaultValue(instance, parameter.asCachedStringName())
+
+  /**
+   * Creates a new global shader uniform.
+   * **Note:** Global shader parameter names are case-sensitive.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterAdd(
+    name: String,
+    type: GlobalShaderParameterType,
+    defaultValue: Any?,
+  ) = globalShaderParameterAdd(name.asCachedStringName(), type, defaultValue)
+
+  /**
+   * Removes the global shader uniform specified by [name].
+   */
+  @JvmStatic
+  public final fun globalShaderParameterRemove(name: String) =
+      globalShaderParameterRemove(name.asCachedStringName())
+
+  /**
+   * Sets the global shader uniform [name] to [value].
+   */
+  @JvmStatic
+  public final fun globalShaderParameterSet(name: String, `value`: Any?) =
+      globalShaderParameterSet(name.asCachedStringName(), value)
+
+  /**
+   * Overrides the global shader uniform [name] with [value]. Equivalent to the
+   * [ShaderGlobalsOverride] node.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterSetOverride(name: String, `value`: Any?) =
+      globalShaderParameterSetOverride(name.asCachedStringName(), value)
+
+  /**
+   * Returns the value of the global shader uniform specified by [name].
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterGet(name: String): Any? =
+      globalShaderParameterGet(name.asCachedStringName())
+
+  /**
+   * Returns the type associated to the global shader uniform specified by [name].
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterGetType(name: String): GlobalShaderParameterType =
+      globalShaderParameterGetType(name.asCachedStringName())
 
   public enum class TextureType(
     id: Long,

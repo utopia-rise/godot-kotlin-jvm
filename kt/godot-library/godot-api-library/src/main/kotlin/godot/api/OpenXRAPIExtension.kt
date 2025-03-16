@@ -493,8 +493,14 @@ public open class OpenXRAPIExtension : RefCounted() {
     internal val getSessionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2455072627)
 
+    internal val transformFromPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 2963875352)
+
     internal val xrResultPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3886436197)
+
+    internal val openxrIsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2703660260)
 
     internal val getInstanceProcAddrPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr", 1597066294)
@@ -603,8 +609,5 @@ public open class OpenXRAPIExtension : RefCounted() {
 
     internal val isEnvironmentBlendModeAlphaSupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1579290861)
-
-    internal val openxrIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2703660260)
   }
 }

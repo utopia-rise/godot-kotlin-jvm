@@ -20,6 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.Vector2i
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -138,6 +139,8 @@ public open class StatusIndicator : Node() {
     TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
+
+  public final fun setMenu(menu: String) = setMenu(menu.asCachedNodePath())
 
   public companion object
 

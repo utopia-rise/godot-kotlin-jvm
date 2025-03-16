@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -40,8 +39,7 @@ public open class Semaphore : RefCounted() {
   /**
    * Waits for the [Semaphore], if its value is zero, blocks until non-zero.
    */
-  @JvmName("semaphoreWait")
-  public final fun wait(): Unit {
+  public final fun waitFor(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.waitPtr, NIL)
   }

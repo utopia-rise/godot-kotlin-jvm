@@ -23,6 +23,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -237,6 +238,18 @@ public open class Script internal constructor() : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
+
+  /**
+   * Returns `true` if the script, or a base class, defines a signal with the given name.
+   */
+  public final fun hasScriptSignal(signalName: String): Boolean =
+      hasScriptSignal(signalName.asCachedStringName())
+
+  /**
+   * Returns the default value of the specified property.
+   */
+  public final fun getPropertyDefaultValue(`property`: String): Any? =
+      getPropertyDefaultValue(property.asCachedStringName())
 
   public companion object
 

@@ -30,12 +30,15 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -707,6 +710,79 @@ public open class AnimationMixer internal constructor() : Node() {
     TransferContext.callMethod(ptr, MethodBindings.findAnimationLibraryPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  /**
+   * Adds [library] to the animation player, under the key [name].
+   * AnimationMixer has a global library by default with an empty string as key. For adding an
+   * animation to the global library:
+   *
+   * gdscript:
+   * ```gdscript
+   * var global_library = mixer.get_animation_library("")
+   * global_library.add_animation("animation_name", animation_resource)
+   * ```
+   */
+  public final fun addAnimationLibrary(name: String, library: AnimationLibrary?): Error =
+      addAnimationLibrary(name.asCachedStringName(), library)
+
+  /**
+   * Removes the [AnimationLibrary] associated with the key [name].
+   */
+  public final fun removeAnimationLibrary(name: String) =
+      removeAnimationLibrary(name.asCachedStringName())
+
+  /**
+   * Moves the [AnimationLibrary] associated with the key [name] to the key [newname].
+   */
+  public final fun renameAnimationLibrary(name: String, newname: String) =
+      renameAnimationLibrary(name.asCachedStringName(), newname.asCachedStringName())
+
+  /**
+   * Returns `true` if the [AnimationMixer] stores an [AnimationLibrary] with key [name].
+   */
+  public final fun hasAnimationLibrary(name: String): Boolean =
+      hasAnimationLibrary(name.asCachedStringName())
+
+  /**
+   * Returns the first [AnimationLibrary] with key [name] or `null` if not found.
+   * To get the [AnimationMixer]'s global animation library, use `get_animation_library("")`.
+   */
+  public final fun getAnimationLibrary(name: String): AnimationLibrary? =
+      getAnimationLibrary(name.asCachedStringName())
+
+  /**
+   * Returns `true` if the [AnimationMixer] stores an [Animation] with key [name].
+   */
+  public final fun hasAnimation(name: String): Boolean = hasAnimation(name.asCachedStringName())
+
+  /**
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
+   * returned and an error is logged.
+   */
+  public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
+
+  public final fun setRootNode(path: String) = setRootNode(path.asCachedNodePath())
+
+  public final fun setRootMotionTrack(path: String) = setRootMotionTrack(path.asCachedNodePath())
+
+  /**
+   * If the animation track specified by [name] has an option [Animation.UPDATE_CAPTURE], stores
+   * current values of the objects indicated by the track path as a cache. If there is already a
+   * captured cache, the old cache is discarded.
+   * After this it will interpolate with current animation blending result during the playback
+   * process for the time specified by [duration], working like a crossfade.
+   * You can specify [transType] as the curve for the interpolation. For better results, it may be
+   * appropriate to specify [Tween.TRANS_LINEAR] for cases where the first key of the track begins with
+   * a non-zero value or where the key value does not change, and [Tween.TRANS_QUAD] for cases where
+   * the key value changes linearly.
+   */
+  @JvmOverloads
+  public final fun capture(
+    name: String,
+    duration: Double,
+    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+  ) = capture(name.asCachedStringName(), duration, transType, easeType)
 
   public enum class AnimationCallbackModeProcess(
     id: Long,

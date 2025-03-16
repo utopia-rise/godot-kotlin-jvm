@@ -18,6 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -162,6 +163,10 @@ public open class XRNode3D : Node3D() {
     TransferContext.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
     TransferContext.callMethod(ptr, MethodBindings.triggerHapticPulsePtr, NIL)
   }
+
+  public final fun setTracker(trackerName: String) = setTracker(trackerName.asCachedStringName())
+
+  public final fun setPoseName(pose: String) = setPoseName(pose.asCachedStringName())
 
   public companion object
 

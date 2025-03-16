@@ -26,6 +26,8 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -478,9 +480,9 @@ public open class SceneTree : MainLoop() {
     flags: Long,
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupFlagsPtr, NIL)
   }
 
@@ -529,9 +531,9 @@ public open class SceneTree : MainLoop() {
   public final fun callGroup(
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupPtr, NIL)
   }
 
@@ -666,7 +668,6 @@ public open class SceneTree : MainLoop() {
    * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
    * `"/root/Foo/Bar"` will cause an error.
    */
-  @JvmOverloads
   public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: NodePath = NodePath("")):
       Unit {
     TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
@@ -678,7 +679,6 @@ public open class SceneTree : MainLoop() {
    * searches the parent paths until one is found. If the path is empty, or none is found, the default
    * one is returned. See [setMultiplayer].
    */
-  @JvmOverloads
   public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerPtr, OBJECT)
@@ -695,6 +695,139 @@ public open class SceneTree : MainLoop() {
     TransferContext.callMethod(ptr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if a node added to the given group [name] exists in the tree.
+   */
+  public final fun hasGroup(name: String): Boolean = hasGroup(name.asCachedStringName())
+
+  /**
+   * Calls the given [method] on each node inside this tree added to the given [group]. Use [flags]
+   * to customize this method's behavior (see [GroupCallFlags]). Additional arguments for [method] can
+   * be passed at the end of this method. Nodes that cannot call [method] (either because the method
+   * doesn't exist or the arguments do not match) are ignored.
+   * [codeblock]
+   * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
+   * order.
+   * get_tree().call_group_flags(
+   *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   *         "enemies", "hide")
+   * [/codeblock]
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun callGroupFlags(
+    flags: Long,
+    group: String,
+    method: String,
+    vararg args: Any?,
+  ) = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. Use [callFlags] to customize this method's behavior (see [GroupCallFlags]).
+   */
+  public final fun notifyGroupFlags(
+    callFlags: Long,
+    group: String,
+    notification: Int,
+  ) = notifyGroupFlags(callFlags, group.asCachedStringName(), notification)
+
+  /**
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. Use [callFlags] to customize this method's
+   * behavior (see [GroupCallFlags]).
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
+   */
+  public final fun setGroupFlags(
+    callFlags: Long,
+    group: String,
+    `property`: String,
+    `value`: Any?,
+  ) = setGroupFlags(callFlags, group.asCachedStringName(), property, value)
+
+  /**
+   * Calls [method] on each node inside this tree added to the given [group]. You can pass arguments
+   * to [method] by specifying them at the end of this method call. Nodes that cannot call [method]
+   * (either because the method doesn't exist or the arguments do not match) are ignored. See also
+   * [setGroup] and [notifyGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun callGroup(
+    group: String,
+    method: String,
+    vararg args: Any?,
+  ) = callGroup(group.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. See also [url=$DOCS_URL/tutorials/best_practices/godot_notifications.html]Godot
+   * notifications[/url] and [callGroup] and [setGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   */
+  public final fun notifyGroup(group: String, notification: Int) =
+      notifyGroup(group.asCachedStringName(), notification)
+
+  /**
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. See also [callGroup] and [notifyGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
+   */
+  public final fun setGroup(
+    group: String,
+    `property`: String,
+    `value`: Any?,
+  ) = setGroup(group.asCachedStringName(), property, value)
+
+  /**
+   * Returns an [Array] containing all nodes inside this tree, that have been added to the given
+   * [group], in scene hierarchy order.
+   */
+  public final fun getNodesInGroup(group: String): VariantArray<Node> =
+      getNodesInGroup(group.asCachedStringName())
+
+  /**
+   * Returns the first [Node] found inside the tree, that has been added to the given [group], in
+   * scene hierarchy order. Returns `null` if no match is found. See also [getNodesInGroup].
+   */
+  public final fun getFirstNodeInGroup(group: String): Node? =
+      getFirstNodeInGroup(group.asCachedStringName())
+
+  /**
+   * Returns the number of nodes assigned to the given group.
+   */
+  public final fun getNodeCountInGroup(group: String): Int =
+      getNodeCountInGroup(group.asCachedStringName())
+
+  /**
+   * Sets a custom [MultiplayerAPI] with the given [rootPath] (controlling also the relative
+   * subpaths), or override the default one if [rootPath] is empty.
+   * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
+   * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
+   * `"/root/Foo/Bar"` will cause an error.
+   */
+  public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: String) =
+      setMultiplayer(multiplayer, rootPath.asCachedNodePath())
+
+  /**
+   * Searches for the [MultiplayerAPI] configured for the given path, if one does not exist it
+   * searches the parent paths until one is found. If the path is empty, or none is found, the default
+   * one is returned. See [setMultiplayer].
+   */
+  public final fun getMultiplayer(forPath: String): MultiplayerAPI? =
+      getMultiplayer(forPath.asCachedNodePath())
 
   public enum class GroupCallFlags(
     id: Long,

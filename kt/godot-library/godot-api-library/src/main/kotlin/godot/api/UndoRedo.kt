@@ -21,6 +21,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -392,6 +393,24 @@ public open class UndoRedo : Object() {
     TransferContext.callMethod(ptr, MethodBindings.undoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Register a [property] that would change its value to [value] when the action is committed.
+   */
+  public final fun addDoProperty(
+    `object`: Object?,
+    `property`: String,
+    `value`: Any?,
+  ) = addDoProperty(`object`, property.asCachedStringName(), value)
+
+  /**
+   * Register a [property] that would change its value to [value] when the action is undone.
+   */
+  public final fun addUndoProperty(
+    `object`: Object?,
+    `property`: String,
+    `value`: Any?,
+  ) = addUndoProperty(`object`, property.asCachedStringName(), value)
 
   public enum class MergeMode(
     id: Long,

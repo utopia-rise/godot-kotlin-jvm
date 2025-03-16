@@ -14,9 +14,11 @@ import godot.core.StringName
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -197,6 +199,8 @@ public open class AudioEffectCompressor : AudioEffect() {
     TransferContext.callMethod(ptr, MethodBindings.getSidechainPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  public final fun setSidechain(sidechain: String) = setSidechain(sidechain.asCachedStringName())
 
   public companion object
 

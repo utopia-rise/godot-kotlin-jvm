@@ -91,6 +91,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective setter.
    */
   public open fun _setLinearVelocity(velocity: Vector2): Unit {
+    throw NotImplementedError("_setLinearVelocity is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -106,6 +107,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective setter.
    */
   public open fun _setAngularVelocity(velocity: Float): Unit {
+    throw NotImplementedError("_setAngularVelocity is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -121,6 +123,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * setter.
    */
   public open fun _setTransform(transform: Transform2D): Unit {
+    throw NotImplementedError("_setTransform is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -142,60 +145,70 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * Overridable version of [PhysicsDirectBodyState2D.applyCentralImpulse].
    */
   public open fun _applyCentralImpulse(impulse: Vector2): Unit {
+    throw NotImplementedError("_applyCentralImpulse is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyImpulse].
    */
   public open fun _applyImpulse(impulse: Vector2, position: Vector2): Unit {
+    throw NotImplementedError("_applyImpulse is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyTorqueImpulse].
    */
   public open fun _applyTorqueImpulse(impulse: Float): Unit {
+    throw NotImplementedError("_applyTorqueImpulse is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyCentralForce].
    */
   public open fun _applyCentralForce(force: Vector2): Unit {
+    throw NotImplementedError("_applyCentralForce is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyForce].
    */
   public open fun _applyForce(force: Vector2, position: Vector2): Unit {
+    throw NotImplementedError("_applyForce is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyTorque].
    */
   public open fun _applyTorque(torque: Float): Unit {
+    throw NotImplementedError("_applyTorque is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.addConstantCentralForce].
    */
   public open fun _addConstantCentralForce(force: Vector2): Unit {
+    throw NotImplementedError("_addConstantCentralForce is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.addConstantForce].
    */
   public open fun _addConstantForce(force: Vector2, position: Vector2): Unit {
+    throw NotImplementedError("_addConstantForce is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.addConstantTorque].
    */
   public open fun _addConstantTorque(torque: Float): Unit {
+    throw NotImplementedError("_addConstantTorque is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.setConstantForce].
    */
   public open fun _setConstantForce(force: Vector2): Unit {
+    throw NotImplementedError("_setConstantForce is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -209,6 +222,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * Overridable version of [PhysicsDirectBodyState2D.setConstantTorque].
    */
   public open fun _setConstantTorque(torque: Float): Unit {
+    throw NotImplementedError("_setConstantTorque is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -223,6 +237,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * setter.
    */
   public open fun _setSleepState(enabled: Boolean): Unit {
+    throw NotImplementedError("_setSleepState is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -329,6 +344,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * Overridable version of [PhysicsDirectBodyState2D.integrateForces].
    */
   public open fun _integrateForces(): Unit {
+    throw NotImplementedError("_integrateForces is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**

@@ -229,6 +229,9 @@ public open class RegEx : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val createFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
+
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear", 3218959716)
 
     internal val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 3565188097)
@@ -250,8 +253,5 @@ public open class RegEx : RefCounted() {
 
     internal val getNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RegEx", "get_names", 1139954409)
-
-    internal val createFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
   }
 }

@@ -14,8 +14,10 @@ import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -150,6 +152,8 @@ public open class RemoteTransform3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getUpdateScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setRemoteNode(path: String) = setRemoteNode(path.asCachedNodePath())
 
   public companion object
 

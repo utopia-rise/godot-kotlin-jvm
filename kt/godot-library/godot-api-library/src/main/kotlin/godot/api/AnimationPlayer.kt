@@ -23,6 +23,8 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -588,7 +590,6 @@ public open class AnimationPlayer : AnimationMixer() {
    * If the argument is empty, the section uses the beginning or end of the animation. If both are
    * empty, it means that the section is not set.
    */
-  @JvmOverloads
   public final fun setSectionWithMarkers(startMarker: StringName = StringName(""),
       endMarker: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to startMarker, STRING_NAME to endMarker)
@@ -710,6 +711,178 @@ public open class AnimationPlayer : AnimationMixer() {
     TransferContext.callMethod(ptr, MethodBindings.getRootPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  /**
+   * Triggers the [animationTo] animation when the [animationFrom] animation completes.
+   */
+  public final fun animationSetNext(animationFrom: String, animationTo: String) =
+      animationSetNext(animationFrom.asCachedStringName(), animationTo.asCachedStringName())
+
+  /**
+   * Returns the key of the animation which is queued to play after the [animationFrom] animation.
+   */
+  public final fun animationGetNext(animationFrom: String): StringName =
+      animationGetNext(animationFrom.asCachedStringName())
+
+  /**
+   * Specifies a blend time (in seconds) between two animations, referenced by their keys.
+   */
+  public final fun setBlendTime(
+    animationFrom: String,
+    animationTo: String,
+    sec: Double,
+  ) = setBlendTime(animationFrom.asCachedStringName(), animationTo.asCachedStringName(), sec)
+
+  /**
+   * Returns the blend time (in seconds) between two animations, referenced by their keys.
+   */
+  public final fun getBlendTime(animationFrom: String, animationTo: String): Double =
+      getBlendTime(animationFrom.asCachedStringName(), animationTo.asCachedStringName())
+
+  /**
+   * Plays the animation with key [name]. Custom blend times and speed can be set.
+   * The [fromEnd] option only affects when switching to a new animation track, or if the same track
+   * but at the start or end. It does not affect resuming playback that was paused in the middle of an
+   * animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards
+   * (which is equivalent to calling [playBackwards]).
+   * The [AnimationPlayer] keeps track of its current or last played animation with
+   * [assignedAnimation]. If this method is called with that same animation [name], or with no [name]
+   * parameter, the assigned animation will resume playing if it was paused.
+   * **Note:** The animation will be updated the next time the [AnimationPlayer] is processed. If
+   * other variables are updated at the same time this is called, they may be updated too early. To
+   * perform the update immediately, call `advance(0)`.
+   */
+  @JvmOverloads
+  public final fun play(
+    name: String,
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+  ) = play(name.asCachedStringName(), customBlend, customSpeed, fromEnd)
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startMarker] and ending on
+   * [endMarker].
+   * If the start marker is empty, the section starts from the beginning of the animation. If the
+   * end marker is empty, the section ends on the end of the animation. See also [play].
+   */
+  @JvmOverloads
+  public final fun playSectionWithMarkers(
+    name: String,
+    startMarker: String,
+    endMarker: String,
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+  ) =
+      playSectionWithMarkers(name.asCachedStringName(), startMarker.asCachedStringName(), endMarker.asCachedStringName(), customBlend, customSpeed, fromEnd)
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startTime] and ending on
+   * [endTime]. See also [play].
+   * Setting [startTime] to a value outside the range of the animation means the start of the
+   * animation will be used instead, and setting [endTime] to a value outside the range of the
+   * animation means the end of the animation will be used instead. [startTime] cannot be equal to
+   * [endTime].
+   */
+  @JvmOverloads
+  public final fun playSection(
+    name: String,
+    startTime: Double = -1.0,
+    endTime: Double = -1.0,
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+  ) = playSection(name.asCachedStringName(), startTime, endTime, customBlend, customSpeed, fromEnd)
+
+  /**
+   * Plays the animation with key [name] in reverse.
+   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
+   * its description for more information.
+   */
+  @JvmOverloads
+  public final fun playBackwards(name: String, customBlend: Double = -1.0) =
+      playBackwards(name.asCachedStringName(), customBlend)
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startMarker] and ending on
+   * [endMarker] in reverse.
+   * This method is a shorthand for [playSectionWithMarkers] with `custom_speed = -1.0` and
+   * `from_end = true`, see its description for more information.
+   */
+  @JvmOverloads
+  public final fun playSectionWithMarkersBackwards(
+    name: String,
+    startMarker: String,
+    endMarker: String,
+    customBlend: Double = -1.0,
+  ) =
+      playSectionWithMarkersBackwards(name.asCachedStringName(), startMarker.asCachedStringName(), endMarker.asCachedStringName(), customBlend)
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startTime] and ending on
+   * [endTime] in reverse.
+   * This method is a shorthand for [playSection] with `custom_speed = -1.0` and `from_end = true`,
+   * see its description for more information.
+   */
+  @JvmOverloads
+  public final fun playSectionBackwards(
+    name: String,
+    startTime: Double = -1.0,
+    endTime: Double = -1.0,
+    customBlend: Double = -1.0,
+  ) = playSectionBackwards(name.asCachedStringName(), startTime, endTime, customBlend)
+
+  /**
+   * See also [AnimationMixer.capture].
+   * You can use this method to use more detailed options for capture than those performed by
+   * [playbackAutoCapture]. When [playbackAutoCapture] is `false`, this method is almost the same as
+   * the following:
+   * [codeblock]
+   * capture(name, duration, trans_type, ease_type)
+   * play(name, custom_blend, custom_speed, from_end)
+   * [/codeblock]
+   * If [name] is blank, it specifies [assignedAnimation].
+   * If [duration] is a negative value, the duration is set to the interval between the current
+   * position and the first key, when [fromEnd] is `true`, uses the interval between the current
+   * position and the last key instead.
+   * **Note:** The [duration] takes [speedScale] into account, but [customSpeed] does not, because
+   * the capture cache is interpolated with the blend result and the result may contain multiple
+   * animations.
+   */
+  @JvmOverloads
+  public final fun playWithCapture(
+    name: String,
+    duration: Double = -1.0,
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+  ) =
+      playWithCapture(name.asCachedStringName(), duration, customBlend, customSpeed, fromEnd, transType, easeType)
+
+  /**
+   * Queues an animation for playback once the current animation and all previously queued
+   * animations are done.
+   * **Note:** If a looped animation is currently playing, the queued animation will never play
+   * unless the looped animation is stopped somehow.
+   */
+  public final fun queue(name: String) = queue(name.asCachedStringName())
+
+  /**
+   * Changes the start and end markers of the section being played. The current playback position
+   * will be clamped within the new section. See also [playSectionWithMarkers].
+   * If the argument is empty, the section uses the beginning or end of the animation. If both are
+   * empty, it means that the section is not set.
+   */
+  public final fun setSectionWithMarkers(startMarker: String, endMarker: String) =
+      setSectionWithMarkers(startMarker.asCachedStringName(), endMarker.asCachedStringName())
+
+  /**
+   * Sets the node which node path references will travel from.
+   */
+  public final fun setRoot(path: String) = setRoot(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
     id: Long,

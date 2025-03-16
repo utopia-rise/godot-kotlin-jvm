@@ -6,7 +6,7 @@ import godot.codegen.models.enriched.EnrichedSignal
 
 class SignalTask(
     val signal: EnrichedSignal,
-) : GenerationTask<PropertySpec.Builder, PropertySpec>() {
+) : PropertyTask() {
 
     override val generator = PropertySpec.builder(signal.name, signal.getTypeName())
 

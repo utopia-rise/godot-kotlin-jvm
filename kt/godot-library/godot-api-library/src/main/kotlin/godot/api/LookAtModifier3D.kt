@@ -21,6 +21,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -771,6 +772,11 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.isTargetWithinLimitationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setTargetNode(targetNode: String) = setTargetNode(targetNode.asCachedNodePath())
+
+  public final fun setOriginExternalNode(externalNode: String) =
+      setOriginExternalNode(externalNode.asCachedNodePath())
 
   public enum class OriginFrom(
     id: Long,

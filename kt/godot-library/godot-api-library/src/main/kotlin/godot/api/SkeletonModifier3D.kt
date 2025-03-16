@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -74,6 +75,7 @@ public open class SkeletonModifier3D : Node3D() {
    * automatically applies influence to all bone poses set by the modifier.
    */
   public open fun _processModification(): Unit {
+    throw NotImplementedError("_processModification is not implemented for SkeletonModifier3D")
   }
 
   /**

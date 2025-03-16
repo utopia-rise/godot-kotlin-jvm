@@ -23,6 +23,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -241,6 +242,12 @@ public open class GLTFLight : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
+
   public companion object {
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
@@ -264,8 +271,14 @@ public open class GLTFLight : Resource() {
   }
 
   public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
+
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary", 3102165223)
@@ -311,11 +324,5 @@ public open class GLTFLight : Resource() {
 
     internal val setAdditionalDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data", 3776071444)
-
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
   }
 }

@@ -13,7 +13,9 @@ import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -71,6 +73,9 @@ public open class ViewportTexture : Texture2D() {
     TransferContext.callMethod(ptr, MethodBindings.getViewportPathInScenePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  public final fun setViewportPathInScene(path: String) =
+      setViewportPathInScene(path.asCachedNodePath())
 
   public companion object
 

@@ -16,11 +16,13 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -193,6 +195,12 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getConstraintAngleInvertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setBone2dNode(bone2dNodepath: String) =
+      setBone2dNode(bone2dNodepath.asCachedNodePath())
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
 
   public companion object
 

@@ -77,6 +77,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.transferChannel]).
    */
   public open fun _setTransferChannel(pChannel: Int): Unit {
+    throw NotImplementedError("_setTransferChannel is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -92,6 +93,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.transferMode]).
    */
   public open fun _setTransferMode(pMode: MultiplayerPeer.TransferMode): Unit {
+    throw NotImplementedError("_setTransferMode is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -107,6 +109,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.setTargetPeer]).
    */
   public open fun _setTargetPeer(pPeer: Int): Unit {
+    throw NotImplementedError("_setTargetPeer is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -129,12 +132,14 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the [MultiplayerAPI] is polled. See [MultiplayerAPI.poll].
    */
   public open fun _poll(): Unit {
+    throw NotImplementedError("_poll is not implemented for MultiplayerPeerExtension")
   }
 
   /**
    * Called when the multiplayer peer should be immediately closed (see [MultiplayerPeer.close]).
    */
   public open fun _close(): Unit {
+    throw NotImplementedError("_close is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -142,6 +147,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.disconnectPeer]).
    */
   public open fun _disconnectPeer(pPeer: Int, pForce: Boolean): Unit {
+    throw NotImplementedError("_disconnectPeer is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -157,6 +163,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.refuseNewConnections]).
    */
   public open fun _setRefuseNewConnections(pEnable: Boolean): Unit {
+    throw NotImplementedError("_setRefuseNewConnections is not implemented for MultiplayerPeerExtension")
   }
 
   /**

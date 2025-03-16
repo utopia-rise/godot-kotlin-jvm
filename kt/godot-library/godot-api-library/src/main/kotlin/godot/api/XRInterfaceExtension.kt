@@ -79,6 +79,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Uninitialize the interface.
    */
   public open fun _uninitialize(): Unit {
+    throw NotImplementedError("_uninitialize is not implemented for XRInterfaceExtension")
   }
 
   /**
@@ -166,6 +167,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
    */
   public open fun _process(): Unit {
+    throw NotImplementedError("_process is not implemented for XRInterfaceExtension")
   }
 
   /**
@@ -173,6 +175,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * will sync tracking at this point in time.
    */
   public open fun _preRender(): Unit {
+    throw NotImplementedError("_preRender is not implemented for XRInterfaceExtension")
   }
 
   /**
@@ -188,12 +191,14 @@ public open class XRInterfaceExtension : XRInterface() {
    * Called after the XR [Viewport] draw logic has completed.
    */
   public open fun _postDrawViewport(renderTarget: RID, screenRect: Rect2): Unit {
+    throw NotImplementedError("_postDrawViewport is not implemented for XRInterfaceExtension")
   }
 
   /**
    * Called if interface is active and queues have been submitted.
    */
   public open fun _endFrame(): Unit {
+    throw NotImplementedError("_endFrame is not implemented for XRInterfaceExtension")
   }
 
   /**
@@ -230,6 +235,7 @@ public open class XRInterfaceExtension : XRInterface() {
     durationSec: Double,
     delaySec: Double,
   ): Unit {
+    throw NotImplementedError("_triggerHapticPulse is not implemented for XRInterfaceExtension")
   }
 
   /**
@@ -243,6 +249,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Enables anchor detection on this interface if supported.
    */
   public open fun _setAnchorDetectionIsEnabled(enabled: Boolean): Unit {
+    throw NotImplementedError("_setAnchorDetectionIsEnabled is not implemented for XRInterfaceExtension")
   }
 
   /**

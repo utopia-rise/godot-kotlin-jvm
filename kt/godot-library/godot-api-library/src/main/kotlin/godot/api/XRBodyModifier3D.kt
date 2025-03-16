@@ -14,8 +14,10 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
@@ -106,6 +108,9 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
     return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setBodyTracker(trackerName: String) =
+      setBodyTracker(trackerName.asCachedStringName())
 
   @JvmInline
   public value class BodyUpdate(
