@@ -595,7 +595,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      * This mode performs standard alpha blending. It can display translucent areas, but
      * transparency sorting issues may be visible when multiple transparent materials are overlapping.
      */
-    ALPHA_CUT_DISABLED(0),
+    DISABLED(0),
     /**
      * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible
      * unless some form of screen-space antialiasing is enabled (see
@@ -603,18 +603,18 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      * doesn't suffer from transparency sorting issues when multiple transparent materials are
      * overlapping. This mode is also known as *alpha testing* or *1-bit transparency*.
      */
-    ALPHA_CUT_DISCARD(1),
+    DISCARD(1),
     /**
      * This mode draws fully opaque pixels in the depth prepass. This is slower than
      * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
      * smooth edges while using proper sorting.
      */
-    ALPHA_CUT_OPAQUE_PREPASS(2),
+    OPAQUE_PREPASS(2),
     /**
      * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will
      * remain opaque.
      */
-    ALPHA_CUT_HASH(3),
+    HASH(3),
     ;
 
     public val id: Long

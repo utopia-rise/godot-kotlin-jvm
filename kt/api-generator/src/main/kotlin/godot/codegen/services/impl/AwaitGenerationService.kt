@@ -145,7 +145,7 @@ object AwaitGenerationService : IAwaitGenerationService {
             .beginControlFlow(".%M", AS_CALLABLE_UTIL_FUNCTION)
             .addStatement("cont.%L()", cancel)
             .endControlFlow()
-            .addCode(",·%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt())", GODOT_OBJECT)
+            .addCode(",·%T.ConnectFlags.ONE_SHOT.id.toInt())", GODOT_OBJECT)
             .endControlFlow()
     }
 }

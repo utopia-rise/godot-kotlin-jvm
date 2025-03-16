@@ -413,15 +413,15 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * Left hand.
      */
-    HAND_LEFT(0),
+    LEFT(0),
     /**
      * Right hand.
      */
-    HAND_RIGHT(1),
+    RIGHT(1),
     /**
      * Maximum value for the hand enum.
      */
-    HAND_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -440,16 +440,16 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * Full hand range, if user closes their hands, we make a full fist.
      */
-    HAND_MOTION_RANGE_UNOBSTRUCTED(0),
+    UNOBSTRUCTED(0),
     /**
      * Conform to controller, if user closes their hands, the tracked data conforms to the shape of
      * the controller.
      */
-    HAND_MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
+    CONFORM_TO_CONTROLLER(1),
     /**
      * Maximum value for the motion range enum.
      */
-    HAND_MOTION_RANGE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -468,21 +468,21 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * The source of hand tracking data is unknown (the extension is likely unsupported).
      */
-    HAND_TRACKED_SOURCE_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * The source of hand tracking is unobstructed, this means that an accurate method of hand
      * tracking is used, e.g. optical hand tracking, data gloves, etc.
      */
-    HAND_TRACKED_SOURCE_UNOBSTRUCTED(1),
+    UNOBSTRUCTED(1),
     /**
      * The source of hand tracking is a controller, bone positions are inferred from controller
      * inputs.
      */
-    HAND_TRACKED_SOURCE_CONTROLLER(2),
+    CONTROLLER(2),
     /**
      * Maximum value for the hand tracked source enum.
      */
-    HAND_TRACKED_SOURCE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -501,111 +501,111 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * Palm joint.
      */
-    HAND_JOINT_PALM(0),
+    PALM(0),
     /**
      * Wrist joint.
      */
-    HAND_JOINT_WRIST(1),
+    WRIST(1),
     /**
      * Thumb metacarpal joint.
      */
-    HAND_JOINT_THUMB_METACARPAL(2),
+    THUMB_METACARPAL(2),
     /**
      * Thumb proximal joint.
      */
-    HAND_JOINT_THUMB_PROXIMAL(3),
+    THUMB_PROXIMAL(3),
     /**
      * Thumb distal joint.
      */
-    HAND_JOINT_THUMB_DISTAL(4),
+    THUMB_DISTAL(4),
     /**
      * Thumb tip joint.
      */
-    HAND_JOINT_THUMB_TIP(5),
+    THUMB_TIP(5),
     /**
      * Index metacarpal joint.
      */
-    HAND_JOINT_INDEX_METACARPAL(6),
+    INDEX_METACARPAL(6),
     /**
      * Index proximal joint.
      */
-    HAND_JOINT_INDEX_PROXIMAL(7),
+    INDEX_PROXIMAL(7),
     /**
      * Index intermediate joint.
      */
-    HAND_JOINT_INDEX_INTERMEDIATE(8),
+    INDEX_INTERMEDIATE(8),
     /**
      * Index distal joint.
      */
-    HAND_JOINT_INDEX_DISTAL(9),
+    INDEX_DISTAL(9),
     /**
      * Index tip joint.
      */
-    HAND_JOINT_INDEX_TIP(10),
+    INDEX_TIP(10),
     /**
      * Middle metacarpal joint.
      */
-    HAND_JOINT_MIDDLE_METACARPAL(11),
+    MIDDLE_METACARPAL(11),
     /**
      * Middle proximal joint.
      */
-    HAND_JOINT_MIDDLE_PROXIMAL(12),
+    MIDDLE_PROXIMAL(12),
     /**
      * Middle intermediate joint.
      */
-    HAND_JOINT_MIDDLE_INTERMEDIATE(13),
+    MIDDLE_INTERMEDIATE(13),
     /**
      * Middle distal joint.
      */
-    HAND_JOINT_MIDDLE_DISTAL(14),
+    MIDDLE_DISTAL(14),
     /**
      * Middle tip joint.
      */
-    HAND_JOINT_MIDDLE_TIP(15),
+    MIDDLE_TIP(15),
     /**
      * Ring metacarpal joint.
      */
-    HAND_JOINT_RING_METACARPAL(16),
+    RING_METACARPAL(16),
     /**
      * Ring proximal joint.
      */
-    HAND_JOINT_RING_PROXIMAL(17),
+    RING_PROXIMAL(17),
     /**
      * Ring intermediate joint.
      */
-    HAND_JOINT_RING_INTERMEDIATE(18),
+    RING_INTERMEDIATE(18),
     /**
      * Ring distal joint.
      */
-    HAND_JOINT_RING_DISTAL(19),
+    RING_DISTAL(19),
     /**
      * Ring tip joint.
      */
-    HAND_JOINT_RING_TIP(20),
+    RING_TIP(20),
     /**
      * Little metacarpal joint.
      */
-    HAND_JOINT_LITTLE_METACARPAL(21),
+    LITTLE_METACARPAL(21),
     /**
      * Little proximal joint.
      */
-    HAND_JOINT_LITTLE_PROXIMAL(22),
+    LITTLE_PROXIMAL(22),
     /**
      * Little intermediate joint.
      */
-    HAND_JOINT_LITTLE_INTERMEDIATE(23),
+    LITTLE_INTERMEDIATE(23),
     /**
      * Little distal joint.
      */
-    HAND_JOINT_LITTLE_DISTAL(24),
+    LITTLE_DISTAL(24),
     /**
      * Little tip joint.
      */
-    HAND_JOINT_LITTLE_TIP(25),
+    LITTLE_TIP(25),
     /**
      * Maximum value for the hand joint enum.
      */
-    HAND_JOINT_MAX(26),
+    MAX(26),
     ;
 
     public val id: Long
@@ -652,43 +652,43 @@ public open class OpenXRInterface : XRInterface() {
       /**
        * No flags are set.
        */
-      public val HAND_JOINT_NONE: HandJointFlags = HandJointFlags(0)
+      public val NONE: HandJointFlags = HandJointFlags(0)
 
       /**
        * If set, the orientation data is valid, otherwise, the orientation data is unreliable and
        * should not be used.
        */
-      public val HAND_JOINT_ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
+      public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
       /**
        * If set, the orientation data comes from tracking data, otherwise, the orientation data
        * contains predicted data.
        */
-      public val HAND_JOINT_ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
+      public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
       /**
        * If set, the positional data is valid, otherwise, the positional data is unreliable and
        * should not be used.
        */
-      public val HAND_JOINT_POSITION_VALID: HandJointFlags = HandJointFlags(4)
+      public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
       /**
        * If set, the positional data comes from tracking data, otherwise, the positional data
        * contains predicted data.
        */
-      public val HAND_JOINT_POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
+      public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
       /**
        * If set, our linear velocity data is valid, otherwise, the linear velocity data is
        * unreliable and should not be used.
        */
-      public val HAND_JOINT_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
+      public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
       /**
        * If set, our angular velocity data is valid, otherwise, the angular velocity data is
        * unreliable and should not be used.
        */
-      public val HAND_JOINT_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
+      public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
 

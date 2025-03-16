@@ -158,11 +158,11 @@ public open class TextureLayered : Texture() {
     /**
      * Texture is a [Cubemap], with each side in its own layer (6 in total).
      */
-    LAYERED_TYPE_CUBEMAP(1),
+    CUBEMAP(1),
     /**
      * Texture is a [CubemapArray], with each cubemap being made of 6 layers.
      */
-    LAYERED_TYPE_CUBEMAP_ARRAY(2),
+    CUBEMAP_ARRAY(2),
     ;
 
     public val id: Long

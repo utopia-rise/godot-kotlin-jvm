@@ -220,43 +220,43 @@ public open class UPNPDevice : RefCounted() {
     /**
      * OK.
      */
-    IGD_STATUS_OK(0),
+    OK(0),
     /**
      * HTTP error.
      */
-    IGD_STATUS_HTTP_ERROR(1),
+    HTTP_ERROR(1),
     /**
      * Empty HTTP response.
      */
-    IGD_STATUS_HTTP_EMPTY(2),
+    HTTP_EMPTY(2),
     /**
      * Returned response contained no URLs.
      */
-    IGD_STATUS_NO_URLS(3),
+    NO_URLS(3),
     /**
      * Not a valid IGD.
      */
-    IGD_STATUS_NO_IGD(4),
+    NO_IGD(4),
     /**
      * Disconnected.
      */
-    IGD_STATUS_DISCONNECTED(5),
+    DISCONNECTED(5),
     /**
      * Unknown device.
      */
-    IGD_STATUS_UNKNOWN_DEVICE(6),
+    UNKNOWN_DEVICE(6),
     /**
      * Invalid control.
      */
-    IGD_STATUS_INVALID_CONTROL(7),
+    INVALID_CONTROL(7),
     /**
      * Memory allocation error.
      */
-    IGD_STATUS_MALLOC_ERROR(8),
+    MALLOC_ERROR(8),
     /**
      * Unknown error.
      */
-    IGD_STATUS_UNKNOWN_ERROR(9),
+    UNKNOWN_ERROR(9),
     ;
 
     public val id: Long

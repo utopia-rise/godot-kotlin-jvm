@@ -204,22 +204,22 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
       /**
        * If set, allows to retarget the position.
        */
-      public val TRANSFORM_FLAG_POSITION: TransformFlag = TransformFlag(1)
+      public val POSITION: TransformFlag = TransformFlag(1)
 
       /**
        * If set, allows to retarget the rotation.
        */
-      public val TRANSFORM_FLAG_ROTATION: TransformFlag = TransformFlag(2)
+      public val ROTATION: TransformFlag = TransformFlag(2)
 
       /**
        * If set, allows to retarget the scale.
        */
-      public val TRANSFORM_FLAG_SCALE: TransformFlag = TransformFlag(4)
+      public val SCALE: TransformFlag = TransformFlag(4)
 
       /**
        * If set, allows to retarget the position/rotation/scale.
        */
-      public val TRANSFORM_FLAG_ALL: TransformFlag = TransformFlag(7)
+      public val ALL: TransformFlag = TransformFlag(7)
     }
   }
 

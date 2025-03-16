@@ -287,59 +287,59 @@ public open class GLTFObjectModelProperty : RefCounted() {
      * Unknown or not set object model type. If the object model type is set to this value, the real
      * type still needs to be determined.
      */
-    GLTF_OBJECT_MODEL_TYPE_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * Object model type "bool". Represented in the glTF JSON as a boolean, and encoded in a
      * [GLTFAccessor] as "SCALAR". When encoded in an accessor, a value of `0` is `false`, and any
      * other value is `true`.
      */
-    GLTF_OBJECT_MODEL_TYPE_BOOL(1),
+    BOOL(1),
     /**
      * Object model type "float". Represented in the glTF JSON as a number, and encoded in a
      * [GLTFAccessor] as "SCALAR".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT(2),
+    FLOAT(2),
     /**
      * Object model type "float[lb][rb]". Represented in the glTF JSON as an array of numbers, and
      * encoded in a [GLTFAccessor] as "SCALAR".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT_ARRAY(3),
+    FLOAT_ARRAY(3),
     /**
      * Object model type "float2". Represented in the glTF JSON as an array of two numbers, and
      * encoded in a [GLTFAccessor] as "VEC2".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT2(4),
+    FLOAT2(4),
     /**
      * Object model type "float3". Represented in the glTF JSON as an array of three numbers, and
      * encoded in a [GLTFAccessor] as "VEC3".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT3(5),
+    FLOAT3(5),
     /**
      * Object model type "float4". Represented in the glTF JSON as an array of four numbers, and
      * encoded in a [GLTFAccessor] as "VEC4".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT4(6),
+    FLOAT4(6),
     /**
      * Object model type "float2x2". Represented in the glTF JSON as an array of four numbers, and
      * encoded in a [GLTFAccessor] as "MAT2".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT2X2(7),
+    FLOAT2X2(7),
     /**
      * Object model type "float3x3". Represented in the glTF JSON as an array of nine numbers, and
      * encoded in a [GLTFAccessor] as "MAT3".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT3X3(8),
+    FLOAT3X3(8),
     /**
      * Object model type "float4x4". Represented in the glTF JSON as an array of sixteen numbers,
      * and encoded in a [GLTFAccessor] as "MAT4".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT4X4(9),
+    FLOAT4X4(9),
     /**
      * Object model type "int". Represented in the glTF JSON as a number, and encoded in a
      * [GLTFAccessor] as "SCALAR". The range of values is limited to signed integers. For
      * `KHR_interactivity`, only 32-bit integers are supported.
      */
-    GLTF_OBJECT_MODEL_TYPE_INT(10),
+    INT(10),
     ;
 
     public val id: Long

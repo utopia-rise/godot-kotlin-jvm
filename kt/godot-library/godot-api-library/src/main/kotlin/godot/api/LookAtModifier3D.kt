@@ -784,7 +784,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     /**
      * The bone rest position of the bone specified in [bone] is used as origin.
      */
-    ORIGIN_FROM_SELF(0),
+    SELF(0),
     /**
      * The bone global pose position of the bone specified in [originBone] is used as origin.
      * **Note:** It is recommended that you select only the parent bone unless you are familiar with
@@ -793,13 +793,13 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
      * [LookAtModifier3D] causes the child bone to move, the rendered result and direction will not
      * match.
      */
-    ORIGIN_FROM_SPECIFIC_BONE(1),
+    SPECIFIC_BONE(1),
     /**
      * The global position of the [Node3D] specified in [originExternalNode] is used as origin.
      * **Note:** Same as [ORIGIN_FROM_SPECIFIC_BONE], when specifying a [BoneAttachment3D] with a
      * child bone assigned, the rendered result and direction will not match.
      */
-    ORIGIN_FROM_EXTERNAL_NODE(2),
+    EXTERNAL_NODE(2),
     ;
 
     public val id: Long

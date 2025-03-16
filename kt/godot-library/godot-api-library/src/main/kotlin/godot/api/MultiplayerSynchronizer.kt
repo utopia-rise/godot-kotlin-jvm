@@ -262,17 +262,17 @@ public open class MultiplayerSynchronizer : Node() {
      * Visibility filters are updated during process frames (see
      * [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    VISIBILITY_PROCESS_IDLE(0),
+    PROCESS_IDLE(0),
     /**
      * Visibility filters are updated during physics frames (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    VISIBILITY_PROCESS_PHYSICS(1),
+    PROCESS_PHYSICS(1),
     /**
      * Visibility filters are not updated automatically, and must be updated manually by calling
      * [updateVisibility].
      */
-    VISIBILITY_PROCESS_NONE(2),
+    PROCESS_NONE(2),
     ;
 
     public val id: Long

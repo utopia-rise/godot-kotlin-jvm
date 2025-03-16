@@ -856,15 +856,15 @@ public open class TileMap : Node2D() {
     /**
      * Use the debug settings to determine visibility.
      */
-    VISIBILITY_MODE_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Always hide.
      */
-    VISIBILITY_MODE_FORCE_HIDE(2),
+    FORCE_HIDE(2),
     /**
      * Always show.
      */
-    VISIBILITY_MODE_FORCE_SHOW(1),
+    FORCE_SHOW(1),
     ;
 
     public val id: Long

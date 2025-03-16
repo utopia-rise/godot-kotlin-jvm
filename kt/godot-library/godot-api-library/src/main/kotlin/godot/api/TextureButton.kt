@@ -276,34 +276,34 @@ public open class TextureButton : BaseButton() {
     /**
      * Scale to fit the node's bounding rectangle.
      */
-    STRETCH_SCALE(0),
+    SCALE(0),
     /**
      * Tile inside the node's bounding rectangle.
      */
-    STRETCH_TILE(1),
+    TILE(1),
     /**
      * The texture keeps its original size and stays in the bounding rectangle's top-left corner.
      */
-    STRETCH_KEEP(2),
+    KEEP(2),
     /**
      * The texture keeps its original size and stays centered in the node's bounding rectangle.
      */
-    STRETCH_KEEP_CENTERED(3),
+    KEEP_CENTERED(3),
     /**
      * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect
      * ratio.
      */
-    STRETCH_KEEP_ASPECT(4),
+    KEEP_ASPECT(4),
     /**
      * Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect
      * ratio.
      */
-    STRETCH_KEEP_ASPECT_CENTERED(5),
+    KEEP_ASPECT_CENTERED(5),
     /**
      * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips
      * to the node's limits.
      */
-    STRETCH_KEEP_ASPECT_COVERED(6),
+    KEEP_ASPECT_COVERED(6),
     ;
 
     public val id: Long

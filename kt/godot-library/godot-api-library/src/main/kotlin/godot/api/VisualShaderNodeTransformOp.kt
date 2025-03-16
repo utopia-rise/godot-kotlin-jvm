@@ -55,43 +55,43 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
     /**
      * Multiplies transform `a` by the transform `b`.
      */
-    OP_AxB(0),
+    AxB(0),
     /**
      * Multiplies transform `b` by the transform `a`.
      */
-    OP_BxA(1),
+    BxA(1),
     /**
      * Performs a component-wise multiplication of transform `a` by the transform `b`.
      */
-    OP_AxB_COMP(2),
+    AxB_COMP(2),
     /**
      * Performs a component-wise multiplication of transform `b` by the transform `a`.
      */
-    OP_BxA_COMP(3),
+    BxA_COMP(3),
     /**
      * Adds two transforms.
      */
-    OP_ADD(4),
+    ADD(4),
     /**
      * Subtracts the transform `a` from the transform `b`.
      */
-    OP_A_MINUS_B(5),
+    A_MINUS_B(5),
     /**
      * Subtracts the transform `b` from the transform `a`.
      */
-    OP_B_MINUS_A(6),
+    B_MINUS_A(6),
     /**
      * Divides the transform `a` by the transform `b`.
      */
-    OP_A_DIV_B(7),
+    A_DIV_B(7),
     /**
      * Divides the transform `b` by the transform `a`.
      */
-    OP_B_DIV_A(8),
+    B_DIV_A(8),
     /**
      * Represents the size of the [Operator] enum.
      */
-    OP_MAX(9),
+    MAX(9),
     ;
 
     public val id: Long

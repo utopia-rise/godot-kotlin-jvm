@@ -1682,23 +1682,23 @@ public open class Object : KtObject() {
      * Deferred connections trigger their [Callable]s on idle time (at the end of the frame), rather
      * than instantly.
      */
-    CONNECT_DEFERRED(1),
+    DEFERRED(1),
     /**
      * Persisting connections are stored when the object is serialized (such as when using
      * [PackedScene.pack]). In the editor, connections created through the Node dock are always
      * persisting.
      */
-    CONNECT_PERSIST(2),
+    PERSIST(2),
     /**
      * One-shot connections disconnect themselves after emission.
      */
-    CONNECT_ONE_SHOT(4),
+    ONE_SHOT(4),
     /**
      * Reference-counted connections can be assigned to the same [Callable] multiple times. Each
      * disconnection decreases the internal counter. The signal fully disconnects only when the counter
      * reaches 0.
      */
-    CONNECT_REFERENCE_COUNTED(8),
+    REFERENCE_COUNTED(8),
     ;
 
     public val id: Long

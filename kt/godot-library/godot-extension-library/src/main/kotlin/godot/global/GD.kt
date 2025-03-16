@@ -73,7 +73,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
     inline fun <T : Resource> load(
         path: String,
         typeHint: String = "",
-        cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
+        cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.REUSE
     ): T? {
         return ResourceLoader.loadAs(path, typeHint, cacheMode)
     }

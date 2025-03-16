@@ -686,24 +686,24 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Uses the [url=https://fastlz.org/]FastLZ[/url] compression method.
      */
-    COMPRESSION_FASTLZ(0),
+    FASTLZ(0),
     /**
      * Uses the [url=https://en.wikipedia.org/wiki/DEFLATE]DEFLATE[/url] compression method.
      */
-    COMPRESSION_DEFLATE(1),
+    DEFLATE(1),
     /**
      * Uses the [url=https://facebook.github.io/zstd/]Zstandard[/url] compression method.
      */
-    COMPRESSION_ZSTD(2),
+    ZSTD(2),
     /**
      * Uses the [url=https://www.gzip.org/]gzip[/url] compression method.
      */
-    COMPRESSION_GZIP(3),
+    GZIP(3),
     /**
      * Uses the [url=https://github.com/google/brotli]brotli[/url] compression method (only
      * decompression is supported).
      */
-    COMPRESSION_BROTLI(4),
+    BROTLI(4),
     ;
 
     public val id: Long
@@ -751,62 +751,62 @@ public open class FileAccess internal constructor() : RefCounted() {
       /**
        * Read for owner bit.
        */
-      public val UNIX_READ_OWNER: UnixPermissionFlags = UnixPermissionFlags(256)
+      public val READ_OWNER: UnixPermissionFlags = UnixPermissionFlags(256)
 
       /**
        * Write for owner bit.
        */
-      public val UNIX_WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlags(128)
+      public val WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlags(128)
 
       /**
        * Execute for owner bit.
        */
-      public val UNIX_EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlags(64)
+      public val EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlags(64)
 
       /**
        * Read for group bit.
        */
-      public val UNIX_READ_GROUP: UnixPermissionFlags = UnixPermissionFlags(32)
+      public val READ_GROUP: UnixPermissionFlags = UnixPermissionFlags(32)
 
       /**
        * Write for group bit.
        */
-      public val UNIX_WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlags(16)
+      public val WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlags(16)
 
       /**
        * Execute for group bit.
        */
-      public val UNIX_EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlags(8)
+      public val EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlags(8)
 
       /**
        * Read for other bit.
        */
-      public val UNIX_READ_OTHER: UnixPermissionFlags = UnixPermissionFlags(4)
+      public val READ_OTHER: UnixPermissionFlags = UnixPermissionFlags(4)
 
       /**
        * Write for other bit.
        */
-      public val UNIX_WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlags(2)
+      public val WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlags(2)
 
       /**
        * Execute for other bit.
        */
-      public val UNIX_EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlags(1)
+      public val EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlags(1)
 
       /**
        * Set user id on execution bit.
        */
-      public val UNIX_SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2048)
+      public val SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2048)
 
       /**
        * Set group id on execution bit.
        */
-      public val UNIX_SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1024)
+      public val SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1024)
 
       /**
        * Restricted deletion (sticky) bit.
        */
-      public val UNIX_RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlags(512)
+      public val RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlags(512)
     }
   }
 
@@ -874,7 +874,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     public final fun openCompressed(
       path: String,
       modeFlags: ModeFlags,
-      compressionMode: CompressionMode = FileAccess.CompressionMode.COMPRESSION_FASTLZ,
+      compressionMode: CompressionMode = FileAccess.CompressionMode.FASTLZ,
     ): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
       TransferContext.callMethod(0, MethodBindings.openCompressedPtr, OBJECT)

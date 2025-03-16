@@ -43,7 +43,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   public final fun getMagnitudeForFrequencyRange(
     fromHz: Float,
     toHz: Float,
-    mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAGNITUDE_MAX,
+    mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAX,
   ): Vector2 {
     TransferContext.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.getMagnitudeForFrequencyRangePtr, VECTOR2)
@@ -56,11 +56,11 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     /**
      * Use the average value across the frequency range as magnitude.
      */
-    MAGNITUDE_AVERAGE(0),
+    AVERAGE(0),
     /**
      * Use the maximum value of the frequency range as magnitude.
      */
-    MAGNITUDE_MAX(1),
+    MAX(1),
     ;
 
     public val id: Long
