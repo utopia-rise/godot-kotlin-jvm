@@ -17,6 +17,15 @@ jobs:
     name: Build Jvm artifacts
 
     steps:
+      - name: Maximize build space
+        uses: AdityaGarg8/remove-unwanted-software@v4.1
+        with:
+          remove-dotnet: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+          remove-swapfile: 'true'
+
       - name: Clone Godot Engine
         uses: actions/checkout@v4
         with:
@@ -34,9 +43,9 @@ jobs:
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
         with:
-          cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+          cache-cleanup: always
 
       - name: Compilation
         # we build the release bootstrap jar here. Debug gets its own trigger later
