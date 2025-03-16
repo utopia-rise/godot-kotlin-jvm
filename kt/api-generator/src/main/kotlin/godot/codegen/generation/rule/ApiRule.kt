@@ -23,7 +23,7 @@ class CoreRule : GodotApiRule<ApiTask>() {
         val classes = context
             .classRepository
             .listTypes()
-            .filter { it.type == "Object" || it.type == "RefCounted" }
+            .filter { it.type == GodotTypes.godotObject  || it.type == GodotTypes.refCounted  }
 
 
         for (clazz in classes) {
@@ -41,7 +41,7 @@ class ApiRule : GodotApiRule<ApiTask>() {
         val classes = context
             .classRepository
             .listTypes()
-            .filter { it.type != "Object" && it.type != "RefCounted" }
+            .filter { it.type != GodotTypes.godotObject && it.type != GodotTypes.refCounted }
             .filter {  //Remove class extending singletons
                 val parent = it.parent
                 parent == null || parent.isSingleton == false

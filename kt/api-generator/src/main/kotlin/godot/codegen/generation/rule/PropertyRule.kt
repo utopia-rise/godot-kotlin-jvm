@@ -159,10 +159,10 @@ class CoreTypeHelperRule : GodotApiRule<ClassTask>() {
             .returns(parameterTypeName)
             .addStatement(
                 """return $parameterName.apply{
-                                            |    block(this)
-                                            |    $parameterName = this
-                                            |}
-                                            |""".trimMargin()
+                |    block(this)
+                |    $parameterName = this
+                |}
+                |""".trimMargin()
             ).apply {
                 val kDoc = buildString {
                     val propertyKdoc =
@@ -174,18 +174,18 @@ class CoreTypeHelperRule : GodotApiRule<ClassTask>() {
 
                     appendLine(
                         """This is a helper function to make dealing with local copies easier.
-                    |
-                    |For more information, see our [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-                    |
-                    |Allow to directly modify the local copy of the property and assign it back to the Object.
-                    |
-                    |Prefer that over writing:
-                    |``````
-                    |val myCoreType = ${clazz.type.lowercase()}.${property.name}
-                    |//Your changes
-                    |${clazz.type.lowercase()}.${property.name} = myCoreType
-                    |``````
-                    |""".trimMargin()
+                        |
+                        |For more information, see our [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+                        |
+                        |Allow to directly modify the local copy of the property and assign it back to the Object.
+                        |
+                        |Prefer that over writing:
+                        |``````
+                        |val myCoreType = ${clazz.type.lowercase()}.${property.name}
+                        |//Your changes
+                        |${clazz.type.lowercase()}.${property.name} = myCoreType
+                        |``````
+                        |""".trimMargin()
                     )
                 }
                 addKdoc(kDoc)

@@ -7,6 +7,7 @@ import godot.codegen.generation.Context
 import godot.codegen.generation.task.RegistrationTask
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.services.impl.methodBindingsInnerClassName
+import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.godotCorePackage
 
@@ -17,10 +18,10 @@ class RegistrationRule() : GodotApiRule<RegistrationTask>() {
             .listTypes()
 
         val coreTypes = types
-            .filter { it.type == "Object" || it.type == "RefCounted" }
+            .filter { it.type == GodotTypes.godotObject  || it.type == GodotTypes.refCounted  }
 
         val apiTypes = types
-            .filter { it.type != "Object" && it.type != "RefCounted" }
+            .filter { it.type != GodotTypes.godotObject  && it.type != GodotTypes.refCounted  }
             .filter {  //Remove class extending singletons
                 val parent = it.parent
                 parent == null || parent.isSingleton == false
