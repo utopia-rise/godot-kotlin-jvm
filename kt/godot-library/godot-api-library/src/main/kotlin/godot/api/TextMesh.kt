@@ -11,7 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
+import godot.api.TextServer.JustificationFlag
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
 import godot.core.VariantArray
@@ -38,9 +38,11 @@ import kotlin.jvm.JvmName
 
 /**
  * Generate an [PrimitiveMesh] from the text.
+ *
  * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
  * (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not
  * supported.
+ *
  * The UV layout is arranged in 4 horizontal strips, top to bottom: 40&#37; of the height for the
  * front face, 40&#37; for the back face, 10&#37; for the outer edges and 10&#37; for the inner edges.
  */
@@ -48,6 +50,7 @@ import kotlin.jvm.JvmName
 public open class TextMesh : PrimitiveMesh() {
   /**
    * The text to generate mesh from.
+   *
    * **Note:** Due to being a [Resource], it doesn't follow the rules of [Node.autoTranslateMode].
    * If disabling translation is desired, it should be done manually with
    * [Object.setMessageTranslation].
@@ -145,7 +148,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
-  public final inline var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -255,7 +258,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(666, scriptIndex)
+    createNativeObject(660, scriptIndex)
   }
 
   /**
@@ -359,15 +362,15 @@ public open class TextMesh : PrimitiveMesh() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public final fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(depth: Float): Unit {

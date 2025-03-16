@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 /**
  * A button that represents a link. This type of button is primarily used for interactions that
  * cause a context change (like linking to a web page).
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
@@ -58,14 +59,15 @@ public open class LinkButton : BaseButton() {
    * system's default program for the protocol (via [OS.shellOpen]). HTTP and HTTPS URLs open the
    * default web browser.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * uri = "https://godotengine.org"  # Opens the URL in the default web browser.
    * uri = "C:\SomeFolder"  # Opens the file explorer at the given path.
    * uri = "C:\SomeImage.png"  # Opens the given image in the default viewing app.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Uri = "https://godotengine.org"; // Opens the URL in the default web browser.
    * Uri = "C:\SomeFolder"; // Opens the file explorer at the given path.
    * Uri = "C:\SomeImage.png"; // Opens the given image in the default viewing app.
@@ -125,7 +127,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(363, scriptIndex)
+    createNativeObject(341, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {
@@ -211,16 +213,16 @@ public open class LinkButton : BaseButton() {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
      */
-    UNDERLINE_MODE_ALWAYS(0),
+    ALWAYS(0),
     /**
      * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over
      * it.
      */
-    UNDERLINE_MODE_ON_HOVER(1),
+    ON_HOVER(1),
     /**
      * The LinkButton will never show an underline at the bottom of its text.
      */
-    UNDERLINE_MODE_NEVER(2),
+    NEVER(2),
     ;
 
     public val id: Long

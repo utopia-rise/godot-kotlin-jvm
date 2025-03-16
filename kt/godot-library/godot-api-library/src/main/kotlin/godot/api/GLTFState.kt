@@ -27,6 +27,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -40,6 +41,7 @@ import kotlin.jvm.JvmName
 /**
  * Contains all nodes and resources of a glTF file. This is used by [GLTFDocument] as data storage,
  * which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
+ *
  * GLTFState can be populated by [GLTFDocument] reading a file or by converting a Godot scene. Then
  * the data can either be used to create a Godot scene or save to a glTF file. The code that converts
  * to/from a Godot scene can be intercepted at arbitrary points by [GLTFDocumentExtension] classes.
@@ -326,7 +328,7 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(269, scriptIndex)
+    createNativeObject(240, scriptIndex)
   }
 
   /**
@@ -356,10 +358,12 @@ public open class GLTFState : Resource() {
    * one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this
    * must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node. On
    * export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
+   *
    * The [godotSceneNode] parameter is the Godot scene node that corresponds to this glTF node. This
    * is highly recommended to be set to a valid node, but may be `null` if there is no corresponding
    * Godot scene node. One Godot scene node may be used for multiple glTF nodes, so if exporting
    * multiple glTF nodes for one Godot scene node, use the same Godot scene node for each.
+   *
    * The [parentNodeIndex] parameter is the index of the parent [GLTFNode] in the state. If `-1`,
    * the node will be a root node, otherwise the new node will be added to the parent's list of
    * children. The index will also be written to the [GLTFNode.parent] property of the new node.
@@ -793,6 +797,7 @@ public open class GLTFState : Resource() {
   /**
    * Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was
    * generated from. This is the inverse of [getNodeIndex]. Useful during the import process.
+   *
    * **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene
    * node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index,
    * `null` is returned.
@@ -806,6 +811,7 @@ public open class GLTFState : Resource() {
   /**
    * Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse
    * of [getSceneNode]. Useful during the export process.
+   *
    * **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every
    * [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node,
    * `-1` is returned.
@@ -819,6 +825,7 @@ public open class GLTFState : Resource() {
   /**
    * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
    * name in the glTF file), and the return value can be anything you set. If nothing was set, the
    * return value is `null`.
@@ -832,6 +839,7 @@ public open class GLTFState : Resource() {
   /**
    * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the glTF file), and the second argument can be anything you want.
    */
@@ -861,6 +869,27 @@ public open class GLTFState : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getBakeFpsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**

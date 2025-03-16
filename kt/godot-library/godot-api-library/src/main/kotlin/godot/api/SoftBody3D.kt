@@ -23,11 +23,13 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -36,8 +38,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,
  * or other flexible materials.
+ *
  * Additionally, [SoftBody3D] is subject to wind forces defined in [Area3D] (see
  * [Area3D.windSourcePath], [Area3D.windForceMagnitude], and [Area3D.windAttenuationFactor]).
+ *
  * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them
  * for things that can affect gameplay (such as trampolines).
  */
@@ -46,6 +50,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32
    * different layers. See also [collisionMask].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -62,6 +67,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32
    * different layers. See also [collisionLayer].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -147,6 +153,7 @@ public open class SoftBody3D : MeshInstance3D() {
 
   /**
    * The body's drag coefficient. Higher values increase this body's air resistance.
+   *
    * **Note:** This value is currently unused by Godot's default physics implementation.
    */
   public final inline var dragCoefficient: Float
@@ -181,7 +188,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(622, scriptIndex)
+    createNativeObject(616, scriptIndex)
   }
 
   /**
@@ -410,20 +417,36 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setParentCollisionIgnore(parentCollisionIgnore: String) =
+      setParentCollisionIgnore(parentCollisionIgnore.asCachedNodePath())
+
+  /**
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath]
+   * can define a [Node3D] the pinned vertex will be attached to.
+   */
+  @JvmOverloads
+  public final fun setPointPinned(
+    pointIndex: Int,
+    pinned: Boolean,
+    attachmentPath: String,
+    insertAt: Int = -1,
+  ) = setPointPinned(pointIndex, pinned, attachmentPath.asCachedNodePath(), insertAt)
+
   public enum class DisableMode(
     id: Long,
   ) {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [SoftBody3D].
+     *
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
-    DISABLE_MODE_REMOVE(0),
+    REMOVE(0),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
      * simulation.
      */
-    DISABLE_MODE_KEEP_ACTIVE(1),
+    KEEP_ACTIVE(1),
     ;
 
     public val id: Long

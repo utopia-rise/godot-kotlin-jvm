@@ -51,58 +51,66 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the left margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the left border of
    * the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginLeft] if it is negative.
    */
   public final inline var textureMarginLeft: Float
     @JvmName("textureMarginLeftProperty")
-    get() = getTextureMargin(Side.SIDE_LEFT)
+    get() = getTextureMargin(Side.LEFT)
     @JvmName("textureMarginLeftProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_LEFT, value)
+      setTextureMargin(Side.LEFT, value)
     }
 
   /**
    * Increases the top margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the top border of
    * the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginTop] if it is negative.
    */
   public final inline var textureMarginTop: Float
     @JvmName("textureMarginTopProperty")
-    get() = getTextureMargin(Side.SIDE_TOP)
+    get() = getTextureMargin(Side.TOP)
     @JvmName("textureMarginTopProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_TOP, value)
+      setTextureMargin(Side.TOP, value)
     }
 
   /**
    * Increases the right margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the right border of
    * the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginRight] if it is negative.
    */
   public final inline var textureMarginRight: Float
     @JvmName("textureMarginRightProperty")
-    get() = getTextureMargin(Side.SIDE_RIGHT)
+    get() = getTextureMargin(Side.RIGHT)
     @JvmName("textureMarginRightProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_RIGHT, value)
+      setTextureMargin(Side.RIGHT, value)
     }
 
   /**
    * Increases the bottom margin of the 3×3 texture box.
+   *
    * A higher value means more of the source texture is considered to be part of the bottom border
    * of the 3×3 box.
+   *
    * This is also the value used as fallback for [StyleBox.contentMarginBottom] if it is negative.
    */
   public final inline var textureMarginBottom: Float
     @JvmName("textureMarginBottomProperty")
-    get() = getTextureMargin(Side.SIDE_BOTTOM)
+    get() = getTextureMargin(Side.BOTTOM)
     @JvmName("textureMarginBottomProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_BOTTOM, value)
+      setTextureMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -111,10 +119,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
-    get() = getExpandMargin(Side.SIDE_LEFT)
+    get() = getExpandMargin(Side.LEFT)
     @JvmName("expandMarginLeftProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_LEFT, value)
+      setExpandMargin(Side.LEFT, value)
     }
 
   /**
@@ -123,10 +131,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
-    get() = getExpandMargin(Side.SIDE_TOP)
+    get() = getExpandMargin(Side.TOP)
     @JvmName("expandMarginTopProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_TOP, value)
+      setExpandMargin(Side.TOP, value)
     }
 
   /**
@@ -135,10 +143,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
-    get() = getExpandMargin(Side.SIDE_RIGHT)
+    get() = getExpandMargin(Side.RIGHT)
     @JvmName("expandMarginRightProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_RIGHT, value)
+      setExpandMargin(Side.RIGHT, value)
     }
 
   /**
@@ -147,10 +155,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
-    get() = getExpandMargin(Side.SIDE_BOTTOM)
+    get() = getExpandMargin(Side.BOTTOM)
     @JvmName("expandMarginBottomProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_BOTTOM, value)
+      setExpandMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -179,7 +187,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * The region to use from the [texture].
+   *
    * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   *
    * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    */
   @CoreTypeLocalCopy
@@ -215,12 +225,14 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(653, scriptIndex)
+    createNativeObject(647, scriptIndex)
   }
 
   /**
    * The region to use from the [texture].
+   *
    * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   *
    * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    *
    * This is a helper function to make dealing with local copies easier.
@@ -391,18 +403,18 @@ public open class StyleBoxTexture : StyleBox() {
      * Stretch the stylebox's texture. This results in visible distortion unless the texture size
      * matches the stylebox's size perfectly.
      */
-    AXIS_STRETCH_MODE_STRETCH(0),
+    STRETCH(0),
     /**
      * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
      * system.
      */
-    AXIS_STRETCH_MODE_TILE(1),
+    TILE(1),
     /**
      * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
      * system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the
      * nine-patch texture tile seamlessly.
      */
-    AXIS_STRETCH_MODE_TILE_FIT(2),
+    TILE_FIT(2),
     ;
 
     public val id: Long

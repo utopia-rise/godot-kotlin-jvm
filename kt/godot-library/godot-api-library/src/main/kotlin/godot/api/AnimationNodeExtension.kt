@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [AnimationNodeExtension] exposes the APIs of [AnimationRootNode] to allow users to extend it from
@@ -30,17 +31,19 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeExtension : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(60, scriptIndex)
+    createNativeObject(24, scriptIndex)
   }
 
   /**
    * A version of the [AnimationNode.Process] method that is meant to be overridden by custom nodes.
    * It returns a [PackedFloat32Array] with the processed animation data.
+   *
    * The [PackedFloat64Array] parameter contains the playback information, containing the following
    * values encoded as floating point numbers (in order): playback time and delta, start and end times,
    * whether a seek was requested (encoded as a float greater than `0`), whether the seek request was
    * externally requested (encoded as a float greater than `0`), the current [Animation.LoopedFlag]
    * (encoded as a float), and the current blend weight.
+   *
    * The function must return a [PackedFloat32Array] of the node's time info, containing the
    * following values (in order): animation length, time position, delta, [Animation.LoopMode] (encoded
    * as a float), whether the animation is about to end (encoded as a float greater than `0`) and
@@ -49,13 +52,14 @@ public open class AnimationNodeExtension : AnimationNode() {
    */
   public open fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean):
       PackedFloat32Array {
-    throw NotImplementedError("_process_animation_node is not implemented for AnimationNodeExtension")
+    throw NotImplementedError("_processAnimationNode is not implemented for AnimationNodeExtension")
   }
 
   public companion object {
     /**
      * Returns `true` if the animation for the given [nodeInfo] is looping.
      */
+    @JvmStatic
     public final fun isLooping(nodeInfo: PackedFloat32Array): Boolean {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to nodeInfo)
       TransferContext.callMethod(0, MethodBindings.isLoopingPtr, BOOL)
@@ -67,6 +71,7 @@ public open class AnimationNodeExtension : AnimationNode() {
      * will only return the remaining time if [breakLoop] is `true`, a large integer value will be
      * returned otherwise.
      */
+    @JvmStatic
     public final fun getRemainingTime(nodeInfo: PackedFloat32Array, breakLoop: Boolean): Double {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to nodeInfo, BOOL to breakLoop)
       TransferContext.callMethod(0, MethodBindings.getRemainingTimePtr, DOUBLE)

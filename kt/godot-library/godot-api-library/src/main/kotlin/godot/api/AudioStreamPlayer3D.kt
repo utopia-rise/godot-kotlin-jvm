@@ -18,11 +18,13 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -33,9 +35,12 @@ import kotlin.jvm.JvmOverloads
  * Positional effects include distance attenuation, directionality, and the Doppler effect. For greater
  * realism, a low-pass filter is applied to distant sounds. This can be disabled by setting
  * [attenuationFilterCutoffHz] to `20500`.
+ *
  * By default, audio is heard from the camera position. This can be changed by adding an
  * [AudioListener3D] node to the scene and enabling it by calling [AudioListener3D.makeCurrent] on it.
+ *
  * See also [AudioStreamPlayer] to play a sound non-positionally.
+ *
  * **Note:** Hiding an [AudioStreamPlayer3D] node does not disable its audio output. To temporarily
  * disable an [AudioStreamPlayer3D]'s audio output, set [volumeDb] to a very low value like `-100`
  * (which isn't audible to human hearing).
@@ -83,6 +88,7 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   /**
    * The base sound level before attenuation, as a linear value.
+   *
    * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
    * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
    * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
@@ -204,6 +210,7 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   /**
    * The bus on which this audio is playing.
+   *
    * **Note:** When setting this property, keep in mind that no validation is performed to see if
    * the given name matches an existing bus. This is because audio bus layouts might be loaded after
    * this property is set. If this given name can't be resolved at runtime, it will fall back to
@@ -313,7 +320,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(131, scriptIndex)
+    createNativeObject(96, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {
@@ -611,27 +618,29 @@ public open class AudioStreamPlayer3D : Node3D() {
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
+
   public enum class AttenuationModel(
     id: Long,
   ) {
     /**
      * Attenuation of loudness according to linear distance.
      */
-    ATTENUATION_INVERSE_DISTANCE(0),
+    INVERSE_DISTANCE(0),
     /**
      * Attenuation of loudness according to squared distance.
      */
-    ATTENUATION_INVERSE_SQUARE_DISTANCE(1),
+    INVERSE_SQUARE_DISTANCE(1),
     /**
      * Attenuation of loudness according to logarithmic distance.
      */
-    ATTENUATION_LOGARITHMIC(2),
+    LOGARITHMIC(2),
     /**
      * No attenuation of loudness according to distance. The sound will still be heard positionally,
      * unlike an [AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value
      * greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
-    ATTENUATION_DISABLED(3),
+    DISABLED(3),
     ;
 
     public val id: Long
@@ -650,16 +659,16 @@ public open class AudioStreamPlayer3D : Node3D() {
     /**
      * Disables doppler tracking.
      */
-    DOPPLER_TRACKING_DISABLED(0),
+    DISABLED(0),
     /**
      * Executes doppler tracking during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    DOPPLER_TRACKING_IDLE_STEP(1),
+    IDLE_STEP(1),
     /**
      * Executes doppler tracking during physics frames (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    DOPPLER_TRACKING_PHYSICS_STEP(2),
+    PHYSICS_STEP(2),
     ;
 
     public val id: Long

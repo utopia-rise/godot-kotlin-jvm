@@ -133,7 +133,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(288, scriptIndex)
+    createNativeObject(261, scriptIndex)
   }
 
   /**
@@ -266,15 +266,15 @@ public open class GradientTexture2D : Texture2D() {
     /**
      * The colors are linearly interpolated in a straight line.
      */
-    FILL_LINEAR(0),
+    LINEAR(0),
     /**
      * The colors are linearly interpolated in a circular pattern.
      */
-    FILL_RADIAL(1),
+    RADIAL(1),
     /**
      * The colors are linearly interpolated in a square pattern.
      */
-    FILL_SQUARE(2),
+    SQUARE(2),
     ;
 
     public val id: Long
@@ -293,7 +293,7 @@ public open class GradientTexture2D : Texture2D() {
     /**
      * The gradient fill is restricted to the range defined by [fillFrom] to [fillTo] offsets.
      */
-    REPEAT_NONE(0),
+    NONE(0),
     /**
      * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same
      * pattern in both directions.
@@ -303,7 +303,7 @@ public open class GradientTexture2D : Texture2D() {
      * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in
      * both directions.
      */
-    REPEAT_MIRROR(2),
+    MIRROR(2),
     ;
 
     public val id: Long

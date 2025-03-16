@@ -15,7 +15,8 @@ import kotlin.Unit
  * JavaScriptObject is used to interact with JavaScript objects retrieved or created via
  * [JavaScriptBridge.getInterface], [JavaScriptBridge.createObject], or
  * [JavaScriptBridge.createCallback].
- * [codeblock]
+ *
+ * ```
  * extends Node
  *
  * var _my_js_callback = JavaScriptBridge.create_callback(myCallback) # This reference must be kept
@@ -41,13 +42,14 @@ import kotlin.Unit
  *     # ...
  *     # [0, 9, [JavaScriptObject:1180]]
  *     print(args)
- * [/codeblock]
+ * ```
+ *
  * **Note:** Only available in the Web platform.
  */
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(343, scriptIndex)
+    createNativeObject(321, scriptIndex)
   }
 
   public companion object

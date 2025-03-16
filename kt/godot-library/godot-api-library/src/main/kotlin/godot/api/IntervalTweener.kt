@@ -14,13 +14,14 @@ import kotlin.Unit
 /**
  * [IntervalTweener] is used to make delays in a tweening sequence. See [Tween.tweenInterval] for
  * more usage information.
+ *
  * **Note:** [Tween.tweenInterval] is the only correct way to create [IntervalTweener]. Any
  * [IntervalTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class IntervalTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(335, scriptIndex)
+    createNativeObject(311, scriptIndex)
   }
 
   public companion object

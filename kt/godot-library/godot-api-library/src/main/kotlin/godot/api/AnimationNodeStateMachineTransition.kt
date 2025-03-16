@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,6 +33,7 @@ import kotlin.jvm.JvmName
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
  * connected by [AnimationNodeStateMachineTransition].
+ *
  * You can set the timing and conditions of the transition in detail.
  */
 @GodotBaseType
@@ -43,6 +45,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   /**
    * The time to cross-fade between this state and the next.
+   *
    * **Note:** [AnimationNodeStateMachine] transitions the current state immediately after the start
    * of the fading. The precise remaining time can only be inferred from the main animation. When
    * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
@@ -134,12 +137,13 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * AnimationTree[/url]). For example, if [AnimationTree.treeRoot] is an [AnimationNodeStateMachine]
    * and [advanceCondition] is set to `"idle"`:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * $animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor &&
    * (LinearVelocity.X == 0));
    * ```
@@ -166,7 +170,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(65, scriptIndex)
+    createNativeObject(29, scriptIndex)
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {
@@ -268,6 +272,9 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
+  public final fun setAdvanceCondition(name: String) =
+      setAdvanceCondition(name.asCachedStringName())
+
   public enum class SwitchMode(
     id: Long,
   ) {
@@ -275,17 +282,17 @@ public open class AnimationNodeStateMachineTransition : Resource() {
      * Switch to the next state immediately. The current state will end and blend into the beginning
      * of the new one.
      */
-    SWITCH_MODE_IMMEDIATE(0),
+    IMMEDIATE(0),
     /**
      * Switch to the next state immediately, but will seek the new state to the playback position of
      * the old state.
      */
-    SWITCH_MODE_SYNC(1),
+    SYNC(1),
     /**
      * Wait for the current state playback to end, then switch to the beginning of the next state
      * animation.
      */
-    SWITCH_MODE_AT_END(2),
+    AT_END(2),
     ;
 
     public val id: Long
@@ -304,16 +311,16 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     /**
      * Don't use this transition.
      */
-    ADVANCE_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Only use this transition during [AnimationNodeStateMachinePlayback.travel].
      */
-    ADVANCE_MODE_ENABLED(1),
+    ENABLED(1),
     /**
      * Automatically use this transition if the [advanceCondition] and [advanceExpression] checks
      * are `true` (if assigned).
      */
-    ADVANCE_MODE_AUTO(2),
+    AUTO(2),
     ;
 
     public val id: Long

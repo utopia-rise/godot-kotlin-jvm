@@ -12,30 +12,34 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
  * This class can be used to implement custom profilers that are able to interact with the engine
  * and editor debugger.
+ *
  * See [EngineDebugger] and [EditorDebuggerPlugin] for more information.
  */
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(235, scriptIndex)
+    createNativeObject(205, scriptIndex)
   }
 
   /**
    * Called when the profiler is enabled/disabled, along with a set of [options].
    */
   public open fun _toggle(enable: Boolean, options: VariantArray<Any?>): Unit {
+    throw NotImplementedError("_toggle is not implemented for EngineProfiler")
   }
 
   /**
    * Called when data is added to profiler using [EngineDebugger.profilerAddFrameData].
    */
   public open fun _addFrame(`data`: VariantArray<Any?>): Unit {
+    throw NotImplementedError("_addFrame is not implemented for EngineProfiler")
   }
 
   /**
@@ -49,6 +53,7 @@ public open class EngineProfiler : RefCounted() {
     physicsTime: Double,
     physicsFrameTime: Double,
   ): Unit {
+    throw NotImplementedError("_tick is not implemented for EngineProfiler")
   }
 
   public companion object

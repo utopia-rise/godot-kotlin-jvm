@@ -41,6 +41,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -50,9 +51,11 @@ import kotlin.jvm.JvmOverloads
 /**
  * A multiline text editor. It also has limited facilities for editing code, such as syntax
  * highlighting support. For more advanced facilities for editing code, see [CodeEdit].
+ *
  * **Note:** Most viewport, caret, and edit methods contain a `caret_index` argument for
  * [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for
  * the main caret, or greater than `0` for secondary carets in the order they were created.
+ *
  * **Note:** When holding down [kbd]Alt[/kbd], the vertical scroll wheel will scroll 5 times as fast
  * as it would normally do. This also works in the Godot script editor.
  */
@@ -70,6 +73,7 @@ public open class TextEdit : Control() {
 
   /**
    * Emitted immediately when the text changes.
+   *
    * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less
    * than [fromLine].
    */
@@ -165,6 +169,7 @@ public open class TextEdit : Control() {
 
   /**
    * If `true`, text can be selected.
+   *
    * If `false`, text can not be selected by the user or by the [select] or [selectAll] methods.
    */
   public final inline var selectingEnabled: Boolean
@@ -210,6 +215,7 @@ public open class TextEdit : Control() {
 
   /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
+   *
    * **Note:** This method is only implemented on Linux.
    */
   public final inline var middleMousePasteEnabled: Boolean
@@ -419,6 +425,7 @@ public open class TextEdit : Control() {
   /**
    * If `true`, a right-click moves the caret at the mouse position before displaying the context
    * menu.
+   *
    * If `false`, the context menu ignores mouse location.
    */
   public final inline var caretMoveOnRightClick: Boolean
@@ -431,6 +438,7 @@ public open class TextEdit : Control() {
 
   /**
    * Allow moving caret, selecting and removing the individual composite character components.
+   *
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
   public final inline var caretMidGrapheme: Boolean
@@ -497,6 +505,7 @@ public open class TextEdit : Control() {
 
   /**
    * The syntax highlighter to use.
+   *
    * **Note:** A [SyntaxHighlighter] instance should not be used across multiple [TextEdit] nodes.
    */
   public final inline var syntaxHighlighter: SyntaxHighlighter?
@@ -608,7 +617,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(664, scriptIndex)
+    createNativeObject(658, scriptIndex)
   }
 
   /**
@@ -616,38 +625,45 @@ public open class TextEdit : Control() {
    * [unicodeChar].
    */
   public open fun _handleUnicodeInput(unicodeChar: Int, caretIndex: Int): Unit {
+    throw NotImplementedError("_handleUnicodeInput is not implemented for TextEdit")
   }
 
   /**
    * Override this method to define what happens when the user presses the backspace key.
    */
   public open fun _backspace(caretIndex: Int): Unit {
+    throw NotImplementedError("_backspace is not implemented for TextEdit")
   }
 
   /**
    * Override this method to define what happens when the user performs a cut operation.
    */
   public open fun _cut(caretIndex: Int): Unit {
+    throw NotImplementedError("_cut is not implemented for TextEdit")
   }
 
   /**
    * Override this method to define what happens when the user performs a copy operation.
    */
   public open fun _copy(caretIndex: Int): Unit {
+    throw NotImplementedError("_copy is not implemented for TextEdit")
   }
 
   /**
    * Override this method to define what happens when the user performs a paste operation.
    */
   public open fun _paste(caretIndex: Int): Unit {
+    throw NotImplementedError("_paste is not implemented for TextEdit")
   }
 
   /**
    * Override this method to define what happens when the user performs a paste operation with
    * middle mouse button.
+   *
    * **Note:** This method is only implemented on Linux.
    */
   public open fun _pastePrimaryClipboard(caretIndex: Int): Unit {
+    throw NotImplementedError("_pastePrimaryClipboard is not implemented for TextEdit")
   }
 
   /**
@@ -887,6 +903,7 @@ public open class TextEdit : Control() {
 
   /**
    * Sets the text for a specific [line].
+   *
    * Carets on the line will attempt to keep their visual x position.
    */
   public final fun setLine(line: Int, newText: String): Unit {
@@ -924,6 +941,7 @@ public open class TextEdit : Control() {
 
   /**
    * Returns the maximum value of the line height among all lines.
+   *
    * **Note:** The return value is influenced by [theme_item line_spacing] and [theme_item
    * font_size]. And it will not be less than `1`.
    */
@@ -972,6 +990,7 @@ public open class TextEdit : Control() {
   /**
    * Removes the line of text at [line]. Carets on this line will attempt to match their previous
    * visual x position.
+   *
    * If [moveCaretsDown] is `true` carets will move to the next line down, otherwise carets will
    * move up.
    */
@@ -992,8 +1011,10 @@ public open class TextEdit : Control() {
 
   /**
    * Inserts the [text] at [line] and [column].
+   *
    * If [beforeSelectionBegin] is `true`, carets and selections that begin at [line] and [column]
    * will moved to the end of the inserted text, along with all carets after it.
+   *
    * If [beforeSelectionEnd] is `true`, selections that end at [line] and [column] will be extended
    * to the end of the inserted text. These parameters can be used to insert text inside of or outside
    * of selections.
@@ -1104,6 +1125,7 @@ public open class TextEdit : Control() {
 
   /**
    * Starts an action, will end the current action if [action] is different.
+   *
    * An action will also end after a call to [endAction], after
    * [ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the
    * [startAction] and [endAction] calls.
@@ -1227,19 +1249,21 @@ public open class TextEdit : Control() {
 
   /**
    * Perform a search inside the text. Search flags can be specified in the [SearchFlags] enum.
+   *
    * In the returned vector, `x` is the column, `y` is the line. If no results are found, both are
    * equal to `-1`.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
    * if result.x != -1:
    *     # Result found.
    *     var line_number = result.y
    *     var column_number = result.x
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Vector2I result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
    * if (result.X != -1)
    * {
@@ -1290,8 +1314,10 @@ public open class TextEdit : Control() {
   /**
    * Returns the line and column at the given position. In the returned vector, `x` is the column
    * and `y` is the line.
+   *
    * If [clampLine] is `false` and [position] is below the last line, `Vector2i(-1, -1)` is
    * returned.
+   *
    * If [clampColumn] is `false` and [position] is outside the column range of the line,
    * `Vector2i(-1, -1)` is returned.
    */
@@ -1309,6 +1335,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the local position for the given [line] and [column]. If `x` or `y` of the returned
    * vector equal `-1`, the position is outside of the viewable area of the control.
+   *
    * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn]
    * to get the top side position.
    */
@@ -1322,6 +1349,7 @@ public open class TextEdit : Control() {
    * Returns the local position and size for the grapheme at the given [line] and [column]. If `x`
    * or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of
    * the control.
+   *
    * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike
    * [getPosAtLineColumn] which returns the bottom side.
    */
@@ -1449,6 +1477,7 @@ public open class TextEdit : Control() {
 
   /**
    * Removes the given caret index.
+   *
    * **Note:** This can result in adjustment of all other caret indices.
    */
   public final fun removeCaret(caret: Int): Unit {
@@ -1485,6 +1514,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the carets sorted by selection beginning from lowest line and column to highest (from
    * top to bottom of text).
+   *
    * If [includeIgnoredCarets] is `false`, carets from [multicaretEditIgnoreCaret] will be ignored.
    */
   @JvmOverloads
@@ -1496,9 +1526,12 @@ public open class TextEdit : Control() {
 
   /**
    * Collapse all carets in the given range to the [fromLine] and [fromColumn] position.
+   *
    * [inclusive] applies to both ends.
+   *
    * If [isInMulitcaretEdit] is `true`, carets that are collapsed will be `true` for
    * [multicaretEditIgnoreCaret].
+   *
    * [mergeOverlappingCarets] will be called if any carets were collapsed.
    */
   @JvmOverloads
@@ -1515,8 +1548,10 @@ public open class TextEdit : Control() {
 
   /**
    * Merges any overlapping carets. Will favor the newest caret, or the caret with a selection.
+   *
    * If [isInMulitcaretEdit] is `true`, the merge will be queued to happen at the end of the
    * multicaret edit. See [beginMulticaretEdit] and [endMulticaretEdit].
+   *
    * **Note:** This is not called when a caret changes position but after certain actions, so it is
    * possible to get into a state where carets overlap.
    */
@@ -1530,7 +1565,8 @@ public open class TextEdit : Control() {
    * edits can be used to edit text at multiple carets and delay merging the carets until the end, so
    * the caret indexes aren't affected immediately. [beginMulticaretEdit] and [endMulticaretEdit] can
    * be nested, and the merge will happen at the last [endMulticaretEdit].
-   * [codeblock]
+   *
+   * ```
    * begin_complex_operation()
    * begin_multicaret_edit()
    * for i in range(get_caret_count()):
@@ -1539,7 +1575,7 @@ public open class TextEdit : Control() {
    *     # Logic here.
    * end_multicaret_edit()
    * end_complex_operation()
-   * [/codeblock]
+   * ```
    */
   public final fun beginMulticaretEdit(): Unit {
     TransferContext.writeArguments()
@@ -1570,6 +1606,7 @@ public open class TextEdit : Control() {
    * [beginMulticaretEdit] and [endMulticaretEdit]. Carets that should be ignored are ones that were
    * part of removed text and will likely be merged at the end of the edit, or carets that were added
    * during the edit.
+   *
    * It is recommended to `continue` within a loop iterating on multiple carets if a caret should be
    * ignored.
    */
@@ -1582,6 +1619,7 @@ public open class TextEdit : Control() {
   /**
    * Returns `true` if the caret is visible, `false` otherwise. A caret will be considered hidden if
    * it is outside the scrollable area when scrolling is enabled.
+   *
    * **Note:** [isCaretVisible] does not account for a caret being off-screen if it is still within
    * the scrollable area. It will return `true` even if the caret is off-screen as long as it meets
    * [TextEdit]'s own conditions for being visible. This includes uses of [scrollFitContentWidth] and
@@ -1608,12 +1646,16 @@ public open class TextEdit : Control() {
    * Moves the caret to the specified [line] index. The caret column will be moved to the same
    * visual position it was at the last time [setCaretColumn] was called, or clamped to the end of the
    * line.
+   *
    * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
    * occurs.
+   *
    * If [canBeHidden] is `true`, the specified [line] can be hidden.
+   *
    * If [wrapIndex] is `-1`, the caret column will be clamped to the [line]'s length. If [wrapIndex]
    * is greater than `-1`, the column will be moved to attempt to match the visual x position on the
    * line's [wrapIndex] to the position from the last time [setCaretColumn] was called.
+   *
    * **Note:** If supporting multiple carets this will not check for any overlap. See
    * [mergeOverlappingCarets].
    */
@@ -1641,8 +1683,10 @@ public open class TextEdit : Control() {
 
   /**
    * Moves the caret to the specified [column] index.
+   *
    * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
    * occurs.
+   *
    * **Note:** If supporting multiple carets this will not check for any overlap. See
    * [mergeOverlappingCarets].
    */
@@ -1771,6 +1815,7 @@ public open class TextEdit : Control() {
 
   /**
    * Select all the text.
+   *
    * If [selectingEnabled] is `false`, no selection will occur.
    */
   public final fun selectAll(): Unit {
@@ -1809,7 +1854,9 @@ public open class TextEdit : Control() {
    * Selects text from [originLine] and [originColumn] to [caretLine] and [caretColumn] for the
    * given [caretIndex]. This moves the selection origin and the caret. If the positions are the same,
    * the selection will be deselected.
+   *
    * If [selectingEnabled] is `false`, no selection will occur.
+   *
    * **Note:** If supporting multiple carets this will not check for any overlap. See
    * [mergeOverlappingCarets].
    */
@@ -1849,6 +1896,7 @@ public open class TextEdit : Control() {
   /**
    * Returns the caret index of the selection at the given [line] and [column], or `-1` if there is
    * none.
+   *
    * If [includeEdges] is `false`, the position must be inside the selection and not at either end.
    * If [onlySelections] is `false`, carets without a selection will also be considered.
    */
@@ -1868,6 +1916,7 @@ public open class TextEdit : Control() {
    * Returns an [Array] of line ranges where `x` is the first line and `y` is the last line. All
    * lines within these ranges will have a caret on them or be part of a selection. Each line will only
    * be part of one line range, even if it has multiple carets on it.
+   *
    * If a selection's end column ([getSelectionToColumn]) is at column `0`, that line will not be
    * included. If a selection begins on the line after another selection ends and [mergeAdjacent] is
    * `true`, or they begin and end on the same line, one line range will include both selections.
@@ -1903,7 +1952,9 @@ public open class TextEdit : Control() {
   /**
    * Sets the selection origin line to the [line] for the given [caretIndex]. If the selection
    * origin is moved to the caret position, the selection will deselect.
+   *
    * If [canBeHidden] is `false`, The line will be set to the nearest unhidden line below or above.
+   *
    * If [wrapIndex] is `-1`, the selection origin column will be clamped to the [line]'s length. If
    * [wrapIndex] is greater than `-1`, the column will be moved to attempt to match the visual x
    * position on the line's [wrapIndex] to the position from the last time [setSelectionOriginColumn]
@@ -2664,11 +2715,12 @@ public open class TextEdit : Control() {
   /**
    * Returns the [PopupMenu] of this [TextEdit]. By default, this menu is displayed when
    * right-clicking on the [TextEdit].
+   *
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
    * the standard ones (see [MenuItems]). For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     var menu = get_menu()
    *     # Remove all items after "Redo".
@@ -2683,8 +2735,9 @@ public open class TextEdit : Control() {
    *     if id == MENU_MAX + 1:
    *         insert_text_at_caret(Time.get_date_string_from_system())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     var menu = GetMenu();
@@ -2783,131 +2836,131 @@ public open class TextEdit : Control() {
     /**
      * Cuts (copies and clears) the selected text.
      */
-    MENU_CUT(0),
+    CUT(0),
     /**
      * Copies the selected text.
      */
-    MENU_COPY(1),
+    COPY(1),
     /**
      * Pastes the clipboard text over the selected text (or at the cursor's position).
      */
-    MENU_PASTE(2),
+    PASTE(2),
     /**
      * Erases the whole [TextEdit] text.
      */
-    MENU_CLEAR(3),
+    CLEAR(3),
     /**
      * Selects the whole [TextEdit] text.
      */
-    MENU_SELECT_ALL(4),
+    SELECT_ALL(4),
     /**
      * Undoes the previous action.
      */
-    MENU_UNDO(5),
+    UNDO(5),
     /**
      * Redoes the previous action.
      */
-    MENU_REDO(6),
+    REDO(6),
     /**
      * ID of "Text Writing Direction" submenu.
      */
-    MENU_SUBMENU_TEXT_DIR(7),
+    SUBMENU_TEXT_DIR(7),
     /**
      * Sets text direction to inherited.
      */
-    MENU_DIR_INHERITED(8),
+    DIR_INHERITED(8),
     /**
      * Sets text direction to automatic.
      */
-    MENU_DIR_AUTO(9),
+    DIR_AUTO(9),
     /**
      * Sets text direction to left-to-right.
      */
-    MENU_DIR_LTR(10),
+    DIR_LTR(10),
     /**
      * Sets text direction to right-to-left.
      */
-    MENU_DIR_RTL(11),
+    DIR_RTL(11),
     /**
      * Toggles control character display.
      */
-    MENU_DISPLAY_UCC(12),
+    DISPLAY_UCC(12),
     /**
      * ID of "Insert Control Character" submenu.
      */
-    MENU_SUBMENU_INSERT_UCC(13),
+    SUBMENU_INSERT_UCC(13),
     /**
      * Inserts left-to-right mark (LRM) character.
      */
-    MENU_INSERT_LRM(14),
+    INSERT_LRM(14),
     /**
      * Inserts right-to-left mark (RLM) character.
      */
-    MENU_INSERT_RLM(15),
+    INSERT_RLM(15),
     /**
      * Inserts start of left-to-right embedding (LRE) character.
      */
-    MENU_INSERT_LRE(16),
+    INSERT_LRE(16),
     /**
      * Inserts start of right-to-left embedding (RLE) character.
      */
-    MENU_INSERT_RLE(17),
+    INSERT_RLE(17),
     /**
      * Inserts start of left-to-right override (LRO) character.
      */
-    MENU_INSERT_LRO(18),
+    INSERT_LRO(18),
     /**
      * Inserts start of right-to-left override (RLO) character.
      */
-    MENU_INSERT_RLO(19),
+    INSERT_RLO(19),
     /**
      * Inserts pop direction formatting (PDF) character.
      */
-    MENU_INSERT_PDF(20),
+    INSERT_PDF(20),
     /**
      * Inserts Arabic letter mark (ALM) character.
      */
-    MENU_INSERT_ALM(21),
+    INSERT_ALM(21),
     /**
      * Inserts left-to-right isolate (LRI) character.
      */
-    MENU_INSERT_LRI(22),
+    INSERT_LRI(22),
     /**
      * Inserts right-to-left isolate (RLI) character.
      */
-    MENU_INSERT_RLI(23),
+    INSERT_RLI(23),
     /**
      * Inserts first strong isolate (FSI) character.
      */
-    MENU_INSERT_FSI(24),
+    INSERT_FSI(24),
     /**
      * Inserts pop direction isolate (PDI) character.
      */
-    MENU_INSERT_PDI(25),
+    INSERT_PDI(25),
     /**
      * Inserts zero width joiner (ZWJ) character.
      */
-    MENU_INSERT_ZWJ(26),
+    INSERT_ZWJ(26),
     /**
      * Inserts zero width non-joiner (ZWNJ) character.
      */
-    MENU_INSERT_ZWNJ(27),
+    INSERT_ZWNJ(27),
     /**
      * Inserts word joiner (WJ) character.
      */
-    MENU_INSERT_WJ(28),
+    INSERT_WJ(28),
     /**
      * Inserts soft hyphen (SHY) character.
      */
-    MENU_INSERT_SHY(29),
+    INSERT_SHY(29),
     /**
      * Opens system emoji and symbol picker.
      */
-    MENU_EMOJI_AND_SYMBOL(30),
+    EMOJI_AND_SYMBOL(30),
     /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(31),
+    MAX(31),
     ;
 
     public val id: Long
@@ -2957,15 +3010,15 @@ public open class TextEdit : Control() {
     /**
      * Match case when searching.
      */
-    SEARCH_MATCH_CASE(1),
+    MATCH_CASE(1),
     /**
      * Match whole words when searching.
      */
-    SEARCH_WHOLE_WORDS(2),
+    WHOLE_WORDS(2),
     /**
      * Search from end to beginning.
      */
-    SEARCH_BACKWARDS(4),
+    BACKWARDS(4),
     ;
 
     public val id: Long
@@ -2984,11 +3037,11 @@ public open class TextEdit : Control() {
     /**
      * Vertical line caret.
      */
-    CARET_TYPE_LINE(0),
+    LINE(0),
     /**
      * Block caret.
      */
-    CARET_TYPE_BLOCK(1),
+    BLOCK(1),
     ;
 
     public val id: Long
@@ -3007,23 +3060,23 @@ public open class TextEdit : Control() {
     /**
      * Not selecting.
      */
-    SELECTION_MODE_NONE(0),
+    NONE(0),
     /**
      * Select as if `shift` is pressed.
      */
-    SELECTION_MODE_SHIFT(1),
+    SHIFT(1),
     /**
      * Select single characters as if the user single clicked.
      */
-    SELECTION_MODE_POINTER(2),
+    POINTER(2),
     /**
      * Select whole words as if the user double clicked.
      */
-    SELECTION_MODE_WORD(3),
+    WORD(3),
     /**
      * Select whole lines as if the user triple clicked.
      */
-    SELECTION_MODE_LINE(4),
+    LINE(4),
     ;
 
     public val id: Long
@@ -3042,11 +3095,11 @@ public open class TextEdit : Control() {
     /**
      * Line wrapping is disabled.
      */
-    LINE_WRAPPING_NONE(0),
+    NONE(0),
     /**
      * Line wrapping occurs at the control boundary, beyond what would normally be visible.
      */
-    LINE_WRAPPING_BOUNDARY(1),
+    BOUNDARY(1),
     ;
 
     public val id: Long
@@ -3066,17 +3119,17 @@ public open class TextEdit : Control() {
      * When a gutter is set to string using [setGutterType], it is used to contain text set via the
      * [setLineGutterText] method.
      */
-    GUTTER_TYPE_STRING(0),
+    STRING(0),
     /**
      * When a gutter is set to icon using [setGutterType], it is used to contain an icon set via the
      * [setLineGutterIcon] method.
      */
-    GUTTER_TYPE_ICON(1),
+    ICON(1),
     /**
      * When a gutter is set to custom using [setGutterType], it is used to contain custom visuals
      * controlled by a callback method set via the [setGutterCustomDraw] method.
      */
-    GUTTER_TYPE_CUSTOM(2),
+    CUSTOM(2),
     ;
 
     public val id: Long

@@ -17,8 +17,10 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -26,13 +28,14 @@ import kotlin.Unit
  * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the
  * resources are ready to use and can be retrieved from the preloader. You can add the resources using
  * the ResourcePreloader tab when the node is selected.
+ *
  * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most
  * situations, leaving the use of [ResourcePreloader] for more advanced scenarios.
  */
 @GodotBaseType
 public open class ResourcePreloader : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(568, scriptIndex)
+    createNativeObject(560, scriptIndex)
   }
 
   /**
@@ -87,6 +90,35 @@ public open class ResourcePreloader : Node() {
     TransferContext.callMethod(ptr, MethodBindings.getResourceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
+
+  /**
+   * Adds a resource to the preloader with the given [name]. If a resource with the given [name]
+   * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
+   * starting from 2.
+   */
+  public final fun addResource(name: String, resource: Resource?) =
+      addResource(name.asCachedStringName(), resource)
+
+  /**
+   * Removes the resource associated to [name] from the preloader.
+   */
+  public final fun removeResource(name: String) = removeResource(name.asCachedStringName())
+
+  /**
+   * Renames a resource inside the preloader from [name] to [newname].
+   */
+  public final fun renameResource(name: String, newname: String) =
+      renameResource(name.asCachedStringName(), newname.asCachedStringName())
+
+  /**
+   * Returns `true` if the preloader contains a resource associated to [name].
+   */
+  public final fun hasResource(name: String): Boolean = hasResource(name.asCachedStringName())
+
+  /**
+   * Returns the resource associated to [name].
+   */
+  public final fun getResource(name: String): Resource? = getResource(name.asCachedStringName())
 
   public companion object
 

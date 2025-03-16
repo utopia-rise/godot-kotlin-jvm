@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 
 /**
  * This node allows you to create a sphere for use with the CSG system.
+ *
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
  * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
  * node within another CSG node also has a significant CPU cost, so it should be avoided during
@@ -90,7 +91,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(159, scriptIndex)
+    createNativeObject(124, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

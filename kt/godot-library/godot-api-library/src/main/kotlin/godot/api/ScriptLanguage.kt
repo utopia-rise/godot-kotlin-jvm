@@ -15,16 +15,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(583, scriptIndex)
+    createNativeObject(577, scriptIndex)
   }
 
   public enum class ScriptNameCasing(
     id: Long,
   ) {
-    SCRIPT_NAME_CASING_AUTO(0),
-    SCRIPT_NAME_CASING_PASCAL_CASE(1),
-    SCRIPT_NAME_CASING_SNAKE_CASE(2),
-    SCRIPT_NAME_CASING_KEBAB_CASE(3),
+    AUTO(0),
+    PASCAL_CASE(1),
+    SNAKE_CASE(2),
+    KEBAB_CASE(3),
     ;
 
     public val id: Long

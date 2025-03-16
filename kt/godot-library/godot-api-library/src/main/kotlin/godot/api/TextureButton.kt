@@ -25,7 +25,9 @@ import kotlin.jvm.JvmName
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
  * [Theme] resource. It is faster to create, but it doesn't support localization like more complex
  * [Control]s.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * **Note:** Setting a texture for the "normal" state ([textureNormal]) is recommended. If
  * [textureNormal] is not set, the [TextureButton] will still receive input events and be clickable,
  * but the user will not be able to see it unless they activate another one of its states with a
@@ -157,7 +159,7 @@ public open class TextureButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(679, scriptIndex)
+    createNativeObject(674, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {
@@ -276,34 +278,34 @@ public open class TextureButton : BaseButton() {
     /**
      * Scale to fit the node's bounding rectangle.
      */
-    STRETCH_SCALE(0),
+    SCALE(0),
     /**
      * Tile inside the node's bounding rectangle.
      */
-    STRETCH_TILE(1),
+    TILE(1),
     /**
      * The texture keeps its original size and stays in the bounding rectangle's top-left corner.
      */
-    STRETCH_KEEP(2),
+    KEEP(2),
     /**
      * The texture keeps its original size and stays centered in the node's bounding rectangle.
      */
-    STRETCH_KEEP_CENTERED(3),
+    KEEP_CENTERED(3),
     /**
      * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect
      * ratio.
      */
-    STRETCH_KEEP_ASPECT(4),
+    KEEP_ASPECT(4),
     /**
      * Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect
      * ratio.
      */
-    STRETCH_KEEP_ASPECT_CENTERED(5),
+    KEEP_ASPECT_CENTERED(5),
     /**
      * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips
      * to the node's limits.
      */
-    STRETCH_KEEP_ASPECT_COVERED(6),
+    KEEP_ASPECT_COVERED(6),
     ;
 
     public val id: Long

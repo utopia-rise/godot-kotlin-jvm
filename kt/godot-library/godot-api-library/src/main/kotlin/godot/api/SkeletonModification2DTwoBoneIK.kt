@@ -16,11 +16,13 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -31,6 +33,7 @@ import kotlin.jvm.JvmName
  * currently have, and what rotation they need to make a complete triangle, where the first bone, the
  * second bone, and the target form the three vertices of the triangle. Because the algorithm works by
  * making a triangle, it can only operate on two bones.
+ *
  * TwoBoneIK is great for arms, legs, and really any joints that can be represented by just two
  * bones that bend to reach a target. This solver is more lightweight than
  * [SkeletonModification2DFABRIK], but gives similar, natural looking results.
@@ -88,7 +91,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(612, scriptIndex)
+    createNativeObject(606, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {
@@ -206,6 +209,21 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
+   */
+  public final fun setJointOneBone2dNode(bone2dNode: String) =
+      setJointOneBone2dNode(bone2dNode.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
+   */
+  public final fun setJointTwoBone2dNode(bone2dNode: String) =
+      setJointTwoBone2dNode(bone2dNode.asCachedNodePath())
 
   public companion object
 

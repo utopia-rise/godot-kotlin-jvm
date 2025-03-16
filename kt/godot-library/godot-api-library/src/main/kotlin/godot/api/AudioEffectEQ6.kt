@@ -13,18 +13,25 @@ import kotlin.Unit
 
 /**
  * Frequency bands:
+ *
  * Band 1: 32 Hz
+ *
  * Band 2: 100 Hz
+ *
  * Band 3: 320 Hz
+ *
  * Band 4: 1000 Hz
+ *
  * Band 5: 3200 Hz
+ *
  * Band 6: 10000 Hz
+ *
  * See also [AudioEffectEQ], [AudioEffectEQ10], [AudioEffectEQ21].
  */
 @GodotBaseType
 public open class AudioEffectEQ6 : AudioEffectEQ() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(93, scriptIndex)
+    createNativeObject(57, scriptIndex)
   }
 
   public companion object

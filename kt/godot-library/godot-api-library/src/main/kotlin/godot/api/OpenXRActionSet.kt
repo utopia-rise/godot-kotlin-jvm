@@ -30,6 +30,7 @@ import kotlin.jvm.JvmName
  * inputs. For instance we could have an action set that is active when a menu is open, an action set
  * that is active when the player is freely walking around and an action set that is active when the
  * player is controlling a vehicle.
+ *
  * Action sets can contain the same action with the same name, if such action sets are active at the
  * same time the action set with the highest priority defines which binding is active.
  */
@@ -69,7 +70,7 @@ public open class OpenXRActionSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(430, scriptIndex)
+    createNativeObject(414, scriptIndex)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

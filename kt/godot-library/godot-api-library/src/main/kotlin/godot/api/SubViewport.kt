@@ -27,9 +27,11 @@ import kotlin.jvm.JvmName
 /**
  * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
  * used, for example, to display UI in 3D space.
+ *
  * **Note:** [SubViewport] is a [Viewport] that isn't a [Window], i.e. it doesn't draw anything by
  * itself. To display anything, [SubViewport] must have a non-zero size and be either put inside a
  * [SubViewportContainer] or assigned to a [ViewportTexture].
+ *
  * **Note:** [InputEvent]s are not passed to a standalone [SubViewport] by default. To ensure
  * [InputEvent] propagation, a [SubViewport] can be placed inside of a [SubViewportContainer].
  */
@@ -38,6 +40,7 @@ public open class SubViewport : Viewport() {
   /**
    * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
    * pixels on both dimensions. Otherwise, nothing will be displayed.
+   *
    * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
    * is `true`, the viewport size cannot be changed manually.
    */
@@ -76,6 +79,7 @@ public open class SubViewport : Viewport() {
 
   /**
    * The clear mode when the sub-viewport is used as a render target.
+   *
    * **Note:** This property is intended for 2D usage.
    */
   public final inline var renderTargetClearMode: ClearMode
@@ -98,12 +102,13 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(654, scriptIndex)
+    createNativeObject(648, scriptIndex)
   }
 
   /**
    * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
    * pixels on both dimensions. Otherwise, nothing will be displayed.
+   *
    * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
    * is `true`, the viewport size cannot be changed manually.
    *
@@ -215,15 +220,15 @@ public open class SubViewport : Viewport() {
     /**
      * Always clear the render target before drawing.
      */
-    CLEAR_MODE_ALWAYS(0),
+    ALWAYS(0),
     /**
      * Never clear the render target.
      */
-    CLEAR_MODE_NEVER(1),
+    NEVER(1),
     /**
      * Clear the render target on the next frame, then switch to [CLEAR_MODE_NEVER].
      */
-    CLEAR_MODE_ONCE(2),
+    ONCE(2),
     ;
 
     public val id: Long
@@ -242,23 +247,23 @@ public open class SubViewport : Viewport() {
     /**
      * Do not update the render target.
      */
-    UPDATE_DISABLED(0),
+    DISABLED(0),
     /**
      * Update the render target once, then switch to [UPDATE_DISABLED].
      */
-    UPDATE_ONCE(1),
+    ONCE(1),
     /**
      * Update the render target only when it is visible. This is the default value.
      */
-    UPDATE_WHEN_VISIBLE(2),
+    WHEN_VISIBLE(2),
     /**
      * Update the render target only when its parent is visible.
      */
-    UPDATE_WHEN_PARENT_VISIBLE(3),
+    WHEN_PARENT_VISIBLE(3),
     /**
      * Always update the render target.
      */
-    UPDATE_ALWAYS(4),
+    ALWAYS(4),
     ;
 
     public val id: Long

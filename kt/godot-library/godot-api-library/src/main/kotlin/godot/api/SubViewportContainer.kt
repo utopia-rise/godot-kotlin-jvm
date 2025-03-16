@@ -24,9 +24,11 @@ import kotlin.jvm.JvmName
 /**
  * A container that displays the contents of underlying [SubViewport] child nodes. It uses the
  * combined size of the [SubViewport]s as minimum size, unless [stretch] is enabled.
+ *
  * **Note:** Changing a [SubViewportContainer]'s [Control.scale] will cause its contents to appear
  * distorted. To change its visual size without causing distortion, adjust the node's margins instead
  * (if it's not already in a container).
+ *
  * **Note:** The [SubViewportContainer] forwards mouse-enter and mouse-exit notifications to its
  * sub-viewports.
  */
@@ -34,6 +36,7 @@ import kotlin.jvm.JvmName
 public open class SubViewportContainer : Container() {
   /**
    * If `true`, the sub-viewport will be automatically resized to the control's size.
+   *
    * **Note:** If `true`, this will prohibit changing [SubViewport.size] of its children manually.
    */
   public final inline var stretch: Boolean
@@ -47,8 +50,10 @@ public open class SubViewportContainer : Container() {
   /**
    * Divides the sub-viewport's effective resolution by this value while preserving its scale. This
    * can be used to speed up rendering.
+   *
    * For example, a 1280×720 sub-viewport with [stretchShrink] set to `2` will be rendered at
    * 640×360 while occupying the same size in the container.
+   *
    * **Note:** [stretch] must be `true` for this property to work.
    */
   public final inline var stretchShrink: Int
@@ -63,7 +68,9 @@ public open class SubViewportContainer : Container() {
    * Configure, if either the [SubViewportContainer] or alternatively the [Control] nodes of its
    * [SubViewport] children should be available as targets of mouse-related functionalities, like
    * identifying the drop target in drag-and-drop operations or cursor shape of hovered [Control] node.
+   *
    * If `false`, the [Control] nodes inside its [SubViewport] children are considered as targets.
+   *
    * If `true`, the [SubViewportContainer] itself will be considered as a target.
    */
   public final inline var mouseTarget: Boolean
@@ -75,7 +82,7 @@ public open class SubViewportContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(655, scriptIndex)
+    createNativeObject(649, scriptIndex)
   }
 
   /**
@@ -84,7 +91,7 @@ public open class SubViewportContainer : Container() {
    * not implemented, all events are propagated to SubViewports.
    */
   public open fun _propagateInputEvent(event: InputEvent?): Boolean {
-    throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")
+    throw NotImplementedError("_propagateInputEvent is not implemented for SubViewportContainer")
   }
 
   public final fun setStretch(enable: Boolean): Unit {

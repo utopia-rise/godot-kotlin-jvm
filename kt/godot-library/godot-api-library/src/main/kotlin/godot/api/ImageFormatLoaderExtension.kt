@@ -22,13 +22,14 @@ import kotlin.Unit
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
  * but you can choose to implement support for additional image formats by extending this class.
+ *
  * Be sure to respect the documented return types and values. You should create an instance of it,
  * and call [addFormatLoader] to register that loader during the initialization phase.
  */
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(310, scriptIndex)
+    createNativeObject(284, scriptIndex)
   }
 
   /**
@@ -36,7 +37,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * be treated as image file and loaded using this class.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions is not implemented for ImageFormatLoaderExtension")
+    throw NotImplementedError("_getRecognizedExtensions is not implemented for ImageFormatLoaderExtension")
   }
 
   /**
@@ -48,7 +49,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
     flags: ImageFormatLoader.LoaderFlags,
     scale: Float,
   ): Error {
-    throw NotImplementedError("_load_image is not implemented for ImageFormatLoaderExtension")
+    throw NotImplementedError("_loadImage is not implemented for ImageFormatLoaderExtension")
   }
 
   /**

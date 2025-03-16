@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
  * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
  * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
  * set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform3D].
+ *
  * When [AnimatableBody3D] is moved, its linear and angular velocity are estimated and used to
  * affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other
  * moving objects.
@@ -42,7 +43,7 @@ public open class AnimatableBody3D : StaticBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(44, scriptIndex)
+    createNativeObject(8, scriptIndex)
   }
 
   public final fun setSyncToPhysics(enable: Boolean): Unit {

@@ -39,29 +39,31 @@ public open class Container : Control() {
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(210, scriptIndex)
+    createNativeObject(177, scriptIndex)
   }
 
   /**
    * Implement to return a list of allowed horizontal [Control.SizeFlags] for child nodes. This
    * doesn't technically prevent the usages of any other size flags, if your implementation requires
    * that. This only limits the options available to the user in the Inspector dock.
+   *
    * **Note:** Having no size flags is equal to having [Control.SIZE_SHRINK_BEGIN]. As such, this
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_horizontal is not implemented for Container")
+    throw NotImplementedError("_getAllowedSizeFlagsHorizontal is not implemented for Container")
   }
 
   /**
    * Implement to return a list of allowed vertical [Control.SizeFlags] for child nodes. This
    * doesn't technically prevent the usages of any other size flags, if your implementation requires
    * that. This only limits the options available to the user in the Inspector dock.
+   *
    * **Note:** Having no size flags is equal to having [Control.SIZE_SHRINK_BEGIN]. As such, this
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_vertical is not implemented for Container")
+    throw NotImplementedError("_getAllowedSizeFlagsVertical is not implemented for Container")
   }
 
   /**

@@ -35,7 +35,7 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(771, scriptIndex)
+    createNativeObject(769, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {
@@ -55,35 +55,35 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
     /**
      * A floating-point scalar.
      */
-    OP_TYPE_SCALAR(0),
+    SCALAR(0),
     /**
      * A 2D vector type.
      */
-    OP_TYPE_VECTOR_2D(1),
+    VECTOR_2D(1),
     /**
      * The `a` and `b` ports use a 2D vector type. The `weight` port uses a scalar type.
      */
-    OP_TYPE_VECTOR_2D_SCALAR(2),
+    VECTOR_2D_SCALAR(2),
     /**
      * A 3D vector type.
      */
-    OP_TYPE_VECTOR_3D(3),
+    VECTOR_3D(3),
     /**
      * The `a` and `b` ports use a 3D vector type. The `weight` port uses a scalar type.
      */
-    OP_TYPE_VECTOR_3D_SCALAR(4),
+    VECTOR_3D_SCALAR(4),
     /**
      * A 4D vector type.
      */
-    OP_TYPE_VECTOR_4D(5),
+    VECTOR_4D(5),
     /**
      * The `a` and `b` ports use a 4D vector type. The `weight` port uses a scalar type.
      */
-    OP_TYPE_VECTOR_4D_SCALAR(6),
+    VECTOR_4D_SCALAR(6),
     /**
      * Represents the size of the [OpType] enum.
      */
-    OP_TYPE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long

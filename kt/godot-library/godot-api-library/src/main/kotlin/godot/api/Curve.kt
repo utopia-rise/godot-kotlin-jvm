@@ -29,6 +29,7 @@ import kotlin.jvm.JvmOverloads
  * This resource describes a mathematical curve by defining a set of points and tangents at each
  * point. By default, it ranges between `0` and `1` on the X and Y axes, but these ranges can be
  * changed.
+ *
  * Please note that many resources and nodes assume they are given *unit curves*. A unit curve is a
  * curve whose domain (the X axis) is between `0` and `1`. Some examples of unit curve usage are
  * [CPUParticles2D.angleCurve] and [Line2D.widthCurve].
@@ -114,7 +115,7 @@ public open class Curve : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(218, scriptIndex)
+    createNativeObject(185, scriptIndex)
   }
 
   public final fun getPointCount(): Int {
@@ -138,8 +139,8 @@ public open class Curve : Resource() {
     position: Vector2,
     leftTangent: Float = 0.0f,
     rightTangent: Float = 0.0f,
-    leftMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
-    rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
+    leftMode: TangentMode = Curve.TangentMode.FREE,
+    rightMode: TangentMode = Curve.TangentMode.FREE,
   ): Int {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent.toDouble(), DOUBLE to rightTangent.toDouble(), LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(ptr, MethodBindings.addPointPtr, LONG)
@@ -371,16 +372,16 @@ public open class Curve : Resource() {
     /**
      * The tangent on this side of the point is user-defined.
      */
-    TANGENT_FREE(0),
+    FREE(0),
     /**
      * The curve calculates the tangent on this side of the point as the slope halfway towards the
      * adjacent point.
      */
-    TANGENT_LINEAR(1),
+    LINEAR(1),
     /**
      * The total number of available tangent modes.
      */
-    TANGENT_MODE_COUNT(2),
+    COUNT(2),
     ;
 
     public val id: Long

@@ -20,6 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.Vector2i
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -59,6 +60,7 @@ public open class StatusIndicator : Node() {
 
   /**
    * Status indicator native popup menu. If this is set, the [signal pressed] signal is not emitted.
+   *
    * **Note:** Native popup is only supported if [NativeMenu] supports
    * [NativeMenu.FEATURE_POPUP_MENU] feature.
    */
@@ -82,7 +84,7 @@ public open class StatusIndicator : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(642, scriptIndex)
+    createNativeObject(636, scriptIndex)
   }
 
   public final fun setTooltip(tooltip: String): Unit {
@@ -138,6 +140,8 @@ public open class StatusIndicator : Node() {
     TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
+
+  public final fun setMenu(menu: String) = setMenu(menu.asCachedNodePath())
 
   public companion object
 

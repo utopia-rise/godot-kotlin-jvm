@@ -29,7 +29,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(721, scriptIndex)
+    createNativeObject(719, scriptIndex)
   }
 
   /**
@@ -37,6 +37,7 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.stop]. [_isPlaying] should return `false` once stopped.
    */
   public open fun _stop(): Unit {
+    throw NotImplementedError("_stop is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -45,13 +46,14 @@ public open class VideoStreamPlayback : Resource() {
    * should return `true` once playing.
    */
   public open fun _play(): Unit {
+    throw NotImplementedError("_play is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the playback state, as determined by calls to [_play] and [_stop].
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_isPlaying is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -59,20 +61,21 @@ public open class VideoStreamPlayback : Resource() {
    * to the [VideoStreamPlayer.paused] setter.
    */
   public open fun _setPaused(paused: Boolean): Unit {
+    throw NotImplementedError("_setPaused is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the paused status, as set by [_setPaused].
    */
   public open fun _isPaused(): Boolean {
-    throw NotImplementedError("_is_paused is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_isPaused is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the video duration in seconds, if known, or 0 if unknown.
    */
   public open fun _getLength(): Double {
-    throw NotImplementedError("_get_length is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getLength is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -80,13 +83,14 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.streamPosition] getter.
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_get_playback_position is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getPlaybackPosition is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Seeks to [time] seconds. Called in response to the [VideoStreamPlayer.streamPosition] setter.
    */
   public open fun _seek(time: Double): Unit {
+    throw NotImplementedError("_seek is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -94,13 +98,14 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.audioTrack] setter.
    */
   public open fun _setAudioTrack(idx: Int): Unit {
+    throw NotImplementedError("_setAudioTrack is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Allocates a [Texture2D] in which decoded video frames will be drawn.
    */
   public open fun _getTexture(): Texture2D? {
-    throw NotImplementedError("_get_texture is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getTexture is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -108,20 +113,21 @@ public open class VideoStreamPlayback : Resource() {
    * [_isPlaying] return `true`.
    */
   public open fun _update(delta: Double): Unit {
+    throw NotImplementedError("_update is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the number of audio channels.
    */
   public open fun _getChannels(): Int {
-    throw NotImplementedError("_get_channels is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getChannels is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the audio sample rate used for mixing.
    */
   public open fun _getMixRate(): Int {
-    throw NotImplementedError("_get_mix_rate is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getMixRate is not implemented for VideoStreamPlayback")
   }
 
   /**

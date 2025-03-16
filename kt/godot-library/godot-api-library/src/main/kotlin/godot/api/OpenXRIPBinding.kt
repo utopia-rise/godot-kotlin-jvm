@@ -50,6 +50,7 @@ public open class OpenXRIPBinding : Resource() {
 
   /**
    * Binding path that defines the input or output bound to [action].
+   *
    * **Note:** Binding paths are suggestions, an XR runtime may choose to bind the action to a
    * different input or output emulating this input or output.
    */
@@ -84,7 +85,7 @@ public open class OpenXRIPBinding : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(443, scriptIndex)
+    createNativeObject(427, scriptIndex)
   }
 
   public final fun setAction(action: OpenXRAction?): Unit {

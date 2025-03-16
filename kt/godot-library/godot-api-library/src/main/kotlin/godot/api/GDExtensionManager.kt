@@ -29,6 +29,7 @@ import kotlin.jvm.JvmStatic
 /**
  * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension]
  * libraries in the project.
+ *
  * **Note:** Do not worry about GDExtension unless you know what you are doing.
  */
 @GodotBaseType
@@ -41,6 +42,7 @@ public object GDExtensionManager : Object() {
 
   /**
    * Emitted after the editor has finished loading a new extension.
+   *
    * **Note:** This signal is only emitted in editor builds.
    */
   @JvmStatic
@@ -48,13 +50,14 @@ public object GDExtensionManager : Object() {
 
   /**
    * Emitted before the editor starts unloading an extension.
+   *
    * **Note:** This signal is only emitted in editor builds.
    */
   @JvmStatic
   public val extensionUnloading: Signal1<GDExtension> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(20)
+    getSingleton(6)
   }
 
   /**
@@ -72,6 +75,7 @@ public object GDExtensionManager : Object() {
    * Reloads the extension at the given file path. The [path] needs to point to a valid
    * [GDExtension], otherwise this method may return either [LOAD_STATUS_NOT_LOADED] or
    * [LOAD_STATUS_FAILED].
+   *
    * **Note:** You can only reload extensions in the editor. In release builds, this method always
    * fails and returns [LOAD_STATUS_FAILED].
    */
@@ -131,24 +135,24 @@ public object GDExtensionManager : Object() {
     /**
      * The extension has loaded successfully.
      */
-    LOAD_STATUS_OK(0),
+    OK(0),
     /**
      * The extension has failed to load, possibly because it does not exist or has missing
      * dependencies.
      */
-    LOAD_STATUS_FAILED(1),
+    FAILED(1),
     /**
      * The extension has already been loaded.
      */
-    LOAD_STATUS_ALREADY_LOADED(2),
+    ALREADY_LOADED(2),
     /**
      * The extension has not been loaded.
      */
-    LOAD_STATUS_NOT_LOADED(3),
+    NOT_LOADED(3),
     /**
      * The extension requires the application to restart to fully load.
      */
-    LOAD_STATUS_NEEDS_RESTART(4),
+    NEEDS_RESTART(4),
     ;
 
     public val id: Long

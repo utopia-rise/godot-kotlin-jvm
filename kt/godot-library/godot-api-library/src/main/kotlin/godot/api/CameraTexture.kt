@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 
 /**
  * This texture gives access to the camera texture provided by a [CameraFeed].
+ *
  * **Note:** Many cameras supply YCbCr images which need to be converted in a shader.
  */
 @GodotBaseType
@@ -61,7 +62,7 @@ public open class CameraTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(168, scriptIndex)
+    createNativeObject(134, scriptIndex)
   }
 
   public final fun setCameraFeedId(feedId: Int): Unit {

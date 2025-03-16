@@ -16,35 +16,41 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(492, scriptIndex)
+    createNativeObject(481, scriptIndex)
   }
 
   /**
    * Called by the [PhysicsServer3D] to set the position for the [SoftBody3D] vertex at the index
    * specified by [vertexId].
+   *
    * **Note:** The [vertex] parameter used to be of type `const void*` prior to Godot 4.2.
    */
   public open fun _setVertex(vertexId: Int, vertex: Vector3): Unit {
+    throw NotImplementedError("_setVertex is not implemented for PhysicsServer3DRenderingServerHandler")
   }
 
   /**
    * Called by the [PhysicsServer3D] to set the normal for the [SoftBody3D] vertex at the index
    * specified by [vertexId].
+   *
    * **Note:** The [normal] parameter used to be of type `const void*` prior to Godot 4.2.
    */
   public open fun _setNormal(vertexId: Int, normal: Vector3): Unit {
+    throw NotImplementedError("_setNormal is not implemented for PhysicsServer3DRenderingServerHandler")
   }
 
   /**
    * Called by the [PhysicsServer3D] to set the bounding box for the [SoftBody3D].
    */
   public open fun _setAabb(aabb: AABB): Unit {
+    throw NotImplementedError("_setAabb is not implemented for PhysicsServer3DRenderingServerHandler")
   }
 
   /**

@@ -23,6 +23,7 @@ import kotlin.jvm.JvmName
 /**
  * The analog threshold binding modifier can modify a float input to a boolean input with specified
  * thresholds.
+ *
  * See
  * [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_VALVE_analog_threshold]XR_VALVE_analog_threshold[/url]
  * for in-depth details.
@@ -75,7 +76,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(431, scriptIndex)
+    createNativeObject(415, scriptIndex)
   }
 
   public final fun setOnThreshold(onThreshold: Float): Unit {

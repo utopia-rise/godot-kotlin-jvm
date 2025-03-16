@@ -14,13 +14,14 @@ import kotlin.Unit
 /**
  * This abstract class helps connect the [Node3D] scene with the editor-specific [EditorNode3DGizmo]
  * class.
+ *
  * [Node3DGizmo] by itself has no exposed API, refer to [Node3D.addGizmo] and pass it an
  * [EditorNode3DGizmo] instance.
  */
 @GodotBaseType
 public open class Node3DGizmo internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(414, scriptIndex)
+    createNativeObject(397, scriptIndex)
   }
 
   public companion object

@@ -21,11 +21,13 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -36,30 +38,35 @@ import kotlin.jvm.JvmStatic
  * memory usage, draw calls, and FPS. These are the same as the values displayed in the **Monitor** tab
  * in the editor's **Debugger** panel. By using the [getMonitor] method of this class, you can access
  * this data from your code.
+ *
  * You can add custom monitors using the [addCustomMonitor] method. Custom monitors are available in
  * **Monitor** tab in the editor's **Debugger** panel together with built-in monitors.
+ *
  * **Note:** Some of the built-in monitors are only available in debug mode and will always return
  * `0` when used in a project exported in release mode.
+ *
  * **Note:** Some of the built-in monitors are not updated in real-time for performance reasons, so
  * there may be a delay of up to 1 second between changes.
+ *
  * **Note:** Custom monitors do not support negative values. Negative values are clamped to 0.
  */
 @GodotBaseType
 public object Performance : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(0)
+    getSingleton(20)
   }
 
   /**
    * Returns the value of one of the available built-in monitors. You should provide one of the
    * [Monitor] constants as the argument, like this:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GD.Print(Performance.GetMonitor(Performance.Monitor.TimeFps)); // Prints the FPS to the
    * console.
    * ```
@@ -79,8 +86,8 @@ public object Performance : Object() {
    * delimiter, then the default category is used. The default category is `"Custom"`. Prints an error
    * if given [id] is already present.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     var monitor_value = Callable(self, "get_monitor_value")
    *
@@ -103,8 +110,9 @@ public object Performance : Object() {
    * func get_monitor_value():
    *     return randi() &#37; 25
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     var monitorValue = new Callable(this, MethodName.GetMonitorValue);
@@ -133,6 +141,7 @@ public object Performance : Object() {
    *
    * The debugger calls the callable to get the value of custom monitor. The callable must return a
    * zero or positive integer or floating-point number.
+   *
    * Callables are called with arguments supplied in argument array.
    */
   @JvmOverloads
@@ -197,6 +206,98 @@ public object Performance : Object() {
     TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
+
+  /**
+   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using
+   * slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash
+   * delimiter, then the default category is used. The default category is `"Custom"`. Prints an error
+   * if given [id] is already present.
+   *
+   * ```gdscript
+   * //gdscript
+   * func _ready():
+   *     var monitor_value = Callable(self, "get_monitor_value")
+   *
+   *     # Adds monitor with name "MyName" to category "MyCategory".
+   *     Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
+   *
+   *     # Adds monitor with name "MyName" to category "Custom".
+   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the
+   * code is valid.
+   *     Performance.add_custom_monitor("MyMonitor", monitor_value)
+   *
+   *     # Adds monitor with name "MyName" to category "Custom".
+   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
+   * IDs, so the code is valid.
+   *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
+   *
+   *     # Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   *     Performance.add_custom_monitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitor_value)
+   *
+   * func get_monitor_value():
+   *     return randi() &#37; 25
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Ready()
+   * {
+   *     var monitorValue = new Callable(this, MethodName.GetMonitorValue);
+   *
+   *     // Adds monitor with name "MyName" to category "MyCategory".
+   *     Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
+   *     // Adds monitor with name "MyName" to category "Custom".
+   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the
+   * code is valid.
+   *     Performance.AddCustomMonitor("MyMonitor", monitorValue);
+   *
+   *     // Adds monitor with name "MyName" to category "Custom".
+   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
+   * ids so the code is valid.
+   *     Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
+   *
+   *     // Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   *     Performance.AddCustomMonitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitorValue);
+   * }
+   *
+   * public int GetMonitorValue()
+   * {
+   *     return GD.Randi() &#37; 25;
+   * }
+   * ```
+   *
+   * The debugger calls the callable to get the value of custom monitor. The callable must return a
+   * zero or positive integer or floating-point number.
+   *
+   * Callables are called with arguments supplied in argument array.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun addCustomMonitor(
+    id: String,
+    callable: Callable,
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
+  ) = addCustomMonitor(id.asCachedStringName(), callable, arguments)
+
+  /**
+   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
+   * absent.
+   */
+  @JvmStatic
+  public final fun removeCustomMonitor(id: String) = removeCustomMonitor(id.asCachedStringName())
+
+  /**
+   * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.
+   */
+  @JvmStatic
+  public final fun hasCustomMonitor(id: String): Boolean = hasCustomMonitor(id.asCachedStringName())
+
+  /**
+   * Returns the value of custom monitor with given [id]. The callable is called to get the value of
+   * custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
+   */
+  @JvmStatic
+  public final fun getCustomMonitor(id: String): Any? = getCustomMonitor(id.asCachedStringName())
 
   public enum class Monitor(
     id: Long,
@@ -385,7 +486,7 @@ public object Performance : Object() {
     /**
      * Represents the size of the [Monitor] enum.
      */
-    MONITOR_MAX(39),
+    MAX(39),
     ;
 
     public val id: Long

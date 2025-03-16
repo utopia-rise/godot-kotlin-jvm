@@ -32,6 +32,7 @@ import kotlin.jvm.JvmName
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Tracking
  * Standard Comparison[/url] page documents the relationship between Unified Expressions and other
  * standards.
+ *
  * As face trackers are turned on they are registered with the [XRServer].
  */
 @GodotBaseType
@@ -48,7 +49,7 @@ public open class XRFaceTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(869, scriptIndex)
+    createNativeObject(868, scriptIndex)
   }
 
   /**

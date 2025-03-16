@@ -14,13 +14,14 @@ import kotlin.Unit
 /**
  * This class should be extended by custom lightmapper classes. Lightmappers can then be used with
  * [LightmapGI] to provide fast baked global illumination in 3D.
+ *
  * Godot contains a built-in GPU-based lightmapper [LightmapperRD] that uses compute shaders, but
  * custom lightmappers can be implemented by C++ modules.
  */
 @GodotBaseType
 public open class Lightmapper internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(359, scriptIndex)
+    createNativeObject(337, scriptIndex)
   }
 
   public companion object

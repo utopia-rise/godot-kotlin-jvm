@@ -97,7 +97,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(758, scriptIndex)
+    createNativeObject(756, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {
@@ -172,22 +172,22 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     /**
      * No hint used.
      */
-    HINT_NONE(0),
+    NONE(0),
     /**
      * A range hint for scalar value, which limits possible input values between [min] and [max].
      * Translated to `hint_range(min, max)` in shader code.
      */
-    HINT_RANGE(1),
+    RANGE(1),
     /**
      * A range hint for scalar value with step, which limits possible input values between [min] and
      * [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader
      * code.
      */
-    HINT_RANGE_STEP(2),
+    RANGE_STEP(2),
     /**
      * Represents the size of the [Hint] enum.
      */
-    HINT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

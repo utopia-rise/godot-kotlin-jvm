@@ -17,10 +17,12 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -57,6 +59,7 @@ public open class Joint2D internal constructor() : Node2D() {
    * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint
    * pulls them back to their original position. The lower the [bias] the more the two bodies can pull
    * on the joint.
+   *
    * When set to `0`, the default value from
    * [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
@@ -80,7 +83,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(344, scriptIndex)
+    createNativeObject(322, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {
@@ -135,6 +138,10 @@ public open class Joint2D internal constructor() : Node2D() {
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
+
+  public final fun setNodeA(node: String) = setNodeA(node.asCachedNodePath())
+
+  public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
 
   public companion object
 

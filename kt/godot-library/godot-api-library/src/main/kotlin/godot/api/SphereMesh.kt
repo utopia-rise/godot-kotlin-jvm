@@ -74,6 +74,7 @@ public open class SphereMesh : PrimitiveMesh() {
 
   /**
    * If `true`, a hemisphere is created rather than a full sphere.
+   *
    * **Note:** To get a regular hemisphere, the height and radius of the sphere must be equal.
    */
   public final inline var isHemisphere: Boolean
@@ -85,7 +86,7 @@ public open class SphereMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(623, scriptIndex)
+    createNativeObject(617, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

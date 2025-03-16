@@ -46,11 +46,15 @@ import kotlin.jvm.JvmOverloads
 /**
  * A [Viewport] creates a different view into the screen, or a sub-view inside another viewport.
  * Child 2D nodes will display on it, and child Camera3D 3D nodes will render on it too.
+ *
  * Optionally, a viewport can have its own 2D or 3D world, so it doesn't share what it draws with
  * other viewports.
+ *
  * Viewports can also choose to be audio listeners, so they generate positional audio depending on a
  * 2D or 3D camera child of it.
+ *
  * Also, viewports can be assigned to different screens in case the devices have multiple screens.
+ *
  * Finally, viewports can also behave as render targets, in which case they will not be visible
  * unless the associated texture is used to draw.
  */
@@ -64,6 +68,7 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Emitted when a Control node grabs keyboard focus.
+   *
    * **Note:** A Control node losing focus doesn't cause this signal to be emitted.
    */
   public val guiFocusChanged: Signal1<Control> by Signal1
@@ -138,8 +143,10 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this
    * is instead done by the first parent viewport that is set to handle input locally.
+   *
    * A [SubViewportContainer] will automatically set this property to `false` for the [Viewport]
    * contained inside of it.
+   *
    * See also [setInputAsHandled] and [isInputHandled].
    */
   public final inline var handleInputLocally: Boolean
@@ -181,6 +188,7 @@ public open class Viewport internal constructor() : Node() {
    * edges at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or
    * [Viewport.MSAA_4X] is best unless targeting very high-end systems. This has no effect on
    * shader-induced aliasing or texture aliasing.
+   *
    * See also [ProjectSettings.rendering/antiAliasing/quality/msaa2d] and
    * [RenderingServer.viewportSetMsaa2d].
    */
@@ -198,6 +206,7 @@ public open class Viewport internal constructor() : Node() {
    * [Viewport.MSAA_4X] is best unless targeting very high-end systems. See also bilinear scaling 3D
    * [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This
    * has no effect on shader-induced aliasing or texture aliasing.
+   *
    * See also [ProjectSettings.rendering/antiAliasing/quality/msaa3d] and
    * [RenderingServer.viewportSetMsaa3d].
    */
@@ -214,6 +223,7 @@ public open class Viewport internal constructor() : Node() {
    * blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage
    * samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will
    * smooth out specular aliasing, but tend to make scenes appear blurry.
+   *
    * See also [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa] and
    * [RenderingServer.viewportSetScreenSpaceAa].
    */
@@ -229,8 +239,10 @@ public open class Viewport internal constructor() : Node() {
    * Enables temporal antialiasing for this viewport. TAA works by jittering the camera and
    * accumulating the images of the last rendered frames, motion vector rendering is used to account
    * for camera and object motion.
+   *
    * **Note:** The implementation is not complete yet, some visual instances such as particles and
    * skinned meshes may show artifacts.
+   *
    * See also [ProjectSettings.rendering/antiAliasing/quality/useTaa] and
    * [RenderingServer.viewportSetUseTaa].
    */
@@ -246,9 +258,11 @@ public open class Viewport internal constructor() : Node() {
    * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D.
    * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is
    * [Environment.BG_CANVAS].
+   *
    * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
    * recommended to enable debanding only when actually needed since the dithering pattern will make
    * lossless-compressed screenshots larger.
+   *
    * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding] and
    * [RenderingServer.viewportSetUseDebanding].
    */
@@ -264,12 +278,14 @@ public open class Viewport internal constructor() : Node() {
    * If `true`, [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this
    * viewport. For the root viewport, [ProjectSettings.rendering/occlusionCulling/useOcclusionCulling]
    * must be set to `true` instead.
+   *
    * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if
    * you actually plan to use it, and think whether your scene can actually benefit from occlusion
    * culling. Large, open scenes with few or no objects blocking the view will generally not benefit
    * much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility
    * ranges ([GeometryInstance3D.visibilityRangeBegin] and [GeometryInstance3D.visibilityRangeEnd])
    * compared to occlusion culling.
+   *
    * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web
    * export templates. It can be enabled by compiling custom Web export templates with
    * `module_raycast_enabled=yes`.
@@ -287,8 +303,10 @@ public open class Viewport internal constructor() : Node() {
    * [ReflectionProbe.meshLodThreshold]). Higher values will use less detailed versions of meshes that
    * have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase
    * [meshLodThreshold] to improve performance at the cost of geometry detail.
+   *
    * To control this property on the root viewport, set the
    * [ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
+   *
    * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
    * as "manual" LOD or hierarchical LOD).
    */
@@ -321,6 +339,7 @@ public open class Viewport internal constructor() : Node() {
    * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients.
+   *
    * **Note:** This setting will have no effect when using the Compatibility renderer, which always
    * renders in low dynamic range for performance reasons.
    */
@@ -338,6 +357,7 @@ public open class Viewport internal constructor() : Node() {
    * technology that produces high quality images at fast framerates by using a spatially aware
    * upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly
    * higher image quality. FSR should be used where possible.
+   *
    * To control this property on the root viewport, set the
    * [ProjectSettings.rendering/scaling3d/mode] project setting.
    */
@@ -357,9 +377,11 @@ public open class Viewport internal constructor() : Node() {
    * improve 3D rendering quality at a high performance cost (supersampling). See also
    * [ProjectSettings.rendering/antiAliasing/quality/msaa3d] for multi-sample antialiasing, which is
    * significantly cheaper but only smooths the edges of polygons.
+   *
    * When using FSR upscaling, AMD recommends exposing the following values as preset options to
    * users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of
    * exposing the entire scale.
+   *
    * To control this property on the root viewport, set the
    * [ProjectSettings.rendering/scaling3d/scale] project setting.
    */
@@ -375,13 +397,16 @@ public open class Viewport internal constructor() : Node() {
    * Affects the final texture sharpness by reading from a lower or higher mipmap (also called
    * "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a
    * distance, while positive values make mipmapped textures blurrier (even when up close).
+   *
    * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this
    * value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this
    * value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this
    * value.
+   *
    * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to
    * adjust the automatic mipmap bias which is calculated internally based on the scale factor. The
    * formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
+   *
    * To control this property on the root viewport, set the
    * [ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
    */
@@ -398,12 +423,15 @@ public open class Viewport internal constructor() : Node() {
    * power of two). A higher sample count will result in sharper textures at oblique angles, but is
    * more expensive to compute. A value of `0` forcibly disables anisotropic filtering, even on
    * materials where it is enabled.
+   *
    * The anisotropic filtering level also affects decals and light projectors if they are configured
    * to use anisotropic filtering. See [ProjectSettings.rendering/textures/decals/filter] and
    * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   *
    * **Note:** In 3D, for this setting to have an effect, set [BaseMaterial3D.textureFilter] to
    * [BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
    * [BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on materials.
+   *
    * **Note:** In 2D, for this setting to have an effect, set [CanvasItem.textureFilter] to
    * [CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
    * [CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on the [CanvasItem] node displaying
@@ -422,6 +450,7 @@ public open class Viewport internal constructor() : Node() {
    * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness
    * halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make
    * a visible difference.
+   *
    * To control this property on the root viewport, set the
    * [ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
    */
@@ -461,21 +490,34 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Texture to use when [vrsMode] is set to [Viewport.VRS_TEXTURE].
+   *
    * The texture *must* use a lossless compression format so that colors can be matched precisely.
    * The following VRS densities are mapped to various colors, with brighter colors representing a
    * lower level of shading precision:
+   *
    * [codeblock lang=text]
+   *
    * - 1×1 = rgb(0, 0, 0)     - #000000
+   *
    * - 1×2 = rgb(0, 85, 0)    - #005500
+   *
    * - 2×1 = rgb(85, 0, 0)    - #550000
+   *
    * - 2×2 = rgb(85, 85, 0)   - #555500
+   *
    * - 2×4 = rgb(85, 170, 0)  - #55aa00
+   *
    * - 4×2 = rgb(170, 85, 0)  - #aa5500
+   *
    * - 4×4 = rgb(170, 170, 0) - #aaaa00
+   *
    * - 4×8 = rgb(170, 255, 0) - #aaff00 - Not supported on most hardware
+   *
    * - 8×4 = rgb(255, 170, 0) - #ffaa00 - Not supported on most hardware
+   *
    * - 8×8 = rgb(255, 255, 0) - #ffff00 - Not supported on most hardware
-   * [/codeblock]
+   *
+   * ```
    */
   public final inline var vrsTexture: Texture2D?
     @JvmName("vrsTextureProperty")
@@ -533,6 +575,7 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * If `true`, the objects rendered by viewport become subjects of mouse picking process.
+   *
    * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected
    * in a non-deterministic order, which can be different in each picking process.
    */
@@ -547,8 +590,10 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, objects receive mouse picking events sorted primarily by their [CanvasItem.zIndex]
    * and secondarily by their position in the scene tree. If `false`, the order is undetermined.
+   *
    * **Note:** This setting is disabled by default because of its potential expensive computational
    * cost.
+   *
    * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64
    * simultaneously pickable objects, it is not guaranteed that the object with the highest
    * [CanvasItem.zIndex] receives the picking event.
@@ -564,8 +609,10 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the input_event signal will only be sent to one physics object in the mouse picking
    * process. If you want to get the top object only, you must also enable [physicsObjectPickingSort].
+   *
    * If `false`, an input_event signal will be sent to all physics objects in the mouse picking
    * process.
+   *
    * This applies to 2D CanvasItem object picking only.
    */
   public final inline var physicsObjectPickingFirstOnly: Boolean
@@ -618,6 +665,7 @@ public open class Viewport internal constructor() : Node() {
    * taken into account in the generated signed distance field, at the cost of performance. If you
    * notice particles falling through [LightOccluder2D]s as the occluders leave the viewport, increase
    * this setting.
+   *
    * The percentage is added on each axis and on both sides. For example, with the default
    * [SDF_OVERSIZE_120_PERCENT], the signed distance field will cover 20&#37; of the viewport's size
    * outside the viewport on each side (top, right, bottom, left).
@@ -645,6 +693,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the
    * nearest power of 2.
+   *
    * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve
    * performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw
    * calls are needed to draw the scene without shadows).
@@ -750,7 +799,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(724, scriptIndex)
+    createNativeObject(722, scriptIndex)
   }
 
   /**
@@ -855,6 +904,7 @@ public open class Viewport internal constructor() : Node() {
    * applied. Using [Transform2D.getScale] on the returned value, this can be used to compensate for
    * scaling when zooming a [Camera2D] node, or to scale down a [TextureRect] to be pixel-perfect
    * regardless of the automatically computed scale factor.
+   *
    * **Note:** Due to how pixel scaling works, the returned transform's X and Y scale may differ
    * slightly, even when [Window.contentScaleAspect] is set to a mode that preserves the pixels' aspect
    * ratio. If [Window.contentScaleAspect] is [Window.CONTENT_SCALE_ASPECT_IGNORE], the X and Y scale
@@ -1006,14 +1056,17 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns the viewport's texture.
+   *
    * **Note:** When trying to store the current texture (e.g. in a file), it might be completely
    * black or outdated if used too early, especially when used in e.g. [Node.Ready]. To make sure the
    * texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     await RenderingServer.frame_post_draw
    *     $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
-   * [/codeblock]
+   * ```
+   *
    * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image encoded in linear
    * space.
    */
@@ -1077,21 +1130,31 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
    * viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   *
    * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
    * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
    * viewport coordinates.
+   *
    * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
    * specified [event] based on project settings like
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   *
    * Calling this method will propagate calls to child nodes for following methods in the given
    * order:
+   *
    * - [Node.Input]
+   *
    * - [Control.GuiInput] for [Control] nodes
+   *
    * - [Node.ShortcutInput]
+   *
    * - [Node.UnhandledKeyInput]
+   *
    * - [Node.UnhandledInput]
+   *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in
    * this list will not be called.
+   *
    * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
    * for physics object picking.
    */
@@ -1104,18 +1167,26 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
    * viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   *
    * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
    * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
    * viewport coordinates.
+   *
    * Calling this method will propagate calls to child nodes for following methods in the given
    * order:
+   *
    * - [Node.ShortcutInput]
+   *
    * - [Node.UnhandledKeyInput]
+   *
    * - [Node.UnhandledInput]
+   *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in
    * this list will not be called.
+   *
    * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
    * for physics object picking.
+   *
    * **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
    */
   @JvmOverloads
@@ -1128,6 +1199,7 @@ public open class Viewport internal constructor() : Node() {
    * Inform the Viewport that the mouse has entered its area. Use this function before sending an
    * [InputEventMouseButton] or [InputEventMouseMotion] to the [Viewport] with [Viewport.pushInput].
    * See also [notifyMouseExited].
+   *
    * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes
    * that are children of [SubViewportContainer] are notified automatically. This is only necessary
    * when interacting with viewports in non-default ways, for example as textures in [TextureRect] or
@@ -1142,6 +1214,7 @@ public open class Viewport internal constructor() : Node() {
    * Inform the Viewport that the mouse has left its area. Use this function when the node that
    * displays the viewport notices the mouse has left the area of the displayed viewport. See also
    * [notifyMouseEntered].
+   *
    * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes
    * that are children of [SubViewportContainer] are notified automatically. This is only necessary
    * when interacting with viewports in non-default ways, for example as textures in [TextureRect] or
@@ -1164,6 +1237,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Moves the mouse pointer to the specified position in this [Viewport] using the coordinate
    * system of this [Viewport].
+   *
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
@@ -1204,6 +1278,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns `true` if a drag operation is currently ongoing and where the drop action could happen
    * in this viewport.
+   *
    * Alternative to [Node.NOTIFICATION_DRAG_BEGIN] and [Node.NOTIFICATION_DRAG_END] when you prefer
    * polling the value.
    */
@@ -1244,6 +1319,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the [Control] that the mouse is currently hovering over in this viewport. If no
    * [Control] has the cursor, returns `null`.
+   *
    * Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is
    * very useful when used together with [Node.isAncestorOf] to find if the mouse is within a control
    * tree.
@@ -1344,6 +1420,7 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Stops the input from propagating further down the [SceneTree].
+   *
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public final fun setInputAsHandled(): Unit {
@@ -1354,8 +1431,10 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns whether the current [InputEvent] has been handled. Input events are not handled until
    * [setInputAsHandled] has been called during the lifetime of an [InputEvent].
+   *
    * This is usually done as part of input handling methods like [Node.Input], [Control.GuiInput] or
    * others, as well as in corresponding signal handlers.
+   *
    * If [handleInputLocally] is set to `false`, this method will try finding the first parent
    * viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
    */
@@ -1400,6 +1479,7 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns a list of the visible embedded [Window]s inside the viewport.
+   *
    * **Note:** [Window]s inside other viewports will not be listed.
    */
   public final fun getEmbeddedSubwindows(): VariantArray<Window> {
@@ -1764,11 +1844,15 @@ public open class Viewport internal constructor() : Node() {
      * Use the
      * [url=https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler#overview]MetalFX
      * spatial upscaler[/url] for the viewport's 3D buffer.
+     *
      * The amount of scaling can be set using [scaling3dScale].
+     *
      * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
      * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
      * `1.0` disables scaling.
+     *
      * More information: [url=https://developer.apple.com/documentation/metalfx]MetalFX[/url].
+     *
      * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
      * mode to macOS and iOS.
      */
@@ -1777,13 +1861,17 @@ public open class Viewport internal constructor() : Node() {
      * Use the
      * [url=https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler#overview]MetalFX
      * temporal upscaler[/url] for the viewport's 3D buffer.
+     *
      * The amount of scaling can be set using [scaling3dScale]. To determine the minimum input
      * scale, use the [RenderingDevice.limitGet] method with
      * [RenderingDevice.LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE].
+     *
      * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
      * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
      * `1.0` will use MetalFX at native resolution as a TAA solution.
+     *
      * More information: [url=https://developer.apple.com/documentation/metalfx]MetalFX[/url].
+     *
      * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
      * mode to macOS and iOS.
      */
@@ -1811,7 +1899,7 @@ public open class Viewport internal constructor() : Node() {
      * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
      * setting.
      */
-    MSAA_DISABLED(0),
+    DISABLED(0),
     /**
      * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce
      * aliasing noticeably, but 4× MSAA still looks substantially better.
@@ -1831,7 +1919,7 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Represents the size of the [MSAA] enum.
      */
-    MSAA_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -1889,17 +1977,17 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Do not perform any antialiasing in the full screen post-process.
      */
-    SCREEN_SPACE_AA_DISABLED(0),
+    DISABLED(0),
     /**
      * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which
      * is fast but will make the image look blurry, especially at lower resolutions. It can still work
      * relatively well at large resolutions such as 1440p and 4K.
      */
-    SCREEN_SPACE_AA_FXAA(1),
+    FXAA(1),
     /**
      * Represents the size of the [ScreenSpaceAA] enum.
      */
-    SCREEN_SPACE_AA_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -1918,19 +2006,19 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Amount of objects in frame.
      */
-    RENDER_INFO_OBJECTS_IN_FRAME(0),
+    OBJECTS_IN_FRAME(0),
     /**
      * Amount of vertices in frame.
      */
-    RENDER_INFO_PRIMITIVES_IN_FRAME(1),
+    PRIMITIVES_IN_FRAME(1),
     /**
      * Amount of draw calls in frame.
      */
-    RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
+    DRAW_CALLS_IN_FRAME(2),
     /**
      * Represents the size of the [RenderInfo] enum.
      */
-    RENDER_INFO_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -1949,20 +2037,20 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Visible render pass (excluding shadows).
      */
-    RENDER_INFO_TYPE_VISIBLE(0),
+    VISIBLE(0),
     /**
      * Shadow render pass. Objects will be rendered several times depending on the number of amounts
      * of lights with shadows and the number of directional shadow splits.
      */
-    RENDER_INFO_TYPE_SHADOW(1),
+    SHADOW(1),
     /**
      * Canvas item rendering. This includes all 2D rendering.
      */
-    RENDER_INFO_TYPE_CANVAS(2),
+    CANVAS(2),
     /**
      * Represents the size of the [RenderInfoType] enum.
      */
-    RENDER_INFO_TYPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -1981,128 +2069,131 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Objects are displayed normally.
      */
-    DEBUG_DRAW_DISABLED(0),
+    DISABLED(0),
     /**
      * Objects are displayed without light information.
      */
-    DEBUG_DRAW_UNSHADED(1),
+    UNSHADED(1),
     /**
      * Objects are displayed without textures and only with lighting information.
      */
-    DEBUG_DRAW_LIGHTING(2),
+    LIGHTING(2),
     /**
      * Objects are displayed semi-transparent with additive blending so you can see where they are
      * drawing over top of one another. A higher overdraw means you are wasting performance on drawing
      * pixels that are being hidden behind others.
      */
-    DEBUG_DRAW_OVERDRAW(3),
+    OVERDRAW(3),
     /**
      * Objects are displayed as wireframe models.
+     *
      * **Note:** [RenderingServer.setDebugGenerateWireframes] must be called before loading any
      * meshes for wireframes to be visible when using the Compatibility renderer.
      */
-    DEBUG_DRAW_WIREFRAME(4),
+    WIREFRAME(4),
     /**
      * Objects are displayed without lighting information and their textures replaced by normal
      * mapping.
      */
-    DEBUG_DRAW_NORMAL_BUFFER(5),
+    NORMAL_BUFFER(5),
     /**
      * Objects are displayed with only the albedo value from [VoxelGI]s.
      */
-    DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
+    VOXEL_GI_ALBEDO(6),
     /**
      * Objects are displayed with only the lighting value from [VoxelGI]s.
      */
-    DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
+    VOXEL_GI_LIGHTING(7),
     /**
      * Objects are displayed with only the emission color from [VoxelGI]s.
      */
-    DEBUG_DRAW_VOXEL_GI_EMISSION(8),
+    VOXEL_GI_EMISSION(8),
     /**
      * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the
      * upper left quadrant of the [Viewport].
      */
-    DEBUG_DRAW_SHADOW_ATLAS(9),
+    SHADOW_ATLAS(9),
     /**
      * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
      * quadrant of the [Viewport].
      */
-    DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
+    DIRECTIONAL_SHADOW_ATLAS(10),
     /**
      * Draws the scene luminance buffer (if available) in the upper left quadrant of the [Viewport].
      */
-    DEBUG_DRAW_SCENE_LUMINANCE(11),
+    SCENE_LUMINANCE(11),
     /**
      * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssaoEnabled] set in your [WorldEnvironment].
      */
-    DEBUG_DRAW_SSAO(12),
+    SSAO(12),
     /**
      * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssilEnabled] set in your [WorldEnvironment].
      */
-    DEBUG_DRAW_SSIL(13),
+    SSIL(13),
     /**
      * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
      * can see where the splits are. In order, they will be colored red, green, blue, and yellow.
      */
-    DEBUG_DRAW_PSSM_SPLITS(14),
+    PSSM_SPLITS(14),
     /**
      * Draws the decal atlas used by [Decal]s and light projector textures in the upper left
      * quadrant of the [Viewport].
      */
-    DEBUG_DRAW_DECAL_ATLAS(15),
+    DECAL_ATLAS(15),
     /**
      * Draws the cascades used to render signed distance field global illumination (SDFGI).
+     *
      * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
      * not supported on the platform.
      */
-    DEBUG_DRAW_SDFGI(16),
+    SDFGI(16),
     /**
      * Draws the probes used for signed distance field global illumination (SDFGI).
+     *
      * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
      * not supported on the platform.
      */
-    DEBUG_DRAW_SDFGI_PROBES(17),
+    SDFGI_PROBES(17),
     /**
      * Draws the buffer used for global illumination (GI).
      */
-    DEBUG_DRAW_GI_BUFFER(18),
+    GI_BUFFER(18),
     /**
      * Draws all of the objects at their highest polycount, without low level of detail (LOD).
      */
-    DEBUG_DRAW_DISABLE_LOD(19),
+    DISABLE_LOD(19),
     /**
      * Draws the cluster used by [OmniLight3D] nodes to optimize light rendering.
      */
-    DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
+    CLUSTER_OMNI_LIGHTS(20),
     /**
      * Draws the cluster used by [SpotLight3D] nodes to optimize light rendering.
      */
-    DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
+    CLUSTER_SPOT_LIGHTS(21),
     /**
      * Draws the cluster used by [Decal] nodes to optimize decal rendering.
      */
-    DEBUG_DRAW_CLUSTER_DECALS(22),
+    CLUSTER_DECALS(22),
     /**
      * Draws the cluster used by [ReflectionProbe] nodes to optimize decal rendering.
      */
-    DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
+    CLUSTER_REFLECTION_PROBES(23),
     /**
      * Draws the buffer used for occlusion culling.
      */
-    DEBUG_DRAW_OCCLUDERS(24),
+    OCCLUDERS(24),
     /**
      * Draws vector lines over the viewport to indicate the movement of pixels between frames.
      */
-    DEBUG_DRAW_MOTION_VECTORS(25),
+    MOTION_VECTORS(25),
     /**
      * Draws the internal resolution buffer of the scene before post-processing is applied.
      */
-    DEBUG_DRAW_INTERNAL_BUFFER(26),
+    INTERNAL_BUFFER(26),
     ;
 
     public val id: Long
@@ -2122,36 +2213,38 @@ public open class Viewport internal constructor() : Node() {
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST(0),
+    NEAREST(0),
     /**
      * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR(1),
+    LINEAR(1),
     /**
      * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look smooth from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(2),
+    LINEAR_WITH_MIPMAPS(2),
     /**
      * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look pixelated from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
+    NEAREST_WITH_MIPMAPS(3),
     /**
      * Represents the size of the [DefaultCanvasItemTextureFilter] enum.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -2173,21 +2266,21 @@ public open class Viewport internal constructor() : Node() {
      * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
      * texture.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(0),
+    DISABLED(0),
     /**
      * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
      * the linear filtering modes, this can result in artifacts at the edges of a texture when the
      * sampler filters across the edges of the texture.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(1),
+    ENABLED(1),
     /**
      * Flip the texture when repeating so that the edge lines up instead of abruptly changing.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(2),
+    MIRROR(2),
     /**
      * Represents the size of the [DefaultCanvasItemTextureRepeat] enum.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -2226,7 +2319,7 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Represents the size of the [SDFOversize] enum.
      */
-    SDF_OVERSIZE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -2257,7 +2350,7 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Represents the size of the [SDFScale] enum.
      */
-    SDF_SCALE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -2276,20 +2369,20 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Variable Rate Shading is disabled.
      */
-    VRS_DISABLED(0),
+    DISABLED(0),
     /**
      * Variable Rate Shading uses a texture. Note, for stereoscopic use a texture atlas with a
      * texture for each view.
      */
-    VRS_TEXTURE(1),
+    TEXTURE(1),
     /**
      * Variable Rate Shading's texture is supplied by the primary [XRInterface].
      */
-    VRS_XR(2),
+    XR(2),
     /**
      * Represents the size of the [VRSMode] enum.
      */
-    VRS_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -2308,19 +2401,19 @@ public open class Viewport internal constructor() : Node() {
     /**
      * The input texture for variable rate shading will not be processed.
      */
-    VRS_UPDATE_DISABLED(0),
+    DISABLED(0),
     /**
      * The input texture for variable rate shading will be processed once.
      */
-    VRS_UPDATE_ONCE(1),
+    ONCE(1),
     /**
      * The input texture for variable rate shading will be processed each frame.
      */
-    VRS_UPDATE_ALWAYS(2),
+    ALWAYS(2),
     /**
      * Represents the size of the [VRSUpdateMode] enum.
      */
-    VRS_UPDATE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

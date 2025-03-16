@@ -28,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the ray position, you can configure the
@@ -76,6 +77,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
    * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -135,7 +137,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(491, scriptIndex)
+    createNativeObject(476, scriptIndex)
   }
 
   /**
@@ -278,12 +280,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     /**
      * Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create
      * query parameters using the most common options.
-     * [codeblock]
+     *
+     * ```
      * var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
      * var collision = get_world_3d().direct_space_state.intersect_ray(query)
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
+    @JvmStatic
     public final fun create(
       from: Vector3,
       to: Vector3,

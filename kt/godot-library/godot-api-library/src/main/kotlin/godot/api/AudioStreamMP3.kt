@@ -26,9 +26,11 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ *
  * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine
  * is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled
  * by default.
@@ -37,20 +39,22 @@ import kotlin.jvm.JvmName
 public open class AudioStreamMP3 : AudioStream() {
   /**
    * Contains the audio data in bytes.
+   *
    * You can load a file without having to import it beforehand using the code snippet below. Keep
    * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
    * (hundreds of megabytes or more).
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func load_mp3(path):
    *     var file = FileAccess.open(path, FileAccess.READ)
    *     var sound = AudioStreamMP3.new()
    *     sound.data = file.get_buffer(file.get_length())
    *     return sound
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public AudioStreamMP3 LoadMP3(string path)
    * {
    *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
@@ -115,7 +119,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(119, scriptIndex)
+    createNativeObject(84, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -189,6 +193,7 @@ public open class AudioStreamMP3 : AudioStream() {
      * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3
      * data.
      */
+    @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamMP3? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
@@ -199,6 +204,7 @@ public open class AudioStreamMP3 : AudioStream() {
      * Creates a new [AudioStreamMP3] instance from the given file path. The file must be in MP3
      * format.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): AudioStreamMP3? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)

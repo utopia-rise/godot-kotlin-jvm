@@ -30,6 +30,7 @@ import kotlin.jvm.JvmName
 /**
  * This class generates noise using the FastNoiseLite library, which is a collection of several
  * noise algorithms including Cellular, Perlin, Value, and more.
+ *
  * Most generated noise values are in the range of `[-1, 1]`, but not always. Some of the cellular
  * noise algorithms return results above `1`.
  */
@@ -117,6 +118,7 @@ public open class FastNoiseLite : Noise() {
 
   /**
    * Determines the strength of each subsequent layer of noise in fractal noise.
+   *
    * A low value places more emphasis on the lower frequency base layers, while a high value puts
    * more emphasis on the higher frequency layers.
    */
@@ -268,6 +270,7 @@ public open class FastNoiseLite : Noise() {
 
   /**
    * Determines the strength of each subsequent layer of the noise which is used to warp the space.
+   *
    * A low value places more emphasis on the lower frequency base layers, while a high value puts
    * more emphasis on the higher frequency layers.
    */
@@ -280,7 +283,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(241, scriptIndex)
+    createNativeObject(211, scriptIndex)
   }
 
   /**
@@ -547,6 +550,7 @@ public open class FastNoiseLite : Noise() {
     TYPE_VALUE(5),
     /**
      * Similar to Value noise, but slower. Has more variance in peaks and valleys.
+     *
      * Cubic noise can be used to avoid certain artifacts when using value noise to create a
      * bumpmap. In general, you should always use this mode if the value noise is being used for a
      * heightmap or bumpmap.
@@ -590,19 +594,19 @@ public open class FastNoiseLite : Noise() {
     /**
      * No fractal noise.
      */
-    FRACTAL_NONE(0),
+    NONE(0),
     /**
      * Method using Fractional Brownian Motion to combine octaves into a fractal.
      */
-    FRACTAL_FBM(1),
+    FBM(1),
     /**
      * Method of combining octaves into a fractal resulting in a "ridged" look.
      */
-    FRACTAL_RIDGED(2),
+    RIDGED(2),
     /**
      * Method of combining octaves into a fractal with a ping pong effect.
      */
-    FRACTAL_PING_PONG(3),
+    PING_PONG(3),
     ;
 
     public val id: Long
@@ -698,16 +702,16 @@ public open class FastNoiseLite : Noise() {
     /**
      * The domain is warped using the simplex noise algorithm.
      */
-    DOMAIN_WARP_SIMPLEX(0),
+    SIMPLEX(0),
     /**
      * The domain is warped using a simplified version of the simplex noise algorithm.
      */
-    DOMAIN_WARP_SIMPLEX_REDUCED(1),
+    SIMPLEX_REDUCED(1),
     /**
      * The domain is warped using a simple noise grid (not as smooth as the other methods, but more
      * performant).
      */
-    DOMAIN_WARP_BASIC_GRID(2),
+    BASIC_GRID(2),
     ;
 
     public val id: Long
@@ -726,16 +730,16 @@ public open class FastNoiseLite : Noise() {
     /**
      * No fractal noise for warping the space.
      */
-    DOMAIN_WARP_FRACTAL_NONE(0),
+    NONE(0),
     /**
      * Warping the space progressively, octave for octave, resulting in a more "liquified"
      * distortion.
      */
-    DOMAIN_WARP_FRACTAL_PROGRESSIVE(1),
+    PROGRESSIVE(1),
     /**
      * Warping the space independently for each octave, resulting in a more chaotic distortion.
      */
-    DOMAIN_WARP_FRACTAL_INDEPENDENT(2),
+    INDEPENDENT(2),
     ;
 
     public val id: Long

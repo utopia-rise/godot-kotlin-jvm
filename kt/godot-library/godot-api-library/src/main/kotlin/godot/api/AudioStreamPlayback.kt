@@ -36,7 +36,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(122, scriptIndex)
+    createNativeObject(87, scriptIndex)
   }
 
   /**
@@ -44,6 +44,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * such as by calling [AudioStreamPlayer.play].
    */
   public open fun _start(fromPos: Double): Unit {
+    throw NotImplementedError("_start is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -51,6 +52,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * [AudioStreamPlayer.stop].
    */
   public open fun _stop(): Unit {
+    throw NotImplementedError("_stop is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -58,7 +60,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * stream.
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_isPlaying is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -66,14 +68,14 @@ public open class AudioStreamPlayback : RefCounted() {
    * playbacks always return `0`.
    */
   public open fun _getLoopCount(): Int {
-    throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_getLoopCount is not implemented for AudioStreamPlayback")
   }
 
   /**
    * Overridable method. Should return the current progress along the audio stream, in seconds.
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_get_playback_position is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_getPlaybackPosition is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -81,6 +83,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * [position], such as by calling [AudioStreamPlayer.seek].
    */
   public open fun _seek(position: Double): Unit {
+    throw NotImplementedError("_seek is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -89,19 +92,21 @@ public open class AudioStreamPlayback : RefCounted() {
    * method to "tag" the current position along the audio stream and display it in a preview.
    */
   public open fun _tagUsedStreams(): Unit {
+    throw NotImplementedError("_tagUsedStreams is not implemented for AudioStreamPlayback")
   }
 
   /**
    * Set the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
   public open fun _setParameter(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("_setParameter is not implemented for AudioStreamPlayback")
   }
 
   /**
    * Return the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
   public open fun _getParameter(name: StringName): Any? {
-    throw NotImplementedError("_get_parameter is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_getParameter is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -126,8 +131,10 @@ public open class AudioStreamPlayback : RefCounted() {
   /**
    * Mixes up to [frames] of audio from the stream from the current position, at a rate of
    * [rateScale], advancing the stream.
+   *
    * Returns a [PackedVector2Array] where each element holds the left and right channel volume
    * levels of each frame.
+   *
    * **Note:** Can return fewer frames than requested, make sure to use the size of the return
    * value.
    */

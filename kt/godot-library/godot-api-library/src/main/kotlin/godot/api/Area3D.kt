@@ -28,11 +28,14 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -42,10 +45,13 @@ import kotlin.jvm.JvmName
  * [CollisionPolygon3D] child nodes. It detects when other [CollisionObject3D]s enter or exit it, and
  * it also keeps track of which collision objects haven't exited it yet (i.e. which one are overlapping
  * it).
+ *
  * This node can also locally alter or override physics parameters (gravity, damping) and route
  * audio to custom audio buses.
+ *
  * **Note:** Areas and bodies created with [PhysicsServer3D] might not interact as expected with
  * [Area3D]s, and might not emit signals or track objects correctly.
+ *
  * **Warning:** Using a [ConcavePolygonShape3D] inside a [CollisionShape3D] child of this node
  * (created e.g. by using the **Create Trimesh Collision Sibling** option in the **Mesh** menu that
  * appears when selecting a [MeshInstance3D] node) may give unexpected results, since this collision
@@ -59,13 +65,15 @@ public open class Area3D : CollisionObject3D() {
    * Emitted when a [Shape3D] of the received [body] enters a shape of this area. [body] can be a
    * [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision
    * shapes configured. Requires [monitoring] to be set to `true`.
+   *
    * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area
    * and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can
    * be used with the [PhysicsServer3D].
+   *
    * **Example:** Get the [CollisionShape3D] node from the shape index:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var body_shape_owner = body.shape_find_owner(body_shape_index)
    * var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
    *
@@ -79,6 +87,7 @@ public open class Area3D : CollisionObject3D() {
    * Emitted when a [Shape3D] of the received [body] exits a shape of this area. [body] can be a
    * [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision
    * shapes configured. Requires [monitoring] to be set to `true`.
+   *
    * See also [signal body_shape_entered].
    */
   public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by Signal4
@@ -100,13 +109,15 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Emitted when a [Shape3D] of the received [area] enters a shape of this area. Requires
    * [monitoring] to be set to `true`.
+   *
    * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area
    * and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can
    * be used with the [PhysicsServer3D].
+   *
    * **Example:** Get the [CollisionShape3D] node from the shape index:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var other_shape_owner = area.shape_find_owner(area_shape_index)
    * var other_shape_node = area.shape_owner_get_owner(other_shape_owner)
    *
@@ -119,6 +130,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Emitted when a [Shape3D] of the received [area] exits a shape of this area. Requires
    * [monitoring] to be set to `true`.
+   *
    * See also [signal area_shape_entered].
    */
   public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by Signal4
@@ -197,6 +209,7 @@ public open class Area3D : CollisionObject3D() {
    * distance to 100.0. The gravity will have falloff according to the inverse square law, so in the
    * example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the
    * gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
+   *
    * The above is true only when the unit distance is a positive number. When this is set to 0.0,
    * the gravity will be constant regardless of distance.
    */
@@ -259,6 +272,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The rate at which objects stop moving in this area. Represents the linear velocity lost per
    * second.
+   *
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public final inline var linearDamp: Float
@@ -284,6 +298,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The rate at which objects stop spinning in this area. Represents the angular velocity lost per
    * second.
+   *
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public final inline var angularDamp: Float
@@ -296,6 +311,7 @@ public open class Area3D : CollisionObject3D() {
 
   /**
    * The magnitude of area-specific wind force.
+   *
    * **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are
    * currently not affected by wind.
    */
@@ -309,6 +325,7 @@ public open class Area3D : CollisionObject3D() {
 
   /**
    * The exponential rate at which wind force decreases with distance from its origin.
+   *
    * **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are
    * currently not affected by wind.
    */
@@ -324,6 +341,7 @@ public open class Area3D : CollisionObject3D() {
    * The [Node3D] which is used to specify the direction and origin of an area-specific wind force.
    * The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the
    * origin of the [Node3D]'s local transform.
+   *
    * **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are
    * currently not affected by wind.
    */
@@ -404,7 +422,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(75, scriptIndex)
+    createNativeObject(39, scriptIndex)
   }
 
   /**
@@ -637,6 +655,7 @@ public open class Area3D : CollisionObject3D() {
    * Returns a list of intersecting [PhysicsBody3D]s and [GridMap]s. The overlapping body's
    * [CollisionObject3D.collisionLayer] must be part of this area's [CollisionObject3D.collisionMask]
    * in order to be detected.
+   *
    * For performance reasons (collisions are all processed at the same time) this list is modified
    * once during the physics step, not immediately after objects are moved. Consider using signals
    * instead.
@@ -651,6 +670,7 @@ public open class Area3D : CollisionObject3D() {
    * Returns a list of intersecting [Area3D]s. The overlapping area's
    * [CollisionObject3D.collisionLayer] must be part of this area's [CollisionObject3D.collisionMask]
    * in order to be detected.
+   *
    * For performance reasons (collisions are all processed at the same time) this list is modified
    * once during the physics step, not immediately after objects are moved. Consider using signals
    * instead.
@@ -665,6 +685,7 @@ public open class Area3D : CollisionObject3D() {
    * Returns `true` if intersecting any [PhysicsBody3D]s or [GridMap]s, otherwise returns `false`.
    * The overlapping body's [CollisionObject3D.collisionLayer] must be part of this area's
    * [CollisionObject3D.collisionMask] in order to be detected.
+   *
    * For performance reasons (collisions are all processed at the same time) the list of overlapping
    * bodies is modified once during the physics step, not immediately after objects are moved. Consider
    * using signals instead.
@@ -679,6 +700,7 @@ public open class Area3D : CollisionObject3D() {
    * Returns `true` if intersecting any [Area3D]s, otherwise returns `false`. The overlapping area's
    * [CollisionObject3D.collisionLayer] must be part of this area's [CollisionObject3D.collisionMask]
    * in order to be detected.
+   *
    * For performance reasons (collisions are all processed at the same time) the list of overlapping
    * areas is modified once during the physics step, not immediately after objects are moved. Consider
    * using signals instead.
@@ -692,8 +714,10 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Returns `true` if the given physics body intersects or overlaps this [Area3D], `false`
    * otherwise.
+   *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list
    * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+   *
    * The [body] argument can either be a [PhysicsBody3D] or a [GridMap] instance. While GridMaps are
    * not physics body themselves, they register their tiles with collision shapes as a virtual physics
    * body.
@@ -706,6 +730,7 @@ public open class Area3D : CollisionObject3D() {
 
   /**
    * Returns `true` if the given [Area3D] intersects or overlaps this [Area3D], `false` otherwise.
+   *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list
    * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
@@ -781,32 +806,39 @@ public open class Area3D : CollisionObject3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setWindSourcePath(windSourcePath: String) =
+      setWindSourcePath(windSourcePath.asCachedNodePath())
+
+  public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
+
+  public final fun setReverbBusName(name: String) = setReverbBusName(name.asCachedStringName())
+
   public enum class SpaceOverride(
     id: Long,
   ) {
     /**
      * This area does not affect gravity/damping.
      */
-    SPACE_OVERRIDE_DISABLED(0),
+    DISABLED(0),
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in
      * [priority] order).
      */
-    SPACE_OVERRIDE_COMBINE(1),
+    COMBINE(1),
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in
      * [priority] order), ignoring any lower priority areas.
      */
-    SPACE_OVERRIDE_COMBINE_REPLACE(2),
+    COMBINE_REPLACE(2),
     /**
      * This area replaces any gravity/damping, even the defaults, ignoring any lower priority areas.
      */
-    SPACE_OVERRIDE_REPLACE(3),
+    REPLACE(3),
     /**
      * This area replaces any gravity/damping calculated so far (in [priority] order), but keeps
      * calculating the rest of the areas.
      */
-    SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    REPLACE_COMBINE(4),
     ;
 
     public val id: Long

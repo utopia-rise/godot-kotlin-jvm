@@ -25,7 +25,9 @@ import kotlin.jvm.JvmStatic
 /**
  * The [CameraServer] keeps track of different cameras accessible in Godot. These are external
  * cameras such as webcams or the cameras on your phone.
+ *
  * It is notably used to provide AR modules with a video feed from the camera.
+ *
  * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms
  * no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
  * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
@@ -45,7 +47,7 @@ public object CameraServer : Object() {
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(27)
+    getSingleton(1)
   }
 
   /**
@@ -102,19 +104,19 @@ public object CameraServer : Object() {
     /**
      * The RGBA camera image.
      */
-    FEED_RGBA_IMAGE(0),
+    RGBA(0),
     /**
      * The [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url] camera image.
      */
-    FEED_YCBCR_IMAGE(0),
+    YCBCR(0),
     /**
      * The Y component camera image.
      */
-    FEED_Y_IMAGE(0),
+    Y(0),
     /**
      * The CbCr component camera image.
      */
-    FEED_CBCR_IMAGE(1),
+    CBCR(1),
     ;
 
     public val id: Long

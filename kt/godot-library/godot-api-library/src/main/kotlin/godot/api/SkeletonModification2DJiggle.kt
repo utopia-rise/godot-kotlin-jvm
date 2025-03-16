@@ -20,11 +20,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -35,9 +37,11 @@ import kotlin.jvm.JvmName
  * the bone chain, and runs a very light physics-like calculation using the inputted values. This
  * allows the bones to overshoot the target and "jiggle" around. It can be configured to act more like
  * a spring, or sway around like cloth might.
+ *
  * This modification is useful for adding additional motion to things like hair, the edges of
  * clothing, and more. It has several settings to that allow control over how the joint moves when the
  * target moves.
+ *
  * **Note:** The Jiggle modifier has `jiggle_joints`, which are the data objects that hold the data
  * for each joint in the Jiggle chain. This is different from than [Bone2D] nodes! Jiggle joints hold
  * the data needed for each [Bone2D] in the bone chain used by the Jiggle modification.
@@ -128,7 +132,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(608, scriptIndex)
+    createNativeObject(602, scriptIndex)
   }
 
   /**
@@ -408,6 +412,15 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getJiggleJointGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node assigned to the Jiggle joint at [jointIdx].
+   */
+  public final fun setJiggleJointBone2dNode(jointIdx: Int, bone2dNode: String) =
+      setJiggleJointBone2dNode(jointIdx, bone2dNode.asCachedNodePath())
 
   public companion object
 

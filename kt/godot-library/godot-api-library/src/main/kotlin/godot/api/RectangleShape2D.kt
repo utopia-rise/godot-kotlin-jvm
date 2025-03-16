@@ -23,6 +23,7 @@ import kotlin.jvm.JvmName
 /**
  * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
+ *
  * **Performance:** [RectangleShape2D] is fast to check collisions against. It is faster than
  * [CapsuleShape2D], but slower than [CircleShape2D].
  */
@@ -41,7 +42,7 @@ public open class RectangleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(546, scriptIndex)
+    createNativeObject(536, scriptIndex)
   }
 
   /**

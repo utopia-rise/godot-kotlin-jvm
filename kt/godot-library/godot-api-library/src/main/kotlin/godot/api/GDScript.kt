@@ -19,26 +19,29 @@ import kotlin.Unit
 /**
  * A script implemented in the GDScript programming language, saved with the `.gd` extension. The
  * script extends the functionality of all objects that instantiate it.
+ *
  * Calling [new] creates a new instance of the script. [Object.setScript] extends an existing
  * object, if that object's class matches one of the script's base classes.
+ *
  * If you are looking for GDScript's built-in functions, see [@GDScript] instead.
  */
 @GodotBaseType
 public open class GDScript : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(252, scriptIndex)
+    createNativeObject(223, scriptIndex)
   }
 
   /**
    * Returns a new instance of the script.
-   * [codeblock]
+   *
+   * ```
    * var MyClass = load("myclass.gd")
    * var instance = MyClass.new()
    * print(instance.get_script() == MyClass) # Prints true
-   * [/codeblock]
+   * ```
    */
-  public final fun new(vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
+  public final fun new(vararg args: Any?): Any? {
+    TransferContext.writeArguments( *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

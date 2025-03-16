@@ -53,6 +53,7 @@ public open class CanvasItemMaterial : Material() {
    * If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and
    * [CPUParticles2D] nodes. The [ParticleProcessMaterial.animSpeedMax] or
    * [CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
+   *
    * This property (and other `particles_anim_*` properties that depend on it) has no effect on
    * other types of nodes.
    */
@@ -67,6 +68,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The number of columns in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
    * [CPUParticles2D].
+   *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
    * `true`.
    */
@@ -81,6 +83,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
    * [CPUParticles2D].
+   *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
    * `true`.
    */
@@ -94,6 +97,7 @@ public open class CanvasItemMaterial : Material() {
 
   /**
    * If `true`, the particles animation will loop.
+   *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
    * `true`.
    */
@@ -106,7 +110,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(171, scriptIndex)
+    createNativeObject(137, scriptIndex)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
@@ -181,23 +185,23 @@ public open class CanvasItemMaterial : Material() {
     /**
      * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
      */
-    BLEND_MODE_MIX(0),
+    MIX(0),
     /**
      * Additive blending mode.
      */
-    BLEND_MODE_ADD(1),
+    ADD(1),
     /**
      * Subtractive blending mode.
      */
-    BLEND_MODE_SUB(2),
+    SUB(2),
     /**
      * Multiplicative blending mode.
      */
-    BLEND_MODE_MUL(3),
+    MUL(3),
     /**
      * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
      */
-    BLEND_MODE_PREMULT_ALPHA(4),
+    PREMULT_ALPHA(4),
     ;
 
     public val id: Long
@@ -216,15 +220,15 @@ public open class CanvasItemMaterial : Material() {
     /**
      * Render the material using both light and non-light sensitive material properties.
      */
-    LIGHT_MODE_NORMAL(0),
+    NORMAL(0),
     /**
      * Render the material as if there were no light.
      */
-    LIGHT_MODE_UNSHADED(1),
+    UNSHADED(1),
     /**
      * Render the material as if there were only light.
      */
-    LIGHT_MODE_LIGHT_ONLY(2),
+    LIGHT_ONLY(2),
     ;
 
     public val id: Long

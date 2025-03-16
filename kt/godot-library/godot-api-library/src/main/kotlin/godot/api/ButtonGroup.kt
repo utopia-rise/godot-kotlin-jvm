@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
  * buttons: No more than one button can be pressed at a time. Some types of buttons (such as
  * [CheckBox]) may have a special appearance in this state.
+ *
  * Every member of a [ButtonGroup] should have [BaseButton.toggleMode] set to `true`.
  */
 @GodotBaseType
@@ -47,7 +48,7 @@ public open class ButtonGroup : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(149, scriptIndex)
+    createNativeObject(114, scriptIndex)
   }
 
   /**

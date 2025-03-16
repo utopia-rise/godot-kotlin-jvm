@@ -136,6 +136,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The layer mask. Only objects with a matching [CanvasItem.lightMask] will be affected by the
    * Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
+   *
    * **Note:** [rangeItemCullMask] is ignored by [DirectionalLight2D], which will always light a 2D
    * node regardless of the 2D node's [CanvasItem.lightMask].
    */
@@ -208,7 +209,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(353, scriptIndex)
+    createNativeObject(331, scriptIndex)
   }
 
   /**
@@ -450,17 +451,17 @@ public open class Light2D internal constructor() : Node2D() {
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
      * render. See [shadowFilter].
      */
-    SHADOW_FILTER_NONE(0),
+    NONE(0),
     /**
      * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to
      * hard shadow rendering. See [shadowFilter].
      */
-    SHADOW_FILTER_PCF5(1),
+    PCF5(1),
     /**
      * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest
      * shadow filtering mode, and should be used sparingly. See [shadowFilter].
      */
-    SHADOW_FILTER_PCF13(2),
+    PCF13(2),
     ;
 
     public val id: Long
@@ -480,17 +481,17 @@ public open class Light2D internal constructor() : Node2D() {
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
      * is the common behavior of a light.
      */
-    BLEND_MODE_ADD(0),
+    ADD(0),
     /**
      * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it,
      * resulting in inversed light effect.
      */
-    BLEND_MODE_SUB(1),
+    SUB(1),
     /**
      * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by
      * linear interpolation.
      */
-    BLEND_MODE_MIX(2),
+    MIX(2),
     ;
 
     public val id: Long

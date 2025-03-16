@@ -13,7 +13,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MouseButtonMask
-import godot.core.MouseButtonMaskValue
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
@@ -44,6 +43,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
    * local coordinate system of the [Control].
    */
@@ -59,6 +59,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * root [Viewport] using the coordinate system of the root [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
    * [Control] is in using the coordinate system of the [CanvasLayer].
    */
@@ -72,12 +73,13 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(326, scriptIndex)
+    createNativeObject(301, scriptIndex)
   }
 
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
    * local coordinate system of the [Control].
    *
@@ -105,6 +107,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
    * root [Viewport] using the coordinate system of the root [Viewport].
+   *
    * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
    * [Control] is in using the coordinate system of the [CanvasLayer].
    *
@@ -137,7 +140,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPosition(position: Vector2): Unit {

@@ -16,14 +16,17 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.asCachedNodePath
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * A node used for advanced animation transitions in an [AnimationPlayer].
+ *
  * **Note:** When linked with an [AnimationPlayer], several properties and methods of the
  * corresponding [AnimationPlayer] will not function as expected. Playback and transitions should be
  * handled using only the [AnimationTree] and its constituent [AnimationNode](s). The [AnimationPlayer]
@@ -71,7 +74,7 @@ public open class AnimationTree : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(73, scriptIndex)
+    createNativeObject(37, scriptIndex)
   }
 
   public final fun setTreeRoot(animationNode: AnimationRootNode?): Unit {
@@ -124,12 +127,17 @@ public open class AnimationTree : AnimationMixer() {
     return AnimationTree.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setAdvanceExpressionBaseNode(path: String) =
+      setAdvanceExpressionBaseNode(path.asCachedNodePath())
+
+  public final fun setAnimationPlayer(path: String) = setAnimationPlayer(path.asCachedNodePath())
+
   public enum class AnimationProcessCallback(
     id: Long,
   ) {
-    ANIMATION_PROCESS_PHYSICS(0),
-    ANIMATION_PROCESS_IDLE(1),
-    ANIMATION_PROCESS_MANUAL(2),
+    PHYSICS(0),
+    IDLE(1),
+    MANUAL(2),
     ;
 
     public val id: Long

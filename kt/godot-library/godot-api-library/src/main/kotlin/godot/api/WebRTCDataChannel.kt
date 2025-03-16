@@ -37,7 +37,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(846, scriptIndex)
+    createNativeObject(844, scriptIndex)
   }
 
   /**
@@ -106,6 +106,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   /**
    * Returns the ID assigned to this channel during creation (or auto-assigned during negotiation).
+   *
    * If the channel is not negotiated out-of-band the ID will only be available after the connection
    * is established (will return `65535` until then).
    */
@@ -117,6 +118,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   /**
    * Returns the `maxPacketLifeTime` value assigned to this channel during creation.
+   *
    * Will be `65535` if not specified.
    */
   public final fun getMaxPacketLifeTime(): Int {
@@ -127,6 +129,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   /**
    * Returns the `maxRetransmits` value assigned to this channel during creation.
+   *
    * Will be `65535` if not specified.
    */
   public final fun getMaxRetransmits(): Int {
@@ -170,12 +173,12 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
      * Tells the channel to send data over this channel as text. An external peer (non-Godot) would
      * receive this as a string.
      */
-    WRITE_MODE_TEXT(0),
+    TEXT(0),
     /**
      * Tells the channel to send data over this channel as binary. An external peer (non-Godot)
      * would receive this as array buffer or blob.
      */
-    WRITE_MODE_BINARY(1),
+    BINARY(1),
     ;
 
     public val id: Long

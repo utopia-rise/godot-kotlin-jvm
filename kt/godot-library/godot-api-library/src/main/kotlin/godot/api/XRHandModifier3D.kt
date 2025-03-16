@@ -14,16 +14,20 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.
+ *
  * Positioning of hands is performed by creating an [XRNode3D] ancestor of the hand mesh driven by
  * the same [XRHandTracker].
+ *
  * The hand tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the
  * skeleton, which can be used to adjust the tracked hand to match the scale of the hand model.
  */
@@ -53,7 +57,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(870, scriptIndex)
+    createNativeObject(869, scriptIndex)
   }
 
   public final fun setHandTracker(trackerName: StringName): Unit {
@@ -78,6 +82,9 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setHandTracker(trackerName: String) =
+      setHandTracker(trackerName.asCachedStringName())
+
   public enum class BoneUpdate(
     id: Long,
   ) {
@@ -85,16 +92,16 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
      * bones.
      */
-    BONE_UPDATE_FULL(0),
+    FULL(0),
     /**
      * The skeleton's bones are only rotated to align with the tracked bones, preserving bone
      * length.
      */
-    BONE_UPDATE_ROTATION_ONLY(1),
+    ROTATION_ONLY(1),
     /**
      * Represents the size of the [BoneUpdate] enum.
      */
-    BONE_UPDATE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

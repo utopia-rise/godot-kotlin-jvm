@@ -20,13 +20,14 @@ import kotlin.Unit
 /**
  * [SubtweenTweener] is used to execute a [Tween] as one step in a sequence defined by another
  * [Tween]. See [Tween.tweenSubtween] for more usage information.
+ *
  * **Note:** [Tween.tweenSubtween] is the only correct way to create [SubtweenTweener]. Any
  * [SubtweenTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class SubtweenTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(656, scriptIndex)
+    createNativeObject(650, scriptIndex)
   }
 
   /**

@@ -36,7 +36,7 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(820, scriptIndex)
+    createNativeObject(818, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -56,16 +56,16 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
     /**
      * Negates the `x` using `-(x)`.
      */
-    FUNC_NEGATE(0),
+    NEGATE(0),
     /**
      * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot
      * Shader Language.
      */
-    FUNC_BITWISE_NOT(1),
+    BITWISE_NOT(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

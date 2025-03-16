@@ -23,6 +23,7 @@ import kotlin.jvm.JvmName
 /**
  * A 3D box shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
+ *
  * **Performance:** [BoxShape3D] is fast to check collisions against. It is faster than
  * [CapsuleShape3D] and [CylinderShape3D], but slower than [SphereShape3D].
  */
@@ -41,7 +42,7 @@ public open class BoxShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(147, scriptIndex)
+    createNativeObject(112, scriptIndex)
   }
 
   /**

@@ -67,7 +67,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(105, scriptIndex)
+    createNativeObject(69, scriptIndex)
   }
 
   public final fun setPitchScale(rate: Float): Unit {
@@ -134,7 +134,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     /**
      * Represents the size of the [FFTSize] enum.
      */
-    FFT_SIZE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

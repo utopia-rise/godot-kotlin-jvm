@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 /**
  * A 3D capsule shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
+ *
  * **Performance:** [CapsuleShape3D] is fast to check collisions against. It is faster than
  * [CylinderShape3D], but slower than [SphereShape3D] and [BoxShape3D].
  */
@@ -50,7 +51,7 @@ public open class CapsuleShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(177, scriptIndex)
+    createNativeObject(143, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

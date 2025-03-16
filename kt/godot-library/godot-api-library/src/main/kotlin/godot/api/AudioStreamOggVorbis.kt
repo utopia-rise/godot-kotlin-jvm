@@ -26,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
@@ -94,7 +95,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(121, scriptIndex)
+    createNativeObject(86, scriptIndex)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {
@@ -168,6 +169,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
      * Creates a new [AudioStreamOggVorbis] instance from the given buffer. The buffer must contain
      * Ogg Vorbis data.
      */
+    @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamOggVorbis? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
@@ -178,6 +180,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
      * Creates a new [AudioStreamOggVorbis] instance from the given file path. The file must be in
      * Ogg Vorbis format.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): AudioStreamOggVorbis? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)

@@ -19,10 +19,12 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -33,6 +35,7 @@ import kotlin.jvm.JvmName
  * skeleton bone to give motion to the rest of the skeleton. This allows animating characters in a way
  * where steps actually match the floor below. It also allows precise interaction with objects during
  * cinematics. See also [AnimationMixer].
+ *
  * **Note:** [RootMotionView] is only visible in the editor. It will be hidden automatically in the
  * running project.
  */
@@ -97,7 +100,7 @@ public open class RootMotionView : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(575, scriptIndex)
+    createNativeObject(569, scriptIndex)
   }
 
   /**
@@ -178,6 +181,8 @@ public open class RootMotionView : VisualInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.getZeroYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setAnimationPath(path: String) = setAnimationPath(path.asCachedNodePath())
 
   public companion object
 

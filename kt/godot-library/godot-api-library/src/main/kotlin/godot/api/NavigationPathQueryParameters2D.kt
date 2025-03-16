@@ -30,29 +30,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+public infix fun Long.or(other: NavigationPathQueryParameters2D.PathMetadataFlags): Long =
     this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags): Long
-    = this.xor(other.flag)
+public infix fun Long.xor(other: NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags): Long
-    = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags):
-    Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags):
-    Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags):
-    Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags):
-    Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags):
-    Long = this.rem(other.flag)
+public infix fun Long.and(other: NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.and(other.flag)
 
 /**
  * By changing various properties of this object, such as the start and target position, you can
@@ -143,6 +128,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
    * If `true` a simplified version of the path will be returned with less critical path points
    * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
    * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   *
    * Path simplification can be helpful to mitigate various path following issues that can arise
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".
@@ -167,7 +153,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(403, scriptIndex)
+    createNativeObject(384, scriptIndex)
   }
 
   /**
@@ -292,7 +278,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getMetadataFlags(): PathMetadataFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMetadataFlagsPtr, LONG)
-    return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSimplifyPath(enabled: Boolean): Unit {
@@ -323,7 +309,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     /**
      * The path query uses the default A* pathfinding algorithm.
      */
-    PATHFINDING_ALGORITHM_ASTAR(0),
+    ASTAR(0),
     ;
 
     public val id: Long
@@ -346,18 +332,18 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
      * gridbased layouts can face artificial corners with diagonal movement due to a jagged path
      * corridor imposed by the cell shapes.
      */
-    PATH_POSTPROCESSING_CORRIDORFUNNEL(0),
+    POSTPROCESSING_CORRIDORFUNNEL(0),
     /**
      * Centers every path position in the middle of the traveled navigation mesh polygon edge. This
      * creates better paths for tile- or gridbased layouts that restrict the movement to the cells
      * center.
      */
-    PATH_POSTPROCESSING_EDGECENTERED(1),
+    POSTPROCESSING_EDGECENTERED(1),
     /**
      * Applies no postprocessing and returns the raw path corridor as found by the pathfinding
      * algorithm.
      */
-    PATH_POSTPROCESSING_NONE(2),
+    POSTPROCESSING_NONE(2),
     ;
 
     public val id: Long
@@ -370,83 +356,66 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
   }
 
-  public sealed interface PathMetadataFlags {
-    public val flag: Long
-
+  @JvmInline
+  public value class PathMetadataFlags(
+    public val flag: Long,
+  ) {
     public infix fun or(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.or(other.flag))
+        PathMetadataFlags(flag.or(other.flag))
 
-    public infix fun or(other: Long): PathMetadataFlags = PathMetadataFlagsValue(flag.or(other))
+    public infix fun or(other: Long): PathMetadataFlags = PathMetadataFlags(flag.or(other))
 
     public infix fun xor(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.xor(other.flag))
+        PathMetadataFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): PathMetadataFlags = PathMetadataFlagsValue(flag.xor(other))
+    public infix fun xor(other: Long): PathMetadataFlags = PathMetadataFlags(flag.xor(other))
 
     public infix fun and(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.and(other.flag))
+        PathMetadataFlags(flag.and(other.flag))
 
-    public infix fun and(other: Long): PathMetadataFlags = PathMetadataFlagsValue(flag.and(other))
+    public infix fun and(other: Long): PathMetadataFlags = PathMetadataFlags(flag.and(other))
 
-    public operator fun plus(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.plus(other.flag))
+    public fun unaryPlus(): PathMetadataFlags = PathMetadataFlags(flag.unaryPlus())
 
-    public operator fun plus(other: Long): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.plus(other))
+    public fun unaryMinus(): PathMetadataFlags = PathMetadataFlags(flag.unaryMinus())
 
-    public operator fun minus(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.minus(other.flag))
+    public fun inv(): PathMetadataFlags = PathMetadataFlags(flag.inv())
 
-    public operator fun minus(other: Long): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.minus(other))
+    public infix fun shl(bits: Int): PathMetadataFlags = PathMetadataFlags(flag shl bits)
 
-    public operator fun times(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): PathMetadataFlags = PathMetadataFlags(flag shr bits)
 
-    public operator fun times(other: Long): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.times(other))
-
-    public operator fun div(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.div(other))
-
-    public operator fun rem(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): PathMetadataFlags =
-        PathMetadataFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): PathMetadataFlags = PathMetadataFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): PathMetadataFlags = PathMetadataFlagsValue(flag.unaryMinus())
-
-    public fun inv(): PathMetadataFlags = PathMetadataFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): PathMetadataFlags = PathMetadataFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): PathMetadataFlags = PathMetadataFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): PathMetadataFlags = PathMetadataFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): PathMetadataFlags = PathMetadataFlags(flag ushr bits)
 
     public companion object {
-      public val PATH_METADATA_INCLUDE_NONE: PathMetadataFlags = PathMetadataFlagsValue(0)
+      /**
+       * Don't include any additional metadata about the returned path.
+       */
+      public val INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
 
-      public val PATH_METADATA_INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlagsValue(1)
+      /**
+       * Include the type of navigation primitive (region or link) that each point of the path goes
+       * through.
+       */
+      public val INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
 
-      public val PATH_METADATA_INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlagsValue(2)
+      /**
+       * Include the [RID]s of the regions and links that each point of the path goes through.
+       */
+      public val INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
 
-      public val PATH_METADATA_INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlagsValue(4)
+      /**
+       * Include the `ObjectID`s of the [Object]s which manage the regions and links each point of
+       * the path goes through.
+       */
+      public val INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
 
-      public val PATH_METADATA_INCLUDE_ALL: PathMetadataFlags = PathMetadataFlagsValue(7)
+      /**
+       * Include all available metadata about the returned path.
+       */
+      public val INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
     }
   }
-
-  @JvmInline
-  public value class PathMetadataFlagsValue(
-    public override val flag: Long,
-  ) : PathMetadataFlags
 
   public companion object
 

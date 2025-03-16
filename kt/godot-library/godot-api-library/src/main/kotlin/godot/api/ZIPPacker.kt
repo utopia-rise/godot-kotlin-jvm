@@ -25,7 +25,8 @@ import kotlin.jvm.JvmOverloads
 /**
  * This class implements a writer that allows storing the multiple blobs in a ZIP archive. See also
  * [ZIPReader] and [PCKPacker].
- * [codeblock]
+ *
+ * ```
  * # Create a ZIP archive with a single file at its root.
  * func write_zip_file():
  *     var writer = ZIPPacker.new()
@@ -38,7 +39,7 @@ import kotlin.jvm.JvmOverloads
  *
  *     writer.close()
  *     return OK
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
@@ -48,6 +49,7 @@ public open class ZIPPacker : RefCounted() {
 
   /**
    * Opens a zip file for writing at the given path using the specified write mode.
+   *
    * This must be called before everything else.
    */
   @JvmOverloads
@@ -60,6 +62,7 @@ public open class ZIPPacker : RefCounted() {
 
   /**
    * Starts writing to a file within the archive. Only one file can be written at the same time.
+   *
    * Must be called after [open].
    */
   public final fun startFile(path: String): Error {
@@ -70,6 +73,7 @@ public open class ZIPPacker : RefCounted() {
 
   /**
    * Write the given [data] to the file.
+   *
    * Needs to be called after [startFile].
    */
   public final fun writeFile(`data`: PackedByteArray): Error {
@@ -80,6 +84,7 @@ public open class ZIPPacker : RefCounted() {
 
   /**
    * Stops writing to a file within the archive.
+   *
    * It will fail if there is no open file.
    */
   public final fun closeFile(): Error {

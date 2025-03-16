@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 
 /**
  * [BoxOccluder3D] stores a cuboid shape that can be used by the engine's occlusion culling system.
+ *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
@@ -39,7 +40,7 @@ public open class BoxOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(146, scriptIndex)
+    createNativeObject(111, scriptIndex)
   }
 
   /**

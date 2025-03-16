@@ -14,8 +14,10 @@ import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -25,11 +27,14 @@ import kotlin.jvm.JvmName
  * [XROrigin3D] node, tracking will update its position to the player's tracked hand Palm joint
  * location (the center of the middle finger's metacarpal bone). This node also updates the skeleton of
  * a properly skinned hand or avatar model.
+ *
  * If the skeleton is a hand (one of the hand bones is the root node of the skeleton), then the
  * skeleton will be placed relative to the hand palm location and the hand mesh and skeleton should be
  * children of the OpenXRHand node.
+ *
  * If the hand bones are part of a full skeleton, then the root of the hand will keep its location
  * with the assumption that IK is used to position the hand and arm.
+ *
  * By default the skeleton hand bones are repositioned to match the size of the tracked hand. To
  * preserve the modeled bone sizes change [boneUpdate] to apply rotation only.
  */
@@ -91,7 +96,7 @@ public open class OpenXRHand : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(440, scriptIndex)
+    createNativeObject(424, scriptIndex)
   }
 
   public final fun setHand(hand: Hands): Unit {
@@ -149,21 +154,24 @@ public open class OpenXRHand : Node3D() {
     return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setHandSkeleton(handSkeleton: String) =
+      setHandSkeleton(handSkeleton.asCachedNodePath())
+
   public enum class Hands(
     id: Long,
   ) {
     /**
      * Tracking the player's left hand.
      */
-    HAND_LEFT(0),
+    LEFT(0),
     /**
      * Tracking the player's right hand.
      */
-    HAND_RIGHT(1),
+    RIGHT(1),
     /**
      * Maximum supported hands.
      */
-    HAND_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -182,15 +190,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * When player grips, hand skeleton will form a full fist.
      */
-    MOTION_RANGE_UNOBSTRUCTED(0),
+    UNOBSTRUCTED(0),
     /**
      * When player grips, hand skeleton conforms to the controller the player is holding.
      */
-    MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
+    CONFORM_TO_CONTROLLER(1),
     /**
      * Maximum supported motion ranges.
      */
-    MOTION_RANGE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -209,15 +217,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * An OpenXR compliant skeleton.
      */
-    SKELETON_RIG_OPENXR(0),
+    OPENXR(0),
     /**
      * A [SkeletonProfileHumanoid] compliant skeleton.
      */
-    SKELETON_RIG_HUMANOID(1),
+    HUMANOID(1),
     /**
      * Maximum supported hands.
      */
-    SKELETON_RIG_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -237,15 +245,15 @@ public open class OpenXRHand : Node3D() {
      * The skeletons bones are fully updated (both position and rotation) to match the tracked
      * bones.
      */
-    BONE_UPDATE_FULL(0),
+    FULL(0),
     /**
      * The skeletons bones are only rotated to align with the tracked bones, preserving bone length.
      */
-    BONE_UPDATE_ROTATION_ONLY(1),
+    ROTATION_ONLY(1),
     /**
      * Maximum supported bone update mode.
      */
-    BONE_UPDATE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

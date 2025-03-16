@@ -27,11 +27,13 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -40,6 +42,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * 3D particle node used to create a variety of particle systems and effects. [GPUParticles3D]
  * features an emitter that generates some number of particles at a given rate.
+ *
  * Use [processMaterial] to add a [ParticleProcessMaterial] to configure particle appearance and
  * behavior. Alternatively, you can add a [ShaderMaterial] which will be applied to all particles.
  */
@@ -48,8 +51,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Emitted when all active particles have finished processing. To immediately restart the emission
    * cycle, call [restart].
+   *
    * This signal is never emitted when [oneShot] is disabled, as particles will be emitted and
    * processed continuously.
+   *
    * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
    * a short period after receiving the signal during which setting [emitting] to `true` will not
    * restart the emission cycle. This delay is avoided by instead calling [restart].
@@ -61,9 +66,11 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
    * emission cycle unless all active particles have finished processing. Use the [signal finished]
    * signal to be notified once all active particles finish processing.
+   *
    * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
    * a short period after receiving the [signal finished] signal during which setting this to `true`
    * will not restart the emission cycle.
+   *
    * **Tip:** If your [oneShot] emitter needs to immediately restart emitting particles once [signal
    * finished] signal is received, consider calling [restart] instead of setting [emitting].
    */
@@ -79,6 +86,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * The number of particles to emit in one emission cycle. The effective emission rate is `(amount
    * * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements,
    * even if not all particles are visible at a given time or if [amountRatio] is decreased.
+   *
    * **Note:** Changing this value will cause the particle system to restart. To avoid this, change
    * [amountRatio] instead.
    */
@@ -96,6 +104,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted
    * particles and doesn't cause the particle system to restart. [amountRatio] can be used to create
    * effects that make the number of emitted particles vary over time.
+   *
    * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be
    * allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If
    * you don't intend to change the number of particles emitted while the particles are emitting, make
@@ -113,6 +122,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * Path to another [GPUParticles3D] node that will be used as a subemitter (see
    * [ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as
    * fireworks, sparks on collision, bubbles popping into water drops, and more.
+   *
    * **Note:** When [subEmitter] is set, the target [GPUParticles3D] node will no longer emit
    * particles on its own.
    */
@@ -138,6 +148,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   /**
    * Causes all the particles in this node to interpolate towards the end of their lifetime.
+   *
    * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
    * implemented for custom process shaders.
    */
@@ -163,6 +174,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of time to preprocess the particles before animation starts. Lets you start the
    * animation some time after particles have started emitting.
+   *
    * **Note:** This can be very expensive if set to a high number as it requires running the
    * particle shader a number of times equal to the [fixedFps] (or 30, if [fixedFps] is 0) for every
    * second. In extreme cases it can even lead to a GPU crash due to the volume of work done in a
@@ -276,6 +288,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * when colliding, increase this value. If particles appear to float when colliding, decrease this
    * value. Only effective if [ParticleProcessMaterial.collisionMode] is
    * [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
+   *
    * **Note:** Particles always have a spherical collision shape.
    */
   public final inline var collisionBaseSize: Float
@@ -290,8 +303,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * The [AABB] that determines the node's region which needs to be visible on screen for the
    * particle system to be active. [GeometryInstance3D.extraCullMargin] is added on each of the AABB's
    * axes. Particle collisions and attraction will only occur within this area.
+   *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
    * **Note:** [visibilityAabb] is overridden by [GeometryInstance3D.customAabb] if that property is
    * set to a non-default value.
    */
@@ -320,6 +335,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   /**
    * Particle draw order. Uses [DrawOrder] values.
+   *
    * **Note:** [DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like
    * TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.
    */
@@ -342,8 +358,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, enables particle trails using a mesh skinning system. Designed to work with
    * [RibbonTrailMesh] and [TubeTrailMesh].
+   *
    * **Note:** [BaseMaterial3D.useParticleTrails] must also be enabled on the particle mesh's
    * material. Otherwise, setting [trailEnabled] to `true` will have no effect.
+   *
    * **Note:** Unlike [GPUParticles2D], the number of trail sections and subdivisions is set in the
    * [RibbonTrailMesh] or the [TubeTrailMesh]'s properties.
    */
@@ -442,15 +460,17 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(273, scriptIndex)
+    createNativeObject(244, scriptIndex)
   }
 
   /**
    * The [AABB] that determines the node's region which needs to be visible on screen for the
    * particle system to be active. [GeometryInstance3D.extraCullMargin] is added on each of the AABB's
    * axes. Particle collisions and attraction will only occur within this area.
+   *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
    * **Note:** [visibilityAabb] is overridden by [GeometryInstance3D.customAabb] if that property is
    * set to a non-default value.
    *
@@ -727,7 +747,9 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing
    * from the viewport, wait for the [signal finished] signal before calling.
+   *
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
+   *
    * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
    * playback.
    */
@@ -761,8 +783,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends
    * on the value of [flags]. See [EmitFlags].
+   *
    * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
    * `(rotation, age, animation, lifetime)`.
+   *
    * **Note:** [emitParticle] is only supported on the Forward+ and Mobile rendering methods, not
    * Compatibility.
    */
@@ -831,6 +855,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   /**
    * Requests the particles to process for extra process time during a single frame.
+   *
    * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
    * [restart] with parameter `keep_seed` set to `true`.
    */
@@ -839,27 +864,29 @@ public open class GPUParticles3D : GeometryInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
+  public final fun setSubEmitter(path: String) = setSubEmitter(path.asCachedNodePath())
+
   public enum class DrawOrder(
     id: Long,
   ) {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
      * the lowest lifetime is drawn at the front.
      */
-    DRAW_ORDER_REVERSE_LIFETIME(2),
+    REVERSE_LIFETIME(2),
     /**
      * Particles are drawn in order of depth.
      */
-    DRAW_ORDER_VIEW_DEPTH(3),
+    VIEW_DEPTH(3),
     ;
 
     public val id: Long
@@ -878,24 +905,24 @@ public open class GPUParticles3D : GeometryInstance3D() {
     /**
      * Particle starts at the specified position.
      */
-    EMIT_FLAG_POSITION(1),
+    POSITION(1),
     /**
      * Particle starts with specified rotation and scale.
      */
-    EMIT_FLAG_ROTATION_SCALE(2),
+    ROTATION_SCALE(2),
     /**
      * Particle starts with the specified velocity vector, which defines the emission direction and
      * speed.
      */
-    EMIT_FLAG_VELOCITY(4),
+    VELOCITY(4),
     /**
      * Particle starts with specified color.
      */
-    EMIT_FLAG_COLOR(8),
+    COLOR(8),
     /**
      * Particle starts with specified `CUSTOM` data.
      */
-    EMIT_FLAG_CUSTOM(16),
+    CUSTOM(16),
     ;
 
     public val id: Long
@@ -911,10 +938,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public enum class TransformAlign(
     id: Long,
   ) {
-    TRANSFORM_ALIGN_DISABLED(0),
-    TRANSFORM_ALIGN_Z_BILLBOARD(1),
-    TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
-    TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
+    DISABLED(0),
+    Z_BILLBOARD(1),
+    Y_TO_VELOCITY(2),
+    Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
     public val id: Long

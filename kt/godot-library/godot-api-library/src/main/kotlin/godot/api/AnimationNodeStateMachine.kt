@@ -18,9 +18,11 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -32,13 +34,14 @@ import kotlin.jvm.JvmOverloads
  * Retrieve the [AnimationNodeStateMachinePlayback] object from the [AnimationTree] node to control it
  * programmatically.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var state_machine = $AnimationTree.get("parameters/playback")
  * state_machine.travel("some_state")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as
  * AnimationNodeStateMachinePlayback;
  * stateMachine.Travel("some_state");
@@ -73,6 +76,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
 
   /**
    * If `true`, treat the cross-fade to the start and end nodes as a blend with the RESET animation.
+   *
    * In most cases, when additional cross-fades are performed in the parent [AnimationNode] of the
    * state machine, setting this property to `false` and matching the cross-fade time of the parent
    * [AnimationNode] and the state machine's start node and end node gives good results.
@@ -86,7 +90,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(63, scriptIndex)
+    createNativeObject(27, scriptIndex)
   }
 
   /**
@@ -293,6 +297,76 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Adds a new animation node to the graph. The [position] is used for display in the editor.
+   */
+  @JvmOverloads
+  public final fun addNode(
+    name: String,
+    node: AnimationNode?,
+    position: Vector2 = Vector2(0, 0),
+  ) = addNode(name.asCachedStringName(), node, position)
+
+  /**
+   * Replaces the given animation node with a new animation node.
+   */
+  public final fun replaceNode(name: String, node: AnimationNode?) =
+      replaceNode(name.asCachedStringName(), node)
+
+  /**
+   * Returns the animation node with the given name.
+   */
+  public final fun getNode(name: String): AnimationNode? = getNode(name.asCachedStringName())
+
+  /**
+   * Deletes the given animation node from the graph.
+   */
+  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+
+  /**
+   * Renames the given animation node.
+   */
+  public final fun renameNode(name: String, newName: String) =
+      renameNode(name.asCachedStringName(), newName.asCachedStringName())
+
+  /**
+   * Returns `true` if the graph contains the given animation node.
+   */
+  public final fun hasNode(name: String): Boolean = hasNode(name.asCachedStringName())
+
+  /**
+   * Sets the animation node's coordinates. Used for display in the editor.
+   */
+  public final fun setNodePosition(name: String, position: Vector2) =
+      setNodePosition(name.asCachedStringName(), position)
+
+  /**
+   * Returns the given animation node's coordinates. Used for display in the editor.
+   */
+  public final fun getNodePosition(name: String): Vector2 =
+      getNodePosition(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a transition between the given animation nodes.
+   */
+  public final fun hasTransition(from: String, to: String): Boolean =
+      hasTransition(from.asCachedStringName(), to.asCachedStringName())
+
+  /**
+   * Adds a transition between the given animation nodes.
+   */
+  public final fun addTransition(
+    from: String,
+    to: String,
+    transition: AnimationNodeStateMachineTransition?,
+  ) = addTransition(from.asCachedStringName(), to.asCachedStringName(), transition)
+
+  /**
+   * Deletes the transition between the two specified animation nodes.
+   */
+  public final fun removeTransition(from: String, to: String) =
+      removeTransition(from.asCachedStringName(), to.asCachedStringName())
+
   public enum class StateMachineType(
     id: Long,
   ) {
@@ -300,19 +374,19 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
      * Seeking to the beginning is treated as playing from the start state. Transition to the end
      * state is treated as exiting the state machine.
      */
-    STATE_MACHINE_TYPE_ROOT(0),
+    ROOT(0),
     /**
      * Seeking to the beginning is treated as seeking to the beginning of the animation in the
      * current state. Transition to the end state, or the absence of transitions in each state, is
      * treated as exiting the state machine.
      */
-    STATE_MACHINE_TYPE_NESTED(1),
+    NESTED(1),
     /**
      * This is a grouped state machine that can be controlled from a parent state machine. It does
      * not work independently. There must be a state machine with [stateMachineType] of
      * [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
      */
-    STATE_MACHINE_TYPE_GROUPED(2),
+    GROUPED(2),
     ;
 
     public val id: Long

@@ -20,9 +20,11 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -75,7 +77,7 @@ public open class LightmapGIData : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(357, scriptIndex)
+    createNativeObject(335, scriptIndex)
   }
 
   public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {
@@ -103,6 +105,7 @@ public open class LightmapGIData : Resource() {
   /**
    * If [usesSphericalHarmonics] is `true`, tells the engine to treat the lightmap data as if it was
    * baked with directional information.
+   *
    * **Note:** Changing this value on already baked lightmaps will not cause them to be baked again.
    * This means the material appearance will look incorrect until lightmaps are baked again, in which
    * case the value set here is discarded as the entire [LightmapGIData] resource is replaced by the
@@ -173,6 +176,16 @@ public open class LightmapGIData : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 
+  /**
+   * Adds an object that is considered baked within this [LightmapGIData].
+   */
+  public final fun addUser(
+    path: String,
+    uvScale: Rect2,
+    sliceIndex: Int,
+    subInstance: Int,
+  ) = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
+
   public enum class ShadowmaskMode(
     id: Long,
   ) {
@@ -180,7 +193,7 @@ public open class LightmapGIData : Resource() {
      * Shadowmasking is disabled. No shadowmask texture will be created when baking lightmaps.
      * Existing shadowmask textures will be removed during baking.
      */
-    SHADOWMASK_MODE_NONE(0),
+    NONE(0),
     /**
      * Shadowmasking is enabled. Directional shadows that are outside the
      * [DirectionalLight3D.directionalShadowMaxDistance] will be rendered using the shadowmask texture.
@@ -191,7 +204,7 @@ public open class LightmapGIData : Resource() {
      * objects that only have shadows baked in the shadowmask (and no real-time shadows) won't display
      * any shadows up close.
      */
-    SHADOWMASK_MODE_REPLACE(1),
+    REPLACE(1),
     /**
      * Shadowmasking is enabled. Directional shadows will be rendered with real-time shadows
      * overlaid on top of the shadowmask texture. This mode makes for smoother shadow transitions when
@@ -200,7 +213,7 @@ public open class LightmapGIData : Resource() {
      * that only have shadows baked in the shadowmask (and no real-time shadows) will keep their
      * shadows up close.
      */
-    SHADOWMASK_MODE_OVERLAY(2),
+    OVERLAY(2),
     ;
 
     public val id: Long

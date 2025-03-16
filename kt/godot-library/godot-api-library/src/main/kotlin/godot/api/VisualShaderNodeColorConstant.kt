@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Has two output ports representing RGB and alpha channels of [Color].
+ *
  * Translated to `vec3 rgb` and `float alpha` in the shader language.
  */
 @GodotBaseType
@@ -39,7 +40,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(737, scriptIndex)
+    createNativeObject(735, scriptIndex)
   }
 
   /**

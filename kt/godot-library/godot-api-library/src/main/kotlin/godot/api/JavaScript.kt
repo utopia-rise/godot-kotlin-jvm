@@ -14,7 +14,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JavaScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(342, scriptIndex)
+    createNativeObject(319, scriptIndex)
   }
 
   public companion object

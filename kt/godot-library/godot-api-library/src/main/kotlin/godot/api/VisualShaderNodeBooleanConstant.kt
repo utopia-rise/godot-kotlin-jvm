@@ -20,6 +20,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Has only one output port and no inputs.
+ *
  * Translated to [code skip-lint]bool[/code] in the shader language.
  */
 @GodotBaseType
@@ -36,7 +37,7 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(734, scriptIndex)
+    createNativeObject(732, scriptIndex)
   }
 
   public final fun setConstant(constant: Boolean): Unit {

@@ -32,12 +32,15 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -48,8 +51,8 @@ import kotlin.jvm.JvmOverloads
  * divided into tracks and each track must be linked to a node. The state of that node can be changed
  * through time, by adding timed keys (events) to the track.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # This creates an animation that makes the node "Enemy" move to the right by
  * # 100 pixels in 2.0 seconds.
  * var animation = Animation.new()
@@ -59,8 +62,9 @@ import kotlin.jvm.JvmOverloads
  * animation.track_insert_key(track_index, 2.0, 100)
  * animation.length = 2.0
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // This creates an animation that makes the node "Enemy" move to the right by
  * // 100 pixels in 2.0 seconds.
  * var animation = new Animation();
@@ -74,6 +78,7 @@ import kotlin.jvm.JvmOverloads
  * Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] to
  * be played back. Animation tracks have different types, each with its own set of dedicated methods.
  * Check [TrackType] to see available types.
+ *
  * **Note:** For 3D position/rotation/scale, using the dedicated [TYPE_POSITION_3D],
  * [TYPE_ROTATION_3D] and [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for
  * performance reasons.
@@ -82,6 +87,7 @@ import kotlin.jvm.JvmOverloads
 public open class Animation : Resource() {
   /**
    * The total length of the animation (in seconds).
+   *
    * **Note:** Length is not delimited by the last key, as this one may be before or after the end
    * to ensure correct interpolation and looping.
    */
@@ -126,7 +132,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(48, scriptIndex)
+    createNativeObject(12, scriptIndex)
   }
 
   /**
@@ -178,6 +184,7 @@ public open class Animation : Resource() {
    * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
    * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
    * properties or bones must append their name after the path, separated by `":"`.
+   *
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
   public final fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
@@ -480,9 +487,12 @@ public open class Animation : Resource() {
   /**
    * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time
    * is given.
+   *
    * If [limit] is `true`, it does not return keys outside the animation range.
+   *
    * If [backward] is `true`, the direction is reversed in methods that rely on one directional
    * processing.
+   *
    * For example, in case [findMode] is [FIND_MODE_NEAREST], if there is no key in the current
    * position just after seeked, the first key found is retrieved by searching before the position, but
    * if [backward] is `true`, the first key found is retrieved after the position.
@@ -491,7 +501,7 @@ public open class Animation : Resource() {
   public final fun trackFindKey(
     trackIdx: Int,
     time: Double,
-    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
+    findMode: FindMode = Animation.FindMode.NEAREST,
     limit: Boolean = false,
     backward: Boolean = false,
   ): Int {
@@ -565,6 +575,7 @@ public open class Animation : Resource() {
   /**
    * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index
    * of a value track.
+   *
    * A [backward] mainly affects the direction of key retrieval of the track with [UPDATE_DISCRETE]
    * converted by [AnimationMixer.ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to match the
    * result with [trackFindKey].
@@ -601,6 +612,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of
    * a Bezier Track.
+   *
    * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the
    * right-side one, while [value] is the actual value at this point.
    */
@@ -703,6 +715,7 @@ public open class Animation : Resource() {
   /**
    * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of
    * an Audio Track.
+   *
    * [stream] is the [AudioStream] resource to play. [startOffset] is the number of seconds cut off
    * at the beginning of the audio stream, while [endOffset] is at the ending.
    */
@@ -771,6 +784,7 @@ public open class Animation : Resource() {
   /**
    * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
    * an Audio Track.
+   *
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
   public final fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -782,6 +796,7 @@ public open class Animation : Resource() {
   /**
    * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
    * an Audio Track.
+   *
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
   public final fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -1003,6 +1018,7 @@ public open class Animation : Resource() {
    * are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D
    * software. Compression is lossy, but the difference is usually not noticeable in real world
    * conditions.
+   *
    * **Note:** Compressed tracks have various limitations (such as not being editable from the
    * editor), so only use compressed animations if you actually need them.
    */
@@ -1021,6 +1037,74 @@ public open class Animation : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.isCaptureIncludedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
+   * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
+   * properties or bones must append their name after the path, separated by `":"`.
+   *
+   * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
+   */
+  public final fun trackSetPath(trackIdx: Int, path: String) =
+      trackSetPath(trackIdx, path.asCachedNodePath())
+
+  /**
+   * Returns the index of the specified track. If the track is not found, return -1.
+   */
+  public final fun findTrack(path: String, type: TrackType): Int =
+      findTrack(path.asCachedNodePath(), type)
+
+  /**
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
+   * the index of an Animation Track.
+   */
+  public final fun animationTrackInsertKey(
+    trackIdx: Int,
+    time: Double,
+    animation: String,
+  ): Int = animationTrackInsertKey(trackIdx, time, animation.asCachedStringName())
+
+  /**
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
+   * an Animation Track.
+   */
+  public final fun animationTrackSetKeyAnimation(
+    trackIdx: Int,
+    keyIdx: Int,
+    animation: String,
+  ) = animationTrackSetKeyAnimation(trackIdx, keyIdx, animation.asCachedStringName())
+
+  /**
+   * Adds a marker to this Animation.
+   */
+  public final fun addMarker(name: String, time: Double) =
+      addMarker(name.asCachedStringName(), time)
+
+  /**
+   * Removes the marker with the given name from this Animation.
+   */
+  public final fun removeMarker(name: String) = removeMarker(name.asCachedStringName())
+
+  /**
+   * Returns `true` if this Animation contains a marker with the given name.
+   */
+  public final fun hasMarker(name: String): Boolean = hasMarker(name.asCachedStringName())
+
+  /**
+   * Returns the given marker's time.
+   */
+  public final fun getMarkerTime(name: String): Double = getMarkerTime(name.asCachedStringName())
+
+  /**
+   * Returns the given marker's color.
+   */
+  public final fun getMarkerColor(name: String): Color = getMarkerColor(name.asCachedStringName())
+
+  /**
+   * Sets the given marker's color.
+   */
+  public final fun setMarkerColor(name: String, color: Color) =
+      setMarkerColor(name.asCachedStringName(), color)
 
   public enum class TrackType(
     id: Long,
@@ -1083,27 +1167,29 @@ public open class Animation : Resource() {
     /**
      * No interpolation (nearest value).
      */
-    INTERPOLATION_NEAREST(0),
+    NEAREST(0),
     /**
      * Linear interpolation.
      */
-    INTERPOLATION_LINEAR(1),
+    LINEAR(1),
     /**
      * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to
      * interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external
      * software, even if it requires using a higher animation framerate in return.
      */
-    INTERPOLATION_CUBIC(2),
+    CUBIC(2),
     /**
      * Linear interpolation with shortest path rotation.
+     *
      * **Note:** The result value is always normalized and may not match the key value.
      */
-    INTERPOLATION_LINEAR_ANGLE(3),
+    LINEAR_ANGLE(3),
     /**
      * Cubic interpolation with shortest path rotation.
+     *
      * **Note:** The result value is always normalized and may not match the key value.
      */
-    INTERPOLATION_CUBIC_ANGLE(4),
+    CUBIC_ANGLE(4),
     ;
 
     public val id: Long
@@ -1122,17 +1208,17 @@ public open class Animation : Resource() {
     /**
      * Update between keyframes and hold the value.
      */
-    UPDATE_CONTINUOUS(0),
+    CONTINUOUS(0),
     /**
      * Update at the keyframes.
      */
-    UPDATE_DISCRETE(1),
+    DISCRETE(1),
     /**
      * Same as [UPDATE_CONTINUOUS] but works as a flag to capture the value of the current object
      * and perform interpolation in some methods. See also [AnimationMixer.capture],
      * [AnimationPlayer.playbackAutoCapture], and [AnimationPlayer.playWithCapture].
      */
-    UPDATE_CAPTURE(2),
+    CAPTURE(2),
     ;
 
     public val id: Long
@@ -1151,16 +1237,16 @@ public open class Animation : Resource() {
     /**
      * At both ends of the animation, the animation will stop playing.
      */
-    LOOP_NONE(0),
+    NONE(0),
     /**
      * At both ends of the animation, the animation will be repeated without changing the playback
      * direction.
      */
-    LOOP_LINEAR(1),
+    LINEAR(1),
     /**
      * Repeats playback and reverse playback at both ends of the animation.
      */
-    LOOP_PINGPONG(2),
+    PINGPONG(2),
     ;
 
     public val id: Long
@@ -1179,17 +1265,17 @@ public open class Animation : Resource() {
     /**
      * This flag indicates that the animation proceeds without any looping.
      */
-    LOOPED_FLAG_NONE(0),
+    NONE(0),
     /**
      * This flag indicates that the animation has reached the end of the animation and just after
      * loop processed.
      */
-    LOOPED_FLAG_END(1),
+    END(1),
     /**
      * This flag indicates that the animation has reached the start of the animation and just after
      * loop processed.
      */
-    LOOPED_FLAG_START(2),
+    START(2),
     ;
 
     public val id: Long
@@ -1208,15 +1294,15 @@ public open class Animation : Resource() {
     /**
      * Finds the nearest time key.
      */
-    FIND_MODE_NEAREST(0),
+    NEAREST(0),
     /**
      * Finds only the key with approximating the time.
      */
-    FIND_MODE_APPROX(1),
+    APPROX(1),
     /**
      * Finds only the key with matching the time.
      */
-    FIND_MODE_EXACT(2),
+    EXACT(2),
     ;
 
     public val id: Long

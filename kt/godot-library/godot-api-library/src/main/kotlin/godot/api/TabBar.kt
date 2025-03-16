@@ -60,15 +60,17 @@ public open class TabBar : Control() {
 
   /**
    * Emitted when a tab's close button is pressed.
+   *
    * **Note:** Tabs are not removed automatically once the close button is pressed, this behavior
    * needs to be programmed manually. For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * $TabBar.tab_close_pressed.connect($TabBar.remove_tab)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GetNode<TabBar>("TabBar").TabClosePressed += GetNode<TabBar>("TabBar").RemoveTab;
    * ```
    */
@@ -171,6 +173,7 @@ public open class TabBar : Control() {
   /**
    * [TabBar]s with the same rearrange group ID will allow dragging the tabs between them. Enable
    * drag with [dragToRearrangeEnabled].
+   *
    * Setting this to `-1` will disable rearranging between [TabBar]s.
    */
   public final inline var tabsRearrangeGroup: Int
@@ -227,7 +230,7 @@ public open class TabBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(662, scriptIndex)
+    createNativeObject(656, scriptIndex)
   }
 
   public final fun setTabCount(count: Int): Unit {
@@ -300,6 +303,7 @@ public open class TabBar : Control() {
 
   /**
    * Sets a [tooltip] for tab at index [tabIdx].
+   *
    * **Note:** By default, if the [tooltip] is empty and the tab text is truncated (not all
    * characters fit into the tab), the title will be displayed as a tooltip. To hide the tooltip,
    * assign `" "` as the [tooltip] text.
@@ -657,19 +661,19 @@ public open class TabBar : Control() {
     /**
      * Places tabs to the left.
      */
-    ALIGNMENT_LEFT(0),
+    LEFT(0),
     /**
      * Places tabs in the middle.
      */
-    ALIGNMENT_CENTER(1),
+    CENTER(1),
     /**
      * Places tabs to the right.
      */
-    ALIGNMENT_RIGHT(2),
+    RIGHT(2),
     /**
      * Represents the size of the [AlignmentMode] enum.
      */
-    ALIGNMENT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -688,19 +692,19 @@ public open class TabBar : Control() {
     /**
      * Never show the close buttons.
      */
-    CLOSE_BUTTON_SHOW_NEVER(0),
+    SHOW_NEVER(0),
     /**
      * Only show the close button on the currently active tab.
      */
-    CLOSE_BUTTON_SHOW_ACTIVE_ONLY(1),
+    SHOW_ACTIVE_ONLY(1),
     /**
      * Show the close button on all tabs.
      */
-    CLOSE_BUTTON_SHOW_ALWAYS(2),
+    SHOW_ALWAYS(2),
     /**
      * Represents the size of the [CloseButtonDisplayPolicy] enum.
      */
-    CLOSE_BUTTON_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

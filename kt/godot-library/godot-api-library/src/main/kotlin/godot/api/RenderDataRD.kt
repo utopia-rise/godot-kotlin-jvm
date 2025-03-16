@@ -13,12 +13,13 @@ import kotlin.Unit
 
 /**
  * This object manages all render data for the rendering device based renderers.
+ *
  * **Note:** This is an internal rendering server object only exposed for GDExtension plugins.
  */
 @GodotBaseType
 public open class RenderDataRD : RenderData() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(555, scriptIndex)
+    createNativeObject(545, scriptIndex)
   }
 
   public companion object

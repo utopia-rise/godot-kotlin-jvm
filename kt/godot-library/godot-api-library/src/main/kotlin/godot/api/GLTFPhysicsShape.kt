@@ -33,6 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` glTF
@@ -94,6 +95,7 @@ public open class GLTFPhysicsShape : Resource() {
   /**
    * If `true`, indicates that this shape is a trigger. For Godot, this means that the shape should
    * be a child of an Area3D node.
+   *
    * This is the only variable not used in the [toNode] method, it's intended to be used alongside
    * when deciding where to add the generated node as a child.
    */
@@ -130,7 +132,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(265, scriptIndex)
+    createNativeObject(236, scriptIndex)
   }
 
   /**
@@ -269,6 +271,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
      */
+    @JvmStatic
     public final fun fromNode(shapeNode: CollisionShape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
@@ -278,6 +281,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [Shape3D] resource.
      */
+    @JvmStatic
     public final fun fromResource(shapeResource: Shape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeResource)
       TransferContext.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
@@ -287,6 +291,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance by parsing the given [Dictionary].
      */
+    @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)

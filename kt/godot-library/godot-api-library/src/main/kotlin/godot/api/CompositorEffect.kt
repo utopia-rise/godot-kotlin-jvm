@@ -16,6 +16,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -55,11 +56,13 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` and MSAA is enabled, this will trigger a color buffer resolve before the effect is
    * run.
+   *
    * **Note:** In [_renderCallback], to access the resolved buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var color_buffer = render_scene_buffers.get_texture("render_buffers", "color")
-   * [/codeblock]
+   * ```
    */
   public final inline var accessResolvedColor: Boolean
     @JvmName("accessResolvedColorProperty")
@@ -72,11 +75,13 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` and MSAA is enabled, this will trigger a depth buffer resolve before the effect is
    * run.
+   *
    * **Note:** In [_renderCallback], to access the resolved buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var depth_buffer = render_scene_buffers.get_texture("render_buffers", "depth")
-   * [/codeblock]
+   * ```
    */
   public final inline var accessResolvedDepth: Boolean
     @JvmName("accessResolvedDepthProperty")
@@ -88,11 +93,13 @@ public open class CompositorEffect : Resource() {
 
   /**
    * If `true` this triggers motion vectors being calculated during the opaque render state.
+   *
    * **Note:** In [_renderCallback], to access the motion vector buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var motion_buffer = render_scene_buffers.get_velocity_texture()
-   * [/codeblock]
+   * ```
    */
   public final inline var needsMotionVectors: Boolean
     @JvmName("needsMotionVectorsProperty")
@@ -105,17 +112,21 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` this triggers normal and roughness data to be output during our depth pre-pass, only
    * applicable for the Forward+ renderer.
+   *
    * **Note:** In [_renderCallback], to access the roughness buffer use:
-   * [codeblock]
+   *
+   * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var roughness_buffer = render_scene_buffers.get_texture("forward_clustered",
    * "normal_roughness")
-   * [/codeblock]
+   * ```
+   *
    * The raw normal and roughness buffer is stored in an optimized format, different than the one
    * available in Spatial shaders. When sampling the buffer, a conversion function must be applied. Use
    * this function, copied from
    * [url=https://github.com/godotengine/godot/blob/da5f39889f155658cef7f7ec3cc1abb94e17d815/servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl#L334-L341]here[/url]:
-   * [codeblock]
+   *
+   * ```
    * vec4 normal_roughness_compatibility(vec4 p_normal_roughness) {
    *     float roughness = p_normal_roughness.w;
    *     if (roughness > 0.5) {
@@ -124,7 +135,7 @@ public open class CompositorEffect : Resource() {
    *     roughness /= (127.0 / 255.0);
    *     return vec4(normalize(p_normal_roughness.xyz * 2.0 - 1.0) * 0.5 + 0.5, roughness);
    * }
-   * [/codeblock]
+   * ```
    */
   public final inline var needsNormalRoughness: Boolean
     @JvmName("needsNormalRoughnessProperty")
@@ -147,7 +158,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(198, scriptIndex)
+    createNativeObject(165, scriptIndex)
   }
 
   /**
@@ -156,6 +167,7 @@ public open class CompositorEffect : Resource() {
    * access to the rendering state, it is only valid during rendering and should not be stored.
    */
   public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?): Unit {
+    throw NotImplementedError("_renderCallback is not implemented for CompositorEffect")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
@@ -242,30 +254,30 @@ public open class CompositorEffect : Resource() {
      * The callback is called before our opaque rendering pass, but after depth prepass (if
      * applicable).
      */
-    EFFECT_CALLBACK_TYPE_PRE_OPAQUE(0),
+    PRE_OPAQUE(0),
     /**
      * The callback is called after our opaque rendering pass, but before our sky is rendered.
      */
-    EFFECT_CALLBACK_TYPE_POST_OPAQUE(1),
+    POST_OPAQUE(1),
     /**
      * The callback is called after our sky is rendered, but before our back buffers are created
      * (and if enabled, before subsurface scattering and/or screen space reflections).
      */
-    EFFECT_CALLBACK_TYPE_POST_SKY(2),
+    POST_SKY(2),
     /**
      * The callback is called before our transparent rendering pass, but after our sky is rendered
      * and we've created our back buffers.
      */
-    EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT(3),
+    PRE_TRANSPARENT(3),
     /**
      * The callback is called after our transparent rendering pass, but before any built-in
      * post-processing effects and output to our render target.
      */
-    EFFECT_CALLBACK_TYPE_POST_TRANSPARENT(4),
+    POST_TRANSPARENT(4),
     /**
      * Represents the size of the [EffectCallbackType] enum.
      */
-    EFFECT_CALLBACK_TYPE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

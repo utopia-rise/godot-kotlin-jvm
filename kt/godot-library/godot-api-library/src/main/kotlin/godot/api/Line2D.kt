@@ -37,8 +37,10 @@ import kotlin.jvm.JvmOverloads
  * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments.
  * [Line2D] is not a mathematical polyline, i.e. the segments are not infinitely thin. It is intended
  * for rendering and it can be colored and optionally textured.
+ *
  * **Warning:** Certain configurations may be impossible to draw nicely, such as very sharp angles.
  * In these situations, the node uses fallback drawing logic to look decent.
+ *
  * **Note:** [Line2D] is drawn using a 2D mesh.
  */
 @GodotBaseType
@@ -58,8 +60,10 @@ public open class Line2D : Node2D() {
   /**
    * If `true` and the polyline has more than 2 points, the last point and the first one will be
    * connected by a segment.
+   *
    * **Note:** The shape of the closing segment is not guaranteed to be seamless if a [widthCurve]
    * is provided.
+   *
    * **Note:** The joint between the closing segment and the first segment is drawn first and it
    * samples the [gradient] and the [widthCurve] at the beginning. This is an implementation detail
    * that might change in a future version.
@@ -203,6 +207,7 @@ public open class Line2D : Node2D() {
 
   /**
    * If `true`, the polyline's border will be anti-aliased.
+   *
    * **Note:** [Line2D] is not accelerated by batching when being anti-aliased.
    */
   public final inline var antialiased: Boolean
@@ -214,7 +219,7 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(361, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   /**
@@ -281,6 +286,7 @@ public open class Line2D : Node2D() {
   /**
    * Adds a point with the specified [position] relative to the polyline's own position. If no
    * [index] is provided, the new point will be added to the end of the points array.
+   *
    * If [index] is given, the new point is inserted before the existing point identified by index
    * [index]. The indices of the points after the new point get increased by 1. The provided [index]
    * must not exceed the number of existing points in the polyline. See [getPointCount].
@@ -458,17 +464,17 @@ public open class Line2D : Node2D() {
      * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
      * joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
      */
-    LINE_JOINT_SHARP(0),
+    SHARP(0),
     /**
      * Makes the polyline's joints bevelled/chamfered, connecting the sides of the two segments with
      * a simple line.
      */
-    LINE_JOINT_BEVEL(1),
+    BEVEL(1),
     /**
      * Makes the polyline's joints rounded, connecting the sides of the two segments with an arc.
      * The detail of this arc depends on [roundPrecision].
      */
-    LINE_JOINT_ROUND(2),
+    ROUND(2),
     ;
 
     public val id: Long
@@ -487,15 +493,15 @@ public open class Line2D : Node2D() {
     /**
      * Draws no line cap.
      */
-    LINE_CAP_NONE(0),
+    NONE(0),
     /**
      * Draws the line cap as a box, slightly extending the first/last segment.
      */
-    LINE_CAP_BOX(1),
+    BOX(1),
     /**
      * Draws the line cap as a semicircle attached to the first/last segment.
      */
-    LINE_CAP_ROUND(2),
+    ROUND(2),
     ;
 
     public val id: Long
@@ -514,18 +520,18 @@ public open class Line2D : Node2D() {
     /**
      * Takes the left pixels of the texture and renders them over the whole polyline.
      */
-    LINE_TEXTURE_NONE(0),
+    NONE(0),
     /**
      * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be
      * [CanvasItem.TEXTURE_REPEAT_ENABLED] or [CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work
      * properly.
      */
-    LINE_TEXTURE_TILE(1),
+    TILE(1),
     /**
      * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node
      * must be [CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
-    LINE_TEXTURE_STRETCH(2),
+    STRETCH(2),
     ;
 
     public val id: Long

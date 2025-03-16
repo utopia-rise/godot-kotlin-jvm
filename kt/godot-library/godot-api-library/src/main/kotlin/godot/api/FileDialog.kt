@@ -82,6 +82,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * The file system access scope. See [Access] constants.
+   *
    * **Warning:** In Web builds, FileDialog cannot access the host file system. In sandboxed Linux
    * and macOS environments, [useNativeDialog] is automatically used to allow limited access to host
    * file system.
@@ -97,6 +98,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * If non-empty, the given sub-folder will be "root" of this [FileDialog], i.e. user won't be able
    * to go to its parent directory.
+   *
    * **Note:** This property is ignored by native file dialogs.
    */
   public final inline var rootSubfolder: String
@@ -111,6 +113,7 @@ public open class FileDialog : ConfirmationDialog() {
    * The available file type filters. Each filter string in the array should be formatted like this:
    * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
    * optional and can be omitted. Both file extensions and MIME type should be always set.
+   *
    * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
    */
@@ -126,6 +129,7 @@ public open class FileDialog : ConfirmationDialog() {
    * The filter for file names (case-insensitive). When set to a non-empty string, only files that
    * contains the substring will be shown. [filenameFilter] can be edited by the user with the filter
    * button at the top of the file dialog.
+   *
    * See also [filters], which should be used to restrict the file types that can be selected
    * instead of [filenameFilter] which is meant to be set by the user.
    */
@@ -150,6 +154,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * If `true`, the dialog will show hidden files.
+   *
    * **Note:** This property is ignored by native file dialogs on Android and Linux.
    */
   public final inline var showHiddenFiles: Boolean
@@ -163,13 +168,17 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * If `true`, and if supported by the current [DisplayServer], OS native dialog will be used
    * instead of custom one.
+   *
    * **Note:** On Android, it is only supported when using [ACCESS_FILESYSTEM]. For access mode
    * [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will fall back to custom FileDialog.
+   *
    * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file
    * system.
+   *
    * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
+   *
    * **Note:** Native dialogs are isolated from the base process, file dialog properties can't be
    * modified once the dialog is shown.
    */
@@ -183,6 +192,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * The current working directory of the file dialog.
+   *
    * **Note:** For native file dialogs, this property is only treated as a hint and may not be
    * respected by specific OS implementations.
    */
@@ -217,7 +227,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(243, scriptIndex)
+    createNativeObject(213, scriptIndex)
   }
 
   /**
@@ -231,8 +241,10 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Adds a comma-delimited file name [filter] option to the [FileDialog] with an optional
    * [description], which restricts what files can be picked.
+   *
    * A [filter] should be of the form `"filename.extension"`, where filename and extension can be
    * `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   *
    * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter
    * text "Images (*.png, *.jpg)".
    */
@@ -337,6 +349,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Adds an additional [OptionButton] to the file dialog. If [values] is empty, a [CheckBox] is
    * added instead.
+   *
    * [defaultValueIndex] should be an index of the value in the [values]. If [values] is empty it
    * should be either `1` (checked), or `0` (unchecked).
    */
@@ -416,8 +429,10 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   *
    * **Note:** Changes to this node are ignored by native file dialogs, use [addOption] to add
    * custom elements to the dialog instead.
    */
@@ -429,6 +444,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Returns the LineEdit for the selected file.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -492,6 +508,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Invalidate and update the current dialog content list.
+   *
    * **Note:** This method does nothing on native file dialogs.
    */
   public final fun invalidate(): Unit {
@@ -505,23 +522,23 @@ public open class FileDialog : ConfirmationDialog() {
     /**
      * The dialog allows selecting one, and only one file.
      */
-    FILE_MODE_OPEN_FILE(0),
+    OPEN_FILE(0),
     /**
      * The dialog allows selecting multiple files.
      */
-    FILE_MODE_OPEN_FILES(1),
+    OPEN_FILES(1),
     /**
      * The dialog only allows selecting a directory, disallowing the selection of any file.
      */
-    FILE_MODE_OPEN_DIR(2),
+    OPEN_DIR(2),
     /**
      * The dialog allows selecting one file or directory.
      */
-    FILE_MODE_OPEN_ANY(3),
+    OPEN_ANY(3),
     /**
      * The dialog will warn when a file exists.
      */
-    FILE_MODE_SAVE_FILE(4),
+    SAVE_FILE(4),
     ;
 
     public val id: Long
@@ -540,15 +557,15 @@ public open class FileDialog : ConfirmationDialog() {
     /**
      * The dialog only allows accessing files under the [Resource] path (`res://`).
      */
-    ACCESS_RESOURCES(0),
+    RESOURCES(0),
     /**
      * The dialog only allows accessing files under user data path (`user://`).
      */
-    ACCESS_USERDATA(1),
+    USERDATA(1),
     /**
      * The dialog allows accessing files on the whole file system.
      */
-    ACCESS_FILESYSTEM(2),
+    FILESYSTEM(2),
     ;
 
     public val id: Long

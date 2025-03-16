@@ -37,20 +37,23 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Native image datatype. Contains image data which can be converted to an [ImageTexture] and
  * provides commonly used *image processing* methods. The maximum width and height for an [Image] are
  * [MAX_WIDTH] and [MAX_HEIGHT].
+ *
  * An [Image] cannot be assigned to a texture property of an object directly (such as
  * [Sprite2D.texture]), and has to be converted manually to an [ImageTexture] first.
+ *
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations.
  * Larger images may fail to import.
  */
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(308, scriptIndex)
+    createNativeObject(282, scriptIndex)
   }
 
   /**
@@ -211,6 +214,7 @@ public open class Image : Resource() {
    * compressed, in a custom format, or if the image's width/height is `0`. Enabling [renormalize] when
    * generating mipmaps for normal map textures will make sure all resulting vector values are
    * normalized.
+   *
    * It is possible to check if the image has mipmaps by calling [hasMipmaps] or [getMipmapCount].
    * Calling [generateMipmaps] on an image that already has mipmaps will replace existing mipmaps in
    * the image.
@@ -257,9 +261,11 @@ public open class Image : Resource() {
    * Loads an image from file [path]. See
    * [url=$DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Supported
    * image formats[/url] for a list of supported image formats and limitations.
+   *
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external images at run-time, such as images located at the `user://` directory, and may not work
    * in exported projects.
+   *
    * See also [ImageTexture] description for usage examples.
    */
   public final fun load(path: String): Error {
@@ -291,6 +297,7 @@ public open class Image : Resource() {
    * (inclusive). Higher [quality] values result in better-looking output at the cost of larger file
    * sizes. Recommended [quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG
    * compression remains lossy.
+   *
    * **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the
    * image will still be saved, but the resulting JPEG file won't contain the alpha channel.
    */
@@ -306,6 +313,7 @@ public open class Image : Resource() {
    * `1.0` (inclusive). Higher [quality] values result in better-looking output at the cost of larger
    * byte array sizes (and therefore memory usage). Recommended [quality] values are between `0.75` and
    * `0.90`. Even at quality `1.00`, JPEG compression remains lossy.
+   *
    * **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the
    * image will still be saved, but the resulting byte array won't contain the alpha channel.
    */
@@ -320,6 +328,7 @@ public open class Image : Resource() {
    * Saves the image as an EXR file to [path]. If [grayscale] is `true` and the image has only one
    * channel, it will be saved explicitly as monochrome rather than one red channel. This function will
    * return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
+   *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will
    * return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
@@ -334,6 +343,7 @@ public open class Image : Resource() {
    * Saves the image as an EXR file to a byte array. If [grayscale] is `true` and the image has only
    * one channel, it will be saved explicitly as monochrome rather than one red channel. This function
    * will return an empty byte array if Godot was compiled without the TinyEXR module.
+   *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will
    * return an empty byte array when it is called from an exported project.
    */
@@ -348,6 +358,7 @@ public open class Image : Resource() {
    * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save
    * lossless. If [lossy] is `true`, the image will be saved lossy, using the [quality] setting between
    * `0.0` and `1.0` (inclusive). Lossless WebP offers more efficient compression than PNG.
+   *
    * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger
    * images.
    */
@@ -366,6 +377,7 @@ public open class Image : Resource() {
    * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless.
    * If [lossy] is `true`, the image will be saved lossy, using the [quality] setting between `0.0` and
    * `1.0` (inclusive). Lossless WebP offers more efficient compression than PNG.
+   *
    * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger
    * images.
    */
@@ -403,8 +415,8 @@ public open class Image : Resource() {
    * image is compressed, the original [source] must be specified.
    */
   @JvmOverloads
-  public final fun detectUsedChannels(source: CompressSource =
-      Image.CompressSource.COMPRESS_SOURCE_GENERIC): UsedChannels {
+  public final fun detectUsedChannels(source: CompressSource = Image.CompressSource.GENERIC):
+      UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(ptr, MethodBindings.detectUsedChannelsPtr, LONG)
     return Image.UsedChannels.from(TransferContext.readReturnValue(LONG) as Long)
@@ -413,14 +425,16 @@ public open class Image : Resource() {
   /**
    * Compresses the image to use less memory. Can not directly access pixel data while the image is
    * compressed. Returns error if the chosen compression mode is not available.
+   *
    * The [source] parameter helps to pick the best compression method for DXT and ETC2 formats. It
    * is ignored for ASTC compression.
+   *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   @JvmOverloads
   public final fun compress(
     mode: CompressMode,
-    source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
+    source: CompressSource = Image.CompressSource.GENERIC,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): Error {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
@@ -431,9 +445,11 @@ public open class Image : Resource() {
   /**
    * Compresses the image to use less memory. Can not directly access pixel data while the image is
    * compressed. Returns error if the chosen compression mode is not available.
+   *
    * This is an alternative to [compress] that lets the user supply the channels used in order for
    * the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this
    * argument is ignored.
+   *
    * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   @JvmOverloads
@@ -450,6 +466,7 @@ public open class Image : Resource() {
   /**
    * Decompresses the image if it is VRAM compressed in a supported format. Returns [OK] if the
    * format is supported, otherwise [ERR_UNAVAILABLE].
+   *
    * **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2
    * are not supported.
    */
@@ -551,6 +568,7 @@ public open class Image : Resource() {
 
   /**
    * Compute image metrics on the current image and the compared image.
+   *
    * The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.
    */
   public final fun computeImageMetrics(comparedImage: Image?, useLuma: Boolean):
@@ -564,6 +582,7 @@ public open class Image : Resource() {
    * Copies [srcRect] from [src] image to this image at coordinates [dst], clipped accordingly to
    * both image bounds. This image and [src] image **must** have the same format. [srcRect] with
    * non-positive size is treated as empty.
+   *
    * **Note:** The alpha channel data in [src] will overwrite the corresponding data in this image
    * at the target position. To blend alpha channels, use [blendRect] instead.
    */
@@ -670,6 +689,7 @@ public open class Image : Resource() {
 
   /**
    * Returns the color of the pixel at [point].
+   *
    * This is the same as [getPixel], but with a [Vector2i] argument instead of two integer
    * arguments.
    */
@@ -681,6 +701,7 @@ public open class Image : Resource() {
 
   /**
    * Returns the color of the pixel at `(x, y)`.
+   *
    * This is the same as [getPixelv], but with two integer arguments instead of a [Vector2i]
    * argument.
    */
@@ -693,16 +714,17 @@ public open class Image : Resource() {
   /**
    * Sets the [Color] of the pixel at [point] to [color].
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var img_width = 10
    * var img_height = 5
    * var img = Image.create(img_width, img_height, false, Image.FORMAT_RGBA8)
    *
    * img.set_pixelv(Vector2i(1, 2), Color.RED) # Sets the color at (1, 2) to red.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * int imgWidth = 10;
    * int imgHeight = 5;
    * var img = Image.Create(imgWidth, imgHeight, false, Image.Format.Rgba8);
@@ -721,16 +743,17 @@ public open class Image : Resource() {
   /**
    * Sets the [Color] of the pixel at `(x, y)` to [color].
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var img_width = 10
    * var img_height = 5
    * var img = Image.create(img_width, img_height, false, Image.FORMAT_RGBA8)
    *
    * img.set_pixel(1, 2, Color.RED) # Sets the color at (1, 2) to red.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * int imgWidth = 10;
    * int imgHeight = 5;
    * var img = Image.Create(imgWidth, imgHeight, false, Image.Format.Rgba8);
@@ -792,6 +815,7 @@ public open class Image : Resource() {
 
   /**
    * Loads an image from the binary contents of a TGA file.
+   *
    * **Note:** This method is only available in engine builds with the TGA module enabled. By
    * default, the TGA module is enabled, but it can be disabled at build-time using the
    * `module_tga_enabled=no` SCons option.
@@ -804,8 +828,10 @@ public open class Image : Resource() {
 
   /**
    * Loads an image from the binary contents of a BMP file.
+   *
    * **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit,
    * 24-bit, and 32-bit per pixel images are supported.
+   *
    * **Note:** This method is only available in engine builds with the BMP module enabled. By
    * default, the BMP module is enabled, but it can be disabled at build-time using the
    * `module_bmp_enabled=no` SCons option.
@@ -820,8 +846,10 @@ public open class Image : Resource() {
    * Loads an image from the binary contents of a
    * [url=https://github.com/KhronosGroup/KTX-Software]KTX[/url] file. Unlike most image formats, KTX
    * can store VRAM-compressed data and embed mipmaps.
+   *
    * **Note:** Godot's libktx implementation only supports 2D images. Cubemaps, texture arrays, and
    * de-padding are not supported.
+   *
    * **Note:** This method is only available in engine builds with the KTX module enabled. By
    * default, the KTX module is enabled, but it can be disabled at build-time using the
    * `module_ktx_enabled=no` SCons option.
@@ -834,8 +862,10 @@ public open class Image : Resource() {
 
   /**
    * Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).
+   *
    * **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be
    * `decompressed` before loading.
+   *
    * **Note:** This method is only available in engine builds with the SVG module enabled. By
    * default, the SVG module is enabled, but it can be disabled at build-time using the
    * `module_svg_enabled=no` SCons option.
@@ -849,6 +879,7 @@ public open class Image : Resource() {
 
   /**
    * Loads an image from the string contents of an SVG file (**.svg**).
+   *
    * **Note:** This method is only available in engine builds with the SVG module enabled. By
    * default, the SVG module is enabled, but it can be disabled at build-time using the
    * `module_svg_enabled=no` SCons option.
@@ -866,229 +897,238 @@ public open class Image : Resource() {
     /**
      * Texture format with a single 8-bit depth representing luminance.
      */
-    FORMAT_L8(0),
+    L8(0),
     /**
      * OpenGL texture format with two values, luminance and alpha each stored with 8 bits.
      */
-    FORMAT_LA8(1),
+    LA8(1),
     /**
      * OpenGL texture format `RED` with a single component and a bitdepth of 8.
      */
-    FORMAT_R8(2),
+    R8(2),
     /**
      * OpenGL texture format `RG` with two components and a bitdepth of 8 for each.
      */
-    FORMAT_RG8(3),
+    RG8(3),
     /**
      * OpenGL texture format `RGB` with three components, each with a bitdepth of 8.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_RGB8(4),
+    RGB8(4),
     /**
      * OpenGL texture format `RGBA` with four components, each with a bitdepth of 8.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_RGBA8(5),
+    RGBA8(5),
     /**
      * OpenGL texture format `RGBA` with four components, each with a bitdepth of 4.
      */
-    FORMAT_RGBA4444(6),
+    RGBA4444(6),
     /**
      * OpenGL texture format `RGB` with three components. Red and blue have a bitdepth of 5, and
      * green has a bitdepth of 6.
      */
-    FORMAT_RGB565(7),
+    RGB565(7),
     /**
      * OpenGL texture format `GL_R32F` where there's one component, a 32-bit floating-point value.
      */
-    FORMAT_RF(8),
+    RF(8),
     /**
      * OpenGL texture format `GL_RG32F` where there are two components, each a 32-bit floating-point
      * values.
      */
-    FORMAT_RGF(9),
+    RGF(9),
     /**
      * OpenGL texture format `GL_RGB32F` where there are three components, each a 32-bit
      * floating-point values.
      */
-    FORMAT_RGBF(10),
+    RGBF(10),
     /**
      * OpenGL texture format `GL_RGBA32F` where there are four components, each a 32-bit
      * floating-point values.
      */
-    FORMAT_RGBAF(11),
+    RGBAF(11),
     /**
      * OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision"
      * floating-point value.
      */
-    FORMAT_RH(12),
+    RH(12),
     /**
      * OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit
      * "half-precision" floating-point value.
      */
-    FORMAT_RGH(13),
+    RGH(13),
     /**
      * OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit
      * "half-precision" floating-point value.
      */
-    FORMAT_RGBH(14),
+    RGBH(14),
     /**
      * OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit
      * "half-precision" floating-point value.
      */
-    FORMAT_RGBAH(15),
+    RGBAH(15),
     /**
      * A special OpenGL texture format where the three color components have 9 bits of precision and
      * all three share a single 5-bit exponent.
      */
-    FORMAT_RGBE9995(16),
+    RGBE9995(16),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that
      * uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha
      * and color data being premultiplied with alpha.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_DXT1(17),
+    DXT1(17),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that
      * uses Block Compression 2, and color data is interpreted as not having been premultiplied by
      * alpha. Well suited for images with sharp alpha transitions between translucent and opaque areas.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_DXT3(18),
+    DXT3(18),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also
      * known as Block Compression 3 or BC3 that contains 64 bits of alpha channel data followed by 64
      * bits of DXT1-encoded color data. Color data is not premultiplied by alpha, same as DXT3. DXT5
      * generally produces superior results for transparent gradients compared to DXT3.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_DXT5(19),
+    DXT5(19),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture
      * Compression[/url], normalizing the red channel data using the same compression algorithm that
      * DXT5 uses for the alpha channel.
      */
-    FORMAT_RGTC_R(20),
+    RGTC_R(20),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture
      * Compression[/url], normalizing the red and green channel data using the same compression
      * algorithm that DXT5 uses for the alpha channel.
      */
-    FORMAT_RGTC_RG(21),
+    RGTC_RG(21),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
      * unsigned normalized RGBA components.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_BPTC_RGBA(22),
+    BPTC_RGBA(22),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
      * signed floating-point RGB components.
      */
-    FORMAT_BPTC_RGBF(23),
+    BPTC_RGBF(23),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
      * unsigned floating-point RGB components.
      */
-    FORMAT_BPTC_RGBFU(24),
+    BPTC_RGBFU(24),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture
      * Compression format 1[/url], also referred to as "ETC1", and is part of the OpenGL ES graphics
      * standard. This format cannot store an alpha channel.
      */
-    FORMAT_ETC(25),
+    ETC(25),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`R11_EAC` variant), which provides one channel of unsigned data.
      */
-    FORMAT_ETC2_R11(26),
+    ETC2_R11(26),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`SIGNED_R11_EAC` variant), which provides one channel of signed
      * data.
      */
-    FORMAT_ETC2_R11S(27),
+    ETC2_R11S(27),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RG11_EAC` variant), which provides two channels of unsigned data.
      */
-    FORMAT_ETC2_RG11(28),
+    ETC2_RG11(28),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`SIGNED_RG11_EAC` variant), which provides two channels of signed
      * data.
      */
-    FORMAT_ETC2_RG11S(29),
+    ETC2_RG11S(29),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGB8` variant), which is a follow-up of ETC1 and compresses RGB888
      * data.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_ETC2_RGB8(30),
+    ETC2_RGB8(30),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGBA8`variant), which compresses RGBA8888 data with full alpha
      * support.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_ETC2_RGBA8(31),
+    ETC2_RGBA8(31),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGB8_PUNCHTHROUGH_ALPHA1` variant), which compresses RGBA data to
      * make alpha either fully transparent or fully opaque.
+     *
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_ETC2_RGB8A1(32),
+    ETC2_RGB8A1(32),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGBA8` variant), which compresses RA data and interprets it as two
      * channels (red and green). See also [FORMAT_ETC2_RGBA8].
      */
-    FORMAT_ETC2_RA_AS_RG(33),
+    ETC2_RA_AS_RG(33),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also
      * known as Block Compression 3 or BC3, which compresses RA data and interprets it as two channels
      * (red and green). See also [FORMAT_DXT5].
      */
-    FORMAT_DXT5_RA_AS_RG(34),
+    DXT5_RA_AS_RG(34),
     /**
      * [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable
      * Texture Compression[/url]. This implements the 4×4 (high quality) mode.
      */
-    FORMAT_ASTC_4x4(35),
+    ASTC_4x4(35),
     /**
      * Same format as [FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR.
      */
-    FORMAT_ASTC_4x4_HDR(36),
+    ASTC_4x4_HDR(36),
     /**
      * [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable
      * Texture Compression[/url]. This implements the 8×8 (low quality) mode.
      */
-    FORMAT_ASTC_8x8(37),
+    ASTC_8x8(37),
     /**
      * Same format as [FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR.
      */
-    FORMAT_ASTC_8x8_HDR(38),
+    ASTC_8x8_HDR(38),
     /**
      * Represents the size of the [Format] enum.
      */
-    FORMAT_MAX(39),
+    MAX(39),
     ;
 
     public val id: Long
@@ -1121,13 +1161,17 @@ public open class Image : Resource() {
     /**
      * Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates
      * between them.
+     *
      * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer
      * aliasing artifacts.
+     *
      * If the image does not have mipmaps, they will be generated and used internally, but no
      * mipmaps will be generated on the resulting image.
+     *
      * **Note:** If you intend to scale multiple copies of the original image, it's better to call
      * [generateMipmaps]] on it in advance, to avoid wasting processing power in generating them again
      * and again.
+     *
      * On the other hand, if the image already has mipmaps, they will be used, and a new set will be
      * generated for the resulting image.
      */
@@ -1155,15 +1199,15 @@ public open class Image : Resource() {
     /**
      * Image does not have alpha.
      */
-    ALPHA_NONE(0),
+    NONE(0),
     /**
      * Image stores alpha in a single bit.
      */
-    ALPHA_BIT(1),
+    BIT(1),
     /**
      * Image uses alpha.
      */
-    ALPHA_BLEND(2),
+    BLEND(2),
     ;
 
     public val id: Long
@@ -1182,27 +1226,27 @@ public open class Image : Resource() {
     /**
      * Use S3TC compression.
      */
-    COMPRESS_S3TC(0),
+    S3TC(0),
     /**
      * Use ETC compression.
      */
-    COMPRESS_ETC(1),
+    ETC(1),
     /**
      * Use ETC2 compression.
      */
-    COMPRESS_ETC2(2),
+    ETC2(2),
     /**
      * Use BPTC compression.
      */
-    COMPRESS_BPTC(3),
+    BPTC(3),
     /**
      * Use ASTC compression.
      */
-    COMPRESS_ASTC(4),
+    ASTC(4),
     /**
      * Represents the size of the [CompressMode] enum.
      */
-    COMPRESS_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -1221,27 +1265,27 @@ public open class Image : Resource() {
     /**
      * The image only uses one channel for luminance (grayscale).
      */
-    USED_CHANNELS_L(0),
+    L(0),
     /**
      * The image uses two channels for luminance and alpha, respectively.
      */
-    USED_CHANNELS_LA(1),
+    LA(1),
     /**
      * The image only uses the red channel.
      */
-    USED_CHANNELS_R(2),
+    R(2),
     /**
      * The image uses two channels for red and green.
      */
-    USED_CHANNELS_RG(3),
+    RG(3),
     /**
      * The image uses three channels for red, green, and blue.
      */
-    USED_CHANNELS_RGB(4),
+    RGB(4),
     /**
      * The image uses four channels for red, green, blue, and alpha.
      */
-    USED_CHANNELS_RGBA(5),
+    RGBA(5),
     ;
 
     public val id: Long
@@ -1260,16 +1304,16 @@ public open class Image : Resource() {
     /**
      * Source texture (before compression) is a regular texture. Default for all textures.
      */
-    COMPRESS_SOURCE_GENERIC(0),
+    GENERIC(0),
     /**
      * Source texture (before compression) is in sRGB space.
      */
-    COMPRESS_SOURCE_SRGB(1),
+    SRGB(1),
     /**
      * Source texture (before compression) is a normal texture (e.g. it can be compressed into two
      * channels).
      */
-    COMPRESS_SOURCE_NORMAL(2),
+    NORMAL(2),
     ;
 
     public val id: Long
@@ -1320,6 +1364,7 @@ public open class Image : Resource() {
      * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
      * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
+    @JvmStatic
     public final fun create(
       width: Int,
       height: Int,
@@ -1335,6 +1380,7 @@ public open class Image : Resource() {
      * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
      * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
+    @JvmStatic
     public final fun createEmpty(
       width: Int,
       height: Int,
@@ -1351,6 +1397,7 @@ public open class Image : Resource() {
      * the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See
      * [generateMipmaps].
      */
+    @JvmStatic
     public final fun createFromData(
       width: Int,
       height: Int,
@@ -1366,6 +1413,7 @@ public open class Image : Resource() {
     /**
      * Creates a new [Image] and loads data from the specified file.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): Image? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)

@@ -34,15 +34,17 @@ import kotlin.jvm.JvmOverloads
 /**
  * This class represents WebSocket connection, and can be used as a WebSocket client (RFC
  * 6455-compliant) or as a remote peer of a WebSocket server.
+ *
  * You can send WebSocket binary frames using [PacketPeer.putPacket], and WebSocket text frames
  * using [send] (prefer text frames when interacting with text-based API). You can check the frame type
  * of the last packet via [wasStringPacket].
+ *
  * To start a WebSocket client, first call [connectToUrl], then regularly call [poll] (e.g. during
  * [Node] process). You can query the socket state via [getReadyState], get the number of pending
  * packets using [PacketPeer.getAvailablePacketCount], and retrieve them via [PacketPeer.getPacket].
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * extends Node
  *
  * var socket = WebSocketPeer.new()
@@ -84,6 +86,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * The extra HTTP headers to be sent during the WebSocket handshake.
+   *
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
   public final inline var handshakeHeaders: PackedStringArray
@@ -132,6 +135,7 @@ public open class WebSocketPeer : PacketPeer() {
   /**
    * The interval (in seconds) at which the peer will automatically send WebSocket "ping" control
    * frames. When set to `0`, no "ping" control frames will be sent.
+   *
    * **Note:** Has no effect in Web exports due to browser restrictions.
    */
   public final inline var heartbeatInterval: Double
@@ -143,7 +147,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(852, scriptIndex)
+    createNativeObject(850, scriptIndex)
   }
 
   /**
@@ -151,10 +155,12 @@ public open class WebSocketPeer : PacketPeer() {
    * connecting using the `wss://` protocol. You can pass the optional [tlsClientOptions] parameter to
    * customize the trusted certification authorities, or disable the common name verification. See
    * [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   *
    * **Note:** This method is non-blocking, and will return [OK] before the connection is
    * established as long as the provided parameters are valid and the peer is not in an invalid state
    * (e.g. already connected). Regularly call [poll] (e.g. during [Node] process) and check the result
    * of [getReadyState] to know whether the connection succeeds or fails.
+   *
    * **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [url] that
    * starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully
    * qualified domain name that matches the one defined in the server's TLS certificate. Do not connect
@@ -171,6 +177,7 @@ public open class WebSocketPeer : PacketPeer() {
    * Accepts a peer connection performing the HTTP handshake as a WebSocket server. The [stream]
    * must be a valid TCP stream retrieved via [TCPServer.takeConnection], or a TLS stream accepted via
    * [StreamPeerTLS.acceptStream].
+   *
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
   public final fun acceptStream(stream: StreamPeer?): Error {
@@ -185,7 +192,7 @@ public open class WebSocketPeer : PacketPeer() {
    */
   @JvmOverloads
   public final fun send(message: PackedByteArray, writeMode: WriteMode =
-      WebSocketPeer.WriteMode.WRITE_MODE_BINARY): Error {
+      WebSocketPeer.WriteMode.BINARY): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
     TransferContext.callMethod(ptr, MethodBindings.sendPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -225,8 +232,10 @@ public open class WebSocketPeer : PacketPeer() {
    * section 7.4 for a list of valid status codes). [reason] is the human readable reason for closing
    * the connection (can be any UTF-8 string that's smaller than 123 bytes). If [code] is negative, the
    * connection will be closed immediately without notifying the remote peer.
+   *
    * **Note:** To achieve a clean close, you will need to keep polling until [STATE_CLOSED] is
    * reached.
+   *
    * **Note:** The Web export might not support all status codes. Please refer to browser-specific
    * documentation for more details.
    */
@@ -238,6 +247,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Returns the IP address of the connected peer.
+   *
    * **Note:** Not available in the Web export.
    */
   public final fun getConnectedHost(): String {
@@ -248,6 +258,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Returns the remote port of the connected peer.
+   *
    * **Note:** Not available in the Web export.
    */
   public final fun getConnectedPort(): Int {
@@ -279,6 +290,7 @@ public open class WebSocketPeer : PacketPeer() {
   /**
    * Disable Nagle's algorithm on the underlying TCP socket (default). See
    * [StreamPeerTCP.setNoDelay] for more information.
+   *
    * **Note:** Not available in the Web export.
    */
   public final fun setNoDelay(enabled: Boolean): Unit {
@@ -398,12 +410,12 @@ public open class WebSocketPeer : PacketPeer() {
      * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is
      * allowed).
      */
-    WRITE_MODE_TEXT(0),
+    TEXT(0),
     /**
      * Specifies that WebSockets messages should be transferred as binary payload (any byte
      * combination is allowed).
      */
-    WRITE_MODE_BINARY(1),
+    BINARY(1),
     ;
 
     public val id: Long
@@ -422,20 +434,20 @@ public open class WebSocketPeer : PacketPeer() {
     /**
      * Socket has been created. The connection is not yet open.
      */
-    STATE_CONNECTING(0),
+    CONNECTING(0),
     /**
      * The connection is open and ready to communicate.
      */
-    STATE_OPEN(1),
+    OPEN(1),
     /**
      * The connection is in the process of closing. This means a close request has been sent to the
      * remote peer but confirmation has not been received.
      */
-    STATE_CLOSING(2),
+    CLOSING(2),
     /**
      * The connection is closed or couldn't be opened.
      */
-    STATE_CLOSED(3),
+    CLOSED(3),
     ;
 
     public val id: Long

@@ -62,7 +62,7 @@ public open class MeshTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(378, scriptIndex)
+    createNativeObject(357, scriptIndex)
   }
 
   /**

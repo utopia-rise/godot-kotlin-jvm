@@ -18,6 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -26,11 +27,11 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmOverloads
 
 /**
  * [TranslationDomain] is a self-contained collection of [Translation] resources. Translations can
  * be added to or removed from it.
+ *
  * If you're working with the main translation domain, it is more convenient to use the wrap methods
  * on [TranslationServer].
  */
@@ -40,6 +41,7 @@ public open class TranslationDomain : RefCounted() {
    * If `true`, enables pseudolocalization for the project. This can be used to spot untranslatable
    * strings or layout issues that may occur once the project is localized to languages that have
    * longer strings than the source language.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -54,6 +56,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Replace all characters with their accented variants during pseudolocalization.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -69,6 +72,7 @@ public open class TranslationDomain : RefCounted() {
   /**
    * Double vowels in strings during pseudolocalization to simulate the lengthening of text due to
    * localization.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -85,6 +89,7 @@ public open class TranslationDomain : RefCounted() {
    * If `true`, emulate bidirectional (right-to-left) text when pseudolocalization is enabled. This
    * can be used to spot issues with RTL layout and UI mirroring that will crop up if the project is
    * localized to RTL languages such as Arabic or Hebrew.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -99,6 +104,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Replace all characters in the string with `*`. Useful for finding non-localizable strings.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -114,6 +120,7 @@ public open class TranslationDomain : RefCounted() {
   /**
    * Skip placeholders for string formatting like `&#37;s` or `&#37;f` during pseudolocalization.
    * Useful to identify strings which need additional control characters to display correctly.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -129,6 +136,7 @@ public open class TranslationDomain : RefCounted() {
   /**
    * The expansion ratio to use during pseudolocalization. A value of `0.3` is sufficient for most
    * practical purposes, and will increase the length of each string by 30&#37;.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -143,6 +151,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Prefix that will be prepended to the pseudolocalized string.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -157,6 +166,7 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Suffix that will be appended to the pseudolocalized string.
+   *
    * **Note:** Updating this property does not automatically update texts in the scene tree. Please
    * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have
    * finished modifying pseudolocalization related options.
@@ -170,7 +180,7 @@ public open class TranslationDomain : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(700, scriptIndex)
+    createNativeObject(697, scriptIndex)
   }
 
   /**
@@ -210,7 +220,6 @@ public open class TranslationDomain : RefCounted() {
   /**
    * Returns the current locale's translation for the given message and context.
    */
-  @JvmOverloads
   public final fun translate(message: StringName, context: StringName = StringName("")):
       StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
@@ -220,10 +229,10 @@ public open class TranslationDomain : RefCounted() {
 
   /**
    * Returns the current locale's translation for the given message, plural message and context.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */
-  @JvmOverloads
   public final fun translatePlural(
     message: StringName,
     messagePlural: StringName,
@@ -344,6 +353,32 @@ public open class TranslationDomain : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.pseudolocalizePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  /**
+   * Returns the current locale's translation for the given message and context.
+   */
+  public final fun translate(message: String, context: String): StringName =
+      translate(message.asCachedStringName(), context.asCachedStringName())
+
+  /**
+   * Returns the current locale's translation for the given message, plural message and context.
+   *
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
+   */
+  public final fun translatePlural(
+    message: String,
+    messagePlural: String,
+    n: Int,
+    context: String,
+  ): StringName =
+      translatePlural(message.asCachedStringName(), messagePlural.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Returns the pseudolocalized string based on the [message] passed in.
+   */
+  public final fun pseudolocalize(message: String): StringName =
+      pseudolocalize(message.asCachedStringName())
 
   public companion object
 

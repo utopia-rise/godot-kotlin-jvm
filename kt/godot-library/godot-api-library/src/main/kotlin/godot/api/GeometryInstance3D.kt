@@ -21,12 +21,14 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -39,6 +41,7 @@ import kotlin.jvm.JvmName
 public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The material override for the whole geometry.
+   *
    * If a material is assigned to this property, it will be used instead of any material set in any
    * material slot of the mesh.
    */
@@ -52,6 +55,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   /**
    * The material overlay for the whole geometry.
+   *
    * If a material is assigned to this property, it will be rendered on top of any other active
    * material for all the surfaces.
    */
@@ -70,9 +74,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * slower to render and can exhibit rendering issues due to incorrect transparency sorting. However,
    * unlike using a transparent material, setting [transparency] to a value greater than `0.0`
    * (exclusive) will *not* disable shadow rendering.
+   *
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
+   *
    * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
    * make transparent materials more opaque than they originally are.
+   *
    * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
    * Compatibility rendering method, [transparency] is ignored and is considered as always being `0.0`.
    */
@@ -129,6 +136,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force
    * the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger
    * values will keep the mesh in a higher level of detail at farther distances.
+   *
    * Useful for testing level of detail transitions in the editor.
    */
   public final inline var lodBias: Float
@@ -142,6 +150,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * If `true`, disables occlusion culling for this instance. Useful for gizmos that must be
    * rendered even when occlusion culling is in use.
+   *
    * **Note:** [ignoreOcclusionCulling] does not affect frustum culling (which is what happens when
    * an object is not visible given the camera's angle). To avoid frustum culling, set [customAabb] to
    * a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000,
@@ -158,6 +167,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The global illumination mode to use for the whole geometry. To avoid inconsistent results, use
    * a mode that matches the purpose of the mesh during gameplay (static/dynamic).
+   *
    * **Note:** Lights' bake mode will also affect the global illumination rendering. See
    * [Light3D.lightBakeMode].
    */
@@ -176,6 +186,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * mesh in the lightmap texture, which increases the memory, storage, and bake time requirements.
    * When using a single mesh at different scales, consider adjusting this value to keep the lightmap
    * texel density consistent across meshes.
+   *
    * For example, doubling [giLightmapTexelScale] doubles the lightmap texture resolution for this
    * object *on each axis*, so it will *quadruple* the texel count.
    */
@@ -214,6 +225,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeBegin] threshold. The GeometryInstance3D will only change its
    * visibility state when it goes over or under the [visibilityRangeBegin] threshold by this amount.
+   *
    * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis
    * distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or
    * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
@@ -242,6 +254,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeEnd] threshold. The GeometryInstance3D will only change its
    * visibility state when it goes over or under the [visibilityRangeEnd] threshold by this amount.
+   *
    * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis
    * distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or
    * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
@@ -268,7 +281,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(285, scriptIndex)
+    createNativeObject(258, scriptIndex)
   }
 
   /**
@@ -416,10 +429,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
    * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
    * using the same [ShaderMaterial].
+   *
    * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
    * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   *
    * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
    * (not the capitalized name in the inspector).
+   *
    * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
    * but not for Fog, Sky, or Particles shaders.
    */
@@ -503,6 +519,30 @@ public open class GeometryInstance3D : VisualInstance3D() {
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
+  /**
+   * Set the value of a shader uniform for this instance only
+   * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
+   * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
+   * using the same [ShaderMaterial].
+   *
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
+   * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   *
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   *
+   * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
+   * but not for Fog, Sky, or Particles shaders.
+   */
+  public final fun setInstanceShaderParameter(name: String, `value`: Any?) =
+      setInstanceShaderParameter(name.asCachedStringName(), value)
+
+  /**
+   * Get the value of a shader parameter as set on this instance.
+   */
+  public final fun getInstanceShaderParameter(name: String): Any? =
+      getInstanceShaderParameter(name.asCachedStringName())
+
   public enum class ShadowCastingSetting(
     id: Long,
   ) {
@@ -510,25 +550,28 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Will not cast any shadows. Use this to improve performance for small geometry that is
      * unlikely to cast noticeable shadows (such as debris).
      */
-    SHADOW_CASTING_SETTING_OFF(0),
+    OFF(0),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
+     *
      * Will take culling into account, so faces not being rendered will not be taken into account
      * when shadow casting.
      */
-    SHADOW_CASTING_SETTING_ON(1),
+    ON(1),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
+     *
      * Will not take culling into account, so all faces will be taken into account when shadow
      * casting.
      */
-    SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
+    DOUBLE_SIDED(2),
     /**
      * Will only show the shadows casted from this object.
+     *
      * In other words, the actual mesh will not be visible, only the shadows casted from the mesh
      * will be.
      */
-    SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
+    SHADOWS_ONLY(3),
     ;
 
     public val id: Long
@@ -549,13 +592,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will *receive*
      * indirect lighting and reflections but the geometry will not be considered in GI baking.
      */
-    GI_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Baked global illumination mode. Use for static objects that contribute to global illumination
      * (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and
      * [LightmapGI].
      */
-    GI_MODE_STATIC(1),
+    STATIC(1),
     /**
      * Dynamic global illumination mode. Use for dynamic objects that contribute to global
      * illumination. This GI mode is only effective when using [VoxelGI], but it has a higher
@@ -563,7 +606,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * [GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using
      * lightmap probes instead of using the baked lightmap texture.
      */
-    GI_MODE_DYNAMIC(2),
+    DYNAMIC(2),
     ;
 
     public val id: Long
@@ -601,7 +644,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     /**
      * Represents the size of the [LightmapScale] enum.
      */
-    LIGHTMAP_SCALE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -623,26 +666,28 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * on how the LOD meshes are authored. See [visibilityRangeBegin] and [Node3D.visibilityParent] for
      * more information.
      */
-    VISIBILITY_RANGE_FADE_DISABLED(0),
+    DISABLED(0),
     /**
      * Will fade-out itself when reaching the limits of its own visibility range. This is slower
      * than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range
      * is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     *
      * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
      */
-    VISIBILITY_RANGE_FADE_SELF(1),
+    SELF(1),
     /**
      * Will fade-in its visibility dependencies (see [Node3D.visibilityParent]) when reaching the
      * limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it
      * can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin]
      * and [visibilityRangeEndMargin].
+     *
      * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
      */
-    VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
+    DEPENDENCIES(2),
     ;
 
     public val id: Long

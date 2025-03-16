@@ -27,10 +27,14 @@ import kotlin.jvm.JvmName
 
 /**
  * [SystemFont] loads a font from a system font with the first matching name from [fontNames].
+ *
  * It will attempt to match font style, but it's not guaranteed.
+ *
  * The returned font might be part of a font collection or be a variable font with OpenType
  * "weight", "width" and/or "italic" features set.
+ *
  * You can create [FontVariation] of the system font for precise control over its features.
+ *
  * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will
  * fallback to default theme font.
  */
@@ -226,7 +230,7 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(659, scriptIndex)
+    createNativeObject(653, scriptIndex)
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {

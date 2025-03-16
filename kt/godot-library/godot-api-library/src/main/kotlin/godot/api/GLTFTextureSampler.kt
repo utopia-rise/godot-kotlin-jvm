@@ -71,7 +71,7 @@ public open class GLTFTextureSampler : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(271, scriptIndex)
+    createNativeObject(242, scriptIndex)
   }
 
   public final fun getMagFilter(): Int {

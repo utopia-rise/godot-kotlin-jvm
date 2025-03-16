@@ -17,31 +17,33 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
  * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to
  * zero on creation. For a binary version, see [Mutex].
+ *
  * **Warning:** Semaphores must be used carefully to avoid deadlocks.
+ *
  * **Warning:** To guarantee that the operating system is able to perform proper cleanup (no
  * crashes, no deadlocks), these conditions must be met:
+ *
  * - When a [Semaphore]'s reference count reaches zero and it is therefore destroyed, no threads
  * must be waiting on it.
+ *
  * - When a [Thread]'s reference count reaches zero and it is therefore destroyed, it must not be
  * waiting on any semaphore.
  */
 @GodotBaseType
 public open class Semaphore : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(588, scriptIndex)
+    createNativeObject(582, scriptIndex)
   }
 
   /**
    * Waits for the [Semaphore], if its value is zero, blocks until non-zero.
    */
-  @JvmName("semaphoreWait")
-  public final fun wait(): Unit {
+  public final fun waitFor(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.waitPtr, NIL)
   }

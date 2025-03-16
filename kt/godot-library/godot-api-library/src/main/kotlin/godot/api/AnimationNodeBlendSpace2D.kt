@@ -31,10 +31,12 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A resource used by [AnimationNodeBlendTree].
+ *
  * [AnimationNodeBlendSpace2D] represents a virtual 2D space on which [AnimationRootNode]s are
  * placed. Outputs the linear blend of the three adjacent animations using a [Vector2] weight. Adjacent
  * in this context means the three [AnimationRootNode]s making up the triangle that contains the
  * current value.
+ *
  * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by
  * setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate
  * the blend space by hand.
@@ -130,6 +132,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
+   *
    * If `true`, forcing the blended animations to advance frame.
    */
   public final inline var sync: Boolean
@@ -141,7 +144,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(58, scriptIndex)
+    createNativeObject(22, scriptIndex)
   }
 
   /**
@@ -418,17 +421,17 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     /**
      * The interpolation between animations is linear.
      */
-    BLEND_MODE_INTERPOLATED(0),
+    INTERPOLATED(0),
     /**
      * The blend space plays the animation of the animation node which blending position is closest
      * to. Useful for frame-by-frame 2D animations.
      */
-    BLEND_MODE_DISCRETE(1),
+    DISCRETE(1),
     /**
      * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's
      * playback position.
      */
-    BLEND_MODE_DISCRETE_CARRY(2),
+    DISCRETE_CARRY(2),
     ;
 
     public val id: Long

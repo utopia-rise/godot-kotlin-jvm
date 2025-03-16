@@ -25,6 +25,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -38,8 +39,10 @@ import kotlin.jvm.JvmName
 /**
  * An instance of this object represents a device that is tracked, such as a controller or anchor
  * point. HMDs aren't represented here as they are handled internally.
+ *
  * As controllers are turned on and the [XRInterface] detects them, instances of this object are
  * automatically added to this list of active tracking objects accessible through the [XRServer].
+ *
  * The [XRNode3D] and [XRAnchor3D] both consume objects of this type and should be used in your
  * project. The positional trackers are just under-the-hood objects that make this all work. These are
  * mostly exposed so that GDExtension-based interfaces can interact with them.
@@ -106,7 +109,7 @@ public open class XRPositionalTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(877, scriptIndex)
+    createNativeObject(876, scriptIndex)
   }
 
   public final fun getTrackerProfile(): String {
@@ -193,25 +196,68 @@ public open class XRPositionalTracker : XRTracker() {
     TransferContext.callMethod(ptr, MethodBindings.setInputPtr, NIL)
   }
 
+  /**
+   * Returns `true` if the tracker is available and is currently tracking the bound [name] pose.
+   */
+  public final fun hasPose(name: String): Boolean = hasPose(name.asCachedStringName())
+
+  /**
+   * Returns the current [XRPose] state object for the bound [name] pose.
+   */
+  public final fun getPose(name: String): XRPose? = getPose(name.asCachedStringName())
+
+  /**
+   * Marks this pose as invalid, we don't clear the last reported state but it allows users to
+   * decide if trackers need to be hidden if we lose tracking or just remain at their last known
+   * position.
+   */
+  public final fun invalidatePose(name: String) = invalidatePose(name.asCachedStringName())
+
+  /**
+   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
+   * pose. This method is called by a [XRInterface] implementation and should not be used directly.
+   */
+  public final fun setPose(
+    name: String,
+    transform: Transform3D,
+    linearVelocity: Vector3,
+    angularVelocity: Vector3,
+    trackingConfidence: XRPose.TrackingConfidence,
+  ) =
+      setPose(name.asCachedStringName(), transform, linearVelocity, angularVelocity, trackingConfidence)
+
+  /**
+   * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending
+   * on whether the input is a button, trigger or thumbstick/thumbpad.
+   */
+  public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
+
+  /**
+   * Changes the value for the given input. This method is called by a [XRInterface] implementation
+   * and should not be used directly.
+   */
+  public final fun setInput(name: String, `value`: Any?) =
+      setInput(name.asCachedStringName(), value)
+
   public enum class TrackerHand(
     id: Long,
   ) {
     /**
      * The hand this tracker is held in is unknown or not applicable.
      */
-    TRACKER_HAND_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * This tracker is the left hand controller.
      */
-    TRACKER_HAND_LEFT(1),
+    LEFT(1),
     /**
      * This tracker is the right hand controller.
      */
-    TRACKER_HAND_RIGHT(2),
+    RIGHT(2),
     /**
      * Represents the size of the [TrackerHand] enum.
      */
-    TRACKER_HAND_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

@@ -19,12 +19,13 @@ import kotlin.Unit
 
 /**
  * Abstract render data object, exists for the duration of rendering a single viewport.
+ *
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
 public open class RenderData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(553, scriptIndex)
+    createNativeObject(543, scriptIndex)
   }
 
   /**

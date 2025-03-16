@@ -30,8 +30,10 @@ import kotlin.jvm.JvmName
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve
  * organization.
+ *
  * Nodes attached to the frame will move with it when it is dragged and it can automatically resize
  * to enclose all attached nodes.
+ *
  * Its title, description and color can be customized.
  */
 @GodotBaseType
@@ -93,7 +95,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(759, scriptIndex)
+    createNativeObject(757, scriptIndex)
   }
 
   /**

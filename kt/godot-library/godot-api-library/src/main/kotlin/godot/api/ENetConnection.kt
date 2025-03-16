@@ -38,13 +38,14 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(231, scriptIndex)
+    createNativeObject(199, scriptIndex)
   }
 
   /**
    * Creates an ENetHost bound to the given [bindAddress] and [bindPort] that allows up to
    * [maxPeers] connected peers, each allocating up to [maxChannels] channels, optionally limiting
    * bandwidth to [inBandwidth] and [outBandwidth] (if greater than zero).
+   *
    * **Note:** It is necessary to create a host in both client and server in order to establish a
    * connection.
    */
@@ -66,8 +67,10 @@ public open class ENetConnection : RefCounted() {
    * Creates an ENetHost that allows up to [maxPeers] connected peers, each allocating up to
    * [maxChannels] channels, optionally limiting bandwidth to [inBandwidth] and [outBandwidth] (if
    * greater than zero).
+   *
    * This method binds a random available dynamic UDP port on the host machine at the *unspecified*
    * address. Use [createHostBound] to specify the address and port.
+   *
    * **Note:** It is necessary to create a host in both client and server in order to establish a
    * connection.
    */
@@ -95,6 +98,7 @@ public open class ENetConnection : RefCounted() {
    * Initiates a connection to a foreign [address] using the specified [port] and allocating the
    * requested [channels]. Optional [data] can be passed during connection in the form of a 32 bit
    * integer.
+   *
    * **Note:** You must call either [createHost] or [createHostBound] on both ends before calling
    * this method.
    */
@@ -116,7 +120,9 @@ public open class ENetConnection : RefCounted() {
    * the [ENetPacketPeer] which generated the event, the event associated data (if any), the event
    * associated channel (if any). If the generated event is [EVENT_RECEIVE], the received packet will
    * be queued to the associated [ENetPacketPeer].
+   *
    * Call this function regularly to handle connections, disconnections, and to receive new packets.
+   *
    * **Note:** This method must be called on both ends involved in the event (sending and receiving
    * hosts).
    */
@@ -169,9 +175,11 @@ public open class ENetConnection : RefCounted() {
    * Sets the compression method used for network packets. These have different tradeoffs of
    * compression speed versus bandwidth, you may need to test which one works best for your use case if
    * you use compression at all.
+   *
    * **Note:** Most games' network design involve sending many small packets frequently (smaller
    * than 4 KB each). If in doubt, it is recommended to keep the default compression algorithm as it
    * works best on these small packets.
+   *
    * **Note:** The compression mode must be set to the same value on both the server and all its
    * clients. Clients will fail to connect if the compression mode set on the client differs from the
    * one set on the server.
@@ -208,6 +216,7 @@ public open class ENetConnection : RefCounted() {
 
   /**
    * Configures the DTLS server to automatically drop new connections.
+   *
    * **Note:** This method is only relevant after calling [dtlsServerSetup].
    */
   public final fun refuseNewConnections(refuse: Boolean): Unit {
@@ -244,6 +253,7 @@ public open class ENetConnection : RefCounted() {
 
   /**
    * Returns the list of peers associated with this host.
+   *
    * **Note:** This list might include some peers that are not fully connected or are still being
    * disconnected.
    */
@@ -256,9 +266,11 @@ public open class ENetConnection : RefCounted() {
   /**
    * Sends a [packet] toward a destination from the address and port currently bound by this
    * ENetConnection instance.
+   *
    * This is useful as it serves to establish entries in NAT routing tables on all devices between
    * this bound instance and the public facing internet, allowing a prospective client's connection
    * packets to be routed backward through the NAT device(s) between the public internet and this host.
+   *
    * This requires forward knowledge of a prospective client's address and communication port as
    * seen by the public internet - after any NAT devices have handled their connection request. This
    * information can be obtained by a [url=https://en.wikipedia.org/wiki/STUN]STUN[/url] service, and
@@ -283,28 +295,28 @@ public open class ENetConnection : RefCounted() {
      * resources. This option may also be used to make network debugging using tools like Wireshark
      * easier.
      */
-    COMPRESS_NONE(0),
+    NONE(0),
     /**
      * ENet's built-in range encoding. Works well on small packets, but is not the most efficient
      * algorithm on packets larger than 4 KB.
      */
-    COMPRESS_RANGE_CODER(1),
+    RANGE_CODER(1),
     /**
      * [url=https://fastlz.org/]FastLZ[/url] compression. This option uses less CPU resources
      * compared to [COMPRESS_ZLIB], at the expense of using more bandwidth.
      */
-    COMPRESS_FASTLZ(2),
+    FASTLZ(2),
     /**
      * [url=https://www.zlib.net/]Zlib[/url] compression. This option uses less bandwidth compared
      * to [COMPRESS_FASTLZ], at the expense of using more CPU resources.
      */
-    COMPRESS_ZLIB(3),
+    ZLIB(3),
     /**
      * [url=https://facebook.github.io/zstd/]Zstandard[/url] compression. Note that this algorithm
      * is not very efficient on packets smaller than 4 KB. Therefore, it's recommended to use other
      * compression algorithms in most cases.
      */
-    COMPRESS_ZSTD(4),
+    ZSTD(4),
     ;
 
     public val id: Long
@@ -324,16 +336,16 @@ public open class ENetConnection : RefCounted() {
      * An error occurred during [service]. You will likely need to [destroy] the host and recreate
      * it.
      */
-    EVENT_ERROR(-1),
+    ERROR(-1),
     /**
      * No event occurred within the specified time limit.
      */
-    EVENT_NONE(0),
+    NONE(0),
     /**
      * A connection request initiated by enet_host_connect has completed. The array will contain the
      * peer which successfully connected.
      */
-    EVENT_CONNECT(1),
+    CONNECT(1),
     /**
      * A peer has disconnected. This event is generated on a successful completion of a disconnect
      * initiated by [ENetPacketPeer.peerDisconnect], if a peer has timed out, or if a connection
@@ -341,13 +353,13 @@ public open class ENetConnection : RefCounted() {
      * disconnected. The data field contains user supplied data describing the disconnection, or 0, if
      * none is available.
      */
-    EVENT_DISCONNECT(2),
+    DISCONNECT(2),
     /**
      * A packet has been received from a peer. The array will contain the peer which sent the packet
      * and the channel number upon which the packet was received. The received packet will be queued to
      * the associated [ENetPacketPeer].
      */
-    EVENT_RECEIVE(3),
+    RECEIVE(3),
     ;
 
     public val id: Long
@@ -366,19 +378,19 @@ public open class ENetConnection : RefCounted() {
     /**
      * Total data sent.
      */
-    HOST_TOTAL_SENT_DATA(0),
+    TOTAL_SENT_DATA(0),
     /**
      * Total UDP packets sent.
      */
-    HOST_TOTAL_SENT_PACKETS(1),
+    TOTAL_SENT_PACKETS(1),
     /**
      * Total data received.
      */
-    HOST_TOTAL_RECEIVED_DATA(2),
+    TOTAL_RECEIVED_DATA(2),
     /**
      * Total UDP packets received.
      */
-    HOST_TOTAL_RECEIVED_PACKETS(3),
+    TOTAL_RECEIVED_PACKETS(3),
     ;
 
     public val id: Long

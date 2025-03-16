@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRActionBindingModifier : OpenXRBindingModifier() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(428, scriptIndex)
+    createNativeObject(412, scriptIndex)
   }
 
   public companion object

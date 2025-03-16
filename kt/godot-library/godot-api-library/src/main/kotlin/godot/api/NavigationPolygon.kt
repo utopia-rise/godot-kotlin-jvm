@@ -27,11 +27,13 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -39,11 +41,12 @@ import kotlin.jvm.JvmName
 /**
  * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],
  * or by adding vertices and convex polygon indices arrays manually.
+ *
  * To bake a navigation mesh at least one outline needs to be added that defines the outer bounds of
  * the baked area.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
  * var bounding_outline = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
  * Vector2(50, 0)])
@@ -52,8 +55,9 @@ import kotlin.jvm.JvmName
  * NavigationMeshSourceGeometryData2D.new());
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var newNavigationMesh = new NavigationPolygon();
  * Vector2[] boundingOutline = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
  * Vector2(50, 0)];
@@ -65,8 +69,8 @@ import kotlin.jvm.JvmName
  *
  * Adding vertices and polygon indices manually.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
  * var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
  * Vector2(50, 0)])
@@ -75,8 +79,9 @@ import kotlin.jvm.JvmName
  * new_navigation_mesh.add_polygon(new_polygon_indices)
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var newNavigationMesh = new NavigationPolygon();
  * Vector2[] newVertices = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
  * Vector2(50, 0)];
@@ -122,6 +127,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
+   *
    * Only used when [parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
    * [PARSED_GEOMETRY_BOTH].
    */
@@ -146,6 +152,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The group name of nodes that should be parsed for baking source geometry.
+   *
    * Only used when [sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
@@ -172,6 +179,7 @@ public open class NavigationPolygon : Resource() {
   /**
    * The size of the non-navigable border around the bake bounding area defined by the [bakingRect]
    * [Rect2].
+   *
    * In conjunction with the [bakingRect] the border size can be used to bake tile aligned
    * navigation meshes without the tile edges being shrunk by [agentRadius].
    */
@@ -220,7 +228,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(407, scriptIndex)
+    createNativeObject(388, scriptIndex)
   }
 
   /**
@@ -545,21 +553,24 @@ public open class NavigationPolygon : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
+  public final fun setSourceGeometryGroupName(groupName: String) =
+      setSourceGeometryGroupName(groupName.asCachedStringName())
+
   public enum class SamplePartitionType(
     id: Long,
   ) {
     /**
      * Convex partitioning that yields navigation mesh with convex polygons.
      */
-    SAMPLE_PARTITION_CONVEX_PARTITION(0),
+    CONVEX_PARTITION(0),
     /**
      * Triangulation partitioning that yields navigation mesh with triangle polygons.
      */
-    SAMPLE_PARTITION_TRIANGULATE(1),
+    TRIANGULATE(1),
     /**
      * Represents the size of the [SamplePartitionType] enum.
      */
-    SAMPLE_PARTITION_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -578,22 +589,23 @@ public open class NavigationPolygon : Resource() {
     /**
      * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
      * [MultiMeshInstance2D], and [TileMap] nodes.
+     *
      * Meshes are only parsed when they use a 2D vertices surface format.
      */
-    PARSED_GEOMETRY_MESH_INSTANCES(0),
+    MESH_INSTANCES(0),
     /**
      * Parses [StaticBody2D] and [TileMap] colliders as obstruction geometry. The collider should be
      * in any of the layers specified by [parsedCollisionMask].
      */
-    PARSED_GEOMETRY_STATIC_COLLIDERS(1),
+    STATIC_COLLIDERS(1),
     /**
      * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
-    PARSED_GEOMETRY_BOTH(2),
+    BOTH(2),
     /**
      * Represents the size of the [ParsedGeometryType] enum.
      */
-    PARSED_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -612,20 +624,20 @@ public open class NavigationPolygon : Resource() {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
-    SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
+    ROOT_NODE_CHILDREN(0),
     /**
      * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
      * by [sourceGeometryGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
+    GROUPS_WITH_CHILDREN(1),
     /**
      * Uses nodes in a group for geometry. The group is specified by [sourceGeometryGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
+    GROUPS_EXPLICIT(2),
     /**
      * Represents the size of the [SourceGeometryMode] enum.
      */
-    SOURCE_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

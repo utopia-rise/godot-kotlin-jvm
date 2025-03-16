@@ -37,9 +37,11 @@ import kotlin.jvm.JvmName
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,
  * Godot will start capturing frames from the camera which can then be used. See also [CameraServer].
+ *
  * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be
  * combined in a shader. Godot does this automatically for you if you set the environment to show the
  * camera image in the background.
+ *
  * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms
  * no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
  * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
@@ -87,7 +89,7 @@ public open class CameraFeed : RefCounted() {
     get() = getFormats()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(167, scriptIndex)
+    createNativeObject(132, scriptIndex)
   }
 
   /**
@@ -119,13 +121,14 @@ public open class CameraFeed : RefCounted() {
    * Called when the camera feed is activated.
    */
   public open fun _activateFeed(): Boolean {
-    throw NotImplementedError("_activate_feed is not implemented for CameraFeed")
+    throw NotImplementedError("_activateFeed is not implemented for CameraFeed")
   }
 
   /**
    * Called when the camera feed is deactivated.
    */
   public open fun _deactivateFeed(): Unit {
+    throw NotImplementedError("_deactivateFeed is not implemented for CameraFeed")
   }
 
   /**
@@ -246,8 +249,11 @@ public open class CameraFeed : RefCounted() {
    * Sets the feed format parameters for the given index in the [formats] array. Returns `true` on
    * success. By default YUYV encoded stream is transformed to FEED_RGB. YUYV encoded stream output
    * format can be changed with [parameters].output value:
+   *
    * `separate` will result in FEED_YCBCR_SEP
+   *
    * `grayscale` will result in desaturated FEED_RGB
+   *
    * `copy` will result in FEED_YCBCR
    */
   public final fun setFormat(index: Int, parameters: Dictionary<Any?, Any?>): Boolean {
@@ -262,23 +268,23 @@ public open class CameraFeed : RefCounted() {
     /**
      * No image set for the feed.
      */
-    FEED_NOIMAGE(0),
+    NOIMAGE(0),
     /**
      * Feed supplies RGB images.
      */
-    FEED_RGB(1),
+    RGB(1),
     /**
      * Feed supplies YCbCr images that need to be converted to RGB.
      */
-    FEED_YCBCR(2),
+    YCBCR(2),
     /**
      * Feed supplies separate Y and CbCr images that need to be combined and converted to RGB.
      */
-    FEED_YCBCR_SEP(3),
+    YCBCR_SEP(3),
     /**
      * Feed supplies external image.
      */
-    FEED_EXTERNAL(4),
+    EXTERNAL(4),
     ;
 
     public val id: Long
@@ -297,15 +303,15 @@ public open class CameraFeed : RefCounted() {
     /**
      * Unspecified position.
      */
-    FEED_UNSPECIFIED(0),
+    UNSPECIFIED(0),
     /**
      * Camera is mounted at the front of the device.
      */
-    FEED_FRONT(1),
+    FRONT(1),
     /**
      * Camera is mounted at the back of the device.
      */
-    FEED_BACK(2),
+    BACK(2),
     ;
 
     public val id: Long

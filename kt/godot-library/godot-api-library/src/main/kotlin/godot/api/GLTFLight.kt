@@ -23,6 +23,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -31,6 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a light as defined by the `KHR_lights_punctual` glTF extension.
@@ -89,6 +91,7 @@ public open class GLTFLight : Resource() {
 
   /**
    * The inner angle of the cone in a spotlight. Must be less than or equal to the outer cone angle.
+   *
    * Within this angle, the light is at full brightness. Between the inner and outer cone angles,
    * there is a transition from full brightness to zero brightness. When creating a Godot
    * [SpotLight3D], the ratio between the inner and outer cone angles is used to calculate the
@@ -104,6 +107,7 @@ public open class GLTFLight : Resource() {
 
   /**
    * The outer angle of the cone in a spotlight. Must be greater than or equal to the inner angle.
+   *
    * At this angle, the light drops off to zero brightness. Between the inner and outer cone angles,
    * there is a transition from full brightness to zero brightness. If this angle is a half turn, then
    * the spotlight emits in all directions. When creating a Godot [SpotLight3D], the outer cone angle
@@ -118,7 +122,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(260, scriptIndex)
+    createNativeObject(231, scriptIndex)
   }
 
   /**
@@ -240,10 +244,17 @@ public open class GLTFLight : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
+
   public companion object {
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
      */
+    @JvmStatic
     public final fun fromNode(lightNode: Light3D?): GLTFLight? {
       TransferContext.writeArguments(OBJECT to lightNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
@@ -253,6 +264,7 @@ public open class GLTFLight : Resource() {
     /**
      * Creates a new GLTFLight instance by parsing the given [Dictionary].
      */
+    @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFLight? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)

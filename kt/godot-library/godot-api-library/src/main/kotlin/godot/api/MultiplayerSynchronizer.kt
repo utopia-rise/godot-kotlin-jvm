@@ -21,10 +21,12 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -32,14 +34,18 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.
+ *
  * Visibility can be handled directly with [setVisibilityFor] or as-needed with
  * [addVisibilityFilter] and [updateVisibility].
+ *
  * [MultiplayerSpawner]s will handle nodes according to visibility of synchronizers as long as the
  * node at [rootPath] was spawned by one.
+ *
  * Internally, [MultiplayerSynchronizer] uses [MultiplayerAPI.objectConfigurationAdd] to notify
  * synchronization start passing the [Node] at [rootPath] as the `object` and itself as the
  * `configuration`, and uses [MultiplayerAPI.objectConfigurationRemove] to notify synchronization end
  * in a similar way.
+ *
  * **Note:** Synchronization is not supported for [Object] type properties, like [Resource].
  * Properties that are unique to each peer, like the instance IDs of [Object]s (see
  * [Object.getInstanceId]) or [RID]s, will also not work in synchronization.
@@ -65,6 +71,7 @@ public open class MultiplayerSynchronizer : Node() {
 
   /**
    * Node path that replicated properties are relative to.
+   *
    * If [rootPath] was spawned by a [MultiplayerSpawner], the node will be also be spawned and
    * despawned based on this synchronizer visibility options.
    */
@@ -137,7 +144,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(392, scriptIndex)
+    createNativeObject(371, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {
@@ -218,6 +225,7 @@ public open class MultiplayerSynchronizer : Node() {
 
   /**
    * Adds a peer visibility filter for this synchronizer.
+   *
    * [filter] should take a peer ID [int] and return a [bool].
    */
   public final fun addVisibilityFilter(filter: Callable): Unit {
@@ -251,6 +259,8 @@ public open class MultiplayerSynchronizer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
+
   public enum class VisibilityUpdateMode(
     id: Long,
   ) {
@@ -258,17 +268,17 @@ public open class MultiplayerSynchronizer : Node() {
      * Visibility filters are updated during process frames (see
      * [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    VISIBILITY_PROCESS_IDLE(0),
+    PROCESS_IDLE(0),
     /**
      * Visibility filters are updated during physics frames (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    VISIBILITY_PROCESS_PHYSICS(1),
+    PROCESS_PHYSICS(1),
     /**
      * Visibility filters are not updated automatically, and must be updated manually by calling
      * [updateVisibility].
      */
-    VISIBILITY_PROCESS_NONE(2),
+    PROCESS_NONE(2),
     ;
 
     public val id: Long

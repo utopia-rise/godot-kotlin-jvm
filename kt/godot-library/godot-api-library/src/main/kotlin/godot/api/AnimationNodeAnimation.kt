@@ -16,10 +16,12 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -56,6 +58,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * If `true`, on receiving a request to play an animation from the start, the first frame is not
    * drawn, but only processed, and playback starts from the next frame.
+   *
    * See also the notes of [AnimationPlayer.play].
    */
   public final inline var advanceOnStart: Boolean
@@ -91,7 +94,9 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   /**
    * If `true`, scales the time so that the length specified in [timelineLength] is one cycle.
+   *
    * This is useful for matching the periods of walking and running animations.
+   *
    * If `false`, the original animation length is respected. If you set the loop to [loopMode], the
    * animation will loop in [timelineLength].
    */
@@ -105,6 +110,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   /**
    * If [useCustomTimeline] is `true`, offset the start position of the animation.
+   *
    * This is useful for adjusting which foot steps first in 3D walking animations.
    */
   public final inline var startOffset: Double
@@ -118,6 +124,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * If [useCustomTimeline] is `true`, override the loop settings of the original [Animation]
    * resource with the value.
+   *
    * **Note:** If the [Animation.loopMode] isn't set to looping, the
    * [Animation.trackSetInterpolationLoopWrap] option will not be respected. If you cannot get the
    * expected behavior, consider duplicating the [Animation] resource and changing the loop settings.
@@ -131,7 +138,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(54, scriptIndex)
+    createNativeObject(18, scriptIndex)
   }
 
   public final fun setAnimation(name: StringName): Unit {
@@ -222,17 +229,19 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
+
   public enum class PlayMode(
     id: Long,
   ) {
     /**
      * Plays animation in forward direction.
      */
-    PLAY_MODE_FORWARD(0),
+    FORWARD(0),
     /**
      * Plays animation in backward direction.
      */
-    PLAY_MODE_BACKWARD(1),
+    BACKWARD(1),
     ;
 
     public val id: Long

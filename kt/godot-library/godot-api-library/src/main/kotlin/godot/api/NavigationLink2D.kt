@@ -75,7 +75,9 @@ public open class NavigationLink2D : Node2D() {
 
   /**
    * Starting position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer2D.mapSetLinkConnectionRadius].
    */
@@ -90,7 +92,9 @@ public open class NavigationLink2D : Node2D() {
 
   /**
    * Ending position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer2D.mapSetLinkConnectionRadius].
    */
@@ -128,12 +132,14 @@ public open class NavigationLink2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(396, scriptIndex)
+    createNativeObject(376, scriptIndex)
   }
 
   /**
    * Starting position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer2D.mapSetLinkConnectionRadius].
    *
@@ -160,7 +166,9 @@ public open class NavigationLink2D : Node2D() {
 
   /**
    * Ending position of the link.
+   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
    * The distance the link will search is controlled by
    * [NavigationServer2D.mapSetLinkConnectionRadius].
    *

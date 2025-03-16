@@ -36,7 +36,7 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(785, scriptIndex)
+    createNativeObject(783, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {
@@ -56,23 +56,23 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
     /**
      * A floating-point scalar.
      */
-    OP_TYPE_SCALAR(0),
+    SCALAR(0),
     /**
      * A 2D vector type.
      */
-    OP_TYPE_VECTOR_2D(1),
+    VECTOR_2D(1),
     /**
      * A 3D vector type.
      */
-    OP_TYPE_VECTOR_3D(2),
+    VECTOR_3D(2),
     /**
      * A 4D vector type.
      */
-    OP_TYPE_VECTOR_4D(3),
+    VECTOR_4D(3),
     /**
      * Represents the size of the [OpType] enum.
      */
-    OP_TYPE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long

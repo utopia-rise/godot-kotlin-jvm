@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MouseButtonMask
-import godot.core.MouseButtonMaskValue
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -21,6 +20,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -33,6 +33,7 @@ public open class BaseButton : Control() {
   /**
    * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode]
    * is [ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
+   *
    * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
    * toggled] instead.
    */
@@ -80,6 +81,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if
    * [toggleMode] is active). Only works if [toggleMode] is `true`.
+   *
    * **Note:** Changing the value of [buttonPressed] will result in [signal toggled] to be emitted.
    * If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
@@ -104,6 +106,7 @@ public open class BaseButton : Control() {
 
   /**
    * Binary mask to choose which mouse buttons this button will respond to.
+   *
    * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT |
    * MOUSE_BUTTON_MASK_RIGHT`.
    */
@@ -118,6 +121,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button stays pressed when moving the cursor outside the button while pressing
    * it.
+   *
    * **Note:** This property only affects the button's visual appearance. Signals will be emitted at
    * the same moment regardless of this property's value.
    */
@@ -131,6 +135,7 @@ public open class BaseButton : Control() {
 
   /**
    * The [ButtonGroup] associated with the button. Not to be confused with node groups.
+   *
    * **Note:** The button will be configured as a radio button if a [ButtonGroup] is assigned to it.
    */
   public final inline var buttonGroup: ButtonGroup?
@@ -166,6 +171,7 @@ public open class BaseButton : Control() {
 
   /**
    * If `true`, the button will add information about its shortcut in the tooltip.
+   *
    * **Note:** This property does nothing when the tooltip control is customized using
    * [Control.MakeCustomTooltip].
    */
@@ -178,7 +184,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+    createNativeObject(103, scriptIndex)
   }
 
   /**
@@ -186,12 +192,14 @@ public open class BaseButton : Control() {
    * [toggleMode] is active), use [_toggled] instead.
    */
   public open fun _pressed(): Unit {
+    throw NotImplementedError("_pressed is not implemented for BaseButton")
   }
 
   /**
    * Called when the button is toggled (only if [toggleMode] is active).
    */
   public open fun _toggled(toggledOn: Boolean): Unit {
+    throw NotImplementedError("_toggled is not implemented for BaseButton")
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
@@ -209,6 +217,7 @@ public open class BaseButton : Control() {
    * Changes the [buttonPressed] state of the button, without emitting [signal toggled]. Use when
    * you just want to change the state of the button without sending the pressed event (e.g. when
    * initializing scene). Only works if [toggleMode] is `true`.
+   *
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
   public final fun setPressedNoSignal(pressed: Boolean): Unit {
@@ -277,7 +286,7 @@ public open class BaseButton : Control() {
   public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -341,23 +350,23 @@ public open class BaseButton : Control() {
     /**
      * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
      */
-    DRAW_NORMAL(0),
+    NORMAL(0),
     /**
      * The state of buttons are pressed.
      */
-    DRAW_PRESSED(1),
+    PRESSED(1),
     /**
      * The state of buttons are hovered.
      */
-    DRAW_HOVER(2),
+    HOVER(2),
     /**
      * The state of buttons are disabled.
      */
-    DRAW_DISABLED(3),
+    DISABLED(3),
     /**
      * The state of buttons are both hovered and pressed.
      */
-    DRAW_HOVER_PRESSED(4),
+    HOVER_PRESSED(4),
     ;
 
     public val id: Long
@@ -376,11 +385,11 @@ public open class BaseButton : Control() {
     /**
      * Require just a press to consider the button clicked.
      */
-    ACTION_MODE_BUTTON_PRESS(0),
+    BUTTON_PRESS(0),
     /**
      * Require a press and a subsequent release before considering the button clicked.
      */
-    ACTION_MODE_BUTTON_RELEASE(1),
+    BUTTON_RELEASE(1),
     ;
 
     public val id: Long

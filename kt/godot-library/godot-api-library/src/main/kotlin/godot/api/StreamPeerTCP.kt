@@ -26,6 +26,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or
  * also is returned by a TCP server.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -33,11 +34,12 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(647, scriptIndex)
+    createNativeObject(641, scriptIndex)
   }
 
   /**
    * Opens the TCP socket, and binds it to the specified local address.
+   *
    * This method is generally not needed, and only used to force the subsequent call to
    * [connectToHost] to use the specified [host] and [port] as source address. This can be desired in
    * some NAT punchthrough techniques, or when forcing the source network interface.
@@ -116,6 +118,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the
    * default), packet transfers will be delayed and combined using
    * [url=https://en.wikipedia.org/wiki/Nagle&#37;27s_algorithm]Nagle's algorithm[/url].
+   *
    * **Note:** It's recommended to leave this disabled for applications that send large packets or
    * need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
@@ -130,19 +133,19 @@ public open class StreamPeerTCP : StreamPeer() {
     /**
      * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
      */
-    STATUS_NONE(0),
+    NONE(0),
     /**
      * A status representing a [StreamPeerTCP] that is connecting to a host.
      */
-    STATUS_CONNECTING(1),
+    CONNECTING(1),
     /**
      * A status representing a [StreamPeerTCP] that is connected to a host.
      */
-    STATUS_CONNECTED(2),
+    CONNECTED(2),
     /**
      * A status representing a [StreamPeerTCP] in error state.
      */
-    STATUS_ERROR(3),
+    ERROR(3),
     ;
 
     public val id: Long

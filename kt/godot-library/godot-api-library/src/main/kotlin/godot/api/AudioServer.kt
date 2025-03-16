@@ -22,6 +22,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -30,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -51,8 +53,68 @@ public object AudioServer : Object() {
   @JvmStatic
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 
+  /**
+   * Number of available audio buses.
+   */
+  @JvmStatic
+  public final inline var busCount: Int
+    @JvmName("busCountProperty")
+    get() = getBusCount()
+    @JvmName("busCountProperty")
+    set(`value`) {
+      setBusCount(value)
+    }
+
+  /**
+   * Name of the current device for audio output (see [getOutputDeviceList]). On systems with
+   * multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio
+   * output device. The value `"Default"` will play audio on the system-wide default audio output. If
+   * an invalid device name is set, the value will be reverted back to `"Default"`.
+   */
+  @JvmStatic
+  public final inline var outputDevice: String
+    @JvmName("outputDeviceProperty")
+    get() = getOutputDevice()
+    @JvmName("outputDeviceProperty")
+    set(`value`) {
+      setOutputDevice(value)
+    }
+
+  /**
+   * Name of the current device for audio input (see [getInputDeviceList]). On systems with multiple
+   * audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input
+   * device. The value `"Default"` will record audio on the system-wide default audio input. If an
+   * invalid device name is set, the value will be reverted back to `"Default"`.
+   *
+   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
+   * See also that setting's description for caveats related to permissions and operating system
+   * privacy settings.
+   */
+  @JvmStatic
+  public final inline var inputDevice: String
+    @JvmName("inputDeviceProperty")
+    get() = getInputDevice()
+    @JvmName("inputDeviceProperty")
+    set(`value`) {
+      setInputDevice(value)
+    }
+
+  /**
+   * Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be
+   * played at half its speed). See also [Engine.timeScale] to affect the general simulation speed,
+   * which is independent from [AudioServer.playbackSpeedScale].
+   */
+  @JvmStatic
+  public final inline var playbackSpeedScale: Float
+    @JvmName("playbackSpeedScaleProperty")
+    get() = getPlaybackSpeedScale()
+    @JvmName("playbackSpeedScaleProperty")
+    set(`value`) {
+      setPlaybackSpeedScale(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(26)
+    getSingleton(0)
   }
 
   @JvmStatic
@@ -157,6 +219,7 @@ public object AudioServer : Object() {
 
   /**
    * Sets the volume as a linear value of the bus at index [busIdx] to [volumeLinear].
+   *
    * **Note:** Using this method is equivalent to calling [setBusVolumeDb] with the result of
    * [@GlobalScope.linearToDb] on a value.
    */
@@ -168,6 +231,7 @@ public object AudioServer : Object() {
 
   /**
    * Returns the volume of the bus at index [busIdx] as a linear value.
+   *
    * **Note:** The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on the
    * result of [getBusVolumeDb].
    */
@@ -384,6 +448,7 @@ public object AudioServer : Object() {
 
   /**
    * Locks the audio driver's main loop.
+   *
    * **Note:** Remember to unlock it afterwards.
    */
   @JvmStatic
@@ -492,6 +557,7 @@ public object AudioServer : Object() {
    * Returns the audio driver's effective output latency. This is based on
    * [ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending
    * on the operating system and audio driver.
+   *
    * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
   @JvmStatic
@@ -503,6 +569,7 @@ public object AudioServer : Object() {
 
   /**
    * Returns the names of all audio input devices detected on the system.
+   *
    * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
    * See also that setting's description for caveats related to permissions and operating system
    * privacy settings.
@@ -549,6 +616,7 @@ public object AudioServer : Object() {
   /**
    * If set to `true`, all instances of [AudioStreamPlayback] will call
    * [AudioStreamPlayback.TagUsedStreams] every mix step.
+   *
    * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the
    * audio stream previews.
    */
@@ -561,6 +629,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the stream is registered as a sample. The engine will not have to register it before
    * playing the sample.
+   *
    * If `false`, the stream will have to be registered before playing it. To prevent lag spikes,
    * register the stream as sample with [registerStreamAsSample].
    */
@@ -573,6 +642,7 @@ public object AudioServer : Object() {
 
   /**
    * Forces the registration of a stream as a sample.
+   *
    * **Note:** Lag spikes may occur when calling this method, especially on single-threaded builds.
    * It is suggested to call this method while loading assets, where the lag spike could be masked,
    * instead of registering the sample right before it needs to be played.
@@ -583,25 +653,39 @@ public object AudioServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.registerStreamAsSamplePtr, NIL)
   }
 
+  /**
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified
+   * name exist.
+   */
+  @JvmStatic
+  public final fun getBusIndex(busName: String): Int = getBusIndex(busName.asCachedStringName())
+
+  /**
+   * Connects the output of the bus at [busIdx] to the bus named [send].
+   */
+  @JvmStatic
+  public final fun setBusSend(busIdx: Int, send: String) =
+      setBusSend(busIdx, send.asCachedStringName())
+
   public enum class SpeakerMode(
     id: Long,
   ) {
     /**
      * Two or fewer speakers were detected.
      */
-    SPEAKER_MODE_STEREO(0),
+    STEREO(0),
     /**
      * A 3.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_31(1),
+    SURROUND_31(1),
     /**
      * A 5.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_51(2),
+    SURROUND_51(2),
     /**
      * A 7.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_71(3),
+    SURROUND_71(3),
     ;
 
     public val id: Long
@@ -621,22 +705,24 @@ public object AudioServer : Object() {
      * The playback will be considered of the type declared at
      * [ProjectSettings.audio/general/defaultPlaybackType].
      */
-    PLAYBACK_TYPE_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Force the playback to be considered as a stream.
      */
-    PLAYBACK_TYPE_STREAM(1),
+    STREAM(1),
     /**
      * Force the playback to be considered as a sample. This can provide lower latency and more
      * stable playback (with less risk of audio crackling), at the cost of having less flexibility.
+     *
      * **Note:** Only currently supported on the web platform.
+     *
      * **Note:** [AudioEffect]s are not supported when playback is considered as a sample.
      */
-    PLAYBACK_TYPE_SAMPLE(2),
+    SAMPLE(2),
     /**
      * Represents the size of the [PlaybackType] enum.
      */
-    PLAYBACK_TYPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

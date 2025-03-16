@@ -62,7 +62,7 @@ public open class OccluderPolygon2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(421, scriptIndex)
+    createNativeObject(405, scriptIndex)
   }
 
   public final fun setClosed(closed: Boolean): Unit {
@@ -104,15 +104,15 @@ public open class OccluderPolygon2D : Resource() {
     /**
      * Culling is disabled. See [cullMode].
      */
-    CULL_DISABLED(0),
+    DISABLED(0),
     /**
      * Culling is performed in the clockwise direction. See [cullMode].
      */
-    CULL_CLOCKWISE(1),
+    CLOCKWISE(1),
     /**
      * Culling is performed in the counterclockwise direction. See [cullMode].
      */
-    CULL_COUNTER_CLOCKWISE(2),
+    COUNTER_CLOCKWISE(2),
     ;
 
     public val id: Long

@@ -22,13 +22,14 @@ import kotlin.Unit
  * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can
  * be overridden. When these methods are overridden, they will be called instead of the internal
  * methods of the physics server.
+ *
  * Intended for use with GDExtension to create custom implementations of
  * [PhysicsDirectSpaceState2D].
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(484, scriptIndex)
+    createNativeObject(469, scriptIndex)
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {

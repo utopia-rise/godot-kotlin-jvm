@@ -11,7 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
+import godot.api.TextServer.JustificationFlag
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.HorizontalAlignment
@@ -194,7 +194,9 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Sets the render priority for the text. Higher priority objects will be sorted in front of lower
    * priority objects.
+   *
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -210,7 +212,9 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Sets the render priority for the text outline. Higher priority objects will be sorted in front
    * of lower priority objects.
+   *
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -272,6 +276,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Font size of the [Label3D]'s text. To make the font look more detailed when up close, increase
    * [fontSize] while decreasing [pixelSize] at the same time.
+   *
    * Higher font sizes require more time to render new characters, which can cause stuttering during
    * gameplay.
    */
@@ -357,7 +362,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
-  public final inline var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -422,7 +427,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(351, scriptIndex)
+    createNativeObject(329, scriptIndex)
   }
 
   /**
@@ -684,15 +689,15 @@ public open class Label3D : GeometryInstance3D() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public final fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setWidth(width: Float): Unit {
@@ -878,31 +883,34 @@ public open class Label3D : GeometryInstance3D() {
      * [GeometryInstance3D.castShadow] has no effect when this transparency mode is used; the [Label3D]
      * will never cast shadows.
      */
-    ALPHA_CUT_DISABLED(0),
+    DISABLED(0),
     /**
      * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible
      * unless some form of screen-space antialiasing is enabled (see
      * [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa]). This mode is also known as
      * *alpha testing* or *1-bit transparency*.
+     *
      * **Note:** This mode might have issues with anti-aliased fonts and outlines, try adjusting
      * [alphaScissorThreshold] or using MSDF font.
+     *
      * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
      * have transparency sorting issues between the main text and the outline.
      */
-    ALPHA_CUT_DISCARD(1),
+    DISCARD(1),
     /**
      * This mode draws fully opaque pixels in the depth prepass. This is slower than
      * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
      * smooth edges while using proper sorting.
+     *
      * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
      * have transparency sorting issues between the main text and the outline.
      */
-    ALPHA_CUT_OPAQUE_PREPASS(2),
+    OPAQUE_PREPASS(2),
     /**
      * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will
      * remain opaque.
      */
-    ALPHA_CUT_HASH(3),
+    HASH(3),
     ;
 
     public val id: Long

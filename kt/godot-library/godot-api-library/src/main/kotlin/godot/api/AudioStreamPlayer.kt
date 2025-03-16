@@ -18,11 +18,13 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -31,8 +33,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user
  * interfaces, menus, or background music.
+ *
  * To use this node, [stream] needs to be set to a valid [AudioStream] resource. Playing more than
  * one sound at the same time is also supported, see [maxPolyphony].
+ *
  * If you need to play audio at a specific position, use [AudioStreamPlayer2D] or
  * [AudioStreamPlayer3D] instead.
  */
@@ -58,6 +62,7 @@ public open class AudioStreamPlayer : Node() {
 
   /**
    * Volume of sound, in decibels. This is an offset of the [stream]'s volume.
+   *
    * **Note:** To convert between decibel and linear energy (like most volume sliders do), use
    * [volumeLinear], or [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
    */
@@ -71,6 +76,7 @@ public open class AudioStreamPlayer : Node() {
 
   /**
    * Volume of sound, as a linear value.
+   *
    * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
    * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
    * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
@@ -120,6 +126,7 @@ public open class AudioStreamPlayer : Node() {
 
   /**
    * If `true`, the sounds are paused. Setting [streamPaused] to `false` resumes all sounds.
+   *
    * **Note:** This property is automatically changed when exiting or entering the tree, or this
    * node is paused (see [Node.processMode]).
    */
@@ -157,6 +164,7 @@ public open class AudioStreamPlayer : Node() {
 
   /**
    * The target bus name. All sounds from this node will be playing on this bus.
+   *
    * **Note:** At runtime, if no bus with the given name exists, all sounds will fall back on
    * `"Master"`. See also [AudioServer.getBusName].
    */
@@ -181,7 +189,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(129, scriptIndex)
+    createNativeObject(94, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {
@@ -263,9 +271,11 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Returns the position in the [AudioStream] of the latest sound, in seconds. Returns `0.0` if no
    * sounds are playing.
+   *
    * **Note:** The position is not always accurate, as the [AudioServer] does not mix audio every
    * processed frame. To get more accurate results, add [AudioServer.getTimeSinceLastMix] to the
    * returned position.
+   *
    * **Note:** This method always returns `0.0` if the [stream] is an [AudioStreamInteractive],
    * since it can have multiple clips playing at once.
    */
@@ -366,21 +376,23 @@ public open class AudioStreamPlayer : Node() {
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
+
   public enum class MixTarget(
     id: Long,
   ) {
     /**
      * The audio will be played only on the first channel. This is the default.
      */
-    MIX_TARGET_STEREO(0),
+    STEREO(0),
     /**
      * The audio will be played on all surround channels.
      */
-    MIX_TARGET_SURROUND(1),
+    SURROUND(1),
     /**
      * The audio will be played on the second channel, which is usually the center.
      */
-    MIX_TARGET_CENTER(2),
+    CENTER(2),
     ;
 
     public val id: Long

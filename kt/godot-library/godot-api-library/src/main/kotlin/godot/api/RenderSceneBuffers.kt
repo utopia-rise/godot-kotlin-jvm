@@ -20,12 +20,13 @@ import kotlin.Unit
  * Abstract scene buffers object, created for each viewport for which 3D rendering is done. It
  * manages any additional buffers used during rendering and will discard buffers when the viewport is
  * resized.
+ *
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
 public open class RenderSceneBuffers internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(556, scriptIndex)
+    createNativeObject(546, scriptIndex)
   }
 
   /**

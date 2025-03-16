@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -27,6 +29,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -35,6 +38,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
@@ -85,9 +89,95 @@ public object XRServer : Object() {
   @JvmStatic
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
+  /**
+   * The scale of the game world compared to the real world. By default, most AR/VR platforms assume
+   * that 1 game unit corresponds to 1 real world meter.
+   */
+  @JvmStatic
+  public final inline var worldScale: Double
+    @JvmName("worldScaleProperty")
+    get() = getWorldScale()
+    @JvmName("worldScaleProperty")
+    set(`value`) {
+      setWorldScale(value)
+    }
+
+  /**
+   * The current origin of our tracking space in the virtual world. This is used by the renderer to
+   * properly position the camera with new tracking data.
+   *
+   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
+   * from GDExtensions.
+   */
+  @CoreTypeLocalCopy
+  @JvmStatic
+  public final inline var worldOrigin: Transform3D
+    @JvmName("worldOriginProperty")
+    get() = getWorldOrigin()
+    @JvmName("worldOriginProperty")
+    set(`value`) {
+      setWorldOrigin(value)
+    }
+
+  /**
+   * If set to `true`, the scene will be rendered as if the camera is locked to the [XROrigin3D].
+   *
+   * **Note:** This doesn't provide a very comfortable experience for users. This setting exists for
+   * doing benchmarking or automated testing, where you want to control what is rendered via code.
+   */
+  @JvmStatic
+  public final inline var cameraLockedToOrigin: Boolean
+    @JvmName("cameraLockedToOriginProperty")
+    get() = isCameraLockedToOrigin()
+    @JvmName("cameraLockedToOriginProperty")
+    set(`value`) {
+      setCameraLockedToOrigin(value)
+    }
+
+  /**
+   * The primary [XRInterface] currently bound to the [XRServer].
+   */
+  @JvmStatic
+  public final inline var primaryInterface: XRInterface?
+    @JvmName("primaryInterfaceProperty")
+    get() = getPrimaryInterface()
+    @JvmName("primaryInterfaceProperty")
+    set(`value`) {
+      setPrimaryInterface(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(35)
   }
+
+  /**
+   * The current origin of our tracking space in the virtual world. This is used by the renderer to
+   * properly position the camera with new tracking data.
+   *
+   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
+   * from GDExtensions.
+   *
+   * This is a helper function to make dealing with local copies easier.
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = xrserver.worldOrigin
+   * //Your changes
+   * xrserver.worldOrigin = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun worldOriginMutate(block: Transform3D.() -> Unit): Transform3D =
+      worldOrigin.apply{
+      block(this)
+      worldOrigin = this
+  }
+
 
   @JvmStatic
   public final fun getWorldScale(): Double {
@@ -138,16 +228,21 @@ public object XRServer : Object() {
   /**
    * This is an important function to understand correctly. AR and VR platforms all handle
    * positioning slightly differently.
+   *
    * For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of
    * our HMD, but you have little control over the direction the player is facing in the real world.
+   *
    * For platforms that do offer spatial tracking, our origin point depends very much on the system.
    * For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other
    * platforms, it's often the location of the tracking camera.
+   *
    * This method allows you to center your tracker on the location of the HMD. It will take the
    * current location of the HMD and use that to adjust all your tracking data; in essence, realigning
    * the real world to your player's current position in the game world.
+   *
    * For this method to produce usable results, tracking information must be available. This often
    * takes a few frames after starting your game.
+   *
    * You should call this method after a few seconds have passed. For example, when the user
    * requests a realignment of the display holding a designated button on a controller for a short
    * period of time, or when implementing a teleport mechanism.
@@ -294,6 +389,13 @@ public object XRServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
 
+  /**
+   * Returns the positional tracker with the given [trackerName].
+   */
+  @JvmStatic
+  public final fun getTracker(trackerName: String): XRTracker? =
+      getTracker(trackerName.asCachedStringName())
+
   public enum class TrackerType(
     id: Long,
   ) {
@@ -302,43 +404,43 @@ public object XRServer : Object() {
      * between the players eyes. Note that for handheld AR devices this can be the current location of
      * the device.
      */
-    TRACKER_HEAD(1),
+    HEAD(1),
     /**
      * The tracker tracks the location of a controller.
      */
-    TRACKER_CONTROLLER(2),
+    CONTROLLER(2),
     /**
      * The tracker tracks the location of a base station.
      */
-    TRACKER_BASESTATION(4),
+    BASESTATION(4),
     /**
      * The tracker tracks the location and size of an AR anchor.
      */
-    TRACKER_ANCHOR(8),
+    ANCHOR(8),
     /**
      * The tracker tracks the location and joints of a hand.
      */
-    TRACKER_HAND(16),
+    HAND(16),
     /**
      * The tracker tracks the location and joints of a body.
      */
-    TRACKER_BODY(32),
+    BODY(32),
     /**
      * The tracker tracks the expressions of a face.
      */
-    TRACKER_FACE(64),
+    FACE(64),
     /**
      * Used internally to filter trackers of any known type.
      */
-    TRACKER_ANY_KNOWN(127),
+    ANY_KNOWN(127),
     /**
      * Used internally if we haven't set the tracker type yet.
      */
-    TRACKER_UNKNOWN(128),
+    UNKNOWN(128),
     /**
      * Used internally to select all trackers.
      */
-    TRACKER_ANY(255),
+    ANY(255),
     ;
 
     public val id: Long

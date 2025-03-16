@@ -16,11 +16,13 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -29,6 +31,7 @@ import kotlin.jvm.JvmName
  * Contains a generic action which can be targeted from several types of inputs. Actions and their
  * events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap]
  * class.
+ *
  * **Note:** Unlike the other [InputEvent] subclasses which map to unique physical events, this
  * virtual one is not emitted by the engine. This class is useful to emit actions manually with
  * [Input.parseInputEvent], which are then received in [Node.Input]. To check if a physical event
@@ -85,7 +88,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(318, scriptIndex)
+    createNativeObject(293, scriptIndex)
   }
 
   public final fun setAction(action: StringName): Unit {
@@ -125,6 +128,8 @@ public open class InputEventAction : InputEvent() {
     TransferContext.callMethod(ptr, MethodBindings.getEventIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  public final fun setAction(action: String) = setAction(action.asCachedStringName())
 
   public companion object
 

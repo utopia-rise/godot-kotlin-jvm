@@ -30,6 +30,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -43,6 +44,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * Represents a glTF node. glTF nodes may have names, transforms, children (other glTF nodes), and
  * more specialized properties (represented by their own classes).
+ *
  * glTF nodes generally exist inside of [GLTFState] which represents all data of a glTF file. Most
  * of GLTFNode's properties are indices of other data in the glTF file. You can extend a glTF node with
  * additional properties by using [getAdditionalData] and [setAdditionalData].
@@ -205,7 +207,7 @@ public open class GLTFNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(262, scriptIndex)
+    createNativeObject(233, scriptIndex)
   }
 
   /**
@@ -459,6 +461,7 @@ public open class GLTFNode : Resource() {
   /**
    * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
    * name in the glTF file), and the return value can be anything you set. If nothing was set, the
    * return value is `null`.
@@ -472,6 +475,7 @@ public open class GLTFNode : Resource() {
   /**
    * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the glTF file), and the second argument can be anything you want.
    */
@@ -484,6 +488,7 @@ public open class GLTFNode : Resource() {
    * Returns the [NodePath] that this GLTF node will have in the Godot scene tree after being
    * imported. This is useful when importing glTF object model pointers with [GLTFObjectModelProperty],
    * for handling extensions such as `KHR_animation_pointer` or `KHR_interactivity`.
+   *
    * If [handleSkeletons] is `true`, paths to skeleton bone glTF nodes will be resolved properly.
    * For example, a path that would be `^"A/B/C/Bone1/Bone2/Bone3"` if `false` will become
    * `^"A/B/C/Skeleton3D:Bone3"`.
@@ -495,6 +500,27 @@ public open class GLTFNode : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getSceneNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 

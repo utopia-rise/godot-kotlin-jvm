@@ -9,7 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
+import godot.api.TextServer.JustificationFlag
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
 import godot.core.PackedFloat32Array
@@ -107,7 +107,7 @@ public open class Label : Control() {
   /**
    * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
-  public final inline var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -209,6 +209,7 @@ public open class Label : Control() {
   /**
    * The number of characters to display. If set to `-1`, all characters are displayed. This can be
    * useful when animating the text appearing in a dialog box.
+   *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public final inline var visibleCharacters: Int
@@ -236,6 +237,7 @@ public open class Label : Control() {
    * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
    * half of the characters will be displayed. This can be useful when animating the text appearing in
    * a dialog box.
+   *
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public final inline var visibleRatio: Float
@@ -292,7 +294,7 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(350, scriptIndex)
+    createNativeObject(328, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -383,15 +385,15 @@ public open class Label : Control() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public final fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipText(enable: Boolean): Unit {
@@ -451,7 +453,9 @@ public open class Label : Control() {
 
   /**
    * Returns the height of the line [line].
+   *
    * If [line] is set to `-1`, returns the biggest line height.
+   *
    * If there are no lines, returns font size in pixels.
    */
   @JvmOverloads

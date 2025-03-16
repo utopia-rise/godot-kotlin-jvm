@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 /**
  * [SphereOccluder3D] stores a sphere shape that can be used by the engine's occlusion culling
  * system.
+ *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
@@ -38,7 +39,7 @@ public open class SphereOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(624, scriptIndex)
+    createNativeObject(618, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

@@ -24,22 +24,28 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for high-level multiplayer API implementations. See also [MultiplayerPeer].
+ *
  * By default, [SceneTree] has a reference to an implementation of this class and uses it to provide
  * multiplayer capabilities (i.e. RPCs) across the whole scene.
+ *
  * It is possible to override the MultiplayerAPI instance used by specific tree branches by calling
  * the [SceneTree.setMultiplayer] method, effectively allowing to run both client and server in the
  * same scene.
+ *
  * It is also possible to extend or replace the default implementation via scripting or native
  * extensions. See [MultiplayerAPIExtension] for details about extensions, [SceneMultiplayer] for the
  * details about the default implementation.
@@ -93,7 +99,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(387, scriptIndex)
+    createNativeObject(366, scriptIndex)
   }
 
   /**
@@ -137,6 +143,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
 
   /**
    * Returns the sender's peer ID for the RPC currently being executed.
+   *
    * **Note:** This method returns `0` when called outside of an RPC. As such, the original peer ID
    * may be lost when code execution is delayed (such as with GDScript's `await` keyword).
    */
@@ -150,6 +157,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * Method used for polling the MultiplayerAPI. You only need to worry about this if you set
    * [SceneTree.multiplayerPoll] to `false`. By default, [SceneTree] will poll its MultiplayerAPI(s)
    * for you.
+   *
    * **Note:** This method results in RPCs being called, so they will be executed in the same
    * context of this function (e.g. `_process`, `physics`, [Thread]).
    */
@@ -163,6 +171,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * Sends an RPC to the target [peer]. The given [method] will be called on the remote [object]
    * with the provided [arguments]. The RPC may also be called locally depending on the implementation
    * and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
+   *
    * **Note:** Prefer using [Node.rpc], [Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in
    * GDScript), since they are faster. This method is mostly useful in conjunction with
    * [MultiplayerAPIExtension] when extending or replacing the multiplayer capabilities.
@@ -185,6 +194,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * and a valid [NodePath] as [configuration]). This method can be further used by MultiplayerAPI
    * implementations to provide additional features, refer to specific implementation (e.g.
    * [SceneMultiplayer]) for details on how they use it.
+   *
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
@@ -200,6 +210,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * and an empty [NodePath] as [configuration]). This method can be further used by MultiplayerAPI
    * implementations to provide additional features, refer to specific implementation (e.g.
    * [SceneMultiplayer]) for details on how they use it.
+   *
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
@@ -218,6 +229,23 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
+  /**
+   * Sends an RPC to the target [peer]. The given [method] will be called on the remote [object]
+   * with the provided [arguments]. The RPC may also be called locally depending on the implementation
+   * and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
+   *
+   * **Note:** Prefer using [Node.rpc], [Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in
+   * GDScript), since they are faster. This method is mostly useful in conjunction with
+   * [MultiplayerAPIExtension] when extending or replacing the multiplayer capabilities.
+   */
+  @JvmOverloads
+  public final fun rpc(
+    peer: Int,
+    `object`: Object?,
+    method: String,
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
+  ): Error = rpc(peer, `object`, method.asCachedStringName(), arguments)
+
   public enum class RPCMode(
     id: Long,
   ) {
@@ -225,19 +253,19 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * Used with [Node.rpcConfig] to disable a method or property for all RPC calls, making it
      * unavailable. Default for all methods.
      */
-    RPC_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Used with [Node.rpcConfig] to set a method to be callable remotely by any peer. Analogous to
      * the `@rpc("any_peer")` annotation. Calls are accepted from all remote peers, no matter if they
      * are node's authority or not.
      */
-    RPC_MODE_ANY_PEER(1),
+    ANY_PEER(1),
     /**
      * Used with [Node.rpcConfig] to set a method to be callable remotely only by the current
      * multiplayer authority (which is the server by default). Analogous to the `@rpc("authority")`
      * annotation. See [Node.setMultiplayerAuthority].
      */
-    RPC_MODE_AUTHORITY(2),
+    AUTHORITY(2),
     ;
 
     public val id: Long
@@ -255,6 +283,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * Sets the default MultiplayerAPI implementation class. This method can be used by modules and
      * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
      */
+    @JvmStatic
     public final fun setDefaultInterface(interfaceName: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to interfaceName)
       TransferContext.callMethod(0, MethodBindings.setDefaultInterfacePtr, NIL)
@@ -264,6 +293,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * Returns the default MultiplayerAPI implementation class name. This is usually
      * `"SceneMultiplayer"` when [SceneMultiplayer] is available. See [setDefaultInterface].
      */
+    @JvmStatic
     public final fun getDefaultInterface(): StringName {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDefaultInterfacePtr, STRING_NAME)
@@ -273,11 +303,20 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     /**
      * Returns a new instance of the default MultiplayerAPI.
      */
+    @JvmStatic
     public final fun createDefaultInterface(): MultiplayerAPI? {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
     }
+
+    /**
+     * Sets the default MultiplayerAPI implementation class. This method can be used by modules and
+     * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
+     */
+    @JvmStatic
+    public final fun setDefaultInterface(interfaceName: String) =
+        setDefaultInterface(interfaceName.asCachedStringName())
   }
 
   public object MethodBindings {

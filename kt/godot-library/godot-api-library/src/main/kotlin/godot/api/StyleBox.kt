@@ -36,6 +36,7 @@ import kotlin.jvm.JvmName
  * panels, buttons, [LineEdit] backgrounds, [Tree] backgrounds, etc. and also for testing a
  * transparency mask for pointer signals. If mask test fails on a [StyleBox] assigned as mask to a
  * control, clicks and motion signals will go through it to the one below.
+ *
  * **Note:** For control nodes that have *Theme Properties*, the `focus` [StyleBox] is displayed
  * over the `normal`, `hover` or `pressed` [StyleBox]. This makes the `focus` [StyleBox] more reusable
  * across different nodes.
@@ -45,69 +46,76 @@ public open class StyleBox : Resource() {
   /**
    * The left margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the left.
+   *
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public final inline var contentMarginLeft: Float
     @JvmName("contentMarginLeftProperty")
-    get() = getContentMargin(Side.SIDE_LEFT)
+    get() = getContentMargin(Side.LEFT)
     @JvmName("contentMarginLeftProperty")
     set(`value`) {
-      setContentMargin(Side.SIDE_LEFT, value)
+      setContentMargin(Side.LEFT, value)
     }
 
   /**
    * The top margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the top.
+   *
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public final inline var contentMarginTop: Float
     @JvmName("contentMarginTopProperty")
-    get() = getContentMargin(Side.SIDE_TOP)
+    get() = getContentMargin(Side.TOP)
     @JvmName("contentMarginTopProperty")
     set(`value`) {
-      setContentMargin(Side.SIDE_TOP, value)
+      setContentMargin(Side.TOP, value)
     }
 
   /**
    * The right margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the right.
+   *
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public final inline var contentMarginRight: Float
     @JvmName("contentMarginRightProperty")
-    get() = getContentMargin(Side.SIDE_RIGHT)
+    get() = getContentMargin(Side.RIGHT)
     @JvmName("contentMarginRightProperty")
     set(`value`) {
-      setContentMargin(Side.SIDE_RIGHT, value)
+      setContentMargin(Side.RIGHT, value)
     }
 
   /**
    * The bottom margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the bottom.
+   *
    * If this value is negative, it is ignored and a child-specific margin is used instead. For
    * example, for [StyleBoxFlat], the border thickness (if any) is used instead.
+   *
    * It is up to the code using this style box to decide what these contents are: for example, a
    * [Button] respects this content margin for the textual contents of the button.
+   *
    * [getMargin] should be used to fetch this value as consumer instead of reading these properties
    * directly. This is because it correctly respects negative values and the fallback mentioned above.
    */
   public final inline var contentMarginBottom: Float
     @JvmName("contentMarginBottomProperty")
-    get() = getContentMargin(Side.SIDE_BOTTOM)
+    get() = getContentMargin(Side.BOTTOM)
     @JvmName("contentMarginBottomProperty")
     set(`value`) {
-      setContentMargin(Side.SIDE_BOTTOM, value)
+      setContentMargin(Side.BOTTOM, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(649, scriptIndex)
+    createNativeObject(643, scriptIndex)
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+    throw NotImplementedError("_draw is not implemented for StyleBox")
   }
 
   public open fun _getDrawRect(rect: Rect2): Rect2 {
-    throw NotImplementedError("_get_draw_rect is not implemented for StyleBox")
+    throw NotImplementedError("_getDrawRect is not implemented for StyleBox")
   }
 
   /**
@@ -117,11 +125,11 @@ public open class StyleBox : Resource() {
    * behavior and the output of this method will be used, to account for both sizes.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_minimum_size is not implemented for StyleBox")
+    throw NotImplementedError("_getMinimumSize is not implemented for StyleBox")
   }
 
   public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
-    throw NotImplementedError("_test_mask is not implemented for StyleBox")
+    throw NotImplementedError("_testMask is not implemented for StyleBox")
   }
 
   /**
@@ -160,6 +168,7 @@ public open class StyleBox : Resource() {
 
   /**
    * Returns the content margin offset for the specified [Side].
+   *
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
   public final fun getMargin(margin: Side): Float {
@@ -180,6 +189,7 @@ public open class StyleBox : Resource() {
 
   /**
    * Draws this stylebox using a canvas item identified by the given [RID].
+   *
    * The [RID] value can either be the result of [CanvasItem.getCanvasItem] called on an existing
    * [CanvasItem]-derived node, or directly from creating a canvas item in the [RenderingServer] with
    * [RenderingServer.canvasItemCreate].

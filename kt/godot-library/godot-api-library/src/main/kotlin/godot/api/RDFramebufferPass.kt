@@ -23,8 +23,10 @@ import kotlin.jvm.JvmName
 /**
  * This class contains the list of attachment descriptions for a framebuffer pass. Each points with
  * an index to a previously supplied list of texture attachments.
+ *
  * Multipass framebuffers can optimize some configurations in mobile. On desktop, they provide
  * little to no advantage.
+ *
  * This object is used by [RenderingDevice].
  */
 @GodotBaseType
@@ -89,7 +91,7 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(527, scriptIndex)
+    createNativeObject(517, scriptIndex)
   }
 
   public final fun setColorAttachments(pMember: PackedInt32Array): Unit {

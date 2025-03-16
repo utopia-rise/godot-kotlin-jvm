@@ -17,8 +17,10 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -43,7 +45,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(610, scriptIndex)
+    createNativeObject(604, scriptIndex)
   }
 
   public final fun setPhysicalBoneChainLength(length: Int): Unit {
@@ -59,6 +61,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
 
   /**
    * Sets the [PhysicalBone2D] node at [jointIdx].
+   *
    * **Note:** This is just the index used for this modification, not the bone index used in the
    * [Skeleton2D].
    */
@@ -87,6 +90,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
 
   /**
    * Tell the [PhysicalBone2D] nodes to start simulating and interacting with the physics world.
+   *
    * Optionally, an array of bone names can be passed to this function, and that will cause only
    * [PhysicalBone2D] nodes with those names to start simulating.
    */
@@ -99,6 +103,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
 
   /**
    * Tell the [PhysicalBone2D] nodes to stop simulating and interacting with the physics world.
+   *
    * Optionally, an array of bone names can be passed to this function, and that will cause only
    * [PhysicalBone2D] nodes with those names to stop simulating.
    */
@@ -108,6 +113,15 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(ptr, MethodBindings.stopSimulationPtr, NIL)
   }
+
+  /**
+   * Sets the [PhysicalBone2D] node at [jointIdx].
+   *
+   * **Note:** This is just the index used for this modification, not the bone index used in the
+   * [Skeleton2D].
+   */
+  public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: String) =
+      setPhysicalBoneNode(jointIdx, physicalbone2dNode.asCachedNodePath())
 
   public companion object
 

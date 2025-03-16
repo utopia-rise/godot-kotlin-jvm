@@ -81,7 +81,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(808, scriptIndex)
+    createNativeObject(806, scriptIndex)
   }
 
   public final fun setTextureType(type: TextureType): Unit {
@@ -181,19 +181,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     /**
      * Defaults to fully opaque white color.
      */
-    COLOR_DEFAULT_WHITE(0),
+    WHITE(0),
     /**
      * Defaults to fully opaque black color.
      */
-    COLOR_DEFAULT_BLACK(1),
+    BLACK(1),
     /**
      * Defaults to fully transparent black color.
      */
-    COLOR_DEFAULT_TRANSPARENT(2),
+    TRANSPARENT(2),
     /**
      * Represents the size of the [ColorDefault] enum.
      */
-    COLOR_DEFAULT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -228,6 +228,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look pixelated from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
@@ -238,6 +239,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look smooth from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
@@ -251,6 +253,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * quality on surfaces that are almost in line with the camera, but is slightly slower. The
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     *
      * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_NEAREST_MIPMAP] is
      * usually more appropriate in this case.
      */
@@ -263,6 +266,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * quality on surfaces that are almost in line with the camera, but is slightly slower. The
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     *
      * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_LINEAR_MIPMAP] is
      * usually more appropriate in this case.
      */

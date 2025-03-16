@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(567, scriptIndex)
+    createNativeObject(558, scriptIndex)
   }
 
   public enum class ImportOrder(
@@ -28,13 +28,13 @@ public open class ResourceImporter internal constructor() : RefCounted() {
     /**
      * The default import order.
      */
-    IMPORT_ORDER_DEFAULT(0),
+    DEFAULT(0),
     /**
      * The import order for scenes, which ensures scenes are imported *after* all other core
      * resources such as textures. Custom importers should generally have an import order lower than
      * `100` to avoid issues when importing scenes that rely on custom resources.
      */
-    IMPORT_ORDER_SCENE(100),
+    SCENE(100),
     ;
 
     public val id: Long

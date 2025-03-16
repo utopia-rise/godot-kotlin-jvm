@@ -41,6 +41,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
 
   /**
    * The waveform's maximum allowed value, in decibels. This value can range from `-24.0` to `0.0`.
+   *
    * The default value of `-0.3` prevents potential inter-sample peaks (ISP) from crossing over 0
    * dB, which can cause slight distortion on some older hardware.
    */
@@ -64,7 +65,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(95, scriptIndex)
+    createNativeObject(59, scriptIndex)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {

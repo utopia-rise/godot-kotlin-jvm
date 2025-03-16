@@ -53,6 +53,7 @@ public open class TextureProgressBar : Range() {
    * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
    * equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the
    * texture fills and tends towards [radialFillDegrees].
+   *
    * **Note:** [radialInitialAngle] is wrapped between `0` and `360` degrees (inclusive).
    */
   public final inline var radialInitialAngle: Float
@@ -67,6 +68,7 @@ public open class TextureProgressBar : Range() {
    * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE],
    * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
    * equal to its `max_value`, the texture fills up to this angle.
+   *
    * See [Range.value], [Range.maxValue].
    */
   public final inline var radialFillDegrees: Float
@@ -80,6 +82,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   *
    * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
    * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
    * empty space where needed.
@@ -112,10 +115,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginLeft: Int
     @JvmName("stretchMarginLeftProperty")
-    get() = getStretchMargin(Side.SIDE_LEFT)
+    get() = getStretchMargin(Side.LEFT)
     @JvmName("stretchMarginLeftProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_LEFT, value)
+      setStretchMargin(Side.LEFT, value)
     }
 
   /**
@@ -123,10 +126,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginTop: Int
     @JvmName("stretchMarginTopProperty")
-    get() = getStretchMargin(Side.SIDE_TOP)
+    get() = getStretchMargin(Side.TOP)
     @JvmName("stretchMarginTopProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_TOP, value)
+      setStretchMargin(Side.TOP, value)
     }
 
   /**
@@ -134,10 +137,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginRight: Int
     @JvmName("stretchMarginRightProperty")
-    get() = getStretchMargin(Side.SIDE_RIGHT)
+    get() = getStretchMargin(Side.RIGHT)
     @JvmName("stretchMarginRightProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_RIGHT, value)
+      setStretchMargin(Side.RIGHT, value)
     }
 
   /**
@@ -147,10 +150,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginBottom: Int
     @JvmName("stretchMarginBottomProperty")
-    get() = getStretchMargin(Side.SIDE_BOTTOM)
+    get() = getStretchMargin(Side.BOTTOM)
     @JvmName("stretchMarginBottomProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_BOTTOM, value)
+      setStretchMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -180,6 +183,7 @@ public open class TextureProgressBar : Range() {
    * [Texture2D] that clips based on the node's `value` and [fillMode]. As `value` increased, the
    * texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if
    * `value` is equal to `min_value`.
+   *
    * The `value` property comes from [Range]. See [Range.value], [Range.minValue], [Range.maxValue].
    */
   public final inline var textureProgress: Texture2D?
@@ -241,12 +245,13 @@ public open class TextureProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(684, scriptIndex)
+    createNativeObject(679, scriptIndex)
   }
 
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   *
    * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
    * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
    * empty space where needed.
@@ -529,45 +534,45 @@ public open class TextureProgressBar : Range() {
     /**
      * The [textureProgress] fills from left to right.
      */
-    FILL_LEFT_TO_RIGHT(0),
+    LEFT_TO_RIGHT(0),
     /**
      * The [textureProgress] fills from right to left.
      */
-    FILL_RIGHT_TO_LEFT(1),
+    RIGHT_TO_LEFT(1),
     /**
      * The [textureProgress] fills from top to bottom.
      */
-    FILL_TOP_TO_BOTTOM(2),
+    TOP_TO_BOTTOM(2),
     /**
      * The [textureProgress] fills from bottom to top.
      */
-    FILL_BOTTOM_TO_TOP(3),
+    BOTTOM_TO_TOP(3),
     /**
      * Turns the node into a radial bar. The [textureProgress] fills clockwise. See
      * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
      * fills up.
      */
-    FILL_CLOCKWISE(4),
+    CLOCKWISE(4),
     /**
      * Turns the node into a radial bar. The [textureProgress] fills counterclockwise. See
      * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
      * fills up.
      */
-    FILL_COUNTER_CLOCKWISE(5),
+    COUNTER_CLOCKWISE(5),
     /**
      * The [textureProgress] fills from the center, expanding both towards the left and the right.
      */
-    FILL_BILINEAR_LEFT_AND_RIGHT(6),
+    BILINEAR_LEFT_AND_RIGHT(6),
     /**
      * The [textureProgress] fills from the center, expanding both towards the top and the bottom.
      */
-    FILL_BILINEAR_TOP_AND_BOTTOM(7),
+    BILINEAR_TOP_AND_BOTTOM(7),
     /**
      * Turns the node into a radial bar. The [textureProgress] fills radially from the center,
      * expanding both clockwise and counterclockwise. See [radialCenterOffset], [radialInitialAngle]
      * and [radialFillDegrees] to control the way the bar fills up.
      */
-    FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
+    CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;
 
     public val id: Long

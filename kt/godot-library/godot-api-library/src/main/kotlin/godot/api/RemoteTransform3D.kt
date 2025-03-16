@@ -14,8 +14,10 @@ import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -23,6 +25,7 @@ import kotlin.jvm.JvmName
 /**
  * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
  * remote node) in the scene.
+ *
  * It can be set to update another Node's position, rotation and/or scale. It can use either global
  * or local coordinates.
  */
@@ -84,7 +87,7 @@ public open class RemoteTransform3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(552, scriptIndex)
+    createNativeObject(542, scriptIndex)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {
@@ -150,6 +153,8 @@ public open class RemoteTransform3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getUpdateScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setRemoteNode(path: String) = setRemoteNode(path.asCachedNodePath())
 
   public companion object
 
