@@ -28,20 +28,12 @@ jobs:
             bootstrap-target: release
 
     steps:
-      - name: Clone Godot Engine
-        uses: actions/checkout@v4
-        with:
-          repository: godotengine/godot
-          ref: ${{ inputs.godot-version }}
-
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
-        with:
-          path: modules/kotlin_jvm
 
       - uses: actions/setup-java@v4
         with:
-          distribution: adopt-hotspot
+          distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
@@ -53,22 +45,22 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_macos_universal
-          path: './bin'
+          path: './harness/tests/bin'
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
         uses: actions/download-artifact@v4
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: './bin'
+          path: './harness/tests/bin'
 
       - name: Build tests project
         run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }}
+          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.bootstrap-target }}
 
       - name: Run Tests
         run: |
-          cd modules/kotlin_jvm/harness/tests/
-          chmod +x ../../../../bin/godot.*
+          cd harness/tests/
+          chmod +x bin/godot.*
           jlink --add-modules java.base,java.logging --output jvm/jre-arm64-macos
           ./gradlew runGutTests
         timeout-minutes: 30

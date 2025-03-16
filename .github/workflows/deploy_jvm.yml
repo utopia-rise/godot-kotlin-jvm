@@ -39,7 +39,7 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          distribution: adopt-hotspot
+          distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
