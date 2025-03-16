@@ -25,8 +25,8 @@ import kotlin.jvm.JvmOverloads
  * This class holds the context information required for encryption and decryption operations with
  * AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * extends Node
  *
  * var aes = AESContext.new()
@@ -58,8 +58,9 @@ import kotlin.jvm.JvmOverloads
  *     # Check CBC
  *     assert(decrypted == data.to_utf8_buffer())
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * using Godot;
  * using System.Diagnostics;
  *
@@ -123,6 +124,7 @@ public open class AESContext : RefCounted() {
   /**
    * Run the desired operation for this AES context. Will return a [PackedByteArray] containing the
    * result of encrypting (or decrypting) the given [src]. See [start] for mode of operation.
+   *
    * **Note:** The size of [src] must be a multiple of 16. Apply some padding if needed.
    */
   public final fun update(src: PackedByteArray): PackedByteArray {
@@ -134,6 +136,7 @@ public open class AESContext : RefCounted() {
   /**
    * Get the current IV state for this context (IV gets updated when calling [update]). You normally
    * don't need this function.
+   *
    * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or
    * [MODE_CBC_DECRYPT].
    */

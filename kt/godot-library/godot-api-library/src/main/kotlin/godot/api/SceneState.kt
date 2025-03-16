@@ -36,6 +36,7 @@ import kotlin.jvm.JvmOverloads
  * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts
  * associated with a scene. They cannot be modified from a [SceneState], only accessed. Useful for
  * peeking into what a [PackedScene] contains without instantiating it.
+ *
  * This class cannot be instantiated directly, it is retrieved for a given scene as the result of
  * [PackedScene.getState].
  */
@@ -47,6 +48,7 @@ public open class SceneState internal constructor() : RefCounted() {
 
   /**
    * Returns the number of nodes in the scene.
+   *
    * The `idx` argument used to query node data in other `get_node_*` methods in the interval `[0,
    * get_node_count() - 1]`.
    */
@@ -76,6 +78,7 @@ public open class SceneState internal constructor() : RefCounted() {
 
   /**
    * Returns the path to the node at [idx].
+   *
    * If [forParent] is `true`, returns the path of the [idx] node's parent instead.
    */
   @JvmOverloads
@@ -146,6 +149,7 @@ public open class SceneState internal constructor() : RefCounted() {
 
   /**
    * Returns the number of exported or overridden properties for the node at [idx].
+   *
    * The `prop_idx` argument used to query node property data in other `get_node_property_*` methods
    * in the interval `[0, get_node_property_count() - 1]`.
    */
@@ -175,6 +179,7 @@ public open class SceneState internal constructor() : RefCounted() {
 
   /**
    * Returns the number of signal connections in the scene.
+   *
    * The `idx` argument used to query connection metadata in other `get_connection_*` methods in the
    * interval `[0, get_connection_count() - 1]`.
    */
@@ -258,18 +263,21 @@ public open class SceneState internal constructor() : RefCounted() {
     /**
      * If passed to [PackedScene.instantiate], provides inherited scene resources to the local
      * scene.
+     *
      * **Note:** Only available in editor builds.
      */
     INSTANCE(1),
     /**
      * If passed to [PackedScene.instantiate], provides local scene resources to the local scene.
      * Only the main scene should receive the main edit state.
+     *
      * **Note:** Only available in editor builds.
      */
     MAIN(2),
     /**
      * If passed to [PackedScene.instantiate], it's similar to [GEN_EDIT_STATE_MAIN], but for the
      * case where the scene is being instantiated to be the base of another one.
+     *
      * **Note:** Only available in editor builds.
      */
     MAIN_INHERITED(3),

@@ -50,6 +50,7 @@ public open class OpenXRIPBinding : Resource() {
 
   /**
    * Binding path that defines the input or output bound to [action].
+   *
    * **Note:** Binding paths are suggestions, an XR runtime may choose to bind the action to a
    * different input or output emulating this input or output.
    */

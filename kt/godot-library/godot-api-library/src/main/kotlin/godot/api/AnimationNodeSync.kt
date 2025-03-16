@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 public open class AnimationNodeSync : AnimationNode() {
   /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
+   *
    * If `true`, forcing the blended animations to advance frame.
    */
   public final inline var sync: Boolean

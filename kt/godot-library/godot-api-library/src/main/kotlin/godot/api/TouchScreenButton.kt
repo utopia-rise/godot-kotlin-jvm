@@ -29,10 +29,12 @@ import kotlin.jvm.JvmName
  * gameplay use, such as a unit you have to touch to move. Unlike [Button], TouchScreenButton supports
  * multitouch out of the box. Several TouchScreenButtons can be pressed at the same time with touch
  * input.
+ *
  * This node inherits from [Node2D]. Unlike with [Control] nodes, you cannot set anchors on it. If
  * you want to create menus or user interfaces, you may want to use [Button] nodes instead. To make
  * button nodes react to touch events, you can enable
  * [ProjectSettings.inputDevices/pointing/emulateMouseFromTouch] in the Project Settings.
+ *
  * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your
  * game both for desktop and mobile devices.
  */
@@ -119,6 +121,7 @@ public open class TouchScreenButton : Node2D() {
    * If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed
    * finger goes in and out of the button, even if the pressure started outside the active area of the
    * button.
+   *
    * **Note:** This is a "pass-by" (not "bypass") press mode.
    */
   public final inline var passbyPress: Boolean

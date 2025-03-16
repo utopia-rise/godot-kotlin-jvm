@@ -27,6 +27,7 @@ import kotlin.jvm.JvmOverloads
  * A MultiplayerPeer implementation that should be passed to [MultiplayerAPI.multiplayerPeer] after
  * being initialized as either a client, server, or mesh. Events can then be handled by connecting to
  * [MultiplayerAPI] signals. See [ENetConnection] for more information on the ENet library wrapper.
+ *
  * **Note:** ENet only uses UDP, not TCP. When forwarding the server port to make your server
  * accessible on the public Internet, you only need to forward the server port in UDP. You can use the
  * [UPNP] class to try to forward the server port automatically when starting the server.
@@ -115,6 +116,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
 
   /**
    * Add a new remote peer with the given [peerId] connected to the given [host].
+   *
    * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
   public final fun addMeshPeer(peerId: Int, host: ENetConnection?): Error {

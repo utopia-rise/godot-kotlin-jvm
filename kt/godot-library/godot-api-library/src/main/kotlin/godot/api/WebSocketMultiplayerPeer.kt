@@ -31,6 +31,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * Base class for WebSocket server and client, allowing them to be used as multiplayer peer for the
  * [MultiplayerAPI].
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -116,6 +117,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * verified against the hostname when connecting using the `wss://` protocol. You can pass the
    * optional [tlsClientOptions] parameter to customize the trusted certification authorities, or
    * disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   *
    * **Note:** It is recommended to specify the scheme part of the URL, i.e. the [url] should start
    * with either `ws://` or `wss://`.
    */

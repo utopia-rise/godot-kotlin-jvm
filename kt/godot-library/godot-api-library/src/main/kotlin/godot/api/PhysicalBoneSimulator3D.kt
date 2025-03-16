@@ -54,6 +54,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the
    * physics world.
+   *
    * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be
    * simulated.
    */
@@ -66,6 +67,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Adds a collision exception to the physical bone.
+   *
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesAddCollisionException(exception: RID): Unit {
@@ -75,6 +77,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
 
   /**
    * Removes a collision exception to the physical bone.
+   *
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {

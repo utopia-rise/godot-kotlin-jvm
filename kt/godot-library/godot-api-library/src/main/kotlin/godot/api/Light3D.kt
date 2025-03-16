@@ -40,9 +40,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity
    * of the light source measured in Lumens. Lumens are a measure of luminous flux, which is the total
    * amount of visible light emitted by a light source per unit of time.
+   *
    * For [SpotLight3D]s, we assume that the area outside the visible cone is surrounded by a perfect
    * light absorbing material. Accordingly, the apparent brightness of the cone area does not change as
    * the cone increases and decreases in size.
+   *
    * A typical household lightbulb can range from around 600 lumens to 1,200 lumens, a candle is
    * about 13 lumens, while a streetlight can be approximately 60,000 lumens.
    */
@@ -60,6 +62,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * of the light source measured in Lux. Lux is a measure of luminous flux per unit area, it is equal
    * to one lumen per square meter. Lux is the measure of how much light hits a surface at a given
    * time.
+   *
    * On a clear sunny day a surface in direct sunlight may be approximately 100,000 lux, a typical
    * room in a home may be approximately 50 lux, while the moonlit ground may be approximately 0.1 lux.
    */
@@ -74,6 +77,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Sets the color temperature of the light source, measured in Kelvin. This is used to calculate a
    * correlated color temperature which tints the [lightColor].
+   *
    * The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000
    * Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.
    */
@@ -114,6 +118,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Secondary multiplier used with indirect light (light bounces). Used with [VoxelGI] and SDFGI
    * (see [Environment.sdfgiEnabled]).
+   *
    * **Note:** This property is ignored if [lightEnergy] is equal to `0.0`, as the light won't be
    * present at all in the GI shader.
    */
@@ -129,6 +134,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * Secondary multiplier multiplied with [lightEnergy] then used with the [Environment]'s
    * volumetric fog (if enabled). If set to `0.0`, computing volumetric fog will be skipped for this
    * light, which can improve performance for large amounts of lights when volumetric fog is enabled.
+   *
    * **Note:** To prevent short-lived dynamic light effects from poorly interacting with volumetric
    * fog, lights used in those effects should have [lightVolumetricFogEnergy] set to `0.0` unless
    * [Environment.volumetricFogTemporalReprojectionEnabled] is disabled (or unless the reprojection
@@ -146,9 +152,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light
    * projectors make the light appear as if it is shining through a colored but transparent object,
    * almost like light shining through stained-glass.
+   *
    * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis,
    * the filter mode for light projector textures is set globally with
    * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   *
    * **Note:** Light projector textures are only supported in the Forward+ and Mobile rendering
    * methods, not Compatibility.
    */
@@ -166,8 +174,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * percentage-closer soft shadows, or PCSS). This can be used to simulate area lights to an extent.
    * Increasing this value above `0.0` for lights with shadows enabled will have a noticeable
    * performance cost due to PCSS.
+   *
    * **Note:** [lightSize] is not affected by [Node3D.scale] (the light's scale or its parent's
    * scale).
+   *
    * **Note:** PCSS for positional lights is only supported in the Forward+ and Mobile rendering
    * methods, not Compatibility.
    */
@@ -185,8 +195,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [DirectionalLight3D]s. For reference, the Sun from the Earth is approximately `0.5`. Increasing
    * this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due
    * to PCSS.
+   *
    * **Note:** [lightAngularDistance] is not affected by [Node3D.scale] (the light's scale or its
    * parent's scale).
+   *
    * **Note:** PCSS for directional lights is only supported in the Forward+ rendering method, not
    * Mobile or Compatibility.
    */
@@ -225,6 +237,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * The light's bake mode. This will affect the global illumination techniques that have an effect
    * on the light's rendering. See [BakeMode].
+   *
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering.
    * See [GeometryInstance3D.giMode].
    */
@@ -350,6 +363,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [distanceFadeBegin] + [distanceFadeLength], after which it will be culled and not sent to the
    * shader at all. Use this to reduce the number of active lights in a scene and thus improve
    * performance.
+   *
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
   public final inline var distanceFadeEnabled: Boolean
@@ -362,6 +376,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   /**
    * The distance from the camera at which the light begins to fade away (in 3D units).
+   *
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
   public final inline var distanceFadeBegin: Float
@@ -376,6 +391,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * The distance from the camera at which the light's shadow cuts off (in 3D units). Set this to a
    * value lower than [distanceFadeBegin] + [distanceFadeLength] to further improve performance, as
    * shadow rendering is often more expensive than light rendering itself.
+   *
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D], and only when [shadowEnabled] is
    * `true`.
    */
@@ -390,6 +406,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Distance over which the light and its shadow fades. The light's energy and shadow's opacity is
    * progressively reduced over this distance and is completely invisible at the end.
+   *
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
   public final inline var distanceFadeLength: Float
@@ -734,6 +751,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into
      * account when baking global illumination. This mode should generally be used for dynamic lights
      * that change quickly, as the effect of global illumination is less noticeable on those lights.
+     *
      * **Note:** Hiding a light does *not* affect baking [LightmapGI]. Hiding a light will still
      * affect baking [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
      */
@@ -743,6 +761,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global
      * illumination will not update in real-time. This is suitable for subtle changes (such as
      * flickering torches), but generally not large changes such as toggling a light on and off.
+     *
      * **Note:** The light is not baked in [LightmapGI] if [editorOnly] is `true`.
      */
     STATIC(1),

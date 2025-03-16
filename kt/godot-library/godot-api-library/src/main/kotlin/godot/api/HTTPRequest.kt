@@ -34,16 +34,20 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A node with the ability to send HTTP requests. Uses [HTTPClient] internally.
+ *
  * Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
+ *
  * **Warning:** See the notes and warnings on [HTTPClient] for limitations, especially regarding TLS
  * security.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
+ *
  * **Example:** Contact a REST API and print one of its returned fields:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * func _ready():
  *     # Create an HTTP request node and connect its completion signal.
  *     var http_request = HTTPRequest.new()
@@ -73,8 +77,9 @@ import kotlin.jvm.JvmOverloads
  * httpbin.org).
  *     print(response.headers["User-Agent"])
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public override void _Ready()
  * {
  *     // Create an HTTP request node and connect its completion signal.
@@ -118,8 +123,8 @@ import kotlin.jvm.JvmOverloads
  *
  * **Example:** Load an image using [HTTPRequest] and display it:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * func _ready():
  *     # Create an HTTP request node and connect its completion signal.
  *     var http_request = HTTPRequest.new()
@@ -148,8 +153,9 @@ import kotlin.jvm.JvmOverloads
  *     add_child(texture_rect)
  *     texture_rect.texture = texture
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public override void _Ready()
  * {
  *     // Create an HTTP request node and connect its completion signal.
@@ -214,6 +220,7 @@ public open class HTTPRequest : Node() {
   /**
    * The size of the buffer used and maximum bytes to read per iteration. See
    * [HTTPClient.readChunkSize].
+   *
    * Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory
    * usage at the cost of download speeds.
    */
@@ -239,11 +246,14 @@ public open class HTTPRequest : Node() {
   /**
    * If `true`, this header will be added to each request: `Accept-Encoding: gzip, deflate` telling
    * servers that it's okay to compress response bodies.
+   *
    * Any Response body declaring a `Content-Encoding` of either `gzip` or `deflate` will then be
    * automatically decompressed, and the uncompressed bytes will be delivered via [signal
    * request_completed].
+   *
    * If the user has specified their own `Accept-Encoding` header, then no header will be added
    * regardless of [acceptGzip].
+   *
    * If `false` no header will be added, and no decompression will be performed on response bodies.
    * The raw bytes of the response body will be returned via [signal request_completed].
    */
@@ -303,15 +313,18 @@ public open class HTTPRequest : Node() {
   /**
    * Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries
    * to connect using [HTTPClient.connectToHost] and passes parameters onto [HTTPClient.request].
+   *
    * Returns [OK] if request is successfully created. (Does not imply that the server has
    * responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous
    * request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT]
    * if not using thread and the [HTTPClient] cannot connect to host.
+   *
    * **Note:** When [method] is [HTTPClient.METHOD_GET], the payload sent via [requestData] might be
    * ignored by the server or even cause the server to reject the request (check
    * [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 section 4.3.1[/url] for
    * more details). As a workaround, you can send data as a query string in the URL (see
    * [String.uriEncode] for an example).
+   *
    * **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive
    * information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST
    * requests or HTTP headers for such information instead.
@@ -332,6 +345,7 @@ public open class HTTPRequest : Node() {
    * Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body.
    * If there is no configuration errors, it tries to connect using [HTTPClient.connectToHost] and
    * passes parameters onto [HTTPClient.request].
+   *
    * Returns [OK] if request is successfully created. (Does not imply that the server has
    * responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous
    * request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT]
@@ -440,6 +454,7 @@ public open class HTTPRequest : Node() {
 
   /**
    * Returns the response body length.
+   *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be
    * `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    */
@@ -473,6 +488,7 @@ public open class HTTPRequest : Node() {
 
   /**
    * Sets the proxy server for HTTP requests.
+   *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public final fun setHttpProxy(host: String, port: Int): Unit {
@@ -482,6 +498,7 @@ public open class HTTPRequest : Node() {
 
   /**
    * Sets the proxy server for HTTPS requests.
+   *
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public final fun setHttpsProxy(host: String, port: Int): Unit {

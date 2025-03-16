@@ -93,6 +93,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag position relative to the previous position (position at the last frame).
+   *
    * **Note:** [relative] is automatically scaled according to the content scale factor, which is
    * defined by the project's stretch mode settings. This means touch sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
@@ -124,6 +125,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag velocity.
+   *
    * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
    * defined by the project's stretch mode settings. This means touch sensitivity will appear different
    * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
@@ -208,6 +210,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag position relative to the previous position (position at the last frame).
+   *
    * **Note:** [relative] is automatically scaled according to the content scale factor, which is
    * defined by the project's stretch mode settings. This means touch sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
@@ -263,6 +266,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag velocity.
+   *
    * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
    * defined by the project's stretch mode settings. This means touch sensitivity will appear different
    * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid

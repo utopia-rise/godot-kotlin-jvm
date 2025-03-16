@@ -36,6 +36,7 @@ import kotlin.jvm.JvmName
  * panels, buttons, [LineEdit] backgrounds, [Tree] backgrounds, etc. and also for testing a
  * transparency mask for pointer signals. If mask test fails on a [StyleBox] assigned as mask to a
  * control, clicks and motion signals will go through it to the one below.
+ *
  * **Note:** For control nodes that have *Theme Properties*, the `focus` [StyleBox] is displayed
  * over the `normal`, `hover` or `pressed` [StyleBox]. This makes the `focus` [StyleBox] more reusable
  * across different nodes.
@@ -45,6 +46,7 @@ public open class StyleBox : Resource() {
   /**
    * The left margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the left.
+   *
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public final inline var contentMarginLeft: Float
@@ -58,6 +60,7 @@ public open class StyleBox : Resource() {
   /**
    * The top margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the top.
+   *
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public final inline var contentMarginTop: Float
@@ -71,6 +74,7 @@ public open class StyleBox : Resource() {
   /**
    * The right margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the right.
+   *
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public final inline var contentMarginRight: Float
@@ -84,10 +88,13 @@ public open class StyleBox : Resource() {
   /**
    * The bottom margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the bottom.
+   *
    * If this value is negative, it is ignored and a child-specific margin is used instead. For
    * example, for [StyleBoxFlat], the border thickness (if any) is used instead.
+   *
    * It is up to the code using this style box to decide what these contents are: for example, a
    * [Button] respects this content margin for the textual contents of the button.
+   *
    * [getMargin] should be used to fetch this value as consumer instead of reading these properties
    * directly. This is because it correctly respects negative values and the fallback mentioned above.
    */
@@ -161,6 +168,7 @@ public open class StyleBox : Resource() {
 
   /**
    * Returns the content margin offset for the specified [Side].
+   *
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
   public final fun getMargin(margin: Side): Float {
@@ -181,6 +189,7 @@ public open class StyleBox : Resource() {
 
   /**
    * Draws this stylebox using a canvas item identified by the given [RID].
+   *
    * The [RID] value can either be the result of [CanvasItem.getCanvasItem] called on an existing
    * [CanvasItem]-derived node, or directly from creating a canvas item in the [RenderingServer] with
    * [RenderingServer.canvasItemCreate].

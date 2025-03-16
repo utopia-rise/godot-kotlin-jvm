@@ -35,6 +35,7 @@ import kotlin.jvm.JvmName
 public open class Joint3D internal constructor() : Node3D() {
   /**
    * Path to the first node (A) attached to the joint. The node must inherit [PhysicsBody3D].
+   *
    * If left empty and [nodeB] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
@@ -48,6 +49,7 @@ public open class Joint3D internal constructor() : Node3D() {
 
   /**
    * Path to the second node (B) attached to the joint. The node must inherit [PhysicsBody3D].
+   *
    * If left empty and [nodeA] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */

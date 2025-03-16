@@ -20,6 +20,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Translates to `step(edge, x)` in the shader language.
+ *
  * Returns `0.0` if `x` is smaller than `edge` and `1.0` otherwise.
  */
 @GodotBaseType

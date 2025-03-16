@@ -13,7 +13,7 @@ class EnrichedSignal(model: Signal) : TypedTrait, IDocumented {
     // We assume signals parameters can't be null
     val arguments = model.arguments?.toEnriched(false) ?: listOf()
     override val type = "Signal${arguments.size}"
-    override val description = model.description
+    override var description = model.description
 
     init {
         if (arguments.size > Constraints.MAX_SIGNAL_ARG_COUNT) {

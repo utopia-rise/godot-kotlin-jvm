@@ -38,6 +38,7 @@ import kotlin.jvm.JvmName
  * Abstract base class for 2D physics objects. [CollisionObject2D] can hold any number of [Shape2D]s
  * for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not
  * appear in the editor, but are accessible through code using the `shape_owner_*` methods.
+ *
  * **Note:** Only collisions between objects within the same canvas ([Viewport] canvas or
  * [CanvasLayer]) are supported. The behavior of collisions between objects in different canvases is
  * undefined.
@@ -54,6 +55,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to
    * be `true` and at least one [collisionLayer] bit to be set. Note that moving between different
    * shapes within a single [CollisionObject2D] won't cause this signal to be emitted.
+   *
    * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in
    * the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small.
    * This signal may also not be emitted if another [CollisionObject2D] is overlapping the
@@ -65,6 +67,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputPickable] to be
    * `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes
    * within a single [CollisionObject2D] won't cause this signal to be emitted.
+   *
    * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in
    * the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small.
    * This signal may also not be emitted if another [CollisionObject2D] is overlapping the
@@ -101,6 +104,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of
    * 32 different layers. See also [collisionMask].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -117,6 +121,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32
    * different layers. See also [collisionLayer].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -163,6 +168,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Accepts unhandled [InputEvent]s. [shapeIdx] is the child index of the clicked [Shape2D].
    * Connect to [signal input_event] to easily pick up these events.
+   *
    * **Note:** [_inputEvent] requires [inputPickable] to be `true` and at least one [collisionLayer]
    * bit to be set.
    */
@@ -486,12 +492,14 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [CollisionObject2D].
+     *
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     REMOVE(0),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], make the body static. Doesn't
      * affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.
+     *
      * Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed
      * again.
      */

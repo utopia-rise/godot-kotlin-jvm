@@ -39,6 +39,7 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Creates a new item in the library with the given ID.
+   *
    * You can get an unused ID from [getLastUnusedItemId].
    */
   public final fun createItem(id: Int): Unit {
@@ -48,6 +49,7 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Sets the item's name.
+   *
    * This name is shown in the editor. It can also be used to look up the item later using
    * [findItemByName].
    */
@@ -108,6 +110,7 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Sets an item's collision shapes.
+   *
    * The array should consist of [Shape3D] objects, each followed by a [Transform3D] that will be
    * applied to it. For shapes that should not have a transform, use [Transform3D.IDENTITY].
    */
@@ -190,6 +193,7 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Returns an item's collision shapes.
+   *
    * The array consists of each [Shape3D] followed by its [Transform3D].
    */
   public final fun getItemShapes(id: Int): VariantArray<Any?> {

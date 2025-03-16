@@ -30,6 +30,7 @@ import kotlin.jvm.JvmStatic
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ *
  * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine
  * is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled
  * by default.
@@ -38,20 +39,22 @@ import kotlin.jvm.JvmStatic
 public open class AudioStreamMP3 : AudioStream() {
   /**
    * Contains the audio data in bytes.
+   *
    * You can load a file without having to import it beforehand using the code snippet below. Keep
    * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
    * (hundreds of megabytes or more).
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func load_mp3(path):
    *     var file = FileAccess.open(path, FileAccess.READ)
    *     var sound = AudioStreamMP3.new()
    *     sound.data = file.get_buffer(file.get_length())
    *     return sound
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public AudioStreamMP3 LoadMP3(string path)
    * {
    *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);

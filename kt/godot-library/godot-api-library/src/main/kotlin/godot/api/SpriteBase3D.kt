@@ -87,8 +87,10 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
    * simulate the color of ambient light.
+   *
    * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
    * not supported.
+   *
    * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
    * material override must be configured to take vertex colors into account for albedo. Otherwise, the
    * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
@@ -129,6 +131,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible
    * values.
+   *
    * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
    * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
    * intended shadow cannot be determined and this will result in undefined behavior. See
@@ -256,6 +259,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   /**
    * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
+   *
    * **Note:** Linear filtering may cause artifacts around the edges, which are especially
    * noticeable on opaque textures. To prevent this, use textures with transparent or identical colors
    * around the edges.
@@ -271,7 +275,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Sets the render priority for the sprite. Higher priority objects will be sorted in front of
    * lower priority objects.
+   *
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -315,8 +321,10 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
    * simulate the color of ambient light.
+   *
    * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
    * not supported.
+   *
    * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
    * material override must be configured to take vertex colors into account for albedo. Otherwise, the
    * color defined in [modulate] will be ignored. For a [BaseMaterial3D],

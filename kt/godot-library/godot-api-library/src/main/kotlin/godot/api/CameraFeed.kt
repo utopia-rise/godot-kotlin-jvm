@@ -37,9 +37,11 @@ import kotlin.jvm.JvmName
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,
  * Godot will start capturing frames from the camera which can then be used. See also [CameraServer].
+ *
  * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be
  * combined in a shader. Godot does this automatically for you if you set the environment to show the
  * camera image in the background.
+ *
  * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms
  * no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
  * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
@@ -247,8 +249,11 @@ public open class CameraFeed : RefCounted() {
    * Sets the feed format parameters for the given index in the [formats] array. Returns `true` on
    * success. By default YUYV encoded stream is transformed to FEED_RGB. YUYV encoded stream output
    * format can be changed with [parameters].output value:
+   *
    * `separate` will result in FEED_YCBCR_SEP
+   *
    * `grayscale` will result in desaturated FEED_RGB
+   *
    * `copy` will result in FEED_YCBCR
    */
   public final fun setFormat(index: Int, parameters: Dictionary<Any?, Any?>): Boolean {

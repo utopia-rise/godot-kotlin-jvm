@@ -223,6 +223,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Sets the color for a keyword.
+   *
    * The keyword cannot contain any symbols except '_'.
    */
   public final fun addKeywordColor(keyword: String, color: Color): Unit {
@@ -277,7 +278,9 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Sets the color for a member keyword.
+   *
    * The member keyword cannot contain any symbols except '_'.
+   *
    * It will not be highlighted if preceded by a '.'.
    */
   public final fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
@@ -333,6 +336,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Adds a color region (such as for comments or strings) from [startKey] to [endKey]. Both keys
    * should be symbols, and [startKey] must not be shared with other delimiters.
+   *
    * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the
    * next line.
    */

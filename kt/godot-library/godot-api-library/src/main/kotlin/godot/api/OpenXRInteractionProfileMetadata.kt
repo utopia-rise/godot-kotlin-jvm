@@ -43,9 +43,11 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * Registers a top level path to which profiles can be bound. For instance `/user/hand/left`
    * refers to the bind point for the player's left hand. Extensions can register additional top level
    * paths, for instance a haptic vest extension might register `/user/body/vest`.
+   *
    * [displayName] is the name shown to the user. [openxrPath] is the top level path being
    * registered. [openxrExtensionName] is optional and ensures the top level path is only used if the
    * specified extension is available/enabled.
+   *
    * When a top level path ends up being bound by OpenXR, a [XRPositionalTracker] is instantiated to
    * manage the state of the device.
    */
@@ -62,6 +64,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * Registers an interaction profile using its OpenXR designation (e.g.
    * `/interaction_profiles/khr/simple_controller` is the profile for OpenXR's simple controller
    * profile).
+   *
    * [displayName] is the description shown to the user. [openxrPath] is the interaction profile
    * path being registered. [openxrExtensionName] optionally restricts this profile to the given
    * extension being enabled/available. If the extension is not available, the profile and all related

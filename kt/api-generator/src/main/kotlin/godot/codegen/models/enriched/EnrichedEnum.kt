@@ -31,7 +31,7 @@ class EnrichedEnum(model: Enum, val outerClass: String?) : TypedTrait {
     }
 }
 
-class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, override val description: String?) : IDocumented {
+class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, override var description: String?) : IDocumented {
     val name = run {
         val uppercaseName = ownerName.toUpperSnakeCase()
         val prefixRemoved = valueName

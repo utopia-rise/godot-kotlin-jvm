@@ -38,6 +38,7 @@ public open class AudioEffectAmplify : AudioEffect() {
 
   /**
    * Amount of amplification as a linear value.
+   *
    * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
    * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
    * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.

@@ -37,12 +37,14 @@ import kotlin.jvm.JvmOverloads
 /**
  * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit
  * vertex data of meshes. It also creates an array of faces and edges.
+ *
  * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data
  * commit the data to a mesh with [commitToSurface].
+ *
  * Below is an example of how MeshDataTool may be used.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var mesh = ArrayMesh.new()
  * mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, BoxMesh.new().get_mesh_arrays())
  * var mdt = MeshDataTool.new()
@@ -60,8 +62,9 @@ import kotlin.jvm.JvmOverloads
  * mi.mesh = mesh
  * add_child(mi)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var mesh = new ArrayMesh();
  * mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, new BoxMesh().GetMeshArrays());
  * var mdt = new MeshDataTool();
@@ -83,6 +86,7 @@ import kotlin.jvm.JvmOverloads
  * ```
  *
  * See also [ArrayMesh], [ImmediateMesh] and [SurfaceTool] for procedural geometry generation.
+ *
  * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
  * order[/url] for front faces of triangle primitive modes.
  */
@@ -102,6 +106,7 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Uses specified surface of given [Mesh] to populate data for MeshDataTool.
+   *
    * Requires [Mesh] with primitive type [Mesh.PRIMITIVE_TRIANGLES].
    */
   public final fun createFromSurface(mesh: ArrayMesh?, surface: Int): Error {
@@ -331,6 +336,7 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns index of specified vertex connected to given edge.
+   *
    * Vertex argument can only be 0 or 1 because edges are comprised of two vertices.
    */
   public final fun getEdgeVertex(idx: Int, vertex: Int): Int {
@@ -367,17 +373,19 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns the specified vertex index of the given face.
+   *
    * [vertex] must be either `0`, `1`, or `2` because faces contain three vertices.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the
    * first face.
    * var position = mesh_data_tool.get_vertex(index)
    * var normal = mesh_data_tool.get_vertex_normal(index)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the
    * first face.
    * Vector3 position = meshDataTool.GetVertex(index);
@@ -392,6 +400,7 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns specified edge associated with given face.
+   *
    * Edge argument must be either 0, 1, or 2 because a face only has three edges.
    */
   public final fun getFaceEdge(idx: Int, edge: Int): Int {

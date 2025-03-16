@@ -23,17 +23,21 @@ import kotlin.jvm.JvmName
 /**
  * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
+ *
  * Being just a collection of interconnected triangles, [ConcavePolygonShape3D] is the most freely
  * configurable single 3D shape. It can be used to form polyhedra of any nature, or even shapes that
  * don't enclose a volume. However, [ConcavePolygonShape3D] is *hollow* even if the interconnected
  * triangles do enclose a volume, which often makes it unsuitable for physics or detection.
+ *
  * **Note:** When used for collision, [ConcavePolygonShape3D] is intended to work with static
  * [CollisionShape3D] nodes like [StaticBody3D] and will likely not behave well for [CharacterBody3D]s
  * or [RigidBody3D]s in a mode other than Static.
+ *
  * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving
  * fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and
  * on the next frame it may be "inside" it. [ConcavePolygonShape3D] is hollow, so it won't detect a
  * collision.
+ *
  * **Performance:** Due to its complexity, [ConcavePolygonShape3D] is the slowest 3D collision shape
  * to check collisions against. Its use should generally be limited to level geometry. For convex
  * geometry, [ConvexPolygonShape3D] should be used. For dynamic physics bodies that need concave

@@ -38,6 +38,7 @@ public infix fun Long.and(other: XRHandTracker.HandJointFlags): Long = this.and(
  * A hand tracking system will create an instance of this object and add it to the [XRServer]. This
  * tracking system will then obtain skeleton data, convert it to the Godot Humanoid hand skeleton and
  * store this data on the [XRHandTracker] object.
+ *
  * Use [XRHandModifier3D] to animate a hand mesh using hand tracking data.
  */
 @GodotBaseType

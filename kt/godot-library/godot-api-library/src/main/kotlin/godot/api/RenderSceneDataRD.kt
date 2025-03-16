@@ -13,6 +13,7 @@ import kotlin.Unit
 
 /**
  * Object holds scene data related to rendering a single frame of a viewport.
+ *
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType

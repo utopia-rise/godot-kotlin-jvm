@@ -32,9 +32,12 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * Plays audio that is attenuated with distance to the listener.
+ *
  * By default, audio is heard from the screen center. This can be changed by adding an
  * [AudioListener2D] node to the scene and enabling it by calling [AudioListener2D.makeCurrent] on it.
+ *
  * See also [AudioStreamPlayer] to play a sound non-positionally.
+ *
  * **Note:** Hiding an [AudioStreamPlayer2D] node does not disable its audio output. To temporarily
  * disable an [AudioStreamPlayer2D]'s audio output, set [volumeDb] to a very low value like `-100`
  * (which isn't audible to human hearing).
@@ -70,6 +73,7 @@ public open class AudioStreamPlayer2D : Node2D() {
 
   /**
    * Base volume before attenuation, as a linear value.
+   *
    * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
    * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
    * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
@@ -175,6 +179,7 @@ public open class AudioStreamPlayer2D : Node2D() {
 
   /**
    * Bus on which this audio is playing.
+   *
    * **Note:** When setting this property, keep in mind that no validation is performed to see if
    * the given name matches an existing bus. This is because audio bus layouts might be loaded after
    * this property is set. If this given name can't be resolved at runtime, it will fall back to

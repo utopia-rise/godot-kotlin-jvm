@@ -57,6 +57,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
    * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -109,8 +110,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * The queried shape's [RID] that will be used for collision/intersection queries. Use this over
    * [shape] if you want to optimize for performance using the Servers API:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var shape_rid = PhysicsServer3D.shape_create(PhysicsServer3D.SHAPE_SPHERE)
    * var radius = 2.0
    * PhysicsServer3D.shape_set_data(shape_rid, radius)
@@ -123,8 +124,9 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * # Release the shape when done with physics queries.
    * PhysicsServer3D.free_rid(shape_rid)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * RID shapeRid = PhysicsServer3D.ShapeCreate(PhysicsServer3D.ShapeType.Sphere);
    * float radius = 2.0f;
    * PhysicsServer3D.ShapeSetData(shapeRid, radius);

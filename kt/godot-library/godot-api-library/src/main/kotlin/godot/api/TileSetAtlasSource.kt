@@ -36,14 +36,18 @@ import kotlin.jvm.JvmOverloads
 /**
  * An atlas is a grid of tiles laid out on a texture. Each tile in the grid must be exposed using
  * [createTile]. Those tiles are then indexed using their coordinates in the grid.
+ *
  * Each tile can also have a size in the grid coordinates, making it more or less cells in the
  * atlas.
+ *
  * Alternatives version of a tile can be created using [createAlternativeTile], which are then
  * indexed using an alternative ID. The main tile (the one in the grid), is accessed with an
  * alternative ID equal to 0.
+ *
  * Each tile alternate has a set of properties that is defined by the source's [TileSet] layers.
  * Those properties are stored in a TileData object that can be accessed and modified using
  * [getTileData].
+ *
  * As TileData properties are stored directly in the TileSetAtlasSource resource, their properties
  * might also be set using
  * `TileSetAtlasSource.set("<coords_x>:<coords_y>/<alternative_id>/<tile_data_property>")`.
@@ -101,6 +105,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * If `true`, generates an internal texture with an additional one pixel padding around each tile.
    * Texture padding avoids a common artifact where lines appear between tiles.
+   *
    * Disabling this setting might lead a small performance improvement, as generating the internal
    * texture requires both memory and processing time when the TileSetAtlasSource resource is modified.
    */
@@ -266,8 +271,10 @@ public open class TileSetAtlasSource : TileSetSource() {
    * Move the tile and its alternatives at the [atlasCoords] coordinates to the [newAtlasCoords]
    * coordinates with the [newSize] size. This functions will fail if a tile is already present in the
    * given area.
+   *
    * If [newAtlasCoords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [newSize] is
    * `Vector2i(-1, -1)`, keeps the tile's size.
+   *
    * To avoid an error, first check if a move is possible using [hasRoomForTile].
    */
   @JvmOverloads
@@ -481,6 +488,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * Creates an alternative tile for the tile at coordinates [atlasCoords]. If
    * [alternativeIdOverride] is -1, give it an automatically generated unique ID, or assigns it the
    * given ID otherwise.
+   *
    * Returns the new alternative identifier, or -1 if the alternative could not be created with a
    * provided [alternativeIdOverride].
    */
@@ -494,6 +502,7 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   /**
    * Remove a tile's alternative with alternative ID [alternativeTile].
+   *
    * Calling this function with [alternativeTile] equals to 0 will fail, as the base tile
    * alternative cannot be removed.
    */
@@ -504,6 +513,7 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   /**
    * Change a tile's alternative ID from [alternativeTile] to [newId].
+   *
    * Calling this function with [newId] of 0 will fail, as the base tile alternative cannot be
    * moved.
    */
@@ -568,6 +578,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns the region of the tile at coordinates [atlasCoords] for the given [frame] inside the
    * texture returned by [getRuntimeTexture].
+   *
    * **Note:** If [useTexturePadding] is `false`, returns the same as [getTileTextureRegion].
    */
   public final fun getRuntimeTileTextureRegion(atlasCoords: Vector2i, frame: Int): Rect2i {
@@ -607,16 +618,19 @@ public open class TileSetAtlasSource : TileSetSource() {
     /**
      * Represents cell's horizontal flip flag. Should be used directly with [TileMap] to flip placed
      * tiles by altering their alternative IDs.
-     * [codeblock]
+     *
+     * ```
      * var alternate_id = $TileMap.get_cell_alternative_tile(0, Vector2i(2, 2))
      * if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
      *     # If tile is not already flipped, flip it.
      *     $TileMap.set_cell(0, Vector2i(2, 2), source_id, atlas_coords, alternate_id |
      * TileSetAtlasSource.TRANSFORM_FLIP_H)
-     * [/codeblock]
+     * ```
+     *
      * **Note:** These transformations can be combined to do the equivalent of 0, 90, 180, and 270
      * degree rotations, as shown below:
-     * [codeblock]
+     *
+     * ```
      * enum TileTransform {
      *     ROTATE_0 = 0,
      *     ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
@@ -624,7 +638,7 @@ public open class TileSetAtlasSource : TileSetSource() {
      *     ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE |
      * TileSetAtlasSource.TRANSFORM_FLIP_V,
      * }
-     * [/codeblock]
+     * ```
      */
     public final const val TRANSFORM_FLIP_H: Long = 4096
 

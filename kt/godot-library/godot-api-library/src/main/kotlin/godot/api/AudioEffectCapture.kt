@@ -28,10 +28,12 @@ import kotlin.jvm.JvmName
 /**
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
  * bus into its internal ring buffer.
+ *
  * Application code should consume these audio frames from this ring buffer using [getBuffer] and
  * process it as needed, for example to capture data from an [AudioStreamMicrophone], implement
  * application-defined effects, or to transmit audio over the network. When capturing audio data from a
  * microphone, the format of the samples will be stereo 32-bit floating-point PCM.
+ *
  * Unlike [AudioEffectRecord], this effect only returns the raw audio samples instead of encoding
  * them into an [AudioStream].
  */
@@ -65,8 +67,10 @@ public open class AudioEffectCapture : AudioEffect() {
 
   /**
    * Gets the next [frames] audio samples from the internal ring buffer.
+   *
    * Returns a [PackedVector2Array] containing exactly [frames] audio samples if available, or an
    * empty [PackedVector2Array] if insufficient data was available.
+   *
    * The samples are signed floating-point PCM between `-1` and `1`. You will have to scale them if
    * you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
    */
@@ -78,6 +82,7 @@ public open class AudioEffectCapture : AudioEffect() {
 
   /**
    * Clears the internal ring buffer.
+   *
    * **Note:** Calling this during a capture can cause the loss of samples which causes popping in
    * the playback.
    */

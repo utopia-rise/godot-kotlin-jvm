@@ -49,8 +49,10 @@ public open class JSONRPC : Object() {
    * Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it.
    * Methods are resolved by looking at the field called "method" and looking for an equivalently named
    * function in the JSONRPC object. If one is found that method is called.
+   *
    * To add new supported methods extend the JSONRPC class and call [processAction] on your
    * subclass.
+   *
    * [action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or
    * notification.
    */
@@ -71,8 +73,11 @@ public open class JSONRPC : Object() {
    * Returns a dictionary in the form of a JSON-RPC request. Requests are sent to a server with the
    * expectation of a response. The ID field is used for the server to specify which exact request it
    * is responding to.
+   *
    * - [method]: Name of the method being called.
+   *
    * - [params]: An array or dictionary of parameters being passed to the method.
+   *
    * - [id]: Uniquely identifies this request. The server is expected to send a response with the
    * same ID.
    */
@@ -89,7 +94,9 @@ public open class JSONRPC : Object() {
   /**
    * When a server has received and processed a request, it is expected to send a response. If you
    * did not want a response then you need to have sent a Notification instead.
+   *
    * - [result]: The return value of the function which was called.
+   *
    * - [id]: The ID of the request this response is targeted to.
    */
   public final fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
@@ -101,7 +108,9 @@ public open class JSONRPC : Object() {
   /**
    * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot
    * messages which do not expect a response.
+   *
    * - [method]: Name of the method being called.
+   *
    * - [params]: An array or dictionary of parameters being passed to the method.
    */
   public final fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
@@ -112,9 +121,12 @@ public open class JSONRPC : Object() {
 
   /**
    * Creates a response which indicates a previous reply has failed in some way.
+   *
    * - [code]: The error code corresponding to what kind of error this is. See the [ErrorCode]
    * constants.
+   *
    * - [message]: A custom message about this error.
+   *
    * - [id]: The request this error is a response to.
    */
   @JvmOverloads

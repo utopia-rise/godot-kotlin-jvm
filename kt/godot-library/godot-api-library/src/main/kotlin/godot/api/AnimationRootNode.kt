@@ -16,6 +16,7 @@ import kotlin.Unit
  * complete animation refers to the output of an [AnimationNodeOutput] in an [AnimationNodeBlendTree]
  * or the output of another [AnimationRootNode]. Used for [AnimationTree.treeRoot] or in other
  * [AnimationRootNode]s.
+ *
  * Examples of built-in root nodes include [AnimationNodeBlendTree] (allows blending nodes between
  * each other using various modes), [AnimationNodeStateMachine] (allows to configure blending and
  * transitions between nodes using a state machine pattern), [AnimationNodeBlendSpace2D] (allows linear

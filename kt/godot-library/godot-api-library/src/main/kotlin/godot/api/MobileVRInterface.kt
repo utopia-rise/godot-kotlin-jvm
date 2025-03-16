@@ -27,14 +27,18 @@ import kotlin.jvm.JvmName
  * This is a generic mobile VR implementation where you need to provide details about the phone and
  * HMD used. It does not rely on any existing framework. This is the most basic interface we have. For
  * the best effect, you need a mobile phone with a gyroscope and accelerometer.
+ *
  * Note that even though there is no positional tracking, the camera will assume the headset is at a
  * height of 1.85 meters. You can change this by setting [eyeHeight].
+ *
  * You can initialize this interface as follows:
- * [codeblock]
+ *
+ * ```
  * var interface = XRServer.find_interface("Native mobile")
  * if interface and interface.initialize():
  *     get_viewport().use_xr = true
- * [/codeblock]
+ * ```
+ *
  * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer],
  * [ProjectSettings.inputDevices/sensors/enableGravity],
  * [ProjectSettings.inputDevices/sensors/enableGyroscope] and
@@ -139,6 +143,7 @@ public open class MobileVRInterface : XRInterface() {
   /**
    * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
    * percentage of screen size.
+   *
    * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
    * [Viewport.VRS_XR].
    */
@@ -153,6 +158,7 @@ public open class MobileVRInterface : XRInterface() {
   /**
    * The strength used to calculate the VRS density map. The greater this value, the more noticeable
    * VRS is. This improves performance at the cost of quality.
+   *
    * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
    * [Viewport.VRS_XR].
    */

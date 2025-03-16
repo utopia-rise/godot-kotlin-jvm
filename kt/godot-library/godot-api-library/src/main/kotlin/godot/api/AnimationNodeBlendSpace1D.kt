@@ -29,9 +29,11 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A resource used by [AnimationNodeBlendTree].
+ *
  * [AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [AnimationRootNode]s
  * can be added using [addBlendPoint]. Outputs the linear blend of the two [AnimationRootNode]s
  * adjacent to the current value.
+ *
  * You can set the extents of the axis with [minSpace] and [maxSpace].
  */
 @GodotBaseType
@@ -93,6 +95,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
 
   /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
+   *
    * If `true`, forcing the blended animations to advance frame.
    */
   public final inline var sync: Boolean

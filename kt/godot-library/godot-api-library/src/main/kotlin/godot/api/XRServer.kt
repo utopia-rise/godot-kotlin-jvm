@@ -105,6 +105,7 @@ public object XRServer : Object() {
   /**
    * The current origin of our tracking space in the virtual world. This is used by the renderer to
    * properly position the camera with new tracking data.
+   *
    * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
    * from GDExtensions.
    */
@@ -120,6 +121,7 @@ public object XRServer : Object() {
 
   /**
    * If set to `true`, the scene will be rendered as if the camera is locked to the [XROrigin3D].
+   *
    * **Note:** This doesn't provide a very comfortable experience for users. This setting exists for
    * doing benchmarking or automated testing, where you want to control what is rendered via code.
    */
@@ -151,6 +153,7 @@ public object XRServer : Object() {
   /**
    * The current origin of our tracking space in the virtual world. This is used by the renderer to
    * properly position the camera with new tracking data.
+   *
    * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
    * from GDExtensions.
    *
@@ -225,16 +228,21 @@ public object XRServer : Object() {
   /**
    * This is an important function to understand correctly. AR and VR platforms all handle
    * positioning slightly differently.
+   *
    * For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of
    * our HMD, but you have little control over the direction the player is facing in the real world.
+   *
    * For platforms that do offer spatial tracking, our origin point depends very much on the system.
    * For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other
    * platforms, it's often the location of the tracking camera.
+   *
    * This method allows you to center your tracker on the location of the HMD. It will take the
    * current location of the HMD and use that to adjust all your tracking data; in essence, realigning
    * the real world to your player's current position in the game world.
+   *
    * For this method to produce usable results, tracking information must be available. This often
    * takes a few frames after starting your game.
+   *
    * You should call this method after a few seconds have passed. For example, when the user
    * requests a realignment of the display holding a designated button on a controller for a short
    * period of time, or when implementing a teleport mechanism.

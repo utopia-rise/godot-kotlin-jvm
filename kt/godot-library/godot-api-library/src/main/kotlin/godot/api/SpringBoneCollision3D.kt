@@ -30,11 +30,14 @@ import kotlin.jvm.JvmName
 /**
  * A collision can be a child of [SpringBoneSimulator3D]. If it is not a child of
  * [SpringBoneSimulator3D], it has no effect.
+ *
  * The colliding and sliding are done in the [SpringBoneSimulator3D]'s modification process in order
  * of its collision list which is set by [SpringBoneSimulator3D.setCollisionPath]. If
  * [SpringBoneSimulator3D.areAllChildCollisionsEnabled] is `true`, the order matches [SceneTree].
+ *
  * If [bone] is set, it synchronizes with the bone pose of the ancestor [Skeleton3D], which is done
  * in before the [SpringBoneSimulator3D]'s modification process as the pre-process.
+ *
  * **Warning:** A scaled [SpringBoneCollision3D] will likely not behave as expected. Make sure that
  * the parent [Skeleton3D] and its bones are not scaled.
  */

@@ -26,15 +26,17 @@ import kotlin.jvm.JvmName
 /**
  * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your
  * desired size.
+ *
  * The class uses [Thread]s to generate the texture data internally, so [Texture3D.getData] may
  * return `null` if the generation process has not completed yet. In that case, you need to wait for
  * the texture to be generated before accessing the image:
- * [codeblock]
+ *
+ * ```
  * var texture = NoiseTexture3D.new()
  * texture.noise = FastNoiseLite.new()
  * await texture.changed
  * var data = texture.get_data()
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class NoiseTexture3D : Texture3D() {
@@ -84,9 +86,11 @@ public open class NoiseTexture3D : Texture3D() {
 
   /**
    * If `true`, a seamless texture is requested from the [Noise] resource.
+   *
    * **Note:** Seamless noise textures may take longer to generate and/or can have a lower contrast
    * compared to non-seamless noise depending on the used [Noise] resource. This is because some
    * implementations use higher dimensions for generating seamless noise.
+   *
    * **Note:** The default [FastNoiseLite] implementation uses the fallback path for seamless
    * generation. If using a [width], [height] or [depth] lower than the default, you may need to
    * increase [seamlessBlendSkirt] to make seamless blending more effective.
@@ -103,6 +107,7 @@ public open class NoiseTexture3D : Texture3D() {
    * Used for the default/fallback implementation of the seamless texture generation. It determines
    * the distance over which the seams are blended. High values may result in less details and
    * contrast. See [Noise] for further details.
+   *
    * **Note:** If using a [width], [height] or [depth] lower than the default, you may need to
    * increase [seamlessBlendSkirt] to make seamless blending more effective.
    */
@@ -117,6 +122,7 @@ public open class NoiseTexture3D : Texture3D() {
   /**
    * If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to
    * `1.0`.
+   *
    * Turning normalization off can affect the contrast and allows you to generate non repeating
    * tileable noise textures.
    */

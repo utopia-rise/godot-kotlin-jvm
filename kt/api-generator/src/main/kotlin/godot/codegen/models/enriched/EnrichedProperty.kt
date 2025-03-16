@@ -32,7 +32,7 @@ class EnrichedProperty(model: Property) : CastableTrait, NullableTrait, IDocumen
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
     override val meta: String?
         get() = getterMethod?.meta
-    override val description = model.description
+    override var description = model.description
 
     fun setGetter(method: EnrichedMethod) {
         getterMethod = method
