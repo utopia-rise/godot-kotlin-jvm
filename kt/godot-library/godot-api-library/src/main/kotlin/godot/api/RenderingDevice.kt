@@ -47,143 +47,44 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
-public infix fun Long.or(other: godot.api.RenderingDevice.BarrierMask): Long = this.or(other.flag)
+public infix fun Long.or(other: RenderingDevice.BarrierMask): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.RenderingDevice.BarrierMask): Long = this.xor(other.flag)
+public infix fun Long.xor(other: RenderingDevice.BarrierMask): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.RenderingDevice.BarrierMask): Long = this.and(other.flag)
+public infix fun Long.and(other: RenderingDevice.BarrierMask): Long = this.and(other.flag)
 
-public operator fun Long.plus(other: godot.api.RenderingDevice.BarrierMask): Long =
-    this.plus(other.flag)
+public infix fun Long.or(other: RenderingDevice.TextureUsageBits): Long = this.or(other.flag)
 
-public operator fun Long.minus(other: godot.api.RenderingDevice.BarrierMask): Long =
-    this.minus(other.flag)
+public infix fun Long.xor(other: RenderingDevice.TextureUsageBits): Long = this.xor(other.flag)
 
-public operator fun Long.times(other: godot.api.RenderingDevice.BarrierMask): Long =
-    this.times(other.flag)
+public infix fun Long.and(other: RenderingDevice.TextureUsageBits): Long = this.and(other.flag)
 
-public operator fun Long.div(other: godot.api.RenderingDevice.BarrierMask): Long =
-    this.div(other.flag)
+public infix fun Long.or(other: RenderingDevice.StorageBufferUsage): Long = this.or(other.flag)
 
-public operator fun Long.rem(other: godot.api.RenderingDevice.BarrierMask): Long =
-    this.rem(other.flag)
+public infix fun Long.xor(other: RenderingDevice.StorageBufferUsage): Long = this.xor(other.flag)
 
-public infix fun Long.or(other: godot.api.RenderingDevice.TextureUsageBits): Long =
+public infix fun Long.and(other: RenderingDevice.StorageBufferUsage): Long = this.and(other.flag)
+
+public infix fun Long.or(other: RenderingDevice.BufferCreationBits): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: RenderingDevice.BufferCreationBits): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: RenderingDevice.BufferCreationBits): Long = this.and(other.flag)
+
+public infix fun Long.or(other: RenderingDevice.PipelineDynamicStateFlags): Long =
     this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.RenderingDevice.TextureUsageBits): Long =
+public infix fun Long.xor(other: RenderingDevice.PipelineDynamicStateFlags): Long =
     this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.RenderingDevice.TextureUsageBits): Long =
+public infix fun Long.and(other: RenderingDevice.PipelineDynamicStateFlags): Long =
     this.and(other.flag)
 
-public operator fun Long.plus(other: godot.api.RenderingDevice.TextureUsageBits): Long =
-    this.plus(other.flag)
+public infix fun Long.or(other: RenderingDevice.DrawFlags): Long = this.or(other.flag)
 
-public operator fun Long.minus(other: godot.api.RenderingDevice.TextureUsageBits): Long =
-    this.minus(other.flag)
+public infix fun Long.xor(other: RenderingDevice.DrawFlags): Long = this.xor(other.flag)
 
-public operator fun Long.times(other: godot.api.RenderingDevice.TextureUsageBits): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingDevice.TextureUsageBits): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingDevice.TextureUsageBits): Long =
-    this.rem(other.flag)
-
-public infix fun Long.or(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.or(other.flag)
-
-public infix fun Long.xor(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
-    this.rem(other.flag)
-
-public infix fun Long.or(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.or(other.flag)
-
-public infix fun Long.xor(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingDevice.BufferCreationBits): Long =
-    this.rem(other.flag)
-
-public infix fun Long.or(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.or(other.flag)
-
-public infix fun Long.xor(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.rem(other.flag)
-
-public infix fun Long.or(other: godot.api.RenderingDevice.DrawFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.api.RenderingDevice.DrawFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.api.RenderingDevice.DrawFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RenderingDevice.DrawFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RenderingDevice.DrawFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RenderingDevice.DrawFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingDevice.DrawFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingDevice.DrawFlags): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(other.flag)
 
 /**
  * [RenderingDevice] is an abstraction for working with modern low-level graphics APIs such as
@@ -210,7 +111,7 @@ public operator fun Long.rem(other: godot.api.RenderingDevice.DrawFlags): Long =
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(563, scriptIndex)
+    createNativeObject(553, scriptIndex)
   }
 
   /**
@@ -659,7 +560,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun vertexBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBits(0),
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.vertexBufferCreatePtr, _RID)
@@ -703,7 +604,7 @@ public open class RenderingDevice internal constructor() : Object() {
     format: IndexBufferFormat,
     `data`: PackedByteArray = PackedByteArray(),
     useRestartIndices: Boolean = false,
-    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBits(0),
   ): RID {
     TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.indexBufferCreatePtr, _RID)
@@ -817,7 +718,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun uniformBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBits(0),
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.uniformBufferCreatePtr, _RID)
@@ -834,8 +735,8 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun storageBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    usage: StorageBufferUsage = RenderingDevice.StorageBufferUsageValue(0),
-    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
+    usage: StorageBufferUsage = RenderingDevice.StorageBufferUsage(0),
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBits(0),
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage.flag, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.storageBufferCreatePtr, _RID)
@@ -1013,8 +914,7 @@ public open class RenderingDevice internal constructor() : Object() {
     multisampleState: RDPipelineMultisampleState?,
     stencilState: RDPipelineDepthStencilState?,
     colorBlendState: RDPipelineColorBlendState?,
-    dynamicStateFlags: PipelineDynamicStateFlags =
-        RenderingDevice.PipelineDynamicStateFlagsValue(0),
+    dynamicStateFlags: PipelineDynamicStateFlags = RenderingDevice.PipelineDynamicStateFlags(0),
     forRenderPass: Long = 0,
     specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
         godot.core.variantArrayOf(),
@@ -3238,79 +3138,72 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public sealed interface BarrierMask {
-    public val flag: Long
+  @JvmInline
+  public value class BarrierMask(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: BarrierMask): BarrierMask = BarrierMask(flag.or(other.flag))
 
-    public infix fun or(other: BarrierMask): BarrierMask = BarrierMaskValue(flag.or(other.flag))
+    public infix fun or(other: Long): BarrierMask = BarrierMask(flag.or(other))
 
-    public infix fun or(other: Long): BarrierMask = BarrierMaskValue(flag.or(other))
+    public infix fun xor(other: BarrierMask): BarrierMask = BarrierMask(flag.xor(other.flag))
 
-    public infix fun xor(other: BarrierMask): BarrierMask = BarrierMaskValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): BarrierMask = BarrierMask(flag.xor(other))
 
-    public infix fun xor(other: Long): BarrierMask = BarrierMaskValue(flag.xor(other))
+    public infix fun and(other: BarrierMask): BarrierMask = BarrierMask(flag.and(other.flag))
 
-    public infix fun and(other: BarrierMask): BarrierMask = BarrierMaskValue(flag.and(other.flag))
+    public infix fun and(other: Long): BarrierMask = BarrierMask(flag.and(other))
 
-    public infix fun and(other: Long): BarrierMask = BarrierMaskValue(flag.and(other))
+    public fun unaryPlus(): BarrierMask = BarrierMask(flag.unaryPlus())
 
-    public operator fun plus(other: BarrierMask): BarrierMask =
-        BarrierMaskValue(flag.plus(other.flag))
+    public fun unaryMinus(): BarrierMask = BarrierMask(flag.unaryMinus())
 
-    public operator fun plus(other: Long): BarrierMask = BarrierMaskValue(flag.plus(other))
+    public fun inv(): BarrierMask = BarrierMask(flag.inv())
 
-    public operator fun minus(other: BarrierMask): BarrierMask =
-        BarrierMaskValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): BarrierMask = BarrierMask(flag shl bits)
 
-    public operator fun minus(other: Long): BarrierMask = BarrierMaskValue(flag.minus(other))
+    public infix fun shr(bits: Int): BarrierMask = BarrierMask(flag shr bits)
 
-    public operator fun times(other: BarrierMask): BarrierMask =
-        BarrierMaskValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): BarrierMask = BarrierMaskValue(flag.times(other))
-
-    public operator fun div(other: BarrierMask): BarrierMask =
-        BarrierMaskValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): BarrierMask = BarrierMaskValue(flag.div(other))
-
-    public operator fun rem(other: BarrierMask): BarrierMask =
-        BarrierMaskValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): BarrierMask = BarrierMaskValue(flag.rem(other))
-
-    public fun unaryPlus(): BarrierMask = BarrierMaskValue(flag.unaryPlus())
-
-    public fun unaryMinus(): BarrierMask = BarrierMaskValue(flag.unaryMinus())
-
-    public fun inv(): BarrierMask = BarrierMaskValue(flag.inv())
-
-    public infix fun shl(bits: Int): BarrierMask = BarrierMaskValue(flag shl bits)
-
-    public infix fun shr(bits: Int): BarrierMask = BarrierMaskValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): BarrierMask = BarrierMaskValue(flag ushr bits)
+    public infix fun ushr(bits: Int): BarrierMask = BarrierMask(flag ushr bits)
 
     public companion object {
-      public val BARRIER_MASK_VERTEX: BarrierMask = BarrierMaskValue(1)
+      /**
+       * Vertex shader barrier mask.
+       */
+      public val BARRIER_MASK_VERTEX: BarrierMask = BarrierMask(1)
 
-      public val BARRIER_MASK_FRAGMENT: BarrierMask = BarrierMaskValue(8)
+      /**
+       * Fragment shader barrier mask.
+       */
+      public val BARRIER_MASK_FRAGMENT: BarrierMask = BarrierMask(8)
 
-      public val BARRIER_MASK_COMPUTE: BarrierMask = BarrierMaskValue(2)
+      /**
+       * Compute barrier mask.
+       */
+      public val BARRIER_MASK_COMPUTE: BarrierMask = BarrierMask(2)
 
-      public val BARRIER_MASK_TRANSFER: BarrierMask = BarrierMaskValue(4)
+      /**
+       * Transfer barrier mask.
+       */
+      public val BARRIER_MASK_TRANSFER: BarrierMask = BarrierMask(4)
 
-      public val BARRIER_MASK_RASTER: BarrierMask = BarrierMaskValue(9)
+      /**
+       * Raster barrier mask (vertex and fragment). Equivalent to `BARRIER_MASK_VERTEX |
+       * BARRIER_MASK_FRAGMENT`.
+       */
+      public val BARRIER_MASK_RASTER: BarrierMask = BarrierMask(9)
 
-      public val BARRIER_MASK_ALL_BARRIERS: BarrierMask = BarrierMaskValue(32767)
+      /**
+       * Barrier mask for all types (vertex, fragment, compute, transfer).
+       */
+      public val BARRIER_MASK_ALL_BARRIERS: BarrierMask = BarrierMask(32767)
 
-      public val BARRIER_MASK_NO_BARRIER: BarrierMask = BarrierMaskValue(32768)
+      /**
+       * No barrier for any type.
+       */
+      public val BARRIER_MASK_NO_BARRIER: BarrierMask = BarrierMask(32768)
     }
   }
-
-  @JvmInline
-  public value class BarrierMaskValue(
-    public override val flag: Long,
-  ) : BarrierMask
 
   public enum class TextureType(
     id: Long,
@@ -3407,92 +3300,96 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public sealed interface TextureUsageBits {
-    public val flag: Long
-
+  @JvmInline
+  public value class TextureUsageBits(
+    public val flag: Long,
+  ) {
     public infix fun or(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.or(other.flag))
+        TextureUsageBits(flag.or(other.flag))
 
-    public infix fun or(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.or(other))
+    public infix fun or(other: Long): TextureUsageBits = TextureUsageBits(flag.or(other))
 
     public infix fun xor(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.xor(other.flag))
+        TextureUsageBits(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.xor(other))
+    public infix fun xor(other: Long): TextureUsageBits = TextureUsageBits(flag.xor(other))
 
     public infix fun and(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.and(other.flag))
+        TextureUsageBits(flag.and(other.flag))
 
-    public infix fun and(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.and(other))
+    public infix fun and(other: Long): TextureUsageBits = TextureUsageBits(flag.and(other))
 
-    public operator fun plus(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.plus(other.flag))
+    public fun unaryPlus(): TextureUsageBits = TextureUsageBits(flag.unaryPlus())
 
-    public operator fun plus(other: Long): TextureUsageBits =
-        TextureUsageBitsValue(flag.plus(other))
+    public fun unaryMinus(): TextureUsageBits = TextureUsageBits(flag.unaryMinus())
 
-    public operator fun minus(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.minus(other.flag))
+    public fun inv(): TextureUsageBits = TextureUsageBits(flag.inv())
 
-    public operator fun minus(other: Long): TextureUsageBits =
-        TextureUsageBitsValue(flag.minus(other))
+    public infix fun shl(bits: Int): TextureUsageBits = TextureUsageBits(flag shl bits)
 
-    public operator fun times(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): TextureUsageBits = TextureUsageBits(flag shr bits)
 
-    public operator fun times(other: Long): TextureUsageBits =
-        TextureUsageBitsValue(flag.times(other))
-
-    public operator fun div(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.div(other))
-
-    public operator fun rem(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBitsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): TextureUsageBits = TextureUsageBitsValue(flag.rem(other))
-
-    public fun unaryPlus(): TextureUsageBits = TextureUsageBitsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): TextureUsageBits = TextureUsageBitsValue(flag.unaryMinus())
-
-    public fun inv(): TextureUsageBits = TextureUsageBitsValue(flag.inv())
-
-    public infix fun shl(bits: Int): TextureUsageBits = TextureUsageBitsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): TextureUsageBits = TextureUsageBitsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBitsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBits(flag ushr bits)
 
     public companion object {
-      public val TEXTURE_USAGE_SAMPLING_BIT: TextureUsageBits = TextureUsageBitsValue(1)
+      /**
+       * Texture can be sampled.
+       */
+      public val TEXTURE_USAGE_SAMPLING_BIT: TextureUsageBits = TextureUsageBits(1)
 
-      public val TEXTURE_USAGE_COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBitsValue(2)
+      /**
+       * Texture can be used as a color attachment in a framebuffer.
+       */
+      public val TEXTURE_USAGE_COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(2)
 
-      public val TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits =
-          TextureUsageBitsValue(4)
+      /**
+       * Texture can be used as a depth/stencil attachment in a framebuffer.
+       */
+      public val TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(4)
 
-      public val TEXTURE_USAGE_STORAGE_BIT: TextureUsageBits = TextureUsageBitsValue(8)
+      /**
+       * Texture can be used as a
+       * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
+       * image[/url].
+       */
+      public val TEXTURE_USAGE_STORAGE_BIT: TextureUsageBits = TextureUsageBits(8)
 
-      public val TEXTURE_USAGE_STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBitsValue(16)
+      /**
+       * Texture can be used as a
+       * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
+       * image[/url] with support for atomic operations.
+       */
+      public val TEXTURE_USAGE_STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBits(16)
 
-      public val TEXTURE_USAGE_CPU_READ_BIT: TextureUsageBits = TextureUsageBitsValue(32)
+      /**
+       * Texture can be read back on the CPU using [textureGetData] faster than without this bit,
+       * since it is always kept in the system memory.
+       */
+      public val TEXTURE_USAGE_CPU_READ_BIT: TextureUsageBits = TextureUsageBits(32)
 
-      public val TEXTURE_USAGE_CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBitsValue(64)
+      /**
+       * Texture can be updated using [textureUpdate].
+       */
+      public val TEXTURE_USAGE_CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBits(64)
 
-      public val TEXTURE_USAGE_CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBitsValue(128)
+      /**
+       * Texture can be a source for [textureCopy].
+       */
+      public val TEXTURE_USAGE_CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBits(128)
 
-      public val TEXTURE_USAGE_CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBitsValue(256)
+      /**
+       * Texture can be a destination for [textureCopy].
+       */
+      public val TEXTURE_USAGE_CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBits(256)
 
-      public val TEXTURE_USAGE_INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBitsValue(512)
+      /**
+       * Texture can be used as a
+       * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment]input
+       * attachment[/url] in a framebuffer.
+       */
+      public val TEXTURE_USAGE_INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(512)
     }
   }
-
-  @JvmInline
-  public value class TextureUsageBitsValue(
-    public override val flag: Long,
-  ) : TextureUsageBits
 
   public enum class TextureSwizzle(
     id: Long,
@@ -3737,148 +3634,99 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public sealed interface StorageBufferUsage {
-    public val flag: Long
-
+  @JvmInline
+  public value class StorageBufferUsage(
+    public val flag: Long,
+  ) {
     public infix fun or(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.or(other.flag))
+        StorageBufferUsage(flag.or(other.flag))
 
-    public infix fun or(other: Long): StorageBufferUsage = StorageBufferUsageValue(flag.or(other))
+    public infix fun or(other: Long): StorageBufferUsage = StorageBufferUsage(flag.or(other))
 
     public infix fun xor(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.xor(other.flag))
+        StorageBufferUsage(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): StorageBufferUsage = StorageBufferUsageValue(flag.xor(other))
+    public infix fun xor(other: Long): StorageBufferUsage = StorageBufferUsage(flag.xor(other))
 
     public infix fun and(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.and(other.flag))
+        StorageBufferUsage(flag.and(other.flag))
 
-    public infix fun and(other: Long): StorageBufferUsage = StorageBufferUsageValue(flag.and(other))
+    public infix fun and(other: Long): StorageBufferUsage = StorageBufferUsage(flag.and(other))
 
-    public operator fun plus(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.plus(other.flag))
+    public fun unaryPlus(): StorageBufferUsage = StorageBufferUsage(flag.unaryPlus())
 
-    public operator fun plus(other: Long): StorageBufferUsage =
-        StorageBufferUsageValue(flag.plus(other))
+    public fun unaryMinus(): StorageBufferUsage = StorageBufferUsage(flag.unaryMinus())
 
-    public operator fun minus(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.minus(other.flag))
+    public fun inv(): StorageBufferUsage = StorageBufferUsage(flag.inv())
 
-    public operator fun minus(other: Long): StorageBufferUsage =
-        StorageBufferUsageValue(flag.minus(other))
+    public infix fun shl(bits: Int): StorageBufferUsage = StorageBufferUsage(flag shl bits)
 
-    public operator fun times(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): StorageBufferUsage = StorageBufferUsage(flag shr bits)
 
-    public operator fun times(other: Long): StorageBufferUsage =
-        StorageBufferUsageValue(flag.times(other))
-
-    public operator fun div(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): StorageBufferUsage =
-        StorageBufferUsageValue(flag.div(other))
-
-    public operator fun rem(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsageValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): StorageBufferUsage =
-        StorageBufferUsageValue(flag.rem(other))
-
-    public fun unaryPlus(): StorageBufferUsage = StorageBufferUsageValue(flag.unaryPlus())
-
-    public fun unaryMinus(): StorageBufferUsage = StorageBufferUsageValue(flag.unaryMinus())
-
-    public fun inv(): StorageBufferUsage = StorageBufferUsageValue(flag.inv())
-
-    public infix fun shl(bits: Int): StorageBufferUsage = StorageBufferUsageValue(flag shl bits)
-
-    public infix fun shr(bits: Int): StorageBufferUsage = StorageBufferUsageValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): StorageBufferUsage = StorageBufferUsageValue(flag ushr bits)
+    public infix fun ushr(bits: Int): StorageBufferUsage = StorageBufferUsage(flag ushr bits)
 
     public companion object {
-      public val STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT: StorageBufferUsage =
-          StorageBufferUsageValue(1)
+      public val STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT: StorageBufferUsage = StorageBufferUsage(1)
     }
   }
 
   @JvmInline
-  public value class StorageBufferUsageValue(
-    public override val flag: Long,
-  ) : StorageBufferUsage
-
-  public sealed interface BufferCreationBits {
-    public val flag: Long
-
+  public value class BufferCreationBits(
+    public val flag: Long,
+  ) {
     public infix fun or(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.or(other.flag))
+        BufferCreationBits(flag.or(other.flag))
 
-    public infix fun or(other: Long): BufferCreationBits = BufferCreationBitsValue(flag.or(other))
+    public infix fun or(other: Long): BufferCreationBits = BufferCreationBits(flag.or(other))
 
     public infix fun xor(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.xor(other.flag))
+        BufferCreationBits(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): BufferCreationBits = BufferCreationBitsValue(flag.xor(other))
+    public infix fun xor(other: Long): BufferCreationBits = BufferCreationBits(flag.xor(other))
 
     public infix fun and(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.and(other.flag))
+        BufferCreationBits(flag.and(other.flag))
 
-    public infix fun and(other: Long): BufferCreationBits = BufferCreationBitsValue(flag.and(other))
+    public infix fun and(other: Long): BufferCreationBits = BufferCreationBits(flag.and(other))
 
-    public operator fun plus(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.plus(other.flag))
+    public fun unaryPlus(): BufferCreationBits = BufferCreationBits(flag.unaryPlus())
 
-    public operator fun plus(other: Long): BufferCreationBits =
-        BufferCreationBitsValue(flag.plus(other))
+    public fun unaryMinus(): BufferCreationBits = BufferCreationBits(flag.unaryMinus())
 
-    public operator fun minus(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.minus(other.flag))
+    public fun inv(): BufferCreationBits = BufferCreationBits(flag.inv())
 
-    public operator fun minus(other: Long): BufferCreationBits =
-        BufferCreationBitsValue(flag.minus(other))
+    public infix fun shl(bits: Int): BufferCreationBits = BufferCreationBits(flag shl bits)
 
-    public operator fun times(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): BufferCreationBits = BufferCreationBits(flag shr bits)
 
-    public operator fun times(other: Long): BufferCreationBits =
-        BufferCreationBitsValue(flag.times(other))
-
-    public operator fun div(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): BufferCreationBits =
-        BufferCreationBitsValue(flag.div(other))
-
-    public operator fun rem(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBitsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): BufferCreationBits =
-        BufferCreationBitsValue(flag.rem(other))
-
-    public fun unaryPlus(): BufferCreationBits = BufferCreationBitsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): BufferCreationBits = BufferCreationBitsValue(flag.unaryMinus())
-
-    public fun inv(): BufferCreationBits = BufferCreationBitsValue(flag.inv())
-
-    public infix fun shl(bits: Int): BufferCreationBits = BufferCreationBitsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): BufferCreationBits = BufferCreationBitsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBitsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBits(flag ushr bits)
 
     public companion object {
-      public val BUFFER_CREATION_DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBitsValue(1)
+      /**
+       * Optionally, set this flag if you wish to use [bufferGetDeviceAddress] functionality. You
+       * must first check the GPU supports it:
+       *
+       * gdscript:
+       * ```gdscript
+       * rd = RenderingServer.get_rendering_device()
+       *
+       * if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
+       *       storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
+       * RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS):
+       *       storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
+       * ```
+       */
+      public val BUFFER_CREATION_DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBits(1)
 
-      public val BUFFER_CREATION_AS_STORAGE_BIT: BufferCreationBits = BufferCreationBitsValue(2)
+      /**
+       * Set this flag so that it is created as storage. This is useful if Compute Shaders need
+       * access (for reading or writing) to the buffer, e.g. skeletal animations are processed in
+       * Compute Shaders which need access to vertex buffers, to be later consumed by vertex shaders as
+       * part of the regular rasterization pipeline.
+       */
+      public val BUFFER_CREATION_AS_STORAGE_BIT: BufferCreationBits = BufferCreationBits(2)
     }
   }
-
-  @JvmInline
-  public value class BufferCreationBitsValue(
-    public override val flag: Long,
-  ) : BufferCreationBits
 
   public enum class UniformType(
     id: Long,
@@ -4400,102 +4248,71 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public sealed interface PipelineDynamicStateFlags {
-    public val flag: Long
-
+  @JvmInline
+  public value class PipelineDynamicStateFlags(
+    public val flag: Long,
+  ) {
     public infix fun or(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.or(other.flag))
+        PipelineDynamicStateFlags(flag.or(other.flag))
 
     public infix fun or(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.or(other))
+        PipelineDynamicStateFlags(flag.or(other))
 
     public infix fun xor(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.xor(other.flag))
+        PipelineDynamicStateFlags(flag.xor(other.flag))
 
     public infix fun xor(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.xor(other))
+        PipelineDynamicStateFlags(flag.xor(other))
 
     public infix fun and(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.and(other.flag))
+        PipelineDynamicStateFlags(flag.and(other.flag))
 
     public infix fun and(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.and(other))
+        PipelineDynamicStateFlags(flag.and(other))
 
-    public operator fun plus(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.plus(other.flag))
-
-    public operator fun plus(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.plus(other))
-
-    public operator fun minus(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.minus(other.flag))
-
-    public operator fun minus(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.minus(other))
-
-    public operator fun times(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.times(other))
-
-    public operator fun div(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.div(other))
-
-    public operator fun rem(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.unaryPlus())
+    public fun unaryPlus(): PipelineDynamicStateFlags = PipelineDynamicStateFlags(flag.unaryPlus())
 
     public fun unaryMinus(): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag.unaryMinus())
+        PipelineDynamicStateFlags(flag.unaryMinus())
 
-    public fun inv(): PipelineDynamicStateFlags = PipelineDynamicStateFlagsValue(flag.inv())
+    public fun inv(): PipelineDynamicStateFlags = PipelineDynamicStateFlags(flag.inv())
 
     public infix fun shl(bits: Int): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag shl bits)
+        PipelineDynamicStateFlags(flag shl bits)
 
     public infix fun shr(bits: Int): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag shr bits)
+        PipelineDynamicStateFlags(flag shr bits)
 
     public infix fun ushr(bits: Int): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlagsValue(flag ushr bits)
+        PipelineDynamicStateFlags(flag ushr bits)
 
     public companion object {
-      public val DYNAMIC_STATE_LINE_WIDTH: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(1)
+      /**
+       * Allows dynamically changing the width of rendering lines.
+       */
+      public val DYNAMIC_STATE_LINE_WIDTH: PipelineDynamicStateFlags = PipelineDynamicStateFlags(1)
 
-      public val DYNAMIC_STATE_DEPTH_BIAS: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(2)
+      /**
+       * Allows dynamically changing the depth bias.
+       */
+      public val DYNAMIC_STATE_DEPTH_BIAS: PipelineDynamicStateFlags = PipelineDynamicStateFlags(2)
 
       public val DYNAMIC_STATE_BLEND_CONSTANTS: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(4)
+          PipelineDynamicStateFlags(4)
 
       public val DYNAMIC_STATE_DEPTH_BOUNDS: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(8)
+          PipelineDynamicStateFlags(8)
 
       public val DYNAMIC_STATE_STENCIL_COMPARE_MASK: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(16)
+          PipelineDynamicStateFlags(16)
 
       public val DYNAMIC_STATE_STENCIL_WRITE_MASK: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(32)
+          PipelineDynamicStateFlags(32)
 
       public val DYNAMIC_STATE_STENCIL_REFERENCE: PipelineDynamicStateFlags =
-          PipelineDynamicStateFlagsValue(64)
+          PipelineDynamicStateFlags(64)
     }
   }
-
-  @JvmInline
-  public value class PipelineDynamicStateFlagsValue(
-    public override val flag: Long,
-  ) : PipelineDynamicStateFlags
 
   public enum class InitialAction(
     id: Long,
@@ -4937,114 +4754,171 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  public sealed interface DrawFlags {
-    public val flag: Long
+  @JvmInline
+  public value class DrawFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: DrawFlags): DrawFlags = DrawFlags(flag.or(other.flag))
 
-    public infix fun or(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): DrawFlags = DrawFlags(flag.or(other))
 
-    public infix fun or(other: Long): DrawFlags = DrawFlagsValue(flag.or(other))
+    public infix fun xor(other: DrawFlags): DrawFlags = DrawFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): DrawFlags = DrawFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): DrawFlags = DrawFlagsValue(flag.xor(other))
+    public infix fun and(other: DrawFlags): DrawFlags = DrawFlags(flag.and(other.flag))
 
-    public infix fun and(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): DrawFlags = DrawFlags(flag.and(other))
 
-    public infix fun and(other: Long): DrawFlags = DrawFlagsValue(flag.and(other))
+    public fun unaryPlus(): DrawFlags = DrawFlags(flag.unaryPlus())
 
-    public operator fun plus(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): DrawFlags = DrawFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): DrawFlags = DrawFlagsValue(flag.plus(other))
+    public fun inv(): DrawFlags = DrawFlags(flag.inv())
 
-    public operator fun minus(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): DrawFlags = DrawFlags(flag shl bits)
 
-    public operator fun minus(other: Long): DrawFlags = DrawFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): DrawFlags = DrawFlags(flag shr bits)
 
-    public operator fun times(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): DrawFlags = DrawFlagsValue(flag.times(other))
-
-    public operator fun div(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): DrawFlags = DrawFlagsValue(flag.div(other))
-
-    public operator fun rem(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): DrawFlags = DrawFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): DrawFlags = DrawFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): DrawFlags = DrawFlagsValue(flag.unaryMinus())
-
-    public fun inv(): DrawFlags = DrawFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): DrawFlags = DrawFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): DrawFlags = DrawFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): DrawFlags = DrawFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): DrawFlags = DrawFlags(flag ushr bits)
 
     public companion object {
-      public val DRAW_DEFAULT_ALL: DrawFlags = DrawFlagsValue(0)
+      /**
+       * Do not clear or ignore any attachments.
+       */
+      public val DRAW_DEFAULT_ALL: DrawFlags = DrawFlags(0)
 
-      public val DRAW_CLEAR_COLOR_0: DrawFlags = DrawFlagsValue(1)
+      /**
+       * Clear the first color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
 
-      public val DRAW_CLEAR_COLOR_1: DrawFlags = DrawFlagsValue(2)
+      /**
+       * Clear the second color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
 
-      public val DRAW_CLEAR_COLOR_2: DrawFlags = DrawFlagsValue(4)
+      /**
+       * Clear the third color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
 
-      public val DRAW_CLEAR_COLOR_3: DrawFlags = DrawFlagsValue(8)
+      /**
+       * Clear the fourth color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
 
-      public val DRAW_CLEAR_COLOR_4: DrawFlags = DrawFlagsValue(16)
+      /**
+       * Clear the fifth color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
 
-      public val DRAW_CLEAR_COLOR_5: DrawFlags = DrawFlagsValue(32)
+      /**
+       * Clear the sixth color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
 
-      public val DRAW_CLEAR_COLOR_6: DrawFlags = DrawFlagsValue(64)
+      /**
+       * Clear the seventh color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
 
-      public val DRAW_CLEAR_COLOR_7: DrawFlags = DrawFlagsValue(128)
+      /**
+       * Clear the eighth color attachment.
+       */
+      public val DRAW_CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
 
-      public val DRAW_CLEAR_COLOR_MASK: DrawFlags = DrawFlagsValue(255)
+      /**
+       * Mask for clearing all color attachments.
+       */
+      public val DRAW_CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
 
-      public val DRAW_CLEAR_COLOR_ALL: DrawFlags = DrawFlagsValue(255)
+      /**
+       * Clear all color attachments.
+       */
+      public val DRAW_CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
 
-      public val DRAW_IGNORE_COLOR_0: DrawFlags = DrawFlagsValue(256)
+      /**
+       * Ignore the previous contents of the first color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
 
-      public val DRAW_IGNORE_COLOR_1: DrawFlags = DrawFlagsValue(512)
+      /**
+       * Ignore the previous contents of the second color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
 
-      public val DRAW_IGNORE_COLOR_2: DrawFlags = DrawFlagsValue(1024)
+      /**
+       * Ignore the previous contents of the third color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
 
-      public val DRAW_IGNORE_COLOR_3: DrawFlags = DrawFlagsValue(2048)
+      /**
+       * Ignore the previous contents of the fourth color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
 
-      public val DRAW_IGNORE_COLOR_4: DrawFlags = DrawFlagsValue(4096)
+      /**
+       * Ignore the previous contents of the fifth color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
 
-      public val DRAW_IGNORE_COLOR_5: DrawFlags = DrawFlagsValue(8192)
+      /**
+       * Ignore the previous contents of the sixth color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
 
-      public val DRAW_IGNORE_COLOR_6: DrawFlags = DrawFlagsValue(16384)
+      /**
+       * Ignore the previous contents of the seventh color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
 
-      public val DRAW_IGNORE_COLOR_7: DrawFlags = DrawFlagsValue(32768)
+      /**
+       * Ignore the previous contents of the eighth color attachment.
+       */
+      public val DRAW_IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
 
-      public val DRAW_IGNORE_COLOR_MASK: DrawFlags = DrawFlagsValue(65280)
+      /**
+       * Mask for ignoring all the previous contents of the color attachments.
+       */
+      public val DRAW_IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
 
-      public val DRAW_IGNORE_COLOR_ALL: DrawFlags = DrawFlagsValue(65280)
+      /**
+       * Ignore the previous contents of all color attachments.
+       */
+      public val DRAW_IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
 
-      public val DRAW_CLEAR_DEPTH: DrawFlags = DrawFlagsValue(65536)
+      /**
+       * Clear the depth attachment.
+       */
+      public val DRAW_CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
 
-      public val DRAW_IGNORE_DEPTH: DrawFlags = DrawFlagsValue(131072)
+      /**
+       * Ignore the previous contents of the depth attachment.
+       */
+      public val DRAW_IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
 
-      public val DRAW_CLEAR_STENCIL: DrawFlags = DrawFlagsValue(262144)
+      /**
+       * Clear the stencil attachment.
+       */
+      public val DRAW_CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
 
-      public val DRAW_IGNORE_STENCIL: DrawFlags = DrawFlagsValue(524288)
+      /**
+       * Ignore the previous contents of the stencil attachment.
+       */
+      public val DRAW_IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
 
-      public val DRAW_CLEAR_ALL: DrawFlags = DrawFlagsValue(327935)
+      /**
+       * Clear all attachments.
+       */
+      public val DRAW_CLEAR_ALL: DrawFlags = DrawFlags(327935)
 
-      public val DRAW_IGNORE_ALL: DrawFlags = DrawFlagsValue(720640)
+      /**
+       * Ignore the previous contents of all attachments.
+       */
+      public val DRAW_IGNORE_ALL: DrawFlags = DrawFlags(720640)
     }
   }
-
-  @JvmInline
-  public value class DrawFlagsValue(
-    public override val flag: Long,
-  ) : DrawFlags
 
   public companion object {
     /**

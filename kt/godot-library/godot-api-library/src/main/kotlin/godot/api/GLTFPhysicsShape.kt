@@ -33,6 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` glTF
@@ -130,7 +131,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(265, scriptIndex)
+    createNativeObject(236, scriptIndex)
   }
 
   /**
@@ -269,6 +270,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
      */
+    @JvmStatic
     public final fun fromNode(shapeNode: CollisionShape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
@@ -278,6 +280,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [Shape3D] resource.
      */
+    @JvmStatic
     public final fun fromResource(shapeResource: Shape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeResource)
       TransferContext.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
@@ -287,6 +290,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance by parsing the given [Dictionary].
      */
+    @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
@@ -295,20 +299,11 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public object MethodBindings {
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
-
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563689933)
 
-    internal val fromResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
-
     internal val toResourcePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1913542110)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3102165223)
@@ -354,5 +349,14 @@ public open class GLTFPhysicsShape : Resource() {
 
     internal val setImporterMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2255166972)
+
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
+
+    internal val fromResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
   }
 }

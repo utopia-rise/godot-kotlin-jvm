@@ -56,7 +56,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(399, scriptIndex)
+    createNativeObject(380, scriptIndex)
   }
 
   /**

@@ -404,7 +404,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(75, scriptIndex)
+    createNativeObject(39, scriptIndex)
   }
 
   /**

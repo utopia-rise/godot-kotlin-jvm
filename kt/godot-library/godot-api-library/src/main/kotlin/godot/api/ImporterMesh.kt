@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(315, scriptIndex)
+    createNativeObject(289, scriptIndex)
   }
 
   /**

@@ -5,27 +5,41 @@ import godot.codegen.models.Class
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
-import godot.common.extensions.escapeUnderscore
-import java.util.*
 
-class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {
-    val constants= internal.constants?.toEnriched() ?: listOf()
-    val signals = internal.signals?.toEnriched() ?: listOf()
-    val name = internal.name.escapeUnderscore()
-    val inherits = internal.inherits?.escapeUnderscore()
-    val engineClassDBIndexName = "ENGINECLASS_${internal.name.uppercase(Locale.US)}"
-    val properties= internal.properties?.toEnriched() ?: listOf()
-    val methods = internal.methods?.toEnriched() ?: listOf()
-    val apiType = ApiType.from(internal.apiType)
-    override val description = internal.description
+class EnrichedClass(model: Class) : TypedTrait, IDocumented {
+    override val type = model.name
+    val apiType = ApiType.from(model.apiType)
+    val isInstantiable = model.isInstantiable
 
-    override val type = name
+    var parent: EnrichedClass? = null
+        private set
+    var isSingleton = false
+        private set
 
+    val constants = model.constants?.toEnriched() ?: listOf()
+    val enums = model.enums?.toEnriched(this.type) ?: listOf()
+    val signals = model.signals?.toEnriched() ?: listOf()
+    val properties = model.properties?.toEnriched() ?: listOf()
+    val methods = model.methods?.toEnriched() ?: listOf()
+
+    override val description = model.description
     val additionalImports = mutableListOf<AdditionalImport>()
 
-    val enums = internal.enums?.toEnriched(this) ?: listOf()
+    fun makeSingleton() {
+        isSingleton = true
+    }
 
-    fun copy(internalNewName: String) = EnrichedClass(internal.copy(internalNewName))
+    fun setParent(parent: EnrichedClass) {
+        this.parent = parent
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        other as EnrichedClass
+        return type == other.type
+    }
+
+    override fun hashCode() = type.hashCode()
 }
 
 fun List<Class>.toEnriched() = map { EnrichedClass(it) }

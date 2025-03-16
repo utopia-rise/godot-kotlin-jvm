@@ -215,7 +215,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(179, scriptIndex)
+    createNativeObject(145, scriptIndex)
   }
 
   /**

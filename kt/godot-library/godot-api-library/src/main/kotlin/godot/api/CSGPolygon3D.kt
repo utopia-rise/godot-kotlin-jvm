@@ -243,7 +243,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(156, scriptIndex)
+    createNativeObject(121, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

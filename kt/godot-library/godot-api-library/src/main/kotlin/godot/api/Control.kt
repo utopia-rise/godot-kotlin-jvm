@@ -50,21 +50,11 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-public infix fun Long.or(other: godot.api.Control.SizeFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: Control.SizeFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.Control.SizeFlags): Long = this.xor(other.flag)
+public infix fun Long.xor(other: Control.SizeFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.Control.SizeFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.Control.SizeFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.Control.SizeFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.Control.SizeFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.Control.SizeFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.Control.SizeFlags): Long = this.rem(other.flag)
+public infix fun Long.and(other: Control.SizeFlags): Long = this.and(other.flag)
 
 /**
  * Base class for all UI-related nodes. [Control] features a bounding rectangle that defines its
@@ -722,7 +712,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(211, scriptIndex)
+    createNativeObject(178, scriptIndex)
   }
 
   /**
@@ -827,7 +817,7 @@ public open class Control : CanvasItem() {
    * `Rect2(Vector2.ZERO, size).has_point(point)`.
    */
   public open fun _hasPoint(point: Vector2): Boolean {
-    throw NotImplementedError("_has_point is not implemented for Control")
+    throw NotImplementedError("_hasPoint is not implemented for Control")
   }
 
   /**
@@ -838,7 +828,7 @@ public open class Control : CanvasItem() {
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Vector3i> {
-    throw NotImplementedError("_structured_text_parser is not implemented for Control")
+    throw NotImplementedError("_structuredTextParser is not implemented for Control")
   }
 
   /**
@@ -851,7 +841,7 @@ public open class Control : CanvasItem() {
    * used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_minimum_size is not implemented for Control")
+    throw NotImplementedError("_getMinimumSize is not implemented for Control")
   }
 
   /**
@@ -862,7 +852,7 @@ public open class Control : CanvasItem() {
    * no tooltip is displayed.
    */
   public open fun _getTooltip(atPosition: Vector2): String {
-    throw NotImplementedError("_get_tooltip is not implemented for Control")
+    throw NotImplementedError("_getTooltip is not implemented for Control")
   }
 
   /**
@@ -893,7 +883,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _getDragData(atPosition: Vector2): Any? {
-    throw NotImplementedError("_get_drag_data is not implemented for Control")
+    throw NotImplementedError("_getDragData is not implemented for Control")
   }
 
   /**
@@ -920,7 +910,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _canDropData(atPosition: Vector2, `data`: Any?): Boolean {
-    throw NotImplementedError("_can_drop_data is not implemented for Control")
+    throw NotImplementedError("_canDropData is not implemented for Control")
   }
 
   /**
@@ -1012,7 +1002,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
-    throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
+    throw NotImplementedError("_makeCustomTooltip is not implemented for Control")
   }
 
   /**
@@ -1462,7 +1452,7 @@ public open class Control : CanvasItem() {
   public final fun getHSizeFlags(): SizeFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHSizeFlagsPtr, LONG)
-    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStretchRatio(ratio: Float): Unit {
@@ -1484,7 +1474,7 @@ public open class Control : CanvasItem() {
   public final fun getVSizeFlags(): SizeFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVSizeFlagsPtr, LONG)
-    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTheme(theme: Theme?): Unit {
@@ -2569,72 +2559,79 @@ public open class Control : CanvasItem() {
     }
   }
 
-  public sealed interface SizeFlags {
-    public val flag: Long
+  @JvmInline
+  public value class SizeFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: SizeFlags): SizeFlags = SizeFlags(flag.or(other.flag))
 
-    public infix fun or(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): SizeFlags = SizeFlags(flag.or(other))
 
-    public infix fun or(other: Long): SizeFlags = SizeFlagsValue(flag.or(other))
+    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): SizeFlags = SizeFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): SizeFlags = SizeFlagsValue(flag.xor(other))
+    public infix fun and(other: SizeFlags): SizeFlags = SizeFlags(flag.and(other.flag))
 
-    public infix fun and(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): SizeFlags = SizeFlags(flag.and(other))
 
-    public infix fun and(other: Long): SizeFlags = SizeFlagsValue(flag.and(other))
+    public fun unaryPlus(): SizeFlags = SizeFlags(flag.unaryPlus())
 
-    public operator fun plus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): SizeFlags = SizeFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): SizeFlags = SizeFlagsValue(flag.plus(other))
+    public fun inv(): SizeFlags = SizeFlags(flag.inv())
 
-    public operator fun minus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): SizeFlags = SizeFlags(flag shl bits)
 
-    public operator fun minus(other: Long): SizeFlags = SizeFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): SizeFlags = SizeFlags(flag shr bits)
 
-    public operator fun times(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): SizeFlags = SizeFlagsValue(flag.times(other))
-
-    public operator fun div(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): SizeFlags = SizeFlagsValue(flag.div(other))
-
-    public operator fun rem(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): SizeFlags = SizeFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): SizeFlags = SizeFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): SizeFlags = SizeFlagsValue(flag.unaryMinus())
-
-    public fun inv(): SizeFlags = SizeFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): SizeFlags = SizeFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): SizeFlags = SizeFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): SizeFlags = SizeFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): SizeFlags = SizeFlags(flag ushr bits)
 
     public companion object {
-      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlagsValue(0)
+      /**
+       * Tells the parent [Container] to align the node with its start, either the top or the left
+       * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
+       * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       * **Note:** Setting this flag is equal to not having any size flags.
+       */
+      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
-      public val SIZE_FILL: SizeFlags = SizeFlagsValue(1)
+      /**
+       * Tells the parent [Container] to expand the bounds of this node to fill all the available
+       * space without pushing any other node. It is mutually exclusive with shrink size flags. Use
+       * with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
+      public val SIZE_FILL: SizeFlags = SizeFlags(1)
 
-      public val SIZE_EXPAND: SizeFlags = SizeFlagsValue(2)
+      /**
+       * Tells the parent [Container] to let this node take all the available space on the axis you
+       * flag. If multiple neighboring nodes are set to expand, they'll share the space based on their
+       * stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and
+       * [sizeFlagsVertical].
+       */
+      public val SIZE_EXPAND: SizeFlags = SizeFlags(2)
 
-      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlagsValue(3)
+      /**
+       * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for
+       * more information.
+       */
+      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlags(3)
 
-      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlagsValue(4)
+      /**
+       * Tells the parent [Container] to center the node in the available space. It is mutually
+       * exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in
+       * some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
+      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
-      public val SIZE_SHRINK_END: SizeFlags = SizeFlagsValue(8)
+      /**
+       * Tells the parent [Container] to align the node with its end, either the bottom or the right
+       * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
+       * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
+      public val SIZE_SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }
-
-  @JvmInline
-  public value class SizeFlagsValue(
-    public override val flag: Long,
-  ) : SizeFlags
 
   public enum class MouseFilter(
     id: Long,

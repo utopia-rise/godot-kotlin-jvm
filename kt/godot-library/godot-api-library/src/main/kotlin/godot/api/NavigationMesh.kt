@@ -345,7 +345,7 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(398, scriptIndex)
+    createNativeObject(378, scriptIndex)
   }
 
   /**

@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(658, scriptIndex)
+    createNativeObject(652, scriptIndex)
   }
 
   /**
@@ -37,7 +37,7 @@ public open class SyntaxHighlighter : Resource() {
    * See [getLineSyntaxHighlighting] for more details.
    */
   public open fun _getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_line_syntax_highlighting is not implemented for SyntaxHighlighter")
+    throw NotImplementedError("_getLineSyntaxHighlighting is not implemented for SyntaxHighlighter")
   }
 
   /**

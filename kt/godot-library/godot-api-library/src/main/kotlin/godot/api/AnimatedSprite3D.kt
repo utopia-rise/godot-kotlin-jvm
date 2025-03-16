@@ -140,7 +140,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(46, scriptIndex)
+    createNativeObject(10, scriptIndex)
   }
 
   public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {

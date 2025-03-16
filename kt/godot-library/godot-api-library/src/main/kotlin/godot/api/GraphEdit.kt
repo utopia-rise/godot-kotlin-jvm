@@ -456,7 +456,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(289, scriptIndex)
+    createNativeObject(262, scriptIndex)
   }
 
   /**
@@ -531,7 +531,7 @@ public open class GraphEdit : Control() {
     inPort: Int,
     mousePosition: Vector2,
   ): Boolean {
-    throw NotImplementedError("_is_in_input_hotzone is not implemented for GraphEdit")
+    throw NotImplementedError("_isInInputHotzone is not implemented for GraphEdit")
   }
 
   /**
@@ -554,7 +554,7 @@ public open class GraphEdit : Control() {
     inPort: Int,
     mousePosition: Vector2,
   ): Boolean {
-    throw NotImplementedError("_is_in_output_hotzone is not implemented for GraphEdit")
+    throw NotImplementedError("_isInOutputHotzone is not implemented for GraphEdit")
   }
 
   /**
@@ -562,7 +562,7 @@ public open class GraphEdit : Control() {
    */
   public open fun _getConnectionLine(fromPosition: Vector2, toPosition: Vector2):
       PackedVector2Array {
-    throw NotImplementedError("_get_connection_line is not implemented for GraphEdit")
+    throw NotImplementedError("_getConnectionLine is not implemented for GraphEdit")
   }
 
   /**
@@ -593,7 +593,7 @@ public open class GraphEdit : Control() {
     toNode: StringName,
     toPort: Int,
   ): Boolean {
-    throw NotImplementedError("_is_node_hover_valid is not implemented for GraphEdit")
+    throw NotImplementedError("_isNodeHoverValid is not implemented for GraphEdit")
   }
 
   /**

@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRBindingModifier internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(432, scriptIndex)
+    createNativeObject(416, scriptIndex)
   }
 
   /**
@@ -29,7 +29,7 @@ public open class OpenXRBindingModifier internal constructor() : Resource() {
    * editor.
    */
   public open fun _getDescription(): String {
-    throw NotImplementedError("_get_description is not implemented for OpenXRBindingModifier")
+    throw NotImplementedError("_getDescription is not implemented for OpenXRBindingModifier")
   }
 
   /**
@@ -38,7 +38,7 @@ public open class OpenXRBindingModifier internal constructor() : Resource() {
    * **Note:** This must be data compatible with a `XrBindingModificationBaseHeaderKHR` structure.
    */
   public open fun _getIpModification(): PackedByteArray {
-    throw NotImplementedError("_get_ip_modification is not implemented for OpenXRBindingModifier")
+    throw NotImplementedError("_getIpModification is not implemented for OpenXRBindingModifier")
   }
 
   public companion object

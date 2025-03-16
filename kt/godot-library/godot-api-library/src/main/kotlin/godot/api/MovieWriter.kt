@@ -21,6 +21,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Godot can record videos with non-real-time simulation. Like the `--fixed-fps`
@@ -58,7 +59,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(383, scriptIndex)
+    createNativeObject(362, scriptIndex)
   }
 
   /**
@@ -67,7 +68,7 @@ public open class MovieWriter : Object() {
    * overridden.
    */
   public open fun _getAudioMixRate(): Long {
-    throw NotImplementedError("_get_audio_mix_rate is not implemented for MovieWriter")
+    throw NotImplementedError("_getAudioMixRate is not implemented for MovieWriter")
   }
 
   /**
@@ -76,7 +77,7 @@ public open class MovieWriter : Object() {
    * [AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
    */
   public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
-    throw NotImplementedError("_get_audio_speaker_mode is not implemented for MovieWriter")
+    throw NotImplementedError("_getAudioSpeakerMode is not implemented for MovieWriter")
   }
 
   /**
@@ -92,7 +93,7 @@ public open class MovieWriter : Object() {
    * [/codeblock]
    */
   public open fun _handlesFile(path: String): Boolean {
-    throw NotImplementedError("_handles_file is not implemented for MovieWriter")
+    throw NotImplementedError("_handlesFile is not implemented for MovieWriter")
   }
 
   /**
@@ -106,7 +107,7 @@ public open class MovieWriter : Object() {
     fps: Long,
     basePath: String,
   ): Error {
-    throw NotImplementedError("_write_begin is not implemented for MovieWriter")
+    throw NotImplementedError("_writeBegin is not implemented for MovieWriter")
   }
 
   /**
@@ -125,6 +126,7 @@ public open class MovieWriter : Object() {
      * **Note:** [addWriter] must be called early enough in the engine initialization to work, as
      * movie writing is designed to start at the same time as the rest of the engine.
      */
+    @JvmStatic
     public final fun addWriter(writer: MovieWriter?): Unit {
       TransferContext.writeArguments(OBJECT to writer)
       TransferContext.callMethod(0, MethodBindings.addWriterPtr, NIL)

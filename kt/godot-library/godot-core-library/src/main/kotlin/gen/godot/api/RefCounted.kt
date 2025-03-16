@@ -39,12 +39,12 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RefCounted : Object() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(1, scriptIndex)
-  }
-
   public final override fun _onDestroy(): Unit {
 
+  }
+
+  public override fun new(scriptIndex: Int): Unit {
+    createNativeObject(1, scriptIndex)
   }
 
   /**

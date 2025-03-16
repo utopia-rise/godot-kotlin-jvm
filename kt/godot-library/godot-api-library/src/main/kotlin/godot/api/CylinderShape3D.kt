@@ -52,7 +52,7 @@ public open class CylinderShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(224, scriptIndex)
+    createNativeObject(191, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

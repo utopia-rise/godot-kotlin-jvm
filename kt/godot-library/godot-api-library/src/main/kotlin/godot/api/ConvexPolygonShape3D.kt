@@ -50,7 +50,7 @@ public open class ConvexPolygonShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(213, scriptIndex)
+    createNativeObject(180, scriptIndex)
   }
 
   public final fun setPoints(points: PackedVector3Array): Unit {

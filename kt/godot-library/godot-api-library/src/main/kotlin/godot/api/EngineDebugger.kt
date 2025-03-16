@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object EngineDebugger : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(19)
+    getSingleton(5)
   }
 
   /**

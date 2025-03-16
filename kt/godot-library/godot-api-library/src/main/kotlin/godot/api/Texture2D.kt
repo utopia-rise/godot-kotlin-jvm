@@ -41,21 +41,21 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Texture2D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(673, scriptIndex)
+    createNativeObject(668, scriptIndex)
   }
 
   /**
    * Called when the [Texture2D]'s width is queried.
    */
   public open fun _getWidth(): Int {
-    throw NotImplementedError("_get_width is not implemented for Texture2D")
+    throw NotImplementedError("_getWidth is not implemented for Texture2D")
   }
 
   /**
    * Called when the [Texture2D]'s height is queried.
    */
   public open fun _getHeight(): Int {
-    throw NotImplementedError("_get_height is not implemented for Texture2D")
+    throw NotImplementedError("_getHeight is not implemented for Texture2D")
   }
 
   /**
@@ -63,14 +63,14 @@ public open class Texture2D : Texture() {
    * position.
    */
   public open fun _isPixelOpaque(x: Int, y: Int): Boolean {
-    throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
+    throw NotImplementedError("_isPixelOpaque is not implemented for Texture2D")
   }
 
   /**
    * Called when the presence of an alpha channel in the [Texture2D] is queried.
    */
   public open fun _hasAlpha(): Boolean {
-    throw NotImplementedError("_has_alpha is not implemented for Texture2D")
+    throw NotImplementedError("_hasAlpha is not implemented for Texture2D")
   }
 
   /**

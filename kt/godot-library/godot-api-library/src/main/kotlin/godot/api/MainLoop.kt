@@ -85,7 +85,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(365, scriptIndex)
+    createNativeObject(343, scriptIndex)
   }
 
   /**
@@ -107,7 +107,7 @@ public open class MainLoop : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Boolean {
-    throw NotImplementedError("_physics_process is not implemented for MainLoop")
+    throw NotImplementedError("_physicsProcess is not implemented for MainLoop")
   }
 
   /**

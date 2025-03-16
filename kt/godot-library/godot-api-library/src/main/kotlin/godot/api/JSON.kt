@@ -25,6 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [JSON] class enables all data types to be converted to and from a JSON string. This is useful
@@ -80,7 +81,7 @@ public open class JSON : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(338, scriptIndex)
+    createNativeObject(314, scriptIndex)
   }
 
   /**
@@ -191,6 +192,7 @@ public open class JSON : Resource() {
      * [/codeblock]
      */
     @JvmOverloads
+    @JvmStatic
     public final fun stringify(
       `data`: Any?,
       indent: String = "",
@@ -206,6 +208,7 @@ public open class JSON : Resource() {
      * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if
      * parse failed.
      */
+    @JvmStatic
     public final fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)
       TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
@@ -222,6 +225,7 @@ public open class JSON : Resource() {
      * [/codeblock]
      */
     @JvmOverloads
+    @JvmStatic
     public final fun fromNative(variant: Any?, fullObjects: Boolean = false): Any? {
       TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
       TransferContext.callMethod(0, MethodBindings.fromNativePtr, ANY)
@@ -239,6 +243,7 @@ public open class JSON : Resource() {
      * [/codeblock]
      */
     @JvmOverloads
+    @JvmStatic
     public final fun toNative(json: Any?, allowObjects: Boolean = false): Any? {
       TransferContext.writeArguments(ANY to json, BOOL to allowObjects)
       TransferContext.callMethod(0, MethodBindings.toNativePtr, ANY)
@@ -247,12 +252,6 @@ public open class JSON : Resource() {
   }
 
   public object MethodBindings {
-    internal val stringifyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
-
-    internal val parseStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
-
     internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse", 885841341)
 
     internal val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data", 1214101251)
@@ -267,6 +266,12 @@ public open class JSON : Resource() {
 
     internal val getErrorMessagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("JSON", "get_error_message", 201670096)
+
+    internal val stringifyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
+
+    internal val parseStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
 
     internal val fromNativePtr: VoidPtr =
         TypeManager.getMethodBindPtr("JSON", "from_native", 2963479484)

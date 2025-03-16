@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JNISingleton : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(337, scriptIndex)
+    createNativeObject(313, scriptIndex)
   }
 
   public companion object

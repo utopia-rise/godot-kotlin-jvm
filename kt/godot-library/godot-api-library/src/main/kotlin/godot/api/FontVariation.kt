@@ -26,7 +26,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
@@ -148,36 +147,45 @@ public open class FontVariation : Font() {
   /**
    * Extra spacing between graphical glyphs.
    */
-  public final val spacingGlyph: Int
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
+  public final inline var spacingGlyph: Int
+    @JvmName("spacingGlyphProperty")
+    get() = getSpacing(TextServer.SpacingType.SPACING_GLYPH)
+    @JvmName("spacingGlyphProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.SPACING_GLYPH, value)
     }
 
   /**
    * Extra width of the space glyphs.
    */
-  public final val spacingSpace: Int
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
+  public final inline var spacingSpace: Int
+    @JvmName("spacingSpaceProperty")
+    get() = getSpacing(TextServer.SpacingType.SPACING_SPACE)
+    @JvmName("spacingSpaceProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.SPACING_SPACE, value)
     }
 
   /**
    * Extra spacing at the top of the line in pixels.
    */
-  public final val spacingTop: Int
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
+  public final inline var spacingTop: Int
+    @JvmName("spacingTopProperty")
+    get() = getSpacing(TextServer.SpacingType.SPACING_TOP)
+    @JvmName("spacingTopProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.SPACING_TOP, value)
     }
 
   /**
    * Extra spacing at the bottom of the line in pixels.
    */
-  public final val spacingBottom: Int
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
+  public final inline var spacingBottom: Int
+    @JvmName("spacingBottomProperty")
+    get() = getSpacing(TextServer.SpacingType.SPACING_BOTTOM)
+    @JvmName("spacingBottomProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.SPACING_BOTTOM, value)
     }
 
   /**
@@ -192,7 +200,7 @@ public open class FontVariation : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(249, scriptIndex)
+    createNativeObject(219, scriptIndex)
   }
 
   /**

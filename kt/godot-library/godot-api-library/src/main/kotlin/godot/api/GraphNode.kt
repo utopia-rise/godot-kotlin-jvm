@@ -79,7 +79,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(292, scriptIndex)
+    createNativeObject(265, scriptIndex)
   }
 
   public open fun _drawPort(

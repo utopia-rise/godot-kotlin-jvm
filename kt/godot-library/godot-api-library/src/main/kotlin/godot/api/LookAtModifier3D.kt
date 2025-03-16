@@ -392,7 +392,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(364, scriptIndex)
+    createNativeObject(342, scriptIndex)
   }
 
   /**

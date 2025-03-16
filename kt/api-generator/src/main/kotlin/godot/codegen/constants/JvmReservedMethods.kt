@@ -5,7 +5,8 @@ import godot.codegen.models.enriched.EnrichedMethod
 
 val jvmReservedMethods = listOf(
     EnrichedMethod(
-        Method("wait",
+        Method(
+            "wait",
             isConst = false,
             isVararg = false,
             isVirtual = false,

@@ -9,7 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.FontStyleValue
+import godot.api.TextServer.FontStyle
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -62,7 +62,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(247, scriptIndex)
+    createNativeObject(217, scriptIndex)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
@@ -199,10 +199,10 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns font style flags, see [TextServer.FontStyle].
    */
-  public final fun getFontStyle(): TextServer.FontStyle {
+  public final fun getFontStyle(): FontStyle {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontStylePtr, LONG)
-    return FontStyleValue(TransferContext.readReturnValue(LONG) as Long)
+    return FontStyle(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -283,7 +283,7 @@ public open class Font internal constructor() : Resource() {
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Float = -1.0f,
     fontSize: Int = 16,
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
@@ -304,8 +304,8 @@ public open class Font internal constructor() : Resource() {
     width: Float = -1.0f,
     fontSize: Int = 16,
     maxLines: Int = -1,
-    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Vector2 {
@@ -329,7 +329,7 @@ public open class Font internal constructor() : Resource() {
     width: Float = -1.0f,
     fontSize: Int = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
@@ -354,8 +354,8 @@ public open class Font internal constructor() : Resource() {
     fontSize: Int = 16,
     maxLines: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
@@ -379,7 +379,7 @@ public open class Font internal constructor() : Resource() {
     fontSize: Int = 16,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {
@@ -405,8 +405,8 @@ public open class Font internal constructor() : Resource() {
     maxLines: Int = -1,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlagValue(3),
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(3),
+    brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
   ): Unit {

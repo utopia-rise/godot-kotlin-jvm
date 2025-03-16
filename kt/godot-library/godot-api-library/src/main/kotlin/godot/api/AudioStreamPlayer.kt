@@ -181,7 +181,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(129, scriptIndex)
+    createNativeObject(94, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

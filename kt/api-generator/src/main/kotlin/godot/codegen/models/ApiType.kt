@@ -7,7 +7,7 @@ enum class ApiType {
     EDITOR;
 
     companion object {
-        fun from(string: String) = when(string) {
+        fun from(string: String) = when (string) {
             "core" -> CORE
             "editor" -> EDITOR
             else -> throw InvalidParameterException("Cannot match $string to ApiType")

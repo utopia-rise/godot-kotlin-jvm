@@ -52,7 +52,7 @@ public open class BoxContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(144, scriptIndex)
+    createNativeObject(109, scriptIndex)
   }
 
   /**

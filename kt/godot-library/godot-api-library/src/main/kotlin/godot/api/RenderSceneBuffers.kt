@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneBuffers internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(556, scriptIndex)
+    createNativeObject(546, scriptIndex)
   }
 
   /**

@@ -14,7 +14,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackOggVorbis : AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(124, scriptIndex)
+    createNativeObject(89, scriptIndex)
   }
 
   public companion object

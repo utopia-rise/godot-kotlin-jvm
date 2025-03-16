@@ -63,7 +63,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(118, scriptIndex)
+    createNativeObject(83, scriptIndex)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {

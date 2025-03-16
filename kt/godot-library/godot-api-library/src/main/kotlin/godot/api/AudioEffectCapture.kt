@@ -50,7 +50,7 @@ public open class AudioEffectCapture : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(85, scriptIndex)
+    createNativeObject(49, scriptIndex)
   }
 
   /**

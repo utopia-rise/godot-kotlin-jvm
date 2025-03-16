@@ -61,7 +61,7 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(321, scriptIndex)
+    createNativeObject(296, scriptIndex)
   }
 
   public final fun setButtonIndex(buttonIndex: JoyButton): Unit {

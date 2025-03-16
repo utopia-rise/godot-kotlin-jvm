@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -44,8 +45,51 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object OS : Object() {
+  /**
+   * If `true`, the engine optimizes for low processor usage by only refreshing the screen if
+   * needed. Can improve battery consumption on mobile.
+   * **Note:** On start-up, this is the same as [ProjectSettings.application/run/lowProcessorMode].
+   */
+  @JvmStatic
+  public final inline var lowProcessorUsageMode: Boolean
+    @JvmName("lowProcessorUsageModeProperty")
+    get() = isInLowProcessorUsageMode()
+    @JvmName("lowProcessorUsageModeProperty")
+    set(`value`) {
+      setLowProcessorUsageMode(value)
+    }
+
+  /**
+   * The amount of sleeping between frames when the low-processor usage mode is enabled, in
+   * microseconds. Higher values will result in lower CPU usage. See also [lowProcessorUsageMode].
+   * **Note:** On start-up, this is the same as
+   * [ProjectSettings.application/run/lowProcessorModeSleepUsec].
+   */
+  @JvmStatic
+  public final inline var lowProcessorUsageModeSleepUsec: Int
+    @JvmName("lowProcessorUsageModeSleepUsecProperty")
+    get() = getLowProcessorUsageModeSleepUsec()
+    @JvmName("lowProcessorUsageModeSleepUsecProperty")
+    set(`value`) {
+      setLowProcessorUsageModeSleepUsec(value)
+    }
+
+  /**
+   * If `true`, the engine filters the time delta measured between each frame, and attempts to
+   * compensate for random variation. This only works on systems where V-Sync is active.
+   * **Note:** On start-up, this is the same as [ProjectSettings.application/run/deltaSmoothing].
+   */
+  @JvmStatic
+  public final inline var deltaSmoothing: Boolean
+    @JvmName("deltaSmoothingProperty")
+    get() = isDeltaSmoothingEnabled()
+    @JvmName("deltaSmoothingProperty")
+    set(`value`) {
+      setDeltaSmoothing(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(3)
+    getSingleton(19)
   }
 
   /**

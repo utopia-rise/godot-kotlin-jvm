@@ -78,7 +78,7 @@ public object NavigationServer2D : Object() {
   public val navigationDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(30)
+    getSingleton(17)
   }
 
   /**

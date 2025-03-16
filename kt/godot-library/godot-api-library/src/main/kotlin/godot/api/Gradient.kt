@@ -87,7 +87,7 @@ public open class Gradient : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(286, scriptIndex)
+    createNativeObject(259, scriptIndex)
   }
 
   /**

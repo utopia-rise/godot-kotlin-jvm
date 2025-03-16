@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GDScript : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(252, scriptIndex)
+    createNativeObject(223, scriptIndex)
   }
 
   /**

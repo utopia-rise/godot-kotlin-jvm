@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Uniform set cache manager for Rendering Device based renderers. Provides a way to create a
@@ -28,13 +29,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class UniformSetCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(711, scriptIndex)
+    createNativeObject(709, scriptIndex)
   }
 
   public companion object {
     /**
      * Creates/returns a cached uniform set based on the provided uniforms for a given shader.
      */
+    @JvmStatic
     public final fun getCache(
       shader: RID,
       `set`: Long,

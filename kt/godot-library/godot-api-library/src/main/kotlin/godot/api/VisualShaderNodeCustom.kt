@@ -37,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(748, scriptIndex)
+    createNativeObject(746, scriptIndex)
   }
 
   /**
@@ -47,7 +47,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * named as "Unnamed".
    */
   public open fun _getName(): String {
-    throw NotImplementedError("_get_name is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getName is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -56,7 +56,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getDescription(): String {
-    throw NotImplementedError("_get_description is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getDescription is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -66,7 +66,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * "Addons" category.
    */
   public open fun _getCategory(): String {
-    throw NotImplementedError("_get_category is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getCategory is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -75,7 +75,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**. If not overridden, no return icon is shown.
    */
   public open fun _getReturnIconType(): VisualShaderNode.PortType {
-    throw NotImplementedError("_get_return_icon_type is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getReturnIconType is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -83,7 +83,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **required**. If not overridden, the node has no input ports.
    */
   public open fun _getInputPortCount(): Int {
-    throw NotImplementedError("_get_input_port_count is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getInputPortCount is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -93,7 +93,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
   public open fun _getInputPortType(port: Int): VisualShaderNode.PortType {
-    throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getInputPortType is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -104,7 +104,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * as `"in" + str(port)`.
    */
   public open fun _getInputPortName(port: Int): String {
-    throw NotImplementedError("_get_input_port_name is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getInputPortName is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -114,7 +114,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * their input ports.
    */
   public open fun _getInputPortDefaultValue(port: Int): Any? {
-    throw NotImplementedError("_get_input_port_default_value is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getInputPortDefaultValue is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -125,7 +125,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * first valid port.
    */
   public open fun _getDefaultInputPort(type: VisualShaderNode.PortType): Int {
-    throw NotImplementedError("_get_default_input_port is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getDefaultInputPort is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -133,7 +133,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **required**. If not overridden, the node has no output ports.
    */
   public open fun _getOutputPortCount(): Int {
-    throw NotImplementedError("_get_output_port_count is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getOutputPortCount is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -143,7 +143,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
   public open fun _getOutputPortType(port: Int): VisualShaderNode.PortType {
-    throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getOutputPortType is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -154,7 +154,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * named as `"out" + str(port)`.
    */
   public open fun _getOutputPortName(port: Int): String {
-    throw NotImplementedError("_get_output_port_name is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getOutputPortName is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -162,7 +162,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getPropertyCount(): Int {
-    throw NotImplementedError("_get_property_count is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getPropertyCount is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -170,7 +170,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getPropertyName(index: Int): String {
-    throw NotImplementedError("_get_property_name is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getPropertyName is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -178,7 +178,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getPropertyDefaultIndex(index: Int): Int {
-    throw NotImplementedError("_get_property_default_index is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getPropertyDefaultIndex is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -187,7 +187,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getPropertyOptions(index: Int): PackedStringArray {
-    throw NotImplementedError("_get_property_options is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getPropertyOptions is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -208,7 +208,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
     mode: Shader.Mode,
     type: VisualShader.Type,
   ): String {
-    throw NotImplementedError("_get_code is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getCode is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -222,7 +222,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getFuncCode(mode: Shader.Mode, type: VisualShader.Type): String {
-    throw NotImplementedError("_get_func_code is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getFuncCode is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -236,7 +236,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**.
    */
   public open fun _getGlobalCode(mode: Shader.Mode): String {
-    throw NotImplementedError("_get_global_code is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_getGlobalCode is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -244,7 +244,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**. If not overridden, it's `false`.
    */
   public open fun _isHighend(): Boolean {
-    throw NotImplementedError("_is_highend is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_isHighend is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -253,7 +253,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**. If not overridden, it's `true`.
    */
   public open fun _isAvailable(mode: Shader.Mode, type: VisualShader.Type): Boolean {
-    throw NotImplementedError("_is_available is not implemented for VisualShaderNodeCustom")
+    throw NotImplementedError("_isAvailable is not implemented for VisualShaderNodeCustom")
   }
 
   /**

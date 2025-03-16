@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Mutex : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(393, scriptIndex)
+    createNativeObject(372, scriptIndex)
   }
 
   /**

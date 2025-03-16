@@ -32,6 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a physics body as an intermediary between the `OMI_physics_body` glTF data and Godot's
@@ -151,7 +152,7 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(264, scriptIndex)
+    createNativeObject(235, scriptIndex)
   }
 
   /**
@@ -424,6 +425,7 @@ public open class GLTFPhysicsBody : Resource() {
     /**
      * Creates a new GLTFPhysicsBody instance from the given Godot [CollisionObject3D] node.
      */
+    @JvmStatic
     public final fun fromNode(bodyNode: CollisionObject3D?): GLTFPhysicsBody? {
       TransferContext.writeArguments(OBJECT to bodyNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
@@ -434,6 +436,7 @@ public open class GLTFPhysicsBody : Resource() {
      * Creates a new GLTFPhysicsBody instance by parsing the given [Dictionary] in the
      * `OMI_physics_body` glTF extension format.
      */
+    @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsBody? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
@@ -442,14 +445,8 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public object MethodBindings {
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
-
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_node", 3224013656)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_dictionary", 3102165223)
@@ -501,5 +498,11 @@ public open class GLTFPhysicsBody : Resource() {
 
     internal val setInertiaTensorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_tensor", 1055510324)
+
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
   }
 }

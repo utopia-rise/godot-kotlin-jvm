@@ -28,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the ray position, you can configure the
@@ -135,7 +136,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(491, scriptIndex)
+    createNativeObject(476, scriptIndex)
   }
 
   /**
@@ -284,6 +285,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
      * [/codeblock]
      */
     @JvmOverloads
+    @JvmStatic
     public final fun create(
       from: Vector3,
       to: Vector3,
@@ -297,9 +299,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3110599579)
-
     internal val setFromPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_from", 3460891852)
 
@@ -347,5 +346,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
     internal val isHitBackFacesEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_back_faces_enabled", 36873697)
+
+    internal val createPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3110599579)
   }
 }

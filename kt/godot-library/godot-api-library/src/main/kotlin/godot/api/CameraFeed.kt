@@ -87,7 +87,7 @@ public open class CameraFeed : RefCounted() {
     get() = getFormats()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(167, scriptIndex)
+    createNativeObject(132, scriptIndex)
   }
 
   /**
@@ -119,7 +119,7 @@ public open class CameraFeed : RefCounted() {
    * Called when the camera feed is activated.
    */
   public open fun _activateFeed(): Boolean {
-    throw NotImplementedError("_activate_feed is not implemented for CameraFeed")
+    throw NotImplementedError("_activateFeed is not implemented for CameraFeed")
   }
 
   /**
