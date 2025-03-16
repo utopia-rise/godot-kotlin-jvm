@@ -21,9 +21,11 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -178,6 +180,66 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
+
+  /**
+   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub
+   * animation node later.
+   */
+  @JvmOverloads
+  public final fun addNode(
+    name: String,
+    node: AnimationNode?,
+    position: Vector2 = Vector2(0, 0),
+  ) = addNode(name.asCachedStringName(), node, position)
+
+  /**
+   * Returns the sub animation node with the specified [name].
+   */
+  public final fun getNode(name: String): AnimationNode? = getNode(name.asCachedStringName())
+
+  /**
+   * Removes a sub animation node.
+   */
+  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+
+  /**
+   * Changes the name of a sub animation node.
+   */
+  public final fun renameNode(name: String, newName: String) =
+      renameNode(name.asCachedStringName(), newName.asCachedStringName())
+
+  /**
+   * Returns `true` if a sub animation node with specified [name] exists.
+   */
+  public final fun hasNode(name: String): Boolean = hasNode(name.asCachedStringName())
+
+  /**
+   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
+   * port specified by [inputIndex].
+   */
+  public final fun connectNode(
+    inputNode: String,
+    inputIndex: Int,
+    outputNode: String,
+  ) = connectNode(inputNode.asCachedStringName(), inputIndex, outputNode.asCachedStringName())
+
+  /**
+   * Disconnects the animation node connected to the specified input.
+   */
+  public final fun disconnectNode(inputNode: String, inputIndex: Int) =
+      disconnectNode(inputNode.asCachedStringName(), inputIndex)
+
+  /**
+   * Modifies the position of a sub animation node.
+   */
+  public final fun setNodePosition(name: String, position: Vector2) =
+      setNodePosition(name.asCachedStringName(), position)
+
+  /**
+   * Returns the position of the sub animation node with the specified [name].
+   */
+  public final fun getNodePosition(name: String): Vector2 =
+      getNodePosition(name.asCachedStringName())
 
   public companion object {
     /**

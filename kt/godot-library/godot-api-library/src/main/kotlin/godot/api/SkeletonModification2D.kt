@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -65,12 +66,14 @@ public open class SkeletonModification2D : Resource() {
    * is designed to do.
    */
   public open fun _execute(delta: Double): Unit {
+    throw NotImplementedError("_execute is not implemented for SkeletonModification2D")
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
   public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
+    throw NotImplementedError("_setupModification is not implemented for SkeletonModification2D")
   }
 
   /**
@@ -80,6 +83,7 @@ public open class SkeletonModification2D : Resource() {
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo(): Unit {
+    throw NotImplementedError("_drawEditorGizmo is not implemented for SkeletonModification2D")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {

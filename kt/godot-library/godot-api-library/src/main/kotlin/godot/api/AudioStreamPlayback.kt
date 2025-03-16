@@ -44,6 +44,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * such as by calling [AudioStreamPlayer.play].
    */
   public open fun _start(fromPos: Double): Unit {
+    throw NotImplementedError("_start is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -51,6 +52,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * [AudioStreamPlayer.stop].
    */
   public open fun _stop(): Unit {
+    throw NotImplementedError("_stop is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -81,6 +83,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * [position], such as by calling [AudioStreamPlayer.seek].
    */
   public open fun _seek(position: Double): Unit {
+    throw NotImplementedError("_seek is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -89,12 +92,14 @@ public open class AudioStreamPlayback : RefCounted() {
    * method to "tag" the current position along the audio stream and display it in a preview.
    */
   public open fun _tagUsedStreams(): Unit {
+    throw NotImplementedError("_tagUsedStreams is not implemented for AudioStreamPlayback")
   }
 
   /**
    * Set the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
   public open fun _setParameter(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("_setParameter is not implemented for AudioStreamPlayback")
   }
 
   /**

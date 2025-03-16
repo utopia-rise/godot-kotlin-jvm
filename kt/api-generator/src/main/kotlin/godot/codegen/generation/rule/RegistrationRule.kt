@@ -2,7 +2,7 @@ package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.MemberName
 import godot.codegen.extensions.getClassName
-import godot.codegen.extensions.jvmVariantTypeValue
+import godot.codegen.extensions.variantParser
 import godot.codegen.generation.Context
 import godot.codegen.generation.task.RegistrationTask
 import godot.codegen.models.enriched.EnrichedClass
@@ -38,14 +38,14 @@ class RegistrationRule() : GodotApiRule<RegistrationTask>() {
             }
     }
 
-    fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
-        variantMapper.addStatement(
-            "%M[%T::class] = %T",
-            MemberName(godotCorePackage, "variantMapper"),
-            enrichedClass.getClassName(),
-            enrichedClass.jvmVariantTypeValue
-        )
-    }
+fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
+    variantMapper.addStatement(
+        "%M[%T::class] = %T",
+        MemberName(godotCorePackage, "variantMapper"),
+        enrichedClass.getClassName(),
+        enrichedClass.variantParser
+    )
+}
 
     fun RegistrationTask.addClassRegistering(clazz: EnrichedClass) {
         val formatString: String
@@ -64,10 +64,10 @@ class RegistrationRule() : GodotApiRule<RegistrationTask>() {
         )
     }
 
-    fun RegistrationTask.addMethodBindings(clazz: EnrichedClass) {
-        engineMethods.addStatement(
-            "%T",
-            clazz.getClassName().nestedClass(methodBindingsInnerClassName)
-        )
-    }
+fun RegistrationTask.addMethodBindings(clazz: EnrichedClass) {
+    engineMethods.addStatement(
+        "%T",
+        clazz.getClassName().nestedClass(methodBindingsInnerClassName)
+    )
+}
 }

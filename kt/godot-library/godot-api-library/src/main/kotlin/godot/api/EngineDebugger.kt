@@ -21,6 +21,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -276,6 +277,96 @@ public object EngineDebugger : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBreakpointsPtr, NIL)
   }
+
+  /**
+   * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
+   */
+  @JvmStatic
+  public final fun registerProfiler(name: String, profiler: EngineProfiler?) =
+      registerProfiler(name.asCachedStringName(), profiler)
+
+  /**
+   * Unregisters a profiler with given [name].
+   */
+  @JvmStatic
+  public final fun unregisterProfiler(name: String) = unregisterProfiler(name.asCachedStringName())
+
+  /**
+   * Returns `true` if a profiler with the given name is present and active otherwise `false`.
+   */
+  @JvmStatic
+  public final fun isProfiling(name: String): Boolean = isProfiling(name.asCachedStringName())
+
+  /**
+   * Returns `true` if a profiler with the given name is present otherwise `false`.
+   */
+  @JvmStatic
+  public final fun hasProfiler(name: String): Boolean = hasProfiler(name.asCachedStringName())
+
+  /**
+   * Calls the `add` callable of the profiler with given [name] and [data].
+   */
+  @JvmStatic
+  public final fun profilerAddFrameData(name: String, `data`: VariantArray<Any?>) =
+      profilerAddFrameData(name.asCachedStringName(), data)
+
+  /**
+   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables
+   * the same profiler depending on [enable] argument.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun profilerEnable(
+    name: String,
+    enable: Boolean,
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
+  ) = profilerEnable(name.asCachedStringName(), enable, arguments)
+
+  /**
+   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
+   * with "my_message:" will be called with the given callable.
+   * The callable must accept a message string and a data array as argument. The callable should
+   * return `true` if the message is recognized.
+   * **Note:** The callable will receive the message with the prefix stripped, unlike
+   * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
+   */
+  @JvmStatic
+  public final fun registerMessageCapture(name: String, callable: Callable) =
+      registerMessageCapture(name.asCachedStringName(), callable)
+
+  /**
+   * Unregisters the message capture with given [name].
+   */
+  @JvmStatic
+  public final fun unregisterMessageCapture(name: String) =
+      unregisterMessageCapture(name.asCachedStringName())
+
+  /**
+   * Returns `true` if a capture with the given name is present otherwise `false`.
+   */
+  @JvmStatic
+  public final fun hasCapture(name: String): Boolean = hasCapture(name.asCachedStringName())
+
+  /**
+   * Returns `true` if the given [source] and [line] represent an existing breakpoint.
+   */
+  @JvmStatic
+  public final fun isBreakpoint(line: Int, source: String): Boolean =
+      isBreakpoint(line, source.asCachedStringName())
+
+  /**
+   * Inserts a new breakpoint with the given [source] and [line].
+   */
+  @JvmStatic
+  public final fun insertBreakpoint(line: Int, source: String) =
+      insertBreakpoint(line, source.asCachedStringName())
+
+  /**
+   * Removes a breakpoint with the given [source] and [line].
+   */
+  @JvmStatic
+  public final fun removeBreakpoint(line: Int, source: String) =
+      removeBreakpoint(line, source.asCachedStringName())
 
   public object MethodBindings {
     internal val isActivePtr: VoidPtr =

@@ -35,6 +35,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,6 +43,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -1145,6 +1147,89 @@ public open class GraphEdit : Control() {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
   }
+
+  /**
+   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
+   * redraw.
+   */
+  @JvmOverloads
+  public final fun connectNode(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+    keepAlive: Boolean = false,
+  ): Error =
+      connectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, keepAlive)
+
+  /**
+   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
+   * the [toNode] [GraphNode].
+   */
+  public final fun isNodeConnected(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+  ): Boolean =
+      isNodeConnected(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+
+  /**
+   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
+   */
+  public final fun disconnectNode(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+  ) = disconnectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+
+  /**
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
+   * with the color provided in the [theme_item activity] theme property. The color is linearly
+   * interpolated between the connection color and the activity color using [amount] as weight.
+   */
+  public final fun setConnectionActivity(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+    amount: Float,
+  ) =
+      setConnectionActivity(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, amount)
+
+  /**
+   * Returns the number of connections from [fromPort] of [fromNode].
+   */
+  public final fun getConnectionCount(fromNode: String, fromPort: Int): Int =
+      getConnectionCount(fromNode.asCachedStringName(), fromPort)
+
+  /**
+   * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
+   */
+  public final fun attachGraphElementToFrame(element: String, frame: String) =
+      attachGraphElementToFrame(element.asCachedStringName(), frame.asCachedStringName())
+
+  /**
+   * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
+   */
+  public final fun detachGraphElementFromFrame(element: String) =
+      detachGraphElementFromFrame(element.asCachedStringName())
+
+  /**
+   * Returns the [GraphFrame] that contains the [GraphElement] with the given name.
+   */
+  public final fun getElementFrame(element: String): GraphFrame? =
+      getElementFrame(element.asCachedStringName())
+
+  /**
+   * Returns an array of node names that are attached to the [GraphFrame] with the given name.
+   */
+  public final fun getAttachedNodesOfFrame(frame: String): VariantArray<StringName> =
+      getAttachedNodesOfFrame(frame.asCachedStringName())
 
   public enum class PanningScheme(
     id: Long,

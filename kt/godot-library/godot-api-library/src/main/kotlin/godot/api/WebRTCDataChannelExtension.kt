@@ -34,9 +34,11 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
   }
 
   public open fun _close(): Unit {
+    throw NotImplementedError("_close is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _setWriteMode(pWriteMode: WebRTCDataChannel.WriteMode): Unit {
+    throw NotImplementedError("_setWriteMode is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getWriteMode(): WebRTCDataChannel.WriteMode {

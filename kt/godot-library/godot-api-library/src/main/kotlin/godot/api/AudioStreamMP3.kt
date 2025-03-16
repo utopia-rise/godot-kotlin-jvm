@@ -210,6 +210,12 @@ public open class AudioStreamMP3 : AudioStream() {
   }
 
   public object MethodBindings {
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1674970313)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4238362998)
+
     internal val setDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
 
@@ -245,11 +251,5 @@ public open class AudioStreamMP3 : AudioStream() {
 
     internal val getBarBeatsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3905245786)
-
-    internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1674970313)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4238362998)
   }
 }

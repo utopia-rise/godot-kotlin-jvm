@@ -19,11 +19,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -277,6 +279,12 @@ public open class AudioStreamInteractive : AudioStream() {
     TransferContext.callMethod(ptr, MethodBindings.isTransitionHoldingPreviousPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Set the name of the current clip (for easier identification).
+   */
+  public final fun setClipName(clipIndex: Int, name: String) =
+      setClipName(clipIndex, name.asCachedStringName())
 
   public enum class TransitionFromTime(
     id: Long,

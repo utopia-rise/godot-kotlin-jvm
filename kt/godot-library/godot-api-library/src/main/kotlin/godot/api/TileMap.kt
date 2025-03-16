@@ -156,6 +156,7 @@ public open class TileMap : Node2D() {
     coords: Vector2i,
     tileData: TileData?,
   ): Unit {
+    throw NotImplementedError("_tileDataRuntimeUpdate is not implemented for TileMap")
   }
 
   /**

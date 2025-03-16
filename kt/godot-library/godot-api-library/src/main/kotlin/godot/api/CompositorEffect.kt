@@ -16,6 +16,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -156,6 +157,7 @@ public open class CompositorEffect : Resource() {
    * access to the rendering state, it is only valid during rendering and should not be stored.
    */
   public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?): Unit {
+    throw NotImplementedError("_renderCallback is not implemented for CompositorEffect")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {

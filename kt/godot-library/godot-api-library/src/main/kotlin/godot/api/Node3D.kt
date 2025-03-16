@@ -31,10 +31,12 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -1162,6 +1164,8 @@ public open class Node3D : Node() {
     TransferContext.callMethod(ptr, MethodBindings.toGlobalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
+
+  public final fun setVisibilityParent(path: String) = setVisibilityParent(path.asCachedNodePath())
 
   public enum class RotationEditMode(
     id: Long,

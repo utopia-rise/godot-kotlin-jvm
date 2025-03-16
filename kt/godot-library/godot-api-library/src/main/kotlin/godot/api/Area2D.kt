@@ -26,11 +26,13 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -609,6 +611,8 @@ public open class Area2D : CollisionObject2D() {
     TransferContext.callMethod(ptr, MethodBindings.isOverridingAudioBusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
     id: Long,

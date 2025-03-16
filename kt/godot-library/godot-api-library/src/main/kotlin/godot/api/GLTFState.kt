@@ -27,6 +27,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -861,6 +862,25 @@ public open class GLTFState : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getBakeFpsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**

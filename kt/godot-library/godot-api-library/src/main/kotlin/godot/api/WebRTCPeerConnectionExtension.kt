@@ -68,6 +68,7 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   }
 
   public open fun _close(): Unit {
+    throw NotImplementedError("_close is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public companion object

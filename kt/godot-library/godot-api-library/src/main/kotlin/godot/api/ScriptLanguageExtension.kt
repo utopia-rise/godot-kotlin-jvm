@@ -32,6 +32,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _init(): Unit {
+    throw NotImplementedError("_init is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getType(): String {
@@ -43,6 +44,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _finish(): Unit {
+    throw NotImplementedError("_finish is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getReservedWords(): PackedStringArray {
@@ -178,18 +180,23 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _addGlobalConstant(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("_addGlobalConstant is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _addNamedGlobalConstant(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("_addNamedGlobalConstant is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _removeNamedGlobalConstant(name: StringName): Unit {
+    throw NotImplementedError("_removeNamedGlobalConstant is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _threadEnter(): Unit {
+    throw NotImplementedError("_threadEnter is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _threadExit(): Unit {
+    throw NotImplementedError("_threadExit is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetError(): String {
@@ -249,12 +256,15 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _reloadAllScripts(): Unit {
+    throw NotImplementedError("_reloadAllScripts is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean): Unit {
+    throw NotImplementedError("_reloadScripts is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _reloadToolScript(script: Script?, softReload: Boolean): Unit {
+    throw NotImplementedError("_reloadToolScript is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getRecognizedExtensions(): PackedStringArray {
@@ -274,15 +284,19 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _profilingStart(): Unit {
+    throw NotImplementedError("_profilingStart is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _profilingStop(): Unit {
+    throw NotImplementedError("_profilingStop is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _profilingSetSaveNativeCalls(enable: Boolean): Unit {
+    throw NotImplementedError("_profilingSetSaveNativeCalls is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _frame(): Unit {
+    throw NotImplementedError("_frame is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _handlesGlobalClassType(type: String): Boolean {

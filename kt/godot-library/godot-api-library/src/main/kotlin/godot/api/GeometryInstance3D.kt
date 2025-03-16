@@ -21,12 +21,14 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -502,6 +504,27 @@ public open class GeometryInstance3D : VisualInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
+
+  /**
+   * Set the value of a shader uniform for this instance only
+   * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
+   * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
+   * using the same [ShaderMaterial].
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
+   * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
+   * but not for Fog, Sky, or Particles shaders.
+   */
+  public final fun setInstanceShaderParameter(name: String, `value`: Any?) =
+      setInstanceShaderParameter(name.asCachedStringName(), value)
+
+  /**
+   * Get the value of a shader parameter as set on this instance.
+   */
+  public final fun getInstanceShaderParameter(name: String): Any? =
+      getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class ShadowCastingSetting(
     id: Long,
