@@ -43,6 +43,7 @@ public open class XRNode3D : Node3D() {
   /**
    * The name of the tracker we're bound to. Which trackers are available is not known during design
    * time.
+   *
    * Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may
    * be configured within a given [XRInterface].
    */
@@ -57,6 +58,7 @@ public open class XRNode3D : Node3D() {
   /**
    * The name of the pose we're bound to. Which poses a tracker supports is not known during design
    * time.
+   *
    * Godot defines number of standard pose names such as `aim` and `grip` but other may be
    * configured within a given [XRInterface].
    */
@@ -146,11 +148,16 @@ public open class XRNode3D : Node3D() {
 
   /**
    * Triggers a haptic pulse on a device associated with this interface.
+   *
    * [actionName] is the name of the action for this pulse.
+   *
    * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
    * frequency.
+   *
    * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
+   *
    * [durationSec] is the duration of the pulse in seconds.
+   *
    * [delaySec] is a delay in seconds before the pulse is given.
    */
   public final fun triggerHapticPulse(

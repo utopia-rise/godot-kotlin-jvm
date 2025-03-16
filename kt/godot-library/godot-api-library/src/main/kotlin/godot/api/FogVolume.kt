@@ -27,9 +27,11 @@ import kotlin.jvm.JvmName
  * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s
  * can also remove volumetric fog from specific areas if using a [FogMaterial] with a negative
  * [FogMaterial.density].
+ *
  * Performance of [FogVolume]s is directly related to their relative size on the screen and the
  * complexity of their attached [FogMaterial]. It is best to keep [FogVolume]s relatively small and
  * simple where possible.
+ *
  * **Note:** [FogVolume]s only have a visible effect if [Environment.volumetricFogEnabled] is
  * `true`. If you don't want fog to be globally visible (but only within [FogVolume] nodes), set
  * [Environment.volumetricFogDensity] to `0.0`.
@@ -40,11 +42,13 @@ public open class FogVolume : VisualInstance3D() {
    * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
    * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or
    * [RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   *
    * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be
    * alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a
    * performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but
    * at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a
    * lower density in the [material].
+   *
    * **Note:** If [shape] is [RenderingServer.FOG_VOLUME_SHAPE_CONE] or
    * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
    * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
@@ -93,11 +97,13 @@ public open class FogVolume : VisualInstance3D() {
    * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
    * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or
    * [RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   *
    * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be
    * alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a
    * performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but
    * at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a
    * lower density in the [material].
+   *
    * **Note:** If [shape] is [RenderingServer.FOG_VOLUME_SHAPE_CONE] or
    * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
    * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but

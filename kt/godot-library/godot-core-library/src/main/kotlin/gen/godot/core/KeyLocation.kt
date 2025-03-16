@@ -15,6 +15,7 @@ public enum class KeyLocation(
   /**
    * Used for keys which only appear once, or when a comparison doesn't need to differentiate the
    * `LEFT` and `RIGHT` versions.
+   *
    * For example, when using [InputEvent.isMatch], an event which has [KEY_LOCATION_UNSPECIFIED]
    * will match any [KeyLocation] on the passed event.
    */

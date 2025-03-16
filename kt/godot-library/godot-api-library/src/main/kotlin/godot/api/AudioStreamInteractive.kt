@@ -36,6 +36,7 @@ import kotlin.jvm.JvmOverloads
  * table. Clips must be added first, and then the transition rules via the [addTransition].
  * Additionally, this stream exports a property parameter to control the playback via
  * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D].
+ *
  * The way this is used is by filling a number of clips, then configuring the transition table. From
  * there, clips are selected for playback and the music will smoothly go from the current to the new
  * one while using the corresponding transition rule defined in the transition table.
@@ -162,15 +163,22 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Add a transition between two clips. Provide the indices of the source and destination clips, or
    * use the [CLIP_ANY] constant to indicate that transition happens to/from any clip to this one.
+   *
    * * [fromTime] indicates the moment in the current clip the transition will begin after
    * triggered.
+   *
    * * [toTime] indicates the time in the next clip that the playback will start from.
+   *
    * * [fadeMode] indicates how the fade will happen between clips. If unsure, just use
    * [FADE_AUTOMATIC] which uses the most common type of fade for each situation.
+   *
    * * [fadeBeats] indicates how many beats the fade will take. Using decimals is allowed.
+   *
    * * [useFillerClip] indicates that there will be a filler clip used between the source and
    * destination clips.
+   *
    * * [fillerClip] the index of the filler clip.
+   *
    * * If [holdPrevious] is used, then this clip will be remembered. This can be used together with
    * [AUTO_ADVANCE_RETURN_TO_HOLD] to return to this clip after another is done playing.
    */

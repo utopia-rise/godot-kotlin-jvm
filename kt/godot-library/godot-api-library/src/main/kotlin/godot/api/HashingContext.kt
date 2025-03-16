@@ -23,10 +23,11 @@ import kotlin.Unit
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple
  * iterations. Useful for computing hashes of big files (so you don't have to load them all in memory),
  * network streams, and data streams in general (so you don't have to hold buffers).
+ *
  * The [HashType] enum shows the supported hashing algorithms.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * const CHUNK_SIZE = 1024
  *
  * func hash_file(path):
@@ -47,8 +48,9 @@ import kotlin.Unit
  *     # Print the result as hex string and array.
  *     printt(res.hex_encode(), Array(res))
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public const int ChunkSize = 1024;
  *
  * public void HashFile(string path)

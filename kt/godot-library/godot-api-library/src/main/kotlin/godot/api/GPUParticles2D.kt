@@ -43,9 +43,11 @@ import kotlin.jvm.JvmOverloads
 /**
  * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
  * features an emitter that generates some number of particles at a given rate.
+ *
  * Use the [processMaterial] property to add a [ParticleProcessMaterial] to configure particle
  * appearance and behavior. Alternatively, you can add a [ShaderMaterial] which will be applied to all
  * particles.
+ *
  * 2D particles can optionally collide with [LightOccluder2D], but they don't collide with
  * [PhysicsBody2D] nodes.
  */
@@ -54,8 +56,10 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Emitted when all active particles have finished processing. To immediately restart the emission
    * cycle, call [restart].
+   *
    * This signal is never emitted when [oneShot] is disabled, as particles will be emitted and
    * processed continuously.
+   *
    * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
    * a short period after receiving the signal during which setting [emitting] to `true` will not
    * restart the emission cycle. This delay is avoided by instead calling [restart].
@@ -67,9 +71,11 @@ public open class GPUParticles2D : Node2D() {
    * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
    * emission cycle unless all active particles have finished processing. Use the [signal finished]
    * signal to be notified once all active particles finish processing.
+   *
    * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
    * a short period after receiving the [signal finished] signal during which setting this to `true`
    * will not restart the emission cycle.
+   *
    * **Tip:** If your [oneShot] emitter needs to immediately restart emitting particles once [signal
    * finished] signal is received, consider calling [restart] instead of setting [emitting].
    */
@@ -85,6 +91,7 @@ public open class GPUParticles2D : Node2D() {
    * The number of particles to emit in one emission cycle. The effective emission rate is `(amount
    * * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements,
    * even if not all particles are visible at a given time or if [amountRatio] is decreased.
+   *
    * **Note:** Changing this value will cause the particle system to restart. To avoid this, change
    * [amountRatio] instead.
    */
@@ -102,6 +109,7 @@ public open class GPUParticles2D : Node2D() {
    * Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted
    * particles and doesn't cause the particle system to restart. [amountRatio] can be used to create
    * effects that make the number of emitted particles vary over time.
+   *
    * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be
    * allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If
    * you don't intend to change the number of particles emitted while the particles are emitting, make
@@ -119,6 +127,7 @@ public open class GPUParticles2D : Node2D() {
    * Path to another [GPUParticles2D] node that will be used as a subemitter (see
    * [ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as
    * fireworks, sparks on collision, bubbles popping into water drops, and more.
+   *
    * **Note:** When [subEmitter] is set, the target [GPUParticles2D] node will no longer emit
    * particles on its own.
    */
@@ -132,6 +141,7 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.
+   *
    * **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the
    * [GPUParticles2D]'s [CanvasItem.material] property, then enable
    * [CanvasItemMaterial.particlesAnimation] and set [CanvasItemMaterial.particlesAnimHFrames],
@@ -160,6 +170,7 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Causes all the particles in this node to interpolate towards the end of their lifetime.
+   *
    * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
    * implemented for custom process shaders.
    */
@@ -185,6 +196,7 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Particle system starts as if it had already run for this many seconds.
+   *
    * **Note:** This can be very expensive if set to a high number as it requires running the
    * particle shader a number of times equal to the [fixedFps] (or 30, if [fixedFps] is 0) for every
    * second. In extreme cases it can even lead to a GPU crash due to the volume of work done in a
@@ -300,6 +312,7 @@ public open class GPUParticles2D : Node2D() {
    * to float when colliding, decrease this value. Only effective if
    * [ParticleProcessMaterial.collisionMode] is [ParticleProcessMaterial.COLLISION_RIGID] or
    * [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
+   *
    * **Note:** Particles always have a spherical collision shape.
    */
   public final inline var collisionBaseSize: Float
@@ -313,6 +326,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * The [Rect2] that determines the node's region which needs to be visible on screen for the
    * particle system to be active.
+   *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
@@ -352,6 +366,7 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * If `true`, enables particle trails using a mesh skinning system.
+   *
    * **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with
    * the [trailSections] and [trailSectionSubdivisions] properties.
    */
@@ -419,6 +434,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * The [Rect2] that determines the node's region which needs to be visible on screen for the
    * particle system to be active.
+   *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    *
@@ -525,6 +541,7 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Requests the particles to process for extra process time during a single frame.
+   *
    * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
    * [restart] with parameter `keep_seed` set to `true`.
    */
@@ -653,6 +670,7 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Returns a rectangle containing the positions of all existing particles.
+   *
    * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling
    * it often may have a negative impact on performance.
    */
@@ -665,7 +683,9 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing
    * from the viewport, wait for the [signal finished] signal before calling.
+   *
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
+   *
    * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
    * playback.
    */
@@ -689,8 +709,10 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends
    * on the value of [flags]. See [EmitFlags].
+   *
    * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
    * `(rotation, age, animation, lifetime)`.
+   *
    * **Note:** [emitParticle] is only supported on the Forward+ and Mobile rendering methods, not
    * Compatibility.
    */

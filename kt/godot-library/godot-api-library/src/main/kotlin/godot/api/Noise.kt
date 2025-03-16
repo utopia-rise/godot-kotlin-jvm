@@ -30,9 +30,11 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * This class defines the interface for noise generation libraries to inherit from.
+ *
  * A default [getSeamlessImage] implementation is provided for libraries that do not provide
  * seamless noise. This function requests a larger image from the [getImage] method, reverses the
  * quadrants of the image, then uses the strips of extra width to blend over the seams.
+ *
  * Inheriting noise classes can optionally override this function to provide a more optimal
  * algorithm.
  */
@@ -93,6 +95,7 @@ public open class Noise internal constructor() : Resource() {
 
   /**
    * Returns an [Image] containing 2D noise values.
+   *
    * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
@@ -111,6 +114,7 @@ public open class Noise internal constructor() : Resource() {
 
   /**
    * Returns an [Image] containing seamless 2D noise values.
+   *
    * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
@@ -130,6 +134,7 @@ public open class Noise internal constructor() : Resource() {
 
   /**
    * Returns an [Array] of [Image]s containing 3D noise values for use with [ImageTexture3D.create].
+   *
    * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
@@ -149,6 +154,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns an [Array] of [Image]s containing seamless 3D noise values for use with
    * [ImageTexture3D.create].
+   *
    * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */

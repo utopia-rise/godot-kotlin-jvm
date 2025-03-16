@@ -26,6 +26,7 @@ import kotlin.Unit
 
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
+ *
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
@@ -36,6 +37,7 @@ public open class RenderSceneData internal constructor() : Object() {
 
   /**
    * Returns the camera transform used to render this frame.
+   *
    * **Note:** If more than one view is rendered, this will return a centered transform.
    */
   public final fun getCamTransform(): Transform3D {
@@ -46,6 +48,7 @@ public open class RenderSceneData internal constructor() : Object() {
 
   /**
    * Returns the camera projection used to render this frame.
+   *
    * **Note:** If more than one view is rendered, this will return a combined projection.
    */
   public final fun getCamProjection(): Projection {
@@ -75,6 +78,7 @@ public open class RenderSceneData internal constructor() : Object() {
 
   /**
    * Returns the view projection per view used to render this frame.
+   *
    * **Note:** If a single view is rendered, this returns the camera projection. If more than one
    * view is rendered, this will return a projection for the given view including the eye offset.
    */

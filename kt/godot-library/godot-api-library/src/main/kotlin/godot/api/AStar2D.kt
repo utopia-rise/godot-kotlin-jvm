@@ -33,6 +33,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * An implementation of the A* algorithm, used to find the shortest path between two vertices on a
  * connected graph in 2D space.
+ *
  * See [AStar3D] for a more thorough explanation on how to use this class. [AStar2D] is a wrapper
  * for [AStar3D] that enforces 2D coordinates.
  */
@@ -44,6 +45,7 @@ public open class AStar2D : RefCounted() {
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
+   *
    * Note that this function is hidden in the default [AStar2D] class.
    */
   public open fun _estimateCost(fromId: Long, endId: Long): Float {
@@ -52,6 +54,7 @@ public open class AStar2D : RefCounted() {
 
   /**
    * Called when computing the cost between two connected points.
+   *
    * Note that this function is hidden in the default [AStar2D] class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Float {
@@ -70,17 +73,19 @@ public open class AStar2D : RefCounted() {
   /**
    * Adds a new point at the given position with the given identifier. The [id] must be 0 or larger,
    * and the [weightScale] must be 0.0 or greater.
+   *
    * The [weightScale] is multiplied by the result of [_computeCost] when determining the overall
    * cost of traveling across a segment from a neighboring point to this point. Thus, all else being
    * equal, the algorithm prefers points with lower [weightScale]s to form a path.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar2D.new()
    * astar.add_point(1, Vector2(1, 0), 4) # Adds the point (1, 0) with weight_scale 4 and id 1
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar2D();
    * astar.AddPoint(1, new Vector2(1, 0), 4); // Adds the point (1, 0) with weight_scale 4 and id 1
    * ```
@@ -154,8 +159,8 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the connection with the given point.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar2D.new()
    * astar.add_point(1, Vector2(0, 0))
    * astar.add_point(2, Vector2(0, 1))
@@ -167,8 +172,9 @@ public open class AStar2D : RefCounted() {
    *
    * var neighbors = astar.get_point_connections(1) # Returns [2, 3]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar2D();
    * astar.AddPoint(1, new Vector2(0, 0));
    * astar.AddPoint(2, new Vector2(0, 1));
@@ -219,15 +225,16 @@ public open class AStar2D : RefCounted() {
    * Creates a segment between the given points. If [bidirectional] is `false`, only movement from
    * [id] to [toId] is allowed, not the reverse direction.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar2D.new()
    * astar.add_point(1, Vector2(1, 1))
    * astar.add_point(2, Vector2(0, 5))
    * astar.connect_points(1, 2, false)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar2D();
    * astar.AddPoint(1, new Vector2(1, 1));
    * astar.AddPoint(2, new Vector2(0, 5));
@@ -313,6 +320,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the ID of the closest point to [toPosition], optionally taking disabled points into
    * account. Returns `-1` if there are no points in the points pool.
+   *
    * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will
    * be returned, ensuring a deterministic result.
    */
@@ -327,16 +335,17 @@ public open class AStar2D : RefCounted() {
    * Returns the closest position to [toPosition] that resides inside a segment between two
    * connected points.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar2D.new()
    * astar.add_point(1, Vector2(0, 0))
    * astar.add_point(2, Vector2(0, 5))
    * astar.connect_points(1, 2)
    * var res = astar.get_closest_position_in_segment(Vector2(3, 3)) # Returns (0, 3)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar2D();
    * astar.AddPoint(1, new Vector2(0, 0));
    * astar.AddPoint(2, new Vector2(0, 5));
@@ -356,10 +365,13 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by AStar2D between the given
    * points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   *
    * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.
    */
@@ -377,13 +389,15 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the path found by AStar2D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var astar = AStar2D.new()
    * astar.add_point(1, Vector2(0, 0))
    * astar.add_point(2, Vector2(0, 1), 1) # Default weight is 1
@@ -397,8 +411,9 @@ public open class AStar2D : RefCounted() {
    *
    * var res = astar.get_id_path(1, 3) # Returns [1, 2, 3]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var astar = new AStar2D();
    * astar.AddPoint(1, new Vector2(0, 0));
    * astar.AddPoint(2, new Vector2(0, 1), 1); // Default weight is 1

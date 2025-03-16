@@ -28,6 +28,7 @@ import kotlin.jvm.JvmName
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
  * in a [Skeleton2D] can be mixed and matched together to create complex interactions.
+ *
  * This is used to provide Godot with a flexible and powerful Inverse Kinematics solution that can
  * be adapted for many different uses.
  */
@@ -79,6 +80,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Used for drawing **editor-only** modification gizmos. This function will only be called in the
    * Godot editor and can be overridden to draw custom gizmos.
+   *
    * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton]
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */

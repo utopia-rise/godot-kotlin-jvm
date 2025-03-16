@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 /**
  * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches
  * the touch screen and used for zooming in/out.
+ *
  * **Note:** On Android, this requires the
  * [ProjectSettings.inputDevices/pointing/android/enablePanAndScaleGestures] project setting to be
  * enabled.

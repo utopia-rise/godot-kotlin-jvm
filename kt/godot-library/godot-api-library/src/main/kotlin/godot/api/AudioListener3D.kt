@@ -48,6 +48,7 @@ public open class AudioListener3D : Node3D() {
 
   /**
    * Returns `true` if the listener was made current using [makeCurrent], `false` otherwise.
+   *
    * **Note:** There may be more than one AudioListener3D marked as "current" in the scene tree, but
    * only the one that was made current last will be used.
    */

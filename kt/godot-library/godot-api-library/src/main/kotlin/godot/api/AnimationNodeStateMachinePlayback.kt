@@ -31,13 +31,14 @@ import kotlin.jvm.JvmOverloads
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
  * Retrieve with `$AnimationTree.get("parameters/playback")`.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var state_machine = $AnimationTree.get("parameters/playback")
  * state_machine.travel("some_state")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var stateMachine =
  * GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
  * stateMachine.Travel("some_state");
@@ -51,8 +52,10 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Transitions from the current state to another one, following the shortest path.
+   *
    * If the path does not connect from the current state, the animation will play after the state
    * teleports.
+   *
    * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel
    * cause a teleportation.
    */
@@ -64,6 +67,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Starts playing the given animation.
+   *
    * If [reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads
@@ -100,6 +104,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Returns the currently playing animation state.
+   *
    * **Note:** When using a cross-fade, the current state changes to the next state immediately
    * after the cross-fade begins.
    */
@@ -120,6 +125,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Returns the current state length.
+   *
    * **Note:** It is possible that any [AnimationRootNode] can be nodes as well as animations. This
    * means that there can be multiple animations within a single state. Which animation length has
    * priority depends on the nodes connected inside it. Also, if a transition does not reset, the
@@ -151,8 +157,10 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Transitions from the current state to another one, following the shortest path.
+   *
    * If the path does not connect from the current state, the animation will play after the state
    * teleports.
+   *
    * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel
    * cause a teleportation.
    */
@@ -162,6 +170,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Starts playing the given animation.
+   *
    * If [reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads

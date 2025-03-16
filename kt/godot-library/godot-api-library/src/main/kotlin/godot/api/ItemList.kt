@@ -48,15 +48,19 @@ import kotlin.jvm.JvmOverloads
  * This control provides a vertical list of selectable items that may be in a single or in multiple
  * columns, with each item having options for text and an icon. Tooltips are supported and may be
  * different for every item in the list.
+ *
  * Selectable items in the list may be selected or deselected and multiple selection may be enabled.
  * Selection with right mouse button may also be enabled to allow use of popup context menus. Items may
  * also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
+ *
  * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't
  * produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but the column's width is
  * adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero
  * to wrap the text.
+ *
  * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
  * select the second-to-last item, and so on.
+ *
  * **Incremental search:** Like [PopupMenu] and [Tree], [ItemList] supports searching within the
  * list while the control is focused. Press a key that matches the first letter of an item's name to
  * select the first item starting with the given letter. After that point, there are two ways to
@@ -71,18 +75,21 @@ import kotlin.jvm.JvmOverloads
 public open class ItemList : Control() {
   /**
    * Emitted when specified item has been selected. Only applicable in single selection mode.
+   *
    * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by Signal1
 
   /**
    * Emitted when any mouse click is issued within the rect of the list but on empty space.
+   *
    * [atPosition] is the click position in this control's local coordinate system.
    */
   public val emptyClicked: Signal2<Vector2, Long> by Signal2
 
   /**
    * Emitted when specified list item has been clicked with any mouse button.
+   *
    * [atPosition] is the click position in this control's local coordinate system.
    */
   public val itemClicked: Signal3<Long, Vector2, Long> by Signal3
@@ -145,6 +152,7 @@ public open class ItemList : Control() {
   /**
    * Maximum lines of text allowed in each item. Space will be reserved even when there is not
    * enough lines of text to display.
+   *
    * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text
    * wrap, [fixedColumnWidth] should be greater than zero.
    */
@@ -193,6 +201,7 @@ public open class ItemList : Control() {
   /**
    * If `true`, the control will automatically move items into a new row to fit its content. See
    * also [HFlowContainer] for this behavior.
+   *
    * If `false`, the control will add a horizontal scrollbar to make all items visible.
    */
   public final inline var wraparoundItems: Boolean
@@ -216,7 +225,9 @@ public open class ItemList : Control() {
 
   /**
    * Maximum columns the list will have.
+   *
    * If greater than zero, the content will be split among the specified columns.
+   *
    * A value of zero means unlimited columns, i.e. all items will be put in the same row.
    */
   public final inline var maxColumns: Int
@@ -229,6 +240,7 @@ public open class ItemList : Control() {
 
   /**
    * Whether all columns will have the same width.
+   *
    * If `true`, the width is equal to the largest column width of all columns.
    */
   public final inline var sameColumnWidth: Boolean
@@ -241,6 +253,7 @@ public open class ItemList : Control() {
 
   /**
    * The width all columns will be adjusted to.
+   *
    * A value of zero disables the adjustment, each item will have a width equal to the width of its
    * content and the columns will have an uneven width.
    */
@@ -276,6 +289,7 @@ public open class ItemList : Control() {
 
   /**
    * The size all icons will be adjusted to.
+   *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
   @CoreTypeLocalCopy
@@ -293,6 +307,7 @@ public open class ItemList : Control() {
 
   /**
    * The size all icons will be adjusted to.
+   *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    *
    * This is a helper function to make dealing with local copies easier.
@@ -318,7 +333,9 @@ public open class ItemList : Control() {
 
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.
+   *
    * Specify an [icon], or use `null` as the [icon] for a list item with no icon.
+   *
    * If [selectable] is `true`, the list item will be selectable.
    */
   @JvmOverloads
@@ -413,6 +430,7 @@ public open class ItemList : Control() {
 
   /**
    * Sets the auto translate mode of the item associated with the specified index.
+   *
    * Items use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate
    * mode as the [ItemList] itself.
    */
@@ -500,6 +518,7 @@ public open class ItemList : Control() {
 
   /**
    * Disables (or enables) the item at the specified index.
+   *
    * Disabled items cannot be selected and do not trigger activation signals (when double-clicking
    * or pressing [kbd]Enter[/kbd]).
    */
@@ -571,6 +590,7 @@ public open class ItemList : Control() {
   /**
    * Returns the position and size of the item with the specified index, in the coordinate system of
    * the [ItemList] node. If [expand] is `true` the last column expands to fill the rest of the row.
+   *
    * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
    * before it redraws in the next frame.
    */
@@ -617,6 +637,7 @@ public open class ItemList : Control() {
 
   /**
    * Select the item at the specified index.
+   *
    * **Note:** This method does not trigger the item selection signal.
    */
   @JvmOverloads
@@ -856,8 +877,10 @@ public open class ItemList : Control() {
 
   /**
    * Returns the item index at the given [position].
+   *
    * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest
    * item index will be returned otherwise.
+   *
    * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
    * before it redraws in the next frame.
    */
@@ -878,6 +901,7 @@ public open class ItemList : Control() {
 
   /**
    * Returns the vertical scrollbar.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -889,6 +913,7 @@ public open class ItemList : Control() {
 
   /**
    * Returns the horizontal scrollbar.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */

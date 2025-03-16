@@ -58,6 +58,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * If `true`, on receiving a request to play an animation from the start, the first frame is not
    * drawn, but only processed, and playback starts from the next frame.
+   *
    * See also the notes of [AnimationPlayer.play].
    */
   public final inline var advanceOnStart: Boolean
@@ -93,7 +94,9 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   /**
    * If `true`, scales the time so that the length specified in [timelineLength] is one cycle.
+   *
    * This is useful for matching the periods of walking and running animations.
+   *
    * If `false`, the original animation length is respected. If you set the loop to [loopMode], the
    * animation will loop in [timelineLength].
    */
@@ -107,6 +110,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   /**
    * If [useCustomTimeline] is `true`, offset the start position of the animation.
+   *
    * This is useful for adjusting which foot steps first in 3D walking animations.
    */
   public final inline var startOffset: Double
@@ -120,6 +124,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * If [useCustomTimeline] is `true`, override the loop settings of the original [Animation]
    * resource with the value.
+   *
    * **Note:** If the [Animation.loopMode] isn't set to looping, the
    * [Animation.trackSetInterpolationLoopWrap] option will not be respected. If you cannot get the
    * expected behavior, consider duplicating the [Animation] resource and changing the loop settings.

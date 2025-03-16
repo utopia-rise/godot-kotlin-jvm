@@ -30,10 +30,13 @@ import kotlin.jvm.JvmName
 /**
  * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
  * nodes.
+ *
  * You can use [Bone2D] and [Skeleton2D] nodes to animate 2D meshes created with the [Polygon2D] UV
  * editor.
+ *
  * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are
  * relative to the bone's parent.
+ *
  * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the
  * code, you need to iterate over the bones to set their individual rest poses.
  */
@@ -160,6 +163,7 @@ public open class Bone2D : Node2D() {
   /**
    * Sets the bone angle for the [Bone2D]. This is typically set to the rotation from the [Bone2D]
    * to a child [Bone2D] node.
+   *
    * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
@@ -170,6 +174,7 @@ public open class Bone2D : Node2D() {
 
   /**
    * Returns the angle of the bone in the [Bone2D].
+   *
    * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */

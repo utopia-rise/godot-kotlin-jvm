@@ -66,6 +66,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Emitted when the animation reaches the end, or the start if it is played in reverse. When the
    * animation finishes, it pauses the playback.
+   *
    * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationFinished: Signal0 by Signal0
@@ -132,6 +133,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal
    * speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
+   *
    * If set to a negative value, the animation is played in reverse. If set to `0`, the animation
    * will not advance.
    */
@@ -145,6 +147,7 @@ public open class AnimatedSprite2D : Node2D() {
 
   /**
    * If `true`, texture will be centered.
+   *
    * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered.
    * This is caused by their position being between pixels. To prevent this, set this property to
    * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
@@ -266,6 +269,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the
    * animation will play backwards (which is equivalent to calling [playBackwards]).
+   *
    * If this method is called with that same animation [name], or with no [name] parameter, the
    * assigned animation will resume playing if it was paused.
    */
@@ -281,6 +285,7 @@ public open class AnimatedSprite2D : Node2D() {
 
   /**
    * Plays the animation with key [name] in reverse.
+   *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */
@@ -293,6 +298,7 @@ public open class AnimatedSprite2D : Node2D() {
    * Pauses the currently playing animation. The [frame] and [frameProgress] will be kept and
    * calling [play] or [playBackwards] without arguments will resume the animation from the current
    * playback position.
+   *
    * See also [stop].
    */
   public final fun pause(): Unit {
@@ -378,10 +384,11 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Sets [frame] the [frameProgress] to the given values. Unlike setting [frame], this method does
    * not reset the [frameProgress] to `0.0` implicitly.
+   *
    * **Example:** Change the animation while keeping the same [frame] and [frameProgress]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var current_frame = animated_sprite.get_frame()
    * var current_progress = animated_sprite.get_frame_progress()
    * animated_sprite.play("walk_another_skin")
@@ -408,6 +415,7 @@ public open class AnimatedSprite2D : Node2D() {
    * Returns the actual playing speed of current animation or `0` if not playing. This speed is the
    * [speedScale] property multiplied by `custom_speed` argument specified when calling the [play]
    * method.
+   *
    * Returns a negative value if the current animation is playing backwards.
    */
   public final fun getPlayingSpeed(): Float {
@@ -421,6 +429,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the
    * animation will play backwards (which is equivalent to calling [playBackwards]).
+   *
    * If this method is called with that same animation [name], or with no [name] parameter, the
    * assigned animation will resume playing if it was paused.
    */
@@ -433,6 +442,7 @@ public open class AnimatedSprite2D : Node2D() {
 
   /**
    * Plays the animation with key [name] in reverse.
+   *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */

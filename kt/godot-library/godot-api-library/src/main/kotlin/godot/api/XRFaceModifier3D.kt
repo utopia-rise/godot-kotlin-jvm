@@ -25,9 +25,11 @@ import kotlin.jvm.JvmName
 
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
+ *
  * The
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified
  * Expressions[/url] blend shapes are supported, as well as ARKit and SRanipal blend shapes.
+ *
  * The node attempts to identify blend shapes based on name matching. Blend shapes should match the
  * names listed in the
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Unified

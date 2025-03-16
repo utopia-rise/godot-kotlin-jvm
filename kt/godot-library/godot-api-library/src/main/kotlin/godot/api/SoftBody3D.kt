@@ -38,8 +38,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,
  * or other flexible materials.
+ *
  * Additionally, [SoftBody3D] is subject to wind forces defined in [Area3D] (see
  * [Area3D.windSourcePath], [Area3D.windForceMagnitude], and [Area3D.windAttenuationFactor]).
+ *
  * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them
  * for things that can affect gameplay (such as trampolines).
  */
@@ -48,6 +50,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32
    * different layers. See also [collisionMask].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -64,6 +67,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32
    * different layers. See also [collisionLayer].
+   *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
    * that object A scans. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -149,6 +153,7 @@ public open class SoftBody3D : MeshInstance3D() {
 
   /**
    * The body's drag coefficient. Higher values increase this body's air resistance.
+   *
    * **Note:** This value is currently unused by Godot's default physics implementation.
    */
   public final inline var dragCoefficient: Float
@@ -433,6 +438,7 @@ public open class SoftBody3D : MeshInstance3D() {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [SoftBody3D].
+     *
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     REMOVE(0),

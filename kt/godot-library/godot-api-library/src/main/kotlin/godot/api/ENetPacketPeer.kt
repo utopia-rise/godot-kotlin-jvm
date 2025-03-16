@@ -29,8 +29,10 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A PacketPeer implementation representing a peer of an [ENetConnection].
+ *
  * This class cannot be instantiated directly but can be retrieved during [ENetConnection.service]
  * or via [ENetConnection.getPeers].
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -118,16 +120,20 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   /**
    * Configures throttle parameter for a peer.
+   *
    * Unreliable packets are dropped by ENet in response to the varying conditions of the Internet
    * connection to the peer. The throttle represents a probability that an unreliable packet should not
    * be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of
    * reliable packets over the specified [interval], ENet will either increase the probability by the
    * amount specified in the [acceleration] parameter, or decrease it by the amount specified in the
    * [deceleration] parameter (both are ratios to [PACKET_THROTTLE_SCALE]).
+   *
    * When the throttle has a value of [PACKET_THROTTLE_SCALE], no unreliable packets are dropped by
    * ENet, and so 100&#37; of all unreliable packets will be sent.
+   *
    * When the throttle has a value of `0`, all unreliable packets are dropped by ENet, and so 0&#37;
    * of all unreliable packets will be sent.
+   *
    * Intermediate values for the throttle represent intermediate probabilities between 0&#37; and
    * 100&#37; of unreliable packets being sent. The bandwidth limits of the local and foreign hosts are
    * taken into account to determine a sensible limit for the throttle probability above which it
@@ -146,6 +152,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Sets the timeout parameters for a peer. The timeout parameters control how and when a peer will
    * timeout from a failure to acknowledge reliable traffic. Timeout values are expressed in
    * milliseconds.
+   *
    * The [timeout] is a factor that, multiplied by a value based on the average round trip time,
    * will determine the timeout limit for a reliable packet. When that limit is reached, the timeout
    * will be doubled, and the peer will be disconnected if that limit has reached [timeoutMin]. The

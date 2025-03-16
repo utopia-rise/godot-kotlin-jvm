@@ -44,6 +44,7 @@ import kotlin.jvm.JvmOverloads
  * CodeEdit is a specialized [TextEdit] designed for editing plain text code files. It has many
  * features commonly found in code editors such as line numbers, line folding, code completion, indent
  * management, and string/comment management.
+ *
  * **Note:** Regardless of locale, [CodeEdit] will by default always use left-to-right text
  * direction to correctly display source code.
  */
@@ -69,6 +70,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by
    * calling [setSymbolLookupWordAsValid].
+   *
    * **Note:** [symbolLookupOnClick] must be `true` for this signal to be emitted.
    */
   public val symbolValidate: Signal1<String> by Signal1
@@ -77,6 +79,7 @@ public open class CodeEdit : TextEdit() {
    * Emitted when the user hovers over a symbol. Unlike [signal Control.mouse_entered], this signal
    * is not emitted immediately, but when the cursor is over the symbol for
    * [ProjectSettings.gui/timers/tooltipDelaySec] seconds.
+   *
    * **Note:** [symbolTooltipOnHover] must be `true` for this signal to be emitted.
    */
   public val symbolHovered: Signal3<String, Long, Long> by Signal3
@@ -357,6 +360,7 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Override this method to define what items in [candidates] should be displayed.
+   *
    * Both [candidates] and the return is a [Array] of [Dictionary], see [getCodeCompletionOption]
    * for [Dictionary] content.
    */
@@ -441,6 +445,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Converts the indents of lines between [fromLine] and [toLine] to tabs or spaces as set by
    * [indentUseSpaces].
+   *
    * Values of `-1` convert the entire text.
    */
   @JvmOverloads
@@ -473,6 +478,7 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Adds a brace pair.
+   *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
    */
   public final fun addAutoBraceCompletionPair(startKey: String, endKey: String): Unit {
@@ -783,9 +789,12 @@ public open class CodeEdit : TextEdit() {
   /**
    * Creates a new code region with the selection. At least one single line comment delimiter have
    * to be defined (see [addCommentDelimiter]).
+   *
    * A code region is a part of code that is highlighted when folded and can help organize your
    * script.
+   *
    * Code region start and end tags can be customized (see [setCodeRegionTags]).
+   *
    * Code regions are delimited using start and end tags (respectively `region` and `endregion` by
    * default) preceded by one line comment delimiter. (eg. `#region` and `#endregion`)
    */
@@ -842,6 +851,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Defines a string delimiter from [startKey] to [endKey]. Both keys should be symbols, and
    * [startKey] must not be shared with other delimiters.
+   *
    * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the
    * next line.
    */
@@ -905,6 +915,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Adds a comment delimiter from [startKey] to [endKey]. Both keys should be symbols, and
    * [startKey] must not be shared with other delimiters.
+   *
    * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the
    * next line.
    */
@@ -1043,8 +1054,10 @@ public open class CodeEdit : TextEdit() {
   /**
    * Submits an item to the queue of potential candidates for the autocomplete menu. Call
    * [updateCodeCompletionOptions] to update the list.
+   *
    * [location] indicates location of the option relative to the location of the code completion
    * query. See [CodeEdit.CodeCompletionLocation] for how to set this value.
+   *
    * **Note:** This list will replace all current candidates.
    */
   @JvmOverloads
@@ -1064,6 +1077,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Submits all completion options added with [addCodeCompletionOption]. Will try to force the
    * autocomplete menu to popup, if [force] is `true`.
+   *
    * **Note:** This will replace all current candidates.
    */
   public final fun updateCodeCompletionOptions(force: Boolean): Unit {
@@ -1082,11 +1096,17 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Gets the completion option at [index]. The return [Dictionary] has the following key-values:
+   *
    * `kind`: [CodeCompletionKind]
+   *
    * `display_text`: Text that is shown on the autocomplete menu.
+   *
    * `insert_text`: Text that is to be inserted when this item is selected.
+   *
    * `font_color`: Color of the text on the autocomplete menu.
+   *
    * `icon`: Icon to draw on the autocomplete menu.
+   *
    * `default_value`: Value of the symbol.
    */
   public final fun getCodeCompletionOption(index: Int): Dictionary<Any?, Any?> {

@@ -26,15 +26,19 @@ import kotlin.jvm.JvmName
 
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
+ *
  * Heightmap shapes allow for efficiently representing collisions for convex and concave objects
  * with a single "floor" (such as terrain). This is less flexible than [GPUParticlesCollisionSDF3D],
  * but it doesn't require a baking step.
+ *
  * [GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when
  * the camera moves, or even continuously. This makes [GPUParticlesCollisionHeightField3D] a good
  * choice for weather effects such as rain and snow and games with highly dynamic geometry. However,
  * this class is limited since heightmaps cannot represent overhangs (e.g. indoors or caves).
+ *
  * **Note:** [ParticleProcessMaterial.collisionMode] must be `true` on the [GPUParticles3D]'s
  * process material for collision to work.
+ *
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
@@ -80,6 +84,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global
    * space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node
    * for this to work.
+   *
    * Following the camera has a performance cost, as it will force the heightmap to update whenever
    * the camera moves. Consider lowering [resolution] to improve performance if [followCameraEnabled]
    * is `true`.
@@ -97,10 +102,12 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * [VisualInstance3D.layers] match with this [heightfieldMask] will be included in the heightmap
    * collision update. By default, all 20 user-visible layers are taken into account for updating the
    * heightmap collision.
+   *
    * **Note:** Since the [heightfieldMask] allows for 32 layers to be stored in total, there are an
    * additional 12 layers that are only used internally by the engine and aren't exposed in the editor.
    * Setting [heightfieldMask] using a script allows you to toggle those reserved layers, which can be
    * useful for editor plugins.
+   *
    * To adjust [heightfieldMask] more easily using a script, use [getHeightfieldMaskValue] and
    * [setHeightfieldMaskValue].
    */

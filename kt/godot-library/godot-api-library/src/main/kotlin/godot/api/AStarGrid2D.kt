@@ -44,11 +44,12 @@ import kotlin.jvm.JvmOverloads
  * to use because it doesn't require you to manually create points and connect them together. This
  * class also supports multiple types of heuristics, modes for diagonal movement, and a jumping mode to
  * speed up calculations.
+ *
  * To use [AStarGrid2D], you only need to set the [region] of the grid, optionally set the
  * [cellSize], and then call the [update] method:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var astar_grid = AStarGrid2D.new()
  * astar_grid.region = Rect2i(0, 0, 32, 32)
  * astar_grid.cell_size = Vector2(16, 16)
@@ -58,8 +59,9 @@ import kotlin.jvm.JvmOverloads
  * print(astar_grid.get_point_path(Vector2i(0, 0), Vector2i(3, 4))) # Prints [(0, 0), (16, 16), (32,
  * 32), (48, 48), (48, 64)]
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * AStarGrid2D astarGrid = new AStarGrid2D();
  * astarGrid.Region = new Rect2I(0, 0, 32, 32);
  * astarGrid.CellSize = new Vector2I(16, 16);
@@ -141,6 +143,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Enables or disables jumping to skip up the intermediate points and speeds up the searching
    * algorithm.
+   *
    * **Note:** Currently, toggling it on disables the consideration of weight scaling in
    * pathfinding.
    */
@@ -294,6 +297,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
+   *
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _estimateCost(fromId: Vector2i, endId: Vector2i): Float {
@@ -302,6 +306,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Called when computing the cost between two connected points.
+   *
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
@@ -396,6 +401,7 @@ public open class AStarGrid2D : RefCounted() {
    * Updates the internal state of the grid according to the parameters to prepare it to search the
    * path. Needs to be called if parameters like [region], [cellSize] or [offset] are changed.
    * [isDirty] will return `true` if this is the case and this needs to be called.
+   *
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public final fun update(): Unit {
@@ -450,6 +456,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Disables or enables the specified point for pathfinding. Useful for making an obstacle. By
    * default, all points are enabled.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -471,6 +478,7 @@ public open class AStarGrid2D : RefCounted() {
    * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by
    * the result of [_computeCost] when determining the overall cost of traveling across a segment from
    * a neighboring point to this point.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
@@ -489,6 +497,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Fills the given [region] on the grid with the specified value for the solid flag.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -499,6 +508,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Fills the given [region] on the grid with the specified value for the weight scale.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
@@ -536,10 +546,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by [AStarGrid2D] between the given
    * points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   *
    * Additionally, when [allowPartialPath] is `true` and [toId] is solid the search may take an
    * unusually long time to finish.
    */
@@ -557,8 +570,10 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the path found by AStar2D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** When [allowPartialPath] is `true` and [toId] is solid the search may take an
    * unusually long time to finish.
    */
@@ -579,11 +594,13 @@ public open class AStarGrid2D : RefCounted() {
     /**
      * The [url=https://en.wikipedia.org/wiki/Euclidean_distance]Euclidean heuristic[/url] to be
      * used for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * result = sqrt(dx * dx + dy * dy)
-     * [/codeblock]
+     * ```
+     *
      * **Note:** This is also the internal heuristic used in [AStar3D] and [AStar2D] by default
      * (with the inclusion of possible z-axis coordinate).
      */
@@ -591,33 +608,37 @@ public open class AStarGrid2D : RefCounted() {
     /**
      * The [url=https://en.wikipedia.org/wiki/Taxicab_geometry]Manhattan heuristic[/url] to be used
      * for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * result = dx + dy
-     * [/codeblock]
+     * ```
+     *
      * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by
      * setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
      */
     MANHATTAN(1),
     /**
      * The Octile heuristic to be used for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * f = sqrt(2) - 1
      * result = (dx < dy) ? f * dx + dy : f * dy + dx;
-     * [/codeblock]
+     * ```
      */
     OCTILE(2),
     /**
      * The [url=https://en.wikipedia.org/wiki/Chebyshev_distance]Chebyshev heuristic[/url] to be
      * used for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * result = max(dx, dy)
-     * [/codeblock]
+     * ```
      */
     CHEBYSHEV(3),
     /**

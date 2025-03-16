@@ -53,6 +53,7 @@ import kotlin.jvm.JvmOverloads
  * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main
  * purpose in the engine is to power the visual programming systems, such as visual shaders, but it is
  * also available for use in user projects.
+ *
  * [GraphEdit] by itself is only an empty container, representing an infinite grid where
  * [GraphNode]s can be placed. Each [GraphNode] represents a node in the graph, a single unit of data
  * in the connected scheme. [GraphEdit], in turn, helps to control various interactions with nodes and
@@ -60,8 +61,10 @@ import kotlin.jvm.JvmOverloads
  * emitted in the [GraphEdit], but no action is taken by default. It is the responsibility of the
  * programmer utilizing this control to implement the necessary logic to determine how each request
  * should be handled.
+ *
  * **Performance:** It is greatly advised to enable low-processor usage mode (see
  * [OS.lowProcessorUsageMode]) when using GraphEdits.
+ *
  * **Note:** Keep in mind that [Node.getChildren] will also return the connection layer node named
  * `_connection_layer` due to technical limitations. This behavior may change in future releases.
  */
@@ -127,6 +130,7 @@ public open class GraphEdit : Control() {
   /**
    * Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by
    * default).
+   *
    * [nodes] is an array of node names that should be removed. These usually include all selected
    * nodes.
    */
@@ -166,6 +170,7 @@ public open class GraphEdit : Control() {
   /**
    * Emitted when one or more [GraphElement]s are dropped onto the [GraphFrame] named [frame], when
    * they were not previously attached to any other one.
+   *
    * [elements] is an array of [GraphElement]s to be attached.
    */
   public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by Signal2
@@ -290,8 +295,10 @@ public open class GraphEdit : Control() {
 
   /**
    * The connections between [GraphNode]s.
+   *
    * A connection is represented as a [Dictionary] in the form of:
-   * [codeblock]
+   *
+   * ```
    * {
    *     from_node: StringName,
    *     from_port: int,
@@ -299,7 +306,8 @@ public open class GraphEdit : Control() {
    *     to_port: int,
    *     keep_alive: bool
    * }
-   * [/codeblock]
+   * ```
+   *
    * Connections with `keep_alive` set to `false` may be deleted automatically if invalid during a
    * redraw.
    */
@@ -512,12 +520,15 @@ public open class GraphEdit : Control() {
 
   /**
    * Returns whether the [mousePosition] is in the input hot zone.
+   *
    * By default, a hot zone is a [Rect2] positioned such that its center is at
    * [inNode].[GraphNode.getInputPortPosition]([inPort]) (For output's case, call
    * [GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property
    * `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
+   *
    * Below is a sample code to help get started:
-   * [codeblock]
+   *
+   * ```
    * func _is_in_input_hotzone(in_node, in_port, mouse_position):
    *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
@@ -526,7 +537,7 @@ public open class GraphEdit : Control() {
    *     var rect = Rect2(port_pos, port_size)
    *
    *     return rect.has_point(mouse_position)
-   * [/codeblock]
+   * ```
    */
   public open fun _isInInputHotzone(
     inNode: Object?,
@@ -539,8 +550,10 @@ public open class GraphEdit : Control() {
   /**
    * Returns whether the [mousePosition] is in the output hot zone. For more information on hot
    * zones, see [_isInInputHotzone].
+   *
    * Below is a sample code to help get started:
-   * [codeblock]
+   *
+   * ```
    * func _is_in_output_hotzone(in_node, in_port, mouse_position):
    *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
@@ -549,7 +562,7 @@ public open class GraphEdit : Control() {
    *     var rect = Rect2(port_pos, port_size)
    *
    *     return rect.has_point(mouse_position)
-   * [/codeblock]
+   * ```
    */
   public open fun _isInOutputHotzone(
     inNode: Object?,
@@ -570,18 +583,21 @@ public open class GraphEdit : Control() {
   /**
    * This virtual method can be used to insert additional error detection while the user is dragging
    * a connection over a valid port.
+   *
    * Return `true` if the connection is indeed valid or return `false` if the connection is
    * impossible. If the connection is impossible, no snapping to the port and thus no connection
    * request to that port will happen.
+   *
    * In this example a connection to same node is suppressed:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _is_node_hover_valid(from, from_port, to, to_port):
    *     return from != to
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode,
    * int toPort)
    * {
@@ -601,6 +617,7 @@ public open class GraphEdit : Control() {
   /**
    * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
    * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   *
    * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
    * redraw.
    */
@@ -685,8 +702,10 @@ public open class GraphEdit : Control() {
   /**
    * Returns the closest connection to the given point in screen space. If no connection is found
    * within [maxDistance] pixels, an empty [Dictionary] is returned.
+   *
    * A connection is represented as a [Dictionary] in the form of:
-   * [codeblock]
+   *
+   * ```
    * {
    *     from_node: StringName,
    *     from_port: int,
@@ -694,11 +713,12 @@ public open class GraphEdit : Control() {
    *     to_port: int,
    *     keep_alive: bool
    * }
-   * [/codeblock]
+   * ```
+   *
    * For example, getting a connection at a given mouse position can be achieved like this:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var connection = get_closest_connection_at_point(mouse_event.get_position())
    * ```
    */
@@ -712,8 +732,10 @@ public open class GraphEdit : Control() {
 
   /**
    * Returns an [Array] containing the list of connections that intersect with the given [Rect2].
+   *
    * A connection is represented as a [Dictionary] in the form of:
-   * [codeblock]
+   *
+   * ```
    * {
    *     from_node: StringName,
    *     from_port: int,
@@ -721,7 +743,7 @@ public open class GraphEdit : Control() {
    *     to_port: int,
    *     keep_alive: bool
    * }
-   * [/codeblock]
+   * ```
    */
   public final fun getConnectionsIntersectingWithRect(rect: Rect2):
       VariantArray<Dictionary<Any?, Any?>> {
@@ -741,8 +763,10 @@ public open class GraphEdit : Control() {
   /**
    * Ends the creation of the current connection. In other words, if you are dragging a connection
    * you can use this method to abort the process and remove the line that followed your cursor.
+   *
    * This is best used together with [signal connection_drag_started] and [signal
    * connection_drag_ended] to add custom behavior like node addition through shortcuts.
+   *
    * **Note:** This method suppresses any other connection request signals apart from [signal
    * connection_drag_ended].
    */
@@ -803,6 +827,7 @@ public open class GraphEdit : Control() {
   /**
    * Allows the connection between two different port types. The port type is defined individually
    * for the left and the right port of each slot with the [GraphNode.setSlot] method.
+   *
    * See also [isValidConnectionType] and [removeValidConnectionType].
    */
   public final fun addValidConnectionType(fromType: Int, toType: Int): Unit {
@@ -814,6 +839,7 @@ public open class GraphEdit : Control() {
    * Disallows the connection between two different port types previously allowed by
    * [addValidConnectionType]. The port type is defined individually for the left and the right port of
    * each slot with the [GraphNode.setSlot] method.
+   *
    * See also [isValidConnectionType].
    */
   public final fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
@@ -825,6 +851,7 @@ public open class GraphEdit : Control() {
    * Returns whether it's possible to make a connection between two different port types. The port
    * type is defined individually for the left and the right port of each slot with the
    * [GraphNode.setSlot] method.
+   *
    * See also [addValidConnectionType] and [removeValidConnectionType].
    */
   public final fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
@@ -1122,6 +1149,7 @@ public open class GraphEdit : Control() {
    * Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of
    * the graph. You can use this method to reposition the toolbar or to add your own custom controls to
    * it.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -1151,6 +1179,7 @@ public open class GraphEdit : Control() {
   /**
    * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
    * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   *
    * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
    * redraw.
    */

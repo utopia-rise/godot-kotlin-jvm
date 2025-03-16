@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * GLTFBufferView is a data structure representing a glTF `bufferView` that would be found in the
  * `"bufferViews"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer that
  * can be used to identify and extract data from the buffer.
+ *
  * Most custom uses of buffers only need to use the [buffer], [byteLength], and [byteOffset]. The
  * [byteStride] and [indices] properties are for more advanced use cases such as interleaved mesh data
  * encoded for the GPU.

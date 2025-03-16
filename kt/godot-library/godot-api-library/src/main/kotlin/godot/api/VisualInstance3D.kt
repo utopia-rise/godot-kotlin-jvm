@@ -37,13 +37,17 @@ import kotlin.jvm.JvmName
 public open class VisualInstance3D : Node3D() {
   /**
    * The render layer(s) this [VisualInstance3D] is drawn on.
+   *
    * This object will only be visible for [Camera3D]s whose cull mask includes any of the render
    * layers this [VisualInstance3D] is set to.
+   *
    * For [Light3D]s, this can be used to control which [VisualInstance3D]s are affected by a
    * specific light. For [GPUParticles3D], this can be used to control which particles are effected by
    * a specific attractor. For [Decal]s, this can be used to control which [VisualInstance3D]s are
    * affected by a specific decal.
+   *
    * To adjust [layers] more easily using a script, use [getLayerMaskValue] and [setLayerMaskValue].
+   *
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
    * [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and
@@ -77,6 +81,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on
    * the global position otherwise.
+   *
    * The [AABB] center based sorting is generally more accurate for 3D models. The position based
    * sorting instead allows to better control the drawing order when working with [GPUParticles3D] and
    * [CPUParticles3D].

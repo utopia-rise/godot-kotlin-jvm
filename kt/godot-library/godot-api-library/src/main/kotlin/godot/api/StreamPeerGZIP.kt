@@ -25,6 +25,7 @@ import kotlin.jvm.JvmOverloads
  * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This
  * is particularly useful when compressing or decompressing files that have to be sent through the
  * network without needing to allocate them all in memory.
+ *
  * After starting the stream via [startCompression] (or [startDecompression]), calling
  * [StreamPeer.putPartialData] on this stream will compress (or decompress) the data, writing it to the
  * internal buffer. Calling [StreamPeer.getAvailableBytes] will return the pending bytes in the

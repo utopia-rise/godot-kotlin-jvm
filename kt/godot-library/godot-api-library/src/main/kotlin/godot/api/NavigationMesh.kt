@@ -77,6 +77,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
+   *
    * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
    * [PARSED_GEOMETRY_BOTH].
    */
@@ -101,6 +102,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The name of the group to scan for geometry.
+   *
    * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
@@ -138,9 +140,11 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The size of the non-navigable border around the bake bounding area.
+   *
    * In conjunction with the [filterBakingAabb] and a [edgeMaxError] value at `1.0` or below the
    * border size can be used to bake tile aligned navigation meshes without the tile edges being shrunk
    * by [agentRadius].
+   *
    * **Note:** While baking and not zero, this value will be rounded up to the nearest multiple of
    * [cellSize].
    */
@@ -155,6 +159,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The minimum floor to ceiling height that will still allow the floor area to be considered
    * walkable.
+   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
    */
   public final inline var agentHeight: Float
@@ -167,6 +172,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The distance to erode/shrink the walkable area of the heightfield away from obstructions.
+   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public final inline var agentRadius: Float
@@ -179,6 +185,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The minimum ledge height that is considered to still be traversable.
+   *
    * **Note:** While baking, this value will be rounded down to the nearest multiple of
    * [cellHeight].
    */
@@ -203,6 +210,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The minimum size of a region for it to be created.
+   *
    * **Note:** This value will be squared to calculate the minimum number of cells allowed to form
    * isolated island areas. For example, a value of 8 will set the number of cells to 64.
    */
@@ -216,6 +224,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Any regions with a size smaller than this will be merged with larger regions if possible.
+   *
    * **Note:** This value will be squared to calculate the number of cells. For example, a value of
    * 20 will set the number of cells to 400.
    */
@@ -230,6 +239,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0`
    * disables this feature.
+   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public final inline var edgeMaxLength: Float
@@ -737,6 +747,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Initializes the navigation mesh by setting the vertices and indices according to a [Mesh].
+   *
    * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
   public final fun createFromMesh(mesh: Mesh?): Unit {

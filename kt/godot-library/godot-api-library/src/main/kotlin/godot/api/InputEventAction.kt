@@ -31,6 +31,7 @@ import kotlin.jvm.JvmName
  * Contains a generic action which can be targeted from several types of inputs. Actions and their
  * events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap]
  * class.
+ *
  * **Note:** Unlike the other [InputEvent] subclasses which map to unique physical events, this
  * virtual one is not emitted by the engine. This class is useful to emit actions manually with
  * [Input.parseInputEvent], which are then received in [Node.Input]. To check if a physical event

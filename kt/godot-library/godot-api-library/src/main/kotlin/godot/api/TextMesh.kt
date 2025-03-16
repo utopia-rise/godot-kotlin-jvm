@@ -38,9 +38,11 @@ import kotlin.jvm.JvmName
 
 /**
  * Generate an [PrimitiveMesh] from the text.
+ *
  * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
  * (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not
  * supported.
+ *
  * The UV layout is arranged in 4 horizontal strips, top to bottom: 40&#37; of the height for the
  * front face, 40&#37; for the back face, 10&#37; for the outer edges and 10&#37; for the inner edges.
  */
@@ -48,6 +50,7 @@ import kotlin.jvm.JvmName
 public open class TextMesh : PrimitiveMesh() {
   /**
    * The text to generate mesh from.
+   *
    * **Note:** Due to being a [Resource], it doesn't follow the rules of [Node.autoTranslateMode].
    * If disabling translation is desired, it should be done manually with
    * [Object.setMessageTranslation].

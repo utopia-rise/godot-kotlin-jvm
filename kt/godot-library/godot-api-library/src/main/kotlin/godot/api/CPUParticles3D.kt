@@ -39,6 +39,7 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
+ *
  * See also [GPUParticles3D], which provides the same functionality with hardware acceleration, but
  * may not run on older devices.
  */
@@ -207,6 +208,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The [AABB] that determines the node's region which needs to be visible on screen for the
    * particle system to be active.
+   *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
@@ -316,6 +318,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
    * **Note:** [emissionColors] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -378,6 +381,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90
    * degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will
    * result in a ring where one end is larger than the other.
+   *
    * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is
    * reached to form a perfect cone.
    */
@@ -804,6 +808,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color.
+   *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -821,6 +826,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's color will vary along this [Gradient] over its lifetime (multiplied with
    * [color]).
+   *
    * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
    * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -836,6 +842,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color will vary along this [Gradient] (multiplied with [color]).
+   *
    * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -955,6 +962,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The [AABB] that determines the node's region which needs to be visible on screen for the
    * particle system to be active.
+   *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    *
@@ -1079,6 +1087,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color.
+   *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -1295,6 +1304,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Restarts the particle emitter.
+   *
    * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
    * playback.
    */
@@ -1306,6 +1316,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Requests the particles to process for extra process time during a single frame.
+   *
    * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
    * [restart] with parameter `keep_seed` set to `true`.
    */

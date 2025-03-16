@@ -27,6 +27,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an
  * incoming connection.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -39,10 +40,13 @@ public open class TCPServer : RefCounted() {
 
   /**
    * Listen on the [port] binding to [bindAddress].
+   *
    * If [bindAddress] is set as `"*"` (default), the server will listen on all available addresses
    * (both IPv4 and IPv6).
+   *
    * If [bindAddress] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen
    * on all available addresses matching that IP type.
+   *
    * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the
    * server will only listen on the interface with that address (or fail if no interface with the given
    * address exists).

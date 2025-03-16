@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
 /**
  * A node used as a child of a [VehicleBody3D] parent to simulate the behavior of one of its wheels.
  * This node also acts as a collider to detect if the wheel is touching a surface.
+ *
  * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics.
  * If you want advanced vehicle physics, you may need to write your own physics integration using
  * another [PhysicsBody3D] class.
@@ -38,8 +39,10 @@ public open class VehicleWheel3D : Node3D() {
    * contact with a surface. The [RigidBody3D.mass] of the vehicle has an effect on the acceleration of
    * the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for
    * acceleration.
+   *
    * **Note:** The simulation does not take the effect of gears into account, you will need to add
    * logic for this if you wish to simulate gears.
+   *
    * A negative value will result in the wheel reversing.
    */
   public final inline var engineForce: Float
@@ -143,6 +146,7 @@ public open class VehicleWheel3D : Node3D() {
    * surface the wheel is in contact with. 0.0 means no grip, 1.0 is normal grip. For a drift car
    * setup, try setting the grip of the rear wheels slightly lower than the front wheels, or use a
    * lower value to simulate tire wear.
+   *
    * It's best to set this to 1.0 when starting out.
    */
   public final inline var wheelFrictionSlip: Float
@@ -347,6 +351,7 @@ public open class VehicleWheel3D : Node3D() {
   /**
    * Returns the contacting body node if valid in the tree, as [Node3D]. At the moment, [GridMap] is
    * not supported so the node will be always of type [PhysicsBody3D].
+   *
    * Returns `null` if the wheel is not in contact with a surface, or the contact body is not a
    * [PhysicsBody3D].
    */

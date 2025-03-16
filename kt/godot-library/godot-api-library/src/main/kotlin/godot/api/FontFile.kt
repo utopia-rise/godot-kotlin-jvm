@@ -49,31 +49,41 @@ import kotlin.jvm.JvmName
 /**
  * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as
  * well as a cache of rasterized glyphs, and a set of fallback [Font]s to use.
+ *
  * Use [FontVariation] to access specific OpenType variation of the font, create simulated bold /
  * slanted version, and draw lines of text.
+ *
  * For more complex text processing, use [FontVariation] in conjunction with [TextLine] or
  * [TextParagraph].
+ *
  * Supported font formats:
+ *
  * - Dynamic font importer: TrueType (.ttf), TrueType collection (.ttc), OpenType (.otf), OpenType
  * collection (.otc), WOFF (.woff), WOFF2 (.woff2), Type 1 (.pfb, .pfm).
+ *
  * - Bitmap font importer: AngelCode BMFont (.fnt, .font), text and binary (version 3) format
  * variants.
+ *
  * - Monospace image font importer: All supported image formats.
+ *
  * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract
  * way.
+ *
  * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a
  * context-dependent manner. Glyph indices are bound to the specific font data source.
+ *
  * **Note:** If none of the font data sources contain glyphs for a character used in a string, the
  * character in question will be replaced with a box displaying its hexadecimal code.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var f = load("res://BarlowCondensed-Bold.ttf")
  * $Label.add_theme_font_override("font", f)
  * $Label.add_theme_font_size_override("font_size", 64)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var f = ResourceLoader.Load<FontFile>("res://BarlowCondensed-Bold.ttf");
  * GetNode("Label").AddThemeFontOverride("font", f);
  * GetNode("Label").AddThemeFontSizeOverride("font_size", 64);
@@ -218,8 +228,10 @@ public open class FontFile : Font() {
    * down (or for [Label3D]s viewed from a long distance). As a downside, font hinting is not available
    * with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small
    * sizes.
+   *
    * **Note:** If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of
    * the largest font outline.
+   *
    * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly.
    * Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many
    * font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs,
@@ -346,6 +358,7 @@ public open class FontFile : Font() {
 
   /**
    * Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [path].
+   *
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external fonts at run-time, such as fonts located at the `user://` directory.
    */
@@ -358,6 +371,7 @@ public open class FontFile : Font() {
   /**
    * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm)
    * dynamic font from file [path].
+   *
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external fonts at run-time, such as fonts located at the `user://` directory.
    */
@@ -840,6 +854,7 @@ public open class FontFile : Font() {
 
   /**
    * Removes all textures from font cache entry.
+   *
    * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph]
    * to remove them manually.
    */
@@ -850,6 +865,7 @@ public open class FontFile : Font() {
 
   /**
    * Removes specified texture from the cache entry.
+   *
    * **Note:** This function will not remove glyphs associated with the texture. Remove them
    * manually using [removeGlyph].
    */
@@ -925,6 +941,7 @@ public open class FontFile : Font() {
 
   /**
    * Removes all rendered glyph information from the cache entry.
+   *
    * **Note:** This function will not remove textures associated with the glyphs, use
    * [removeTexture] to remove them manually.
    */
@@ -935,6 +952,7 @@ public open class FontFile : Font() {
 
   /**
    * Removes specified rendered glyph information from the cache entry.
+   *
    * **Note:** This function will not remove textures associated with the glyphs, use
    * [removeTexture] to remove them manually.
    */
@@ -949,6 +967,7 @@ public open class FontFile : Font() {
 
   /**
    * Sets glyph advance (offset of the next glyph).
+   *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public final fun setGlyphAdvance(
@@ -963,6 +982,7 @@ public open class FontFile : Font() {
 
   /**
    * Returns glyph advance (offset of the next glyph).
+   *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public final fun getGlyphAdvance(

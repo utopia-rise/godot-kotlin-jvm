@@ -24,16 +24,19 @@ import kotlin.jvm.JvmOverloads
 /**
  * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically
  * instantiate an associated scene at the cell's position in the TileMap.
+ *
  * Scenes are instantiated as children of the [TileMap] when it enters the tree. If you add/remove a
  * scene tile in the [TileMap] that is already inside the tree, the [TileMap] will automatically
  * instantiate/free the scene accordingly.
+ *
  * **Note:** Scene tiles all occupy one tile slot and instead use alternate tile ID to identify
  * scene index. [TileSetSource.getTilesCount] will always return `1`. Use [getSceneTilesCount] to get a
  * number of scenes in a [TileSetScenesCollectionSource].
+ *
  * Use this code if you want to find the scene path at a given tile in [TileMapLayer]:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var source_id = tile_map_layer.get_cell_source_id(Vector2i(x, y))
  * if source_id > -1:
  *     var scene_source = tile_map_layer.tile_set.get_source(source_id)
@@ -42,8 +45,9 @@ import kotlin.jvm.JvmOverloads
  *         # The assigned PackedScene.
  *         var scene = scene_source.get_scene_tile_scene(alt_id)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * int sourceId = tileMapLayer.GetCellSourceId(new Vector2I(x, y));
  * if (sourceId > -1)
  * {
@@ -92,6 +96,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
 
   /**
    * Creates a scene-based tile out of the given scene.
+   *
    * Returns a newly generated unique ID.
    */
   @JvmOverloads

@@ -37,11 +37,13 @@ public open class AnimationNodeExtension : AnimationNode() {
   /**
    * A version of the [AnimationNode.Process] method that is meant to be overridden by custom nodes.
    * It returns a [PackedFloat32Array] with the processed animation data.
+   *
    * The [PackedFloat64Array] parameter contains the playback information, containing the following
    * values encoded as floating point numbers (in order): playback time and delta, start and end times,
    * whether a seek was requested (encoded as a float greater than `0`), whether the seek request was
    * externally requested (encoded as a float greater than `0`), the current [Animation.LoopedFlag]
    * (encoded as a float), and the current blend weight.
+   *
    * The function must return a [PackedFloat32Array] of the node's time info, containing the
    * following values (in order): animation length, time position, delta, [Animation.LoopMode] (encoded
    * as a float), whether the animation is about to end (encoded as a float greater than `0`) and

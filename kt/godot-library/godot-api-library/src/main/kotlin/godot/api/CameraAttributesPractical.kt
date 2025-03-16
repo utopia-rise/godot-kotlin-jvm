@@ -23,6 +23,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Controls camera-specific attributes such as auto-exposure, depth of field, and exposure override.
+ *
  * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and
  * depth of field that will be used by all cameras without their own [CameraAttributes], including the
  * editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the
@@ -33,6 +34,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * Enables depth of field blur for objects further than [dofBlurFarDistance]. Strength of blur is
    * controlled by [dofBlurAmount] and modulated by [dofBlurFarTransition].
+   *
    * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods,
    * not Compatibility.
    */
@@ -73,6 +75,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   /**
    * Enables depth of field blur for objects closer than [dofBlurNearDistance]. Strength of blur is
    * controlled by [dofBlurAmount] and modulated by [dofBlurNearTransition].
+   *
    * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods,
    * not Compatibility.
    */

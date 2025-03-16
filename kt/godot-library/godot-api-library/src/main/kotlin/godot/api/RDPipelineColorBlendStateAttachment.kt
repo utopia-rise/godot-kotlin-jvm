@@ -23,9 +23,12 @@ import kotlin.jvm.JvmName
 /**
  * Controls how blending between source and destination fragments is performed when using
  * [RenderingDevice].
+ *
  * For reference, this is how common user-facing blend modes are implemented in Godot's 2D renderer:
+ *
  * **Mix:**
- * [codeblock]
+ *
+ * ```
  * var attachment = RDPipelineColorBlendStateAttachment.new()
  * attachment.enable_blend = true
  * attachment.color_blend_op = RenderingDevice.BLEND_OP_ADD
@@ -34,9 +37,11 @@ import kotlin.jvm.JvmName
  * attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
  * attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
  * attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
- * [/codeblock]
+ * ```
+ *
  * **Add:**
- * [codeblock]
+ *
+ * ```
  * var attachment = RDPipelineColorBlendStateAttachment.new()
  * attachment.enable_blend = true
  * attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
@@ -45,9 +50,11 @@ import kotlin.jvm.JvmName
  * attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
  * attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
  * attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
- * [/codeblock]
+ * ```
+ *
  * **Subtract:**
- * [codeblock]
+ *
+ * ```
  * var attachment = RDPipelineColorBlendStateAttachment.new()
  * attachment.enable_blend = true
  * attachment.alpha_blend_op = RenderingDevice.BLEND_OP_REVERSE_SUBTRACT
@@ -56,9 +63,11 @@ import kotlin.jvm.JvmName
  * attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
  * attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
  * attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
- * [/codeblock]
+ * ```
+ *
  * **Multiply:**
- * [codeblock]
+ *
+ * ```
  * var attachment = RDPipelineColorBlendStateAttachment.new()
  * attachment.enable_blend = true
  * attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
@@ -67,9 +76,11 @@ import kotlin.jvm.JvmName
  * attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ZERO
  * attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_DST_ALPHA
  * attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ZERO
- * [/codeblock]
+ * ```
+ *
  * **Pre-multiplied alpha:**
- * [codeblock]
+ *
+ * ```
  * var attachment = RDPipelineColorBlendStateAttachment.new()
  * attachment.enable_blend = true
  * attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
@@ -78,7 +89,7 @@ import kotlin.jvm.JvmName
  * attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
  * attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
  * attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class RDPipelineColorBlendStateAttachment : RefCounted() {

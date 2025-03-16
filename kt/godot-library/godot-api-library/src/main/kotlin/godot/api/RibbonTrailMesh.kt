@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number
  * of [sectionSegments]. A [curve] is sampled along the total length of the ribbon, meaning that the
  * curve determines the size of the ribbon along its length.
+ *
  * This primitive mesh is usually used for particle trails.
  */
 @GodotBaseType

@@ -29,6 +29,7 @@ import kotlin.jvm.JvmStatic
 /**
  * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension]
  * libraries in the project.
+ *
  * **Note:** Do not worry about GDExtension unless you know what you are doing.
  */
 @GodotBaseType
@@ -41,6 +42,7 @@ public object GDExtensionManager : Object() {
 
   /**
    * Emitted after the editor has finished loading a new extension.
+   *
    * **Note:** This signal is only emitted in editor builds.
    */
   @JvmStatic
@@ -48,6 +50,7 @@ public object GDExtensionManager : Object() {
 
   /**
    * Emitted before the editor starts unloading an extension.
+   *
    * **Note:** This signal is only emitted in editor builds.
    */
   @JvmStatic
@@ -72,6 +75,7 @@ public object GDExtensionManager : Object() {
    * Reloads the extension at the given file path. The [path] needs to point to a valid
    * [GDExtension], otherwise this method may return either [LOAD_STATUS_NOT_LOADED] or
    * [LOAD_STATUS_FAILED].
+   *
    * **Note:** You can only reload extensions in the editor. In release builds, this method always
    * fails and returns [LOAD_STATUS_FAILED].
    */

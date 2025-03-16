@@ -28,6 +28,7 @@ public open class OptimizedTranslation : Translation() {
 
   /**
    * Generates and sets an optimized translation from the given [Translation] resource.
+   *
    * **Note:** This method is intended to be used in the editor. It does nothing when called from an
    * exported project.
    */

@@ -34,14 +34,18 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.
+ *
  * Visibility can be handled directly with [setVisibilityFor] or as-needed with
  * [addVisibilityFilter] and [updateVisibility].
+ *
  * [MultiplayerSpawner]s will handle nodes according to visibility of synchronizers as long as the
  * node at [rootPath] was spawned by one.
+ *
  * Internally, [MultiplayerSynchronizer] uses [MultiplayerAPI.objectConfigurationAdd] to notify
  * synchronization start passing the [Node] at [rootPath] as the `object` and itself as the
  * `configuration`, and uses [MultiplayerAPI.objectConfigurationRemove] to notify synchronization end
  * in a similar way.
+ *
  * **Note:** Synchronization is not supported for [Object] type properties, like [Resource].
  * Properties that are unique to each peer, like the instance IDs of [Object]s (see
  * [Object.getInstanceId]) or [RID]s, will also not work in synchronization.
@@ -67,6 +71,7 @@ public open class MultiplayerSynchronizer : Node() {
 
   /**
    * Node path that replicated properties are relative to.
+   *
    * If [rootPath] was spawned by a [MultiplayerSpawner], the node will be also be spawned and
    * despawned based on this synchronizer visibility options.
    */
@@ -220,6 +225,7 @@ public open class MultiplayerSynchronizer : Node() {
 
   /**
    * Adds a peer visibility filter for this synchronizer.
+   *
    * [filter] should take a peer ID [int] and return a [bool].
    */
   public final fun addVisibilityFilter(filter: Callable): Unit {

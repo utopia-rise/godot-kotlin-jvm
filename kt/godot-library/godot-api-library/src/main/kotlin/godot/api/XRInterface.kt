@@ -45,6 +45,7 @@ import kotlin.jvm.JvmName
  * This class needs to be implemented to make an AR or VR platform available to Godot and these
  * should be implemented as C++ modules or GDExtension modules. Part of the interface is exposed to
  * GDScript so you can detect, enable and configure an AR or VR platform.
+ *
  * Interfaces should be written in such a way that simply enabling them will give us a working
  * setup. You can query the available interfaces through [XRServer].
  */
@@ -140,15 +141,19 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Call this to initialize this interface. The first interface that is initialized is identified
    * as the primary interface and it will be used for rendering output.
+   *
    * After initializing the interface you want to use you then need to enable the AR/VR mode of a
    * viewport and rendering should commence.
+   *
    * **Note:** You must enable the XR mode on the main viewport for any device that uses the main
    * output of Godot, such as for mobile VR.
+   *
    * If you do this for a platform that handles its own output (such as OpenVR) Godot will show just
    * one eye without distortion on screen. Alternatively, you can add a separate viewport node to your
    * scene and enable AR/VR on that viewport. It will be used to output to the HMD, leaving you free to
    * do anything you like in the main window, such as using a separate camera as a spectator camera or
    * rendering something completely different.
+   *
    * While currently not used, you can activate additional interfaces. You may wish to do this if
    * you want to track controllers from other platforms. However, at this point in time only one
    * interface can render to an HMD.
@@ -171,6 +176,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    * Returns a [Dictionary] with extra system info. Interfaces are expected to return
    * `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional
    * entries may be provided specific to an interface.
+   *
    * **Note:**This information may only be available after [initialize] was successfully called.
    */
   public final fun getSystemInfo(): Dictionary<Any?, Any?> {
@@ -211,13 +217,19 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Triggers a haptic pulse on a device associated with this interface.
+   *
    * [actionName] is the name of the action for this pulse.
+   *
    * [trackerName] is optional and can be used to direct the pulse to a specific device provided
    * that device is bound to this haptic.
+   *
    * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
    * frequency.
+   *
    * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
+   *
    * [durationSec] is the duration of the pulse in seconds.
+   *
    * [delaySec] is a delay in seconds before the pulse is given.
    */
   public final fun triggerHapticPulse(
@@ -250,6 +262,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Sets the active play area mode, will return `false` if the mode can't be used with this
    * interface.
+   *
    * **Note:** Changing this after the interface has already been initialized can be jarring for the
    * player, so it's recommended to recenter on the HMD with [XRServer.centerOnHmd] (if switching to
    * [XRInterface.XR_PLAY_AREA_STAGE]) or make the switch during a scene change.
@@ -313,6 +326,7 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Starts passthrough, will return `false` if passthrough couldn't be started.
+   *
    * **Note:** The viewport used for XR must have a transparent background, otherwise passthrough
    * may not properly render.
    */
@@ -332,7 +346,9 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Returns the transform for a view/eye.
+   *
    * [view] is the view/eye index.
+   *
    * [camTransform] is the transform that maps device coordinates to scene coordinates, typically
    * the [Node3D.globalTransform] of the current XROrigin3D.
    */
@@ -368,10 +384,13 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Sets the active environment blend mode.
+   *
    * [mode] is the environment blend mode starting with the next frame.
+   *
    * **Note:** Not all runtimes support all environment blend modes, so it is important to check
    * this at startup. For example:
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     var xr_interface = XRServer.find_interface("OpenXR")
    *     if xr_interface and xr_interface.is_initialized():
@@ -384,7 +403,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    *             if mode in modes:
    *                 xr_interface.set_environment_blend_mode(mode)
    *                 break
-   * [/codeblock]
+   * ```
    */
   public final fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
@@ -400,13 +419,19 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Triggers a haptic pulse on a device associated with this interface.
+   *
    * [actionName] is the name of the action for this pulse.
+   *
    * [trackerName] is optional and can be used to direct the pulse to a specific device provided
    * that device is bound to this haptic.
+   *
    * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
    * frequency.
+   *
    * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
+   *
    * [durationSec] is the duration of the pulse in seconds.
+   *
    * [delaySec] is a delay in seconds before the pulse is given.
    */
   public final fun triggerHapticPulse(

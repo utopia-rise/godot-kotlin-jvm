@@ -23,11 +23,12 @@ import kotlin.jvm.JvmOverloads
 /**
  * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS]
  * classes.
+ *
  * Objects of this class cannot be instantiated directly, and one of the static methods [client],
  * [clientUnsafe], or [server] should be used instead.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # Create a TLS client configuration which uses our custom trusted CA chain.
  * var client_trusted_cas = load("res://my_trusted_cas.crt")
  * var client_tls_options = TLSOptions.client(client_trusted_cas)
@@ -104,9 +105,11 @@ public open class TLSOptions internal constructor() : RefCounted() {
     /**
      * Creates a TLS client configuration which validates certificates and their common names (fully
      * qualified domain names).
+     *
      * You can specify a custom [trustedChain] of certification authorities (the default CA list
      * will be used if `null`), and optionally provide a [commonNameOverride] if you expect the
      * certificate to have a common name other than the server FQDN.
+     *
      * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the
      * web browser. This is considered a security feature.
      */
@@ -123,6 +126,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
      * can optionally provide a valid [trustedChain], but the common name of the certificates will
      * never be checked. Using this configuration for purposes other than testing **is not
      * recommended**.
+     *
      * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the
      * web browser. This is considered a security feature.
      */
@@ -135,6 +139,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
 
     /**
      * Creates a TLS server configuration using the provided [key] and [certificate].
+     *
      * **Note:** The [certificate] should include the full certificate chain up to the signing CA
      * (certificates file can be concatenated using a general purpose text editor).
      */

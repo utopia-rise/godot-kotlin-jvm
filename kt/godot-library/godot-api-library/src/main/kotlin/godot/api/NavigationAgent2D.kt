@@ -43,8 +43,10 @@ import kotlin.jvm.JvmName
  * A 2D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
  * calculation can be used by the parent node to dynamically move it along the path. Requires
  * navigation data to work correctly.
+ *
  * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before
  * physics, so the pathfinding information can be used safely in the physics step.
+ *
  * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be
  * used once every physics frame to update the internal path logic of the navigation agent. The vector
  * position it returns should be used as the next movement position for the agent's parent node.
@@ -53,8 +55,11 @@ import kotlin.jvm.JvmName
 public open class NavigationAgent2D : Node() {
   /**
    * Emitted when the agent had to update the loaded path:
+   *
    * - because path was previously empty.
+   *
    * - because navigation map has changed.
+   *
    * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
   public val pathChanged: Signal0 by Signal0
@@ -62,8 +67,10 @@ public open class NavigationAgent2D : Node() {
   /**
    * Signals that the agent reached the target, i.e. the agent moved within [targetDesiredDistance]
    * of the [targetPosition]. This signal is emitted only once per loaded path.
+   *
    * This signal will be emitted just before [signal navigation_finished] when the target is
    * reachable.
+   *
    * It may not always be possible to reach the target but it should always be possible to reach the
    * final position. See [getFinalPosition].
    */
@@ -72,11 +79,16 @@ public open class NavigationAgent2D : Node() {
   /**
    * Signals that the agent reached a waypoint. Emitted when the agent moves within
    * [pathDesiredDistance] of the next position of the path.
+   *
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
+   *
    * - `position`: The position of the waypoint that was reached.
+   *
    * - `type`: The type of navigation primitive (region or link) that contains this waypoint.
+   *
    * - `rid`: The [RID] of the containing navigation primitive (region or link).
+   *
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
   public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
@@ -84,14 +96,21 @@ public open class NavigationAgent2D : Node() {
   /**
    * Signals that the agent reached a navigation link. Emitted when the agent moves within
    * [pathDesiredDistance] of the next position of the path when that position is a navigation link.
+   *
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
+   *
    * - `position`: The start position of the link that was reached.
+   *
    * - `type`: Always [NavigationPathQueryResult2D.PATH_SEGMENT_TYPE_LINK].
+   *
    * - `rid`: The [RID] of the link.
+   *
    * - `owner`: The object which manages the link (usually [NavigationLink2D]).
+   *
    * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink2D], it will
    * contain the global position of the link's point the agent is entering.
+   *
    * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink2D], it will
    * contain the global position of the link's point which the agent is exiting.
    */
@@ -101,6 +120,7 @@ public open class NavigationAgent2D : Node() {
    * Signals that the agent's navigation has finished. If the target is reachable, navigation ends
    * when the target is reached. If the target is unreachable, navigation ends when the last waypoint
    * of the path is reached. This signal is emitted only once per loaded path.
+   *
    * This signal will be emitted just after [signal target_reached] when the target is reachable.
    */
   public val navigationFinished: Signal0 by Signal0
@@ -144,8 +164,10 @@ public open class NavigationAgent2D : Node() {
    * The distance threshold before the target is considered to be reached. On reaching the target,
    * [signal target_reached] is emitted and navigation ends (see [isNavigationFinished] and [signal
    * navigation_finished]).
+   *
    * You can make navigation end early by setting this property to a value greater than
    * [pathDesiredDistance] (navigation will end before reaching the last waypoint).
+   *
    * You can also make navigation end closer to the target than each individual path position by
    * setting this property to a value lower than [pathDesiredDistance] (navigation won't immediately
    * end when reaching the last waypoint). However, if the value set is too low, the agent will be
@@ -223,6 +245,7 @@ public open class NavigationAgent2D : Node() {
    * If `true` a simplified version of the path will be returned with less critical path points
    * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
    * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   *
    * Path simplification can be helpful to mitigate various path following issues that can arise
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".
@@ -279,6 +302,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the
    * avoidance maneuver starting radius (which is controlled by [neighborDistance]).
+   *
    * Does not affect normal pathfinding. To change an actor's pathfinding radius bake
    * [NavigationMesh] resources with a different [NavigationMesh.agentRadius] property and use
    * different navigation maps for each actor size.
@@ -870,6 +894,7 @@ public open class NavigationAgent2D : Node() {
    * Returns `true` if the agent's navigation has finished. If the target is reachable, navigation
    * ends when the target is reached. If the target is unreachable, navigation ends when the last
    * waypoint of the path is reached.
+   *
    * **Note:** While `true` prefer to stop calling update functions like [getNextPathPosition]. This
    * avoids jittering the standing agent due to calling repeated path updates.
    */

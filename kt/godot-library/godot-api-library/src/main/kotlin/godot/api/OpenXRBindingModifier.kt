@@ -35,6 +35,7 @@ public open class OpenXRBindingModifier internal constructor() : Resource() {
   /**
    * Returns the data that is sent to OpenXR when submitting the suggested interacting bindings this
    * modifier is a part of.
+   *
    * **Note:** This must be data compatible with a `XrBindingModificationBaseHeaderKHR` structure.
    */
   public open fun _getIpModification(): PackedByteArray {
