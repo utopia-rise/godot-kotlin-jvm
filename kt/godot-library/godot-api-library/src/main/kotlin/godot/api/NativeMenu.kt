@@ -303,7 +303,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -331,7 +331,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -360,7 +360,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -389,7 +389,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -420,7 +420,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -452,7 +452,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -487,7 +487,7 @@ public object NativeMenu : Object() {
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
     tag: Any? = null,
-    accelerator: Key = Key.KEY_NONE,
+    accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
     TransferContext.writeArguments(_RID to rid, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
@@ -1037,23 +1037,23 @@ public object NativeMenu : Object() {
     /**
      * [NativeMenu] supports native global main menu.
      */
-    FEATURE_GLOBAL_MENU(0),
+    GLOBAL_MENU(0),
     /**
      * [NativeMenu] supports native popup menus.
      */
-    FEATURE_POPUP_MENU(1),
+    POPUP_MENU(1),
     /**
      * [NativeMenu] supports menu open and close callbacks.
      */
-    FEATURE_OPEN_CLOSE_CALLBACK(2),
+    OPEN_CLOSE_CALLBACK(2),
     /**
      * [NativeMenu] supports menu item hover callback.
      */
-    FEATURE_HOVER_CALLBACK(3),
+    HOVER_CALLBACK(3),
     /**
      * [NativeMenu] supports menu item accelerator/key callback.
      */
-    FEATURE_KEY_CALLBACK(4),
+    KEY_CALLBACK(4),
     ;
 
     public val id: Long

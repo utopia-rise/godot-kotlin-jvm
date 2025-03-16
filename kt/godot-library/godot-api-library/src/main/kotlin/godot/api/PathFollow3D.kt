@@ -259,24 +259,24 @@ public open class PathFollow3D : Node3D() {
     /**
      * Forbids the PathFollow3D to rotate.
      */
-    ROTATION_NONE(0),
+    NONE(0),
     /**
      * Allows the PathFollow3D to rotate in the Y axis only.
      */
-    ROTATION_Y(1),
+    Y(1),
     /**
      * Allows the PathFollow3D to rotate in both the X, and Y axes.
      */
-    ROTATION_XY(2),
+    XY(2),
     /**
      * Allows the PathFollow3D to rotate in any axis.
      */
-    ROTATION_XYZ(3),
+    XYZ(3),
     /**
      * Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode
      * requires the [Path3D]'s [Curve3D.upVectorEnabled] property to be set to `true`.
      */
-    ROTATION_ORIENTED(4),
+    ORIENTED(4),
     ;
 
     public val id: Long

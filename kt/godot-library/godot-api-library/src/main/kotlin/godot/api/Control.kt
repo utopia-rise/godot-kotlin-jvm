@@ -199,7 +199,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorLeft: Float
     @JvmName("anchorLeftProperty")
-    get() = getAnchor(Side.SIDE_LEFT)
+    get() = getAnchor(Side.LEFT)
 
   /**
    * Anchors the top edge of the node to the origin, the center or the end of its parent control. It
@@ -208,7 +208,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorTop: Float
     @JvmName("anchorTopProperty")
-    get() = getAnchor(Side.SIDE_TOP)
+    get() = getAnchor(Side.TOP)
 
   /**
    * Anchors the right edge of the node to the origin, the center or the end of its parent control.
@@ -217,7 +217,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorRight: Float
     @JvmName("anchorRightProperty")
-    get() = getAnchor(Side.SIDE_RIGHT)
+    get() = getAnchor(Side.RIGHT)
 
   /**
    * Anchors the bottom edge of the node to the origin, the center, or the end of its parent
@@ -226,7 +226,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorBottom: Float
     @JvmName("anchorBottomProperty")
-    get() = getAnchor(Side.SIDE_BOTTOM)
+    get() = getAnchor(Side.BOTTOM)
 
   /**
    * Distance between the node's left edge and its parent control, based on [anchorLeft].
@@ -236,10 +236,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetLeft: Float
     @JvmName("offsetLeftProperty")
-    get() = getOffset(Side.SIDE_LEFT)
+    get() = getOffset(Side.LEFT)
     @JvmName("offsetLeftProperty")
     set(`value`) {
-      setOffset(Side.SIDE_LEFT, value)
+      setOffset(Side.LEFT, value)
     }
 
   /**
@@ -250,10 +250,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetTop: Float
     @JvmName("offsetTopProperty")
-    get() = getOffset(Side.SIDE_TOP)
+    get() = getOffset(Side.TOP)
     @JvmName("offsetTopProperty")
     set(`value`) {
-      setOffset(Side.SIDE_TOP, value)
+      setOffset(Side.TOP, value)
     }
 
   /**
@@ -264,10 +264,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetRight: Float
     @JvmName("offsetRightProperty")
-    get() = getOffset(Side.SIDE_RIGHT)
+    get() = getOffset(Side.RIGHT)
     @JvmName("offsetRightProperty")
     set(`value`) {
-      setOffset(Side.SIDE_RIGHT, value)
+      setOffset(Side.RIGHT, value)
     }
 
   /**
@@ -278,10 +278,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetBottom: Float
     @JvmName("offsetBottomProperty")
-    get() = getOffset(Side.SIDE_BOTTOM)
+    get() = getOffset(Side.BOTTOM)
     @JvmName("offsetBottomProperty")
     set(`value`) {
-      setOffset(Side.SIDE_BOTTOM, value)
+      setOffset(Side.BOTTOM, value)
     }
 
   /**
@@ -531,10 +531,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborLeft: NodePath
     @JvmName("focusNeighborLeftProperty")
-    get() = getFocusNeighbor(Side.SIDE_LEFT)
+    get() = getFocusNeighbor(Side.LEFT)
     @JvmName("focusNeighborLeftProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_LEFT, value)
+      setFocusNeighbor(Side.LEFT, value)
     }
 
   /**
@@ -545,10 +545,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborTop: NodePath
     @JvmName("focusNeighborTopProperty")
-    get() = getFocusNeighbor(Side.SIDE_TOP)
+    get() = getFocusNeighbor(Side.TOP)
     @JvmName("focusNeighborTopProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_TOP, value)
+      setFocusNeighbor(Side.TOP, value)
     }
 
   /**
@@ -559,10 +559,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborRight: NodePath
     @JvmName("focusNeighborRightProperty")
-    get() = getFocusNeighbor(Side.SIDE_RIGHT)
+    get() = getFocusNeighbor(Side.RIGHT)
     @JvmName("focusNeighborRightProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_RIGHT, value)
+      setFocusNeighbor(Side.RIGHT, value)
     }
 
   /**
@@ -573,10 +573,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborBottom: NodePath
     @JvmName("focusNeighborBottomProperty")
-    get() = getFocusNeighbor(Side.SIDE_BOTTOM)
+    get() = getFocusNeighbor(Side.BOTTOM)
     @JvmName("focusNeighborBottomProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_BOTTOM, value)
+      setFocusNeighbor(Side.BOTTOM, value)
     }
 
   /**
@@ -2629,16 +2629,16 @@ public open class Control : CanvasItem() {
     /**
      * The node cannot grab focus. Use with [focusMode].
      */
-    FOCUS_NONE(0),
+    NONE(0),
     /**
      * The node can only grab focus on mouse clicks. Use with [focusMode].
      */
-    FOCUS_CLICK(1),
+    CLICK(1),
     /**
      * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or
      * using the D-pad buttons on a gamepad. Use with [focusMode].
      */
-    FOCUS_ALL(2),
+    ALL(2),
     ;
 
     public val id: Long
@@ -2658,88 +2658,88 @@ public open class Control : CanvasItem() {
      * Show the system's arrow mouse cursor when the user hovers the node. Use with
      * [mouseDefaultCursorShape].
      */
-    CURSOR_ARROW(0),
+    ARROW(0),
     /**
      * Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a
      * shape similar to "I". It tells the user they can highlight or insert text.
      */
-    CURSOR_IBEAM(1),
+    IBEAM(1),
     /**
      * Show the system's pointing hand mouse cursor when the user hovers the node.
      */
-    CURSOR_POINTING_HAND(2),
+    POINTING_HAND(2),
     /**
      * Show the system's cross mouse cursor when the user hovers the node.
      */
-    CURSOR_CROSS(3),
+    CROSS(3),
     /**
      * Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
      */
-    CURSOR_WAIT(4),
+    WAIT(4),
     /**
      * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a
      * small hourglass.
      */
-    CURSOR_BUSY(5),
+    BUSY(5),
     /**
      * Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user
      * hovers the node. It tells the user they're currently dragging an item, like a node in the Scene
      * dock.
      */
-    CURSOR_DRAG(6),
+    DRAG(6),
     /**
      * Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It
      * tells the user they can drop an item they're currently grabbing, like a node in the Scene dock.
      */
-    CURSOR_CAN_DROP(7),
+    CAN_DROP(7),
     /**
      * Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed
      * circle.
      */
-    CURSOR_FORBIDDEN(8),
+    FORBIDDEN(8),
     /**
      * Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed
      * vertical arrow. It tells the user they can resize the window or the panel vertically.
      */
-    CURSOR_VSIZE(9),
+    VSIZE(9),
     /**
      * Show the system's horizontal resize mouse cursor when the user hovers the node. A
      * double-headed horizontal arrow. It tells the user they can resize the window or the panel
      * horizontally.
      */
-    CURSOR_HSIZE(10),
+    HSIZE(10),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the bottom left to the top right. It tells the user they can
      * resize the window or the panel both horizontally and vertically.
      */
-    CURSOR_BDIAGSIZE(11),
+    BDIAGSIZE(11),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the top left to the bottom right, the opposite of
      * [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
      * and vertically.
      */
-    CURSOR_FDIAGSIZE(12),
+    FDIAGSIZE(12),
     /**
      * Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed
      * arrows at a 90 degree angle. It tells the user they can move a UI element freely.
      */
-    CURSOR_MOVE(13),
+    MOVE(13),
     /**
      * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's
      * the same as [CURSOR_VSIZE].
      */
-    CURSOR_VSPLIT(14),
+    VSPLIT(14),
     /**
      * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows,
      * it's the same as [CURSOR_HSIZE].
      */
-    CURSOR_HSPLIT(15),
+    HSPLIT(15),
     /**
      * Show the system's help mouse cursor when the user hovers the node, a question mark.
      */
-    CURSOR_HELP(16),
+    HELP(16),
     ;
 
     public val id: Long
@@ -2917,14 +2917,14 @@ public open class Control : CanvasItem() {
        * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        * **Note:** Setting this flag is equal to not having any size flags.
        */
-      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlags(0)
+      public val SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
       /**
        * Tells the parent [Container] to expand the bounds of this node to fill all the available
        * space without pushing any other node. It is mutually exclusive with shrink size flags. Use
        * with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        */
-      public val SIZE_FILL: SizeFlags = SizeFlags(1)
+      public val FILL: SizeFlags = SizeFlags(1)
 
       /**
        * Tells the parent [Container] to let this node take all the available space on the axis you
@@ -2932,27 +2932,27 @@ public open class Control : CanvasItem() {
        * stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and
        * [sizeFlagsVertical].
        */
-      public val SIZE_EXPAND: SizeFlags = SizeFlags(2)
+      public val EXPAND: SizeFlags = SizeFlags(2)
 
       /**
        * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for
        * more information.
        */
-      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlags(3)
+      public val EXPAND_FILL: SizeFlags = SizeFlags(3)
 
       /**
        * Tells the parent [Container] to center the node in the available space. It is mutually
        * exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in
        * some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        */
-      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlags(4)
+      public val SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
       /**
        * Tells the parent [Container] to align the node with its end, either the bottom or the right
        * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
        * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        */
-      public val SIZE_SHRINK_END: SizeFlags = SizeFlags(8)
+      public val SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }
 
@@ -2965,7 +2965,7 @@ public open class Control : CanvasItem() {
      * mouse_exited] signals. These events are automatically marked as handled, and they will not
      * propagate further to other controls. This also results in blocking signals in other controls.
      */
-    MOUSE_FILTER_STOP(0),
+    STOP(0),
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
      * on through [_guiInput]. The control will also receive the [signal mouse_entered] and [signal
@@ -2976,7 +2976,7 @@ public open class Control : CanvasItem() {
      * will allow signals to fire in all controls it reaches. If no control handled it, the event will
      * be passed to [Node.ShortcutInput] for further processing.
      */
-    MOUSE_FILTER_PASS(1),
+    PASS(1),
     /**
      * The control will not receive any mouse movement input events nor mouse button input events
      * through [_guiInput]. The control will also not receive the [signal mouse_entered] nor [signal
@@ -2988,7 +2988,7 @@ public open class Control : CanvasItem() {
      * changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be
      * emitted.
      */
-    MOUSE_FILTER_IGNORE(2),
+    IGNORE(2),
     ;
 
     public val id: Long
@@ -3008,17 +3008,17 @@ public open class Control : CanvasItem() {
      * The control will grow to the left or top to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
      */
-    GROW_DIRECTION_BEGIN(0),
+    BEGIN(0),
     /**
      * The control will grow to the right or bottom to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
      */
-    GROW_DIRECTION_END(1),
+    END(1),
     /**
      * The control will grow in both directions equally to make up if its minimum size is changed to
      * be greater than its current size.
      */
-    GROW_DIRECTION_BOTH(2),
+    BOTH(2),
     ;
 
     public val id: Long
@@ -3039,13 +3039,13 @@ public open class Control : CanvasItem() {
      * with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once,
      * use [setAnchorsPreset].
      */
-    ANCHOR_BEGIN(0),
+    BEGIN(0),
     /**
      * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use
      * it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at
      * once, use [setAnchorsPreset].
      */
-    ANCHOR_END(1),
+    END(1),
     ;
 
     public val id: Long
@@ -3064,7 +3064,7 @@ public open class Control : CanvasItem() {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
      */
-    LAYOUT_DIRECTION_INHERITED(0),
+    INHERITED(0),
     /**
      * Automatic layout direction, determined from the current locale. Right-to-left layout
      * direction is automatically used for languages that require it such as Arabic and Hebrew, but
@@ -3076,15 +3076,15 @@ public open class Control : CanvasItem() {
      * always used regardless of the language. Right-to-left layout direction can also be forced using
      * [ProjectSettings.internationalization/rendering/forceRightToLeftLayoutDirection].
      */
-    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
+    APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
-    LAYOUT_DIRECTION_LTR(2),
+    LTR(2),
     /**
      * Right-to-left layout direction.
      */
-    LAYOUT_DIRECTION_RTL(3),
+    RTL(3),
     /**
      * Automatic layout direction, determined from the system locale. Right-to-left layout direction
      * is automatically used for languages that require it such as Arabic and Hebrew, but only if a
@@ -3093,12 +3093,12 @@ public open class Control : CanvasItem() {
      * [TextServerFallback] ([ProjectSettings.internationalization/rendering/textDriver]),
      * left-to-right layout direction is always used regardless of the language.
      */
-    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    SYSTEM_LOCALE(4),
     /**
      * Represents the size of the [LayoutDirection] enum.
      */
-    LAYOUT_DIRECTION_MAX(5),
-    LAYOUT_DIRECTION_LOCALE(1),
+    MAX(5),
+    LOCALE(1),
     ;
 
     public val id: Long
@@ -3117,19 +3117,19 @@ public open class Control : CanvasItem() {
     /**
      * Text writing direction is the same as layout direction.
      */
-    TEXT_DIRECTION_INHERITED(3),
+    INHERITED(3),
     /**
      * Automatic text writing direction, determined from the current locale and text content.
      */
-    TEXT_DIRECTION_AUTO(0),
+    AUTO(0),
     /**
      * Left-to-right text writing direction.
      */
-    TEXT_DIRECTION_LTR(1),
+    LTR(1),
     /**
      * Right-to-left text writing direction.
      */
-    TEXT_DIRECTION_RTL(2),
+    RTL(2),
     ;
 
     public val id: Long

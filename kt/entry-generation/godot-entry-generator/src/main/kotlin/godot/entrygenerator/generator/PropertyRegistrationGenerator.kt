@@ -142,12 +142,12 @@ object PropertyRegistrationGenerator {
         return if (registeredProperty.annotations.hasAnnotation<ExportAnnotation>()) {
             ClassName(
                 "$godotCorePackage.${GodotTypes.propertyUsage}",
-                "PROPERTY_USAGE_DEFAULT"
+                "DEFAULT"
             )
         } else {
             ClassName(
                 "$godotCorePackage.${GodotTypes.propertyUsage}",
-                "PROPERTY_USAGE_NONE"
+                "NONE"
             )
         }
     }

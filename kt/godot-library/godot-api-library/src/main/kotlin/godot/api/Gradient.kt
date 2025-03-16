@@ -246,16 +246,16 @@ public open class Gradient : Resource() {
     /**
      * sRGB color space.
      */
-    GRADIENT_COLOR_SPACE_SRGB(0),
+    GRADIENT_SRGB(0),
     /**
      * Linear sRGB color space.
      */
-    GRADIENT_COLOR_SPACE_LINEAR_SRGB(1),
+    GRADIENT_LINEAR_SRGB(1),
     /**
      * [url=https://bottosson.github.io/posts/oklab/]Oklab[/url] color space. This color space
      * provides a smooth and uniform-looking transition between colors.
      */
-    GRADIENT_COLOR_SPACE_OKLAB(2),
+    GRADIENT_OKLAB(2),
     ;
 
     public val id: Long

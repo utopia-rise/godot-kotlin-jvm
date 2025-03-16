@@ -192,7 +192,7 @@ public open class LightmapGIData : Resource() {
      * Shadowmasking is disabled. No shadowmask texture will be created when baking lightmaps.
      * Existing shadowmask textures will be removed during baking.
      */
-    SHADOWMASK_MODE_NONE(0),
+    NONE(0),
     /**
      * Shadowmasking is enabled. Directional shadows that are outside the
      * [DirectionalLight3D.directionalShadowMaxDistance] will be rendered using the shadowmask texture.
@@ -203,7 +203,7 @@ public open class LightmapGIData : Resource() {
      * objects that only have shadows baked in the shadowmask (and no real-time shadows) won't display
      * any shadows up close.
      */
-    SHADOWMASK_MODE_REPLACE(1),
+    REPLACE(1),
     /**
      * Shadowmasking is enabled. Directional shadows will be rendered with real-time shadows
      * overlaid on top of the shadowmask texture. This mode makes for smoother shadow transitions when
@@ -212,7 +212,7 @@ public open class LightmapGIData : Resource() {
      * that only have shadows baked in the shadowmask (and no real-time shadows) will keep their
      * shadows up close.
      */
-    SHADOWMASK_MODE_OVERLAY(2),
+    OVERLAY(2),
     ;
 
     public val id: Long

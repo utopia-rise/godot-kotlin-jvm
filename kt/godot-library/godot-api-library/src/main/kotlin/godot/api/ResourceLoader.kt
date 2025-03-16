@@ -60,7 +60,7 @@ public object ResourceLoader : Object() {
     path: String,
     typeHint: String = "",
     useSubThreads: Boolean = false,
-    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
+    cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
   ): Error {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
     TransferContext.callMethod(ptr, MethodBindings.loadThreadedRequestPtr, LONG)
@@ -124,7 +124,7 @@ public object ResourceLoader : Object() {
   public final fun load(
     path: String,
     typeHint: String = "",
-    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
+    cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
   ): Resource? {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
     TransferContext.callMethod(ptr, MethodBindings.loadPtr, OBJECT)
@@ -258,19 +258,19 @@ public object ResourceLoader : Object() {
     /**
      * The resource is invalid, or has not been loaded with [loadThreadedRequest].
      */
-    THREAD_LOAD_INVALID_RESOURCE(0),
+    INVALID_RESOURCE(0),
     /**
      * The resource is still being loaded.
      */
-    THREAD_LOAD_IN_PROGRESS(1),
+    IN_PROGRESS(1),
     /**
      * Some error occurred during loading and it failed.
      */
-    THREAD_LOAD_FAILED(2),
+    FAILED(2),
     /**
      * The resource was loaded successfully and can be accessed via [loadThreadedGet].
      */
-    THREAD_LOAD_LOADED(3),
+    LOADED(3),
     ;
 
     public val id: Long
@@ -291,31 +291,31 @@ public object ResourceLoader : Object() {
      * retrieved from cache nor stored into it. Dependencies (external resources) are loaded with
      * [CACHE_MODE_REUSE].
      */
-    CACHE_MODE_IGNORE(0),
+    IGNORE(0),
     /**
      * The main resource (the one requested to be loaded), its subresources, and its dependencies
      * (external resources) are retrieved from cache if present, instead of loaded. Those not cached
      * are loaded and then stored into the cache. The same rules are propagated recursively down the
      * tree of dependencies (external resources).
      */
-    CACHE_MODE_REUSE(1),
+    REUSE(1),
     /**
      * Like [CACHE_MODE_REUSE], but the cache is checked for the main resource (the one requested to
      * be loaded) as well as for each of its subresources. Those already in the cache, as long as the
      * loaded and cached types match, have their data refreshed from storage into the already existing
      * instances. Otherwise, they are recreated as completely new objects.
      */
-    CACHE_MODE_REPLACE(2),
+    REPLACE(2),
     /**
      * Like [CACHE_MODE_IGNORE], but propagated recursively down the tree of dependencies (external
      * resources).
      */
-    CACHE_MODE_IGNORE_DEEP(3),
+    IGNORE_DEEP(3),
     /**
      * Like [CACHE_MODE_REPLACE], but propagated recursively down the tree of dependencies (external
      * resources).
      */
-    CACHE_MODE_REPLACE_DEEP(4),
+    REPLACE_DEEP(4),
     ;
 
     public val id: Long

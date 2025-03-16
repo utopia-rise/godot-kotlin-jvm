@@ -1227,31 +1227,31 @@ public open class Theme : Resource() {
     /**
      * Theme's [Color] item type.
      */
-    DATA_TYPE_COLOR(0),
+    COLOR(0),
     /**
      * Theme's constant item type.
      */
-    DATA_TYPE_CONSTANT(1),
+    CONSTANT(1),
     /**
      * Theme's [Font] item type.
      */
-    DATA_TYPE_FONT(2),
+    FONT(2),
     /**
      * Theme's font size item type.
      */
-    DATA_TYPE_FONT_SIZE(3),
+    FONT_SIZE(3),
     /**
      * Theme's icon [Texture2D] item type.
      */
-    DATA_TYPE_ICON(4),
+    ICON(4),
     /**
      * Theme's [StyleBox] item type.
      */
-    DATA_TYPE_STYLEBOX(5),
+    STYLEBOX(5),
     /**
      * Maximum value for the DataType enum.
      */
-    DATA_TYPE_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long

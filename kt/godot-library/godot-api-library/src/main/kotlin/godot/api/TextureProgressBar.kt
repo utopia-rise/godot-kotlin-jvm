@@ -112,10 +112,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginLeft: Int
     @JvmName("stretchMarginLeftProperty")
-    get() = getStretchMargin(Side.SIDE_LEFT)
+    get() = getStretchMargin(Side.LEFT)
     @JvmName("stretchMarginLeftProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_LEFT, value)
+      setStretchMargin(Side.LEFT, value)
     }
 
   /**
@@ -123,10 +123,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginTop: Int
     @JvmName("stretchMarginTopProperty")
-    get() = getStretchMargin(Side.SIDE_TOP)
+    get() = getStretchMargin(Side.TOP)
     @JvmName("stretchMarginTopProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_TOP, value)
+      setStretchMargin(Side.TOP, value)
     }
 
   /**
@@ -134,10 +134,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginRight: Int
     @JvmName("stretchMarginRightProperty")
-    get() = getStretchMargin(Side.SIDE_RIGHT)
+    get() = getStretchMargin(Side.RIGHT)
     @JvmName("stretchMarginRightProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_RIGHT, value)
+      setStretchMargin(Side.RIGHT, value)
     }
 
   /**
@@ -147,10 +147,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginBottom: Int
     @JvmName("stretchMarginBottomProperty")
-    get() = getStretchMargin(Side.SIDE_BOTTOM)
+    get() = getStretchMargin(Side.BOTTOM)
     @JvmName("stretchMarginBottomProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_BOTTOM, value)
+      setStretchMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -529,45 +529,45 @@ public open class TextureProgressBar : Range() {
     /**
      * The [textureProgress] fills from left to right.
      */
-    FILL_LEFT_TO_RIGHT(0),
+    LEFT_TO_RIGHT(0),
     /**
      * The [textureProgress] fills from right to left.
      */
-    FILL_RIGHT_TO_LEFT(1),
+    RIGHT_TO_LEFT(1),
     /**
      * The [textureProgress] fills from top to bottom.
      */
-    FILL_TOP_TO_BOTTOM(2),
+    TOP_TO_BOTTOM(2),
     /**
      * The [textureProgress] fills from bottom to top.
      */
-    FILL_BOTTOM_TO_TOP(3),
+    BOTTOM_TO_TOP(3),
     /**
      * Turns the node into a radial bar. The [textureProgress] fills clockwise. See
      * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
      * fills up.
      */
-    FILL_CLOCKWISE(4),
+    CLOCKWISE(4),
     /**
      * Turns the node into a radial bar. The [textureProgress] fills counterclockwise. See
      * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
      * fills up.
      */
-    FILL_COUNTER_CLOCKWISE(5),
+    COUNTER_CLOCKWISE(5),
     /**
      * The [textureProgress] fills from the center, expanding both towards the left and the right.
      */
-    FILL_BILINEAR_LEFT_AND_RIGHT(6),
+    BILINEAR_LEFT_AND_RIGHT(6),
     /**
      * The [textureProgress] fills from the center, expanding both towards the top and the bottom.
      */
-    FILL_BILINEAR_TOP_AND_BOTTOM(7),
+    BILINEAR_TOP_AND_BOTTOM(7),
     /**
      * Turns the node into a radial bar. The [textureProgress] fills radially from the center,
      * expanding both clockwise and counterclockwise. See [radialCenterOffset], [radialInitialAngle]
      * and [radialFillDegrees] to control the way the bar fills up.
      */
-    FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
+    CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;
 
     public val id: Long
