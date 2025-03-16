@@ -3,18 +3,16 @@ package godot.intellij.plugin.annotator.copy
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
+import com.intellij.psi.PsiAnnotationOwner
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.CORE_TYPE_LOCAL_COPY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
-import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.references.mainReference
-import org.jetbrains.kotlin.idea.references.resolveToDescriptors
 import org.jetbrains.kotlin.lexer.KtSingleValueToken
 import org.jetbrains.kotlin.psi.KtBinaryExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
-import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 
 class CopyModificationAnnotator : Annotator {
     private val singleValueTokensToCheck = listOf("=", "+=", "-=", "*=", "/=", "%=")
@@ -112,18 +110,13 @@ class CopyModificationAnnotator : Annotator {
 
         // if the receiver is a dot expression, we want to check it's selector for a local copy annotation, in any other case we check the main reference
         // case for dot expression: `basis.[x].x` <- the [x] is the selector of the dot expression [basis.x].[x] we care about
-        val receiverReferenceToCheck =
-            ((receiverExpression as? KtDotQualifiedExpression)?.selectorExpression?.mainReference)
-                ?: receiverExpression.mainReference
+        val receiverReferenceToCheck = ((receiverExpression as? KtDotQualifiedExpression)?.selectorExpression) ?: receiverExpression
 
-        // annotations on the receiver expression's reference (usually a property of an object)
-        val receiverAnnotations = receiverReferenceToCheck
-            ?.resolveToDescriptors(selectorExpression.analyze(BodyResolveMode.PARTIAL))
-            ?.flatMap { declarationDescriptor -> declarationDescriptor.annotations }
-            ?.mapNotNull { annotationDescriptor -> annotationDescriptor.fqName?.asString() }
-            ?: emptyList()
+        val annotationOwner = receiverReferenceToCheck.mainReference?.resolve() as? PsiAnnotationOwner
 
-        val receiverReferenceHasLocalCopyAnnotation = receiverAnnotations.contains(CORE_TYPE_LOCAL_COPY_ANNOTATION)
+        val receiverReferenceHasLocalCopyAnnotation = annotationOwner
+            ?.annotations
+            ?.any { it.hasQualifiedName(CORE_TYPE_LOCAL_COPY_ANNOTATION) } == true
 
         return when {
             // when the receiver reference has a local copy annotation, it means we're modifying a local copy (see the assumption in the kdoc!)

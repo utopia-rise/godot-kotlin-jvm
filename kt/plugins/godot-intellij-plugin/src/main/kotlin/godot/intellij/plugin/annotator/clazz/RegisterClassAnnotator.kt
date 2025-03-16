@@ -3,6 +3,7 @@ package godot.intellij.plugin.annotator.clazz
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
+import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.base.BaseAnnotator
 import godot.intellij.plugin.annotator.general.checkNotGeneric
@@ -14,19 +15,17 @@ import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.data.model.TOOL_ANNOTATION
 import godot.intellij.plugin.extension.anyFunctionHasAnnotation
 import godot.intellij.plugin.extension.anyPropertyHasAnnotation
+import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.getRegisteredClassName
 import godot.intellij.plugin.extension.isAbstract
+import godot.intellij.plugin.extension.isOrInheritsType
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.registeredClassNameCache
-import godot.intellij.plugin.extension.resolveToDescriptor
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
-import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.base.util.module
-import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
-import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 
 class RegisterClassAnnotator : BaseAnnotator {
     private val classNotRegisteredQuickFix by lazy { ClassNotRegisteredQuickFix() }
@@ -77,7 +76,7 @@ class RegisterClassAnnotator : BaseAnnotator {
     }
 
     private fun checkExtendsGodotType(psiClass: PsiClass, holder: AnnotationHolder) {
-        if (psiClass.resolveToDescriptor()?.getAllSuperclassesWithoutAny()?.any { it.fqNameSafe.asString() == "$godotCorePackage.${GodotKotlinJvmTypes.ktObject}" } != true) {
+        if (!psiClass.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.ktObject}"))) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
                 psiClass.nameIdentifier
