@@ -22,12 +22,14 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.asCachedNodePath
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -704,6 +706,57 @@ public open class Tween : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.chainPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
+
+  /**
+   * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between
+   * an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial
+   * value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
+   *
+   * gdscript:
+   * ```gdscript
+   * var tween = create_tween()
+   * tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
+   * tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
+   * ```
+   * csharp:
+   * ```csharp
+   * Tween tween = CreateTween();
+   * tween.TweenProperty(GetNode("Sprite"), "position", new Vector2(100.0f, 200.0f), 1.0f);
+   * tween.TweenProperty(GetNode("Sprite"), "position", new Vector2(200.0f, 300.0f), 1.0f);
+   * ```
+   *
+   * will move the sprite to position (100, 200) and then to (200, 300). If you use
+   * [PropertyTweener.from] or [PropertyTweener.fromCurrent], the starting position will be overwritten
+   * by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be
+   * tweaked further.
+   * **Note:** You can find the correct property name by hovering over the property in the
+   * Inspector. You can also provide the components of a property directly by using
+   * `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
+   * **Example:** Moving an object twice from the same position, with different transition types:
+   *
+   * gdscript:
+   * ```gdscript
+   * var tween = create_tween()
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
+   * 1).as_relative().set_trans(Tween.TRANS_SINE)
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
+   * 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   * ```
+   * csharp:
+   * ```csharp
+   * Tween tween = CreateTween();
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f,
+   * 1.0f).AsRelative().SetTrans(Tween.TransitionType.Sine);
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f,
+   * 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
+   * ```
+   */
+  public final fun tweenProperty(
+    `object`: Object?,
+    `property`: String,
+    finalVal: Any?,
+    duration: Double,
+  ): PropertyTweener? = tweenProperty(`object`, property.asCachedNodePath(), finalVal, duration)
 
   public enum class TweenProcessMode(
     id: Long,

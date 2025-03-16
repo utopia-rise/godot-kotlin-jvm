@@ -16,11 +16,13 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -239,6 +241,17 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getCcdikJointConstraintAngleInvertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
+
+  public final fun setTipNode(tipNodepath: String) = setTipNode(tipNodepath.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
+   */
+  public final fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
+      setCcdikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
   public companion object
 

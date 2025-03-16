@@ -129,8 +129,8 @@ public object JavaScriptBridge : Object() {
    * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
   @JvmStatic
-  public final fun createObject(`object`: String, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING to `object`,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun createObject(`object`: String, vararg args: Any?): Any? {
+    TransferContext.writeArguments(STRING to `object`,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.createObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

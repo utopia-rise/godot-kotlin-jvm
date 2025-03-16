@@ -21,11 +21,13 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -347,6 +349,109 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if a cached texture exists for this name.
+   */
+  public final fun hasTexture(context: String, name: String): Boolean =
+      hasTexture(context.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Create a new texture with the given definition and cache this under the given name. Will return
+   * the existing texture if it already exists.
+   */
+  public final fun createTexture(
+    context: String,
+    name: String,
+    dataFormat: RenderingDevice.DataFormat,
+    usageBits: Long,
+    textureSamples: RenderingDevice.TextureSamples,
+    size: Vector2i,
+    layers: Long,
+    mipmaps: Long,
+    unique: Boolean,
+    discardable: Boolean,
+  ): RID =
+      createTexture(context.asCachedStringName(), name.asCachedStringName(), dataFormat, usageBits, textureSamples, size, layers, mipmaps, unique, discardable)
+
+  /**
+   * Create a new texture using the given format and view and cache this under the given name. Will
+   * return the existing texture if it already exists.
+   */
+  public final fun createTextureFromFormat(
+    context: String,
+    name: String,
+    format: RDTextureFormat?,
+    view: RDTextureView?,
+    unique: Boolean,
+  ): RID =
+      createTextureFromFormat(context.asCachedStringName(), name.asCachedStringName(), format, view, unique)
+
+  /**
+   * Create a new texture view for an existing texture and cache this under the given [viewName].
+   * Will return the existing texture view if it already exists. Will error if the source texture
+   * doesn't exist.
+   */
+  public final fun createTextureView(
+    context: String,
+    name: String,
+    viewName: String,
+    view: RDTextureView?,
+  ): RID =
+      createTextureView(context.asCachedStringName(), name.asCachedStringName(), viewName.asCachedStringName(), view)
+
+  /**
+   * Returns a cached texture with this name.
+   */
+  public final fun getTexture(context: String, name: String): RID =
+      getTexture(context.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Returns the texture format information with which a cached texture was created.
+   */
+  public final fun getTextureFormat(context: String, name: String): RDTextureFormat? =
+      getTextureFormat(context.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Returns a specific slice (layer or mipmap) for a cached texture.
+   */
+  public final fun getTextureSlice(
+    context: String,
+    name: String,
+    layer: Long,
+    mipmap: Long,
+    layers: Long,
+    mipmaps: Long,
+  ): RID =
+      getTextureSlice(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps)
+
+  /**
+   * Returns a specific view of a slice (layer or mipmap) for a cached texture.
+   */
+  public final fun getTextureSliceView(
+    context: String,
+    name: String,
+    layer: Long,
+    mipmap: Long,
+    layers: Long,
+    mipmaps: Long,
+    view: RDTextureView?,
+  ): RID =
+      getTextureSliceView(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps, view)
+
+  /**
+   * Returns the texture size of a given slice of a cached texture.
+   */
+  public final fun getTextureSliceSize(
+    context: String,
+    name: String,
+    mipmap: Long,
+  ): Vector2i = getTextureSliceSize(context.asCachedStringName(), name.asCachedStringName(), mipmap)
+
+  /**
+   * Frees all buffers related to this context.
+   */
+  public final fun clearContext(context: String) = clearContext(context.asCachedStringName())
 
   public companion object
 

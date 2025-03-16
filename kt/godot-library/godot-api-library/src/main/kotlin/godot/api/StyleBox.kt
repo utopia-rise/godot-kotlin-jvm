@@ -104,6 +104,7 @@ public open class StyleBox : Resource() {
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+    throw NotImplementedError("_draw is not implemented for StyleBox")
   }
 
   public open fun _getDrawRect(rect: Rect2): Rect2 {

@@ -11,16 +11,16 @@ import com.squareup.kotlinpoet.TypeSpec
 import godot.codegen.extensions.getClassName
 import godot.codegen.extensions.isBitField
 import godot.codegen.generation.Context
-import godot.codegen.generation.task.EnumTask
+import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.traits.addKdoc
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"
 
-class EnumRule : GodotApiRule<EnumTask>() {
+class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 
-    override fun apply(task: EnumTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedEnumTask, context: Context) = task.configure {
         val enum = task.enum
         if (enum.isBitField()) {
             generateBitfield(enum)

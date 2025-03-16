@@ -4,9 +4,9 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import godot.codegen.models.enriched.EnrichedProperty
 
-class PropertyTask(
+class EnrichedPropertyTask(
     val property: EnrichedProperty,
-) : GenerationTask<PropertySpec.Builder, PropertySpec>() {
+) : PropertyTask() {
 
     override val generator = run {
         // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.

@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -267,6 +268,9 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getAdvanceExpressionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
+
+  public final fun setAdvanceCondition(name: String) =
+      setAdvanceCondition(name.asCachedStringName())
 
   public enum class SwitchMode(
     id: Long,

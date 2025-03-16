@@ -21,9 +21,11 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -266,6 +268,8 @@ public open class XRPose : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.getTrackingConfidencePtr, LONG)
     return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setName(name: String) = setName(name.asCachedStringName())
 
   public enum class TrackingConfidence(
     id: Long,

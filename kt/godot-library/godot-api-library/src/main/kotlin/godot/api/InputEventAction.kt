@@ -16,11 +16,13 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -125,6 +127,8 @@ public open class InputEventAction : InputEvent() {
     TransferContext.callMethod(ptr, MethodBindings.getEventIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  public final fun setAction(action: String) = setAction(action.asCachedStringName())
 
   public companion object
 

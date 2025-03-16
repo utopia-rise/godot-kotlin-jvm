@@ -32,6 +32,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -633,6 +634,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+    throw NotImplementedError("_integrateForces is not implemented for RigidBody3D")
   }
 
   public final fun setMass(mass: Float): Unit {

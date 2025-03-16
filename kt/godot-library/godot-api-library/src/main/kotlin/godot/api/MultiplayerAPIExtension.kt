@@ -116,6 +116,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    * Called when the [MultiplayerAPI.multiplayerPeer] is set.
    */
   public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?): Unit {
+    throw NotImplementedError("_setMultiplayerPeer is not implemented for MultiplayerAPIExtension")
   }
 
   /**

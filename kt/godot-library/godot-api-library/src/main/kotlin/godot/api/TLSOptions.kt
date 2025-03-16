@@ -150,6 +150,14 @@ public open class TLSOptions internal constructor() : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val clientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "client", 3565000357)
+
+    internal val clientUnsafePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe", 2090251749)
+
+    internal val serverPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "server", 36969539)
+
     internal val isServerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TLSOptions", "is_server", 36873697)
 
@@ -167,13 +175,5 @@ public open class TLSOptions internal constructor() : RefCounted() {
 
     internal val getOwnCertificatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TLSOptions", "get_own_certificate", 1120709175)
-
-    internal val clientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "client", 3565000357)
-
-    internal val clientUnsafePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe", 2090251749)
-
-    internal val serverPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "server", 36969539)
   }
 }

@@ -27,6 +27,7 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -316,6 +317,15 @@ public open class VisualShader : Shader() {
     TransferContext.callMethod(ptr, MethodBindings.hasVaryingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Replaces the specified node with a node of new class type.
+   */
+  public final fun replaceNode(
+    type: Type,
+    id: Int,
+    newClass: String,
+  ) = replaceNode(type, id, newClass.asCachedStringName())
 
   public enum class Type(
     id: Long,

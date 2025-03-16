@@ -30,6 +30,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -396,6 +397,27 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentBlendModePtr, LONG)
     return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  /**
+   * Triggers a haptic pulse on a device associated with this interface.
+   * [actionName] is the name of the action for this pulse.
+   * [trackerName] is optional and can be used to direct the pulse to a specific device provided
+   * that device is bound to this haptic.
+   * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
+   * frequency.
+   * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
+   * [durationSec] is the duration of the pulse in seconds.
+   * [delaySec] is a delay in seconds before the pulse is given.
+   */
+  public final fun triggerHapticPulse(
+    actionName: String,
+    trackerName: String,
+    frequency: Double,
+    amplitude: Double,
+    durationSec: Double,
+    delaySec: Double,
+  ) =
+      triggerHapticPulse(actionName, trackerName.asCachedStringName(), frequency, amplitude, durationSec, delaySec)
 
   public enum class Capabilities(
     id: Long,

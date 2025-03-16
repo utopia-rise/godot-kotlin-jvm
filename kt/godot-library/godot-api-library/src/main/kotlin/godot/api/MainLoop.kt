@@ -92,6 +92,7 @@ public open class MainLoop : Object() {
    * Called once during initialization.
    */
   public open fun _initialize(): Unit {
+    throw NotImplementedError("_initialize is not implemented for MainLoop")
   }
 
   /**
@@ -130,6 +131,7 @@ public open class MainLoop : Object() {
    * Called before the program exits.
    */
   public open fun _finalize(): Unit {
+    throw NotImplementedError("_finalize is not implemented for MainLoop")
   }
 
   public companion object {

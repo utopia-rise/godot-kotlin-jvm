@@ -20,6 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -778,6 +779,32 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
+
+  /**
+   * Sets the center node path of the bone chain.
+   */
+  public final fun setCenterNode(index: Int, nodePath: String) =
+      setCenterNode(index, nodePath.asCachedNodePath())
+
+  /**
+   * Sets the node path of the [SpringBoneCollision3D] at [collision] in the bone chain's exclude
+   * collision list when [areAllChildCollisionsEnabled] is `true`.
+   */
+  public final fun setExcludeCollisionPath(
+    index: Int,
+    collision: Int,
+    nodePath: String,
+  ) = setExcludeCollisionPath(index, collision, nodePath.asCachedNodePath())
+
+  /**
+   * Sets the node path of the [SpringBoneCollision3D] at [collision] in the bone chain's collision
+   * list when [areAllChildCollisionsEnabled] is `false`.
+   */
+  public final fun setCollisionPath(
+    index: Int,
+    collision: Int,
+    nodePath: String,
+  ) = setCollisionPath(index, collision, nodePath.asCachedNodePath())
 
   public enum class BoneDirection(
     id: Long,

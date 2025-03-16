@@ -277,6 +277,9 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val createPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "create", 3196569324)
+
     internal val setFromPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_from", 743155724)
 
@@ -318,8 +321,5 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
 
     internal val isHitFromInsideEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_hit_from_inside_enabled", 36873697)
-
-    internal val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "create", 3196569324)
   }
 }

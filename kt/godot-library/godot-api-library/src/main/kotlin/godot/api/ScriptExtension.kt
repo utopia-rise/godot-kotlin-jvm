@@ -62,6 +62,7 @@ public open class ScriptExtension : Script() {
   }
 
   public open fun _setSourceCode(code: String): Unit {
+    throw NotImplementedError("_setSourceCode is not implemented for ScriptExtension")
   }
 
   public open fun _reload(keepState: Boolean): Error {
@@ -137,6 +138,7 @@ public open class ScriptExtension : Script() {
   }
 
   public open fun _updateExports(): Unit {
+    throw NotImplementedError("_updateExports is not implemented for ScriptExtension")
   }
 
   public open fun _getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {

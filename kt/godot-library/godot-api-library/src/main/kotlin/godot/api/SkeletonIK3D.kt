@@ -25,11 +25,14 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -400,6 +403,12 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
+
+  public final fun setRootBone(rootBone: String) = setRootBone(rootBone.asCachedStringName())
+
+  public final fun setTipBone(tipBone: String) = setTipBone(tipBone.asCachedStringName())
+
+  public final fun setTargetNode(node: String) = setTargetNode(node.asCachedNodePath())
 
   public companion object
 

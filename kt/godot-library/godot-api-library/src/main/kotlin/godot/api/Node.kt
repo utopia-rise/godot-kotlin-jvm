@@ -27,6 +27,8 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import godot.core.toGodotName
 import kotlin.Any
 import kotlin.Boolean
@@ -620,6 +622,7 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Unit {
+    throw NotImplementedError("_process is not implemented for Node")
   }
 
   /**
@@ -642,6 +645,7 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Unit {
+    throw NotImplementedError("_physicsProcess is not implemented for Node")
   }
 
   /**
@@ -651,6 +655,7 @@ public open class Node : Object() {
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
    */
   public open fun _enterTree(): Unit {
+    throw NotImplementedError("_enterTree is not implemented for Node")
   }
 
   /**
@@ -662,6 +667,7 @@ public open class Node : Object() {
    * the [signal tree_exited].
    */
   public open fun _exitTree(): Unit {
+    throw NotImplementedError("_exitTree is not implemented for Node")
   }
 
   /**
@@ -678,6 +684,7 @@ public open class Node : Object() {
    * adding the node again.
    */
   public open fun _ready(): Unit {
+    throw NotImplementedError("_ready is not implemented for Node")
   }
 
   /**
@@ -715,6 +722,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _input(event: InputEvent?): Unit {
+    throw NotImplementedError("_input is not implemented for Node")
   }
 
   /**
@@ -731,6 +739,7 @@ public open class Node : Object() {
    * orphan).
    */
   public open fun _shortcutInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_shortcutInput is not implemented for Node")
   }
 
   /**
@@ -749,6 +758,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _unhandledInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_unhandledInput is not implemented for Node")
   }
 
   /**
@@ -769,6 +779,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _unhandledKeyInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_unhandledKeyInput is not implemented for Node")
   }
 
   /**
@@ -2060,7 +2071,6 @@ public open class Node : Object() {
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
    */
-  @JvmOverloads
   public final fun atr(message: String, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING to message, STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.atrPtr, STRING)
@@ -2081,7 +2091,6 @@ public open class Node : Object() {
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
    * recommended to handle these cases with [atr].
    */
-  @JvmOverloads
   public final fun atrN(
     message: String,
     pluralMessage: StringName,
@@ -2109,8 +2118,8 @@ public open class Node : Object() {
    * MultiplayerAPI.server_disconnected] or by checking
    * (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).
    */
-  public final fun rpc(method: StringName, vararg __var_args: Any?): Error {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun rpc(method: StringName, vararg args: Any?): Error {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.rpcPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2125,9 +2134,9 @@ public open class Node : Object() {
   public final fun rpcId(
     peerId: Long,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Error {
-    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.rpcIdPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2148,8 +2157,8 @@ public open class Node : Object() {
    * [NOTIFICATION_PHYSICS_PROCESS], the [_process] or [_physicsProcess] or their internal versions are
    * called.
    */
-  public final fun callDeferredThreadGroup(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun callDeferredThreadGroup(method: StringName, vararg args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callDeferredThreadGroupPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -2175,8 +2184,8 @@ public open class Node : Object() {
    * being done from a thread or not. If called from a thread that is not allowed to call the function,
    * the call will become deferred. Otherwise, the call will go through directly.
    */
-  public final fun callThreadSafe(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun callThreadSafe(method: StringName, vararg args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callThreadSafePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -2196,6 +2205,264 @@ public open class Node : Object() {
     TransferContext.writeArguments(LONG to what.toLong())
     TransferContext.callMethod(ptr, MethodBindings.notifyThreadSafePtr, NIL)
   }
+
+  /**
+   * Returns `true` if the [path] points to a valid node. See also [getNode].
+   */
+  public final fun hasNode(path: String): Boolean = hasNode(path.asCachedNodePath())
+
+  /**
+   * Fetches a node. The [NodePath] can either be a relative path (from this node), or an absolute
+   * path (from the [SceneTree.root]) to a node. If [path] does not point to a valid node, generates an
+   * error and returns `null`. Attempts to access methods on the return value will result in an
+   * *"Attempt to call <method> on a null instance."* error.
+   * **Note:** Fetching by absolute path only works when the node is inside the scene tree (see
+   * [isInsideTree]).
+   * **Example:** Assume this method is called from the Character node, inside the following tree:
+   * [codeblock lang=text]
+   *  ┖╴root
+   *     ┠╴Character (you are here!)
+   *     ┃  ┠╴Sword
+   *     ┃  ┖╴Backpack
+   *     ┃     ┖╴Dagger
+   *     ┠╴MyGame
+   *     ┖╴Swamp
+   *        ┠╴Alligator
+   *        ┠╴Mosquito
+   *        ┖╴Goblin
+   * [/codeblock]
+   * The following calls will return a valid node:
+   *
+   * gdscript:
+   * ```gdscript
+   * get_node("Sword")
+   * get_node("Backpack/Dagger")
+   * get_node("../Swamp/Alligator")
+   * get_node("/root/MyGame")
+   * ```
+   * csharp:
+   * ```csharp
+   * GetNode("Sword");
+   * GetNode("Backpack/Dagger");
+   * GetNode("../Swamp/Alligator");
+   * GetNode("/root/MyGame");
+   * ```
+   */
+  public final fun getNode(path: String): Node? = getNode(path.asCachedNodePath())
+
+  /**
+   * Fetches a node by [NodePath]. Similar to [getNode], but does not generate an error if [path]
+   * does not point to a valid node.
+   */
+  public final fun getNodeOrNull(path: String): Node? = getNodeOrNull(path.asCachedNodePath())
+
+  /**
+   * Returns `true` if [path] points to a valid node and its subnames point to a valid [Resource],
+   * e.g. `Area2D/CollisionShape2D:shape`. Properties that are not [Resource] types (such as nodes or
+   * other [Variant] types) are not considered. See also [getNodeAndResource].
+   */
+  public final fun hasNodeAndResource(path: String): Boolean =
+      hasNodeAndResource(path.asCachedNodePath())
+
+  /**
+   * Fetches a node and its most nested resource as specified by the [NodePath]'s subname. Returns
+   * an [Array] of size `3` where:
+   * - Element `0` is the [Node], or `null` if not found;
+   * - Element `1` is the subname's last nested [Resource], or `null` if not found;
+   * - Element `2` is the remaining [NodePath], referring to an existing, non-[Resource] property
+   * (see [Object.getIndexed]).
+   * **Example:** Assume that the child's [Sprite2D.texture] has been assigned a [AtlasTexture]:
+   *
+   * gdscript:
+   * ```gdscript
+   * var a = get_node_and_resource("Area2D/Sprite2D")
+   * print(a[0].name) # Prints Sprite2D
+   * print(a[1])      # Prints <null>
+   * print(a[2])      # Prints ^""
+   *
+   * var b = get_node_and_resource("Area2D/Sprite2D:texture:atlas")
+   * print(b[0].name)        # Prints Sprite2D
+   * print(b[1].get_class()) # Prints AtlasTexture
+   * print(b[2])             # Prints ^""
+   *
+   * var c = get_node_and_resource("Area2D/Sprite2D:texture:atlas:region")
+   * print(c[0].name)        # Prints Sprite2D
+   * print(c[1].get_class()) # Prints AtlasTexture
+   * print(c[2])             # Prints ^":region"
+   * ```
+   * csharp:
+   * ```csharp
+   * var a = GetNodeAndResource(NodePath("Area2D/Sprite2D"));
+   * GD.Print(a[0].Name); // Prints Sprite2D
+   * GD.Print(a[1]);      // Prints <null>
+   * GD.Print(a[2]);      // Prints ^"
+   *
+   * var b = GetNodeAndResource(NodePath("Area2D/Sprite2D:texture:atlas"));
+   * GD.Print(b[0].name);        // Prints Sprite2D
+   * GD.Print(b[1].get_class()); // Prints AtlasTexture
+   * GD.Print(b[2]);             // Prints ^""
+   *
+   * var c = GetNodeAndResource(NodePath("Area2D/Sprite2D:texture:atlas:region"));
+   * GD.Print(c[0].name);        // Prints Sprite2D
+   * GD.Print(c[1].get_class()); // Prints AtlasTexture
+   * GD.Print(c[2]);             // Prints ^":region"
+   * ```
+   */
+  public final fun getNodeAndResource(path: String): VariantArray<Any?> =
+      getNodeAndResource(path.asCachedNodePath())
+
+  /**
+   * Adds the node to the [group]. Groups can be helpful to organize a subset of nodes, for example
+   * `"enemies"` or `"collectables"`. See notes in the description, and the group methods in
+   * [SceneTree].
+   * If [persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All
+   * groups created and displayed in the Node dock are persistent.
+   * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
+   * between project runs. Therefore, do not rely on the group order.
+   * **Note:** [SceneTree]'s group methods will *not* work on this node if not inside the tree (see
+   * [isInsideTree]).
+   */
+  @JvmOverloads
+  public final fun addToGroup(group: String, persistent: Boolean = false) =
+      addToGroup(group.asCachedStringName(), persistent)
+
+  /**
+   * Removes the node from the given [group]. Does nothing if the node is not in the [group]. See
+   * also notes in the description, and the [SceneTree]'s group methods.
+   */
+  public final fun removeFromGroup(group: String) = removeFromGroup(group.asCachedStringName())
+
+  /**
+   * Returns `true` if this node has been added to the given [group]. See [addToGroup] and
+   * [removeFromGroup]. See also notes in the description, and the [SceneTree]'s group methods.
+   */
+  public final fun isInGroup(group: String): Boolean = isInGroup(group.asCachedStringName())
+
+  /**
+   * Calls the given [method] name, passing [args] as arguments, on this node and all of its
+   * children, recursively.
+   * If [parentFirst] is `true`, the method is called on this node first, then on all of its
+   * children. If `false`, the children's methods are called first.
+   */
+  @JvmOverloads
+  public final fun propagateCall(
+    method: String,
+    args: VariantArray<Any?> = godot.core.variantArrayOf(),
+    parentFirst: Boolean = false,
+  ) = propagateCall(method.asCachedStringName(), args, parentFirst)
+
+  /**
+   * Changes the RPC configuration for the given [method]. [config] should either be `null` to
+   * disable the feature (as by default), or a [Dictionary] containing the following entries:
+   * - `rpc_mode`: see [MultiplayerAPI.RPCMode];
+   * - `transfer_mode`: see [MultiplayerPeer.TransferMode];
+   * - `call_local`: if `true`, the method will also be called locally;
+   * - `channel`: an [int] representing the channel to send the RPC on.
+   * **Note:** In GDScript, this method corresponds to the [annotation @GDScript.@rpc] annotation,
+   * with various parameters passed (`@rpc(any)`, `@rpc(authority)`...). See also the
+   * [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url]
+   * tutorial.
+   */
+  public final fun rpcConfig(method: String, config: Any?) =
+      rpcConfig(method.asCachedStringName(), config)
+
+  /**
+   * Translates a [message], using the translation catalogs configured in the Project Settings.
+   * Further [context] can be specified to help with the translation. Note that most [Control] nodes
+   * automatically translate their strings, so this method is mostly useful for formatted strings or
+   * custom drawn text.
+   * This method works the same as [Object.tr], with the addition of respecting the
+   * [autoTranslateMode] state.
+   * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
+   * returns the [message] without changes. See [Object.setMessageTranslation].
+   * For detailed examples, see
+   * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
+   */
+  public final fun atr(message: String, context: String): String =
+      atr(message, context.asCachedStringName())
+
+  /**
+   * Translates a [message] or [pluralMessage], using the translation catalogs configured in the
+   * Project Settings. Further [context] can be specified to help with the translation.
+   * This method works the same as [Object.trN], with the addition of respecting the
+   * [autoTranslateMode] state.
+   * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
+   * returns [message] or [pluralMessage], without changes. See [Object.setMessageTranslation].
+   * The [n] is the number, or amount, of the message's subject. It is used by the translation
+   * system to fetch the correct plural form for the current language.
+   * For detailed examples, see
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
+   * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
+   * recommended to handle these cases with [atr].
+   */
+  public final fun atrN(
+    message: String,
+    pluralMessage: String,
+    n: Int,
+    context: String,
+  ): String = atrN(message, pluralMessage.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Sends a remote procedure call request for the given [method] to peers on the network (and
+   * locally), sending additional arguments to the method called by the RPC. The call request will only
+   * be received by nodes with the same [NodePath], including the exact same [name]. Behavior depends
+   * on the RPC configuration for the given [method] (see [rpcConfig] and [annotation @GDScript.@rpc]).
+   * By default, methods are not exposed to RPCs.
+   * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
+   * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
+   * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
+   * not available.
+   * **Note:** You can only safely use RPCs on clients after you received the [signal
+   * MultiplayerAPI.connected_to_server] signal from the [MultiplayerAPI]. You also need to keep track
+   * of the connection state, either by the [MultiplayerAPI] signals like [signal
+   * MultiplayerAPI.server_disconnected] or by checking
+   * (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).
+   */
+  public final fun rpc(method: String, vararg args: Any?): Error =
+      rpc(method.asCachedStringName(), )
+
+  /**
+   * Sends a [rpc] to a specific peer identified by [peerId] (see [MultiplayerPeer.setTargetPeer]).
+   * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
+   * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
+   * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
+   * not available.
+   */
+  public final fun rpcId(
+    peerId: Long,
+    method: String,
+    vararg args: Any?,
+  ): Error = rpcId(peerId, method.asCachedStringName(), )
+
+  /**
+   * This function is similar to [Object.callDeferred] except that the call will take place when the
+   * node thread group is processed. If the node thread group processes in sub-threads, then the call
+   * will be done on that thread, right before [NOTIFICATION_PROCESS] or
+   * [NOTIFICATION_PHYSICS_PROCESS], the [_process] or [_physicsProcess] or their internal versions are
+   * called.
+   */
+  public final fun callDeferredThreadGroup(method: String, vararg args: Any?): Any? =
+      callDeferredThreadGroup(method.asCachedStringName(), )
+
+  /**
+   * Similar to [callDeferredThreadGroup], but for setting properties.
+   */
+  public final fun setDeferredThreadGroup(`property`: String, `value`: Any?) =
+      setDeferredThreadGroup(property.asCachedStringName(), value)
+
+  /**
+   * This function ensures that the calling of this function will succeed, no matter whether it's
+   * being done from a thread or not. If called from a thread that is not allowed to call the function,
+   * the call will become deferred. Otherwise, the call will go through directly.
+   */
+  public final fun callThreadSafe(method: String, vararg args: Any?): Any? =
+      callThreadSafe(method.asCachedStringName(), )
+
+  /**
+   * Similar to [callThreadSafe], but for setting properties.
+   */
+  public final fun setThreadSafe(`property`: String, `value`: Any?) =
+      setThreadSafe(property.asCachedStringName(), value)
 
   public enum class ProcessMode(
     id: Long,
@@ -2740,6 +3007,9 @@ public open class Node : Object() {
   }
 
   public object MethodBindings {
+    internal val printOrphanNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
+
     internal val addSiblingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "add_sibling", 2570952461)
 
@@ -3074,8 +3344,5 @@ public open class Node : Object() {
 
     internal val notifyThreadSafePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "notify_thread_safe", 1286410249)
-
-    internal val printOrphanNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
   }
 }
