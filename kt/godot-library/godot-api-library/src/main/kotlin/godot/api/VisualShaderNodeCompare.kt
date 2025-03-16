@@ -151,35 +151,35 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     /**
      * Comparison for equality (`a == b`).
      */
-    FUNC_EQUAL(0),
+    EQUAL(0),
     /**
      * Comparison for inequality (`a != b`).
      */
-    FUNC_NOT_EQUAL(1),
+    NOT_EQUAL(1),
     /**
      * Comparison for greater than (`a > b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or
      * [CTYPE_TRANSFORM].
      */
-    FUNC_GREATER_THAN(2),
+    GREATER_THAN(2),
     /**
      * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to
      * [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
      */
-    FUNC_GREATER_THAN_EQUAL(3),
+    GREATER_THAN_EQUAL(3),
     /**
      * Comparison for less than (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or
      * [CTYPE_TRANSFORM].
      */
-    FUNC_LESS_THAN(4),
+    LESS_THAN(4),
     /**
      * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN]
      * or [CTYPE_TRANSFORM].
      */
-    FUNC_LESS_THAN_EQUAL(5),
+    LESS_THAN_EQUAL(5),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -198,15 +198,15 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     /**
      * The result will be `true` if all components in the vector satisfy the comparison condition.
      */
-    COND_ALL(0),
+    ALL(0),
     /**
      * The result will be `true` if any component in the vector satisfies the comparison condition.
      */
-    COND_ANY(1),
+    ANY(1),
     /**
      * Represents the size of the [Condition] enum.
      */
-    COND_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

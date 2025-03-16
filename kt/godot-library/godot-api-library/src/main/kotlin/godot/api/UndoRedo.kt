@@ -166,7 +166,7 @@ public open class UndoRedo : Object() {
   @JvmOverloads
   public final fun createAction(
     name: String,
-    mergeMode: MergeMode = UndoRedo.MergeMode.MERGE_DISABLE,
+    mergeMode: MergeMode = UndoRedo.MergeMode.DISABLE,
     backwardUndoOps: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id, BOOL to backwardUndoOps)
@@ -418,17 +418,17 @@ public open class UndoRedo : Object() {
     /**
      * Makes "do"/"undo" operations stay in separate actions.
      */
-    MERGE_DISABLE(0),
+    DISABLE(0),
     /**
      * Merges this action with the previous one if they have the same name. Keeps only the first
      * action's "undo" operations and the last action's "do" operations. Useful for sequential changes
      * to a single value.
      */
-    MERGE_ENDS(1),
+    ENDS(1),
     /**
      * Merges this action with the previous one if they have the same name.
      */
-    MERGE_ALL(2),
+    ALL(2),
     ;
 
     public val id: Long

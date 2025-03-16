@@ -326,11 +326,11 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     /**
      * Constant for voxel-based approximate convex decomposition.
      */
-    CONVEX_DECOMPOSITION_MODE_VOXEL(0),
+    CONVEX_DECOMPOSITION_VOXEL(0),
     /**
      * Constant for tetrahedron-based approximate convex decomposition.
      */
-    CONVEX_DECOMPOSITION_MODE_TETRAHEDRON(1),
+    CONVEX_DECOMPOSITION_TETRAHEDRON(1),
     ;
 
     public val id: Long

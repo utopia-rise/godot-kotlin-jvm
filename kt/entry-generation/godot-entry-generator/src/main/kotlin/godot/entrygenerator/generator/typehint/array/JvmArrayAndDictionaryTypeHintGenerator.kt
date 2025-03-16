@@ -12,7 +12,7 @@ class JvmArrayAndDictionaryTypeHintGenerator(
 ) : PropertyTypeHintGenerator(registeredProperty) {
     override fun getPropertyTypeHint(): ClassName {
         return when(propertyHintAnnotation) {
-            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_TYPE_STRING")
+            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "TYPE_STRING")
             else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
     }

@@ -127,21 +127,21 @@ public open class ProgressBar : Range() {
      * If [Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`,
      * it fills from right to left.
      */
-    FILL_BEGIN_TO_END(0),
+    BEGIN_TO_END(0),
     /**
      * The progress bar fills from end to begin horizontally, according to the language direction.
      * If [Control.isLayoutRtl] returns `false`, it fills from right to left, and if it returns `true`,
      * it fills from left to right.
      */
-    FILL_END_TO_BEGIN(1),
+    END_TO_BEGIN(1),
     /**
      * The progress fills from top to bottom.
      */
-    FILL_TOP_TO_BOTTOM(2),
+    TOP_TO_BOTTOM(2),
     /**
      * The progress fills from bottom to top.
      */
-    FILL_BOTTOM_TO_TOP(3),
+    BOTTOM_TO_TOP(3),
     ;
 
     public val id: Long

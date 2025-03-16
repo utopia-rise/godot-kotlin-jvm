@@ -119,8 +119,7 @@ public open class PackedScene : Resource() {
    * [Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
    */
   @JvmOverloads
-  public final fun instantiate(editState: GenEditState =
-      PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
+  public final fun instantiate(editState: GenEditState = PackedScene.GenEditState.DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
     TransferContext.callMethod(ptr, MethodBindings.instantiatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
@@ -150,24 +149,24 @@ public open class PackedScene : Resource() {
     /**
      * If passed to [instantiate], blocks edits to the scene state.
      */
-    GEN_EDIT_STATE_DISABLED(0),
+    DISABLED(0),
     /**
      * If passed to [instantiate], provides local scene resources to the local scene.
      * **Note:** Only available in editor builds.
      */
-    GEN_EDIT_STATE_INSTANCE(1),
+    INSTANCE(1),
     /**
      * If passed to [instantiate], provides local scene resources to the local scene. Only the main
      * scene should receive the main edit state.
      * **Note:** Only available in editor builds.
      */
-    GEN_EDIT_STATE_MAIN(2),
+    MAIN(2),
     /**
      * It's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated
      * to be the base of another one.
      * **Note:** Only available in editor builds.
      */
-    GEN_EDIT_STATE_MAIN_INHERITED(3),
+    MAIN_INHERITED(3),
     ;
 
     public val id: Long

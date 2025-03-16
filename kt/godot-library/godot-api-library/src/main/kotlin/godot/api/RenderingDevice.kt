@@ -1062,7 +1062,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public final fun drawListBegin(
     framebuffer: RID,
-    drawFlags: DrawFlags = RenderingDevice.DrawFlags.DRAW_DEFAULT_ALL,
+    drawFlags: DrawFlags = RenderingDevice.DrawFlags.DEFAULT_ALL,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepthValue: Float = 1.0f,
     clearStencilValue: Long = 0,
@@ -1477,9 +1477,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * This method does nothing.
    */
   @JvmOverloads
-  public final fun barrier(from: BarrierMask =
-      RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS, to: BarrierMask =
-      RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
+  public final fun barrier(from: BarrierMask = RenderingDevice.BarrierMask.ALL_BARRIERS,
+      to: BarrierMask = RenderingDevice.BarrierMask.ALL_BARRIERS): Unit {
     TransferContext.writeArguments(LONG to from.flag, LONG to to.flag)
     TransferContext.callMethod(ptr, MethodBindings.barrierPtr, NIL)
   }
@@ -1775,18 +1774,18 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Rendering device type does not match any of the other enum values or is unknown.
      */
-    DEVICE_TYPE_OTHER(0),
+    OTHER(0),
     /**
      * Rendering device is an integrated GPU, which is typically *(but not always)* slower than
      * dedicated GPUs ([DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device type is
      * always considered to be [DEVICE_TYPE_INTEGRATED_GPU].
      */
-    DEVICE_TYPE_INTEGRATED_GPU(1),
+    INTEGRATED_GPU(1),
     /**
      * Rendering device is a dedicated GPU, which is typically *(but not always)* faster than
      * integrated GPUs ([DEVICE_TYPE_INTEGRATED_GPU]).
      */
-    DEVICE_TYPE_DISCRETE_GPU(2),
+    DISCRETE_GPU(2),
     /**
      * Rendering device is an emulated GPU in a virtual environment. This is typically much slower
      * than the host GPU, which means the expected performance level on a dedicated GPU will be roughly
@@ -1794,17 +1793,17 @@ public open class RenderingDevice internal constructor() : Object() {
      * not report the device type as [DEVICE_TYPE_VIRTUAL_GPU]. Instead, the host GPU's device type
      * will be reported as if the GPU was not emulated.
      */
-    DEVICE_TYPE_VIRTUAL_GPU(3),
+    VIRTUAL_GPU(3),
     /**
      * Rendering device is provided by software emulation (such as Lavapipe or
      * [url=https://github.com/google/swiftshader]SwiftShader[/url]). This is the slowest kind of
      * rendering device available; it's typically much slower than [DEVICE_TYPE_INTEGRATED_GPU].
      */
-    DEVICE_TYPE_CPU(4),
+    CPU(4),
     /**
      * Represents the size of the [DeviceType] enum.
      */
-    DEVICE_TYPE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -1824,75 +1823,75 @@ public open class RenderingDevice internal constructor() : Object() {
      * Specific device object based on a physical device.
      * - Vulkan: Vulkan device driver resource (`VkDevice`). (`rid` argument doesn't apply.)
      */
-    DRIVER_RESOURCE_LOGICAL_DEVICE(0),
+    LOGICAL_DEVICE(0),
     /**
      * Physical device the specific logical device is based on.
      * - Vulkan: `VkDevice`. (`rid` argument doesn't apply.)
      */
-    DRIVER_RESOURCE_PHYSICAL_DEVICE(1),
+    PHYSICAL_DEVICE(1),
     /**
      * Top-most graphics API entry object.
      * - Vulkan: `VkInstance`. (`rid` argument doesn't apply.)
      */
-    DRIVER_RESOURCE_TOPMOST_OBJECT(2),
+    TOPMOST_OBJECT(2),
     /**
      * The main graphics-compute command queue.
      * - Vulkan: `VkQueue`. (`rid` argument doesn't apply.)
      */
-    DRIVER_RESOURCE_COMMAND_QUEUE(3),
+    COMMAND_QUEUE(3),
     /**
      * The specific family the main queue belongs to.
      * - Vulkan: the queue family index, an `uint32_t`. (`rid` argument doesn't apply.)
      */
-    DRIVER_RESOURCE_QUEUE_FAMILY(4),
+    QUEUE_FAMILY(4),
     /**
      * - Vulkan: `VkImage`.
      */
-    DRIVER_RESOURCE_TEXTURE(5),
+    TEXTURE(5),
     /**
      * The view of an owned or shared texture.
      * - Vulkan: `VkImageView`.
      */
-    DRIVER_RESOURCE_TEXTURE_VIEW(6),
+    TEXTURE_VIEW(6),
     /**
      * The native id of the data format of the texture.
      * - Vulkan: `VkFormat`.
      */
-    DRIVER_RESOURCE_TEXTURE_DATA_FORMAT(7),
+    TEXTURE_DATA_FORMAT(7),
     /**
      * - Vulkan: `VkSampler`.
      */
-    DRIVER_RESOURCE_SAMPLER(8),
+    SAMPLER(8),
     /**
      * - Vulkan: `VkDescriptorSet`.
      */
-    DRIVER_RESOURCE_UNIFORM_SET(9),
+    UNIFORM_SET(9),
     /**
      * Buffer of any kind of (storage, vertex, etc.).
      * - Vulkan: `VkBuffer`.
      */
-    DRIVER_RESOURCE_BUFFER(10),
+    BUFFER(10),
     /**
      * - Vulkan: `VkPipeline`.
      */
-    DRIVER_RESOURCE_COMPUTE_PIPELINE(11),
+    COMPUTE_PIPELINE(11),
     /**
      * - Vulkan: `VkPipeline`.
      */
-    DRIVER_RESOURCE_RENDER_PIPELINE(12),
-    DRIVER_RESOURCE_VULKAN_DEVICE(0),
-    DRIVER_RESOURCE_VULKAN_PHYSICAL_DEVICE(1),
-    DRIVER_RESOURCE_VULKAN_INSTANCE(2),
-    DRIVER_RESOURCE_VULKAN_QUEUE(3),
-    DRIVER_RESOURCE_VULKAN_QUEUE_FAMILY_INDEX(4),
-    DRIVER_RESOURCE_VULKAN_IMAGE(5),
-    DRIVER_RESOURCE_VULKAN_IMAGE_VIEW(6),
-    DRIVER_RESOURCE_VULKAN_IMAGE_NATIVE_TEXTURE_FORMAT(7),
-    DRIVER_RESOURCE_VULKAN_SAMPLER(8),
-    DRIVER_RESOURCE_VULKAN_DESCRIPTOR_SET(9),
-    DRIVER_RESOURCE_VULKAN_BUFFER(10),
-    DRIVER_RESOURCE_VULKAN_COMPUTE_PIPELINE(11),
-    DRIVER_RESOURCE_VULKAN_RENDER_PIPELINE(12),
+    RENDER_PIPELINE(12),
+    VULKAN_DEVICE(0),
+    VULKAN_PHYSICAL_DEVICE(1),
+    VULKAN_INSTANCE(2),
+    VULKAN_QUEUE(3),
+    VULKAN_QUEUE_FAMILY_INDEX(4),
+    VULKAN_IMAGE(5),
+    VULKAN_IMAGE_VIEW(6),
+    VULKAN_IMAGE_NATIVE_TEXTURE_FORMAT(7),
+    VULKAN_SAMPLER(8),
+    VULKAN_DESCRIPTOR_SET(9),
+    VULKAN_BUFFER(10),
+    VULKAN_COMPUTE_PIPELINE(11),
+    VULKAN_RENDER_PIPELINE(12),
     ;
 
     public val id: Long
@@ -1917,1031 +1916,1031 @@ public open class RenderingDevice internal constructor() : Object() {
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFormat.html]VkFormat[/url]
      * enum.
      */
-    DATA_FORMAT_R4G4_UNORM_PACK8(0),
+    R4G4_UNORM_PACK8(0),
     /**
      * 4-bit-per-channel red/green/blue/alpha channel data format, packed into 16 bits. Values are
      * in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R4G4B4A4_UNORM_PACK16(1),
+    R4G4B4A4_UNORM_PACK16(1),
     /**
      * 4-bit-per-channel blue/green/red/alpha channel data format, packed into 16 bits. Values are
      * in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B4G4R4A4_UNORM_PACK16(2),
+    B4G4R4A4_UNORM_PACK16(2),
     /**
      * Red/green/blue channel data format with 5 bits of red, 6 bits of green and 5 bits of blue,
      * packed into 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R5G6B5_UNORM_PACK16(3),
+    R5G6B5_UNORM_PACK16(3),
     /**
      * Blue/green/red channel data format with 5 bits of blue, 6 bits of green and 5 bits of red,
      * packed into 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B5G6R5_UNORM_PACK16(4),
+    B5G6R5_UNORM_PACK16(4),
     /**
      * Red/green/blue/alpha channel data format with 5 bits of red, 6 bits of green, 5 bits of blue
      * and 1 bit of alpha, packed into 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R5G5B5A1_UNORM_PACK16(5),
+    R5G5B5A1_UNORM_PACK16(5),
     /**
      * Blue/green/red/alpha channel data format with 5 bits of blue, 6 bits of green, 5 bits of red
      * and 1 bit of alpha, packed into 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B5G5R5A1_UNORM_PACK16(6),
+    B5G5R5A1_UNORM_PACK16(6),
     /**
      * Alpha/red/green/blue channel data format with 1 bit of alpha, 5 bits of red, 6 bits of green
      * and 5 bits of blue, packed into 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_A1R5G5B5_UNORM_PACK16(7),
+    A1R5G5B5_UNORM_PACK16(7),
     /**
      * 8-bit-per-channel unsigned floating-point red channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8_UNORM(8),
+    R8_UNORM(8),
     /**
      * 8-bit-per-channel signed floating-point red channel data format with normalized value. Values
      * are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R8_SNORM(9),
+    R8_SNORM(9),
     /**
      * 8-bit-per-channel unsigned floating-point red channel data format with scaled value (value is
      * converted from integer to float). Values are in the `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_R8_USCALED(10),
+    R8_USCALED(10),
     /**
      * 8-bit-per-channel signed floating-point red channel data format with scaled value (value is
      * converted from integer to float). Values are in the `[-127.0, 127.0]` range.
      */
-    DATA_FORMAT_R8_SSCALED(11),
+    R8_SSCALED(11),
     /**
      * 8-bit-per-channel unsigned integer red channel data format. Values are in the `[0, 255]`
      * range.
      */
-    DATA_FORMAT_R8_UINT(12),
+    R8_UINT(12),
     /**
      * 8-bit-per-channel signed integer red channel data format. Values are in the `[-127, 127]`
      * range.
      */
-    DATA_FORMAT_R8_SINT(13),
+    R8_SINT(13),
     /**
      * 8-bit-per-channel unsigned floating-point red channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8_SRGB(14),
+    R8_SRGB(14),
     /**
      * 8-bit-per-channel unsigned floating-point red/green channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8_UNORM(15),
+    R8G8_UNORM(15),
     /**
      * 8-bit-per-channel signed floating-point red/green channel data format with normalized value.
      * Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8_SNORM(16),
+    R8G8_SNORM(16),
     /**
      * 8-bit-per-channel unsigned floating-point red/green channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_R8G8_USCALED(17),
+    R8G8_USCALED(17),
     /**
      * 8-bit-per-channel signed floating-point red/green channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range.
      */
-    DATA_FORMAT_R8G8_SSCALED(18),
+    R8G8_SSCALED(18),
     /**
      * 8-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0,
      * 255]` range.
      */
-    DATA_FORMAT_R8G8_UINT(19),
+    R8G8_UINT(19),
     /**
      * 8-bit-per-channel signed integer red/green channel data format. Values are in the `[-127,
      * 127]` range.
      */
-    DATA_FORMAT_R8G8_SINT(20),
+    R8G8_SINT(20),
     /**
      * 8-bit-per-channel unsigned floating-point red/green channel data format with normalized value
      * and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8_SRGB(21),
+    R8G8_SRGB(21),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8B8_UNORM(22),
+    R8G8B8_UNORM(22),
     /**
      * 8-bit-per-channel signed floating-point red/green/blue channel data format with normalized
      * value. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8B8_SNORM(23),
+    R8G8B8_SNORM(23),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue channel data format with scaled
      * value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_R8G8B8_USCALED(24),
+    R8G8B8_USCALED(24),
     /**
      * 8-bit-per-channel signed floating-point red/green/blue channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range.
      */
-    DATA_FORMAT_R8G8B8_SSCALED(25),
+    R8G8B8_SSCALED(25),
     /**
      * 8-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the `[0,
      * 255]` range.
      */
-    DATA_FORMAT_R8G8B8_UINT(26),
+    R8G8B8_UINT(26),
     /**
      * 8-bit-per-channel signed integer red/green/blue channel data format. Values are in the
      * `[-127, 127]` range.
      */
-    DATA_FORMAT_R8G8B8_SINT(27),
+    R8G8B8_SINT(27),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue/blue channel data format with
      * normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8B8_SRGB(28),
+    R8G8B8_SRGB(28),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B8G8R8_UNORM(29),
+    B8G8R8_UNORM(29),
     /**
      * 8-bit-per-channel signed floating-point blue/green/red channel data format with normalized
      * value. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_B8G8R8_SNORM(30),
+    B8G8R8_SNORM(30),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red channel data format with scaled
      * value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_B8G8R8_USCALED(31),
+    B8G8R8_USCALED(31),
     /**
      * 8-bit-per-channel signed floating-point blue/green/red channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range.
      */
-    DATA_FORMAT_B8G8R8_SSCALED(32),
+    B8G8R8_SSCALED(32),
     /**
      * 8-bit-per-channel unsigned integer blue/green/red channel data format. Values are in the `[0,
      * 255]` range.
      */
-    DATA_FORMAT_B8G8R8_UINT(33),
+    B8G8R8_UINT(33),
     /**
      * 8-bit-per-channel signed integer blue/green/red channel data format. Values are in the
      * `[-127, 127]` range.
      */
-    DATA_FORMAT_B8G8R8_SINT(34),
+    B8G8R8_SINT(34),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red data format with normalized value
      * and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B8G8R8_SRGB(35),
+    B8G8R8_SRGB(35),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with
      * normalized value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8B8A8_UNORM(36),
+    R8G8B8A8_UNORM(36),
     /**
      * 8-bit-per-channel signed floating-point red/green/blue/alpha channel data format with
      * normalized value. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8B8A8_SNORM(37),
+    R8G8B8A8_SNORM(37),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with
      * scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_R8G8B8A8_USCALED(38),
+    R8G8B8A8_USCALED(38),
     /**
      * 8-bit-per-channel signed floating-point red/green/blue/alpha channel data format with scaled
      * value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range.
      */
-    DATA_FORMAT_R8G8B8A8_SSCALED(39),
+    R8G8B8A8_SSCALED(39),
     /**
      * 8-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in
      * the `[0, 255]` range.
      */
-    DATA_FORMAT_R8G8B8A8_UINT(40),
+    R8G8B8A8_UINT(40),
     /**
      * 8-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the
      * `[-127, 127]` range.
      */
-    DATA_FORMAT_R8G8B8A8_SINT(41),
+    R8G8B8A8_SINT(41),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with
      * normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R8G8B8A8_SRGB(42),
+    R8G8B8A8_SRGB(42),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with
      * normalized value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B8G8R8A8_UNORM(43),
+    B8G8R8A8_UNORM(43),
     /**
      * 8-bit-per-channel signed floating-point blue/green/red/alpha channel data format with
      * normalized value. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_B8G8R8A8_SNORM(44),
+    B8G8R8A8_SNORM(44),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with
      * scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_B8G8R8A8_USCALED(45),
+    B8G8R8A8_USCALED(45),
     /**
      * 8-bit-per-channel signed floating-point blue/green/red/alpha channel data format with scaled
      * value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range.
      */
-    DATA_FORMAT_B8G8R8A8_SSCALED(46),
+    B8G8R8A8_SSCALED(46),
     /**
      * 8-bit-per-channel unsigned integer blue/green/red/alpha channel data format. Values are in
      * the `[0, 255]` range.
      */
-    DATA_FORMAT_B8G8R8A8_UINT(47),
+    B8G8R8A8_UINT(47),
     /**
      * 8-bit-per-channel signed integer blue/green/red/alpha channel data format. Values are in the
      * `[-127, 127]` range.
      */
-    DATA_FORMAT_B8G8R8A8_SINT(48),
+    B8G8R8A8_SINT(48),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with
      * normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_B8G8R8A8_SRGB(49),
+    B8G8R8A8_SRGB(49),
     /**
      * 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with
      * normalized value, packed in 32 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_A8B8G8R8_UNORM_PACK32(50),
+    A8B8G8R8_UNORM_PACK32(50),
     /**
      * 8-bit-per-channel signed floating-point alpha/red/green/blue channel data format with
      * normalized value, packed in 32 bits. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_A8B8G8R8_SNORM_PACK32(51),
+    A8B8G8R8_SNORM_PACK32(51),
     /**
      * 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with
      * scaled value (value is converted from integer to float), packed in 32 bits. Values are in the
      * `[0.0, 255.0]` range.
      */
-    DATA_FORMAT_A8B8G8R8_USCALED_PACK32(52),
+    A8B8G8R8_USCALED_PACK32(52),
     /**
      * 8-bit-per-channel signed floating-point alpha/red/green/blue channel data format with scaled
      * value (value is converted from integer to float), packed in 32 bits. Values are in the `[-127.0,
      * 127.0]` range.
      */
-    DATA_FORMAT_A8B8G8R8_SSCALED_PACK32(53),
+    A8B8G8R8_SSCALED_PACK32(53),
     /**
      * 8-bit-per-channel unsigned integer alpha/red/green/blue channel data format, packed in 32
      * bits. Values are in the `[0, 255]` range.
      */
-    DATA_FORMAT_A8B8G8R8_UINT_PACK32(54),
+    A8B8G8R8_UINT_PACK32(54),
     /**
      * 8-bit-per-channel signed integer alpha/red/green/blue channel data format, packed in 32 bits.
      * Values are in the `[-127, 127]` range.
      */
-    DATA_FORMAT_A8B8G8R8_SINT_PACK32(55),
+    A8B8G8R8_SINT_PACK32(55),
     /**
      * 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with
      * normalized value and non-linear sRGB encoding, packed in 32 bits. Values are in the `[0.0, 1.0]`
      * range.
      */
-    DATA_FORMAT_A8B8G8R8_SRGB_PACK32(56),
+    A8B8G8R8_SRGB_PACK32(56),
     /**
      * Unsigned floating-point alpha/red/green/blue channel data format with normalized value,
      * packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits
      * of blue. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_A2R10G10B10_UNORM_PACK32(57),
+    A2R10G10B10_UNORM_PACK32(57),
     /**
      * Signed floating-point alpha/red/green/blue channel data format with normalized value, packed
      * in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of
      * blue. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_A2R10G10B10_SNORM_PACK32(58),
+    A2R10G10B10_SNORM_PACK32(58),
     /**
      * Unsigned floating-point alpha/red/green/blue channel data format with normalized value,
      * packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits
      * of blue. Values are in the `[0.0, 1023.0]` range for red/green/blue and `[0.0, 3.0]` for alpha.
      */
-    DATA_FORMAT_A2R10G10B10_USCALED_PACK32(59),
+    A2R10G10B10_USCALED_PACK32(59),
     /**
      * Signed floating-point alpha/red/green/blue channel data format with normalized value, packed
      * in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of
      * blue. Values are in the `[-511.0, 511.0]` range for red/green/blue and `[-1.0, 1.0]` for alpha.
      */
-    DATA_FORMAT_A2R10G10B10_SSCALED_PACK32(60),
+    A2R10G10B10_SSCALED_PACK32(60),
     /**
      * Unsigned integer alpha/red/green/blue channel data format with normalized value, packed in 32
      * bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue.
      * Values are in the `[0, 1023]` range for red/green/blue and `[0, 3]` for alpha.
      */
-    DATA_FORMAT_A2R10G10B10_UINT_PACK32(61),
+    A2R10G10B10_UINT_PACK32(61),
     /**
      * Signed integer alpha/red/green/blue channel data format with normalized value, packed in 32
      * bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue.
      * Values are in the `[-511, 511]` range for red/green/blue and `[-1, 1]` for alpha.
      */
-    DATA_FORMAT_A2R10G10B10_SINT_PACK32(62),
+    A2R10G10B10_SINT_PACK32(62),
     /**
      * Unsigned floating-point alpha/blue/green/red channel data format with normalized value,
      * packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10
      * bits of red. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_A2B10G10R10_UNORM_PACK32(63),
+    A2B10G10R10_UNORM_PACK32(63),
     /**
      * Signed floating-point alpha/blue/green/red channel data format with normalized value, packed
      * in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of
      * red. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_A2B10G10R10_SNORM_PACK32(64),
+    A2B10G10R10_SNORM_PACK32(64),
     /**
      * Unsigned floating-point alpha/blue/green/red channel data format with normalized value,
      * packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10
      * bits of red. Values are in the `[0.0, 1023.0]` range for blue/green/red and `[0.0, 3.0]` for
      * alpha.
      */
-    DATA_FORMAT_A2B10G10R10_USCALED_PACK32(65),
+    A2B10G10R10_USCALED_PACK32(65),
     /**
      * Signed floating-point alpha/blue/green/red channel data format with normalized value, packed
      * in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of
      * red. Values are in the `[-511.0, 511.0]` range for blue/green/red and `[-1.0, 1.0]` for alpha.
      */
-    DATA_FORMAT_A2B10G10R10_SSCALED_PACK32(66),
+    A2B10G10R10_SSCALED_PACK32(66),
     /**
      * Unsigned integer alpha/blue/green/red channel data format with normalized value, packed in 32
      * bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red.
      * Values are in the `[0, 1023]` range for blue/green/red and `[0, 3]` for alpha.
      */
-    DATA_FORMAT_A2B10G10R10_UINT_PACK32(67),
+    A2B10G10R10_UINT_PACK32(67),
     /**
      * Signed integer alpha/blue/green/red channel data format with normalized value, packed in 32
      * bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red.
      * Values are in the `[-511, 511]` range for blue/green/red and `[-1, 1]` for alpha.
      */
-    DATA_FORMAT_A2B10G10R10_SINT_PACK32(68),
+    A2B10G10R10_SINT_PACK32(68),
     /**
      * 16-bit-per-channel unsigned floating-point red channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R16_UNORM(69),
+    R16_UNORM(69),
     /**
      * 16-bit-per-channel signed floating-point red channel data format with normalized value.
      * Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R16_SNORM(70),
+    R16_SNORM(70),
     /**
      * 16-bit-per-channel unsigned floating-point red channel data format with scaled value (value
      * is converted from integer to float). Values are in the `[0.0, 65535.0]` range.
      */
-    DATA_FORMAT_R16_USCALED(71),
+    R16_USCALED(71),
     /**
      * 16-bit-per-channel signed floating-point red channel data format with scaled value (value is
      * converted from integer to float). Values are in the `[-32767.0, 32767.0]` range.
      */
-    DATA_FORMAT_R16_SSCALED(72),
+    R16_SSCALED(72),
     /**
      * 16-bit-per-channel unsigned integer red channel data format. Values are in the `[0.0, 65535]`
      * range.
      */
-    DATA_FORMAT_R16_UINT(73),
+    R16_UINT(73),
     /**
      * 16-bit-per-channel signed integer red channel data format. Values are in the `[-32767,
      * 32767]` range.
      */
-    DATA_FORMAT_R16_SINT(74),
+    R16_SINT(74),
     /**
      * 16-bit-per-channel signed floating-point red channel data format with the value stored as-is.
      */
-    DATA_FORMAT_R16_SFLOAT(75),
+    R16_SFLOAT(75),
     /**
      * 16-bit-per-channel unsigned floating-point red/green channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R16G16_UNORM(76),
+    R16G16_UNORM(76),
     /**
      * 16-bit-per-channel signed floating-point red/green channel data format with normalized value.
      * Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R16G16_SNORM(77),
+    R16G16_SNORM(77),
     /**
      * 16-bit-per-channel unsigned floating-point red/green channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[0.0, 65535.0]` range.
      */
-    DATA_FORMAT_R16G16_USCALED(78),
+    R16G16_USCALED(78),
     /**
      * 16-bit-per-channel signed floating-point red/green channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range.
      */
-    DATA_FORMAT_R16G16_SSCALED(79),
+    R16G16_SSCALED(79),
     /**
      * 16-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0.0,
      * 65535]` range.
      */
-    DATA_FORMAT_R16G16_UINT(80),
+    R16G16_UINT(80),
     /**
      * 16-bit-per-channel signed integer red/green channel data format. Values are in the `[-32767,
      * 32767]` range.
      */
-    DATA_FORMAT_R16G16_SINT(81),
+    R16G16_SINT(81),
     /**
      * 16-bit-per-channel signed floating-point red/green channel data format with the value stored
      * as-is.
      */
-    DATA_FORMAT_R16G16_SFLOAT(82),
+    R16G16_SFLOAT(82),
     /**
      * 16-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R16G16B16_UNORM(83),
+    R16G16B16_UNORM(83),
     /**
      * 16-bit-per-channel signed floating-point red/green/blue channel data format with normalized
      * value. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R16G16B16_SNORM(84),
+    R16G16B16_SNORM(84),
     /**
      * 16-bit-per-channel unsigned floating-point red/green/blue channel data format with scaled
      * value (value is converted from integer to float). Values are in the `[0.0, 65535.0]` range.
      */
-    DATA_FORMAT_R16G16B16_USCALED(85),
+    R16G16B16_USCALED(85),
     /**
      * 16-bit-per-channel signed floating-point red/green/blue channel data format with scaled value
      * (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range.
      */
-    DATA_FORMAT_R16G16B16_SSCALED(86),
+    R16G16B16_SSCALED(86),
     /**
      * 16-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the
      * `[0.0, 65535]` range.
      */
-    DATA_FORMAT_R16G16B16_UINT(87),
+    R16G16B16_UINT(87),
     /**
      * 16-bit-per-channel signed integer red/green/blue channel data format. Values are in the
      * `[-32767, 32767]` range.
      */
-    DATA_FORMAT_R16G16B16_SINT(88),
+    R16G16B16_SINT(88),
     /**
      * 16-bit-per-channel signed floating-point red/green/blue channel data format with the value
      * stored as-is.
      */
-    DATA_FORMAT_R16G16B16_SFLOAT(89),
+    R16G16B16_SFLOAT(89),
     /**
      * 16-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with
      * normalized value. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R16G16B16A16_UNORM(90),
+    R16G16B16A16_UNORM(90),
     /**
      * 16-bit-per-channel signed floating-point red/green/blue/alpha channel data format with
      * normalized value. Values are in the `[-1.0, 1.0]` range.
      */
-    DATA_FORMAT_R16G16B16A16_SNORM(91),
+    R16G16B16A16_SNORM(91),
     /**
      * 16-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with
      * scaled value (value is converted from integer to float). Values are in the `[0.0, 65535.0]`
      * range.
      */
-    DATA_FORMAT_R16G16B16A16_USCALED(92),
+    R16G16B16A16_USCALED(92),
     /**
      * 16-bit-per-channel signed floating-point red/green/blue/alpha channel data format with scaled
      * value (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range.
      */
-    DATA_FORMAT_R16G16B16A16_SSCALED(93),
+    R16G16B16A16_SSCALED(93),
     /**
      * 16-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in
      * the `[0.0, 65535]` range.
      */
-    DATA_FORMAT_R16G16B16A16_UINT(94),
+    R16G16B16A16_UINT(94),
     /**
      * 16-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the
      * `[-32767, 32767]` range.
      */
-    DATA_FORMAT_R16G16B16A16_SINT(95),
+    R16G16B16A16_SINT(95),
     /**
      * 16-bit-per-channel signed floating-point red/green/blue/alpha channel data format with the
      * value stored as-is.
      */
-    DATA_FORMAT_R16G16B16A16_SFLOAT(96),
+    R16G16B16A16_SFLOAT(96),
     /**
      * 32-bit-per-channel unsigned integer red channel data format. Values are in the `[0, 2^32 -
      * 1]` range.
      */
-    DATA_FORMAT_R32_UINT(97),
+    R32_UINT(97),
     /**
      * 32-bit-per-channel signed integer red channel data format. Values are in the `[2^31 + 1,
      * 2^31 - 1]` range.
      */
-    DATA_FORMAT_R32_SINT(98),
+    R32_SINT(98),
     /**
      * 32-bit-per-channel signed floating-point red channel data format with the value stored as-is.
      */
-    DATA_FORMAT_R32_SFLOAT(99),
+    R32_SFLOAT(99),
     /**
      * 32-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0,
      * 2^32 - 1]` range.
      */
-    DATA_FORMAT_R32G32_UINT(100),
+    R32G32_UINT(100),
     /**
      * 32-bit-per-channel signed integer red/green channel data format. Values are in the `[2^31 +
      * 1, 2^31 - 1]` range.
      */
-    DATA_FORMAT_R32G32_SINT(101),
+    R32G32_SINT(101),
     /**
      * 32-bit-per-channel signed floating-point red/green channel data format with the value stored
      * as-is.
      */
-    DATA_FORMAT_R32G32_SFLOAT(102),
+    R32G32_SFLOAT(102),
     /**
      * 32-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the
      * `[0, 2^32 - 1]` range.
      */
-    DATA_FORMAT_R32G32B32_UINT(103),
+    R32G32B32_UINT(103),
     /**
      * 32-bit-per-channel signed integer red/green/blue channel data format. Values are in the
      * `[2^31 + 1, 2^31 - 1]` range.
      */
-    DATA_FORMAT_R32G32B32_SINT(104),
+    R32G32B32_SINT(104),
     /**
      * 32-bit-per-channel signed floating-point red/green/blue channel data format with the value
      * stored as-is.
      */
-    DATA_FORMAT_R32G32B32_SFLOAT(105),
+    R32G32B32_SFLOAT(105),
     /**
      * 32-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in
      * the `[0, 2^32 - 1]` range.
      */
-    DATA_FORMAT_R32G32B32A32_UINT(106),
+    R32G32B32A32_UINT(106),
     /**
      * 32-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the
      * `[2^31 + 1, 2^31 - 1]` range.
      */
-    DATA_FORMAT_R32G32B32A32_SINT(107),
+    R32G32B32A32_SINT(107),
     /**
      * 32-bit-per-channel signed floating-point red/green/blue/alpha channel data format with the
      * value stored as-is.
      */
-    DATA_FORMAT_R32G32B32A32_SFLOAT(108),
+    R32G32B32A32_SFLOAT(108),
     /**
      * 64-bit-per-channel unsigned integer red channel data format. Values are in the `[0, 2^64 -
      * 1]` range.
      */
-    DATA_FORMAT_R64_UINT(109),
+    R64_UINT(109),
     /**
      * 64-bit-per-channel signed integer red channel data format. Values are in the `[2^63 + 1,
      * 2^63 - 1]` range.
      */
-    DATA_FORMAT_R64_SINT(110),
+    R64_SINT(110),
     /**
      * 64-bit-per-channel signed floating-point red channel data format with the value stored as-is.
      */
-    DATA_FORMAT_R64_SFLOAT(111),
+    R64_SFLOAT(111),
     /**
      * 64-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0,
      * 2^64 - 1]` range.
      */
-    DATA_FORMAT_R64G64_UINT(112),
+    R64G64_UINT(112),
     /**
      * 64-bit-per-channel signed integer red/green channel data format. Values are in the `[2^63 +
      * 1, 2^63 - 1]` range.
      */
-    DATA_FORMAT_R64G64_SINT(113),
+    R64G64_SINT(113),
     /**
      * 64-bit-per-channel signed floating-point red/green channel data format with the value stored
      * as-is.
      */
-    DATA_FORMAT_R64G64_SFLOAT(114),
+    R64G64_SFLOAT(114),
     /**
      * 64-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the
      * `[0, 2^64 - 1]` range.
      */
-    DATA_FORMAT_R64G64B64_UINT(115),
+    R64G64B64_UINT(115),
     /**
      * 64-bit-per-channel signed integer red/green/blue channel data format. Values are in the
      * `[2^63 + 1, 2^63 - 1]` range.
      */
-    DATA_FORMAT_R64G64B64_SINT(116),
+    R64G64B64_SINT(116),
     /**
      * 64-bit-per-channel signed floating-point red/green/blue channel data format with the value
      * stored as-is.
      */
-    DATA_FORMAT_R64G64B64_SFLOAT(117),
+    R64G64B64_SFLOAT(117),
     /**
      * 64-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in
      * the `[0, 2^64 - 1]` range.
      */
-    DATA_FORMAT_R64G64B64A64_UINT(118),
+    R64G64B64A64_UINT(118),
     /**
      * 64-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the
      * `[2^63 + 1, 2^63 - 1]` range.
      */
-    DATA_FORMAT_R64G64B64A64_SINT(119),
+    R64G64B64A64_SINT(119),
     /**
      * 64-bit-per-channel signed floating-point red/green/blue/alpha channel data format with the
      * value stored as-is.
      */
-    DATA_FORMAT_R64G64B64A64_SFLOAT(120),
+    R64G64B64A64_SFLOAT(120),
     /**
      * Unsigned floating-point blue/green/red data format with the value stored as-is, packed in 32
      * bits. The format's precision is 10 bits of blue channel, 11 bits of green channel and 11 bits of
      * red channel.
      */
-    DATA_FORMAT_B10G11R11_UFLOAT_PACK32(121),
+    B10G11R11_UFLOAT_PACK32(121),
     /**
      * Unsigned floating-point exposure/blue/green/red data format with the value stored as-is,
      * packed in 32 bits. The format's precision is 5 bits of exposure, 9 bits of blue channel, 9 bits
      * of green channel and 9 bits of red channel.
      */
-    DATA_FORMAT_E5B9G9R9_UFLOAT_PACK32(122),
+    E5B9G9R9_UFLOAT_PACK32(122),
     /**
      * 16-bit unsigned floating-point depth data format with normalized value. Values are in the
      * `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_D16_UNORM(123),
+    D16_UNORM(123),
     /**
      * 24-bit unsigned floating-point depth data format with normalized value, plus 8 unused bits,
      * packed in 32 bits. Values for depth are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_X8_D24_UNORM_PACK32(124),
+    X8_D24_UNORM_PACK32(124),
     /**
      * 32-bit signed floating-point depth data format with the value stored as-is.
      */
-    DATA_FORMAT_D32_SFLOAT(125),
+    D32_SFLOAT(125),
     /**
      * 8-bit unsigned integer stencil data format.
      */
-    DATA_FORMAT_S8_UINT(126),
+    S8_UINT(126),
     /**
      * 16-bit unsigned floating-point depth data format with normalized value, plus 8 bits of
      * stencil in unsigned integer format. Values for depth are in the `[0.0, 1.0]` range. Values for
      * stencil are in the `[0, 255]` range.
      */
-    DATA_FORMAT_D16_UNORM_S8_UINT(127),
+    D16_UNORM_S8_UINT(127),
     /**
      * 24-bit unsigned floating-point depth data format with normalized value, plus 8 bits of
      * stencil in unsigned integer format. Values for depth are in the `[0.0, 1.0]` range. Values for
      * stencil are in the `[0, 255]` range.
      */
-    DATA_FORMAT_D24_UNORM_S8_UINT(128),
+    D24_UNORM_S8_UINT(128),
     /**
      * 32-bit signed floating-point depth data format with the value stored as-is, plus 8 bits of
      * stencil in unsigned integer format. Values for stencil are in the `[0, 255]` range.
      */
-    DATA_FORMAT_D32_SFLOAT_S8_UINT(129),
+    D32_SFLOAT_S8_UINT(129),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with normalized value. Values are
      * in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green
      * channel and 5 bits of blue channel. Using BC1 texture compression (also known as S3TC DXT1).
      */
-    DATA_FORMAT_BC1_RGB_UNORM_BLOCK(130),
+    BC1_RGB_UNORM_BLOCK(130),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
      * of red channel, 6 bits of green channel and 5 bits of blue channel. Using BC1 texture
      * compression (also known as S3TC DXT1).
      */
-    DATA_FORMAT_BC1_RGB_SRGB_BLOCK(131),
+    BC1_RGB_SRGB_BLOCK(131),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of
      * green channel, 5 bits of blue channel and 1 bit of alpha channel. Using BC1 texture compression
      * (also known as S3TC DXT1).
      */
-    DATA_FORMAT_BC1_RGBA_UNORM_BLOCK(132),
+    BC1_RGBA_UNORM_BLOCK(132),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
      * of red channel, 6 bits of green channel, 5 bits of blue channel and 1 bit of alpha channel.
      * Using BC1 texture compression (also known as S3TC DXT1).
      */
-    DATA_FORMAT_BC1_RGBA_SRGB_BLOCK(133),
+    BC1_RGBA_SRGB_BLOCK(133),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of
      * green channel, 5 bits of blue channel and 4 bits of alpha channel. Using BC2 texture compression
      * (also known as S3TC DXT3).
      */
-    DATA_FORMAT_BC2_UNORM_BLOCK(134),
+    BC2_UNORM_BLOCK(134),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
      * of red channel, 6 bits of green channel, 5 bits of blue channel and 4 bits of alpha channel.
      * Using BC2 texture compression (also known as S3TC DXT3).
      */
-    DATA_FORMAT_BC2_SRGB_BLOCK(135),
+    BC2_SRGB_BLOCK(135),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of
      * green channel, 5 bits of blue channel and 8 bits of alpha channel. Using BC3 texture compression
      * (also known as S3TC DXT5).
      */
-    DATA_FORMAT_BC3_UNORM_BLOCK(136),
+    BC3_UNORM_BLOCK(136),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
      * of red channel, 6 bits of green channel, 5 bits of blue channel and 8 bits of alpha channel.
      * Using BC3 texture compression (also known as S3TC DXT5).
      */
-    DATA_FORMAT_BC3_SRGB_BLOCK(137),
+    BC3_SRGB_BLOCK(137),
     /**
      * VRAM-compressed unsigned red channel data format with normalized value. Values are in the
      * `[0.0, 1.0]` range. The format's precision is 8 bits of red channel. Using BC4 texture
      * compression.
      */
-    DATA_FORMAT_BC4_UNORM_BLOCK(138),
+    BC4_UNORM_BLOCK(138),
     /**
      * VRAM-compressed signed red channel data format with normalized value. Values are in the
      * `[-1.0, 1.0]` range. The format's precision is 8 bits of red channel. Using BC4 texture
      * compression.
      */
-    DATA_FORMAT_BC4_SNORM_BLOCK(139),
+    BC4_SNORM_BLOCK(139),
     /**
      * VRAM-compressed unsigned red/green channel data format with normalized value. Values are in
      * the `[0.0, 1.0]` range. The format's precision is 8 bits of red channel and 8 bits of green
      * channel. Using BC5 texture compression (also known as S3TC RGTC).
      */
-    DATA_FORMAT_BC5_UNORM_BLOCK(140),
+    BC5_UNORM_BLOCK(140),
     /**
      * VRAM-compressed signed red/green channel data format with normalized value. Values are in the
      * `[-1.0, 1.0]` range. The format's precision is 8 bits of red channel and 8 bits of green
      * channel. Using BC5 texture compression (also known as S3TC RGTC).
      */
-    DATA_FORMAT_BC5_SNORM_BLOCK(141),
+    BC5_SNORM_BLOCK(141),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with the floating-point value
      * stored as-is. The format's precision is between 10 and 13 bits for the red/green/blue channels.
      * Using BC6H texture compression (also known as BPTC HDR).
      */
-    DATA_FORMAT_BC6H_UFLOAT_BLOCK(142),
+    BC6H_UFLOAT_BLOCK(142),
     /**
      * VRAM-compressed signed red/green/blue channel data format with the floating-point value
      * stored as-is. The format's precision is between 10 and 13 bits for the red/green/blue channels.
      * Using BC6H texture compression (also known as BPTC HDR).
      */
-    DATA_FORMAT_BC6H_SFLOAT_BLOCK(143),
+    BC6H_SFLOAT_BLOCK(143),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range. The format's precision is between 4 and 7 bits for the
      * red/green/blue channels and between 0 and 8 bits for the alpha channel. Also known as BPTC LDR.
      */
-    DATA_FORMAT_BC7_UNORM_BLOCK(144),
+    BC7_UNORM_BLOCK(144),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is
      * between 4 and 7 bits for the red/green/blue channels and between 0 and 8 bits for the alpha
      * channel. Also known as BPTC LDR.
      */
-    DATA_FORMAT_BC7_SRGB_BLOCK(145),
+    BC7_SRGB_BLOCK(145),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with normalized value. Values are
      * in the `[0.0, 1.0]` range. Using ETC2 texture compression.
      */
-    DATA_FORMAT_ETC2_R8G8B8_UNORM_BLOCK(146),
+    ETC2_R8G8B8_UNORM_BLOCK(146),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression.
      */
-    DATA_FORMAT_ETC2_R8G8B8_SRGB_BLOCK(147),
+    ETC2_R8G8B8_SRGB_BLOCK(147),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bit of precision each, with alpha
      * using 1 bit of precision. Using ETC2 texture compression.
      */
-    DATA_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK(148),
+    ETC2_R8G8B8A1_UNORM_BLOCK(148),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bit of
      * precision each, with alpha using 1 bit of precision. Using ETC2 texture compression.
      */
-    DATA_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK(149),
+    ETC2_R8G8B8A1_SRGB_BLOCK(149),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value.
      * Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bits of precision each, with alpha
      * using 8 bits of precision. Using ETC2 texture compression.
      */
-    DATA_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK(150),
+    ETC2_R8G8B8A8_UNORM_BLOCK(150),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
      * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bits of
      * precision each, with alpha using 8 bits of precision. Using ETC2 texture compression.
      */
-    DATA_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK(151),
+    ETC2_R8G8B8A8_SRGB_BLOCK(151),
     /**
      * 11-bit VRAM-compressed unsigned red channel data format with normalized value. Values are in
      * the `[0.0, 1.0]` range. Using ETC2 texture compression.
      */
-    DATA_FORMAT_EAC_R11_UNORM_BLOCK(152),
+    EAC_R11_UNORM_BLOCK(152),
     /**
      * 11-bit VRAM-compressed signed red channel data format with normalized value. Values are in
      * the `[-1.0, 1.0]` range. Using ETC2 texture compression.
      */
-    DATA_FORMAT_EAC_R11_SNORM_BLOCK(153),
+    EAC_R11_SNORM_BLOCK(153),
     /**
      * 11-bit VRAM-compressed unsigned red/green channel data format with normalized value. Values
      * are in the `[0.0, 1.0]` range. Using ETC2 texture compression.
      */
-    DATA_FORMAT_EAC_R11G11_UNORM_BLOCK(154),
+    EAC_R11G11_UNORM_BLOCK(154),
     /**
      * 11-bit VRAM-compressed signed red/green channel data format with normalized value. Values are
      * in the `[-1.0, 1.0]` range. Using ETC2 texture compression.
      */
-    DATA_FORMAT_EAC_R11G11_SNORM_BLOCK(155),
+    EAC_R11G11_SNORM_BLOCK(155),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 4×4
      * blocks (highest quality). Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_4x4_UNORM_BLOCK(156),
+    ASTC_4x4_UNORM_BLOCK(156),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 4×4 blocks (highest quality). Values are in the `[0.0, 1.0]` range. Using
      * ASTC compression.
      */
-    DATA_FORMAT_ASTC_4x4_SRGB_BLOCK(157),
+    ASTC_4x4_SRGB_BLOCK(157),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 5×4
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_5x4_UNORM_BLOCK(158),
+    ASTC_5x4_UNORM_BLOCK(158),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 5×4 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_5x4_SRGB_BLOCK(159),
+    ASTC_5x4_SRGB_BLOCK(159),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 5×5
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_5x5_UNORM_BLOCK(160),
+    ASTC_5x5_UNORM_BLOCK(160),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 5×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_5x5_SRGB_BLOCK(161),
+    ASTC_5x5_SRGB_BLOCK(161),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 6×5
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_6x5_UNORM_BLOCK(162),
+    ASTC_6x5_UNORM_BLOCK(162),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 6×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_6x5_SRGB_BLOCK(163),
+    ASTC_6x5_SRGB_BLOCK(163),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 6×6
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_6x6_UNORM_BLOCK(164),
+    ASTC_6x6_UNORM_BLOCK(164),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 6×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_6x6_SRGB_BLOCK(165),
+    ASTC_6x6_SRGB_BLOCK(165),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×5
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_8x5_UNORM_BLOCK(166),
+    ASTC_8x5_UNORM_BLOCK(166),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 8×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_8x5_SRGB_BLOCK(167),
+    ASTC_8x5_SRGB_BLOCK(167),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×6
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_8x6_UNORM_BLOCK(168),
+    ASTC_8x6_UNORM_BLOCK(168),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 8×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_8x6_SRGB_BLOCK(169),
+    ASTC_8x6_SRGB_BLOCK(169),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×8
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_8x8_UNORM_BLOCK(170),
+    ASTC_8x8_UNORM_BLOCK(170),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 8×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_8x8_SRGB_BLOCK(171),
+    ASTC_8x8_SRGB_BLOCK(171),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×5
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x5_UNORM_BLOCK(172),
+    ASTC_10x5_UNORM_BLOCK(172),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 10×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x5_SRGB_BLOCK(173),
+    ASTC_10x5_SRGB_BLOCK(173),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×6
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x6_UNORM_BLOCK(174),
+    ASTC_10x6_UNORM_BLOCK(174),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 10×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x6_SRGB_BLOCK(175),
+    ASTC_10x6_SRGB_BLOCK(175),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×8
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x8_UNORM_BLOCK(176),
+    ASTC_10x8_UNORM_BLOCK(176),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 10×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x8_SRGB_BLOCK(177),
+    ASTC_10x8_SRGB_BLOCK(177),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×10
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x10_UNORM_BLOCK(178),
+    ASTC_10x10_UNORM_BLOCK(178),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 10×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_10x10_SRGB_BLOCK(179),
+    ASTC_10x10_SRGB_BLOCK(179),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 12×10
      * blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_12x10_UNORM_BLOCK(180),
+    ASTC_12x10_UNORM_BLOCK(180),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 12×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_12x10_SRGB_BLOCK(181),
+    ASTC_12x10_SRGB_BLOCK(181),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value, packed in 12
      * blocks (lowest quality). Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
-    DATA_FORMAT_ASTC_12x12_UNORM_BLOCK(182),
+    ASTC_12x12_UNORM_BLOCK(182),
     /**
      * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
      * encoding, packed in 12 blocks (lowest quality). Values are in the `[0.0, 1.0]` range. Using ASTC
      * compression.
      */
-    DATA_FORMAT_ASTC_12x12_SRGB_BLOCK(183),
+    ASTC_12x12_SRGB_BLOCK(183),
     /**
      * 8-bit-per-channel unsigned floating-point green/blue/red channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved
      * horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the
      * blue/red channel).
      */
-    DATA_FORMAT_G8B8G8R8_422_UNORM(184),
+    G8B8G8R8_422_UNORM(184),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved
      * horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the
      * blue/red channel).
      */
-    DATA_FORMAT_B8G8R8G8_422_UNORM(185),
+    B8G8R8G8_422_UNORM(185),
     /**
      * 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue
      * and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent
      * pixels will share the same value for the blue/red channel).
      */
-    DATA_FORMAT_G8_B8_R8_3PLANE_420_UNORM(186),
+    G8_B8_R8_3PLANE_420_UNORM(186),
     /**
      * 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue
      * and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent
      * pixels will share the same value for the blue/red channel).
      */
-    DATA_FORMAT_G8_B8R8_2PLANE_420_UNORM(187),
+    G8_B8R8_2PLANE_420_UNORM(187),
     /**
      * 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * stored across 2 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue
      * and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent
      * pixels will share the same value for the blue/red channel).
      */
-    DATA_FORMAT_G8_B8_R8_3PLANE_422_UNORM(188),
+    G8_B8_R8_3PLANE_422_UNORM(188),
     /**
      * 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue
      * and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent
      * pixels will share the same value for the blue/red channel).
      */
-    DATA_FORMAT_G8_B8R8_2PLANE_422_UNORM(189),
+    G8_B8R8_2PLANE_422_UNORM(189),
     /**
      * 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * stored across 3 separate planes. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_G8_B8_R8_3PLANE_444_UNORM(190),
+    G8_B8_R8_3PLANE_444_UNORM(190),
     /**
      * 10-bit-per-channel unsigned floating-point red channel data with normalized value, plus 6
      * unused bits, packed in 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R10X6_UNORM_PACK16(191),
+    R10X6_UNORM_PACK16(191),
     /**
      * 10-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus
      * 6 unused bits after each channel, packed in 2×16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R10X6G10X6_UNORM_2PACK16(192),
+    R10X6G10X6_UNORM_2PACK16(192),
     /**
      * 10-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized
      * value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0,
      * 1.0]` range.
      */
-    DATA_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16(193),
+    R10X6G10X6B10X6A10X6_UNORM_4PACK16(193),
     /**
      * 10-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized
      * value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0,
@@ -2950,7 +2949,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * channel is listed twice, but contains different values to allow it to be represented at full
      * resolution.
      */
-    DATA_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16(194),
+    G10X6B10X6G10X6R10X6_422_UNORM_4PACK16(194),
     /**
      * 10-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized
      * value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0,
@@ -2959,7 +2958,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * channel is listed twice, but contains different values to allow it to be represented at full
      * resolution.
      */
-    DATA_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16(195),
+    B10X6G10X6R10X6G10X6_422_UNORM_4PACK16(195),
     /**
      * 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes
@@ -2967,7 +2966,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value
      * for the blue/red channel).
      */
-    DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16(196),
+    G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16(196),
     /**
      * 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes
@@ -2975,7 +2974,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value
      * for the blue/red channel).
      */
-    DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16(197),
+    G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16(197),
     /**
      * 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes
@@ -2983,7 +2982,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value
      * for the blue/red channel).
      */
-    DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16(198),
+    G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16(198),
     /**
      * 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes
@@ -2991,29 +2990,29 @@ public open class RenderingDevice internal constructor() : Object() {
      * halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for
      * the blue/red channel).
      */
-    DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16(199),
+    G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16(199),
     /**
      * 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes
      * (green + blue + red). Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16(200),
+    G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16(200),
     /**
      * 12-bit-per-channel unsigned floating-point red channel data with normalized value, plus 6
      * unused bits, packed in 16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R12X4_UNORM_PACK16(201),
+    R12X4_UNORM_PACK16(201),
     /**
      * 12-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus
      * 6 unused bits after each channel, packed in 2×16 bits. Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_R12X4G12X4_UNORM_2PACK16(202),
+    R12X4G12X4_UNORM_2PACK16(202),
     /**
      * 12-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized
      * value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0,
      * 1.0]` range.
      */
-    DATA_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16(203),
+    R12X4G12X4B12X4A12X4_UNORM_4PACK16(203),
     /**
      * 12-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized
      * value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0,
@@ -3022,7 +3021,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * channel is listed twice, but contains different values to allow it to be represented at full
      * resolution.
      */
-    DATA_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16(204),
+    G12X4B12X4G12X4R12X4_422_UNORM_4PACK16(204),
     /**
      * 12-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized
      * value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0,
@@ -3031,7 +3030,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * channel is listed twice, but contains different values to allow it to be represented at full
      * resolution.
      */
-    DATA_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16(205),
+    B12X4G12X4R12X4G12X4_422_UNORM_4PACK16(205),
     /**
      * 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes
@@ -3039,7 +3038,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value
      * for the blue/red channel).
      */
-    DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16(206),
+    G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16(206),
     /**
      * 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes
@@ -3047,7 +3046,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value
      * for the blue/red channel).
      */
-    DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16(207),
+    G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16(207),
     /**
      * 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes
@@ -3055,7 +3054,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value
      * for the blue/red channel).
      */
-    DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16(208),
+    G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16(208),
     /**
      * 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes
@@ -3063,27 +3062,27 @@ public open class RenderingDevice internal constructor() : Object() {
      * halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for
      * the blue/red channel).
      */
-    DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16(209),
+    G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16(209),
     /**
      * 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes
      * (green + blue + red). Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16(210),
+    G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16(210),
     /**
      * 16-bit-per-channel unsigned floating-point green/blue/red channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved
      * horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the
      * blue/red channel).
      */
-    DATA_FORMAT_G16B16G16R16_422_UNORM(211),
+    G16B16G16R16_422_UNORM(211),
     /**
      * 16-bit-per-channel unsigned floating-point blue/green/red channel data format with normalized
      * value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved
      * horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the
      * blue/red channel).
      */
-    DATA_FORMAT_B16G16R16G16_422_UNORM(212),
+    B16G16R16G16_422_UNORM(212),
     /**
      * 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue + red).
@@ -3091,7 +3090,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red
      * channel).
      */
-    DATA_FORMAT_G16_B16_R16_3PLANE_420_UNORM(213),
+    G16_B16_R16_3PLANE_420_UNORM(213),
     /**
      * 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue/red).
@@ -3099,7 +3098,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red
      * channel).
      */
-    DATA_FORMAT_G16_B16R16_2PLANE_420_UNORM(214),
+    G16_B16R16_2PLANE_420_UNORM(214),
     /**
      * 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue + red).
@@ -3107,7 +3106,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red
      * channel).
      */
-    DATA_FORMAT_G16_B16_R16_3PLANE_422_UNORM(215),
+    G16_B16_R16_3PLANE_422_UNORM(215),
     /**
      * 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue/red).
@@ -3115,17 +3114,17 @@ public open class RenderingDevice internal constructor() : Object() {
      * resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red
      * channel).
      */
-    DATA_FORMAT_G16_B16R16_2PLANE_422_UNORM(216),
+    G16_B16R16_2PLANE_422_UNORM(216),
     /**
      * 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value,
      * plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue + red).
      * Values are in the `[0.0, 1.0]` range.
      */
-    DATA_FORMAT_G16_B16_R16_3PLANE_444_UNORM(217),
+    G16_B16_R16_3PLANE_444_UNORM(217),
     /**
      * Represents the size of the [DataFormat] enum.
      */
-    DATA_FORMAT_MAX(218),
+    MAX(218),
     ;
 
     public val id: Long
@@ -3170,38 +3169,38 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Vertex shader barrier mask.
        */
-      public val BARRIER_MASK_VERTEX: BarrierMask = BarrierMask(1)
+      public val VERTEX: BarrierMask = BarrierMask(1)
 
       /**
        * Fragment shader barrier mask.
        */
-      public val BARRIER_MASK_FRAGMENT: BarrierMask = BarrierMask(8)
+      public val FRAGMENT: BarrierMask = BarrierMask(8)
 
       /**
        * Compute barrier mask.
        */
-      public val BARRIER_MASK_COMPUTE: BarrierMask = BarrierMask(2)
+      public val COMPUTE: BarrierMask = BarrierMask(2)
 
       /**
        * Transfer barrier mask.
        */
-      public val BARRIER_MASK_TRANSFER: BarrierMask = BarrierMask(4)
+      public val TRANSFER: BarrierMask = BarrierMask(4)
 
       /**
        * Raster barrier mask (vertex and fragment). Equivalent to `BARRIER_MASK_VERTEX |
        * BARRIER_MASK_FRAGMENT`.
        */
-      public val BARRIER_MASK_RASTER: BarrierMask = BarrierMask(9)
+      public val RASTER: BarrierMask = BarrierMask(9)
 
       /**
        * Barrier mask for all types (vertex, fragment, compute, transfer).
        */
-      public val BARRIER_MASK_ALL_BARRIERS: BarrierMask = BarrierMask(32767)
+      public val ALL_BARRIERS: BarrierMask = BarrierMask(32767)
 
       /**
        * No barrier for any type.
        */
-      public val BARRIER_MASK_NO_BARRIER: BarrierMask = BarrierMask(32768)
+      public val NO_BARRIER: BarrierMask = BarrierMask(32768)
     }
   }
 
@@ -3223,7 +3222,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * [Cubemap] texture.
      */
-    TEXTURE_TYPE_CUBE(3),
+    CUBE(3),
     /**
      * Array of 1-dimensional textures.
      */
@@ -3235,11 +3234,11 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Array of [Cubemap] textures.
      */
-    TEXTURE_TYPE_CUBE_ARRAY(6),
+    CUBE_ARRAY(6),
     /**
      * Represents the size of the [TextureType] enum.
      */
-    TEXTURE_TYPE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -3287,7 +3286,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Represents the size of the [TextureSamples] enum.
      */
-    TEXTURE_SAMPLES_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -3335,59 +3334,59 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Texture can be sampled.
        */
-      public val TEXTURE_USAGE_SAMPLING_BIT: TextureUsageBits = TextureUsageBits(1)
+      public val SAMPLING: TextureUsageBits = TextureUsageBits(1)
 
       /**
        * Texture can be used as a color attachment in a framebuffer.
        */
-      public val TEXTURE_USAGE_COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(2)
+      public val COLOR_ATTACHMENT: TextureUsageBits = TextureUsageBits(2)
 
       /**
        * Texture can be used as a depth/stencil attachment in a framebuffer.
        */
-      public val TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(4)
+      public val DEPTH_STENCIL_ATTACHMENT: TextureUsageBits = TextureUsageBits(4)
 
       /**
        * Texture can be used as a
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
        * image[/url].
        */
-      public val TEXTURE_USAGE_STORAGE_BIT: TextureUsageBits = TextureUsageBits(8)
+      public val STORAGE: TextureUsageBits = TextureUsageBits(8)
 
       /**
        * Texture can be used as a
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
        * image[/url] with support for atomic operations.
        */
-      public val TEXTURE_USAGE_STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBits(16)
+      public val STORAGE_ATOMIC: TextureUsageBits = TextureUsageBits(16)
 
       /**
        * Texture can be read back on the CPU using [textureGetData] faster than without this bit,
        * since it is always kept in the system memory.
        */
-      public val TEXTURE_USAGE_CPU_READ_BIT: TextureUsageBits = TextureUsageBits(32)
+      public val CPU_READ: TextureUsageBits = TextureUsageBits(32)
 
       /**
        * Texture can be updated using [textureUpdate].
        */
-      public val TEXTURE_USAGE_CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBits(64)
+      public val CAN_UPDATE: TextureUsageBits = TextureUsageBits(64)
 
       /**
        * Texture can be a source for [textureCopy].
        */
-      public val TEXTURE_USAGE_CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBits(128)
+      public val CAN_COPY_FROM: TextureUsageBits = TextureUsageBits(128)
 
       /**
        * Texture can be a destination for [textureCopy].
        */
-      public val TEXTURE_USAGE_CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBits(256)
+      public val CAN_COPY_TO: TextureUsageBits = TextureUsageBits(256)
 
       /**
        * Texture can be used as a
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment]input
        * attachment[/url] in a framebuffer.
        */
-      public val TEXTURE_USAGE_INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(512)
+      public val INPUT_ATTACHMENT: TextureUsageBits = TextureUsageBits(512)
     }
   }
 
@@ -3397,35 +3396,35 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Return the sampled value as-is.
      */
-    TEXTURE_SWIZZLE_IDENTITY(0),
+    IDENTITY(0),
     /**
      * Always return `0.0` when sampling.
      */
-    TEXTURE_SWIZZLE_ZERO(1),
+    ZERO(1),
     /**
      * Always return `1.0` when sampling.
      */
-    TEXTURE_SWIZZLE_ONE(2),
+    ONE(2),
     /**
      * Sample the red color channel.
      */
-    TEXTURE_SWIZZLE_R(3),
+    R(3),
     /**
      * Sample the green color channel.
      */
-    TEXTURE_SWIZZLE_G(4),
+    G(4),
     /**
      * Sample the blue color channel.
      */
-    TEXTURE_SWIZZLE_B(5),
+    B(5),
     /**
      * Sample the alpha channel.
      */
-    TEXTURE_SWIZZLE_A(6),
+    A(6),
     /**
      * Represents the size of the [TextureSwizzle] enum.
      */
-    TEXTURE_SWIZZLE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -3448,7 +3447,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Cubemap texture slice.
      */
-    TEXTURE_SLICE_CUBEMAP(1),
+    CUBEMAP(1),
     /**
      * 3-dimensional texture slice.
      */
@@ -3472,12 +3471,12 @@ public open class RenderingDevice internal constructor() : Object() {
      * Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will
      * result in a pixelated look.
      */
-    SAMPLER_FILTER_NEAREST(0),
+    NEAREST(0),
     /**
      * Bilinear sampler filtering. Sampling at higher resolutions than the source will result in a
      * blurry look.
      */
-    SAMPLER_FILTER_LINEAR(1),
+    LINEAR(1),
     ;
 
     public val id: Long
@@ -3496,33 +3495,33 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Sample with repeating enabled.
      */
-    SAMPLER_REPEAT_MODE_REPEAT(0),
+    REPEAT(0),
     /**
      * Sample with mirrored repeating enabled. When sampling outside the `[0.0, 1.0]` range, return
      * a mirrored version of the sampler. This mirrored version is mirrored again if sampling further
      * away, with the pattern repeating indefinitely.
      */
-    SAMPLER_REPEAT_MODE_MIRRORED_REPEAT(1),
+    MIRRORED_REPEAT(1),
     /**
      * Sample with repeating disabled. When sampling outside the `[0.0, 1.0]` range, return the
      * color of the last pixel on the edge.
      */
-    SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE(2),
+    CLAMP_TO_EDGE(2),
     /**
      * Sample with repeating disabled. When sampling outside the `[0.0, 1.0]` range, return the
      * specified [RDSamplerState.borderColor].
      */
-    SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER(3),
+    CLAMP_TO_BORDER(3),
     /**
      * Sample with mirrored repeating enabled, but only once. When sampling in the `[-1.0, 0.0]`
      * range, return a mirrored version of the sampler. When sampling outside the `[-1.0, 1.0]` range,
      * return the color of the last pixel on the edge.
      */
-    SAMPLER_REPEAT_MODE_MIRROR_CLAMP_TO_EDGE(4),
+    MIRROR_CLAMP_TO_EDGE(4),
     /**
      * Represents the size of the [SamplerRepeatMode] enum.
      */
-    SAMPLER_REPEAT_MODE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -3542,36 +3541,36 @@ public open class RenderingDevice internal constructor() : Object() {
      * Return a floating-point transparent black color when sampling outside the `[0.0, 1.0]` range.
      * Only effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
-    SAMPLER_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK(0),
+    FLOAT_TRANSPARENT_BLACK(0),
     /**
      * Return a integer transparent black color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
-    SAMPLER_BORDER_COLOR_INT_TRANSPARENT_BLACK(1),
+    INT_TRANSPARENT_BLACK(1),
     /**
      * Return a floating-point opaque black color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
-    SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_BLACK(2),
+    FLOAT_OPAQUE_BLACK(2),
     /**
      * Return a integer opaque black color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
-    SAMPLER_BORDER_COLOR_INT_OPAQUE_BLACK(3),
+    INT_OPAQUE_BLACK(3),
     /**
      * Return a floating-point opaque white color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
-    SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_WHITE(4),
+    FLOAT_OPAQUE_WHITE(4),
     /**
      * Return a integer opaque white color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
-    SAMPLER_BORDER_COLOR_INT_OPAQUE_WHITE(5),
+    INT_OPAQUE_WHITE(5),
     /**
      * Represents the size of the [SamplerBorderColor] enum.
      */
-    SAMPLER_BORDER_COLOR_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -3591,12 +3590,12 @@ public open class RenderingDevice internal constructor() : Object() {
      * Vertex attribute addressing is a function of the vertex. This is used to specify the rate at
      * which vertex attributes are pulled from buffers.
      */
-    VERTEX_FREQUENCY_VERTEX(0),
+    VERTEX(0),
     /**
      * Vertex attribute addressing is a function of the instance index. This is used to specify the
      * rate at which vertex attributes are pulled from buffers.
      */
-    VERTEX_FREQUENCY_INSTANCE(1),
+    INSTANCE(1),
     ;
 
     public val id: Long
@@ -3616,12 +3615,12 @@ public open class RenderingDevice internal constructor() : Object() {
      * Index buffer in 16-bit unsigned integer format. This limits the maximum index that can be
      * specified to `65535`.
      */
-    INDEX_BUFFER_FORMAT_UINT16(0),
+    UINT16(0),
     /**
      * Index buffer in 32-bit unsigned integer format. This limits the maximum index that can be
      * specified to `4294967295`.
      */
-    INDEX_BUFFER_FORMAT_UINT32(1),
+    UINT32(1),
     ;
 
     public val id: Long
@@ -3666,7 +3665,7 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): StorageBufferUsage = StorageBufferUsage(flag ushr bits)
 
     public companion object {
-      public val STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT: StorageBufferUsage = StorageBufferUsage(1)
+      public val DISPATCH_INDIRECT: StorageBufferUsage = StorageBufferUsage(1)
     }
   }
 
@@ -3716,7 +3715,7 @@ public open class RenderingDevice internal constructor() : Object() {
        *       storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
        * ```
        */
-      public val BUFFER_CREATION_DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBits(1)
+      public val DEVICE_ADDRESS: BufferCreationBits = BufferCreationBits(1)
 
       /**
        * Set this flag so that it is created as storage. This is useful if Compute Shaders need
@@ -3724,7 +3723,7 @@ public open class RenderingDevice internal constructor() : Object() {
        * Compute Shaders which need access to vertex buffers, to be later consumed by vertex shaders as
        * part of the regular rasterization pipeline.
        */
-      public val BUFFER_CREATION_AS_STORAGE_BIT: BufferCreationBits = BufferCreationBits(2)
+      public val AS_STORAGE: BufferCreationBits = BufferCreationBits(2)
     }
   }
 
@@ -3734,47 +3733,47 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Sampler uniform.
      */
-    UNIFORM_TYPE_SAMPLER(0),
+    SAMPLER(0),
     /**
      * Sampler uniform with a texture.
      */
-    UNIFORM_TYPE_SAMPLER_WITH_TEXTURE(1),
+    SAMPLER_WITH_TEXTURE(1),
     /**
      * Texture uniform.
      */
-    UNIFORM_TYPE_TEXTURE(2),
+    TEXTURE(2),
     /**
      * Image uniform.
      */
-    UNIFORM_TYPE_IMAGE(3),
+    IMAGE(3),
     /**
      * Texture buffer uniform.
      */
-    UNIFORM_TYPE_TEXTURE_BUFFER(4),
+    TEXTURE_BUFFER(4),
     /**
      * Sampler uniform with a texture buffer.
      */
-    UNIFORM_TYPE_SAMPLER_WITH_TEXTURE_BUFFER(5),
+    SAMPLER_WITH_TEXTURE_BUFFER(5),
     /**
      * Image buffer uniform.
      */
-    UNIFORM_TYPE_IMAGE_BUFFER(6),
+    IMAGE_BUFFER(6),
     /**
      * Uniform buffer uniform.
      */
-    UNIFORM_TYPE_UNIFORM_BUFFER(7),
+    UNIFORM_BUFFER(7),
     /**
      * [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]Storage buffer[/url] uniform.
      */
-    UNIFORM_TYPE_STORAGE_BUFFER(8),
+    STORAGE_BUFFER(8),
     /**
      * Input attachment uniform.
      */
-    UNIFORM_TYPE_INPUT_ATTACHMENT(9),
+    INPUT_ATTACHMENT(9),
     /**
      * Represents the size of the [UniformType] enum.
      */
-    UNIFORM_TYPE_MAX(10),
+    MAX(10),
     ;
 
     public val id: Long
@@ -3793,63 +3792,63 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Point rendering primitive (with constant size, regardless of distance from camera).
      */
-    RENDER_PRIMITIVE_POINTS(0),
+    POINTS(0),
     /**
      * Line list rendering primitive. Lines are drawn separated from each other.
      */
-    RENDER_PRIMITIVE_LINES(1),
+    LINES(1),
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists-with-adjacency]Line
      * list rendering primitive with adjacency.[/url]
      * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
-    RENDER_PRIMITIVE_LINES_WITH_ADJACENCY(2),
+    LINES_WITH_ADJACENCY(2),
     /**
      * Line strip rendering primitive. Lines drawn are connected to the previous vertex.
      */
-    RENDER_PRIMITIVE_LINESTRIPS(3),
+    LINESTRIPS(3),
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips-with-adjacency]Line
      * strip rendering primitive with adjacency.[/url]
      * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
-    RENDER_PRIMITIVE_LINESTRIPS_WITH_ADJACENCY(4),
+    LINESTRIPS_WITH_ADJACENCY(4),
     /**
      * Triangle list rendering primitive. Triangles are drawn separated from each other.
      */
-    RENDER_PRIMITIVE_TRIANGLES(5),
+    TRIANGLES(5),
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency]Triangle
      * list rendering primitive with adjacency.[/url]
      *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
-    RENDER_PRIMITIVE_TRIANGLES_WITH_ADJACENCY(6),
+    TRIANGLES_WITH_ADJACENCY(6),
     /**
      * Triangle strip rendering primitive. Triangles drawn are connected to the previous triangle.
      */
-    RENDER_PRIMITIVE_TRIANGLE_STRIPS(7),
+    TRIANGLE_STRIPS(7),
     /**
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips-with-adjacency]Triangle
      * strip rendering primitive with adjacency.[/url]
      * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
-    RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_AJACENCY(8),
+    TRIANGLE_STRIPS_WITH_AJACENCY(8),
     /**
      * Triangle strip rendering primitive with *primitive restart* enabled. Triangles drawn are
      * connected to the previous triangle, but a primitive restart index can be specified before
      * drawing to create a second triangle strip after the specified index.
      * **Note:** Only compatible with indexed draws.
      */
-    RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_RESTART_INDEX(9),
+    TRIANGLE_STRIPS_WITH_RESTART_INDEX(9),
     /**
      * Tessellation patch rendering primitive. Only useful with tessellation shaders, which can be
      * used to deform these patches.
      */
-    RENDER_PRIMITIVE_TESSELATION_PATCH(10),
+    TESSELATION_PATCH(10),
     /**
      * Represents the size of the [RenderPrimitive] enum.
      */
-    RENDER_PRIMITIVE_MAX(11),
+    MAX(11),
     ;
 
     public val id: Long
@@ -3868,15 +3867,15 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Do not use polygon front face or backface culling.
      */
-    POLYGON_CULL_DISABLED(0),
+    DISABLED(0),
     /**
      * Use polygon frontface culling (faces pointing towards the camera are hidden).
      */
-    POLYGON_CULL_FRONT(1),
+    FRONT(1),
     /**
      * Use polygon backface culling (faces pointing away from the camera are hidden).
      */
-    POLYGON_CULL_BACK(2),
+    BACK(2),
     ;
 
     public val id: Long
@@ -3895,11 +3894,11 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Clockwise winding order to determine which face of a polygon is its front face.
      */
-    POLYGON_FRONT_FACE_CLOCKWISE(0),
+    CLOCKWISE(0),
     /**
      * Counter-clockwise winding order to determine which face of a polygon is its front face.
      */
-    POLYGON_FRONT_FACE_COUNTER_CLOCKWISE(1),
+    COUNTER_CLOCKWISE(1),
     ;
 
     public val id: Long
@@ -3918,43 +3917,43 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Keep the current stencil value.
      */
-    STENCIL_OP_KEEP(0),
+    KEEP(0),
     /**
      * Set the stencil value to `0`.
      */
-    STENCIL_OP_ZERO(1),
+    ZERO(1),
     /**
      * Replace the existing stencil value with the new one.
      */
-    STENCIL_OP_REPLACE(2),
+    REPLACE(2),
     /**
      * Increment the existing stencil value and clamp to the maximum representable unsigned value if
      * reached. Stencil bits are considered as an unsigned integer.
      */
-    STENCIL_OP_INCREMENT_AND_CLAMP(3),
+    INCREMENT_AND_CLAMP(3),
     /**
      * Decrement the existing stencil value and clamp to the minimum value if reached. Stencil bits
      * are considered as an unsigned integer.
      */
-    STENCIL_OP_DECREMENT_AND_CLAMP(4),
+    DECREMENT_AND_CLAMP(4),
     /**
      * Bitwise-invert the existing stencil value.
      */
-    STENCIL_OP_INVERT(5),
+    INVERT(5),
     /**
      * Increment the stencil value and wrap around to `0` if reaching the maximum representable
      * unsigned. Stencil bits are considered as an unsigned integer.
      */
-    STENCIL_OP_INCREMENT_AND_WRAP(6),
+    INCREMENT_AND_WRAP(6),
     /**
      * Decrement the stencil value and wrap around to the maximum representable unsigned if reaching
      * the minimum. Stencil bits are considered as an unsigned integer.
      */
-    STENCIL_OP_DECREMENT_AND_WRAP(7),
+    DECREMENT_AND_WRAP(7),
     /**
      * Represents the size of the [StencilOperation] enum.
      */
-    STENCIL_OP_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long
@@ -3973,39 +3972,39 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * "Never" comparison (opposite of [COMPARE_OP_ALWAYS]).
      */
-    COMPARE_OP_NEVER(0),
+    NEVER(0),
     /**
      * "Less than" comparison.
      */
-    COMPARE_OP_LESS(1),
+    LESS(1),
     /**
      * "Equal" comparison.
      */
-    COMPARE_OP_EQUAL(2),
+    EQUAL(2),
     /**
      * "Less than or equal" comparison.
      */
-    COMPARE_OP_LESS_OR_EQUAL(3),
+    LESS_OR_EQUAL(3),
     /**
      * "Greater than" comparison.
      */
-    COMPARE_OP_GREATER(4),
+    GREATER(4),
     /**
      * "Not equal" comparison.
      */
-    COMPARE_OP_NOT_EQUAL(5),
+    NOT_EQUAL(5),
     /**
      * "Greater than or equal" comparison.
      */
-    COMPARE_OP_GREATER_OR_EQUAL(6),
+    GREATER_OR_EQUAL(6),
     /**
      * "Always" comparison (opposite of [COMPARE_OP_NEVER]).
      */
-    COMPARE_OP_ALWAYS(7),
+    ALWAYS(7),
     /**
      * Represents the size of the [CompareOperator] enum.
      */
-    COMPARE_OP_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long
@@ -4024,75 +4023,75 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Clear logic operation (result is always `0`). See also [LOGIC_OP_SET].
      */
-    LOGIC_OP_CLEAR(0),
+    CLEAR(0),
     /**
      * AND logic operation.
      */
-    LOGIC_OP_AND(1),
+    AND(1),
     /**
      * AND logic operation with the *destination* operand being inverted. See also
      * [LOGIC_OP_AND_INVERTED].
      */
-    LOGIC_OP_AND_REVERSE(2),
+    AND_REVERSE(2),
     /**
      * Copy logic operation (keeps the *source* value as-is). See also [LOGIC_OP_COPY_INVERTED] and
      * [LOGIC_OP_NO_OP].
      */
-    LOGIC_OP_COPY(3),
+    COPY(3),
     /**
      * AND logic operation with the *source* operand being inverted. See also
      * [LOGIC_OP_AND_REVERSE].
      */
-    LOGIC_OP_AND_INVERTED(4),
+    AND_INVERTED(4),
     /**
      * No-op logic operation (keeps the *destination* value as-is). See also [LOGIC_OP_COPY].
      */
-    LOGIC_OP_NO_OP(5),
+    NO(5),
     /**
      * Exclusive or (XOR) logic operation.
      */
-    LOGIC_OP_XOR(6),
+    XOR(6),
     /**
      * OR logic operation.
      */
-    LOGIC_OP_OR(7),
+    OR(7),
     /**
      * Not-OR (NOR) logic operation.
      */
-    LOGIC_OP_NOR(8),
+    NOR(8),
     /**
      * Not-XOR (XNOR) logic operation.
      */
-    LOGIC_OP_EQUIVALENT(9),
+    EQUIVALENT(9),
     /**
      * Invert logic operation.
      */
-    LOGIC_OP_INVERT(10),
+    INVERT(10),
     /**
      * OR logic operation with the *destination* operand being inverted. See also
      * [LOGIC_OP_OR_REVERSE].
      */
-    LOGIC_OP_OR_REVERSE(11),
+    OR_REVERSE(11),
     /**
      * NOT logic operation (inverts the value). See also [LOGIC_OP_COPY].
      */
-    LOGIC_OP_COPY_INVERTED(12),
+    COPY_INVERTED(12),
     /**
      * OR logic operation with the *source* operand being inverted. See also [LOGIC_OP_OR_REVERSE].
      */
-    LOGIC_OP_OR_INVERTED(13),
+    OR_INVERTED(13),
     /**
      * Not-AND (NAND) logic operation.
      */
-    LOGIC_OP_NAND(14),
+    NAND(14),
     /**
      * SET logic operation (result is always `1`). See also [LOGIC_OP_CLEAR].
      */
-    LOGIC_OP_SET(15),
+    SET(15),
     /**
      * Represents the size of the [LogicOperation] enum.
      */
-    LOGIC_OP_MAX(16),
+    MAX(16),
     ;
 
     public val id: Long
@@ -4111,92 +4110,92 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Constant `0.0` blend factor.
      */
-    BLEND_FACTOR_ZERO(0),
+    ZERO(0),
     /**
      * Constant `1.0` blend factor.
      */
-    BLEND_FACTOR_ONE(1),
+    ONE(1),
     /**
      * Color blend factor is `source color`. Alpha blend factor is `source alpha`.
      */
-    BLEND_FACTOR_SRC_COLOR(2),
+    SRC_COLOR(2),
     /**
      * Color blend factor is `1.0 - source color`. Alpha blend factor is `1.0 - source alpha`.
      */
-    BLEND_FACTOR_ONE_MINUS_SRC_COLOR(3),
+    ONE_MINUS_SRC_COLOR(3),
     /**
      * Color blend factor is `destination color`. Alpha blend factor is `destination alpha`.
      */
-    BLEND_FACTOR_DST_COLOR(4),
+    DST_COLOR(4),
     /**
      * Color blend factor is `1.0 - destination color`. Alpha blend factor is `1.0 - destination
      * alpha`.
      */
-    BLEND_FACTOR_ONE_MINUS_DST_COLOR(5),
+    ONE_MINUS_DST_COLOR(5),
     /**
      * Color and alpha blend factor is `source alpha`.
      */
-    BLEND_FACTOR_SRC_ALPHA(6),
+    SRC_ALPHA(6),
     /**
      * Color and alpha blend factor is `1.0 - source alpha`.
      */
-    BLEND_FACTOR_ONE_MINUS_SRC_ALPHA(7),
+    ONE_MINUS_SRC_ALPHA(7),
     /**
      * Color and alpha blend factor is `destination alpha`.
      */
-    BLEND_FACTOR_DST_ALPHA(8),
+    DST_ALPHA(8),
     /**
      * Color and alpha blend factor is `1.0 - destination alpha`.
      */
-    BLEND_FACTOR_ONE_MINUS_DST_ALPHA(9),
+    ONE_MINUS_DST_ALPHA(9),
     /**
      * Color blend factor is `blend constant color`. Alpha blend factor is `blend constant alpha`
      * (see [drawListSetBlendConstants]).
      */
-    BLEND_FACTOR_CONSTANT_COLOR(10),
+    CONSTANT_COLOR(10),
     /**
      * Color blend factor is `1.0 - blend constant color`. Alpha blend factor is `1.0 - blend
      * constant alpha` (see [drawListSetBlendConstants]).
      */
-    BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR(11),
+    ONE_MINUS_CONSTANT_COLOR(11),
     /**
      * Color and alpha blend factor is `blend constant alpha` (see [drawListSetBlendConstants]).
      */
-    BLEND_FACTOR_CONSTANT_ALPHA(12),
+    CONSTANT_ALPHA(12),
     /**
      * Color and alpha blend factor is `1.0 - blend constant alpha` (see
      * [drawListSetBlendConstants]).
      */
-    BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA(13),
+    ONE_MINUS_CONSTANT_ALPHA(13),
     /**
      * Color blend factor is `min(source alpha, 1.0 - destination alpha)`. Alpha blend factor is
      * `1.0`.
      */
-    BLEND_FACTOR_SRC_ALPHA_SATURATE(14),
+    SRC_ALPHA_SATURATE(14),
     /**
      * Color blend factor is `second source color`. Alpha blend factor is `second source alpha`.
      * Only relevant for dual-source blending.
      */
-    BLEND_FACTOR_SRC1_COLOR(15),
+    SRC1_COLOR(15),
     /**
      * Color blend factor is `1.0 - second source color`. Alpha blend factor is `1.0 - second source
      * alpha`. Only relevant for dual-source blending.
      */
-    BLEND_FACTOR_ONE_MINUS_SRC1_COLOR(16),
+    ONE_MINUS_SRC1_COLOR(16),
     /**
      * Color and alpha blend factor is `second source alpha`. Only relevant for dual-source
      * blending.
      */
-    BLEND_FACTOR_SRC1_ALPHA(17),
+    SRC1_ALPHA(17),
     /**
      * Color and alpha blend factor is `1.0 - second source alpha`. Only relevant for dual-source
      * blending.
      */
-    BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA(18),
+    ONE_MINUS_SRC1_ALPHA(18),
     /**
      * Represents the size of the [BlendFactor] enum.
      */
-    BLEND_FACTOR_MAX(19),
+    MAX(19),
     ;
 
     public val id: Long
@@ -4215,27 +4214,27 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Additive blending operation (`source + destination`).
      */
-    BLEND_OP_ADD(0),
+    ADD(0),
     /**
      * Subtractive blending operation (`source - destination`).
      */
-    BLEND_OP_SUBTRACT(1),
+    SUBTRACT(1),
     /**
      * Reverse subtractive blending operation (`destination - source`).
      */
-    BLEND_OP_REVERSE_SUBTRACT(2),
+    REVERSE_SUBTRACT(2),
     /**
      * Minimum blending operation (keep the lowest value of the two).
      */
-    BLEND_OP_MINIMUM(3),
+    MINIMUM(3),
     /**
      * Maximum blending operation (keep the highest value of the two).
      */
-    BLEND_OP_MAXIMUM(4),
+    MAXIMUM(4),
     /**
      * Represents the size of the [BlendOperation] enum.
      */
-    BLEND_OP_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -4320,25 +4319,25 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Load the previous contents of the framebuffer.
      */
-    INITIAL_ACTION_LOAD(0),
+    LOAD(0),
     /**
      * Clear the whole framebuffer or its specified region.
      */
-    INITIAL_ACTION_CLEAR(1),
+    CLEAR(1),
     /**
      * Ignore the previous contents of the framebuffer. This is the fastest option if you'll
      * overwrite all of the pixels and don't need to read any of them.
      */
-    INITIAL_ACTION_DISCARD(2),
+    DISCARD(2),
     /**
      * Represents the size of the [InitialAction] enum.
      */
-    INITIAL_ACTION_MAX(3),
-    INITIAL_ACTION_CLEAR_REGION(1),
-    INITIAL_ACTION_CLEAR_REGION_CONTINUE(1),
-    INITIAL_ACTION_KEEP(0),
-    INITIAL_ACTION_DROP(2),
-    INITIAL_ACTION_CONTINUE(0),
+    MAX(3),
+    CLEAR_REGION(1),
+    CLEAR_REGION_CONTINUE(1),
+    KEEP(0),
+    DROP(2),
+    CONTINUE(0),
     ;
 
     public val id: Long
@@ -4357,18 +4356,18 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Store the result of the draw list in the framebuffer. This is generally what you want to do.
      */
-    FINAL_ACTION_STORE(0),
+    STORE(0),
     /**
      * Discard the contents of the framebuffer. This is the fastest option if you don't need to use
      * the results of the draw list.
      */
-    FINAL_ACTION_DISCARD(1),
+    DISCARD(1),
     /**
      * Represents the size of the [FinalAction] enum.
      */
-    FINAL_ACTION_MAX(2),
-    FINAL_ACTION_READ(0),
-    FINAL_ACTION_CONTINUE(0),
+    MAX(2),
+    READ(0),
+    CONTINUE(0),
     ;
 
     public val id: Long
@@ -4388,51 +4387,51 @@ public open class RenderingDevice internal constructor() : Object() {
      * Vertex shader stage. This can be used to manipulate vertices from a shader (but not create
      * new vertices).
      */
-    SHADER_STAGE_VERTEX(0),
+    VERTEX(0),
     /**
      * Fragment shader stage (called "pixel shader" in Direct3D). This can be used to manipulate
      * pixels from a shader.
      */
-    SHADER_STAGE_FRAGMENT(1),
+    FRAGMENT(1),
     /**
      * Tessellation control shader stage. This can be used to create additional geometry from a
      * shader.
      */
-    SHADER_STAGE_TESSELATION_CONTROL(2),
+    TESSELATION_CONTROL(2),
     /**
      * Tessellation evaluation shader stage. This can be used to create additional geometry from a
      * shader.
      */
-    SHADER_STAGE_TESSELATION_EVALUATION(3),
+    TESSELATION_EVALUATION(3),
     /**
      * Compute shader stage. This can be used to run arbitrary computing tasks in a shader,
      * performing them on the GPU instead of the CPU.
      */
-    SHADER_STAGE_COMPUTE(4),
+    COMPUTE(4),
     /**
      * Represents the size of the [ShaderStage] enum.
      */
-    SHADER_STAGE_MAX(5),
+    MAX(5),
     /**
      * Vertex shader stage bit (see also [SHADER_STAGE_VERTEX]).
      */
-    SHADER_STAGE_VERTEX_BIT(1),
+    VERTEX_BIT(1),
     /**
      * Fragment shader stage bit (see also [SHADER_STAGE_FRAGMENT]).
      */
-    SHADER_STAGE_FRAGMENT_BIT(2),
+    FRAGMENT_BIT(2),
     /**
      * Tessellation control shader stage bit (see also [SHADER_STAGE_TESSELATION_CONTROL]).
      */
-    SHADER_STAGE_TESSELATION_CONTROL_BIT(4),
+    TESSELATION_CONTROL_BIT(4),
     /**
      * Tessellation evaluation shader stage bit (see also [SHADER_STAGE_TESSELATION_EVALUATION]).
      */
-    SHADER_STAGE_TESSELATION_EVALUATION_BIT(8),
+    TESSELATION_EVALUATION_BIT(8),
     /**
      * Compute shader stage bit (see also [SHADER_STAGE_COMPUTE]).
      */
-    SHADER_STAGE_COMPUTE_BIT(16),
+    COMPUTE_BIT(16),
     ;
 
     public val id: Long
@@ -4452,12 +4451,12 @@ public open class RenderingDevice internal constructor() : Object() {
      * Khronos' GLSL shading language (used natively by OpenGL and Vulkan). This is the language
      * used for core Godot shaders.
      */
-    SHADER_LANGUAGE_GLSL(0),
+    GLSL(0),
     /**
      * Microsoft's High-Level Shading Language (used natively by Direct3D, but can also be used in
      * Vulkan).
      */
-    SHADER_LANGUAGE_HLSL(1),
+    HLSL(1),
     ;
 
     public val id: Long
@@ -4476,15 +4475,15 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Boolean specialization constant.
      */
-    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_BOOL(0),
+    BOOL(0),
     /**
      * Integer specialization constant.
      */
-    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_INT(1),
+    INT(1),
     /**
      * Floating-point specialization constant.
      */
-    PIPELINE_SPECIALIZATION_CONSTANT_TYPE_FLOAT(2),
+    FLOAT(2),
     ;
 
     public val id: Long
@@ -4523,169 +4522,169 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Maximum number of uniform sets that can be bound at a given time.
      */
-    LIMIT_MAX_BOUND_UNIFORM_SETS(0),
+    MAX_BOUND_UNIFORM_SETS(0),
     /**
      * Maximum number of color framebuffer attachments that can be used at a given time.
      */
-    LIMIT_MAX_FRAMEBUFFER_COLOR_ATTACHMENTS(1),
+    MAX_FRAMEBUFFER_COLOR_ATTACHMENTS(1),
     /**
      * Maximum number of textures that can be used per uniform set.
      */
-    LIMIT_MAX_TEXTURES_PER_UNIFORM_SET(2),
+    MAX_TEXTURES_PER_UNIFORM_SET(2),
     /**
      * Maximum number of samplers that can be used per uniform set.
      */
-    LIMIT_MAX_SAMPLERS_PER_UNIFORM_SET(3),
+    MAX_SAMPLERS_PER_UNIFORM_SET(3),
     /**
      * Maximum number of [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage
      * buffers[/url] per uniform set.
      */
-    LIMIT_MAX_STORAGE_BUFFERS_PER_UNIFORM_SET(4),
+    MAX_STORAGE_BUFFERS_PER_UNIFORM_SET(4),
     /**
      * Maximum number of storage images per uniform set.
      */
-    LIMIT_MAX_STORAGE_IMAGES_PER_UNIFORM_SET(5),
+    MAX_STORAGE_IMAGES_PER_UNIFORM_SET(5),
     /**
      * Maximum number of uniform buffers per uniform set.
      */
-    LIMIT_MAX_UNIFORM_BUFFERS_PER_UNIFORM_SET(6),
+    MAX_UNIFORM_BUFFERS_PER_UNIFORM_SET(6),
     /**
      * Maximum index for an indexed draw command.
      */
-    LIMIT_MAX_DRAW_INDEXED_INDEX(7),
+    MAX_DRAW_INDEXED_INDEX(7),
     /**
      * Maximum height of a framebuffer (in pixels).
      */
-    LIMIT_MAX_FRAMEBUFFER_HEIGHT(8),
+    MAX_FRAMEBUFFER_HEIGHT(8),
     /**
      * Maximum width of a framebuffer (in pixels).
      */
-    LIMIT_MAX_FRAMEBUFFER_WIDTH(9),
+    MAX_FRAMEBUFFER_WIDTH(9),
     /**
      * Maximum number of texture array layers.
      */
-    LIMIT_MAX_TEXTURE_ARRAY_LAYERS(10),
+    MAX_TEXTURE_ARRAY_LAYERS(10),
     /**
      * Maximum supported 1-dimensional texture size (in pixels on a single axis).
      */
-    LIMIT_MAX_TEXTURE_SIZE_1D(11),
+    MAX_TEXTURE_SIZE_1D(11),
     /**
      * Maximum supported 2-dimensional texture size (in pixels on a single axis).
      */
-    LIMIT_MAX_TEXTURE_SIZE_2D(12),
+    MAX_TEXTURE_SIZE_2D(12),
     /**
      * Maximum supported 3-dimensional texture size (in pixels on a single axis).
      */
-    LIMIT_MAX_TEXTURE_SIZE_3D(13),
+    MAX_TEXTURE_SIZE_3D(13),
     /**
      * Maximum supported cubemap texture size (in pixels on a single axis of a single face).
      */
-    LIMIT_MAX_TEXTURE_SIZE_CUBE(14),
+    MAX_TEXTURE_SIZE_CUBE(14),
     /**
      * Maximum number of textures per shader stage.
      */
-    LIMIT_MAX_TEXTURES_PER_SHADER_STAGE(15),
+    MAX_TEXTURES_PER_SHADER_STAGE(15),
     /**
      * Maximum number of samplers per shader stage.
      */
-    LIMIT_MAX_SAMPLERS_PER_SHADER_STAGE(16),
+    MAX_SAMPLERS_PER_SHADER_STAGE(16),
     /**
      * Maximum number of [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage
      * buffers[/url] per shader stage.
      */
-    LIMIT_MAX_STORAGE_BUFFERS_PER_SHADER_STAGE(17),
+    MAX_STORAGE_BUFFERS_PER_SHADER_STAGE(17),
     /**
      * Maximum number of storage images per shader stage.
      */
-    LIMIT_MAX_STORAGE_IMAGES_PER_SHADER_STAGE(18),
+    MAX_STORAGE_IMAGES_PER_SHADER_STAGE(18),
     /**
      * Maximum number of uniform buffers per uniform set.
      */
-    LIMIT_MAX_UNIFORM_BUFFERS_PER_SHADER_STAGE(19),
+    MAX_UNIFORM_BUFFERS_PER_SHADER_STAGE(19),
     /**
      * Maximum size of a push constant. A lot of devices are limited to 128 bytes, so try to avoid
      * exceeding 128 bytes in push constants to ensure compatibility even if your GPU is reporting a
      * higher value.
      */
-    LIMIT_MAX_PUSH_CONSTANT_SIZE(20),
+    MAX_PUSH_CONSTANT_SIZE(20),
     /**
      * Maximum size of a uniform buffer.
      */
-    LIMIT_MAX_UNIFORM_BUFFER_SIZE(21),
+    MAX_UNIFORM_BUFFER_SIZE(21),
     /**
      * Maximum vertex input attribute offset.
      */
-    LIMIT_MAX_VERTEX_INPUT_ATTRIBUTE_OFFSET(22),
+    MAX_VERTEX_INPUT_ATTRIBUTE_OFFSET(22),
     /**
      * Maximum number of vertex input attributes.
      */
-    LIMIT_MAX_VERTEX_INPUT_ATTRIBUTES(23),
+    MAX_VERTEX_INPUT_ATTRIBUTES(23),
     /**
      * Maximum number of vertex input bindings.
      */
-    LIMIT_MAX_VERTEX_INPUT_BINDINGS(24),
+    MAX_VERTEX_INPUT_BINDINGS(24),
     /**
      * Maximum vertex input binding stride.
      */
-    LIMIT_MAX_VERTEX_INPUT_BINDING_STRIDE(25),
+    MAX_VERTEX_INPUT_BINDING_STRIDE(25),
     /**
      * Minimum uniform buffer offset alignment.
      */
-    LIMIT_MIN_UNIFORM_BUFFER_OFFSET_ALIGNMENT(26),
+    MIN_UNIFORM_BUFFER_OFFSET_ALIGNMENT(26),
     /**
      * Maximum shared memory size for compute shaders.
      */
-    LIMIT_MAX_COMPUTE_SHARED_MEMORY_SIZE(27),
+    MAX_COMPUTE_SHARED_MEMORY_SIZE(27),
     /**
      * Maximum number of workgroups for compute shaders on the X axis.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_COUNT_X(28),
+    MAX_COMPUTE_WORKGROUP_COUNT_X(28),
     /**
      * Maximum number of workgroups for compute shaders on the Y axis.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_COUNT_Y(29),
+    MAX_COMPUTE_WORKGROUP_COUNT_Y(29),
     /**
      * Maximum number of workgroups for compute shaders on the Z axis.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_COUNT_Z(30),
+    MAX_COMPUTE_WORKGROUP_COUNT_Z(30),
     /**
      * Maximum number of workgroup invocations for compute shaders.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_INVOCATIONS(31),
+    MAX_COMPUTE_WORKGROUP_INVOCATIONS(31),
     /**
      * Maximum workgroup size for compute shaders on the X axis.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_X(32),
+    MAX_COMPUTE_WORKGROUP_SIZE_X(32),
     /**
      * Maximum workgroup size for compute shaders on the Y axis.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_Y(33),
+    MAX_COMPUTE_WORKGROUP_SIZE_Y(33),
     /**
      * Maximum workgroup size for compute shaders on the Z axis.
      */
-    LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_Z(34),
+    MAX_COMPUTE_WORKGROUP_SIZE_Z(34),
     /**
      * Maximum viewport width (in pixels).
      */
-    LIMIT_MAX_VIEWPORT_DIMENSIONS_X(35),
+    MAX_VIEWPORT_DIMENSIONS_X(35),
     /**
      * Maximum viewport height (in pixels).
      */
-    LIMIT_MAX_VIEWPORT_DIMENSIONS_Y(36),
+    MAX_VIEWPORT_DIMENSIONS_Y(36),
     /**
      * Returns the smallest value for [ProjectSettings.rendering/scaling3d/scale] when using the
      * MetalFX temporal upscaler.
      * **Note:** The returned value is multiplied by a factor of `1000000` to preserve 6 digits of
      * precision. It must be divided by `1000000.0` to convert the value to a floating point number.
      */
-    LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE(46),
+    METALFX_TEMPORAL_SCALER_MIN_SCALE(46),
     /**
      * Returns the largest value for [ProjectSettings.rendering/scaling3d/scale] when using the
      * MetalFX temporal upscaler.
      * **Note:** The returned value is multiplied by a factor of `1000000` to preserve 6 digits of
      * precision. It must be divided by `1000000.0` to convert the value to a floating point number.
      */
-    LIMIT_METALFX_TEMPORAL_SCALER_MAX_SCALE(47),
+    METALFX_TEMPORAL_SCALER_MAX_SCALE(47),
     ;
 
     public val id: Long
@@ -4704,16 +4703,16 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Memory taken by textures.
      */
-    MEMORY_TEXTURES(0),
+    TEXTURES(0),
     /**
      * Memory taken by buffers.
      */
-    MEMORY_BUFFERS(1),
+    BUFFERS(1),
     /**
      * Total memory taken. This is greater than the sum of [MEMORY_TEXTURES] and [MEMORY_BUFFERS],
      * as it also includes miscellaneous memory usage.
      */
-    MEMORY_TOTAL(2),
+    TOTAL(2),
     ;
 
     public val id: Long
@@ -4786,137 +4785,137 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Do not clear or ignore any attachments.
        */
-      public val DRAW_DEFAULT_ALL: DrawFlags = DrawFlags(0)
+      public val DEFAULT_ALL: DrawFlags = DrawFlags(0)
 
       /**
        * Clear the first color attachment.
        */
-      public val DRAW_CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
+      public val CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
 
       /**
        * Clear the second color attachment.
        */
-      public val DRAW_CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
+      public val CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
 
       /**
        * Clear the third color attachment.
        */
-      public val DRAW_CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
+      public val CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
 
       /**
        * Clear the fourth color attachment.
        */
-      public val DRAW_CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
+      public val CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
 
       /**
        * Clear the fifth color attachment.
        */
-      public val DRAW_CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
+      public val CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
 
       /**
        * Clear the sixth color attachment.
        */
-      public val DRAW_CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
+      public val CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
 
       /**
        * Clear the seventh color attachment.
        */
-      public val DRAW_CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
+      public val CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
 
       /**
        * Clear the eighth color attachment.
        */
-      public val DRAW_CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
+      public val CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
 
       /**
        * Mask for clearing all color attachments.
        */
-      public val DRAW_CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
+      public val CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
 
       /**
        * Clear all color attachments.
        */
-      public val DRAW_CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
+      public val CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
 
       /**
        * Ignore the previous contents of the first color attachment.
        */
-      public val DRAW_IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
+      public val IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
 
       /**
        * Ignore the previous contents of the second color attachment.
        */
-      public val DRAW_IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
+      public val IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
 
       /**
        * Ignore the previous contents of the third color attachment.
        */
-      public val DRAW_IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
+      public val IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
 
       /**
        * Ignore the previous contents of the fourth color attachment.
        */
-      public val DRAW_IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
+      public val IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
 
       /**
        * Ignore the previous contents of the fifth color attachment.
        */
-      public val DRAW_IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
+      public val IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
 
       /**
        * Ignore the previous contents of the sixth color attachment.
        */
-      public val DRAW_IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
+      public val IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
 
       /**
        * Ignore the previous contents of the seventh color attachment.
        */
-      public val DRAW_IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
+      public val IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
 
       /**
        * Ignore the previous contents of the eighth color attachment.
        */
-      public val DRAW_IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
+      public val IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
 
       /**
        * Mask for ignoring all the previous contents of the color attachments.
        */
-      public val DRAW_IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
+      public val IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
 
       /**
        * Ignore the previous contents of all color attachments.
        */
-      public val DRAW_IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
+      public val IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
 
       /**
        * Clear the depth attachment.
        */
-      public val DRAW_CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
+      public val CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
 
       /**
        * Ignore the previous contents of the depth attachment.
        */
-      public val DRAW_IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
+      public val IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
 
       /**
        * Clear the stencil attachment.
        */
-      public val DRAW_CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
+      public val CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
 
       /**
        * Ignore the previous contents of the stencil attachment.
        */
-      public val DRAW_IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
+      public val IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
 
       /**
        * Clear all attachments.
        */
-      public val DRAW_CLEAR_ALL: DrawFlags = DrawFlags(327935)
+      public val CLEAR_ALL: DrawFlags = DrawFlags(327935)
 
       /**
        * Ignore the previous contents of all attachments.
        */
-      public val DRAW_IGNORE_ALL: DrawFlags = DrawFlags(720640)
+      public val IGNORE_ALL: DrawFlags = DrawFlags(720640)
     }
   }
 

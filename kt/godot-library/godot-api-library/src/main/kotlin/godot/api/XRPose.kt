@@ -277,16 +277,16 @@ public open class XRPose : RefCounted() {
     /**
      * No tracking information is available for this pose.
      */
-    XR_TRACKING_CONFIDENCE_NONE(0),
+    XR_NONE(0),
     /**
      * Tracking information may be inaccurate or estimated. For example, with inside out tracking
      * this would indicate a controller may be (partially) obscured.
      */
-    XR_TRACKING_CONFIDENCE_LOW(1),
+    XR_LOW(1),
     /**
      * Tracking information is considered accurate and up to date.
      */
-    XR_TRACKING_CONFIDENCE_HIGH(2),
+    XR_HIGH(2),
     ;
 
     public val id: Long

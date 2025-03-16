@@ -498,7 +498,7 @@ public open class RichTextLabel : Control() {
     width: Int = 0,
     height: Int = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     key: Any? = null,
     pad: Boolean = false,
@@ -521,7 +521,7 @@ public open class RichTextLabel : Control() {
     width: Int = 0,
     height: Int = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     pad: Boolean = false,
     tooltip: String = "",
@@ -659,10 +659,9 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushParagraph(
     alignment: HorizontalAlignment,
-    baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
+    baseDirection: Control.TextDirection = Control.TextDirection.AUTO,
     language: String = "",
-    stParser: TextServer.StructuredTextParser =
-        TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT,
+    stParser: TextServer.StructuredTextParser = TextServer.StructuredTextParser.DEFAULT,
     justificationFlags: JustificationFlag = TextServer.JustificationFlag(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
@@ -705,7 +704,7 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushMeta(
     `data`: Any?,
-    underlineMode: MetaUnderline = RichTextLabel.MetaUnderline.META_UNDERLINE_ALWAYS,
+    underlineMode: MetaUnderline = RichTextLabel.MetaUnderline.ALWAYS,
     tooltip: String = "",
   ): Unit {
     TransferContext.writeArguments(ANY to data, LONG to underlineMode.id, STRING to tooltip)
@@ -752,7 +751,7 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushTable(
     columns: Int,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_TOP_TO,
+    inlineAlign: InlineAlignment = InlineAlignment.TOP_TO,
     alignToRow: Int = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.id, LONG to alignToRow.toLong())
@@ -1597,19 +1596,19 @@ public open class RichTextLabel : Control() {
     /**
      * Each list item has a number marker.
      */
-    LIST_NUMBERS(0),
+    NUMBERS(0),
     /**
      * Each list item has a letter marker.
      */
-    LIST_LETTERS(1),
+    LETTERS(1),
     /**
      * Each list item has a roman number marker.
      */
-    LIST_ROMAN(2),
+    ROMAN(2),
     /**
      * Each list item has a filled circle marker.
      */
-    LIST_DOTS(3),
+    DOTS(3),
     ;
 
     public val id: Long
@@ -1628,15 +1627,15 @@ public open class RichTextLabel : Control() {
     /**
      * Copies the selected text.
      */
-    MENU_COPY(0),
+    COPY(0),
     /**
      * Selects the whole [RichTextLabel] text.
      */
-    MENU_SELECT_ALL(1),
+    SELECT_ALL(1),
     /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -1655,16 +1654,16 @@ public open class RichTextLabel : Control() {
     /**
      * Meta tag does not display an underline, even if [metaUnderlined] is `true`.
      */
-    META_UNDERLINE_NEVER(0),
+    NEVER(0),
     /**
      * If [metaUnderlined] is `true`, meta tag always display an underline.
      */
-    META_UNDERLINE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * If [metaUnderlined] is `true`, meta tag display an underline when the mouse cursor is over
      * it.
      */
-    META_UNDERLINE_ON_HOVER(2),
+    ON_HOVER(2),
     ;
 
     public val id: Long

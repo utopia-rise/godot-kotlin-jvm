@@ -99,8 +99,8 @@ class TestRect2i {
         checkTrue(Rect2i(0, 100, 1280, 720).grow(-4000) == Rect2i(4000, 4100, -6720, -7280))
         checkTrue(Rect2i(0, 100, 1280, 720).growIndividual(100, 200, 300, 400) == Rect2i(-100, -100, 1680, 1320))
         checkTrue(Rect2i(0, 100, 1280, 720).growIndividual(-100, 200, 300, -400) == Rect2i(100, -100, 1480, 520))
-        checkTrue(Rect2i(0, 100, 1280, 720).growSide(Side.SIDE_TOP, 500) == Rect2i(0, -400, 1280, 1220))
-        checkTrue(Rect2i(0, 100, 1280, 720).growSide(Side.SIDE_TOP, -500) == Rect2i(0, 600, 1280, 220))
+        checkTrue(Rect2i(0, 100, 1280, 720).growSide(Side.TOP, 500) == Rect2i(0, -400, 1280, 1220))
+        checkTrue(Rect2i(0, 100, 1280, 720).growSide(Side.TOP, -500) == Rect2i(0, 600, 1280, 220))
     }
 
     @Test

@@ -435,12 +435,12 @@ public open class SoftBody3D : MeshInstance3D() {
      * simulation to stop all physics interactions with this [SoftBody3D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
-    DISABLE_MODE_REMOVE(0),
+    REMOVE(0),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
      * simulation.
      */
-    DISABLE_MODE_KEEP_ACTIVE(1),
+    KEEP_ACTIVE(1),
     ;
 
     public val id: Long

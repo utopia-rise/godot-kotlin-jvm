@@ -308,7 +308,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     /**
      * The path query uses the default A* pathfinding algorithm.
      */
-    PATHFINDING_ALGORITHM_ASTAR(0),
+    ASTAR(0),
     ;
 
     public val id: Long
@@ -331,18 +331,18 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
      * gridbased layouts can face artificial corners with diagonal movement due to a jagged path
      * corridor imposed by the cell shapes.
      */
-    PATH_POSTPROCESSING_CORRIDORFUNNEL(0),
+    POSTPROCESSING_CORRIDORFUNNEL(0),
     /**
      * Centers every path position in the middle of the traveled navigation mesh polygon edge. This
      * creates better paths for tile- or gridbased layouts that restrict the movement to the cells
      * center.
      */
-    PATH_POSTPROCESSING_EDGECENTERED(1),
+    POSTPROCESSING_EDGECENTERED(1),
     /**
      * Applies no postprocessing and returns the raw path corridor as found by the pathfinding
      * algorithm.
      */
-    PATH_POSTPROCESSING_NONE(2),
+    POSTPROCESSING_NONE(2),
     ;
 
     public val id: Long
@@ -390,29 +390,29 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       /**
        * Don't include any additional metadata about the returned path.
        */
-      public val PATH_METADATA_INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
+      public val INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
 
       /**
        * Include the type of navigation primitive (region or link) that each point of the path goes
        * through.
        */
-      public val PATH_METADATA_INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
+      public val INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
 
       /**
        * Include the [RID]s of the regions and links that each point of the path goes through.
        */
-      public val PATH_METADATA_INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
+      public val INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
 
       /**
        * Include the `ObjectID`s of the [Object]s which manage the regions and links each point of
        * the path goes through.
        */
-      public val PATH_METADATA_INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
+      public val INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
 
       /**
        * Include all available metadata about the returned path.
        */
-      public val PATH_METADATA_INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
+      public val INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
     }
   }
 
