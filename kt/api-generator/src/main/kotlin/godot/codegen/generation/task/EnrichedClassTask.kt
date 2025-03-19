@@ -11,8 +11,8 @@ class EnrichedClassTask(
     val clazz: EnrichedClass
 ) : ClassTask() {
 
-    override val generator = if (clazz.isSingleton) TypeSpec.objectBuilder(clazz.getClassName()) else TypeSpec.classBuilder(clazz.getClassName())
-    override val companion = if (clazz.isSingleton) generator else TypeSpec.companionObjectBuilder()
+    override val builder = if (clazz.isSingleton) TypeSpec.objectBuilder(clazz.getClassName()) else TypeSpec.classBuilder(clazz.getClassName())
+    override val companion = if (clazz.isSingleton) builder else TypeSpec.companionObjectBuilder()
     val bindings = TypeSpec.objectBuilder(clazz.getClassName().nestedClass(methodBindingsInnerClassName))
 
     val enums by back<EnrichedEnumTask>(innerClasses)
@@ -24,10 +24,10 @@ class EnrichedClassTask(
 
     override fun executeSingle(): TypeSpec {
         if (!clazz.isSingleton) {
-            generator.addType(companion.build())
+            builder.addType(companion.build())
         }
-        generator.addType(bindings.build())
-        return generator.build()
+        builder.addType(bindings.build())
+        return builder.build()
     }
 }
 

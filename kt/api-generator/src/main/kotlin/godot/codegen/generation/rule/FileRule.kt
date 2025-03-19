@@ -25,12 +25,12 @@ class FileRule : GodotApiRule<FileTask>() {
 
 class HeaderCommentRule() : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: Context) {
-        task.generator.addFileComment(GENERATED_COMMENT)
+        task.builder.addFileComment(GENERATED_COMMENT)
     }
 }
 
 class ImportRule() : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) = task.configure {
+    override fun apply(task: FileTask, context: Context) = configure(task.builder) {
         for (clazz in task.classes) {
             for (import in clazz.clazz.additionalImports) {
                 addImport(import.pckge, import.name)
@@ -40,7 +40,7 @@ class ImportRule() : GodotApiRule<FileTask>() {
 }
 
 class WarningRule() : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) = task.configure {
+    override fun apply(task: FileTask, context: Context) = configure(task.builder) {
         addAnnotation(
             AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
                 .addMember(
@@ -55,19 +55,19 @@ class WarningRule() : GodotApiRule<FileTask>() {
 }
 
 class StaticRule : GodotApiRule<FileTask>() {
-    override fun apply(fileTask: FileTask, context: Context) = fileTask.configure {
+    override fun apply(fileTask: FileTask, context: Context) = configure(fileTask.builder) {
         for (classTask in fileTask.classes) {
             for (method in classTask.enrichedStaticMethods) {
-                method.generator.addAnnotation(JvmStatic::class)
+                method.builder.addAnnotation(JvmStatic::class)
             }
 
             val clazz = classTask.clazz
             if (clazz.isSingleton) {
                 for (method in classTask.methods) {
-                    method.generator.addAnnotation(JvmStatic::class)
+                    method.builder.addAnnotation(JvmStatic::class)
                 }
                 for (property in classTask.properties) {
-                    property.generator.addAnnotation(JvmStatic::class)
+                    property.builder.addAnnotation(JvmStatic::class)
                 }
             }
         }

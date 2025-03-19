@@ -20,7 +20,7 @@ private const val BIT_FLAG_VALUE_MEMBER = "flag"
 
 class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 
-    override fun apply(task: EnrichedEnumTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedEnumTask, context: Context) = with(task.builder) {
         val enum = task.enum
         if (enum.isBitField()) {
             generateBitfield(enum)
@@ -179,7 +179,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 }
 
 class BitfieldExtensionRule : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) = task.configure {
+    override fun apply(task: FileTask, context: Context) = with(task.builder) {
         val enums = task.classes.flatMap { it.enums } + task.enums
 
         enums.filter { it.enum.isBitField() }

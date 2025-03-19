@@ -7,18 +7,18 @@ import java.io.File
 
 class RegistrationTask(
     val directory: File,
-) : GenerationTask<FileSpec.Builder, Unit>() {
+) : GenerationTask<Unit>() {
 
-    override val generator = FileSpec.builder(godotPackage, "RegisterEngineTypes")
+    val builder = FileSpec.builder(godotPackage, "RegisterEngineTypes")
 
     val variantMapper = FunSpec.builder("registerVariantMapping")
     val engineMethods = FunSpec.builder("registerEngineTypeMethods")
     val engineTypes = FunSpec.builder("registerEngineTypes")
 
     override fun executeSingle() {
-        generator.addFunction(variantMapper.build())
-        generator.addFunction(engineMethods.build())
-        generator.addFunction(engineTypes.build())
-        generator.build().writeTo(directory)
+        builder.addFunction(variantMapper.build())
+        builder.addFunction(engineMethods.build())
+        builder.addFunction(engineTypes.build())
+        builder.build().writeTo(directory)
     }
 }

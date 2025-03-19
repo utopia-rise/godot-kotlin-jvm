@@ -6,12 +6,12 @@ import godot.codegen.traits.TypedTrait
 
 class FileTask(
     val type: TypedTrait
-) : GenerationTask<FileSpec.Builder, FileSpec>() {
+) : GenerationTask<FileSpec>() {
 
-    override val generator = FileSpec.builder(type.getClassName().packageName, type.getClassName().simpleName)
+    val builder = FileSpec.builder(type.getClassName().packageName, type.getClassName().simpleName)
 
-    val classes by subTask<EnrichedClassTask, _, _> { task, output -> addType(output) }
-    val enums by subTask<EnrichedEnumTask, _, _> { task, output -> addType(output) }
+    val classes= subTask<EnrichedClassTask, _> { output -> builder.addType(output) }
+    val enums= subTask<EnrichedEnumTask, _> { output -> builder.addType(output) }
 
-    override fun executeSingle() = generator.build()
+    override fun executeSingle() = builder.build()
 }

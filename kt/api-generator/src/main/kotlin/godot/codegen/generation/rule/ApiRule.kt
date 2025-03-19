@@ -54,7 +54,7 @@ class ApiRule : GodotApiRule<ApiTask>() {
 }
 
 class ObjectRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(task: EnrichedClassTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedClassTask, context: Context) = with(task.builder) {
         val type = task.clazz.type
         if (type == GodotTypes.node) {
             generateTypesafeRpc()

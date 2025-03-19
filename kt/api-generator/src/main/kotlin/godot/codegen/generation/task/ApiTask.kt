@@ -5,11 +5,11 @@ import java.io.File
 
 class ApiTask(
     val directory: File,
-) : GenerationTask<Unit, Unit>() {
+) : GenerationTask<Unit>() {
 
-    override val generator = Unit
+    val builder = Unit
 
-    val files by subTask<FileTask, _, _> { task, output ->
+    val files = subTask<FileTask, _> { output ->
         output.writeTo(directory)
     }
 

@@ -20,7 +20,7 @@ import godot.tools.common.constants.VOID_PTR
 
 
 class MemberRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(task: EnrichedClassTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedClassTask, context: Context) = configure(task.builder) {
         val clazz = task.clazz
 
         for (constant in clazz.constants) {
@@ -120,7 +120,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
 }
 
 class BindingRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(classTask: EnrichedClassTask, context: Context) = classTask.configure {
+    override fun apply(classTask: EnrichedClassTask, context: Context) = configure(classTask.builder) {
         val clazz = classTask.clazz
         clazz.methods
             .filter { !it.isVirtual }

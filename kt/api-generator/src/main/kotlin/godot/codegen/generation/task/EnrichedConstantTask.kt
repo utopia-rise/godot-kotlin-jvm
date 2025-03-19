@@ -8,7 +8,7 @@ class EnrichedConstantTask(
     val constant: EnrichedConstant
 ) : PropertyTask() {
 
-    override val generator = PropertySpec.builder(constant.name, constant.getTypeName())
+    override val builder = PropertySpec.builder(constant.name, constant.getTypeName())
 
-    override fun executeSingle() = generator.build()
+    override fun executeSingle() = builder.build()
 }

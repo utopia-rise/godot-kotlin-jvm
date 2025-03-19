@@ -8,7 +8,7 @@ class SignalTask(
     val signal: EnrichedSignal,
 ) : PropertyTask() {
 
-    override val generator = PropertySpec.builder(signal.name, signal.getTypeName())
+    override val builder = PropertySpec.builder(signal.name, signal.getTypeName())
 
-    override fun executeSingle() = generator.build()
+    override fun executeSingle() = builder.build()
 }

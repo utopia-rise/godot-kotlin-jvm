@@ -91,7 +91,7 @@ interface BaseMethodeRule {
 }
 
 class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
-    override fun apply(task: EnrichedMethodTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedMethodTask, context: Context) = with(task.builder) {
         configureMethod(task.method, task.owner, context)
     }
 
@@ -234,7 +234,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
         }
 
         val methodTask = EnrichedMethodTask(method, clazz)
-        methodTask.generator.configureMethod(method, clazz, context)
+        methodTask.builder.configureMethod(method, clazz, context)
         return methodTask
     }
 
@@ -299,7 +299,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
 
 
 class OverLoadRule : GodotApiRule<EnrichedMethodTask>() {
-    override fun apply(task: EnrichedMethodTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedMethodTask, context: Context) = with(task.builder) {
         if (task.method.arguments.none { it.defaultValue != null && it.type != GodotTypes.stringName && it.type != GodotTypes.nodePath }) {
             return
         }
