@@ -23,7 +23,7 @@ class CoreRule : GodotApiRule<ApiTask>() {
         val classes = context
             .classRepository
             .listTypes()
-            .filter { it.type == GodotTypes.godotObject  || it.type == GodotTypes.refCounted  }
+            .filter { it.isCoreClass() }
 
 
         for (clazz in classes) {
@@ -41,7 +41,7 @@ class ApiRule : GodotApiRule<ApiTask>() {
         val classes = context
             .classRepository
             .listTypes()
-            .filter { it.type != GodotTypes.godotObject && it.type != GodotTypes.refCounted }
+            .filter { !it.isCoreClass() }
             .filter {  //Remove class extending singletons
                 val parent = it.parent
                 parent == null || parent.isSingleton == false
@@ -55,11 +55,11 @@ class ApiRule : GodotApiRule<ApiTask>() {
 
 class ObjectRule : GodotApiRule<EnrichedClassTask>() {
     override fun apply(task: EnrichedClassTask, context: Context) = with(task.builder) {
-        val type = task.clazz.type
-        if (type == GodotTypes.node) {
+        val type = task.clazz
+        if (type.identifier == GodotTypes.node) {
             generateTypesafeRpc()
         }
-        if (type == GodotKotlinJvmTypes.refCounted) {
+        if (type.identifier == GodotKotlinJvmTypes.refCounted) {
             preventOnDestroyUsage()
         }
     }

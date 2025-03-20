@@ -1,25 +1,23 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.extensions.bitfieldPrefix
-import godot.codegen.extensions.enumPrefix
 import godot.codegen.models.Enum
-import godot.codegen.traits.IDocumented
-import godot.codegen.traits.TypedTrait
+import godot.codegen.generation.task.traits.DocumentedGenerationTrait
+import godot.codegen.generation.task.traits.Nature
+import godot.codegen.generation.task.traits.GenerationType
+import godot.codegen.generation.task.traits.HasTypeGenerationTrait
+import godot.codegen.generation.task.traits.TypeGenerationTrait
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.extensions.isValidKotlinIdentifier
-import godot.common.extensions.removeWords
 import godot.common.extensions.removePrefixWords
 import godot.common.extensions.removeSuffixWords
+import godot.common.extensions.removeWords
 import godot.common.extensions.toUpperSnakeCase
 
-class EnrichedEnum(model: Enum, val outerClass: String?) : TypedTrait {
-    val simpleName = model.name.sanitizeApiType()
+class EnrichedEnum(model: Enum, outerClass: TypeGenerationTrait?) : TypeGenerationTrait {
+    override val identifier =  if (outerClass != null) outerClass.identifier + "." + model.name.sanitizeApiType() else model.name.sanitizeApiType()
+    override val nature =  if (model.isBitField) Nature.BITFIELD else Nature.ENUM
 
-    override val type = run {
-        val prefix = if (model.isBitField) bitfieldPrefix else enumPrefix
-        val encapsulating = if (outerClass != null) "${outerClass}." else ""
-        (prefix + encapsulating + simpleName)
-    }
+    val simpleName = model.name.sanitizeApiType()
 
     val values = model.values.map {
         EnrichedEnumValue(
@@ -31,7 +29,7 @@ class EnrichedEnum(model: Enum, val outerClass: String?) : TypedTrait {
     }
 }
 
-class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, override var description: String?) : IDocumented {
+class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, override var description: String?) : DocumentedGenerationTrait {
     val name = run {
         val uppercaseName = ownerName.toUpperSnakeCase()
         val prefixRemoved = valueName
@@ -53,5 +51,5 @@ class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, o
     }
 }
 
-fun List<Enum>.toEnriched(outerClass: String? = null) = map { EnrichedEnum(it, outerClass) }
-fun Enum.toEnriched(outerClass: String? = null) = EnrichedEnum(this, outerClass)
+fun List<Enum>.toEnriched(outerClass: TypeGenerationTrait? = null) = map { EnrichedEnum(it, outerClass) }
+fun Enum.toEnriched(outerClass: TypeGenerationTrait? = null) = EnrichedEnum(this, outerClass)

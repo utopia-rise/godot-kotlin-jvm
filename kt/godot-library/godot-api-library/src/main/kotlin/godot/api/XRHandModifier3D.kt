@@ -79,7 +79,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
   public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
-    return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
+    return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHandTracker(trackerName: String) =

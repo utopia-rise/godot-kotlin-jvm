@@ -481,7 +481,7 @@ public open class Camera2D : Node2D() {
   public final fun getAnchorMode(): AnchorMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnchorModePtr, LONG)
-    return Camera2D.AnchorMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnchorMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIgnoreRotation(ignore: Boolean): Unit {
@@ -503,7 +503,7 @@ public open class Camera2D : Node2D() {
   public final fun getProcessCallback(): Camera2DProcessCallback {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessCallbackPtr, LONG)
-    return Camera2D.Camera2DProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+    return Camera2DProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {

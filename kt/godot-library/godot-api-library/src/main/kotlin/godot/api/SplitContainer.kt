@@ -196,7 +196,7 @@ public open class SplitContainer : Container() {
   public final fun getDraggerVisibility(): DraggerVisibility {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDraggerVisibilityPtr, LONG)
-    return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
+    return DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {

@@ -382,7 +382,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getHAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHAxisStretchModePtr, LONG)
-    return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
@@ -393,7 +393,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getVAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
-    return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class AxisStretchMode(

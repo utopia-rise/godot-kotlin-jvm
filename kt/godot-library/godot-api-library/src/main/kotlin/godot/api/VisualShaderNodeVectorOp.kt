@@ -46,7 +46,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   public final fun getOperator(): Operator {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperatorPtr, LONG)
-    return VisualShaderNodeVectorOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
+    return Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Operator(

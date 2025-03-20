@@ -101,7 +101,7 @@ public open class FlowContainer : Container() {
   public final fun getAlignment(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
-    return FlowContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLastWrapAlignment(lastWrapAlignment: LastWrapAlignmentMode): Unit {
@@ -112,7 +112,7 @@ public open class FlowContainer : Container() {
   public final fun getLastWrapAlignment(): LastWrapAlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLastWrapAlignmentPtr, LONG)
-    return FlowContainer.LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {

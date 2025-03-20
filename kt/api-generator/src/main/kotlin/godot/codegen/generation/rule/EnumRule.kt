@@ -8,13 +8,11 @@ import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import godot.codegen.extensions.getClassName
-import godot.codegen.extensions.isBitField
 import godot.codegen.generation.Context
 import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.models.enriched.EnrichedEnum
-import godot.codegen.traits.addKdoc
+import godot.codegen.generation.task.traits.addKdoc
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"
 

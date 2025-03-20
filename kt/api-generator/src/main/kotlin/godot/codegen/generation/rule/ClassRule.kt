@@ -4,7 +4,6 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import godot.codegen.extensions.getClassName
 import godot.codegen.generation.Context
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
@@ -12,7 +11,7 @@ import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.EnrichedMethodTask
 import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.generation.task.SignalTask
-import godot.codegen.traits.addKdoc
+import godot.codegen.generation.task.traits.addKdoc
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TYPE_MANAGER
@@ -132,7 +131,7 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
                         .initializer(
                             "%T.getMethodBindPtr(%S,·%S,·%L)",
                             TYPE_MANAGER,
-                            clazz.type,
+                            clazz.identifier,
                             it.godotName,
                             it.hash
                         )

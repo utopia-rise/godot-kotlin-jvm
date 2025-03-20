@@ -32,19 +32,19 @@ fun Project.setupBuildTask(
             )
 
             if (godotJvmExtension.isAndroidExportEnabled.get()) {
-                copyJarTask.configure { copyTask ->
+                copyJarwith(task.builder) { copyTask ->
                     copyTask.dependsOn(packageBootstrapDexJarTask, packageMainDexJarTask)
                 }
                 task.finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
             }
             if (godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
-                copyJarTask.configure { copyTask ->
+                copyJarwith(task.builder) { copyTask ->
                     copyTask.dependsOn(createGraalNativeImageTask)
                 }
                 task.finalizedBy(createGraalNativeImageTask)
             }
             if (godotJvmExtension.isIOSExportEnabled.get()) {
-                copyJarTask.configure { copyTask ->
+                copyJarwith(task.builder) { copyTask ->
                     copyTask.dependsOn(createIOSTask)
                 }
                 task.finalizedBy(createIOSTask)

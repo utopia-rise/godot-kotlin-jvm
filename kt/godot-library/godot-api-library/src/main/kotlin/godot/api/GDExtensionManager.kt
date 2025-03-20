@@ -68,7 +68,7 @@ public object GDExtensionManager : Object() {
   public final fun loadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.loadExtensionPtr, LONG)
-    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -83,7 +83,7 @@ public object GDExtensionManager : Object() {
   public final fun reloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.reloadExtensionPtr, LONG)
-    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -94,7 +94,7 @@ public object GDExtensionManager : Object() {
   public final fun unloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.unloadExtensionPtr, LONG)
-    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

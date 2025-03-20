@@ -243,7 +243,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun getVisibilityMode(): VisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityModePtr, LONG)
-    return TouchScreenButton.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPassbyPress(enabled: Boolean): Unit {

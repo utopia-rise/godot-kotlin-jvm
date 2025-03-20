@@ -1,7 +1,6 @@
 package godot.codegen.repositories.impl
 
-import godot.codegen.extensions.isEnum
-import godot.codegen.extensions.isVoid
+
 import godot.codegen.models.ApiType
 import godot.codegen.models.Class
 import godot.codegen.models.Singleton
@@ -17,7 +16,7 @@ class ClassRepository(
     singleton: List<Singleton>
 ) : IClassRepository {
     val typeList = classes.toEnriched().filter { it.apiType == ApiType.CORE }
-    val typeMap = typeList.associateBy { it.type }
+    val typeMap = typeList.associateBy { it.identifier }
 
     init {
         // Set parent/child relationship
@@ -38,10 +37,10 @@ class ClassRepository(
     }
 
     val singletonList = typeList.filter { it.isSingleton }
-    val singletonMap = singletonList.associateBy { it.type }
+    val singletonMap = singletonList.associateBy { it.identifier }
 
     val classList = typeList.filter { !it.isSingleton && it.parent?.isSingleton != true }
-    val classMap = classList.associateBy { it.type }
+    val classMap = classList.associateBy { it.identifier }
 
     override fun listTypes() = typeList
     override fun listClasses() = classList
@@ -53,17 +52,17 @@ class ClassRepository(
 
     private fun validateGetter(property: EnrichedProperty, getter: EnrichedMethod?) {
         if (getter == null) return
-        if (getter.isVoid() || getter.arguments.size > 1 || getter.isVirtual) return
+        if (getter.type.isVoid() || getter.arguments.size > 1 || getter.isVirtual) return
         if (!property.isIndexed && getter.arguments.size == 1) return
-        if (getter.arguments.size == 1 && !getter.arguments[0].isEnum() && getter.arguments[0].type != GodotTypes.int) return
+        if (getter.arguments.size == 1 && !getter.arguments[0].type.isEnum() && getter.arguments[0].type.identifier != GodotTypes.int) return
         property.setGetter(getter)
     }
 
     private fun validateSetter(property: EnrichedProperty, setter: EnrichedMethod?) {
         if (setter == null) return
-        if (!setter.isVoid() || setter.arguments.size > 2 || setter.isVirtual) return
+        if (!setter.type.isVoid() || setter.arguments.size > 2 || setter.isVirtual) return
         if (!property.isIndexed && setter.arguments.size == 2) return
-        if (setter.arguments.size == 2 && !setter.arguments[0].isEnum() && setter.arguments[0].type != GodotTypes.int) return
+        if (setter.arguments.size == 2 && !setter.arguments[0].type.isEnum() && setter.arguments[0].type.identifier != GodotTypes.int) return
         property.setSetter(setter)
     }
 

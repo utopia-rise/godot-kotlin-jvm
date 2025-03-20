@@ -593,7 +593,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   public final fun getCenterOfMassMode(): CenterOfMassMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassModePtr, LONG)
-    return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCenterOfMass(centerOfMass: Vector2): Unit {
@@ -637,7 +637,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   public final fun getLinearDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
-    return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
@@ -648,7 +648,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   public final fun getAngularDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
-    return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
@@ -748,7 +748,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   public final fun getContinuousCollisionDetectionMode(): CCDMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContinuousCollisionDetectionModePtr, LONG)
-    return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -946,7 +946,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   public final fun getFreezeMode(): FreezeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFreezeModePtr, LONG)
-    return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

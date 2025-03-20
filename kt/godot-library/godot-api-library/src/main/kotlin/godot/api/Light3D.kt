@@ -604,7 +604,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getBakeMode(): BakeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeModePtr, LONG)
-    return Light3D.BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProjector(projector: Texture2D?): Unit {

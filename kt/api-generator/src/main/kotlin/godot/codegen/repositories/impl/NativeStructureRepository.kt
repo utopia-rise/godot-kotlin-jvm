@@ -5,7 +5,7 @@ import godot.codegen.models.NativeStructure
 import godot.codegen.models.enriched.EnrichedNativeStructure
 import godot.codegen.models.enriched.toEnriched
 import godot.codegen.repositories.INativeStructureRepository
-import godot.codegen.traits.TypedTrait
+import godot.codegen.generation.task.traits.HasTypeGenerationTrait
 
 class NativeStructureRepository(
     jsonData: List<NativeStructure>
@@ -15,17 +15,17 @@ class NativeStructureRepository(
 
     init {
         jsonData.toEnriched().forEach {
-            map[it.type] = it
-            map[it.type + "*"] = it
-            map["const " + it.type + "*"] = it
+            map[it.identifier] = it
+            map[it.identifier + "*"] = it
+            map["const " + it.identifier + "*"] = it
         }
 
         PrimitiveNativeStructures.all.forEach {
             // We don't include the base name here because they are always used as pointer and can overlap with a plain "float".
-            map[it.type + "*"] = it
-            map["const " + it.type + "*"] = it
+            map[it.identifier + "*"] = it
+            map["const " + it.identifier + "*"] = it
         }
     }
 
-    override fun findMatchingType(typed: TypedTrait) = map[typed.type ?: ""]
+    override fun findMatchingType(typed: HasTypeGenerationTrait) = map[typed.type.identifier]
 }

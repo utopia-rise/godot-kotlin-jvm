@@ -134,7 +134,7 @@ public open class GraphEdit : Control() {
    * [nodes] is an array of node names that should be removed. These usually include all selected
    * nodes.
    */
-  public val deleteNodesRequest: Signal1<VariantArray<StringName>> by Signal1
+  public val deleteNodesRequest: Signal1<VariantArray> by Signal1
 
   /**
    * Emitted when the given [GraphElement] node is selected.
@@ -173,7 +173,7 @@ public open class GraphEdit : Control() {
    *
    * [elements] is an array of [GraphElement]s to be attached.
    */
-  public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by Signal2
+  public val graphElementsLinkedToFrameRequest: Signal2<VariantArray, StringName> by Signal2
 
   /**
    * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in
@@ -911,7 +911,7 @@ public open class GraphEdit : Control() {
   public final fun getPanningScheme(): PanningScheme {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPanningSchemePtr, LONG)
-    return GraphEdit.PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
+    return PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setZoom(zoom: Float): Unit {
@@ -977,7 +977,7 @@ public open class GraphEdit : Control() {
   public final fun getGridPattern(): GridPattern {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGridPatternPtr, LONG)
-    return GraphEdit.GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
+    return GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSnappingEnabled(enable: Boolean): Unit {

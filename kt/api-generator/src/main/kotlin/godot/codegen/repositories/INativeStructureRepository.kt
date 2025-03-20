@@ -1,8 +1,8 @@
 package godot.codegen.repositories
 
 import godot.codegen.models.enriched.EnrichedNativeStructure
-import godot.codegen.traits.TypedTrait
+import godot.codegen.generation.task.traits.HasTypeGenerationTrait
 
 interface INativeStructureRepository {
-    fun findMatchingType(typed: TypedTrait): EnrichedNativeStructure?
+    fun findMatchingType(typed: HasTypeGenerationTrait): EnrichedNativeStructure?
 }

@@ -39,19 +39,19 @@ abstract class ClassTask : GenerationTask<TypeSpec>() {
         builder.addType(output)
     }
 
-    val properties= subTask<PropertyTask, _> { output ->
+    val properties = subTask<PropertyTask, _> { output ->
         builder.addProperty(output)
     }
-    
-    val methods= subTask<MethodTask, _> { output ->
-        builder. addFunction(output)
+
+    val methods = subTask<MethodTask, _> { output ->
+        builder.addFunction(output)
     }
 
-    val staticProperties= subTask<PropertyTask, _> { output ->
+    val staticProperties = subTask<PropertyTask, _> { output ->
         companion.addProperty(output)
     }
 
-    val staticMethods= subTask<MethodTask, _> { output ->
+    val staticMethods = subTask<MethodTask, _> { output ->
         companion.addFunction(output)
     }
 }
@@ -60,6 +60,6 @@ abstract class MethodTask : GenerationTask<FunSpec>() {
     abstract val builder: FunSpec.Builder
 }
 
-abstract class PropertyTask : GenerationTask<PropertySpec>(){
+abstract class PropertyTask : GenerationTask<PropertySpec>() {
     abstract val builder: PropertySpec.Builder
 }

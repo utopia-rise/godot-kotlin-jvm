@@ -9,7 +9,7 @@ annotation class RuleMarker
 @RuleMarker
 abstract class Rule<CONTEXT : Any, TASK : GenerationTask<*>> {
 
-    protected inline fun <T: Any> configure(receiver: T, block: T.() -> Unit) {
+    protected inline fun <T : Any> configure(receiver: T, block: T.() -> Unit) {
         receiver.block()
     }
 

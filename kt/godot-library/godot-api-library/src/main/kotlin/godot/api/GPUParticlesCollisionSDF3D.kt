@@ -167,7 +167,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public final fun getResolution(): Resolution {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
-    return GPUParticlesCollisionSDF3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+    return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(texture: Texture3D?): Unit {

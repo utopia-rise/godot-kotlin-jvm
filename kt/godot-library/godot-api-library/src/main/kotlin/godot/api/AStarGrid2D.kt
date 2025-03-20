@@ -365,7 +365,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getCellShape(): CellShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellShapePtr, LONG)
-    return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CellShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -428,7 +428,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getDiagonalMode(): DiagonalMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiagonalModePtr, LONG)
-    return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
@@ -439,7 +439,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getDefaultComputeHeuristic(): Heuristic {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
-    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+    return Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
@@ -450,7 +450,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getDefaultEstimateHeuristic(): Heuristic {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
-    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+    return Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

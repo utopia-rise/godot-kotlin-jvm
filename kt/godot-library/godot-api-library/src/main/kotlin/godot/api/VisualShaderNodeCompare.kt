@@ -69,7 +69,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   public final fun getComparisonType(): ComparisonType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getComparisonTypePtr, LONG)
-    return VisualShaderNodeCompare.ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -80,7 +80,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeCompare.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCondition(condition: Condition): Unit {
@@ -91,7 +91,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   public final fun getCondition(): Condition {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConditionPtr, LONG)
-    return VisualShaderNodeCompare.Condition.from(TransferContext.readReturnValue(LONG) as Long)
+    return Condition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ComparisonType(

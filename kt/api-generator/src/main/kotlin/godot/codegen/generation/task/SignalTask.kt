@@ -1,7 +1,6 @@
 package godot.codegen.generation.task
 
 import com.squareup.kotlinpoet.PropertySpec
-import godot.codegen.extensions.getTypeName
 import godot.codegen.models.enriched.EnrichedSignal
 
 class SignalTask(

@@ -6,16 +6,13 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.UNIT
-import godot.codegen.extensions.isBitField
-import godot.codegen.extensions.isEnum
-import godot.codegen.extensions.isLocalCopyCoreTypes
 import godot.codegen.generation.Context
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
 import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedProperty
-import godot.codegen.traits.addKdoc
+import godot.codegen.generation.task.traits.addKdoc
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 
@@ -33,9 +30,9 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
                     .addStatement(
                         if (property.isIndexed) {
                             val indexArgument = property.getterMethod!!.arguments[0]
-                            if (indexArgument.isEnum() || indexArgument.isBitField()) {
+                            if (indexArgument.type.isEnum() || indexArgument.type.isBitField()) {
                                 val argumentValue = context.generateEnumDefaultValue(
-                                    indexArgument,
+                                    indexArgument.type,
                                     property.index!!.toLong()
                                 )
                                 "return $methodName($argumentValue)"
@@ -71,7 +68,6 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
         val getterType = property
             .getterMethod
             ?.getCastedType()
-            ?.typeName
 
         val argumentIndex = if (property.isIndexed) 1 else 0
         val setterType = property
@@ -79,7 +75,6 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
             ?.arguments
             ?.get(argumentIndex)
             ?.getCastedType()
-            ?.typeName
 
         val getterAndSetterAreCompatible = getterType == setterType
 
@@ -90,13 +85,13 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
 
             mutable().setter(
                 FunSpec.setterBuilder()
-                    .addParameter("value", property.getCastedType().className)
+                    .addParameter("value", property.getCastedType())
                     .addStatement(
                         if (property.isIndexed) {
                             val indexArgument = property.setterMethod!!.arguments[0]
-                            if (indexArgument.isEnum() || indexArgument.isBitField()) {
+                            if (indexArgument.type.isEnum() || indexArgument.type.isBitField()) {
                                 val argumentValue = context.generateEnumDefaultValue(
-                                    indexArgument,
+                                    indexArgument.type,
                                     property.index!!.toLong()
                                 )
                                 "$methodName($argumentValue, value)"
@@ -119,7 +114,7 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
             )
         }
 
-        if (property.isLocalCopyCoreTypes()) {
+        if (property.type.isLocalCopyCoreTypes()) {
             addAnnotation(CORE_TYPE_LOCAL_COPY)
         }
 
@@ -132,7 +127,7 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
         val clazz = task.clazz
         for (propertyTask in task.enrichedProperties) {
             val property = propertyTask.property
-            if (property.hasSetter && property.isLocalCopyCoreTypes()) {
+            if (property.hasSetter && property.type.isLocalCopyCoreTypes()) {
                 addFunction(getHelper(clazz, property))
             }
 
@@ -140,7 +135,7 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
     }
 
     private fun getHelper(clazz: EnrichedClass, property: EnrichedProperty): FunSpec {
-        val parameterTypeName = property.getCastedType().typeName
+        val parameterTypeName = property.getCastedType()
         val parameterName = property.name
 
         val propertyFunSpec = FunSpec.builder("${parameterName}Mutate").addModifiers(KModifier.FINAL)
@@ -180,9 +175,9 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
                         |
                         |Prefer that over writing:
                         |``````
-                        |val myCoreType = ${clazz.type.lowercase()}.${property.name}
+                        |val myCoreType = ${clazz.identifier.lowercase()}.${property.name}
                         |//Your changes
-                        |${clazz.type.lowercase()}.${property.name} = myCoreType
+                        |${clazz.identifier.lowercase()}.${property.name} = myCoreType
                         |``````
                         |""".trimMargin()
                     )

@@ -1,11 +1,10 @@
 package godot.codegen.generation
 
 import godot.codegen.exceptions.NoMatchingEnumFound
-import godot.codegen.extensions.getClassName
 import godot.codegen.repositories.IClassRepository
 import godot.codegen.repositories.IEnumRepository
 import godot.codegen.repositories.INativeStructureRepository
-import godot.codegen.traits.TypedTrait
+import godot.codegen.generation.task.traits.GenerationType
 import godot.tools.common.constants.GodotTypes
 
 class Context(
@@ -16,8 +15,8 @@ class Context(
     var nextEngineClassIndex = 0
     var nextSingletonIndex = 0
 
-    fun generateEnumDefaultValue(enumClass: TypedTrait, value: Long): String {
-        val simpleNames = enumClass.getClassName().simpleNames
+    fun generateEnumDefaultValue(type: GenerationType, value: Long): String {
+        val simpleNames = type.getClassName().simpleNames
         val className: String
         val enrichedEnum = if (simpleNames.size > 1) {
             className = simpleNames[0]
@@ -26,18 +25,18 @@ class Context(
             } else {
                 classRepository.findTypeByName(className)!!.enums
             }.firstOrNull {
-                it.type == enumClass.type
-            } ?: throw NoMatchingEnumFound(simpleNames.joinToString("."))
+                it.identifier == type.identifier
+            } ?: throw NoMatchingEnumFound(type.identifier)
         } else {
             className = ""
-            enumRepository.getGlobalEnum(enumClass.type!!)!!
+            enumRepository.getGlobalEnum(type.identifier)!!
         }
 
         val enumValue = enrichedEnum.values.firstOrNull { it.value == value }
         return if (enumValue != null) {
-            (if (className != "") "${className}." else "") + enrichedEnum.simpleName + "." + enumValue.name
+            enrichedEnum.identifier + "." + enumValue.name
         } else {
-            (if (className != "") "${className}." else "") + enrichedEnum.simpleName + "(" + value + ")"
+            enrichedEnum.identifier + "(" + value + ")"
         }
     }
 }

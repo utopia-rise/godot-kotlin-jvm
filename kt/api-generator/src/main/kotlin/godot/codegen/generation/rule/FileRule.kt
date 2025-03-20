@@ -32,8 +32,8 @@ class HeaderCommentRule() : GodotApiRule<FileTask>() {
 class ImportRule() : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: Context) = configure(task.builder) {
         for (clazz in task.classes) {
-            for (import in clazz.clazz.additionalImports) {
-                addImport(import.pckge, import.name)
+            for (className in clazz.clazz.additionalImports) {
+                addImport(className.packageName, className.simpleName)
             }
         }
     }

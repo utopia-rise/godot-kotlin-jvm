@@ -105,7 +105,7 @@ public open class BackBufferCopy : Node2D() {
   public final fun getCopyMode(): CopyMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCopyModePtr, LONG)
-    return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class CopyMode(

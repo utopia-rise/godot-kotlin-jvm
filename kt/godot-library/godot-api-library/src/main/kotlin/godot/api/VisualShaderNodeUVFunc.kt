@@ -47,7 +47,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeUVFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(

@@ -126,7 +126,6 @@ object GodotTypes {
     const val transferMode = "MultiplayerPeer.TransferMode"
 
     val coreTypes = listOf(
-        error,
         typedArray,
         array,
         basis,

@@ -211,7 +211,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun getIgdStatus(): IGDStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIgdStatusPtr, LONG)
-    return UPNPDevice.IGDStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return IGDStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class IGDStatus(

@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.NavigationPathQueryParameters3D.PathMetadataFlags
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -29,7 +28,6 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -91,7 +89,7 @@ public open class NavigationAgent3D : Node() {
    *
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
-  public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
+  public val waypointReached: Signal1<Dictionary> by Signal1
 
   /**
    * Signals that the agent reached a navigation link. Emitted when the agent moves within
@@ -114,7 +112,7 @@ public open class NavigationAgent3D : Node() {
    * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
    * contain the global position of the link's point which the agent is exiting.
    */
-  public val linkReached: Signal1<Dictionary<Any?, Any?>> by Signal1
+  public val linkReached: Signal1<Dictionary> by Signal1
 
   /**
    * Signals that the agent's navigation has finished. If the target is reachable, navigation ends
@@ -248,7 +246,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Additional information to return with the navigation path.
    */
-  public final inline var pathMetadataFlags: PathMetadataFlags
+  public final inline var pathMetadataFlags: NavigationPathQueryParameters3D.PathMetadataFlags
     @JvmName("pathMetadataFlagsProperty")
     get() = getPathMetadataFlags()
     @JvmName("pathMetadataFlagsProperty")
@@ -820,15 +818,16 @@ public open class NavigationAgent3D : Node() {
     return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathMetadataFlags(flags: PathMetadataFlags): Unit {
+  public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters3D.PathMetadataFlags):
+      Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setPathMetadataFlagsPtr, NIL)
   }
 
-  public final fun getPathMetadataFlags(): PathMetadataFlags {
+  public final fun getPathMetadataFlags(): NavigationPathQueryParameters3D.PathMetadataFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMetadataFlagsPtr, LONG)
-    return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
+    return NavigationPathQueryParameters3D.PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

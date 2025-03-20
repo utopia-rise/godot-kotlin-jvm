@@ -84,7 +84,7 @@ public open class OccluderPolygon2D : Resource() {
   public final fun getCullMode(): CullMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
-    return OccluderPolygon2D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
