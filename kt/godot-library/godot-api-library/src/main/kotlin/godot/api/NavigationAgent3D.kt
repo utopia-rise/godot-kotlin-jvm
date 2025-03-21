@@ -28,6 +28,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -89,7 +90,7 @@ public open class NavigationAgent3D : Node() {
    *
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
-  public val waypointReached: Signal1<Dictionary> by Signal1
+  public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
    * Signals that the agent reached a navigation link. Emitted when the agent moves within
@@ -112,7 +113,7 @@ public open class NavigationAgent3D : Node() {
    * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
    * contain the global position of the link's point which the agent is exiting.
    */
-  public val linkReached: Signal1<Dictionary> by Signal1
+  public val linkReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
    * Signals that the agent's navigation has finished. If the target is reachable, navigation ends

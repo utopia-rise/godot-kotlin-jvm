@@ -119,7 +119,7 @@ fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     else -> ClassName(godotApiPackage, type.identifier)
 }
 
-fun TypeName.Companion.from(type: TypeGenerationTrait, nullable: Boolean = false, genericParameters: List<ClassName> = emptyList()): TypeName {
+fun TypeName.Companion.from(type: TypeGenerationTrait, nullable: Boolean = false, genericParameters: List<TypeName> = emptyList()): TypeName {
     val className = type.className
     return when {
         type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> className.parameterizedBy(genericParameters)
