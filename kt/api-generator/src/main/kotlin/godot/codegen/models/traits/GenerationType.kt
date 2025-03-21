@@ -1,4 +1,4 @@
-package godot.codegen.generation.task.traits
+package godot.codegen.models.traits
 
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.BOOLEAN
@@ -9,7 +9,6 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.UNIT
-import godot.common.interop.VariantConverter
 import godot.tools.common.constants.GODOT_ARRAY
 import godot.tools.common.constants.GODOT_CALLABLE_BASE
 import godot.tools.common.constants.GODOT_DICTIONARY
@@ -36,7 +35,7 @@ import godot.tools.common.constants.VARIANT_PARSER__RID
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.variantParserPackage
-import java.util.Locale
+import java.util.*
 
 enum class Nature {
     VOID,
@@ -52,51 +51,7 @@ enum class Nature {
 interface TypeGenerationTrait {
     val identifier: String
     val nature: Nature
-
-    fun getClassName() = when {
-        isVoid() -> UNIT
-        identifier == "Signal0" -> ClassName(godotCorePackage, identifier)
-        identifier.startsWith("Signal") -> ClassName(godotCorePackage, identifier)
-        isEnum() || isBitField() -> {
-            val containerAndEnum = identifier.split('.')
-            val enumPackage = if (containerAndEnum.size == 1 || containerAndEnum[0] in GodotTypes.coreTypes) {
-                godotCorePackage
-            } else {
-                godotApiPackage
-            }
-            ClassName(
-                enumPackage,
-                containerAndEnum
-            )
-        }
-
-        identifier == GodotTypes.bool -> BOOLEAN
-        identifier == GodotTypes.int -> LONG
-        identifier == GodotTypes.float -> DOUBLE
-        identifier == GodotTypes.string -> STRING
-        identifier == GodotTypes.variant -> ANY
-        identifier == GodotTypes.callable -> GODOT_CALLABLE_BASE
-        identifier == GodotTypes.array || isTypedArray() -> GODOT_ARRAY
-        identifier == GodotTypes.dictionary -> GODOT_DICTIONARY
-        isCoreType() -> ClassName(godotCorePackage, identifier)
-        else -> ClassName(godotApiPackage, identifier)
-    }
-
-    fun getTypeName(nullable: Boolean = false, genericParameters: List<ClassName> = emptyList()): TypeName {
-        val className = getClassName()
-        return when {
-            identifier.startsWith("Signal") && !identifier.endsWith("0") -> className.parameterizedBy(genericParameters)
-            isTypedArray() -> {
-                val genericType = identifier.removePrefix("${GodotTypes.typedArray}::")
-                val subType = GenerationType(genericType)
-                className.parameterizedBy(subType.getTypeName())
-            }
-
-            identifier == GodotTypes.array -> className.parameterizedBy(ANY.copy(nullable = true))
-            identifier == GodotTypes.dictionary -> className.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
-            else -> className
-        }.copy(nullable = nullable)
-    }
+    val className: ClassName
 
     fun getVariantConverter() = when {
         isVoid() -> VARIANT_PARSER_NIL
@@ -136,12 +91,57 @@ interface TypeGenerationTrait {
     fun isCoreClass() = identifier == GodotTypes.godotObject || identifier == GodotTypes.refCounted
 }
 
+fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
+    type.isVoid() -> UNIT
+    type.identifier.startsWith("Signal") -> ClassName(godotCorePackage, type.identifier)
+    type.isEnum() || type.isBitField() -> {
+        val containerAndEnum = type.identifier.split('.')
+        val enumPackage = if (containerAndEnum.size == 1 || containerAndEnum[0] in GodotTypes.coreTypes) {
+            godotCorePackage
+        } else {
+            godotApiPackage
+        }
+        ClassName(
+            enumPackage,
+            containerAndEnum
+        )
+    }
+
+    type.identifier == GodotTypes.bool -> BOOLEAN
+    type.identifier == GodotTypes.int -> LONG
+    type.identifier == GodotTypes.float -> DOUBLE
+    type.identifier == GodotTypes.string -> STRING
+    type.identifier == GodotTypes.variant -> ANY
+    type.identifier == GodotTypes.callable -> GODOT_CALLABLE_BASE
+    type.identifier == GodotTypes.array || type.isTypedArray() -> GODOT_ARRAY
+    type.identifier == GodotTypes.dictionary -> GODOT_DICTIONARY
+    type.isCoreType() -> ClassName(godotCorePackage, type.identifier)
+    else -> ClassName(godotApiPackage, type.identifier)
+}
+
+fun TypeName.Companion.from(type: TypeGenerationTrait, nullable: Boolean = false, genericParameters: List<ClassName> = emptyList()): TypeName {
+    val className = type.className
+    return when {
+        type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> className.parameterizedBy(genericParameters)
+        type.isTypedArray() -> {
+            val genericType = type.identifier.removePrefix("${GodotTypes.typedArray}::")
+            val subType = GenerationType(genericType)
+            className.parameterizedBy(from(subType))
+        }
+
+        type.identifier == GodotTypes.array -> className.parameterizedBy(ANY.copy(nullable = true))
+        type.identifier == GodotTypes.dictionary -> className.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
+        else -> className
+    }.copy(nullable = nullable)
+}
+
 const val enumPrefix = "enum::"
 const val bitfieldPrefix = "bitfield::"
-class GenerationType(rawIdentifier: String) : TypeGenerationTrait {
 
+class GenerationType(rawIdentifier: String) : TypeGenerationTrait {
     override val identifier = sanitizeIdentifier(rawIdentifier)
     override val nature = getNature(rawIdentifier)
+    override val className = ClassName.from(this)
 
     private fun sanitizeIdentifier(identifier: String): String {
         return identifier.removePrefix(enumPrefix).removePrefix(bitfieldPrefix)

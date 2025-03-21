@@ -1,4 +1,4 @@
-package godot.codegen.generation.task.traits
+package godot.codegen.models.traits
 
 interface CallableGeneratorTrait : HasTypeGenerationTrait, MetaGenerationTrait {
     val arguments: List<HasTypeGenerationTrait>

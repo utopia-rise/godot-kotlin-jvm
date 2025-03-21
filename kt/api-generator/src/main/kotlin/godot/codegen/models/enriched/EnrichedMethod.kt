@@ -3,9 +3,9 @@ package godot.codegen.models.enriched
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.exceptions.TooManyMethodArgument
 import godot.codegen.models.Method
-import godot.codegen.generation.task.traits.CallableGeneratorTrait
-import godot.codegen.generation.task.traits.DocumentedGenerationTrait
-import godot.codegen.generation.task.traits.GenerationType
+import godot.codegen.models.traits.CallableGeneratorTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.GenerationType
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase

@@ -1,4 +1,4 @@
-package godot.codegen.generation.task.traits
+package godot.codegen.models.traits
 
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.PropertySpec

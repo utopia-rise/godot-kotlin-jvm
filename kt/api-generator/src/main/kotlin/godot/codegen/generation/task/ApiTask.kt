@@ -4,14 +4,24 @@ import java.io.File
 
 
 class ApiTask(
-    val directory: File,
+    coreDir: File,
+    apiDir: File
 ) : GenerationTask<Unit>() {
 
-    val builder = Unit
-
-    val files = subTask<FileTask, _> { output ->
-        output.writeTo(directory)
+    val coreFiles = subTask<FileTask, _> { output ->
+        output.writeTo(coreDir)
     }
+
+    val apiFiles = subTask<FileTask, _> { output ->
+        output.writeTo(apiDir)
+    }
+
+    val registrationFiles = subTask<RegistrationTask, _> { output ->
+        output.writeTo(apiDir)
+    }
+
+    val files
+        get() = coreFiles + apiFiles
 
     override fun executeSingle() = Unit
 }

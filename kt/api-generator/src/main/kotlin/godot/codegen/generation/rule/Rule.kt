@@ -1,6 +1,6 @@
 package godot.codegen.generation.rule
 
-import godot.codegen.generation.Context
+import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.GenerationTask
 
 @DslMarker
@@ -28,20 +28,20 @@ class RuleSet<CONTEXT : Any, TASK : GenerationTask<*>> : Rule<CONTEXT, TASK>() {
     @Suppress("UNCHECKED_CAST")
 
     fun <R : GenerationTask<*>> subRule(
-        property: TASK.() -> Iterable<R>,
+        getter: TASK.() -> Iterable<R>,
         constructor: () -> Rule<CONTEXT, R>,
     ) {
-        rules.add(property as TASK.() -> Iterable<GenerationTask<Any>> to constructor() as Rule<CONTEXT, GenerationTask<Any>>)
+        rules.add(getter as TASK.() -> Iterable<GenerationTask<Any>> to constructor() as Rule<CONTEXT, GenerationTask<Any>>)
     }
 
     @Suppress("UNCHECKED_CAST")
     fun <R : GenerationTask<*>> subRules(
-        property: TASK.() -> Iterable<R>,
+        getter: TASK.() -> Iterable<R>,
         block: RuleSet<CONTEXT, R>.() -> Unit
     ) {
         val ruleset = RuleSet<CONTEXT, R>()
         ruleset.block()
-        rules.add(property as TASK.() -> Iterable<GenerationTask<Any>> to ruleset as Rule<CONTEXT, GenerationTask<Any>>)
+        rules.add(getter as TASK.() -> Iterable<GenerationTask<Any>> to ruleset as Rule<CONTEXT, GenerationTask<Any>>)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -63,7 +63,7 @@ class RuleSet<CONTEXT : Any, TASK : GenerationTask<*>> : Rule<CONTEXT, TASK>() {
     }
 }
 
-abstract class GodotApiRule<TASK : GenerationTask<*>> : Rule<Context, TASK>()
+abstract class GodotApiRule<TASK : GenerationTask<*>> : Rule<GenerationContext, TASK>()
 
 @RuleMarker
 fun <OUTPUT : Any, CONTEXT : Any, S : GenerationTask<OUTPUT>> S.compile(

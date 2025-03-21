@@ -2,9 +2,9 @@ package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Property
-import godot.codegen.generation.task.traits.MetaGenerationTrait
-import godot.codegen.generation.task.traits.DocumentedGenerationTrait
-import godot.codegen.generation.task.traits.GenerationType
+import godot.codegen.models.traits.MetaGenerationTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.GenerationType
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.extensions.convertToCamelCase
 

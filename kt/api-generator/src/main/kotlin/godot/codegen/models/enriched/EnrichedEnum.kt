@@ -1,11 +1,11 @@
 package godot.codegen.models.enriched
 
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Enum
-import godot.codegen.generation.task.traits.DocumentedGenerationTrait
-import godot.codegen.generation.task.traits.Nature
-import godot.codegen.generation.task.traits.GenerationType
-import godot.codegen.generation.task.traits.HasTypeGenerationTrait
-import godot.codegen.generation.task.traits.TypeGenerationTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.Nature
+import godot.codegen.models.traits.TypeGenerationTrait
+import godot.codegen.models.traits.from
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.extensions.isValidKotlinIdentifier
 import godot.common.extensions.removePrefixWords
@@ -16,6 +16,7 @@ import godot.common.extensions.toUpperSnakeCase
 class EnrichedEnum(model: Enum, outerClass: TypeGenerationTrait?) : TypeGenerationTrait {
     override val identifier =  if (outerClass != null) outerClass.identifier + "." + model.name.sanitizeApiType() else model.name.sanitizeApiType()
     override val nature =  if (model.isBitField) Nature.BITFIELD else Nature.ENUM
+    override val className = ClassName.from(this)
 
     val simpleName = model.name.sanitizeApiType()
 

@@ -2,10 +2,9 @@ package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Constant
-import godot.codegen.generation.task.traits.DocumentedGenerationTrait
-import godot.codegen.generation.task.traits.Nature
-import godot.codegen.generation.task.traits.GenerationType
-import godot.codegen.generation.task.traits.HasTypeGenerationTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.HasTypeGenerationTrait
 
 class EnrichedConstant(model: Constant) : HasTypeGenerationTrait, DocumentedGenerationTrait {
     override val type = GenerationType("int")

@@ -11,14 +11,14 @@ import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
-import godot.codegen.generation.Context
+import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedMethodTask
+import godot.codegen.models.traits.addKdoc
 import godot.codegen.models.enriched.EnrichedArgument
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.services.impl.methodBindingsInnerClassName
-import godot.codegen.generation.task.traits.addKdoc
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.VARIANT_CASTER_ANY
@@ -28,7 +28,7 @@ import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 
 interface BaseMethodeRule {
-    fun FunSpec.Builder.configureMethod(method: EnrichedMethod, clazz: EnrichedClass, context: Context) {
+    fun FunSpec.Builder.configureMethod(method: EnrichedMethod, clazz: EnrichedClass, context: GenerationContext) {
 
         addKdoc(method)
         // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
@@ -63,10 +63,10 @@ interface BaseMethodeRule {
         }
     }
 
-    fun FunSpec.Builder.generateParameters(method: EnrichedMethod, context: Context)
+    fun FunSpec.Builder.generateParameters(method: EnrichedMethod, context: GenerationContext)
     fun FunSpec.Builder.writeCode(method: EnrichedMethod, clazz: EnrichedClass)
 
-    fun ParameterSpec.Builder.applyDefault(argument: EnrichedArgument, context: Context): ParameterSpec.Builder {
+    fun ParameterSpec.Builder.applyDefault(argument: EnrichedArgument, context: GenerationContext): ParameterSpec.Builder {
         val defaultValueKotlinCode = argument.getDefaultValue()
         val appliedDefault = if ((argument.type.isEnum() || argument.type.isBitField()) && defaultValueKotlinCode != null) {
             context.generateEnumDefaultValue(
@@ -84,11 +84,11 @@ interface BaseMethodeRule {
 }
 
 class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
-    override fun apply(task: EnrichedMethodTask, context: Context) = with(task.builder) {
+    override fun apply(task: EnrichedMethodTask, context: GenerationContext) = with(task.builder) {
         configureMethod(task.method, task.owner, context)
     }
 
-    override fun FunSpec.Builder.generateParameters(method: EnrichedMethod, context: Context) {
+    override fun FunSpec.Builder.generateParameters(method: EnrichedMethod, context: GenerationContext) {
         method.arguments.withIndex().forEach {
             val index = it.index
             val argument = it.value
@@ -167,7 +167,7 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
         addStatement(
             "%T.callMethod($ptr, %T.%M, %T)",
             TRANSFER_CONTEXT,
-            clazz.getClassName().nestedClass(methodBindingsInnerClassName),
+            clazz.className.nestedClass(methodBindingsInnerClassName),
             MemberName(godotApiPackage, method.voidPtrVariableName),
             method.type.getVariantConverter()
         )
@@ -203,7 +203,7 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
 
 class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
 
-    override fun apply(task: EnrichedClassTask, context: Context) {
+    override fun apply(task: EnrichedClassTask, context: GenerationContext) {
         for (method in task.enrichedMethods.toList()) {
             val methodTask = createStringOnlyMethod(method.method, task.clazz, context) ?: continue
             task.enrichedMethods.add(methodTask)
@@ -214,7 +214,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
         }
     }
 
-    private fun createStringOnlyMethod(method: EnrichedMethod, clazz: EnrichedClass, context: Context): EnrichedMethodTask? {
+    private fun createStringOnlyMethod(method: EnrichedMethod, clazz: EnrichedClass, context: GenerationContext): EnrichedMethodTask? {
         if (method.isVirtual) {
             return null
         }
@@ -229,7 +229,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
 
     override fun FunSpec.Builder.generateParameters(
         method: EnrichedMethod,
-        context: Context
+        context: GenerationContext
     ) {
         method.arguments.withIndex().forEach {
             val index = it.index
@@ -288,7 +288,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
 
 
 class OverLoadRule : GodotApiRule<EnrichedMethodTask>() {
-    override fun apply(task: EnrichedMethodTask, context: Context) = with(task.builder) {
+    override fun apply(task: EnrichedMethodTask, context: GenerationContext) = with(task.builder) {
         if (task.method.arguments.none { it.defaultValue != null && it.type.identifier != GodotTypes.stringName && it.type.identifier != GodotTypes.nodePath }) {
             return
         }

@@ -8,17 +8,17 @@ import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import godot.codegen.generation.Context
+import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
+import godot.codegen.models.traits.addKdoc
 import godot.codegen.models.enriched.EnrichedEnum
-import godot.codegen.generation.task.traits.addKdoc
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"
 
 class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 
-    override fun apply(task: EnrichedEnumTask, context: Context) = with(task.builder) {
+    override fun apply(task: EnrichedEnumTask, context: GenerationContext) = with(task.builder) {
         val enum = task.enum
         if (enum.isBitField()) {
             generateBitfield(enum)
@@ -52,7 +52,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
         val companion = TypeSpec.companionObjectBuilder()
             .addFunction(
                 FunSpec.builder("from")
-                    .returns(enum.getClassName())
+                    .returns(enum.className)
                     .addParameter("value", Long::class)
                     .addStatement("return·entries.single·{·it.%N·==·%N·}", "id", "value")
                     .build()
@@ -63,7 +63,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
     }
 
     fun TypeSpec.Builder.generateBitfield(enum: EnrichedEnum) {
-        val className = enum.getClassName()
+        val className = enum.className
 
         addAnnotation(JvmInline::class)
         addModifiers(KModifier.VALUE)
@@ -133,7 +133,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
         isOperator: Boolean = false
     ) {
 
-        val bitFieldInterfaceName = enum.getClassName()
+        val bitFieldInterfaceName = enum.className
 
         val operatorModifier = if (isOperator) KModifier.OPERATOR else KModifier.INFIX
 
@@ -177,7 +177,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 }
 
 class BitfieldExtensionRule : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) = with(task.builder) {
+    override fun apply(task: FileTask, context: GenerationContext) = with(task.builder) {
         val enums = task.classes.flatMap { it.enums } + task.enums
 
         enums.filter { it.enum.isBitField() }
@@ -201,7 +201,7 @@ class BitfieldExtensionRule : GodotApiRule<FileTask>() {
                     .receiver(LONG)
                     .addParameter(
                         ParameterSpec
-                            .builder("other", enum.getClassName())
+                            .builder("other", enum.className)
                             .build()
                     )
                     .returns(LONG)

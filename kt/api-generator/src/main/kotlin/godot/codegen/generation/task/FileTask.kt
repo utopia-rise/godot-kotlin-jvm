@@ -1,15 +1,14 @@
 package godot.codegen.generation.task
 
 import com.squareup.kotlinpoet.FileSpec
-import godot.codegen.generation.task.traits.GenerationType
-import godot.codegen.generation.task.traits.TypeGenerationTrait
+import godot.codegen.models.traits.TypeGenerationTrait
 
 class FileTask(
     val type: TypeGenerationTrait
 ) : GenerationTask<FileSpec>() {
 
     val builder = run {
-        val className = type.getClassName()
+        val className = type.className
         FileSpec.builder(className.packageName, className.simpleName)
     }
 

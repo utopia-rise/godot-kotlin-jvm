@@ -3,13 +3,15 @@ package godot.codegen.models.enriched
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.ApiType
 import godot.codegen.models.Class
-import godot.codegen.generation.task.traits.DocumentedGenerationTrait
-import godot.codegen.generation.task.traits.Nature
-import godot.codegen.generation.task.traits.TypeGenerationTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.Nature
+import godot.codegen.models.traits.TypeGenerationTrait
+import godot.codegen.models.traits.from
 
 class EnrichedClass(model: Class) : TypeGenerationTrait, DocumentedGenerationTrait {
     override val identifier = model.name
     override val nature = Nature.CLASS
+    override val className = ClassName.from(this)
 
     val apiType = ApiType.from(model.apiType)
     val isInstantiable = model.isInstantiable

@@ -6,18 +6,18 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.UNIT
-import godot.codegen.generation.Context
+import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
 import godot.codegen.generation.task.EnrichedPropertyTask
+import godot.codegen.models.traits.addKdoc
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedProperty
-import godot.codegen.generation.task.traits.addKdoc
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 
 class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
-    override fun apply(task: EnrichedPropertyTask, context: Context) = configure(task.builder) {
+    override fun apply(task: EnrichedPropertyTask, context: GenerationContext) = configure(task.builder) {
         val property = task.property
 
         if (!property.hasGetter && !property.hasSetter) return
@@ -123,7 +123,7 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
 }
 
 class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(task: EnrichedClassTask, context: Context) = with(task.builder) {
+    override fun apply(task: EnrichedClassTask, context: GenerationContext) = with(task.builder) {
         val clazz = task.clazz
         for (propertyTask in task.enrichedProperties) {
             val property = propertyTask.property
@@ -188,7 +188,7 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
 }
 
 class ConstantRule : GodotApiRule<EnrichedConstantTask>() {
-    override fun apply(task: EnrichedConstantTask, context: Context) = configure(task.builder) {
+    override fun apply(task: EnrichedConstantTask, context: GenerationContext) = configure(task.builder) {
         val constant = task.constant
         addModifiers(KModifier.CONST, KModifier.FINAL)
         initializer("%L", constant.value)

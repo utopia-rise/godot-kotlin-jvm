@@ -1,4 +1,4 @@
-package godot.codegen.generation.task.traits
+package godot.codegen.models.traits
 
 import godot.codegen.constants.GodotMeta
 import godot.tools.common.constants.GODOT_CALLABLE
