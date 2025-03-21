@@ -230,7 +230,7 @@ public open class ScrollContainer : Container() {
   public final fun getHorizontalScrollMode(): ScrollMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHorizontalScrollModePtr, LONG)
-    return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVerticalScrollMode(enable: ScrollMode): Unit {
@@ -241,7 +241,7 @@ public open class ScrollContainer : Container() {
   public final fun getVerticalScrollMode(): ScrollMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticalScrollModePtr, LONG)
-    return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDeadzone(deadzone: Int): Unit {

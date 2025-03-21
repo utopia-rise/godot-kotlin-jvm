@@ -1,15 +1,25 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.extensions.isObjectSubClass
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Property
-import godot.codegen.traits.CastableTrait
-import godot.codegen.traits.IDocumented
-import godot.codegen.traits.NullableTrait
+import godot.codegen.models.traits.MetaGenerationTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.GenerationType
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.extensions.convertToCamelCase
-import godot.tools.common.constants.GodotTypes
 
-class EnrichedProperty(model: Property) : CastableTrait, NullableTrait, IDocumented {
+class EnrichedProperty(model: Property) : MetaGenerationTrait, DocumentedGenerationTrait {
+    override val type
+        get() = getterMethod?.type ?: originalType
+    override val nullable: Boolean
+        get() = type.isObjectSubClass() || type.isVariant()
+    override val genericParameters: List<ClassName>
+        get() = getterMethod?.genericParameters ?: emptyList()
+    override val meta: String?
+        get() = getterMethod?.meta
+    override var description = model.description
+
+    private val originalType = GenerationType(model.type.sanitizeApiType())
     val name = model.name.convertToCamelCase()
     val getterName = model.getter.convertToCamelCase()
     val setterName = model.setter?.convertToCamelCase()
@@ -24,15 +34,6 @@ class EnrichedProperty(model: Property) : CastableTrait, NullableTrait, IDocumen
         get() = getterMethod != null
     val hasSetter: Boolean
         get() = setterMethod != null
-
-    private val originalType = model.type.sanitizeApiType()
-    override val type: String
-        get() = getterMethod?.type ?: originalType
-
-    override val nullable = isObjectSubClass() || type == GodotTypes.variant
-    override val meta: String?
-        get() = getterMethod?.meta
-    override var description = model.description
 
     fun setGetter(method: EnrichedMethod) {
         getterMethod = method

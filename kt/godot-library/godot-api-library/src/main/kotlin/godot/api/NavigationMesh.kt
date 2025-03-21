@@ -418,7 +418,7 @@ public open class NavigationMesh : Resource() {
   public final fun getSamplePartitionType(): SamplePartitionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
-    return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
@@ -429,7 +429,7 @@ public open class NavigationMesh : Resource() {
   public final fun getParsedGeometryType(): ParsedGeometryType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
-    return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
@@ -470,7 +470,7 @@ public open class NavigationMesh : Resource() {
   public final fun getSourceGeometryMode(): SourceGeometryMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
-    return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGroupName(mask: StringName): Unit {

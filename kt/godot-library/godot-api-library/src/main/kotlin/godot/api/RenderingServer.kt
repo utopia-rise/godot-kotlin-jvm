@@ -823,7 +823,7 @@ public object RenderingServer : Object() {
   public final fun meshGetBlendShapeMode(mesh: RID): BlendShapeMode {
     TransferContext.writeArguments(_RID to mesh)
     TransferContext.callMethod(ptr, MethodBindings.meshGetBlendShapeModePtr, LONG)
-    return RenderingServer.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -3243,7 +3243,7 @@ public object RenderingServer : Object() {
   public final fun viewportGetUpdateMode(viewport: RID): ViewportUpdateMode {
     TransferContext.writeArguments(_RID to viewport)
     TransferContext.callMethod(ptr, MethodBindings.viewportGetUpdateModePtr, LONG)
-    return RenderingServer.ViewportUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ViewportUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -6246,7 +6246,7 @@ public object RenderingServer : Object() {
   public final fun globalShaderParameterGetType(name: StringName): GlobalShaderParameterType {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterGetTypePtr, LONG)
-    return RenderingServer.GlobalShaderParameterType.from(TransferContext.readReturnValue(LONG) as Long)
+    return GlobalShaderParameterType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

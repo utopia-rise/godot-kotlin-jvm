@@ -232,7 +232,7 @@ public open class Curve : Resource() {
   public final fun getPointLeftMode(index: Int): TangentMode {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getPointLeftModePtr, LONG)
-    return Curve.TangentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TangentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -241,7 +241,7 @@ public open class Curve : Resource() {
   public final fun getPointRightMode(index: Int): TangentMode {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getPointRightModePtr, LONG)
-    return Curve.TangentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TangentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

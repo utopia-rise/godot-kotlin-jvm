@@ -705,7 +705,7 @@ public open class AnimationPlayer : AnimationMixer() {
   public final fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessCallbackPtr, LONG)
-    return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -722,7 +722,7 @@ public open class AnimationPlayer : AnimationMixer() {
   public final fun getMethodCallMode(): AnimationMethodCallMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMethodCallModePtr, LONG)
-    return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

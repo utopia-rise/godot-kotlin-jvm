@@ -129,7 +129,7 @@ public open class GLTFDocument : Resource() {
   public final fun getRootNodeMode(): RootNodeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootNodeModePtr, LONG)
-    return GLTFDocument.RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

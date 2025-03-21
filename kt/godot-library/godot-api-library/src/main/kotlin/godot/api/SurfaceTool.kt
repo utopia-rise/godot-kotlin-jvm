@@ -116,7 +116,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun getSkinWeightCount(): SkinWeightCount {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinWeightCountPtr, LONG)
-    return SurfaceTool.SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -136,7 +136,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCustomFormatPtr, LONG)
-    return SurfaceTool.CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
+    return CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

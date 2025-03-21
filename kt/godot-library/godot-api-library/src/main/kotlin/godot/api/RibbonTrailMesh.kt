@@ -169,7 +169,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getShape(): Shape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, LONG)
-    return RibbonTrailMesh.Shape.from(TransferContext.readReturnValue(LONG) as Long)
+    return Shape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Shape(

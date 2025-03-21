@@ -161,7 +161,7 @@ public open class VoxelGI : VisualInstance3D() {
   public final fun getSubdiv(): Subdiv {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubdivPtr, LONG)
-    return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    return Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSize(size: Vector3): Unit {

@@ -237,7 +237,7 @@ public open class MultiMesh : Resource() {
   public final fun getTransformFormat(): TransformFormat {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformFormatPtr, LONG)
-    return MultiMesh.TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setInstanceCount(count: Int): Unit {
@@ -270,7 +270,7 @@ public open class MultiMesh : Resource() {
   public final fun getPhysicsInterpolationQuality(): PhysicsInterpolationQuality {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsInterpolationQualityPtr, LONG)
-    return MultiMesh.PhysicsInterpolationQuality.from(TransferContext.readReturnValue(LONG) as Long)
+    return PhysicsInterpolationQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

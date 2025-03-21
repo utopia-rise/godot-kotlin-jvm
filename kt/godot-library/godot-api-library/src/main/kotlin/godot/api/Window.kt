@@ -807,7 +807,7 @@ public open class Window : Viewport() {
   public final fun getInitialPosition(): WindowInitialPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInitialPositionPtr, LONG)
-    return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
+    return WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCurrentScreen(index: Int): Unit {
@@ -914,7 +914,7 @@ public open class Window : Viewport() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1147,7 +1147,7 @@ public open class Window : Viewport() {
   public final fun getContentScaleMode(): ContentScaleMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleModePtr, LONG)
-    return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setContentScaleAspect(aspect: ContentScaleAspect): Unit {
@@ -1158,7 +1158,7 @@ public open class Window : Viewport() {
   public final fun getContentScaleAspect(): ContentScaleAspect {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleAspectPtr, LONG)
-    return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
+    return ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setContentScaleStretch(stretch: ContentScaleStretch): Unit {
@@ -1169,7 +1169,7 @@ public open class Window : Viewport() {
   public final fun getContentScaleStretch(): ContentScaleStretch {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleStretchPtr, LONG)
-    return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
+    return ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepTitleVisible(titleVisible: Boolean): Unit {
@@ -1680,7 +1680,7 @@ public open class Window : Viewport() {
   public final fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
-    return Window.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

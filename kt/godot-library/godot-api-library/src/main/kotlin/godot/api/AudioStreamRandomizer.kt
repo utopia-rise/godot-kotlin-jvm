@@ -183,7 +183,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   public final fun getPlaybackMode(): PlaybackMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackModePtr, LONG)
-    return AudioStreamRandomizer.PlaybackMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return PlaybackMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class PlaybackMode(

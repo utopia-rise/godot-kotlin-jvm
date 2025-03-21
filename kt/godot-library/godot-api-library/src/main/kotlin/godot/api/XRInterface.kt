@@ -192,7 +192,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getTrackingStatus(): TrackingStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackingStatusPtr, LONG)
-    return XRInterface.TrackingStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return TrackingStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -256,7 +256,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getPlayAreaMode(): PlayAreaMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlayAreaModePtr, LONG)
-    return XRInterface.PlayAreaMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return PlayAreaMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -414,7 +414,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getEnvironmentBlendMode(): EnvironmentBlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentBlendModePtr, LONG)
-    return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

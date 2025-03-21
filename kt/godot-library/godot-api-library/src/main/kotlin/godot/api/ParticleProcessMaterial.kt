@@ -2285,7 +2285,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionShape(): EmissionShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionShapePtr, LONG)
-    return ParticleProcessMaterial.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmissionSphereRadius(radius: Float): Unit {
@@ -2511,7 +2511,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getSubEmitterMode(): SubEmitterMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubEmitterModePtr, LONG)
-    return ParticleProcessMaterial.SubEmitterMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SubEmitterMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSubEmitterMode(mode: SubEmitterMode): Unit {
@@ -2593,7 +2593,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getCollisionMode(): CollisionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionModePtr, LONG)
-    return ParticleProcessMaterial.CollisionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CollisionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionUseScale(radius: Boolean): Unit {

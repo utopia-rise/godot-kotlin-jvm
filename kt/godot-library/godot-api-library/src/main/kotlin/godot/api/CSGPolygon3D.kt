@@ -269,7 +269,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return CSGPolygon3D.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(depth: Float): Unit {
@@ -324,7 +324,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPathIntervalType(): PathIntervalType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathIntervalTypePtr, LONG)
-    return CSGPolygon3D.PathIntervalType.from(TransferContext.readReturnValue(LONG) as Long)
+    return PathIntervalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathInterval(interval: Float): Unit {
@@ -357,7 +357,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPathRotation(): PathRotation {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathRotationPtr, LONG)
-    return CSGPolygon3D.PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
+    return PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathRotationAccurate(enable: Boolean): Unit {

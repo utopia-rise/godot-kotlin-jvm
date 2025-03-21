@@ -473,7 +473,7 @@ public object AudioServer : Object() {
   public final fun getSpeakerMode(): SpeakerMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpeakerModePtr, LONG)
-    return AudioServer.SpeakerMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SpeakerMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

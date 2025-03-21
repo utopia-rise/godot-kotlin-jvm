@@ -431,7 +431,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   public final fun getTileAnimationMode(atlasCoords: Vector2i): TileAnimationMode {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(ptr, MethodBindings.getTileAnimationModePtr, LONG)
-    return TileSetAtlasSource.TileAnimationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TileAnimationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

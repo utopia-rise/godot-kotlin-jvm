@@ -157,7 +157,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getFormat(): Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
-    return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    return Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLoopMode(loopMode: LoopMode): Unit {
@@ -168,7 +168,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getLoopMode(): LoopMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
-    return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLoopBegin(loopBegin: Int): Unit {

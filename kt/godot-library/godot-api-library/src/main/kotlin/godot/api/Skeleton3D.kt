@@ -558,7 +558,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getModifierCallbackModeProcess(): ModifierCallbackModeProcess {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModifierCallbackModeProcessPtr, LONG)
-    return Skeleton3D.ModifierCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
+    return ModifierCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

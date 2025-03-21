@@ -331,7 +331,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
-    return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
+    return Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

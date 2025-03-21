@@ -49,7 +49,7 @@ public open class GDExtension : Resource() {
   public final fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
-    return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
+    return InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class InitializationLevel(

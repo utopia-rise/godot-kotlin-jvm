@@ -46,7 +46,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeTransformFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(

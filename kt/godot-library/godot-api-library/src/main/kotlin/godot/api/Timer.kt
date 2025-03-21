@@ -241,7 +241,7 @@ public open class Timer : Node() {
   public final fun getTimerProcessCallback(): TimerProcessCallback {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimerProcessCallbackPtr, LONG)
-    return Timer.TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+    return TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class TimerProcessCallback(

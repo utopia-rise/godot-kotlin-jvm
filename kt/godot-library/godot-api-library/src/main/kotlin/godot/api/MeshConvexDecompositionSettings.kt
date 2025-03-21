@@ -284,7 +284,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return MeshConvexDecompositionSettings.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setConvexHullApproximation(convexHullApproximation: Boolean): Unit {

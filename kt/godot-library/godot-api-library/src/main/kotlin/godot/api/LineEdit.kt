@@ -1044,7 +1044,7 @@ public open class LineEdit : Control() {
   public final fun getVirtualKeyboardType(): VirtualKeyboardType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
-    return LineEdit.VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
+    return VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClearButtonEnabled(enable: Boolean): Unit {

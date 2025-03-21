@@ -96,7 +96,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getStretchMode(): StretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
-    return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlignmentHorizontal(alignmentHorizontal: AlignmentMode): Unit {
@@ -107,7 +107,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getAlignmentHorizontal(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentHorizontalPtr, LONG)
-    return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlignmentVertical(alignmentVertical: AlignmentMode): Unit {
@@ -118,7 +118,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getAlignmentVertical(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentVerticalPtr, LONG)
-    return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class StretchMode(

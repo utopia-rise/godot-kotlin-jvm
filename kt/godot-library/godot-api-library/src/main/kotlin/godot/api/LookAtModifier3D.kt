@@ -517,7 +517,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   public final fun getOriginFrom(): OriginFrom {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginFromPtr, LONG)
-    return LookAtModifier3D.OriginFrom.from(TransferContext.readReturnValue(LONG) as Long)
+    return OriginFrom.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOriginBoneName(boneName: String): Unit {

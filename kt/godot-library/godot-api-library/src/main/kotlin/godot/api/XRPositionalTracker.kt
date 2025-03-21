@@ -126,7 +126,7 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun getTrackerHand(): TrackerHand {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
-    return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
+    return TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTrackerHand(hand: TrackerHand): Unit {

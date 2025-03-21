@@ -74,7 +74,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   public final fun getEnableMode(): EnableMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableModePtr, LONG)
-    return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableNodePath(path: NodePath): Unit {

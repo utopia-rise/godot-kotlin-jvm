@@ -315,7 +315,7 @@ public open class AudioStreamPlayer : Node() {
   public final fun getMixTarget(): MixTarget {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixTargetPtr, LONG)
-    return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
+    return MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlaying(enable: Boolean): Unit {

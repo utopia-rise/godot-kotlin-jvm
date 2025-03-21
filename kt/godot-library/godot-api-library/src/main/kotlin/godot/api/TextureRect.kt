@@ -107,7 +107,7 @@ public open class TextureRect : Control() {
   public final fun getExpandMode(): ExpandMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExpandModePtr, LONG)
-    return TextureRect.ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFlipH(enable: Boolean): Unit {
@@ -140,7 +140,7 @@ public open class TextureRect : Control() {
   public final fun getStretchMode(): StretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
-    return TextureRect.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ExpandMode(

@@ -104,7 +104,7 @@ public open class TextureLayered : Texture() {
   public final fun getLayeredType(): LayeredType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayeredTypePtr, LONG)
-    return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
+    return LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

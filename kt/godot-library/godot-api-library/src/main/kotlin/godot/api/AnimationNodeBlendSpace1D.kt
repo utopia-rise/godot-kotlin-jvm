@@ -228,7 +228,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
-    return AnimationNodeBlendSpace1D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUseSync(enable: Boolean): Unit {

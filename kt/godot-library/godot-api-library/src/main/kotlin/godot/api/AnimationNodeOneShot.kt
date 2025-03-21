@@ -303,7 +303,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public final fun getMixMode(): MixMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixModePtr, LONG)
-    return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return MixMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OneShotRequest(

@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlag
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -265,7 +264,7 @@ public open class RichTextLabel : Control() {
   /**
    * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
-  public final inline var justificationFlags: JustificationFlag
+  public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -683,7 +682,7 @@ public open class RichTextLabel : Control() {
     baseDirection: Control.TextDirection = Control.TextDirection.AUTO,
     language: String = "",
     stParser: TextServer.StructuredTextParser = TextServer.StructuredTextParser.DEFAULT,
-    justificationFlags: JustificationFlag = TextServer.JustificationFlag(163),
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
     TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
@@ -999,15 +998,15 @@ public open class RichTextLabel : Control() {
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public final fun getJustificationFlags(): JustificationFlag {
+  public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTabStops(tabStops: PackedFloat32Array): Unit {

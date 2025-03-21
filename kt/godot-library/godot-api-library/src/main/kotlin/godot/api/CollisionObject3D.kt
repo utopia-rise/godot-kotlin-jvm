@@ -276,7 +276,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getDisableMode(): DisableMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisableModePtr, LONG)
-    return CollisionObject3D.DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setRayPickable(rayPickable: Boolean): Unit {

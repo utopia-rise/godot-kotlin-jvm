@@ -167,7 +167,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public final fun getResolution(): Resolution {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
-    return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+    return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUpdateMode(updateMode: UpdateMode): Unit {
@@ -178,7 +178,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
-    return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHeightfieldMask(heightfieldMask: Long): Unit {

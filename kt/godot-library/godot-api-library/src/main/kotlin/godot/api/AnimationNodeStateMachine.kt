@@ -272,7 +272,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getStateMachineType(): StateMachineType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStateMachineTypePtr, LONG)
-    return AnimationNodeStateMachine.StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
+    return StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAllowTransitionToSelf(enable: Boolean): Unit {

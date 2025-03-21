@@ -309,7 +309,7 @@ public open class TabContainer : Container() {
   public final fun getTabsPosition(): TabPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabsPositionPtr, LONG)
-    return TabContainer.TabPosition.from(TransferContext.readReturnValue(LONG) as Long)
+    return TabPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipTabs(clipTabs: Boolean): Unit {

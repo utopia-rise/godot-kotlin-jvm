@@ -400,7 +400,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getShadowFilter(): ShadowFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowFilterPtr, LONG)
-    return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setShadowColor(shadowColor: Color): Unit {
@@ -422,7 +422,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
-    return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

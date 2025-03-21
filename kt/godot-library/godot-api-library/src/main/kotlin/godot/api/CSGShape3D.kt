@@ -163,7 +163,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   public final fun getOperation(): Operation {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperationPtr, LONG)
-    return CSGShape3D.Operation.from(TransferContext.readReturnValue(LONG) as Long)
+    return Operation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSnap(snap: Float): Unit {

@@ -181,7 +181,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getSwitchMode(): SwitchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwitchModePtr, LONG)
-    return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceMode(mode: AdvanceMode): Unit {
@@ -192,7 +192,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getAdvanceMode(): AdvanceMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdvanceModePtr, LONG)
-    return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceCondition(name: StringName): Unit {

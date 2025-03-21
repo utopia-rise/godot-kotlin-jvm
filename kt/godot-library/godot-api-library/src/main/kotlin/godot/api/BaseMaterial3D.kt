@@ -1821,7 +1821,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getTransparency(): Transparency {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransparencyPtr, LONG)
-    return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
+    return Transparency.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
@@ -1832,7 +1832,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getAlphaAntialiasing(): AlphaAntiAliasing {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
@@ -1854,7 +1854,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getShadingMode(): ShadingMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadingModePtr, LONG)
-    return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSpecular(specular: Float): Unit {
@@ -2085,7 +2085,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getDetailUv(): DetailUV {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDetailUvPtr, LONG)
-    return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
+    return DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
@@ -2096,7 +2096,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
-    return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
@@ -2107,7 +2107,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getDepthDrawMode(): DepthDrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthDrawModePtr, LONG)
-    return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCullMode(cullMode: CullMode): Unit {
@@ -2118,7 +2118,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getCullMode(): CullMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
-    return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
@@ -2129,7 +2129,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getDiffuseMode(): DiffuseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiffuseModePtr, LONG)
-    return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSpecularMode(specularMode: SpecularMode): Unit {
@@ -2140,7 +2140,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getSpecularMode(): SpecularMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularModePtr, LONG)
-    return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2171,7 +2171,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getTextureFilter(): TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
-    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2219,7 +2219,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getDetailBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDetailBlendModePtr, LONG)
-    return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUv1Scale(scale: Vector3): Unit {
@@ -2296,7 +2296,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getBillboardMode(): BillboardMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBillboardModePtr, LONG)
-    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParticlesAnimHFrames(frames: Int): Unit {
@@ -2406,7 +2406,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getEmissionOperator(): EmissionOperator {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionOperatorPtr, LONG)
-    return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
+    return EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAoLightAffect(amount: Float): Unit {
@@ -2461,7 +2461,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getMetallicTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMetallicTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
@@ -2472,7 +2472,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getRoughnessTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAoTextureChannel(channel: TextureChannel): Unit {
@@ -2483,7 +2483,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getAoTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAoTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setRefractionTextureChannel(channel: TextureChannel): Unit {
@@ -2494,7 +2494,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getRefractionTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRefractionTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProximityFadeEnabled(enabled: Boolean): Unit {
@@ -2549,7 +2549,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun getDistanceFade(): DistanceFadeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadePtr, LONG)
-    return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDistanceFadeMaxDistance(distance: Float): Unit {
