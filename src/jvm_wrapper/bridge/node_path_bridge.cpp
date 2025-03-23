@@ -2,25 +2,26 @@
 
 #include "bridges_utils.h"
 #include "jvm_wrapper/memory/transfer_context.h"
+#include "variant_allocator.h"
 
 using namespace bridges;
 
 uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(memnew(NodePath));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(NodePath()));
 }
 
 uintptr_t NodePathBridge::engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(memnew(NodePath(args[0].operator String())));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(NodePath(args[0].operator String())));
 }
 
 uintptr_t NodePathBridge::engine_call_constructor_node_path(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(memnew(NodePath(args[0].operator NodePath())));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(NodePath(args[0].operator NodePath())));
 }
 
 void NodePathBridge::engine_call_path(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

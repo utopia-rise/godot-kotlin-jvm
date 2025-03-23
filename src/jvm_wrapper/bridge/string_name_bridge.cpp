@@ -6,21 +6,21 @@
 using namespace bridges;
 
 uintptr_t StringNameBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(memnew(StringName));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(StringName()));
 }
 
 uintptr_t StringNameBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(memnew(StringName(args[0].operator StringName())));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(StringName(args[0].operator StringName())));
 }
 
 uintptr_t StringNameBridge::engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(memnew(StringName(args[0].operator String())));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(StringName(args[0].operator String())));
 }
 
 void StringNameBridge::engine_call_operator_string(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

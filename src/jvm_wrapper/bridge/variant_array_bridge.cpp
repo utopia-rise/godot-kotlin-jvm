@@ -7,7 +7,7 @@
 using namespace bridges;
 
 uintptr_t VariantArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(memnew(Array));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Array()));
 }
 
 uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, jobject p_instance) {
@@ -15,7 +15,7 @@ uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, j
     Variant args[3] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    auto ret {memnew(Array)};
+    auto ret {VariantAllocator::alloc(Array())};
 
     auto engineTypeIndex {args[1].operator int64_t()};
     auto userTypeIndex {args[2].operator int64_t()};

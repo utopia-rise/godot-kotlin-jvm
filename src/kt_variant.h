@@ -7,6 +7,7 @@
 #include "jvm_wrapper/memory/type_manager.h"
 #include "logging.h"
 #include "shared_buffer.h"
+#include "variant_allocator.h"
 
 #include <core/io/marshalls.h>
 #include <core/os/os.h>
@@ -28,7 +29,7 @@ class VariantToBuffer {
     template<class TNativeCoreType>
     inline static void write_pointer(SharedBuffer* des, TNativeCoreType native_core_type) {
         des->increment_position(
-          encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType(native_core_type))), des->get_cursor())
+          encode_uint64(reinterpret_cast<uintptr_t>(VariantAllocator::alloc(TNativeCoreType(native_core_type))), des->get_cursor())
         );
     }
 
@@ -71,7 +72,7 @@ class VariantToBuffer {
         Array arr = src.operator Array();
         uint64_t type = arr.get_typed_builtin();
         set_variant_type(des, Variant::Type::ARRAY);
-        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(memnew(Array(arr))), des->get_cursor()));
+        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Array(arr))), des->get_cursor()));
         des->increment_position(encode_uint64(type, des->get_cursor()));
     }
 

@@ -5,11 +5,12 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "script/jvm_script.h"
 #include "script/jvm_script_manager.h"
+#include "variant_allocator.h"
 
 using namespace bridges;
 
 uintptr_t DictionaryBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(memnew(Dictionary));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Dictionary()));
 }
 
 uintptr_t DictionaryBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, jobject p_instance) {
@@ -17,7 +18,7 @@ uintptr_t DictionaryBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, job
     Variant args[6] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    auto ret {memnew(Dictionary)};
+    auto ret {VariantAllocator::alloc(Dictionary())};
 
     auto key_variant_type = args[0].operator uint32_t();
     auto key_engine_type_index {args[1].operator int64_t()};
