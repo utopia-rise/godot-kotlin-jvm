@@ -157,7 +157,7 @@
     ]
   },
   {
-    "name" : "godot.core.NativeCallable$Bridge",
+    "name" : "godot.core.Callable$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
@@ -165,7 +165,7 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_constructor_object_string_name", "parameterTypes" : [] },
-      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.LambdaCallable", "int", "int", "boolean"] },
+      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.LambdaContainer", "int", "int", "boolean"] },
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
@@ -189,12 +189,11 @@
     ]
   },
   {
-    "name" : "godot.core.LambdaCallable$Bridge",
-    "fields" : [
-      { "name" : "INSTANCE" }
-    ],
-    "methods" : [
-      { "name" : "wrap_in_custom_callable", "parameterTypes" : ["godot.core.LambdaCallable", "int", "int", "boolean"] }
+    "name":"godot.core.LambdaContainer",
+    "methods":[
+      {"name":"invoke","parameterTypes":[] },
+      {"name":"invokeWithReturn","parameterTypes":[] },
+      {"name":"onCancel","parameterTypes":[] }
     ]
   },
   {
@@ -708,16 +707,6 @@
     "methods": [
       {"name": "getParameterCount", "parameterTypes": []},
       {"name": "construct", "parameterTypes": ["long", "long"]}
-    ]
-  },
-  {
-    "name":"godot.core.LambdaCallable",
-    "methods":[
-      {"name":"invokeNoReturn","parameterTypes":[] },
-      {"name":"invokeWithReturn","parameterTypes":[] },
-      {"name":"getReturnVariantType","parameterTypes":[] },
-      {"name":"hashCode","parameterTypes":[] },
-      {"name":"onCancel","parameterTypes":[] }
     ]
   },
   {

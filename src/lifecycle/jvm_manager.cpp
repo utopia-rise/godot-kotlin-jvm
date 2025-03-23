@@ -4,7 +4,6 @@
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
 #include "jvm_wrapper/bridge/godot_print_bridge.h"
-#include "jvm_wrapper/bridge/lambda_callable_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
@@ -105,14 +104,13 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && KtFunctionInfo::initialize(p_env, class_loader)
             && KtFunction::initialize(p_env, class_loader)
             && KtClass::initialize(p_env, class_loader)
-            && LambdaCallable::initialize(p_env, class_loader)
+            && LambdaContainer::initialize(p_env, class_loader)
             && TransferContext::initialize(p_env, class_loader)
             && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader)
             && MemoryManager::initialize(p_env, class_loader)
             && bridges::GodotPrintBridge::initialize(p_env, class_loader)
             && bridges::CallableBridge::initialize(p_env, class_loader)
-            && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
             && bridges::DictionaryBridge::initialize(p_env, class_loader)
             && bridges::StringNameBridge::initialize(p_env, class_loader)
             && bridges::NodePathBridge::initialize(p_env, class_loader)
@@ -142,7 +140,6 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     MemoryManager::finalize(p_env, class_loader);
     bridges::GodotPrintBridge::finalize(p_env, class_loader);
     bridges::CallableBridge::finalize(p_env, class_loader);
-    bridges::LambdaCallableBridge::finalize(p_env, class_loader);
     bridges::DictionaryBridge::finalize(p_env, class_loader);
     bridges::StringNameBridge::finalize(p_env, class_loader);
     bridges::NodePathBridge::finalize(p_env, class_loader);
@@ -157,6 +154,7 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     bridges::PackedVector2ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector3ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector4ArrayBridge::finalize(p_env, class_loader);
+    LambdaContainer::finalize(p_env, class_loader);
     KtObject::finalize(p_env, class_loader);
     KtPropertyInfo::finalize(p_env, class_loader);
     KtProperty::finalize(p_env, class_loader);
@@ -170,8 +168,6 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
-    //TODO: Remove the return jvm when https://github.com/godotengine/godot/issues/95809 is resolved
-    return;
     JVM_LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif

@@ -65,7 +65,7 @@ class GenericClassNameInfo(
             ParameterSpec.builder("p$index", typeVariableName).build()
         }
 
-    fun toLambdaTypeName(returnType: TypeVariableName) = LambdaTypeName.get(
+    fun toLambdaTypeName(returnType: TypeVariableName) =  LambdaTypeName.get(
         receiver = null,
         parameters = genericTypes
             .mapIndexed { index: Int, typeVariableName: TypeVariableName ->

@@ -16,22 +16,22 @@ class CallableMethodBindTest: Node() {
 
     @RegisterFunction
     fun callWithMethodWithAllBinds() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(1, 2, 3).call()
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind(1, 2, 3).unsafeCall()
     }
 
     @RegisterFunction
     fun callWithMethodWithTwoBinds() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(2, 3).call(0)
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind(2, 3).unsafeCall(0)
     }
 
     @RegisterFunction
     fun callWithMethodWithOneBind() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(3).call(0, 0)
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind(3).unsafeCall(0, 0)
     }
 
     @RegisterFunction
     fun callWithMethodWithNoBind() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind().call(0, 0, 0)
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind().unsafeCall(0, 0, 0)
     }
 
     @RegisterFunction
