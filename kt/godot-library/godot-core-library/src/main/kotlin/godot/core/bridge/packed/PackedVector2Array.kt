@@ -41,6 +41,21 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedVector2Array] from an existing Kotlin [Collection<Vector2>] or Java float[].
+     */
+    constructor(from: Array<Vector2>) {
+        val floatArray = FloatArray(from.size * 2)
+        from.forEachIndexed { index, vector ->
+            val floatIndex = index * 2
+            floatArray[floatIndex] = vector.x.toFloat()
+            floatArray[floatIndex + 1] = vector.y.toFloat()
+        }
+
+        ptr = Bridge.engine_convert_to_godot(floatArray)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
+    }
+
     override fun toString(): String {
         return "PoolVector2Array(${size})"
     }
@@ -63,6 +78,16 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
         return ptr.hashCode()
     }
 
+    fun toVector2Array(): Array<Vector2> {
+        val floatArray = Bridge.engine_convert_to_jvm(ptr)
+        return Array<Vector2>(floatArray.size / 2) { vectorIndex ->
+            val floatIndex = vectorIndex * 2
+            Vector2(
+                floatArray[floatIndex],
+                floatArray[floatIndex + 1]
+            )
+        }
+    }
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
@@ -95,5 +120,19 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
         external override fun engine_call_slice(_handle: VoidPtr)
         external override fun engine_call_sort(_handle: VoidPtr)
         external override fun engine_call_to_byte_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: FloatArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): FloatArray
     }
 }
+
+/**
+ * Convert a [Array<Vector2>] into a Godot [PackedVector2Array], this call is optimised for a large amount of data.
+ */
+fun Array<Vector2>.toPackedArray() = PackedVector2Array(this)
+
+
+/**
+ * Convert a [Collection<Vector2>] into a Godot [PackedVector2Array], this call is optimised for a large amount of data.
+ */
+fun Collection<Vector2>.toPackedArray() = PackedVector2Array(this.toTypedArray())

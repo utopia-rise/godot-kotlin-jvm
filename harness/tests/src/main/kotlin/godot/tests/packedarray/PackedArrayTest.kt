@@ -8,6 +8,8 @@ import godot.core.PackedFloat32Array
 import godot.core.PackedFloat64Array
 import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
+import godot.core.PackedVector2Array
+import godot.core.Vector2
 
 @RegisterClass
 class PackedArrayTest : Node() {
@@ -43,6 +45,12 @@ class PackedArrayTest : Node() {
     }
 
     @RegisterFunction
+    fun convertVector2Array() : PackedVector2Array {
+        val arr = arrayOf(Vector2(0.0, 1.0), Vector2(2.0, 3.0), Vector2(4.0, 5.0), Vector2(1024.0, 2048.0))
+        return PackedVector2Array(arr);
+    }
+
+    @RegisterFunction
     fun getByteArrayValue(arr: PackedByteArray, index: Int) : Byte {
         val kotlinArr = arr.toByteArray()
         return kotlinArr[index];
@@ -69,6 +77,12 @@ class PackedArrayTest : Node() {
     @RegisterFunction
     fun getDoubleArrayValue(arr: PackedFloat64Array, index: Int) : Double {
         val kotlinArr = arr.toDoubleArray()
+        return kotlinArr[index];
+    }
+
+    @RegisterFunction
+    fun getVector2ArrayValue(arr: PackedVector2Array, index: Int) : Vector2  {
+        val kotlinArr = arr.toVector2Array()
         return kotlinArr[index];
     }
 }
