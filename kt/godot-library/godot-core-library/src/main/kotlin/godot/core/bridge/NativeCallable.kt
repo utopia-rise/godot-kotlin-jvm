@@ -8,6 +8,7 @@ import godot.common.interop.ObjectID
 import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.interop.VoidPtr
+import godot.core.Callable.Bridge
 import kotlin.reflect.KCallable
 
 class NativeCallable : NativeCoreType, Callable {
@@ -29,24 +30,18 @@ class NativeCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(lambdaCallable: LambdaCallable<*>) {
-        // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
-        ptr = Bridge.engine_call_constructor_kt_custom_callable(lambdaCallable, lambdaCallable.variantConverter.id, lambdaCallable.hashCode(), lambdaCallable.onCancelCall != null)
-        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
-    }
-
     internal constructor(_handle: VoidPtr){
         this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    fun bind(vararg args: Any?): NativeCallable {
+    override fun bind(vararg args: Any?): NativeCallable {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_bind(ptr)
         return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
     }
 
-    fun bindv(args: VariantArray<Any?>): NativeCallable {
+    override fun bindV(args: VariantArray<Any?>): NativeCallable {
         TransferContext.writeArguments(VariantParser.ARRAY to args)
         Bridge.engine_call_bindv(ptr)
         return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
@@ -58,41 +53,31 @@ class NativeCallable : NativeCoreType, Callable {
         return TransferContext.readReturnValue(VariantCaster.ANY)
     }
 
-    fun callDeferred(vararg args: Any?) {
+    override fun callDeferred(vararg args: Any?) {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_call_deferred(ptr)
     }
 
-    fun callv(args: VariantArray<Any?>): Any? {
+    override fun callV(args: VariantArray<Any?>): Any? {
         TransferContext.writeArguments(VariantParser.ARRAY to args)
         Bridge.engine_call_callv(ptr)
         return TransferContext.readReturnValue(VariantCaster.ANY)
     }
 
-    fun getBoundArguments(): VariantArray<Any?> {
+    override fun getBoundArguments(): VariantArray<Any?> {
         Bridge.engine_call_get_bound_arguments(ptr)
         @Suppress("UNCHECKED_CAST")
         return TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<Any?>
     }
 
-    fun getBoundArgumentCount(): Int {
+    override fun getBoundArgumentCount(): Int {
         Bridge.engine_call_get_bound_arguments_count(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
-    fun getMethod(): StringName {
+    override fun getMethod(): StringName {
         Bridge.engine_call_get_method(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
-    }
-
-    fun getObject(): Object {
-        Bridge.engine_call_get_object(ptr)
-        return TransferContext.readReturnValue(VariantParser.OBJECT) as Object
-    }
-
-    fun getObjectId(): ObjectID {
-        Bridge.engine_call_get_object_id(ptr)
-        return ObjectID(TransferContext.readReturnValue(VariantParser.LONG) as Long)
     }
 
     override fun hashCode(): Int {
@@ -100,37 +85,47 @@ class NativeCallable : NativeCoreType, Callable {
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
-    fun isCustom(): Boolean {
+    override fun getObject(): Object {
+        Bridge.engine_call_get_object(ptr)
+        return TransferContext.readReturnValue(VariantParser.OBJECT) as Object
+    }
+
+    override fun getObjectId(): ObjectID {
+        Bridge.engine_call_get_object_id(ptr)
+        return ObjectID(TransferContext.readReturnValue(VariantParser.LONG) as Long)
+    }
+
+    override fun isCustom(): Boolean {
         Bridge.engine_call_is_custom(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
-    fun isNull(): Boolean {
+    override fun isNull(): Boolean {
         Bridge.engine_call_is_null(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
-    fun isStandard(): Boolean {
+    override fun isStandard(): Boolean {
         Bridge.engine_call_is_standard(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
-    fun isValid(): Boolean {
+    override fun isValid(): Boolean {
         Bridge.engine_call_is_valid(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
-    fun rpc(vararg args: Any?) {
+    override fun rpc(vararg args: Any?) {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_rpc(ptr)
     }
 
-    fun rpcId(peerId: Long, vararg args: Any?) {
+    override fun rpcId(peerId: Long, vararg args: Any?) {
         TransferContext.writeArguments(VariantParser.LONG to peerId, *args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_rpc_id(ptr)
     }
 
-    fun unbind(argCount: Int): NativeCallable {
+    override fun unbind(argCount: Int): NativeCallable {
         TransferContext.writeArguments(VariantCaster.INT to argCount)
         Bridge.engine_call_unbind(ptr)
         return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
@@ -141,33 +136,6 @@ class NativeCallable : NativeCoreType, Callable {
         if (other !is NativeCallable) return false
         if(getObject() != other.getObject() || getMethod() != other.getMethod()) return false
         return true
-    }
-
-    @Suppress("FunctionName")
-    object Bridge {
-        external fun engine_call_constructor(): VoidPtr
-        external fun engine_call_constructor_object_string_name(): VoidPtr
-        external fun engine_call_constructor_kt_custom_callable(callable: LambdaCallable<*>, variantTypeOrdinal: Int, hashCode: Int, hasOnCancel: Boolean): VoidPtr
-        external fun engine_call_copy_constructor(): VoidPtr
-
-        external fun engine_call_bind(_handle: VoidPtr)
-        external fun engine_call_bindv(_handle: VoidPtr)
-        external fun engine_call_call(handle: VoidPtr)
-        external fun engine_call_call_deferred(handle: VoidPtr)
-        external fun engine_call_callv(_handle: VoidPtr)
-        external fun engine_call_get_bound_arguments(_handle: VoidPtr)
-        external fun engine_call_get_bound_arguments_count(_handle: VoidPtr)
-        external fun engine_call_get_method(_handle: VoidPtr)
-        external fun engine_call_get_object(_handle: VoidPtr)
-        external fun engine_call_get_object_id(_handle: VoidPtr)
-        external fun engine_call_hash(_handle: VoidPtr)
-        external fun engine_call_is_custom(_handle: VoidPtr)
-        external fun engine_call_is_null(_handle: VoidPtr)
-        external fun engine_call_is_standard(_handle: VoidPtr)
-        external fun engine_call_is_valid(_handle: VoidPtr)
-        external fun engine_call_rpc(_handle: VoidPtr)
-        external fun engine_call_rpc_id(_handle: VoidPtr)
-        external fun engine_call_unbind(_handle: VoidPtr)
     }
 
     companion object {

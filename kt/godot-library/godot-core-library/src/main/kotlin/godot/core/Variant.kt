@@ -364,26 +364,19 @@ enum class VariantParser(override val id: Int) : VariantConverter {
     },
     OBJECT(24) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = buffer.obj
-
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
             require(any is KtObject?)
             buffer.obj = any
         }
     },
     CALLABLE(25) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer): Callable {
-            val ptr = buffer.long
-            return NativeCallable(ptr)
-        }
-
+        override fun toUnsafeKotlin(buffer: ByteBuffer) = NativeCallable(buffer.long)
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
             if (any is NativeCallable) {
-                buffer.bool = false
                 buffer.putLong(any.ptr)
             } else {
                 require(any is LambdaCallable<*>)
-                buffer.bool = true
-                buffer.putLong(any.wrapInCustomCallable())
+                buffer.putLong(any.toNativeCallable().ptr)
             }
         }
     },

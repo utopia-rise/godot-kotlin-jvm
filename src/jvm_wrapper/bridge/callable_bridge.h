@@ -41,8 +41,7 @@ namespace bridges {
 
         static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
                                                                     jobject p_kt_custom_callable_instance,
-                                                                    jint p_variant_type_ordinal, jint p_hash_code,
-                                                                    jboolean p_has_on_destroy);
+                                                                    jint p_variant_type_ordinal, jboolean p_has_on_destroy);
 
         static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
 
