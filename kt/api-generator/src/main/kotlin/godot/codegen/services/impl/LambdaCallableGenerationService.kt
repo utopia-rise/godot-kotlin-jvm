@@ -14,7 +14,6 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.UNIT
 import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.ILambdaCallableGenerationService
 import godot.common.constants.Constraints
@@ -29,129 +28,58 @@ import java.io.File
 object LambdaCallableGenerationService : ILambdaCallableGenerationService {
     private const val FUNCTION_PARAMETER_NAME = "function"
     private const val LAMBDA_CALLABLE_NAME = "LambdaCallable"
+    private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
     private const val CALLABLE_FUNCTION_NAME = "callable"
     private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
-    private const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
-    private const val ON_CANCEL_CALL_ARGUMENT_NAME = "onCancelCall"
+    private const val CONTAINER_ARGUMENT_NAME = "container"
+    private const val VARIANT_TYPE_RETURN_NAME = "returnConverter"
+    private const val VARIANT_TYPE_ARGUMENT_NAME = "typeConverters"
     private val LAMBDA_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CALLABLE_NAME)
+    private val LAMBDA_CONTAINER_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CONTAINER_NAME)
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
+    private val variantConverterClassName = ClassName(godotInteropPackage, GodotKotlinJvmTypes.variantConverter)
 
     //Java
     private val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
     private val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
 
     override fun generate(outputDir: File) {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "Callables")
-
-        val onDestroyCallLambdaType = LambdaTypeName.get(returnType = UNIT).copy(nullable = true)
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
+        val containerFileSpec = FileSpec.builder(godotCorePackage, "LambdaContainers")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val ktCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME$argCount")
-            val classBuilder = TypeSpec
-                .classBuilder(ktCallableClassName)
-                .superclass(
-                    LAMBDA_CALLABLE_CLASS_NAME
-                        .parameterizedBy(returnTypeParameter)
-                )
-
             val argumentRange = 0..<argCount
-
-            classBuilder.addSuperclassConstructorParameter(VARIANT_TYPE_ARGUMENT_NAME)
-            classBuilder.addSuperclassConstructorParameter(ON_CANCEL_CALL_ARGUMENT_NAME)
-
-            for (index in argumentRange) {
-                classBuilder.addSuperclassConstructorParameter("p${index}Type")
-            }
-
-            val typeVariableNames = argumentRange
-                .map {
-                    TypeVariableName("P$it")
-                }
-
-            classBuilder
-                .addTypeVariables(
-                    typeVariableNames
-                )
-                .addTypeVariable(returnTypeParameter)
-
-            val primaryConstructor = FunSpec.constructorBuilder()
+            val genericParameters = argumentRange.map { TypeVariableName("P$it") }
+            val genericParameterWithReturn = listOf(returnTypeParameter) + genericParameters
 
             val lambdaTypeName = LambdaTypeName.get(
                 receiver = null,
-                parameters = typeVariableNames
+                parameters = genericParameters
                     .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
                         ParameterSpec.builder("p$index", typeVariableName).build()
                     },
                 returnType = returnTypeParameter
             )
 
-            classBuilder
-                .addProperty(
-                    PropertySpec
-                        .builder(
-                            FUNCTION_PARAMETER_NAME,
-                            lambdaTypeName,
-                            KModifier.PRIVATE
-                        )
-                        .initializer(FUNCTION_PARAMETER_NAME)
-                        .build()
-                )
-
-            val variantConverterClassName = ClassName(
-                godotInteropPackage,
-                GodotKotlinJvmTypes.variantConverter
-            )
-
-            primaryConstructor
+            val constructor = FunSpec
+                .constructorBuilder()
+                .addModifiers(KModifier.INTERNAL)
                 .addParameter(
                     ParameterSpec
                         .builder(
-                            VARIANT_TYPE_ARGUMENT_NAME,
+                            VARIANT_TYPE_RETURN_NAME,
                             variantConverterClassName
                         )
                         .build()
                 )
-
-            for (arg in argumentRange) {
-                val typeProperty = "p${arg}Type"
-
-                if (arg != argumentRange.last) {
-                    classBuilder
-                        .addProperty(
-                            PropertySpec
-                                .builder(
-                                    typeProperty,
-                                    variantConverterClassName,
-                                    KModifier.PRIVATE
-                                )
-                                .initializer(typeProperty)
-                                .build()
-                        )
-                }
-
-                primaryConstructor
-                    .addParameter(
-                        ParameterSpec
-                            .builder(
-                                typeProperty,
-                                variantConverterClassName
-                            )
-                            .build()
-                    )
-            }
-
-            primaryConstructor
                 .addParameter(
                     ParameterSpec
                         .builder(
-                            ON_CANCEL_CALL_ARGUMENT_NAME,
-                            onDestroyCallLambdaType
+                            VARIANT_TYPE_ARGUMENT_NAME,
+                            ARRAY.parameterizedBy(variantConverterClassName)
                         )
-                        .defaultValue("null")
                         .build()
                 )
-
-            primaryConstructor
                 .addParameter(
                     ParameterSpec
                         .builder(
@@ -162,125 +90,178 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 )
                 .addModifiers(KModifier.INTERNAL)
                 .addAnnotation(PublishedApi::class)
+                .build()
 
-            classBuilder.primaryConstructor(primaryConstructor.build())
+            val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
+            val lambdaCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME$argCount")
+            val classInfo = GenericClassNameInfo(lambdaCallableClassName, argCount)
 
-            classBuilder
-                .addFunction(
-                    FunSpec.builder("invokeKt")
-                        .returns(
-                            returnTypeParameter
+            val lambdaContainerClassBuilder = TypeSpec
+                .classBuilder(lambdaContainerClassName)
+                .superclass(LAMBDA_CONTAINER_CLASS_NAME.parameterizedBy(returnTypeParameter))
+                .addSuperclassConstructorParameter(VARIANT_TYPE_RETURN_NAME)
+                .addSuperclassConstructorParameter(VARIANT_TYPE_ARGUMENT_NAME)
+                .addTypeVariable(returnTypeParameter)
+                .addTypeVariables(genericParameters)
+                .primaryConstructor(
+                    constructor
+                )
+                .addProperty(
+                    PropertySpec
+                        .builder(
+                            FUNCTION_PARAMETER_NAME,
+                            lambdaTypeName.copy(nullable = true),
+                            KModifier.PRIVATE
                         )
+                        .mutable()
+                        .initializer(FUNCTION_PARAMETER_NAME)
+                        .build()
+                )
+                .addFunction(
+                    FunSpec
+                        .builder("unsafeInvoke")
+                        .addParameters(classInfo.toParameterSpecList())
+                        .returns(returnTypeParameter)
                         .addCode(
                             CodeBlock.of(
                                 buildString {
-                                    append("return·$FUNCTION_PARAMETER_NAME(")
+                                    append("return·$FUNCTION_PARAMETER_NAME?.invoke(")
+                                    append(classInfo.toArgumentsString("pINDEX", "INDEX"))
+                                    append(")?:·throw·%T()")
+                                },
+                                ClassName(godotCorePackage, "InvalidJvmLambdaException")
+                            )
+                        )
+                        .build()
+
+                )
+                .addFunction(
+                    FunSpec
+                        .builder("unsafeInvokeFromBuffer")
+                        .addModifiers(KModifier.OVERRIDE)
+                        .returns(returnTypeParameter)
+                        .addCode(
+                            CodeBlock.of(
+                                buildString {
+                                    append("return·$FUNCTION_PARAMETER_NAME?.invoke(")
                                     for (i in argumentRange) {
                                         if (i != 0) append(",·")
 
                                         append("paramsArray[$i]·as·%T")
                                     }
-                                    append(')')
+                                    append(")?:·throw·%T()")
                                 },
-                                *typeVariableNames.toTypedArray()
+                                *genericParameters.toTypedArray(),
+                                ClassName(godotCorePackage, "InvalidJvmLambdaException")
                             )
                         )
+                        .build()
+                )
+                .addFunction(
+                    FunSpec
+                        .builder("invalidate")
                         .addModifiers(KModifier.OVERRIDE)
+                        .addCode("function·=·null")
                         .build()
                 )
 
-            classBuilder
+            val lambdaCallableClassBuilder = TypeSpec
+                .classBuilder(lambdaCallableClassName)
+                .superclass(LAMBDA_CALLABLE_CLASS_NAME.parameterizedBy(returnTypeParameter))
+                .addTypeVariable(returnTypeParameter)
+                .addTypeVariables(genericParameters)
+                .primaryConstructor(
+                    constructor
+                )
+                .addProperty(
+                    PropertySpec
+                        .builder("container", lambdaContainerClassName.parameterizedBy(genericParameterWithReturn))
+                        .addModifiers(KModifier.OVERRIDE)
+                        .initializer(
+                            CodeBlock.of(
+                                "%T($VARIANT_TYPE_RETURN_NAME, $VARIANT_TYPE_ARGUMENT_NAME, $FUNCTION_PARAMETER_NAME)",
+                                lambdaContainerClassName.parameterizedBy(genericParameterWithReturn)
+                            )
+                        )
+                        .build()
+                )
                 .addFunction(
-                    FunSpec.builder("invoke")
-                        .returns(
-                            returnTypeParameter
-                        )
-                        .addParameters(
-                            typeVariableNames
-                                .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
-                                    ParameterSpec.builder("p$index", typeVariableName)
-                                        .build()
-                                }
-                        )
+                    FunSpec
+                        .builder("call")
+                        .addParameters(classInfo.toParameterSpecList())
+                        .returns(returnTypeParameter)
                         .addCode(
                             CodeBlock.of(
                                 buildString {
-                                    append("return·$FUNCTION_PARAMETER_NAME(")
-                                    for (i in argumentRange) {
-                                        if (i != 0) append(",·")
-
-                                        append("p$i")
-                                    }
+                                    append("return·container.unsafeInvoke(")
+                                    append(classInfo.toArgumentsString("pINDEX", "INDEX"))
                                     append(')')
                                 }
+                            )
+                        )
+                        .build()
+                )
+                .addFunction(
+                    FunSpec.builder("callDeferred")
+                        .addParameters(classInfo.toParameterSpecList())
+                        .returns(returnTypeParameter)
+                        .addCode(
+                            CodeBlock.of(
+                                buildString {
+                                    append("return·unsafeCallDeferred(")
+                                    append(classInfo.toArgumentsString("pINDEX", "INDEX"))
+                                    append(")·as·%T")
+                                },
+                                returnTypeParameter
+                            )
+                        )
+                        .build()
+                )
+                .addFunction(
+                    FunSpec.builder("invoke")
+                        .addParameters(classInfo.toParameterSpecList())
+                        .returns(returnTypeParameter)
+                        .addCode(
+                            CodeBlock.of(
+                                buildString {
+                                    append("return·call(")
+                                    append(classInfo.toArgumentsString("pINDEX", "INDEX"))
+                                    append(')')
+                                },
+                                *genericParameters.toTypedArray()
                             )
                         )
                         .addModifiers(KModifier.OPERATOR)
                         .build()
                 )
 
-            classBuilder
-                .addFunction(
-                    FunSpec.builder("call")
-                        .returns(ANY.copy(nullable = true))
-                        .addParameter(
-                            ParameterSpec.builder("args", ANY.copy(nullable = true))
-                                .addModifiers(KModifier.VARARG)
-                                .build()
-                        )
-                        .addCode(
-                            CodeBlock.of(
-                                buildString {
-                                    append("return·$FUNCTION_PARAMETER_NAME(")
-                                    for (i in argumentRange) {
-                                        if (i != 0) append(",·")
-
-                                        append("args[$i]·as·%T")
-                                    }
-                                    append(')')
-                                },
-                                *typeVariableNames.toTypedArray()
-                            )
-                        )
-                        .addModifiers(KModifier.OVERRIDE)
-                        .build()
-                )
-
-            val typeVariables = typeVariableNames.toMutableList()
-            var removedTypeVariables = 0
+            val typeVariables = genericParameters.toMutableList()
+            var remainingParameters = 0
             while (typeVariables.isNotEmpty()) {
                 val bindReturnType =
-                    ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
-                classBuilder.addFunction(
+                    ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${genericParameters.size - typeVariables.size}")
+                lambdaCallableClassBuilder.addFunction(
                     FunSpec.builder("bind")
                         .addParameters(
                             typeVariables
                                 .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
-                                    ParameterSpec.builder("p${index + removedTypeVariables}", typeVariableName)
+                                    ParameterSpec.builder("p${index + remainingParameters}", typeVariableName)
                                         .build()
                                 }
                         )
                         .addCode(
                             buildString {
-                                append("return·%T($VARIANT_TYPE_ARGUMENT_NAME")
+                                append("return·%T(container.returnConverter,·container.typeConverters.take(${remainingParameters}).toTypedArray())·{")
 
-                                for (index in (0..<removedTypeVariables)) {
-                                    append(",·p${index}Type")
-                                }
-
-                                append(",·$ON_CANCEL_CALL_ARGUMENT_NAME")
-
-                                append(")·{·")
-
-                                for (index in (0..<removedTypeVariables)) {
+                                for (index in (0..<remainingParameters)) {
                                     if (index != 0) append(",·")
 
                                     append("p${index}:·%T")
                                 }
 
-                                append("·->·$FUNCTION_PARAMETER_NAME(")
+                                append("·->·container.unsafeInvoke(")
 
-                                for (i in typeVariableNames.indices) {
+                                for (i in genericParameters.indices) {
                                     if (i != 0) append(",·")
 
                                     append("p$i")
@@ -289,33 +270,29 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                                 append(")·}")
                             },
                             bindReturnType,
-                            *typeVariableNames.take(removedTypeVariables).toTypedArray()
+                            *genericParameters.take(remainingParameters).toTypedArray()
                         )
                         .build()
                 )
 
                 typeVariables.removeFirst()
-                ++removedTypeVariables
+                ++remainingParameters
             }
 
-            val genericClassNameInfo = GenericClassNameInfo(ktCallableClassName, argCount)
-            classBuilder.addType(generateKtCallableCompanion(argCount, genericClassNameInfo))
+            val genericClassNameInfo = GenericClassNameInfo(lambdaCallableClassName, argCount)
+            lambdaCallableClassBuilder.addType(generateKtCallableCompanion(argCount, genericClassNameInfo))
 
-            callableFileSpec.addType(classBuilder.build())
+            containerFileSpec.addType(lambdaContainerClassBuilder.build())
+            callableFileSpec.addType(lambdaCallableClassBuilder.build())
 
             val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
             callableFileSpec.addFunction(
                 FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
-                    .addTypeVariables(typeVariableNames.map { it.copy(reified = true) })
+                    .addTypeVariables(genericParameters.map { it.copy(reified = true) })
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
                     .addModifiers(KModifier.INLINE)
                     .addParameters(
                         listOf(
-                            ParameterSpec
-                                .builder(ON_CANCEL_CALL_ARGUMENT_NAME, onDestroyCallLambdaType)
-                                .addModifiers(KModifier.NOINLINE)
-                                .defaultValue("null")
-                                .build(),
                             ParameterSpec
                                 .builder(
                                     FUNCTION_PARAMETER_NAME,
@@ -329,18 +306,18 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                         CodeBlock.of(
                             buildString {
                                 append("return·$LAMBDA_CALLABLE_NAME$argCount(")
-                                append("%M.getOrDefault(%T::class,·%T),·")
-                                for (typeParameter in typeVariableNames) {
+                                append("%M.getOrDefault(%T::class,·%T),·arrayOf(")
+                                for (typeParameter in genericParameters) {
                                     append("%M[%T::class]!!,·")
                                 }
-                                append("$ON_CANCEL_CALL_ARGUMENT_NAME,·")
+                                append("),·")
                                 append(FUNCTION_PARAMETER_NAME)
                                 append(')')
                             },
                             variantMapperMember,
                             returnTypeParameter,
                             VARIANT_PARSER_NIL,
-                            *typeVariableNames
+                            *genericParameters
                                 .flatMap {
                                     listOf(variantMapperMember, it)
                                 }
@@ -354,27 +331,32 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 .addFunction(
                     FunSpec
                         .builder(GodotFunctions.asCallable)
-                        .addTypeVariables(typeVariableNames.map { it.copy(reified = true) })
+                        .addTypeVariables(genericParameters.map { it.copy(reified = true) })
                         .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addModifiers(KModifier.INLINE)
                         .receiver(lambdaTypeName)
-                        .addParameter(
-                            ParameterSpec
-                                .builder(ON_CANCEL_CALL_ARGUMENT_NAME, onDestroyCallLambdaType)
-                                .addModifiers(KModifier.NOINLINE)
-                                .defaultValue("null")
-                                .build()
-                        )
-                        .addCode("return·$CALLABLE_FUNCTION_NAME$argCount($ON_CANCEL_CALL_ARGUMENT_NAME,·this)")
+                        .addCode("return·$CALLABLE_FUNCTION_NAME$argCount(this)")
                         .build()
                 )
         }
 
-        callableFileSpec.addAnnotation(
-            AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
-                .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
-                .build()
-        )
+        callableFileSpec
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(ClassName("kotlin", "Suppress"))
+                    .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
+                    .build()
+            )
+            .build()
+            .writeTo(outputDir)
+
+        containerFileSpec
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(ClassName("kotlin", "Suppress"))
+                    .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
+                    .build()
+            )
             .build()
             .writeTo(outputDir)
     }
@@ -412,11 +394,11 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                         CodeBlock.of(
                             buildString {
                                 append("return·$LAMBDA_CALLABLE_NAME$argCount(")
-                                append("%M.getOrDefault(%T.getOrCreateKotlinClass(returnClass),·%T),·")
+                                append("%M.getOrDefault(%T.getOrCreateKotlinClass(returnClass),·%T),·arrayOf(")
                                 genericClassNameInfo.toParameterSpecList().forEach {
                                     append("%M[%T.getOrCreateKotlinClass(${it.name}Class)]!!,·")
                                 }
-                                append("null,·")
+                                append("),·")
                                 append(FUNCTION_PARAMETER_NAME)
                                 append(')')
                             },

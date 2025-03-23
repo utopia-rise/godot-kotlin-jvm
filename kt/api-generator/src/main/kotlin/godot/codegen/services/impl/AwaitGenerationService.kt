@@ -29,6 +29,7 @@ private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "s
 private val connectThreadSafe = MemberName(godotExtensionPackage, "connectThreadSafe")
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
 private const val cancel = "cancel"
+private val setCancel = "setAsCancellable"
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(output: File) {
@@ -142,7 +143,8 @@ object AwaitGenerationService : IAwaitGenerationService {
             .addStatement("$lambdaParametersWithType·->")
             .addStatement("cont.%M($resumeParameters)", resume)
             .endControlFlow()
-            .beginControlFlow(".%M", AS_CALLABLE_UTIL_FUNCTION)
+            .addStatement(".%M()", AS_CALLABLE_UTIL_FUNCTION)
+            .beginControlFlow(".$setCancel")
             .addStatement("cont.%L()", cancel)
             .endControlFlow()
             .addCode(",·%T.ConnectFlags.ONE_SHOT.id.toInt())", GODOT_OBJECT)

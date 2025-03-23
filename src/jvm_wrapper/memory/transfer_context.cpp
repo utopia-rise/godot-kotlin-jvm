@@ -87,6 +87,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
 
+    Variant ret_value;
     if (unlikely(stack_offset + args_size > MAX_STACK_SIZE)) {
         Variant args[MAX_FUNCTION_ARG_COUNT];
         read_args_to_array(buffer, args, args_size);
@@ -96,9 +97,9 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
             args_ptr[i] = &args[i];
         }
 
-        const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
-
+        method_bind->validated_call(ptr, args_ptr, &ret_value);
         buffer->rewind();
+
         VariantToBuffer::write_variant(ret_value, buffer);
     } else {
         Variant* args {variant_args + stack_offset};
@@ -107,7 +108,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         const Variant** args_ptr {variant_args_ptr + stack_offset};
 
         stack_offset += args_size;
-        const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
+        method_bind->validated_call(ptr, args_ptr, &ret_value);
         // Remove Variants so memory can be freed immediately after method call.
         for (uint32_t i = 0; i < args_size; i++) {
             args[i] = Variant();
