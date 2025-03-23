@@ -61,6 +61,13 @@ public open class XRVRS : Object() {
 
   /**
    * The render region that the VRS texture will be scaled to when generated.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var vrsRenderRegion: Rect2i
@@ -76,13 +83,7 @@ public open class XRVRS : Object() {
   }
 
   /**
-   * The render region that the VRS texture will be scaled to when generated.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [vrsRenderRegion] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -91,13 +92,14 @@ public open class XRVRS : Object() {
    * //Your changes
    * xrvrs.vrsRenderRegion = myCoreType
    * ``````
+   *
+   * The render region that the VRS texture will be scaled to when generated.
    */
   @CoreTypeHelper
-  public final fun vrsRenderRegionMutate(block: Rect2i.() -> Unit): Rect2i = vrsRenderRegion.apply{
-      block(this)
-      vrsRenderRegion = this
+  public final fun vrsRenderRegionMutate(block: Rect2i.() -> Unit): Rect2i = vrsRenderRegion.apply {
+     block(this)
+     vrsRenderRegion = this
   }
-
 
   public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()

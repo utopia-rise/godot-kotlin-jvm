@@ -133,6 +133,13 @@ public open class NavigationAgent3D : Node() {
   /**
    * If set, a new navigation path from the current agent position to the [targetPosition] is
    * requested from the NavigationServer.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -303,6 +310,13 @@ public open class NavigationAgent3D : Node() {
    * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
    * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
    * simulation velocity.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector3
@@ -497,6 +511,13 @@ public open class NavigationAgent3D : Node() {
 
   /**
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugPathCustomColor: Color
@@ -524,14 +545,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * If set, a new navigation path from the current agent position to the [targetPosition] is
-   * requested from the NavigationServer.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [targetPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -540,25 +554,18 @@ public open class NavigationAgent3D : Node() {
    * //Your changes
    * navigationagent3d.targetPosition = myCoreType
    * ``````
+   *
+   * If set, a new navigation path from the current agent position to the [targetPosition] is
+   * requested from the NavigationServer.
    */
   @CoreTypeHelper
-  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
-      block(this)
-      targetPosition = this
+  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply {
+     block(this)
+     targetPosition = this
   }
 
-
   /**
-   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
-   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
-   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
-   * simulation velocity.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -567,22 +574,20 @@ public open class NavigationAgent3D : Node() {
    * //Your changes
    * navigationagent3d.velocity = myCoreType
    * ``````
+   *
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
+   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
+   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
+   * simulation velocity.
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
+     block(this)
+     velocity = this
   }
 
-
   /**
-   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [debugPathCustomColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -591,14 +596,15 @@ public open class NavigationAgent3D : Node() {
    * //Your changes
    * navigationagent3d.debugPathCustomColor = myCoreType
    * ``````
+   *
+   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    */
   @CoreTypeHelper
   public final fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
-      debugPathCustomColor.apply{
-      block(this)
-      debugPathCustomColor = this
+      debugPathCustomColor.apply {
+     block(this)
+     debugPathCustomColor = this
   }
-
 
   /**
    * Returns the [RID] of this agent on the [NavigationServer3D].

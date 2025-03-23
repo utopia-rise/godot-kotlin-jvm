@@ -46,6 +46,13 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   /**
    * The size of the 3D render buffer used for rendering.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var internalSize: Vector2i
@@ -58,6 +65,13 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   /**
    * The target (upscale) size if scaling is used.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetSize: Vector2i
@@ -151,13 +165,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   /**
-   * The size of the 3D render buffer used for rendering.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [internalSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -166,22 +174,17 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
    * //Your changes
    * renderscenebuffersconfiguration.internalSize = myCoreType
    * ``````
+   *
+   * The size of the 3D render buffer used for rendering.
    */
   @CoreTypeHelper
-  public final fun internalSizeMutate(block: Vector2i.() -> Unit): Vector2i = internalSize.apply{
-      block(this)
-      internalSize = this
+  public final fun internalSizeMutate(block: Vector2i.() -> Unit): Vector2i = internalSize.apply {
+     block(this)
+     internalSize = this
   }
 
-
   /**
-   * The target (upscale) size if scaling is used.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [targetSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -190,13 +193,14 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
    * //Your changes
    * renderscenebuffersconfiguration.targetSize = myCoreType
    * ``````
+   *
+   * The target (upscale) size if scaling is used.
    */
   @CoreTypeHelper
-  public final fun targetSizeMutate(block: Vector2i.() -> Unit): Vector2i = targetSize.apply{
-      block(this)
-      targetSize = this
+  public final fun targetSizeMutate(block: Vector2i.() -> Unit): Vector2i = targetSize.apply {
+     block(this)
+     targetSize = this
   }
-
 
   public final fun getRenderTarget(): RID {
     TransferContext.writeArguments()

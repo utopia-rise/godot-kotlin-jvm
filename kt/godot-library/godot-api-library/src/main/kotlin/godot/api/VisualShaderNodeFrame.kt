@@ -62,6 +62,13 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
   /**
    * The color of the frame when [tintColorEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintColor: Color
@@ -85,7 +92,15 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
   /**
    * The list of nodes attached to the frame.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var attachedNodes: PackedInt32Array
     @JvmName("attachedNodesProperty")
     get() = getAttachedNodes()
@@ -99,13 +114,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   /**
-   * The color of the frame when [tintColorEnabled] is `true`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tintColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -114,13 +123,51 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * //Your changes
    * visualshadernodeframe.tintColor = myCoreType
    * ``````
+   *
+   * The color of the frame when [tintColorEnabled] is `true`.
    */
   @CoreTypeHelper
-  public final fun tintColorMutate(block: Color.() -> Unit): Color = tintColor.apply{
-      block(this)
-      tintColor = this
+  public final fun tintColorMutate(block: Color.() -> Unit): Color = tintColor.apply {
+     block(this)
+     tintColor = this
   }
 
+  /**
+   * This is a helper function for [attachedNodes] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodeframe.attachedNodes
+   * //Your changes
+   * visualshadernodeframe.attachedNodes = myCoreType
+   * ``````
+   *
+   * The list of nodes attached to the frame.
+   */
+  @CoreTypeHelper
+  public final fun attachedNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      attachedNodes.apply {
+     block(this)
+     attachedNodes = this
+  }
+
+  /**
+   * This is a helper function for [attachedNodes] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The list of nodes attached to the frame.
+   */
+  @CoreTypeHelper
+  public final fun attachedNodesMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = attachedNodes.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     attachedNodes = this
+  }
 
   public final fun setTitle(title: String): Unit {
     TransferContext.writeArguments(STRING to title)

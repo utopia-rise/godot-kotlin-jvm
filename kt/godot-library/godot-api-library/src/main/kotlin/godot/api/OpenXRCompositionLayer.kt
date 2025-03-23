@@ -69,6 +69,13 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   /**
    * The size of the Android surface to create if [useAndroidSurface] is enabled.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var androidSurfaceSize: Vector2i
@@ -128,13 +135,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   /**
-   * The size of the Android surface to create if [useAndroidSurface] is enabled.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [androidSurfaceSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -143,14 +144,15 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * //Your changes
    * openxrcompositionlayer.androidSurfaceSize = myCoreType
    * ``````
+   *
+   * The size of the Android surface to create if [useAndroidSurface] is enabled.
    */
   @CoreTypeHelper
   public final fun androidSurfaceSizeMutate(block: Vector2i.() -> Unit): Vector2i =
-      androidSurfaceSize.apply{
-      block(this)
-      androidSurfaceSize = this
+      androidSurfaceSize.apply {
+     block(this)
+     androidSurfaceSize = this
   }
-
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {
     TransferContext.writeArguments(OBJECT to viewport)

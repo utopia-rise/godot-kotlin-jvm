@@ -71,6 +71,13 @@ public open class Decal : VisualInstance3D() {
    * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and
    * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
    * the decals' AABB size without affecting their appearance.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -174,6 +181,13 @@ public open class Decal : VisualInstance3D() {
    * The alpha component is only taken into account when multiplying the albedo color, not the emission
    * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
    * independently of each other.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -297,19 +311,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   /**
-   * Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater
-   * than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2`
-   * to `size/2`.
-   *
-   * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and
-   * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
-   * the decals' AABB size without affecting their appearance.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -318,25 +320,23 @@ public open class Decal : VisualInstance3D() {
    * //Your changes
    * decal.size = myCoreType
    * ``````
+   *
+   * Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater
+   * than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2`
+   * to `size/2`.
+   *
+   * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and
+   * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
+   * the decals' AABB size without affecting their appearance.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * Changes the [Color] of the Decal by multiplying the albedo and emission colors with this value.
-   * The alpha component is only taken into account when multiplying the albedo color, not the emission
-   * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
-   * independently of each other.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [modulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -345,13 +345,17 @@ public open class Decal : VisualInstance3D() {
    * //Your changes
    * decal.modulate = myCoreType
    * ``````
+   *
+   * Changes the [Color] of the Decal by multiplying the albedo and emission colors with this value.
+   * The alpha component is only taken into account when multiplying the albedo color, not the emission
+   * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
+   * independently of each other.
    */
   @CoreTypeHelper
-  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
-      block(this)
-      modulate = this
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
+     block(this)
+     modulate = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)

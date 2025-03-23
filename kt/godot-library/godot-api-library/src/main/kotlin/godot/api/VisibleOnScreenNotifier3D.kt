@@ -49,6 +49,13 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
 
   /**
    * The [VisibleOnScreenNotifier3D]'s bounding box.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var aabb: AABB
@@ -64,13 +71,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   }
 
   /**
-   * The [VisibleOnScreenNotifier3D]'s bounding box.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [aabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -79,13 +80,14 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    * //Your changes
    * visibleonscreennotifier3d.aabb = myCoreType
    * ``````
+   *
+   * The [VisibleOnScreenNotifier3D]'s bounding box.
    */
   @CoreTypeHelper
-  public final fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply{
-      block(this)
-      aabb = this
+  public final fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply {
+     block(this)
+     aabb = this
   }
-
 
   public final fun setAabb(rect: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to rect)

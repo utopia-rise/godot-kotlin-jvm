@@ -63,7 +63,6 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
         return ptr.hashCode()
     }
 
-
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
         override val packedArrayVariantType = VariantParser.PACKED_VECTOR2_ARRAY

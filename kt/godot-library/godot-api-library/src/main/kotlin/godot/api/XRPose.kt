@@ -75,6 +75,13 @@ public open class XRPose : RefCounted() {
 
   /**
    * The transform containing the original and transform as reported by the XR runtime.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -87,6 +94,13 @@ public open class XRPose : RefCounted() {
 
   /**
    * The linear velocity of this pose.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -99,6 +113,13 @@ public open class XRPose : RefCounted() {
 
   /**
    * The angular velocity for this pose.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -126,13 +147,7 @@ public open class XRPose : RefCounted() {
   }
 
   /**
-   * The transform containing the original and transform as reported by the XR runtime.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -141,22 +156,17 @@ public open class XRPose : RefCounted() {
    * //Your changes
    * xrpose.transform = myCoreType
    * ``````
+   *
+   * The transform containing the original and transform as reported by the XR runtime.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply {
+     block(this)
+     transform = this
   }
 
-
   /**
-   * The linear velocity of this pose.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -165,22 +175,17 @@ public open class XRPose : RefCounted() {
    * //Your changes
    * xrpose.linearVelocity = myCoreType
    * ``````
+   *
+   * The linear velocity of this pose.
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The angular velocity for this pose.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -189,14 +194,15 @@ public open class XRPose : RefCounted() {
    * //Your changes
    * xrpose.angularVelocity = myCoreType
    * ``````
+   *
+   * The angular velocity for this pose.
    */
   @CoreTypeHelper
   public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply{
-      block(this)
-      angularVelocity = this
+      angularVelocity.apply {
+     block(this)
+     angularVelocity = this
   }
-
 
   public final fun setHasTrackingData(hasTrackingData: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hasTrackingData)

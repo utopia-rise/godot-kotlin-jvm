@@ -63,6 +63,13 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   /**
    * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var minSpace: Vector2
@@ -75,6 +82,13 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   /**
    * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var maxSpace: Vector2
@@ -87,6 +101,13 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   /**
    * Position increment to snap to when moving a point.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var snap: Vector2
@@ -148,13 +169,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [minSpace] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -163,22 +178,17 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * //Your changes
    * animationnodeblendspace2d.minSpace = myCoreType
    * ``````
+   *
+   * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
    */
   @CoreTypeHelper
-  public final fun minSpaceMutate(block: Vector2.() -> Unit): Vector2 = minSpace.apply{
-      block(this)
-      minSpace = this
+  public final fun minSpaceMutate(block: Vector2.() -> Unit): Vector2 = minSpace.apply {
+     block(this)
+     minSpace = this
   }
 
-
   /**
-   * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [maxSpace] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -187,22 +197,17 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * //Your changes
    * animationnodeblendspace2d.maxSpace = myCoreType
    * ``````
+   *
+   * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
    */
   @CoreTypeHelper
-  public final fun maxSpaceMutate(block: Vector2.() -> Unit): Vector2 = maxSpace.apply{
-      block(this)
-      maxSpace = this
+  public final fun maxSpaceMutate(block: Vector2.() -> Unit): Vector2 = maxSpace.apply {
+     block(this)
+     maxSpace = this
   }
 
-
   /**
-   * Position increment to snap to when moving a point.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [snap] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -211,13 +216,14 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * //Your changes
    * animationnodeblendspace2d.snap = myCoreType
    * ``````
+   *
+   * Position increment to snap to when moving a point.
    */
   @CoreTypeHelper
-  public final fun snapMutate(block: Vector2.() -> Unit): Vector2 = snap.apply{
-      block(this)
-      snap = this
+  public final fun snapMutate(block: Vector2.() -> Unit): Vector2 = snap.apply {
+     block(this)
+     snap = this
   }
-
 
   /**
    * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a

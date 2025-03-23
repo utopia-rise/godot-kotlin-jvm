@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -16,6 +18,7 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -52,7 +55,15 @@ public open class CollisionPolygon2D : Node2D() {
    *
    * **Note:** The returned vertices are in the local coordinate space of the given
    * [CollisionPolygon2D].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -101,6 +112,51 @@ public open class CollisionPolygon2D : Node2D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(156, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionpolygon2d.polygon
+   * //Your changes
+   * collisionpolygon2d.polygon = myCoreType
+   * ``````
+   *
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point
+   * will be connected to the first.
+   *
+   * **Note:** The returned vertices are in the local coordinate space of the given
+   * [CollisionPolygon2D].
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point
+   * will be connected to the first.
+   *
+   * **Note:** The returned vertices are in the local coordinate space of the given
+   * [CollisionPolygon2D].
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

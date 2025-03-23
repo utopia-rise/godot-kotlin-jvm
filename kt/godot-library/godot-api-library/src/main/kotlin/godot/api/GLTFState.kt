@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -30,6 +32,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -91,7 +94,15 @@ public open class GLTFState : Resource() {
 
   /**
    * The binary buffer attached to a .glb file.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var glbData: PackedByteArray
     @JvmName("glbDataProperty")
     get() = getGlbData()
@@ -199,7 +210,15 @@ public open class GLTFState : Resource() {
    * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
    * which will be generated as siblings of each other and as children of the root node of the
    * generated Godot scene.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var rootNodes: PackedInt32Array
     @JvmName("rootNodesProperty")
     get() = getRootNodes()
@@ -329,6 +348,86 @@ public open class GLTFState : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(240, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [glbData] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfstate.glbData
+   * //Your changes
+   * gltfstate.glbData = myCoreType
+   * ``````
+   *
+   * The binary buffer attached to a .glb file.
+   */
+  @CoreTypeHelper
+  public final fun glbDataMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      glbData.apply {
+     block(this)
+     glbData = this
+  }
+
+  /**
+   * This is a helper function for [glbData] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The binary buffer attached to a .glb file.
+   */
+  @CoreTypeHelper
+  public final fun glbDataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
+      glbData.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     glbData = this
+  }
+
+  /**
+   * This is a helper function for [rootNodes] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfstate.rootNodes
+   * //Your changes
+   * gltfstate.rootNodes = myCoreType
+   * ``````
+   *
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
+   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
+   * which will be generated as siblings of each other and as children of the root node of the
+   * generated Godot scene.
+   */
+  @CoreTypeHelper
+  public final fun rootNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      rootNodes.apply {
+     block(this)
+     rootNodes = this
+  }
+
+  /**
+   * This is a helper function for [rootNodes] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
+   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
+   * which will be generated as siblings of each other and as children of the root node of the
+   * generated Godot scene.
+   */
+  @CoreTypeHelper
+  public final fun rootNodesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
+      = rootNodes.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     rootNodes = this
   }
 
   /**

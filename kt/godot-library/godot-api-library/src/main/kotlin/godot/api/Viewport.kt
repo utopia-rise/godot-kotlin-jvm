@@ -765,6 +765,13 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The canvas transform of the viewport, useful for changing the on-screen positions of all child
    * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var canvasTransform: Transform2D
@@ -777,6 +784,13 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalCanvasTransform: Transform2D
@@ -803,14 +817,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * The canvas transform of the viewport, useful for changing the on-screen positions of all child
-   * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [canvasTransform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -819,23 +826,19 @@ public open class Viewport internal constructor() : Node() {
    * //Your changes
    * viewport.canvasTransform = myCoreType
    * ``````
+   *
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child
+   * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
    */
   @CoreTypeHelper
   public final fun canvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      canvasTransform.apply{
-      block(this)
-      canvasTransform = this
+      canvasTransform.apply {
+     block(this)
+     canvasTransform = this
   }
 
-
   /**
-   * The global canvas transform of the viewport. The canvas transform is relative to this.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [globalCanvasTransform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -844,14 +847,15 @@ public open class Viewport internal constructor() : Node() {
    * //Your changes
    * viewport.globalCanvasTransform = myCoreType
    * ``````
+   *
+   * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
   @CoreTypeHelper
   public final fun globalCanvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      globalCanvasTransform.apply{
-      block(this)
-      globalCanvasTransform = this
+      globalCanvasTransform.apply {
+     block(this)
+     globalCanvasTransform = this
   }
-
 
   public final fun setWorld2d(world2d: World2D?): Unit {
     TransferContext.writeArguments(OBJECT to world2d)

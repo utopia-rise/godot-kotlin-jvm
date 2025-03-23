@@ -47,6 +47,13 @@ import kotlin.jvm.JvmStatic
 public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Allow overriding the texture size (for 2D only).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var sizeOverride: Vector2
@@ -77,13 +84,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   /**
-   * Allow overriding the texture size (for 2D only).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [sizeOverride] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -92,13 +93,14 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * //Your changes
    * portablecompressedtexture2d.sizeOverride = myCoreType
    * ``````
+   *
+   * Allow overriding the texture size (for 2D only).
    */
   @CoreTypeHelper
-  public final fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
-      block(this)
-      sizeOverride = this
+  public final fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply {
+     block(this)
+     sizeOverride = this
   }
-
 
   /**
    * Initializes the compressed texture from a base image. The compression mode must be provided.

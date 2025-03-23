@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -116,7 +118,15 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var filters: PackedStringArray
     @JvmName("filtersProperty")
     get() = getFilters()
@@ -228,6 +238,53 @@ public open class FileDialog : ConfirmationDialog() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(213, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [filters] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = filedialog.filters
+   * //Your changes
+   * filedialog.filters = myCoreType
+   * ``````
+   *
+   * The available file type filters. Each filter string in the array should be formatted like this:
+   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
+   * optional and can be omitted. Both file extensions and MIME type should be always set.
+   *
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * Android, Linux, and macOS file dialogs also support MIME types.
+   */
+  @CoreTypeHelper
+  public final fun filtersMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      filters.apply {
+     block(this)
+     filters = this
+  }
+
+  /**
+   * This is a helper function for [filters] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The available file type filters. Each filter string in the array should be formatted like this:
+   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
+   * optional and can be omitted. Both file extensions and MIME type should be always set.
+   *
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * Android, Linux, and macOS file dialogs also support MIME types.
+   */
+  @CoreTypeHelper
+  public final fun filtersMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = filters.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     filters = this
   }
 
   /**

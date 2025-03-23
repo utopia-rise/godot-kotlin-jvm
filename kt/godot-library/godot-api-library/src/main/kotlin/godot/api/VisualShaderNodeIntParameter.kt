@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -18,6 +20,7 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -78,7 +81,15 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
    * effect.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var enumNames: PackedStringArray
     @JvmName("enumNamesProperty")
     get() = getEnumNames()
@@ -112,6 +123,45 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(766, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [enumNames] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = visualshadernodeintparameter.enumNames
+   * //Your changes
+   * visualshadernodeintparameter.enumNames = myCoreType
+   * ``````
+   *
+   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
+   * effect.
+   */
+  @CoreTypeHelper
+  public final fun enumNamesMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      enumNames.apply {
+     block(this)
+     enumNames = this
+  }
+
+  /**
+   * This is a helper function for [enumNames] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
+   * effect.
+   */
+  @CoreTypeHelper
+  public final fun enumNamesMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = enumNames.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     enumNames = this
   }
 
   public final fun setHint(hint: Hint): Unit {

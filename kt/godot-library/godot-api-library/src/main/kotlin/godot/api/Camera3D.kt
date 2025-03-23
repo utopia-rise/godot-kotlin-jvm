@@ -220,6 +220,13 @@ public open class Camera3D : Node3D() {
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
    *
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var frustumOffset: Vector2
@@ -261,16 +268,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
-   * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
-   *
-   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [frustumOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -279,13 +277,17 @@ public open class Camera3D : Node3D() {
    * //Your changes
    * camera3d.frustumOffset = myCoreType
    * ``````
+   *
+   * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
+   * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
+   *
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   @CoreTypeHelper
-  public final fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
-      block(this)
-      frustumOffset = this
+  public final fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply {
+     block(this)
+     frustumOffset = this
   }
-
 
   /**
    * Returns a normal vector in world space, that is the result of projecting a point on the

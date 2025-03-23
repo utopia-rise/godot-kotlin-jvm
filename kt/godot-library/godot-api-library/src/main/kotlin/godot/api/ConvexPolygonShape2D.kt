@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -13,6 +15,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -46,7 +49,15 @@ public open class ConvexPolygonShape2D : Shape2D() {
    *
    * **Warning:** Only set this property to a list of points that actually form a convex hull. Use
    * [setPointCloud] to generate the convex hull of an arbitrary set of points.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var points: PackedVector2Array
     @JvmName("pointsProperty")
     get() = getPoints()
@@ -57,6 +68,51 @@ public open class ConvexPolygonShape2D : Shape2D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(179, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = convexpolygonshape2d.points
+   * //Your changes
+   * convexpolygonshape2d.points = myCoreType
+   * ``````
+   *
+   * The polygon's list of vertices that form a convex hull. Can be in either clockwise or
+   * counterclockwise order.
+   *
+   * **Warning:** Only set this property to a list of points that actually form a convex hull. Use
+   * [setPointCloud] to generate the convex hull of an arbitrary set of points.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      points.apply {
+     block(this)
+     points = this
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The polygon's list of vertices that form a convex hull. Can be in either clockwise or
+   * counterclockwise order.
+   *
+   * **Warning:** Only set this property to a list of points that actually form a convex hull. Use
+   * [setPointCloud] to generate the convex hull of an arbitrary set of points.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = points.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     points = this
   }
 
   /**

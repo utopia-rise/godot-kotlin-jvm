@@ -53,6 +53,13 @@ public open class Polygon2D : Node2D() {
   /**
    * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
    * also be the default color for vertices not set in [vertexColors].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -65,6 +72,13 @@ public open class Polygon2D : Node2D() {
 
   /**
    * The offset applied to each vertex.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -100,6 +114,13 @@ public open class Polygon2D : Node2D() {
   /**
    * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
    * top-left corner) will be placed at the polygon's position.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureOffset: Vector2
@@ -113,6 +134,13 @@ public open class Polygon2D : Node2D() {
   /**
    * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
    * smaller, and vice versa.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureScale: Vector2
@@ -172,7 +200,15 @@ public open class Polygon2D : Node2D() {
 
   /**
    * The polygon's list of vertices. The final point will be connected to the first.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -184,7 +220,15 @@ public open class Polygon2D : Node2D() {
   /**
    * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
    * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var uv: PackedVector2Array
     @JvmName("uvProperty")
     get() = getUv()
@@ -235,14 +279,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
-   * also be the default color for vertices not set in [vertexColors].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -251,22 +288,18 @@ public open class Polygon2D : Node2D() {
    * //Your changes
    * polygon2d.color = myCoreType
    * ``````
+   *
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
+   * also be the default color for vertices not set in [vertexColors].
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
 
-
   /**
-   * The offset applied to each vertex.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -275,23 +308,17 @@ public open class Polygon2D : Node2D() {
    * //Your changes
    * polygon2d.offset = myCoreType
    * ``````
+   *
+   * The offset applied to each vertex.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
-   * top-left corner) will be placed at the polygon's position.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [textureOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -300,23 +327,18 @@ public open class Polygon2D : Node2D() {
    * //Your changes
    * polygon2d.textureOffset = myCoreType
    * ``````
+   *
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
+   * top-left corner) will be placed at the polygon's position.
    */
   @CoreTypeHelper
-  public final fun textureOffsetMutate(block: Vector2.() -> Unit): Vector2 = textureOffset.apply{
-      block(this)
-      textureOffset = this
+  public final fun textureOffsetMutate(block: Vector2.() -> Unit): Vector2 = textureOffset.apply {
+     block(this)
+     textureOffset = this
   }
 
-
   /**
-   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
-   * smaller, and vice versa.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [textureScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -325,13 +347,90 @@ public open class Polygon2D : Node2D() {
    * //Your changes
    * polygon2d.textureScale = myCoreType
    * ``````
+   *
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
+   * smaller, and vice versa.
    */
   @CoreTypeHelper
-  public final fun textureScaleMutate(block: Vector2.() -> Unit): Vector2 = textureScale.apply{
-      block(this)
-      textureScale = this
+  public final fun textureScaleMutate(block: Vector2.() -> Unit): Vector2 = textureScale.apply {
+     block(this)
+     textureScale = this
   }
 
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygon2d.polygon
+   * //Your changes
+   * polygon2d.polygon = myCoreType
+   * ``````
+   *
+   * The polygon's list of vertices. The final point will be connected to the first.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The polygon's list of vertices. The final point will be connected to the first.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [uv] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygon2d.uv
+   * //Your changes
+   * polygon2d.uv = myCoreType
+   * ``````
+   *
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
+   * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   */
+  @CoreTypeHelper
+  public final fun uvMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = uv.apply {
+     block(this)
+     uv = this
+  }
+
+  /**
+   * This is a helper function for [uv] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
+   * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   */
+  @CoreTypeHelper
+  public final fun uvMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array =
+      uv.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     uv = this
+  }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)

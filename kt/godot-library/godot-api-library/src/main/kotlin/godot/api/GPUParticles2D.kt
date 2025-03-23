@@ -329,6 +329,13 @@ public open class GPUParticles2D : Node2D() {
    *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var visibilityRect: Rect2
@@ -432,17 +439,7 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * The [Rect2] that determines the node's region which needs to be visible on screen for the
-   * particle system to be active.
-   *
-   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
-   * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [visibilityRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -451,13 +448,18 @@ public open class GPUParticles2D : Node2D() {
    * //Your changes
    * gpuparticles2d.visibilityRect = myCoreType
    * ``````
+   *
+   * The [Rect2] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   *
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
   @CoreTypeHelper
-  public final fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
-      block(this)
-      visibilityRect = this
+  public final fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply {
+     block(this)
+     visibilityRect = this
   }
-
 
   public final fun setEmitting(emitting: Boolean): Unit {
     TransferContext.writeArguments(BOOL to emitting)

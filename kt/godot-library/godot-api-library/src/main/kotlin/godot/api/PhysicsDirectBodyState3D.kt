@@ -73,7 +73,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia of the body.
    */
-  @CoreTypeLocalCopy
   public final inline val inverseInertia: Vector3
     @JvmName("inverseInertiaProperty")
     get() = getInverseInertia()
@@ -81,7 +80,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia tensor of the body.
    */
-  @CoreTypeLocalCopy
   public final inline val inverseInertiaTensor: Basis
     @JvmName("inverseInertiaTensorProperty")
     get() = getInverseInertiaTensor()
@@ -89,7 +87,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
-  @CoreTypeLocalCopy
   public final inline val totalGravity: Vector3
     @JvmName("totalGravityProperty")
     get() = getTotalGravity()
@@ -98,7 +95,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * The body's center of mass position relative to the body's center in the global coordinate
    * system.
    */
-  @CoreTypeLocalCopy
   public final inline val centerOfMass: Vector3
     @JvmName("centerOfMassProperty")
     get() = getCenterOfMass()
@@ -106,18 +102,23 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
-  @CoreTypeLocalCopy
   public final inline val centerOfMassLocal: Vector3
     @JvmName("centerOfMassLocalProperty")
     get() = getCenterOfMassLocal()
 
-  @CoreTypeLocalCopy
   public final inline val principalInertiaAxes: Basis
     @JvmName("principalInertiaAxesProperty")
     get() = getPrincipalInertiaAxes()
 
   /**
    * The body's rotational velocity in *radians* per second.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -130,6 +131,13 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * The body's linear velocity in units per second.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -153,6 +161,13 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * The body's transformation matrix.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -168,13 +183,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * The body's rotational velocity in *radians* per second.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -183,23 +192,18 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate3d.angularVelocity = myCoreType
    * ``````
+   *
+   * The body's rotational velocity in *radians* per second.
    */
   @CoreTypeHelper
   public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply{
-      block(this)
-      angularVelocity = this
+      angularVelocity.apply {
+     block(this)
+     angularVelocity = this
   }
 
-
   /**
-   * The body's linear velocity in units per second.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -208,22 +212,17 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate3d.linearVelocity = myCoreType
    * ``````
+   *
+   * The body's linear velocity in units per second.
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The body's transformation matrix.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -232,13 +231,14 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate3d.transform = myCoreType
    * ``````
+   *
+   * The body's transformation matrix.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply {
+     block(this)
+     transform = this
   }
-
 
   public final fun getTotalGravity(): Vector3 {
     TransferContext.writeArguments()
