@@ -42,7 +42,7 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
     }
 
     /**
-     * Constructs a new [PackedVector2Array] from an existing Kotlin [Collection<Vector2>] or Java float[].
+     * Constructs a new [PackedVector2Array] from an existing Kotlin [Collection<Vector2>].
      */
     constructor(from: Array<Vector2>) {
         val floatArray = FloatArray(from.size * 2)
@@ -55,6 +55,11 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
         ptr = Bridge.engine_convert_to_godot(floatArray)
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
+
+    /**
+     * Constructs a new [PackedVector2Array] from an existing Kotlin [Collection<Vector2>].
+     */
+    constructor(from: Collection<Vector2>) : this(from.toTypedArray<Vector2>())
 
     override fun toString(): String {
         return "PoolVector2Array(${size})"
