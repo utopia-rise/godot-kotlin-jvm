@@ -20,6 +20,7 @@ public:
     String validate_path(const String& p_path) const override;
 
     // Dummy Implementations
+    bool supports_documentation() const override;
     int find_function(const String& p_function, const String& p_code) const override;
     String make_function(const String& p_class, const String& p_name, const PackedStringArray& p_args) const override;
     Error open_in_external_editor(const Ref<Script>& p_script, int p_line, int p_col) override;
