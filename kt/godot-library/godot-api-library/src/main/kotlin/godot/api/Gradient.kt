@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -67,7 +69,15 @@ public open class Gradient : Resource() {
    *
    * **Note:** Setting this property updates all offsets at once. To update any offset individually
    * use [setOffset].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var offsets: PackedFloat32Array
     @JvmName("offsetsProperty")
     get() = getOffsets()
@@ -92,6 +102,49 @@ public open class Gradient : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(259, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [offsets] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gradient.offsets
+   * //Your changes
+   * gradient.offsets = myCoreType
+   * ``````
+   *
+   * Gradient's offsets as a [PackedFloat32Array].
+   *
+   * **Note:** Setting this property updates all offsets at once. To update any offset individually
+   * use [setOffset].
+   */
+  @CoreTypeHelper
+  public final fun offsetsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      offsets.apply {
+     block(this)
+     offsets = this
+  }
+
+  /**
+   * This is a helper function for [offsets] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Gradient's offsets as a [PackedFloat32Array].
+   *
+   * **Note:** Setting this property updates all offsets at once. To update any offset individually
+   * use [setOffset].
+   */
+  @CoreTypeHelper
+  public final fun offsetsMutateEach(block: (index: Int, `value`: Float) -> Unit):
+      PackedFloat32Array = offsets.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     offsets = this
   }
 
   /**

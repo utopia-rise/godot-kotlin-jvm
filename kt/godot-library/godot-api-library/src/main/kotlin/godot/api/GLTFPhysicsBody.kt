@@ -70,6 +70,13 @@ public open class GLTFPhysicsBody : Resource() {
   /**
    * The linear velocity of the physics body, in meters per second. This is only used when the body
    * type is "rigid" or "vehicle".
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -83,6 +90,13 @@ public open class GLTFPhysicsBody : Resource() {
   /**
    * The angular velocity of the physics body, in radians per second. This is only used when the
    * body type is "rigid" or "vehicle".
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -96,6 +110,13 @@ public open class GLTFPhysicsBody : Resource() {
   /**
    * The center of mass of the body, in meters. This is in local space relative to the body. By
    * default, the center of the mass is the body's origin.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var centerOfMass: Vector3
@@ -113,6 +134,13 @@ public open class GLTFPhysicsBody : Resource() {
    *
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var inertiaDiagonal: Vector3
@@ -127,6 +155,13 @@ public open class GLTFPhysicsBody : Resource() {
    * The inertia orientation of the physics body. This defines the rotation of the inertia's
    * principle axes relative to the object's local axes. This is only used when the body type is
    * "rigid" or "vehicle" and [inertiaDiagonal] is set to a non-zero value.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var inertiaOrientation: Quaternion
@@ -143,6 +178,13 @@ public open class GLTFPhysicsBody : Resource() {
    *
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var inertiaTensor: Basis
@@ -158,14 +200,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   /**
-   * The linear velocity of the physics body, in meters per second. This is only used when the body
-   * type is "rigid" or "vehicle".
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -174,23 +209,18 @@ public open class GLTFPhysicsBody : Resource() {
    * //Your changes
    * gltfphysicsbody.linearVelocity = myCoreType
    * ``````
+   *
+   * The linear velocity of the physics body, in meters per second. This is only used when the body
+   * type is "rigid" or "vehicle".
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The angular velocity of the physics body, in radians per second. This is only used when the
-   * body type is "rigid" or "vehicle".
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -199,24 +229,19 @@ public open class GLTFPhysicsBody : Resource() {
    * //Your changes
    * gltfphysicsbody.angularVelocity = myCoreType
    * ``````
+   *
+   * The angular velocity of the physics body, in radians per second. This is only used when the
+   * body type is "rigid" or "vehicle".
    */
   @CoreTypeHelper
   public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply{
-      block(this)
-      angularVelocity = this
+      angularVelocity.apply {
+     block(this)
+     angularVelocity = this
   }
 
-
   /**
-   * The center of mass of the body, in meters. This is in local space relative to the body. By
-   * default, the center of the mass is the body's origin.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [centerOfMass] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -225,27 +250,18 @@ public open class GLTFPhysicsBody : Resource() {
    * //Your changes
    * gltfphysicsbody.centerOfMass = myCoreType
    * ``````
+   *
+   * The center of mass of the body, in meters. This is in local space relative to the body. By
+   * default, the center of the mass is the body's origin.
    */
   @CoreTypeHelper
-  public final fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
-      block(this)
-      centerOfMass = this
+  public final fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply {
+     block(this)
+     centerOfMass = this
   }
 
-
   /**
-   * The inertia strength of the physics body, in kilogram meter squared (kg⋅m²). This represents
-   * the inertia around the principle axes, the diagonal of the inertia tensor matrix. This is only
-   * used when the body type is "rigid" or "vehicle".
-   *
-   * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
-   * calculated automatically.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [inertiaDiagonal] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -254,25 +270,23 @@ public open class GLTFPhysicsBody : Resource() {
    * //Your changes
    * gltfphysicsbody.inertiaDiagonal = myCoreType
    * ``````
+   *
+   * The inertia strength of the physics body, in kilogram meter squared (kg⋅m²). This represents
+   * the inertia around the principle axes, the diagonal of the inertia tensor matrix. This is only
+   * used when the body type is "rigid" or "vehicle".
+   *
+   * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
+   * calculated automatically.
    */
   @CoreTypeHelper
   public final fun inertiaDiagonalMutate(block: Vector3.() -> Unit): Vector3 =
-      inertiaDiagonal.apply{
-      block(this)
-      inertiaDiagonal = this
+      inertiaDiagonal.apply {
+     block(this)
+     inertiaDiagonal = this
   }
 
-
   /**
-   * The inertia orientation of the physics body. This defines the rotation of the inertia's
-   * principle axes relative to the object's local axes. This is only used when the body type is
-   * "rigid" or "vehicle" and [inertiaDiagonal] is set to a non-zero value.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [inertiaOrientation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -281,27 +295,20 @@ public open class GLTFPhysicsBody : Resource() {
    * //Your changes
    * gltfphysicsbody.inertiaOrientation = myCoreType
    * ``````
+   *
+   * The inertia orientation of the physics body. This defines the rotation of the inertia's
+   * principle axes relative to the object's local axes. This is only used when the body type is
+   * "rigid" or "vehicle" and [inertiaDiagonal] is set to a non-zero value.
    */
   @CoreTypeHelper
   public final fun inertiaOrientationMutate(block: Quaternion.() -> Unit): Quaternion =
-      inertiaOrientation.apply{
-      block(this)
-      inertiaOrientation = this
+      inertiaOrientation.apply {
+     block(this)
+     inertiaOrientation = this
   }
 
-
   /**
-   * The inertia tensor of the physics body, in kilogram meter squared (kg⋅m²). This is only used
-   * when the body type is "rigid" or "vehicle".
-   *
-   * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
-   * calculated automatically.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [inertiaTensor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -310,13 +317,18 @@ public open class GLTFPhysicsBody : Resource() {
    * //Your changes
    * gltfphysicsbody.inertiaTensor = myCoreType
    * ``````
+   *
+   * The inertia tensor of the physics body, in kilogram meter squared (kg⋅m²). This is only used
+   * when the body type is "rigid" or "vehicle".
+   *
+   * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
+   * calculated automatically.
    */
   @CoreTypeHelper
-  public final fun inertiaTensorMutate(block: Basis.() -> Unit): Basis = inertiaTensor.apply{
-      block(this)
-      inertiaTensor = this
+  public final fun inertiaTensorMutate(block: Basis.() -> Unit): Basis = inertiaTensor.apply {
+     block(this)
+     inertiaTensor = this
   }
-
 
   /**
    * Converts this GLTFPhysicsBody instance into a Godot [CollisionObject3D] node.

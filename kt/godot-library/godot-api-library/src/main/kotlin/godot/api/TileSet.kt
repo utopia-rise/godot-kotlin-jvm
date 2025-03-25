@@ -97,6 +97,13 @@ public open class TileSet : Resource() {
   /**
    * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
    * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tileSize: Vector2i
@@ -123,14 +130,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
-   * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tileSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -139,13 +139,15 @@ public open class TileSet : Resource() {
    * //Your changes
    * tileset.tileSize = myCoreType
    * ``````
+   *
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
+   * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    */
   @CoreTypeHelper
-  public final fun tileSizeMutate(block: Vector2i.() -> Unit): Vector2i = tileSize.apply{
-      block(this)
-      tileSize = this
+  public final fun tileSizeMutate(block: Vector2i.() -> Unit): Vector2i = tileSize.apply {
+     block(this)
+     tileSize = this
   }
-
 
   /**
    * Returns a new unused source ID. This generated ID is the same that a call to [addSource] would

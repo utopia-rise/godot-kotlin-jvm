@@ -87,6 +87,13 @@ public open class TileData : Object() {
 
   /**
    * Offsets the position of where the tile is drawn.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureOrigin: Vector2i
@@ -99,6 +106,13 @@ public open class TileData : Object() {
 
   /**
    * Color modulation of the tile.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -181,13 +195,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Offsets the position of where the tile is drawn.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [textureOrigin] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -196,22 +204,17 @@ public open class TileData : Object() {
    * //Your changes
    * tiledata.textureOrigin = myCoreType
    * ``````
+   *
+   * Offsets the position of where the tile is drawn.
    */
   @CoreTypeHelper
-  public final fun textureOriginMutate(block: Vector2i.() -> Unit): Vector2i = textureOrigin.apply{
-      block(this)
-      textureOrigin = this
+  public final fun textureOriginMutate(block: Vector2i.() -> Unit): Vector2i = textureOrigin.apply {
+     block(this)
+     textureOrigin = this
   }
 
-
   /**
-   * Color modulation of the tile.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [modulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -220,13 +223,14 @@ public open class TileData : Object() {
    * //Your changes
    * tiledata.modulate = myCoreType
    * ``````
+   *
+   * Color modulation of the tile.
    */
   @CoreTypeHelper
-  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
-      block(this)
-      modulate = this
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
+     block(this)
+     modulate = this
   }
-
 
   public final fun setFlipH(flipH: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flipH)

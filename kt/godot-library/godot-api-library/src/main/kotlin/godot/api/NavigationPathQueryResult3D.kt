@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -20,6 +22,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
+import godot.core.Vector3
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -35,7 +38,15 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * The resulting path array from the navigation query. All path array positions are in global
    * coordinates. Without customized query parameters this is the same path as returned by
    * [NavigationServer3D.mapGetPath].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var path: PackedVector3Array
     @JvmName("pathProperty")
     get() = getPath()
@@ -46,7 +57,15 @@ public open class NavigationPathQueryResult3D : RefCounted() {
 
   /**
    * The type of navigation primitive (region or link) that each point of the path goes through.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var pathTypes: PackedInt32Array
     @JvmName("pathTypesProperty")
     get() = getPathTypes()
@@ -69,7 +88,15 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   /**
    * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
    * through.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var pathOwnerIds: PackedInt64Array
     @JvmName("pathOwnerIdsProperty")
     get() = getPathOwnerIds()
@@ -80,6 +107,123 @@ public open class NavigationPathQueryResult3D : RefCounted() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(387, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [path] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryresult3d.path
+   * //Your changes
+   * navigationpathqueryresult3d.path = myCoreType
+   * ``````
+   *
+   * The resulting path array from the navigation query. All path array positions are in global
+   * coordinates. Without customized query parameters this is the same path as returned by
+   * [NavigationServer3D.mapGetPath].
+   */
+  @CoreTypeHelper
+  public final fun pathMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      path.apply {
+     block(this)
+     path = this
+  }
+
+  /**
+   * This is a helper function for [path] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The resulting path array from the navigation query. All path array positions are in global
+   * coordinates. Without customized query parameters this is the same path as returned by
+   * [NavigationServer3D.mapGetPath].
+   */
+  @CoreTypeHelper
+  public final fun pathMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array
+      = path.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     path = this
+  }
+
+  /**
+   * This is a helper function for [pathTypes] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryresult3d.pathTypes
+   * //Your changes
+   * navigationpathqueryresult3d.pathTypes = myCoreType
+   * ``````
+   *
+   * The type of navigation primitive (region or link) that each point of the path goes through.
+   */
+  @CoreTypeHelper
+  public final fun pathTypesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      pathTypes.apply {
+     block(this)
+     pathTypes = this
+  }
+
+  /**
+   * This is a helper function for [pathTypes] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The type of navigation primitive (region or link) that each point of the path goes through.
+   */
+  @CoreTypeHelper
+  public final fun pathTypesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
+      = pathTypes.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     pathTypes = this
+  }
+
+  /**
+   * This is a helper function for [pathOwnerIds] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpathqueryresult3d.pathOwnerIds
+   * //Your changes
+   * navigationpathqueryresult3d.pathOwnerIds = myCoreType
+   * ``````
+   *
+   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
+   * through.
+   */
+  @CoreTypeHelper
+  public final fun pathOwnerIdsMutate(block: PackedInt64Array.() -> Unit): PackedInt64Array =
+      pathOwnerIds.apply {
+     block(this)
+     pathOwnerIds = this
+  }
+
+  /**
+   * This is a helper function for [pathOwnerIds] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
+   * through.
+   */
+  @CoreTypeHelper
+  public final fun pathOwnerIdsMutateEach(block: (index: Int, `value`: Long) -> Unit):
+      PackedInt64Array = pathOwnerIds.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     pathOwnerIds = this
   }
 
   public final fun setPath(path: PackedVector3Array): Unit {

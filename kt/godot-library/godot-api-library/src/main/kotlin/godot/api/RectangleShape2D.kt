@@ -31,6 +31,13 @@ import kotlin.jvm.JvmName
 public open class RectangleShape2D : Shape2D() {
   /**
    * The rectangle's width and height.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2
@@ -46,13 +53,7 @@ public open class RectangleShape2D : Shape2D() {
   }
 
   /**
-   * The rectangle's width and height.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -61,13 +62,14 @@ public open class RectangleShape2D : Shape2D() {
    * //Your changes
    * rectangleshape2d.size = myCoreType
    * ``````
+   *
+   * The rectangle's width and height.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)

@@ -47,6 +47,13 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
    * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
    * for both axes.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tilt: Vector2
@@ -81,6 +88,13 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag position in the viewport the node is in, using the coordinate system of this viewport.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -98,6 +112,13 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * defined by the project's stretch mode settings. This means touch sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
    * this, use [screenRelative] instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var relative: Vector2
@@ -113,6 +134,13 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * the last frame). This position is *not* scaled according to the content scale factor or calls to
    * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
    * the project's stretch mode.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenRelative: Vector2
@@ -130,6 +158,13 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * defined by the project's stretch mode settings. This means touch sensitivity will appear different
    * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
    * this, use [screenVelocity] instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -144,6 +179,13 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
    * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
    * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenVelocity: Vector2
@@ -159,15 +201,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   }
 
   /**
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
-   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
-   * for both axes.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tilt] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -176,22 +210,19 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * //Your changes
    * inputeventscreendrag.tilt = myCoreType
    * ``````
+   *
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
+   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
+   * for both axes.
    */
   @CoreTypeHelper
-  public final fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply{
-      block(this)
-      tilt = this
+  public final fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply {
+     block(this)
+     tilt = this
   }
 
-
   /**
-   * The drag position in the viewport the node is in, using the coordinate system of this viewport.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [position] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -200,27 +231,17 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * //Your changes
    * inputeventscreendrag.position = myCoreType
    * ``````
+   *
+   * The drag position in the viewport the node is in, using the coordinate system of this viewport.
    */
   @CoreTypeHelper
-  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
-      block(this)
-      position = this
+  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply {
+     block(this)
+     position = this
   }
 
-
   /**
-   * The drag position relative to the previous position (position at the last frame).
-   *
-   * **Note:** [relative] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
-   * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
-   * this, use [screenRelative] instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [relative] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -229,25 +250,22 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * //Your changes
    * inputeventscreendrag.relative = myCoreType
    * ``````
+   *
+   * The drag position relative to the previous position (position at the last frame).
+   *
+   * **Note:** [relative] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
+   * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
+   * this, use [screenRelative] instead.
    */
   @CoreTypeHelper
-  public final fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply{
-      block(this)
-      relative = this
+  public final fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply {
+     block(this)
+     relative = this
   }
 
-
   /**
-   * The unscaled drag position relative to the previous position in screen coordinates (position at
-   * the last frame). This position is *not* scaled according to the content scale factor or calls to
-   * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
-   * the project's stretch mode.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [screenRelative] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -256,27 +274,20 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * //Your changes
    * inputeventscreendrag.screenRelative = myCoreType
    * ``````
+   *
+   * The unscaled drag position relative to the previous position in screen coordinates (position at
+   * the last frame). This position is *not* scaled according to the content scale factor or calls to
+   * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
+   * the project's stretch mode.
    */
   @CoreTypeHelper
-  public final fun screenRelativeMutate(block: Vector2.() -> Unit): Vector2 = screenRelative.apply{
-      block(this)
-      screenRelative = this
+  public final fun screenRelativeMutate(block: Vector2.() -> Unit): Vector2 = screenRelative.apply {
+     block(this)
+     screenRelative = this
   }
 
-
   /**
-   * The drag velocity.
-   *
-   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
-   * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
-   * this, use [screenVelocity] instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -285,24 +296,22 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * //Your changes
    * inputeventscreendrag.velocity = myCoreType
    * ``````
+   *
+   * The drag velocity.
+   *
+   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
+   * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
+   * this, use [screenVelocity] instead.
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
+     block(this)
+     velocity = this
   }
 
-
   /**
-   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
-   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
-   * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [screenVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -311,13 +320,16 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * //Your changes
    * inputeventscreendrag.screenVelocity = myCoreType
    * ``````
+   *
+   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
+   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
+   * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
    */
   @CoreTypeHelper
-  public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply{
-      block(this)
-      screenVelocity = this
+  public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply {
+     block(this)
+     screenVelocity = this
   }
-
 
   public final fun setIndex(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())

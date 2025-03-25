@@ -45,6 +45,13 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
    * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
    * for both axes.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tilt: Vector2
@@ -90,6 +97,13 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles mouse aiming with the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenRelative] instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var relative: Vector2
@@ -111,6 +125,13 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * **Note:** This coordinate is *not* scaled according to the content scale factor or calls to
    * [InputEvent.xformedBy]. This should be preferred over [relative] for mouse aiming when using the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode, regardless of the project's stretch mode.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenRelative: Vector2
@@ -128,6 +149,13 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
    * depending on resolution when using [velocity] in a script that handles mouse aiming with the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenVelocity] instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -143,6 +171,13 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
    * preferred over [velocity] for mouse aiming when using the [Input.MOUSE_MODE_CAPTURED] mouse mode,
    * regardless of the project's stretch mode.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenVelocity: Vector2
@@ -158,15 +193,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   /**
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
-   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
-   * for both axes.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tilt] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -175,15 +202,28 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * //Your changes
    * inputeventmousemotion.tilt = myCoreType
    * ``````
+   *
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
+   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
+   * for both axes.
    */
   @CoreTypeHelper
-  public final fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply{
-      block(this)
-      tilt = this
+  public final fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply {
+     block(this)
+     tilt = this
   }
 
-
   /**
+   * This is a helper function for [relative] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventmousemotion.relative
+   * //Your changes
+   * inputeventmousemotion.relative = myCoreType
+   * ``````
+   *
    * The mouse position relative to the previous position (position at the last frame).
    *
    * **Note:** Since [InputEventMouseMotion] may only be emitted when the mouse moves, it is not
@@ -194,29 +234,24 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles mouse aiming with the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenRelative] instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   */
+  @CoreTypeHelper
+  public final fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply {
+     block(this)
+     relative = this
+  }
+
+  /**
+   * This is a helper function for [screenRelative] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
    * ``````
-   * val myCoreType = inputeventmousemotion.relative
+   * val myCoreType = inputeventmousemotion.screenRelative
    * //Your changes
-   * inputeventmousemotion.relative = myCoreType
+   * inputeventmousemotion.screenRelative = myCoreType
    * ``````
-   */
-  @CoreTypeHelper
-  public final fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply{
-      block(this)
-      relative = this
-  }
-
-
-  /**
+   *
    * The unscaled mouse position relative to the previous position in the coordinate system of the
    * screen (position at the last frame).
    *
@@ -227,41 +262,15 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * **Note:** This coordinate is *not* scaled according to the content scale factor or calls to
    * [InputEvent.xformedBy]. This should be preferred over [relative] for mouse aiming when using the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode, regardless of the project's stretch mode.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = inputeventmousemotion.screenRelative
-   * //Your changes
-   * inputeventmousemotion.screenRelative = myCoreType
-   * ``````
    */
   @CoreTypeHelper
-  public final fun screenRelativeMutate(block: Vector2.() -> Unit): Vector2 = screenRelative.apply{
-      block(this)
-      screenRelative = this
+  public final fun screenRelativeMutate(block: Vector2.() -> Unit): Vector2 = screenRelative.apply {
+     block(this)
+     screenRelative = this
   }
 
-
   /**
-   * The mouse velocity in pixels per second.
-   *
-   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
-   * depending on resolution when using [velocity] in a script that handles mouse aiming with the
-   * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenVelocity] instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -270,25 +279,22 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * //Your changes
    * inputeventmousemotion.velocity = myCoreType
    * ``````
+   *
+   * The mouse velocity in pixels per second.
+   *
+   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
+   * depending on resolution when using [velocity] in a script that handles mouse aiming with the
+   * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenVelocity] instead.
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
+     block(this)
+     velocity = this
   }
 
-
   /**
-   * The unscaled mouse velocity in pixels per second in screen coordinates. This velocity is *not*
-   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
-   * preferred over [velocity] for mouse aiming when using the [Input.MOUSE_MODE_CAPTURED] mouse mode,
-   * regardless of the project's stretch mode.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [screenVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -297,13 +303,17 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * //Your changes
    * inputeventmousemotion.screenVelocity = myCoreType
    * ``````
+   *
+   * The unscaled mouse velocity in pixels per second in screen coordinates. This velocity is *not*
+   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
+   * preferred over [velocity] for mouse aiming when using the [Input.MOUSE_MODE_CAPTURED] mouse mode,
+   * regardless of the project's stretch mode.
    */
   @CoreTypeHelper
-  public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply{
-      block(this)
-      screenVelocity = this
+  public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply {
+     block(this)
+     screenVelocity = this
   }
-
 
   public final fun setTilt(tilt: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to tilt)

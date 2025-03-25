@@ -93,6 +93,17 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class NavigationPolygon : Resource() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var vertices: PackedVector2Array
     @JvmName("verticesProperty")
     get() = getVertices()
@@ -205,6 +216,13 @@ public open class NavigationPolygon : Resource() {
   /**
    * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
    * enclosing area.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bakingRect: Rect2
@@ -217,6 +235,13 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The position offset applied to the [bakingRect] [Rect2].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bakingRectOffset: Vector2
@@ -232,14 +257,40 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
-   * enclosing area.
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpolygon.vertices
+   * //Your changes
+   * navigationpolygon.vertices = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun verticesMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      vertices.apply {
+     block(this)
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = vertices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [bakingRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -248,22 +299,18 @@ public open class NavigationPolygon : Resource() {
    * //Your changes
    * navigationpolygon.bakingRect = myCoreType
    * ``````
+   *
+   * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
+   * enclosing area.
    */
   @CoreTypeHelper
-  public final fun bakingRectMutate(block: Rect2.() -> Unit): Rect2 = bakingRect.apply{
-      block(this)
-      bakingRect = this
+  public final fun bakingRectMutate(block: Rect2.() -> Unit): Rect2 = bakingRect.apply {
+     block(this)
+     bakingRect = this
   }
 
-
   /**
-   * The position offset applied to the [bakingRect] [Rect2].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [bakingRectOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -272,14 +319,15 @@ public open class NavigationPolygon : Resource() {
    * //Your changes
    * navigationpolygon.bakingRectOffset = myCoreType
    * ``````
+   *
+   * The position offset applied to the [bakingRect] [Rect2].
    */
   @CoreTypeHelper
   public final fun bakingRectOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      bakingRectOffset.apply{
-      block(this)
-      bakingRectOffset = this
+      bakingRectOffset.apply {
+     block(this)
+     bakingRectOffset = this
   }
-
 
   /**
    * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.

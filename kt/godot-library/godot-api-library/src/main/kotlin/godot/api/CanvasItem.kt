@@ -124,6 +124,13 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike
    * [selfModulate] which only affects the node itself.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -141,6 +148,13 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
    * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
    * similar methods).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var selfModulate: Color
@@ -313,14 +327,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike
-   * [selfModulate] which only affects the node itself.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [modulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -329,27 +336,18 @@ public open class CanvasItem internal constructor() : Node() {
    * //Your changes
    * canvasitem.modulate = myCoreType
    * ``````
+   *
+   * The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike
+   * [selfModulate] which only affects the node itself.
    */
   @CoreTypeHelper
-  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
-      block(this)
-      modulate = this
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
+     block(this)
+     modulate = this
   }
 
-
   /**
-   * The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s,
-   * unlike [modulate] which affects both the node itself and its children.
-   *
-   * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
-   * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
-   * similar methods).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [selfModulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -358,13 +356,19 @@ public open class CanvasItem internal constructor() : Node() {
    * //Your changes
    * canvasitem.selfModulate = myCoreType
    * ``````
+   *
+   * The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s,
+   * unlike [modulate] which affects both the node itself and its children.
+   *
+   * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
+   * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
+   * similar methods).
    */
   @CoreTypeHelper
-  public final fun selfModulateMutate(block: Color.() -> Unit): Color = selfModulate.apply{
-      block(this)
-      selfModulate = this
+  public final fun selfModulateMutate(block: Color.() -> Unit): Color = selfModulate.apply {
+     block(this)
+     selfModulate = this
   }
-
 
   /**
    * Called when [CanvasItem] has been requested to redraw (after [queueRedraw] is called, either

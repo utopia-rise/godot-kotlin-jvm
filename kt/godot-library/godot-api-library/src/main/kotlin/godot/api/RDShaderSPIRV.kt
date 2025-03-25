@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -15,6 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
+import kotlin.Byte
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -34,7 +37,15 @@ import kotlin.jvm.JvmName
 public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the vertex shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var bytecodeVertex: PackedByteArray
     @JvmName("bytecodeVertexProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.VERTEX)
@@ -45,7 +56,15 @@ public open class RDShaderSPIRV : Resource() {
 
   /**
    * The SPIR-V bytecode for the fragment shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var bytecodeFragment: PackedByteArray
     @JvmName("bytecodeFragmentProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.FRAGMENT)
@@ -56,7 +75,15 @@ public open class RDShaderSPIRV : Resource() {
 
   /**
    * The SPIR-V bytecode for the tessellation control shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var bytecodeTesselationControl: PackedByteArray
     @JvmName("bytecodeTesselationControlProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.TESSELATION_CONTROL)
@@ -67,7 +94,15 @@ public open class RDShaderSPIRV : Resource() {
 
   /**
    * The SPIR-V bytecode for the tessellation evaluation shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var bytecodeTesselationEvaluation: PackedByteArray
     @JvmName("bytecodeTesselationEvaluationProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.TESSELATION_EVALUATION)
@@ -78,7 +113,15 @@ public open class RDShaderSPIRV : Resource() {
 
   /**
    * The SPIR-V bytecode for the compute shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var bytecodeCompute: PackedByteArray
     @JvmName("bytecodeComputeProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.COMPUTE)
@@ -149,6 +192,195 @@ public open class RDShaderSPIRV : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(526, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [bytecodeVertex] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeVertex
+   * //Your changes
+   * rdshaderspirv.bytecodeVertex = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the vertex shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeVertexMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeVertex.apply {
+     block(this)
+     bytecodeVertex = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeVertex] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the vertex shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeVertexMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeVertex.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeVertex = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeFragment] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeFragment
+   * //Your changes
+   * rdshaderspirv.bytecodeFragment = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the fragment shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeFragmentMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeFragment.apply {
+     block(this)
+     bytecodeFragment = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeFragment] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the fragment shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeFragmentMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeFragment.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeFragment = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeTesselationControl] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeTesselationControl
+   * //Your changes
+   * rdshaderspirv.bytecodeTesselationControl = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the tessellation control shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeTesselationControlMutate(block: PackedByteArray.() -> Unit):
+      PackedByteArray = bytecodeTesselationControl.apply {
+     block(this)
+     bytecodeTesselationControl = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeTesselationControl] to make dealing with local copies
+   * easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the tessellation control shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeTesselationControlMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeTesselationControl.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeTesselationControl = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeTesselationEvaluation] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeTesselationEvaluation
+   * //Your changes
+   * rdshaderspirv.bytecodeTesselationEvaluation = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the tessellation evaluation shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeTesselationEvaluationMutate(block: PackedByteArray.() -> Unit):
+      PackedByteArray = bytecodeTesselationEvaluation.apply {
+     block(this)
+     bytecodeTesselationEvaluation = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeTesselationEvaluation] to make dealing with local copies
+   * easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the tessellation evaluation shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeTesselationEvaluationMutateEach(block: (index: Int,
+      `value`: Byte) -> Unit): PackedByteArray = bytecodeTesselationEvaluation.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeTesselationEvaluation = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeCompute] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeCompute
+   * //Your changes
+   * rdshaderspirv.bytecodeCompute = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the compute shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeComputeMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeCompute.apply {
+     block(this)
+     bytecodeCompute = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeCompute] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the compute shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeComputeMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeCompute.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeCompute = this
   }
 
   /**

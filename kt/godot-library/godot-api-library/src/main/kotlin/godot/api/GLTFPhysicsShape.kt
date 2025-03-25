@@ -57,6 +57,13 @@ public open class GLTFPhysicsShape : Resource() {
   /**
    * The size of the shape, in meters. This is only used when the shape type is "box", and it
    * represents the "diameter" of the box. This value should not be negative.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -136,14 +143,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   /**
-   * The size of the shape, in meters. This is only used when the shape type is "box", and it
-   * represents the "diameter" of the box. This value should not be negative.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -152,13 +152,15 @@ public open class GLTFPhysicsShape : Resource() {
    * //Your changes
    * gltfphysicsshape.size = myCoreType
    * ``````
+   *
+   * The size of the shape, in meters. This is only used when the shape type is "box", and it
+   * represents the "diameter" of the box. This value should not be negative.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   /**
    * Converts this GLTFPhysicsShape instance into a Godot [CollisionShape3D] node.

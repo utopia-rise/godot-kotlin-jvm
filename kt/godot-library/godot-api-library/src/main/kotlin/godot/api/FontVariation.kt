@@ -128,6 +128,13 @@ public open class FontVariation : Font() {
    *
    * For example, to simulate italic typeface by slanting, apply the following transform
    * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var variationTransform: Transform2D
@@ -211,17 +218,7 @@ public open class FontVariation : Font() {
   }
 
   /**
-   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
-   * glyphs.
-   *
-   * For example, to simulate italic typeface by slanting, apply the following transform
-   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [variationTransform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -230,14 +227,19 @@ public open class FontVariation : Font() {
    * //Your changes
    * fontvariation.variationTransform = myCoreType
    * ``````
+   *
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
+   * glyphs.
+   *
+   * For example, to simulate italic typeface by slanting, apply the following transform
+   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
   @CoreTypeHelper
   public final fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      variationTransform.apply{
-      block(this)
-      variationTransform = this
+      variationTransform.apply {
+     block(this)
+     variationTransform = this
   }
-
 
   public final fun setBaseFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)

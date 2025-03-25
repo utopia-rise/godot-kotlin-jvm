@@ -34,6 +34,13 @@ import kotlin.jvm.JvmName
 public open class ParallaxLayer : Node2D() {
   /**
    * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motionScale: Vector2
@@ -47,6 +54,13 @@ public open class ParallaxLayer : Node2D() {
   /**
    * The ParallaxLayer's offset relative to the parent ParallaxBackground's
    * [ParallaxBackground.scrollOffset].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motionOffset: Vector2
@@ -76,6 +90,13 @@ public open class ParallaxLayer : Node2D() {
    * [CanvasLayer.offset] property in the parent [ParallaxBackground].
    *
    * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motionMirroring: Vector2
@@ -91,13 +112,7 @@ public open class ParallaxLayer : Node2D() {
   }
 
   /**
-   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motionScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -106,23 +121,17 @@ public open class ParallaxLayer : Node2D() {
    * //Your changes
    * parallaxlayer.motionScale = myCoreType
    * ``````
+   *
+   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    */
   @CoreTypeHelper
-  public final fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply{
-      block(this)
-      motionScale = this
+  public final fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply {
+     block(this)
+     motionScale = this
   }
 
-
   /**
-   * The ParallaxLayer's offset relative to the parent ParallaxBackground's
-   * [ParallaxBackground.scrollOffset].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motionOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -131,15 +140,27 @@ public open class ParallaxLayer : Node2D() {
    * //Your changes
    * parallaxlayer.motionOffset = myCoreType
    * ``````
+   *
+   * The ParallaxLayer's offset relative to the parent ParallaxBackground's
+   * [ParallaxBackground.scrollOffset].
    */
   @CoreTypeHelper
-  public final fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply{
-      block(this)
-      motionOffset = this
+  public final fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply {
+     block(this)
+     motionOffset = this
   }
 
-
   /**
+   * This is a helper function for [motionMirroring] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = parallaxlayer.motionMirroring
+   * //Your changes
+   * parallaxlayer.motionMirroring = myCoreType
+   * ``````
+   *
    * The interval, in pixels, at which the [ParallaxLayer] is drawn repeatedly. Useful for creating
    * an infinitely scrolling background. If an axis is set to `0`, the [ParallaxLayer] will be drawn
    * only once along that direction.
@@ -158,28 +179,13 @@ public open class ParallaxLayer : Node2D() {
    * [CanvasLayer.offset] property in the parent [ParallaxBackground].
    *
    * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = parallaxlayer.motionMirroring
-   * //Your changes
-   * parallaxlayer.motionMirroring = myCoreType
-   * ``````
    */
   @CoreTypeHelper
   public final fun motionMirroringMutate(block: Vector2.() -> Unit): Vector2 =
-      motionMirroring.apply{
-      block(this)
-      motionMirroring = this
+      motionMirroring.apply {
+     block(this)
+     motionMirroring = this
   }
-
 
   public final fun setMotionScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)

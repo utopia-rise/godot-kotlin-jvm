@@ -60,6 +60,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
    * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
    * [MOTION_MODE_FLOATING] as [motionMode].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var upDirection: Vector3
@@ -85,6 +92,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector3
@@ -256,16 +270,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
-   * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
-   * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTION_MODE_FLOATING] as [motionMode].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [upDirection] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -274,23 +279,20 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * //Your changes
    * characterbody3d.upDirection = myCoreType
    * ``````
+   *
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
+   * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
+   * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
+   * [MOTION_MODE_FLOATING] as [motionMode].
    */
   @CoreTypeHelper
-  public final fun upDirectionMutate(block: Vector3.() -> Unit): Vector3 = upDirection.apply{
-      block(this)
-      upDirection = this
+  public final fun upDirectionMutate(block: Vector3.() -> Unit): Vector3 = upDirection.apply {
+     block(this)
+     upDirection = this
   }
 
-
   /**
-   * Current velocity vector (typically meters per second), used and modified during calls to
-   * [moveAndSlide].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -299,13 +301,15 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * //Your changes
    * characterbody3d.velocity = myCoreType
    * ``````
+   *
+   * Current velocity vector (typically meters per second), used and modified during calls to
+   * [moveAndSlide].
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
+     block(this)
+     velocity = this
   }
-
 
   /**
    * Moves the body based on [velocity]. If the body collides with another, it will slide along the

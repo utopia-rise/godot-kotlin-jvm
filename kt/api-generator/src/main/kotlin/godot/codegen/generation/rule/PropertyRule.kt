@@ -1,7 +1,9 @@
 package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.ParameterSpec
@@ -15,6 +17,7 @@ import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedProperty
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
+import godot.tools.common.constants.GodotTypes.localCopyCoreTypesMap
 
 class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
     override fun apply(task: EnrichedPropertyTask, context: GenerationContext) = configure(task.builder) {
@@ -113,28 +116,36 @@ class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
                     .build()
             )
         }
-
-        if (property.type.isLocalCopyCoreTypes()) {
-            addAnnotation(CORE_TYPE_LOCAL_COPY)
-        }
-
         addKdoc(property)
     }
 }
 
-class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
+class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
     override fun apply(task: EnrichedClassTask, context: GenerationContext) = with(task.builder) {
         val clazz = task.clazz
         for (propertyTask in task.enrichedProperties) {
             val property = propertyTask.property
-            if (property.hasSetter && property.type.isLocalCopyCoreTypes()) {
-                addFunction(getHelper(clazz, property))
-            }
+            if (!property.hasSetter || !property.type.isLocalCopyCoreTypes()) continue
 
+            propertyTask.builder.addAnnotation(CORE_TYPE_LOCAL_COPY)
+            propertyTask.builder.addKdoc(
+                """|
+                   |
+                   |**Warning:**
+                   |Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+                   |Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
+                   |""".trimMargin()
+            )
+            addFunction(getMutateHelper(clazz, property))
+
+            if (!property.type.isLocalIndexedCopyCoreTypes()) continue
+
+            val className = localCopyCoreTypesMap[property.type.identifier]!!
+            addFunction(getMutateEachHelper(property, className))
         }
     }
 
-    private fun getHelper(clazz: EnrichedClass, property: EnrichedProperty): FunSpec {
+    private fun getMutateHelper(clazz: EnrichedClass, property: EnrichedProperty): FunSpec {
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
 
@@ -153,24 +164,14 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
             .addAnnotation(CORE_TYPE_HELPER)
             .returns(parameterTypeName)
             .addStatement(
-                """return $parameterName.apply{
-                |    block(this)
-                |    $parameterName = this
-                |}
-                |""".trimMargin()
+                """return·$parameterName.apply·{
+                |   block(this)
+                |   $parameterName·=·this
+                |}""".trimMargin()
             ).apply {
                 val kDoc = buildString {
-                    val propertyKdoc = property.description
-                    if (propertyKdoc != null && propertyKdoc.isNotBlank()) {
-                        appendLine(propertyKdoc)
-                        appendLine()
-                    }
-
                     appendLine(
-                        """This is a helper function to make dealing with local copies easier.
-                        |
-                        |For more information, see our [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-                        |
+                        """This is a helper function for [$parameterName] to make dealing with local copies easier.
                         |Allow to directly modify the local copy of the property and assign it back to the Object.
                         |
                         |Prefer that over writing:
@@ -181,6 +182,59 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
                         |``````
                         |""".trimMargin()
                     )
+
+
+                    val propertyKdoc = property.description
+                    if (propertyKdoc != null && propertyKdoc.isNotBlank()) {
+                        appendLine(propertyKdoc)
+                        appendLine()
+                    }
+                }
+                addKdoc(kDoc)
+            }.build()
+    }
+
+    private fun getMutateEachHelper(property: EnrichedProperty, elementType: ClassName): FunSpec {
+        val parameterTypeName = property.getCastedType()
+        val parameterName = property.name
+
+        val propertyFunSpec = FunSpec.builder("${parameterName}MutateEach").addModifiers(KModifier.FINAL)
+
+        val lambdaType =  ParameterSpec.builder(
+            "block",
+            LambdaTypeName.get(
+                parameters = listOf(
+                    ParameterSpec.builder("index", INT).build(),
+                    ParameterSpec.builder("value", elementType).build()
+                ),
+                returnType = UNIT
+            )).build()
+
+        return propertyFunSpec
+            .addParameter(lambdaType)
+            .addAnnotation(CORE_TYPE_HELPER)
+            .returns(parameterTypeName)
+            .addStatement(
+                """return·$parameterName.apply·{
+                |   this.forEachIndexed {·index,·value·->
+                |       block(index,·value)
+                |       this[index]·=·value
+                |   }
+                |   $parameterName·=·this
+                |}""".trimMargin()
+            ).apply {
+                val kDoc = buildString {
+                    appendLine(
+                        """This is a helper function for [$parameterName] to make dealing with local copies easier.
+                        |Allow to directly modify each element of the local copy of the property and assign it back to the Object.
+                        |""".trimMargin()
+                    )
+
+                    val propertyKdoc = property.description
+                    if (propertyKdoc != null && propertyKdoc.isNotBlank()) {
+                        appendLine(propertyKdoc)
+                        appendLine()
+                    }
                 }
                 addKdoc(kDoc)
             }.build()

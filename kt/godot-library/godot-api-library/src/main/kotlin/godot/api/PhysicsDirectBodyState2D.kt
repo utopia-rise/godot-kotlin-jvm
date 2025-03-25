@@ -78,7 +78,6 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
-  @CoreTypeLocalCopy
   public final inline val totalGravity: Vector2
     @JvmName("totalGravityProperty")
     get() = getTotalGravity()
@@ -87,7 +86,6 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * The body's center of mass position relative to the body's center in the global coordinate
    * system.
    */
-  @CoreTypeLocalCopy
   public final inline val centerOfMass: Vector2
     @JvmName("centerOfMassProperty")
     get() = getCenterOfMass()
@@ -95,7 +93,6 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
-  @CoreTypeLocalCopy
   public final inline val centerOfMassLocal: Vector2
     @JvmName("centerOfMassLocalProperty")
     get() = getCenterOfMassLocal()
@@ -113,6 +110,13 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * The body's linear velocity in pixels per second.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector2
@@ -136,6 +140,13 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * The body's transformation matrix.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -151,13 +162,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * The body's linear velocity in pixels per second.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -166,22 +171,17 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate2d.linearVelocity = myCoreType
    * ``````
+   *
+   * The body's linear velocity in pixels per second.
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The body's transformation matrix.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -190,13 +190,14 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate2d.transform = myCoreType
    * ``````
+   *
+   * The body's transformation matrix.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply {
+     block(this)
+     transform = this
   }
-
 
   public final fun getTotalGravity(): Vector2 {
     TransferContext.writeArguments()

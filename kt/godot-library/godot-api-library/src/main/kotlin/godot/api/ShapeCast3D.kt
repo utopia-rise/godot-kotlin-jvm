@@ -85,6 +85,13 @@ public open class ShapeCast3D : Node3D() {
 
   /**
    * The shape's destination point, relative to this node's [Node3D.position].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -169,6 +176,13 @@ public open class ShapeCast3D : Node3D() {
    *
    * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
    * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugShapeCustomColor: Color
@@ -184,13 +198,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * The shape's destination point, relative to this node's [Node3D.position].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [targetPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -199,27 +207,17 @@ public open class ShapeCast3D : Node3D() {
    * //Your changes
    * shapecast3d.targetPosition = myCoreType
    * ``````
+   *
+   * The shape's destination point, relative to this node's [Node3D.position].
    */
   @CoreTypeHelper
-  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
-      block(this)
-      targetPosition = this
+  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply {
+     block(this)
+     targetPosition = this
   }
 
-
   /**
-   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
-   * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
-   * [ShapeCast3D] is colliding with something.
-   *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
-   * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [debugShapeCustomColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -228,14 +226,20 @@ public open class ShapeCast3D : Node3D() {
    * //Your changes
    * shapecast3d.debugShapeCustomColor = myCoreType
    * ``````
+   *
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
+   * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
+   * [ShapeCast3D] is colliding with something.
+   *
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
+   * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
   @CoreTypeHelper
   public final fun debugShapeCustomColorMutate(block: Color.() -> Unit): Color =
-      debugShapeCustomColor.apply{
-      block(this)
-      debugShapeCustomColor = this
+      debugShapeCustomColor.apply {
+     block(this)
+     debugShapeCustomColor = this
   }
-
 
   /**
    * This method does nothing.

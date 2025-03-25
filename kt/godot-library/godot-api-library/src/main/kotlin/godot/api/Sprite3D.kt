@@ -99,6 +99,13 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
    * property. [hframes] or [vframes] must be greater than 1.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var frameCoords: Vector2i
@@ -122,6 +129,13 @@ public open class Sprite3D : SpriteBase3D() {
 
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -137,14 +151,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
-   * property. [hframes] or [vframes] must be greater than 1.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [frameCoords] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -153,22 +160,18 @@ public open class Sprite3D : SpriteBase3D() {
    * //Your changes
    * sprite3d.frameCoords = myCoreType
    * ``````
+   *
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
+   * property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeHelper
-  public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
-      block(this)
-      frameCoords = this
+  public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply {
+     block(this)
+     frameCoords = this
   }
 
-
   /**
-   * The region of the atlas texture to display. [regionEnabled] must be `true`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [regionRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -177,13 +180,14 @@ public open class Sprite3D : SpriteBase3D() {
    * //Your changes
    * sprite3d.regionRect = myCoreType
    * ``````
+   *
+   * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
   @CoreTypeHelper
-  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
-      block(this)
-      regionRect = this
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply {
+     block(this)
+     regionRect = this
   }
-
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)

@@ -41,6 +41,13 @@ public open class Parallax2D : Node2D() {
    * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
    * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
    * further, and a value of `0` stops the objects completely.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollScale: Vector2
@@ -56,6 +63,13 @@ public open class Parallax2D : Node2D() {
    * overridden.
    *
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollOffset: Vector2
@@ -71,6 +85,13 @@ public open class Parallax2D : Node2D() {
    * scrolling, the node's position loops, giving the illusion of an infinite scrolling background if
    * the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be
    * repeated.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var repeatSize: Vector2
@@ -83,6 +104,13 @@ public open class Parallax2D : Node2D() {
 
   /**
    * Velocity at which the offset scrolls automatically, in pixels per second.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var autoscroll: Vector2
@@ -108,6 +136,13 @@ public open class Parallax2D : Node2D() {
   /**
    * Top-left limits for scrolling to begin. If the camera is outside of this limit, the
    * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var limitBegin: Vector2
@@ -122,6 +157,13 @@ public open class Parallax2D : Node2D() {
    * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
    * [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined
    * to work.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var limitEnd: Vector2
@@ -159,6 +201,13 @@ public open class Parallax2D : Node2D() {
   /**
    * Offset used to scroll this [Parallax2D]. This value is updated automatically unless
    * [ignoreCameraScroll] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenOffset: Vector2
@@ -174,18 +223,7 @@ public open class Parallax2D : Node2D() {
   }
 
   /**
-   * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the
-   * camera.
-   *
-   * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
-   * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
-   * further, and a value of `0` stops the objects completely.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -194,25 +232,22 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.scrollScale = myCoreType
    * ``````
+   *
+   * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the
+   * camera.
+   *
+   * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
+   * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
+   * further, and a value of `0` stops the objects completely.
    */
   @CoreTypeHelper
-  public final fun scrollScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollScale.apply{
-      block(this)
-      scrollScale = this
+  public final fun scrollScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollScale.apply {
+     block(this)
+     scrollScale = this
   }
 
-
   /**
-   * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be
-   * overridden.
-   *
-   * **Note:** Values will loop if [repeatSize] is set higher than `0`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -221,25 +256,20 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.scrollOffset = myCoreType
    * ``````
+   *
+   * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be
+   * overridden.
+   *
+   * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    */
   @CoreTypeHelper
-  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
-      block(this)
-      scrollOffset = this
+  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply {
+     block(this)
+     scrollOffset = this
   }
 
-
   /**
-   * Repeats the [Texture2D] of each of this node's children and offsets them by this value. When
-   * scrolling, the node's position loops, giving the illusion of an infinite scrolling background if
-   * the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be
-   * repeated.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [repeatSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -248,22 +278,20 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.repeatSize = myCoreType
    * ``````
+   *
+   * Repeats the [Texture2D] of each of this node's children and offsets them by this value. When
+   * scrolling, the node's position loops, giving the illusion of an infinite scrolling background if
+   * the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be
+   * repeated.
    */
   @CoreTypeHelper
-  public final fun repeatSizeMutate(block: Vector2.() -> Unit): Vector2 = repeatSize.apply{
-      block(this)
-      repeatSize = this
+  public final fun repeatSizeMutate(block: Vector2.() -> Unit): Vector2 = repeatSize.apply {
+     block(this)
+     repeatSize = this
   }
 
-
   /**
-   * Velocity at which the offset scrolls automatically, in pixels per second.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [autoscroll] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -272,23 +300,17 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.autoscroll = myCoreType
    * ``````
+   *
+   * Velocity at which the offset scrolls automatically, in pixels per second.
    */
   @CoreTypeHelper
-  public final fun autoscrollMutate(block: Vector2.() -> Unit): Vector2 = autoscroll.apply{
-      block(this)
-      autoscroll = this
+  public final fun autoscrollMutate(block: Vector2.() -> Unit): Vector2 = autoscroll.apply {
+     block(this)
+     autoscroll = this
   }
 
-
   /**
-   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the
-   * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [limitBegin] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -297,24 +319,18 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.limitBegin = myCoreType
    * ``````
+   *
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the
+   * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
    */
   @CoreTypeHelper
-  public final fun limitBeginMutate(block: Vector2.() -> Unit): Vector2 = limitBegin.apply{
-      block(this)
-      limitBegin = this
+  public final fun limitBeginMutate(block: Vector2.() -> Unit): Vector2 = limitBegin.apply {
+     block(this)
+     limitBegin = this
   }
 
-
   /**
-   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
-   * [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined
-   * to work.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [limitEnd] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -323,23 +339,19 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.limitEnd = myCoreType
    * ``````
+   *
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
+   * [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined
+   * to work.
    */
   @CoreTypeHelper
-  public final fun limitEndMutate(block: Vector2.() -> Unit): Vector2 = limitEnd.apply{
-      block(this)
-      limitEnd = this
+  public final fun limitEndMutate(block: Vector2.() -> Unit): Vector2 = limitEnd.apply {
+     block(this)
+     limitEnd = this
   }
 
-
   /**
-   * Offset used to scroll this [Parallax2D]. This value is updated automatically unless
-   * [ignoreCameraScroll] is `true`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [screenOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -348,13 +360,15 @@ public open class Parallax2D : Node2D() {
    * //Your changes
    * parallax2d.screenOffset = myCoreType
    * ``````
+   *
+   * Offset used to scroll this [Parallax2D]. This value is updated automatically unless
+   * [ignoreCameraScroll] is `true`.
    */
   @CoreTypeHelper
-  public final fun screenOffsetMutate(block: Vector2.() -> Unit): Vector2 = screenOffset.apply{
-      block(this)
-      screenOffset = this
+  public final fun screenOffsetMutate(block: Vector2.() -> Unit): Vector2 = screenOffset.apply {
+     block(this)
+     screenOffset = this
   }
-
 
   public final fun setScrollScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)

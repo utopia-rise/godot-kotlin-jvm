@@ -86,6 +86,13 @@ public open class TextureProgressBar : Range() {
    * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
    * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
    * empty space where needed.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var radialCenterOffset: Vector2
@@ -197,6 +204,13 @@ public open class TextureProgressBar : Range() {
   /**
    * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
    * borders, to avoid transparent margins in your progress texture.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureProgressOffset: Vector2
@@ -209,6 +223,13 @@ public open class TextureProgressBar : Range() {
 
   /**
    * Multiplies the color of the bar's [textureUnder] texture.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintUnder: Color
@@ -222,6 +243,13 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
    * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintOver: Color
@@ -234,6 +262,13 @@ public open class TextureProgressBar : Range() {
 
   /**
    * Multiplies the color of the bar's [textureProgress] texture.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintProgress: Color
@@ -249,18 +284,7 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
-   * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
-   *
-   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
-   * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
-   * empty space where needed.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [radialCenterOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -269,24 +293,23 @@ public open class TextureProgressBar : Range() {
    * //Your changes
    * textureprogressbar.radialCenterOffset = myCoreType
    * ``````
+   *
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
+   * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   *
+   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
+   * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
+   * empty space where needed.
    */
   @CoreTypeHelper
   public final fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      radialCenterOffset.apply{
-      block(this)
-      radialCenterOffset = this
+      radialCenterOffset.apply {
+     block(this)
+     radialCenterOffset = this
   }
 
-
   /**
-   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
-   * borders, to avoid transparent margins in your progress texture.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [textureProgressOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -295,23 +318,19 @@ public open class TextureProgressBar : Range() {
    * //Your changes
    * textureprogressbar.textureProgressOffset = myCoreType
    * ``````
+   *
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
+   * borders, to avoid transparent margins in your progress texture.
    */
   @CoreTypeHelper
   public final fun textureProgressOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      textureProgressOffset.apply{
-      block(this)
-      textureProgressOffset = this
+      textureProgressOffset.apply {
+     block(this)
+     textureProgressOffset = this
   }
 
-
   /**
-   * Multiplies the color of the bar's [textureUnder] texture.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tintUnder] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -320,23 +339,17 @@ public open class TextureProgressBar : Range() {
    * //Your changes
    * textureprogressbar.tintUnder = myCoreType
    * ``````
+   *
+   * Multiplies the color of the bar's [textureUnder] texture.
    */
   @CoreTypeHelper
-  public final fun tintUnderMutate(block: Color.() -> Unit): Color = tintUnder.apply{
-      block(this)
-      tintUnder = this
+  public final fun tintUnderMutate(block: Color.() -> Unit): Color = tintUnder.apply {
+     block(this)
+     tintUnder = this
   }
 
-
   /**
-   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
-   * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tintOver] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -345,22 +358,18 @@ public open class TextureProgressBar : Range() {
    * //Your changes
    * textureprogressbar.tintOver = myCoreType
    * ``````
+   *
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
+   * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
   @CoreTypeHelper
-  public final fun tintOverMutate(block: Color.() -> Unit): Color = tintOver.apply{
-      block(this)
-      tintOver = this
+  public final fun tintOverMutate(block: Color.() -> Unit): Color = tintOver.apply {
+     block(this)
+     tintOver = this
   }
 
-
   /**
-   * Multiplies the color of the bar's [textureProgress] texture.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tintProgress] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -369,13 +378,14 @@ public open class TextureProgressBar : Range() {
    * //Your changes
    * textureprogressbar.tintProgress = myCoreType
    * ``````
+   *
+   * Multiplies the color of the bar's [textureProgress] texture.
    */
   @CoreTypeHelper
-  public final fun tintProgressMutate(block: Color.() -> Unit): Color = tintProgress.apply{
-      block(this)
-      tintProgress = this
+  public final fun tintProgressMutate(block: Color.() -> Unit): Color = tintProgress.apply {
+     block(this)
+     tintProgress = this
   }
-
 
   public final fun setUnderTexture(tex: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to tex)

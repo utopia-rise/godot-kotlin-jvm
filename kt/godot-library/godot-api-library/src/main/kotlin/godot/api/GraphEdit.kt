@@ -183,6 +183,13 @@ public open class GraphEdit : Control() {
 
   /**
    * The scroll offset.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollOffset: Vector2
@@ -377,6 +384,13 @@ public open class GraphEdit : Control() {
   /**
    * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
    * scaled to fit this rectangle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var minimapSize: Vector2
@@ -470,13 +484,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * The scroll offset.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -485,23 +493,17 @@ public open class GraphEdit : Control() {
    * //Your changes
    * graphedit.scrollOffset = myCoreType
    * ``````
+   *
+   * The scroll offset.
    */
   @CoreTypeHelper
-  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
-      block(this)
-      scrollOffset = this
+  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply {
+     block(this)
+     scrollOffset = this
   }
 
-
   /**
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
-   * scaled to fit this rectangle.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [minimapSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -510,13 +512,15 @@ public open class GraphEdit : Control() {
    * //Your changes
    * graphedit.minimapSize = myCoreType
    * ``````
+   *
+   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
+   * scaled to fit this rectangle.
    */
   @CoreTypeHelper
-  public final fun minimapSizeMutate(block: Vector2.() -> Unit): Vector2 = minimapSize.apply{
-      block(this)
-      minimapSize = this
+  public final fun minimapSizeMutate(block: Vector2.() -> Unit): Vector2 = minimapSize.apply {
+     block(this)
+     minimapSize = this
   }
-
 
   /**
    * Returns whether the [mousePosition] is in the input hot zone.

@@ -83,6 +83,13 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   /**
    * The motion of the shape being queried for.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motion: Vector3
@@ -150,6 +157,13 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   /**
    * The queried shape's transform matrix.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -187,13 +201,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   }
 
   /**
-   * The motion of the shape being queried for.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motion] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -202,22 +210,17 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsshapequeryparameters3d.motion = myCoreType
    * ``````
+   *
+   * The motion of the shape being queried for.
    */
   @CoreTypeHelper
-  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply{
-      block(this)
-      motion = this
+  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply {
+     block(this)
+     motion = this
   }
 
-
   /**
-   * The queried shape's transform matrix.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -226,13 +229,14 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsshapequeryparameters3d.transform = myCoreType
    * ``````
+   *
+   * The queried shape's transform matrix.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply {
+     block(this)
+     transform = this
   }
-
 
   public final fun setShape(shape: Resource?): Unit {
     TransferContext.writeArguments(OBJECT to shape)

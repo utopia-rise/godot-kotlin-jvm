@@ -83,6 +83,7 @@ interface TypeGenerationTrait {
     fun isCoreType() = nature == Nature.CORE || nature == Nature.TYPED_ARRAY
     fun isPrimitive() = nature == Nature.PRIMITIVE
     fun isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s -> s == identifier } != null
+    fun isLocalIndexedCopyCoreTypes() = GodotTypes.indexedLocalCopyCoreTypes.find { s -> s == identifier } != null
     fun isEnum() = nature == Nature.ENUM
     fun isBitField() = nature == Nature.BITFIELD
     fun isTypedArray() = nature == Nature.TYPED_ARRAY

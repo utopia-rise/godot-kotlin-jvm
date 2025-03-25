@@ -75,6 +75,13 @@ public open class VoxelGI : VisualInstance3D() {
    * lighting.
    *
    * **Note:** Size is clamped to 1.0 unit or more on each axis.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -115,17 +122,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   /**
-   * The size of the area covered by the [VoxelGI]. If you make the size larger without increasing
-   * the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed
-   * lighting.
-   *
-   * **Note:** Size is clamped to 1.0 unit or more on each axis.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -134,13 +131,18 @@ public open class VoxelGI : VisualInstance3D() {
    * //Your changes
    * voxelgi.size = myCoreType
    * ``````
+   *
+   * The size of the area covered by the [VoxelGI]. If you make the size larger without increasing
+   * the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed
+   * lighting.
+   *
+   * **Note:** Size is clamped to 1.0 unit or more on each axis.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setProbeData(`data`: VoxelGIData?): Unit {
     TransferContext.writeArguments(OBJECT to data)

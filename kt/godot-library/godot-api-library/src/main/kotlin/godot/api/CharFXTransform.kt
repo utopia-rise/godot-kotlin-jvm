@@ -47,6 +47,13 @@ public open class CharFXTransform : RefCounted() {
    * The current transform of the current glyph. It can be overridden (for example, by driving the
    * position and rotation from a curve). You can also alter the existing value to apply transforms on
    * top of other effects.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -61,6 +68,13 @@ public open class CharFXTransform : RefCounted() {
    * Absolute character range in the string, corresponding to the glyph.
    *
    * **Note:** Read-only. Setting this property won't affect drawing.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var range: Vector2i
@@ -114,6 +128,13 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * The position offset the character will be drawn with (in pixels).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -126,6 +147,13 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * The color the character will be drawn with.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -228,15 +256,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   /**
-   * The current transform of the current glyph. It can be overridden (for example, by driving the
-   * position and rotation from a curve). You can also alter the existing value to apply transforms on
-   * top of other effects.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -245,24 +265,19 @@ public open class CharFXTransform : RefCounted() {
    * //Your changes
    * charfxtransform.transform = myCoreType
    * ``````
+   *
+   * The current transform of the current glyph. It can be overridden (for example, by driving the
+   * position and rotation from a curve). You can also alter the existing value to apply transforms on
+   * top of other effects.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply {
+     block(this)
+     transform = this
   }
 
-
   /**
-   * Absolute character range in the string, corresponding to the glyph.
-   *
-   * **Note:** Read-only. Setting this property won't affect drawing.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [range] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -271,22 +286,19 @@ public open class CharFXTransform : RefCounted() {
    * //Your changes
    * charfxtransform.range = myCoreType
    * ``````
+   *
+   * Absolute character range in the string, corresponding to the glyph.
+   *
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   @CoreTypeHelper
-  public final fun rangeMutate(block: Vector2i.() -> Unit): Vector2i = range.apply{
-      block(this)
-      range = this
+  public final fun rangeMutate(block: Vector2i.() -> Unit): Vector2i = range.apply {
+     block(this)
+     range = this
   }
 
-
   /**
-   * The position offset the character will be drawn with (in pixels).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -295,22 +307,17 @@ public open class CharFXTransform : RefCounted() {
    * //Your changes
    * charfxtransform.offset = myCoreType
    * ``````
+   *
+   * The position offset the character will be drawn with (in pixels).
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * The color the character will be drawn with.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -319,13 +326,14 @@ public open class CharFXTransform : RefCounted() {
    * //Your changes
    * charfxtransform.color = myCoreType
    * ``````
+   *
+   * The color the character will be drawn with.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()

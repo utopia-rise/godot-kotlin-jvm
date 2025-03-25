@@ -41,6 +41,13 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Transform in global space where the motion should start. Usually set to
    * [Node3D.globalTransform] for the current body's transform.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var from: Transform3D
@@ -53,6 +60,13 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
 
   /**
    * Motion vector to define the length and direction of the motion to test.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motion: Vector3
@@ -145,14 +159,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   /**
-   * Transform in global space where the motion should start. Usually set to
-   * [Node3D.globalTransform] for the current body's transform.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [from] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -161,22 +168,18 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * //Your changes
    * physicstestmotionparameters3d.from = myCoreType
    * ``````
+   *
+   * Transform in global space where the motion should start. Usually set to
+   * [Node3D.globalTransform] for the current body's transform.
    */
   @CoreTypeHelper
-  public final fun fromMutate(block: Transform3D.() -> Unit): Transform3D = from.apply{
-      block(this)
-      from = this
+  public final fun fromMutate(block: Transform3D.() -> Unit): Transform3D = from.apply {
+     block(this)
+     from = this
   }
 
-
   /**
-   * Motion vector to define the length and direction of the motion to test.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motion] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -185,13 +188,14 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * //Your changes
    * physicstestmotionparameters3d.motion = myCoreType
    * ``````
+   *
+   * Motion vector to define the length and direction of the motion to test.
    */
   @CoreTypeHelper
-  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply{
-      block(this)
-      motion = this
+  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply {
+     block(this)
+     motion = this
   }
-
 
   public final fun getFrom(): Transform3D {
     TransferContext.writeArguments()

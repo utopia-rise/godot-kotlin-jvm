@@ -46,6 +46,13 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
    * as small as possible while covering the parts of the scene you need.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -124,14 +131,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   /**
-   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
-   * as small as possible while covering the parts of the scene you need.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -140,13 +140,15 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * //Your changes
    * gpuparticlescollisionheightfield3d.size = myCoreType
    * ``````
+   *
+   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
+   * as small as possible while covering the parts of the scene you need.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)

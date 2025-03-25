@@ -19,6 +19,7 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -62,7 +63,15 @@ public open class CollisionPolygon3D : Node3D() {
 
   /**
    * Array of vertices which define the 2D polygon in the local XY plane.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -89,6 +98,13 @@ public open class CollisionPolygon3D : Node3D() {
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugColor: Color
@@ -116,18 +132,44 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   /**
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionpolygon3d.polygon
+   * //Your changes
+   * collisionpolygon3d.polygon = myCoreType
+   * ``````
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Array of vertices which define the 2D polygon in the local XY plane.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * Array of vertices which define the 2D polygon in the local XY plane.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [debugColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -136,13 +178,19 @@ public open class CollisionPolygon3D : Node3D() {
    * //Your changes
    * collisionpolygon3d.debugColor = myCoreType
    * ``````
+   *
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
+   *
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
+   * color.
    */
   @CoreTypeHelper
-  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
-      block(this)
-      debugColor = this
+  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply {
+     block(this)
+     debugColor = this
   }
-
 
   public final fun setDepth(depth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())

@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -16,6 +18,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_64_ARRAY
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -116,7 +119,15 @@ public open class GLTFAccessor : Resource() {
 
   /**
    * Minimum value of each component in this accessor.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var min: PackedFloat64Array
     @JvmName("minProperty")
     get() = getMin()
@@ -127,7 +138,15 @@ public open class GLTFAccessor : Resource() {
 
   /**
    * Maximum value of each component in this accessor.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var max: PackedFloat64Array
     @JvmName("maxProperty")
     get() = getMax()
@@ -208,6 +227,78 @@ public open class GLTFAccessor : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(224, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [min] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfaccessor.min
+   * //Your changes
+   * gltfaccessor.min = myCoreType
+   * ``````
+   *
+   * Minimum value of each component in this accessor.
+   */
+  @CoreTypeHelper
+  public final fun minMutate(block: PackedFloat64Array.() -> Unit): PackedFloat64Array = min.apply {
+     block(this)
+     min = this
+  }
+
+  /**
+   * This is a helper function for [min] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Minimum value of each component in this accessor.
+   */
+  @CoreTypeHelper
+  public final fun minMutateEach(block: (index: Int, `value`: Double) -> Unit): PackedFloat64Array =
+      min.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     min = this
+  }
+
+  /**
+   * This is a helper function for [max] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfaccessor.max
+   * //Your changes
+   * gltfaccessor.max = myCoreType
+   * ``````
+   *
+   * Maximum value of each component in this accessor.
+   */
+  @CoreTypeHelper
+  public final fun maxMutate(block: PackedFloat64Array.() -> Unit): PackedFloat64Array = max.apply {
+     block(this)
+     max = this
+  }
+
+  /**
+   * This is a helper function for [max] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Maximum value of each component in this accessor.
+   */
+  @CoreTypeHelper
+  public final fun maxMutateEach(block: (index: Int, `value`: Double) -> Unit): PackedFloat64Array =
+      max.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     max = this
   }
 
   public final fun getBufferView(): Int {

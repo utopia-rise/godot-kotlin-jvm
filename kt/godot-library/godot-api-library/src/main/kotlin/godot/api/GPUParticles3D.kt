@@ -309,6 +309,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
    *
    * **Note:** [visibilityAabb] is overridden by [GeometryInstance3D.customAabb] if that property is
    * set to a non-default value.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var visibilityAabb: AABB
@@ -464,6 +471,16 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   /**
+   * This is a helper function for [visibilityAabb] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gpuparticles3d.visibilityAabb
+   * //Your changes
+   * gpuparticles3d.visibilityAabb = myCoreType
+   * ``````
+   *
    * The [AABB] that determines the node's region which needs to be visible on screen for the
    * particle system to be active. [GeometryInstance3D.extraCullMargin] is added on each of the AABB's
    * axes. Particle collisions and attraction will only occur within this area.
@@ -473,27 +490,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
    *
    * **Note:** [visibilityAabb] is overridden by [GeometryInstance3D.customAabb] if that property is
    * set to a non-default value.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = gpuparticles3d.visibilityAabb
-   * //Your changes
-   * gpuparticles3d.visibilityAabb = myCoreType
-   * ``````
    */
   @CoreTypeHelper
-  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
-      block(this)
-      visibilityAabb = this
+  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply {
+     block(this)
+     visibilityAabb = this
   }
-
 
   public final fun setEmitting(emitting: Boolean): Unit {
     TransferContext.writeArguments(BOOL to emitting)

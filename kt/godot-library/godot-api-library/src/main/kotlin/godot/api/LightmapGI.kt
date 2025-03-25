@@ -321,6 +321,13 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The color to use for environment lighting. Only effective if [environmentMode] is
    * [ENVIRONMENT_MODE_CUSTOM_COLOR].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var environmentCustomColor: Color
@@ -393,14 +400,8 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   /**
-   * The color to use for environment lighting. Only effective if [environmentMode] is
-   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [environmentCustomColor] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -409,14 +410,16 @@ public open class LightmapGI : VisualInstance3D() {
    * //Your changes
    * lightmapgi.environmentCustomColor = myCoreType
    * ``````
+   *
+   * The color to use for environment lighting. Only effective if [environmentMode] is
+   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
   @CoreTypeHelper
   public final fun environmentCustomColorMutate(block: Color.() -> Unit): Color =
-      environmentCustomColor.apply{
-      block(this)
-      environmentCustomColor = this
+      environmentCustomColor.apply {
+     block(this)
+     environmentCustomColor = this
   }
-
 
   public final fun setLightData(`data`: LightmapGIData?): Unit {
     TransferContext.writeArguments(OBJECT to data)

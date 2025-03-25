@@ -46,6 +46,13 @@ import kotlin.jvm.JvmName
 public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the top. Blends with [skyHorizonColor].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyTopColor: Color
@@ -58,6 +65,13 @@ public open class ProceduralSkyMaterial : Material() {
 
   /**
    * Color of the sky at the horizon. Blends with [skyTopColor].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyHorizonColor: Color
@@ -109,6 +123,13 @@ public open class ProceduralSkyMaterial : Material() {
    * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
    * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
    * Only effective if a texture is defined in [skyCover].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyCoverModulate: Color
@@ -121,6 +142,13 @@ public open class ProceduralSkyMaterial : Material() {
 
   /**
    * Color of the ground at the bottom. Blends with [groundHorizonColor].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var groundBottomColor: Color
@@ -133,6 +161,13 @@ public open class ProceduralSkyMaterial : Material() {
 
   /**
    * Color of the ground at the horizon. Blends with [groundBottomColor].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var groundHorizonColor: Color
@@ -215,13 +250,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   /**
-   * Color of the sky at the top. Blends with [skyHorizonColor].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [skyTopColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -230,22 +259,17 @@ public open class ProceduralSkyMaterial : Material() {
    * //Your changes
    * proceduralskymaterial.skyTopColor = myCoreType
    * ``````
+   *
+   * Color of the sky at the top. Blends with [skyHorizonColor].
    */
   @CoreTypeHelper
-  public final fun skyTopColorMutate(block: Color.() -> Unit): Color = skyTopColor.apply{
-      block(this)
-      skyTopColor = this
+  public final fun skyTopColorMutate(block: Color.() -> Unit): Color = skyTopColor.apply {
+     block(this)
+     skyTopColor = this
   }
 
-
   /**
-   * Color of the sky at the horizon. Blends with [skyTopColor].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [skyHorizonColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -254,24 +278,17 @@ public open class ProceduralSkyMaterial : Material() {
    * //Your changes
    * proceduralskymaterial.skyHorizonColor = myCoreType
    * ``````
+   *
+   * Color of the sky at the horizon. Blends with [skyTopColor].
    */
   @CoreTypeHelper
-  public final fun skyHorizonColorMutate(block: Color.() -> Unit): Color = skyHorizonColor.apply{
-      block(this)
-      skyHorizonColor = this
+  public final fun skyHorizonColorMutate(block: Color.() -> Unit): Color = skyHorizonColor.apply {
+     block(this)
+     skyHorizonColor = this
   }
 
-
   /**
-   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
-   * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
-   * Only effective if a texture is defined in [skyCover].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [skyCoverModulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -280,22 +297,19 @@ public open class ProceduralSkyMaterial : Material() {
    * //Your changes
    * proceduralskymaterial.skyCoverModulate = myCoreType
    * ``````
+   *
+   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
+   * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
+   * Only effective if a texture is defined in [skyCover].
    */
   @CoreTypeHelper
-  public final fun skyCoverModulateMutate(block: Color.() -> Unit): Color = skyCoverModulate.apply{
-      block(this)
-      skyCoverModulate = this
+  public final fun skyCoverModulateMutate(block: Color.() -> Unit): Color = skyCoverModulate.apply {
+     block(this)
+     skyCoverModulate = this
   }
 
-
   /**
-   * Color of the ground at the bottom. Blends with [groundHorizonColor].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [groundBottomColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -304,23 +318,18 @@ public open class ProceduralSkyMaterial : Material() {
    * //Your changes
    * proceduralskymaterial.groundBottomColor = myCoreType
    * ``````
+   *
+   * Color of the ground at the bottom. Blends with [groundHorizonColor].
    */
   @CoreTypeHelper
   public final fun groundBottomColorMutate(block: Color.() -> Unit): Color =
-      groundBottomColor.apply{
-      block(this)
-      groundBottomColor = this
+      groundBottomColor.apply {
+     block(this)
+     groundBottomColor = this
   }
 
-
   /**
-   * Color of the ground at the horizon. Blends with [groundBottomColor].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [groundHorizonColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -329,14 +338,15 @@ public open class ProceduralSkyMaterial : Material() {
    * //Your changes
    * proceduralskymaterial.groundHorizonColor = myCoreType
    * ``````
+   *
+   * Color of the ground at the horizon. Blends with [groundBottomColor].
    */
   @CoreTypeHelper
   public final fun groundHorizonColorMutate(block: Color.() -> Unit): Color =
-      groundHorizonColor.apply{
-      block(this)
-      groundHorizonColor = this
+      groundHorizonColor.apply {
+     block(this)
+     groundHorizonColor = this
   }
-
 
   public final fun setSkyTopColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)

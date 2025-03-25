@@ -36,6 +36,13 @@ import kotlin.jvm.JvmOverloads
 public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for numbers.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var numberColor: Color
@@ -48,6 +55,13 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Sets the color for symbols.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var symbolColor: Color
@@ -60,6 +74,13 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Sets color for functions. A function is a non-keyword string followed by a '('.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var functionColor: Color
@@ -73,6 +94,13 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets color for member variables. A member variable is non-keyword, non-function string
    * proceeded with a '.'.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var memberVariableColor: Color
@@ -124,13 +152,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   }
 
   /**
-   * Sets the color for numbers.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [numberColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -139,22 +161,17 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * //Your changes
    * codehighlighter.numberColor = myCoreType
    * ``````
+   *
+   * Sets the color for numbers.
    */
   @CoreTypeHelper
-  public final fun numberColorMutate(block: Color.() -> Unit): Color = numberColor.apply{
-      block(this)
-      numberColor = this
+  public final fun numberColorMutate(block: Color.() -> Unit): Color = numberColor.apply {
+     block(this)
+     numberColor = this
   }
 
-
   /**
-   * Sets the color for symbols.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [symbolColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -163,22 +180,17 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * //Your changes
    * codehighlighter.symbolColor = myCoreType
    * ``````
+   *
+   * Sets the color for symbols.
    */
   @CoreTypeHelper
-  public final fun symbolColorMutate(block: Color.() -> Unit): Color = symbolColor.apply{
-      block(this)
-      symbolColor = this
+  public final fun symbolColorMutate(block: Color.() -> Unit): Color = symbolColor.apply {
+     block(this)
+     symbolColor = this
   }
 
-
   /**
-   * Sets color for functions. A function is a non-keyword string followed by a '('.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [functionColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -187,23 +199,17 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * //Your changes
    * codehighlighter.functionColor = myCoreType
    * ``````
+   *
+   * Sets color for functions. A function is a non-keyword string followed by a '('.
    */
   @CoreTypeHelper
-  public final fun functionColorMutate(block: Color.() -> Unit): Color = functionColor.apply{
-      block(this)
-      functionColor = this
+  public final fun functionColorMutate(block: Color.() -> Unit): Color = functionColor.apply {
+     block(this)
+     functionColor = this
   }
 
-
   /**
-   * Sets color for member variables. A member variable is non-keyword, non-function string
-   * proceeded with a '.'.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [memberVariableColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -212,14 +218,16 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * //Your changes
    * codehighlighter.memberVariableColor = myCoreType
    * ``````
+   *
+   * Sets color for member variables. A member variable is non-keyword, non-function string
+   * proceeded with a '.'.
    */
   @CoreTypeHelper
   public final fun memberVariableColorMutate(block: Color.() -> Unit): Color =
-      memberVariableColor.apply{
-      block(this)
-      memberVariableColor = this
+      memberVariableColor.apply {
+     block(this)
+     memberVariableColor = this
   }
-
 
   /**
    * Sets the color for a keyword.

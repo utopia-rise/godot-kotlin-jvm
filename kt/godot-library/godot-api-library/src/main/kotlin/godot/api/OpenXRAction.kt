@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -66,7 +68,15 @@ public open class OpenXRAction : Resource() {
 
   /**
    * A collections of toplevel paths to which this action can be bound.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var toplevelPaths: PackedStringArray
     @JvmName("toplevelPathsProperty")
     get() = getToplevelPaths()
@@ -77,6 +87,43 @@ public open class OpenXRAction : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(411, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [toplevelPaths] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = openxraction.toplevelPaths
+   * //Your changes
+   * openxraction.toplevelPaths = myCoreType
+   * ``````
+   *
+   * A collections of toplevel paths to which this action can be bound.
+   */
+  @CoreTypeHelper
+  public final fun toplevelPathsMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      toplevelPaths.apply {
+     block(this)
+     toplevelPaths = this
+  }
+
+  /**
+   * This is a helper function for [toplevelPaths] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * A collections of toplevel paths to which this action can be bound.
+   */
+  @CoreTypeHelper
+  public final fun toplevelPathsMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = toplevelPaths.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     toplevelPaths = this
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

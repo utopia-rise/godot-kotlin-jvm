@@ -53,6 +53,13 @@ public open class FogVolume : VisualInstance3D() {
    * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
    * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
    * you can scale the [FogVolume] node instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -94,6 +101,16 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   /**
+   * This is a helper function for [size] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fogvolume.size
+   * //Your changes
+   * fogvolume.size = myCoreType
+   * ``````
+   *
    * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
    * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or
    * [RenderingServer.FOG_VOLUME_SHAPE_BOX].
@@ -108,27 +125,12 @@ public open class FogVolume : VisualInstance3D() {
    * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
    * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
    * you can scale the [FogVolume] node instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = fogvolume.size
-   * //Your changes
-   * fogvolume.size = myCoreType
-   * ``````
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)

@@ -97,6 +97,13 @@ public open class GradientTexture2D : Texture2D() {
 
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fillFrom: Vector2
@@ -109,6 +116,13 @@ public open class GradientTexture2D : Texture2D() {
 
   /**
    * The final offset used to fill the texture specified in UV coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fillTo: Vector2
@@ -137,13 +151,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   /**
-   * The initial offset used to fill the texture specified in UV coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fillFrom] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -152,22 +160,17 @@ public open class GradientTexture2D : Texture2D() {
    * //Your changes
    * gradienttexture2d.fillFrom = myCoreType
    * ``````
+   *
+   * The initial offset used to fill the texture specified in UV coordinates.
    */
   @CoreTypeHelper
-  public final fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
-      block(this)
-      fillFrom = this
+  public final fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply {
+     block(this)
+     fillFrom = this
   }
 
-
   /**
-   * The final offset used to fill the texture specified in UV coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fillTo] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -176,13 +179,14 @@ public open class GradientTexture2D : Texture2D() {
    * //Your changes
    * gradienttexture2d.fillTo = myCoreType
    * ``````
+   *
+   * The final offset used to fill the texture specified in UV coordinates.
    */
   @CoreTypeHelper
-  public final fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
-      block(this)
-      fillTo = this
+  public final fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply {
+     block(this)
+     fillTo = this
   }
-
 
   public final fun setGradient(gradient: Gradient?): Unit {
     TransferContext.writeArguments(OBJECT to gradient)

@@ -240,6 +240,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
    * will *not* modulate the detail texture. This can be used to color partial areas of a material by
    * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var albedoColor: Color
@@ -417,6 +424,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The emitted light's color. See [emissionEnabled].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emission: Color
@@ -958,6 +972,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The color to multiply the subsurface scattering transmittance effect with. Ignored if
    * [subsurfScatterSkinMode] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var subsurfScatterTransmittanceColor: Color
@@ -1015,6 +1036,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The color used by the backlight effect. Represents the light passing through an object.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var backlight: Color
@@ -1171,6 +1199,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The
    * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv1Scale: Vector3
@@ -1185,6 +1220,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex
    * function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is
    * enabled, but it is not used anywhere else.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv1Offset: Vector3
@@ -1243,6 +1285,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
    * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv2Scale: Vector3
@@ -1257,6 +1306,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex
    * function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is
    * enabled, but it is not used anywhere else.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv2Offset: Vector3
@@ -1599,17 +1655,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * The material's base color.
-   *
-   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
-   * will *not* modulate the detail texture. This can be used to color partial areas of a material by
-   * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [albedoColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1618,22 +1664,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.albedoColor = myCoreType
    * ``````
+   *
+   * The material's base color.
+   *
+   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
+   * will *not* modulate the detail texture. This can be used to color partial areas of a material by
+   * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    */
   @CoreTypeHelper
-  public final fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply{
-      block(this)
-      albedoColor = this
+  public final fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply {
+     block(this)
+     albedoColor = this
   }
 
-
   /**
-   * The emitted light's color. See [emissionEnabled].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emission] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1642,23 +1687,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.emission = myCoreType
    * ``````
+   *
+   * The emitted light's color. See [emissionEnabled].
    */
   @CoreTypeHelper
-  public final fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
-      block(this)
-      emission = this
+  public final fun emissionMutate(block: Color.() -> Unit): Color = emission.apply {
+     block(this)
+     emission = this
   }
 
-
   /**
-   * The color to multiply the subsurface scattering transmittance effect with. Ignored if
-   * [subsurfScatterSkinMode] is `true`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [subsurfScatterTransmittanceColor] to make dealing with local
+   * copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1667,23 +1707,19 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.subsurfScatterTransmittanceColor = myCoreType
    * ``````
+   *
+   * The color to multiply the subsurface scattering transmittance effect with. Ignored if
+   * [subsurfScatterSkinMode] is `true`.
    */
   @CoreTypeHelper
   public final fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color =
-      subsurfScatterTransmittanceColor.apply{
-      block(this)
-      subsurfScatterTransmittanceColor = this
+      subsurfScatterTransmittanceColor.apply {
+     block(this)
+     subsurfScatterTransmittanceColor = this
   }
 
-
   /**
-   * The color used by the backlight effect. Represents the light passing through an object.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [backlight] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1692,23 +1728,17 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.backlight = myCoreType
    * ``````
+   *
+   * The color used by the backlight effect. Represents the light passing through an object.
    */
   @CoreTypeHelper
-  public final fun backlightMutate(block: Color.() -> Unit): Color = backlight.apply{
-      block(this)
-      backlight = this
+  public final fun backlightMutate(block: Color.() -> Unit): Color = backlight.apply {
+     block(this)
+     backlight = this
   }
 
-
   /**
-   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The
-   * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [uv1Scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1717,24 +1747,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.uv1Scale = myCoreType
    * ``````
+   *
+   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The
+   * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
-  public final fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
-      block(this)
-      uv1Scale = this
+  public final fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply {
+     block(this)
+     uv1Scale = this
   }
 
-
   /**
-   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex
-   * function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is
-   * enabled, but it is not used anywhere else.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [uv1Offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1743,23 +1767,19 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.uv1Offset = myCoreType
    * ``````
+   *
+   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex
+   * function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is
+   * enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
-  public final fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
-      block(this)
-      uv1Offset = this
+  public final fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply {
+     block(this)
+     uv1Offset = this
   }
 
-
   /**
-   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
-   * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [uv2Scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1768,24 +1788,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.uv2Scale = myCoreType
    * ``````
+   *
+   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
+   * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
-  public final fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
-      block(this)
-      uv2Scale = this
+  public final fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply {
+     block(this)
+     uv2Scale = this
   }
 
-
   /**
-   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex
-   * function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is
-   * enabled, but it is not used anywhere else.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [uv2Offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1794,13 +1808,16 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * //Your changes
    * basematerial3d.uv2Offset = myCoreType
    * ``````
+   *
+   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex
+   * function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is
+   * enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
-  public final fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
-      block(this)
-      uv2Offset = this
+  public final fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply {
+     block(this)
+     uv2Offset = this
   }
-
 
   public final fun setAlbedo(albedo: Color): Unit {
     TransferContext.writeArguments(COLOR to albedo)

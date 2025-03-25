@@ -211,6 +211,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
    *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var visibilityAabb: AABB
@@ -281,6 +288,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionBoxExtents: Vector3
@@ -294,7 +308,15 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var emissionPoints: PackedVector3Array
     @JvmName("emissionPointsProperty")
     get() = getEmissionPoints()
@@ -306,7 +328,15 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the direction the particles will be emitted in when using
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var emissionNormals: PackedVector3Array
     @JvmName("emissionNormalsProperty")
     get() = getEmissionNormals()
@@ -334,6 +364,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionRingAxis: Vector3
@@ -428,6 +465,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Unit vector specifying the particles' emission direction.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var direction: Vector3
@@ -463,6 +507,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Gravity applied to every particle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravity: Vector3
@@ -813,6 +864,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [color] will have no visible effect.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -960,17 +1018,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * The [AABB] that determines the node's region which needs to be visible on screen for the
-   * particle system to be active.
-   *
-   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
-   * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [visibilityAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -979,22 +1027,21 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.visibilityAabb = myCoreType
    * ``````
+   *
+   * The [AABB] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   *
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
   @CoreTypeHelper
-  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
-      block(this)
-      visibilityAabb = this
+  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply {
+     block(this)
+     visibilityAabb = this
   }
 
-
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionBoxExtents] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1003,23 +1050,96 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.emissionBoxExtents = myCoreType
    * ``````
+   *
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    */
   @CoreTypeHelper
   public final fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionBoxExtents.apply{
-      block(this)
-      emissionBoxExtents = this
+      emissionBoxExtents.apply {
+     block(this)
+     emissionBoxExtents = this
   }
 
+  /**
+   * This is a helper function for [emissionPoints] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.emissionPoints
+   * //Your changes
+   * cpuparticles3d.emissionPoints = myCoreType
+   * ``````
+   *
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionPointsMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      emissionPoints.apply {
+     block(this)
+     emissionPoints = this
+  }
 
   /**
-   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   * This is a helper function for [emissionPoints] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionPointsMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = emissionPoints.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     emissionPoints = this
+  }
+
+  /**
+   * This is a helper function for [emissionNormals] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.emissionNormals
+   * //Your changes
+   * cpuparticles3d.emissionNormals = myCoreType
+   * ``````
    *
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionNormalsMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      emissionNormals.apply {
+     block(this)
+     emissionNormals = this
+  }
+
+  /**
+   * This is a helper function for [emissionNormals] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionNormalsMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = emissionNormals.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     emissionNormals = this
+  }
+
+  /**
+   * This is a helper function for [emissionRingAxis] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1028,23 +1148,18 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.emissionRingAxis = myCoreType
    * ``````
+   *
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
   @CoreTypeHelper
   public final fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionRingAxis.apply{
-      block(this)
-      emissionRingAxis = this
+      emissionRingAxis.apply {
+     block(this)
+     emissionRingAxis = this
   }
 
-
   /**
-   * Unit vector specifying the particles' emission direction.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [direction] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1053,22 +1168,17 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.direction = myCoreType
    * ``````
+   *
+   * Unit vector specifying the particles' emission direction.
    */
   @CoreTypeHelper
-  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
-      block(this)
-      direction = this
+  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply {
+     block(this)
+     direction = this
   }
 
-
   /**
-   * Gravity applied to every particle.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1077,27 +1187,17 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.gravity = myCoreType
    * ``````
+   *
+   * Gravity applied to every particle.
    */
   @CoreTypeHelper
-  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
-      block(this)
-      gravity = this
+  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply {
+     block(this)
+     gravity = this
   }
 
-
   /**
-   * Each particle's initial color.
-   *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
-   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [color] will have no visible effect.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1106,13 +1206,19 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.color = myCoreType
    * ``````
+   *
+   * Each particle's initial color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun setEmitting(emitting: Boolean): Unit {
     TransferContext.writeArguments(BOOL to emitting)

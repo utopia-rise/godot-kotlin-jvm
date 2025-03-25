@@ -52,6 +52,13 @@ public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The body's constant linear velocity. This does not move the body, but affects touching bodies,
    * as if it were moving.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantLinearVelocity: Vector3
@@ -65,6 +72,13 @@ public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The body's constant angular velocity. This does not rotate the body, but affects touching
    * bodies, as if it were rotating.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantAngularVelocity: Vector3
@@ -80,14 +94,8 @@ public open class StaticBody3D : PhysicsBody3D() {
   }
 
   /**
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
-   * as if it were moving.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [constantLinearVelocity] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -96,24 +104,20 @@ public open class StaticBody3D : PhysicsBody3D() {
    * //Your changes
    * staticbody3d.constantLinearVelocity = myCoreType
    * ``````
+   *
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
+   * as if it were moving.
    */
   @CoreTypeHelper
   public final fun constantLinearVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      constantLinearVelocity.apply{
-      block(this)
-      constantLinearVelocity = this
+      constantLinearVelocity.apply {
+     block(this)
+     constantLinearVelocity = this
   }
 
-
   /**
-   * The body's constant angular velocity. This does not rotate the body, but affects touching
-   * bodies, as if it were rotating.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [constantAngularVelocity] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -122,14 +126,16 @@ public open class StaticBody3D : PhysicsBody3D() {
    * //Your changes
    * staticbody3d.constantAngularVelocity = myCoreType
    * ``````
+   *
+   * The body's constant angular velocity. This does not rotate the body, but affects touching
+   * bodies, as if it were rotating.
    */
   @CoreTypeHelper
   public final fun constantAngularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      constantAngularVelocity.apply{
-      block(this)
-      constantAngularVelocity = this
+      constantAngularVelocity.apply {
+     block(this)
+     constantAngularVelocity = this
   }
-
 
   public final fun setConstantLinearVelocity(vel: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vel)

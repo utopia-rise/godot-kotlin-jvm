@@ -121,6 +121,13 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
 
   /**
    * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravity: Vector2
@@ -136,13 +143,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   /**
-   * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -151,13 +152,14 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * //Your changes
    * skeletonmodification2djiggle.gravity = myCoreType
    * ``````
+   *
+   * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
    */
   @CoreTypeHelper
-  public final fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply{
-      block(this)
-      gravity = this
+  public final fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply {
+     block(this)
+     gravity = this
   }
-
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to targetNodepath)

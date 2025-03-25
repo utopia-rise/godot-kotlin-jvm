@@ -53,6 +53,13 @@ public open class Camera2D : Node2D() {
    * The camera's relative offset. Useful for looking around or camera shake animations. The
    * offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and
    * [limitRight].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -114,6 +121,13 @@ public open class Camera2D : Node2D() {
    * project font only), or enabling **Multichannel Signed Distance Field** in the import options of a
    * DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be
    * enabled in the inspector.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var zoom: Vector2
@@ -403,15 +417,7 @@ public open class Camera2D : Node2D() {
   }
 
   /**
-   * The camera's relative offset. Useful for looking around or camera shake animations. The
-   * offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and
-   * [limitRight].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -420,15 +426,28 @@ public open class Camera2D : Node2D() {
    * //Your changes
    * camera2d.offset = myCoreType
    * ``````
+   *
+   * The camera's relative offset. Useful for looking around or camera shake animations. The
+   * offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and
+   * [limitRight].
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
+   * This is a helper function for [zoom] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = camera2d.zoom
+   * //Your changes
+   * camera2d.zoom = myCoreType
+   * ``````
+   *
    * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
    * `Vector(0.5, 0.5)` halves the size seen in the viewport.
    *
@@ -440,27 +459,12 @@ public open class Camera2D : Node2D() {
    * project font only), or enabling **Multichannel Signed Distance Field** in the import options of a
    * DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be
    * enabled in the inspector.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = camera2d.zoom
-   * //Your changes
-   * camera2d.zoom = myCoreType
-   * ``````
    */
   @CoreTypeHelper
-  public final fun zoomMutate(block: Vector2.() -> Unit): Vector2 = zoom.apply{
-      block(this)
-      zoom = this
+  public final fun zoomMutate(block: Vector2.() -> Unit): Vector2 = zoom.apply {
+     block(this)
+     zoom = this
   }
-
 
   public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)

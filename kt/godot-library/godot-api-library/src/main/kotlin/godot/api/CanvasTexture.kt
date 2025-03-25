@@ -83,6 +83,13 @@ public open class CanvasTexture : Texture2D() {
    * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account
    * when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this
    * [CanvasTexture].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var specularColor: Color
@@ -134,15 +141,7 @@ public open class CanvasTexture : Texture2D() {
   }
 
   /**
-   * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account
-   * when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this
-   * [CanvasTexture].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [specularColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -151,13 +150,16 @@ public open class CanvasTexture : Texture2D() {
    * //Your changes
    * canvastexture.specularColor = myCoreType
    * ``````
+   *
+   * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account
+   * when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this
+   * [CanvasTexture].
    */
   @CoreTypeHelper
-  public final fun specularColorMutate(block: Color.() -> Unit): Color = specularColor.apply{
-      block(this)
-      specularColor = this
+  public final fun specularColorMutate(block: Color.() -> Unit): Color = specularColor.apply {
+     block(this)
+     specularColor = this
   }
-
 
   public final fun setDiffuseTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)

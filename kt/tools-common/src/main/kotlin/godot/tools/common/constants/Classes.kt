@@ -1,6 +1,12 @@
 package godot.tools.common.constants
 
+import com.squareup.kotlinpoet.BYTE
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.DOUBLE
+import com.squareup.kotlinpoet.FLOAT
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.STRING
 
 object GodotKotlinJvmTypes {
     const val color = "Color"
@@ -183,6 +189,39 @@ object GodotTypes {
         vector4,
         vector4i,
         projection,
+        packedByteArray,
+        packedInt32Array,
+        packedInt64Array,
+        packedFloat32Array,
+        packedFloat64Array,
+        packedStringArray,
+        packedVector2Array,
+        packedVector3Array,
+        packedVector3Array,
+    )
+
+    val indexedLocalCopyCoreTypes = listOf(
+        packedByteArray,
+        packedInt32Array,
+        packedInt64Array,
+        packedFloat32Array,
+        packedFloat64Array,
+        packedStringArray,
+        packedVector2Array,
+        packedVector3Array,
+        packedVector4Array,
+    )
+
+    val localCopyCoreTypesMap = mapOf(
+        packedByteArray to BYTE,
+        packedInt32Array to INT,
+        packedInt64Array to LONG,
+        packedFloat32Array to FLOAT,
+        packedFloat64Array to DOUBLE,
+        packedStringArray to STRING,
+        packedVector2Array to ClassName(godotCorePackage, vector2),
+        packedVector3Array to ClassName(godotCorePackage, vector3),
+        packedVector4Array to ClassName(godotCorePackage, vector4),
     )
 
     val primitives = listOf(

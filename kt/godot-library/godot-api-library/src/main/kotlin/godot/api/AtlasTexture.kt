@@ -50,6 +50,13 @@ public open class AtlasTexture : Texture2D() {
   /**
    * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
    * from [atlas] size will be used for that axis instead.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var region: Rect2
@@ -64,6 +71,13 @@ public open class AtlasTexture : Texture2D() {
    * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
    * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
    * margin.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var margin: Rect2
@@ -91,14 +105,7 @@ public open class AtlasTexture : Texture2D() {
   }
 
   /**
-   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
-   * from [atlas] size will be used for that axis instead.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [region] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -107,24 +114,18 @@ public open class AtlasTexture : Texture2D() {
    * //Your changes
    * atlastexture.region = myCoreType
    * ``````
+   *
+   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
+   * from [atlas] size will be used for that axis instead.
    */
   @CoreTypeHelper
-  public final fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply{
-      block(this)
-      region = this
+  public final fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply {
+     block(this)
+     region = this
   }
 
-
   /**
-   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
-   * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
-   * margin.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [margin] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -133,13 +134,16 @@ public open class AtlasTexture : Texture2D() {
    * //Your changes
    * atlastexture.margin = myCoreType
    * ``````
+   *
+   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
+   * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
+   * margin.
    */
   @CoreTypeHelper
-  public final fun marginMutate(block: Rect2.() -> Unit): Rect2 = margin.apply{
-      block(this)
-      margin = this
+  public final fun marginMutate(block: Rect2.() -> Unit): Rect2 = margin.apply {
+     block(this)
+     margin = this
   }
-
 
   public final fun setAtlas(atlas: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to atlas)

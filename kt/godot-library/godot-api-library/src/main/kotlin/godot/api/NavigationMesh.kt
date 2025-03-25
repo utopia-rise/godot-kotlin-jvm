@@ -43,6 +43,17 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var vertices: PackedVector3Array
     @JvmName("verticesProperty")
     get() = getVertices()
@@ -334,6 +345,13 @@ public open class NavigationMesh : Resource() {
   /**
    * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
    * enclosing area.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var filterBakingAabb: AABB
@@ -346,6 +364,13 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The position offset applied to the [filterBakingAabb] [AABB].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var filterBakingAabbOffset: Vector3
@@ -361,14 +386,40 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
-   * enclosing area.
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmesh.vertices
+   * //Your changes
+   * navigationmesh.vertices = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun verticesMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      vertices.apply {
+     block(this)
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = vertices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [filterBakingAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -377,22 +428,19 @@ public open class NavigationMesh : Resource() {
    * //Your changes
    * navigationmesh.filterBakingAabb = myCoreType
    * ``````
+   *
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
+   * enclosing area.
    */
   @CoreTypeHelper
-  public final fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply{
-      block(this)
-      filterBakingAabb = this
+  public final fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply {
+     block(this)
+     filterBakingAabb = this
   }
 
-
   /**
-   * The position offset applied to the [filterBakingAabb] [AABB].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [filterBakingAabbOffset] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -401,14 +449,15 @@ public open class NavigationMesh : Resource() {
    * //Your changes
    * navigationmesh.filterBakingAabbOffset = myCoreType
    * ``````
+   *
+   * The position offset applied to the [filterBakingAabb] [AABB].
    */
   @CoreTypeHelper
   public final fun filterBakingAabbOffsetMutate(block: Vector3.() -> Unit): Vector3 =
-      filterBakingAabbOffset.apply{
-      block(this)
-      filterBakingAabbOffset = this
+      filterBakingAabbOffset.apply {
+     block(this)
+     filterBakingAabbOffset = this
   }
-
 
   public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
     TransferContext.writeArguments(LONG to samplePartitionType.id)

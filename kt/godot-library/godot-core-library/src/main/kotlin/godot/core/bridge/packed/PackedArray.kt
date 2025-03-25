@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.common.interop.VariantConverter
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
@@ -204,6 +205,22 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
     }
 
     //UTILITIES
+    @CoreTypeHelper
+    inline fun <R> mutate(idx: Int, block: (T) -> R): R {
+        val localCopy = this[idx]
+        val ret = block(localCopy)
+        this[idx] = localCopy
+        return ret
+    }
+
+    @CoreTypeHelper
+    inline fun mutateEach(block: (index: Int, value: T) -> Unit) {
+        forEachIndexed { index, value ->
+            block(index, value)
+            this[index] = value
+        }
+    }
+
     operator fun plus(other: T) {
         this.append(other)
     }

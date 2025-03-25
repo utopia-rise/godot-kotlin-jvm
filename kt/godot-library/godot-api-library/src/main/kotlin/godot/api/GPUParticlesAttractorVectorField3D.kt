@@ -39,6 +39,13 @@ import kotlin.jvm.JvmName
 public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D() {
   /**
    * The size of the vector field box in 3D units.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -69,13 +76,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
   }
 
   /**
-   * The size of the vector field box in 3D units.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -84,13 +85,14 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
    * //Your changes
    * gpuparticlesattractorvectorfield3d.size = myCoreType
    * ``````
+   *
+   * The size of the vector field box in 3D units.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)

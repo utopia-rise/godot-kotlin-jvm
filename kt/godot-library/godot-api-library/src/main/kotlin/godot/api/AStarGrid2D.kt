@@ -79,6 +79,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The region of grid cells available for pathfinding. If changed, [update] needs to be called
    * before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var region: Rect2i
@@ -92,6 +99,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
    * needs to be called before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -105,6 +119,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The offset of the grid which will be applied to calculate the resulting point position returned
    * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -118,6 +139,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the point cell which will be applied to calculate the resulting point position
    * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var cellSize: Vector2
@@ -196,14 +224,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * The region of grid cells available for pathfinding. If changed, [update] needs to be called
-   * before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [region] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -212,23 +233,18 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.region = myCoreType
    * ``````
+   *
+   * The region of grid cells available for pathfinding. If changed, [update] needs to be called
+   * before finding the next path.
    */
   @CoreTypeHelper
-  public final fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply{
-      block(this)
-      region = this
+  public final fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply {
+     block(this)
+     region = this
   }
 
-
   /**
-   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
-   * needs to be called before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -237,23 +253,18 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.size = myCoreType
    * ``````
+   *
+   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
+   * needs to be called before finding the next path.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * The offset of the grid which will be applied to calculate the resulting point position returned
-   * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -262,23 +273,18 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.offset = myCoreType
    * ``````
+   *
+   * The offset of the grid which will be applied to calculate the resulting point position returned
+   * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * The size of the point cell which will be applied to calculate the resulting point position
-   * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [cellSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -287,13 +293,15 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.cellSize = myCoreType
    * ``````
+   *
+   * The size of the point cell which will be applied to calculate the resulting point position
+   * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeHelper
-  public final fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
-      block(this)
-      cellSize = this
+  public final fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply {
+     block(this)
+     cellSize = this
   }
-
 
   /**
    * Called when estimating the cost between a point and the path's ending point.

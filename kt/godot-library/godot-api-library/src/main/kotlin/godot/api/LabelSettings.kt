@@ -83,6 +83,13 @@ public open class LabelSettings : Resource() {
 
   /**
    * Color of the text.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fontColor: Color
@@ -106,6 +113,13 @@ public open class LabelSettings : Resource() {
 
   /**
    * The color of the outline.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var outlineColor: Color
@@ -129,6 +143,13 @@ public open class LabelSettings : Resource() {
 
   /**
    * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -141,6 +162,13 @@ public open class LabelSettings : Resource() {
 
   /**
    * Offset of the shadow effect, in pixels.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowOffset: Vector2
@@ -156,13 +184,7 @@ public open class LabelSettings : Resource() {
   }
 
   /**
-   * Color of the text.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fontColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -171,22 +193,17 @@ public open class LabelSettings : Resource() {
    * //Your changes
    * labelsettings.fontColor = myCoreType
    * ``````
+   *
+   * Color of the text.
    */
   @CoreTypeHelper
-  public final fun fontColorMutate(block: Color.() -> Unit): Color = fontColor.apply{
-      block(this)
-      fontColor = this
+  public final fun fontColorMutate(block: Color.() -> Unit): Color = fontColor.apply {
+     block(this)
+     fontColor = this
   }
 
-
   /**
-   * The color of the outline.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [outlineColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -195,22 +212,17 @@ public open class LabelSettings : Resource() {
    * //Your changes
    * labelsettings.outlineColor = myCoreType
    * ``````
+   *
+   * The color of the outline.
    */
   @CoreTypeHelper
-  public final fun outlineColorMutate(block: Color.() -> Unit): Color = outlineColor.apply{
-      block(this)
-      outlineColor = this
+  public final fun outlineColorMutate(block: Color.() -> Unit): Color = outlineColor.apply {
+     block(this)
+     outlineColor = this
   }
 
-
   /**
-   * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [shadowColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -219,22 +231,17 @@ public open class LabelSettings : Resource() {
    * //Your changes
    * labelsettings.shadowColor = myCoreType
    * ``````
+   *
+   * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
    */
   @CoreTypeHelper
-  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
-      block(this)
-      shadowColor = this
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply {
+     block(this)
+     shadowColor = this
   }
 
-
   /**
-   * Offset of the shadow effect, in pixels.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [shadowOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -243,13 +250,14 @@ public open class LabelSettings : Resource() {
    * //Your changes
    * labelsettings.shadowOffset = myCoreType
    * ``````
+   *
+   * Offset of the shadow effect, in pixels.
    */
   @CoreTypeHelper
-  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
-      block(this)
-      shadowOffset = this
+  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply {
+     block(this)
+     shadowOffset = this
   }
-
 
   public final fun setLineSpacing(spacing: Float): Unit {
     TransferContext.writeArguments(DOUBLE to spacing.toDouble())

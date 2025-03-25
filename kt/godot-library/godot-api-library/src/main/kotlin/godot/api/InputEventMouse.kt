@@ -46,6 +46,13 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    *
    * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
    * local coordinate system of the [Control].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -62,6 +69,13 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    *
    * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
    * [Control] is in using the coordinate system of the [CanvasLayer].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalPosition: Vector2
@@ -77,17 +91,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   }
 
   /**
-   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
-   * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
-   *
-   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
-   * local coordinate system of the [Control].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [position] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -96,26 +100,21 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * //Your changes
    * inputeventmouse.position = myCoreType
    * ``````
+   *
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
+   * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   *
+   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
+   * local coordinate system of the [Control].
    */
   @CoreTypeHelper
-  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
-      block(this)
-      position = this
+  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply {
+     block(this)
+     position = this
   }
 
-
   /**
-   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
-   * root [Viewport] using the coordinate system of the root [Viewport].
-   *
-   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
-   * [Control] is in using the coordinate system of the [CanvasLayer].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [globalPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -124,13 +123,18 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * //Your changes
    * inputeventmouse.globalPosition = myCoreType
    * ``````
+   *
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
+   * root [Viewport] using the coordinate system of the root [Viewport].
+   *
+   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
+   * [Control] is in using the coordinate system of the [CanvasLayer].
    */
   @CoreTypeHelper
-  public final fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
-      block(this)
-      globalPosition = this
+  public final fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply {
+     block(this)
+     globalPosition = this
   }
-
 
   public final fun setButtonMask(buttonMask: MouseButtonMask): Unit {
     TransferContext.writeArguments(LONG to buttonMask.flag)

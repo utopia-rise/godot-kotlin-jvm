@@ -264,6 +264,13 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionRectExtents: Vector2
@@ -277,7 +284,15 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var emissionPoints: PackedVector2Array
     @JvmName("emissionPointsProperty")
     get() = getEmissionPoints()
@@ -289,7 +304,15 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets the direction the particles will be emitted in when using
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var emissionNormals: PackedVector2Array
     @JvmName("emissionNormalsProperty")
     get() = getEmissionNormals()
@@ -323,6 +346,13 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Unit vector specifying the particles' emission direction.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var direction: Vector2
@@ -346,6 +376,13 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Gravity applied to every particle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravity: Vector2
@@ -688,6 +725,13 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -830,13 +874,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionRectExtents] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -845,23 +883,96 @@ public open class CPUParticles2D : Node2D() {
    * //Your changes
    * cpuparticles2d.emissionRectExtents = myCoreType
    * ``````
+   *
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    */
   @CoreTypeHelper
   public final fun emissionRectExtentsMutate(block: Vector2.() -> Unit): Vector2 =
-      emissionRectExtents.apply{
-      block(this)
-      emissionRectExtents = this
+      emissionRectExtents.apply {
+     block(this)
+     emissionRectExtents = this
   }
 
+  /**
+   * This is a helper function for [emissionPoints] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles2d.emissionPoints
+   * //Your changes
+   * cpuparticles2d.emissionPoints = myCoreType
+   * ``````
+   *
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionPointsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      emissionPoints.apply {
+     block(this)
+     emissionPoints = this
+  }
 
   /**
-   * Unit vector specifying the particles' emission direction.
+   * This is a helper function for [emissionPoints] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionPointsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = emissionPoints.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     emissionPoints = this
+  }
+
+  /**
+   * This is a helper function for [emissionNormals] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles2d.emissionNormals
+   * //Your changes
+   * cpuparticles2d.emissionNormals = myCoreType
+   * ``````
    *
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionNormalsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      emissionNormals.apply {
+     block(this)
+     emissionNormals = this
+  }
+
+  /**
+   * This is a helper function for [emissionNormals] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionNormalsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = emissionNormals.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     emissionNormals = this
+  }
+
+  /**
+   * This is a helper function for [direction] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -870,22 +981,17 @@ public open class CPUParticles2D : Node2D() {
    * //Your changes
    * cpuparticles2d.direction = myCoreType
    * ``````
+   *
+   * Unit vector specifying the particles' emission direction.
    */
   @CoreTypeHelper
-  public final fun directionMutate(block: Vector2.() -> Unit): Vector2 = direction.apply{
-      block(this)
-      direction = this
+  public final fun directionMutate(block: Vector2.() -> Unit): Vector2 = direction.apply {
+     block(this)
+     direction = this
   }
 
-
   /**
-   * Gravity applied to every particle.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -894,22 +1000,17 @@ public open class CPUParticles2D : Node2D() {
    * //Your changes
    * cpuparticles2d.gravity = myCoreType
    * ``````
+   *
+   * Gravity applied to every particle.
    */
   @CoreTypeHelper
-  public final fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply{
-      block(this)
-      gravity = this
+  public final fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply {
+     block(this)
+     gravity = this
   }
 
-
   /**
-   * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -918,13 +1019,14 @@ public open class CPUParticles2D : Node2D() {
    * //Your changes
    * cpuparticles2d.color = myCoreType
    * ``````
+   *
+   * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun setEmitting(emitting: Boolean): Unit {
     TransferContext.writeArguments(BOOL to emitting)

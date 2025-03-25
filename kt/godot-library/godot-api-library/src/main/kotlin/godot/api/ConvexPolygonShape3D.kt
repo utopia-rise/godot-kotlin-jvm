@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -13,6 +15,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
+import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -43,7 +46,15 @@ import kotlin.jvm.JvmName
 public open class ConvexPolygonShape3D : Shape3D() {
   /**
    * The list of 3D points forming the convex polygon shape.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var points: PackedVector3Array
     @JvmName("pointsProperty")
     get() = getPoints()
@@ -54,6 +65,43 @@ public open class ConvexPolygonShape3D : Shape3D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(180, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = convexpolygonshape3d.points
+   * //Your changes
+   * convexpolygonshape3d.points = myCoreType
+   * ``````
+   *
+   * The list of 3D points forming the convex polygon shape.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      points.apply {
+     block(this)
+     points = this
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The list of 3D points forming the convex polygon shape.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = points.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     points = this
   }
 
   public final fun setPoints(points: PackedVector3Array): Unit {

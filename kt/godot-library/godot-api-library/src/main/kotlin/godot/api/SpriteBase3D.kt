@@ -52,6 +52,13 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   /**
    * The texture's drawing offset.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -96,6 +103,13 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
    * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
    * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -295,13 +309,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * The texture's drawing offset.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -310,15 +318,26 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * //Your changes
    * spritebase3d.offset = myCoreType
    * ``````
+   *
+   * The texture's drawing offset.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
+   * This is a helper function for [modulate] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = spritebase3d.modulate
+   * //Your changes
+   * spritebase3d.modulate = myCoreType
+   * ``````
+   *
    * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
    * simulate the color of ambient light.
    *
@@ -330,27 +349,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
    * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
    * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = spritebase3d.modulate
-   * //Your changes
-   * spritebase3d.modulate = myCoreType
-   * ``````
    */
   @CoreTypeHelper
-  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
-      block(this)
-      modulate = this
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
+     block(this)
+     modulate = this
   }
-
 
   public final fun setCentered(centered: Boolean): Unit {
     TransferContext.writeArguments(BOOL to centered)

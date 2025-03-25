@@ -52,6 +52,13 @@ public open class FogMaterial : Material() {
    * The single-scattering [Color] of the [FogVolume]. Internally, [albedo] is converted into
    * single-scattering, which is additively blended with other [FogVolume]s and the
    * [Environment.volumetricFogAlbedo].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var albedo: Color
@@ -66,6 +73,13 @@ public open class FogMaterial : Material() {
    * The [Color] of the light emitted by the [FogVolume]. Emitted light will not cast light or
    * shadows on other objects, but can be useful for modulating the [Color] of the [FogVolume]
    * independently from light sources.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emission: Color
@@ -120,15 +134,7 @@ public open class FogMaterial : Material() {
   }
 
   /**
-   * The single-scattering [Color] of the [FogVolume]. Internally, [albedo] is converted into
-   * single-scattering, which is additively blended with other [FogVolume]s and the
-   * [Environment.volumetricFogAlbedo].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [albedo] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -137,24 +143,19 @@ public open class FogMaterial : Material() {
    * //Your changes
    * fogmaterial.albedo = myCoreType
    * ``````
+   *
+   * The single-scattering [Color] of the [FogVolume]. Internally, [albedo] is converted into
+   * single-scattering, which is additively blended with other [FogVolume]s and the
+   * [Environment.volumetricFogAlbedo].
    */
   @CoreTypeHelper
-  public final fun albedoMutate(block: Color.() -> Unit): Color = albedo.apply{
-      block(this)
-      albedo = this
+  public final fun albedoMutate(block: Color.() -> Unit): Color = albedo.apply {
+     block(this)
+     albedo = this
   }
 
-
   /**
-   * The [Color] of the light emitted by the [FogVolume]. Emitted light will not cast light or
-   * shadows on other objects, but can be useful for modulating the [Color] of the [FogVolume]
-   * independently from light sources.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emission] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -163,13 +164,16 @@ public open class FogMaterial : Material() {
    * //Your changes
    * fogmaterial.emission = myCoreType
    * ``````
+   *
+   * The [Color] of the light emitted by the [FogVolume]. Emitted light will not cast light or
+   * shadows on other objects, but can be useful for modulating the [Color] of the [FogVolume]
+   * independently from light sources.
    */
   @CoreTypeHelper
-  public final fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
-      block(this)
-      emission = this
+  public final fun emissionMutate(block: Color.() -> Unit): Color = emission.apply {
+     block(this)
+     emission = this
   }
-
 
   public final fun setDensity(density: Float): Unit {
     TransferContext.writeArguments(DOUBLE to density.toDouble())

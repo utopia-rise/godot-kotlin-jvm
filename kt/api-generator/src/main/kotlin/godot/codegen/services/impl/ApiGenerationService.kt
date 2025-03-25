@@ -6,7 +6,7 @@ import godot.codegen.generation.rule.BindingRule
 import godot.codegen.generation.rule.BitfieldExtensionRule
 import godot.codegen.generation.rule.ConstantRule
 import godot.codegen.generation.rule.CoreRule
-import godot.codegen.generation.rule.CoreTypeHelperRule
+import godot.codegen.generation.rule.LocalCopyHelperRule
 import godot.codegen.generation.rule.DocumentationRule
 import godot.codegen.generation.rule.EnrichedClassRule
 import godot.codegen.generation.rule.EnrichedCoreRule
@@ -63,7 +63,7 @@ class ApiGenerationService(
                     subRule(EnrichedClassTask::enrichedMethods, ::OverLoadRule)
                     subRule(EnrichedClassTask::enrichedStaticMethods, ::OverLoadRule)
                     rule(::BindingRule)
-                    rule(::CoreTypeHelperRule)
+                    rule(::LocalCopyHelperRule)
                 }
                 subRule(FileTask::enums, ::EnumRule)
                 rule(::StaticRule)

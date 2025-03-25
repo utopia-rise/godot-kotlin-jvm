@@ -48,7 +48,15 @@ public open class Line2D : Node2D() {
   /**
    * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
    * adjacent points in this array.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var points: PackedVector2Array
     @JvmName("pointsProperty")
     get() = getPoints()
@@ -101,6 +109,13 @@ public open class Line2D : Node2D() {
 
   /**
    * The color of the polyline. Will not be used if a gradient is set.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var defaultColor: Color
@@ -223,13 +238,46 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * The color of the polyline. Will not be used if a gradient is set.
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = line2d.points
+   * //Your changes
+   * line2d.points = myCoreType
+   * ``````
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
+   * adjacent points in this array.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      points.apply {
+     block(this)
+     points = this
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
+   * adjacent points in this array.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = points.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     points = this
+  }
+
+  /**
+   * This is a helper function for [defaultColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -238,13 +286,14 @@ public open class Line2D : Node2D() {
    * //Your changes
    * line2d.defaultColor = myCoreType
    * ``````
+   *
+   * The color of the polyline. Will not be used if a gradient is set.
    */
   @CoreTypeHelper
-  public final fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply{
-      block(this)
-      defaultColor = this
+  public final fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply {
+     block(this)
+     defaultColor = this
   }
-
 
   public final fun setPoints(points: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)

@@ -114,6 +114,13 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
    * [ReflectionProbe] node.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -128,6 +135,13 @@ public open class ReflectionProbe : VisualInstance3D() {
    * Sets the origin offset to be used when this [ReflectionProbe] is in [boxProjection] mode. This
    * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
    * the number of objects that "get in the way" of the reflection.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var originOffset: Vector3
@@ -241,6 +255,13 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
    * effective if [ambientMode] is [AMBIENT_COLOR].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var ambientColor: Color
@@ -268,18 +289,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   /**
-   * The size of the reflection probe. The larger the size, the more space covered by the probe,
-   * which will lower the perceived resolution. It is best to keep the size only as large as you need
-   * it.
-   *
-   * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
-   * [ReflectionProbe] node.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -288,24 +298,22 @@ public open class ReflectionProbe : VisualInstance3D() {
    * //Your changes
    * reflectionprobe.size = myCoreType
    * ``````
+   *
+   * The size of the reflection probe. The larger the size, the more space covered by the probe,
+   * which will lower the perceived resolution. It is best to keep the size only as large as you need
+   * it.
+   *
+   * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
+   * [ReflectionProbe] node.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * Sets the origin offset to be used when this [ReflectionProbe] is in [boxProjection] mode. This
-   * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
-   * the number of objects that "get in the way" of the reflection.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [originOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -314,23 +322,19 @@ public open class ReflectionProbe : VisualInstance3D() {
    * //Your changes
    * reflectionprobe.originOffset = myCoreType
    * ``````
+   *
+   * Sets the origin offset to be used when this [ReflectionProbe] is in [boxProjection] mode. This
+   * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
+   * the number of objects that "get in the way" of the reflection.
    */
   @CoreTypeHelper
-  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
-      block(this)
-      originOffset = this
+  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply {
+     block(this)
+     originOffset = this
   }
 
-
   /**
-   * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
-   * effective if [ambientMode] is [AMBIENT_COLOR].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [ambientColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -339,13 +343,15 @@ public open class ReflectionProbe : VisualInstance3D() {
    * //Your changes
    * reflectionprobe.ambientColor = myCoreType
    * ``````
+   *
+   * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
+   * effective if [ambientMode] is [AMBIENT_COLOR].
    */
   @CoreTypeHelper
-  public final fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply{
-      block(this)
-      ambientColor = this
+  public final fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply {
+     block(this)
+     ambientColor = this
   }
-
 
   public final fun setIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())

@@ -198,6 +198,13 @@ public open class Window : Viewport() {
    *
    * **Note:** This property only works if [initialPosition] is set to
    * [WINDOW_INITIAL_POSITION_ABSOLUTE].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2i
@@ -210,6 +217,13 @@ public open class Window : Viewport() {
 
   /**
    * The window's size in pixels.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -269,7 +283,15 @@ public open class Window : Viewport() {
    * on Linux (X11) and macOS it is.
    *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var mousePassthroughPolygon: PackedVector2Array
     @JvmName("mousePassthroughPolygonProperty")
     get() = getMousePassthroughPolygon()
@@ -498,6 +520,13 @@ public open class Window : Viewport() {
    *
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
    * is enabled and if its size is bigger.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var minSize: Vector2i
@@ -512,6 +541,13 @@ public open class Window : Viewport() {
    * If non-zero, the [Window] can't be resized to be bigger than this size.
    *
    * **Note:** This property will be ignored if the value is lower than [minSize].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var maxSize: Vector2i
@@ -536,6 +572,13 @@ public open class Window : Viewport() {
   /**
    * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
    * content will be scaled when the window is resized to a different size.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var contentScaleSize: Vector2i
@@ -638,20 +681,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * The window's position in pixels.
-   *
-   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
-   * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
-   * the window's position is in the coordinates of its parent [Viewport].
-   *
-   * **Note:** This property only works if [initialPosition] is set to
-   * [WINDOW_INITIAL_POSITION_ABSOLUTE].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [position] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -660,22 +690,24 @@ public open class Window : Viewport() {
    * //Your changes
    * window.position = myCoreType
    * ``````
+   *
+   * The window's position in pixels.
+   *
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
+   * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
+   * the window's position is in the coordinates of its parent [Viewport].
+   *
+   * **Note:** This property only works if [initialPosition] is set to
+   * [WINDOW_INITIAL_POSITION_ABSOLUTE].
    */
   @CoreTypeHelper
-  public final fun positionMutate(block: Vector2i.() -> Unit): Vector2i = position.apply{
-      block(this)
-      position = this
+  public final fun positionMutate(block: Vector2i.() -> Unit): Vector2i = position.apply {
+     block(this)
+     position = this
   }
 
-
   /**
-   * The window's size in pixels.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -684,25 +716,128 @@ public open class Window : Viewport() {
    * //Your changes
    * window.size = myCoreType
    * ``````
+   *
+   * The window's size in pixels.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply {
+     block(this)
+     size = this
   }
 
+  /**
+   * This is a helper function for [mousePassthroughPolygon] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.mousePassthroughPolygon
+   * //Your changes
+   * window.mousePassthroughPolygon = myCoreType
+   * ``````
+   *
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
+   * region will be passed through.
+   *
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted
+   * by the window, which is the default behavior).
+   *
+   * ```gdscript
+   * //gdscript
+   * # Set region, using Path2D node.
+   * $Window.mouse_passthrough_polygon = $Path2D.curve.get_baked_points()
+   *
+   * # Set region, using Polygon2D node.
+   * $Window.mouse_passthrough_polygon = $Polygon2D.polygon
+   *
+   * # Reset region to default.
+   * $Window.mouse_passthrough_polygon = []
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * // Set region, using Path2D node.
+   * GetNode<Window>("Window").MousePassthroughPolygon =
+   * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   *
+   * // Set region, using Polygon2D node.
+   * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Polygon2D>("Polygon2D").Polygon;
+   *
+   * // Reset region to default.
+   * GetNode<Window>("Window").MousePassthroughPolygon = [];
+   * ```
+   *
+   * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
+   *
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
+   * on Linux (X11) and macOS it is.
+   *
+   * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   */
+  @CoreTypeHelper
+  public final fun mousePassthroughPolygonMutate(block: PackedVector2Array.() -> Unit):
+      PackedVector2Array = mousePassthroughPolygon.apply {
+     block(this)
+     mousePassthroughPolygon = this
+  }
 
   /**
-   * If non-zero, the [Window] can't be resized to be smaller than this size.
+   * This is a helper function for [mousePassthroughPolygon] to make dealing with local copies
+   * easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
-   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
-   * is enabled and if its size is bigger.
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
+   * region will be passed through.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted
+   * by the window, which is the default behavior).
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * ```gdscript
+   * //gdscript
+   * # Set region, using Path2D node.
+   * $Window.mouse_passthrough_polygon = $Path2D.curve.get_baked_points()
    *
+   * # Set region, using Polygon2D node.
+   * $Window.mouse_passthrough_polygon = $Polygon2D.polygon
+   *
+   * # Reset region to default.
+   * $Window.mouse_passthrough_polygon = []
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * // Set region, using Path2D node.
+   * GetNode<Window>("Window").MousePassthroughPolygon =
+   * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   *
+   * // Set region, using Polygon2D node.
+   * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Polygon2D>("Polygon2D").Polygon;
+   *
+   * // Reset region to default.
+   * GetNode<Window>("Window").MousePassthroughPolygon = [];
+   * ```
+   *
+   * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
+   *
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
+   * on Linux (X11) and macOS it is.
+   *
+   * **Note:** This property is implemented on Linux (X11), macOS and Windows.
+   */
+  @CoreTypeHelper
+  public final fun mousePassthroughPolygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = mousePassthroughPolygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     mousePassthroughPolygon = this
+  }
+
+  /**
+   * This is a helper function for [minSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -711,24 +846,20 @@ public open class Window : Viewport() {
    * //Your changes
    * window.minSize = myCoreType
    * ``````
+   *
+   * If non-zero, the [Window] can't be resized to be smaller than this size.
+   *
+   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
+   * is enabled and if its size is bigger.
    */
   @CoreTypeHelper
-  public final fun minSizeMutate(block: Vector2i.() -> Unit): Vector2i = minSize.apply{
-      block(this)
-      minSize = this
+  public final fun minSizeMutate(block: Vector2i.() -> Unit): Vector2i = minSize.apply {
+     block(this)
+     minSize = this
   }
 
-
   /**
-   * If non-zero, the [Window] can't be resized to be bigger than this size.
-   *
-   * **Note:** This property will be ignored if the value is lower than [minSize].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [maxSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -737,23 +868,19 @@ public open class Window : Viewport() {
    * //Your changes
    * window.maxSize = myCoreType
    * ``````
+   *
+   * If non-zero, the [Window] can't be resized to be bigger than this size.
+   *
+   * **Note:** This property will be ignored if the value is lower than [minSize].
    */
   @CoreTypeHelper
-  public final fun maxSizeMutate(block: Vector2i.() -> Unit): Vector2i = maxSize.apply{
-      block(this)
-      maxSize = this
+  public final fun maxSizeMutate(block: Vector2i.() -> Unit): Vector2i = maxSize.apply {
+     block(this)
+     maxSize = this
   }
 
-
   /**
-   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
-   * content will be scaled when the window is resized to a different size.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [contentScaleSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -762,14 +889,16 @@ public open class Window : Viewport() {
    * //Your changes
    * window.contentScaleSize = myCoreType
    * ``````
+   *
+   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
+   * content will be scaled when the window is resized to a different size.
    */
   @CoreTypeHelper
   public final fun contentScaleSizeMutate(block: Vector2i.() -> Unit): Vector2i =
-      contentScaleSize.apply{
-      block(this)
-      contentScaleSize = this
+      contentScaleSize.apply {
+     block(this)
+     contentScaleSize = this
   }
-
 
   /**
    * Virtual method to be implemented by the user. Overrides the value returned by

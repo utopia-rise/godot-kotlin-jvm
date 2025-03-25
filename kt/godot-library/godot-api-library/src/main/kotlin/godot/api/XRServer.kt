@@ -108,6 +108,13 @@ public object XRServer : Object() {
    *
    * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
    * from GDExtensions.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   @JvmStatic
@@ -151,17 +158,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * The current origin of our tracking space in the virtual world. This is used by the renderer to
-   * properly position the camera with new tracking data.
-   *
-   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
-   * from GDExtensions.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [worldOrigin] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -170,14 +167,19 @@ public object XRServer : Object() {
    * //Your changes
    * xrserver.worldOrigin = myCoreType
    * ``````
+   *
+   * The current origin of our tracking space in the virtual world. This is used by the renderer to
+   * properly position the camera with new tracking data.
+   *
+   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
+   * from GDExtensions.
    */
   @CoreTypeHelper
   public final fun worldOriginMutate(block: Transform3D.() -> Unit): Transform3D =
-      worldOrigin.apply{
-      block(this)
-      worldOrigin = this
+      worldOrigin.apply {
+     block(this)
+     worldOrigin = this
   }
-
 
   @JvmStatic
   public final fun getWorldScale(): Double {

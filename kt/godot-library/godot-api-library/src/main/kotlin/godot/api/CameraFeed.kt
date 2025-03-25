@@ -71,6 +71,13 @@ public open class CameraFeed : RefCounted() {
 
   /**
    * The transform applied to the camera's image.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var feedTransform: Transform2D
@@ -93,13 +100,7 @@ public open class CameraFeed : RefCounted() {
   }
 
   /**
-   * The transform applied to the camera's image.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [feedTransform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -108,14 +109,15 @@ public open class CameraFeed : RefCounted() {
    * //Your changes
    * camerafeed.feedTransform = myCoreType
    * ``````
+   *
+   * The transform applied to the camera's image.
    */
   @CoreTypeHelper
   public final fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      feedTransform.apply{
-      block(this)
-      feedTransform = this
+      feedTransform.apply {
+     block(this)
+     feedTransform = this
   }
-
 
   /**
    * Called when the camera feed is activated.

@@ -53,6 +53,13 @@ public open class ColorPicker : VBoxContainer() {
 
   /**
    * The currently selected color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -180,13 +187,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   /**
-   * The currently selected color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -195,13 +196,14 @@ public open class ColorPicker : VBoxContainer() {
    * //Your changes
    * colorpicker.color = myCoreType
    * ``````
+   *
+   * The currently selected color.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun setPickColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
