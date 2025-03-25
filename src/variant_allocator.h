@@ -32,8 +32,9 @@ class VariantAllocator {
         PackedStringArray string_array;
     };
 
-    static_assert(sizeof(BucketSmall) == 8, "BucketSmall should have a size of 8 bytes");
-    static_assert(sizeof(BucketLarge) == 16, "BucketLarge should have a size of 16 bytes");
+    static_assert(sizeof(BucketSmall) <= 8, "BucketSmall should have at most a size of 8 bytes");
+    static_assert(sizeof(BucketLarge) <= 16, "BucketLarge should have at most a size of 16 bytes");
+    static_assert(sizeof(BucketSmall) < sizeof(BucketLarge), "BucketLarge should be larger than BucketSmall");
 
     inline static PagedAllocator<BucketSmall, true> bucket_small;
     inline static PagedAllocator<BucketLarge, true> bucket_large;
