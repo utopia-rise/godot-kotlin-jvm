@@ -466,7 +466,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getAlphaCutMode(): AlphaCutMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaCutModePtr, LONG)
-    return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaScissorThreshold(threshold: Float): Unit {

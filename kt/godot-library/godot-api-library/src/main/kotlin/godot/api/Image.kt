@@ -98,7 +98,7 @@ public open class Image : Resource() {
   public final fun getFormat(): Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    return Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -397,7 +397,7 @@ public open class Image : Resource() {
   public final fun detectAlpha(): AlphaMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.detectAlphaPtr, LONG)
-    return Image.AlphaMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlphaMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -419,7 +419,7 @@ public open class Image : Resource() {
       UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(ptr, MethodBindings.detectUsedChannelsPtr, LONG)
-    return Image.UsedChannels.from(TransferContext.readReturnValue(LONG) as Long)
+    return UsedChannels.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

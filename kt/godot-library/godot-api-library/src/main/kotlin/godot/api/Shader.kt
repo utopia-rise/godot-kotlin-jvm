@@ -62,7 +62,7 @@ public open class Shader : Resource() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCode(code: String): Unit {

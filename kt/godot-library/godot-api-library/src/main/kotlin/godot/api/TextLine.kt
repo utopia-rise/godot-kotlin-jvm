@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlag
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.HorizontalAlignment
@@ -118,7 +117,7 @@ public open class TextLine : RefCounted() {
   /**
    * Line alignment rules. For more info see [TextServer].
    */
-  public final inline var flags: JustificationFlag
+  public final inline var flags: TextServer.JustificationFlag
     @JvmName("flagsProperty")
     get() = getFlags()
     @JvmName("flagsProperty")
@@ -294,15 +293,15 @@ public open class TextLine : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.tabAlignPtr, NIL)
   }
 
-  public final fun setFlags(flags: JustificationFlag): Unit {
+  public final fun setFlags(flags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setFlagsPtr, NIL)
   }
 
-  public final fun getFlags(): JustificationFlag {
+  public final fun getFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlagsPtr, LONG)
-    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {

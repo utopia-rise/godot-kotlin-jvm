@@ -212,7 +212,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatePtr, LONG)
-    return ENetPacketPeer.PeerState.from(TransferContext.readReturnValue(LONG) as Long)
+    return PeerState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

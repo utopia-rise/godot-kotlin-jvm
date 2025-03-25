@@ -729,7 +729,7 @@ public object Input : Object() {
   public final fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseModePtr, LONG)
-    return Input.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -796,7 +796,7 @@ public object Input : Object() {
   public final fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentCursorShapePtr, LONG)
-    return Input.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

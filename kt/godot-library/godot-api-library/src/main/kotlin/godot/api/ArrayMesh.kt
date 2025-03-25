@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.Mesh.ArrayFormat
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Dictionary
@@ -259,7 +258,7 @@ public open class ArrayMesh : Mesh() {
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<VariantArray<Any?>> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
-    flags: ArrayFormat = Mesh.ArrayFormat(0),
+    flags: Mesh.ArrayFormat = Mesh.ArrayFormat(0),
   ): Unit {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.addSurfaceFromArraysPtr, NIL)
@@ -332,10 +331,10 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the format mask of the requested surface (see [addSurfaceFromArrays]).
    */
-  public final fun surfaceGetFormat(surfIdx: Int): ArrayFormat {
+  public final fun surfaceGetFormat(surfIdx: Int): Mesh.ArrayFormat {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.surfaceGetFormatPtr, LONG)
-    return ArrayFormat(TransferContext.readReturnValue(LONG) as Long)
+    return Mesh.ArrayFormat(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

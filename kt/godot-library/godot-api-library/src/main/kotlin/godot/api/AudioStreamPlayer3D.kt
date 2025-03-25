@@ -542,7 +542,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   public final fun getAttenuationModel(): AttenuationModel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttenuationModelPtr, LONG)
-    return AudioStreamPlayer3D.AttenuationModel.from(TransferContext.readReturnValue(LONG) as Long)
+    return AttenuationModel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDopplerTracking(mode: DopplerTracking): Unit {
@@ -553,7 +553,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   public final fun getDopplerTracking(): DopplerTracking {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDopplerTrackingPtr, LONG)
-    return AudioStreamPlayer3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
+    return DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStreamPaused(pause: Boolean): Unit {

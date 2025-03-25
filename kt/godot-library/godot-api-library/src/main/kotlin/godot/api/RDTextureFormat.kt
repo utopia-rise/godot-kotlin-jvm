@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.RenderingDevice.TextureUsageBits
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -117,7 +116,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    * The texture's usage bits, which determine what can be done using the texture.
    */
-  public final inline var usageBits: TextureUsageBits
+  public final inline var usageBits: RenderingDevice.TextureUsageBits
     @JvmName("usageBitsProperty")
     get() = getUsageBits()
     @JvmName("usageBitsProperty")
@@ -243,15 +242,15 @@ public open class RDTextureFormat : RefCounted() {
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUsageBits(pMember: TextureUsageBits): Unit {
+  public final fun setUsageBits(pMember: RenderingDevice.TextureUsageBits): Unit {
     TransferContext.writeArguments(LONG to pMember.flag)
     TransferContext.callMethod(ptr, MethodBindings.setUsageBitsPtr, NIL)
   }
 
-  public final fun getUsageBits(): TextureUsageBits {
+  public final fun getUsageBits(): RenderingDevice.TextureUsageBits {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsageBitsPtr, LONG)
-    return TextureUsageBits(TransferContext.readReturnValue(LONG) as Long)
+    return RenderingDevice.TextureUsageBits(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIsResolveBuffer(pMember: Boolean): Unit {

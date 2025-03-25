@@ -489,7 +489,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public final fun getMotionMode(): MotionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMotionModePtr, LONG)
-    return CharacterBody2D.MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave): Unit {
@@ -500,7 +500,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public final fun getPlatformOnLeave(): PlatformOnLeave {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlatformOnLeavePtr, LONG)
-    return CharacterBody2D.PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
+    return PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

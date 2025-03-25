@@ -654,7 +654,7 @@ public open class GPUParticles2D : Node2D() {
   public final fun getDrawOrder(): DrawOrder {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
-    return GPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {

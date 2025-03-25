@@ -178,7 +178,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   public final fun getEndBoneDirection(index: Int): BoneDirection {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getEndBoneDirectionPtr, LONG)
-    return SpringBoneSimulator3D.BoneDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return BoneDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -220,7 +220,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   public final fun getCenterFrom(index: Int): CenterFrom {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCenterFromPtr, LONG)
-    return SpringBoneSimulator3D.CenterFrom.from(TransferContext.readReturnValue(LONG) as Long)
+    return CenterFrom.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -314,7 +314,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   public final fun getRotationAxis(index: Int): RotationAxis {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getRotationAxisPtr, LONG)
-    return SpringBoneSimulator3D.RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    return RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -545,7 +545,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   public final fun getJointRotationAxis(index: Int, joint: Int): RotationAxis {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getJointRotationAxisPtr, LONG)
-    return SpringBoneSimulator3D.RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    return RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

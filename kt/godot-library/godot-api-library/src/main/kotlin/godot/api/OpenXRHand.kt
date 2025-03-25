@@ -107,7 +107,7 @@ public open class OpenXRHand : Node3D() {
   public final fun getHand(): Hands {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandPtr, LONG)
-    return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
+    return Hands.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHandSkeleton(handSkeleton: NodePath): Unit {
@@ -129,7 +129,7 @@ public open class OpenXRHand : Node3D() {
   public final fun getMotionRange(): MotionRange {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMotionRangePtr, LONG)
-    return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
+    return MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
@@ -140,7 +140,7 @@ public open class OpenXRHand : Node3D() {
   public final fun getSkeletonRig(): SkeletonRig {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonRigPtr, LONG)
-    return OpenXRHand.SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
@@ -151,7 +151,7 @@ public open class OpenXRHand : Node3D() {
   public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
-    return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
+    return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHandSkeleton(handSkeleton: String) =

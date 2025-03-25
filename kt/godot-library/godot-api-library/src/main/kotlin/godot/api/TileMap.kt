@@ -462,7 +462,7 @@ public open class TileMap : Node2D() {
   public final fun getCollisionVisibilityMode(): VisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionVisibilityModePtr, LONG)
-    return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setNavigationVisibilityMode(navigationVisibilityMode: VisibilityMode): Unit {
@@ -473,7 +473,7 @@ public open class TileMap : Node2D() {
   public final fun getNavigationVisibilityMode(): VisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationVisibilityModePtr, LONG)
-    return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

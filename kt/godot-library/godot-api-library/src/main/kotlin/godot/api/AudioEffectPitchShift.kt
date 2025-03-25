@@ -100,7 +100,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   public final fun getFftSize(): FFTSize {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
-    return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
+    return FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(

@@ -702,7 +702,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public final fun getDrawOrder(): DrawOrder {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
-    return GPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDrawPasses(passes: Int): Unit {
@@ -831,7 +831,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public final fun getTransformAlign(): TransformAlign {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformAlignPtr, LONG)
-    return GPUParticles3D.TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

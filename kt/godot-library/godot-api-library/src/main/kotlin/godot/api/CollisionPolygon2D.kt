@@ -122,7 +122,7 @@ public open class CollisionPolygon2D : Node2D() {
   public final fun getBuildMode(): BuildMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBuildModePtr, LONG)
-    return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {

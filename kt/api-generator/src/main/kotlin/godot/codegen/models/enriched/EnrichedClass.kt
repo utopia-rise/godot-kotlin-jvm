@@ -1,13 +1,18 @@
 package godot.codegen.models.enriched
 
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.ApiType
 import godot.codegen.models.Class
-import godot.codegen.models.custom.AdditionalImport
-import godot.codegen.traits.IDocumented
-import godot.codegen.traits.TypedTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.Nature
+import godot.codegen.models.traits.TypeGenerationTrait
+import godot.codegen.models.traits.from
 
-class EnrichedClass(model: Class) : TypedTrait, IDocumented {
-    override val type = model.name
+class EnrichedClass(model: Class) : TypeGenerationTrait, DocumentedGenerationTrait {
+    override val identifier = model.name
+    override val nature = Nature.CLASS
+    override val className = ClassName.from(this)
+
     val apiType = ApiType.from(model.apiType)
     val isInstantiable = model.isInstantiable
 
@@ -17,13 +22,13 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
         private set
 
     val constants = model.constants?.toEnriched() ?: listOf()
-    val enums = model.enums?.toEnriched(this.type) ?: listOf()
+    val enums = model.enums?.toEnriched(this) ?: listOf()
     val signals = model.signals?.toEnriched() ?: listOf()
     val properties = model.properties?.toEnriched() ?: listOf()
     val methods = model.methods?.toEnriched() ?: listOf()
 
     override var description = model.description
-    val additionalImports = mutableSetOf<AdditionalImport>()
+    val additionalImports = mutableSetOf<ClassName>()
 
     fun makeSingleton() {
         isSingleton = true
@@ -32,14 +37,6 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
     fun setParent(parent: EnrichedClass) {
         this.parent = parent
     }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        other as EnrichedClass
-        return type == other.type
-    }
-
-    override fun hashCode() = type.hashCode()
 }
 
 fun List<Class>.toEnriched() = map { EnrichedClass(it) }

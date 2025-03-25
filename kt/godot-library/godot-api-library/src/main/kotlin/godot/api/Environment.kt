@@ -1474,7 +1474,7 @@ public open class Environment : Resource() {
   public final fun getBackground(): BGMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackgroundPtr, LONG)
-    return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BGMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSky(sky: Sky?): Unit {
@@ -1584,7 +1584,7 @@ public open class Environment : Resource() {
   public final fun getAmbientSource(): AmbientSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientSourcePtr, LONG)
-    return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAmbientLightEnergy(energy: Float): Unit {
@@ -1617,7 +1617,7 @@ public open class Environment : Resource() {
   public final fun getReflectionSource(): ReflectionSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReflectionSourcePtr, LONG)
-    return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTonemapper(mode: ToneMapper): Unit {
@@ -1628,7 +1628,7 @@ public open class Environment : Resource() {
   public final fun getTonemapper(): ToneMapper {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTonemapperPtr, LONG)
-    return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
+    return ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTonemapExposure(exposure: Float): Unit {
@@ -1925,7 +1925,7 @@ public open class Environment : Resource() {
   public final fun getSdfgiYScale(): SDFGIYScale {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiYScalePtr, LONG)
-    return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
+    return SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfgiUseOcclusion(enable: Boolean): Unit {
@@ -2087,7 +2087,7 @@ public open class Environment : Resource() {
   public final fun getGlowBlendMode(): GlowBlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowBlendModePtr, LONG)
-    return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setGlowHdrBleedThreshold(threshold: Float): Unit {
@@ -2164,7 +2164,7 @@ public open class Environment : Resource() {
   public final fun getFogMode(): FogMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogModePtr, LONG)
-    return Environment.FogMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FogMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFogLightColor(lightColor: Color): Unit {

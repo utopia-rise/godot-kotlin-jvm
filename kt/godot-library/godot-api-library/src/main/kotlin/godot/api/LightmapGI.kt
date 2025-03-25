@@ -437,7 +437,7 @@ public open class LightmapGI : VisualInstance3D() {
   public final fun getBakeQuality(): BakeQuality {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeQualityPtr, LONG)
-    return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
+    return BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBounces(bounces: Int): Unit {
@@ -470,7 +470,7 @@ public open class LightmapGI : VisualInstance3D() {
   public final fun getGenerateProbes(): GenerateProbes {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGenerateProbesPtr, LONG)
-    return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
+    return GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBias(bias: Float): Unit {
@@ -492,7 +492,7 @@ public open class LightmapGI : VisualInstance3D() {
   public final fun getEnvironmentMode(): EnvironmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentModePtr, LONG)
-    return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnvironmentCustomSky(sky: Sky?): Unit {

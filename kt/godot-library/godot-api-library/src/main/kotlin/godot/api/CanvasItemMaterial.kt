@@ -121,7 +121,7 @@ public open class CanvasItemMaterial : Material() {
   public final fun getBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
-    return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLightMode(lightMode: LightMode): Unit {
@@ -132,7 +132,7 @@ public open class CanvasItemMaterial : Material() {
   public final fun getLightMode(): LightMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightModePtr, LONG)
-    return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LightMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParticlesAnimation(particlesAnim: Boolean): Unit {

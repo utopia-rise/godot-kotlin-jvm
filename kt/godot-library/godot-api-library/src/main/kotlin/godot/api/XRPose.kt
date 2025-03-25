@@ -271,7 +271,7 @@ public open class XRPose : RefCounted() {
   public final fun getTrackingConfidence(): TrackingConfidence {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackingConfidencePtr, LONG)
-    return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
+    return TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setName(name: String) = setName(name.asCachedStringName())

@@ -1781,7 +1781,7 @@ public open class Node : Object() {
   public final fun getProcessMode(): ProcessMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessModePtr, LONG)
-    return Node.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1818,7 +1818,7 @@ public open class Node : Object() {
   public final fun getProcessThreadGroup(): ProcessThreadGroup {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessThreadGroupPtr, LONG)
-    return Node.ProcessThreadGroup.from(TransferContext.readReturnValue(LONG) as Long)
+    return ProcessThreadGroup.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProcessThreadMessages(flags: ProcessThreadMessages): Unit {
@@ -1917,7 +1917,7 @@ public open class Node : Object() {
   public final fun getPhysicsInterpolationMode(): PhysicsInterpolationMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsInterpolationModePtr, LONG)
-    return Node.PhysicsInterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return PhysicsInterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1975,7 +1975,7 @@ public open class Node : Object() {
   public final fun getAutoTranslateMode(): AutoTranslateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoTranslateModePtr, LONG)
-    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

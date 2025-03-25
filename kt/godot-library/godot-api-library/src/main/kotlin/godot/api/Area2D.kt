@@ -383,7 +383,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getGravitySpaceOverrideMode(): SpaceOverride {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
-    return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+    return SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setGravityIsPoint(enable: Boolean): Unit {
@@ -449,7 +449,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getLinearDampSpaceOverrideMode(): SpaceOverride {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
-    return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+    return SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
@@ -460,7 +460,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getAngularDampSpaceOverrideMode(): SpaceOverride {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
-    return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+    return SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {

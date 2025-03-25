@@ -387,7 +387,7 @@ public open class Line2D : Node2D() {
   public final fun getTextureMode(): LineTextureMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureModePtr, LONG)
-    return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointMode(mode: LineJointMode): Unit {
@@ -398,7 +398,7 @@ public open class Line2D : Node2D() {
   public final fun getJointMode(): LineJointMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointModePtr, LONG)
-    return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBeginCapMode(mode: LineCapMode): Unit {
@@ -409,7 +409,7 @@ public open class Line2D : Node2D() {
   public final fun getBeginCapMode(): LineCapMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBeginCapModePtr, LONG)
-    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEndCapMode(mode: LineCapMode): Unit {
@@ -420,7 +420,7 @@ public open class Line2D : Node2D() {
   public final fun getEndCapMode(): LineCapMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEndCapModePtr, LONG)
-    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSharpLimit(limit: Float): Unit {

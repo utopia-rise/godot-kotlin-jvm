@@ -196,7 +196,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   public final fun getOrientation(): Orientation {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOrientationPtr, LONG)
-    return PlaneMesh.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
+    return Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Orientation(

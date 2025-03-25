@@ -124,7 +124,7 @@ public open class AnimationTree : AnimationMixer() {
   public final fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessCallbackPtr, LONG)
-    return AnimationTree.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceExpressionBaseNode(path: String) =

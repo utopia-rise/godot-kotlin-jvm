@@ -446,7 +446,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getSamplePartitionType(): SamplePartitionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
-    return NavigationPolygon.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
@@ -457,7 +457,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getParsedGeometryType(): ParsedGeometryType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
-    return NavigationPolygon.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedCollisionMask(mask: Long): Unit {
@@ -498,7 +498,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getSourceGeometryMode(): SourceGeometryMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
-    return NavigationPolygon.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGeometryGroupName(groupName: StringName): Unit {

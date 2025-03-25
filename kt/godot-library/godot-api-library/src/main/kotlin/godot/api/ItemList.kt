@@ -775,7 +775,7 @@ public open class ItemList : Control() {
   public final fun getSelectMode(): SelectMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectModePtr, LONG)
-    return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIconMode(mode: IconMode): Unit {
@@ -786,7 +786,7 @@ public open class ItemList : Control() {
   public final fun getIconMode(): IconMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIconModePtr, LONG)
-    return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return IconMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFixedIconSize(size: Vector2i): Unit {

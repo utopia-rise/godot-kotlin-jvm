@@ -203,7 +203,7 @@ public open class Gradient : Resource() {
   public final fun getInterpolationMode(): InterpolationMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationModePtr, LONG)
-    return Gradient.InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setInterpolationColorSpace(interpolationColorSpace: ColorSpace): Unit {
@@ -214,7 +214,7 @@ public open class Gradient : Resource() {
   public final fun getInterpolationColorSpace(): ColorSpace {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationColorSpacePtr, LONG)
-    return Gradient.ColorSpace.from(TransferContext.readReturnValue(LONG) as Long)
+    return ColorSpace.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class InterpolationMode(

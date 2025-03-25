@@ -189,7 +189,7 @@ public open class CompositorEffect : Resource() {
   public final fun getEffectCallbackType(): EffectCallbackType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEffectCallbackTypePtr, LONG)
-    return CompositorEffect.EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
+    return EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessResolvedColor(enable: Boolean): Unit {

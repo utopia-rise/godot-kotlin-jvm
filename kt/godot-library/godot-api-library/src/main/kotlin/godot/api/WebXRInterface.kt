@@ -490,7 +490,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getInputSourceTargetRayMode(inputSourceId: Int): TargetRayMode {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getInputSourceTargetRayModePtr, LONG)
-    return WebXRInterface.TargetRayMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TargetRayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getVisibilityState(): String {

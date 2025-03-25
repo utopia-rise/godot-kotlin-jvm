@@ -269,7 +269,7 @@ public open class TextureButton : BaseButton() {
   public final fun getStretchMode(): StretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
-    return TextureButton.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class StretchMode(

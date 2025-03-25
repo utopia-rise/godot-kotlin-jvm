@@ -502,7 +502,7 @@ public open class Tree : Control() {
   public final fun getSelectMode(): SelectMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectModePtr, LONG)
-    return Tree.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

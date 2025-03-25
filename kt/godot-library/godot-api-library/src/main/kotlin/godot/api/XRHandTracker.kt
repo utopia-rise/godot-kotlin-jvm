@@ -88,7 +88,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandTrackingSource(): HandTrackingSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandTrackingSourcePtr, LONG)
-    return XRHandTracker.HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

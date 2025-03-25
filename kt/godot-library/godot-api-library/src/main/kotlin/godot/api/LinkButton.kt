@@ -182,7 +182,7 @@ public open class LinkButton : BaseButton() {
   public final fun getUnderlineMode(): UnderlineMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUnderlineModePtr, LONG)
-    return LinkButton.UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {

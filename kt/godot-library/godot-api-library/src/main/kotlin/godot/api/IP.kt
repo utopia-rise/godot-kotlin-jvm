@@ -93,7 +93,7 @@ public object IP : Object() {
   public final fun getResolveItemStatus(id: Int): ResolverStatus {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getResolveItemStatusPtr, LONG)
-    return IP.ResolverStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return ResolverStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

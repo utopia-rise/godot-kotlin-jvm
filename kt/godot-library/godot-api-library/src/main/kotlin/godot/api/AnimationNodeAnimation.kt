@@ -160,7 +160,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun getPlayMode(): PlayMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlayModePtr, LONG)
-    return AnimationNodeAnimation.PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceOnStart(advanceOnStart: Boolean): Unit {

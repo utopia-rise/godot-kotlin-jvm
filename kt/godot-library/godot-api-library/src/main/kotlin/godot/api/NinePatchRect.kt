@@ -240,7 +240,7 @@ public open class NinePatchRect : Control() {
   public final fun getHAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHAxisStretchModePtr, LONG)
-    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
@@ -251,7 +251,7 @@ public open class NinePatchRect : Control() {
   public final fun getVAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
-    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class AxisStretchMode(

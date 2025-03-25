@@ -168,7 +168,7 @@ public open class Animation : Resource() {
   public final fun trackGetType(trackIdx: Int): TrackType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackGetTypePtr, LONG)
-    return Animation.TrackType.from(TransferContext.readReturnValue(LONG) as Long)
+    return TrackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -525,7 +525,7 @@ public open class Animation : Resource() {
   public final fun trackGetInterpolationType(trackIdx: Int): InterpolationType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackGetInterpolationTypePtr, LONG)
-    return Animation.InterpolationType.from(TransferContext.readReturnValue(LONG) as Long)
+    return InterpolationType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -569,7 +569,7 @@ public open class Animation : Resource() {
   public final fun valueTrackGetUpdateMode(trackIdx: Int): UpdateMode {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.valueTrackGetUpdateModePtr, LONG)
-    return Animation.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -968,7 +968,7 @@ public open class Animation : Resource() {
   public final fun getLoopMode(): LoopMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
-    return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStep(sizeSec: Float): Unit {

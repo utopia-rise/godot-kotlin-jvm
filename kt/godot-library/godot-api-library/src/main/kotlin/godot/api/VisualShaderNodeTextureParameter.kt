@@ -92,7 +92,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setColorDefault(color: ColorDefault): Unit {
@@ -103,7 +103,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public final fun getColorDefault(): ColorDefault {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorDefaultPtr, LONG)
-    return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
+    return ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureFilter(filter: TextureFilter): Unit {
@@ -114,7 +114,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public final fun getTextureFilter(): TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureRepeat(repeat: TextureRepeat): Unit {
@@ -125,7 +125,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public final fun getTextureRepeat(): TextureRepeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRepeatPtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureSource(source: TextureSource): Unit {
@@ -136,7 +136,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public final fun getTextureSource(): TextureSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureSourcePtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class TextureType(
