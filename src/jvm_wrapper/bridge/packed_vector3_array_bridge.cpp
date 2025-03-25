@@ -11,7 +11,7 @@ uintptr_t PackedVector3ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, j
     jint float_size = arr.length(env);
     uint64_t vector_size = float_size / 2;
 
-    PackedVector3Array* vector_packed = memnew(PackedVector3Array);
+    PackedVector3Array* vector_packed = VariantAllocator::alloc(PackedVector3Array());
     vector_packed->resize(vector_size);
     Vector3* ptr = vector_packed->ptrw();
     arr.get_array_elements(env, reinterpret_cast<jfloat*>(ptr), float_size);
