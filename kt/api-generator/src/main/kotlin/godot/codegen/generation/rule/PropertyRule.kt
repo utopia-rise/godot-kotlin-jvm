@@ -8,7 +8,6 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.UNIT
-import godot.codegen.extensions.isLocalIndexedCopyCoreTypes
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
@@ -128,8 +127,8 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
             val property = propertyTask.property
             if (!property.hasSetter || !property.type.isLocalCopyCoreTypes()) continue
 
-            propertyTask.generator.addAnnotation(CORE_TYPE_LOCAL_COPY)
-            propertyTask.generator.addKdoc(
+            propertyTask.builder.addAnnotation(CORE_TYPE_LOCAL_COPY)
+            propertyTask.builder.addKdoc(
                 """|
                    |
                    |**Warning:**
@@ -139,9 +138,9 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
             )
             addFunction(getMutateHelper(clazz, property))
 
-            if (!property.isLocalIndexedCopyCoreTypes()) continue
+            if (!property.type.isLocalIndexedCopyCoreTypes()) continue
 
-            val className = localCopyCoreTypesMap[property.type]!!
+            val className = localCopyCoreTypesMap[property.type.identifier]!!
             addFunction(getMutateEachHelper(property, className))
         }
     }
@@ -196,7 +195,7 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
     }
 
     private fun getMutateEachHelper(property: EnrichedProperty, elementType: ClassName): FunSpec {
-        val parameterTypeName = property.getCastedType().typeName
+        val parameterTypeName = property.getCastedType()
         val parameterName = property.name
 
         val propertyFunSpec = FunSpec.builder("${parameterName}MutateEach").addModifiers(KModifier.FINAL)
