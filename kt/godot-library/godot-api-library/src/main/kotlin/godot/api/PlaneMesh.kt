@@ -37,6 +37,13 @@ import kotlin.jvm.JvmName
 public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Size of the generated plane.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2
@@ -71,6 +78,13 @@ public open class PlaneMesh : PrimitiveMesh() {
 
   /**
    * Offset of the generated plane. Useful for particles.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var centerOffset: Vector3
@@ -97,13 +111,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   /**
-   * Size of the generated plane.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -112,22 +120,17 @@ public open class PlaneMesh : PrimitiveMesh() {
    * //Your changes
    * planemesh.size = myCoreType
    * ``````
+   *
+   * Size of the generated plane.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * Offset of the generated plane. Useful for particles.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [centerOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -136,13 +139,14 @@ public open class PlaneMesh : PrimitiveMesh() {
    * //Your changes
    * planemesh.centerOffset = myCoreType
    * ``````
+   *
+   * Offset of the generated plane. Useful for particles.
    */
   @CoreTypeHelper
-  public final fun centerOffsetMutate(block: Vector3.() -> Unit): Vector3 = centerOffset.apply{
-      block(this)
-      centerOffset = this
+  public final fun centerOffsetMutate(block: Vector3.() -> Unit): Vector3 = centerOffset.apply {
+     block(this)
+     centerOffset = this
   }
-
 
   public final fun setSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)

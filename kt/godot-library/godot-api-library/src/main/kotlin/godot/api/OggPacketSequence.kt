@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -20,6 +22,7 @@ import kotlin.Any
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -42,7 +45,15 @@ public open class OggPacketSequence : Resource() {
 
   /**
    * Contains the granule positions for each page in this packet sequence.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var granulePositions: PackedInt64Array
     @JvmName("granulePositionsProperty")
     get() = getPacketGranulePositions()
@@ -65,6 +76,43 @@ public open class OggPacketSequence : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(407, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [granulePositions] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = oggpacketsequence.granulePositions
+   * //Your changes
+   * oggpacketsequence.granulePositions = myCoreType
+   * ``````
+   *
+   * Contains the granule positions for each page in this packet sequence.
+   */
+  @CoreTypeHelper
+  public final fun granulePositionsMutate(block: PackedInt64Array.() -> Unit): PackedInt64Array =
+      granulePositions.apply {
+     block(this)
+     granulePositions = this
+  }
+
+  /**
+   * This is a helper function for [granulePositions] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Contains the granule positions for each page in this packet sequence.
+   */
+  @CoreTypeHelper
+  public final fun granulePositionsMutateEach(block: (index: Int, `value`: Long) -> Unit):
+      PackedInt64Array = granulePositions.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     granulePositions = this
   }
 
   public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>): Unit {

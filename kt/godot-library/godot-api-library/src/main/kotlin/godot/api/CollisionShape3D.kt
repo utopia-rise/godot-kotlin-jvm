@@ -61,6 +61,13 @@ public open class CollisionShape3D : Node3D() {
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugColor: Color
@@ -88,18 +95,7 @@ public open class CollisionShape3D : Node3D() {
   }
 
   /**
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
-   *
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [debugColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -108,13 +104,19 @@ public open class CollisionShape3D : Node3D() {
    * //Your changes
    * collisionshape3d.debugColor = myCoreType
    * ``````
+   *
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
+   *
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
+   * color.
    */
   @CoreTypeHelper
-  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
-      block(this)
-      debugColor = this
+  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply {
+     block(this)
+     debugColor = this
   }
-
 
   /**
    * This method does nothing.

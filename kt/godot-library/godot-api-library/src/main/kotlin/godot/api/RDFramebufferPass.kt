@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -34,7 +36,15 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
    * ATTACHMENT_UNUSED to skip.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var colorAttachments: PackedInt32Array
     @JvmName("colorAttachmentsProperty")
     get() = getColorAttachments()
@@ -46,7 +56,15 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
    * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var inputAttachments: PackedInt32Array
     @JvmName("inputAttachmentsProperty")
     get() = getInputAttachments()
@@ -58,7 +76,15 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * If the color attachments are multisampled, non-multisampled resolve attachments can be
    * provided.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var resolveAttachments: PackedInt32Array
     @JvmName("resolveAttachmentsProperty")
     get() = getResolveAttachments()
@@ -69,7 +95,15 @@ public open class RDFramebufferPass : RefCounted() {
 
   /**
    * Attachments to preserve in this pass (otherwise they are erased).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var preserveAttachments: PackedInt32Array
     @JvmName("preserveAttachmentsProperty")
     get() = getPreserveAttachments()
@@ -92,6 +126,160 @@ public open class RDFramebufferPass : RefCounted() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(524, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [colorAttachments] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdframebufferpass.colorAttachments
+   * //Your changes
+   * rdframebufferpass.colorAttachments = myCoreType
+   * ``````
+   *
+   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
+   * ATTACHMENT_UNUSED to skip.
+   */
+  @CoreTypeHelper
+  public final fun colorAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      colorAttachments.apply {
+     block(this)
+     colorAttachments = this
+  }
+
+  /**
+   * This is a helper function for [colorAttachments] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
+   * ATTACHMENT_UNUSED to skip.
+   */
+  @CoreTypeHelper
+  public final fun colorAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = colorAttachments.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     colorAttachments = this
+  }
+
+  /**
+   * This is a helper function for [inputAttachments] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdframebufferpass.inputAttachments
+   * //Your changes
+   * rdframebufferpass.inputAttachments = myCoreType
+   * ``````
+   *
+   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
+   * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
+   */
+  @CoreTypeHelper
+  public final fun inputAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      inputAttachments.apply {
+     block(this)
+     inputAttachments = this
+  }
+
+  /**
+   * This is a helper function for [inputAttachments] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
+   * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
+   */
+  @CoreTypeHelper
+  public final fun inputAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = inputAttachments.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     inputAttachments = this
+  }
+
+  /**
+   * This is a helper function for [resolveAttachments] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdframebufferpass.resolveAttachments
+   * //Your changes
+   * rdframebufferpass.resolveAttachments = myCoreType
+   * ``````
+   *
+   * If the color attachments are multisampled, non-multisampled resolve attachments can be
+   * provided.
+   */
+  @CoreTypeHelper
+  public final fun resolveAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      resolveAttachments.apply {
+     block(this)
+     resolveAttachments = this
+  }
+
+  /**
+   * This is a helper function for [resolveAttachments] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * If the color attachments are multisampled, non-multisampled resolve attachments can be
+   * provided.
+   */
+  @CoreTypeHelper
+  public final fun resolveAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = resolveAttachments.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     resolveAttachments = this
+  }
+
+  /**
+   * This is a helper function for [preserveAttachments] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdframebufferpass.preserveAttachments
+   * //Your changes
+   * rdframebufferpass.preserveAttachments = myCoreType
+   * ``````
+   *
+   * Attachments to preserve in this pass (otherwise they are erased).
+   */
+  @CoreTypeHelper
+  public final fun preserveAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      preserveAttachments.apply {
+     block(this)
+     preserveAttachments = this
+  }
+
+  /**
+   * This is a helper function for [preserveAttachments] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Attachments to preserve in this pass (otherwise they are erased).
+   */
+  @CoreTypeHelper
+  public final fun preserveAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = preserveAttachments.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     preserveAttachments = this
   }
 
   public final fun setColorAttachments(pMember: PackedInt32Array): Unit {

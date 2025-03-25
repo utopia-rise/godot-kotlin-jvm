@@ -203,6 +203,13 @@ public open class TextMesh : PrimitiveMesh() {
 
   /**
    * The text drawing offset (in pixels).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -262,13 +269,7 @@ public open class TextMesh : PrimitiveMesh() {
   }
 
   /**
-   * The text drawing offset (in pixels).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -277,13 +278,14 @@ public open class TextMesh : PrimitiveMesh() {
    * //Your changes
    * textmesh.offset = myCoreType
    * ``````
+   *
+   * The text drawing offset (in pixels).
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
-
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)

@@ -59,6 +59,13 @@ public open class Environment : Resource() {
   /**
    * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
    * background mode.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var backgroundColor: Color
@@ -141,6 +148,13 @@ public open class Environment : Resource() {
 
   /**
    * The rotation to use for sky rendering.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyRotation: Vector3
@@ -165,6 +179,13 @@ public open class Environment : Resource() {
   /**
    * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
    * `1.0` (exclusive).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var ambientLightColor: Color
@@ -898,6 +919,13 @@ public open class Environment : Resource() {
 
   /**
    * The fog's color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fogLightColor: Color
@@ -1090,6 +1118,13 @@ public open class Environment : Resource() {
   /**
    * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
    * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var volumetricFogAlbedo: Color
@@ -1105,6 +1140,13 @@ public open class Environment : Resource() {
    * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
    * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
    * shadows.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var volumetricFogEmission: Color
@@ -1314,14 +1356,7 @@ public open class Environment : Resource() {
   }
 
   /**
-   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
-   * background mode.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [backgroundColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1330,22 +1365,18 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.backgroundColor = myCoreType
    * ``````
+   *
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
+   * background mode.
    */
   @CoreTypeHelper
-  public final fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply{
-      block(this)
-      backgroundColor = this
+  public final fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply {
+     block(this)
+     backgroundColor = this
   }
 
-
   /**
-   * The rotation to use for sky rendering.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [skyRotation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1354,23 +1385,17 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.skyRotation = myCoreType
    * ``````
+   *
+   * The rotation to use for sky rendering.
    */
   @CoreTypeHelper
-  public final fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
-      block(this)
-      skyRotation = this
+  public final fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply {
+     block(this)
+     skyRotation = this
   }
 
-
   /**
-   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
-   * `1.0` (exclusive).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [ambientLightColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1379,23 +1404,19 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.ambientLightColor = myCoreType
    * ``````
+   *
+   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
+   * `1.0` (exclusive).
    */
   @CoreTypeHelper
   public final fun ambientLightColorMutate(block: Color.() -> Unit): Color =
-      ambientLightColor.apply{
-      block(this)
-      ambientLightColor = this
+      ambientLightColor.apply {
+     block(this)
+     ambientLightColor = this
   }
 
-
   /**
-   * The fog's color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fogLightColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1404,23 +1425,17 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.fogLightColor = myCoreType
    * ``````
+   *
+   * The fog's color.
    */
   @CoreTypeHelper
-  public final fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply{
-      block(this)
-      fogLightColor = this
+  public final fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply {
+     block(this)
+     fogLightColor = this
   }
 
-
   /**
-   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
-   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [volumetricFogAlbedo] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1429,26 +1444,19 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.volumetricFogAlbedo = myCoreType
    * ``````
+   *
+   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
+   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
   @CoreTypeHelper
   public final fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
-      volumetricFogAlbedo.apply{
-      block(this)
-      volumetricFogAlbedo = this
+      volumetricFogAlbedo.apply {
+     block(this)
+     volumetricFogAlbedo = this
   }
 
-
   /**
-   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
-   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
-   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
-   * shadows.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [volumetricFogEmission] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1457,14 +1465,18 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.volumetricFogEmission = myCoreType
    * ``````
+   *
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
+   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
+   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
+   * shadows.
    */
   @CoreTypeHelper
   public final fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
-      volumetricFogEmission.apply{
-      block(this)
-      volumetricFogEmission = this
+      volumetricFogEmission.apply {
+     block(this)
+     volumetricFogEmission = this
   }
-
 
   public final fun setBackground(mode: BGMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)

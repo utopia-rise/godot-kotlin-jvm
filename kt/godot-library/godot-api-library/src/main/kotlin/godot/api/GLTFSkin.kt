@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -37,6 +39,17 @@ public open class GLTFSkin : Resource() {
       setSkinRoot(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var jointsOriginal: PackedInt32Array
     @JvmName("jointsOriginalProperty")
     get() = getJointsOriginal()
@@ -53,6 +66,17 @@ public open class GLTFSkin : Resource() {
       setInverseBinds(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var joints: PackedInt32Array
     @JvmName("jointsProperty")
     get() = getJoints()
@@ -61,6 +85,17 @@ public open class GLTFSkin : Resource() {
       setJoints(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var nonJoints: PackedInt32Array
     @JvmName("nonJointsProperty")
     get() = getNonJoints()
@@ -69,6 +104,17 @@ public open class GLTFSkin : Resource() {
       setNonJoints(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var roots: PackedInt32Array
     @JvmName("rootsProperty")
     get() = getRoots()
@@ -111,6 +157,137 @@ public open class GLTFSkin : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(238, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [jointsOriginal] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfskin.jointsOriginal
+   * //Your changes
+   * gltfskin.jointsOriginal = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun jointsOriginalMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      jointsOriginal.apply {
+     block(this)
+     jointsOriginal = this
+  }
+
+  /**
+   * This is a helper function for [jointsOriginal] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun jointsOriginalMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = jointsOriginal.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     jointsOriginal = this
+  }
+
+  /**
+   * This is a helper function for [joints] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfskin.joints
+   * //Your changes
+   * gltfskin.joints = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun jointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      joints.apply {
+     block(this)
+     joints = this
+  }
+
+  /**
+   * This is a helper function for [joints] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun jointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
+      joints.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     joints = this
+  }
+
+  /**
+   * This is a helper function for [nonJoints] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfskin.nonJoints
+   * //Your changes
+   * gltfskin.nonJoints = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun nonJointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      nonJoints.apply {
+     block(this)
+     nonJoints = this
+  }
+
+  /**
+   * This is a helper function for [nonJoints] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun nonJointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
+      = nonJoints.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     nonJoints = this
+  }
+
+  /**
+   * This is a helper function for [roots] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfskin.roots
+   * //Your changes
+   * gltfskin.roots = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun rootsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = roots.apply {
+     block(this)
+     roots = this
+  }
+
+  /**
+   * This is a helper function for [roots] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun rootsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
+      roots.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     roots = this
   }
 
   public final fun getSkinRoot(): Int {

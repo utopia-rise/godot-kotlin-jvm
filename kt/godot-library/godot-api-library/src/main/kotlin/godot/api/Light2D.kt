@@ -57,6 +57,13 @@ public open class Light2D internal constructor() : Node2D() {
 
   /**
    * The Light2D's [Color].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -161,6 +168,13 @@ public open class Light2D internal constructor() : Node2D() {
 
   /**
    * [Color] of shadows cast by the Light2D.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -213,13 +227,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
-   * The Light2D's [Color].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -228,22 +236,17 @@ public open class Light2D internal constructor() : Node2D() {
    * //Your changes
    * light2d.color = myCoreType
    * ``````
+   *
+   * The Light2D's [Color].
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
 
-
   /**
-   * [Color] of shadows cast by the Light2D.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [shadowColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -252,13 +255,14 @@ public open class Light2D internal constructor() : Node2D() {
    * //Your changes
    * light2d.shadowColor = myCoreType
    * ``````
+   *
+   * [Color] of shadows cast by the Light2D.
    */
   @CoreTypeHelper
-  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
-      block(this)
-      shadowColor = this
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply {
+     block(this)
+     shadowColor = this
   }
-
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)

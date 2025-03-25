@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -19,6 +21,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
@@ -47,7 +50,15 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * triangulation will fail and no mesh will be generated.
    *
    * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -248,6 +259,51 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(121, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = csgpolygon3d.polygon
+   * //Your changes
+   * csgpolygon3d.polygon = myCoreType
+   * ``````
+   *
+   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave
+   * polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise,
+   * triangulation will fail and no mesh will be generated.
+   *
+   * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave
+   * polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise,
+   * triangulation will fail and no mesh will be generated.
+   *
+   * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

@@ -26,6 +26,7 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -92,6 +93,13 @@ public open class MultiMesh : Resource() {
   /**
    * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
    * recalculations.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var customAabb: AABB
@@ -142,6 +150,17 @@ public open class MultiMesh : Resource() {
       setMesh(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var buffer: PackedFloat32Array
     @JvmName("bufferProperty")
     get() = getBuffer()
@@ -172,14 +191,7 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
-   * recalculations.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [customAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -188,13 +200,48 @@ public open class MultiMesh : Resource() {
    * //Your changes
    * multimesh.customAabb = myCoreType
    * ``````
+   *
+   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
+   * recalculations.
    */
   @CoreTypeHelper
-  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
-      block(this)
-      customAabb = this
+  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply {
+     block(this)
+     customAabb = this
   }
 
+  /**
+   * This is a helper function for [buffer] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = multimesh.buffer
+   * //Your changes
+   * multimesh.buffer = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun bufferMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      buffer.apply {
+     block(this)
+     buffer = this
+  }
+
+  /**
+   * This is a helper function for [buffer] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun bufferMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array
+      = buffer.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     buffer = this
+  }
 
   public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)

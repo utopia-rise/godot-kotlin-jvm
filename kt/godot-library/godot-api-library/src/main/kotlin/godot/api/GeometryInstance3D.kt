@@ -122,6 +122,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
    * 20000)`. To disable all forms of culling (including occlusion culling), call
    * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var customAabb: AABB
@@ -285,19 +292,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   /**
-   * Overrides the bounding box of this node with a custom one. This can be used to avoid the
-   * expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to
-   * have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value
-   * to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very
-   * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
-   * 20000)`. To disable all forms of culling (including occlusion culling), call
-   * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [customAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -306,13 +301,20 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * //Your changes
    * geometryinstance3d.customAabb = myCoreType
    * ``````
+   *
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the
+   * expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to
+   * have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value
+   * to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very
+   * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
+   * 20000)`. To disable all forms of culling (including occlusion culling), call
+   * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    */
   @CoreTypeHelper
-  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
-      block(this)
-      customAabb = this
+  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply {
+     block(this)
+     customAabb = this
   }
-
 
   public final fun setMaterialOverride(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)

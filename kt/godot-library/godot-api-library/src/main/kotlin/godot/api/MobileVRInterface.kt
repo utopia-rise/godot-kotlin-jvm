@@ -94,6 +94,13 @@ public open class MobileVRInterface : XRInterface() {
   /**
    * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
    * rendering area on that axis.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offsetRect: Rect2
@@ -175,14 +182,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   /**
-   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
-   * rendering area on that axis.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offsetRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -191,13 +191,15 @@ public open class MobileVRInterface : XRInterface() {
    * //Your changes
    * mobilevrinterface.offsetRect = myCoreType
    * ``````
+   *
+   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
+   * rendering area on that axis.
    */
   @CoreTypeHelper
-  public final fun offsetRectMutate(block: Rect2.() -> Unit): Rect2 = offsetRect.apply{
-      block(this)
-      offsetRect = this
+  public final fun offsetRectMutate(block: Rect2.() -> Unit): Rect2 = offsetRect.apply {
+     block(this)
+     offsetRect = this
   }
-
 
   public final fun setEyeHeight(eyeHeight: Double): Unit {
     TransferContext.writeArguments(DOUBLE to eyeHeight)

@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -28,6 +30,7 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -66,7 +69,15 @@ public open class TileMapLayer : Node2D() {
 
   /**
    * The raw tile map data as a byte array.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var tileMapData: PackedByteArray
     @JvmName("tileMapDataProperty")
     get() = getTileMapDataAsArray()
@@ -214,6 +225,43 @@ public open class TileMapLayer : Node2D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(687, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [tileMapData] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tilemaplayer.tileMapData
+   * //Your changes
+   * tilemaplayer.tileMapData = myCoreType
+   * ``````
+   *
+   * The raw tile map data as a byte array.
+   */
+  @CoreTypeHelper
+  public final fun tileMapDataMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      tileMapData.apply {
+     block(this)
+     tileMapData = this
+  }
+
+  /**
+   * This is a helper function for [tileMapData] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The raw tile map data as a byte array.
+   */
+  @CoreTypeHelper
+  public final fun tileMapDataMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = tileMapData.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     tileMapData = this
   }
 
   /**

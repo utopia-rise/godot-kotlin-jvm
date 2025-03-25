@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -13,6 +15,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -48,7 +51,15 @@ public open class ConcavePolygonShape2D : Shape2D() {
    * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of
    * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
    * consists of the starting point of a segment and the endpoint of a segment.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var segments: PackedVector2Array
     @JvmName("segmentsProperty")
     get() = getSegments()
@@ -59,6 +70,47 @@ public open class ConcavePolygonShape2D : Shape2D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(172, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [segments] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = concavepolygonshape2d.segments
+   * //Your changes
+   * concavepolygonshape2d.segments = myCoreType
+   * ``````
+   *
+   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of
+   * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
+   * consists of the starting point of a segment and the endpoint of a segment.
+   */
+  @CoreTypeHelper
+  public final fun segmentsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      segments.apply {
+     block(this)
+     segments = this
+  }
+
+  /**
+   * This is a helper function for [segments] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of
+   * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
+   * consists of the starting point of a segment and the endpoint of a segment.
+   */
+  @CoreTypeHelper
+  public final fun segmentsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = segments.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     segments = this
   }
 
   public final fun setSegments(segments: PackedVector2Array): Unit {

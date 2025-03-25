@@ -37,6 +37,13 @@ import kotlin.jvm.JvmOverloads
 public open class PhysicsRayQueryParameters3D : RefCounted() {
   /**
    * The starting point of the ray being queried for, in global coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var from: Vector3
@@ -49,6 +56,13 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   /**
    * The ending point of the ray being queried for, in global coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var to: Vector3
@@ -140,13 +154,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   /**
-   * The starting point of the ray being queried for, in global coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [from] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -155,22 +163,17 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsrayqueryparameters3d.from = myCoreType
    * ``````
+   *
+   * The starting point of the ray being queried for, in global coordinates.
    */
   @CoreTypeHelper
-  public final fun fromMutate(block: Vector3.() -> Unit): Vector3 = from.apply{
-      block(this)
-      from = this
+  public final fun fromMutate(block: Vector3.() -> Unit): Vector3 = from.apply {
+     block(this)
+     from = this
   }
 
-
   /**
-   * The ending point of the ray being queried for, in global coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [to] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -179,13 +182,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsrayqueryparameters3d.to = myCoreType
    * ``````
+   *
+   * The ending point of the ray being queried for, in global coordinates.
    */
   @CoreTypeHelper
-  public final fun toMutate(block: Vector3.() -> Unit): Vector3 = to.apply{
-      block(this)
-      to = this
+  public final fun toMutate(block: Vector3.() -> Unit): Vector3 = to.apply {
+     block(this)
+     to = this
   }
-
 
   public final fun setFrom(from: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to from)

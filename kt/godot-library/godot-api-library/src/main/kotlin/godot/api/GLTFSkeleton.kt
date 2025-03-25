@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -29,6 +31,17 @@ import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var joints: PackedInt32Array
     @JvmName("jointsProperty")
     get() = getJoints()
@@ -37,6 +50,17 @@ public open class GLTFSkeleton : Resource() {
       setJoints(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var roots: PackedInt32Array
     @JvmName("rootsProperty")
     get() = getRoots()
@@ -63,6 +87,71 @@ public open class GLTFSkeleton : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(237, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [joints] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfskeleton.joints
+   * //Your changes
+   * gltfskeleton.joints = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun jointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      joints.apply {
+     block(this)
+     joints = this
+  }
+
+  /**
+   * This is a helper function for [joints] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun jointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
+      joints.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     joints = this
+  }
+
+  /**
+   * This is a helper function for [roots] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfskeleton.roots
+   * //Your changes
+   * gltfskeleton.roots = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun rootsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = roots.apply {
+     block(this)
+     roots = this
+  }
+
+  /**
+   * This is a helper function for [roots] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun rootsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
+      roots.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     roots = this
   }
 
   public final fun getJoints(): PackedInt32Array {

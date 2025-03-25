@@ -184,6 +184,13 @@ public open class Control : CanvasItem() {
    * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
    * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
    * this property and the internal minimum size (see [getCombinedMinimumSize]).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var customMinimumSize: Vector2
@@ -332,7 +339,6 @@ public open class Control : CanvasItem() {
    * The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes
    * update this property automatically.
    */
-  @CoreTypeLocalCopy
   public final inline val size: Vector2
     @JvmName("sizeProperty")
     get() = getSize()
@@ -341,7 +347,6 @@ public open class Control : CanvasItem() {
    * The node's position, relative to its containing node. It corresponds to the rectangle's
    * top-left corner. The property is not affected by [pivotOffset].
    */
-  @CoreTypeLocalCopy
   public final inline val position: Vector2
     @JvmName("positionProperty")
     get() = getPosition()
@@ -349,7 +354,6 @@ public open class Control : CanvasItem() {
   /**
    * The node's global position, relative to the world (usually to the [CanvasLayer]).
    */
-  @CoreTypeLocalCopy
   public final inline val globalPosition: Vector2
     @JvmName("globalPositionProperty")
     get() = getGlobalPosition()
@@ -400,6 +404,13 @@ public open class Control : CanvasItem() {
    * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
    * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
    * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
@@ -414,6 +425,13 @@ public open class Control : CanvasItem() {
    * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
    * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
    * Control's center.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var pivotOffset: Vector2
@@ -754,17 +772,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
-   * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
-   * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
-   * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
-   * this property and the internal minimum size (see [getCombinedMinimumSize]).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [customMinimumSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -773,16 +781,31 @@ public open class Control : CanvasItem() {
    * //Your changes
    * control.customMinimumSize = myCoreType
    * ``````
+   *
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
+   * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
+   * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
+   * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
+   * this property and the internal minimum size (see [getCombinedMinimumSize]).
    */
   @CoreTypeHelper
   public final fun customMinimumSizeMutate(block: Vector2.() -> Unit): Vector2 =
-      customMinimumSize.apply{
-      block(this)
-      customMinimumSize = this
+      customMinimumSize.apply {
+     block(this)
+     customMinimumSize = this
   }
 
-
   /**
+   * This is a helper function for [scale] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.scale
+   * //Your changes
+   * control.scale = myCoreType
+   * ``````
+   *
    * The node's scale, relative to its [size]. Change this property to scale the node around its
    * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
    *
@@ -802,38 +825,15 @@ public open class Control : CanvasItem() {
    * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
    * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
    * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = control.scale
-   * //Your changes
-   * control.scale = myCoreType
-   * ``````
    */
   @CoreTypeHelper
-  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
-      block(this)
-      scale = this
+  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply {
+     block(this)
+     scale = this
   }
 
-
   /**
-   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
-   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
-   * Control's center.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [pivotOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -842,13 +842,16 @@ public open class Control : CanvasItem() {
    * //Your changes
    * control.pivotOffset = myCoreType
    * ``````
+   *
+   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
+   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
+   * Control's center.
    */
   @CoreTypeHelper
-  public final fun pivotOffsetMutate(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply{
-      block(this)
-      pivotOffset = this
+  public final fun pivotOffsetMutate(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply {
+     block(this)
+     pivotOffset = this
   }
-
 
   /**
    * Virtual method to be implemented by the user. Returns whether the given [point] is inside this

@@ -291,6 +291,13 @@ public open class ItemList : Control() {
    * The size all icons will be adjusted to.
    *
    * If either X or Y component is not greater than zero, icon size won't be affected.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fixedIconSize: Vector2i
@@ -306,15 +313,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * The size all icons will be adjusted to.
-   *
-   * If either X or Y component is not greater than zero, icon size won't be affected.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fixedIconSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -323,13 +322,16 @@ public open class ItemList : Control() {
    * //Your changes
    * itemlist.fixedIconSize = myCoreType
    * ``````
+   *
+   * The size all icons will be adjusted to.
+   *
+   * If either X or Y component is not greater than zero, icon size won't be affected.
    */
   @CoreTypeHelper
-  public final fun fixedIconSizeMutate(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
-      block(this)
-      fixedIconSize = this
+  public final fun fixedIconSizeMutate(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply {
+     block(this)
+     fixedIconSize = this
   }
-
 
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.

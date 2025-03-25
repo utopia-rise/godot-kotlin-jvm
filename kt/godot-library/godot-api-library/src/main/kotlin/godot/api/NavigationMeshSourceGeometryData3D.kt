@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -38,6 +40,17 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class NavigationMeshSourceGeometryData3D : Resource() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var vertices: PackedFloat32Array
     @JvmName("verticesProperty")
     get() = getVertices()
@@ -46,6 +59,17 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
       setVertices(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var indices: PackedInt32Array
     @JvmName("indicesProperty")
     get() = getIndices()
@@ -64,6 +88,72 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(381, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmeshsourcegeometrydata3d.vertices
+   * //Your changes
+   * navigationmeshsourcegeometrydata3d.vertices = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun verticesMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      vertices.apply {
+     block(this)
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutateEach(block: (index: Int, `value`: Float) -> Unit):
+      PackedFloat32Array = vertices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [indices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmeshsourcegeometrydata3d.indices
+   * //Your changes
+   * navigationmeshsourcegeometrydata3d.indices = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun indicesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      indices.apply {
+     block(this)
+     indices = this
+  }
+
+  /**
+   * This is a helper function for [indices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun indicesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
+      indices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     indices = this
   }
 
   /**

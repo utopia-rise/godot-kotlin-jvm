@@ -48,6 +48,13 @@ public open class BackBufferCopy : Node2D() {
 
   /**
    * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rect: Rect2
@@ -63,13 +70,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   /**
-   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -78,13 +79,14 @@ public open class BackBufferCopy : Node2D() {
    * //Your changes
    * backbuffercopy.rect = myCoreType
    * ``````
+   *
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   @CoreTypeHelper
-  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
-      block(this)
-      rect = this
+  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply {
+     block(this)
+     rect = this
   }
-
 
   public final fun setRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)

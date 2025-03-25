@@ -11,6 +11,7 @@ import godot.common.util.MapIterator
 import godot.common.util.isNullable
 import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
+import kotlin.collections.forEachIndexed
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
@@ -348,11 +349,19 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     }
 
     @CoreTypeHelper
-    inline fun <R> get(key: K, block: V.() -> R): R {
+    inline fun <R> mutate(key: K, block: (V) -> R): R {
         val localCopy = this[key]
-        val ret = localCopy.block()
+        val ret = block(localCopy)
         this[key] = localCopy
         return ret
+    }
+
+    @CoreTypeHelper
+    inline fun mutateEach(block: (key: K, value: V) -> Unit){
+        for ((key, value) in this){
+            block(key, value)
+            this[key] = value
+        }
     }
 
     operator fun set(key: K, value: V) {

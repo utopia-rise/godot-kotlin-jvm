@@ -83,6 +83,13 @@ public open class ShapeCast2D : Node2D() {
 
   /**
    * The shape's destination point, relative to this node's [Node2D.position].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector2
@@ -165,13 +172,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * The shape's destination point, relative to this node's [Node2D.position].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [targetPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -180,13 +181,14 @@ public open class ShapeCast2D : Node2D() {
    * //Your changes
    * shapecast2d.targetPosition = myCoreType
    * ``````
+   *
+   * The shape's destination point, relative to this node's [Node2D.position].
    */
   @CoreTypeHelper
-  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
-      block(this)
-      targetPosition = this
+  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply {
+     block(this)
+     targetPosition = this
   }
-
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)

@@ -191,6 +191,13 @@ public open class StyleBoxTexture : StyleBox() {
    * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
    *
    * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -203,6 +210,13 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Modulates the color of the texture when this style box is drawn.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulateColor: Color
@@ -229,17 +243,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
-   * The region to use from the [texture].
-   *
-   * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
-   *
-   * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [regionRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -248,22 +252,21 @@ public open class StyleBoxTexture : StyleBox() {
    * //Your changes
    * styleboxtexture.regionRect = myCoreType
    * ``````
+   *
+   * The region to use from the [texture].
+   *
+   * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   *
+   * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    */
   @CoreTypeHelper
-  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
-      block(this)
-      regionRect = this
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply {
+     block(this)
+     regionRect = this
   }
 
-
   /**
-   * Modulates the color of the texture when this style box is drawn.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [modulateColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -272,13 +275,14 @@ public open class StyleBoxTexture : StyleBox() {
    * //Your changes
    * styleboxtexture.modulateColor = myCoreType
    * ``````
+   *
+   * Modulates the color of the texture when this style box is drawn.
    */
   @CoreTypeHelper
-  public final fun modulateColorMutate(block: Color.() -> Unit): Color = modulateColor.apply{
-      block(this)
-      modulateColor = this
+  public final fun modulateColorMutate(block: Color.() -> Unit): Color = modulateColor.apply {
+     block(this)
+     modulateColor = this
   }
-
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)

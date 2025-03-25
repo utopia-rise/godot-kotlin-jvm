@@ -164,6 +164,13 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * multiple bones must always face the same direction, such as the eyes.
    *
    * **Note:** This value indicates the local position of the object set in [originFrom].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var originOffset: Vector3
@@ -406,16 +413,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   /**
-   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
-   * multiple bones must always face the same direction, such as the eyes.
-   *
-   * **Note:** This value indicates the local position of the object set in [originFrom].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [originOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -424,13 +422,17 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * //Your changes
    * lookatmodifier3d.originOffset = myCoreType
    * ``````
+   *
+   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
+   * multiple bones must always face the same direction, such as the eyes.
+   *
+   * **Note:** This value indicates the local position of the object set in [originFrom].
    */
   @CoreTypeHelper
-  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
-      block(this)
-      originOffset = this
+  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply {
+     block(this)
+     originOffset = this
   }
-
 
   public final fun setTargetNode(targetNode: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to targetNode)

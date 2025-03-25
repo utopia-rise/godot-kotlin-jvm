@@ -55,6 +55,13 @@ public infix fun Long.and(other: Mesh.ArrayFormat): Long = this.and(other.flag)
 public open class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var lightmapSizeHint: Vector2i
@@ -70,13 +77,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Sets a hint to be used for lightmap resolution.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [lightmapSizeHint] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -85,14 +86,15 @@ public open class Mesh : Resource() {
    * //Your changes
    * mesh.lightmapSizeHint = myCoreType
    * ``````
+   *
+   * Sets a hint to be used for lightmap resolution.
    */
   @CoreTypeHelper
   public final fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i =
-      lightmapSizeHint.apply{
-      block(this)
-      lightmapSizeHint = this
+      lightmapSizeHint.apply {
+     block(this)
+     lightmapSizeHint = this
   }
-
 
   /**
    * Virtual method to override the surface count for a custom class extending [Mesh].

@@ -213,6 +213,13 @@ public open class Area2D : CollisionObject2D() {
 
   /**
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravityPointCenter: Vector2
@@ -225,6 +232,13 @@ public open class Area2D : CollisionObject2D() {
 
   /**
    * The area's gravity vector (not normalized).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravityDirection: Vector2
@@ -326,13 +340,7 @@ public open class Area2D : CollisionObject2D() {
   }
 
   /**
-   * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravityPointCenter] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -341,23 +349,18 @@ public open class Area2D : CollisionObject2D() {
    * //Your changes
    * area2d.gravityPointCenter = myCoreType
    * ``````
+   *
+   * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
   @CoreTypeHelper
   public final fun gravityPointCenterMutate(block: Vector2.() -> Unit): Vector2 =
-      gravityPointCenter.apply{
-      block(this)
-      gravityPointCenter = this
+      gravityPointCenter.apply {
+     block(this)
+     gravityPointCenter = this
   }
 
-
   /**
-   * The area's gravity vector (not normalized).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravityDirection] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -366,14 +369,15 @@ public open class Area2D : CollisionObject2D() {
    * //Your changes
    * area2d.gravityDirection = myCoreType
    * ``````
+   *
+   * The area's gravity vector (not normalized).
    */
   @CoreTypeHelper
   public final fun gravityDirectionMutate(block: Vector2.() -> Unit): Vector2 =
-      gravityDirection.apply{
-      block(this)
-      gravityDirection = this
+      gravityDirection.apply {
+     block(this)
+     gravityDirection = this
   }
-
 
   public final fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
     TransferContext.writeArguments(LONG to spaceOverrideMode.id)
