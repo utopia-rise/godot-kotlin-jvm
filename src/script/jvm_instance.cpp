@@ -164,7 +164,17 @@ void JvmInstance::validate_property(PropertyInfo& p_property) const {
 }
 
 String JvmInstance::to_string(bool* r_valid) {
-    return ScriptInstance::to_string(r_valid);
+    jni::Env env {jni::Jvm::current_env()};
+
+    if (KtFunction* function {kt_class->get_method(SNAME("_to_string"))}) {
+        const int arg_count = 0;
+        Variant ret;
+        function->invoke(env, kt_object, nullptr, arg_count, ret);
+        *r_valid = true;
+        return ret.operator String();
+    }
+    *r_valid = false;
+    return {};
 }
 
 void JvmInstance::refcount_incremented() {
