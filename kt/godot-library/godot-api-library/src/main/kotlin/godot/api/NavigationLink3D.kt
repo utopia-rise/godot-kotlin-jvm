@@ -80,6 +80,13 @@ public open class NavigationLink3D : Node3D() {
    *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var startPosition: Vector3
@@ -97,6 +104,13 @@ public open class NavigationLink3D : Node3D() {
    *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var endPosition: Vector3
@@ -136,18 +150,7 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Starting position of the link.
-   *
-   * This position will search out the nearest polygon in the navigation mesh to attach to.
-   *
-   * The distance the link will search is controlled by
-   * [NavigationServer3D.mapSetLinkConnectionRadius].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [startPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -156,27 +159,22 @@ public open class NavigationLink3D : Node3D() {
    * //Your changes
    * navigationlink3d.startPosition = myCoreType
    * ``````
-   */
-  @CoreTypeHelper
-  public final fun startPositionMutate(block: Vector3.() -> Unit): Vector3 = startPosition.apply{
-      block(this)
-      startPosition = this
-  }
-
-
-  /**
-   * Ending position of the link.
+   *
+   * Starting position of the link.
    *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
    *
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   */
+  @CoreTypeHelper
+  public final fun startPositionMutate(block: Vector3.() -> Unit): Vector3 = startPosition.apply {
+     block(this)
+     startPosition = this
+  }
+
+  /**
+   * This is a helper function for [endPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -185,13 +183,19 @@ public open class NavigationLink3D : Node3D() {
    * //Your changes
    * navigationlink3d.endPosition = myCoreType
    * ``````
+   *
+   * Ending position of the link.
+   *
+   * This position will search out the nearest polygon in the navigation mesh to attach to.
+   *
+   * The distance the link will search is controlled by
+   * [NavigationServer3D.mapSetLinkConnectionRadius].
    */
   @CoreTypeHelper
-  public final fun endPositionMutate(block: Vector3.() -> Unit): Vector3 = endPosition.apply{
-      block(this)
-      endPosition = this
+  public final fun endPositionMutate(block: Vector3.() -> Unit): Vector3 = endPosition.apply {
+     block(this)
+     endPosition = this
   }
-
 
   /**
    * Returns the [RID] of this link on the [NavigationServer3D].

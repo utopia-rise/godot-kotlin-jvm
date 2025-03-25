@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -40,7 +42,15 @@ import kotlin.jvm.JvmOverloads
 public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   /**
    * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var supportedProtocols: PackedStringArray
     @JvmName("supportedProtocolsProperty")
     get() = getSupportedProtocols()
@@ -52,7 +62,15 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   /**
    * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more
    * details.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var handshakeHeaders: PackedStringArray
     @JvmName("handshakeHeadersProperty")
     get() = getHandshakeHeaders()
@@ -110,6 +128,82 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(848, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [supportedProtocols] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = websocketmultiplayerpeer.supportedProtocols
+   * //Your changes
+   * websocketmultiplayerpeer.supportedProtocols = myCoreType
+   * ``````
+   *
+   * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
+   */
+  @CoreTypeHelper
+  public final fun supportedProtocolsMutate(block: PackedStringArray.() -> Unit): PackedStringArray
+      = supportedProtocols.apply {
+     block(this)
+     supportedProtocols = this
+  }
+
+  /**
+   * This is a helper function for [supportedProtocols] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
+   */
+  @CoreTypeHelper
+  public final fun supportedProtocolsMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = supportedProtocols.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     supportedProtocols = this
+  }
+
+  /**
+   * This is a helper function for [handshakeHeaders] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = websocketmultiplayerpeer.handshakeHeaders
+   * //Your changes
+   * websocketmultiplayerpeer.handshakeHeaders = myCoreType
+   * ``````
+   *
+   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more
+   * details.
+   */
+  @CoreTypeHelper
+  public final fun handshakeHeadersMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      handshakeHeaders.apply {
+     block(this)
+     handshakeHeaders = this
+  }
+
+  /**
+   * This is a helper function for [handshakeHeaders] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more
+   * details.
+   */
+  @CoreTypeHelper
+  public final fun handshakeHeadersMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = handshakeHeaders.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     handshakeHeaders = this
   }
 
   /**

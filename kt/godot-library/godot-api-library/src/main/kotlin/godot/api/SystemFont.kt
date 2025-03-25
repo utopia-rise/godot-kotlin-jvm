@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -21,6 +23,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -42,7 +45,15 @@ import kotlin.jvm.JvmName
 public open class SystemFont : Font() {
   /**
    * Array of font family names to search, first matching font found is used.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var fontNames: PackedStringArray
     @JvmName("fontNamesProperty")
     get() = getFontNames()
@@ -231,6 +242,43 @@ public open class SystemFont : Font() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(656, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [fontNames] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = systemfont.fontNames
+   * //Your changes
+   * systemfont.fontNames = myCoreType
+   * ``````
+   *
+   * Array of font family names to search, first matching font found is used.
+   */
+  @CoreTypeHelper
+  public final fun fontNamesMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      fontNames.apply {
+     block(this)
+     fontNames = this
+  }
+
+  /**
+   * This is a helper function for [fontNames] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Array of font family names to search, first matching font found is used.
+   */
+  @CoreTypeHelper
+  public final fun fontNamesMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = fontNames.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     fontNames = this
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {

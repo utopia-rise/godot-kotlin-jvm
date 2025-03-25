@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -15,6 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import kotlin.Byte
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -34,7 +37,15 @@ import kotlin.jvm.JvmName
 public open class StreamPeerBuffer : StreamPeer() {
   /**
    * The underlying data buffer. Setting this value resets the cursor.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var dataArray: PackedByteArray
     @JvmName("dataArrayProperty")
     get() = getDataArray()
@@ -45,6 +56,43 @@ public open class StreamPeerBuffer : StreamPeer() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(641, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [dataArray] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = streampeerbuffer.dataArray
+   * //Your changes
+   * streampeerbuffer.dataArray = myCoreType
+   * ``````
+   *
+   * The underlying data buffer. Setting this value resets the cursor.
+   */
+  @CoreTypeHelper
+  public final fun dataArrayMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      dataArray.apply {
+     block(this)
+     dataArray = this
+  }
+
+  /**
+   * This is a helper function for [dataArray] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The underlying data buffer. Setting this value resets the cursor.
+   */
+  @CoreTypeHelper
+  public final fun dataArrayMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray
+      = dataArray.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     dataArray = this
   }
 
   /**

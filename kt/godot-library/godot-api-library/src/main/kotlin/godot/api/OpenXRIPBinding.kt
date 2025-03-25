@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -75,7 +77,15 @@ public open class OpenXRIPBinding : Resource() {
 
   /**
    * Paths that define the inputs or outputs bound on the device.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var paths: PackedStringArray
     @JvmName("pathsProperty")
     get() = getPaths()
@@ -86,6 +96,43 @@ public open class OpenXRIPBinding : Resource() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(442, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [paths] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = openxripbinding.paths
+   * //Your changes
+   * openxripbinding.paths = myCoreType
+   * ``````
+   *
+   * Paths that define the inputs or outputs bound on the device.
+   */
+  @CoreTypeHelper
+  public final fun pathsMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      paths.apply {
+     block(this)
+     paths = this
+  }
+
+  /**
+   * This is a helper function for [paths] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Paths that define the inputs or outputs bound on the device.
+   */
+  @CoreTypeHelper
+  public final fun pathsMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray
+      = paths.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     paths = this
   }
 
   public final fun setAction(action: OpenXRAction?): Unit {

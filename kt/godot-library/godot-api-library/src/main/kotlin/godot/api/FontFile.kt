@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -37,6 +39,7 @@ import godot.core.Vector2
 import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -93,7 +96,15 @@ import kotlin.jvm.JvmName
 public open class FontFile : Font() {
   /**
    * Contents of the dynamic font source file.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var `data`: PackedByteArray
     @JvmName("dataProperty")
     get() = getData()
@@ -354,6 +365,42 @@ public open class FontFile : Font() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(218, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = fontfile.data
+   * //Your changes
+   * fontfile.data = myCoreType
+   * ``````
+   *
+   * Contents of the dynamic font source file.
+   */
+  @CoreTypeHelper
+  public final fun dataMutate(block: PackedByteArray.() -> Unit): PackedByteArray = data.apply {
+     block(this)
+     data = this
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Contents of the dynamic font source file.
+   */
+  @CoreTypeHelper
+  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
+      data.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     data = this
   }
 
   /**

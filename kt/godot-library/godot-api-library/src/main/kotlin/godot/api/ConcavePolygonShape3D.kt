@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -14,6 +16,7 @@ import godot.core.PackedVector3Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
+import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -46,6 +49,17 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var `data`: PackedVector3Array
     @JvmName("dataProperty")
     get() = getFaces()
@@ -68,6 +82,39 @@ public open class ConcavePolygonShape3D : Shape3D() {
 
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(173, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = concavepolygonshape3d.data
+   * //Your changes
+   * concavepolygonshape3d.data = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun dataMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      data.apply {
+     block(this)
+     data = this
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun dataMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array
+      = data.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     data = this
   }
 
   /**

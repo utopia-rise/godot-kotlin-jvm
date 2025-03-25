@@ -38,6 +38,13 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but
    * can be used to manually manage scrolling when no camera is present.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollOffset: Vector2
@@ -50,6 +57,13 @@ public open class ParallaxBackground : CanvasLayer() {
 
   /**
    * The base position offset for all [ParallaxLayer] children.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollBaseOffset: Vector2
@@ -62,6 +76,13 @@ public open class ParallaxBackground : CanvasLayer() {
 
   /**
    * The base motion scale for all [ParallaxLayer] children.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollBaseScale: Vector2
@@ -75,6 +96,13 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background
    * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollLimitBegin: Vector2
@@ -88,6 +116,13 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
    * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollLimitEnd: Vector2
@@ -114,14 +149,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   /**
-   * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but
-   * can be used to manually manage scrolling when no camera is present.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -130,22 +158,18 @@ public open class ParallaxBackground : CanvasLayer() {
    * //Your changes
    * parallaxbackground.scrollOffset = myCoreType
    * ``````
+   *
+   * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but
+   * can be used to manually manage scrolling when no camera is present.
    */
   @CoreTypeHelper
-  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
-      block(this)
-      scrollOffset = this
+  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply {
+     block(this)
+     scrollOffset = this
   }
 
-
   /**
-   * The base position offset for all [ParallaxLayer] children.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollBaseOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -154,23 +178,18 @@ public open class ParallaxBackground : CanvasLayer() {
    * //Your changes
    * parallaxbackground.scrollBaseOffset = myCoreType
    * ``````
+   *
+   * The base position offset for all [ParallaxLayer] children.
    */
   @CoreTypeHelper
   public final fun scrollBaseOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      scrollBaseOffset.apply{
-      block(this)
-      scrollBaseOffset = this
+      scrollBaseOffset.apply {
+     block(this)
+     scrollBaseOffset = this
   }
 
-
   /**
-   * The base motion scale for all [ParallaxLayer] children.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollBaseScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -179,24 +198,18 @@ public open class ParallaxBackground : CanvasLayer() {
    * //Your changes
    * parallaxbackground.scrollBaseScale = myCoreType
    * ``````
+   *
+   * The base motion scale for all [ParallaxLayer] children.
    */
   @CoreTypeHelper
   public final fun scrollBaseScaleMutate(block: Vector2.() -> Unit): Vector2 =
-      scrollBaseScale.apply{
-      block(this)
-      scrollBaseScale = this
+      scrollBaseScale.apply {
+     block(this)
+     scrollBaseScale = this
   }
 
-
   /**
-   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background
-   * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollLimitBegin] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -205,24 +218,19 @@ public open class ParallaxBackground : CanvasLayer() {
    * //Your changes
    * parallaxbackground.scrollLimitBegin = myCoreType
    * ``````
+   *
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background
+   * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    */
   @CoreTypeHelper
   public final fun scrollLimitBeginMutate(block: Vector2.() -> Unit): Vector2 =
-      scrollLimitBegin.apply{
-      block(this)
-      scrollLimitBegin = this
+      scrollLimitBegin.apply {
+     block(this)
+     scrollLimitBegin = this
   }
 
-
   /**
-   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
-   * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scrollLimitEnd] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -231,13 +239,15 @@ public open class ParallaxBackground : CanvasLayer() {
    * //Your changes
    * parallaxbackground.scrollLimitEnd = myCoreType
    * ``````
+   *
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
+   * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    */
   @CoreTypeHelper
-  public final fun scrollLimitEndMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
-      block(this)
-      scrollLimitEnd = this
+  public final fun scrollLimitEndMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply {
+     block(this)
+     scrollLimitEnd = this
   }
-
 
   public final fun setScrollOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)

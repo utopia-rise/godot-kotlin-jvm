@@ -43,6 +43,13 @@ public open class GLTFSpecGloss : Resource() {
 
   /**
    * The reflected diffuse factor of the material.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var diffuseFactor: Color
@@ -66,6 +73,13 @@ public open class GLTFSpecGloss : Resource() {
 
   /**
    * The specular RGB color of the material. The alpha channel is unused.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var specularFactor: Color
@@ -92,13 +106,7 @@ public open class GLTFSpecGloss : Resource() {
   }
 
   /**
-   * The reflected diffuse factor of the material.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [diffuseFactor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -107,22 +115,17 @@ public open class GLTFSpecGloss : Resource() {
    * //Your changes
    * gltfspecgloss.diffuseFactor = myCoreType
    * ``````
+   *
+   * The reflected diffuse factor of the material.
    */
   @CoreTypeHelper
-  public final fun diffuseFactorMutate(block: Color.() -> Unit): Color = diffuseFactor.apply{
-      block(this)
-      diffuseFactor = this
+  public final fun diffuseFactorMutate(block: Color.() -> Unit): Color = diffuseFactor.apply {
+     block(this)
+     diffuseFactor = this
   }
 
-
   /**
-   * The specular RGB color of the material. The alpha channel is unused.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [specularFactor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -131,13 +134,14 @@ public open class GLTFSpecGloss : Resource() {
    * //Your changes
    * gltfspecgloss.specularFactor = myCoreType
    * ``````
+   *
+   * The specular RGB color of the material. The alpha channel is unused.
    */
   @CoreTypeHelper
-  public final fun specularFactorMutate(block: Color.() -> Unit): Color = specularFactor.apply{
-      block(this)
-      specularFactor = this
+  public final fun specularFactorMutate(block: Color.() -> Unit): Color = specularFactor.apply {
+     block(this)
+     specularFactor = this
   }
-
 
   public final fun getDiffuseImg(): Image? {
     TransferContext.writeArguments()

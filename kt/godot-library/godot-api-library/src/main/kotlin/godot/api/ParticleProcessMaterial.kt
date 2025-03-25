@@ -110,6 +110,13 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The offset for the [emissionShape], in local space.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionShapeOffset: Vector3
@@ -122,6 +129,13 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The scale of the [emissionShape], in local space.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionShapeScale: Vector3
@@ -159,6 +173,13 @@ public open class ParticleProcessMaterial : Material() {
    *
    * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
    * in both directions. The size is twice the area of the extents.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionBoxExtents: Vector3
@@ -228,6 +249,13 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionRingAxis: Vector3
@@ -287,6 +315,16 @@ public open class ParticleProcessMaterial : Material() {
       setEmissionRingConeAngle(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var angle: Vector2
     @JvmName("angleProperty")
@@ -346,6 +384,13 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * A pivot point used to calculate radial and orbital velocity of particles.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocityPivot: Vector3
@@ -358,6 +403,13 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Unit vector specifying the particles' emission direction.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var direction: Vector3
@@ -390,6 +442,16 @@ public open class ParticleProcessMaterial : Material() {
       setFlatness(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var initialVelocity: Vector2
     @JvmName("initialVelocityProperty")
@@ -422,6 +484,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamMax(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector2
     @JvmName("angularVelocityProperty")
@@ -469,6 +541,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var directionalVelocity: Vector2
     @JvmName("directionalVelocityProperty")
@@ -521,6 +603,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var orbitVelocity: Vector2
     @JvmName("orbitVelocityProperty")
@@ -575,6 +667,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var radialVelocity: Vector2
     @JvmName("radialVelocityProperty")
@@ -642,6 +744,13 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Gravity applied to every particle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravity: Vector3
@@ -652,6 +761,16 @@ public open class ParticleProcessMaterial : Material() {
       setGravity(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var linearAccel: Vector2
     @JvmName("linearAccelProperty")
@@ -694,6 +813,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.LINEAR_ACCEL, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var radialAccel: Vector2
     @JvmName("radialAccelProperty")
@@ -737,6 +866,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.RADIAL_ACCEL, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var tangentialAccel: Vector2
     @JvmName("tangentialAccelProperty")
@@ -780,6 +919,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var damping: Vector2
     @JvmName("dampingProperty")
@@ -835,6 +984,16 @@ public open class ParticleProcessMaterial : Material() {
       setAttractorInteractionEnabled(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
     @JvmName("scaleProperty")
@@ -878,6 +1037,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.SCALE, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var scaleOverVelocity: Vector2
     @JvmName("scaleOverVelocityProperty")
@@ -934,6 +1103,13 @@ public open class ParticleProcessMaterial : Material() {
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [color] will have no visible effect.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -1011,6 +1187,16 @@ public open class ParticleProcessMaterial : Material() {
       setEmissionCurve(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var hueVariation: Vector2
     @JvmName("hueVariationProperty")
@@ -1053,6 +1239,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.HUE_VARIATION, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var animSpeed: Vector2
     @JvmName("animSpeedProperty")
@@ -1099,6 +1295,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamTexture(ParticleProcessMaterial.Parameter.ANIM_SPEED, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var animOffset: Vector2
     @JvmName("animOffsetProperty")
@@ -1191,6 +1397,13 @@ public open class ParticleProcessMaterial : Material() {
    * move in over time.
    *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var turbulenceNoiseSpeed: Vector3
@@ -1215,6 +1428,16 @@ public open class ParticleProcessMaterial : Material() {
       setTurbulenceNoiseSpeedRandom(value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var turbulenceInfluence: Vector2
     @JvmName("turbulenceInfluenceProperty")
@@ -1254,6 +1477,16 @@ public open class ParticleProcessMaterial : Material() {
       setParamMax(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE, value)
     }
 
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
   @CoreTypeLocalCopy
   public final inline var turbulenceInitialDisplacement: Vector2
     @JvmName("turbulenceInitialDisplacementProperty")
@@ -1452,13 +1685,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   /**
-   * The offset for the [emissionShape], in local space.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionShapeOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1467,23 +1694,18 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.emissionShapeOffset = myCoreType
    * ``````
+   *
+   * The offset for the [emissionShape], in local space.
    */
   @CoreTypeHelper
   public final fun emissionShapeOffsetMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionShapeOffset.apply{
-      block(this)
-      emissionShapeOffset = this
+      emissionShapeOffset.apply {
+     block(this)
+     emissionShapeOffset = this
   }
 
-
   /**
-   * The scale of the [emissionShape], in local space.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionShapeScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1492,26 +1714,18 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.emissionShapeScale = myCoreType
    * ``````
+   *
+   * The scale of the [emissionShape], in local space.
    */
   @CoreTypeHelper
   public final fun emissionShapeScaleMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionShapeScale.apply{
-      block(this)
-      emissionShapeScale = this
+      emissionShapeScale.apply {
+     block(this)
+     emissionShapeScale = this
   }
 
-
   /**
-   * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
-   *
-   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
-   * in both directions. The size is twice the area of the extents.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionBoxExtents] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1520,23 +1734,21 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.emissionBoxExtents = myCoreType
    * ``````
+   *
+   * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   *
+   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
+   * in both directions. The size is twice the area of the extents.
    */
   @CoreTypeHelper
   public final fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionBoxExtents.apply{
-      block(this)
-      emissionBoxExtents = this
+      emissionBoxExtents.apply {
+     block(this)
+     emissionBoxExtents = this
   }
 
-
   /**
-   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionRingAxis] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1545,21 +1757,18 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.emissionRingAxis = myCoreType
    * ``````
+   *
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
   @CoreTypeHelper
   public final fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionRingAxis.apply{
-      block(this)
-      emissionRingAxis = this
+      emissionRingAxis.apply {
+     block(this)
+     emissionRingAxis = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angle] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1570,20 +1779,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun angleMutate(block: Vector2.() -> Unit): Vector2 = angle.apply{
-      block(this)
-      angle = this
+  public final fun angleMutate(block: Vector2.() -> Unit): Vector2 = angle.apply {
+     block(this)
+     angle = this
   }
 
-
   /**
-   * A pivot point used to calculate radial and orbital velocity of particles.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocityPivot] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1592,22 +1794,17 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.velocityPivot = myCoreType
    * ``````
+   *
+   * A pivot point used to calculate radial and orbital velocity of particles.
    */
   @CoreTypeHelper
-  public final fun velocityPivotMutate(block: Vector3.() -> Unit): Vector3 = velocityPivot.apply{
-      block(this)
-      velocityPivot = this
+  public final fun velocityPivotMutate(block: Vector3.() -> Unit): Vector3 = velocityPivot.apply {
+     block(this)
+     velocityPivot = this
   }
 
-
   /**
-   * Unit vector specifying the particles' emission direction.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [direction] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1616,20 +1813,17 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.direction = myCoreType
    * ``````
+   *
+   * Unit vector specifying the particles' emission direction.
    */
   @CoreTypeHelper
-  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
-      block(this)
-      direction = this
+  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply {
+     block(this)
+     direction = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [initialVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1641,18 +1835,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun initialVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      initialVelocity.apply{
-      block(this)
-      initialVelocity = this
+      initialVelocity.apply {
+     block(this)
+     initialVelocity = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1664,18 +1853,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun angularVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      angularVelocity.apply{
-      block(this)
-      angularVelocity = this
+      angularVelocity.apply {
+     block(this)
+     angularVelocity = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [directionalVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1687,18 +1871,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun directionalVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      directionalVelocity.apply{
-      block(this)
-      directionalVelocity = this
+      directionalVelocity.apply {
+     block(this)
+     directionalVelocity = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [orbitVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1709,18 +1888,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun orbitVelocityMutate(block: Vector2.() -> Unit): Vector2 = orbitVelocity.apply{
-      block(this)
-      orbitVelocity = this
+  public final fun orbitVelocityMutate(block: Vector2.() -> Unit): Vector2 = orbitVelocity.apply {
+     block(this)
+     orbitVelocity = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [radialVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1731,20 +1905,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun radialVelocityMutate(block: Vector2.() -> Unit): Vector2 = radialVelocity.apply{
-      block(this)
-      radialVelocity = this
+  public final fun radialVelocityMutate(block: Vector2.() -> Unit): Vector2 = radialVelocity.apply {
+     block(this)
+     radialVelocity = this
   }
 
-
   /**
-   * Gravity applied to every particle.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1753,20 +1920,17 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.gravity = myCoreType
    * ``````
+   *
+   * Gravity applied to every particle.
    */
   @CoreTypeHelper
-  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
-      block(this)
-      gravity = this
+  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply {
+     block(this)
+     gravity = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearAccel] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1777,18 +1941,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun linearAccelMutate(block: Vector2.() -> Unit): Vector2 = linearAccel.apply{
-      block(this)
-      linearAccel = this
+  public final fun linearAccelMutate(block: Vector2.() -> Unit): Vector2 = linearAccel.apply {
+     block(this)
+     linearAccel = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [radialAccel] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1799,18 +1958,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun radialAccelMutate(block: Vector2.() -> Unit): Vector2 = radialAccel.apply{
-      block(this)
-      radialAccel = this
+  public final fun radialAccelMutate(block: Vector2.() -> Unit): Vector2 = radialAccel.apply {
+     block(this)
+     radialAccel = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tangentialAccel] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1822,18 +1976,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun tangentialAccelMutate(block: Vector2.() -> Unit): Vector2 =
-      tangentialAccel.apply{
-      block(this)
-      tangentialAccel = this
+      tangentialAccel.apply {
+     block(this)
+     tangentialAccel = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [damping] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1844,18 +1993,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun dampingMutate(block: Vector2.() -> Unit): Vector2 = damping.apply{
-      block(this)
-      damping = this
+  public final fun dampingMutate(block: Vector2.() -> Unit): Vector2 = damping.apply {
+     block(this)
+     damping = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1866,18 +2010,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
-      block(this)
-      scale = this
+  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply {
+     block(this)
+     scale = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scaleOverVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1889,26 +2028,13 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun scaleOverVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      scaleOverVelocity.apply{
-      block(this)
-      scaleOverVelocity = this
+      scaleOverVelocity.apply {
+     block(this)
+     scaleOverVelocity = this
   }
 
-
   /**
-   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
-   * multiplied by this color.
-   *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
-   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [color] will have no visible effect.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1917,20 +2043,23 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.color = myCoreType
    * ``````
+   *
+   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
+   * multiplied by this color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [hueVariation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1941,18 +2070,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun hueVariationMutate(block: Vector2.() -> Unit): Vector2 = hueVariation.apply{
-      block(this)
-      hueVariation = this
+  public final fun hueVariationMutate(block: Vector2.() -> Unit): Vector2 = hueVariation.apply {
+     block(this)
+     hueVariation = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [animSpeed] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1963,18 +2087,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun animSpeedMutate(block: Vector2.() -> Unit): Vector2 = animSpeed.apply{
-      block(this)
-      animSpeed = this
+  public final fun animSpeedMutate(block: Vector2.() -> Unit): Vector2 = animSpeed.apply {
+     block(this)
+     animSpeed = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [animOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1985,23 +2104,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun animOffsetMutate(block: Vector2.() -> Unit): Vector2 = animOffset.apply{
-      block(this)
-      animOffset = this
+  public final fun animOffsetMutate(block: Vector2.() -> Unit): Vector2 = animOffset.apply {
+     block(this)
+     animOffset = this
   }
 
-
   /**
-   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
-   * move in over time.
-   *
-   * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [turbulenceNoiseSpeed] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -2010,21 +2119,21 @@ public open class ParticleProcessMaterial : Material() {
    * //Your changes
    * particleprocessmaterial.turbulenceNoiseSpeed = myCoreType
    * ``````
+   *
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
+   * move in over time.
+   *
+   * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
   @CoreTypeHelper
   public final fun turbulenceNoiseSpeedMutate(block: Vector3.() -> Unit): Vector3 =
-      turbulenceNoiseSpeed.apply{
-      block(this)
-      turbulenceNoiseSpeed = this
+      turbulenceNoiseSpeed.apply {
+     block(this)
+     turbulenceNoiseSpeed = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [turbulenceInfluence] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -2036,18 +2145,14 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun turbulenceInfluenceMutate(block: Vector2.() -> Unit): Vector2 =
-      turbulenceInfluence.apply{
-      block(this)
-      turbulenceInfluence = this
+      turbulenceInfluence.apply {
+     block(this)
+     turbulenceInfluence = this
   }
 
-
   /**
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [turbulenceInitialDisplacement] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -2059,11 +2164,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   @CoreTypeHelper
   public final fun turbulenceInitialDisplacementMutate(block: Vector2.() -> Unit): Vector2 =
-      turbulenceInitialDisplacement.apply{
-      block(this)
-      turbulenceInitialDisplacement = this
+      turbulenceInitialDisplacement.apply {
+     block(this)
+     turbulenceInitialDisplacement = this
   }
-
 
   public final fun setDirection(degrees: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to degrees)

@@ -66,6 +66,13 @@ public open class NinePatchRect : Control() {
    * Rectangular region of the texture to sample from. If you're working with an atlas, use this
    * property to define the area the 9-slice should use. All other properties are relative to this one.
    * If the rect is empty, NinePatchRect will use the whole texture.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -157,15 +164,7 @@ public open class NinePatchRect : Control() {
   }
 
   /**
-   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
-   * property to define the area the 9-slice should use. All other properties are relative to this one.
-   * If the rect is empty, NinePatchRect will use the whole texture.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [regionRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -174,13 +173,16 @@ public open class NinePatchRect : Control() {
    * //Your changes
    * ninepatchrect.regionRect = myCoreType
    * ``````
+   *
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
+   * property to define the area the 9-slice should use. All other properties are relative to this one.
+   * If the rect is empty, NinePatchRect will use the whole texture.
    */
   @CoreTypeHelper
-  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
-      block(this)
-      regionRect = this
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply {
+     block(this)
+     regionRect = this
   }
-
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)

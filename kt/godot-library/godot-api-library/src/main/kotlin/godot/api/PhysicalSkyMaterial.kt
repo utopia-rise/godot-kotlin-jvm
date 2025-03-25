@@ -54,6 +54,13 @@ public open class PhysicalSkyMaterial : Material() {
    * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
    * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
    * corresponding blue sunset.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rayleighColor: Color
@@ -94,6 +101,13 @@ public open class PhysicalSkyMaterial : Material() {
    * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
    * scattering[/url] effect. While not physically accurate, this allows for the creation of
    * alien-looking planets.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var mieColor: Color
@@ -129,6 +143,13 @@ public open class PhysicalSkyMaterial : Material() {
 
   /**
    * Modulates the [Color] on the bottom half of the sky to represent the ground.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var groundColor: Color
@@ -179,16 +200,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   /**
-   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
-   * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
-   * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
-   * corresponding blue sunset.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rayleighColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -197,24 +209,20 @@ public open class PhysicalSkyMaterial : Material() {
    * //Your changes
    * physicalskymaterial.rayleighColor = myCoreType
    * ``````
+   *
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
+   * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
+   * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
+   * corresponding blue sunset.
    */
   @CoreTypeHelper
-  public final fun rayleighColorMutate(block: Color.() -> Unit): Color = rayleighColor.apply{
-      block(this)
-      rayleighColor = this
+  public final fun rayleighColorMutate(block: Color.() -> Unit): Color = rayleighColor.apply {
+     block(this)
+     rayleighColor = this
   }
 
-
   /**
-   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
-   * scattering[/url] effect. While not physically accurate, this allows for the creation of
-   * alien-looking planets.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [mieColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -223,22 +231,19 @@ public open class PhysicalSkyMaterial : Material() {
    * //Your changes
    * physicalskymaterial.mieColor = myCoreType
    * ``````
+   *
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
+   * scattering[/url] effect. While not physically accurate, this allows for the creation of
+   * alien-looking planets.
    */
   @CoreTypeHelper
-  public final fun mieColorMutate(block: Color.() -> Unit): Color = mieColor.apply{
-      block(this)
-      mieColor = this
+  public final fun mieColorMutate(block: Color.() -> Unit): Color = mieColor.apply {
+     block(this)
+     mieColor = this
   }
 
-
   /**
-   * Modulates the [Color] on the bottom half of the sky to represent the ground.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [groundColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -247,13 +252,14 @@ public open class PhysicalSkyMaterial : Material() {
    * //Your changes
    * physicalskymaterial.groundColor = myCoreType
    * ``````
+   *
+   * Modulates the [Color] on the bottom half of the sky to represent the ground.
    */
   @CoreTypeHelper
-  public final fun groundColorMutate(block: Color.() -> Unit): Color = groundColor.apply{
-      block(this)
-      groundColor = this
+  public final fun groundColorMutate(block: Color.() -> Unit): Color = groundColor.apply {
+     block(this)
+     groundColor = this
   }
-
 
   public final fun setRayleighCoefficient(rayleigh: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rayleigh.toDouble())
