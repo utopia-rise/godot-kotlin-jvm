@@ -394,7 +394,7 @@ public open class AnimationMixer internal constructor() : Node() {
   public final fun getCallbackModeProcess(): AnimationCallbackModeProcess {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCallbackModeProcessPtr, LONG)
-    return AnimationMixer.AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCallbackModeMethod(mode: AnimationCallbackModeMethod): Unit {
@@ -405,7 +405,7 @@ public open class AnimationMixer internal constructor() : Node() {
   public final fun getCallbackModeMethod(): AnimationCallbackModeMethod {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCallbackModeMethodPtr, LONG)
-    return AnimationMixer.AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCallbackModeDiscrete(mode: AnimationCallbackModeDiscrete): Unit {
@@ -416,7 +416,7 @@ public open class AnimationMixer internal constructor() : Node() {
   public final fun getCallbackModeDiscrete(): AnimationCallbackModeDiscrete {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCallbackModeDiscretePtr, LONG)
-    return AnimationMixer.AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAudioMaxPolyphony(maxPolyphony: Int): Unit {

@@ -176,7 +176,7 @@ public object PhysicsServer3D : Object() {
   public final fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(ptr, MethodBindings.shapeGetTypePtr, LONG)
-    return PhysicsServer3D.ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -622,7 +622,7 @@ public object PhysicsServer3D : Object() {
   public final fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.bodyGetModePtr, LONG)
-    return PhysicsServer3D.BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1795,7 +1795,7 @@ public object PhysicsServer3D : Object() {
   public final fun jointGetType(joint: RID): JointType {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(ptr, MethodBindings.jointGetTypePtr, LONG)
-    return PhysicsServer3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
+    return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

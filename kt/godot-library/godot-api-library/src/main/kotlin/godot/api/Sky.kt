@@ -79,7 +79,7 @@ public open class Sky : Resource() {
   public final fun getRadianceSize(): RadianceSize {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadianceSizePtr, LONG)
-    return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
+    return RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProcessMode(mode: ProcessMode): Unit {
@@ -90,7 +90,7 @@ public open class Sky : Resource() {
   public final fun getProcessMode(): ProcessMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessModePtr, LONG)
-    return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaterial(material: Material?): Unit {

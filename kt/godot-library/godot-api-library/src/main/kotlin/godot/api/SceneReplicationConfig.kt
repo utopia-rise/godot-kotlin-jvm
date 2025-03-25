@@ -106,7 +106,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.propertyGetReplicationModePtr, LONG)
-    return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

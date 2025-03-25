@@ -424,7 +424,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getFileMode(): FileMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFileModePtr, LONG)
-    return FileDialog.FileMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FileMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -462,7 +462,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getAccess(): Access {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessPtr, LONG)
-    return FileDialog.Access.from(TransferContext.readReturnValue(LONG) as Long)
+    return Access.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setRootSubfolder(dir: String): Unit {

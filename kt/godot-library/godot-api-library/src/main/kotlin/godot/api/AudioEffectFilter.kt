@@ -116,7 +116,7 @@ public open class AudioEffectFilter : AudioEffect() {
   public final fun getDb(): FilterDB {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDbPtr, LONG)
-    return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
+    return FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FilterDB(

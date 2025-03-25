@@ -377,7 +377,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   public final fun getAmbientMode(): AmbientMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientModePtr, LONG)
-    return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAmbientColor(ambient: Color): Unit {
@@ -509,7 +509,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
-    return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class UpdateMode(

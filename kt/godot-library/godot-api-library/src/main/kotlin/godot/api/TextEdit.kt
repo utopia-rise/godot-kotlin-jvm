@@ -1396,7 +1396,7 @@ public open class TextEdit : Control() {
   public final fun getCaretType(): CaretType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCaretTypePtr, LONG)
-    return TextEdit.CaretType.from(TransferContext.readReturnValue(LONG) as Long)
+    return CaretType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCaretBlinkEnabled(enable: Boolean): Unit {
@@ -1810,7 +1810,7 @@ public open class TextEdit : Control() {
   public final fun getSelectionMode(): SelectionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectionModePtr, LONG)
-    return TextEdit.SelectionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SelectionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2058,7 +2058,7 @@ public open class TextEdit : Control() {
   public final fun getLineWrappingMode(): LineWrappingMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineWrappingModePtr, LONG)
-    return TextEdit.LineWrappingMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineWrappingMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
@@ -2411,7 +2411,7 @@ public open class TextEdit : Control() {
   public final fun getGutterType(gutter: Int): GutterType {
     TransferContext.writeArguments(LONG to gutter.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getGutterTypePtr, LONG)
-    return TextEdit.GutterType.from(TransferContext.readReturnValue(LONG) as Long)
+    return GutterType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

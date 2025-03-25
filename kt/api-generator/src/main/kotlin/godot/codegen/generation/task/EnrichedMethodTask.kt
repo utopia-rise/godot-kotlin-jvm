@@ -10,9 +10,9 @@ class EnrichedMethodTask(
     val owner: EnrichedClass,
 ) : MethodTask() {
 
-    override val generator = FunSpec.builder(method.name.applyJvmNameIfNecessary())
+    override val builder = FunSpec.builder(method.name.applyJvmNameIfNecessary())
 
-    override fun executeSingle() = generator.build()
+    override fun executeSingle() = builder.build()
 }
 
 private fun String.applyJvmNameIfNecessary() = MemberNameMapping.KotlinNameToJavaName.GodotApi.functions[this] ?: this

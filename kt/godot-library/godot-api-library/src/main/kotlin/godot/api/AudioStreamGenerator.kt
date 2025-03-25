@@ -169,7 +169,7 @@ public open class AudioStreamGenerator : AudioStream() {
   public final fun getMixRateMode(): AudioStreamGeneratorMixRate {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixRateModePtr, LONG)
-    return AudioStreamGenerator.AudioStreamGeneratorMixRate.from(TransferContext.readReturnValue(LONG) as Long)
+    return AudioStreamGeneratorMixRate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBufferLength(seconds: Float): Unit {

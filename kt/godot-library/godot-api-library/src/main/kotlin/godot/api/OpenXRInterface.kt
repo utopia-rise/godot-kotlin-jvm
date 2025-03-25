@@ -308,7 +308,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getMotionRange(hand: Hand): HandMotionRange {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(ptr, MethodBindings.getMotionRangePtr, LONG)
-    return OpenXRInterface.HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
+    return HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -318,7 +318,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandTrackingSource(hand: Hand): HandTrackedSource {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(ptr, MethodBindings.getHandTrackingSourcePtr, LONG)
-    return OpenXRInterface.HandTrackedSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return HandTrackedSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

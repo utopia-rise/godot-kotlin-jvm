@@ -233,7 +233,7 @@ public open class TileSet : Resource() {
   public final fun getTileShape(): TileShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileShapePtr, LONG)
-    return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return TileShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTileLayout(layout: TileLayout): Unit {
@@ -244,7 +244,7 @@ public open class TileSet : Resource() {
   public final fun getTileLayout(): TileLayout {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileLayoutPtr, LONG)
-    return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
+    return TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTileOffsetAxis(alignment: TileOffsetAxis): Unit {
@@ -255,7 +255,7 @@ public open class TileSet : Resource() {
   public final fun getTileOffsetAxis(): TileOffsetAxis {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileOffsetAxisPtr, LONG)
-    return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    return TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTileSize(size: Vector2i): Unit {
@@ -513,7 +513,7 @@ public open class TileSet : Resource() {
   public final fun getTerrainSetMode(terrainSet: Int): TerrainMode {
     TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTerrainSetModePtr, LONG)
-    return TileSet.TerrainMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TerrainMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -69,7 +69,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   public final fun getOpType(): OpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
-    return VisualShaderNodeDerivativeFunc.OpType.from(TransferContext.readReturnValue(LONG) as Long)
+    return OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -80,7 +80,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeDerivativeFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPrecision(precision: Precision): Unit {
@@ -91,7 +91,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   public final fun getPrecision(): Precision {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrecisionPtr, LONG)
-    return VisualShaderNodeDerivativeFunc.Precision.from(TransferContext.readReturnValue(LONG) as Long)
+    return Precision.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(

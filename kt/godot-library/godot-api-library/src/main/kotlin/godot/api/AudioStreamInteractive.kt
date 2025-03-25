@@ -139,7 +139,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getClipAutoAdvance(clipIndex: Int): AutoAdvanceMode {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getClipAutoAdvancePtr, LONG)
-    return AudioStreamInteractive.AutoAdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AutoAdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -231,7 +231,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionFromTime(fromClip: Int, toClip: Int): TransitionFromTime {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTransitionFromTimePtr, LONG)
-    return AudioStreamInteractive.TransitionFromTime.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransitionFromTime.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -240,7 +240,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionToTime(fromClip: Int, toClip: Int): TransitionToTime {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTransitionToTimePtr, LONG)
-    return AudioStreamInteractive.TransitionToTime.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransitionToTime.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -249,7 +249,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionFadeMode(fromClip: Int, toClip: Int): FadeMode {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTransitionFadeModePtr, LONG)
-    return AudioStreamInteractive.FadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

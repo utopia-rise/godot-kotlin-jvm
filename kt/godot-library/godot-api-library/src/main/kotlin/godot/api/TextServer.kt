@@ -477,7 +477,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetAntialiasing(fontRid: RID): FontAntialiasing {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontGetAntialiasingPtr, LONG)
-    return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
+    return FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -614,7 +614,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetFixedSizeScaleMode(fontRid: RID): FixedSizeScaleMode {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontGetFixedSizeScaleModePtr, LONG)
-    return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -666,7 +666,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetHinting(fontRid: RID): Hinting {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontGetHintingPtr, LONG)
-    return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
+    return Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -684,7 +684,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetSubpixelPositioning(fontRid: RID): SubpixelPositioning {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontGetSubpixelPositioningPtr, LONG)
-    return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
+    return SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1684,7 +1684,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetDirectionPtr, LONG)
-    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+    return Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1693,7 +1693,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetInferredDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetInferredDirectionPtr, LONG)
-    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+    return Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1762,7 +1762,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetOrientation(shaped: RID): Orientation {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetOrientationPtr, LONG)
-    return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
+    return Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2377,7 +2377,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Direction {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetDominantDirectionInRangePtr, LONG)
-    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+    return Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

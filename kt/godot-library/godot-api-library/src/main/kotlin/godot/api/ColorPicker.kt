@@ -233,7 +233,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getColorMode(): ColorModeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorModePtr, LONG)
-    return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEditAlpha(show: Boolean): Unit {
@@ -378,7 +378,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getPickerShape(): PickerShapeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPickerShapePtr, LONG)
-    return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ColorModeType(

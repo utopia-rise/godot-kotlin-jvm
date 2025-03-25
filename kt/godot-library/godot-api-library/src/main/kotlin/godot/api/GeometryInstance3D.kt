@@ -344,7 +344,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getCastShadowsSetting(): ShadowCastingSetting {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCastShadowsSettingPtr, LONG)
-    return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLodBias(bias: Float): Unit {
@@ -421,7 +421,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getVisibilityRangeFadeMode(): VisibilityRangeFadeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
-    return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -483,7 +483,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getLightmapScale(): LightmapScale {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightmapScalePtr, LONG)
-    return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
+    return LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setGiMode(mode: GIMode): Unit {
@@ -494,7 +494,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getGiMode(): GIMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGiModePtr, LONG)
-    return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return GIMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIgnoreOcclusionCulling(ignoreCulling: Boolean): Unit {

@@ -134,7 +134,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public final fun getCompressionMode(): CompressionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCompressionModePtr, LONG)
-    return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSizeOverride(size: Vector2): Unit {

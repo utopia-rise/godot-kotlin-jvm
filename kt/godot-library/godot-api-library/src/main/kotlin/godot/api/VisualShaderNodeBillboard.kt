@@ -61,7 +61,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   public final fun getBillboardType(): BillboardType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBillboardTypePtr, LONG)
-    return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
+    return BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepScaleEnabled(enabled: Boolean): Unit {

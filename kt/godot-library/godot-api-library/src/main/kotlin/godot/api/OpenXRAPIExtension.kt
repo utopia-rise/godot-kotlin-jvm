@@ -445,7 +445,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
-    return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
+    return OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpenXRAlphaBlendModeSupport(

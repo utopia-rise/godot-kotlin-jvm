@@ -318,7 +318,7 @@ public open class FastNoiseLite : Noise() {
   public final fun getNoiseType(): NoiseType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNoiseTypePtr, LONG)
-    return FastNoiseLite.NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
+    return NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSeed(seed: Int): Unit {
@@ -362,7 +362,7 @@ public open class FastNoiseLite : Noise() {
   public final fun getFractalType(): FractalType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFractalTypePtr, LONG)
-    return FastNoiseLite.FractalType.from(TransferContext.readReturnValue(LONG) as Long)
+    return FractalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFractalOctaves(octaveCount: Int): Unit {
@@ -428,7 +428,7 @@ public open class FastNoiseLite : Noise() {
   public final fun getCellularDistanceFunction(): CellularDistanceFunction {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellularDistanceFunctionPtr, LONG)
-    return FastNoiseLite.CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
+    return CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCellularJitter(jitter: Float): Unit {
@@ -450,7 +450,7 @@ public open class FastNoiseLite : Noise() {
   public final fun getCellularReturnType(): CellularReturnType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellularReturnTypePtr, LONG)
-    return FastNoiseLite.CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
+    return CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDomainWarpEnabled(domainWarpEnabled: Boolean): Unit {
@@ -472,7 +472,7 @@ public open class FastNoiseLite : Noise() {
   public final fun getDomainWarpType(): DomainWarpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDomainWarpTypePtr, LONG)
-    return FastNoiseLite.DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
+    return DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDomainWarpAmplitude(domainWarpAmplitude: Float): Unit {
@@ -505,7 +505,7 @@ public open class FastNoiseLite : Noise() {
   public final fun getDomainWarpFractalType(): DomainWarpFractalType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDomainWarpFractalTypePtr, LONG)
-    return FastNoiseLite.DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
+    return DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDomainWarpFractalOctaves(domainWarpOctaveCount: Int): Unit {

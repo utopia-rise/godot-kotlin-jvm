@@ -121,7 +121,7 @@ public open class TreeItem internal constructor() : Object() {
   public final fun getCellMode(column: Int): TreeCellMode {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCellModePtr, LONG)
-    return TreeItem.TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -422,7 +422,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getJointType(): JointType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointTypePtr, LONG)
-    return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
+    return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointOffset(offset: Transform3D): Unit {
@@ -537,7 +537,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getLinearDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
-    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
@@ -548,7 +548,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getAngularDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
-    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {

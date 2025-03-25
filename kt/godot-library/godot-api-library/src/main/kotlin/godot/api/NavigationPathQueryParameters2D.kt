@@ -212,7 +212,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getPathfindingAlgorithm(): PathfindingAlgorithm {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
-    return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
+    return PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
@@ -223,7 +223,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getPathPostprocessing(): PathPostProcessing {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPostprocessingPtr, LONG)
-    return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
+    return PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMap(map: RID): Unit {
