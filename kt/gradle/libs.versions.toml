@@ -1,6 +1,6 @@
 [versions]
 
-godotKotlinJvm = "0.12.1"
+godotKotlinJvm = "0.12.2"
 kotlin = "2.1.10" # https://kotlinlang.org/docs/releases.html#release-details
 kotlinCoroutine = "1.10.1" # https://github.com/Kotlin/kotlinx.coroutines/releases
 godot = "4.4"
