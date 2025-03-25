@@ -1448,7 +1448,7 @@ public open class CanvasItem internal constructor() : Node() {
   public final fun getTextureFilter(): TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
-    return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureRepeat(mode: TextureRepeat): Unit {
@@ -1459,7 +1459,7 @@ public open class CanvasItem internal constructor() : Node() {
   public final fun getTextureRepeat(): TextureRepeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRepeatPtr, LONG)
-    return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipChildrenMode(mode: ClipChildrenMode): Unit {
@@ -1470,7 +1470,7 @@ public open class CanvasItem internal constructor() : Node() {
   public final fun getClipChildrenMode(): ClipChildrenMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClipChildrenModePtr, LONG)
-    return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

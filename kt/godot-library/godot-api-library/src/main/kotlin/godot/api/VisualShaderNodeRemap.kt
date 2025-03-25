@@ -44,7 +44,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
   public final fun getOpType(): OpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
-    return VisualShaderNodeRemap.OpType.from(TransferContext.readReturnValue(LONG) as Long)
+    return OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(

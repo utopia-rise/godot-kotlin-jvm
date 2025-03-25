@@ -1,15 +1,15 @@
-package godot.codegen.traits
+package godot.codegen.models.traits
 
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 
-interface IDocumented {
+interface DocumentedGenerationTrait {
     var description: String?
 }
 
 //TODO: Use Documentable interface from poet when upgrading kotlin poet.
-fun TypeSpec.Builder.addKdoc(documented: IDocumented): TypeSpec.Builder {
+fun TypeSpec.Builder.addKdoc(documented: DocumentedGenerationTrait): TypeSpec.Builder {
     val documentation = documented.description
     return if (documentation.isNullOrEmpty()) {
         this
@@ -18,7 +18,7 @@ fun TypeSpec.Builder.addKdoc(documented: IDocumented): TypeSpec.Builder {
     }
 }
 
-fun PropertySpec.Builder.addKdoc(documented: IDocumented): PropertySpec.Builder {
+fun PropertySpec.Builder.addKdoc(documented: DocumentedGenerationTrait): PropertySpec.Builder {
     val documentation = documented.description
     return if (documentation.isNullOrEmpty()) {
         this
@@ -27,7 +27,7 @@ fun PropertySpec.Builder.addKdoc(documented: IDocumented): PropertySpec.Builder 
     }
 }
 
-fun FunSpec.Builder.addKdoc(documented: IDocumented): FunSpec.Builder {
+fun FunSpec.Builder.addKdoc(documented: DocumentedGenerationTrait): FunSpec.Builder {
     val documentation = documented.description
     return if (documentation.isNullOrEmpty()) {
         this

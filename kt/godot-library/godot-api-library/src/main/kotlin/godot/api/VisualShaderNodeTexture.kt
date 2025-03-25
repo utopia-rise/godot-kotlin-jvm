@@ -71,7 +71,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public final fun getSource(): Source {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeTexture.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    return Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(`value`: Texture2D?): Unit {
@@ -93,7 +93,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeTexture.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(

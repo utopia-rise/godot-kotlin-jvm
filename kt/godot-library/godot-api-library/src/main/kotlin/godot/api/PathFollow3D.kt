@@ -210,7 +210,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getRotationMode(): RotationMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationModePtr, LONG)
-    return PathFollow3D.RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCubicInterpolation(enabled: Boolean): Unit {

@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.FontStyle
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -205,10 +204,10 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns font style flags, see [TextServer.FontStyle].
    */
-  public final fun getFontStyle(): FontStyle {
+  public final fun getFontStyle(): TextServer.FontStyle {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontStylePtr, LONG)
-    return FontStyle(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.FontStyle(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

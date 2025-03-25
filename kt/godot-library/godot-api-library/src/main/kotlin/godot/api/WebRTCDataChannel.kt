@@ -74,7 +74,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   public final fun getWriteMode(): WriteMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteModePtr, LONG)
-    return WebRTCDataChannel.WriteMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return WriteMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -83,7 +83,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   public final fun getReadyState(): ChannelState {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReadyStatePtr, LONG)
-    return WebRTCDataChannel.ChannelState.from(TransferContext.readReturnValue(LONG) as Long)
+    return ChannelState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

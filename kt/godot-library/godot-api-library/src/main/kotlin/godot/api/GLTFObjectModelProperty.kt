@@ -217,7 +217,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   public final fun getObjectModelType(): GLTFObjectModelType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getObjectModelTypePtr, LONG)
-    return GLTFObjectModelProperty.GLTFObjectModelType.from(TransferContext.readReturnValue(LONG) as Long)
+    return GLTFObjectModelType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setObjectModelType(type: GLTFObjectModelType): Unit {

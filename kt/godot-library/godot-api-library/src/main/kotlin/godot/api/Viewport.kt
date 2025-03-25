@@ -975,7 +975,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getMsaa2d(): MSAA {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa2dPtr, LONG)
-    return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
+    return MSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMsaa3d(msaa: MSAA): Unit {
@@ -986,7 +986,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getMsaa3d(): MSAA {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
-    return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
+    return MSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setScreenSpaceAa(screenSpaceAa: ScreenSpaceAA): Unit {
@@ -997,7 +997,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getScreenSpaceAa(): ScreenSpaceAA {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
-    return Viewport.ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
+    return ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUseTaa(enable: Boolean): Unit {
@@ -1041,7 +1041,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getDebugDraw(): DebugDraw {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugDrawPtr, LONG)
-    return Viewport.DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
+    return DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1415,7 +1415,7 @@ public open class Viewport internal constructor() : Node() {
       PositionalShadowAtlasQuadrantSubdiv {
     TransferContext.writeArguments(LONG to quadrant.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr, LONG)
-    return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    return PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1463,7 +1463,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getDefaultCanvasItemTextureFilter(): DefaultCanvasItemTextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCanvasItemTextureFilterPtr, LONG)
-    return Viewport.DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmbeddingSubwindows(enable: Boolean): Unit {
@@ -1525,7 +1525,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getDefaultCanvasItemTextureRepeat(): DefaultCanvasItemTextureRepeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCanvasItemTextureRepeatPtr, LONG)
-    return Viewport.DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+    return DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfOversize(oversize: SDFOversize): Unit {
@@ -1536,7 +1536,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getSdfOversize(): SDFOversize {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfOversizePtr, LONG)
-    return Viewport.SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
+    return SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfScale(scale: SDFScale): Unit {
@@ -1547,7 +1547,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getSdfScale(): SDFScale {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfScalePtr, LONG)
-    return Viewport.SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
+    return SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMeshLodThreshold(pixels: Float): Unit {
@@ -1683,7 +1683,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getScaling3dMode(): Scaling3DMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
-    return Viewport.Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setScaling3dScale(scale: Float): Unit {
@@ -1728,7 +1728,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getAnisotropicFilteringLevel(): AnisotropicFiltering {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnisotropicFilteringLevelPtr, LONG)
-    return Viewport.AnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
+    return AnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVrsMode(mode: VRSMode): Unit {
@@ -1739,7 +1739,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getVrsMode(): VRSMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsModePtr, LONG)
-    return Viewport.VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVrsUpdateMode(mode: VRSUpdateMode): Unit {
@@ -1750,7 +1750,7 @@ public open class Viewport internal constructor() : Node() {
   public final fun getVrsUpdateMode(): VRSUpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsUpdateModePtr, LONG)
-    return Viewport.VRSUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VRSUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVrsTexture(texture: Texture2D?): Unit {

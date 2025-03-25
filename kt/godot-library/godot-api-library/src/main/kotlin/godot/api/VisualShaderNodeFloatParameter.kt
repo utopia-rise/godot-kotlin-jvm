@@ -108,7 +108,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   public final fun getHint(): Hint {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHintPtr, LONG)
-    return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
+    return Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMin(`value`: Float): Unit {

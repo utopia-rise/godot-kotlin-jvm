@@ -112,7 +112,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getTransferMode(): TransferMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransferModePtr, LONG)
-    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,7 +155,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getPacketMode(): TransferMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketModePtr, LONG)
-    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -191,7 +191,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getConnectionStatus(): ConnectionStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionStatusPtr, LONG)
-    return MultiplayerPeer.ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

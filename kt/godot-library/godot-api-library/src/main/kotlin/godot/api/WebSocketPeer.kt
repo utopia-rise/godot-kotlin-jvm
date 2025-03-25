@@ -314,7 +314,7 @@ public open class WebSocketPeer : PacketPeer() {
   public final fun getReadyState(): State {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReadyStatePtr, LONG)
-    return WebSocketPeer.State.from(TransferContext.readReturnValue(LONG) as Long)
+    return State.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

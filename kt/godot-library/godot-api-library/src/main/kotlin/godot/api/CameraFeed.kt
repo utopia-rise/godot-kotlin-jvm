@@ -174,7 +174,7 @@ public open class CameraFeed : RefCounted() {
   public final fun getPosition(): FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, LONG)
-    return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
+    return FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -236,7 +236,7 @@ public open class CameraFeed : RefCounted() {
   public final fun getDatatype(): FeedDataType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDatatypePtr, LONG)
-    return CameraFeed.FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
+    return FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getFormats(): VariantArray<Any?> {

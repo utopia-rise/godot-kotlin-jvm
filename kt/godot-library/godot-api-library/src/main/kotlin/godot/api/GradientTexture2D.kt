@@ -224,7 +224,7 @@ public open class GradientTexture2D : Texture2D() {
   public final fun getFill(): Fill {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillPtr, LONG)
-    return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
+    return Fill.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFillFrom(fillFrom: Vector2): Unit {
@@ -257,7 +257,7 @@ public open class GradientTexture2D : Texture2D() {
   public final fun getRepeat(): Repeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatPtr, LONG)
-    return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
+    return Repeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Fill(

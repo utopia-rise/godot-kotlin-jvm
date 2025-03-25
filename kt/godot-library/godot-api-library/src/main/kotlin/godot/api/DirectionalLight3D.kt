@@ -158,7 +158,7 @@ public open class DirectionalLight3D : Light3D() {
   public final fun getShadowMode(): ShadowMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowModePtr, LONG)
-    return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendSplits(enabled: Boolean): Unit {
@@ -180,7 +180,7 @@ public open class DirectionalLight3D : Light3D() {
   public final fun getSkyMode(): SkyMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyModePtr, LONG)
-    return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ShadowMode(

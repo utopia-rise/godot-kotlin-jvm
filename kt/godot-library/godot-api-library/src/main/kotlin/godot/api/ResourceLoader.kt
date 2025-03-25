@@ -87,7 +87,7 @@ public object ResourceLoader : Object() {
       godot.core.variantArrayOf()): ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
     TransferContext.callMethod(ptr, MethodBindings.loadThreadedGetStatusPtr, LONG)
-    return ResourceLoader.ThreadLoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return ThreadLoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

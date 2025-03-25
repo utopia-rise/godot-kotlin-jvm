@@ -74,7 +74,7 @@ public open class BoxContainer : Container() {
   public final fun getAlignment(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
-    return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {

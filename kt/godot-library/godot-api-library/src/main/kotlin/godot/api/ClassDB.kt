@@ -121,7 +121,7 @@ public object ClassDB : Object() {
   public final fun classGetApiType(`class`: StringName): APIType {
     TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(ptr, MethodBindings.classGetApiTypePtr, LONG)
-    return ClassDB.APIType.from(TransferContext.readReturnValue(LONG) as Long)
+    return APIType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

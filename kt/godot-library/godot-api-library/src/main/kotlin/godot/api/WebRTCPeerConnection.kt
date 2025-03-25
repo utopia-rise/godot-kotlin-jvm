@@ -229,7 +229,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public final fun getConnectionState(): ConnectionState {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionStatePtr, LONG)
-    return WebRTCPeerConnection.ConnectionState.from(TransferContext.readReturnValue(LONG) as Long)
+    return ConnectionState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -239,7 +239,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public final fun getGatheringState(): GatheringState {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGatheringStatePtr, LONG)
-    return WebRTCPeerConnection.GatheringState.from(TransferContext.readReturnValue(LONG) as Long)
+    return GatheringState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -249,7 +249,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public final fun getSignalingState(): SignalingState {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSignalingStatePtr, LONG)
-    return WebRTCPeerConnection.SignalingState.from(TransferContext.readReturnValue(LONG) as Long)
+    return SignalingState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ConnectionState(

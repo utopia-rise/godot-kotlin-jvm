@@ -1434,7 +1434,7 @@ public object DisplayServer : Object() {
   public final fun mouseGetMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.mouseGetModePtr, LONG)
-    return DisplayServer.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1860,7 +1860,7 @@ public object DisplayServer : Object() {
   public final fun screenGetOrientation(screen: Int = -1): ScreenOrientation {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(ptr, MethodBindings.screenGetOrientationPtr, LONG)
-    return DisplayServer.ScreenOrientation.from(TransferContext.readReturnValue(LONG) as Long)
+    return ScreenOrientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2311,7 +2311,7 @@ public object DisplayServer : Object() {
   public final fun windowGetMode(windowId: Int = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowGetModePtr, LONG)
-    return DisplayServer.WindowMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return WindowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2510,7 +2510,7 @@ public object DisplayServer : Object() {
   public final fun windowGetVsyncMode(windowId: Int = 0): VSyncMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowGetVsyncModePtr, LONG)
-    return DisplayServer.VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2687,7 +2687,7 @@ public object DisplayServer : Object() {
   public final fun cursorGetShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cursorGetShapePtr, LONG)
-    return DisplayServer.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

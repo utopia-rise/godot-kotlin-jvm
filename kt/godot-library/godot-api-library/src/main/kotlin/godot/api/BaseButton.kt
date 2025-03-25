@@ -275,7 +275,7 @@ public open class BaseButton : Control() {
   public final fun getActionMode(): ActionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionModePtr, LONG)
-    return BaseButton.ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setButtonMask(mask: MouseButtonMask): Unit {
@@ -297,7 +297,7 @@ public open class BaseButton : Control() {
   public final fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawModePtr, LONG)
-    return BaseButton.DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepPressedOutside(enabled: Boolean): Unit {

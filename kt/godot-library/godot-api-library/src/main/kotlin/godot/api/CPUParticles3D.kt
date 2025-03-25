@@ -1266,7 +1266,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public final fun getDrawOrder(): DrawOrder {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
-    return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
@@ -1477,7 +1477,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public final fun getEmissionShape(): EmissionShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionShapePtr, LONG)
-    return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmissionSphereRadius(radius: Float): Unit {

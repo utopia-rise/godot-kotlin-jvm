@@ -719,7 +719,7 @@ public open class TileMapLayer : Node2D() {
   public final fun getCollisionVisibilityMode(): DebugVisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionVisibilityModePtr, LONG)
-    return TileMapLayer.DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOcclusionEnabled(enabled: Boolean): Unit {
@@ -773,7 +773,7 @@ public open class TileMapLayer : Node2D() {
   public final fun getNavigationVisibilityMode(): DebugVisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationVisibilityModePtr, LONG)
-    return TileMapLayer.DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class DebugVisibilityMode(

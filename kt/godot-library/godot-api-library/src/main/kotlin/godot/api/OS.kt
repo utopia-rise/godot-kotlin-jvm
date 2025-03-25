@@ -412,7 +412,7 @@ public object OS : Object() {
   public final fun getStdinType(): StdHandleType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStdinTypePtr, LONG)
-    return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
+    return StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -422,7 +422,7 @@ public object OS : Object() {
   public final fun getStdoutType(): StdHandleType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStdoutTypePtr, LONG)
-    return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
+    return StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -432,7 +432,7 @@ public object OS : Object() {
   public final fun getStderrType(): StdHandleType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStderrTypePtr, LONG)
-    return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
+    return StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

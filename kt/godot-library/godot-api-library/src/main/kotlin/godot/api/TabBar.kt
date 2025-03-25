@@ -501,7 +501,7 @@ public open class TabBar : Control() {
   public final fun getTabAlignment(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabAlignmentPtr, LONG)
-    return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipTabs(clipTabs: Boolean): Unit {
@@ -567,7 +567,7 @@ public open class TabBar : Control() {
   public final fun getTabCloseDisplayPolicy(): CloseButtonDisplayPolicy {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabCloseDisplayPolicyPtr, LONG)
-    return TabBar.CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
+    return CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaxTabWidth(width: Int): Unit {

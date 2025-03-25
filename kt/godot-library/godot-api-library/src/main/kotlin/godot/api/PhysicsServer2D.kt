@@ -210,7 +210,7 @@ public object PhysicsServer2D : Object() {
   public final fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(ptr, MethodBindings.shapeGetTypePtr, LONG)
-    return PhysicsServer2D.ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -692,7 +692,7 @@ public object PhysicsServer2D : Object() {
   public final fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.bodyGetModePtr, LONG)
-    return PhysicsServer2D.BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -884,7 +884,7 @@ public object PhysicsServer2D : Object() {
   public final fun bodyGetContinuousCollisionDetectionMode(body: RID): CCDMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.bodyGetContinuousCollisionDetectionModePtr, LONG)
-    return PhysicsServer2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1536,7 +1536,7 @@ public object PhysicsServer2D : Object() {
   public final fun jointGetType(joint: RID): JointType {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(ptr, MethodBindings.jointGetTypePtr, LONG)
-    return PhysicsServer2D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
+    return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

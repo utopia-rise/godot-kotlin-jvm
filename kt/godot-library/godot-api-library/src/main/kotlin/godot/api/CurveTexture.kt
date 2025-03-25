@@ -92,7 +92,7 @@ public open class CurveTexture : Texture2D() {
   public final fun getTextureMode(): TextureMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureModePtr, LONG)
-    return CurveTexture.TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class TextureMode(
