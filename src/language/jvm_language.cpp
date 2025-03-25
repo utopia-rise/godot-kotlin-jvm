@@ -124,3 +124,8 @@ void JvmLanguage::reload_scripts(const Array& p_scripts, bool p_soft_reload) {}
 void JvmLanguage::reload_all_scripts() {}
 
 void JvmLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}
+
+// TODO: Dummy to make reloading work again because of https://github.com/godotengine/godot/issues/104540. Should still be truly implemented at some point
+bool JvmLanguage::supports_documentation() const {
+    return true;
+}
