@@ -98,6 +98,7 @@ object GodotTypes {
     const val packedStringArray = "PackedStringArray"
     const val packedVector2Array = "PackedVector2Array"
     const val packedVector3Array = "PackedVector3Array"
+    const val packedVector4Array = "PackedVector4Array"
     const val packedColorArray = "PackedColorArray"
     const val quaternion = "Quaternion"
     const val rect2 = "Rect2"
@@ -142,6 +143,7 @@ object GodotTypes {
         packedStringArray,
         packedVector2Array,
         packedVector3Array,
+        packedVector4Array,
         packedColorArray,
         quaternion,
         rect2,
@@ -233,6 +235,7 @@ val VARIANT_PARSER_PACKED_FLOAT_64_ARRAY = ClassName(variantParserPackage, "PACK
 val VARIANT_PARSER_PACKED_STRING_ARRAY = ClassName(variantParserPackage, "PACKED_STRING_ARRAY")
 val VARIANT_PARSER_PACKED_VECTOR2_ARRAY = ClassName(variantParserPackage, "PACKED_VECTOR2_ARRAY")
 val VARIANT_PARSER_PACKED_VECTOR3_ARRAY = ClassName(variantParserPackage, "PACKED_VECTOR3_ARRAY")
+val VARIANT_PARSER_PACKED_VECTOR4_ARRAY = ClassName(variantParserPackage, "PACKED_VECTOR4_ARRAY")
 val VARIANT_PARSER_PACKED_COLOR_ARRAY = ClassName(variantParserPackage, "PACKED_COLOR_ARRAY")
 val VARIANT_PARSER_PACKED_CALLABLE = ClassName(variantParserPackage, "CALLABLE")
 val VARIANT_PARSER_OBJECT = ClassName(variantParserPackage, "OBJECT")

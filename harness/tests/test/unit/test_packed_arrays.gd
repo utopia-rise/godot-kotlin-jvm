@@ -318,3 +318,51 @@ func test_packed_double_array_bulk_conversion() -> void:
 	assert_eq(script.get_double_array_value(packed, 8), 127.0, "The original Godot PackedArray value should match the values in the Kotlin DoubleArray")
 
 	script.free()
+
+func test_packed_vector2_array_bulk_conversion() -> void:
+	var script: Object = PackedArrayTest.new()
+	var packed = script.convert_vector2_array()
+
+	assert_eq(packed[0], Vector2(0.0, 1.0), "The Godot PackedArray value should match the values in the original Kotlin Vector2")
+	assert_eq(packed[1], Vector2(2.0, 3.0), "The Godot PackedArray value should match the values in the original Kotlin Vector2")
+	assert_eq(packed[2], Vector2(4.0, 5.0), "The Godot PackedArray value should match the values in the original Kotlin Vector2")
+	assert_eq(packed[3], Vector2(1024.0, 2048.0), "The Godot PackedArray value should match the values in the original Kotlin Vector2")
+
+	assert_eq(script.get_vector2_array_value(packed, 0), Vector2(0.0, 1.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
+	assert_eq(script.get_vector2_array_value(packed, 1), Vector2(2.0, 3.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
+	assert_eq(script.get_vector2_array_value(packed, 2), Vector2(4.0, 5.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
+	assert_eq(script.get_vector2_array_value(packed, 3), Vector2(1024.0, 2048.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
+
+	script.free()
+
+func test_packed_vector3_array_bulk_conversion() -> void:
+	var script: Object = PackedArrayTest.new()
+	var packed = script.convert_vector3_array()
+
+	assert_eq(packed[0], Vector3(0.0, 1.0, 2.0), "The Godot PackedArray value should match the values in the original Kotlin Vector3")
+	assert_eq(packed[1], Vector3(3.0, 4.0, 5.0), "The Godot PackedArray value should match the values in the original Kotlin Vector3")
+	assert_eq(packed[2], Vector3(6.0, 7.0, 8.0), "The Godot PackedArray value should match the values in the original Kotlin Vector3")
+	assert_eq(packed[3], Vector3(1024.0, 2048.0, 4096.0), "The Godot PackedArray value should match the values in the original Kotlin Vector3")
+
+	assert_eq(script.get_vector3_array_value(packed, 0), Vector3(0.0, 1.0, 2.0), "The original Godot PackedArray value should match the values in the Kotlin Vector3")
+	assert_eq(script.get_vector3_array_value(packed, 1), Vector3(3.0, 4.0, 5.0), "The original Godot PackedArray value should match the values in the Kotlin Vector3")
+	assert_eq(script.get_vector3_array_value(packed, 2), Vector3(6.0, 7.0, 8.0), "The original Godot PackedArray value should match the values in the Kotlin Vector3")
+	assert_eq(script.get_vector3_array_value(packed, 3), Vector3(1024.0, 2048.0, 4096.0), "The original Godot PackedArray value should match the values in the Kotlin Vector3")
+
+	script.free()
+
+func test_packed_vector4_array_bulk_conversion() -> void:
+	var script: Object = PackedArrayTest.new()
+	var packed = script.convert_vector4_array()
+
+	assert_eq(packed[0], Vector4(0.0, 1.0, 2.0, 3.0), "The Godot PackedArray value should match the values in the original Kotlin Vector4")
+	assert_eq(packed[1], Vector4(4.0, 5.0, 6.0, 7.0), "The Godot PackedArray value should match the values in the original Kotlin Vector4")
+	assert_eq(packed[2], Vector4(8.0, 9.0, 10.0, 11.0), "The Godot PackedArray value should match the values in the original Kotlin Vector4")
+	assert_eq(packed[3], Vector4(1024.0, 2048.0, 4096.0, 8092.0), "The Godot PackedArray value should match the values in the original Kotlin Vector4")
+
+	assert_eq(script.get_vector4_array_value(packed, 0), Vector4(0.0, 1.0, 2.0, 3.0), "The original Godot PackedArray value should match the values in the Kotlin Vector4")
+	assert_eq(script.get_vector4_array_value(packed, 1), Vector4(4.0, 5.0, 6.0, 7.0), "The original Godot PackedArray value should match the values in the Kotlin Vector4")
+	assert_eq(script.get_vector4_array_value(packed, 2), Vector4(8.0, 9.0, 10.0, 11.0), "The original Godot PackedArray value should match the values in the Kotlin Vector4")
+	assert_eq(script.get_vector4_array_value(packed, 3), Vector4(1024.0, 2048.0, 4096.0, 8092.0), "The original Godot PackedArray value should match the values in the Kotlin Vector4")
+
+	script.free()

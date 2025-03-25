@@ -5,6 +5,7 @@ package godot.core
 import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.interop.VoidPtr
+import godot.core.PackedVector2Array
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
@@ -41,6 +42,27 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedVector3Array] from an existing Kotlin [Array<Vector3>].
+     */
+    constructor(from: Array<Vector3>) {
+        val floatArray = FloatArray(from.size * 3)
+        from.forEachIndexed { index, vector ->
+            val floatIndex = index * 3
+            floatArray[floatIndex] = vector.x.toFloat()
+            floatArray[floatIndex + 1] = vector.y.toFloat()
+            floatArray[floatIndex + 2] = vector.z.toFloat()
+        }
+
+        ptr = Bridge.engine_convert_to_godot(floatArray)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
+    }
+
+    /**
+     * Constructs a new [PackedVector3Array] from an existing Kotlin [Collection<Vector3>].
+     */
+    constructor(from: Collection<Vector3>) : this(from.toTypedArray<Vector3>())
+
     override fun toString(): String {
         return "PoolVector3Array(${size})"
     }
@@ -63,6 +85,17 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
         return ptr.hashCode()
     }
 
+    fun toVector3Array(): Array<Vector3> {
+        val floatArray = Bridge.engine_convert_to_jvm(ptr)
+        return Array<Vector3>(floatArray.size / 3) { vectorIndex ->
+            val floatIndex = vectorIndex * 3
+            Vector3(
+                floatArray[floatIndex],
+                floatArray[floatIndex + 1],
+                floatArray[floatIndex + 2]
+            )
+        }
+    }
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
@@ -95,5 +128,19 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
         external override fun engine_call_slice(_handle: VoidPtr)
         external override fun engine_call_sort(_handle: VoidPtr)
         external override fun engine_call_to_byte_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: FloatArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): FloatArray
     }
 }
+
+/**
+ * Convert a [Array<Vector3>] into a Godot [PackedVector3Array], this call is optimised for a large amount of data.
+ */
+fun Array<Vector3>.toPackedArray() = PackedVector3Array(this)
+
+
+/**
+ * Convert a [Collection<Vector3>] into a Godot [PackedVector3Array], this call is optimised for a large amount of data.
+ */
+fun Collection<Vector3>.toPackedArray() = PackedVector3Array(this.toTypedArray())

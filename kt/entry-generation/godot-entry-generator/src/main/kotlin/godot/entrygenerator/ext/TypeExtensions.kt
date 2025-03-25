@@ -30,6 +30,7 @@ import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_64_ARRAY
 import godot.tools.common.constants.VARIANT_PARSER_PACKED_STRING_ARRAY
 import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR2_ARRAY
 import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR4_ARRAY
 import godot.tools.common.constants.VARIANT_PARSER_STRING
 import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
@@ -71,6 +72,7 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "$godotCorePackage.${GodotTypes.packedStringArray}" -> VARIANT_PARSER_PACKED_STRING_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedVector2Array}" -> VARIANT_PARSER_PACKED_VECTOR2_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_PARSER_PACKED_VECTOR3_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedVector4Array}" -> VARIANT_PARSER_PACKED_VECTOR4_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_PARSER_PACKED_COLOR_ARRAY
     fqName.startsWith("$godotCorePackage.${GodotTypes.lambdaCallable}") -> VARIANT_PARSER_PACKED_CALLABLE
     isCoreType() -> ClassName(
@@ -201,6 +203,7 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     "$godotCorePackage.${GodotTypes.packedVector2Array}" -> 35
     "$godotCorePackage.${GodotTypes.packedVector3Array}" -> 36
     "$godotCorePackage.${GodotTypes.packedColorArray}" -> 37
+    "$godotCorePackage.${GodotTypes.packedVector4Array}" -> 38
     else -> if (this.isCompatibleListType()) {
         28
     } else {
