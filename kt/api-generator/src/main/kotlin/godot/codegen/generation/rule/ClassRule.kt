@@ -4,15 +4,14 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import godot.codegen.extensions.getClassName
-import godot.codegen.generation.Context
+import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
 import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.EnrichedMethodTask
 import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.generation.task.SignalTask
-import godot.codegen.traits.addKdoc
+import godot.codegen.models.traits.addKdoc
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TYPE_MANAGER
@@ -20,7 +19,7 @@ import godot.tools.common.constants.VOID_PTR
 
 
 class MemberRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(task: EnrichedClassTask, context: Context) = task.configure {
+    override fun apply(task: EnrichedClassTask, context: GenerationContext) = configure(task.builder) {
         val clazz = task.clazz
 
         for (constant in clazz.constants) {
@@ -32,12 +31,12 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         for (method in clazz.methods) {
-            if (context.nativeStructureRepository.findMatchingType(method) != null) {
+            if (context.isNativeStructure(method.type.identifier)) {
                 continue
             }
             var shouldGenerate = true
             for (argument in method.arguments) {
-                if (context.nativeStructureRepository.findMatchingType(argument) != null) {
+                if (context.isNativeStructure(argument.type.identifier)) {
                     shouldGenerate = false
                     break
                 }
@@ -64,7 +63,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
             task.enums.add(EnrichedEnumTask(enum))
         }
 
-        val baseClass = task.clazz.parent?.getClassName() ?: KT_OBJECT
+        val baseClass = task.clazz.parent?.className ?: KT_OBJECT
         superclass(baseClass)
 
         if (task.clazz.isSingleton) {
@@ -78,7 +77,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         addAnnotation(GODOT_BASE_TYPE)
     }
 
-    private fun TypeSpec.Builder.generateClassConstructor(isInstantiable: Boolean, context: Context): TypeSpec.Builder {
+    private fun TypeSpec.Builder.generateClassConstructor(isInstantiable: Boolean, context: GenerationContext): TypeSpec.Builder {
         if (!isInstantiable) {
             primaryConstructor(
                 FunSpec.constructorBuilder()
@@ -93,34 +92,31 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "createNativeObject(${context.nextEngineClassIndex}, scriptIndex)"
+                    "createNativeObject(${context.getNextEngineClassIndex()}, scriptIndex)"
                 )
                 .build()
         )
-        ++context.nextEngineClassIndex
         return this
     }
 
-    private fun TypeSpec.Builder.generateSingletonConstructor(context: Context): TypeSpec.Builder {
+    private fun TypeSpec.Builder.generateSingletonConstructor(context: GenerationContext): TypeSpec.Builder {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "getSingleton(${context.nextSingletonIndex})"
+                    "getSingleton(${context.getNextSingletonIndex()})"
                 )
                 .build()
         )
-        ++context.nextEngineClassIndex
-        ++context.nextSingletonIndex
         return this
     }
 
 }
 
 class BindingRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(classTask: EnrichedClassTask, context: Context) = classTask.configure {
+    override fun apply(classTask: EnrichedClassTask, context: GenerationContext) = configure(classTask.builder) {
         val clazz = classTask.clazz
         clazz.methods
             .filter { !it.isVirtual }
@@ -132,7 +128,7 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
                         .initializer(
                             "%T.getMethodBindPtr(%S,·%S,·%L)",
                             TYPE_MANAGER,
-                            clazz.type,
+                            clazz.identifier,
                             it.godotName,
                             it.hash
                         )

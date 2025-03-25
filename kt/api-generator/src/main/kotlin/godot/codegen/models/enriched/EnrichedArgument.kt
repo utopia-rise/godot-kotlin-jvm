@@ -1,21 +1,22 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.extensions.isObjectSubClass
+
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Argument
-import godot.codegen.traits.CastableTrait
-import godot.codegen.traits.NullableTrait
-import godot.codegen.traits.WithDefaultValueTrait
+import godot.codegen.models.traits.MetaGenerationTrait
+import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.WithDefaultValueTrait
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.escapeKotlinReservedNames
-import godot.tools.common.constants.GodotTypes
 
-class EnrichedArgument(model: Argument, canBeNull: Boolean) : CastableTrait, NullableTrait, WithDefaultValueTrait {
+class EnrichedArgument(model: Argument) : MetaGenerationTrait, WithDefaultValueTrait {
     val name = model.name.convertToCamelCase().escapeKotlinReservedNames()
-    override val type = model.type.sanitizeApiType()
+    override val type = GenerationType(model.type.sanitizeApiType())
+    override var nullable = (type.isObjectSubClass() || type.isVariant())
+    override val genericParameters = emptyList<ClassName>()
     override val defaultValue = model.defaultValue
     override val meta: String? = model.meta
-    override var nullable = (isObjectSubClass() || type == GodotTypes.variant) && canBeNull
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -31,5 +32,5 @@ class EnrichedArgument(model: Argument, canBeNull: Boolean) : CastableTrait, Nul
     }
 }
 
-fun List<Argument>.toEnriched(canBeNull: Boolean = true) = map { EnrichedArgument(it, canBeNull) }
-fun Argument.toEnriched(canBeNull: Boolean = true) = EnrichedArgument(this, canBeNull)
+fun List<Argument>.toEnriched() = map { EnrichedArgument(it) }
+fun Argument.toEnriched() = EnrichedArgument(this)

@@ -1099,7 +1099,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getDrawOrder(): DrawOrder {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
-    return CPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
@@ -1256,7 +1256,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getEmissionShape(): EmissionShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionShapePtr, LONG)
-    return CPUParticles2D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmissionSphereRadius(radius: Float): Unit {

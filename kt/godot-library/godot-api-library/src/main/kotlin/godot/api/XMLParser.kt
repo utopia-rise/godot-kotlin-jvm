@@ -89,7 +89,7 @@ public open class XMLParser : RefCounted() {
   public final fun getNodeType(): NodeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeTypePtr, LONG)
-    return XMLParser.NodeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return NodeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -516,7 +516,7 @@ public open class Camera3D : Node3D() {
   public final fun getProjection(): ProjectionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectionPtr, LONG)
-    return Camera3D.ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProjection(mode: ProjectionType): Unit {
@@ -598,7 +598,7 @@ public open class Camera3D : Node3D() {
   public final fun getKeepAspectMode(): KeepAspect {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepAspectModePtr, LONG)
-    return Camera3D.KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
+    return KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDopplerTracking(mode: DopplerTracking): Unit {
@@ -609,7 +609,7 @@ public open class Camera3D : Node3D() {
   public final fun getDopplerTracking(): DopplerTracking {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDopplerTrackingPtr, LONG)
-    return Camera3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
+    return DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

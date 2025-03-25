@@ -72,7 +72,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   public final fun getQualifier(): Qualifier {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getQualifierPtr, LONG)
-    return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
+    return Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Qualifier(

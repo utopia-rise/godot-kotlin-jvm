@@ -2,7 +2,7 @@ package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
-import godot.codegen.generation.Context
+import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.ApiTask
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedEnumTask
@@ -13,7 +13,7 @@ import godot.common.extensions.convertToCamelCase
 import godot.tools.common.constants.GENERATED_COMMENT
 
 class FileRule : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) {
+    override fun apply(task: FileTask, context: GenerationContext) {
         val type = task.type
         if (type is EnrichedClass) {
             task.classes += EnrichedClassTask(type)
@@ -24,23 +24,23 @@ class FileRule : GodotApiRule<FileTask>() {
 }
 
 class HeaderCommentRule() : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) {
-        task.generator.addFileComment(GENERATED_COMMENT)
+    override fun apply(task: FileTask, context: GenerationContext) {
+        task.builder.addFileComment(GENERATED_COMMENT)
     }
 }
 
 class ImportRule() : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) = task.configure {
+    override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
         for (clazz in task.classes) {
-            for (import in clazz.clazz.additionalImports) {
-                addImport(import.pckge, import.name)
+            for (className in clazz.clazz.additionalImports) {
+                addImport(className.packageName, className.simpleName)
             }
         }
     }
 }
 
 class WarningRule() : GodotApiRule<FileTask>() {
-    override fun apply(task: FileTask, context: Context) = task.configure {
+    override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
         addAnnotation(
             AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
                 .addMember(
@@ -55,19 +55,19 @@ class WarningRule() : GodotApiRule<FileTask>() {
 }
 
 class StaticRule : GodotApiRule<FileTask>() {
-    override fun apply(fileTask: FileTask, context: Context) = fileTask.configure {
+    override fun apply(fileTask: FileTask, context: GenerationContext) = configure(fileTask.builder) {
         for (classTask in fileTask.classes) {
             for (method in classTask.enrichedStaticMethods) {
-                method.generator.addAnnotation(JvmStatic::class)
+                method.builder.addAnnotation(JvmStatic::class)
             }
 
             val clazz = classTask.clazz
             if (clazz.isSingleton) {
                 for (method in classTask.methods) {
-                    method.generator.addAnnotation(JvmStatic::class)
+                    method.builder.addAnnotation(JvmStatic::class)
                 }
                 for (property in classTask.properties) {
-                    property.generator.addAnnotation(JvmStatic::class)
+                    property.builder.addAnnotation(JvmStatic::class)
                 }
             }
         }
@@ -114,13 +114,12 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
     private val codeBlockRegex = Regex("""```[\s\S]*?```""")
     private val doubleSkipRegex = Regex("(?<!\n)\n(?!\n)")
 
-    override fun apply(fileTask: ApiTask, context: Context) {
+    override fun apply(fileTask: ApiTask, context: GenerationContext) {
         val enumValues = context
-            .enumRepository
-            .getGlobalEnums()
+            .globalEnumList
             .flatMap { it.values }
 
-        val classes = context.classRepository.listTypes()
+        val classes = context.classList
         val members = classes.flatMap { it.methods + it.properties + it.constants + it.signals }
         val innerEnumValue = classes.flatMap { it.enums }.flatMap { it.values }
 

@@ -911,7 +911,7 @@ public open class GraphEdit : Control() {
   public final fun getPanningScheme(): PanningScheme {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPanningSchemePtr, LONG)
-    return GraphEdit.PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
+    return PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setZoom(zoom: Float): Unit {
@@ -977,7 +977,7 @@ public open class GraphEdit : Control() {
   public final fun getGridPattern(): GridPattern {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGridPatternPtr, LONG)
-    return GraphEdit.GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
+    return GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSnappingEnabled(enable: Boolean): Unit {

@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.NavigationPathQueryParameters3D.PathMetadataFlags
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -248,7 +247,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Additional information to return with the navigation path.
    */
-  public final inline var pathMetadataFlags: PathMetadataFlags
+  public final inline var pathMetadataFlags: NavigationPathQueryParameters3D.PathMetadataFlags
     @JvmName("pathMetadataFlagsProperty")
     get() = getPathMetadataFlags()
     @JvmName("pathMetadataFlagsProperty")
@@ -820,15 +819,16 @@ public open class NavigationAgent3D : Node() {
     return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathMetadataFlags(flags: PathMetadataFlags): Unit {
+  public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters3D.PathMetadataFlags):
+      Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setPathMetadataFlagsPtr, NIL)
   }
 
-  public final fun getPathMetadataFlags(): PathMetadataFlags {
+  public final fun getPathMetadataFlags(): NavigationPathQueryParameters3D.PathMetadataFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMetadataFlagsPtr, LONG)
-    return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
+    return NavigationPathQueryParameters3D.PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

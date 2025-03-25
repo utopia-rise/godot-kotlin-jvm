@@ -683,7 +683,7 @@ public open class Node3D : Node() {
   public final fun getRotationEditMode(): RotationEditMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationEditModePtr, LONG)
-    return Node3D.RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setScale(scale: Vector3): Unit {

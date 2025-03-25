@@ -122,7 +122,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public final fun getHint(): Hint {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHintPtr, LONG)
-    return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
+    return Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMin(`value`: Int): Unit {

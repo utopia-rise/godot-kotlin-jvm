@@ -268,7 +268,7 @@ public open class GLTFAccessor : Resource() {
   public final fun getAccessorType(): GLTFAccessorType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessorTypePtr, LONG)
-    return GLTFAccessor.GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
+    return GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {

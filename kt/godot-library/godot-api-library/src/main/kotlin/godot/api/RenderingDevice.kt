@@ -491,7 +491,7 @@ public open class RenderingDevice internal constructor() : Object() {
       TextureSamples {
     TransferContext.writeArguments(LONG to format, LONG to renderPass)
     TransferContext.callMethod(ptr, MethodBindings.framebufferFormatGetTextureSamplesPtr, LONG)
-    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -705,7 +705,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   public final fun getCenterOfMassMode(): CenterOfMassMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassModePtr, LONG)
-    return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCenterOfMass(centerOfMass: Vector3): Unit {
@@ -781,7 +781,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   public final fun getLinearDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
-    return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
@@ -792,7 +792,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   public final fun getAngularDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
-    return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
@@ -1067,7 +1067,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   public final fun getFreezeMode(): FreezeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFreezeModePtr, LONG)
-    return RigidBody3D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -1471,7 +1471,7 @@ public open class Control : CanvasItem() {
   public final fun getFocusMode(): FocusMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusModePtr, LONG)
-    return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2085,7 +2085,7 @@ public open class Control : CanvasItem() {
   public final fun getHGrowDirection(): GrowDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHGrowDirectionPtr, LONG)
-    return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVGrowDirection(direction: GrowDirection): Unit {
@@ -2096,7 +2096,7 @@ public open class Control : CanvasItem() {
   public final fun getVGrowDirection(): GrowDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVGrowDirectionPtr, LONG)
-    return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTooltipAutoTranslateMode(mode: Node.AutoTranslateMode): Unit {
@@ -2146,7 +2146,7 @@ public open class Control : CanvasItem() {
   public final fun getDefaultCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCursorShapePtr, LONG)
-    return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2156,7 +2156,7 @@ public open class Control : CanvasItem() {
   public final fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.getCursorShapePtr, LONG)
-    return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2224,7 +2224,7 @@ public open class Control : CanvasItem() {
   public final fun getMouseFilter(): MouseFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseFilterPtr, LONG)
-    return Control.MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setForcePassScrollEvents(forcePassScrollEvents: Boolean): Unit {
@@ -2386,7 +2386,7 @@ public open class Control : CanvasItem() {
   public final fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
-    return Control.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

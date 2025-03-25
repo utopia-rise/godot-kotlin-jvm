@@ -200,7 +200,7 @@ public open class SubViewport : Viewport() {
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
-    return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClearMode(mode: ClearMode): Unit {
@@ -211,7 +211,7 @@ public open class SubViewport : Viewport() {
   public final fun getClearMode(): ClearMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClearModePtr, LONG)
-    return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ClearMode(

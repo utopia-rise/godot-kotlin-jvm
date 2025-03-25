@@ -199,7 +199,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun getVisibilityUpdateMode(): VisibilityUpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityUpdateModePtr, LONG)
-    return MultiplayerSynchronizer.VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

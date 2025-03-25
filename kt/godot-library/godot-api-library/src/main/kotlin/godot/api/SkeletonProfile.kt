@@ -243,7 +243,7 @@ public open class SkeletonProfile : Resource() {
   public final fun getTailDirection(boneIdx: Int): TailDirection {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTailDirectionPtr, LONG)
-    return SkeletonProfile.TailDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return TailDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -48,7 +48,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   public final fun getFlags(): EmitFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlagsPtr, LONG)
-    return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
+    return EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class EmitFlags(
