@@ -15,7 +15,7 @@ uintptr_t PackedInt64ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, job
     vec.resize(size);
     arr.get_array_elements(env, reinterpret_cast<jlong*>(vec.ptrw()), size);
 
-    return reinterpret_cast<uintptr_t>(memnew(PackedInt64Array(vec)));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(PackedInt64Array(vec)));
 }
 
 jlongArray PackedInt64ArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

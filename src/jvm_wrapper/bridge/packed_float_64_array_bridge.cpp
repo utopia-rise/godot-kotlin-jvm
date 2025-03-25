@@ -14,7 +14,7 @@ uintptr_t PackedFloat64ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, j
     vec.resize(size);
     arr.get_array_elements(env, reinterpret_cast<jdouble*>(vec.ptrw()), size);
 
-    return reinterpret_cast<uintptr_t>(memnew(PackedFloat64Array(vec)));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(PackedFloat64Array(vec)));
 }
 
 jdoubleArray PackedFloat64ArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

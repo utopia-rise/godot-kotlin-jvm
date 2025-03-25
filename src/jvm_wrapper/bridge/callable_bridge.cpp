@@ -4,18 +4,19 @@
 #include "constraints.h"
 #include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/transfer_context.h"
+#include "variant_allocator.h"
 
 using namespace bridges;
 
 uintptr_t CallableBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(memnew(Callable));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Callable()));
 }
 
 uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Object*(), args[1].operator StringName())));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Callable(args[0].operator Object*(), args[1].operator StringName())));
 }
 
 uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
@@ -24,7 +25,7 @@ uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_r
                                                                      jboolean p_has_on_destroy) {
     jni::Env env {p_raw_env};
     return reinterpret_cast<uintptr_t>(
-        memnew(Callable(memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy))))
+        VariantAllocator::alloc(Callable(memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy))))
     );
 }
 
@@ -32,7 +33,7 @@ uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobjec
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Callable())));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Callable(args[0].operator Callable())));
 }
 
 void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

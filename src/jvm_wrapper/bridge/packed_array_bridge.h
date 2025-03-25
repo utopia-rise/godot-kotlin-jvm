@@ -104,7 +104,7 @@ namespace bridges {
 
     template<class Derived, class T, const char* fq_name>
     uintptr_t PackedArrayBridge<Derived, T, fq_name>::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-        return reinterpret_cast<uintptr_t>(memnew(Vector<T>));
+        return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Vector<T>()));
     }
 
     template<class Derived, class T, const char* fq_name>
@@ -113,7 +113,7 @@ namespace bridges {
         jni::Env env {p_raw_env};
         Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
-        return reinterpret_cast<uintptr_t>(memnew(Vector<T>(args[0].operator Vector<T>())));
+        return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Vector<T>(args[0].operator Vector<T>())));
     }
 
     template<class Derived, class T, const char* fq_name>
@@ -123,7 +123,7 @@ namespace bridges {
         TransferContext::get_instance().read_args(env, args);
 
         TypedArray<T> array {args[0].operator Array()};
-        auto* ret {memnew(Vector<T>)};
+        auto* ret {VariantAllocator::alloc(Vector<T>())};
         int size {array.size()};
         ret->resize(size);
         for (int i = 0; i < size; ++i) {

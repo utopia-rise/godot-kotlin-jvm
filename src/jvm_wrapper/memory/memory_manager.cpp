@@ -2,6 +2,7 @@
 
 #include "binding/kotlin_binding_manager.h"
 #include "script/jvm_script_manager.h"
+#include "variant_allocator.h"
 
 static LocalVector<uint64_t> ids;
 static LocalVector<uintptr_t> pointers;
@@ -42,49 +43,49 @@ void MemoryManager::unref_native_core_types(JNIEnv* p_raw_env, jobject p_instanc
         Variant::Type variant_type {static_cast<Variant::Type>(var_type)};
         switch (variant_type) {
             case Variant::CALLABLE:
-                memdelete(reinterpret_cast<Callable*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<Callable*>(p_raw_ptr));
                 break;
             case Variant::DICTIONARY:
-                memdelete(reinterpret_cast<Dictionary*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<Dictionary*>(p_raw_ptr));
                 break;
             case Variant::ARRAY:
-                memdelete(reinterpret_cast<Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<Array*>(p_raw_ptr));
                 break;
             case Variant::STRING_NAME:
-                memdelete(reinterpret_cast<StringName*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<StringName*>(p_raw_ptr));
                 break;
             case Variant::NODE_PATH:
-                memdelete(reinterpret_cast<NodePath*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<NodePath*>(p_raw_ptr));
                 break;
             case Variant::PACKED_BYTE_ARRAY:
-                memdelete(reinterpret_cast<PackedByteArray*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedByteArray*>(p_raw_ptr));
                 break;
             case Variant::PACKED_INT32_ARRAY:
-                memdelete(reinterpret_cast<PackedInt32Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedInt32Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_INT64_ARRAY:
-                memdelete(reinterpret_cast<PackedInt64Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedInt64Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_FLOAT32_ARRAY:
-                memdelete(reinterpret_cast<PackedFloat32Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedFloat32Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_FLOAT64_ARRAY:
-                memdelete(reinterpret_cast<PackedFloat64Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedFloat64Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_STRING_ARRAY:
-                memdelete(reinterpret_cast<PackedStringArray*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedStringArray*>(p_raw_ptr));
                 break;
             case Variant::PACKED_VECTOR2_ARRAY:
-                memdelete(reinterpret_cast<PackedVector2Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedVector2Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_VECTOR3_ARRAY:
-                memdelete(reinterpret_cast<PackedVector3Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedVector3Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_VECTOR4_ARRAY:
-                memdelete(reinterpret_cast<PackedVector4Array*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedVector4Array*>(p_raw_ptr));
                 break;
             case Variant::PACKED_COLOR_ARRAY:
-                memdelete(reinterpret_cast<PackedColorArray*>(p_raw_ptr));
+                VariantAllocator::free(reinterpret_cast<PackedColorArray*>(p_raw_ptr));
                 break;
             default:
                 break;
@@ -167,8 +168,6 @@ void MemoryManager::try_promotion(JvmInstance* script_instance) {
     script_instance->promote_reference();
     to_demote_mutex.unlock();
 }
-
-
 
 void MemoryManager::direct_object_deletion(jni::Env& p_env, Object* p_obj) {
     jvalue args[1] = {jni::to_jni_arg(p_obj->get_instance_id().operator uint64_t())};

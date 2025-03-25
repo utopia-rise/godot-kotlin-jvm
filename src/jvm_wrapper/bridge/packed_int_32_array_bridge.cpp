@@ -14,7 +14,7 @@ uintptr_t PackedInt32ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, job
     vec.resize(size);
     arr.get_array_elements(env, reinterpret_cast<jint*>(vec.ptrw()), size);
 
-    return reinterpret_cast<uintptr_t>(memnew(PackedInt32Array(vec)));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(PackedInt32Array(vec)));
 }
 
 jintArray PackedInt32ArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
