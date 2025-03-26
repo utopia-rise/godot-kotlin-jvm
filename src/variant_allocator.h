@@ -60,6 +60,7 @@ public:
         // Trigger compile-time error if T is larger than 16 bytes
         static_assert(sizeof(T) <= sizeof(BucketLarge), "Variant doesn't fit inside the VariantAllocator");
 
+        variant->~T();
         if constexpr (sizeof(T) <= sizeof(BucketSmall)) {
             bucket_small.free(reinterpret_cast<BucketSmall*>(variant));
         } else {
