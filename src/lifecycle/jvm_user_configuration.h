@@ -1,6 +1,7 @@
 #ifndef GODOT_JVM_JVM_USER_CONFIGURATION_H
 #define GODOT_JVM_JVM_USER_CONFIGURATION_H
 
+#include "core/variant/typed_array.h"
 #include "jni/jvm.h"
 
 // JSON IDENTIFIER
@@ -13,7 +14,7 @@ static constexpr const char* JMX_PORT_JSON_IDENTIFIER {"jmx_port"};
 static constexpr const char* WAIT_FOR_DEBUGGER_JSON_IDENTIFIER {"wait_for_debugger"};
 static constexpr const char* MAX_STRING_SIZE_JSON_IDENTIFIER {"max_string_size"};
 static constexpr const char* DISABLE_GC_JSON_IDENTIFIER {"disable_gc"};
-static constexpr const char* JVM_ARGUMENTS_JSON_IDENTIFIER {"jvm_args"};
+static constexpr const char* JVM_ARGUMENTS_JSON_IDENTIFIER {"custom_jvm_args"};
 
 // COMMAND LINE IDENTIFIER
 static constexpr const char* VM_TYPE_CMD_IDENTIFIER {"--jvm-vm-type"};
@@ -24,6 +25,7 @@ static constexpr const char* WAIT_FOR_DEBUGGER_CMD_IDENTIFIER {"--wait-for-debug
 static constexpr const char* JMX_PORT_CMD_IDENTIFIER {"--jvm-jmx-port"};
 static constexpr const char* MAX_STRING_SIZE_CMD_IDENTIFIER {"--jvm-max-string-size"};
 static constexpr const char* DISABLE_GC_CMD_IDENTIFIER {"--jvm-disable-gc"};
+static constexpr const char* JVM_ARGUMENTS_CMD_IDENTIFIER {"--custom-jvm-args"};
 
 // VALUE
 static constexpr const char* AUTO_STRING {"auto"};
@@ -32,7 +34,7 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_STRING {"graal_native_image"};
 static constexpr const char* ART_STRING {"art"};
 static constexpr const char* TRUE_STRING {"true"};
 static constexpr const char* FALSE_STRING {"false"};
-static constexpr const char* JSON_ARGUMENT_VERSION {"1.0"};
+static constexpr const char* JSON_ARGUMENT_VERSION {"2.0"};
 
 
 struct JvmUserConfiguration {
@@ -50,7 +52,7 @@ struct JvmUserConfiguration {
 
     bool disable_gc {false};
 
-    String jvm_args {""};
+    Array jvm_args;
 
     JvmUserConfiguration() = default;
     ~JvmUserConfiguration() = default;

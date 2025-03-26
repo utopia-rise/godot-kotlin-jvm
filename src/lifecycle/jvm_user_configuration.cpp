@@ -26,7 +26,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.vm_type = jni::JvmType::ART;
         } else {
             is_invalid = true;
-            JVM_LOG_WARNING("Wrong JVM type in configuration file: %s. It will be ignored", value);;
+            JVM_LOG_WARNING("Wrong JVM type in configuration file: %s. It will be ignored", value);
         }
         json_dict.erase(VM_TYPE_JSON_IDENTIFIER);
     }
@@ -232,7 +232,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             } else if (value == ART_STRING) {
                 configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::ART;
             } else {
-                JVM_LOG_WARNING("Wrong JVM type in command line arguments: %s. It will be ignored", value);;
+                JVM_LOG_WARNING("Wrong JVM type in command line arguments: %s. It will be ignored", value);
             }
         } else if (identifier == USE_DEBUG_CMD_IDENTIFIER) {
             configuration_map[USE_DEBUG_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
@@ -248,7 +248,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             if (value.is_valid_ip_address()) {
                 configuration_map[DEBUG_ADDRESS_CMD_IDENTIFIER] = value;
             } else {
-                JVM_LOG_WARNING("Invalid JVM address value command line arguments: %s. It will be ignored", value);;
+                JVM_LOG_WARNING("Invalid JVM address value command line arguments: %s. It will be ignored", value);
             }
         } else if (identifier == WAIT_FOR_DEBUGGER_CMD_IDENTIFIER) {
             configuration_map[WAIT_FOR_DEBUGGER_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
@@ -270,6 +270,12 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             }
         } else if (identifier == DISABLE_GC_CMD_IDENTIFIER) {
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
+        } else if (identifier == JVM_ARGUMENTS_CMD_IDENTIFIER) {
+            Array arr {};
+            for(String jvm_arg: value.split(" ")){
+                arr.append(arg);
+            }
+            configuration_map[JVM_ARGUMENTS_CMD_IDENTIFIER] = arr;
         }
 
         for (const auto& map_element : configuration_map) {
@@ -285,7 +291,6 @@ void replace_json_value_by_cmd_value(const HashMap<String, Variant>& map, T& jso
 
 void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_config, const HashMap<String, Variant>& cmd_map) {
     replace_json_value_by_cmd_value(cmd_map, json_config.vm_type, VM_TYPE_CMD_IDENTIFIER);
-
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_port, DEBUG_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_address, DEBUG_ADDRESS_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.wait_for_debugger, WAIT_FOR_DEBUGGER_CMD_IDENTIFIER);
@@ -296,10 +301,10 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
         json_config.use_debug = true;
     }
     replace_json_value_by_cmd_value(cmd_map, json_config.use_debug, DEBUG_PORT_CMD_IDENTIFIER);
-
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_jmx_port, JMX_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.max_string_size, MAX_STRING_SIZE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_gc, DISABLE_GC_CMD_IDENTIFIER);
+    replace_json_value_by_cmd_value(cmd_map, json_config.jvm_args, JVM_ARGUMENTS_CMD_IDENTIFIER);
 }
 
 void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
