@@ -55,6 +55,15 @@ abstract class KtObject : NativeWrapper {
 
     protected abstract fun new(scriptIndex: Int)
 
+    open fun _get(property: StringName): Any = throw NotImplementedError("_get is not implemented for Object")
+    open fun _getPropertyList(): VariantArray<Dictionary<Any, Any>> = throw NotImplementedError("_getPropertyList is not implemented for Object")
+    open fun _propertyCanRevert(name: StringName) : Boolean = throw NotImplementedError("_propertyCanRevert is not implemented for Object")
+    open fun _propertyGetRevert(name: StringName): Any = throw NotImplementedError("_propertyGetRevert is not implemented for Object")
+    open fun _set(name: StringName, value: Any) : Unit = throw NotImplementedError("_set is not implemented for Object")
+    open fun _toString(): String = throw NotImplementedError("_toString is not implemented for Object")
+    open fun _validateProperty(): Boolean = throw NotImplementedError("_validateProperty is not implemented for Object")
+
+
     open fun _notification(): GodotNotification = godotNotification {}
 
     @Suppress("UNCHECKED_CAST")
@@ -78,7 +87,7 @@ abstract class KtObject : NativeWrapper {
 
 
     private fun removeScript(constructorIndex: Int) {
-        createScriptInstance(ptr, objectID,  TypeManager.engineTypesConstructors[constructorIndex])
+        createScriptInstance(ptr, objectID, TypeManager.engineTypesConstructors[constructorIndex])
     }
 
     protected external fun createNativeObject(classIndex: Int, scriptIndex: Int)
