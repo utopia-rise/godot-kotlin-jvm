@@ -189,7 +189,9 @@ void GDKotlin::set_jvm_options() {
           "You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to "
           "not launch properly"
         );
-        jvm_options.add_custom_options(user_configuration.jvm_args);
+        for (String jvm_arg : user_configuration.jvm_args) {
+            jvm_options.add_custom_options(jvm_arg);
+        }
     }
 }
 
@@ -266,10 +268,7 @@ bool GDKotlin::initialize_core_library() {
     jni::Env env {jni::Jvm::current_env()};
 
     if (!JvmManager::initialize_jvm_wrappers(env, bootstrap_class_loader)) {
-        DISPLAY_ERROR(
-          "The boostrap.jar is invalid and can't be loaded.",
-          "Check if your build.gradle file use the same version as the editor."
-          );
+        DISPLAY_ERROR("The boostrap.jar is invalid and can't be loaded.", "Check if your build.gradle file use the same version as the editor.");
     }
 
     if (user_configuration.max_string_size != -1) {
@@ -410,7 +409,7 @@ void GDKotlin::display_initialization_error_hint(String cause, String hint) {
 }
 
 void GDKotlin::validate_state() {
-        // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
+    // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
     if (state == State::CORE_LIBRARY_INITIALIZED || state == State::JVM_SCRIPTS_INITIALIZED) { return; }
 
     finalize_down_to(NOT_STARTED);
