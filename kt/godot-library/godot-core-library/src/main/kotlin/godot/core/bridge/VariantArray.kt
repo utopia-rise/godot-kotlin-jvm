@@ -25,7 +25,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     @PublishedApi
     internal constructor(handle: VoidPtr, converter: VariantConverter) {
-        variantConverter = converter
+        variantConverter = if(converter == VariantParser.NIL) VariantCaster.ANY else converter
         ptr = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.ARRAY)
     }

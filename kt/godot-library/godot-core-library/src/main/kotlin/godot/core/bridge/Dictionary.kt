@@ -29,8 +29,8 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     @PublishedApi
     internal constructor(handle: VoidPtr, keyConverter: VariantConverter, valueConverter: VariantConverter) {
-        keyVariantConverter = keyConverter
-        valueVariantConverter = valueConverter
+        keyVariantConverter = if(keyConverter == VariantParser.NIL) VariantCaster.ANY else keyConverter
+        valueVariantConverter = if(valueConverter == VariantParser.NIL) VariantCaster.ANY else valueConverter
         ptr = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
     }
