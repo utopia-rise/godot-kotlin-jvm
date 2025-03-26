@@ -34,6 +34,9 @@ val Project.ideaExtension: IdeaModel
 val Project.isRelease: Boolean
     get() = hasProperty("release")
 
+val Project.godotInternalArtifactName: String
+    get() = "godot-internal-library-${if (isRelease) "release" else "debug"}"
+
 val Project.godotCoreArtifactName: String
     get() = "godot-core-library-${if (isRelease) "release" else "debug"}"
 
