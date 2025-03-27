@@ -1,4 +1,5 @@
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.gradle.GodotLanguage
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
@@ -61,45 +62,8 @@ tasks {
 
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
-        setupEditorImportExecution()
-    }
-    val exportDebug by registering(Exec::class) {
-        description = "Exports the tests for the current host OS in debug mode"
-        dependsOn(importResources, build)
 
-        environment("JAVA_HOME", System.getProperty("java.home"))
-        workingDir = projectDir
-        setupEditorExportExecution("--export-debug")
-    }
-    val exportRelease by registering(Exec::class) {
-        description = "Exports the tests for the current host OS in release mode"
-        dependsOn(importResources, build)
-
-        environment("JAVA_HOME", System.getProperty("java.home"))
-        workingDir = projectDir
-        setupEditorExportExecution("--export-release")
-    }
-    register<Exec>("runGutTests") {
-        group = "verification"
-
-        dependsOn(importResources)
-
-        setupTestExecution {
-            provideEditorExecutable().absolutePath
-        }
-    }
-    register<Exec>("runExportedGutTests") {
-        group = "verification"
-
-        setupTestExecution {
-            provideExportedTestExecutable()?.absolutePath ?: "no_test_executable_found"
-        }
-    }
-}
-
-fun Exec.setupEditorImportExecution() {
-    doFirst {
-        val editorExecutable = provideEditorExecutable().absolutePath
+        val editorExecutable: String = provideEditorExecutable().absolutePath
 
         if (HostManager.hostIsMingw) {
             commandLine(
@@ -115,18 +79,87 @@ fun Exec.setupEditorImportExecution() {
             )
         }
     }
-}
+    val exportDebug by registering(Exec::class) {
+        description = "Exports the tests for the current host OS in debug mode"
+        dependsOn(importResources, build)
 
-fun Exec.setupEditorExportExecution(exportFlag: String) {
-    doFirst {
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val target = when {
+            HostManager.hostIsLinux -> "tests_linux"
+            HostManager.hostIsMac -> "tests_macos"
+            HostManager.hostIsMingw -> "tests_windows"
+            else -> throw IllegalStateException("Unsupported OS for exporting")
+        }
+
         projectDir.resolve("export").mkdirs()
 
         commandLine(
             provideEditorExecutable().absolutePath,
             "--headless",
-            exportFlag,
-            provideExportTarget(),
+            "--export-debug",
+            target,
         )
+    }
+    val exportRelease by registering(Exec::class) {
+        description = "Exports the tests for the current host OS in release mode"
+        dependsOn(importResources, build)
+
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val target = when {
+            HostManager.hostIsLinux -> "tests_linux"
+            HostManager.hostIsMac -> "tests_macos"
+            HostManager.hostIsMingw -> "tests_windows"
+            else -> throw IllegalStateException("Unsupported OS for exporting")
+        }
+
+        projectDir.resolve("export").mkdirs()
+
+        commandLine(
+            provideEditorExecutable().absolutePath,
+            "--headless",
+            "--export-release",
+            target,
+        )
+    }
+    register<Exec>("runGDTests") {
+        group = "verification"
+
+        dependsOn(importResources)
+
+        setupTestExecution {
+            provideEditorExecutable().absolutePath
+        }
+    }
+    register<Exec>("runExportedGDTests") {
+        group = "verification"
+
+        val executable = projectDir
+            .resolve("export")
+            .listFiles()
+            ?.also {
+                println("Test executables: [${it.joinToString()}]")
+                it.forEach { file -> file.setExecutable(true) }
+            }
+            ?.firstOrNull { file ->
+                listOf("exe", "x86_64", "app")
+                    .any { executableExtensions -> file.name.contains(executableExtensions) }
+            }
+            ?.let { executable ->
+                if (executable.name.contains("app")) {
+                    executable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
+                } else {
+                    executable
+                }
+            }
+            ?.absolutePath
+
+        setupTestExecution {
+            executable ?: "no_test_executable_found"
+        }
     }
 }
 
@@ -143,7 +176,7 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
 
         outputLines.forEach { line ->
             when {
-                line.contains("All tests passed") -> {
+                line.contains("Exit code: 101") or line.contains("Exit code: 0") -> {
                     didAllTestsPass = true
                 }
 
@@ -171,44 +204,17 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
             this@setupTestExecution.commandLine(
                 "cmd",
                 "/c",
-                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} --path $projectDir -s -d addons/gdUnit4/bin/GdUnitCmdTool.gd  -a test",
             )
         } else {
             this@setupTestExecution.commandLine(
                 "bash",
                 "-c",
-                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} --path $projectDir -s -d addons/gdUnit4/bin/GdUnitCmdTool.gd  -a test",
             )
         }
     }
 }
-
-fun provideExportTarget(): String = when {
-    HostManager.hostIsLinux -> "tests_linux"
-    HostManager.hostIsMac -> "tests_macos"
-    HostManager.hostIsMingw -> "tests_windows"
-    else -> throw IllegalStateException("Unsupported OS for exporting")
-}
-
-fun provideExportedTestExecutable(): File? =
-    projectDir
-        .resolve("export")
-        .listFiles()
-        ?.also {
-            println("Test executables: [${it.joinToString()}]")
-            it.forEach { file -> file.setExecutable(true) }
-        }
-        ?.firstOrNull { file ->
-            listOf("exe", "x86_64", "app")
-                .any { executableExtensions -> file.name.contains(executableExtensions) }
-        }
-        ?.let { executable ->
-            if (executable.name.contains("app")) {
-                executable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
-            } else {
-                executable
-            }
-        }
 
 fun provideEditorExecutable(): File = (
         listOf(

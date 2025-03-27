@@ -8,14 +8,11 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="Godot Kotlin Tests"
-config/features=PackedStringArray("4.6")
+run/main_scene="uid://cnqp52df0ln8e"
+config/features=PackedStringArray("4.4")
 config/icon="res://icon.png"
 
 [debug]
@@ -24,7 +21,14 @@ settings/stdout/verbose_stdout=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_suite_naming_convention=1
+settings/test/test_discovery=true
+ui/inspector/tree_view_mode=1
+ui/toolbar/run_overall=true
 
 [rendering]
 

@@ -3,9 +3,15 @@
 
 registeredName = PackedArrayTest
 fqName = godot.tests.packedarray.PackedArrayTest
+relativeSourcePath = src/main/kotlin/godot/tests/packedarray/PackedArrayTest.kt
 baseType = Node
 supertypes = [
-    
+    godot.api.Node,
+	godot.api.Object,
+	godot.core.KtObject,
+	godot.common.interop.NativeWrapper,
+	godot.common.interop.NativePointer,
+	kotlin.Any
 ]
 signals = [
     
@@ -13,27 +19,21 @@ signals = [
 properties = [
     
 ]
-notifications = [
-    
-]
 functions = [
     convert_byte_array,
-    convert_int_array,
-    convert_long_array,
-    convert_float_array,
-    convert_double_array,
-    convert_color_array,
-    convert_vector2_array,
-    convert_vector2_variant_array,
-    convert_vector3_array,
-    convert_vector4_array,
-    get_byte_array_value,
-    get_int_array_value,
-    get_long_array_value,
-    get_float_array_value,
-    get_double_array_value,
-    get_color_array_value,
-    get_vector2_array_value,
-    get_vector3_array_value,
-    get_vector4_array_value
+	convert_int_array,
+	convert_long_array,
+	convert_float_array,
+	convert_double_array,
+	convert_vector2_array,
+	convert_vector3_array,
+	convert_vector4_array,
+	get_byte_array_value,
+	get_int_array_value,
+	get_long_array_value,
+	get_float_array_value,
+	get_double_array_value,
+	get_vector2_array_value,
+	get_vector3_array_value,
+	get_vector4_array_value
 ]

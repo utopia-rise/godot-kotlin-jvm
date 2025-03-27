@@ -56,5 +56,5 @@ jobs:
           cd harness/tests/
           chmod +x bin/godot.*
           jlink --add-modules java.base,java.logging --output jvm/jre-amd64-linux
-          ./gradlew runGutTests
+          ./gradlew runGDTests
         timeout-minutes: 30
