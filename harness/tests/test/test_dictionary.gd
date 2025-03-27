@@ -1,0 +1,56 @@
+extends GdUnitTestSuite
+
+
+func test_dictionary_any_not_null_append():
+    var invocation_script: Object = Invocation.new()
+    assert_that(invocation_script.any_dict_size()).override_failure_message("Dict should be empty").is_equal(0)
+    var key = Node.new()
+    var value = Node.new()
+    invocation_script.append_to_any_dict(key, value)
+    invocation_script.append_to_any_dict("key2", 11)
+    assert_that(invocation_script.any_dict_size()).override_failure_message("Dict size should be 2").is_equal(2)
+    assert_that(invocation_script.any_to_any_dictionary[key]).override_failure_message("Should find value for key").is_equal(value)
+    assert_that(invocation_script.get_from_any_dict(key)).override_failure_message("Should find value for key").is_equal(value)
+    assert_that(invocation_script.any_to_any_dictionary["key2"]).override_failure_message("Should find 11 for key2").is_equal(11)
+    assert_that(invocation_script.get_from_any_dict("key2")).override_failure_message("Should find 11 for key2").is_equal(11)
+    invocation_script.free()
+    key.free()
+    value.free()
+
+func test_dictionary_any_not_null_remove():
+    var invocation_script: Object = Invocation.new()
+    invocation_script.append_to_any_dict("key2", 11)
+    assert_that(invocation_script.any_dict_size()).override_failure_message("Dict size should be 1").is_equal(1)
+    invocation_script.remove_from_any_dict("key2")
+    assert_that(invocation_script.any_dict_size()).override_failure_message("Dict size should be 0").is_equal(0)
+    var key = Node.new()
+    var value = Node.new()
+    invocation_script.append_to_any_dict(key, value)
+    assert_that(invocation_script.any_dict_size()).override_failure_message("Dict size should be 1").is_equal(1)
+    invocation_script.remove_from_any_dict(key)
+    assert_that(invocation_script.any_dict_size()).override_failure_message("Dict size should be 0").is_equal(0)
+    invocation_script.free()
+    key.free()
+    value.free()
+
+func test_dictionary_typed_not_null_append():
+    var invocation_script = Invocation.new()
+    assert_that(invocation_script.string_nav_mesh_dict_size()).override_failure_message("Dict size should be 1").is_equal(1)
+    var nav_mesh = NavigationMesh.new()
+    invocation_script.append_to_string_nav_mesh_dict("key", nav_mesh)
+    assert_that(invocation_script.string_nav_mesh_dict_size()).override_failure_message("Dict size should be 2").is_equal(2)
+    assert_that(invocation_script.nav_meshes_dictionary["key"]).override_failure_message("Should find nav_mesh for key").is_equal(nav_mesh)
+    assert_that(invocation_script.get_from_string_nav_mesh_dict("key")).override_failure_message("Should find nav_mesh for key").is_equal(nav_mesh)
+    invocation_script.free()
+
+func test_dictionary_typed_not_null_remove():
+    var invocation_script = Invocation.new()
+    assert_that(invocation_script.string_nav_mesh_dict_size()).override_failure_message("Array size should be 1").is_equal(1)
+    invocation_script.remove_from_string_nav_mesh_dict("AwesomeNavmesh")
+    assert_that(invocation_script.string_nav_mesh_dict_size()).override_failure_message("Dict size should be 0").is_equal(0)
+    var nav_mesh = NavigationMesh.new()
+    invocation_script.append_to_string_nav_mesh_dict("key", nav_mesh)
+    assert_that(invocation_script.string_nav_mesh_dict_size()).override_failure_message("Dict size should be 1").is_equal(1)
+    invocation_script.remove_from_string_nav_mesh_dict("key")
+    assert_that(invocation_script.string_nav_mesh_dict_size()).override_failure_message("Dict size should be 0").is_equal(0)
+    invocation_script.free()
