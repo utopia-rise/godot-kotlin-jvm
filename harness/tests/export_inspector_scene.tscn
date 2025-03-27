@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://1xe8v5ivwoug"]
+
+[ext_resource type="Script" uid="uid://c8hudoddexy5h" path="res://scripts/godot/tests/registration/KotlinExport.gdj" id="1_kotlin"]
+[ext_resource type="Script" uid="uid://blfun64xxccgy" path="res://scripts/godot/tests/registration/JavaExport.gdj" id="2_java"]
+[ext_resource type="Script" uid="uid://b4p57w0ip7vms" path="res://scripts/godot/tests/registration/ScalaExport.gdj" id="3_scala"]
+
+[node name="ExportInspectorScene" type="Node" unique_id=358405828]
+
+[node name="KotlinExportNode" type="Node" parent="." unique_id=1607627643]
+script = ExtResource("1_kotlin")
+
+[node name="JavaExportNode" type="Node" parent="." unique_id=1637651116]
+script = ExtResource("2_java")
+
+[node name="ScalaExportNode" type="Node" parent="." unique_id=3277509]
+script = ExtResource("3_scala")

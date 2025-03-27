@@ -22,20 +22,35 @@ static func __filter_is_skipped(report :GdUnitReport) -> bool:
 	return report.is_skipped()
 
 
-func count_failures() -> int:
-	return _reports.filter(__filter_is_failure).size()
+static func __filter_is_orphan(report: GdUnitReport) -> bool:
+	return report.is_orphan()
 
 
-func count_errors() -> int:
-	return _reports.filter(__filter_is_error).size()
+static func count_failures(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_failure).size()
 
 
-func count_warnings() -> int:
-	return _reports.filter(__filter_is_warning).size()
+static func count_errors(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_error).size()
 
 
-func count_skipped() -> int:
-	return _reports.filter(__filter_is_skipped).size()
+static func count_warnings(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_warning).size()
+
+
+static func count_skipped(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_skipped).size()
+
+
+static func count_orphans(reports_: Array[GdUnitReport]) -> int:
+	var orphan_reports := reports_.filter(__filter_is_orphan)
+	if orphan_reports.is_empty():
+		return 0
+	## Collect orphan count from the reports
+	var orphans := 0
+	for report: GdUnitReport in orphan_reports:
+		orphans += report._current_value
+	return orphans
 
 
 func has_failures() -> bool:

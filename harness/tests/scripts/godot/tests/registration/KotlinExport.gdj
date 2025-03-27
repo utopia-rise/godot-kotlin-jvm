@@ -1,0 +1,74 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = KotlinExport
+fqName = godot.tests.registration.KotlinExport
+baseType = Node
+supertypes = [
+	godot.api.Node,
+	godot.api.Object,
+	godot.core.KtObject,
+	godot.common.interop.NativeWrapper,
+	godot.common.interop.NativePointer
+]
+signals = [
+	
+]
+properties = [
+	button,
+	boolean_value,
+	byte_value,
+	int_value,
+	int_range_value,
+	int_flag_value,
+	long_value,
+	long_range_value,
+	float_value,
+	float_range_value,
+	easing_value,
+	double_value,
+	double_range_value,
+	string_value,
+	file_path_value,
+	directory_path_value,
+	multiline_text_value,
+	placeholder_text_value,
+	enum_value,
+	vector2,
+	rect2,
+	vector3,
+	transform2_d,
+	vector4,
+	vector4i,
+	plane,
+	quaternion_value,
+	aabb,
+	basis_value,
+	transform3_d,
+	color,
+	color_no_alpha,
+	string_name,
+	node_path,
+	rid,
+	resource_test,
+	jvm_id,
+	int_array,
+	string_array,
+	nav_meshes,
+	nullable_array,
+	string_to_int_dictionary,
+	nav_meshes_dictionary,
+	nullable_dictionary,
+	packed_byte_array,
+	packed_int32_array,
+	packed_int64_array,
+	packed_float32_array,
+	packed_float64_array,
+	packed_string_array,
+	packed_vector2_array,
+	packed_vector3_array,
+	packed_color_array
+]
+functions = [
+	
+]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://crfbatmxb0ks1"]
+
+[ext_resource type="Script" uid="uid://olkucf60rip0" path="res://scripts/godot/tests/syntax/KotlinTestClass.gdj" id="1_mktsc"]
+
+[node name="KotlinTestScene" type="Node3D" unique_id=1957875635]
+script = ExtResource("1_mktsc")
+
+[node name="Button" type="Button" parent="." unique_id=361600528]
+offset_right = 8.0
+offset_bottom = 8.0
