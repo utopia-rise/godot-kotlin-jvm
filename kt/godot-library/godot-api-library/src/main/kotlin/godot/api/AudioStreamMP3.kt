@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -19,6 +21,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -26,9 +29,11 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ *
  * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine
  * is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled
  * by default.
@@ -37,20 +42,22 @@ import kotlin.jvm.JvmName
 public open class AudioStreamMP3 : AudioStream() {
   /**
    * Contains the audio data in bytes.
+   *
    * You can load a file without having to import it beforehand using the code snippet below. Keep
    * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
    * (hundreds of megabytes or more).
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func load_mp3(path):
    *     var file = FileAccess.open(path, FileAccess.READ)
    *     var sound = AudioStreamMP3.new()
    *     sound.data = file.get_buffer(file.get_length())
    *     return sound
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public AudioStreamMP3 LoadMP3(string path)
    * {
    *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
@@ -59,7 +66,17 @@ public open class AudioStreamMP3 : AudioStream() {
    *     return sound;
    * }
    * ```
+   *
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var `data`: PackedByteArray
     @JvmName("dataProperty")
     get() = getData()
@@ -115,7 +132,91 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(119, scriptIndex)
+    createNativeObject(84, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = audiostreammp3.data
+   * //Your changes
+   * audiostreammp3.data = myCoreType
+   * ``````
+   *
+   * Contains the audio data in bytes.
+   *
+   * You can load a file without having to import it beforehand using the code snippet below. Keep
+   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
+   * (hundreds of megabytes or more).
+   *
+   * ```gdscript
+   * //gdscript
+   * func load_mp3(path):
+   *     var file = FileAccess.open(path, FileAccess.READ)
+   *     var sound = AudioStreamMP3.new()
+   *     sound.data = file.get_buffer(file.get_length())
+   *     return sound
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public AudioStreamMP3 LoadMP3(string path)
+   * {
+   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   *     var sound = new AudioStreamMP3();
+   *     sound.Data = file.GetBuffer(file.GetLength());
+   *     return sound;
+   * }
+   * ```
+   */
+  @CoreTypeHelper
+  public final fun dataMutate(block: PackedByteArray.() -> Unit): PackedByteArray = data.apply {
+     block(this)
+     data = this
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Contains the audio data in bytes.
+   *
+   * You can load a file without having to import it beforehand using the code snippet below. Keep
+   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
+   * (hundreds of megabytes or more).
+   *
+   * ```gdscript
+   * //gdscript
+   * func load_mp3(path):
+   *     var file = FileAccess.open(path, FileAccess.READ)
+   *     var sound = AudioStreamMP3.new()
+   *     sound.data = file.get_buffer(file.get_length())
+   *     return sound
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public AudioStreamMP3 LoadMP3(string path)
+   * {
+   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   *     var sound = new AudioStreamMP3();
+   *     sound.Data = file.GetBuffer(file.GetLength());
+   *     return sound;
+   * }
+   * ```
+   */
+  @CoreTypeHelper
+  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
+      data.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     data = this
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -189,6 +290,7 @@ public open class AudioStreamMP3 : AudioStream() {
      * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3
      * data.
      */
+    @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamMP3? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
@@ -199,6 +301,7 @@ public open class AudioStreamMP3 : AudioStream() {
      * Creates a new [AudioStreamMP3] instance from the given file path. The file must be in MP3
      * format.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): AudioStreamMP3? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)

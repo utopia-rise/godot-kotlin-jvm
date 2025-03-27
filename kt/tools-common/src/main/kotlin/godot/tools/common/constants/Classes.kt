@@ -1,6 +1,12 @@
 package godot.tools.common.constants
 
+import com.squareup.kotlinpoet.BYTE
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.DOUBLE
+import com.squareup.kotlinpoet.FLOAT
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.STRING
 
 object GodotKotlinJvmTypes {
     const val color = "Color"
@@ -86,8 +92,9 @@ object GodotTypes {
     const val color = "Color"
     const val dictionary = "Dictionary"
     const val nodePath = "NodePath"
-    const val node = "Node"
+    const val godotObject = "Object"
     const val refCounted = "RefCounted"
+    const val node = "Node"
     const val plane = "Plane"
     const val coreType = "CoreType"
     const val packedByteArray = "PackedByteArray"
@@ -120,14 +127,12 @@ object GodotTypes {
     const val callable = "Callable"
     const val signal = "Signal"
     const val variant = "Variant"
-    const val variantType = "Variant.Type"
     const val propertyHint = "PropertyHint"
     const val propertyUsage = "PropertyUsageFlags"
     const val rpcMode = "MultiplayerAPI.RPCMode"
     const val transferMode = "MultiplayerPeer.TransferMode"
 
     val coreTypes = listOf(
-        error,
         typedArray,
         array,
         basis,
@@ -184,6 +189,39 @@ object GodotTypes {
         vector4,
         vector4i,
         projection,
+        packedByteArray,
+        packedInt32Array,
+        packedInt64Array,
+        packedFloat32Array,
+        packedFloat64Array,
+        packedStringArray,
+        packedVector2Array,
+        packedVector3Array,
+        packedVector3Array,
+    )
+
+    val indexedLocalCopyCoreTypes = listOf(
+        packedByteArray,
+        packedInt32Array,
+        packedInt64Array,
+        packedFloat32Array,
+        packedFloat64Array,
+        packedStringArray,
+        packedVector2Array,
+        packedVector3Array,
+        packedVector4Array,
+    )
+
+    val localCopyCoreTypesMap = mapOf(
+        packedByteArray to BYTE,
+        packedInt32Array to INT,
+        packedInt64Array to LONG,
+        packedFloat32Array to FLOAT,
+        packedFloat64Array to DOUBLE,
+        packedStringArray to STRING,
+        packedVector2Array to ClassName(godotCorePackage, vector2),
+        packedVector3Array to ClassName(godotCorePackage, vector3),
+        packedVector4Array to ClassName(godotCorePackage, vector4),
     )
 
     val primitives = listOf(
@@ -207,7 +245,6 @@ object GodotTypes {
 }
 
 val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
-val GODOT_VARIANT_TYPE = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantType)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
 val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)

@@ -19,6 +19,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -35,6 +36,7 @@ public open class Range : Control() {
    * dragging (potentially every frame). If you are performing an expensive operation in a function
    * connected to [signal value_changed], consider using a *debouncing* [Timer] to call the function
    * less often.
+   *
    * **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also
    * emitted when [value] is set directly via code.
    */
@@ -161,7 +163,7 @@ public open class Range : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(543, scriptIndex)
+    createNativeObject(533, scriptIndex)
   }
 
   /**
@@ -169,6 +171,7 @@ public open class Range : Control() {
    * value_changed]).
    */
   public open fun _valueChanged(newValue: Double): Unit {
+    throw NotImplementedError("_valueChanged is not implemented for Range")
   }
 
   public final fun getValue(): Double {

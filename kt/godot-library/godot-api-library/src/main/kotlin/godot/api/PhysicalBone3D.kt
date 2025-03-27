@@ -25,6 +25,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -33,6 +34,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]
  * react to physics.
+ *
  * **Note:** In order to detect physical bones with raycasts, the [SkeletonModifier3D.active]
  * property of the parent [PhysicalBoneSimulator3D] must be `true` and the [Skeleton3D]'s bone must be
  * assigned to [PhysicalBone3D] correctly; it means that [getBoneId] should return a valid id (`>= 0`).
@@ -52,6 +54,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Sets the joint's transform.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var jointOffset: Transform3D
@@ -64,6 +73,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Sets the joint's rotation in radians.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var jointRotation: Vector3
@@ -76,6 +92,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Sets the body's transform.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bodyOffset: Transform3D
@@ -110,6 +133,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
+   *
    * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
    * angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [bounce]
    * to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to
@@ -140,6 +164,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * If `true`, the standard force integration (like gravity or damping) will be disabled for this
    * body. Other than collision response, the body will only move as determined by the
    * [_integrateForces] method, if that virtual method is overridden.
+   *
    * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration]
    * internally.
    */
@@ -167,6 +192,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [ProjectSettings.physics/3d/defaultLinearDamp] or any value override set by an [Area3D] the body
    * is in. Depending on [linearDampMode], [linearDamp] may be added to or replace the body's damping
    * value.
+   *
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public final inline var linearDamp: Float
@@ -193,6 +219,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an
    * [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to
    * or to replace the body's damping value.
+   *
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public final inline var angularDamp: Float
@@ -207,6 +234,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
    * every frame**, because physics may run in another thread and runs at a different granularity. Use
    * [_integrateForces] as your process loop for precise control of the body state.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -219,6 +253,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * The PhysicalBone3D's rotational velocity in *radians* per second.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -242,17 +283,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(474, scriptIndex)
+    createNativeObject(459, scriptIndex)
   }
 
   /**
-   * Sets the joint's transform.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [jointOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -261,23 +296,18 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * //Your changes
    * physicalbone3d.jointOffset = myCoreType
    * ``````
+   *
+   * Sets the joint's transform.
    */
   @CoreTypeHelper
   public final fun jointOffsetMutate(block: Transform3D.() -> Unit): Transform3D =
-      jointOffset.apply{
-      block(this)
-      jointOffset = this
+      jointOffset.apply {
+     block(this)
+     jointOffset = this
   }
 
-
   /**
-   * Sets the joint's rotation in radians.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [jointRotation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -286,22 +316,17 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * //Your changes
    * physicalbone3d.jointRotation = myCoreType
    * ``````
+   *
+   * Sets the joint's rotation in radians.
    */
   @CoreTypeHelper
-  public final fun jointRotationMutate(block: Vector3.() -> Unit): Vector3 = jointRotation.apply{
-      block(this)
-      jointRotation = this
+  public final fun jointRotationMutate(block: Vector3.() -> Unit): Vector3 = jointRotation.apply {
+     block(this)
+     jointRotation = this
   }
 
-
   /**
-   * Sets the body's transform.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [bodyOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -310,24 +335,17 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * //Your changes
    * physicalbone3d.bodyOffset = myCoreType
    * ``````
+   *
+   * Sets the body's transform.
    */
   @CoreTypeHelper
-  public final fun bodyOffsetMutate(block: Transform3D.() -> Unit): Transform3D = bodyOffset.apply{
-      block(this)
-      bodyOffset = this
+  public final fun bodyOffsetMutate(block: Transform3D.() -> Unit): Transform3D = bodyOffset.apply {
+     block(this)
+     bodyOffset = this
   }
 
-
   /**
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
-   * every frame**, because physics may run in another thread and runs at a different granularity. Use
-   * [_integrateForces] as your process loop for precise control of the body state.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -336,22 +354,19 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * //Your changes
    * physicalbone3d.linearVelocity = myCoreType
    * ``````
+   *
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
+   * every frame**, because physics may run in another thread and runs at a different granularity. Use
+   * [_integrateForces] as your process loop for precise control of the body state.
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The PhysicalBone3D's rotational velocity in *radians* per second.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -360,14 +375,15 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * //Your changes
    * physicalbone3d.angularVelocity = myCoreType
    * ``````
+   *
+   * The PhysicalBone3D's rotational velocity in *radians* per second.
    */
   @CoreTypeHelper
   public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply{
-      block(this)
-      angularVelocity = this
+      angularVelocity.apply {
+     block(this)
+     angularVelocity = this
   }
-
 
   /**
    * Called during physics processing, allowing you to read and safely modify the simulation state
@@ -376,13 +392,16 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+    throw NotImplementedError("_integrateForces is not implemented for PhysicalBone3D")
   }
 
   /**
    * Applies a directional impulse without affecting rotation.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_integrate_forces" functions otherwise).
+   *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   public final fun applyCentralImpulse(impulse: Vector3): Unit {
@@ -392,9 +411,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Applies a positioned impulse to the PhysicsBone3D.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_integrate_forces" functions otherwise).
+   *
    * [position] is the offset from the PhysicsBone3D origin in global coordinates.
    */
   @JvmOverloads
@@ -411,7 +432,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getJointType(): JointType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointTypePtr, LONG)
-    return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
+    return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointOffset(offset: Transform3D): Unit {
@@ -526,7 +547,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getLinearDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
-    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
@@ -537,7 +558,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getAngularDampMode(): DampMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
-    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
@@ -613,11 +634,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
      */
-    DAMP_MODE_COMBINE(0),
+    COMBINE(0),
     /**
      * In this mode, the body's damping value replaces any value set in areas or the default value.
      */
-    DAMP_MODE_REPLACE(1),
+    REPLACE(1),
     ;
 
     public val id: Long
@@ -636,23 +657,23 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     /**
      * No joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_NONE(0),
+    NONE(0),
     /**
      * A pin joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_PIN(1),
+    PIN(1),
     /**
      * A cone joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_CONE(2),
+    CONE(2),
     /**
      * A hinge joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_HINGE(3),
+    HINGE(3),
     /**
      * A slider joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_SLIDER(4),
+    SLIDER(4),
     /**
      * A 6 degrees of freedom joint is applied to the PhysicsBone3D.
      */

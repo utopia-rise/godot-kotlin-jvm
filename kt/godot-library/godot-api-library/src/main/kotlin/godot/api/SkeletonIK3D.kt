@@ -25,11 +25,14 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -43,7 +46,8 @@ import kotlin.jvm.JvmOverloads
  * `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this
  * overwrites any bone transform from [Animation]s or bone custom poses set by users. The applied
  * amount can be controlled with the [SkeletonModifier3D.influence] property.
- * [codeblock]
+ *
+ * ```
  * # Apply IK effect automatically on every new frame (not the current)
  * skeleton_ik_node.start()
  *
@@ -62,7 +66,7 @@ import kotlin.jvm.JvmOverloads
  * # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on
  * Skeleton)
  * skeleton_ik_node.set_influence(0.0)
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class SkeletonIK3D : SkeletonModifier3D() {
@@ -93,6 +97,13 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`,
    * how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used
    * instead and this property is ignored.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var target: Transform3D
@@ -133,6 +144,13 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain
    * has more than 2 bones. The middle chain bone position will be linearly interpolated with the
    * magnet position.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var magnet: Vector3
@@ -193,19 +211,11 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(604, scriptIndex)
+    createNativeObject(598, scriptIndex)
   }
 
   /**
-   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`,
-   * how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used
-   * instead and this property is ignored.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [target] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -214,25 +224,19 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * //Your changes
    * skeletonik3d.target = myCoreType
    * ``````
+   *
+   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`,
+   * how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used
+   * instead and this property is ignored.
    */
   @CoreTypeHelper
-  public final fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply{
-      block(this)
-      target = this
+  public final fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply {
+     block(this)
+     target = this
   }
 
-
   /**
-   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use
-   * magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain
-   * has more than 2 bones. The middle chain bone position will be linearly interpolated with the
-   * magnet position.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [magnet] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -241,13 +245,17 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * //Your changes
    * skeletonik3d.magnet = myCoreType
    * ``````
+   *
+   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use
+   * magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain
+   * has more than 2 bones. The middle chain bone position will be linearly interpolated with the
+   * magnet position.
    */
   @CoreTypeHelper
-  public final fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply{
-      block(this)
-      magnet = this
+  public final fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply {
+     block(this)
+     magnet = this
   }
-
 
   public final fun setRootBone(rootBone: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to rootBone)
@@ -400,6 +408,12 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
+
+  public final fun setRootBone(rootBone: String) = setRootBone(rootBone.asCachedStringName())
+
+  public final fun setTipBone(tipBone: String) = setTipBone(tipBone.asCachedStringName())
+
+  public final fun setTargetNode(node: String) = setTargetNode(node.asCachedNodePath())
 
   public companion object
 

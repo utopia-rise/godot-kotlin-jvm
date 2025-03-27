@@ -36,6 +36,8 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3i
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -50,51 +52,51 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-public infix fun Long.or(other: godot.api.Control.SizeFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: Control.SizeFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.Control.SizeFlags): Long = this.xor(other.flag)
+public infix fun Long.xor(other: Control.SizeFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.Control.SizeFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.Control.SizeFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.Control.SizeFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.Control.SizeFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.Control.SizeFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.Control.SizeFlags): Long = this.rem(other.flag)
+public infix fun Long.and(other: Control.SizeFlags): Long = this.and(other.flag)
 
 /**
  * Base class for all UI-related nodes. [Control] features a bounding rectangle that defines its
  * extents, an anchor position relative to its parent control or the current viewport, and offsets
  * relative to the anchor. The offsets update automatically when the node, any of its parents, or the
  * screen size change.
+ *
  * For more information on Godot's UI system, anchors, offsets, and containers, see the related
  * tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from
  * [Control] and [Container] nodes.
+ *
  * **Note:** Since both [Node2D] and [Control] inherit from [CanvasItem], they share several
  * concepts from the class such as the [CanvasItem.zIndex] and [CanvasItem.visible] properties.
+ *
  * **User Interface nodes and input**
+ *
  * Godot propagates input events via viewports. Each [Viewport] is responsible for propagating
  * [InputEvent]s to their child nodes. As the [SceneTree.root] is a [Window], this already happens
  * automatically for all UI elements in your game.
+ *
  * Input events are propagated through the [SceneTree] from the root node to all child nodes by
  * calling [Node.Input]. For UI elements specifically, it makes more sense to override the virtual
  * method [_guiInput], which filters out unrelated input events, such as by checking z-order,
  * [mouseFilter], focus, or if the event was inside of the control's bounding box.
+ *
  * Call [acceptEvent] so no other node receives the event. Once you accept an input, it becomes
  * handled so [Node.UnhandledInput] will not process it.
+ *
  * Only one [Control] node can be in focus. Only the node in focus will receive events. To get the
  * focus, call [grabFocus]. [Control] nodes lose focus when another node grabs it, or if you hide the
  * node in focus.
+ *
  * Sets [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch
  * events. You'll need it if you place an icon on top of a button.
+ *
  * [Theme] resources change the control's appearance. The [theme] of a [Control] node affects all of
  * its direct and indirect children (as long as a chain of controls is uninterrupted). To override some
  * of the theme items, call one of the `add_theme_*_override` methods, like [addThemeFontOverride]. You
  * can also override theme items in the Inspector.
+ *
  * **Note:** Theme items are *not* [Object] properties. This means you can't access their values
  * using [Object.get] and [Object.set]. Instead, use the `get_theme_*` and `add_theme_*_override`
  * methods provided by this class.
@@ -115,6 +117,7 @@ public open class Control : CanvasItem() {
    * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that
    * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach
    * it and regardless if it's currently focused or not.
+   *
    * **Note:** [CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    */
   public val mouseEntered: Signal0 by Signal0
@@ -123,14 +126,17 @@ public open class Control : CanvasItem() {
    * Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that
    * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach
    * it and regardless if it's currently focused or not.
+   *
    * **Note:** [CanvasItem.zIndex] doesn't affect, which Control receives the signal.
+   *
    * **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes,
    * you can use code like this:
-   * [codeblock]
+   *
+   * ```
    * func _on_mouse_exited():
    *     if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
    *         # Not hovering over area.
-   * [/codeblock]
+   * ```
    */
   public val mouseExited: Signal0 by Signal0
 
@@ -178,6 +184,13 @@ public open class Control : CanvasItem() {
    * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
    * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
    * this property and the internal minimum size (see [getCombinedMinimumSize]).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var customMinimumSize: Vector2
@@ -207,7 +220,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorLeft: Float
     @JvmName("anchorLeftProperty")
-    get() = getAnchor(Side.SIDE_LEFT)
+    get() = getAnchor(Side.LEFT)
 
   /**
    * Anchors the top edge of the node to the origin, the center or the end of its parent control. It
@@ -216,7 +229,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorTop: Float
     @JvmName("anchorTopProperty")
-    get() = getAnchor(Side.SIDE_TOP)
+    get() = getAnchor(Side.TOP)
 
   /**
    * Anchors the right edge of the node to the origin, the center or the end of its parent control.
@@ -225,7 +238,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorRight: Float
     @JvmName("anchorRightProperty")
-    get() = getAnchor(Side.SIDE_RIGHT)
+    get() = getAnchor(Side.RIGHT)
 
   /**
    * Anchors the bottom edge of the node to the origin, the center, or the end of its parent
@@ -234,62 +247,66 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorBottom: Float
     @JvmName("anchorBottomProperty")
-    get() = getAnchor(Side.SIDE_BOTTOM)
+    get() = getAnchor(Side.BOTTOM)
 
   /**
    * Distance between the node's left edge and its parent control, based on [anchorLeft].
+   *
    * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
    * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
    * when you move or resize the node.
    */
   public final inline var offsetLeft: Float
     @JvmName("offsetLeftProperty")
-    get() = getOffset(Side.SIDE_LEFT)
+    get() = getOffset(Side.LEFT)
     @JvmName("offsetLeftProperty")
     set(`value`) {
-      setOffset(Side.SIDE_LEFT, value)
+      setOffset(Side.LEFT, value)
     }
 
   /**
    * Distance between the node's top edge and its parent control, based on [anchorTop].
+   *
    * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
    * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
    * when you move or resize the node.
    */
   public final inline var offsetTop: Float
     @JvmName("offsetTopProperty")
-    get() = getOffset(Side.SIDE_TOP)
+    get() = getOffset(Side.TOP)
     @JvmName("offsetTopProperty")
     set(`value`) {
-      setOffset(Side.SIDE_TOP, value)
+      setOffset(Side.TOP, value)
     }
 
   /**
    * Distance between the node's right edge and its parent control, based on [anchorRight].
+   *
    * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
    * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
    * when you move or resize the node.
    */
   public final inline var offsetRight: Float
     @JvmName("offsetRightProperty")
-    get() = getOffset(Side.SIDE_RIGHT)
+    get() = getOffset(Side.RIGHT)
     @JvmName("offsetRightProperty")
     set(`value`) {
-      setOffset(Side.SIDE_RIGHT, value)
+      setOffset(Side.RIGHT, value)
     }
 
   /**
    * Distance between the node's bottom edge and its parent control, based on [anchorBottom].
+   *
    * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
    * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
    * when you move or resize the node.
    */
   public final inline var offsetBottom: Float
     @JvmName("offsetBottomProperty")
-    get() = getOffset(Side.SIDE_BOTTOM)
+    get() = getOffset(Side.BOTTOM)
     @JvmName("offsetBottomProperty")
     set(`value`) {
-      setOffset(Side.SIDE_BOTTOM, value)
+      setOffset(Side.BOTTOM, value)
     }
 
   /**
@@ -322,7 +339,6 @@ public open class Control : CanvasItem() {
    * The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes
    * update this property automatically.
    */
-  @CoreTypeLocalCopy
   public final inline val size: Vector2
     @JvmName("sizeProperty")
     get() = getSize()
@@ -331,7 +347,6 @@ public open class Control : CanvasItem() {
    * The node's position, relative to its containing node. It corresponds to the rectangle's
    * top-left corner. The property is not affected by [pivotOffset].
    */
-  @CoreTypeLocalCopy
   public final inline val position: Vector2
     @JvmName("positionProperty")
     get() = getPosition()
@@ -339,7 +354,6 @@ public open class Control : CanvasItem() {
   /**
    * The node's global position, relative to the world (usually to the [CanvasLayer]).
    */
-  @CoreTypeLocalCopy
   public final inline val globalPosition: Vector2
     @JvmName("globalPositionProperty")
     get() = getGlobalPosition()
@@ -347,6 +361,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's
    * position.
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    */
@@ -372,10 +387,12 @@ public open class Control : CanvasItem() {
   /**
    * The node's scale, relative to its [size]. Change this property to scale the node around its
    * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   *
    * **Note:** This property is mainly intended to be used for animation purposes. To support
    * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
    * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of
    * scaling Controls individually.
+   *
    * **Note:** [FontFile.oversampling] does *not* take [Control] [scale] into account. This means
    * that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear
    * blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font
@@ -383,9 +400,17 @@ public open class Control : CanvasItem() {
    * (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in
    * the import options of a DynamicFont for custom fonts. On system fonts,
    * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   *
    * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
    * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
    * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
@@ -400,6 +425,13 @@ public open class Control : CanvasItem() {
    * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
    * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
    * Control's center.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var pivotOffset: Vector2
@@ -453,6 +485,7 @@ public open class Control : CanvasItem() {
   /**
    * If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar]
    * values from the Western Arabic (0..9) to the numeral systems used in current locale.
+   *
    * **Note:** Numbers within the text are not automatically converted, it can be done manually,
    * using [TextServer.formatNumber].
    */
@@ -481,16 +514,18 @@ public open class Control : CanvasItem() {
    * control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE].
    * The time required for the tooltip to appear can be changed with the
    * [ProjectSettings.gui/timers/tooltipDelaySec] setting.
+   *
    * This string is the default return value of [getTooltip]. Override [_getTooltip] to generate
    * tooltip text dynamically. Override [_makeCustomTooltip] to customize the tooltip interface and
    * behavior.
+   *
    * The tooltip popup will use either a default implementation, or a custom one that you can
    * provide by overriding [_makeCustomTooltip]. The default tooltip includes a [PopupPanel] and
    * [Label] whose theme properties can be customized using [Theme] methods with the `"TooltipPanel"`
    * and `"TooltipLabel"` respectively. For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var style_box = StyleBoxFlat.new()
    * style_box.set_bg_color(Color(1, 1, 0))
    * style_box.set_border_width_all(2)
@@ -498,8 +533,9 @@ public open class Control : CanvasItem() {
    * theme.set_stylebox("panel", "TooltipPanel", style_box)
    * theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var styleBox = new StyleBoxFlat();
    * styleBox.SetBgColor(new Color(1, 1, 0));
    * styleBox.SetBorderWidthAll(2);
@@ -520,6 +556,7 @@ public open class Control : CanvasItem() {
    * Defines if tooltip text should automatically change to its translated version depending on the
    * current locale. Uses the same auto translate mode as this control when set to
    * [Node.AUTO_TRANSLATE_MODE_INHERIT].
+   *
    * **Note:** Tooltips customized using [_makeCustomTooltip] do not use this auto translate mode
    * automatically.
    */
@@ -539,10 +576,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborLeft: NodePath
     @JvmName("focusNeighborLeftProperty")
-    get() = getFocusNeighbor(Side.SIDE_LEFT)
+    get() = getFocusNeighbor(Side.LEFT)
     @JvmName("focusNeighborLeftProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_LEFT, value)
+      setFocusNeighbor(Side.LEFT, value)
     }
 
   /**
@@ -553,10 +590,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborTop: NodePath
     @JvmName("focusNeighborTopProperty")
-    get() = getFocusNeighbor(Side.SIDE_TOP)
+    get() = getFocusNeighbor(Side.TOP)
     @JvmName("focusNeighborTopProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_TOP, value)
+      setFocusNeighbor(Side.TOP, value)
     }
 
   /**
@@ -567,10 +604,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborRight: NodePath
     @JvmName("focusNeighborRightProperty")
-    get() = getFocusNeighbor(Side.SIDE_RIGHT)
+    get() = getFocusNeighbor(Side.RIGHT)
     @JvmName("focusNeighborRightProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_RIGHT, value)
+      setFocusNeighbor(Side.RIGHT, value)
     }
 
   /**
@@ -581,16 +618,17 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborBottom: NodePath
     @JvmName("focusNeighborBottomProperty")
-    get() = getFocusNeighbor(Side.SIDE_BOTTOM)
+    get() = getFocusNeighbor(Side.BOTTOM)
     @JvmName("focusNeighborBottomProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_BOTTOM, value)
+      setFocusNeighbor(Side.BOTTOM, value)
     }
 
   /**
    * Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard
    * by default. You can change the key by editing the [ProjectSettings.input/uiFocusNext] input
    * action.
+   *
    * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the
    * scene tree.
    */
@@ -606,6 +644,7 @@ public open class Control : CanvasItem() {
    * Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a
    * keyboard by default. You can change the key by editing the [ProjectSettings.input/uiFocusPrev]
    * input action.
+   *
    * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the
    * scene tree.
    */
@@ -646,8 +685,10 @@ public open class Control : CanvasItem() {
   /**
    * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control
    * even if [mouseFilter] is set to [MOUSE_FILTER_STOP].
+   *
    * You should disable it on the root of your UI if you do not want scroll events to go to the
    * [Node.UnhandledInput] processing.
+   *
    * **Note:** Because this property defaults to `true`, this allows nested scrollable containers to
    * work out of the box.
    */
@@ -662,6 +703,7 @@ public open class Control : CanvasItem() {
   /**
    * The default cursor shape for this control. Useful for Godot plugins and applications or games
    * that use the system's mouse cursors.
+   *
    * **Note:** On Linux, shapes may vary depending on the cursor theme of the system.
    */
   public final inline var mouseDefaultCursorShape: CursorShape
@@ -689,6 +731,7 @@ public open class Control : CanvasItem() {
    * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node
    * has its own [Theme] resource set, theme items are merged with child's definitions having higher
    * priority.
+   *
    * **Note:** [Window] styles will have no effect unless the window is embedded.
    */
   public final inline var theme: Theme?
@@ -703,12 +746,15 @@ public open class Control : CanvasItem() {
    * The name of a theme type variation used by this [Control] to look up its own theme items. When
    * empty, the class name of the node is used (e.g. [code skip-lint]Button[/code] for the [Button]
    * control), as well as the class names of all parent classes (in order of inheritance).
+   *
    * When set, this property gives the highest priority to the type of the specified name. This type
    * can in turn extend another type, forming a dependency chain. See [Theme.setTypeVariation]. If the
    * theme item cannot be found using this type or its base types, lookup falls back on the class
    * names.
+   *
    * **Note:** To look up [Control]'s own items use various `get_theme_*` methods without specifying
    * `theme_type`.
+   *
    * **Note:** Theme items are looked for in the tree order, from branch to root, where each
    * [Control] node is checked for its [theme] property. The earliest match against any type/class name
    * is returned. The project-level Theme and the default Theme are checked last.
@@ -722,21 +768,11 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(211, scriptIndex)
+    createNativeObject(178, scriptIndex)
   }
 
   /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
-   * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
-   * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
-   * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
-   * this property and the internal minimum size (see [getCombinedMinimumSize]).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [customMinimumSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -745,38 +781,22 @@ public open class Control : CanvasItem() {
    * //Your changes
    * control.customMinimumSize = myCoreType
    * ``````
+   *
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
+   * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
+   * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
+   * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
+   * this property and the internal minimum size (see [getCombinedMinimumSize]).
    */
   @CoreTypeHelper
   public final fun customMinimumSizeMutate(block: Vector2.() -> Unit): Vector2 =
-      customMinimumSize.apply{
-      block(this)
-      customMinimumSize = this
+      customMinimumSize.apply {
+     block(this)
+     customMinimumSize = this
   }
 
-
   /**
-   * The node's scale, relative to its [size]. Change this property to scale the node around its
-   * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
-   * **Note:** This property is mainly intended to be used for animation purposes. To support
-   * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
-   * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of
-   * scaling Controls individually.
-   * **Note:** [FontFile.oversampling] does *not* take [Control] [scale] into account. This means
-   * that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear
-   * blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font
-   * rendering by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField]
-   * (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in
-   * the import options of a DynamicFont for custom fonts. On system fonts,
-   * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
-   * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
-   * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
-   * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -785,24 +805,35 @@ public open class Control : CanvasItem() {
    * //Your changes
    * control.scale = myCoreType
    * ``````
+   *
+   * The node's scale, relative to its [size]. Change this property to scale the node around its
+   * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   *
+   * **Note:** This property is mainly intended to be used for animation purposes. To support
+   * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
+   * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of
+   * scaling Controls individually.
+   *
+   * **Note:** [FontFile.oversampling] does *not* take [Control] [scale] into account. This means
+   * that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear
+   * blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font
+   * rendering by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField]
+   * (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in
+   * the import options of a DynamicFont for custom fonts. On system fonts,
+   * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   *
+   * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
+   * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
+   * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    */
   @CoreTypeHelper
-  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
-      block(this)
-      scale = this
+  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply {
+     block(this)
+     scale = this
   }
 
-
   /**
-   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
-   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
-   * Control's center.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [pivotOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -811,58 +842,67 @@ public open class Control : CanvasItem() {
    * //Your changes
    * control.pivotOffset = myCoreType
    * ``````
+   *
+   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
+   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
+   * Control's center.
    */
   @CoreTypeHelper
-  public final fun pivotOffsetMutate(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply{
-      block(this)
-      pivotOffset = this
+  public final fun pivotOffsetMutate(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply {
+     block(this)
+     pivotOffset = this
   }
-
 
   /**
    * Virtual method to be implemented by the user. Returns whether the given [point] is inside this
    * control.
+   *
    * If not overridden, default behavior is checking if the point is within control's Rect.
+   *
    * **Note:** If you want to check if a point is inside the control, you can use
    * `Rect2(Vector2.ZERO, size).has_point(point)`.
    */
   public open fun _hasPoint(point: Vector2): Boolean {
-    throw NotImplementedError("_has_point is not implemented for Control")
+    throw NotImplementedError("_hasPoint is not implemented for Control")
   }
 
   /**
    * User defined BiDi algorithm override function.
+   *
    * Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right
    * order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on
    * each range separately.
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Vector3i> {
-    throw NotImplementedError("_structured_text_parser is not implemented for Control")
+    throw NotImplementedError("_structuredTextParser is not implemented for Control")
   }
 
   /**
    * Virtual method to be implemented by the user. Returns the minimum size for this control.
    * Alternative to [customMinimumSize] for controlling minimum size via code. The actual minimum size
    * will be the max value of these two (in each axis separately).
+   *
    * If not overridden, defaults to [Vector2.ZERO].
+   *
    * **Note:** This method will not be called when the script is attached to a [Control] node that
    * already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be
    * used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_minimum_size is not implemented for Control")
+    throw NotImplementedError("_getMinimumSize is not implemented for Control")
   }
 
   /**
    * Virtual method to be implemented by the user. Returns the tooltip text for the position
    * [atPosition] in control's local coordinates, which will typically appear when the cursor is
    * resting over this control. See [getTooltip].
+   *
    * **Note:** If this method returns an empty [String] and [_makeCustomTooltip] is not overridden,
    * no tooltip is displayed.
    */
   public open fun _getTooltip(atPosition: Vector2): String {
-    throw NotImplementedError("_get_tooltip is not implemented for Control")
+    throw NotImplementedError("_getTooltip is not implemented for Control")
   }
 
   /**
@@ -870,19 +910,21 @@ public open class Control : CanvasItem() {
    * drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data
    * should implement [_canDropData] and [_dropData]. [atPosition] is local to this control. Drag may
    * be forced with [forceDrag].
+   *
    * A preview that will follow the mouse that should represent the data can be set with
    * [setDragPreview]. A good time to set the preview is in this method.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _get_drag_data(position):
    *     var mydata = make_data() # This is your custom method generating the drag data.
    *     set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview
    * of the drag data.
    *     return mydata
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override Variant _GetDragData(Vector2 atPosition)
    * {
    *     var myData = MakeData(); // This is your custom method generating the drag data.
@@ -893,23 +935,25 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _getDragData(atPosition: Vector2): Any? {
-    throw NotImplementedError("_get_drag_data is not implemented for Control")
+    throw NotImplementedError("_getDragData is not implemented for Control")
   }
 
   /**
    * Godot calls this method to test if [data] from a control's [_getDragData] can be dropped at
    * [atPosition]. [atPosition] is local to this control.
+   *
    * This method should only be used to test the data. Process the data in [_dropData].
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _can_drop_data(position, data):
    *     # Check position if it is relevant to you
    *     # Otherwise, just check data
    *     return typeof(data) == TYPE_DICTIONARY and data.has("expected")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
    *     // Check position if it is relevant to you
@@ -920,7 +964,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _canDropData(atPosition: Vector2, `data`: Any?): Boolean {
-    throw NotImplementedError("_can_drop_data is not implemented for Control")
+    throw NotImplementedError("_canDropData is not implemented for Control")
   }
 
   /**
@@ -928,16 +972,17 @@ public open class Control : CanvasItem() {
    * first calls [_canDropData] to test if [data] is allowed to drop at [atPosition] where [atPosition]
    * is local to this control.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _can_drop_data(position, data):
    *     return typeof(data) == TYPE_DICTIONARY and data.has("color")
    *
    * func _drop_data(position, data):
    *     var color = data["color"]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
    *     return data.VariantType == Variant.Type.Dictionary &&
@@ -951,38 +996,46 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _dropData(atPosition: Vector2, `data`: Any?): Unit {
+    throw NotImplementedError("_dropData is not implemented for Control")
   }
 
   /**
    * Virtual method to be implemented by the user. Returns a [Control] node that should be used as a
    * tooltip instead of the default one. [forText] is the return value of [getTooltip].
+   *
    * The returned node must be of type [Control] or Control-derived. It can have child nodes of any
    * type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if
    * you want to use a pre-existing node from your scene tree, you can duplicate it and pass the
    * duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be
    * used instead.
+   *
    * The returned node will be added as child to a [PopupPanel], so you should only provide the
    * contents of that panel. That [PopupPanel] can be themed using [Theme.setStylebox] for the type
    * `"TooltipPanel"` (see [tooltipText] for an example).
+   *
    * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you
    * might want to set its [customMinimumSize] to some non-zero value.
+   *
    * **Note:** The node (and any relevant children) should have their [CanvasItem.visible] set to
    * `true` when returned, otherwise, the viewport that instantiates it will not be able to calculate
    * its minimum size reliably.
+   *
    * **Note:** If overridden, this method is called even if [getTooltip] returns an empty string.
    * When this happens with the default tooltip, it is not displayed. To copy this behavior, return
    * `null` in this method when [forText] is empty.
+   *
    * **Example:** Use a constructed node as a tooltip:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _make_custom_tooltip(for_text):
    *     var label = Label.new()
    *     label.text = for_text
    *     return label
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override Control _MakeCustomTooltip(string forText)
    * {
    *     var label = new Label();
@@ -993,15 +1046,16 @@ public open class Control : CanvasItem() {
    *
    * **Example:** Usa a scene instance as a tooltip:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _make_custom_tooltip(for_text):
    *     var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
    *     tooltip.get_node("Label").text = for_text
    *     return tooltip
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override Control _MakeCustomTooltip(string forText)
    * {
    *     Node tooltip =
@@ -1012,23 +1066,25 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
-    throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
+    throw NotImplementedError("_makeCustomTooltip is not implemented for Control")
   }
 
   /**
    * Virtual method to be implemented by the user. Override this method to handle and accept inputs
    * on UI elements. See also [acceptEvent].
+   *
    * **Example:** Click on the control to print a message:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _gui_input(event):
    *     if event is InputEventMouseButton:
    *         if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
    *             print("I've been clicked D:")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _GuiInput(InputEvent @event)
    * {
    *     if (@event is InputEventMouseButton mb)
@@ -1042,21 +1098,29 @@ public open class Control : CanvasItem() {
    * ```
    *
    * If the [event] inherits [InputEventMouse], this method will **not** be called when:
+   *
    * - the control's [mouseFilter] is set to [MOUSE_FILTER_IGNORE];
+   *
    * - the control is obstructed by another control on top, that doesn't have [mouseFilter] set to
    * [MOUSE_FILTER_IGNORE];
+   *
    * - the control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
+   *
    * - the control's parent has [clipContents] enabled and the [event]'s position is outside the
    * parent's rectangle;
+   *
    * - the [event]'s position is outside the control (see [_hasPoint]).
+   *
    * **Note:** The [event]'s position is relative to this control's origin.
    */
   public open fun _guiInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_guiInput is not implemented for Control")
   }
 
   /**
    * Marks an input event as handled. Once you accept an input event, it stops propagating, even to
    * nodes listening to [Node.UnhandledInput] or [Node.UnhandledKeyInput].
+   *
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public final fun acceptEvent(): Unit {
@@ -1085,6 +1149,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets the anchors to a [preset] from [Control.LayoutPreset] enum. This is the code equivalent to
    * using the Layout menu in the 2D editor.
+   *
    * If [keepOffsets] is `true`, control's position will also be updated.
    */
   @JvmOverloads
@@ -1096,9 +1161,11 @@ public open class Control : CanvasItem() {
   /**
    * Sets the offsets to a [preset] from [Control.LayoutPreset] enum. This is the code equivalent to
    * using the Layout menu in the 2D editor.
+   *
    * Use parameter [resizeMode] with constants from [Control.LayoutPresetMode] to better determine
    * the resulting size of the [Control]. Constant size will be ignored if used with presets that
    * change size, e.g. [PRESET_LEFT_WIDE].
+   *
    * Use parameter [margin] to determine the gap between the [Control] and the edges.
    */
   @JvmOverloads
@@ -1127,7 +1194,9 @@ public open class Control : CanvasItem() {
   /**
    * Sets the anchor for the specified [Side] to [anchor]. A setter method for [anchorBottom],
    * [anchorLeft], [anchorRight] and [anchorTop].
+   *
    * If [keepOffset] is `true`, offsets aren't updated after this operation.
+   *
    * If [pushOppositeAnchor] is `true` and the opposite anchor overlaps this anchor, the opposite
    * one will have its value overridden. For example, when setting left anchor to 1 and the right
    * anchor has value of 0.5, the right anchor will also get value of 1. If [pushOppositeAnchor] was
@@ -1206,6 +1275,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Sets the [position] to given [position].
+   *
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
@@ -1216,6 +1286,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Sets the size (see [size]).
+   *
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
@@ -1240,6 +1311,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Sets the [globalPosition] to given [position].
+   *
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
@@ -1346,13 +1418,16 @@ public open class Control : CanvasItem() {
   /**
    * Returns the position of this [Control] in global screen coordinates (i.e. taking window
    * position into account). Mostly useful for editor plugins.
+   *
    * Equals to [globalPosition] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
+   *
    * **Example:** Show a popup at the mouse position:
-   * [codeblock]
+   *
+   * ```
    * popup_menu.position = get_screen_position() + get_local_mouse_position()
    * popup_menu.reset_size()
    * popup_menu.popup()
-   * [/codeblock]
+   * ```
    */
   public final fun getScreenPosition(): Vector2 {
     TransferContext.writeArguments()
@@ -1363,7 +1438,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns the position and size of the control in the coordinate system of the containing node.
    * See [position], [scale] and [size].
+   *
    * **Note:** If [rotation] is not the default rotation, the resulting size is not meaningful.
+   *
    * **Note:** Setting [Viewport.guiSnapControlsToPixels] to `true` can lead to rounding
    * inaccuracies between the displayed control and the returned [Rect2].
    */
@@ -1376,8 +1453,10 @@ public open class Control : CanvasItem() {
   /**
    * Returns the position and size of the control relative to the containing canvas. See
    * [globalPosition] and [size].
+   *
    * **Note:** If the node itself or any parent [CanvasItem] between the node and the canvas have a
    * non default rotation or skew, the resulting size is likely not meaningful.
+   *
    * **Note:** Setting [Viewport.guiSnapControlsToPixels] to `true` can lead to rounding
    * inaccuracies between the displayed control and the returned [Rect2].
    */
@@ -1395,7 +1474,7 @@ public open class Control : CanvasItem() {
   public final fun getFocusMode(): FocusMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusModePtr, LONG)
-    return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1409,6 +1488,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
+   *
    * **Note:** Using this method together with [Callable.callDeferred] makes it more reliable,
    * especially when called inside [Node.Ready].
    */
@@ -1445,6 +1525,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Finds the next [Control] that can receive the focus on the specified [Side].
+   *
    * **Note:** This is different from [getFocusNeighbor], which returns the path of a specified
    * focus neighbor.
    */
@@ -1462,7 +1543,7 @@ public open class Control : CanvasItem() {
   public final fun getHSizeFlags(): SizeFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHSizeFlagsPtr, LONG)
-    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStretchRatio(ratio: Float): Unit {
@@ -1484,7 +1565,7 @@ public open class Control : CanvasItem() {
   public final fun getVSizeFlags(): SizeFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVSizeFlagsPtr, LONG)
-    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTheme(theme: Theme?): Unit {
@@ -1530,6 +1611,7 @@ public open class Control : CanvasItem() {
    * Creates a local override for a theme icon with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeIconOverride].
+   *
    * See also [getThemeIcon].
    */
   public final fun addThemeIconOverride(name: StringName, texture: Texture2D?): Unit {
@@ -1541,11 +1623,13 @@ public open class Control : CanvasItem() {
    * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeStyleboxOverride].
+   *
    * See also [getThemeStylebox].
+   *
    * **Example:** Modify a property in a [StyleBox] by duplicating it:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * # The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
    * # Resources are shared across instances, so we need to duplicate it
    * # to avoid modifying the appearance of all other buttons.
@@ -1556,8 +1640,9 @@ public open class Control : CanvasItem() {
    * # Remove the stylebox override.
    * $MyButton.remove_theme_stylebox_override("normal")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * // The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
    * // Resources are shared across instances, so we need to duplicate it
    * // to avoid modifying the appearance of all other buttons.
@@ -1579,6 +1664,7 @@ public open class Control : CanvasItem() {
    * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontOverride].
+   *
    * See also [getThemeFont].
    */
   public final fun addThemeFontOverride(name: StringName, font: Font?): Unit {
@@ -1590,6 +1676,7 @@ public open class Control : CanvasItem() {
    * Creates a local override for a theme font size with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontSizeOverride].
+   *
    * See also [getThemeFontSize].
    */
   public final fun addThemeFontSizeOverride(name: StringName, fontSize: Int): Unit {
@@ -1601,11 +1688,13 @@ public open class Control : CanvasItem() {
    * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeColorOverride].
+   *
    * See also [getThemeColor].
+   *
    * **Example:** Override a [Label]'s color and reset it later:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * # Given the child Label node "MyLabel", override its font color with a custom value.
    * $MyLabel.add_theme_color_override("font_color", Color(1, 0.5, 0))
    * # Reset the font color of the child label.
@@ -1613,8 +1702,9 @@ public open class Control : CanvasItem() {
    * # Alternatively it can be overridden with the default value from the Label type.
    * $MyLabel.add_theme_color_override("font_color", get_theme_color("font_color", "Label"))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * // Given the child Label node "MyLabel", override its font color with a custom value.
    * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", new Color(1, 0.5f, 0));
    * // Reset the font color of the child label.
@@ -1633,6 +1723,7 @@ public open class Control : CanvasItem() {
    * Creates a local override for a theme constant with the specified [name]. Local overrides always
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeConstantOverride].
+   *
    * See also [getThemeConstant].
    */
   public final fun addThemeConstantOverride(name: StringName, constant: Int): Unit {
@@ -1697,9 +1788,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
    * with the specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
       Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1710,9 +1801,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
    * item with the specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1723,9 +1814,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
    * with the specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeFontPtr, OBJECT)
@@ -1735,9 +1826,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
    * item with the specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeFontSizePtr, LONG)
@@ -1751,22 +1842,24 @@ public open class Control : CanvasItem() {
    * its parent classes are also checked, in order of inheritance. If the type is a variation its base
    * types are checked, in order of dependency, then the control's class name and its parent classes
    * are checked.
+   *
    * For the current control its local overrides are considered first (see [addThemeColorOverride]),
    * then its assigned [theme]. After the current control, each parent control and its assigned [theme]
    * are considered; controls without a [theme] assigned are skipped. If no matching [Theme] is found
    * in the tree, the custom project [Theme] (see [ProjectSettings.gui/theme/custom]) and the default
    * [Theme] are used (see [ThemeDB]).
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     # Get the font color defined for the current Control's class, if it exists.
    *     modulate = get_theme_color("font_color")
    *     # Get the font color defined for the Button class.
    *     modulate = get_theme_color("font_color", "Button")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     // Get the font color defined for the current Control's class, if it exists.
@@ -1776,7 +1869,6 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
-  @JvmOverloads
   public final fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeColorPtr, COLOR)
@@ -1786,9 +1878,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
    * item with the specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeConstantPtr, LONG)
@@ -1798,6 +1890,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a local override for a theme icon with the specified [name] in this
    * [Control] node.
+   *
    * See [addThemeIconOverride].
    */
   public final fun hasThemeIconOverride(name: StringName): Boolean {
@@ -1809,6 +1902,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeStyleboxOverride].
    */
   public final fun hasThemeStyleboxOverride(name: StringName): Boolean {
@@ -1820,6 +1914,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeFontOverride].
    */
   public final fun hasThemeFontOverride(name: StringName): Boolean {
@@ -1831,6 +1926,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a local override for a theme font size with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeFontSizeOverride].
    */
   public final fun hasThemeFontSizeOverride(name: StringName): Boolean {
@@ -1842,6 +1938,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeColorOverride].
    */
   public final fun hasThemeColorOverride(name: StringName): Boolean {
@@ -1853,6 +1950,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a local override for a theme constant with the specified [name] in
    * this [Control] node.
+   *
    * See [addThemeConstantOverride].
    */
   public final fun hasThemeConstantOverride(name: StringName): Boolean {
@@ -1864,9 +1962,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
    * specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeIconPtr, BOOL)
@@ -1876,9 +1974,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
    * specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1889,9 +1987,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
    * specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeFontPtr, BOOL)
@@ -1901,9 +1999,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
    * specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1914,9 +2012,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
    * specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1927,9 +2025,9 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
    * specified [name] and [themeType].
+   *
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1940,6 +2038,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the default base scale value from the first matching [Theme] in the tree if that
    * [Theme] has a valid [Theme.defaultBaseScale] value.
+   *
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultBaseScale(): Float {
@@ -1951,6 +2050,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the default font from the first matching [Theme] in the tree if that [Theme] has a
    * valid [Theme.defaultFont] value.
+   *
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultFont(): Font? {
@@ -1962,6 +2062,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the default font size value from the first matching [Theme] in the tree if that [Theme]
    * has a valid [Theme.defaultFontSize] value.
+   *
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultFontSize(): Int {
@@ -1987,7 +2088,7 @@ public open class Control : CanvasItem() {
   public final fun getHGrowDirection(): GrowDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHGrowDirectionPtr, LONG)
-    return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVGrowDirection(direction: GrowDirection): Unit {
@@ -1998,7 +2099,7 @@ public open class Control : CanvasItem() {
   public final fun getVGrowDirection(): GrowDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVGrowDirectionPtr, LONG)
-    return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTooltipAutoTranslateMode(mode: Node.AutoTranslateMode): Unit {
@@ -2027,7 +2128,9 @@ public open class Control : CanvasItem() {
    * Returns the tooltip text for the position [atPosition] in control's local coordinates, which
    * will typically appear when the cursor is resting over this control. By default, it returns
    * [tooltipText].
+   *
    * This method can be overridden to customize its behavior. See [_getTooltip].
+   *
    * **Note:** If this method returns an empty [String] and [_makeCustomTooltip] is not overridden,
    * no tooltip is displayed.
    */
@@ -2046,7 +2149,7 @@ public open class Control : CanvasItem() {
   public final fun getDefaultCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCursorShapePtr, LONG)
-    return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2056,7 +2159,7 @@ public open class Control : CanvasItem() {
   public final fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.getCursorShapePtr, LONG)
-    return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2072,6 +2175,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the focus neighbor for the specified [Side]. A getter method for [focusNeighborBottom],
    * [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
+   *
    * **Note:** To find the next [Control] on the specific [Side], even if a neighbor is not
    * assigned, use [findValidFocusNeighbor].
    */
@@ -2106,6 +2210,7 @@ public open class Control : CanvasItem() {
   /**
    * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [data] and [preview].
    * Drag will start even if the mouse is neither over nor pressed on this control.
+   *
    * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive
    * drop data.
    */
@@ -2122,7 +2227,7 @@ public open class Control : CanvasItem() {
   public final fun getMouseFilter(): MouseFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseFilterPtr, LONG)
-    return Control.MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setForcePassScrollEvents(forcePassScrollEvents: Boolean): Unit {
@@ -2151,13 +2256,14 @@ public open class Control : CanvasItem() {
    * Creates an [InputEventMouseButton] that attempts to click the control. If the event is
    * received, the control gains focus.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _process(delta):
    *     grab_click_focus() # When clicking another Control node, this node will be clicked instead.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Process(double delta)
    * {
    *     GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
@@ -2172,10 +2278,14 @@ public open class Control : CanvasItem() {
   /**
    * Sets the given callables to be used instead of the control's own drag-and-drop virtual methods.
    * If a callable is empty, its respective virtual method is used as normal.
+   *
    * The arguments for each callable should be exactly the same as their respective virtual methods,
    * which would be:
+   *
    * - [dragFunc] corresponds to [_getDragData] and requires a [Vector2];
+   *
    * - [canDropFunc] corresponds to [_canDropData] and requires both a [Vector2] and a [Variant];
+   *
    * - [dropFunc] corresponds to [_dropData] and requires both a [Vector2] and a [Variant].
    */
   public final fun setDragForwarding(
@@ -2193,8 +2303,8 @@ public open class Control : CanvasItem() {
    * you should not keep a reference to the control beyond the duration of the drag. It will be deleted
    * automatically after the drag has ended.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * @export var color = Color(1, 0, 0, 1)
    *
    * func _get_drag_data(position):
@@ -2205,8 +2315,9 @@ public open class Control : CanvasItem() {
    *     set_drag_preview(cpb)
    *     return color
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * [Export]
    * private Color _color = new Color(1, 0, 0, 1);
    *
@@ -2229,6 +2340,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if a drag operation is successful. Alternative to
    * [Viewport.guiIsDragSuccessful].
+   *
    * Best used with [Node.NOTIFICATION_DRAG_END].
    */
   public final fun isDragSuccessful(): Boolean {
@@ -2239,6 +2351,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Moves the mouse cursor to [position], relative to [position] of this [Control].
+   *
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
@@ -2276,7 +2389,7 @@ public open class Control : CanvasItem() {
   public final fun getLayoutDirection(): LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
-    return Control.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2310,22 +2423,382 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setThemeTypeVariation(themeType: String) =
+      setThemeTypeVariation(themeType.asCachedStringName())
+
+  /**
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeIconOverride].
+   *
+   * See also [getThemeIcon].
+   */
+  public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
+      addThemeIconOverride(name.asCachedStringName(), texture)
+
+  /**
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeStyleboxOverride].
+   *
+   * See also [getThemeStylebox].
+   *
+   * **Example:** Modify a property in a [StyleBox] by duplicating it:
+   *
+   * ```gdscript
+   * //gdscript
+   * # The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
+   * # Resources are shared across instances, so we need to duplicate it
+   * # to avoid modifying the appearance of all other buttons.
+   * var new_stylebox_normal = $MyButton.get_theme_stylebox("normal").duplicate()
+   * new_stylebox_normal.border_width_top = 3
+   * new_stylebox_normal.border_color = Color(0, 1, 0.5)
+   * $MyButton.add_theme_stylebox_override("normal", new_stylebox_normal)
+   * # Remove the stylebox override.
+   * $MyButton.remove_theme_stylebox_override("normal")
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * // The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
+   * // Resources are shared across instances, so we need to duplicate it
+   * // to avoid modifying the appearance of all other buttons.
+   * StyleBoxFlat newStyleboxNormal =
+   * GetNode<Button>("MyButton").GetThemeStylebox("normal").Duplicate() as StyleBoxFlat;
+   * newStyleboxNormal.BorderWidthTop = 3;
+   * newStyleboxNormal.BorderColor = new Color(0, 1, 0.5f);
+   * GetNode<Button>("MyButton").AddThemeStyleboxOverride("normal", newStyleboxNormal);
+   * // Remove the stylebox override.
+   * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
+   * ```
+   */
+  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
+      addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
+
+  /**
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontOverride].
+   *
+   * See also [getThemeFont].
+   */
+  public final fun addThemeFontOverride(name: String, font: Font?) =
+      addThemeFontOverride(name.asCachedStringName(), font)
+
+  /**
+   * Creates a local override for a theme font size with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontSizeOverride].
+   *
+   * See also [getThemeFontSize].
+   */
+  public final fun addThemeFontSizeOverride(name: String, fontSize: Int) =
+      addThemeFontSizeOverride(name.asCachedStringName(), fontSize)
+
+  /**
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeColorOverride].
+   *
+   * See also [getThemeColor].
+   *
+   * **Example:** Override a [Label]'s color and reset it later:
+   *
+   * ```gdscript
+   * //gdscript
+   * # Given the child Label node "MyLabel", override its font color with a custom value.
+   * $MyLabel.add_theme_color_override("font_color", Color(1, 0.5, 0))
+   * # Reset the font color of the child label.
+   * $MyLabel.remove_theme_color_override("font_color")
+   * # Alternatively it can be overridden with the default value from the Label type.
+   * $MyLabel.add_theme_color_override("font_color", get_theme_color("font_color", "Label"))
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * // Given the child Label node "MyLabel", override its font color with a custom value.
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", new Color(1, 0.5f, 0));
+   * // Reset the font color of the child label.
+   * GetNode<Label>("MyLabel").RemoveThemeColorOverride("font_color");
+   * // Alternatively it can be overridden with the default value from the Label type.
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", GetThemeColor("font_color",
+   * "Label"));
+   * ```
+   */
+  public final fun addThemeColorOverride(name: String, color: Color) =
+      addThemeColorOverride(name.asCachedStringName(), color)
+
+  /**
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeConstantOverride].
+   *
+   * See also [getThemeConstant].
+   */
+  public final fun addThemeConstantOverride(name: String, constant: Int) =
+      addThemeConstantOverride(name.asCachedStringName(), constant)
+
+  /**
+   * Removes a local override for a theme icon with the specified [name] previously added by
+   * [addThemeIconOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeIconOverride(name: String) =
+      removeThemeIconOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
+   * [addThemeStyleboxOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeStyleboxOverride(name: String) =
+      removeThemeStyleboxOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [Font] with the specified [name] previously added by
+   * [addThemeFontOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeFontOverride(name: String) =
+      removeThemeFontOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme font size with the specified [name] previously added by
+   * [addThemeFontSizeOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeFontSizeOverride(name: String) =
+      removeThemeFontSizeOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [Color] with the specified [name] previously added by
+   * [addThemeColorOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeColorOverride(name: String) =
+      removeThemeColorOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme constant with the specified [name] previously added by
+   * [addThemeConstantOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeConstantOverride(name: String) =
+      removeThemeConstantOverride(name.asCachedStringName())
+
+  /**
+   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
+   * with the specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeIcon(name: String, themeType: String): Texture2D? =
+      getThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
+   * item with the specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeStylebox(name: String, themeType: String): StyleBox? =
+      getThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
+   * with the specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeFont(name: String, themeType: String): Font? =
+      getThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
+   * item with the specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeFontSize(name: String, themeType: String): Int =
+      getThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
+   * with the specified [name] and [themeType]. If [themeType] is omitted the class name of the current
+   * control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name
+   * its parent classes are also checked, in order of inheritance. If the type is a variation its base
+   * types are checked, in order of dependency, then the control's class name and its parent classes
+   * are checked.
+   *
+   * For the current control its local overrides are considered first (see [addThemeColorOverride]),
+   * then its assigned [theme]. After the current control, each parent control and its assigned [theme]
+   * are considered; controls without a [theme] assigned are skipped. If no matching [Theme] is found
+   * in the tree, the custom project [Theme] (see [ProjectSettings.gui/theme/custom]) and the default
+   * [Theme] are used (see [ThemeDB]).
+   *
+   * ```gdscript
+   * //gdscript
+   * func _ready():
+   *     # Get the font color defined for the current Control's class, if it exists.
+   *     modulate = get_theme_color("font_color")
+   *     # Get the font color defined for the Button class.
+   *     modulate = get_theme_color("font_color", "Button")
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Ready()
+   * {
+   *     // Get the font color defined for the current Control's class, if it exists.
+   *     Modulate = GetThemeColor("font_color");
+   *     // Get the font color defined for the Button class.
+   *     Modulate = GetThemeColor("font_color", "Button");
+   * }
+   * ```
+   */
+  public final fun getThemeColor(name: String, themeType: String): Color =
+      getThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
+   * item with the specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeConstant(name: String, themeType: String): Int =
+      getThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
+   * [Control] node.
+   *
+   * See [addThemeIconOverride].
+   */
+  public final fun hasThemeIconOverride(name: String): Boolean =
+      hasThemeIconOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
+   * this [Control] node.
+   *
+   * See [addThemeStyleboxOverride].
+   */
+  public final fun hasThemeStyleboxOverride(name: String): Boolean =
+      hasThemeStyleboxOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
+   * this [Control] node.
+   *
+   * See [addThemeFontOverride].
+   */
+  public final fun hasThemeFontOverride(name: String): Boolean =
+      hasThemeFontOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in
+   * this [Control] node.
+   *
+   * See [addThemeFontSizeOverride].
+   */
+  public final fun hasThemeFontSizeOverride(name: String): Boolean =
+      hasThemeFontSizeOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
+   * this [Control] node.
+   *
+   * See [addThemeColorOverride].
+   */
+  public final fun hasThemeColorOverride(name: String): Boolean =
+      hasThemeColorOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in
+   * this [Control] node.
+   *
+   * See [addThemeConstantOverride].
+   */
+  public final fun hasThemeConstantOverride(name: String): Boolean =
+      hasThemeConstantOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
+   * specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeIcon(name: String, themeType: String): Boolean =
+      hasThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
+   * specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeStylebox(name: String, themeType: String): Boolean =
+      hasThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
+   * specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeFont(name: String, themeType: String): Boolean =
+      hasThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
+   * specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeFontSize(name: String, themeType: String): Boolean =
+      hasThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
+   * specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeColor(name: String, themeType: String): Boolean =
+      hasThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
+   * specified [name] and [themeType].
+   *
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeConstant(name: String, themeType: String): Boolean =
+      hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Sets the focus neighbor for the specified [Side] to the [Control] at [neighbor] node path. A
+   * setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and
+   * [focusNeighborTop].
+   */
+  public final fun setFocusNeighbor(side: Side, neighbor: String) =
+      setFocusNeighbor(side, neighbor.asCachedNodePath())
+
+  public final fun setFocusNext(next: String) = setFocusNext(next.asCachedNodePath())
+
+  public final fun setFocusPrevious(previous: String) =
+      setFocusPrevious(previous.asCachedNodePath())
+
   public enum class FocusMode(
     id: Long,
   ) {
     /**
      * The node cannot grab focus. Use with [focusMode].
      */
-    FOCUS_NONE(0),
+    NONE(0),
     /**
      * The node can only grab focus on mouse clicks. Use with [focusMode].
      */
-    FOCUS_CLICK(1),
+    CLICK(1),
     /**
      * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or
      * using the D-pad buttons on a gamepad. Use with [focusMode].
      */
-    FOCUS_ALL(2),
+    ALL(2),
     ;
 
     public val id: Long
@@ -2345,88 +2818,88 @@ public open class Control : CanvasItem() {
      * Show the system's arrow mouse cursor when the user hovers the node. Use with
      * [mouseDefaultCursorShape].
      */
-    CURSOR_ARROW(0),
+    ARROW(0),
     /**
      * Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a
      * shape similar to "I". It tells the user they can highlight or insert text.
      */
-    CURSOR_IBEAM(1),
+    IBEAM(1),
     /**
      * Show the system's pointing hand mouse cursor when the user hovers the node.
      */
-    CURSOR_POINTING_HAND(2),
+    POINTING_HAND(2),
     /**
      * Show the system's cross mouse cursor when the user hovers the node.
      */
-    CURSOR_CROSS(3),
+    CROSS(3),
     /**
      * Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
      */
-    CURSOR_WAIT(4),
+    WAIT(4),
     /**
      * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a
      * small hourglass.
      */
-    CURSOR_BUSY(5),
+    BUSY(5),
     /**
      * Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user
      * hovers the node. It tells the user they're currently dragging an item, like a node in the Scene
      * dock.
      */
-    CURSOR_DRAG(6),
+    DRAG(6),
     /**
      * Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It
      * tells the user they can drop an item they're currently grabbing, like a node in the Scene dock.
      */
-    CURSOR_CAN_DROP(7),
+    CAN_DROP(7),
     /**
      * Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed
      * circle.
      */
-    CURSOR_FORBIDDEN(8),
+    FORBIDDEN(8),
     /**
      * Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed
      * vertical arrow. It tells the user they can resize the window or the panel vertically.
      */
-    CURSOR_VSIZE(9),
+    VSIZE(9),
     /**
      * Show the system's horizontal resize mouse cursor when the user hovers the node. A
      * double-headed horizontal arrow. It tells the user they can resize the window or the panel
      * horizontally.
      */
-    CURSOR_HSIZE(10),
+    HSIZE(10),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the bottom left to the top right. It tells the user they can
      * resize the window or the panel both horizontally and vertically.
      */
-    CURSOR_BDIAGSIZE(11),
+    BDIAGSIZE(11),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the top left to the bottom right, the opposite of
      * [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
      * and vertically.
      */
-    CURSOR_FDIAGSIZE(12),
+    FDIAGSIZE(12),
     /**
      * Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed
      * arrows at a 90 degree angle. It tells the user they can move a UI element freely.
      */
-    CURSOR_MOVE(13),
+    MOVE(13),
     /**
      * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's
      * the same as [CURSOR_VSIZE].
      */
-    CURSOR_VSPLIT(14),
+    VSPLIT(14),
     /**
      * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows,
      * it's the same as [CURSOR_HSIZE].
      */
-    CURSOR_HSPLIT(15),
+    HSPLIT(15),
     /**
      * Show the system's help mouse cursor when the user hovers the node, a question mark.
      */
-    CURSOR_HELP(16),
+    HELP(16),
     ;
 
     public val id: Long
@@ -2569,72 +3042,80 @@ public open class Control : CanvasItem() {
     }
   }
 
-  public sealed interface SizeFlags {
-    public val flag: Long
+  @JvmInline
+  public value class SizeFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: SizeFlags): SizeFlags = SizeFlags(flag.or(other.flag))
 
-    public infix fun or(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): SizeFlags = SizeFlags(flag.or(other))
 
-    public infix fun or(other: Long): SizeFlags = SizeFlagsValue(flag.or(other))
+    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): SizeFlags = SizeFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): SizeFlags = SizeFlagsValue(flag.xor(other))
+    public infix fun and(other: SizeFlags): SizeFlags = SizeFlags(flag.and(other.flag))
 
-    public infix fun and(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): SizeFlags = SizeFlags(flag.and(other))
 
-    public infix fun and(other: Long): SizeFlags = SizeFlagsValue(flag.and(other))
+    public fun unaryPlus(): SizeFlags = SizeFlags(flag.unaryPlus())
 
-    public operator fun plus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): SizeFlags = SizeFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): SizeFlags = SizeFlagsValue(flag.plus(other))
+    public fun inv(): SizeFlags = SizeFlags(flag.inv())
 
-    public operator fun minus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): SizeFlags = SizeFlags(flag shl bits)
 
-    public operator fun minus(other: Long): SizeFlags = SizeFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): SizeFlags = SizeFlags(flag shr bits)
 
-    public operator fun times(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): SizeFlags = SizeFlagsValue(flag.times(other))
-
-    public operator fun div(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): SizeFlags = SizeFlagsValue(flag.div(other))
-
-    public operator fun rem(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): SizeFlags = SizeFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): SizeFlags = SizeFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): SizeFlags = SizeFlagsValue(flag.unaryMinus())
-
-    public fun inv(): SizeFlags = SizeFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): SizeFlags = SizeFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): SizeFlags = SizeFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): SizeFlags = SizeFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): SizeFlags = SizeFlags(flag ushr bits)
 
     public companion object {
-      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlagsValue(0)
+      /**
+       * Tells the parent [Container] to align the node with its start, either the top or the left
+       * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
+       * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       *
+       * **Note:** Setting this flag is equal to not having any size flags.
+       */
+      public val SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
-      public val SIZE_FILL: SizeFlags = SizeFlagsValue(1)
+      /**
+       * Tells the parent [Container] to expand the bounds of this node to fill all the available
+       * space without pushing any other node. It is mutually exclusive with shrink size flags. Use
+       * with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
+      public val FILL: SizeFlags = SizeFlags(1)
 
-      public val SIZE_EXPAND: SizeFlags = SizeFlagsValue(2)
+      /**
+       * Tells the parent [Container] to let this node take all the available space on the axis you
+       * flag. If multiple neighboring nodes are set to expand, they'll share the space based on their
+       * stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and
+       * [sizeFlagsVertical].
+       */
+      public val EXPAND: SizeFlags = SizeFlags(2)
 
-      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlagsValue(3)
+      /**
+       * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for
+       * more information.
+       */
+      public val EXPAND_FILL: SizeFlags = SizeFlags(3)
 
-      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlagsValue(4)
+      /**
+       * Tells the parent [Container] to center the node in the available space. It is mutually
+       * exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in
+       * some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
+      public val SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
-      public val SIZE_SHRINK_END: SizeFlags = SizeFlagsValue(8)
+      /**
+       * Tells the parent [Container] to align the node with its end, either the bottom or the right
+       * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
+       * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
+      public val SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }
-
-  @JvmInline
-  public value class SizeFlagsValue(
-    public override val flag: Long,
-  ) : SizeFlags
 
   public enum class MouseFilter(
     id: Long,
@@ -2645,18 +3126,19 @@ public open class Control : CanvasItem() {
      * mouse_exited] signals. These events are automatically marked as handled, and they will not
      * propagate further to other controls. This also results in blocking signals in other controls.
      */
-    MOUSE_FILTER_STOP(0),
+    STOP(0),
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
      * on through [_guiInput]. The control will also receive the [signal mouse_entered] and [signal
      * mouse_exited] signals.
+     *
      * If this control does not handle the event, the event will propagate up to its parent control
      * if it has one. The event is bubbled up the node hierarchy until it reaches a non-[CanvasItem], a
      * control with [MOUSE_FILTER_STOP], or a [CanvasItem] with [CanvasItem.topLevel] enabled. This
      * will allow signals to fire in all controls it reaches. If no control handled it, the event will
      * be passed to [Node.ShortcutInput] for further processing.
      */
-    MOUSE_FILTER_PASS(1),
+    PASS(1),
     /**
      * The control will not receive any mouse movement input events nor mouse button input events
      * through [_guiInput]. The control will also not receive the [signal mouse_entered] nor [signal
@@ -2664,11 +3146,12 @@ public open class Control : CanvasItem() {
      * the signals. Ignored events will not be handled automatically. If a child has
      * [MOUSE_FILTER_PASS] and an event was passed to this control, the event will further propagate up
      * to the control's parent.
+     *
      * **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited],
      * changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be
      * emitted.
      */
-    MOUSE_FILTER_IGNORE(2),
+    IGNORE(2),
     ;
 
     public val id: Long
@@ -2688,17 +3171,17 @@ public open class Control : CanvasItem() {
      * The control will grow to the left or top to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
      */
-    GROW_DIRECTION_BEGIN(0),
+    BEGIN(0),
     /**
      * The control will grow to the right or bottom to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
      */
-    GROW_DIRECTION_END(1),
+    END(1),
     /**
      * The control will grow in both directions equally to make up if its minimum size is changed to
      * be greater than its current size.
      */
-    GROW_DIRECTION_BOTH(2),
+    BOTH(2),
     ;
 
     public val id: Long
@@ -2719,13 +3202,13 @@ public open class Control : CanvasItem() {
      * with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once,
      * use [setAnchorsPreset].
      */
-    ANCHOR_BEGIN(0),
+    BEGIN(0),
     /**
      * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use
      * it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at
      * once, use [setAnchorsPreset].
      */
-    ANCHOR_END(1),
+    END(1),
     ;
 
     public val id: Long
@@ -2744,7 +3227,7 @@ public open class Control : CanvasItem() {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
      */
-    LAYOUT_DIRECTION_INHERITED(0),
+    INHERITED(0),
     /**
      * Automatic layout direction, determined from the current locale. Right-to-left layout
      * direction is automatically used for languages that require it such as Arabic and Hebrew, but
@@ -2756,15 +3239,15 @@ public open class Control : CanvasItem() {
      * always used regardless of the language. Right-to-left layout direction can also be forced using
      * [ProjectSettings.internationalization/rendering/forceRightToLeftLayoutDirection].
      */
-    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
+    APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
-    LAYOUT_DIRECTION_LTR(2),
+    LTR(2),
     /**
      * Right-to-left layout direction.
      */
-    LAYOUT_DIRECTION_RTL(3),
+    RTL(3),
     /**
      * Automatic layout direction, determined from the system locale. Right-to-left layout direction
      * is automatically used for languages that require it such as Arabic and Hebrew, but only if a
@@ -2773,12 +3256,12 @@ public open class Control : CanvasItem() {
      * [TextServerFallback] ([ProjectSettings.internationalization/rendering/textDriver]),
      * left-to-right layout direction is always used regardless of the language.
      */
-    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    SYSTEM_LOCALE(4),
     /**
      * Represents the size of the [LayoutDirection] enum.
      */
-    LAYOUT_DIRECTION_MAX(5),
-    LAYOUT_DIRECTION_LOCALE(1),
+    MAX(5),
+    LOCALE(1),
     ;
 
     public val id: Long
@@ -2797,19 +3280,19 @@ public open class Control : CanvasItem() {
     /**
      * Text writing direction is the same as layout direction.
      */
-    TEXT_DIRECTION_INHERITED(3),
+    INHERITED(3),
     /**
      * Automatic text writing direction, determined from the current locale and text content.
      */
-    TEXT_DIRECTION_AUTO(0),
+    AUTO(0),
     /**
      * Left-to-right text writing direction.
      */
-    TEXT_DIRECTION_LTR(1),
+    LTR(1),
     /**
      * Right-to-left text writing direction.
      */
-    TEXT_DIRECTION_RTL(2),
+    RTL(2),
     ;
 
     public val id: Long
@@ -2832,7 +3315,9 @@ public open class Control : CanvasItem() {
      * Sent when the mouse cursor enters the control's (or any child control's) visible area, that
      * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
      * reach it and regardless if it's currently focused or not.
+     *
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
      * See also [NOTIFICATION_MOUSE_ENTER_SELF].
      */
     public final const val NOTIFICATION_MOUSE_ENTER: Long = 41
@@ -2841,7 +3326,9 @@ public open class Control : CanvasItem() {
      * Sent when the mouse cursor leaves the control's (and all child control's) visible area, that
      * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
      * reach it and regardless if it's currently focused or not.
+     *
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
      * See also [NOTIFICATION_MOUSE_EXIT_SELF].
      */
     public final const val NOTIFICATION_MOUSE_EXIT: Long = 42
@@ -2850,7 +3337,9 @@ public open class Control : CanvasItem() {
      * Sent when the mouse cursor enters the control's visible area, that is not occluded behind
      * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
      * it's currently focused or not.
+     *
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
      * See also [NOTIFICATION_MOUSE_ENTER].
      */
     public final const val NOTIFICATION_MOUSE_ENTER_SELF: Long = 60
@@ -2859,7 +3348,9 @@ public open class Control : CanvasItem() {
      * Sent when the mouse cursor leaves the control's visible area, that is not occluded behind
      * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
      * it's currently focused or not.
+     *
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
      * See also [NOTIFICATION_MOUSE_EXIT].
      */
     public final const val NOTIFICATION_MOUSE_EXIT_SELF: Long = 61
@@ -2877,24 +3368,31 @@ public open class Control : CanvasItem() {
     /**
      * Sent when the node needs to refresh its theme items. This happens in one of the following
      * cases:
+     *
      * - The [theme] property is changed on this node or any of its ancestors.
+     *
      * - The [themeTypeVariation] property is changed on this node.
+     *
      * - One of the node's theme property overrides is changed.
+     *
      * - The node enters the scene tree.
+     *
      * **Note:** As an optimization, this notification won't be sent from changes that occur while
      * this node is outside of the scene tree. Instead, all of the theme item updates can be applied at
      * once when the node enters the scene tree.
+     *
      * **Note:** This notification is received alongside [Node.NOTIFICATION_ENTER_TREE], so if you
      * are instantiating a scene, the child nodes will not be initialized yet. You can use it to setup
      * theming for this node, child nodes created from script, or if you want to access child nodes
      * added in the editor, make sure the node is ready using [Node.isNodeReady].
-     * [codeblock]
+     *
+     * ```
      * func _notification(what):
      *     if what == NOTIFICATION_THEME_CHANGED:
      *         if not is_node_ready():
      *             await ready # Wait until ready signal.
      *         $Label.add_theme_color_override("font_color", Color.YELLOW)
-     * [/codeblock]
+     * ```
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
 
@@ -2903,6 +3401,7 @@ public open class Control : CanvasItem() {
      * dragging the scrollable area *with a touch event*. This notification is *not* sent when
      * scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with
      * keyboard/gamepad events.
+     *
      * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
      * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
@@ -2913,6 +3412,7 @@ public open class Control : CanvasItem() {
      * dragging the scrollable area *with a touch event*. This notification is *not* sent when
      * scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with
      * keyboard/gamepad events.
+     *
      * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
      * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */

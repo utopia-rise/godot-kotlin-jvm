@@ -132,6 +132,10 @@ To avoid confusion and conflict with Kotlin types, the following Godot symbol is
 - `Array` -> `VariantArray` (to avoid confusion with a built-in type in Kotlin)
 - `PackedXArray::toByteArray` -> `PackedXArray::toPackedByteArray` (to avoid confusion with a built-in type in Kotlin)
 - `PackedByteArray::toXArray` -> `PackedByteArray::toPackedXArray` (to avoid confusion with a built-in type in Kotlin)
+- All enum values are shortened, the name of the enum itself has been removed. Here are some examples:
+  - `Error.ERR_PARAMETER_RANGE_ERROR` -> `Error.PARAMETER_RANGE`
+  - `MethodFlags.METHOD_FLAG_NORMAL` -> `MethodFlags.NORMAL`
+  - `ProcessThreadMessages.FLAG_PROCESS_THREAD_MESSAGES_PHYSICS` -> `Error.FLAG_PHYSICS`
 
 ## Global functions
 
@@ -207,4 +211,4 @@ If you want logs to appear both in CLI and in the Godot Editor you will have to 
 GD.print("Hello There!")
 ```
 
-Kotlin's print functions, on the other hand, will only print to CLI! They will print to Godot editor's output panel.
+Kotlin's print functions, on the other hand, will only print to CLI! They won't print to Godot editor's output panel.

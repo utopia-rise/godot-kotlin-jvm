@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -20,7 +22,9 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
+import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -57,7 +61,15 @@ public open class GLTFMesh : Resource() {
 
   /**
    * An array of floats representing the blend weights of the mesh.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var blendWeights: PackedFloat32Array
     @JvmName("blendWeightsProperty")
     get() = getBlendWeights()
@@ -78,7 +90,44 @@ public open class GLTFMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(261, scriptIndex)
+    createNativeObject(232, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [blendWeights] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfmesh.blendWeights
+   * //Your changes
+   * gltfmesh.blendWeights = myCoreType
+   * ``````
+   *
+   * An array of floats representing the blend weights of the mesh.
+   */
+  @CoreTypeHelper
+  public final fun blendWeightsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      blendWeights.apply {
+     block(this)
+     blendWeights = this
+  }
+
+  /**
+   * This is a helper function for [blendWeights] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * An array of floats representing the blend weights of the mesh.
+   */
+  @CoreTypeHelper
+  public final fun blendWeightsMutateEach(block: (index: Int, `value`: Float) -> Unit):
+      PackedFloat32Array = blendWeights.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     blendWeights = this
   }
 
   public final fun getOriginalName(): String {
@@ -128,6 +177,7 @@ public open class GLTFMesh : Resource() {
   /**
    * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
    * name in the glTF file), and the return value can be anything you set. If nothing was set, the
    * return value is `null`.
@@ -141,6 +191,7 @@ public open class GLTFMesh : Resource() {
   /**
    * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the glTF file), and the second argument can be anything you want.
    */
@@ -148,6 +199,27 @@ public open class GLTFMesh : Resource() {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 

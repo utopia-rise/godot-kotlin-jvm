@@ -1,22 +1,36 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.extensions.isObjectSubClass
+
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Argument
-import godot.codegen.traits.CastableTrait
-import godot.codegen.traits.NullableTrait
-import godot.codegen.traits.WithDefaultValueTrait
+import godot.codegen.models.traits.MetaGenerationTrait
+import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.WithDefaultValueTrait
 import godot.codegen.workarounds.sanitizeApiType
-import godot.tools.common.constants.GodotTypes
 import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.escapeKotlinReservedNames
 
-class EnrichedArgument(val internal: Argument, canBeNull: Boolean) : CastableTrait, NullableTrait, WithDefaultValueTrait {
-    val name = internal.name.convertToCamelCase().escapeKotlinReservedNames()
-    override val type = internal.type.sanitizeApiType()
-    override val defaultValue = internal.defaultValue
-    override val meta: String? = internal.meta
-    override var nullable = (isObjectSubClass() || type == GodotTypes.variant) && canBeNull
+class EnrichedArgument(model: Argument) : MetaGenerationTrait, WithDefaultValueTrait {
+    val name = model.name.convertToCamelCase().escapeKotlinReservedNames()
+    override val type = GenerationType(model.type.sanitizeApiType())
+    override var nullable = (type.isObjectSubClass() || type.isVariant())
+    override val genericParameters = emptyList<ClassName>()
+    override val defaultValue = model.defaultValue
+    override val meta: String? = model.meta
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is EnrichedArgument) return false
+        return name == other.name && type == other.type && meta == other.meta
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + (meta?.hashCode() ?: 0)
+        return result
+    }
 }
 
-fun List<Argument>.toEnriched(canBeNull: Boolean = true) = map { EnrichedArgument(it, canBeNull) }
-fun Argument.toEnriched(canBeNull: Boolean = true) = EnrichedArgument(this, canBeNull)
+fun List<Argument>.toEnriched() = map { EnrichedArgument(it) }
+fun Argument.toEnriched() = EnrichedArgument(this)

@@ -34,40 +34,69 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * [LineEdit] provides an input field for editing a single line of text.
+ *
  * - When the [LineEdit] control is focused using the keyboard arrow keys, it will only gain focus
  * and not enter edit mode.
+ *
  * - To enter edit mode, click on the control with the mouse, see also [keepEditingOnTextSubmit].
+ *
  * - To exit edit mode, press `ui_text_submit` or `ui_cancel` (by default [kbd]Escape[/kbd])
  * actions.
+ *
  * - Check [edit], [unedit], [isEditing], and [signal editing_toggled] for more information.
+ *
  * **Important:**
+ *
  * - Focusing the [LineEdit] with `ui_focus_next` (by default [kbd]Tab[/kbd]) or `ui_focus_prev` (by
  * default [kbd]Shift + Tab[/kbd]) or [Control.grabFocus] still enters edit mode (for compatibility).
+ *
  * [LineEdit] features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps
  * to [kbd]Cmd[/kbd] on macOS):
+ *
  * - [kbd]Ctrl + C[/kbd]: Copy
+ *
  * - [kbd]Ctrl + X[/kbd]: Cut
+ *
  * - [kbd]Ctrl + V[/kbd] or [kbd]Ctrl + Y[/kbd]: Paste/"yank"
+ *
  * - [kbd]Ctrl + Z[/kbd]: Undo
+ *
  * - [kbd]Ctrl + ~[/kbd]: Swap input direction.
+ *
  * - [kbd]Ctrl + Shift + Z[/kbd]: Redo
+ *
  * - [kbd]Ctrl + U[/kbd]: Delete text from the caret position to the beginning of the line
+ *
  * - [kbd]Ctrl + K[/kbd]: Delete text from the caret position to the end of the line
+ *
  * - [kbd]Ctrl + A[/kbd]: Select all text
+ *
  * - [kbd]Up Arrow[/kbd]/[kbd]Down Arrow[/kbd]: Move the caret to the beginning/end of the line
+ *
  * On macOS, some extra keyboard shortcuts are available:
+ *
  * - [kbd]Cmd + F[/kbd]: Same as [kbd]Right Arrow[/kbd], move the caret one character right
+ *
  * - [kbd]Cmd + B[/kbd]: Same as [kbd]Left Arrow[/kbd], move the caret one character left
+ *
  * - [kbd]Cmd + P[/kbd]: Same as [kbd]Up Arrow[/kbd], move the caret to the previous line
+ *
  * - [kbd]Cmd + N[/kbd]: Same as [kbd]Down Arrow[/kbd], move the caret to the next line
+ *
  * - [kbd]Cmd + D[/kbd]: Same as [kbd]Delete[/kbd], delete the character on the right side of caret
+ *
  * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the
  * caret
+ *
  * - [kbd]Cmd + A[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
+ *
  * - [kbd]Cmd + E[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
+ *
  * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the
  * line
+ *
  * - [kbd]Cmd + Right Arrow[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
+ *
  * **Note:** Caret movement shortcuts listed above are not affected by [shortcutKeysEnabled].
  */
 @GodotBaseType
@@ -96,6 +125,7 @@ public open class LineEdit : Control() {
 
   /**
    * String value of the [LineEdit].
+   *
    * **Note:** Changing text using this property won't emit the [signal text_changed] signal.
    */
   public final inline var text: String
@@ -132,14 +162,16 @@ public open class LineEdit : Control() {
   /**
    * Maximum number of characters that can be entered inside the [LineEdit]. If `0`, there is no
    * limit.
+   *
    * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens
    * both for existing [text] contents when setting the max length, or for new text inserted in the
    * [LineEdit], including pasting.
+   *
    * If any input text is truncated, the [signal text_change_rejected] signal is emitted with the
    * truncated substring as parameter:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * text = "Hello world"
    * max_length = 5
    * # `text` becomes "Hello".
@@ -148,8 +180,9 @@ public open class LineEdit : Control() {
    * # `text` becomes "Hello good".
    * # `text_change_rejected` is emitted with "bye" as parameter.
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Text = "Hello world";
    * MaxLength = 5;
    * // `Text` becomes "Hello".
@@ -272,6 +305,7 @@ public open class LineEdit : Control() {
 
   /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
+   *
    * **Note:** This method is only implemented on Linux.
    */
   public final inline var middleMousePasteEnabled: Boolean
@@ -407,6 +441,7 @@ public open class LineEdit : Control() {
 
   /**
    * Allow moving caret, selecting and removing the individual composite character components.
+   *
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
   public final inline var caretMidGrapheme: Boolean
@@ -487,7 +522,7 @@ public open class LineEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(362, scriptIndex)
+    createNativeObject(340, scriptIndex)
   }
 
   /**
@@ -531,6 +566,7 @@ public open class LineEdit : Control() {
 
   /**
    * Allows entering edit mode whether the [LineEdit] is focused or not.
+   *
    * See also [keepEditingOnTextSubmit].
    */
   public final fun edit(): Unit {
@@ -578,15 +614,16 @@ public open class LineEdit : Control() {
    * Selects characters inside [LineEdit] between [from] and [to]. By default, [from] is at the
    * beginning and [to] at the end.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * text = "Welcome"
    * select() # Will select "Welcome".
    * select(4) # Will select "ome".
    * select(2, 5) # Will select "lco".
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Text = "Welcome";
    * Select(); // Will select "Welcome".
    * Select(4); // Will select "ome".
@@ -903,11 +940,12 @@ public open class LineEdit : Control() {
   /**
    * Returns the [PopupMenu] of this [LineEdit]. By default, this menu is displayed when
    * right-clicking on the [LineEdit].
+   *
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
    * the standard ones (see [MenuItems]). For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     var menu = get_menu()
    *     # Remove all items after "Redo".
@@ -922,8 +960,9 @@ public open class LineEdit : Control() {
    *     if id == MENU_MAX + 1:
    *         insert_text_at_caret(Time.get_date_string_from_system())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Ready()
    * {
    *     var menu = GetMenu();
@@ -1005,7 +1044,7 @@ public open class LineEdit : Control() {
   public final fun getVirtualKeyboardType(): VirtualKeyboardType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
-    return LineEdit.VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
+    return VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClearButtonEnabled(enable: Boolean): Unit {
@@ -1113,133 +1152,134 @@ public open class LineEdit : Control() {
     /**
      * Cuts (copies and clears) the selected text.
      */
-    MENU_CUT(0),
+    CUT(0),
     /**
      * Copies the selected text.
      */
-    MENU_COPY(1),
+    COPY(1),
     /**
      * Pastes the clipboard text over the selected text (or at the caret's position).
+     *
      * Non-printable escape characters are automatically stripped from the OS clipboard via
      * [String.stripEscapes].
      */
-    MENU_PASTE(2),
+    PASTE(2),
     /**
      * Erases the whole [LineEdit] text.
      */
-    MENU_CLEAR(3),
+    CLEAR(3),
     /**
      * Selects the whole [LineEdit] text.
      */
-    MENU_SELECT_ALL(4),
+    SELECT_ALL(4),
     /**
      * Undoes the previous action.
      */
-    MENU_UNDO(5),
+    UNDO(5),
     /**
      * Reverse the last undo action.
      */
-    MENU_REDO(6),
+    REDO(6),
     /**
      * ID of "Text Writing Direction" submenu.
      */
-    MENU_SUBMENU_TEXT_DIR(7),
+    SUBMENU_TEXT_DIR(7),
     /**
      * Sets text direction to inherited.
      */
-    MENU_DIR_INHERITED(8),
+    DIR_INHERITED(8),
     /**
      * Sets text direction to automatic.
      */
-    MENU_DIR_AUTO(9),
+    DIR_AUTO(9),
     /**
      * Sets text direction to left-to-right.
      */
-    MENU_DIR_LTR(10),
+    DIR_LTR(10),
     /**
      * Sets text direction to right-to-left.
      */
-    MENU_DIR_RTL(11),
+    DIR_RTL(11),
     /**
      * Toggles control character display.
      */
-    MENU_DISPLAY_UCC(12),
+    DISPLAY_UCC(12),
     /**
      * ID of "Insert Control Character" submenu.
      */
-    MENU_SUBMENU_INSERT_UCC(13),
+    SUBMENU_INSERT_UCC(13),
     /**
      * Inserts left-to-right mark (LRM) character.
      */
-    MENU_INSERT_LRM(14),
+    INSERT_LRM(14),
     /**
      * Inserts right-to-left mark (RLM) character.
      */
-    MENU_INSERT_RLM(15),
+    INSERT_RLM(15),
     /**
      * Inserts start of left-to-right embedding (LRE) character.
      */
-    MENU_INSERT_LRE(16),
+    INSERT_LRE(16),
     /**
      * Inserts start of right-to-left embedding (RLE) character.
      */
-    MENU_INSERT_RLE(17),
+    INSERT_RLE(17),
     /**
      * Inserts start of left-to-right override (LRO) character.
      */
-    MENU_INSERT_LRO(18),
+    INSERT_LRO(18),
     /**
      * Inserts start of right-to-left override (RLO) character.
      */
-    MENU_INSERT_RLO(19),
+    INSERT_RLO(19),
     /**
      * Inserts pop direction formatting (PDF) character.
      */
-    MENU_INSERT_PDF(20),
+    INSERT_PDF(20),
     /**
      * Inserts Arabic letter mark (ALM) character.
      */
-    MENU_INSERT_ALM(21),
+    INSERT_ALM(21),
     /**
      * Inserts left-to-right isolate (LRI) character.
      */
-    MENU_INSERT_LRI(22),
+    INSERT_LRI(22),
     /**
      * Inserts right-to-left isolate (RLI) character.
      */
-    MENU_INSERT_RLI(23),
+    INSERT_RLI(23),
     /**
      * Inserts first strong isolate (FSI) character.
      */
-    MENU_INSERT_FSI(24),
+    INSERT_FSI(24),
     /**
      * Inserts pop direction isolate (PDI) character.
      */
-    MENU_INSERT_PDI(25),
+    INSERT_PDI(25),
     /**
      * Inserts zero width joiner (ZWJ) character.
      */
-    MENU_INSERT_ZWJ(26),
+    INSERT_ZWJ(26),
     /**
      * Inserts zero width non-joiner (ZWNJ) character.
      */
-    MENU_INSERT_ZWNJ(27),
+    INSERT_ZWNJ(27),
     /**
      * Inserts word joiner (WJ) character.
      */
-    MENU_INSERT_WJ(28),
+    INSERT_WJ(28),
     /**
      * Inserts soft hyphen (SHY) character.
      */
-    MENU_INSERT_SHY(29),
+    INSERT_SHY(29),
     /**
      * Opens system emoji and symbol picker.
      */
-    MENU_EMOJI_AND_SYMBOL(30),
+    EMOJI_AND_SYMBOL(30),
     /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(31),
+    MAX(31),
     ;
 
     public val id: Long
@@ -1282,6 +1322,7 @@ public open class LineEdit : Control() {
     /**
      * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
      * and autocapitalization.
+     *
      * **Note:** This is not supported on Web. Instead, this behaves identically to
      * [KEYBOARD_TYPE_DEFAULT].
      */

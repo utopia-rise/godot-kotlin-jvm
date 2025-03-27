@@ -35,7 +35,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(769, scriptIndex)
+    createNativeObject(767, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -46,7 +46,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeIs.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(
@@ -55,16 +55,16 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     /**
      * Comparison with `INF` (Infinity).
      */
-    FUNC_IS_INF(0),
+    IS_INF(0),
     /**
      * Comparison with `NaN` (Not a Number; indicates invalid numeric results, such as division by
      * zero).
      */
-    FUNC_IS_NAN(1),
+    IS_NAN(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

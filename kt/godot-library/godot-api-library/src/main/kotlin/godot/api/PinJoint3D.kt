@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(500, scriptIndex)
+    createNativeObject(489, scriptIndex)
   }
 
   /**
@@ -55,16 +55,16 @@ public open class PinJoint3D : Joint3D() {
      * The force with which the pinned objects stay in positional relation to each other. The
      * higher, the stronger.
      */
-    PARAM_BIAS(0),
+    BIAS(0),
     /**
      * The force with which the pinned objects stay in velocity relation to each other. The higher,
      * the stronger.
      */
-    PARAM_DAMPING(1),
+    DAMPING(1),
     /**
      * If above 0, this value is the maximum value for an impulse that this Joint3D produces.
      */
-    PARAM_IMPULSE_CLAMP(2),
+    IMPULSE_CLAMP(2),
     ;
 
     public val id: Long

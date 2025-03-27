@@ -23,10 +23,11 @@ import kotlin.Unit
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple
  * iterations. Useful for computing hashes of big files (so you don't have to load them all in memory),
  * network streams, and data streams in general (so you don't have to hold buffers).
+ *
  * The [HashType] enum shows the supported hashing algorithms.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * const CHUNK_SIZE = 1024
  *
  * func hash_file(path):
@@ -47,8 +48,9 @@ import kotlin.Unit
  *     # Print the result as hex string and array.
  *     printt(res.hex_encode(), Array(res))
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public const int ChunkSize = 1024;
  *
  * public void HashFile(string path)
@@ -79,7 +81,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HashingContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(305, scriptIndex)
+    createNativeObject(278, scriptIndex)
   }
 
   /**
@@ -116,15 +118,15 @@ public open class HashingContext : RefCounted() {
     /**
      * Hashing algorithm: MD5.
      */
-    HASH_MD5(0),
+    MD5(0),
     /**
      * Hashing algorithm: SHA-1.
      */
-    HASH_SHA1(1),
+    SHA1(1),
     /**
      * Hashing algorithm: SHA-256.
      */
-    HASH_SHA256(2),
+    SHA256(2),
     ;
 
     public val id: Long

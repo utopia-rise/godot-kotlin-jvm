@@ -34,11 +34,13 @@ import kotlin.jvm.JvmName
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
  * can not cross or overlap.
+ *
  * Obstacles can be included in the navigation mesh baking process when [affectNavigationMesh] is
  * enabled. They do not add walkable geometry, instead their role is to discard other source geometry
  * inside the shape. This can be used to prevent navigation mesh from appearing in unwanted places. If
  * [carveNavigationMesh] is enabled the baked shape will not be affected by offsets of the navigation
  * mesh baking, e.g. the agent radius.
+ *
  * With [avoidanceEnabled] the obstacle can constrain the avoidance velocities of avoidance using
  * agents. If the obstacle's vertices are wound in clockwise order, avoidance agents will be pushed in
  * by the obstacle, otherwise, avoidance agents will be pushed out. Obstacles using vertices and
@@ -63,7 +65,15 @@ public open class NavigationObstacle2D : Node2D() {
    * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
    * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
    * this movement and may get trapped inside the obstacle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var vertices: PackedVector2Array
     @JvmName("verticesProperty")
     get() = getVertices()
@@ -87,8 +97,10 @@ public open class NavigationObstacle2D : Node2D() {
   /**
    * If enabled the obstacle vertices will carve into the baked navigation mesh with the shape
    * unaffected by additional offsets (e.g. agent radius).
+   *
    * It will still be affected by further postprocessing of the baking process, like edge and
    * polygon simplification.
+   *
    * Requires [affectNavigationMesh] to be enabled.
    */
   public final inline var carveNavigationMesh: Boolean
@@ -114,6 +126,13 @@ public open class NavigationObstacle2D : Node2D() {
    * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
    * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
    * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -137,19 +156,54 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(401, scriptIndex)
+    createNativeObject(382, scriptIndex)
   }
 
   /**
-   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
-   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
-   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationobstacle2d.vertices
+   * //Your changes
+   * navigationobstacle2d.vertices = myCoreType
+   * ``````
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will
+   * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
+   * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
+   * this movement and may get trapped inside the obstacle.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      vertices.apply {
+     block(this)
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
+   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will
+   * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
+   * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
+   * this movement and may get trapped inside the obstacle.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = vertices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -158,13 +212,16 @@ public open class NavigationObstacle2D : Node2D() {
    * //Your changes
    * navigationobstacle2d.velocity = myCoreType
    * ``````
+   *
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
+   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
+   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
+     block(this)
+     velocity = this
   }
-
 
   /**
    * Returns the [RID] of this obstacle on the [NavigationServer2D].

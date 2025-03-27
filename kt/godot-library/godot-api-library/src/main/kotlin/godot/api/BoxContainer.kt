@@ -41,6 +41,7 @@ public open class BoxContainer : Container() {
 
   /**
    * If `true`, the [BoxContainer] will arrange its children vertically, rather than horizontally.
+   *
    * Can't be changed when using [HBoxContainer] and [VBoxContainer].
    */
   public final inline var vertical: Boolean
@@ -52,7 +53,7 @@ public open class BoxContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(144, scriptIndex)
+    createNativeObject(109, scriptIndex)
   }
 
   /**
@@ -73,7 +74,7 @@ public open class BoxContainer : Container() {
   public final fun getAlignment(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
-    return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
@@ -94,16 +95,16 @@ public open class BoxContainer : Container() {
      * The child controls will be arranged at the beginning of the container, i.e. top if
      * orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
-    ALIGNMENT_BEGIN(0),
+    BEGIN(0),
     /**
      * The child controls will be centered in the container.
      */
-    ALIGNMENT_CENTER(1),
+    CENTER(1),
     /**
      * The child controls will be arranged at the end of the container, i.e. bottom if orientation
      * is vertical, right if orientation is horizontal (left for RTL layout).
      */
-    ALIGNMENT_END(2),
+    END(2),
     ;
 
     public val id: Long

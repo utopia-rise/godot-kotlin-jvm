@@ -59,6 +59,7 @@ public open class Sprite2D : Node2D() {
 
   /**
    * If `true`, texture is centered.
+   *
    * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered.
    * This is caused by their position being between pixels. To prevent this, set this property to
    * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
@@ -74,6 +75,13 @@ public open class Sprite2D : Node2D() {
 
   /**
    * The texture's drawing offset.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -148,6 +156,13 @@ public open class Sprite2D : Node2D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
    * property. [hframes] or [vframes] must be greater than 1.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var frameCoords: Vector2i
@@ -171,6 +186,13 @@ public open class Sprite2D : Node2D() {
 
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -194,17 +216,11 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(635, scriptIndex)
+    createNativeObject(629, scriptIndex)
   }
 
   /**
-   * The texture's drawing offset.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -213,23 +229,17 @@ public open class Sprite2D : Node2D() {
    * //Your changes
    * sprite2d.offset = myCoreType
    * ``````
+   *
+   * The texture's drawing offset.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
-   * property. [hframes] or [vframes] must be greater than 1.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [frameCoords] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -238,22 +248,18 @@ public open class Sprite2D : Node2D() {
    * //Your changes
    * sprite2d.frameCoords = myCoreType
    * ``````
+   *
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
+   * property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeHelper
-  public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
-      block(this)
-      frameCoords = this
+  public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply {
+     block(this)
+     frameCoords = this
   }
 
-
   /**
-   * The region of the atlas texture to display. [regionEnabled] must be `true`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [regionRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -262,13 +268,14 @@ public open class Sprite2D : Node2D() {
    * //Your changes
    * sprite2d.regionRect = myCoreType
    * ``````
+   *
+   * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
   @CoreTypeHelper
-  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
-      block(this)
-      regionRect = this
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply {
+     block(this)
+     regionRect = this
   }
-
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
@@ -339,6 +346,7 @@ public open class Sprite2D : Node2D() {
   /**
    * Returns `true`, if the pixel at the given position is opaque and `false` in other case. The
    * position is in local coordinates.
+   *
    * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
    * is invalid.
    */
@@ -416,18 +424,20 @@ public open class Sprite2D : Node2D() {
 
   /**
    * Returns a [Rect2] representing the Sprite2D's boundary in local coordinates.
+   *
    * **Example:** Detect if the Sprite2D was clicked:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _input(event):
    *     if event is InputEventMouseButton and event.pressed and event.button_index ==
    * MOUSE_BUTTON_LEFT:
    *         if get_rect().has_point(to_local(event.position)):
    *             print("A click!")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public override void _Input(InputEvent @event)
    * {
    *     if (@event is InputEventMouseButton inputEventMouse)

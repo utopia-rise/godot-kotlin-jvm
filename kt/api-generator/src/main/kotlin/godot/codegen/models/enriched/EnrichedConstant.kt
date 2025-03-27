@@ -1,13 +1,19 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.workarounds.sanitizeApiType
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Constant
-import godot.codegen.traits.IDocumented
-import godot.codegen.traits.TypedTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.HasTypeGenerationTrait
 
-class EnrichedConstant(val internal: Constant) : TypedTrait, IDocumented {
-    override val type = internal.type?.sanitizeApiType() ?: "int"
-    override val description = internal.description
+class EnrichedConstant(model: Constant) : HasTypeGenerationTrait, DocumentedGenerationTrait {
+    override val type = GenerationType("int")
+    override val nullable = false
+    override val genericParameters = emptyList<ClassName>()
+    override var description = model.description
+
+    val name = model.name
+    val value = model.value
 }
 
 fun List<Constant>.toEnriched() = map { EnrichedConstant(it) }

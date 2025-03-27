@@ -24,10 +24,12 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
  * distance from the first vertex.
+ *
  * It is useful for making other nodes follow a path, without coding the movement pattern. For that,
  * the nodes must be children of this node. The descendant nodes will then move accordingly when
  * setting the [progress] in this node.
@@ -50,6 +52,7 @@ public open class PathFollow3D : Node3D() {
    * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last.
    * This is just another way of expressing the progress within the path, as the progress supplied is
    * multiplied internally by the path's length.
+   *
    * It can be set or get only if the [PathFollow3D] is the child of a [Path3D] which is part of the
    * scene tree, and that this [Path3D] has a [Curve3D] with a non-zero length. Otherwise, trying to
    * set this field will print an error, and getting this field will return `0.0`.
@@ -111,10 +114,12 @@ public open class PathFollow3D : Node3D() {
   /**
    * If `true`, the position between two cached points is interpolated cubically, and linearly
    * otherwise.
+   *
    * The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster
    * calculations. The point at the requested offset is then calculated interpolating between two
    * adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached
    * points may not follow the curve closely enough.
+   *
    * There are two answers to this problem: either increase the number of cached points and increase
    * memory consumption, or make a cubic interpolation between two points at the cost of (slightly)
    * slower calculations.
@@ -151,7 +156,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(472, scriptIndex)
+    createNativeObject(456, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {
@@ -206,7 +211,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getRotationMode(): RotationMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationModePtr, LONG)
-    return PathFollow3D.RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCubicInterpolation(enabled: Boolean): Unit {
@@ -259,24 +264,24 @@ public open class PathFollow3D : Node3D() {
     /**
      * Forbids the PathFollow3D to rotate.
      */
-    ROTATION_NONE(0),
+    NONE(0),
     /**
      * Allows the PathFollow3D to rotate in the Y axis only.
      */
-    ROTATION_Y(1),
+    Y(1),
     /**
      * Allows the PathFollow3D to rotate in both the X, and Y axes.
      */
-    ROTATION_XY(2),
+    XY(2),
     /**
      * Allows the PathFollow3D to rotate in any axis.
      */
-    ROTATION_XYZ(3),
+    XYZ(3),
     /**
      * Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode
      * requires the [Path3D]'s [Curve3D.upVectorEnabled] property to be set to `true`.
      */
-    ROTATION_ORIENTED(4),
+    ORIENTED(4),
     ;
 
     public val id: Long
@@ -294,6 +299,7 @@ public open class PathFollow3D : Node3D() {
      * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and
      * sideway direction) is calculated.
      */
+    @JvmStatic
     public final fun correctPosture(transform: Transform3D, rotationMode: RotationMode):
         Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)

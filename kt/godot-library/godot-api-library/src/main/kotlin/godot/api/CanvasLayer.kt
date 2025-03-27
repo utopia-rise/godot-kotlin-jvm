@@ -39,11 +39,14 @@ import kotlin.jvm.JvmName
  * renders with index `0`, so a [CanvasLayer] with index `-1` will be drawn below, and a [CanvasLayer]
  * with index `1` will be drawn above. This order will hold regardless of the [CanvasItem.zIndex] of
  * the nodes within each layer.
+ *
  * [CanvasLayer]s can be hidden and they can also optionally follow the viewport. This makes them
  * useful for HUDs like health bar overlays (on layers `1` and higher) or backgrounds (on layers `-1`
  * and lower).
+ *
  * **Note:** Embedded [Window]s are placed on layer `1024`. [CanvasItem]s on layers `1025` and
  * higher appear in front of embedded windows.
+ *
  * **Note:** Each [CanvasLayer] is drawn on one specific [Viewport] and cannot be shared between
  * multiple [Viewport]s, see [customViewport]. When using multiple [Viewport]s, for example in a
  * split-screen game, you need create an individual [CanvasLayer] for each [Viewport] you want it to be
@@ -58,6 +61,7 @@ public open class CanvasLayer : Node() {
 
   /**
    * Layer index for draw order. Lower values are drawn behind higher values.
+   *
    * **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one
    * CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer
    * is drawn in front is non-deterministic.
@@ -72,6 +76,7 @@ public open class CanvasLayer : Node() {
 
   /**
    * If `false`, any [CanvasItem] under this [CanvasLayer] will be hidden.
+   *
    * Unlike [CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying
    * layers.
    */
@@ -85,6 +90,13 @@ public open class CanvasLayer : Node() {
 
   /**
    * The layer's base offset.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -108,6 +120,13 @@ public open class CanvasLayer : Node() {
 
   /**
    * The layer's scale.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
@@ -120,6 +139,13 @@ public open class CanvasLayer : Node() {
 
   /**
    * The layer's transform.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -145,6 +171,7 @@ public open class CanvasLayer : Node() {
   /**
    * If enabled, the [CanvasLayer] stays in a fixed position on the screen. If disabled, the
    * [CanvasLayer] maintains its position in world space.
+   *
    * Together with [followViewportScale], this can be used for a pseudo-3D effect.
    */
   public final inline var followViewportEnabled: Boolean
@@ -168,17 +195,11 @@ public open class CanvasLayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(172, scriptIndex)
+    createNativeObject(138, scriptIndex)
   }
 
   /**
-   * The layer's base offset.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -187,22 +208,17 @@ public open class CanvasLayer : Node() {
    * //Your changes
    * canvaslayer.offset = myCoreType
    * ``````
+   *
+   * The layer's base offset.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * The layer's scale.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -211,22 +227,17 @@ public open class CanvasLayer : Node() {
    * //Your changes
    * canvaslayer.scale = myCoreType
    * ``````
+   *
+   * The layer's scale.
    */
   @CoreTypeHelper
-  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
-      block(this)
-      scale = this
+  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply {
+     block(this)
+     scale = this
   }
 
-
   /**
-   * The layer's transform.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -235,13 +246,14 @@ public open class CanvasLayer : Node() {
    * //Your changes
    * canvaslayer.transform = myCoreType
    * ``````
+   *
+   * The layer's transform.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply {
+     block(this)
+     transform = this
   }
-
 
   public final fun setLayer(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())

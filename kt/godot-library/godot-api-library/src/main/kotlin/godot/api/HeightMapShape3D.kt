@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -29,12 +31,14 @@ import kotlin.jvm.JvmName
  * [CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves)
  * cannot be stored. Holes in a [HeightMapShape3D] are created by assigning very low values to points
  * in the desired area.
+ *
  * **Performance:** [HeightMapShape3D] is faster to check collisions against than
  * [ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [BoxShape3D].
+ *
  * A heightmap collision shape can also be build by using an [Image] reference:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var heightmap_texture = ResourceLoader.load("res://heightmap_image.exr")
  * var heightmap_image = heightmap_texture.get_image()
  * heightmap_image.convert(Image.FORMAT_RF)
@@ -71,7 +75,15 @@ public open class HeightMapShape3D : Shape3D() {
 
   /**
    * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var mapData: PackedFloat32Array
     @JvmName("mapDataProperty")
     get() = getMapData()
@@ -81,7 +93,44 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(306, scriptIndex)
+    createNativeObject(279, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [mapData] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = heightmapshape3d.mapData
+   * //Your changes
+   * heightmapshape3d.mapData = myCoreType
+   * ``````
+   *
+   * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
+   */
+  @CoreTypeHelper
+  public final fun mapDataMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      mapData.apply {
+     block(this)
+     mapData = this
+  }
+
+  /**
+   * This is a helper function for [mapData] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
+   */
+  @CoreTypeHelper
+  public final fun mapDataMutateEach(block: (index: Int, `value`: Float) -> Unit):
+      PackedFloat32Array = mapData.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     mapData = this
   }
 
   public final fun setMapWidth(width: Int): Unit {
@@ -138,8 +187,10 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Updates [mapData] with data read from an [Image] reference. Automatically resizes heightmap
    * [mapWidth] and [mapDepth] to fit the full image width and height.
+   *
    * The image needs to be in either [Image.FORMAT_RF] (32 bit), [Image.FORMAT_RH] (16 bit), or
    * [Image.FORMAT_R8] (8 bit).
+   *
    * Each image pixel is read in as a float on the range from `0.0` (black pixel) to `1.0` (white
    * pixel). This range value gets remapped to [heightMin] and [heightMax] to form the final height
    * value.

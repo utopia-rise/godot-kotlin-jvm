@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -13,6 +15,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
+import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -21,9 +24,11 @@ import kotlin.jvm.JvmName
 /**
  * A 3D convex polyhedron shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
+ *
  * [ConvexPolygonShape3D] is *solid*, which means it detects collisions from objects that are fully
  * inside it, unlike [ConcavePolygonShape3D] which is hollow. This makes it more suitable for both
  * detection and physics.
+ *
  * **Convex decomposition:** A concave polyhedron can be split up into several convex polyhedra.
  * This allows dynamic physics bodies to have complex concave collisions (at a performance cost) and
  * can be achieved by using several [ConvexPolygonShape3D] nodes. To generate a convex decomposition
@@ -31,6 +36,7 @@ import kotlin.jvm.JvmName
  * viewport, and choose **Create Multiple Convex Collision Siblings**. Alternatively,
  * [MeshInstance3D.createMultipleConvexCollisions] can be called in a script to perform this
  * decomposition at run-time.
+ *
  * **Performance:** [ConvexPolygonShape3D] is faster to check collisions against compared to
  * [ConcavePolygonShape3D], but it is slower than primitive collision shapes such as [SphereShape3D]
  * and [BoxShape3D]. Its use should generally be limited to medium-sized objects that cannot have their
@@ -40,7 +46,15 @@ import kotlin.jvm.JvmName
 public open class ConvexPolygonShape3D : Shape3D() {
   /**
    * The list of 3D points forming the convex polygon shape.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var points: PackedVector3Array
     @JvmName("pointsProperty")
     get() = getPoints()
@@ -50,7 +64,44 @@ public open class ConvexPolygonShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(213, scriptIndex)
+    createNativeObject(180, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = convexpolygonshape3d.points
+   * //Your changes
+   * convexpolygonshape3d.points = myCoreType
+   * ``````
+   *
+   * The list of 3D points forming the convex polygon shape.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      points.apply {
+     block(this)
+     points = this
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The list of 3D points forming the convex polygon shape.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = points.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     points = this
   }
 
   public final fun setPoints(points: PackedVector3Array): Unit {

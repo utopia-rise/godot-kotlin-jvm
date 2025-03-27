@@ -35,22 +35,27 @@ import kotlin.jvm.JvmName
  * scene without affecting the underlying [Mesh]. They are often used to add weathering to building,
  * add dirt or mud to the ground, or add variety to props. Decals can be moved at any time, making them
  * suitable for things like blob shadows or laser sight dots.
+ *
  * They are made of an [AABB] and a group of [Texture2D]s specifying [Color], normal, ORM (ambient
  * occlusion, roughness, metallic), and emission. Decals are projected within their [AABB] so altering
  * the orientation of the Decal affects the direction in which they are projected. By default, Decals
  * are projected down (i.e. from positive Y to negative Y).
+ *
  * The [Texture2D]s associated with the Decal are automatically stored in a texture atlas which is
  * used for drawing the decals so all decals can be drawn at once. Godot uses clustered decals, meaning
  * they are stored in cluster data and drawn when the mesh is drawn, they are not drawn as a
  * post-processing effect after.
+ *
  * **Note:** Decals cannot affect an underlying material's transparency, regardless of its
  * transparency mode (alpha blend, alpha scissor, alpha hash, opaque pre-pass). This means translucent
  * or transparent areas of a material will remain translucent or transparent even if an opaque decal is
  * applied on them.
+ *
  * **Note:** Decals are only supported in the Forward+ and Mobile rendering methods, not
  * Compatibility. When using the Mobile rendering method, only 8 decals can be displayed on each mesh
  * resource. Attempting to display more than 8 decals on a single mesh resource will result in decals
  * flickering in and out as the camera moves.
+ *
  * **Note:** When using the Mobile rendering method, decals will only correctly affect meshes whose
  * visibility AABB intersects with the decal's AABB. If using a shader to deform the mesh in a way that
  * makes it go outside its AABB, [GeometryInstance3D.extraCullMargin] must be increased on the mesh.
@@ -62,9 +67,17 @@ public open class Decal : VisualInstance3D() {
    * Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater
    * than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2`
    * to `size/2`.
+   *
    * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and
    * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
    * the decals' AABB size without affecting their appearance.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -79,6 +92,7 @@ public open class Decal : VisualInstance3D() {
    * [Texture2D] with the base [Color] of the Decal. Either this or the [textureEmission] must be
    * set for the Decal to be visible. Use the alpha channel like a mask to smoothly blend the edges of
    * the decal with the underlying object.
+   *
    * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis,
    * the filter mode for [Decal] textures is set globally with
    * [ProjectSettings.rendering/textures/decals/filter].
@@ -94,9 +108,11 @@ public open class Decal : VisualInstance3D() {
   /**
    * [Texture2D] with the per-pixel normal map for the decal. Use this to add extra detail to
    * decals.
+   *
    * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis,
    * the filter mode for [Decal] textures is set globally with
    * [ProjectSettings.rendering/textures/decals/filter].
+   *
    * **Note:** Setting this texture alone will not result in a visible decal, as [textureAlbedo]
    * must also be set. To create a normal-only decal, load an albedo texture into [textureAlbedo] and
    * set [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the
@@ -113,9 +129,11 @@ public open class Decal : VisualInstance3D() {
   /**
    * [Texture2D] storing ambient occlusion, roughness, and metallic for the decal. Use this to add
    * extra detail to decals.
+   *
    * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis,
    * the filter mode for [Decal] textures is set globally with
    * [ProjectSettings.rendering/textures/decals/filter].
+   *
    * **Note:** Setting this texture alone will not result in a visible decal, as [textureAlbedo]
    * must also be set. To create an ORM-only decal, load an albedo texture into [textureAlbedo] and set
    * [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the
@@ -133,6 +151,7 @@ public open class Decal : VisualInstance3D() {
    * [Texture2D] with the emission [Color] of the Decal. Either this or the [textureAlbedo] must be
    * set for the Decal to be visible. Use the alpha channel like a mask to smoothly blend the edges of
    * the decal with the underlying object.
+   *
    * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis,
    * the filter mode for [Decal] textures is set globally with
    * [ProjectSettings.rendering/textures/decals/filter].
@@ -162,6 +181,13 @@ public open class Decal : VisualInstance3D() {
    * The alpha component is only taken into account when multiplying the albedo color, not the emission
    * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
    * independently of each other.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -190,6 +216,7 @@ public open class Decal : VisualInstance3D() {
    * Fades the Decal if the angle between the Decal's [AABB] and the target surface becomes too
    * large. A value of `0` projects the Decal regardless of angle, a value of `1` limits the Decal to
    * surfaces that are nearly perpendicular.
+   *
    * **Note:** Setting [normalFade] to a value greater than `0.0` has a small performance cost due
    * to the added normal angle computations.
    */
@@ -280,22 +307,11 @@ public open class Decal : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(227, scriptIndex)
+    createNativeObject(194, scriptIndex)
   }
 
   /**
-   * Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater
-   * than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2`
-   * to `size/2`.
-   * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and
-   * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
-   * the decals' AABB size without affecting their appearance.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -304,25 +320,23 @@ public open class Decal : VisualInstance3D() {
    * //Your changes
    * decal.size = myCoreType
    * ``````
+   *
+   * Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater
+   * than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2`
+   * to `size/2`.
+   *
+   * **Note:** To improve culling efficiency of "hard surface" decals, set their [upperFade] and
+   * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
+   * the decals' AABB size without affecting their appearance.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * Changes the [Color] of the Decal by multiplying the albedo and emission colors with this value.
-   * The alpha component is only taken into account when multiplying the albedo color, not the emission
-   * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
-   * independently of each other.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [modulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -331,13 +345,17 @@ public open class Decal : VisualInstance3D() {
    * //Your changes
    * decal.modulate = myCoreType
    * ``````
+   *
+   * Changes the [Color] of the Decal by multiplying the albedo and emission colors with this value.
+   * The alpha component is only taken into account when multiplying the albedo color, not the emission
+   * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
+   * independently of each other.
    */
   @CoreTypeHelper
-  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
-      block(this)
-      modulate = this
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
+     block(this)
+     modulate = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
@@ -353,18 +371,21 @@ public open class Decal : VisualInstance3D() {
   /**
    * Sets the [Texture2D] associated with the specified [DecalTexture]. This is a convenience
    * method, in most cases you should access the texture directly.
+   *
    * For example, instead of `$Decal.set_texture(Decal.TEXTURE_ALBEDO, albedo_tex)`, use
    * `$Decal.texture_albedo = albedo_tex`.
+   *
    * One case where this is better than accessing the texture directly is when you want to copy one
    * Decal's textures to another. For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * for i in Decal.TEXTURE_MAX:
    *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
    * {
    *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
@@ -379,18 +400,21 @@ public open class Decal : VisualInstance3D() {
   /**
    * Returns the [Texture2D] associated with the specified [DecalTexture]. This is a convenience
    * method, in most cases you should access the texture directly.
+   *
    * For example, instead of `albedo_tex = $Decal.get_texture(Decal.TEXTURE_ALBEDO)`, use
    * `albedo_tex = $Decal.texture_albedo`.
+   *
    * One case where this is better than accessing the texture directly is when you want to copy one
    * Decal's textures to another. For example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * for i in Decal.TEXTURE_MAX:
    *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
    * {
    *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));

@@ -26,15 +26,19 @@ import kotlin.jvm.JvmName
 
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
+ *
  * Heightmap shapes allow for efficiently representing collisions for convex and concave objects
  * with a single "floor" (such as terrain). This is less flexible than [GPUParticlesCollisionSDF3D],
  * but it doesn't require a baking step.
+ *
  * [GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when
  * the camera moves, or even continuously. This makes [GPUParticlesCollisionHeightField3D] a good
  * choice for weather effects such as rain and snow and games with highly dynamic geometry. However,
  * this class is limited since heightmaps cannot represent overhangs (e.g. indoors or caves).
+ *
  * **Note:** [ParticleProcessMaterial.collisionMode] must be `true` on the [GPUParticles3D]'s
  * process material for collision to work.
+ *
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
@@ -42,6 +46,13 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
    * as small as possible while covering the parts of the scene you need.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -80,6 +91,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global
    * space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node
    * for this to work.
+   *
    * Following the camera has a performance cost, as it will force the heightmap to update whenever
    * the camera moves. Consider lowering [resolution] to improve performance if [followCameraEnabled]
    * is `true`.
@@ -97,10 +109,12 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * [VisualInstance3D.layers] match with this [heightfieldMask] will be included in the heightmap
    * collision update. By default, all 20 user-visible layers are taken into account for updating the
    * heightmap collision.
+   *
    * **Note:** Since the [heightfieldMask] allows for 32 layers to be stored in total, there are an
    * additional 12 layers that are only used internally by the engine and aren't exposed in the editor.
    * Setting [heightfieldMask] using a script allows you to toggle those reserved layers, which can be
    * useful for editor plugins.
+   *
    * To adjust [heightfieldMask] more easily using a script, use [getHeightfieldMaskValue] and
    * [setHeightfieldMaskValue].
    */
@@ -113,18 +127,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(280, scriptIndex)
+    createNativeObject(251, scriptIndex)
   }
 
   /**
-   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
-   * as small as possible while covering the parts of the scene you need.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -133,13 +140,15 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * //Your changes
    * gpuparticlescollisionheightfield3d.size = myCoreType
    * ``````
+   *
+   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
+   * as small as possible while covering the parts of the scene you need.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
@@ -160,7 +169,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public final fun getResolution(): Resolution {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
-    return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+    return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUpdateMode(updateMode: UpdateMode): Unit {
@@ -171,7 +180,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
-    return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHeightfieldMask(heightfieldMask: Long): Unit {
@@ -247,7 +256,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     /**
      * Represents the size of the [Resolution] enum.
      */
-    RESOLUTION_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -269,13 +278,13 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
      * moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling
      * [RenderingServer.particlesCollisionHeightFieldUpdate].
      */
-    UPDATE_MODE_WHEN_MOVED(0),
+    WHEN_MOVED(0),
     /**
      * Update the heightmap every frame. This has a significant performance cost. This update should
      * only be used when geometry that particles can collide with changes significantly during
      * gameplay.
      */
-    UPDATE_MODE_ALWAYS(1),
+    ALWAYS(1),
     ;
 
     public val id: Long

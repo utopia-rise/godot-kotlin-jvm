@@ -55,7 +55,7 @@ public object IP : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
+  public final fun resolveHostname(host: String, ipType: Type = IP.Type.ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
@@ -67,7 +67,7 @@ public object IP : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.TYPE_ANY):
+  public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.ANY):
       PackedStringArray {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnameAddressesPtr, PACKED_STRING_ARRAY)
@@ -80,7 +80,7 @@ public object IP : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Int {
+  public final fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.ANY): Int {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnameQueueItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
@@ -93,7 +93,7 @@ public object IP : Object() {
   public final fun getResolveItemStatus(id: Int): ResolverStatus {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getResolveItemStatusPtr, LONG)
-    return IP.ResolverStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return ResolverStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -140,15 +140,17 @@ public object IP : Object() {
 
   /**
    * Returns all network adapters as an array.
+   *
    * Each adapter is a dictionary of the form:
-   * [codeblock]
+   *
+   * ```
    * {
    *     "index": "1", # Interface index.
    *     "name": "eth0", # Interface name.
    *     "friendly": "Ethernet One", # A friendly name (might be empty).
    *     "addresses": ["192.168.1.101"], # An array of IP addresses associated to this interface.
    * }
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
@@ -174,19 +176,19 @@ public object IP : Object() {
     /**
      * DNS hostname resolver status: No status.
      */
-    RESOLVER_STATUS_NONE(0),
+    NONE(0),
     /**
      * DNS hostname resolver status: Waiting.
      */
-    RESOLVER_STATUS_WAITING(1),
+    WAITING(1),
     /**
      * DNS hostname resolver status: Done.
      */
-    RESOLVER_STATUS_DONE(2),
+    DONE(2),
     /**
      * DNS hostname resolver status: Error.
      */
-    RESOLVER_STATUS_ERROR(3),
+    ERROR(3),
     ;
 
     public val id: Long
@@ -205,19 +207,19 @@ public object IP : Object() {
     /**
      * Address type: None.
      */
-    TYPE_NONE(0),
+    NONE(0),
     /**
      * Address type: Internet protocol version 4 (IPv4).
      */
-    TYPE_IPV4(1),
+    IPV4(1),
     /**
      * Address type: Internet protocol version 6 (IPv6).
      */
-    TYPE_IPV6(2),
+    IPV6(2),
     /**
      * Address type: Any.
      */
-    TYPE_ANY(3),
+    ANY(3),
     ;
 
     public val id: Long

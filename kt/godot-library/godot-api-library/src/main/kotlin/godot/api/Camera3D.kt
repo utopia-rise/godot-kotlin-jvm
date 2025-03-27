@@ -63,11 +63,14 @@ public open class Camera3D : Node3D() {
   /**
    * The culling mask that describes which [VisualInstance3D.layers] are rendered by this camera. By
    * default, all 20 user-visible layers are rendered.
+   *
    * **Note:** Since the [cullMask] allows for 32 layers to be stored in total, there are an
    * additional 12 layers that are only used internally by the engine and aren't exposed in the editor.
    * Setting [cullMask] using a script allows you to toggle those reserved layers, which can be useful
    * for editor plugins.
+   *
    * To adjust [cullMask] more easily using a script, use [getCullMaskValue] and [setCullMaskValue].
+   *
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
    * [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and
@@ -164,6 +167,7 @@ public open class Camera3D : Node3D() {
 
   /**
    * If `true`, the ancestor [Viewport] is currently using this camera.
+   *
    * If multiple cameras are in the scene, one will always be made current. For example, if two
    * [Camera3D] nodes are present in the scene and only one is current, setting one camera's [current]
    * to `false` will cause the other camera to be made current.
@@ -179,11 +183,16 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's field of view angle (in degrees). Only applicable in perspective mode. Since
    * [keepAspect] locks one axis, [fov] sets the other axis' field of view angle.
+   *
    * For reference, the default vertical field of view value (`75.0`) is equivalent to a horizontal
    * FOV of:
+   *
    * - ~91.31 degrees in a 4:3 viewport
+   *
    * - ~101.67 degrees in a 16:10 viewport
+   *
    * - ~107.51 degrees in a 16:9 viewport
+   *
    * - ~121.63 degrees in a 21:9 viewport
    */
   public final inline var fov: Float
@@ -209,7 +218,15 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
+   *
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var frustumOffset: Vector2
@@ -247,19 +264,11 @@ public open class Camera3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(163, scriptIndex)
+    createNativeObject(128, scriptIndex)
   }
 
   /**
-   * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
-   * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
-   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [frustumOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -268,13 +277,17 @@ public open class Camera3D : Node3D() {
    * //Your changes
    * camera3d.frustumOffset = myCoreType
    * ``````
+   *
+   * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
+   * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
+   *
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   @CoreTypeHelper
-  public final fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
-      block(this)
-      frustumOffset = this
+  public final fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply {
+     block(this)
+     frustumOffset = this
   }
-
 
   /**
    * Returns a normal vector in world space, that is the result of projecting a point on the
@@ -311,15 +324,17 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the 2D coordinate in the [Viewport] rectangle that maps to the given 3D point in world
    * space.
+   *
    * **Note:** When using this to position GUI elements over a 3D viewport, use [isPositionBehind]
    * to prevent them from appearing if the 3D point is behind the camera:
-   * [codeblock]
+   *
+   * ```
    * # This code block is part of a script that inherits from Node3D.
    * # `control` is a reference to a node inheriting from Control.
    * control.visible = not
    * get_viewport().get_camera_3d().is_position_behind(global_transform.origin)
    * control.position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
-   * [/codeblock]
+   * ```
    */
   public final fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
@@ -332,6 +347,7 @@ public open class Camera3D : Node3D() {
    * diagram).
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/camera3d_position_frustum.png]See
    * this diagram[/url] for an overview of position query methods.
+   *
    * **Note:** A position which returns `false` may still be outside the camera's field of view.
    */
   public final fun isPositionBehind(worldPoint: Vector3): Boolean {
@@ -502,7 +518,7 @@ public open class Camera3D : Node3D() {
   public final fun getProjection(): ProjectionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectionPtr, LONG)
-    return Camera3D.ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProjection(mode: ProjectionType): Unit {
@@ -584,7 +600,7 @@ public open class Camera3D : Node3D() {
   public final fun getKeepAspectMode(): KeepAspect {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepAspectModePtr, LONG)
-    return Camera3D.KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
+    return KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDopplerTracking(mode: DopplerTracking): Unit {
@@ -595,7 +611,7 @@ public open class Camera3D : Node3D() {
   public final fun getDopplerTracking(): DopplerTracking {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDopplerTrackingPtr, LONG)
-    return Camera3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
+    return DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -664,17 +680,17 @@ public open class Camera3D : Node3D() {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
      */
-    PROJECTION_PERSPECTIVE(0),
+    PERSPECTIVE(0),
     /**
      * Orthogonal projection, also known as orthographic projection. Objects remain the same size on
      * the screen no matter how far away they are.
      */
-    PROJECTION_ORTHOGONAL(1),
+    ORTHOGONAL(1),
     /**
      * Frustum projection. This mode allows adjusting [frustumOffset] to create "tilted frustum"
      * effects.
      */
-    PROJECTION_FRUSTUM(2),
+    FRUSTUM(2),
     ;
 
     public val id: Long
@@ -695,13 +711,13 @@ public open class Camera3D : Node3D() {
      * option for projects running in portrait mode, as taller aspect ratios will benefit from a wider
      * vertical FOV.
      */
-    KEEP_WIDTH(0),
+    WIDTH(0),
     /**
      * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best
      * option for projects running in landscape mode, as wider aspect ratios will automatically benefit
      * from a wider horizontal FOV.
      */
-    KEEP_HEIGHT(1),
+    HEIGHT(1),
     ;
 
     public val id: Long
@@ -721,21 +737,21 @@ public open class Camera3D : Node3D() {
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
      * (default).
      */
-    DOPPLER_TRACKING_DISABLED(0),
+    DISABLED(0),
     /**
      * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
      * positions of objects that are changed in `_process`. Changes in the relative velocity of this
      * camera compared to those objects affect how audio is perceived (changing the audio's
      * [AudioStreamPlayer3D.pitchScale]).
      */
-    DOPPLER_TRACKING_IDLE_STEP(1),
+    IDLE_STEP(1),
     /**
      * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
      * positions of objects that are changed in `_physics_process`. Changes in the relative velocity of
      * this camera compared to those objects affect how audio is perceived (changing the audio's
      * [AudioStreamPlayer3D.pitchScale]).
      */
-    DOPPLER_TRACKING_PHYSICS_STEP(2),
+    PHYSICS_STEP(2),
     ;
 
     public val id: Long

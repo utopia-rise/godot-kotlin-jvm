@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StyleBoxEmpty : StyleBox() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(650, scriptIndex)
+    createNativeObject(644, scriptIndex)
   }
 
   public companion object

@@ -22,6 +22,7 @@ import kotlin.Unit
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
  * like any other [Resource].
+ *
  * They can be used as the server certificate in [StreamPeerTLS.acceptStream] (along with the proper
  * [CryptoKey]), and to specify the only certificate that should be accepted when connecting to a TLS
  * server via [StreamPeerTLS.connectToStream].
@@ -29,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class X509Certificate : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(860, scriptIndex)
+    createNativeObject(859, scriptIndex)
   }
 
   /**

@@ -30,6 +30,7 @@ import kotlin.jvm.JvmName
 /**
  * A widget that provides an interface for selecting or modifying a color. It can optionally provide
  * functionalities like a color sampler (eyedropper), color modes, and presets.
+ *
  * **Note:** This control is the color picker widget itself. You can use a [ColorPickerButton]
  * instead if you need a button that brings up a [ColorPicker] in a popup.
  */
@@ -52,6 +53,13 @@ public open class ColorPicker : VBoxContainer() {
 
   /**
    * The currently selected color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -175,17 +183,11 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(194, scriptIndex)
+    createNativeObject(161, scriptIndex)
   }
 
   /**
-   * The currently selected color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -194,13 +196,14 @@ public open class ColorPicker : VBoxContainer() {
    * //Your changes
    * colorpicker.color = myCoreType
    * ``````
+   *
+   * The currently selected color.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun setPickColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -232,7 +235,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getColorMode(): ColorModeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorModePtr, LONG)
-    return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEditAlpha(show: Boolean): Unit {
@@ -315,6 +318,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Adds the given color to a list of color presets. The presets are displayed in the color picker
    * and the user will be able to select them.
+   *
    * **Note:** The presets list is only for *this* color picker.
    */
   public final fun addPreset(color: Color): Unit {
@@ -343,6 +347,7 @@ public open class ColorPicker : VBoxContainer() {
    * Adds the given color to a list of color recent presets so that it can be picked later. Recent
    * presets are the colors that were picked recently, a new preset is automatically created and added
    * to recent presets when you pick a new color.
+   *
    * **Note:** The recent presets list is only for *this* color picker.
    */
   public final fun addRecentPreset(color: Color): Unit {
@@ -375,7 +380,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getPickerShape(): PickerShapeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPickerShapePtr, LONG)
-    return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
+    return PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ColorModeType(
@@ -396,9 +401,11 @@ public open class ColorPicker : VBoxContainer() {
     MODE_RAW(2),
     /**
      * Allows editing the color with Hue/Saturation/Lightness sliders.
+     *
      * OKHSL is a new color space similar to HSL but that better match perception by leveraging the
      * Oklab color space which is designed to be simple to use, while doing a good job at predicting
      * perceived lightness, chroma and hue.
+     *
      * [url=https://bottosson.github.io/posts/colorpicker/]Okhsv and Okhsl color spaces[/url]
      */
     MODE_OKHSL(3),

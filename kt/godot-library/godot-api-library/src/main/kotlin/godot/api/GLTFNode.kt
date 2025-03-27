@@ -30,6 +30,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -43,6 +44,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * Represents a glTF node. glTF nodes may have names, transforms, children (other glTF nodes), and
  * more specialized properties (represented by their own classes).
+ *
  * glTF nodes generally exist inside of [GLTFState] which represents all data of a glTF file. Most
  * of GLTFNode's properties are indices of other data in the glTF file. You can extend a glTF node with
  * additional properties by using [getAdditionalData] and [setAdditionalData].
@@ -86,6 +88,13 @@ public open class GLTFNode : Resource() {
   /**
    * The transform of the glTF node relative to its parent. This property is usually unused since
    * the position, rotation, and scale properties are preferred.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var xform: Transform3D
@@ -146,6 +155,13 @@ public open class GLTFNode : Resource() {
 
   /**
    * The position of the glTF node relative to its parent.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector3
@@ -158,6 +174,13 @@ public open class GLTFNode : Resource() {
 
   /**
    * The rotation of the glTF node relative to its parent.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rotation: Quaternion
@@ -170,6 +193,13 @@ public open class GLTFNode : Resource() {
 
   /**
    * The scale of the glTF node relative to its parent.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector3
@@ -183,7 +213,15 @@ public open class GLTFNode : Resource() {
   /**
    * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will
    * be an empty array.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var children: PackedInt32Array
     @JvmName("childrenProperty")
     get() = getChildren()
@@ -205,18 +243,11 @@ public open class GLTFNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(262, scriptIndex)
+    createNativeObject(233, scriptIndex)
   }
 
   /**
-   * The transform of the glTF node relative to its parent. This property is usually unused since
-   * the position, rotation, and scale properties are preferred.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [xform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -225,22 +256,18 @@ public open class GLTFNode : Resource() {
    * //Your changes
    * gltfnode.xform = myCoreType
    * ``````
+   *
+   * The transform of the glTF node relative to its parent. This property is usually unused since
+   * the position, rotation, and scale properties are preferred.
    */
   @CoreTypeHelper
-  public final fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply{
-      block(this)
-      xform = this
+  public final fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply {
+     block(this)
+     xform = this
   }
 
-
   /**
-   * The position of the glTF node relative to its parent.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [position] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -249,22 +276,17 @@ public open class GLTFNode : Resource() {
    * //Your changes
    * gltfnode.position = myCoreType
    * ``````
+   *
+   * The position of the glTF node relative to its parent.
    */
   @CoreTypeHelper
-  public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
-      block(this)
-      position = this
+  public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply {
+     block(this)
+     position = this
   }
 
-
   /**
-   * The rotation of the glTF node relative to its parent.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rotation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -273,22 +295,17 @@ public open class GLTFNode : Resource() {
    * //Your changes
    * gltfnode.rotation = myCoreType
    * ``````
+   *
+   * The rotation of the glTF node relative to its parent.
    */
   @CoreTypeHelper
-  public final fun rotationMutate(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
-      block(this)
-      rotation = this
+  public final fun rotationMutate(block: Quaternion.() -> Unit): Quaternion = rotation.apply {
+     block(this)
+     rotation = this
   }
 
-
   /**
-   * The scale of the glTF node relative to its parent.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -297,13 +314,53 @@ public open class GLTFNode : Resource() {
    * //Your changes
    * gltfnode.scale = myCoreType
    * ``````
+   *
+   * The scale of the glTF node relative to its parent.
    */
   @CoreTypeHelper
-  public final fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply{
-      block(this)
-      scale = this
+  public final fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply {
+     block(this)
+     scale = this
   }
 
+  /**
+   * This is a helper function for [children] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfnode.children
+   * //Your changes
+   * gltfnode.children = myCoreType
+   * ``````
+   *
+   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will
+   * be an empty array.
+   */
+  @CoreTypeHelper
+  public final fun childrenMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      children.apply {
+     block(this)
+     children = this
+  }
+
+  /**
+   * This is a helper function for [children] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will
+   * be an empty array.
+   */
+  @CoreTypeHelper
+  public final fun childrenMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
+      children.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     children = this
+  }
 
   public final fun getOriginalName(): String {
     TransferContext.writeArguments()
@@ -459,6 +516,7 @@ public open class GLTFNode : Resource() {
   /**
    * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
    * name in the glTF file), and the return value can be anything you set. If nothing was set, the
    * return value is `null`.
@@ -472,6 +530,7 @@ public open class GLTFNode : Resource() {
   /**
    * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the glTF file), and the second argument can be anything you want.
    */
@@ -484,6 +543,7 @@ public open class GLTFNode : Resource() {
    * Returns the [NodePath] that this GLTF node will have in the Godot scene tree after being
    * imported. This is useful when importing glTF object model pointers with [GLTFObjectModelProperty],
    * for handling extensions such as `KHR_animation_pointer` or `KHR_interactivity`.
+   *
    * If [handleSkeletons] is `true`, paths to skeleton bone glTF nodes will be resolved properly.
    * For example, a path that would be `^"A/B/C/Bone1/Bone2/Bone3"` if `false` will become
    * `^"A/B/C/Skeleton3D:Bone3"`.
@@ -495,6 +555,27 @@ public open class GLTFNode : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getSceneNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 

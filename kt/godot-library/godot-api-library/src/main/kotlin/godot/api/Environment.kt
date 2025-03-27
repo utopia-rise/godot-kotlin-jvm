@@ -34,9 +34,13 @@ import kotlin.jvm.JvmName
  * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment
  * operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These
  * parameters affect the final render of the scene. The order of these operations is:
+ *
  * - Depth of Field Blur
+ *
  * - Glow
+ *
  * - Tonemap (Auto Exposure)
+ *
  * - Adjustments
  */
 @GodotBaseType
@@ -55,6 +59,13 @@ public open class Environment : Resource() {
   /**
    * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
    * background mode.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var backgroundColor: Color
@@ -137,6 +148,13 @@ public open class Environment : Resource() {
 
   /**
    * The rotation to use for sky rendering.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyRotation: Vector3
@@ -161,6 +179,13 @@ public open class Environment : Resource() {
   /**
    * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
    * `1.0` (exclusive).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var ambientLightColor: Color
@@ -177,6 +202,7 @@ public open class Environment : Resource() {
    * provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that
    * affects the scene is provided by the sky, thus the ambient light parameter has no effect on the
    * scene.
+   *
    * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0`
    * (inclusive).
    */
@@ -226,6 +252,7 @@ public open class Environment : Resource() {
   /**
    * Adjusts the brightness of values before they are provided to the tonemapper. Higher
    * [tonemapExposure] values result in a brighter image. See also [tonemapWhite].
+   *
    * **Note:** Values provided to the tonemapper will also be multiplied by `2.0` and `1.8` for
    * [TONE_MAPPER_FILMIC] and [TONE_MAPPER_ACES] respectively to produce a similar apparent brightness
    * as [TONE_MAPPER_LINEAR].
@@ -243,6 +270,7 @@ public open class Environment : Resource() {
    * scale of values provided to the tonemapper. For photorealistic lighting, recommended values are
    * between `6.0` and `8.0`. Higher values result in less blown out highlights, but may make the scene
    * appear lower contrast. See also [tonemapExposure].
+   *
    * **Note:** [tonemapWhite] is ignored when using [TONE_MAPPER_LINEAR] or [TONE_MAPPER_AGX].
    */
   public final inline var tonemapWhite: Float
@@ -257,6 +285,7 @@ public open class Environment : Resource() {
    * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate
    * than reflections from [VoxelGI]s or [ReflectionProbe]s, but are slower and can't reflect surfaces
    * occluded by others.
+   *
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var ssrEnabled: Boolean
@@ -321,6 +350,7 @@ public open class Environment : Resource() {
    * well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better
    * job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called
    * Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
+   *
    * **Note:** SSAO is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var ssaoEnabled: Boolean
@@ -439,6 +469,7 @@ public open class Environment : Resource() {
    * only affects a limited range. It is intended to be used along with a form of proper global
    * illumination like SDFGI or [VoxelGI]. Screen-space indirect lighting is not affected by individual
    * light's [Light3D.lightIndirectEnergy].
+   *
    * **Note:** SSIL is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var ssilEnabled: Boolean
@@ -510,11 +541,14 @@ public open class Environment : Resource() {
    * including in situations where geometry is created during gameplay. The signed distance field is
    * automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic
    * occluders and emissive surfaces are not.
+   *
    * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or
    * Compatibility.
+   *
    * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware
    * such as integrated graphics (consider [LightmapGI] instead). To improve SDFGI performance, enable
    * [ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings.
+   *
    * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided
    * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge
    * the loops to close the mesh.
@@ -557,8 +591,10 @@ public open class Environment : Resource() {
    * Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic
    * appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also
    * [sdfgiEnergy].
+   *
    * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in
    * scenes with bright materials.
+   *
    * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in
    * reflections as light will only bounce one time.
    */
@@ -589,6 +625,7 @@ public open class Environment : Resource() {
    * be more precise up close, at the cost of making SDFGI updates more demanding. This can cause
    * stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also
    * reducing the performance impact of SDFGI updates.
+   *
    * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing
    * its value will automatically change those properties as well.
    */
@@ -615,6 +652,7 @@ public open class Environment : Resource() {
   /**
    * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or
    * other sources of GI such as [ReflectionProbe] will be used as a fallback.
+   *
    * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing
    * its value will automatically change those properties as well.
    */
@@ -679,8 +717,10 @@ public open class Environment : Resource() {
   /**
    * If `true`, the glow effect is enabled. This simulates real world eye/camera behavior where
    * bright pixels bleed onto surrounding pixels.
+   *
    * **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic
    * range available in the Mobile rendering method.
+   *
    * **Note:** When using the Compatibility rendering method, glow uses a different implementation
    * with some properties being unavailable and hidden from the inspector: `glow_levels&#47;*`,
    * [glowNormalized], [glowStrength], [glowBlendMode], [glowMix], [glowMap], and [glowMapStrength].
@@ -697,6 +737,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, glow levels will be normalized so that summed together their intensities equal
    * `1.0`.
+   *
    * **Note:** [glowNormalized] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -725,6 +766,7 @@ public open class Environment : Resource() {
    * The strength of the glow effect. This applies as the glow is blurred across the screen and
    * increases the distance and intensity of the blur. When using the Mobile rendering method, this
    * should be increased to compensate for the lower dynamic range.
+   *
    * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -740,6 +782,7 @@ public open class Environment : Resource() {
    * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image
    * is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value
    * of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
+   *
    * **Note:** [glowMix] has no effect when using the Compatibility rendering method, due to this
    * rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -765,6 +808,7 @@ public open class Environment : Resource() {
 
   /**
    * The glow blending mode.
+   *
    * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -817,8 +861,10 @@ public open class Environment : Resource() {
    * How strong of an influence the [glowMap] should have on the overall glow effect. A strength of
    * `0.0` means the glow map has no influence, while a strength of `1.0` means the glow map has full
    * influence.
+   *
    * **Note:** If the glow map has black areas, a value of `1.0` can also turn off the glow effect
    * entirely in specific areas of the screen.
+   *
    * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -834,8 +880,10 @@ public open class Environment : Resource() {
    * The texture that should be used as a glow map to *multiply* the resulting glow color according
    * to [glowMapStrength]. This can be used to create a "lens dirt" effect. The texture's RGB color
    * channels are used for modulation, but the alpha channel is ignored.
+   *
    * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a
    * texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
+   *
    * **Note:** [glowMap] has no effect when using the Compatibility rendering method, due to this
    * rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -871,6 +919,13 @@ public open class Environment : Resource() {
 
   /**
    * The fog's color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fogLightColor: Color
@@ -907,8 +962,10 @@ public open class Environment : Resource() {
   /**
    * The fog density to be used. This is demonstrated in different ways depending on the [fogMode]
    * mode chosen:
+   *
    * **Exponential Fog Mode:** Higher values result in denser fog. The fog rendering is exponential
    * like in real life.
+   *
    * **Depth Fog mode:** The maximum intensity of the deep fog, effect will appear in the distance
    * (relative to the camera). At `1.0` the fog will fully obscure the scene, at `0.0` the fog will not
    * be visible.
@@ -925,10 +982,12 @@ public open class Environment : Resource() {
    * If set above `0.0` (exclusive), blends between the fog's color and the color of the background
    * [Sky], as read from the radiance cubemap. This has a small performance cost when set above `0.0`.
    * Must have [backgroundMode] set to [BG_SKY].
+   *
    * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial
    * perspective[/url] in large scenes with low density fog. However, it is not very useful for
    * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
    * from the [Sky]. If set to `0.0`, aerial perspective is disabled.
+   *
    * Notice that this does not sample the [Sky] directly, but rather the radiance cubemap. The
    * cubemap is sampled at a mipmap level depending on the depth of the rendered pixel; the farther
    * away, the higher the resolution of the sampled mipmap. This results in the actual color being a
@@ -947,6 +1006,7 @@ public open class Environment : Resource() {
    * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can
    * fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not
    * affecting sky rendering at all.
+   *
    * **Note:** [fogSkyAffect] has no visual effect if [fogAerialPerspective] is `1.0`.
    */
   public final inline var fogSkyAffect: Float
@@ -1023,6 +1083,7 @@ public open class Environment : Resource() {
    * with [FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR
    * single-scattering model based on extinction, scattering, and emission which it exposes to users as
    * density, albedo, and emission.
+   *
    * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or
    * Compatibility.
    */
@@ -1038,8 +1099,10 @@ public open class Environment : Resource() {
    * The base *exponential* density of the volumetric fog. Set this to the lowest density you want
    * to have globally. [FogVolume]s can be used to add to or subtract from this density in specific
    * areas. Fog rendering is exponential as in real life.
+   *
    * A value of `0.0` disables global volumetric fog while allowing [FogVolume]s to display
    * volumetric fog in specific areas.
+   *
    * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to
    * the lowest non-zero value (`0.0001`) then increase lights' [Light3D.lightVolumetricFogEnergy] to
    * values between `10000` and `100000` to compensate for the very low density.
@@ -1055,6 +1118,13 @@ public open class Environment : Resource() {
   /**
    * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
    * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var volumetricFogAlbedo: Color
@@ -1070,6 +1140,13 @@ public open class Environment : Resource() {
    * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
    * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
    * shadows.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var volumetricFogEmission: Color
@@ -1095,8 +1172,10 @@ public open class Environment : Resource() {
    * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value
    * of `0.0` means that Global Illumination will not impact the volumetric fog.
    * [volumetricFogGiInject] has a small performance cost when set above `0.0`.
+   *
    * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
    * [volumetricFogAlbedo] is a fully black color.
+   *
    * **Note:** Only [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) are taken into account when
    * using [volumetricFogGiInject]. Global illumination from [LightmapGI], [ReflectionProbe] and SSIL
    * (see [ssilEnabled]) will be ignored by volumetric fog.
@@ -1153,6 +1232,7 @@ public open class Environment : Resource() {
    * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that
    * ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small
    * performance cost when set above `0.0`.
+   *
    * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
    * [volumetricFogAlbedo] is a fully black color.
    */
@@ -1168,6 +1248,7 @@ public open class Environment : Resource() {
    * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog
    * can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with
    * `0.0` not affecting sky rendering at all.
+   *
    * **Note:** [volumetricFogSkyAffect] also affects [FogVolume]s, even if [volumetricFogDensity] is
    * `0.0`. If you notice [FogVolume]s are disappearing when looking towards the sky, set
    * [volumetricFogSkyAffect] to `1.0`.
@@ -1271,18 +1352,11 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(236, scriptIndex)
+    createNativeObject(206, scriptIndex)
   }
 
   /**
-   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
-   * background mode.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [backgroundColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1291,22 +1365,18 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.backgroundColor = myCoreType
    * ``````
+   *
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
+   * background mode.
    */
   @CoreTypeHelper
-  public final fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply{
-      block(this)
-      backgroundColor = this
+  public final fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply {
+     block(this)
+     backgroundColor = this
   }
 
-
   /**
-   * The rotation to use for sky rendering.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [skyRotation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1315,23 +1385,17 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.skyRotation = myCoreType
    * ``````
+   *
+   * The rotation to use for sky rendering.
    */
   @CoreTypeHelper
-  public final fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
-      block(this)
-      skyRotation = this
+  public final fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply {
+     block(this)
+     skyRotation = this
   }
 
-
   /**
-   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
-   * `1.0` (exclusive).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [ambientLightColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1340,23 +1404,19 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.ambientLightColor = myCoreType
    * ``````
+   *
+   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
+   * `1.0` (exclusive).
    */
   @CoreTypeHelper
   public final fun ambientLightColorMutate(block: Color.() -> Unit): Color =
-      ambientLightColor.apply{
-      block(this)
-      ambientLightColor = this
+      ambientLightColor.apply {
+     block(this)
+     ambientLightColor = this
   }
 
-
   /**
-   * The fog's color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fogLightColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1365,23 +1425,17 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.fogLightColor = myCoreType
    * ``````
+   *
+   * The fog's color.
    */
   @CoreTypeHelper
-  public final fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply{
-      block(this)
-      fogLightColor = this
+  public final fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply {
+     block(this)
+     fogLightColor = this
   }
 
-
   /**
-   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
-   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [volumetricFogAlbedo] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1390,26 +1444,19 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.volumetricFogAlbedo = myCoreType
    * ``````
+   *
+   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
+   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
   @CoreTypeHelper
   public final fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
-      volumetricFogAlbedo.apply{
-      block(this)
-      volumetricFogAlbedo = this
+      volumetricFogAlbedo.apply {
+     block(this)
+     volumetricFogAlbedo = this
   }
 
-
   /**
-   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
-   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
-   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
-   * shadows.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [volumetricFogEmission] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1418,14 +1465,18 @@ public open class Environment : Resource() {
    * //Your changes
    * environment.volumetricFogEmission = myCoreType
    * ``````
+   *
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
+   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
+   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
+   * shadows.
    */
   @CoreTypeHelper
   public final fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
-      volumetricFogEmission.apply{
-      block(this)
-      volumetricFogEmission = this
+      volumetricFogEmission.apply {
+     block(this)
+     volumetricFogEmission = this
   }
-
 
   public final fun setBackground(mode: BGMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -1435,7 +1486,7 @@ public open class Environment : Resource() {
   public final fun getBackground(): BGMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackgroundPtr, LONG)
-    return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BGMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSky(sky: Sky?): Unit {
@@ -1545,7 +1596,7 @@ public open class Environment : Resource() {
   public final fun getAmbientSource(): AmbientSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientSourcePtr, LONG)
-    return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAmbientLightEnergy(energy: Float): Unit {
@@ -1578,7 +1629,7 @@ public open class Environment : Resource() {
   public final fun getReflectionSource(): ReflectionSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReflectionSourcePtr, LONG)
-    return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
+    return ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTonemapper(mode: ToneMapper): Unit {
@@ -1589,7 +1640,7 @@ public open class Environment : Resource() {
   public final fun getTonemapper(): ToneMapper {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTonemapperPtr, LONG)
-    return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
+    return ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTonemapExposure(exposure: Float): Unit {
@@ -1886,7 +1937,7 @@ public open class Environment : Resource() {
   public final fun getSdfgiYScale(): SDFGIYScale {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiYScalePtr, LONG)
-    return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
+    return SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfgiUseOcclusion(enable: Boolean): Unit {
@@ -2048,7 +2099,7 @@ public open class Environment : Resource() {
   public final fun getGlowBlendMode(): GlowBlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowBlendModePtr, LONG)
-    return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setGlowHdrBleedThreshold(threshold: Float): Unit {
@@ -2125,7 +2176,7 @@ public open class Environment : Resource() {
   public final fun getFogMode(): FogMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogModePtr, LONG)
-    return Environment.FogMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FogMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFogLightColor(lightColor: Color): Unit {
@@ -2459,34 +2510,34 @@ public open class Environment : Resource() {
      * Clears the background using the clear color defined in
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor].
      */
-    BG_CLEAR_COLOR(0),
+    CLEAR_COLOR(0),
     /**
      * Clears the background using a custom clear color.
      */
-    BG_COLOR(1),
+    COLOR(1),
     /**
      * Displays a user-defined sky in the background.
      */
-    BG_SKY(2),
+    SKY(2),
     /**
      * Displays a [CanvasLayer] in the background.
      */
-    BG_CANVAS(3),
+    CANVAS(3),
     /**
      * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but
      * it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If
      * enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when
      * moving the camera.
      */
-    BG_KEEP(4),
+    KEEP(4),
     /**
      * Displays a camera feed in the background.
      */
-    BG_CAMERA_FEED(5),
+    CAMERA_FEED(5),
     /**
      * Represents the size of the [BGMode] enum.
      */
-    BG_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -2505,20 +2556,20 @@ public open class Environment : Resource() {
     /**
      * Gather ambient light from whichever source is specified as the background.
      */
-    AMBIENT_SOURCE_BG(0),
+    BG(0),
     /**
      * Disable ambient light. This provides a slight performance boost over [AMBIENT_SOURCE_SKY].
      */
-    AMBIENT_SOURCE_DISABLED(1),
+    DISABLED(1),
     /**
      * Specify a specific [Color] for ambient light. This provides a slight performance boost over
      * [AMBIENT_SOURCE_SKY].
      */
-    AMBIENT_SOURCE_COLOR(2),
+    COLOR(2),
     /**
      * Gather ambient light from the [Sky] regardless of what the background is.
      */
-    AMBIENT_SOURCE_SKY(3),
+    SKY(3),
     ;
 
     public val id: Long
@@ -2537,15 +2588,15 @@ public open class Environment : Resource() {
     /**
      * Use the background for reflections.
      */
-    REFLECTION_SOURCE_BG(0),
+    BG(0),
     /**
      * Disable reflections. This provides a slight performance boost over other options.
      */
-    REFLECTION_SOURCE_DISABLED(1),
+    DISABLED(1),
     /**
      * Use the [Sky] for reflections regardless of what the background is.
      */
-    REFLECTION_SOURCE_SKY(2),
+    SKY(2),
     ;
 
     public val id: Long
@@ -2565,33 +2616,36 @@ public open class Environment : Resource() {
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
      * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
      */
-    TONE_MAPPER_LINEAR(0),
+    LINEAR(0),
     /**
      * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
      * an image that can appear dull and low contrast. Slower than [TONE_MAPPER_LINEAR].
+     *
      * **Note:** When [tonemapWhite] is left at the default value of `1.0`, [TONE_MAPPER_REINHARDT]
      * produces an identical image to [TONE_MAPPER_LINEAR].
      */
-    TONE_MAPPER_REINHARDT(1),
+    REINHARDT(1),
     /**
      * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
      * contrast than [TONE_MAPPER_REINHARDT]. Slightly slower than [TONE_MAPPER_REINHARDT].
      */
-    TONE_MAPPER_FILMIC(2),
+    FILMIC(2),
     /**
      * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
      * realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
+     *
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
-    TONE_MAPPER_ACES(3),
+    ACES(3),
     /**
      * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
      * appearance. Better than other tonemappers at maintaining the hue of colors as they become
      * brighter. The slowest tonemapping option.
+     *
      * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX]
      * unsuitable for use with the Mobile rendering method.
      */
-    TONE_MAPPER_AGX(4),
+    AGX(4),
     ;
 
     public val id: Long
@@ -2611,27 +2665,27 @@ public open class Environment : Resource() {
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
      * sources.
      */
-    GLOW_BLEND_MODE_ADDITIVE(0),
+    ADDITIVE(0),
     /**
      * Screen glow blending mode. Increases brightness, used frequently with bloom.
      */
-    GLOW_BLEND_MODE_SCREEN(1),
+    SCREEN(1),
     /**
      * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
      * bloom).
      */
-    GLOW_BLEND_MODE_SOFTLIGHT(2),
+    SOFTLIGHT(2),
     /**
      * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
      * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
      * brightness.
      */
-    GLOW_BLEND_MODE_REPLACE(3),
+    REPLACE(3),
     /**
      * Mixes the glow with the underlying color to avoid increasing brightness as much while still
      * maintaining a glow effect.
      */
-    GLOW_BLEND_MODE_MIX(4),
+    MIX(4),
     ;
 
     public val id: Long
@@ -2650,12 +2704,12 @@ public open class Environment : Resource() {
     /**
      * Use a physically-based fog model defined primarily by fog density.
      */
-    FOG_MODE_EXPONENTIAL(0),
+    EXPONENTIAL(0),
     /**
      * Use a simple fog model defined by start and end positions and a custom curve. While not
      * physically accurate, this model can be useful when you need more artistic control.
      */
-    FOG_MODE_DEPTH(1),
+    DEPTH(1),
     ;
 
     public val id: Long
@@ -2677,18 +2731,18 @@ public open class Environment : Resource() {
      * floors and ceilings. This is usually the best choice for scenes that don't feature much
      * verticality.
      */
-    SDFGI_Y_SCALE_50_PERCENT(0),
+    Y_SCALE_50_PERCENT(0),
     /**
      * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
      * and 100&#37; SDFGI Y scales.
      */
-    SDFGI_Y_SCALE_75_PERCENT(1),
+    Y_SCALE_75_PERCENT(1),
     /**
      * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
      * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
      * leaking may become more noticeable with thin floors and ceilings.
      */
-    SDFGI_Y_SCALE_100_PERCENT(2),
+    Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long

@@ -14,8 +14,10 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -26,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(123, scriptIndex)
+    createNativeObject(88, scriptIndex)
   }
 
   /**
@@ -48,10 +50,11 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Return the index of the currently playing clip. You can use this to get the name of the
    * currently playing clip with [AudioStreamInteractive.getClipName].
+   *
    * **Example:** Get the currently playing clip name from inside an [AudioStreamPlayer] node.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var playing_clip_name = stream.get_clip_name(get_stream_playback().get_current_clip_index())
    * ```
    */
@@ -60,6 +63,12 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
     TransferContext.callMethod(ptr, MethodBindings.getCurrentClipIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  /**
+   * Switch to a clip (by name).
+   */
+  public final fun switchToClipByName(clipName: String) =
+      switchToClipByName(clipName.asCachedStringName())
 
   public companion object
 

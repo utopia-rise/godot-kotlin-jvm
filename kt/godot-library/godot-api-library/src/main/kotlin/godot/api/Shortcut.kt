@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
  * known as hotkeys).
+ *
  * One shortcut can contain multiple [InputEvent]s, allowing the possibility of triggering one
  * action with multiple different inputs.
  */
@@ -34,6 +35,7 @@ import kotlin.jvm.JvmName
 public open class Shortcut : Resource() {
   /**
    * The shortcut's [InputEvent] array.
+   *
    * Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent],
    * including an [InputEventAction].
    */
@@ -46,7 +48,7 @@ public open class Shortcut : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(601, scriptIndex)
+    createNativeObject(595, scriptIndex)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {

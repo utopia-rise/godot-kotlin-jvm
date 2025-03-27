@@ -21,12 +21,14 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
  * This singleton provides access to static information about [Theme] resources used by the engine
  * and by your projects. You can fetch the default engine theme, as well as your project configured
  * theme.
+ *
  * [ThemeDB] also contains fallback values for theme properties.
  */
 @GodotBaseType
@@ -38,8 +40,79 @@ public object ThemeDB : Object() {
   @JvmStatic
   public val fallbackChanged: Signal0 by Signal0
 
+  /**
+   * The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other
+   * value is available to the control.
+   *
+   * See also [Theme.defaultBaseScale].
+   */
+  @JvmStatic
+  public final inline var fallbackBaseScale: Float
+    @JvmName("fallbackBaseScaleProperty")
+    get() = getFallbackBaseScale()
+    @JvmName("fallbackBaseScaleProperty")
+    set(`value`) {
+      setFallbackBaseScale(value)
+    }
+
+  /**
+   * The fallback font of every [Control] node and [Theme] resource. Used when no other value is
+   * available to the control.
+   *
+   * See also [Theme.defaultFont].
+   */
+  @JvmStatic
+  public final inline var fallbackFont: Font?
+    @JvmName("fallbackFontProperty")
+    get() = getFallbackFont()
+    @JvmName("fallbackFontProperty")
+    set(`value`) {
+      setFallbackFont(value)
+    }
+
+  /**
+   * The fallback font size of every [Control] node and [Theme] resource. Used when no other value
+   * is available to the control.
+   *
+   * See also [Theme.defaultFontSize].
+   */
+  @JvmStatic
+  public final inline var fallbackFontSize: Int
+    @JvmName("fallbackFontSizeProperty")
+    get() = getFallbackFontSize()
+    @JvmName("fallbackFontSizeProperty")
+    set(`value`) {
+      setFallbackFontSize(value)
+    }
+
+  /**
+   * The fallback icon of every [Control] node and [Theme] resource. Used when no other value is
+   * available to the control.
+   */
+  @JvmStatic
+  public final inline var fallbackIcon: Texture2D?
+    @JvmName("fallbackIconProperty")
+    get() = getFallbackIcon()
+    @JvmName("fallbackIconProperty")
+    set(`value`) {
+      setFallbackIcon(value)
+    }
+
+  /**
+   * The fallback stylebox of every [Control] node and [Theme] resource. Used when no other value is
+   * available to the control.
+   */
+  @JvmStatic
+  public final inline var fallbackStylebox: StyleBox?
+    @JvmName("fallbackStyleboxProperty")
+    get() = getFallbackStylebox()
+    @JvmName("fallbackStyleboxProperty")
+    set(`value`) {
+      setFallbackStylebox(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(23)
+    getSingleton(31)
   }
 
   /**
@@ -56,6 +129,7 @@ public object ThemeDB : Object() {
   /**
    * Returns a reference to the custom project [Theme]. This theme resources allows to override the
    * default engine theme for every control node in the project.
+   *
    * To set the project theme, see [ProjectSettings.gui/theme/custom].
    */
   @JvmStatic

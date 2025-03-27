@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -16,6 +18,7 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -29,6 +32,7 @@ import kotlin.jvm.JvmName
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
  * polygon can be concave or convex. This can give a detection shape to an [Area2D], turn
  * [PhysicsBody2D] into a solid object, or give a hollow shape to a [StaticBody2D].
+ *
  * **Warning:** A non-uniformly scaled [CollisionPolygon2D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its polygon instead.
  */
@@ -48,9 +52,18 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * The polygon's list of vertices. Each point will be connected to the next, and the final point
    * will be connected to the first.
+   *
    * **Note:** The returned vertices are in the local coordinate space of the given
    * [CollisionPolygon2D].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -73,6 +86,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * If `true`, only edges that face up, relative to [CollisionPolygon2D]'s rotation, will collide
    * with other objects.
+   *
    * **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D]
    * node.
    */
@@ -97,7 +111,52 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(189, scriptIndex)
+    createNativeObject(156, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionpolygon2d.polygon
+   * //Your changes
+   * collisionpolygon2d.polygon = myCoreType
+   * ``````
+   *
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point
+   * will be connected to the first.
+   *
+   * **Note:** The returned vertices are in the local coordinate space of the given
+   * [CollisionPolygon2D].
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point
+   * will be connected to the first.
+   *
+   * **Note:** The returned vertices are in the local coordinate space of the given
+   * [CollisionPolygon2D].
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
@@ -119,7 +178,7 @@ public open class CollisionPolygon2D : Node2D() {
   public final fun getBuildMode(): BuildMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBuildModePtr, LONG)
-    return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
@@ -163,14 +222,14 @@ public open class CollisionPolygon2D : Node2D() {
      * same effect as several [ConvexPolygonShape2D] nodes, one for each convex shape in the convex
      * decomposition of the polygon (but without the overhead of multiple nodes).
      */
-    BUILD_SOLIDS(0),
+    SOLIDS(0),
     /**
      * Collisions will only include the polygon edges. In this mode the node has the same effect as
      * a single [ConcavePolygonShape2D] made of segments, with the restriction that each segment (after
      * the first one) starts where the previous one ends, and the last one ends where the first one
      * starts (forming a closed but hollow polygon).
      */
-    BUILD_SEGMENTS(1),
+    SEGMENTS(1),
     ;
 
     public val id: Long

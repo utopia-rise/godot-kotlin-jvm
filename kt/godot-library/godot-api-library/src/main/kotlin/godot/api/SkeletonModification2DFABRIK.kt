@@ -17,9 +17,11 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -27,6 +29,7 @@ import kotlin.jvm.JvmName
 /**
  * This [SkeletonModification2D] uses an algorithm called Forward And Backward Reaching Inverse
  * Kinematics, or FABRIK, to rotate a bone chain so that it reaches a target.
+ *
  * FABRIK works by knowing the positions and lengths of a series of bones, typically called a "bone
  * chain". It first starts by running a forward pass, which places the final bone at the target's
  * position. Then all other bones are moved towards the tip bone, so they stay at the defined bone
@@ -34,12 +37,15 @@ import kotlin.jvm.JvmName
  * placed back at the origin. Then all other bones are moved so they stay at the defined bone length
  * away. This positions the bone chain so that it reaches the target when possible, but all of the
  * bones stay the correct length away from each other.
+ *
  * Because of how FABRIK works, it often gives more natural results than those seen in
  * [SkeletonModification2DCCDIK]. FABRIK also supports angle constraints, which are fully taken into
  * account when solving.
+ *
  * **Note:** The FABRIK modifier has `fabrik_joints`, which are the data objects that hold the data
  * for each joint in the FABRIK chain. This is different from [Bone2D] nodes! FABRIK joints hold the
  * data needed for each [Bone2D] in the bone chain used by FABRIK.
+ *
  * To help control how the FABRIK joints move, a magnet vector can be passed, which can nudge the
  * bones in a certain direction prior to solving, giving a level of control over the final result.
  */
@@ -69,7 +75,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(607, scriptIndex)
+    createNativeObject(601, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {
@@ -149,6 +155,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   /**
    * Sets whether the joint at [jointIdx] will use the target node's rotation rather than letting
    * FABRIK rotate the node.
+   *
    * **Note:** This option only works for the tip/final joint in the chain. For all other nodes,
    * this option will be ignored.
    */
@@ -167,6 +174,15 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getFabrikJointUseTargetRotationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
+   */
+  public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
+      setFabrikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
   public companion object
 

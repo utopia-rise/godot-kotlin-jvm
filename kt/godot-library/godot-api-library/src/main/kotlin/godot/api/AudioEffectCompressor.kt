@@ -14,9 +14,11 @@ import godot.core.StringName
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -25,13 +27,18 @@ import kotlin.jvm.JvmName
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain
  * threshold in Decibels. One of the main uses of a compressor is to increase the dynamic range by
  * clipping as little as possible (when sound goes over 0dB).
+ *
  * Compressor has many uses in the mix:
+ *
  * - In the Master bus to compress the whole output (although an [AudioEffectLimiter] is probably
  * better).
+ *
  * - In voice channels to ensure they sound as balanced as possible.
+ *
  * - Sidechained. This can reduce the sound level sidechained with another audio bus for threshold
  * detection. This technique is common in video game mixing to the level of music and SFX while voices
  * are being heard.
+ *
  * - Accentuates transients by using a wider attack, making effects sound more punchy.
  */
 @GodotBaseType
@@ -118,7 +125,7 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(87, scriptIndex)
+    createNativeObject(51, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {
@@ -197,6 +204,8 @@ public open class AudioEffectCompressor : AudioEffect() {
     TransferContext.callMethod(ptr, MethodBindings.getSidechainPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  public final fun setSidechain(sidechain: String) = setSidechain(sidechain.asCachedStringName())
 
   public companion object
 

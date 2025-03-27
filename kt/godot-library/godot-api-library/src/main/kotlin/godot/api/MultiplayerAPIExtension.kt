@@ -20,11 +20,12 @@ import kotlin.Unit
 /**
  * This class can be used to extend or replace the default [MultiplayerAPI] implementation via
  * script or extensions.
+ *
  * The following example extend the default implementation ([SceneMultiplayer]) by logging every RPC
  * being made, and every object being configured for replication.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * extends MultiplayerAPIExtension
  * class_name LogMultiplayer
  *
@@ -88,8 +89,8 @@ import kotlin.Unit
  * Then in your main scene or in an autoload call [SceneTree.setMultiplayer] to start using your
  * custom [MultiplayerAPI]:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # autoload.gd
  * func _enter_tree():
  *     # Sets our custom multiplayer as the main one in SceneTree.
@@ -102,7 +103,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(388, scriptIndex)
+    createNativeObject(367, scriptIndex)
   }
 
   /**
@@ -116,27 +117,28 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    * Called when the [MultiplayerAPI.multiplayerPeer] is set.
    */
   public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?): Unit {
+    throw NotImplementedError("_setMultiplayerPeer is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is retrieved.
    */
   public open fun _getMultiplayerPeer(): MultiplayerPeer? {
-    throw NotImplementedError("_get_multiplayer_peer is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("_getMultiplayerPeer is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.getUniqueId].
    */
   public open fun _getUniqueId(): Int {
-    throw NotImplementedError("_get_unique_id is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("_getUniqueId is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.getPeers].
    */
   public open fun _getPeerIds(): PackedInt32Array {
-    throw NotImplementedError("_get_peer_ids is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("_getPeerIds is not implemented for MultiplayerAPIExtension")
   }
 
   /**
@@ -155,21 +157,21 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    * Callback for [MultiplayerAPI.getRemoteSenderId].
    */
   public open fun _getRemoteSenderId(): Int {
-    throw NotImplementedError("_get_remote_sender_id is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("_getRemoteSenderId is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationAdd].
    */
   public open fun _objectConfigurationAdd(`object`: Object?, configuration: Any?): Error {
-    throw NotImplementedError("_object_configuration_add is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("_objectConfigurationAdd is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationRemove].
    */
   public open fun _objectConfigurationRemove(`object`: Object?, configuration: Any?): Error {
-    throw NotImplementedError("_object_configuration_remove is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("_objectConfigurationRemove is not implemented for MultiplayerAPIExtension")
   }
 
   public companion object

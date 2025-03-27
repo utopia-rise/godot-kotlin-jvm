@@ -26,11 +26,13 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -41,6 +43,17 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var vertices: PackedVector3Array
     @JvmName("verticesProperty")
     get() = getVertices()
@@ -75,6 +88,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
+   *
    * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
    * [PARSED_GEOMETRY_BOTH].
    */
@@ -99,6 +113,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The name of the group to scan for geometry.
+   *
    * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
@@ -136,9 +151,11 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The size of the non-navigable border around the bake bounding area.
+   *
    * In conjunction with the [filterBakingAabb] and a [edgeMaxError] value at `1.0` or below the
    * border size can be used to bake tile aligned navigation meshes without the tile edges being shrunk
    * by [agentRadius].
+   *
    * **Note:** While baking and not zero, this value will be rounded up to the nearest multiple of
    * [cellSize].
    */
@@ -153,6 +170,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The minimum floor to ceiling height that will still allow the floor area to be considered
    * walkable.
+   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
    */
   public final inline var agentHeight: Float
@@ -165,6 +183,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The distance to erode/shrink the walkable area of the heightfield away from obstructions.
+   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public final inline var agentRadius: Float
@@ -177,6 +196,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The minimum ledge height that is considered to still be traversable.
+   *
    * **Note:** While baking, this value will be rounded down to the nearest multiple of
    * [cellHeight].
    */
@@ -201,6 +221,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The minimum size of a region for it to be created.
+   *
    * **Note:** This value will be squared to calculate the minimum number of cells allowed to form
    * isolated island areas. For example, a value of 8 will set the number of cells to 64.
    */
@@ -214,6 +235,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Any regions with a size smaller than this will be merged with larger regions if possible.
+   *
    * **Note:** This value will be squared to calculate the number of cells. For example, a value of
    * 20 will set the number of cells to 400.
    */
@@ -228,6 +250,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0`
    * disables this feature.
+   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public final inline var edgeMaxLength: Float
@@ -322,6 +345,13 @@ public open class NavigationMesh : Resource() {
   /**
    * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
    * enclosing area.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var filterBakingAabb: AABB
@@ -334,6 +364,13 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The position offset applied to the [filterBakingAabb] [AABB].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var filterBakingAabbOffset: Vector3
@@ -345,18 +382,44 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(398, scriptIndex)
+    createNativeObject(378, scriptIndex)
   }
 
   /**
-   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
-   * enclosing area.
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationmesh.vertices
+   * //Your changes
+   * navigationmesh.vertices = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun verticesMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      vertices.apply {
+     block(this)
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = vertices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [filterBakingAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -365,22 +428,19 @@ public open class NavigationMesh : Resource() {
    * //Your changes
    * navigationmesh.filterBakingAabb = myCoreType
    * ``````
+   *
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
+   * enclosing area.
    */
   @CoreTypeHelper
-  public final fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply{
-      block(this)
-      filterBakingAabb = this
+  public final fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply {
+     block(this)
+     filterBakingAabb = this
   }
 
-
   /**
-   * The position offset applied to the [filterBakingAabb] [AABB].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [filterBakingAabbOffset] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -389,14 +449,15 @@ public open class NavigationMesh : Resource() {
    * //Your changes
    * navigationmesh.filterBakingAabbOffset = myCoreType
    * ``````
+   *
+   * The position offset applied to the [filterBakingAabb] [AABB].
    */
   @CoreTypeHelper
   public final fun filterBakingAabbOffsetMutate(block: Vector3.() -> Unit): Vector3 =
-      filterBakingAabbOffset.apply{
-      block(this)
-      filterBakingAabbOffset = this
+      filterBakingAabbOffset.apply {
+     block(this)
+     filterBakingAabbOffset = this
   }
-
 
   public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
     TransferContext.writeArguments(LONG to samplePartitionType.id)
@@ -406,7 +467,7 @@ public open class NavigationMesh : Resource() {
   public final fun getSamplePartitionType(): SamplePartitionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
-    return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
@@ -417,7 +478,7 @@ public open class NavigationMesh : Resource() {
   public final fun getParsedGeometryType(): ParsedGeometryType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
-    return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
@@ -458,7 +519,7 @@ public open class NavigationMesh : Resource() {
   public final fun getSourceGeometryMode(): SourceGeometryMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
-    return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGroupName(mask: StringName): Unit {
@@ -735,6 +796,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Initializes the navigation mesh by setting the vertices and indices according to a [Mesh].
+   *
    * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
   public final fun createFromMesh(mesh: Mesh?): Unit {
@@ -750,6 +812,8 @@ public open class NavigationMesh : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
+  public final fun setSourceGroupName(mask: String) = setSourceGroupName(mask.asCachedStringName())
+
   public enum class SamplePartitionType(
     id: Long,
   ) {
@@ -757,20 +821,20 @@ public open class NavigationMesh : Resource() {
      * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
      * this if you have large open areas.
      */
-    SAMPLE_PARTITION_WATERSHED(0),
+    WATERSHED(0),
     /**
      * Monotone partitioning. Use this if you want fast navigation mesh generation.
      */
-    SAMPLE_PARTITION_MONOTONE(1),
+    MONOTONE(1),
     /**
      * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized
      * tiles.
      */
-    SAMPLE_PARTITION_LAYERS(2),
+    LAYERS(2),
     /**
      * Represents the size of the [SamplePartitionType] enum.
      */
-    SAMPLE_PARTITION_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -790,20 +854,20 @@ public open class NavigationMesh : Resource() {
      * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
      * [GridMap] nodes.
      */
-    PARSED_GEOMETRY_MESH_INSTANCES(0),
+    MESH_INSTANCES(0),
     /**
      * Parses [StaticBody3D] colliders as geometry. The collider should be in any of the layers
      * specified by [geometryCollisionMask].
      */
-    PARSED_GEOMETRY_STATIC_COLLIDERS(1),
+    STATIC_COLLIDERS(1),
     /**
      * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
-    PARSED_GEOMETRY_BOTH(2),
+    BOTH(2),
     /**
      * Represents the size of the [ParsedGeometryType] enum.
      */
-    PARSED_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -822,20 +886,20 @@ public open class NavigationMesh : Resource() {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
-    SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
+    ROOT_NODE_CHILDREN(0),
     /**
      * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
      * by [geometrySourceGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
+    GROUPS_WITH_CHILDREN(1),
     /**
      * Uses nodes in a group for geometry. The group is specified by [geometrySourceGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
+    GROUPS_EXPLICIT(2),
     /**
      * Represents the size of the [SourceGeometryMode] enum.
      */
-    SOURCE_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

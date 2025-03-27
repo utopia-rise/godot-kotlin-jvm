@@ -32,6 +32,7 @@ import kotlin.jvm.JvmName
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
  * configured to automatically resize to enclose all attached [GraphElement]s. If the frame is moved,
  * all the attached [GraphElement]s inside it will be moved as well.
+ *
  * A GraphFrame is always kept behind the connection layer and other [GraphElement]s inside a
  * [GraphEdit].
  */
@@ -101,6 +102,13 @@ public open class GraphFrame : GraphElement() {
 
   /**
    * The color of the frame when [tintColorEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintColor: Color
@@ -112,17 +120,11 @@ public open class GraphFrame : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(291, scriptIndex)
+    createNativeObject(264, scriptIndex)
   }
 
   /**
-   * The color of the frame when [tintColorEnabled] is `true`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [tintColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -131,13 +133,14 @@ public open class GraphFrame : GraphElement() {
    * //Your changes
    * graphframe.tintColor = myCoreType
    * ``````
+   *
+   * The color of the frame when [tintColorEnabled] is `true`.
    */
   @CoreTypeHelper
-  public final fun tintColorMutate(block: Color.() -> Unit): Color = tintColor.apply{
-      block(this)
-      tintColor = this
+  public final fun tintColorMutate(block: Color.() -> Unit): Color = tintColor.apply {
+     block(this)
+     tintColor = this
   }
-
 
   public final fun setTitle(title: String): Unit {
     TransferContext.writeArguments(STRING to title)
@@ -153,6 +156,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying
    * the title by default.
+   *
    * This can be used to add custom controls to the title bar such as option or close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {

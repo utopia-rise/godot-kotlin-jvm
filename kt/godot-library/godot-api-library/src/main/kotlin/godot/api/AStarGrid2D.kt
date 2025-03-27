@@ -44,11 +44,12 @@ import kotlin.jvm.JvmOverloads
  * to use because it doesn't require you to manually create points and connect them together. This
  * class also supports multiple types of heuristics, modes for diagonal movement, and a jumping mode to
  * speed up calculations.
+ *
  * To use [AStarGrid2D], you only need to set the [region] of the grid, optionally set the
  * [cellSize], and then call the [update] method:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var astar_grid = AStarGrid2D.new()
  * astar_grid.region = Rect2i(0, 0, 32, 32)
  * astar_grid.cell_size = Vector2(16, 16)
@@ -58,8 +59,9 @@ import kotlin.jvm.JvmOverloads
  * print(astar_grid.get_point_path(Vector2i(0, 0), Vector2i(3, 4))) # Prints [(0, 0), (16, 16), (32,
  * 32), (48, 48), (48, 64)]
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * AStarGrid2D astarGrid = new AStarGrid2D();
  * astarGrid.Region = new Rect2I(0, 0, 32, 32);
  * astarGrid.CellSize = new Vector2I(16, 16);
@@ -77,6 +79,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The region of grid cells available for pathfinding. If changed, [update] needs to be called
    * before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var region: Rect2i
@@ -90,6 +99,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
    * needs to be called before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -103,6 +119,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The offset of the grid which will be applied to calculate the resulting point position returned
    * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -116,6 +139,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the point cell which will be applied to calculate the resulting point position
    * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var cellSize: Vector2
@@ -141,6 +171,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Enables or disables jumping to skip up the intermediate points and speeds up the searching
    * algorithm.
+   *
    * **Note:** Currently, toggling it on disables the consideration of weight scaling in
    * pathfinding.
    */
@@ -189,18 +220,11 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(41, scriptIndex)
+    createNativeObject(5, scriptIndex)
   }
 
   /**
-   * The region of grid cells available for pathfinding. If changed, [update] needs to be called
-   * before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [region] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -209,23 +233,18 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.region = myCoreType
    * ``````
+   *
+   * The region of grid cells available for pathfinding. If changed, [update] needs to be called
+   * before finding the next path.
    */
   @CoreTypeHelper
-  public final fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply{
-      block(this)
-      region = this
+  public final fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply {
+     block(this)
+     region = this
   }
 
-
   /**
-   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
-   * needs to be called before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -234,23 +253,18 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.size = myCoreType
    * ``````
+   *
+   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
+   * needs to be called before finding the next path.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * The offset of the grid which will be applied to calculate the resulting point position returned
-   * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -259,23 +273,18 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.offset = myCoreType
    * ``````
+   *
+   * The offset of the grid which will be applied to calculate the resulting point position returned
+   * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * The size of the point cell which will be applied to calculate the resulting point position
-   * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [cellSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -284,28 +293,32 @@ public open class AStarGrid2D : RefCounted() {
    * //Your changes
    * astargrid2d.cellSize = myCoreType
    * ``````
+   *
+   * The size of the point cell which will be applied to calculate the resulting point position
+   * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeHelper
-  public final fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
-      block(this)
-      cellSize = this
+  public final fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply {
+     block(this)
+     cellSize = this
   }
-
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
+   *
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _estimateCost(fromId: Vector2i, endId: Vector2i): Float {
-    throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
+    throw NotImplementedError("_estimateCost is not implemented for AStarGrid2D")
   }
 
   /**
    * Called when computing the cost between two connected points.
+   *
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
-    throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
+    throw NotImplementedError("_computeCost is not implemented for AStarGrid2D")
   }
 
   public final fun setRegion(region: Rect2i): Unit {
@@ -360,7 +373,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getCellShape(): CellShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellShapePtr, LONG)
-    return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CellShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -396,6 +409,7 @@ public open class AStarGrid2D : RefCounted() {
    * Updates the internal state of the grid according to the parameters to prepare it to search the
    * path. Needs to be called if parameters like [region], [cellSize] or [offset] are changed.
    * [isDirty] will return `true` if this is the case and this needs to be called.
+   *
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public final fun update(): Unit {
@@ -422,7 +436,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getDiagonalMode(): DiagonalMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiagonalModePtr, LONG)
-    return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
@@ -433,7 +447,7 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getDefaultComputeHeuristic(): Heuristic {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
-    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+    return Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
@@ -444,12 +458,13 @@ public open class AStarGrid2D : RefCounted() {
   public final fun getDefaultEstimateHeuristic(): Heuristic {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
-    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+    return Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Disables or enables the specified point for pathfinding. Useful for making an obstacle. By
    * default, all points are enabled.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -471,6 +486,7 @@ public open class AStarGrid2D : RefCounted() {
    * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by
    * the result of [_computeCost] when determining the overall cost of traveling across a segment from
    * a neighboring point to this point.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
@@ -489,6 +505,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Fills the given [region] on the grid with the specified value for the solid flag.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -499,6 +516,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Fills the given [region] on the grid with the specified value for the weight scale.
+   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
@@ -536,10 +554,13 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by [AStarGrid2D] between the given
    * points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   *
    * Additionally, when [allowPartialPath] is `true` and [toId] is solid the search may take an
    * unusually long time to finish.
    */
@@ -557,8 +578,10 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the path found by AStar2D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
+   *
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   *
    * **Note:** When [allowPartialPath] is `true` and [toId] is solid the search may take an
    * unusually long time to finish.
    */
@@ -579,51 +602,57 @@ public open class AStarGrid2D : RefCounted() {
     /**
      * The [url=https://en.wikipedia.org/wiki/Euclidean_distance]Euclidean heuristic[/url] to be
      * used for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * result = sqrt(dx * dx + dy * dy)
-     * [/codeblock]
+     * ```
+     *
      * **Note:** This is also the internal heuristic used in [AStar3D] and [AStar2D] by default
      * (with the inclusion of possible z-axis coordinate).
      */
-    HEURISTIC_EUCLIDEAN(0),
+    EUCLIDEAN(0),
     /**
      * The [url=https://en.wikipedia.org/wiki/Taxicab_geometry]Manhattan heuristic[/url] to be used
      * for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * result = dx + dy
-     * [/codeblock]
+     * ```
+     *
      * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by
      * setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
      */
-    HEURISTIC_MANHATTAN(1),
+    MANHATTAN(1),
     /**
      * The Octile heuristic to be used for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * f = sqrt(2) - 1
      * result = (dx < dy) ? f * dx + dy : f * dy + dx;
-     * [/codeblock]
+     * ```
      */
-    HEURISTIC_OCTILE(2),
+    OCTILE(2),
     /**
      * The [url=https://en.wikipedia.org/wiki/Chebyshev_distance]Chebyshev heuristic[/url] to be
      * used for the pathfinding using the following formula:
-     * [codeblock]
+     *
+     * ```
      * dx = abs(to_id.x - from_id.x)
      * dy = abs(to_id.y - from_id.y)
      * result = max(dx, dy)
-     * [/codeblock]
+     * ```
      */
-    HEURISTIC_CHEBYSHEV(3),
+    CHEBYSHEV(3),
     /**
      * Represents the size of the [Heuristic] enum.
      */
-    HEURISTIC_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -643,25 +672,25 @@ public open class AStarGrid2D : RefCounted() {
      * The pathfinding algorithm will ignore solid neighbors around the target cell and allow
      * passing using diagonals.
      */
-    DIAGONAL_MODE_ALWAYS(0),
+    ALWAYS(0),
     /**
      * The pathfinding algorithm will ignore all diagonals and the way will be always orthogonal.
      */
-    DIAGONAL_MODE_NEVER(1),
+    NEVER(1),
     /**
      * The pathfinding algorithm will avoid using diagonals if at least two obstacles have been
      * placed around the neighboring cells of the specific path segment.
      */
-    DIAGONAL_MODE_AT_LEAST_ONE_WALKABLE(2),
+    AT_LEAST_ONE_WALKABLE(2),
     /**
      * The pathfinding algorithm will avoid using diagonals if any obstacle has been placed around
      * the neighboring cells of the specific path segment.
      */
-    DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES(3),
+    ONLY_IF_NO_OBSTACLES(3),
     /**
      * Represents the size of the [DiagonalMode] enum.
      */
-    DIAGONAL_MODE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -680,21 +709,21 @@ public open class AStarGrid2D : RefCounted() {
     /**
      * Rectangular cell shape.
      */
-    CELL_SHAPE_SQUARE(0),
+    SQUARE(0),
     /**
      * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
      * goes up-right, and the vertical one goes down-right.
      */
-    CELL_SHAPE_ISOMETRIC_RIGHT(1),
+    ISOMETRIC_RIGHT(1),
     /**
      * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
      * goes down-right, and the vertical one goes down-left.
      */
-    CELL_SHAPE_ISOMETRIC_DOWN(2),
+    ISOMETRIC_DOWN(2),
     /**
      * Represents the size of the [CellShape] enum.
      */
-    CELL_SHAPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

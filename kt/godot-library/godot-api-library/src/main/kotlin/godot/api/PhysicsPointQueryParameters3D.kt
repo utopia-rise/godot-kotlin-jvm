@@ -35,6 +35,13 @@ import kotlin.jvm.JvmName
 public open class PhysicsPointQueryParameters3D : RefCounted() {
   /**
    * The position being queried for, in global coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector3
@@ -62,6 +69,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
    * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -97,17 +105,11 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(489, scriptIndex)
+    createNativeObject(474, scriptIndex)
   }
 
   /**
-   * The position being queried for, in global coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [position] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -116,13 +118,14 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
    * //Your changes
    * physicspointqueryparameters3d.position = myCoreType
    * ``````
+   *
+   * The position being queried for, in global coordinates.
    */
   @CoreTypeHelper
-  public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
-      block(this)
-      position = this
+  public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply {
+     block(this)
+     position = this
   }
-
 
   public final fun setPosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)

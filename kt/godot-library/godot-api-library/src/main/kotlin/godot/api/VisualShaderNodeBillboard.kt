@@ -50,7 +50,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(733, scriptIndex)
+    createNativeObject(731, scriptIndex)
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {
@@ -61,7 +61,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   public final fun getBillboardType(): BillboardType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBillboardTypePtr, LONG)
-    return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
+    return BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepScaleEnabled(enabled: Boolean): Unit {
@@ -81,23 +81,23 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     /**
      * Billboarding is disabled and the node does nothing.
      */
-    BILLBOARD_TYPE_DISABLED(0),
+    DISABLED(0),
     /**
      * A standard billboarding algorithm is enabled.
      */
-    BILLBOARD_TYPE_ENABLED(1),
+    ENABLED(1),
     /**
      * A billboarding algorithm to rotate around Y-axis is enabled.
      */
-    BILLBOARD_TYPE_FIXED_Y(2),
+    FIXED_Y(2),
     /**
      * A billboarding algorithm designed to use on particles is enabled.
      */
-    BILLBOARD_TYPE_PARTICLES(3),
+    PARTICLES(3),
     /**
      * Represents the size of the [BillboardType] enum.
      */
-    BILLBOARD_TYPE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long

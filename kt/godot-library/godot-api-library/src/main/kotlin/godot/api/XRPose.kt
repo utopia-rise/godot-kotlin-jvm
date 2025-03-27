@@ -21,9 +21,11 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -31,6 +33,7 @@ import kotlin.jvm.JvmName
 /**
  * XR runtimes often identify multiple locations on devices such as controllers that are spatially
  * tracked.
+ *
  * Orientation, location, linear velocity and angular velocity are all provided for each pose by the
  * XR runtime. This object contains this state of a pose.
  */
@@ -51,10 +54,14 @@ public open class XRPose : RefCounted() {
   /**
    * The name of this pose. Usually, this name is derived from an action map set up by the user.
    * Godot also suggests some pose names that [XRInterface] objects are expected to implement:
+   *
    * - `root` is the root location, often used for tracked objects that do not have further nodes.
+   *
    * - `aim` is the tip of a controller with its orientation pointing outwards, often used for
    * raycasts.
+   *
    * - `grip` is the location where the user grips the controller.
+   *
    * - `skeleton` is the root location for a hand mesh, when using hand tracking and an animated
    * skeleton is supplied by the XR runtime.
    */
@@ -68,6 +75,13 @@ public open class XRPose : RefCounted() {
 
   /**
    * The transform containing the original and transform as reported by the XR runtime.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -80,6 +94,13 @@ public open class XRPose : RefCounted() {
 
   /**
    * The linear velocity of this pose.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -92,6 +113,13 @@ public open class XRPose : RefCounted() {
 
   /**
    * The angular velocity for this pose.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -115,17 +143,11 @@ public open class XRPose : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(876, scriptIndex)
+    createNativeObject(875, scriptIndex)
   }
 
   /**
-   * The transform containing the original and transform as reported by the XR runtime.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -134,22 +156,17 @@ public open class XRPose : RefCounted() {
    * //Your changes
    * xrpose.transform = myCoreType
    * ``````
+   *
+   * The transform containing the original and transform as reported by the XR runtime.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply {
+     block(this)
+     transform = this
   }
 
-
   /**
-   * The linear velocity of this pose.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -158,22 +175,17 @@ public open class XRPose : RefCounted() {
    * //Your changes
    * xrpose.linearVelocity = myCoreType
    * ``````
+   *
+   * The linear velocity of this pose.
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The angular velocity for this pose.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [angularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -182,14 +194,15 @@ public open class XRPose : RefCounted() {
    * //Your changes
    * xrpose.angularVelocity = myCoreType
    * ``````
+   *
+   * The angular velocity for this pose.
    */
   @CoreTypeHelper
   public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply{
-      block(this)
-      angularVelocity = this
+      angularVelocity.apply {
+     block(this)
+     angularVelocity = this
   }
-
 
   public final fun setHasTrackingData(hasTrackingData: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hasTrackingData)
@@ -264,8 +277,10 @@ public open class XRPose : RefCounted() {
   public final fun getTrackingConfidence(): TrackingConfidence {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackingConfidencePtr, LONG)
-    return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
+    return TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setName(name: String) = setName(name.asCachedStringName())
 
   public enum class TrackingConfidence(
     id: Long,
@@ -273,16 +288,16 @@ public open class XRPose : RefCounted() {
     /**
      * No tracking information is available for this pose.
      */
-    XR_TRACKING_CONFIDENCE_NONE(0),
+    XR_NONE(0),
     /**
      * Tracking information may be inaccurate or estimated. For example, with inside out tracking
      * this would indicate a controller may be (partially) obscured.
      */
-    XR_TRACKING_CONFIDENCE_LOW(1),
+    XR_LOW(1),
     /**
      * Tracking information is considered accurate and up to date.
      */
-    XR_TRACKING_CONFIDENCE_HIGH(2),
+    XR_HIGH(2),
     ;
 
     public val id: Long

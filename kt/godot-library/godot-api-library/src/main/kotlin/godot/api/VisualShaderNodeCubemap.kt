@@ -59,7 +59,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(744, scriptIndex)
+    createNativeObject(742, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
@@ -70,7 +70,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public final fun getSource(): Source {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    return Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCubeMap(`value`: TextureLayered?): Unit {
@@ -92,7 +92,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(
@@ -102,16 +102,16 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      * Use the [Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is
      * ignored.
      */
-    SOURCE_TEXTURE(0),
+    TEXTURE(0),
     /**
      * Use the [Cubemap] sampler reference passed via the `samplerCube` port. If this is set to
      * [source], the [cubeMap] texture is ignored.
      */
-    SOURCE_PORT(1),
+    PORT(1),
     /**
      * Represents the size of the [Source] enum.
      */
-    SOURCE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

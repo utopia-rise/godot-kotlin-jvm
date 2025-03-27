@@ -35,7 +35,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(815, scriptIndex)
+    createNativeObject(813, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -46,7 +46,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeTransformFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(
@@ -55,15 +55,15 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     /**
      * Perform the inverse operation on the [Transform3D] matrix.
      */
-    FUNC_INVERSE(0),
+    INVERSE(0),
     /**
      * Perform the transpose operation on the [Transform3D] matrix.
      */
-    FUNC_TRANSPOSE(1),
+    TRANSPOSE(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

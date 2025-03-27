@@ -35,7 +35,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(796, scriptIndex)
+    createNativeObject(794, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
@@ -46,7 +46,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   public final fun getSource(): Source {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    return Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(
@@ -55,15 +55,15 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     /**
      * Creates internal uniform and provides a way to assign it within node.
      */
-    SOURCE_TEXTURE(0),
+    TEXTURE(0),
     /**
      * Use the uniform texture from sampler port.
      */
-    SOURCE_PORT(1),
+    PORT(1),
     /**
      * Represents the size of the [Source] enum.
      */
-    SOURCE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

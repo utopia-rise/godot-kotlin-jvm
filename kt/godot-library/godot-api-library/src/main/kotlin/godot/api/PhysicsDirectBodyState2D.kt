@@ -78,7 +78,6 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
-  @CoreTypeLocalCopy
   public final inline val totalGravity: Vector2
     @JvmName("totalGravityProperty")
     get() = getTotalGravity()
@@ -87,7 +86,6 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * The body's center of mass position relative to the body's center in the global coordinate
    * system.
    */
-  @CoreTypeLocalCopy
   public final inline val centerOfMass: Vector2
     @JvmName("centerOfMassProperty")
     get() = getCenterOfMass()
@@ -95,7 +93,6 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
-  @CoreTypeLocalCopy
   public final inline val centerOfMassLocal: Vector2
     @JvmName("centerOfMassLocalProperty")
     get() = getCenterOfMassLocal()
@@ -113,6 +110,13 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * The body's linear velocity in pixels per second.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector2
@@ -136,6 +140,13 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * The body's transformation matrix.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -147,17 +158,11 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(479, scriptIndex)
+    createNativeObject(464, scriptIndex)
   }
 
   /**
-   * The body's linear velocity in pixels per second.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [linearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -166,22 +171,17 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate2d.linearVelocity = myCoreType
    * ``````
+   *
+   * The body's linear velocity in pixels per second.
    */
   @CoreTypeHelper
-  public final fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
-      block(this)
-      linearVelocity = this
+  public final fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply {
+     block(this)
+     linearVelocity = this
   }
 
-
   /**
-   * The body's transformation matrix.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -190,13 +190,14 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * //Your changes
    * physicsdirectbodystate2d.transform = myCoreType
    * ``````
+   *
+   * The body's transformation matrix.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply {
+     block(this)
+     transform = this
   }
-
 
   public final fun getTotalGravity(): Vector2 {
     TransferContext.writeArguments()
@@ -285,9 +286,11 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Applies a directional impulse without affecting rotation.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   public final fun applyCentralImpulse(impulse: Vector2): Unit {
@@ -297,9 +300,11 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Applies a rotational impulse to the body without affecting the position.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
    * [CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
    */
@@ -310,9 +315,11 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Applies a positioned impulse to the body.
+   *
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -324,6 +331,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a directional force without affecting rotation. A force is time dependent and meant to
    * be applied every physics update.
+   *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
   @JvmOverloads
@@ -335,6 +343,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -346,6 +355,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to
    * be applied every physics update.
+   *
    * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
    * [CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
    */
@@ -357,6 +367,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Adds a constant directional force without affecting rotation that keeps being applied over time
    * until cleared with `constant_force = Vector2(0, 0)`.
+   *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
   @JvmOverloads
@@ -368,6 +379,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `constant_force = Vector2(0, 0)`.
+   *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -387,6 +399,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Sets the body's total constant positional forces applied during each physics update.
+   *
    * See [addConstantForce] and [addConstantCentralForce].
    */
   public final fun setConstantForce(force: Vector2): Unit {
@@ -396,6 +409,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Returns the body's total constant positional forces applied during each physics update.
+   *
    * See [addConstantForce] and [addConstantCentralForce].
    */
   public final fun getConstantForce(): Vector2 {
@@ -406,6 +420,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Sets the body's total constant rotational forces applied during each physics update.
+   *
    * See [addConstantTorque].
    */
   public final fun setConstantTorque(torque: Float): Unit {
@@ -415,6 +430,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Returns the body's total constant rotational forces applied during each physics update.
+   *
    * See [addConstantTorque].
    */
   public final fun getConstantTorque(): Float {
@@ -436,6 +452,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Returns the number of contacts this body has with other bodies.
+   *
    * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See
    * [RigidBody2D.contactMonitor].
    */

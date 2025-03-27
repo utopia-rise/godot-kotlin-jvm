@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -25,9 +27,11 @@ import kotlin.jvm.JvmName
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
  * triggers, etc.) and outputs (haptics).
+ *
  * OpenXR performs automatic conversion between action type and input type whenever possible. An
  * analog trigger bound to a boolean action will thus return `false` if the trigger is depressed and
  * `true` if pressed fully.
+ *
  * Actions are not directly bound to specific devices, instead OpenXR recognizes a limited number of
  * top level paths that identify devices by usage. We can restrict which devices an action can be bound
  * to by these top level paths. For instance an action that should only be used for hand held
@@ -35,6 +39,7 @@ import kotlin.jvm.JvmName
  * them. See the
  * [url=https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#semantic-path-reserved]reserved
  * path section in the OpenXR specification[/url] for more info on the top level paths.
+ *
  * Note that the name of the resource is used to register the action with.
  */
 @GodotBaseType
@@ -63,7 +68,15 @@ public open class OpenXRAction : Resource() {
 
   /**
    * A collections of toplevel paths to which this action can be bound.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var toplevelPaths: PackedStringArray
     @JvmName("toplevelPathsProperty")
     get() = getToplevelPaths()
@@ -73,7 +86,44 @@ public open class OpenXRAction : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(427, scriptIndex)
+    createNativeObject(411, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [toplevelPaths] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = openxraction.toplevelPaths
+   * //Your changes
+   * openxraction.toplevelPaths = myCoreType
+   * ``````
+   *
+   * A collections of toplevel paths to which this action can be bound.
+   */
+  @CoreTypeHelper
+  public final fun toplevelPathsMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
+      toplevelPaths.apply {
+     block(this)
+     toplevelPaths = this
+  }
+
+  /**
+   * This is a helper function for [toplevelPaths] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * A collections of toplevel paths to which this action can be bound.
+   */
+  @CoreTypeHelper
+  public final fun toplevelPathsMutateEach(block: (index: Int, `value`: String) -> Unit):
+      PackedStringArray = toplevelPaths.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     toplevelPaths = this
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {
@@ -95,7 +145,7 @@ public open class OpenXRAction : Resource() {
   public final fun getActionType(): ActionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionTypePtr, LONG)
-    return OpenXRAction.ActionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ActionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setToplevelPaths(toplevelPaths: PackedStringArray): Unit {

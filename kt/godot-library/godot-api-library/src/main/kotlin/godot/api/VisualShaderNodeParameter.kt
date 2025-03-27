@@ -50,7 +50,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(775, scriptIndex)
+    createNativeObject(773, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {
@@ -72,7 +72,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   public final fun getQualifier(): Qualifier {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getQualifierPtr, LONG)
-    return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
+    return Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Qualifier(
@@ -81,19 +81,19 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     /**
      * The parameter will be tied to the [ShaderMaterial] using this shader.
      */
-    QUAL_NONE(0),
+    NONE(0),
     /**
      * The parameter will use a global value, defined in Project Settings.
      */
-    QUAL_GLOBAL(1),
+    GLOBAL(1),
     /**
      * The parameter will be tied to the node with attached [ShaderMaterial] using this shader.
      */
-    QUAL_INSTANCE(2),
+    INSTANCE(2),
     /**
      * Represents the size of the [Qualifier] enum.
      */
-    QUAL_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

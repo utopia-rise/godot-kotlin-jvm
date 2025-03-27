@@ -29,13 +29,18 @@ import kotlin.jvm.JvmName
 
 /**
  * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
+ *
  * **Performance:** CSG nodes are only intended for prototyping as they have a significant CPU
  * performance cost.
+ *
  * Consider baking final CSG operation results into static geometry that replaces the CSG nodes.
+ *
  * Individual CSG root node results can be baked to nodes with static resources with the editor menu
  * that appears when a CSG root node is selected.
+ *
  * Individual CSG root nodes can also be baked to static resources with scripts by calling
  * [bakeStaticMesh] for the visual mesh or [bakeCollisionShape] for the physics collision.
+ *
  * Entire scenes of CSG nodes can be baked to static geometry and exported with the editor gltf
  * scene exporter.
  */
@@ -91,9 +96,11 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
   /**
    * The physics layers this area is in.
+   *
    * Collidable objects can exist in any of 32 different layers. These layers work like a tagging
    * system, and are not visual. A collidable can use these layers to select with which objects it can
    * collide, using the collision_mask property.
+   *
    * A contact is detected if object A is in any of the layers that object B scans, or object B is
    * in any layer scanned by object A. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
@@ -136,7 +143,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(158, scriptIndex)
+    createNativeObject(123, scriptIndex)
   }
 
   /**
@@ -156,7 +163,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   public final fun getOperation(): Operation {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperationPtr, LONG)
-    return CSGShape3D.Operation.from(TransferContext.readReturnValue(LONG) as Long)
+    return Operation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSnap(snap: Float): Unit {
@@ -287,6 +294,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns a baked physics [ConcavePolygonShape3D] of this node's CSG operation result. Returns an
    * empty shape if the node is not a CSG root node or has no valid geometry.
+   *
    * **Performance:** If the CSG operation results in a very detailed geometry with many faces
    * physics performance will be very slow. Concave shapes should in general only be used for static
    * level geometry and not with dynamic objects that are moving.
@@ -303,15 +311,15 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     /**
      * Geometry of both primitives is merged, intersecting geometry is removed.
      */
-    OPERATION_UNION(0),
+    UNION(0),
     /**
      * Only intersecting geometry remains, the rest is removed.
      */
-    OPERATION_INTERSECTION(1),
+    INTERSECTION(1),
     /**
      * The second shape is subtracted from the first, leaving a dent with its shape.
      */
-    OPERATION_SUBTRACTION(2),
+    SUBTRACTION(2),
     ;
 
     public val id: Long

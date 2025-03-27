@@ -39,6 +39,7 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
+ *
  * See also [GPUParticles3D], which provides the same functionality with hardware acceleration, but
  * may not run on older devices.
  */
@@ -207,8 +208,16 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The [AABB] that determines the node's region which needs to be visible on screen for the
    * particle system to be active.
+   *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var visibilityAabb: AABB
@@ -279,6 +288,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionBoxExtents: Vector3
@@ -292,7 +308,15 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var emissionPoints: PackedVector3Array
     @JvmName("emissionPointsProperty")
     get() = getEmissionPoints()
@@ -304,7 +328,15 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the direction the particles will be emitted in when using
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var emissionNormals: PackedVector3Array
     @JvmName("emissionNormalsProperty")
     get() = getEmissionNormals()
@@ -316,6 +348,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or
    * [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
    * **Note:** [emissionColors] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -331,6 +364,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionRingAxis: Vector3
@@ -378,6 +418,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90
    * degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will
    * result in a ring where one end is larger than the other.
+   *
    * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is
    * reached to form a perfect cone.
    */
@@ -394,10 +435,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var particleFlagAlignY: Boolean
     @JvmName("particleFlagAlignYProperty")
-    get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY)
+    get() = getParticleFlag(CPUParticles3D.ParticleFlags.ALIGN_Y_TO_VELOCITY)
     @JvmName("particleFlagAlignYProperty")
     set(`value`) {
-      setParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY, value)
+      setParticleFlag(CPUParticles3D.ParticleFlags.ALIGN_Y_TO_VELOCITY, value)
     }
 
   /**
@@ -405,10 +446,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var particleFlagRotateY: Boolean
     @JvmName("particleFlagRotateYProperty")
-    get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ROTATE_Y)
+    get() = getParticleFlag(CPUParticles3D.ParticleFlags.ROTATE_Y)
     @JvmName("particleFlagRotateYProperty")
     set(`value`) {
-      setParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ROTATE_Y, value)
+      setParticleFlag(CPUParticles3D.ParticleFlags.ROTATE_Y, value)
     }
 
   /**
@@ -416,14 +457,21 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var particleFlagDisableZ: Boolean
     @JvmName("particleFlagDisableZProperty")
-    get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_DISABLE_Z)
+    get() = getParticleFlag(CPUParticles3D.ParticleFlags.DISABLE_Z)
     @JvmName("particleFlagDisableZProperty")
     set(`value`) {
-      setParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_DISABLE_Z, value)
+      setParticleFlag(CPUParticles3D.ParticleFlags.DISABLE_Z, value)
     }
 
   /**
    * Unit vector specifying the particles' emission direction.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var direction: Vector3
@@ -459,6 +507,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Gravity applied to every particle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravity: Vector3
@@ -474,10 +529,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var initialVelocityMin: Float
     @JvmName("initialVelocityMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
+    get() = getParamMin(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
+      setParamMin(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY, value)
     }
 
   /**
@@ -485,10 +540,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var initialVelocityMax: Float
     @JvmName("initialVelocityMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
+    get() = getParamMax(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
+      setParamMax(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY, value)
     }
 
   /**
@@ -497,10 +552,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angularVelocityMin: Float
     @JvmName("angularVelocityMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
+    get() = getParamMin(CPUParticles3D.Parameter.ANGULAR_VELOCITY)
     @JvmName("angularVelocityMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY, value)
+      setParamMin(CPUParticles3D.Parameter.ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -509,10 +564,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angularVelocityMax: Float
     @JvmName("angularVelocityMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
+    get() = getParamMax(CPUParticles3D.Parameter.ANGULAR_VELOCITY)
     @JvmName("angularVelocityMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY, value)
+      setParamMax(CPUParticles3D.Parameter.ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -521,10 +576,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angularVelocityCurve: Curve?
     @JvmName("angularVelocityCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANGULAR_VELOCITY)
     @JvmName("angularVelocityCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY, value)
+      setParamCurve(CPUParticles3D.Parameter.ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -532,10 +587,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var orbitVelocityMin: Float
     @JvmName("orbitVelocityMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
+    get() = getParamMin(CPUParticles3D.Parameter.ORBIT_VELOCITY)
     @JvmName("orbitVelocityMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY, value)
+      setParamMin(CPUParticles3D.Parameter.ORBIT_VELOCITY, value)
     }
 
   /**
@@ -543,10 +598,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var orbitVelocityMax: Float
     @JvmName("orbitVelocityMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
+    get() = getParamMax(CPUParticles3D.Parameter.ORBIT_VELOCITY)
     @JvmName("orbitVelocityMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY, value)
+      setParamMax(CPUParticles3D.Parameter.ORBIT_VELOCITY, value)
     }
 
   /**
@@ -554,10 +609,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var orbitVelocityCurve: Curve?
     @JvmName("orbitVelocityCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
+    get() = getParamCurve(CPUParticles3D.Parameter.ORBIT_VELOCITY)
     @JvmName("orbitVelocityCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY, value)
+      setParamCurve(CPUParticles3D.Parameter.ORBIT_VELOCITY, value)
     }
 
   /**
@@ -565,10 +620,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var linearAccelMin: Float
     @JvmName("linearAccelMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
+    get() = getParamMin(CPUParticles3D.Parameter.LINEAR_ACCEL)
     @JvmName("linearAccelMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL, value)
+      setParamMin(CPUParticles3D.Parameter.LINEAR_ACCEL, value)
     }
 
   /**
@@ -576,10 +631,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var linearAccelMax: Float
     @JvmName("linearAccelMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
+    get() = getParamMax(CPUParticles3D.Parameter.LINEAR_ACCEL)
     @JvmName("linearAccelMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL, value)
+      setParamMax(CPUParticles3D.Parameter.LINEAR_ACCEL, value)
     }
 
   /**
@@ -587,10 +642,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var linearAccelCurve: Curve?
     @JvmName("linearAccelCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
+    get() = getParamCurve(CPUParticles3D.Parameter.LINEAR_ACCEL)
     @JvmName("linearAccelCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL, value)
+      setParamCurve(CPUParticles3D.Parameter.LINEAR_ACCEL, value)
     }
 
   /**
@@ -598,10 +653,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var radialAccelMin: Float
     @JvmName("radialAccelMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
+    get() = getParamMin(CPUParticles3D.Parameter.RADIAL_ACCEL)
     @JvmName("radialAccelMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL, value)
+      setParamMin(CPUParticles3D.Parameter.RADIAL_ACCEL, value)
     }
 
   /**
@@ -609,10 +664,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var radialAccelMax: Float
     @JvmName("radialAccelMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
+    get() = getParamMax(CPUParticles3D.Parameter.RADIAL_ACCEL)
     @JvmName("radialAccelMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL, value)
+      setParamMax(CPUParticles3D.Parameter.RADIAL_ACCEL, value)
     }
 
   /**
@@ -620,10 +675,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var radialAccelCurve: Curve?
     @JvmName("radialAccelCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
+    get() = getParamCurve(CPUParticles3D.Parameter.RADIAL_ACCEL)
     @JvmName("radialAccelCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL, value)
+      setParamCurve(CPUParticles3D.Parameter.RADIAL_ACCEL, value)
     }
 
   /**
@@ -631,10 +686,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var tangentialAccelMin: Float
     @JvmName("tangentialAccelMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
+    get() = getParamMin(CPUParticles3D.Parameter.TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL, value)
+      setParamMin(CPUParticles3D.Parameter.TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -642,10 +697,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var tangentialAccelMax: Float
     @JvmName("tangentialAccelMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
+    get() = getParamMax(CPUParticles3D.Parameter.TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL, value)
+      setParamMax(CPUParticles3D.Parameter.TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -653,10 +708,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var tangentialAccelCurve: Curve?
     @JvmName("tangentialAccelCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
+    get() = getParamCurve(CPUParticles3D.Parameter.TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL, value)
+      setParamCurve(CPUParticles3D.Parameter.TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -664,10 +719,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var dampingMin: Float
     @JvmName("dampingMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_DAMPING)
+    get() = getParamMin(CPUParticles3D.Parameter.DAMPING)
     @JvmName("dampingMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_DAMPING, value)
+      setParamMin(CPUParticles3D.Parameter.DAMPING, value)
     }
 
   /**
@@ -675,10 +730,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var dampingMax: Float
     @JvmName("dampingMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_DAMPING)
+    get() = getParamMax(CPUParticles3D.Parameter.DAMPING)
     @JvmName("dampingMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_DAMPING, value)
+      setParamMax(CPUParticles3D.Parameter.DAMPING, value)
     }
 
   /**
@@ -686,10 +741,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var dampingCurve: Curve?
     @JvmName("dampingCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_DAMPING)
+    get() = getParamCurve(CPUParticles3D.Parameter.DAMPING)
     @JvmName("dampingCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_DAMPING, value)
+      setParamCurve(CPUParticles3D.Parameter.DAMPING, value)
     }
 
   /**
@@ -697,10 +752,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angleMin: Float
     @JvmName("angleMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANGLE)
+    get() = getParamMin(CPUParticles3D.Parameter.ANGLE)
     @JvmName("angleMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANGLE, value)
+      setParamMin(CPUParticles3D.Parameter.ANGLE, value)
     }
 
   /**
@@ -708,10 +763,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angleMax: Float
     @JvmName("angleMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANGLE)
+    get() = getParamMax(CPUParticles3D.Parameter.ANGLE)
     @JvmName("angleMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANGLE, value)
+      setParamMax(CPUParticles3D.Parameter.ANGLE, value)
     }
 
   /**
@@ -719,10 +774,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angleCurve: Curve?
     @JvmName("angleCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANGLE)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANGLE)
     @JvmName("angleCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANGLE, value)
+      setParamCurve(CPUParticles3D.Parameter.ANGLE, value)
     }
 
   /**
@@ -730,10 +785,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var scaleAmountMin: Float
     @JvmName("scaleAmountMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_SCALE)
+    get() = getParamMin(CPUParticles3D.Parameter.SCALE)
     @JvmName("scaleAmountMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_SCALE, value)
+      setParamMin(CPUParticles3D.Parameter.SCALE, value)
     }
 
   /**
@@ -741,10 +796,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var scaleAmountMax: Float
     @JvmName("scaleAmountMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_SCALE)
+    get() = getParamMax(CPUParticles3D.Parameter.SCALE)
     @JvmName("scaleAmountMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_SCALE, value)
+      setParamMax(CPUParticles3D.Parameter.SCALE, value)
     }
 
   /**
@@ -752,10 +807,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var scaleAmountCurve: Curve?
     @JvmName("scaleAmountCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_SCALE)
+    get() = getParamCurve(CPUParticles3D.Parameter.SCALE)
     @JvmName("scaleAmountCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_SCALE, value)
+      setParamCurve(CPUParticles3D.Parameter.SCALE, value)
     }
 
   /**
@@ -804,10 +859,18 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color.
+   *
    * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
    * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [color] will have no visible effect.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -821,6 +884,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's color will vary along this [Gradient] over its lifetime (multiplied with
    * [color]).
+   *
    * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
    * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -836,6 +900,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color will vary along this [Gradient] (multiplied with [color]).
+   *
    * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -854,10 +919,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var hueVariationMin: Float
     @JvmName("hueVariationMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
+    get() = getParamMin(CPUParticles3D.Parameter.HUE_VARIATION)
     @JvmName("hueVariationMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_HUE_VARIATION, value)
+      setParamMin(CPUParticles3D.Parameter.HUE_VARIATION, value)
     }
 
   /**
@@ -865,10 +930,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var hueVariationMax: Float
     @JvmName("hueVariationMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
+    get() = getParamMax(CPUParticles3D.Parameter.HUE_VARIATION)
     @JvmName("hueVariationMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_HUE_VARIATION, value)
+      setParamMax(CPUParticles3D.Parameter.HUE_VARIATION, value)
     }
 
   /**
@@ -876,10 +941,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var hueVariationCurve: Curve?
     @JvmName("hueVariationCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
+    get() = getParamCurve(CPUParticles3D.Parameter.HUE_VARIATION)
     @JvmName("hueVariationCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_HUE_VARIATION, value)
+      setParamCurve(CPUParticles3D.Parameter.HUE_VARIATION, value)
     }
 
   /**
@@ -887,10 +952,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animSpeedMin: Float
     @JvmName("animSpeedMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
+    get() = getParamMin(CPUParticles3D.Parameter.ANIM_SPEED)
     @JvmName("animSpeedMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANIM_SPEED, value)
+      setParamMin(CPUParticles3D.Parameter.ANIM_SPEED, value)
     }
 
   /**
@@ -898,10 +963,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animSpeedMax: Float
     @JvmName("animSpeedMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
+    get() = getParamMax(CPUParticles3D.Parameter.ANIM_SPEED)
     @JvmName("animSpeedMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANIM_SPEED, value)
+      setParamMax(CPUParticles3D.Parameter.ANIM_SPEED, value)
     }
 
   /**
@@ -909,10 +974,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animSpeedCurve: Curve?
     @JvmName("animSpeedCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANIM_SPEED)
     @JvmName("animSpeedCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_SPEED, value)
+      setParamCurve(CPUParticles3D.Parameter.ANIM_SPEED, value)
     }
 
   /**
@@ -920,10 +985,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animOffsetMin: Float
     @JvmName("animOffsetMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
+    get() = getParamMin(CPUParticles3D.Parameter.ANIM_OFFSET)
     @JvmName("animOffsetMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET, value)
+      setParamMin(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
   /**
@@ -931,10 +996,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animOffsetMax: Float
     @JvmName("animOffsetMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
+    get() = getParamMax(CPUParticles3D.Parameter.ANIM_OFFSET)
     @JvmName("animOffsetMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET, value)
+      setParamMax(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
   /**
@@ -942,27 +1007,18 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animOffsetCurve: Curve?
     @JvmName("animOffsetCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANIM_OFFSET)
     @JvmName("animOffsetCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET, value)
+      setParamCurve(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(151, scriptIndex)
+    createNativeObject(116, scriptIndex)
   }
 
   /**
-   * The [AABB] that determines the node's region which needs to be visible on screen for the
-   * particle system to be active.
-   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
-   * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [visibilityAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -971,22 +1027,21 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.visibilityAabb = myCoreType
    * ``````
+   *
+   * The [AABB] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   *
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
   @CoreTypeHelper
-  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
-      block(this)
-      visibilityAabb = this
+  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply {
+     block(this)
+     visibilityAabb = this
   }
 
-
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [emissionBoxExtents] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -995,23 +1050,96 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.emissionBoxExtents = myCoreType
    * ``````
+   *
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    */
   @CoreTypeHelper
   public final fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionBoxExtents.apply{
-      block(this)
-      emissionBoxExtents = this
+      emissionBoxExtents.apply {
+     block(this)
+     emissionBoxExtents = this
   }
 
+  /**
+   * This is a helper function for [emissionPoints] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.emissionPoints
+   * //Your changes
+   * cpuparticles3d.emissionPoints = myCoreType
+   * ``````
+   *
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionPointsMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      emissionPoints.apply {
+     block(this)
+     emissionPoints = this
+  }
 
   /**
-   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   * This is a helper function for [emissionPoints] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionPointsMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = emissionPoints.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     emissionPoints = this
+  }
+
+  /**
+   * This is a helper function for [emissionNormals] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.emissionNormals
+   * //Your changes
+   * cpuparticles3d.emissionNormals = myCoreType
+   * ``````
    *
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionNormalsMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
+      emissionNormals.apply {
+     block(this)
+     emissionNormals = this
+  }
+
+  /**
+   * This is a helper function for [emissionNormals] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  @CoreTypeHelper
+  public final fun emissionNormalsMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
+      PackedVector3Array = emissionNormals.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     emissionNormals = this
+  }
+
+  /**
+   * This is a helper function for [emissionRingAxis] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1020,23 +1148,18 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.emissionRingAxis = myCoreType
    * ``````
+   *
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
   @CoreTypeHelper
   public final fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionRingAxis.apply{
-      block(this)
-      emissionRingAxis = this
+      emissionRingAxis.apply {
+     block(this)
+     emissionRingAxis = this
   }
 
-
   /**
-   * Unit vector specifying the particles' emission direction.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [direction] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1045,22 +1168,17 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.direction = myCoreType
    * ``````
+   *
+   * Unit vector specifying the particles' emission direction.
    */
   @CoreTypeHelper
-  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
-      block(this)
-      direction = this
+  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply {
+     block(this)
+     direction = this
   }
 
-
   /**
-   * Gravity applied to every particle.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [gravity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1069,26 +1187,17 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.gravity = myCoreType
    * ``````
+   *
+   * Gravity applied to every particle.
    */
   @CoreTypeHelper
-  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
-      block(this)
-      gravity = this
+  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply {
+     block(this)
+     gravity = this
   }
 
-
   /**
-   * Each particle's initial color.
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
-   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [color] will have no visible effect.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1097,13 +1206,19 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * //Your changes
    * cpuparticles3d.color = myCoreType
    * ``````
+   *
+   * Each particle's initial color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun setEmitting(emitting: Boolean): Unit {
     TransferContext.writeArguments(BOOL to emitting)
@@ -1257,7 +1372,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public final fun getDrawOrder(): DrawOrder {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
-    return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
@@ -1295,6 +1410,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Restarts the particle emitter.
+   *
    * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
    * playback.
    */
@@ -1306,6 +1422,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Requests the particles to process for extra process time during a single frame.
+   *
    * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
    * [restart] with parameter `keep_seed` set to `true`.
    */
@@ -1466,7 +1583,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public final fun getEmissionShape(): EmissionShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionShapePtr, LONG)
-    return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmissionSphereRadius(radius: Float): Unit {
@@ -1649,16 +1766,16 @@ public open class CPUParticles3D : GeometryInstance3D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Particles are drawn in order of depth.
      */
-    DRAW_ORDER_VIEW_DEPTH(2),
+    VIEW_DEPTH(2),
     ;
 
     public val id: Long
@@ -1678,61 +1795,61 @@ public open class CPUParticles3D : GeometryInstance3D() {
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
      * properties.
      */
-    PARAM_INITIAL_LINEAR_VELOCITY(0),
+    INITIAL_LINEAR_VELOCITY(0),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity
      * properties.
      */
-    PARAM_ANGULAR_VELOCITY(1),
+    ANGULAR_VELOCITY(1),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity
      * properties.
      */
-    PARAM_ORBIT_VELOCITY(2),
+    ORBIT_VELOCITY(2),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration
      * properties.
      */
-    PARAM_LINEAR_ACCEL(3),
+    LINEAR_ACCEL(3),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration
      * properties.
      */
-    PARAM_RADIAL_ACCEL(4),
+    RADIAL_ACCEL(4),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration
      * properties.
      */
-    PARAM_TANGENTIAL_ACCEL(5),
+    TANGENTIAL_ACCEL(5),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set damping properties.
      */
-    PARAM_DAMPING(6),
+    DAMPING(6),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angle properties.
      */
-    PARAM_ANGLE(7),
+    ANGLE(7),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set scale properties.
      */
-    PARAM_SCALE(8),
+    SCALE(8),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set hue variation properties.
      */
-    PARAM_HUE_VARIATION(9),
+    HUE_VARIATION(9),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation speed properties.
      */
-    PARAM_ANIM_SPEED(10),
+    ANIM_SPEED(10),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset
      * properties.
      */
-    PARAM_ANIM_OFFSET(11),
+    ANIM_OFFSET(11),
     /**
      * Represents the size of the [Parameter] enum.
      */
-    PARAM_MAX(12),
+    MAX(12),
     ;
 
     public val id: Long
@@ -1751,19 +1868,19 @@ public open class CPUParticles3D : GeometryInstance3D() {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
-    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
+    ALIGN_Y_TO_VELOCITY(0),
     /**
      * Use with [setParticleFlag] to set [particleFlagRotateY].
      */
-    PARTICLE_FLAG_ROTATE_Y(1),
+    ROTATE_Y(1),
     /**
      * Use with [setParticleFlag] to set [particleFlagDisableZ].
      */
-    PARTICLE_FLAG_DISABLE_Z(2),
+    DISABLE_Z(2),
     /**
      * Represents the size of the [ParticleFlags] enum.
      */
-    PARTICLE_FLAG_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -1782,38 +1899,38 @@ public open class CPUParticles3D : GeometryInstance3D() {
     /**
      * All particles will be emitted from a single point.
      */
-    EMISSION_SHAPE_POINT(0),
+    POINT(0),
     /**
      * Particles will be emitted in the volume of a sphere.
      */
-    EMISSION_SHAPE_SPHERE(1),
+    SPHERE(1),
     /**
      * Particles will be emitted on the surface of a sphere.
      */
-    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    SPHERE_SURFACE(2),
     /**
      * Particles will be emitted in the volume of a box.
      */
-    EMISSION_SHAPE_BOX(3),
+    BOX(3),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
      * color will be modulated by [emissionColors].
      */
-    EMISSION_SHAPE_POINTS(4),
+    POINTS(4),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
      * velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated
      * by [emissionColors].
      */
-    EMISSION_SHAPE_DIRECTED_POINTS(5),
+    DIRECTED_POINTS(5),
     /**
      * Particles will be emitted in a ring or cylinder.
      */
-    EMISSION_SHAPE_RING(6),
+    RING(6),
     /**
      * Represents the size of the [EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long

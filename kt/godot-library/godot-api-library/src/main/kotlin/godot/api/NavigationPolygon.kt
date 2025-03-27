@@ -27,11 +27,13 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -39,11 +41,12 @@ import kotlin.jvm.JvmName
 /**
  * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],
  * or by adding vertices and convex polygon indices arrays manually.
+ *
  * To bake a navigation mesh at least one outline needs to be added that defines the outer bounds of
  * the baked area.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
  * var bounding_outline = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
  * Vector2(50, 0)])
@@ -52,8 +55,9 @@ import kotlin.jvm.JvmName
  * NavigationMeshSourceGeometryData2D.new());
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var newNavigationMesh = new NavigationPolygon();
  * Vector2[] boundingOutline = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
  * Vector2(50, 0)];
@@ -65,8 +69,8 @@ import kotlin.jvm.JvmName
  *
  * Adding vertices and polygon indices manually.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
  * var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
  * Vector2(50, 0)])
@@ -75,8 +79,9 @@ import kotlin.jvm.JvmName
  * new_navigation_mesh.add_polygon(new_polygon_indices)
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var newNavigationMesh = new NavigationPolygon();
  * Vector2[] newVertices = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
  * Vector2(50, 0)];
@@ -88,6 +93,17 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class NavigationPolygon : Resource() {
+  /**
+   *
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
   public final inline var vertices: PackedVector2Array
     @JvmName("verticesProperty")
     get() = getVertices()
@@ -122,6 +138,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
+   *
    * Only used when [parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
    * [PARSED_GEOMETRY_BOTH].
    */
@@ -146,6 +163,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The group name of nodes that should be parsed for baking source geometry.
+   *
    * Only used when [sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
@@ -172,6 +190,7 @@ public open class NavigationPolygon : Resource() {
   /**
    * The size of the non-navigable border around the bake bounding area defined by the [bakingRect]
    * [Rect2].
+   *
    * In conjunction with the [bakingRect] the border size can be used to bake tile aligned
    * navigation meshes without the tile edges being shrunk by [agentRadius].
    */
@@ -197,6 +216,13 @@ public open class NavigationPolygon : Resource() {
   /**
    * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
    * enclosing area.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bakingRect: Rect2
@@ -209,6 +235,13 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The position offset applied to the [bakingRect] [Rect2].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bakingRectOffset: Vector2
@@ -220,18 +253,44 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(407, scriptIndex)
+    createNativeObject(388, scriptIndex)
   }
 
   /**
-   * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
-   * enclosing area.
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpolygon.vertices
+   * //Your changes
+   * navigationpolygon.vertices = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun verticesMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      vertices.apply {
+     block(this)
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [vertices] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   */
+  @CoreTypeHelper
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = vertices.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     vertices = this
+  }
+
+  /**
+   * This is a helper function for [bakingRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -240,22 +299,18 @@ public open class NavigationPolygon : Resource() {
    * //Your changes
    * navigationpolygon.bakingRect = myCoreType
    * ``````
+   *
+   * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
+   * enclosing area.
    */
   @CoreTypeHelper
-  public final fun bakingRectMutate(block: Rect2.() -> Unit): Rect2 = bakingRect.apply{
-      block(this)
-      bakingRect = this
+  public final fun bakingRectMutate(block: Rect2.() -> Unit): Rect2 = bakingRect.apply {
+     block(this)
+     bakingRect = this
   }
 
-
   /**
-   * The position offset applied to the [bakingRect] [Rect2].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [bakingRectOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -264,14 +319,15 @@ public open class NavigationPolygon : Resource() {
    * //Your changes
    * navigationpolygon.bakingRectOffset = myCoreType
    * ``````
+   *
+   * The position offset applied to the [bakingRect] [Rect2].
    */
   @CoreTypeHelper
   public final fun bakingRectOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      bakingRectOffset.apply{
-      block(this)
-      bakingRectOffset = this
+      bakingRectOffset.apply {
+     block(this)
+     bakingRectOffset = this
   }
-
 
   /**
    * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.
@@ -438,7 +494,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getSamplePartitionType(): SamplePartitionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
-    return NavigationPolygon.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+    return SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
@@ -449,7 +505,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getParsedGeometryType(): ParsedGeometryType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
-    return NavigationPolygon.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+    return ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedCollisionMask(mask: Long): Unit {
@@ -490,7 +546,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getSourceGeometryMode(): SourceGeometryMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
-    return NavigationPolygon.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGeometryGroupName(groupName: StringName): Unit {
@@ -545,21 +601,24 @@ public open class NavigationPolygon : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
+  public final fun setSourceGeometryGroupName(groupName: String) =
+      setSourceGeometryGroupName(groupName.asCachedStringName())
+
   public enum class SamplePartitionType(
     id: Long,
   ) {
     /**
      * Convex partitioning that yields navigation mesh with convex polygons.
      */
-    SAMPLE_PARTITION_CONVEX_PARTITION(0),
+    CONVEX_PARTITION(0),
     /**
      * Triangulation partitioning that yields navigation mesh with triangle polygons.
      */
-    SAMPLE_PARTITION_TRIANGULATE(1),
+    TRIANGULATE(1),
     /**
      * Represents the size of the [SamplePartitionType] enum.
      */
-    SAMPLE_PARTITION_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -578,22 +637,23 @@ public open class NavigationPolygon : Resource() {
     /**
      * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
      * [MultiMeshInstance2D], and [TileMap] nodes.
+     *
      * Meshes are only parsed when they use a 2D vertices surface format.
      */
-    PARSED_GEOMETRY_MESH_INSTANCES(0),
+    MESH_INSTANCES(0),
     /**
      * Parses [StaticBody2D] and [TileMap] colliders as obstruction geometry. The collider should be
      * in any of the layers specified by [parsedCollisionMask].
      */
-    PARSED_GEOMETRY_STATIC_COLLIDERS(1),
+    STATIC_COLLIDERS(1),
     /**
      * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
-    PARSED_GEOMETRY_BOTH(2),
+    BOTH(2),
     /**
      * Represents the size of the [ParsedGeometryType] enum.
      */
-    PARSED_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -612,20 +672,20 @@ public open class NavigationPolygon : Resource() {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
-    SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
+    ROOT_NODE_CHILDREN(0),
     /**
      * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
      * by [sourceGeometryGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
+    GROUPS_WITH_CHILDREN(1),
     /**
      * Uses nodes in a group for geometry. The group is specified by [sourceGeometryGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
+    GROUPS_EXPLICIT(2),
     /**
      * Represents the size of the [SourceGeometryMode] enum.
      */
-    SOURCE_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

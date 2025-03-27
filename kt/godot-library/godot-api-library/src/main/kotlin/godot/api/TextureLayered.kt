@@ -23,65 +23,69 @@ import kotlin.Unit
 /**
  * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but
  * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
+ *
  * Data is set on a per-layer basis. For [Texture2DArray]s, the layer specifies the array layer.
+ *
  * All images need to have the same width, height and number of mipmap levels.
+ *
  * A [TextureLayered] can be loaded with [ResourceLoader.load].
+ *
  * Internally, Godot maps these files to their respective counterparts in the target rendering
  * driver (Vulkan, OpenGL3).
  */
 @GodotBaseType
 public open class TextureLayered : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(682, scriptIndex)
+    createNativeObject(677, scriptIndex)
   }
 
   /**
    * Called when the [TextureLayered]'s format is queried.
    */
   public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_get_format is not implemented for TextureLayered")
+    throw NotImplementedError("_getFormat is not implemented for TextureLayered")
   }
 
   /**
    * Called when the layers' type in the [TextureLayered] is queried.
    */
   public open fun _getLayeredType(): Long {
-    throw NotImplementedError("_get_layered_type is not implemented for TextureLayered")
+    throw NotImplementedError("_getLayeredType is not implemented for TextureLayered")
   }
 
   /**
    * Called when the [TextureLayered]'s width queried.
    */
   public open fun _getWidth(): Int {
-    throw NotImplementedError("_get_width is not implemented for TextureLayered")
+    throw NotImplementedError("_getWidth is not implemented for TextureLayered")
   }
 
   /**
    * Called when the [TextureLayered]'s height is queried.
    */
   public open fun _getHeight(): Int {
-    throw NotImplementedError("_get_height is not implemented for TextureLayered")
+    throw NotImplementedError("_getHeight is not implemented for TextureLayered")
   }
 
   /**
    * Called when the number of layers in the [TextureLayered] is queried.
    */
   public open fun _getLayers(): Int {
-    throw NotImplementedError("_get_layers is not implemented for TextureLayered")
+    throw NotImplementedError("_getLayers is not implemented for TextureLayered")
   }
 
   /**
    * Called when the presence of mipmaps in the [TextureLayered] is queried.
    */
   public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_has_mipmaps is not implemented for TextureLayered")
+    throw NotImplementedError("_hasMipmaps is not implemented for TextureLayered")
   }
 
   /**
    * Called when the data for a layer in the [TextureLayered] is queried.
    */
   public open fun _getLayerData(layerIndex: Int): Image? {
-    throw NotImplementedError("_get_layer_data is not implemented for TextureLayered")
+    throw NotImplementedError("_getLayerData is not implemented for TextureLayered")
   }
 
   /**
@@ -100,7 +104,7 @@ public open class TextureLayered : Texture() {
   public final fun getLayeredType(): LayeredType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayeredTypePtr, LONG)
-    return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
+    return LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -158,11 +162,11 @@ public open class TextureLayered : Texture() {
     /**
      * Texture is a [Cubemap], with each side in its own layer (6 in total).
      */
-    LAYERED_TYPE_CUBEMAP(1),
+    CUBEMAP(1),
     /**
      * Texture is a [CubemapArray], with each cubemap being made of 6 layers.
      */
-    LAYERED_TYPE_CUBEMAP_ARRAY(2),
+    CUBEMAP_ARRAY(2),
     ;
 
     public val id: Long

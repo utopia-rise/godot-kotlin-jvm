@@ -36,14 +36,18 @@ import kotlin.jvm.JvmOverloads
 /**
  * An atlas is a grid of tiles laid out on a texture. Each tile in the grid must be exposed using
  * [createTile]. Those tiles are then indexed using their coordinates in the grid.
+ *
  * Each tile can also have a size in the grid coordinates, making it more or less cells in the
  * atlas.
+ *
  * Alternatives version of a tile can be created using [createAlternativeTile], which are then
  * indexed using an alternative ID. The main tile (the one in the grid), is accessed with an
  * alternative ID equal to 0.
+ *
  * Each tile alternate has a set of properties that is defined by the source's [TileSet] layers.
  * Those properties are stored in a TileData object that can be accessed and modified using
  * [getTileData].
+ *
  * As TileData properties are stored directly in the TileSetAtlasSource resource, their properties
  * might also be set using
  * `TileSetAtlasSource.set("<coords_x>:<coords_y>/<alternative_id>/<tile_data_property>")`.
@@ -63,6 +67,13 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   /**
    * Margins, in pixels, to offset the origin of the grid in the texture.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var margins: Vector2i
@@ -75,6 +86,13 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   /**
    * Separation, in pixels, between each tile texture region of the grid.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var separation: Vector2i
@@ -88,6 +106,13 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * The base tile size in the texture (in pixel). This size must be bigger than or equal to the
    * TileSet's `tile_size` value.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureRegionSize: Vector2i
@@ -101,6 +126,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * If `true`, generates an internal texture with an additional one pixel padding around each tile.
    * Texture padding avoids a common artifact where lines appear between tiles.
+   *
    * Disabling this setting might lead a small performance improvement, as generating the internal
    * texture requires both memory and processing time when the TileSetAtlasSource resource is modified.
    */
@@ -113,17 +139,11 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(693, scriptIndex)
+    createNativeObject(689, scriptIndex)
   }
 
   /**
-   * Margins, in pixels, to offset the origin of the grid in the texture.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [margins] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -132,22 +152,17 @@ public open class TileSetAtlasSource : TileSetSource() {
    * //Your changes
    * tilesetatlassource.margins = myCoreType
    * ``````
+   *
+   * Margins, in pixels, to offset the origin of the grid in the texture.
    */
   @CoreTypeHelper
-  public final fun marginsMutate(block: Vector2i.() -> Unit): Vector2i = margins.apply{
-      block(this)
-      margins = this
+  public final fun marginsMutate(block: Vector2i.() -> Unit): Vector2i = margins.apply {
+     block(this)
+     margins = this
   }
 
-
   /**
-   * Separation, in pixels, between each tile texture region of the grid.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [separation] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -156,23 +171,17 @@ public open class TileSetAtlasSource : TileSetSource() {
    * //Your changes
    * tilesetatlassource.separation = myCoreType
    * ``````
+   *
+   * Separation, in pixels, between each tile texture region of the grid.
    */
   @CoreTypeHelper
-  public final fun separationMutate(block: Vector2i.() -> Unit): Vector2i = separation.apply{
-      block(this)
-      separation = this
+  public final fun separationMutate(block: Vector2i.() -> Unit): Vector2i = separation.apply {
+     block(this)
+     separation = this
   }
 
-
   /**
-   * The base tile size in the texture (in pixel). This size must be bigger than or equal to the
-   * TileSet's `tile_size` value.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [textureRegionSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -181,14 +190,16 @@ public open class TileSetAtlasSource : TileSetSource() {
    * //Your changes
    * tilesetatlassource.textureRegionSize = myCoreType
    * ``````
+   *
+   * The base tile size in the texture (in pixel). This size must be bigger than or equal to the
+   * TileSet's `tile_size` value.
    */
   @CoreTypeHelper
   public final fun textureRegionSizeMutate(block: Vector2i.() -> Unit): Vector2i =
-      textureRegionSize.apply{
-      block(this)
-      textureRegionSize = this
+      textureRegionSize.apply {
+     block(this)
+     textureRegionSize = this
   }
-
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
@@ -266,8 +277,10 @@ public open class TileSetAtlasSource : TileSetSource() {
    * Move the tile and its alternatives at the [atlasCoords] coordinates to the [newAtlasCoords]
    * coordinates with the [newSize] size. This functions will fail if a tile is already present in the
    * given area.
+   *
    * If [newAtlasCoords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [newSize] is
    * `Vector2i(-1, -1)`, keeps the tile's size.
+   *
    * To avoid an error, first check if a move is possible using [hasRoomForTile].
    */
   @JvmOverloads
@@ -424,7 +437,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   public final fun getTileAnimationMode(atlasCoords: Vector2i): TileAnimationMode {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(ptr, MethodBindings.getTileAnimationModePtr, LONG)
-    return TileSetAtlasSource.TileAnimationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TileAnimationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -481,6 +494,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * Creates an alternative tile for the tile at coordinates [atlasCoords]. If
    * [alternativeIdOverride] is -1, give it an automatically generated unique ID, or assigns it the
    * given ID otherwise.
+   *
    * Returns the new alternative identifier, or -1 if the alternative could not be created with a
    * provided [alternativeIdOverride].
    */
@@ -494,6 +508,7 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   /**
    * Remove a tile's alternative with alternative ID [alternativeTile].
+   *
    * Calling this function with [alternativeTile] equals to 0 will fail, as the base tile
    * alternative cannot be removed.
    */
@@ -504,6 +519,7 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   /**
    * Change a tile's alternative ID from [alternativeTile] to [newId].
+   *
    * Calling this function with [newId] of 0 will fail, as the base tile alternative cannot be
    * moved.
    */
@@ -568,6 +584,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Returns the region of the tile at coordinates [atlasCoords] for the given [frame] inside the
    * texture returned by [getRuntimeTexture].
+   *
    * **Note:** If [useTexturePadding] is `false`, returns the same as [getTileTextureRegion].
    */
   public final fun getRuntimeTileTextureRegion(atlasCoords: Vector2i, frame: Int): Rect2i {
@@ -582,15 +599,15 @@ public open class TileSetAtlasSource : TileSetSource() {
     /**
      * Tile animations start at same time, looking identical.
      */
-    TILE_ANIMATION_MODE_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Tile animations start at random times, looking varied.
      */
-    TILE_ANIMATION_MODE_RANDOM_START_TIMES(1),
+    RANDOM_START_TIMES(1),
     /**
      * Represents the size of the [TileAnimationMode] enum.
      */
-    TILE_ANIMATION_MODE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -607,16 +624,19 @@ public open class TileSetAtlasSource : TileSetSource() {
     /**
      * Represents cell's horizontal flip flag. Should be used directly with [TileMap] to flip placed
      * tiles by altering their alternative IDs.
-     * [codeblock]
+     *
+     * ```
      * var alternate_id = $TileMap.get_cell_alternative_tile(0, Vector2i(2, 2))
      * if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
      *     # If tile is not already flipped, flip it.
      *     $TileMap.set_cell(0, Vector2i(2, 2), source_id, atlas_coords, alternate_id |
      * TileSetAtlasSource.TRANSFORM_FLIP_H)
-     * [/codeblock]
+     * ```
+     *
      * **Note:** These transformations can be combined to do the equivalent of 0, 90, 180, and 270
      * degree rotations, as shown below:
-     * [codeblock]
+     *
+     * ```
      * enum TileTransform {
      *     ROTATE_0 = 0,
      *     ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
@@ -624,7 +644,7 @@ public open class TileSetAtlasSource : TileSetSource() {
      *     ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE |
      * TileSetAtlasSource.TRANSFORM_FLIP_V,
      * }
-     * [/codeblock]
+     * ```
      */
     public final const val TRANSFORM_FLIP_H: Long = 4096
 

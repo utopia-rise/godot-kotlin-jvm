@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -22,6 +24,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -29,11 +32,13 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
  * [AudioStreamPlayer] (for non-positional audio) or [AudioStreamPlayer2D]/[AudioStreamPlayer3D] (for
  * positional audio). The sound can be looped.
+ *
  * This class can also be used to store dynamically-generated PCM audio data. See also
  * [AudioStreamGenerator] for procedural audio generation.
  */
@@ -41,10 +46,20 @@ import kotlin.jvm.JvmOverloads
 public open class AudioStreamWAV : AudioStream() {
   /**
    * Contains the audio data in bytes.
+   *
    * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
    * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   *
    * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var `data`: PackedByteArray
     @JvmName("dataProperty")
     get() = getData()
@@ -100,8 +115,10 @@ public open class AudioStreamWAV : AudioStream() {
   /**
    * The sample rate for mixing this audio. Higher values require more storage space, but result in
    * better quality.
+   *
    * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and
    * `48000`.
+   *
    * According to the
    * [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon
    * sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz
@@ -129,7 +146,53 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(136, scriptIndex)
+    createNativeObject(101, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = audiostreamwav.data
+   * //Your changes
+   * audiostreamwav.data = myCoreType
+   * ``````
+   *
+   * Contains the audio data in bytes.
+   *
+   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
+   * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   *
+   * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
+   */
+  @CoreTypeHelper
+  public final fun dataMutate(block: PackedByteArray.() -> Unit): PackedByteArray = data.apply {
+     block(this)
+     data = this
+  }
+
+  /**
+   * This is a helper function for [data] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Contains the audio data in bytes.
+   *
+   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
+   * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   *
+   * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
+   */
+  @CoreTypeHelper
+  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
+      data.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     data = this
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -151,7 +214,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getFormat(): Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
-    return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    return Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLoopMode(loopMode: LoopMode): Unit {
@@ -162,7 +225,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getLoopMode(): LoopMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
-    return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLoopBegin(loopBegin: Int): Unit {
@@ -212,6 +275,7 @@ public open class AudioStreamWAV : AudioStream() {
   /**
    * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or Quite OK Audio
    * formats can't be saved.
+   *
    * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
   public final fun saveToWav(path: String): Error {
@@ -234,11 +298,11 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Audio is lossily compressed as IMA ADPCM.
      */
-    FORMAT_IMA_ADPCM(2),
+    IMA_ADPCM(2),
     /**
      * Audio is lossily compressed as [url=https://qoaformat.org/]Quite OK Audio[/url].
      */
-    FORMAT_QOA(3),
+    QOA(3),
     ;
 
     public val id: Long
@@ -257,19 +321,19 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Audio does not loop.
      */
-    LOOP_DISABLED(0),
+    DISABLED(0),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing forward only.
      */
-    LOOP_FORWARD(1),
+    FORWARD(1),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing back and forth.
      */
-    LOOP_PINGPONG(2),
+    PINGPONG(2),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing backward only.
      */
-    LOOP_BACKWARD(3),
+    BACKWARD(3),
     ;
 
     public val id: Long
@@ -286,10 +350,12 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Creates a new [AudioStreamWAV] instance from the given buffer. The buffer must contain WAV
      * data.
+     *
      * The keys and values of [options] match the properties of [ResourceImporterWAV]. The usage of
      * [options] is identical to [AudioStreamWAV.loadFromFile].
      */
     @JvmOverloads
+    @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray, options: Dictionary<Any?, Any?> =
         Dictionary()): AudioStreamWAV? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData, DICTIONARY to options)
@@ -300,9 +366,12 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Creates a new [AudioStreamWAV] instance from the given file path. The file must be in WAV
      * format.
+     *
      * The keys and values of [options] match the properties of [ResourceImporterWAV].
+     *
      * **Example:** Load the first file dropped as a WAV and play it:
-     * [codeblock]
+     *
+     * ```
      * @onready var audio_player = $AudioStreamPlayer
      *
      * func _ready():
@@ -315,9 +384,10 @@ public open class AudioStreamWAV : AudioStream() {
      *                 "force/max_rate_hz": 11025
      *             })
      *         audio_player.play()
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
+    @JvmStatic
     public final fun loadFromFile(path: String, options: Dictionary<Any?, Any?> = Dictionary()):
         AudioStreamWAV? {
       TransferContext.writeArguments(STRING to path, DICTIONARY to options)

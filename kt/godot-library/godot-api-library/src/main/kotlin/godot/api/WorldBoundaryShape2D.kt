@@ -34,6 +34,13 @@ public open class WorldBoundaryShape2D : Shape2D() {
   /**
    * The line's normal, typically a unit vector. Its direction indicates the non-colliding
    * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var normal: Vector2
@@ -48,6 +55,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * The distance from the origin to the line, expressed in terms of [normal] (according to its
    * direction and magnitude). Actual absolute distance from the origin to the line can be calculated
    * as `abs(distance) / normal.length()`.
+   *
    * In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates
    * are represented by the [normal] property.
    */
@@ -60,18 +68,11 @@ public open class WorldBoundaryShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(857, scriptIndex)
+    createNativeObject(856, scriptIndex)
   }
 
   /**
-   * The line's normal, typically a unit vector. Its direction indicates the non-colliding
-   * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [normal] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -80,13 +81,15 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * //Your changes
    * worldboundaryshape2d.normal = myCoreType
    * ``````
+   *
+   * The line's normal, typically a unit vector. Its direction indicates the non-colliding
+   * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
    */
   @CoreTypeHelper
-  public final fun normalMutate(block: Vector2.() -> Unit): Vector2 = normal.apply{
-      block(this)
-      normal = this
+  public final fun normalMutate(block: Vector2.() -> Unit): Vector2 = normal.apply {
+     block(this)
+     normal = this
   }
-
 
   public final fun setNormal(normal: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to normal)

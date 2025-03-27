@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -27,8 +29,10 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -40,6 +44,7 @@ import kotlin.jvm.JvmName
 /**
  * Contains all nodes and resources of a glTF file. This is used by [GLTFDocument] as data storage,
  * which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
+ *
  * GLTFState can be populated by [GLTFDocument] reading a file or by converting a Godot scene. Then
  * the data can either be used to create a Godot scene or save to a glTF file. The code that converts
  * to/from a Godot scene can be intercepted at arbitrary points by [GLTFDocumentExtension] classes.
@@ -89,7 +94,15 @@ public open class GLTFState : Resource() {
 
   /**
    * The binary buffer attached to a .glb file.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var glbData: PackedByteArray
     @JvmName("glbDataProperty")
     get() = getGlbData()
@@ -197,7 +210,15 @@ public open class GLTFState : Resource() {
    * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
    * which will be generated as siblings of each other and as children of the root node of the
    * generated Godot scene.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var rootNodes: PackedInt32Array
     @JvmName("rootNodesProperty")
     get() = getRootNodes()
@@ -326,7 +347,87 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(269, scriptIndex)
+    createNativeObject(240, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [glbData] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfstate.glbData
+   * //Your changes
+   * gltfstate.glbData = myCoreType
+   * ``````
+   *
+   * The binary buffer attached to a .glb file.
+   */
+  @CoreTypeHelper
+  public final fun glbDataMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      glbData.apply {
+     block(this)
+     glbData = this
+  }
+
+  /**
+   * This is a helper function for [glbData] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The binary buffer attached to a .glb file.
+   */
+  @CoreTypeHelper
+  public final fun glbDataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
+      glbData.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     glbData = this
+  }
+
+  /**
+   * This is a helper function for [rootNodes] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfstate.rootNodes
+   * //Your changes
+   * gltfstate.rootNodes = myCoreType
+   * ``````
+   *
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
+   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
+   * which will be generated as siblings of each other and as children of the root node of the
+   * generated Godot scene.
+   */
+  @CoreTypeHelper
+  public final fun rootNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      rootNodes.apply {
+     block(this)
+     rootNodes = this
+  }
+
+  /**
+   * This is a helper function for [rootNodes] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
+   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
+   * which will be generated as siblings of each other and as children of the root node of the
+   * generated Godot scene.
+   */
+  @CoreTypeHelper
+  public final fun rootNodesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
+      = rootNodes.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     rootNodes = this
   }
 
   /**
@@ -356,10 +457,12 @@ public open class GLTFState : Resource() {
    * one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this
    * must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node. On
    * export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
+   *
    * The [godotSceneNode] parameter is the Godot scene node that corresponds to this glTF node. This
    * is highly recommended to be set to a valid node, but may be `null` if there is no corresponding
    * Godot scene node. One Godot scene node may be used for multiple glTF nodes, so if exporting
    * multiple glTF nodes for one Godot scene node, use the same Godot scene node for each.
+   *
    * The [parentNodeIndex] parameter is the index of the parent [GLTFNode] in the state. If `-1`,
    * the node will be a root node, otherwise the new node will be added to the parent's list of
    * children. The index will also be written to the [GLTFNode.parent] property of the new node.
@@ -793,6 +896,7 @@ public open class GLTFState : Resource() {
   /**
    * Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was
    * generated from. This is the inverse of [getNodeIndex]. Useful during the import process.
+   *
    * **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene
    * node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index,
    * `null` is returned.
@@ -806,6 +910,7 @@ public open class GLTFState : Resource() {
   /**
    * Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse
    * of [getSceneNode]. Useful during the export process.
+   *
    * **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every
    * [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node,
    * `-1` is returned.
@@ -819,6 +924,7 @@ public open class GLTFState : Resource() {
   /**
    * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
    * name in the glTF file), and the return value can be anything you set. If nothing was set, the
    * return value is `null`.
@@ -832,6 +938,7 @@ public open class GLTFState : Resource() {
   /**
    * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the glTF file), and the second argument can be anything you want.
    */
@@ -861,6 +968,27 @@ public open class GLTFState : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getBakeFpsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   *
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**

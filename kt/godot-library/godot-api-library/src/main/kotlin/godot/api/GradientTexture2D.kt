@@ -97,6 +97,13 @@ public open class GradientTexture2D : Texture2D() {
 
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fillFrom: Vector2
@@ -109,6 +116,13 @@ public open class GradientTexture2D : Texture2D() {
 
   /**
    * The final offset used to fill the texture specified in UV coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fillTo: Vector2
@@ -133,17 +147,11 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(288, scriptIndex)
+    createNativeObject(261, scriptIndex)
   }
 
   /**
-   * The initial offset used to fill the texture specified in UV coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fillFrom] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -152,22 +160,17 @@ public open class GradientTexture2D : Texture2D() {
    * //Your changes
    * gradienttexture2d.fillFrom = myCoreType
    * ``````
+   *
+   * The initial offset used to fill the texture specified in UV coordinates.
    */
   @CoreTypeHelper
-  public final fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
-      block(this)
-      fillFrom = this
+  public final fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply {
+     block(this)
+     fillFrom = this
   }
 
-
   /**
-   * The final offset used to fill the texture specified in UV coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [fillTo] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -176,13 +179,14 @@ public open class GradientTexture2D : Texture2D() {
    * //Your changes
    * gradienttexture2d.fillTo = myCoreType
    * ``````
+   *
+   * The final offset used to fill the texture specified in UV coordinates.
    */
   @CoreTypeHelper
-  public final fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
-      block(this)
-      fillTo = this
+  public final fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply {
+     block(this)
+     fillTo = this
   }
-
 
   public final fun setGradient(gradient: Gradient?): Unit {
     TransferContext.writeArguments(OBJECT to gradient)
@@ -224,7 +228,7 @@ public open class GradientTexture2D : Texture2D() {
   public final fun getFill(): Fill {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillPtr, LONG)
-    return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
+    return Fill.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFillFrom(fillFrom: Vector2): Unit {
@@ -257,7 +261,7 @@ public open class GradientTexture2D : Texture2D() {
   public final fun getRepeat(): Repeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatPtr, LONG)
-    return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
+    return Repeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Fill(
@@ -266,15 +270,15 @@ public open class GradientTexture2D : Texture2D() {
     /**
      * The colors are linearly interpolated in a straight line.
      */
-    FILL_LINEAR(0),
+    LINEAR(0),
     /**
      * The colors are linearly interpolated in a circular pattern.
      */
-    FILL_RADIAL(1),
+    RADIAL(1),
     /**
      * The colors are linearly interpolated in a square pattern.
      */
-    FILL_SQUARE(2),
+    SQUARE(2),
     ;
 
     public val id: Long
@@ -293,7 +297,7 @@ public open class GradientTexture2D : Texture2D() {
     /**
      * The gradient fill is restricted to the range defined by [fillFrom] to [fillTo] offsets.
      */
-    REPEAT_NONE(0),
+    NONE(0),
     /**
      * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same
      * pattern in both directions.
@@ -303,7 +307,7 @@ public open class GradientTexture2D : Texture2D() {
      * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in
      * both directions.
      */
-    REPEAT_MIRROR(2),
+    MIRROR(2),
     ;
 
     public val id: Long

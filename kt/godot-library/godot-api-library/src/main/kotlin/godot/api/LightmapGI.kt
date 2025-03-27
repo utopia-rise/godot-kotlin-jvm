@@ -37,17 +37,23 @@ import kotlin.jvm.JvmName
  * can also be added by creating [LightmapProbe] nodes. The downside is that lightmaps are fully static
  * and cannot be baked in an exported project. Baking a [LightmapGI] node is also slower compared to
  * [VoxelGI].
+ *
  * **Procedural generation:** Lightmap baking functionality is only available in the editor. This
  * means [LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally
  * generated or user-built levels, use [VoxelGI] or SDFGI instead (see [Environment.sdfgiEnabled]).
+ *
  * **Performance:** [LightmapGI] provides the best possible run-time performance for global
  * illumination. It is suitable for low-end hardware including integrated graphics and mobile devices.
+ *
  * **Note:** Due to how lightmaps work, most properties only have a visible effect once lightmaps
  * are baked again.
+ *
  * **Note:** Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not supported, as these
  * cannot store UV2 data required for baking.
+ *
  * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked from devices
  * that support the Forward+ or Mobile renderers.
+ *
  * **Note:** The [LightmapGI] node only bakes light data for child nodes of its parent. Nodes
  * further up the hierarchy of the scene will not be baked.
  */
@@ -56,8 +62,10 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The quality preset to use when baking lightmaps. This affects bake times, but output file sizes
    * remain mostly identical across quality levels.
+   *
    * To further speed up bake times, decrease [bounces], disable [useDenoiser] and/or decrease
    * [texelScale].
+   *
    * To further increase quality, enable [supersampling] and/or increase [texelScale].
    */
   public final inline var quality: BakeQuality
@@ -72,6 +80,7 @@ public open class LightmapGI : VisualInstance3D() {
    * If `true`, lightmaps are baked with the texel scale multiplied with [supersamplingFactor] and
    * downsampled before saving the lightmap (so the effective texel density is identical to having
    * supersampling disabled).
+   *
    * Supersampling provides increased lightmap quality with less noise, smoother shadows and better
    * shadowing of small-scale features in objects. However, it may result in significantly increased
    * bake times and memory usage while baking lightmaps. Padding is automatically adjusted to avoid
@@ -89,8 +98,10 @@ public open class LightmapGI : VisualInstance3D() {
    * The factor by which the texel density is multiplied for supersampling. For best results, use an
    * integer value. While fractional values are allowed, they can result in increased light leaking and
    * a blurry lightmap.
+   *
    * Higher values may result in better quality, but also increase bake times and memory usage while
    * baking.
+   *
    * See [supersampling] for more information.
    */
   public final inline var supersamplingFactor: Float
@@ -119,6 +130,7 @@ public open class LightmapGI : VisualInstance3D() {
    * value of `1.0` represents physically accurate behavior, but higher values can be used to make
    * indirect lighting propagate more visibly when using a low number of bounces. This can be used to
    * speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy].
+   *
    * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than
    * or equal to `1`.
    */
@@ -138,6 +150,7 @@ public open class LightmapGI : VisualInstance3D() {
    * rough reflections for static and dynamic objects. This has a small run-time performance cost as
    * the shader has to perform more work to interpret the direction information from the lightmap.
    * Directional lightmaps also take longer to bake and result in larger file sizes.
+   *
    * **Note:** The property's name has no relationship with [DirectionalLight3D]. [directional]
    * works with all light types.
    */
@@ -152,10 +165,12 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The shadowmasking policy to use for directional shadows on static objects that are baked with
    * this [LightmapGI] instance.
+   *
    * Shadowmasking allows [DirectionalLight3D] nodes to cast shadows even outside the range defined
    * by their [DirectionalLight3D.directionalShadowMaxDistance] property. This is done by baking a
    * texture that contains a shadowmap for the directional light, then using this texture according to
    * the current shadowmask mode.
+   *
    * **Note:** The shadowmask texture is only created if [shadowmaskMode] is not
    * [LightmapGIData.SHADOWMASK_MODE_NONE]. To see a difference, you need to bake lightmaps again after
    * switching from [LightmapGIData.SHADOWMASK_MODE_NONE] to any other mode.
@@ -173,6 +188,7 @@ public open class LightmapGI : VisualInstance3D() {
    * of indirect lighting at the cost of some accuracy. The geometry might exhibit extra light leak
    * artifacts when using low resolution lightmaps or UVs that stretch the lightmap significantly
    * across surfaces. Leave [useTextureForBounces] at its default value of `true` if unsure.
+   *
    * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than
    * or equal to `1`.
    */
@@ -254,6 +270,7 @@ public open class LightmapGI : VisualInstance3D() {
    * builds upon the existing lightmap texel size defined in each imported 3D scene, along with the
    * per-mesh density multiplier (which is designed to be used when the same mesh is used at different
    * scales). Lower values will result in faster bake times.
+   *
    * For example, doubling [texelScale] doubles the lightmap texture resolution for all objects *on
    * each axis*, so it will *quadruple* the texel count.
    */
@@ -304,6 +321,13 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The color to use for environment lighting. Only effective if [environmentMode] is
    * [ENVIRONMENT_MODE_CUSTOM_COLOR].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var environmentCustomColor: Color
@@ -344,8 +368,10 @@ public open class LightmapGI : VisualInstance3D() {
    * The level of subdivision to use when automatically generating [LightmapProbe]s for dynamic
    * object lighting. Higher values result in more accurate indirect lighting on dynamic objects, at
    * the cost of longer bake times and larger file sizes.
+   *
    * **Note:** Automatically generated [LightmapProbe]s are not visible as nodes in the Scene tree
    * dock, and cannot be modified this way after they are generated.
+   *
    * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always
    * applied using [Light3D] nodes in real-time.
    */
@@ -370,18 +396,12 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(356, scriptIndex)
+    createNativeObject(334, scriptIndex)
   }
 
   /**
-   * The color to use for environment lighting. Only effective if [environmentMode] is
-   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [environmentCustomColor] to make dealing with local copies
+   * easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -390,14 +410,16 @@ public open class LightmapGI : VisualInstance3D() {
    * //Your changes
    * lightmapgi.environmentCustomColor = myCoreType
    * ``````
+   *
+   * The color to use for environment lighting. Only effective if [environmentMode] is
+   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
   @CoreTypeHelper
   public final fun environmentCustomColorMutate(block: Color.() -> Unit): Color =
-      environmentCustomColor.apply{
-      block(this)
-      environmentCustomColor = this
+      environmentCustomColor.apply {
+     block(this)
+     environmentCustomColor = this
   }
-
 
   public final fun setLightData(`data`: LightmapGIData?): Unit {
     TransferContext.writeArguments(OBJECT to data)
@@ -418,7 +440,7 @@ public open class LightmapGI : VisualInstance3D() {
   public final fun getBakeQuality(): BakeQuality {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeQualityPtr, LONG)
-    return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
+    return BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBounces(bounces: Int): Unit {
@@ -451,7 +473,7 @@ public open class LightmapGI : VisualInstance3D() {
   public final fun getGenerateProbes(): GenerateProbes {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGenerateProbesPtr, LONG)
-    return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
+    return GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBias(bias: Float): Unit {
@@ -473,7 +495,7 @@ public open class LightmapGI : VisualInstance3D() {
   public final fun getEnvironmentMode(): EnvironmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentModePtr, LONG)
-    return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnvironmentCustomSky(sky: Sky?): Unit {
@@ -649,25 +671,25 @@ public open class LightmapGI : VisualInstance3D() {
      * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityProbeRayCount].
      */
-    BAKE_QUALITY_LOW(0),
+    LOW(0),
     /**
      * Medium bake quality (fast bake times). The quality of this preset can be adjusted by changing
      * [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityProbeRayCount].
      */
-    BAKE_QUALITY_MEDIUM(1),
+    MEDIUM(1),
     /**
      * High bake quality (slow bake times). The quality of this preset can be adjusted by changing
      * [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityProbeRayCount].
      */
-    BAKE_QUALITY_HIGH(2),
+    HIGH(2),
     /**
      * Highest bake quality (slowest bake times). The quality of this preset can be adjusted by
      * changing [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityProbeRayCount].
      */
-    BAKE_QUALITY_ULTRA(3),
+    ULTRA(3),
     ;
 
     public val id: Long
@@ -686,23 +708,23 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Don't generate lightmap probes for lighting dynamic objects.
      */
-    GENERATE_PROBES_DISABLED(0),
+    DISABLED(0),
     /**
      * Lowest level of subdivision (fastest bake times, smallest file sizes).
      */
-    GENERATE_PROBES_SUBDIV_4(1),
+    SUBDIV_4(1),
     /**
      * Low level of subdivision (fast bake times, small file sizes).
      */
-    GENERATE_PROBES_SUBDIV_8(2),
+    SUBDIV_8(2),
     /**
      * High level of subdivision (slow bake times, large file sizes).
      */
-    GENERATE_PROBES_SUBDIV_16(3),
+    SUBDIV_16(3),
     /**
      * Highest level of subdivision (slowest bake times, largest file sizes).
      */
-    GENERATE_PROBES_SUBDIV_32(4),
+    SUBDIV_32(4),
     ;
 
     public val id: Long
@@ -721,58 +743,58 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Lightmap baking was successful.
      */
-    BAKE_ERROR_OK(0),
+    OK(0),
     /**
      * Lightmap baking failed because the root node for the edited scene could not be accessed.
      */
-    BAKE_ERROR_NO_SCENE_ROOT(1),
+    NO_SCENE_ROOT(1),
     /**
      * Lightmap baking failed as the lightmap data resource is embedded in a foreign resource.
      */
-    BAKE_ERROR_FOREIGN_DATA(2),
+    FOREIGN_DATA(2),
     /**
      * Lightmap baking failed as there is no lightmapper available in this Godot build.
      */
-    BAKE_ERROR_NO_LIGHTMAPPER(3),
+    NO_LIGHTMAPPER(3),
     /**
      * Lightmap baking failed as the [LightmapGIData] save path isn't configured in the resource.
      */
-    BAKE_ERROR_NO_SAVE_PATH(4),
+    NO_SAVE_PATH(4),
     /**
      * Lightmap baking failed as there are no meshes whose [GeometryInstance3D.giMode] is
      * [GeometryInstance3D.GI_MODE_STATIC] and with valid UV2 mapping in the current scene. You may
      * need to select 3D scenes in the Import dock and change their global illumination mode
      * accordingly.
      */
-    BAKE_ERROR_NO_MESHES(5),
+    NO_MESHES(5),
     /**
      * Lightmap baking failed as the lightmapper failed to analyze some of the meshes marked as
      * static for baking.
      */
-    BAKE_ERROR_MESHES_INVALID(6),
+    MESHES_INVALID(6),
     /**
      * Lightmap baking failed as the resulting image couldn't be saved or imported by Godot after it
      * was saved.
      */
-    BAKE_ERROR_CANT_CREATE_IMAGE(7),
+    CANT_CREATE_IMAGE(7),
     /**
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button
      * in the progress dialog).
      */
-    BAKE_ERROR_USER_ABORTED(8),
+    USER_ABORTED(8),
     /**
      * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes
      * marked for baking.
      */
-    BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL(9),
+    TEXTURE_SIZE_TOO_SMALL(9),
     /**
      * Lightmap baking failed as the lightmap is too small.
      */
-    BAKE_ERROR_LIGHTMAP_TOO_SMALL(10),
+    LIGHTMAP_TOO_SMALL(10),
     /**
      * Lightmap baking failed as the lightmap was unable to fit into an atlas.
      */
-    BAKE_ERROR_ATLAS_TOO_SMALL(11),
+    ATLAS_TOO_SMALL(11),
     ;
 
     public val id: Long
@@ -791,23 +813,24 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Ignore environment lighting when baking lightmaps.
      */
-    ENVIRONMENT_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Use the scene's environment lighting when baking lightmaps.
+     *
      * **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like
      * [ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is *not* taken into account by
      * [LightmapGI] when baking lightmaps.
      */
-    ENVIRONMENT_MODE_SCENE(1),
+    SCENE(1),
     /**
      * Use [environmentCustomSky] as a source of environment lighting when baking lightmaps.
      */
-    ENVIRONMENT_MODE_CUSTOM_SKY(2),
+    CUSTOM_SKY(2),
     /**
      * Use [environmentCustomColor] multiplied by [environmentCustomEnergy] as a constant source of
      * environment lighting when baking lightmaps.
      */
-    ENVIRONMENT_MODE_CUSTOM_COLOR(3),
+    CUSTOM_COLOR(3),
     ;
 
     public val id: Long

@@ -27,8 +27,10 @@ import kotlin.jvm.JvmName
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
  * region becomes visible on screen or in a viewport, it will emit a [signal screen_entered] signal,
  * and likewise it will emit a [signal screen_exited] signal when no part of it remains visible.
+ *
  * If you want a node to be enabled automatically when this region is visible on screen, use
  * [VisibleOnScreenEnabler2D].
+ *
  * **Note:** [VisibleOnScreenNotifier2D] uses the render culling code to determine whether it's
  * visible on screen, so it won't function unless [CanvasItem.visible] is set to `true`.
  */
@@ -46,6 +48,13 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
   /**
    * The VisibleOnScreenNotifier2D's bounding rectangle.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rect: Rect2
@@ -57,17 +66,11 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(728, scriptIndex)
+    createNativeObject(726, scriptIndex)
   }
 
   /**
-   * The VisibleOnScreenNotifier2D's bounding rectangle.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -76,13 +79,14 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * //Your changes
    * visibleonscreennotifier2d.rect = myCoreType
    * ``````
+   *
+   * The VisibleOnScreenNotifier2D's bounding rectangle.
    */
   @CoreTypeHelper
-  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
-      block(this)
-      rect = this
+  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply {
+     block(this)
+     rect = this
   }
-
 
   public final fun setRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
@@ -97,6 +101,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
   /**
    * If `true`, the bounding rectangle is on the screen.
+   *
    * **Note:** It takes one frame for the [VisibleOnScreenNotifier2D]'s visibility to be determined
    * once added to the scene tree, so this method will always return `false` right after it is
    * instantiated, before the draw pass.

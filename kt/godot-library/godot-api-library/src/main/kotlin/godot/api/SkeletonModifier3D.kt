@@ -20,20 +20,24 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.
+ *
  * If there is [AnimationMixer], modification always performs after playback process of the
  * [AnimationMixer].
+ *
  * This node should be used to implement custom IK solvers, constraints, or skeleton physics.
  */
 @GodotBaseType
 public open class SkeletonModifier3D : Node3D() {
   /**
    * Notifies when the modification have been finished.
+   *
    * **Note:** If you want to get the modified bone pose by the modifier, you must use
    * [Skeleton3D.getBonePose] or [Skeleton3D.getBoneGlobalPose] at the moment this signal is fired.
    */
@@ -52,6 +56,7 @@ public open class SkeletonModifier3D : Node3D() {
 
   /**
    * Sets the influence of the modification.
+   *
    * **Note:** This value is used by [Skeleton3D] to blend, so the [SkeletonModifier3D] should
    * always apply only 100&#37; of the result without interpolation.
    */
@@ -64,16 +69,18 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(614, scriptIndex)
+    createNativeObject(608, scriptIndex)
   }
 
   /**
    * Override this virtual method to implement a custom skeleton modifier. You should do things like
    * get the [Skeleton3D]'s current pose and apply the pose here.
+   *
    * [_processModification] must not apply [influence] to bone poses because the [Skeleton3D]
    * automatically applies influence to all bone poses set by the modifier.
    */
   public open fun _processModification(): Unit {
+    throw NotImplementedError("_processModification is not implemented for SkeletonModifier3D")
   }
 
   /**
@@ -113,27 +120,27 @@ public open class SkeletonModifier3D : Node3D() {
     /**
      * Enumerated value for the +X axis.
      */
-    BONE_AXIS_PLUS_X(0),
+    PLUS_X(0),
     /**
      * Enumerated value for the -X axis.
      */
-    BONE_AXIS_MINUS_X(1),
+    MINUS_X(1),
     /**
      * Enumerated value for the +Y axis.
      */
-    BONE_AXIS_PLUS_Y(2),
+    PLUS_Y(2),
     /**
      * Enumerated value for the -Y axis.
      */
-    BONE_AXIS_MINUS_Y(3),
+    MINUS_Y(3),
     /**
      * Enumerated value for the +Z axis.
      */
-    BONE_AXIS_PLUS_Z(4),
+    PLUS_Z(4),
     /**
      * Enumerated value for the -Z axis.
      */
-    BONE_AXIS_MINUS_Z(5),
+    MINUS_Z(5),
     ;
 
     public val id: Long

@@ -20,6 +20,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -33,13 +34,16 @@ import kotlin.Unit
 /**
  * This is a helper 3D node that is linked to the tracking of controllers. It also offers several
  * handy passthroughs to the state of buttons and such on the controllers.
+ *
  * Controllers are linked by their ID. You can create controller nodes before the controllers are
  * available. If your game always uses two controllers (one for each hand), you can predefine the
  * controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If
  * you expect additional controllers to be used, you should react to the signals and add XRController3D
  * nodes to your scene.
+ *
  * The position of the controller node is automatically updated by the [XRServer]. This makes this
  * node ideal to add child nodes to visualize the controller.
+ *
  * As many XR runtimes now use a configurable action map all inputs are named.
  */
 @GodotBaseType
@@ -70,7 +74,7 @@ public open class XRController3D : XRNode3D() {
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(866, scriptIndex)
+    createNativeObject(865, scriptIndex)
   }
 
   /**
@@ -120,6 +124,30 @@ public open class XRController3D : XRNode3D() {
     TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  /**
+   * Returns `true` if the button with the given [name] is pressed.
+   */
+  public final fun isButtonPressed(name: String): Boolean =
+      isButtonPressed(name.asCachedStringName())
+
+  /**
+   * Returns a [Variant] for the input with the given [name]. This works for any input type, the
+   * variant will be typed according to the actions configuration.
+   */
+  public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
+
+  /**
+   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
+   * sensors.
+   */
+  public final fun getFloat(name: String): Float = getFloat(name.asCachedStringName())
+
+  /**
+   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
+   * thumbpads found on many controllers.
+   */
+  public final fun getVector2(name: String): Vector2 = getVector2(name.asCachedStringName())
 
   public companion object
 

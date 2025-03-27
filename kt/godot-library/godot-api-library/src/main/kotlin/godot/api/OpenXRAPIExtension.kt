@@ -34,17 +34,19 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [OpenXRAPIExtension] makes OpenXR available for GDExtension. It provides the OpenXR API to
  * GDExtension through the [getInstanceProcAddr] method, and the OpenXR instance through [getInstance].
+ *
  * It also provides methods for querying the status of OpenXR initialization, and helper methods for
  * ease of use of the API with GDExtension.
  */
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(426, scriptIndex)
+    createNativeObject(410, scriptIndex)
   }
 
   /**
@@ -100,6 +102,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns the function pointer of the OpenXR function with the specified name, cast to an
    * integer. If the function with the given name does not exist, the method returns `0`.
+   *
    * **Note:** `openxr/util.h` contains utility macros for acquiring OpenXR functions, e.g.
    * `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.
    */
@@ -294,6 +297,7 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Returns the near boundary value of the camera frustum.
+   *
    * **Note:** This is only accessible in the render thread.
    */
   public final fun getRenderStateZNear(): Double {
@@ -304,6 +308,7 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Returns the far boundary value of the camera frustum.
+   *
    * **Note:** This is only accessible in the render thread.
    */
   public final fun getRenderStateZFar(): Double {
@@ -407,6 +412,7 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Returns a pointer to the render state's `XrCompositionLayerProjection` struct.
+   *
    * **Note:** This method should only be called from the rendering thread.
    */
   public final fun getProjectionLayer(): Long {
@@ -439,7 +445,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
-    return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
+    return OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpenXRAlphaBlendModeSupport(
@@ -474,6 +480,7 @@ public open class OpenXRAPIExtension : RefCounted() {
     /**
      * Returns `true` if OpenXR is enabled.
      */
+    @JvmStatic
     public final fun openxrIsEnabled(checkRunInEditor: Boolean): Boolean {
       TransferContext.writeArguments(BOOL to checkRunInEditor)
       TransferContext.callMethod(0, MethodBindings.openxrIsEnabledPtr, BOOL)

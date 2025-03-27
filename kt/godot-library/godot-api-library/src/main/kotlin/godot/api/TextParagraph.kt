@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
-import godot.api.TextServer.LineBreakFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.HorizontalAlignment
@@ -199,7 +197,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(667, scriptIndex)
+    createNativeObject(661, scriptIndex)
   }
 
   /**
@@ -267,6 +265,7 @@ public open class TextParagraph : RefCounted() {
 
   /**
    * Overrides BiDi for the structured text.
+   *
    * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
    * each range separately.
    */
@@ -324,7 +323,7 @@ public open class TextParagraph : RefCounted() {
   public final fun addObject(
     key: Any?,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     length: Int = 1,
     baseline: Float = 0.0f,
   ): Boolean {
@@ -340,7 +339,7 @@ public open class TextParagraph : RefCounted() {
   public final fun resizeObject(
     key: Any?,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     baseline: Float = 0.0f,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline.toDouble())
@@ -375,7 +374,7 @@ public open class TextParagraph : RefCounted() {
   public final fun getBreakFlags(): TextServer.LineBreakFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBreakFlagsPtr, LONG)
-    return LineBreakFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJustificationFlags(flags: TextServer.JustificationFlag): Unit {
@@ -386,7 +385,7 @@ public open class TextParagraph : RefCounted() {
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {

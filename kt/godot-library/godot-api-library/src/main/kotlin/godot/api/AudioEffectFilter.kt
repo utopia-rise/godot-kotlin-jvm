@@ -72,7 +72,7 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(94, scriptIndex)
+    createNativeObject(58, scriptIndex)
   }
 
   public final fun setCutoff(freq: Float): Unit {
@@ -116,7 +116,7 @@ public open class AudioEffectFilter : AudioEffect() {
   public final fun getDb(): FilterDB {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDbPtr, LONG)
-    return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
+    return FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FilterDB(

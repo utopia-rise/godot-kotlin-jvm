@@ -60,7 +60,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(802, scriptIndex)
+    createNativeObject(800, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
@@ -71,7 +71,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public final fun getSource(): Source {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeTexture.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    return Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(`value`: Texture2D?): Unit {
@@ -93,7 +93,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeTexture.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    return TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(
@@ -102,11 +102,11 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     /**
      * Use the texture given as an argument for this function.
      */
-    SOURCE_TEXTURE(0),
+    TEXTURE(0),
     /**
      * Use the current viewport's texture as the source.
      */
-    SOURCE_SCREEN(1),
+    SCREEN(1),
     /**
      * Use the texture from this shader's texture built-in (e.g. a texture of a [Sprite2D]).
      */
@@ -119,11 +119,11 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      * Use the depth texture captured during the depth prepass. Only available when the depth
      * prepass is used (i.e. in spatial shaders and in the forward_plus or gl_compatibility renderers).
      */
-    SOURCE_DEPTH(4),
+    DEPTH(4),
     /**
      * Use the texture provided in the input port for this function.
      */
-    SOURCE_PORT(5),
+    PORT(5),
     /**
      * Use the normal buffer captured during the depth prepass. Only available when the
      * normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
@@ -133,11 +133,11 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      * Use the roughness buffer captured during the depth prepass. Only available when the
      * normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
      */
-    SOURCE_ROUGHNESS(7),
+    ROUGHNESS(7),
     /**
      * Represents the size of the [Source] enum.
      */
-    SOURCE_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long

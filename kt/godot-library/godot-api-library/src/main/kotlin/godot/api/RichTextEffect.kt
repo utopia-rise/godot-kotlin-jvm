@@ -16,12 +16,16 @@ import kotlin.Unit
 /**
  * A custom effect for a [RichTextLabel], which can be loaded in the [RichTextLabel] inspector or
  * using [RichTextLabel.installEffect].
+ *
  * **Note:** For a [RichTextEffect] to be usable, a BBCode tag must be defined as a member variable
  * called `bbcode` in the script.
  *
  * [gdscript skip-lint]
+ *
  * # The RichTextEffect will be usable like this: `[example]Some text[/example]`
+ *
  * var bbcode = "example"
+ *
  * ```
  * [csharp skip-lint]
  * // The RichTextEffect will be usable like this: `[example]Some text[/example]`
@@ -35,7 +39,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RichTextEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(571, scriptIndex)
+    createNativeObject(565, scriptIndex)
   }
 
   /**
@@ -44,7 +48,7 @@ public open class RichTextEffect : Resource() {
    * transformation to avoid displaying broken text.
    */
   public open fun _processCustomFx(charFx: CharFXTransform?): Boolean {
-    throw NotImplementedError("_process_custom_fx is not implemented for RichTextEffect")
+    throw NotImplementedError("_processCustomFx is not implemented for RichTextEffect")
   }
 
   public companion object

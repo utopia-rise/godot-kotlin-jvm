@@ -6,10 +6,11 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
 import godot.core.PackedFloat32Array
@@ -175,7 +176,15 @@ public open class Label : Control() {
 
   /**
    * Aligns text to the given tab-stops.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var tabStops: PackedFloat32Array
     @JvmName("tabStopsProperty")
     get() = getTabStops()
@@ -209,6 +218,7 @@ public open class Label : Control() {
   /**
    * The number of characters to display. If set to `-1`, all characters are displayed. This can be
    * useful when animating the text appearing in a dialog box.
+   *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public final inline var visibleCharacters: Int
@@ -236,6 +246,7 @@ public open class Label : Control() {
    * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
    * half of the characters will be displayed. This can be useful when animating the text appearing in
    * a dialog box.
+   *
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public final inline var visibleRatio: Float
@@ -292,7 +303,44 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(350, scriptIndex)
+    createNativeObject(328, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [tabStops] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = label.tabStops
+   * //Your changes
+   * label.tabStops = myCoreType
+   * ``````
+   *
+   * Aligns text to the given tab-stops.
+   */
+  @CoreTypeHelper
+  public final fun tabStopsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      tabStops.apply {
+     block(this)
+     tabStops = this
+  }
+
+  /**
+   * This is a helper function for [tabStops] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Aligns text to the given tab-stops.
+   */
+  @CoreTypeHelper
+  public final fun tabStopsMutateEach(block: (index: Int, `value`: Float) -> Unit):
+      PackedFloat32Array = tabStops.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     tabStops = this
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -391,7 +439,7 @@ public open class Label : Control() {
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipText(enable: Boolean): Unit {
@@ -451,7 +499,9 @@ public open class Label : Control() {
 
   /**
    * Returns the height of the line [line].
+   *
    * If [line] is set to `-1`, returns the biggest line height.
+   *
    * If there are no lines, returns font size in pixels.
    */
   @JvmOverloads

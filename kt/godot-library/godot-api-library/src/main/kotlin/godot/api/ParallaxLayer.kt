@@ -24,7 +24,9 @@ import kotlin.jvm.JvmName
  * A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set
  * to move at different speeds relative to the camera movement or the [ParallaxBackground.scrollOffset]
  * value.
+ *
  * This node's children will be affected by its scroll offset.
+ *
  * **Note:** Any changes to this node's position and scale made after it enters the scene will be
  * ignored.
  */
@@ -32,6 +34,13 @@ import kotlin.jvm.JvmName
 public open class ParallaxLayer : Node2D() {
   /**
    * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motionScale: Vector2
@@ -45,6 +54,13 @@ public open class ParallaxLayer : Node2D() {
   /**
    * The ParallaxLayer's offset relative to the parent ParallaxBackground's
    * [ParallaxBackground.scrollOffset].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motionOffset: Vector2
@@ -59,18 +75,28 @@ public open class ParallaxLayer : Node2D() {
    * The interval, in pixels, at which the [ParallaxLayer] is drawn repeatedly. Useful for creating
    * an infinitely scrolling background. If an axis is set to `0`, the [ParallaxLayer] will be drawn
    * only once along that direction.
+   *
    * **Note:** If you want the repetition to pixel-perfect match a [Texture2D] displayed by a child
    * node, you should account for any scale applied to the texture when defining this interval. For
    * example, if you use a child [Sprite2D] scaled to `0.5` to display a 600x600 texture, and want this
    * sprite to be repeated continuously horizontally, you should set the mirroring to `Vector2(300,
    * 0)`.
+   *
    * **Note:** If the length of the viewport axis is bigger than twice the repeated axis size, it
    * will not repeat infinitely, as the parallax layer only draws 2 instances of the layer at any given
    * time. The visibility window is calculated from the parent [ParallaxBackground]'s position, not the
    * layer's own position. So, if you use mirroring, **do not** change the [ParallaxLayer] position
    * relative to its parent. Instead, if you need to adjust the background's position, set the
    * [CanvasLayer.offset] property in the parent [ParallaxBackground].
+   *
    * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motionMirroring: Vector2
@@ -82,17 +108,11 @@ public open class ParallaxLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(467, scriptIndex)
+    createNativeObject(451, scriptIndex)
   }
 
   /**
-   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motionScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -101,23 +121,17 @@ public open class ParallaxLayer : Node2D() {
    * //Your changes
    * parallaxlayer.motionScale = myCoreType
    * ``````
+   *
+   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    */
   @CoreTypeHelper
-  public final fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply{
-      block(this)
-      motionScale = this
+  public final fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply {
+     block(this)
+     motionScale = this
   }
 
-
   /**
-   * The ParallaxLayer's offset relative to the parent ParallaxBackground's
-   * [ParallaxBackground.scrollOffset].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motionOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -126,36 +140,18 @@ public open class ParallaxLayer : Node2D() {
    * //Your changes
    * parallaxlayer.motionOffset = myCoreType
    * ``````
+   *
+   * The ParallaxLayer's offset relative to the parent ParallaxBackground's
+   * [ParallaxBackground.scrollOffset].
    */
   @CoreTypeHelper
-  public final fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply{
-      block(this)
-      motionOffset = this
+  public final fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply {
+     block(this)
+     motionOffset = this
   }
 
-
   /**
-   * The interval, in pixels, at which the [ParallaxLayer] is drawn repeatedly. Useful for creating
-   * an infinitely scrolling background. If an axis is set to `0`, the [ParallaxLayer] will be drawn
-   * only once along that direction.
-   * **Note:** If you want the repetition to pixel-perfect match a [Texture2D] displayed by a child
-   * node, you should account for any scale applied to the texture when defining this interval. For
-   * example, if you use a child [Sprite2D] scaled to `0.5` to display a 600x600 texture, and want this
-   * sprite to be repeated continuously horizontally, you should set the mirroring to `Vector2(300,
-   * 0)`.
-   * **Note:** If the length of the viewport axis is bigger than twice the repeated axis size, it
-   * will not repeat infinitely, as the parallax layer only draws 2 instances of the layer at any given
-   * time. The visibility window is calculated from the parent [ParallaxBackground]'s position, not the
-   * layer's own position. So, if you use mirroring, **do not** change the [ParallaxLayer] position
-   * relative to its parent. Instead, if you need to adjust the background's position, set the
-   * [CanvasLayer.offset] property in the parent [ParallaxBackground].
-   * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motionMirroring] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -164,14 +160,32 @@ public open class ParallaxLayer : Node2D() {
    * //Your changes
    * parallaxlayer.motionMirroring = myCoreType
    * ``````
+   *
+   * The interval, in pixels, at which the [ParallaxLayer] is drawn repeatedly. Useful for creating
+   * an infinitely scrolling background. If an axis is set to `0`, the [ParallaxLayer] will be drawn
+   * only once along that direction.
+   *
+   * **Note:** If you want the repetition to pixel-perfect match a [Texture2D] displayed by a child
+   * node, you should account for any scale applied to the texture when defining this interval. For
+   * example, if you use a child [Sprite2D] scaled to `0.5` to display a 600x600 texture, and want this
+   * sprite to be repeated continuously horizontally, you should set the mirroring to `Vector2(300,
+   * 0)`.
+   *
+   * **Note:** If the length of the viewport axis is bigger than twice the repeated axis size, it
+   * will not repeat infinitely, as the parallax layer only draws 2 instances of the layer at any given
+   * time. The visibility window is calculated from the parent [ParallaxBackground]'s position, not the
+   * layer's own position. So, if you use mirroring, **do not** change the [ParallaxLayer] position
+   * relative to its parent. Instead, if you need to adjust the background's position, set the
+   * [CanvasLayer.offset] property in the parent [ParallaxBackground].
+   *
+   * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
    */
   @CoreTypeHelper
   public final fun motionMirroringMutate(block: Vector2.() -> Unit): Vector2 =
-      motionMirroring.apply{
-      block(this)
-      motionMirroring = this
+      motionMirroring.apply {
+     block(this)
+     motionMirroring = this
   }
-
 
   public final fun setMotionScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)

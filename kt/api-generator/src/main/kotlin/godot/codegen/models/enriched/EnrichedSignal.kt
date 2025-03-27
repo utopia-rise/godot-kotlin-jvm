@@ -1,23 +1,26 @@
 package godot.codegen.models.enriched
 
+import com.squareup.kotlinpoet.TypeName
 import godot.codegen.exceptions.TooManySignalArgument
 import godot.codegen.models.Signal
-import godot.codegen.traits.IDocumented
-import godot.codegen.traits.TypedTrait
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.HasTypeGenerationTrait
+import godot.codegen.models.traits.from
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase
-import godot.common.extensions.escapeKotlinReservedNames
 
-class EnrichedSignal(val internal: Signal) : TypedTrait, IDocumented {
-    val name = internal.name.convertToCamelCase()
-    // We assume signals parameters can't be null
-    val arguments = internal.arguments?.toEnriched(false) ?: listOf()
-    override val type = "Signal${arguments.size}"
-    override val description = internal.description
+class EnrichedSignal(model: Signal) : HasTypeGenerationTrait, DocumentedGenerationTrait {
+    override val type = GenerationType("Signal${model.arguments?.size ?: 0}")
+    override val nullable = false     // We assume signals parameters can't be null
+    override val genericParameters = model.arguments?.map { TypeName.from(GenerationType(it.type)) } ?: listOf()
+    override var description = model.description
 
-    init{
-        if (arguments.size > Constraints.MAX_SIGNAL_ARG_COUNT) {
-            throw TooManySignalArgument(this)
+    val name = model.name.convertToCamelCase()
+
+    init {
+        if ((model.arguments?.size ?: 0) > Constraints.MAX_SIGNAL_ARG_COUNT) {
+            throw TooManySignalArgument(model)
         }
     }
 }

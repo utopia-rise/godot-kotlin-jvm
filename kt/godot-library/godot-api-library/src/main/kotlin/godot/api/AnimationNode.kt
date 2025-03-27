@@ -26,6 +26,8 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,17 +44,21 @@ import kotlin.jvm.JvmOverloads
 /**
  * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create
  * custom ones with custom blending formulas.
+ *
  * Inherit this when creating animation nodes mainly for use in [AnimationNodeBlendTree], otherwise
  * [AnimationRootNode] should be used instead.
+ *
  * You can access the time information as read-only parameter which is processed and stored in the
  * previous frame for all nodes except [AnimationNodeOutput].
+ *
  * **Note:** If multiple inputs exist in the [AnimationNode], which time information takes
  * precedence depends on the type of [AnimationNode].
- * [codeblock]
+ *
+ * ```
  * var current_length = $AnimationTree[parameters/AnimationNodeName/current_length]
  * var current_position = $AnimationTree[parameters/AnimationNodeName/current_position]
  * var current_delta = $AnimationTree[parameters/AnimationNodeName/current_delta]
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class AnimationNode : Resource() {
@@ -92,7 +98,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(51, scriptIndex)
+    createNativeObject(15, scriptIndex)
   }
 
   /**
@@ -100,7 +106,7 @@ public open class AnimationNode : Resource() {
    * animation nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
+    throw NotImplementedError("_getChildNodes is not implemented for AnimationNode")
   }
 
   /**
@@ -110,7 +116,7 @@ public open class AnimationNode : Resource() {
    * [Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
-    throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
+    throw NotImplementedError("_getParameterList is not implemented for AnimationNode")
   }
 
   /**
@@ -118,7 +124,7 @@ public open class AnimationNode : Resource() {
    * animation node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
-    throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
+    throw NotImplementedError("_getChildByName is not implemented for AnimationNode")
   }
 
   /**
@@ -127,7 +133,7 @@ public open class AnimationNode : Resource() {
    * resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
-    throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
+    throw NotImplementedError("_getParameterDefaultValue is not implemented for AnimationNode")
   }
 
   /**
@@ -136,15 +142,17 @@ public open class AnimationNode : Resource() {
    * a resource can be reused in multiple trees.
    */
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
-    throw NotImplementedError("_is_parameter_read_only is not implemented for AnimationNode")
+    throw NotImplementedError("_isParameterReadOnly is not implemented for AnimationNode")
   }
 
   /**
    * When inheriting from [AnimationRootNode], implement this virtual method to run some code when
    * this animation node is processed. The [time] parameter is a relative delta, unless [seek] is
    * `true`, in which case it is absolute.
+   *
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use
    * [getParameter] and [setParameter] to modify local memory.
+   *
    * This function should return the delta.
    */
   public open fun _process(
@@ -161,7 +169,7 @@ public open class AnimationNode : Resource() {
    * caption for this animation node.
    */
   public open fun _getCaption(): String {
-    throw NotImplementedError("_get_caption is not implemented for AnimationNode")
+    throw NotImplementedError("_getCaption is not implemented for AnimationNode")
   }
 
   /**
@@ -169,7 +177,7 @@ public open class AnimationNode : Resource() {
    * blend tree editor should display filter editing on this animation node.
    */
   public open fun _hasFilter(): Boolean {
-    throw NotImplementedError("_has_filter is not implemented for AnimationNode")
+    throw NotImplementedError("_hasFilter is not implemented for AnimationNode")
   }
 
   /**
@@ -257,6 +265,7 @@ public open class AnimationNode : Resource() {
 
   /**
    * Returns the object id of the [AnimationTree] that owns this node.
+   *
    * **Note:** This method should only be called from within the
    * [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
    */
@@ -278,6 +287,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
    * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   *
    * A [loopedFlag] is used by internal processing immediately after the loop. See also
    * [Animation.LoopedFlag].
    */
@@ -289,7 +299,7 @@ public open class AnimationNode : Resource() {
     seeked: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
     TransferContext.callMethod(ptr, MethodBindings.blendAnimationPtr, NIL)
@@ -308,7 +318,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
@@ -330,7 +340,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
@@ -358,25 +368,87 @@ public open class AnimationNode : Resource() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
+  /**
+   * Adds or removes a path for the filter.
+   */
+  public final fun setFilterPath(path: String, enable: Boolean) =
+      setFilterPath(path.asCachedNodePath(), enable)
+
+  /**
+   * Returns `true` if the given path is filtered.
+   */
+  public final fun isPathFiltered(path: String): Boolean = isPathFiltered(path.asCachedNodePath())
+
+  /**
+   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
+   * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   *
+   * A [loopedFlag] is used by internal processing immediately after the loop. See also
+   * [Animation.LoopedFlag].
+   */
+  @JvmOverloads
+  public final fun blendAnimation(
+    animation: String,
+    time: Double,
+    delta: Double,
+    seeked: Boolean,
+    isExternalSeeking: Boolean,
+    blend: Float,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
+  ) =
+      blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
+
+  /**
+   * Blend another animation node (in case this animation node contains child animation nodes). This
+   * function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will
+   * not display your animation node for addition.
+   */
+  @JvmOverloads
+  public final fun blendNode(
+    name: String,
+    node: AnimationNode?,
+    time: Double,
+    seek: Boolean,
+    isExternalSeeking: Boolean,
+    blend: Float,
+    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
+    sync: Boolean = true,
+    testOnly: Boolean = false,
+  ): Double =
+      blendNode(name.asCachedStringName(), node, time, seek, isExternalSeeking, blend, filter, sync, testOnly)
+
+  /**
+   * Sets a custom parameter. These are used as local memory, because resources can be reused across
+   * the tree or scenes.
+   */
+  public final fun setParameter(name: String, `value`: Any?) =
+      setParameter(name.asCachedStringName(), value)
+
+  /**
+   * Gets the value of a parameter. Parameters are custom local memory used for your animation
+   * nodes, given a resource can be reused in multiple trees.
+   */
+  public final fun getParameter(name: String): Any? = getParameter(name.asCachedStringName())
+
   public enum class FilterAction(
     id: Long,
   ) {
     /**
      * Do not use filtering.
      */
-    FILTER_IGNORE(0),
+    IGNORE(0),
     /**
      * Paths matching the filter will be allowed to pass.
      */
-    FILTER_PASS(1),
+    PASS(1),
     /**
      * Paths matching the filter will be discarded.
      */
-    FILTER_STOP(2),
+    STOP(2),
     /**
      * Paths matching the filter will be blended (by the blend value).
      */
-    FILTER_BLEND(3),
+    BLEND(3),
     ;
 
     public val id: Long

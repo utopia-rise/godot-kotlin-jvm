@@ -52,6 +52,13 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   /**
    * The texture's drawing offset.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -87,13 +94,22 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
    * simulate the color of ambient light.
+   *
    * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
    * not supported.
+   *
    * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
    * material override must be configured to take vertex colors into account for albedo. Otherwise, the
    * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
    * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
    * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -129,6 +145,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible
    * values.
+   *
    * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
    * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
    * intended shadow cannot be determined and this will result in undefined behavior. See
@@ -256,6 +273,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   /**
    * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
+   *
    * **Note:** Linear filtering may cause artifacts around the edges, which are especially
    * noticeable on opaque textures. To prevent this, use textures with transparent or identical colors
    * around the edges.
@@ -271,7 +289,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Sets the render priority for the sprite. Higher priority objects will be sorted in front of
    * lower priority objects.
+   *
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -285,17 +305,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(637, scriptIndex)
+    createNativeObject(631, scriptIndex)
   }
 
   /**
-   * The texture's drawing offset.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -304,30 +318,17 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * //Your changes
    * spritebase3d.offset = myCoreType
    * ``````
+   *
+   * The texture's drawing offset.
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
 
-
   /**
-   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
-   * simulate the color of ambient light.
-   * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
-   * not supported.
-   * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
-   * material override must be configured to take vertex colors into account for albedo. Otherwise, the
-   * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
-   * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
-   * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [modulate] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -336,13 +337,24 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * //Your changes
    * spritebase3d.modulate = myCoreType
    * ``````
+   *
+   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
+   * simulate the color of ambient light.
+   *
+   * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
+   * not supported.
+   *
+   * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
+   * material override must be configured to take vertex colors into account for albedo. Otherwise, the
+   * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
+   * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
+   * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    */
   @CoreTypeHelper
-  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
-      block(this)
-      modulate = this
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
+     block(this)
+     modulate = this
   }
-
 
   public final fun setCentered(centered: Boolean): Unit {
     TransferContext.writeArguments(BOOL to centered)
@@ -458,7 +470,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getAlphaCutMode(): AlphaCutMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaCutModePtr, LONG)
-    return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaScissorThreshold(threshold: Float): Unit {
@@ -595,7 +607,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      * This mode performs standard alpha blending. It can display translucent areas, but
      * transparency sorting issues may be visible when multiple transparent materials are overlapping.
      */
-    ALPHA_CUT_DISABLED(0),
+    DISABLED(0),
     /**
      * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible
      * unless some form of screen-space antialiasing is enabled (see
@@ -603,18 +615,18 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      * doesn't suffer from transparency sorting issues when multiple transparent materials are
      * overlapping. This mode is also known as *alpha testing* or *1-bit transparency*.
      */
-    ALPHA_CUT_DISCARD(1),
+    DISCARD(1),
     /**
      * This mode draws fully opaque pixels in the depth prepass. This is slower than
      * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
      * smooth edges while using proper sorting.
      */
-    ALPHA_CUT_OPAQUE_PREPASS(2),
+    OPAQUE_PREPASS(2),
     /**
      * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will
      * remain opaque.
      */
-    ALPHA_CUT_HASH(3),
+    HASH(3),
     ;
 
     public val id: Long

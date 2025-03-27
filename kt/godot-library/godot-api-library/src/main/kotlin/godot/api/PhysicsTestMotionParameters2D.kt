@@ -40,6 +40,13 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * Transform in global space where the motion should start. Usually set to
    * [Node2D.globalTransform] for the current body's transform.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var from: Transform2D
@@ -52,6 +59,13 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
 
   /**
    * Motion vector to define the length and direction of the motion to test.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motion: Vector2
@@ -76,6 +90,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * If set to `true`, shapes of type [PhysicsServer2D.SHAPE_SEPARATION_RAY] are used to detect
    * collisions and can stop the motion. Can be useful when snapping to the ground.
+   *
    * If set to `false`, shapes of type [PhysicsServer2D.SHAPE_SEPARATION_RAY] are only used for
    * separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
@@ -114,6 +129,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
    * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is
    * used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.
+   *
    * If set to `false`, only collisions resulting from the motion are reported, which is generally
    * the desired behavior.
    */
@@ -126,18 +142,11 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(495, scriptIndex)
+    createNativeObject(484, scriptIndex)
   }
 
   /**
-   * Transform in global space where the motion should start. Usually set to
-   * [Node2D.globalTransform] for the current body's transform.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [from] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -146,22 +155,18 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
    * //Your changes
    * physicstestmotionparameters2d.from = myCoreType
    * ``````
+   *
+   * Transform in global space where the motion should start. Usually set to
+   * [Node2D.globalTransform] for the current body's transform.
    */
   @CoreTypeHelper
-  public final fun fromMutate(block: Transform2D.() -> Unit): Transform2D = from.apply{
-      block(this)
-      from = this
+  public final fun fromMutate(block: Transform2D.() -> Unit): Transform2D = from.apply {
+     block(this)
+     from = this
   }
 
-
   /**
-   * Motion vector to define the length and direction of the motion to test.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motion] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -170,13 +175,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
    * //Your changes
    * physicstestmotionparameters2d.motion = myCoreType
    * ``````
+   *
+   * Motion vector to define the length and direction of the motion to test.
    */
   @CoreTypeHelper
-  public final fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply{
-      block(this)
-      motion = this
+  public final fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply {
+     block(this)
+     motion = this
   }
-
 
   public final fun getFrom(): Transform2D {
     TransferContext.writeArguments()

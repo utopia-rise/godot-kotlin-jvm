@@ -33,6 +33,7 @@ import kotlin.jvm.JvmName
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
  * through special projections that retain their quality. This allows for rendering clear text while
  * keeping the layer at a native resolution.
+ *
  * **Note:** If the OpenXR runtime doesn't support the given composition layer type, a fallback mesh
  * can be generated with a [ViewportTexture], in order to emulate the composition layer.
  */
@@ -52,8 +53,10 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   /**
    * If enabled, an Android surface will be created (with the dimensions from [androidSurfaceSize])
    * which will provide the 2D content for the composition layer, rather than using [layerViewport].
+   *
    * See [getAndroidSurface] for information about how to get the surface so that your application
    * can draw to it.
+   *
    * **Note:** This will only work in Android builds.
    */
   public final inline var useAndroidSurface: Boolean
@@ -66,6 +69,13 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   /**
    * The size of the Android surface to create if [useAndroidSurface] is enabled.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var androidSurfaceSize: Vector2i
@@ -79,6 +89,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   /**
    * The sort order for this composition layer. Higher numbers will be shown in front of lower
    * numbers.
+   *
    * **Note:** This will have no effect if a fallback mesh is being used.
    */
   public final inline var sortOrder: Int
@@ -91,6 +102,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   /**
    * Enables the blending the layer using its alpha channel.
+   *
    * Can be combined with [Viewport.transparentBg] to give the layer a transparent background.
    */
   public final inline var alphaBlend: Boolean
@@ -105,6 +117,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * Enables a technique called "hole punching", which allows putting the composition layer behind
    * the main projection layer (i.e. setting [sortOrder] to a negative value) while "punching a hole"
    * through everything rendered by Godot so that the layer is still visible.
+   *
    * This can be used to create the illusion that the composition layer exists in the same 3D space
    * as everything rendered by Godot, allowing objects to appear to pass both behind or in front of the
    * composition layer.
@@ -118,17 +131,11 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(434, scriptIndex)
+    createNativeObject(418, scriptIndex)
   }
 
   /**
-   * The size of the Android surface to create if [useAndroidSurface] is enabled.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [androidSurfaceSize] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -137,14 +144,15 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * //Your changes
    * openxrcompositionlayer.androidSurfaceSize = myCoreType
    * ``````
+   *
+   * The size of the Android surface to create if [useAndroidSurface] is enabled.
    */
   @CoreTypeHelper
   public final fun androidSurfaceSizeMutate(block: Vector2i.() -> Unit): Vector2i =
-      androidSurfaceSize.apply{
-      block(this)
-      androidSurfaceSize = this
+      androidSurfaceSize.apply {
+     block(this)
+     androidSurfaceSize = this
   }
-
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {
     TransferContext.writeArguments(OBJECT to viewport)
@@ -215,6 +223,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   /**
    * Returns a [JavaObject] representing an `android.view.Surface` if [useAndroidSurface] is enabled
    * and OpenXR has created the surface. Otherwise, this will return `null`.
+   *
    * **Note:** The surface can only be created during an active OpenXR session. So, if
    * [useAndroidSurface] is enabled outside of an OpenXR session, it won't be created until a new
    * session fully starts.
@@ -227,6 +236,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   /**
    * Returns `true` if the OpenXR runtime natively supports this composition layer type.
+   *
    * **Note:** This will only return an accurate result after the OpenXR session has started.
    */
   public final fun isNativelySupported(): Boolean {
@@ -238,6 +248,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   /**
    * Returns UV coordinates where the given ray intersects with the composition layer. [origin] and
    * [direction] must be in global space.
+   *
    * Returns `Vector2(-1.0, -1.0)` if the ray doesn't intersect.
    */
   public final fun intersectsRay(origin: Vector3, direction: Vector3): Vector2 {

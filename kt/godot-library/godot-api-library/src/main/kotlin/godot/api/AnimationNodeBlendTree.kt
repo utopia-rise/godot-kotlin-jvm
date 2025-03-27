@@ -21,9 +21,11 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -33,6 +35,7 @@ import kotlin.jvm.JvmOverloads
  * This animation node may contain a sub-tree of any other type animation nodes, such as
  * [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot],
  * etc. This is one of the most commonly used animation node roots.
+ *
  * An [AnimationNodeOutput] node named `output` is created by default.
  */
 @GodotBaseType
@@ -44,6 +47,13 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
   /**
    * The global offset of all sub animation nodes.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var graphOffset: Vector2
@@ -55,17 +65,11 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(59, scriptIndex)
+    createNativeObject(23, scriptIndex)
   }
 
   /**
-   * The global offset of all sub animation nodes.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [graphOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -74,13 +78,14 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    * //Your changes
    * animationnodeblendtree.graphOffset = myCoreType
    * ``````
+   *
+   * The global offset of all sub animation nodes.
    */
   @CoreTypeHelper
-  public final fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
-      block(this)
-      graphOffset = this
+  public final fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply {
+     block(this)
+     graphOffset = this
   }
-
 
   /**
    * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub
@@ -178,6 +183,66 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
+
+  /**
+   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub
+   * animation node later.
+   */
+  @JvmOverloads
+  public final fun addNode(
+    name: String,
+    node: AnimationNode?,
+    position: Vector2 = Vector2(0, 0),
+  ) = addNode(name.asCachedStringName(), node, position)
+
+  /**
+   * Returns the sub animation node with the specified [name].
+   */
+  public final fun getNode(name: String): AnimationNode? = getNode(name.asCachedStringName())
+
+  /**
+   * Removes a sub animation node.
+   */
+  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+
+  /**
+   * Changes the name of a sub animation node.
+   */
+  public final fun renameNode(name: String, newName: String) =
+      renameNode(name.asCachedStringName(), newName.asCachedStringName())
+
+  /**
+   * Returns `true` if a sub animation node with specified [name] exists.
+   */
+  public final fun hasNode(name: String): Boolean = hasNode(name.asCachedStringName())
+
+  /**
+   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
+   * port specified by [inputIndex].
+   */
+  public final fun connectNode(
+    inputNode: String,
+    inputIndex: Int,
+    outputNode: String,
+  ) = connectNode(inputNode.asCachedStringName(), inputIndex, outputNode.asCachedStringName())
+
+  /**
+   * Disconnects the animation node connected to the specified input.
+   */
+  public final fun disconnectNode(inputNode: String, inputIndex: Int) =
+      disconnectNode(inputNode.asCachedStringName(), inputIndex)
+
+  /**
+   * Modifies the position of a sub animation node.
+   */
+  public final fun setNodePosition(name: String, position: Vector2) =
+      setNodePosition(name.asCachedStringName(), position)
+
+  /**
+   * Returns the position of the sub animation node with the specified [name].
+   */
+  public final fun getNodePosition(name: String): Vector2 =
+      getNodePosition(name.asCachedStringName())
 
   public companion object {
     /**

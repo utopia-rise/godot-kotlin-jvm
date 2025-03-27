@@ -20,6 +20,7 @@ import kotlin.jvm.JvmName
 /**
  * Can have [PathFollow2D] child nodes moving along the [Curve2D]. See [PathFollow2D] for more
  * information on usage.
+ *
  * **Note:** The path is considered as relative to the moved nodes (children of [PathFollow2D]). As
  * such, the curve should usually start with a zero vector (`(0, 0)`).
  */
@@ -37,7 +38,7 @@ public open class Path2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(469, scriptIndex)
+    createNativeObject(453, scriptIndex)
   }
 
   public final fun setCurve(curve: Curve2D?): Unit {

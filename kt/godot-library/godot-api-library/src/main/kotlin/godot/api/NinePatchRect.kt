@@ -66,6 +66,13 @@ public open class NinePatchRect : Control() {
    * Rectangular region of the texture to sample from. If you're working with an atlas, use this
    * property to define the area the 9-slice should use. All other properties are relative to this one.
    * If the rect is empty, NinePatchRect will use the whole texture.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -83,10 +90,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginLeft: Int
     @JvmName("patchMarginLeftProperty")
-    get() = getPatchMargin(Side.SIDE_LEFT)
+    get() = getPatchMargin(Side.LEFT)
     @JvmName("patchMarginLeftProperty")
     set(`value`) {
-      setPatchMargin(Side.SIDE_LEFT, value)
+      setPatchMargin(Side.LEFT, value)
     }
 
   /**
@@ -96,10 +103,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginTop: Int
     @JvmName("patchMarginTopProperty")
-    get() = getPatchMargin(Side.SIDE_TOP)
+    get() = getPatchMargin(Side.TOP)
     @JvmName("patchMarginTopProperty")
     set(`value`) {
-      setPatchMargin(Side.SIDE_TOP, value)
+      setPatchMargin(Side.TOP, value)
     }
 
   /**
@@ -109,10 +116,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginRight: Int
     @JvmName("patchMarginRightProperty")
-    get() = getPatchMargin(Side.SIDE_RIGHT)
+    get() = getPatchMargin(Side.RIGHT)
     @JvmName("patchMarginRightProperty")
     set(`value`) {
-      setPatchMargin(Side.SIDE_RIGHT, value)
+      setPatchMargin(Side.RIGHT, value)
     }
 
   /**
@@ -122,10 +129,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginBottom: Int
     @JvmName("patchMarginBottomProperty")
-    get() = getPatchMargin(Side.SIDE_BOTTOM)
+    get() = getPatchMargin(Side.BOTTOM)
     @JvmName("patchMarginBottomProperty")
     set(`value`) {
-      setPatchMargin(Side.SIDE_BOTTOM, value)
+      setPatchMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -153,19 +160,11 @@ public open class NinePatchRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(410, scriptIndex)
+    createNativeObject(393, scriptIndex)
   }
 
   /**
-   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
-   * property to define the area the 9-slice should use. All other properties are relative to this one.
-   * If the rect is empty, NinePatchRect will use the whole texture.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [regionRect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -174,13 +173,16 @@ public open class NinePatchRect : Control() {
    * //Your changes
    * ninepatchrect.regionRect = myCoreType
    * ``````
+   *
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
+   * property to define the area the 9-slice should use. All other properties are relative to this one.
+   * If the rect is empty, NinePatchRect will use the whole texture.
    */
   @CoreTypeHelper
-  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
-      block(this)
-      regionRect = this
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply {
+     block(this)
+     regionRect = this
   }
-
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
@@ -240,7 +242,7 @@ public open class NinePatchRect : Control() {
   public final fun getHAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHAxisStretchModePtr, LONG)
-    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
@@ -251,7 +253,7 @@ public open class NinePatchRect : Control() {
   public final fun getVAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
-    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class AxisStretchMode(
@@ -261,19 +263,19 @@ public open class NinePatchRect : Control() {
      * Stretches the center texture across the NinePatchRect. This may cause the texture to be
      * distorted.
      */
-    AXIS_STRETCH_MODE_STRETCH(0),
+    STRETCH(0),
     /**
      * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion.
      * The texture must be seamless for this to work without displaying artifacts between edges.
      */
-    AXIS_STRETCH_MODE_TILE(1),
+    TILE(1),
     /**
      * Repeats the center texture across the NinePatchRect, but will also stretch the texture to
      * make sure each tile is visible in full. This may cause the texture to be distorted, but less
      * than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without
      * displaying artifacts between edges.
      */
-    AXIS_STRETCH_MODE_TILE_FIT(2),
+    TILE_FIT(2),
     ;
 
     public val id: Long

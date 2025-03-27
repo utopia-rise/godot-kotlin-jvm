@@ -38,6 +38,7 @@ public open class ScrollContainer : Container() {
    * Emitted when scrolling starts when dragging the scrollable area w*ith a touch event*. This
    * signal is *not* emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel
    * or scrolling with keyboard/gamepad events.
+   *
    * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
@@ -47,6 +48,7 @@ public open class ScrollContainer : Container() {
    * Emitted when scrolling stops when dragging the scrollable area *with a touch event*. This
    * signal is *not* emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel
    * or scrolling with keyboard/gamepad events.
+   *
    * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
@@ -78,12 +80,14 @@ public open class ScrollContainer : Container() {
 
   /**
    * The current horizontal scroll value.
+   *
    * **Note:** If you are setting this value in the [Node.Ready] function or earlier, it needs to be
    * wrapped with [Object.setDeferred], since scroll bar's [Range.maxValue] is not initialized yet.
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     set_deferred("scroll_horizontal", 600)
-   * [/codeblock]
+   * ```
    */
   public final inline var scrollHorizontal: Int
     @JvmName("scrollHorizontalProperty")
@@ -95,11 +99,13 @@ public open class ScrollContainer : Container() {
 
   /**
    * The current vertical scroll value.
+   *
    * **Note:** Setting it early needs to be deferred, just like in [scrollHorizontal].
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     set_deferred("scroll_vertical", 600)
-   * [/codeblock]
+   * ```
    */
   public final inline var scrollVertical: Int
     @JvmName("scrollVerticalProperty")
@@ -169,7 +175,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(586, scriptIndex)
+    createNativeObject(580, scriptIndex)
   }
 
   public final fun setHScroll(`value`: Int): Unit {
@@ -224,7 +230,7 @@ public open class ScrollContainer : Container() {
   public final fun getHorizontalScrollMode(): ScrollMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHorizontalScrollModePtr, LONG)
-    return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVerticalScrollMode(enable: ScrollMode): Unit {
@@ -235,7 +241,7 @@ public open class ScrollContainer : Container() {
   public final fun getVerticalScrollMode(): ScrollMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticalScrollModePtr, LONG)
-    return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDeadzone(deadzone: Int): Unit {
@@ -262,6 +268,7 @@ public open class ScrollContainer : Container() {
 
   /**
    * Returns the horizontal scrollbar [HScrollBar] of this [ScrollContainer].
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to disable or hide a scrollbar, you can use [horizontalScrollMode].
    */
@@ -273,6 +280,7 @@ public open class ScrollContainer : Container() {
 
   /**
    * Returns the vertical scrollbar [VScrollBar] of this [ScrollContainer].
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to disable or hide a scrollbar, you can use [verticalScrollMode].
    */
@@ -285,14 +293,16 @@ public open class ScrollContainer : Container() {
   /**
    * Ensures the given [control] is visible (must be a direct or indirect child of the
    * ScrollContainer). Used by [followFocus].
+   *
    * **Note:** This will not work on a node that was just added during the same frame. If you want
    * to scroll to a newly added child, you must wait until the next frame using [signal
    * SceneTree.process_frame]:
-   * [codeblock]
+   *
+   * ```
    * add_child(child_node)
    * await get_tree().process_frame
    * ensure_control_visible(child_node)
-   * [/codeblock]
+   * ```
    */
   public final fun ensureControlVisible(control: Control?): Unit {
     TransferContext.writeArguments(OBJECT to control)
@@ -316,26 +326,26 @@ public open class ScrollContainer : Container() {
     /**
      * Scrolling disabled, scrollbar will be invisible.
      */
-    SCROLL_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Scrolling enabled, scrollbar will be visible only if necessary, i.e. container's content is
      * bigger than the container.
      */
-    SCROLL_MODE_AUTO(1),
+    AUTO(1),
     /**
      * Scrolling enabled, scrollbar will be always visible.
      */
-    SCROLL_MODE_SHOW_ALWAYS(2),
+    SHOW_ALWAYS(2),
     /**
      * Scrolling enabled, scrollbar will be hidden.
      */
-    SCROLL_MODE_SHOW_NEVER(3),
+    SHOW_NEVER(3),
     /**
      * Combines [SCROLL_MODE_AUTO] and [SCROLL_MODE_SHOW_ALWAYS]. The scrollbar is only visible if
      * necessary, but the content size is adjusted as if it was always visible. It's useful for
      * ensuring that content size stays the same regardless if the scrollbar is visible.
      */
-    SCROLL_MODE_RESERVE(4),
+    RESERVE(4),
     ;
 
     public val id: Long

@@ -14,8 +14,10 @@ import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -25,8 +27,10 @@ import kotlin.jvm.JvmName
  * node will be automatically enabled (via its [Node.processMode] property) when any part of this
  * region becomes visible on the screen, and automatically disabled otherwise. This can for example be
  * used to activate enemies only when the player approaches them.
+ *
  * See [VisibleOnScreenNotifier3D] if you only want to be notified when the region is visible on
  * screen.
+ *
  * **Note:** [VisibleOnScreenEnabler3D] uses an approximate heuristic that doesn't take walls and
  * other occlusion into account, unless occlusion culling is used. It also won't function unless
  * [Node3D.visible] is set to `true`.
@@ -60,7 +64,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(727, scriptIndex)
+    createNativeObject(725, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {
@@ -71,7 +75,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   public final fun getEnableMode(): EnableMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableModePtr, LONG)
-    return VisibleOnScreenEnabler3D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableNodePath(path: NodePath): Unit {
@@ -85,21 +89,23 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
+  public final fun setEnableNodePath(path: String) = setEnableNodePath(path.asCachedNodePath())
+
   public enum class EnableMode(
     id: Long,
   ) {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
      */
-    ENABLE_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Corresponds to [Node.PROCESS_MODE_ALWAYS].
      */
-    ENABLE_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Corresponds to [Node.PROCESS_MODE_WHEN_PAUSED].
      */
-    ENABLE_MODE_WHEN_PAUSED(2),
+    WHEN_PAUSED(2),
     ;
 
     public val id: Long

@@ -24,8 +24,10 @@ import kotlin.jvm.JvmName
 /**
  * This audio effect does not affect sound output, but can be used for real-time audio
  * visualizations.
+ *
  * This resource configures an [AudioEffectSpectrumAnalyzerInstance], which performs the actual
  * analysis at runtime. An instance can be obtained with [AudioServer.getBusEffectInstance].
+ *
  * See also [AudioStreamGenerator] for procedurally generating sounds.
  */
 @GodotBaseType
@@ -65,7 +67,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(108, scriptIndex)
+    createNativeObject(72, scriptIndex)
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
@@ -98,7 +100,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public final fun getFftSize(): FFTSize {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
-    return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
+    return FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(
@@ -132,7 +134,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     /**
      * Represents the size of the [FFTSize] enum.
      */
-    FFT_SIZE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

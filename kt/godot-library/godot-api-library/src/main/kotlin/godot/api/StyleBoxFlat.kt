@@ -34,24 +34,37 @@ import kotlin.jvm.JvmName
 /**
  * By configuring various properties of this style box, you can achieve many common looks without
  * the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
+ *
  * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will
  * switch to a relative system:
+ *
  * [codeblock lang=text]
+ *
  * height = 30
+ *
  * corner_radius_top_left = 50
+ *
  * corner_radius_bottom_left = 100
- * [/codeblock]
+ *
+ * ```
  * The relative system now would take the 1:2 ratio of the two left corners to calculate the actual
  * corner width. Both corners added will **never** be more than the height. Result:
  * [codeblock lang=text]
  * corner_radius_top_left: 10
  * corner_radius_bottom_left: 20
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class StyleBoxFlat : StyleBox() {
   /**
    * The background color of the stylebox.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bgColor: Color
@@ -78,10 +91,18 @@ public open class StyleBoxFlat : StyleBox() {
    * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
    * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
    * (X axis) and downwards (Y axis).
+   *
    * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
    * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
    * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
    * margin does not increase the size of the clickable area for [Control]s.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skew: Vector2
@@ -97,10 +118,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthLeft: Int
     @JvmName("borderWidthLeftProperty")
-    get() = getBorderWidth(Side.SIDE_LEFT)
+    get() = getBorderWidth(Side.LEFT)
     @JvmName("borderWidthLeftProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_LEFT, value)
+      setBorderWidth(Side.LEFT, value)
     }
 
   /**
@@ -108,10 +129,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthTop: Int
     @JvmName("borderWidthTopProperty")
-    get() = getBorderWidth(Side.SIDE_TOP)
+    get() = getBorderWidth(Side.TOP)
     @JvmName("borderWidthTopProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_TOP, value)
+      setBorderWidth(Side.TOP, value)
     }
 
   /**
@@ -119,10 +140,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthRight: Int
     @JvmName("borderWidthRightProperty")
-    get() = getBorderWidth(Side.SIDE_RIGHT)
+    get() = getBorderWidth(Side.RIGHT)
     @JvmName("borderWidthRightProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_RIGHT, value)
+      setBorderWidth(Side.RIGHT, value)
     }
 
   /**
@@ -130,14 +151,21 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthBottom: Int
     @JvmName("borderWidthBottomProperty")
-    get() = getBorderWidth(Side.SIDE_BOTTOM)
+    get() = getBorderWidth(Side.BOTTOM)
     @JvmName("borderWidthBottomProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_BOTTOM, value)
+      setBorderWidth(Side.BOTTOM, value)
     }
 
   /**
    * Sets the color of the border.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var borderColor: Color
@@ -164,10 +192,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusTopLeft: Int
     @JvmName("cornerRadiusTopLeftProperty")
-    get() = getCornerRadius(Corner.CORNER_TOP_LEFT)
+    get() = getCornerRadius(Corner.TOP_LEFT)
     @JvmName("cornerRadiusTopLeftProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_TOP_LEFT, value)
+      setCornerRadius(Corner.TOP_LEFT, value)
     }
 
   /**
@@ -175,10 +203,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusTopRight: Int
     @JvmName("cornerRadiusTopRightProperty")
-    get() = getCornerRadius(Corner.CORNER_TOP_RIGHT)
+    get() = getCornerRadius(Corner.TOP_RIGHT)
     @JvmName("cornerRadiusTopRightProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_TOP_RIGHT, value)
+      setCornerRadius(Corner.TOP_RIGHT, value)
     }
 
   /**
@@ -186,10 +214,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusBottomRight: Int
     @JvmName("cornerRadiusBottomRightProperty")
-    get() = getCornerRadius(Corner.CORNER_BOTTOM_RIGHT)
+    get() = getCornerRadius(Corner.BOTTOM_RIGHT)
     @JvmName("cornerRadiusBottomRightProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_BOTTOM_RIGHT, value)
+      setCornerRadius(Corner.BOTTOM_RIGHT, value)
     }
 
   /**
@@ -197,18 +225,20 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusBottomLeft: Int
     @JvmName("cornerRadiusBottomLeftProperty")
-    get() = getCornerRadius(Corner.CORNER_BOTTOM_LEFT)
+    get() = getCornerRadius(Corner.BOTTOM_LEFT)
     @JvmName("cornerRadiusBottomLeftProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_BOTTOM_LEFT, value)
+      setCornerRadius(Corner.BOTTOM_LEFT, value)
     }
 
   /**
    * This sets the number of vertices used for each corner. Higher values result in rounder corners
    * but take more processing power to compute. When choosing a value, you should take the corner
    * radius ([setCornerRadiusAll]) into account.
+   *
    * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30,
    * values between `8` and `12` should be enough.
+   *
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is
    * useful for some artistic effects.
    */
@@ -223,65 +253,76 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Expands the stylebox outside of the control rect on the left edge. Useful in combination with
    * [borderWidthLeft] to draw a border outside the control rect.
+   *
    * **Note:** Unlike [StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of
    * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
    * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
-    get() = getExpandMargin(Side.SIDE_LEFT)
+    get() = getExpandMargin(Side.LEFT)
     @JvmName("expandMarginLeftProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_LEFT, value)
+      setExpandMargin(Side.LEFT, value)
     }
 
   /**
    * Expands the stylebox outside of the control rect on the top edge. Useful in combination with
    * [borderWidthTop] to draw a border outside the control rect.
+   *
    * **Note:** Unlike [StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of
    * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
    * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
-    get() = getExpandMargin(Side.SIDE_TOP)
+    get() = getExpandMargin(Side.TOP)
     @JvmName("expandMarginTopProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_TOP, value)
+      setExpandMargin(Side.TOP, value)
     }
 
   /**
    * Expands the stylebox outside of the control rect on the right edge. Useful in combination with
    * [borderWidthRight] to draw a border outside the control rect.
+   *
    * **Note:** Unlike [StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size
    * of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the
    * user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
-    get() = getExpandMargin(Side.SIDE_RIGHT)
+    get() = getExpandMargin(Side.RIGHT)
     @JvmName("expandMarginRightProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_RIGHT, value)
+      setExpandMargin(Side.RIGHT, value)
     }
 
   /**
    * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with
    * [borderWidthBottom] to draw a border outside the control rect.
+   *
    * **Note:** Unlike [StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the
    * size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as
    * the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
-    get() = getExpandMargin(Side.SIDE_BOTTOM)
+    get() = getExpandMargin(Side.BOTTOM)
     @JvmName("expandMarginBottomProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_BOTTOM, value)
+      setExpandMargin(Side.BOTTOM, value)
     }
 
   /**
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -305,6 +346,13 @@ public open class StyleBoxFlat : StyleBox() {
 
   /**
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowOffset: Vector2
@@ -318,6 +366,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Antialiasing draws a small ring around the edges, which fades to transparency. As a result,
    * edges look much smoother. This is only noticeable when using rounded corners or [skew].
+   *
    * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is
    * recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual
    * glitches.
@@ -334,6 +383,7 @@ public open class StyleBoxFlat : StyleBox() {
    * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at
    * 100&#37; scale, identical to how rounded rectangles are rendered in web browsers and most vector
    * drawing software.
+   *
    * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on
    * small boxes with large-radius corners.
    */
@@ -346,17 +396,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(651, scriptIndex)
+    createNativeObject(645, scriptIndex)
   }
 
   /**
-   * The background color of the stylebox.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [bgColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -365,29 +409,17 @@ public open class StyleBoxFlat : StyleBox() {
    * //Your changes
    * styleboxflat.bgColor = myCoreType
    * ``````
+   *
+   * The background color of the stylebox.
    */
   @CoreTypeHelper
-  public final fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply{
-      block(this)
-      bgColor = this
+  public final fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply {
+     block(this)
+     bgColor = this
   }
 
-
   /**
-   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or
-   * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
-   * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
-   * (X axis) and downwards (Y axis).
-   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
-   * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
-   * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
-   * margin does not increase the size of the clickable area for [Control]s.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [skew] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -396,22 +428,25 @@ public open class StyleBoxFlat : StyleBox() {
    * //Your changes
    * styleboxflat.skew = myCoreType
    * ``````
+   *
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or
+   * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
+   * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
+   * (X axis) and downwards (Y axis).
+   *
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
+   * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
+   * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
+   * margin does not increase the size of the clickable area for [Control]s.
    */
   @CoreTypeHelper
-  public final fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply{
-      block(this)
-      skew = this
+  public final fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply {
+     block(this)
+     skew = this
   }
 
-
   /**
-   * Sets the color of the border.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [borderColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -420,22 +455,17 @@ public open class StyleBoxFlat : StyleBox() {
    * //Your changes
    * styleboxflat.borderColor = myCoreType
    * ``````
+   *
+   * Sets the color of the border.
    */
   @CoreTypeHelper
-  public final fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
-      block(this)
-      borderColor = this
+  public final fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply {
+     block(this)
+     borderColor = this
   }
 
-
   /**
-   * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [shadowColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -444,22 +474,17 @@ public open class StyleBoxFlat : StyleBox() {
    * //Your changes
    * styleboxflat.shadowColor = myCoreType
    * ``````
+   *
+   * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    */
   @CoreTypeHelper
-  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
-      block(this)
-      shadowColor = this
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply {
+     block(this)
+     shadowColor = this
   }
 
-
   /**
-   * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [shadowOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -468,13 +493,14 @@ public open class StyleBoxFlat : StyleBox() {
    * //Your changes
    * styleboxflat.shadowOffset = myCoreType
    * ``````
+   *
+   * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    */
   @CoreTypeHelper
-  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
-      block(this)
-      shadowOffset = this
+  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply {
+     block(this)
+     shadowOffset = this
   }
-
 
   public final fun setBgColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)

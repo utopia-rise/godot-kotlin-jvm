@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -32,6 +33,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * A custom shader program implemented in the Godot shading language, saved with the `.gdshader`
  * extension.
+ *
  * This class is used by a [ShaderMaterial] and allows you to write your own custom behavior for
  * rendering visual items or updating particle information. For a detailed explanation and usage,
  * please see the tutorials linked below.
@@ -51,7 +53,7 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(592, scriptIndex)
+    createNativeObject(586, scriptIndex)
   }
 
   /**
@@ -60,7 +62,7 @@ public open class Shader : Resource() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCode(code: String): Unit {
@@ -77,7 +79,9 @@ public open class Shader : Resource() {
   /**
    * Sets the default texture to be used with a texture uniform. The default is used if a texture is
    * not set in the [ShaderMaterial].
+   *
    * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -92,7 +96,9 @@ public open class Shader : Resource() {
 
   /**
    * Returns the texture that is set as default for the specified parameter.
+   *
    * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -107,6 +113,7 @@ public open class Shader : Resource() {
    * [ShaderMaterial.setShaderParameter] and [ShaderMaterial.getShaderParameter]. The parameters
    * returned are contained in dictionaries in a similar format to the ones returned by
    * [Object.getPropertyList].
+   *
    * If argument [getGroups] is `true`, parameter grouping hints are also included in the list.
    */
   @JvmOverloads
@@ -126,29 +133,55 @@ public open class Shader : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
 
+  /**
+   * Sets the default texture to be used with a texture uniform. The default is used if a texture is
+   * not set in the [ShaderMaterial].
+   *
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  public final fun setDefaultTextureParameter(
+    name: String,
+    texture: Texture?,
+    index: Int = 0,
+  ) = setDefaultTextureParameter(name.asCachedStringName(), texture, index)
+
+  /**
+   * Returns the texture that is set as default for the specified parameter.
+   *
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   *
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  public final fun getDefaultTextureParameter(name: String, index: Int = 0): Texture? =
+      getDefaultTextureParameter(name.asCachedStringName(), index)
+
   public enum class Mode(
     id: Long,
   ) {
     /**
      * Mode used to draw all 3D objects.
      */
-    MODE_SPATIAL(0),
+    SPATIAL(0),
     /**
      * Mode used to draw all 2D objects.
      */
-    MODE_CANVAS_ITEM(1),
+    CANVAS_ITEM(1),
     /**
      * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
      */
-    MODE_PARTICLES(2),
+    PARTICLES(2),
     /**
      * Mode used for drawing skies. Only works with shaders attached to [Sky] objects.
      */
-    MODE_SKY(3),
+    SKY(3),
     /**
      * Mode used for setting the color and density of volumetric fog effect.
      */
-    MODE_FOG(4),
+    FOG(4),
     ;
 
     public val id: Long

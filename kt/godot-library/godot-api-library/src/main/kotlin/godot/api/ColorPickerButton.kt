@@ -28,7 +28,9 @@ import kotlin.jvm.JvmName
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
  * toggle the [ColorPicker]'s visibility.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * **Note:** By default, the button may not be wide enough for the color preview swatch to be
  * visible. Make sure to set [Control.customMinimumSize] to a big enough value to give the button
  * enough space.
@@ -52,6 +54,13 @@ public open class ColorPickerButton : Button() {
 
   /**
    * The currently selected color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -74,17 +83,11 @@ public open class ColorPickerButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(195, scriptIndex)
+    createNativeObject(162, scriptIndex)
   }
 
   /**
-   * The currently selected color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -93,13 +96,14 @@ public open class ColorPickerButton : Button() {
    * //Your changes
    * colorpickerbutton.color = myCoreType
    * ``````
+   *
+   * The currently selected color.
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
-
 
   public final fun setPickColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -114,6 +118,7 @@ public open class ColorPickerButton : Button() {
 
   /**
    * Returns the [ColorPicker] that this node toggles.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -126,6 +131,7 @@ public open class ColorPickerButton : Button() {
   /**
    * Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows
    * you to handle events when the ColorPicker is shown or hidden.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */

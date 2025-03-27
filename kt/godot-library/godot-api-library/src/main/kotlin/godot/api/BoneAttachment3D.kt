@@ -17,6 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -58,6 +59,7 @@ public open class BoneAttachment3D : Node3D() {
    * Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to.
    * When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to
    * `false`, the BoneAttachment3D will always be set to the bone's transform.
+   *
    * **Note:** This override performs interruptively in the skeleton update process using signals
    * due to the old design. It may cause unintended behavior when used at the same time with
    * [SkeletonModifier3D].
@@ -71,7 +73,7 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(142, scriptIndex)
+    createNativeObject(107, scriptIndex)
   }
 
   /**
@@ -163,6 +165,13 @@ public open class BoneAttachment3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  /**
+   * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
+   * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
+   */
+  public final fun setExternalSkeleton(externalSkeleton: String) =
+      setExternalSkeleton(externalSkeleton.asCachedNodePath())
 
   public companion object
 

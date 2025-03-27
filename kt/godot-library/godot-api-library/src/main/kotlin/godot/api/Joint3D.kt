@@ -17,9 +17,11 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -33,6 +35,7 @@ import kotlin.jvm.JvmName
 public open class Joint3D internal constructor() : Node3D() {
   /**
    * Path to the first node (A) attached to the joint. The node must inherit [PhysicsBody3D].
+   *
    * If left empty and [nodeB] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
@@ -46,6 +49,7 @@ public open class Joint3D internal constructor() : Node3D() {
 
   /**
    * Path to the second node (B) attached to the joint. The node must inherit [PhysicsBody3D].
+   *
    * If left empty and [nodeA] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
@@ -81,7 +85,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(345, scriptIndex)
+    createNativeObject(323, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {
@@ -136,6 +140,10 @@ public open class Joint3D internal constructor() : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
+
+  public final fun setNodeA(node: String) = setNodeA(node.asCachedNodePath())
+
+  public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
 
   public companion object
 

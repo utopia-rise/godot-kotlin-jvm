@@ -30,11 +30,14 @@ import kotlin.jvm.JvmName
 /**
  * A collision can be a child of [SpringBoneSimulator3D]. If it is not a child of
  * [SpringBoneSimulator3D], it has no effect.
+ *
  * The colliding and sliding are done in the [SpringBoneSimulator3D]'s modification process in order
  * of its collision list which is set by [SpringBoneSimulator3D.setCollisionPath]. If
  * [SpringBoneSimulator3D.areAllChildCollisionsEnabled] is `true`, the order matches [SceneTree].
+ *
  * If [bone] is set, it synchronizes with the bone pose of the ancestor [Skeleton3D], which is done
  * in before the [SpringBoneSimulator3D]'s modification process as the pre-process.
+ *
  * **Warning:** A scaled [SpringBoneCollision3D] will likely not behave as expected. Make sure that
  * the parent [Skeleton3D] and its bones are not scaled.
  */
@@ -64,6 +67,13 @@ public open class SpringBoneCollision3D : Node3D() {
 
   /**
    * The offset of the position from [Skeleton3D]'s [bone] pose position.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var positionOffset: Vector3
@@ -76,6 +86,13 @@ public open class SpringBoneCollision3D : Node3D() {
 
   /**
    * The offset of the rotation from [Skeleton3D]'s [bone] pose rotation.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rotationOffset: Quaternion
@@ -87,17 +104,11 @@ public open class SpringBoneCollision3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(630, scriptIndex)
+    createNativeObject(624, scriptIndex)
   }
 
   /**
-   * The offset of the position from [Skeleton3D]'s [bone] pose position.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [positionOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -106,22 +117,17 @@ public open class SpringBoneCollision3D : Node3D() {
    * //Your changes
    * springbonecollision3d.positionOffset = myCoreType
    * ``````
+   *
+   * The offset of the position from [Skeleton3D]'s [bone] pose position.
    */
   @CoreTypeHelper
-  public final fun positionOffsetMutate(block: Vector3.() -> Unit): Vector3 = positionOffset.apply{
-      block(this)
-      positionOffset = this
+  public final fun positionOffsetMutate(block: Vector3.() -> Unit): Vector3 = positionOffset.apply {
+     block(this)
+     positionOffset = this
   }
 
-
   /**
-   * The offset of the rotation from [Skeleton3D]'s [bone] pose rotation.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rotationOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -130,14 +136,15 @@ public open class SpringBoneCollision3D : Node3D() {
    * //Your changes
    * springbonecollision3d.rotationOffset = myCoreType
    * ``````
+   *
+   * The offset of the rotation from [Skeleton3D]'s [bone] pose rotation.
    */
   @CoreTypeHelper
   public final fun rotationOffsetMutate(block: Quaternion.() -> Unit): Quaternion =
-      rotationOffset.apply{
-      block(this)
-      rotationOffset = this
+      rotationOffset.apply {
+     block(this)
+     rotationOffset = this
   }
-
 
   /**
    * Get parent [Skeleton3D] node of the parent [SpringBoneSimulator3D] if found.

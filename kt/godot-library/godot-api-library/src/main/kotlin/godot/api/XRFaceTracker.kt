@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -32,13 +34,22 @@ import kotlin.jvm.JvmName
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Tracking
  * Standard Comparison[/url] page documents the relationship between Unified Expressions and other
  * standards.
+ *
  * As face trackers are turned on they are registered with the [XRServer].
  */
 @GodotBaseType
 public open class XRFaceTracker : XRTracker() {
   /**
    * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var blendShapes: PackedFloat32Array
     @JvmName("blendShapesProperty")
     get() = getBlendShapes()
@@ -48,7 +59,44 @@ public open class XRFaceTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(869, scriptIndex)
+    createNativeObject(868, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [blendShapes] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = xrfacetracker.blendShapes
+   * //Your changes
+   * xrfacetracker.blendShapes = myCoreType
+   * ``````
+   *
+   * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
+   */
+  @CoreTypeHelper
+  public final fun blendShapesMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
+      blendShapes.apply {
+     block(this)
+     blendShapes = this
+  }
+
+  /**
+   * This is a helper function for [blendShapes] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
+   */
+  @CoreTypeHelper
+  public final fun blendShapesMutateEach(block: (index: Int, `value`: Float) -> Unit):
+      PackedFloat32Array = blendShapes.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     blendShapes = this
   }
 
   /**

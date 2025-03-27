@@ -174,7 +174,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(373, scriptIndex)
+    createNativeObject(352, scriptIndex)
   }
 
   public final fun setMaxConcavity(maxConcavity: Float): Unit {
@@ -284,7 +284,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return MeshConvexDecompositionSettings.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setConvexHullApproximation(convexHullApproximation: Boolean): Unit {
@@ -326,11 +326,11 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     /**
      * Constant for voxel-based approximate convex decomposition.
      */
-    CONVEX_DECOMPOSITION_MODE_VOXEL(0),
+    CONVEX_DECOMPOSITION_VOXEL(0),
     /**
      * Constant for tetrahedron-based approximate convex decomposition.
      */
-    CONVEX_DECOMPOSITION_MODE_TETRAHEDRON(1),
+    CONVEX_DECOMPOSITION_TETRAHEDRON(1),
     ;
 
     public val id: Long

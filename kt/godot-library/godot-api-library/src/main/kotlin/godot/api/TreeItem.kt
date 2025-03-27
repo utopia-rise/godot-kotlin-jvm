@@ -30,6 +30,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -45,8 +46,10 @@ import kotlin.jvm.JvmOverloads
  * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it
  * to create a hierarchy. It can also contain text and buttons. [TreeItem] is not a [Node], it is
  * internal to the [Tree].
+ *
  * To create a [TreeItem], use [Tree.createItem] or [TreeItem.createChild]. To remove a [TreeItem],
  * use [Object.free].
+ *
  * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go
  * from `-2147483648` to `2147483647`.
  */
@@ -65,6 +68,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * If `true`, the [TreeItem] is visible (default).
+   *
    * Note that if a [TreeItem] is set to not be visible, none of its children will be visible
    * either.
    */
@@ -99,7 +103,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(702, scriptIndex)
+    createNativeObject(700, scriptIndex)
   }
 
   /**
@@ -117,11 +121,12 @@ public open class TreeItem internal constructor() : Object() {
   public final fun getCellMode(column: Int): TreeCellMode {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCellModePtr, LONG)
-    return TreeItem.TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the given column's auto translate mode to [mode].
+   *
    * All columns use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto
    * translate mode as the [Tree] itself.
    */
@@ -141,6 +146,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * If [multiline] is `true`, the given [column] is multiline editable.
+   *
    * **Note:** This option only affects the type of control ([LineEdit] or [TextEdit]) that appears
    * when editing the column. You can set multiline values with [setText] even if the column is not
    * multiline editable.
@@ -169,6 +175,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * If [indeterminate] is `true`, the given [column] is marked indeterminate.
+   *
    * **Note:** If set `true` from `false`, then column is cleared of checked status.
    */
   public final fun setIndeterminate(column: Int, indeterminate: Boolean): Unit {
@@ -461,6 +468,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE]
    * mode.
+   *
    * If [expr] is `true`, the edit mode slider will use an exponential scale as with
    * [Range.expEdit].
    */
@@ -506,6 +514,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Sets the given column's custom draw callback to the [callback] method on [object].
+   *
    * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its
    * position and size as a [Rect2].
    */
@@ -522,6 +531,7 @@ public open class TreeItem internal constructor() : Object() {
    * Sets the given column's custom draw callback. Use an empty [Callable] ([code
    * skip-lint]Callable()[/code]) to clear the custom callback. The cell has to be in
    * [CELL_MODE_CUSTOM] to use this feature.
+   *
    * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and
    * size as a [Rect2].
    */
@@ -560,6 +570,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Returns `true` if this [TreeItem], or any of its descendants, is collapsed.
+   *
    * If [onlyVisible] is `true` it ignores non-visible [TreeItem]s.
    */
   @JvmOverloads
@@ -985,6 +996,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Creates an item and adds it as a child.
+   *
    * The new item will be inserted as position [index] (the default value `-1` means the last
    * position), or it will be the last child if [index] is higher than the child count.
    */
@@ -1008,6 +1020,7 @@ public open class TreeItem internal constructor() : Object() {
    * Removes the given child [TreeItem] and all its children from the [Tree]. Note that it doesn't
    * free the item from memory, so it can be reused later (see [addChild]). To completely remove a
    * [TreeItem] use [Object.free].
+   *
    * **Note:** If you want to move a child from one [Tree] to another, then instead of removing and
    * adding it manually you can use [moveBefore] or [moveAfter].
    */
@@ -1064,6 +1077,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null`
    * object if there is none.
+   *
    * If [wrap] is enabled, the method will wrap around to the first element in the tree when called
    * on the last element, otherwise it returns `null`.
    */
@@ -1077,6 +1091,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null`
    * object if there is none.
+   *
    * If [wrap] is enabled, the method will wrap around to the last element in the tree when called
    * on the first visible element, otherwise it returns `null`.
    */
@@ -1090,6 +1105,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a
    * `null` object if there is none.
+   *
    * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when
    * called on the last visible element, otherwise it returns `null`.
    */
@@ -1103,6 +1119,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first
    * search) or a `null` object if there is none.
+   *
    * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when
    * called on the first visible element, otherwise it returns `null`.
    */
@@ -1116,6 +1133,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Returns a child item by its [index] (see [getChildCount]). This method is often used for
    * iterating all children of an item.
+   *
    * Negative indices access the children from the last one.
    */
   public final fun getChild(index: Int): TreeItem? {
@@ -1154,6 +1172,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Moves this TreeItem right before the given [item].
+   *
    * **Note:** You can't move to the root or move the root.
    */
   public final fun moveBefore(item: TreeItem?): Unit {
@@ -1163,6 +1182,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Moves this TreeItem right after the given [item].
+   *
    * **Note:** You can't move to the root or move the root.
    */
   public final fun moveAfter(item: TreeItem?): Unit {
@@ -1174,10 +1194,29 @@ public open class TreeItem internal constructor() : Object() {
    * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a
    * comma separated list.
    */
-  public final fun callRecursive(method: StringName, vararg __var_args: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun callRecursive(method: StringName, vararg args: Any?): Unit {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callRecursivePtr, NIL)
   }
+
+  /**
+   * Sets the given column's custom draw callback to the [callback] method on [object].
+   *
+   * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its
+   * position and size as a [Rect2].
+   */
+  public final fun setCustomDraw(
+    column: Int,
+    `object`: Object?,
+    callback: String,
+  ) = setCustomDraw(column, `object`, callback.asCachedStringName())
+
+  /**
+   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a
+   * comma separated list.
+   */
+  public final fun callRecursive(method: String, vararg args: Any?) =
+      callRecursive(method.asCachedStringName(), )
 
   public enum class TreeCellMode(
     id: Long,
@@ -1196,6 +1235,7 @@ public open class TreeItem internal constructor() : Object() {
     /**
      * Cell shows a numeric range. When editable, it can be edited using a range slider. Use
      * [setRange] to set the value and [setRangeConfig] to configure the range.
+     *
      * This cell can also be used in a text dropdown mode when you assign a text with [setText].
      * Separate options with a comma, e.g. `"Option1,Option2,Option3"`.
      */
@@ -1210,6 +1250,7 @@ public open class TreeItem internal constructor() : Object() {
      * doesn't feature a dropdown (for that you can use [CELL_MODE_RANGE]). Clicking the button emits
      * the [signal Tree.item_edited] signal. The button is flat by default, you can use
      * [setCustomAsButton] to display it with a [StyleBox].
+     *
      * This mode also supports custom drawing using [setCustomDrawCallback].
      */
     CELL_MODE_CUSTOM(4),

@@ -14,8 +14,10 @@ import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -25,8 +27,10 @@ import kotlin.jvm.JvmName
  * target node will be automatically enabled (via its [Node.processMode] property) when any part of
  * this region becomes visible on the screen, and automatically disabled otherwise. This can for
  * example be used to activate enemies only when the player approaches them.
+ *
  * See [VisibleOnScreenNotifier2D] if you only want to be notified when the region is visible on
  * screen.
+ *
  * **Note:** [VisibleOnScreenEnabler2D] uses the render culling code to determine whether it's
  * visible on screen, so it won't function unless [CanvasItem.visible] is set to `true`.
  */
@@ -59,7 +63,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(726, scriptIndex)
+    createNativeObject(724, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {
@@ -70,7 +74,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   public final fun getEnableMode(): EnableMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableModePtr, LONG)
-    return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableNodePath(path: NodePath): Unit {
@@ -84,21 +88,23 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
+  public final fun setEnableNodePath(path: String) = setEnableNodePath(path.asCachedNodePath())
+
   public enum class EnableMode(
     id: Long,
   ) {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
      */
-    ENABLE_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Corresponds to [Node.PROCESS_MODE_ALWAYS].
      */
-    ENABLE_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Corresponds to [Node.PROCESS_MODE_WHEN_PAUSED].
      */
-    ENABLE_MODE_WHEN_PAUSED(2),
+    WHEN_PAUSED(2),
     ;
 
     public val id: Long

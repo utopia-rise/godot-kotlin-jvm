@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a camera as defined by the base glTF spec.
@@ -94,7 +95,7 @@ public open class GLTFCamera : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(256, scriptIndex)
+    createNativeObject(227, scriptIndex)
   }
 
   /**
@@ -174,6 +175,7 @@ public open class GLTFCamera : Resource() {
     /**
      * Create a new GLTFCamera instance from the given Godot [Camera3D] node.
      */
+    @JvmStatic
     public final fun fromNode(cameraNode: Camera3D?): GLTFCamera? {
       TransferContext.writeArguments(OBJECT to cameraNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
@@ -183,6 +185,7 @@ public open class GLTFCamera : Resource() {
     /**
      * Creates a new GLTFCamera instance by parsing the given [Dictionary].
      */
+    @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFCamera? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)

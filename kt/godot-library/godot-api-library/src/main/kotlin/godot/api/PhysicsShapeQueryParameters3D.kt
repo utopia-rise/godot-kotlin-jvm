@@ -57,6 +57,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
    * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -82,6 +83,13 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   /**
    * The motion of the shape being queried for.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motion: Vector3
@@ -109,8 +117,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * The queried shape's [RID] that will be used for collision/intersection queries. Use this over
    * [shape] if you want to optimize for performance using the Servers API:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var shape_rid = PhysicsServer3D.shape_create(PhysicsServer3D.SHAPE_SPHERE)
    * var radius = 2.0
    * PhysicsServer3D.shape_set_data(shape_rid, radius)
@@ -123,8 +131,9 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * # Release the shape when done with physics queries.
    * PhysicsServer3D.free_rid(shape_rid)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * RID shapeRid = PhysicsServer3D.ShapeCreate(PhysicsServer3D.ShapeType.Sphere);
    * float radius = 2.0f;
    * PhysicsServer3D.ShapeSetData(shapeRid, radius);
@@ -148,6 +157,13 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   /**
    * The queried shape's transform matrix.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -181,17 +197,11 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(494, scriptIndex)
+    createNativeObject(483, scriptIndex)
   }
 
   /**
-   * The motion of the shape being queried for.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [motion] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -200,22 +210,17 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsshapequeryparameters3d.motion = myCoreType
    * ``````
+   *
+   * The motion of the shape being queried for.
    */
   @CoreTypeHelper
-  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply{
-      block(this)
-      motion = this
+  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply {
+     block(this)
+     motion = this
   }
 
-
   /**
-   * The queried shape's transform matrix.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -224,13 +229,14 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsshapequeryparameters3d.transform = myCoreType
    * ``````
+   *
+   * The queried shape's transform matrix.
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply {
+     block(this)
+     transform = this
   }
-
 
   public final fun setShape(shape: Resource?): Unit {
     TransferContext.writeArguments(OBJECT to shape)

@@ -30,10 +30,13 @@ import kotlin.jvm.JvmName
 /**
  * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
  * nodes.
+ *
  * You can use [Bone2D] and [Skeleton2D] nodes to animate 2D meshes created with the [Polygon2D] UV
  * editor.
+ *
  * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are
  * relative to the bone's parent.
+ *
  * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the
  * code, you need to iterate over the bones to set their individual rest poses.
  */
@@ -42,6 +45,13 @@ public open class Bone2D : Node2D() {
   /**
    * Rest transform of the bone. You can reset the node's transforms to this value using
    * [applyRest].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rest: Transform2D
@@ -53,18 +63,11 @@ public open class Bone2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(141, scriptIndex)
+    createNativeObject(106, scriptIndex)
   }
 
   /**
-   * Rest transform of the bone. You can reset the node's transforms to this value using
-   * [applyRest].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rest] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -73,13 +76,15 @@ public open class Bone2D : Node2D() {
    * //Your changes
    * bone2d.rest = myCoreType
    * ``````
+   *
+   * Rest transform of the bone. You can reset the node's transforms to this value using
+   * [applyRest].
    */
   @CoreTypeHelper
-  public final fun restMutate(block: Transform2D.() -> Unit): Transform2D = rest.apply{
-      block(this)
-      rest = this
+  public final fun restMutate(block: Transform2D.() -> Unit): Transform2D = rest.apply {
+     block(this)
+     rest = this
   }
-
 
   public final fun setRest(rest: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to rest)
@@ -160,6 +165,7 @@ public open class Bone2D : Node2D() {
   /**
    * Sets the bone angle for the [Bone2D]. This is typically set to the rotation from the [Bone2D]
    * to a child [Bone2D] node.
+   *
    * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
@@ -170,6 +176,7 @@ public open class Bone2D : Node2D() {
 
   /**
    * Returns the angle of the bone in the [Bone2D].
+   *
    * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */

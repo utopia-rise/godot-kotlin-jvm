@@ -15,16 +15,21 @@ import godot.core.StringName
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
+ *
  * The
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified
  * Expressions[/url] blend shapes are supported, as well as ARKit and SRanipal blend shapes.
+ *
  * The node attempts to identify blend shapes based on name matching. Blend shapes should match the
  * names listed in the
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Unified
@@ -55,7 +60,7 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(868, scriptIndex)
+    createNativeObject(867, scriptIndex)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {
@@ -79,6 +84,11 @@ public open class XRFaceModifier3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getTargetPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  public final fun setFaceTracker(trackerName: String) =
+      setFaceTracker(trackerName.asCachedStringName())
+
+  public final fun setTarget(target: String) = setTarget(target.asCachedNodePath())
 
   public companion object
 

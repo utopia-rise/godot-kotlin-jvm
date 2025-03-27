@@ -38,10 +38,12 @@ import kotlin.jvm.JvmName
  * determined by [targetPosition]. This is similar to [RayCast2D], but it allows for sweeping a region
  * of space, rather than just a straight line. [ShapeCast2D] can detect multiple collision objects. It
  * is useful for things like wide laser beams or snapping a simple shape to a floor.
+ *
  * Immediate collision overlaps can be done with the [targetPosition] set to `Vector2(0, 0)` and by
  * calling [forceShapecastUpdate] within the same physics frame. This helps to overcome some
  * limitations of [Area2D] when used as an instantaneous detection area, as collision information isn't
  * immediately available to it.
+ *
  * **Note:** Shape casting is more computationally expensive than ray casting.
  */
 @GodotBaseType
@@ -81,6 +83,13 @@ public open class ShapeCast2D : Node2D() {
 
   /**
    * The shape's destination point, relative to this node's [Node2D.position].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector2
@@ -159,17 +168,11 @@ public open class ShapeCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(599, scriptIndex)
+    createNativeObject(593, scriptIndex)
   }
 
   /**
-   * The shape's destination point, relative to this node's [Node2D.position].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [targetPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -178,13 +181,14 @@ public open class ShapeCast2D : Node2D() {
    * //Your changes
    * shapecast2d.targetPosition = myCoreType
    * ``````
+   *
+   * The shape's destination point, relative to this node's [Node2D.position].
    */
   @CoreTypeHelper
-  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
-      block(this)
-      targetPosition = this
+  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply {
+     block(this)
+     targetPosition = this
   }
-
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -266,6 +270,7 @@ public open class ShapeCast2D : Node2D() {
    * Updates the collision information for the shape immediately, without waiting for the next
    * `_physics_process` call. Use this method, for example, when the shape or its parent has changed
    * state.
+   *
    * **Note:** Setting [enabled] to `true` is not required for this to work.
    */
   public final fun forceShapecastUpdate(): Unit {
@@ -305,6 +310,7 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Returns the collision point of one of the multiple collisions at [index] where the shape
    * intersects the colliding object.
+   *
    * **Note:** This point is in the **global** coordinate system.
    */
   public final fun getCollisionPoint(index: Int): Vector2 {
@@ -335,6 +341,7 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Returns the fraction from this cast's origin to its [targetPosition] of how far the shape must
    * move to trigger a collision, as a value between `0.0` and `1.0`.
+   *
    * In ideal conditions this would be the same as [getClosestCollisionSafeFraction], however shape
    * casting is calculated in discrete steps, so the precise point of collision can occur between two
    * calculated positions.

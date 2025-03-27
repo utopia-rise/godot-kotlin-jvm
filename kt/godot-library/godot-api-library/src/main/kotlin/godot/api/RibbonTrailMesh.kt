@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number
  * of [sectionSegments]. A [curve] is sampled along the total length of the ribbon, meaning that the
  * curve determines the size of the ribbon along its length.
+ *
  * This primitive mesh is usually used for particle trails.
  */
 @GodotBaseType
@@ -102,7 +103,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(570, scriptIndex)
+    createNativeObject(564, scriptIndex)
   }
 
   public final fun setSize(size: Float): Unit {
@@ -168,7 +169,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getShape(): Shape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, LONG)
-    return RibbonTrailMesh.Shape.from(TransferContext.readReturnValue(LONG) as Long)
+    return Shape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Shape(
@@ -177,11 +178,11 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     /**
      * Gives the mesh a single flat face.
      */
-    SHAPE_FLAT(0),
+    FLAT(0),
     /**
      * Gives the mesh two perpendicular flat faces, making a cross shape.
      */
-    SHAPE_CROSS(1),
+    CROSS(1),
     ;
 
     public val id: Long

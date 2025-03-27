@@ -33,6 +33,7 @@ import kotlin.jvm.JvmOverloads
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including
  * physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and
  * rotate children in a 2D project. Also gives control of the node's render order.
+ *
  * **Note:** Since both [Node2D] and [Control] inherit from [CanvasItem], they share several
  * concepts from the class such as the [CanvasItem.zIndex] and [CanvasItem.visible] properties.
  */
@@ -40,6 +41,13 @@ import kotlin.jvm.JvmOverloads
 public open class Node2D : CanvasItem() {
   /**
    * Position, relative to the node's parent. See also [globalPosition].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -52,6 +60,7 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Rotation in radians, relative to the node's parent. See also [globalRotation].
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    */
@@ -78,9 +87,17 @@ public open class Node2D : CanvasItem() {
   /**
    * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
    * [globalScale].
+   *
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
    * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
    * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
@@ -94,7 +111,9 @@ public open class Node2D : CanvasItem() {
   /**
    * If set to a non-zero value, slants the node in one direction or another. This can be used for
    * pseudo-3D effects. See also [globalSkew].
+   *
    * **Note:** Skew is performed on the X axis only, and *between* rotation and scaling.
+   *
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use `skew = deg_to_rad(value_in_degrees)`.
    */
@@ -108,6 +127,13 @@ public open class Node2D : CanvasItem() {
 
   /**
    * The node's [Transform2D], relative to the node's parent. See also [globalTransform].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -120,6 +146,13 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Global position. See also [position].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalPosition: Vector2
@@ -155,6 +188,13 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Global scale. See also [scale].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalScale: Vector2
@@ -178,6 +218,13 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Global [Transform2D]. See also [transform].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalTransform: Transform2D
@@ -189,17 +236,11 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(412, scriptIndex)
+    createNativeObject(395, scriptIndex)
   }
 
   /**
-   * Position, relative to the node's parent. See also [globalPosition].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [position] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -208,26 +249,17 @@ public open class Node2D : CanvasItem() {
    * //Your changes
    * node2d.position = myCoreType
    * ``````
+   *
+   * Position, relative to the node's parent. See also [globalPosition].
    */
   @CoreTypeHelper
-  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
-      block(this)
-      position = this
+  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply {
+     block(this)
+     position = this
   }
 
-
   /**
-   * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
-   * [globalScale].
-   * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
-   * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
-   * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [scale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -236,22 +268,22 @@ public open class Node2D : CanvasItem() {
    * //Your changes
    * node2d.scale = myCoreType
    * ``````
+   *
+   * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
+   * [globalScale].
+   *
+   * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
+   * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
+   * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
    */
   @CoreTypeHelper
-  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
-      block(this)
-      scale = this
+  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply {
+     block(this)
+     scale = this
   }
 
-
   /**
-   * The node's [Transform2D], relative to the node's parent. See also [globalTransform].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [transform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -260,22 +292,17 @@ public open class Node2D : CanvasItem() {
    * //Your changes
    * node2d.transform = myCoreType
    * ``````
+   *
+   * The node's [Transform2D], relative to the node's parent. See also [globalTransform].
    */
   @CoreTypeHelper
-  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
-      block(this)
-      transform = this
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply {
+     block(this)
+     transform = this
   }
 
-
   /**
-   * Global position. See also [position].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [globalPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -284,22 +311,17 @@ public open class Node2D : CanvasItem() {
    * //Your changes
    * node2d.globalPosition = myCoreType
    * ``````
+   *
+   * Global position. See also [position].
    */
   @CoreTypeHelper
-  public final fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
-      block(this)
-      globalPosition = this
+  public final fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply {
+     block(this)
+     globalPosition = this
   }
 
-
   /**
-   * Global scale. See also [scale].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [globalScale] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -308,22 +330,17 @@ public open class Node2D : CanvasItem() {
    * //Your changes
    * node2d.globalScale = myCoreType
    * ``````
+   *
+   * Global scale. See also [scale].
    */
   @CoreTypeHelper
-  public final fun globalScaleMutate(block: Vector2.() -> Unit): Vector2 = globalScale.apply{
-      block(this)
-      globalScale = this
+  public final fun globalScaleMutate(block: Vector2.() -> Unit): Vector2 = globalScale.apply {
+     block(this)
+     globalScale = this
   }
 
-
   /**
-   * Global [Transform2D]. See also [transform].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [globalTransform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -332,14 +349,15 @@ public open class Node2D : CanvasItem() {
    * //Your changes
    * node2d.globalTransform = myCoreType
    * ``````
+   *
+   * Global [Transform2D]. See also [transform].
    */
   @CoreTypeHelper
   public final fun globalTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      globalTransform.apply{
-      block(this)
-      globalTransform = this
+      globalTransform.apply {
+     block(this)
+     globalTransform = this
   }
-
 
   public final fun setPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -516,6 +534,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Rotates the node so that its local +X axis points towards the [point], which is expected to use
    * global coordinates.
+   *
    * [point] should not be the same as the node's position, otherwise the node always looks to the
    * right.
    */
@@ -526,6 +545,7 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Returns the angle between the node and the [point] in radians.
+   *
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png]Illustration
    * of the returned angle.[/url]
    */

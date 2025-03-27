@@ -21,6 +21,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -35,6 +36,7 @@ import kotlin.jvm.JvmName
  * This [SkeletonModifier3D] rotates a bone to look at a target. This is helpful for moving a
  * character's head to look at the player, rotating a turret to look at a target, or any other case
  * where you want to make a bone rotate towards something quickly and easily.
+ *
  * When applying multiple [LookAtModifier3D]s, the [LookAtModifier3D] assigned to the parent bone
  * must be put above the [LookAtModifier3D] assigned to the child bone in the list in order for the
  * child bone results to be correct.
@@ -160,7 +162,15 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   /**
    * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
    * multiple bones must always face the same direction, such as the eyes.
+   *
    * **Note:** This value indicates the local position of the object set in [originFrom].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var originOffset: Vector3
@@ -187,8 +197,11 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   /**
    * The duration of the time-based interpolation. Interpolation is triggered at the following
    * cases:
+   *
    * - When the target node is changed
+   *
    * - When an axis is flipped due to angle limitation
+   *
    * **Note:** The flipping occurs when the target is outside the angle limitation and the
    * internally computed secondary rotation axis of the forward vector is flipped. Visually, it occurs
    * when the target is outside the angle limitation and crosses the plane of the [forwardAxis] and
@@ -227,9 +240,11 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   /**
    * If `true`, limits the degree of rotation. This helps prevent the character's neck from rotating
    * 360 degrees.
+   *
    * **Note:** As with [AnimationTree] blending, interpolation is provided that favors
    * [Skeleton3D.getBoneRest]. This means that interpolation does not select the shortest path in some
    * cases.
+   *
    * **Note:** Some [transitionType] may exceed the limitations (e.g. `Back`, `Elastic`, and
    * `Spring`). If interpolation occurs while overshooting the limitations, the result might possibly
    * not respect the bone rest.
@@ -244,6 +259,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
 
   /**
    * If `true`, the limitations are spread from the bone symmetrically.
+   *
    * If `false`, the limitation can be specified separately for each side of the bone rest.
    */
   public final inline var symmetryLimitation: Boolean
@@ -269,6 +285,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * The threshold to start damping for [primaryLimitAngle]. It provides non-linear (b-spline)
    * interpolation, let it feel more resistance the more it rotate to the edge limit. This is useful
    * for simulating the limits of human motion.
+   *
    * If `1.0`, no damping is performed. If `0.0`, damping is always performed.
    */
   public final inline var primaryDampThreshold: Float
@@ -392,19 +409,11 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(364, scriptIndex)
+    createNativeObject(342, scriptIndex)
   }
 
   /**
-   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
-   * multiple bones must always face the same direction, such as the eyes.
-   * **Note:** This value indicates the local position of the object set in [originFrom].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [originOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -413,13 +422,17 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * //Your changes
    * lookatmodifier3d.originOffset = myCoreType
    * ``````
+   *
+   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
+   * multiple bones must always face the same direction, such as the eyes.
+   *
+   * **Note:** This value indicates the local position of the object set in [originFrom].
    */
   @CoreTypeHelper
-  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
-      block(this)
-      originOffset = this
+  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply {
+     block(this)
+     originOffset = this
   }
-
 
   public final fun setTargetNode(targetNode: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to targetNode)
@@ -506,7 +519,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   public final fun getOriginFrom(): OriginFrom {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginFromPtr, LONG)
-    return LookAtModifier3D.OriginFrom.from(TransferContext.readReturnValue(LONG) as Long)
+    return OriginFrom.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOriginBoneName(boneName: String): Unit {
@@ -752,6 +765,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   /**
    * Returns whether the time-based interpolation is running or not. If `true`, it is equivalent to
    * [getInterpolationRemaining] being `0`.
+   *
    * This is useful to determine whether a [LookAtModifier3D] can be removed safely.
    */
   public final fun isInterpolating(): Boolean {
@@ -763,6 +777,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   /**
    * Returns whether the target is within the angle limitations. It is useful for unsetting the
    * [targetNode] when the target is outside of the angle limitations.
+   *
    * **Note:** The value is updated after [SkeletonModifier3D.ProcessModification]. To retrieve this
    * value correctly, we recommend using the signal [signal SkeletonModifier3D.modification_processed].
    */
@@ -772,28 +787,35 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setTargetNode(targetNode: String) = setTargetNode(targetNode.asCachedNodePath())
+
+  public final fun setOriginExternalNode(externalNode: String) =
+      setOriginExternalNode(externalNode.asCachedNodePath())
+
   public enum class OriginFrom(
     id: Long,
   ) {
     /**
      * The bone rest position of the bone specified in [bone] is used as origin.
      */
-    ORIGIN_FROM_SELF(0),
+    SELF(0),
     /**
      * The bone global pose position of the bone specified in [originBone] is used as origin.
+     *
      * **Note:** It is recommended that you select only the parent bone unless you are familiar with
      * the bone processing process. The specified bone pose at the time the [LookAtModifier3D] is
      * processed is used as a reference. In other words, if you specify a child bone and the
      * [LookAtModifier3D] causes the child bone to move, the rendered result and direction will not
      * match.
      */
-    ORIGIN_FROM_SPECIFIC_BONE(1),
+    SPECIFIC_BONE(1),
     /**
      * The global position of the [Node3D] specified in [originExternalNode] is used as origin.
+     *
      * **Note:** Same as [ORIGIN_FROM_SPECIFIC_BONE], when specifying a [BoneAttachment3D] with a
      * child bone assigned, the rendered result and direction will not match.
      */
-    ORIGIN_FROM_EXTERNAL_NODE(2),
+    EXTERNAL_NODE(2),
     ;
 
     public val id: Long

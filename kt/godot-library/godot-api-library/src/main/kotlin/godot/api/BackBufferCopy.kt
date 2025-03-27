@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen
  * according to the [copyMode]. It can be accessed in shader scripts using the screen texture (i.e. a
  * uniform sampler with `hint_screen_texture`).
+ *
  * **Note:** Since this node inherits from [Node2D] (and not [Control]), anchors and margins won't
  * apply to child [Control]-derived nodes. This can be problematic when resizing the window. To avoid
  * this, add [Control]-derived nodes as *siblings* to the [BackBufferCopy] node instead of adding them
@@ -47,6 +48,13 @@ public open class BackBufferCopy : Node2D() {
 
   /**
    * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rect: Rect2
@@ -58,17 +66,11 @@ public open class BackBufferCopy : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(137, scriptIndex)
+    createNativeObject(102, scriptIndex)
   }
 
   /**
-   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [rect] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -77,13 +79,14 @@ public open class BackBufferCopy : Node2D() {
    * //Your changes
    * backbuffercopy.rect = myCoreType
    * ``````
+   *
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   @CoreTypeHelper
-  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
-      block(this)
-      rect = this
+  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply {
+     block(this)
+     rect = this
   }
-
 
   public final fun setRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
@@ -104,7 +107,7 @@ public open class BackBufferCopy : Node2D() {
   public final fun getCopyMode(): CopyMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCopyModePtr, LONG)
-    return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class CopyMode(
@@ -114,15 +117,15 @@ public open class BackBufferCopy : Node2D() {
      * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
      * portion of screen it covers.
      */
-    COPY_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * [BackBufferCopy] buffers a rectangular region.
      */
-    COPY_MODE_RECT(1),
+    RECT(1),
     /**
      * [BackBufferCopy] buffers the entire screen.
      */
-    COPY_MODE_VIEWPORT(2),
+    VIEWPORT(2),
     ;
 
     public val id: Long

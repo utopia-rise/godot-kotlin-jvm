@@ -16,7 +16,6 @@ import godot.core.JoyButton
 import godot.core.Key
 import godot.core.MouseButton
 import godot.core.MouseButtonMask
-import godot.core.MouseButtonMaskValue
 import godot.core.Signal2
 import godot.core.StringName
 import godot.core.VariantArray
@@ -33,6 +32,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -49,6 +50,7 @@ import kotlin.jvm.JvmStatic
  * The [Input] singleton handles key presses, mouse buttons and movement, gamepads, and input
  * actions. Actions and their events can be set in the **Input Map** tab in **Project > Project
  * Settings**, or with the [InputMap] class.
+ *
  * **Note:** [Input]'s methods reflect the global input state and are not affected by
  * [Control.acceptEvent] or [Viewport.setInputAsHandled], as those methods only deal with the way input
  * is propagated in the [SceneTree].
@@ -61,8 +63,68 @@ public object Input : Object() {
   @JvmStatic
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
+  /**
+   * Controls the mouse mode. See [MouseMode] for more information.
+   */
+  @JvmStatic
+  public final inline var mouseMode: MouseMode
+    @JvmName("mouseModeProperty")
+    get() = getMouseMode()
+    @JvmName("mouseModeProperty")
+    set(`value`) {
+      setMouseMode(value)
+    }
+
+  /**
+   * If `true`, similar input events sent by the operating system are accumulated. When input
+   * accumulation is enabled, all input events generated during a frame will be merged and emitted when
+   * the frame is done rendering. Therefore, this limits the number of input method calls per second to
+   * the rendering FPS.
+   *
+   * Input accumulation can be disabled to get slightly more precise/reactive input at the cost of
+   * increased CPU usage. In applications where drawing freehand lines is required, input accumulation
+   * should generally be disabled while the user is drawing the line to get results that closely follow
+   * the actual input.
+   *
+   * **Note:** Input accumulation is *enabled* by default.
+   */
+  @JvmStatic
+  public final inline var useAccumulatedInput: Boolean
+    @JvmName("useAccumulatedInputProperty")
+    get() = isUsingAccumulatedInput()
+    @JvmName("useAccumulatedInputProperty")
+    set(`value`) {
+      setUseAccumulatedInput(value)
+    }
+
+  /**
+   * If `true`, sends mouse input events when tapping or swiping on the touchscreen. See also
+   * [ProjectSettings.inputDevices/pointing/emulateMouseFromTouch].
+   */
+  @JvmStatic
+  public final inline var emulateMouseFromTouch: Boolean
+    @JvmName("emulateMouseFromTouchProperty")
+    get() = isEmulatingMouseFromTouch()
+    @JvmName("emulateMouseFromTouchProperty")
+    set(`value`) {
+      setEmulateMouseFromTouch(value)
+    }
+
+  /**
+   * If `true`, sends touch input events when clicking or dragging the mouse. See also
+   * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   */
+  @JvmStatic
+  public final inline var emulateTouchFromMouse: Boolean
+    @JvmName("emulateTouchFromMouseProperty")
+    get() = isEmulatingTouchFromMouse()
+    @JvmName("emulateTouchFromMouseProperty")
+    set(`value`) {
+      setEmulateTouchFromMouse(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(17)
+    getSingleton(10)
   }
 
   /**
@@ -79,10 +141,12 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the Latin key in the current keyboard layout. You can pass a
    * [Key] constant.
+   *
    * [isKeyPressed] is only recommended over [isPhysicalKeyPressed] in non-game applications. This
    * ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard
    * shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt,
    * use [isPhysicalKeyPressed].
+   *
    * **Note:** Due to keyboard ghosting, [isKeyPressed] may return `false` even if one of the
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
@@ -98,10 +162,12 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the key in the physical location on the 101/102-key US
    * QWERTY keyboard. You can pass a [Key] constant.
+   *
    * [isPhysicalKeyPressed] is recommended over [isKeyPressed] for in-game actions, as it will make
    * [kbd]W[/kbd]/[kbd]A[/kbd]/[kbd]S[/kbd]/[kbd]D[/kbd] layouts work regardless of the user's keyboard
    * layout. [isPhysicalKeyPressed] will also ensure that the top row number keys work on any keyboard
    * layout. If in doubt, use [isPhysicalKeyPressed].
+   *
    * **Note:** Due to keyboard ghosting, [isPhysicalKeyPressed] may return `false` even if one of
    * the action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
@@ -147,8 +213,10 @@ public object Input : Object() {
 
   /**
    * Returns `true` if you are pressing the action event.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
@@ -166,16 +234,21 @@ public object Input : Object() {
    * Returns `true` when the user has *started* pressing the action event in the current frame or
    * physics tick. It will only return `true` on the frame or tick that the user pressed down the
    * button.
+   *
    * This is useful for code that needs to run only once when an action is pressed, instead of every
    * frame while it's pressed.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
    * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be
    * pressed and released again rapidly, and `true` will still be returned so as not to miss input.
+   *
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
    * documentation for more information.
+   *
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionPressed] instead
    * to query the action state of the current event.
    */
@@ -190,10 +263,13 @@ public object Input : Object() {
   /**
    * Returns `true` when the user *stops* pressing the action event in the current frame or physics
    * tick. It will only return `true` on the frame or tick that the user releases the button.
+   *
    * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can
    * be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionReleased] instead
    * to query the action state of the current event.
    */
@@ -210,6 +286,7 @@ public object Input : Object() {
    * for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone,
    * the closer the value will be to 1. If the action is mapped to a control that has no axis such as
    * the keyboard, the value returned will be 0 or 1.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
@@ -224,6 +301,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring
    * the action's deadzone. In most cases, you should use [getActionStrength] instead.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
@@ -237,6 +315,7 @@ public object Input : Object() {
 
   /**
    * Get axis input by specifying two actions, one negative and one positive.
+   *
    * This is a shorthand for writing `Input.get_action_strength("positive_action") -
    * Input.get_action_strength("negative_action")`.
    */
@@ -249,9 +328,11 @@ public object Input : Object() {
 
   /**
    * Gets an input vector by specifying four actions for the positive and negative X and Y axes.
+   *
    * This method is useful when getting vector input, such as from a joystick, directional pad,
    * arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is
    * useful for using vector input as movement.
+   *
    * By default, the deadzone is automatically calculated from the average of the action deadzones.
    * However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
    */
@@ -283,6 +364,7 @@ public object Input : Object() {
   /**
    * Removes all mappings from the internal database that match the given GUID. All currently
    * connected joypads that use this GUID will become unmapped.
+   *
    * On Android, Godot will map to an internal fallback mapping.
    */
   @JvmStatic
@@ -330,6 +412,7 @@ public object Input : Object() {
    * `030000004c050000c405000000010000`. Returns an empty string if it cannot be found. Godot uses the
    * [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to
    * determine gamepad names and mappings based on this GUID.
+   *
    * On Windows, all XInput joypad GUIDs will be overridden by Godot to `__XINPUT_DEVICE__`, because
    * their mappings are the same.
    */
@@ -343,18 +426,28 @@ public object Input : Object() {
   /**
    * Returns a dictionary with extra platform-specific information about the device, e.g. the raw
    * gamepad name from the OS or the Steam Input index.
+   *
    * On Windows, the dictionary contains the following fields:
+   *
    * `xinput_index`: The index of the controller in the XInput system. Undefined for DirectInput
    * devices.
+   *
    * `vendor_id`: The USB vendor ID of the device.
+   *
    * `product_id`: The USB product ID of the device.
+   *
    * On Linux:
+   *
    * `raw_name`: The name of the controller as it came from the OS, before getting renamed by the
    * godot controller database.
+   *
    * `vendor_id`: The USB vendor ID of the device.
+   *
    * `product_id`: The USB product ID of the device.
+   *
    * `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device
    * this key won't be present.
+   *
    * **Note:** The returned dictionary is always empty on Web, iOS, Android, and macOS.
    */
   @JvmStatic
@@ -368,6 +461,7 @@ public object Input : Object() {
    * Queries whether an input device should be ignored or not. Devices can be ignored by setting the
    * environment variable `SDL_GAMECONTROLLER_IGNORE_DEVICES`. Read the
    * [url=https://wiki.libsdl.org/SDL2]SDL documentation[/url] for more information.
+   *
    * **Note:** Some 3rd party tools can contribute to the list of ignored devices. For example,
    * *SteamInput* creates virtual devices from physical devices for remapping purposes. To avoid
    * handling the same input device twice, the original device is added to the ignore list.
@@ -416,8 +510,10 @@ public object Input : Object() {
    * the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in
    * seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be
    * stopped early by calling [stopJoyVibration].
+   *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to
    * restart an effect if it has to be played for more than a few seconds.
+   *
    * **Note:** For macOS, vibration is only supported in macOS 11 and later.
    */
   @JvmOverloads
@@ -443,14 +539,20 @@ public object Input : Object() {
 
   /**
    * Vibrate the handheld device for the specified duration in milliseconds.
+   *
    * [amplitude] is the strength of the vibration, as a value between `0.0` and `1.0`. If set to
    * `-1.0`, the default vibration strength of the device is used.
+   *
    * **Note:** This method is implemented on Android, iOS, and Web. It has no effect on other
    * platforms.
+   *
    * **Note:** For Android, [vibrateHandheld] requires enabling the `VIBRATE` permission in the
    * export preset. Otherwise, [vibrateHandheld] will have no effect.
+   *
    * **Note:** For iOS, specifying the duration is only supported in iOS 13 and later.
+   *
    * **Note:** For Web, the amplitude cannot be changed.
+   *
    * **Note:** Some web browsers such as Safari and Firefox for Android do not support
    * [vibrateHandheld].
    */
@@ -464,8 +566,10 @@ public object Input : Object() {
   /**
    * Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one.
    * Otherwise, the method returns [Vector3.ZERO].
+   *
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   *
    * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableGravity] must be enabled.
    */
   @JvmStatic
@@ -478,11 +582,14 @@ public object Input : Object() {
   /**
    * Returns the acceleration in m/s² of the device's accelerometer sensor, if the device has one.
    * Otherwise, the method returns [Vector3.ZERO].
+   *
    * Note this method returns an empty [Vector3] when running from the editor even when your device
    * has an accelerometer. You must export your project to a supported device to read values from the
    * accelerometer.
+   *
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   *
    * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer] must be
    * enabled.
    */
@@ -496,8 +603,10 @@ public object Input : Object() {
   /**
    * Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer
    * sensor, if the device has one. Otherwise, the method returns [Vector3.ZERO].
+   *
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   *
    * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableMagnetometer] must be
    * enabled.
    */
@@ -511,8 +620,10 @@ public object Input : Object() {
   /**
    * Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor,
    * if the device has one. Otherwise, the method returns [Vector3.ZERO].
+   *
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   *
    * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableGyroscope] must be enabled.
    */
   @JvmStatic
@@ -525,6 +636,7 @@ public object Input : Object() {
   /**
    * Sets the gravity value of the accelerometer sensor. Can be used for debugging on devices
    * without a hardware sensor, for example in an editor on a PC.
+   *
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
@@ -537,6 +649,7 @@ public object Input : Object() {
   /**
    * Sets the acceleration value of the accelerometer sensor. Can be used for debugging on devices
    * without a hardware sensor, for example in an editor on a PC.
+   *
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
@@ -549,6 +662,7 @@ public object Input : Object() {
   /**
    * Sets the value of the magnetic field of the magnetometer sensor. Can be used for debugging on
    * devices without a hardware sensor, for example in an editor on a PC.
+   *
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
@@ -561,6 +675,7 @@ public object Input : Object() {
   /**
    * Sets the value of the rotation rate of the gyroscope sensor. Can be used for debugging on
    * devices without a hardware sensor, for example in an editor on a PC.
+   *
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
@@ -601,7 +716,7 @@ public object Input : Object() {
   public final fun getMouseButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmStatic
@@ -614,14 +729,16 @@ public object Input : Object() {
   public final fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseModePtr, LONG)
-    return Input.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the mouse position to the specified vector, provided in pixels and relative to an origin
    * at the upper left corner of the currently focused Window Manager game window.
+   *
    * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game
    * window if [MouseMode] is set to [MOUSE_MODE_CONFINED] or [MOUSE_MODE_CONFINED_HIDDEN].
+   *
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
@@ -633,8 +750,10 @@ public object Input : Object() {
 
   /**
    * This will simulate pressing the specified action.
+   *
    * The strength can be used for non-boolean actions, it's ranged between 0 and 1 representing the
    * intensity of the given action.
+   *
    * **Note:** This method will not cause any [Node.Input] calls. It is intended to be used with
    * [isActionPressed] and [isActionJustPressed]. If you want to simulate `_input`, use
    * [parseInputEvent] instead.
@@ -657,14 +776,15 @@ public object Input : Object() {
 
   /**
    * Sets the default cursor shape to be used in the viewport instead of [CURSOR_ARROW].
+   *
    * **Note:** If you want to change the default cursor shape for [Control]'s nodes, use
    * [Control.mouseDefaultCursorShape] instead.
+   *
    * **Note:** This method generates an [InputEventMouseMotion] to update cursor immediately.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW):
-      Unit {
+  public final fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.ARROW): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCursorShapePtr, NIL)
   }
@@ -676,21 +796,26 @@ public object Input : Object() {
   public final fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentCursorShapePtr, LONG)
-    return Input.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can
    * also be specified. Passing `null` to the image parameter resets to the system cursor. See
    * [CursorShape] for the list of shapes.
+   *
    * [image] can be either [Texture2D] or [Image] and its size must be lower than or equal to
    * 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
+   *
    * [hotspot] must be within [image]'s size.
+   *
    * **Note:** [AnimatedTexture]s aren't supported as custom mouse cursors. If using an
    * [AnimatedTexture], only the first frame will be displayed.
+   *
    * **Note:** The **Lossless**, **Lossy** or **Uncompressed** compression modes are recommended.
    * The **Video RAM** compression mode can be used, but it will be decompressed on the CPU, which
    * means loading times are slowed down and no memory is saved compared to lossless modes.
+   *
    * **Note:** On the web platform, the maximum allowed cursor image size is 128×128. Cursor images
    * larger than 32×32 will also only be displayed if the mouse cursor image is entirely located within
    * the page for [url=https://chromestatus.com/feature/5825971391299584]security reasons[/url].
@@ -699,7 +824,7 @@ public object Input : Object() {
   @JvmStatic
   public final fun setCustomMouseCursor(
     image: Resource?,
-    shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
+    shape: CursorShape = Input.CursorShape.ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
@@ -710,15 +835,16 @@ public object Input : Object() {
    * Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code.
    * Also generates [Node.Input] calls.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var cancel_event = InputEventAction.new()
    * cancel_event.action = "ui_cancel"
    * cancel_event.pressed = true
    * Input.parse_input_event(cancel_event)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var cancelEvent = new InputEventAction();
    * cancelEvent.Action = "ui_cancel";
    * cancelEvent.Pressed = true;
@@ -753,6 +879,7 @@ public object Input : Object() {
    * Sends all input events which are in the current buffer to the game loop. These events may have
    * been buffered as a result of accumulated input ([useAccumulatedInput]) or agile input flushing
    * ([ProjectSettings.inputDevices/buffering/agileEventFlushing]).
+   *
    * The engine will already do this itself at key execution points (at least once per frame).
    * However, this can be useful in advanced cases where you want precise control over the timing of
    * event handling.
@@ -789,36 +916,176 @@ public object Input : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns `true` if you are pressing the action event.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionPressed(action: String, exactMatch: Boolean = false): Boolean =
+      isActionPressed(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` when the user has *started* pressing the action event in the current frame or
+   * physics tick. It will only return `true` on the frame or tick that the user pressed down the
+   * button.
+   *
+   * This is useful for code that needs to run only once when an action is pressed, instead of every
+   * frame while it's pressed.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be
+   * pressed and released again rapidly, and `true` will still be returned so as not to miss input.
+   *
+   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   *
+   * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionPressed] instead
+   * to query the action state of the current event.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustPressed(action: String, exactMatch: Boolean = false): Boolean =
+      isActionJustPressed(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` when the user *stops* pressing the action event in the current frame or physics
+   * tick. It will only return `true` on the frame or tick that the user releases the button.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can
+   * be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
+   * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionReleased] instead
+   * to query the action state of the current event.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustReleased(action: String, exactMatch: Boolean = false): Boolean =
+      isActionJustReleased(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad,
+   * for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone,
+   * the closer the value will be to 1. If the action is mapped to a control that has no axis such as
+   * the keyboard, the value returned will be 0 or 1.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getActionStrength(action: String, exactMatch: Boolean = false): Float =
+      getActionStrength(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring
+   * the action's deadzone. In most cases, you should use [getActionStrength] instead.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getActionRawStrength(action: String, exactMatch: Boolean = false): Float =
+      getActionRawStrength(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Get axis input by specifying two actions, one negative and one positive.
+   *
+   * This is a shorthand for writing `Input.get_action_strength("positive_action") -
+   * Input.get_action_strength("negative_action")`.
+   */
+  @JvmStatic
+  public final fun getAxis(negativeAction: String, positiveAction: String): Float =
+      getAxis(negativeAction.asCachedStringName(), positiveAction.asCachedStringName())
+
+  /**
+   * Gets an input vector by specifying four actions for the positive and negative X and Y axes.
+   *
+   * This method is useful when getting vector input, such as from a joystick, directional pad,
+   * arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is
+   * useful for using vector input as movement.
+   *
+   * By default, the deadzone is automatically calculated from the average of the action deadzones.
+   * However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getVector(
+    negativeX: String,
+    positiveX: String,
+    negativeY: String,
+    positiveY: String,
+    deadzone: Float = -1.0f,
+  ): Vector2 =
+      getVector(negativeX.asCachedStringName(), positiveX.asCachedStringName(), negativeY.asCachedStringName(), positiveY.asCachedStringName(), deadzone)
+
+  /**
+   * This will simulate pressing the specified action.
+   *
+   * The strength can be used for non-boolean actions, it's ranged between 0 and 1 representing the
+   * intensity of the given action.
+   *
+   * **Note:** This method will not cause any [Node.Input] calls. It is intended to be used with
+   * [isActionPressed] and [isActionJustPressed]. If you want to simulate `_input`, use
+   * [parseInputEvent] instead.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun actionPress(action: String, strength: Float = 1.0f) =
+      actionPress(action.asCachedStringName(), strength)
+
+  /**
+   * If the specified action is already pressed, this will release it.
+   */
+  @JvmStatic
+  public final fun actionRelease(action: String) = actionRelease(action.asCachedStringName())
+
   public enum class MouseMode(
     id: Long,
   ) {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
-    MOUSE_MODE_VISIBLE(0),
+    VISIBLE(0),
     /**
      * Makes the mouse cursor hidden if it is visible.
      */
-    MOUSE_MODE_HIDDEN(1),
+    HIDDEN(1),
     /**
      * Captures the mouse. The mouse will be hidden and its position locked at the center of the
      * window manager's window.
+     *
      * **Note:** If you want to process the mouse's movement in this mode, you need to use
      * [InputEventMouseMotion.relative].
      */
-    MOUSE_MODE_CAPTURED(2),
+    CAPTURED(2),
     /**
      * Confines the mouse cursor to the game window, and make it visible.
      */
-    MOUSE_MODE_CONFINED(3),
+    CONFINED(3),
     /**
      * Confines the mouse cursor to the game window, and make it hidden.
      */
-    MOUSE_MODE_CONFINED_HIDDEN(4),
+    CONFINED_HIDDEN(4),
     /**
      * Max value of the [MouseMode].
      */
-    MOUSE_MODE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -837,86 +1104,87 @@ public object Input : Object() {
     /**
      * Arrow cursor. Standard, default pointing cursor.
      */
-    CURSOR_ARROW(0),
+    ARROW(0),
     /**
      * I-beam cursor. Usually used to show where the text cursor will appear when the mouse is
      * clicked.
      */
-    CURSOR_IBEAM(1),
+    IBEAM(1),
     /**
      * Pointing hand cursor. Usually used to indicate the pointer is over a link or other
      * interactable item.
      */
-    CURSOR_POINTING_HAND(2),
+    POINTING_HAND(2),
     /**
      * Cross cursor. Typically appears over regions in which a drawing operation can be performed or
      * for selections.
      */
-    CURSOR_CROSS(3),
+    CROSS(3),
     /**
      * Wait cursor. Indicates that the application is busy performing an operation, and that it
      * cannot be used during the operation (e.g. something is blocking its main thread).
      */
-    CURSOR_WAIT(4),
+    WAIT(4),
     /**
      * Busy cursor. Indicates that the application is busy performing an operation, and that it is
      * still usable during the operation.
      */
-    CURSOR_BUSY(5),
+    BUSY(5),
     /**
      * Drag cursor. Usually displayed when dragging something.
+     *
      * **Note:** Windows lacks a dragging cursor, so [CURSOR_DRAG] is the same as [CURSOR_MOVE] for
      * this platform.
      */
-    CURSOR_DRAG(6),
+    DRAG(6),
     /**
      * Can drop cursor. Usually displayed when dragging something to indicate that it can be dropped
      * at the current position.
      */
-    CURSOR_CAN_DROP(7),
+    CAN_DROP(7),
     /**
      * Forbidden cursor. Indicates that the current action is forbidden (for example, when dragging
      * something) or that the control at a position is disabled.
      */
-    CURSOR_FORBIDDEN(8),
+    FORBIDDEN(8),
     /**
      * Vertical resize mouse cursor. A double-headed vertical arrow. It tells the user they can
      * resize the window or the panel vertically.
      */
-    CURSOR_VSIZE(9),
+    VSIZE(9),
     /**
      * Horizontal resize mouse cursor. A double-headed horizontal arrow. It tells the user they can
      * resize the window or the panel horizontally.
      */
-    CURSOR_HSIZE(10),
+    HSIZE(10),
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the bottom
      * left to the top right. It tells the user they can resize the window or the panel both
      * horizontally and vertically.
      */
-    CURSOR_BDIAGSIZE(11),
+    BDIAGSIZE(11),
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the top left
      * to the bottom right, the opposite of [CURSOR_BDIAGSIZE]. It tells the user they can resize the
      * window or the panel both horizontally and vertically.
      */
-    CURSOR_FDIAGSIZE(12),
+    FDIAGSIZE(12),
     /**
      * Move cursor. Indicates that something can be moved.
      */
-    CURSOR_MOVE(13),
+    MOVE(13),
     /**
      * Vertical split mouse cursor. On Windows, it's the same as [CURSOR_VSIZE].
      */
-    CURSOR_VSPLIT(14),
+    VSPLIT(14),
     /**
      * Horizontal split mouse cursor. On Windows, it's the same as [CURSOR_HSIZE].
      */
-    CURSOR_HSPLIT(15),
+    HSPLIT(15),
     /**
      * Help cursor. Usually a question mark.
      */
-    CURSOR_HELP(16),
+    HELP(16),
     ;
 
     public val id: Long

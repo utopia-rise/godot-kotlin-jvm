@@ -17,14 +17,16 @@ import kotlin.Unit
  * patterns, it's recommended to use [CheckBox] when toggling it has **no** immediate effect on
  * something. For example, it could be used when toggling it will only do something once a confirmation
  * button is pressed.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * When [BaseButton.buttonGroup] specifies a [ButtonGroup], [CheckBox] changes its appearance to
  * that of a radio button and uses the various `radio_*` theme properties.
  */
 @GodotBaseType
 public open class CheckBox : Button() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(182, scriptIndex)
+    createNativeObject(148, scriptIndex)
   }
 
   public companion object

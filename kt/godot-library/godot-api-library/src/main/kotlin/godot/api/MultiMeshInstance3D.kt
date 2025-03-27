@@ -20,6 +20,7 @@ import kotlin.jvm.JvmName
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
  * [MultiMesh] resource.
+ *
  * This is useful to optimize the rendering of a high number of instances of a given mesh (for
  * example trees in a forest or grass strands).
  */
@@ -38,7 +39,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(386, scriptIndex)
+    createNativeObject(365, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

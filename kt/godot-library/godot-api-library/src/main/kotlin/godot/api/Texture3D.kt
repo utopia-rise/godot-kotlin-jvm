@@ -26,56 +26,58 @@ import kotlin.Unit
  * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
  * all the functions necessary for accessing the derived resource types. [Texture3D] is the base class
  * for all 3-dimensional texture types. See also [TextureLayered].
+ *
  * All images need to have the same width, height and number of mipmap levels.
+ *
  * To create such a texture file yourself, reimport your image files using the Godot Editor import
  * presets.
  */
 @GodotBaseType
 public open class Texture3D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(677, scriptIndex)
+    createNativeObject(672, scriptIndex)
   }
 
   /**
    * Called when the [Texture3D]'s format is queried.
    */
   public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_get_format is not implemented for Texture3D")
+    throw NotImplementedError("_getFormat is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s width is queried.
    */
   public open fun _getWidth(): Int {
-    throw NotImplementedError("_get_width is not implemented for Texture3D")
+    throw NotImplementedError("_getWidth is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s height is queried.
    */
   public open fun _getHeight(): Int {
-    throw NotImplementedError("_get_height is not implemented for Texture3D")
+    throw NotImplementedError("_getHeight is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s depth is queried.
    */
   public open fun _getDepth(): Int {
-    throw NotImplementedError("_get_depth is not implemented for Texture3D")
+    throw NotImplementedError("_getDepth is not implemented for Texture3D")
   }
 
   /**
    * Called when the presence of mipmaps in the [Texture3D] is queried.
    */
   public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_has_mipmaps is not implemented for Texture3D")
+    throw NotImplementedError("_hasMipmaps is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s data is queried.
    */
   public open fun _getData(): VariantArray<Image> {
-    throw NotImplementedError("_get_data is not implemented for Texture3D")
+    throw NotImplementedError("_getData is not implemented for Texture3D")
   }
 
   /**

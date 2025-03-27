@@ -1,31 +1,42 @@
 package godot.codegen.models.enriched
 
+import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.ApiType
 import godot.codegen.models.Class
-import godot.codegen.models.custom.AdditionalImport
-import godot.codegen.traits.IDocumented
-import godot.codegen.traits.TypedTrait
-import godot.common.extensions.escapeUnderscore
-import java.util.*
+import godot.codegen.models.traits.DocumentedGenerationTrait
+import godot.codegen.models.traits.Nature
+import godot.codegen.models.traits.TypeGenerationTrait
+import godot.codegen.models.traits.from
 
-class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {
-    val constants= internal.constants?.toEnriched() ?: listOf()
-    val signals = internal.signals?.toEnriched() ?: listOf()
-    val name = internal.name.escapeUnderscore()
-    val inherits = internal.inherits?.escapeUnderscore()
-    val engineClassDBIndexName = "ENGINECLASS_${internal.name.uppercase(Locale.US)}"
-    val properties= internal.properties?.toEnriched() ?: listOf()
-    val methods = internal.methods?.toEnriched() ?: listOf()
-    val apiType = ApiType.from(internal.apiType)
-    override val description = internal.description
+class EnrichedClass(model: Class) : TypeGenerationTrait, DocumentedGenerationTrait {
+    override val identifier = model.name
+    override val nature = Nature.CLASS
+    override val className = ClassName.from(this)
 
-    override val type = name
+    val apiType = ApiType.from(model.apiType)
+    val isInstantiable = model.isInstantiable
 
-    val additionalImports = mutableListOf<AdditionalImport>()
+    var parent: EnrichedClass? = null
+        private set
+    var isSingleton = false
+        private set
 
-    val enums = internal.enums?.toEnriched(this) ?: listOf()
+    val constants = model.constants?.toEnriched() ?: listOf()
+    val enums = model.enums?.toEnriched(this) ?: listOf()
+    val signals = model.signals?.toEnriched() ?: listOf()
+    val properties = model.properties?.toEnriched() ?: listOf()
+    val methods = model.methods?.toEnriched() ?: listOf()
 
-    fun copy(internalNewName: String) = EnrichedClass(internal.copy(internalNewName))
+    override var description = model.description
+    val additionalImports = mutableSetOf<ClassName>()
+
+    fun makeSingleton() {
+        isSingleton = true
+    }
+
+    fun setParent(parent: EnrichedClass) {
+        this.parent = parent
+    }
 }
 
 fun List<Class>.toEnriched() = map { EnrichedClass(it) }

@@ -57,6 +57,13 @@ public open class Light2D internal constructor() : Node2D() {
 
   /**
    * The Light2D's [Color].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -136,6 +143,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The layer mask. Only objects with a matching [CanvasItem.lightMask] will be affected by the
    * Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
+   *
    * **Note:** [rangeItemCullMask] is ignored by [DirectionalLight2D], which will always light a 2D
    * node regardless of the 2D node's [CanvasItem.lightMask].
    */
@@ -160,6 +168,13 @@ public open class Light2D internal constructor() : Node2D() {
 
   /**
    * [Color] of shadows cast by the Light2D.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -208,17 +223,11 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(353, scriptIndex)
+    createNativeObject(331, scriptIndex)
   }
 
   /**
-   * The Light2D's [Color].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [color] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -227,22 +236,17 @@ public open class Light2D internal constructor() : Node2D() {
    * //Your changes
    * light2d.color = myCoreType
    * ``````
+   *
+   * The Light2D's [Color].
    */
   @CoreTypeHelper
-  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
-      block(this)
-      color = this
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
+     block(this)
+     color = this
   }
 
-
   /**
-   * [Color] of shadows cast by the Light2D.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [shadowColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -251,13 +255,14 @@ public open class Light2D internal constructor() : Node2D() {
    * //Your changes
    * light2d.shadowColor = myCoreType
    * ``````
+   *
+   * [Color] of shadows cast by the Light2D.
    */
   @CoreTypeHelper
-  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
-      block(this)
-      shadowColor = this
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply {
+     block(this)
+     shadowColor = this
   }
-
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -399,7 +404,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getShadowFilter(): ShadowFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowFilterPtr, LONG)
-    return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    return ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setShadowColor(shadowColor: Color): Unit {
@@ -421,7 +426,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
-    return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -450,17 +455,17 @@ public open class Light2D internal constructor() : Node2D() {
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
      * render. See [shadowFilter].
      */
-    SHADOW_FILTER_NONE(0),
+    NONE(0),
     /**
      * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to
      * hard shadow rendering. See [shadowFilter].
      */
-    SHADOW_FILTER_PCF5(1),
+    PCF5(1),
     /**
      * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest
      * shadow filtering mode, and should be used sparingly. See [shadowFilter].
      */
-    SHADOW_FILTER_PCF13(2),
+    PCF13(2),
     ;
 
     public val id: Long
@@ -480,17 +485,17 @@ public open class Light2D internal constructor() : Node2D() {
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
      * is the common behavior of a light.
      */
-    BLEND_MODE_ADD(0),
+    ADD(0),
     /**
      * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it,
      * resulting in inversed light effect.
      */
-    BLEND_MODE_SUB(1),
+    SUB(1),
     /**
      * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by
      * linear interpolation.
      */
-    BLEND_MODE_MIX(2),
+    MIX(2),
     ;
 
     public val id: Long

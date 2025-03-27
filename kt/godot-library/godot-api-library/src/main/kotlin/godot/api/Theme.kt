@@ -23,6 +23,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,8 +43,10 @@ import kotlin.jvm.JvmName
  * a separate theme resource to a branch of control nodes. A theme resource assigned to a control
  * applies to the control itself, as well as all of its direct and indirect children (as long as a
  * chain of controls is uninterrupted).
+ *
  * Use [ProjectSettings.gui/theme/custom] to set up a project-scope theme that will be available to
  * every control in your project.
+ *
  * Use [Control.theme] of any control node to set up a theme that will be available to that control
  * and all of its direct and indirect children.
  */
@@ -53,6 +56,7 @@ public open class Theme : Resource() {
    * The default base scale factor of this theme resource. Used by some controls to scale their
    * visual properties based on the global scale factor. If this value is set to `0.0`, the global
    * scale factor is used (see [ThemeDB.fallbackBaseScale]).
+   *
    * Use [hasDefaultBaseScale] to check if this value is valid.
    */
   public final inline var defaultBaseScale: Float
@@ -67,6 +71,7 @@ public open class Theme : Resource() {
    * The default font of this theme resource. Used as the default value when trying to fetch a font
    * resource that doesn't exist in this theme or is in invalid state. If the default font is also
    * missing or invalid, the engine fallback value is used (see [ThemeDB.fallbackFont]).
+   *
    * Use [hasDefaultFont] to check if this value is valid.
    */
   public final inline var defaultFont: Font?
@@ -81,6 +86,7 @@ public open class Theme : Resource() {
    * The default font size of this theme resource. Used as the default value when trying to fetch a
    * font size value that doesn't exist in this theme or is in invalid state. If the default font size
    * is also missing or invalid, the engine fallback value is used (see [ThemeDB.fallbackFontSize]).
+   *
    * Values below `1` are invalid and can be used to unset the property. Use [hasDefaultFontSize] to
    * check if this value is valid.
    */
@@ -93,7 +99,7 @@ public open class Theme : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(686, scriptIndex)
+    createNativeObject(681, scriptIndex)
   }
 
   /**
@@ -111,6 +117,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns the icon property defined by [name] and [themeType], if it exists.
+   *
    * Returns the engine fallback icon value if the property doesn't exist (see
    * [ThemeDB.fallbackIcon]). Use [hasIcon] to check for existence.
    */
@@ -122,6 +129,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if the icon property defined by [name] and [themeType] exists.
+   *
    * Returns `false` if it doesn't exist. Use [setIcon] to define it.
    */
   public final fun hasIcon(name: StringName, themeType: StringName): Boolean {
@@ -132,6 +140,7 @@ public open class Theme : Resource() {
 
   /**
    * Renames the icon property defined by [oldName] and [themeType] to [name], if it exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasIcon] to check for existence, and [clearIcon] to remove the existing property.
    */
@@ -146,6 +155,7 @@ public open class Theme : Resource() {
 
   /**
    * Removes the icon property defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasIcon] to check for existence.
    */
   public final fun clearIcon(name: StringName, themeType: StringName): Unit {
@@ -188,6 +198,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns the [StyleBox] property defined by [name] and [themeType], if it exists.
+   *
    * Returns the engine fallback stylebox value if the property doesn't exist (see
    * [ThemeDB.fallbackStylebox]). Use [hasStylebox] to check for existence.
    */
@@ -199,6 +210,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if the [StyleBox] property defined by [name] and [themeType] exists.
+   *
    * Returns `false` if it doesn't exist. Use [setStylebox] to define it.
    */
   public final fun hasStylebox(name: StringName, themeType: StringName): Boolean {
@@ -209,6 +221,7 @@ public open class Theme : Resource() {
 
   /**
    * Renames the [StyleBox] property defined by [oldName] and [themeType] to [name], if it exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasStylebox] to check for existence, and [clearStylebox] to remove the existing property.
    */
@@ -223,6 +236,7 @@ public open class Theme : Resource() {
 
   /**
    * Removes the [StyleBox] property defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasStylebox] to check for existence.
    */
   public final fun clearStylebox(name: StringName, themeType: StringName): Unit {
@@ -265,9 +279,11 @@ public open class Theme : Resource() {
 
   /**
    * Returns the [Font] property defined by [name] and [themeType], if it exists.
+   *
    * Returns the default theme font if the property doesn't exist and the default theme font is set
    * up (see [defaultFont]). Use [hasFont] to check for existence of the property and [hasDefaultFont]
    * to check for existence of the default theme font.
+   *
    * Returns the engine fallback font value, if neither exist (see [ThemeDB.fallbackFont]).
    */
   public final fun getFont(name: StringName, themeType: StringName): Font? {
@@ -279,6 +295,7 @@ public open class Theme : Resource() {
   /**
    * Returns `true` if the [Font] property defined by [name] and [themeType] exists, or if the
    * default theme font is set up (see [hasDefaultFont]).
+   *
    * Returns `false` if neither exist. Use [setFont] to define the property.
    */
   public final fun hasFont(name: StringName, themeType: StringName): Boolean {
@@ -289,6 +306,7 @@ public open class Theme : Resource() {
 
   /**
    * Renames the [Font] property defined by [oldName] and [themeType] to [name], if it exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasFont] to check for existence, and [clearFont] to remove the existing property.
    */
@@ -303,6 +321,7 @@ public open class Theme : Resource() {
 
   /**
    * Removes the [Font] property defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasFont] to check for existence.
    */
   public final fun clearFont(name: StringName, themeType: StringName): Unit {
@@ -345,9 +364,11 @@ public open class Theme : Resource() {
 
   /**
    * Returns the font size property defined by [name] and [themeType], if it exists.
+   *
    * Returns the default theme font size if the property doesn't exist and the default theme font
    * size is set up (see [defaultFontSize]). Use [hasFontSize] to check for existence of the property
    * and [hasDefaultFontSize] to check for existence of the default theme font.
+   *
    * Returns the engine fallback font size value, if neither exist (see [ThemeDB.fallbackFontSize]).
    */
   public final fun getFontSize(name: StringName, themeType: StringName): Int {
@@ -359,6 +380,7 @@ public open class Theme : Resource() {
   /**
    * Returns `true` if the font size property defined by [name] and [themeType] exists, or if the
    * default theme font size is set up (see [hasDefaultFontSize]).
+   *
    * Returns `false` if neither exist. Use [setFontSize] to define the property.
    */
   public final fun hasFontSize(name: StringName, themeType: StringName): Boolean {
@@ -369,6 +391,7 @@ public open class Theme : Resource() {
 
   /**
    * Renames the font size property defined by [oldName] and [themeType] to [name], if it exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
    */
@@ -383,6 +406,7 @@ public open class Theme : Resource() {
 
   /**
    * Removes the font size property defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasFontSize] to check for existence.
    */
   public final fun clearFontSize(name: StringName, themeType: StringName): Unit {
@@ -425,6 +449,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns the [Color] property defined by [name] and [themeType], if it exists.
+   *
    * Returns the default color value if the property doesn't exist. Use [hasColor] to check for
    * existence.
    */
@@ -436,6 +461,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if the [Color] property defined by [name] and [themeType] exists.
+   *
    * Returns `false` if it doesn't exist. Use [setColor] to define it.
    */
   public final fun hasColor(name: StringName, themeType: StringName): Boolean {
@@ -446,6 +472,7 @@ public open class Theme : Resource() {
 
   /**
    * Renames the [Color] property defined by [oldName] and [themeType] to [name], if it exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasColor] to check for existence, and [clearColor] to remove the existing property.
    */
@@ -460,6 +487,7 @@ public open class Theme : Resource() {
 
   /**
    * Removes the [Color] property defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasColor] to check for existence.
    */
   public final fun clearColor(name: StringName, themeType: StringName): Unit {
@@ -502,6 +530,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns the constant property defined by [name] and [themeType], if it exists.
+   *
    * Returns `0` if the property doesn't exist. Use [hasConstant] to check for existence.
    */
   public final fun getConstant(name: StringName, themeType: StringName): Int {
@@ -512,6 +541,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if the constant property defined by [name] and [themeType] exists.
+   *
    * Returns `false` if it doesn't exist. Use [setConstant] to define it.
    */
   public final fun hasConstant(name: StringName, themeType: StringName): Boolean {
@@ -522,6 +552,7 @@ public open class Theme : Resource() {
 
   /**
    * Renames the constant property defined by [oldName] and [themeType] to [name], if it exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasConstant] to check for existence, and [clearConstant] to remove the existing property.
    */
@@ -536,6 +567,7 @@ public open class Theme : Resource() {
 
   /**
    * Removes the constant property defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasConstant] to check for existence.
    */
   public final fun clearConstant(name: StringName, themeType: StringName): Unit {
@@ -576,6 +608,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if [defaultBaseScale] has a valid value.
+   *
    * Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.
    */
   public final fun hasDefaultBaseScale(): Boolean {
@@ -597,6 +630,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if [defaultFont] has a valid value.
+   *
    * Returns `false` if it doesn't.
    */
   public final fun hasDefaultFont(): Boolean {
@@ -618,6 +652,7 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if [defaultFontSize] has a valid value.
+   *
    * Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.
    */
   public final fun hasDefaultFontSize(): Boolean {
@@ -629,7 +664,9 @@ public open class Theme : Resource() {
   /**
    * Creates or changes the value of the theme property of [dataType] defined by [name] and
    * [themeType]. Use [clearThemeItem] to remove the property.
+   *
    * Fails if the [value] type is not accepted by [dataType].
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -645,8 +682,10 @@ public open class Theme : Resource() {
 
   /**
    * Returns the theme property of [dataType] defined by [name] and [themeType], if it exists.
+   *
    * Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use
    * [hasThemeItem] to check for existence.
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -662,7 +701,9 @@ public open class Theme : Resource() {
 
   /**
    * Returns `true` if the theme property of [dataType] defined by [name] and [themeType] exists.
+   *
    * Returns `false` if it doesn't exist. Use [setThemeItem] to define it.
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -679,8 +720,10 @@ public open class Theme : Resource() {
   /**
    * Renames the theme property of [dataType] defined by [oldName] and [themeType] to [name], if it
    * exists.
+   *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasThemeItem] to check for existence, and [clearThemeItem] to remove the existing property.
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -696,7 +739,9 @@ public open class Theme : Resource() {
 
   /**
    * Removes the theme property of [dataType] defined by [name] and [themeType], if it exists.
+   *
    * Fails if it doesn't exist. Use [hasThemeItem] to check for existence.
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -712,6 +757,7 @@ public open class Theme : Resource() {
   /**
    * Returns a list of names for properties of [dataType] defined with [themeType]. Use
    * [getThemeItemTypeList] to get a list of possible theme type names.
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -724,6 +770,7 @@ public open class Theme : Resource() {
   /**
    * Returns a list of all unique theme type names for [dataType] properties. Use [getTypeList] to
    * get a list of all unique theme types.
+   *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
@@ -735,11 +782,14 @@ public open class Theme : Resource() {
 
   /**
    * Marks [themeType] as a variation of [baseType].
+   *
    * This adds [themeType] as a suggested option for [Control.themeTypeVariation] on a [Control]
    * that is of the [baseType] class.
+   *
    * Variations can also be nested, i.e. [baseType] can be another variation. If a chain of
    * variations ends with a [baseType] matching the class of the [Control], the whole chain is going to
    * be suggested as options.
+   *
    * **Note:** Suggestions only show up if this theme resource is set as the project default theme.
    * See [ProjectSettings.gui/theme/custom].
    */
@@ -786,6 +836,7 @@ public open class Theme : Resource() {
 
   /**
    * Adds an empty theme type for every valid data type.
+   *
    * **Note:** Empty types are not saved with the theme. This method only exists to perform
    * in-memory changes to the resource. Use available `set_*` methods to add theme items.
    */
@@ -816,6 +867,7 @@ public open class Theme : Resource() {
 
   /**
    * Adds missing and overrides existing definitions with values from the [other] theme resource.
+   *
    * **Note:** This modifies the current theme. If you want to merge two themes together without
    * modifying either one, create a new empty theme and merge the other two into it one after another.
    */
@@ -832,37 +884,465 @@ public open class Theme : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
+  /**
+   * Creates or changes the value of the icon property defined by [name] and [themeType]. Use
+   * [clearIcon] to remove the property.
+   */
+  public final fun setIcon(
+    name: String,
+    themeType: String,
+    texture: Texture2D?,
+  ) = setIcon(name.asCachedStringName(), themeType.asCachedStringName(), texture)
+
+  /**
+   * Returns the icon property defined by [name] and [themeType], if it exists.
+   *
+   * Returns the engine fallback icon value if the property doesn't exist (see
+   * [ThemeDB.fallbackIcon]). Use [hasIcon] to check for existence.
+   */
+  public final fun getIcon(name: String, themeType: String): Texture2D? =
+      getIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the icon property defined by [name] and [themeType] exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setIcon] to define it.
+   */
+  public final fun hasIcon(name: String, themeType: String): Boolean =
+      hasIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the icon property defined by [oldName] and [themeType] to [name], if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasIcon] to check for existence, and [clearIcon] to remove the existing property.
+   */
+  public final fun renameIcon(
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameIcon(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the icon property defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasIcon] to check for existence.
+   */
+  public final fun clearIcon(name: String, themeType: String) =
+      clearIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Creates or changes the value of the [StyleBox] property defined by [name] and [themeType]. Use
+   * [clearStylebox] to remove the property.
+   */
+  public final fun setStylebox(
+    name: String,
+    themeType: String,
+    texture: StyleBox?,
+  ) = setStylebox(name.asCachedStringName(), themeType.asCachedStringName(), texture)
+
+  /**
+   * Returns the [StyleBox] property defined by [name] and [themeType], if it exists.
+   *
+   * Returns the engine fallback stylebox value if the property doesn't exist (see
+   * [ThemeDB.fallbackStylebox]). Use [hasStylebox] to check for existence.
+   */
+  public final fun getStylebox(name: String, themeType: String): StyleBox? =
+      getStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the [StyleBox] property defined by [name] and [themeType] exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setStylebox] to define it.
+   */
+  public final fun hasStylebox(name: String, themeType: String): Boolean =
+      hasStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the [StyleBox] property defined by [oldName] and [themeType] to [name], if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasStylebox] to check for existence, and [clearStylebox] to remove the existing property.
+   */
+  public final fun renameStylebox(
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameStylebox(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the [StyleBox] property defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasStylebox] to check for existence.
+   */
+  public final fun clearStylebox(name: String, themeType: String) =
+      clearStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Creates or changes the value of the [Font] property defined by [name] and [themeType]. Use
+   * [clearFont] to remove the property.
+   */
+  public final fun setFont(
+    name: String,
+    themeType: String,
+    font: Font?,
+  ) = setFont(name.asCachedStringName(), themeType.asCachedStringName(), font)
+
+  /**
+   * Returns the [Font] property defined by [name] and [themeType], if it exists.
+   *
+   * Returns the default theme font if the property doesn't exist and the default theme font is set
+   * up (see [defaultFont]). Use [hasFont] to check for existence of the property and [hasDefaultFont]
+   * to check for existence of the default theme font.
+   *
+   * Returns the engine fallback font value, if neither exist (see [ThemeDB.fallbackFont]).
+   */
+  public final fun getFont(name: String, themeType: String): Font? =
+      getFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the [Font] property defined by [name] and [themeType] exists, or if the
+   * default theme font is set up (see [hasDefaultFont]).
+   *
+   * Returns `false` if neither exist. Use [setFont] to define the property.
+   */
+  public final fun hasFont(name: String, themeType: String): Boolean =
+      hasFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the [Font] property defined by [oldName] and [themeType] to [name], if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasFont] to check for existence, and [clearFont] to remove the existing property.
+   */
+  public final fun renameFont(
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameFont(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the [Font] property defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasFont] to check for existence.
+   */
+  public final fun clearFont(name: String, themeType: String) =
+      clearFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Creates or changes the value of the font size property defined by [name] and [themeType]. Use
+   * [clearFontSize] to remove the property.
+   */
+  public final fun setFontSize(
+    name: String,
+    themeType: String,
+    fontSize: Int,
+  ) = setFontSize(name.asCachedStringName(), themeType.asCachedStringName(), fontSize)
+
+  /**
+   * Returns the font size property defined by [name] and [themeType], if it exists.
+   *
+   * Returns the default theme font size if the property doesn't exist and the default theme font
+   * size is set up (see [defaultFontSize]). Use [hasFontSize] to check for existence of the property
+   * and [hasDefaultFontSize] to check for existence of the default theme font.
+   *
+   * Returns the engine fallback font size value, if neither exist (see [ThemeDB.fallbackFontSize]).
+   */
+  public final fun getFontSize(name: String, themeType: String): Int =
+      getFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the font size property defined by [name] and [themeType] exists, or if the
+   * default theme font size is set up (see [hasDefaultFontSize]).
+   *
+   * Returns `false` if neither exist. Use [setFontSize] to define the property.
+   */
+  public final fun hasFontSize(name: String, themeType: String): Boolean =
+      hasFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the font size property defined by [oldName] and [themeType] to [name], if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
+   */
+  public final fun renameFontSize(
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameFontSize(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the font size property defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasFontSize] to check for existence.
+   */
+  public final fun clearFontSize(name: String, themeType: String) =
+      clearFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Creates or changes the value of the [Color] property defined by [name] and [themeType]. Use
+   * [clearColor] to remove the property.
+   */
+  public final fun setColor(
+    name: String,
+    themeType: String,
+    color: Color,
+  ) = setColor(name.asCachedStringName(), themeType.asCachedStringName(), color)
+
+  /**
+   * Returns the [Color] property defined by [name] and [themeType], if it exists.
+   *
+   * Returns the default color value if the property doesn't exist. Use [hasColor] to check for
+   * existence.
+   */
+  public final fun getColor(name: String, themeType: String): Color =
+      getColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the [Color] property defined by [name] and [themeType] exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setColor] to define it.
+   */
+  public final fun hasColor(name: String, themeType: String): Boolean =
+      hasColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the [Color] property defined by [oldName] and [themeType] to [name], if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasColor] to check for existence, and [clearColor] to remove the existing property.
+   */
+  public final fun renameColor(
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameColor(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the [Color] property defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasColor] to check for existence.
+   */
+  public final fun clearColor(name: String, themeType: String) =
+      clearColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Creates or changes the value of the constant property defined by [name] and [themeType]. Use
+   * [clearConstant] to remove the property.
+   */
+  public final fun setConstant(
+    name: String,
+    themeType: String,
+    constant: Int,
+  ) = setConstant(name.asCachedStringName(), themeType.asCachedStringName(), constant)
+
+  /**
+   * Returns the constant property defined by [name] and [themeType], if it exists.
+   *
+   * Returns `0` if the property doesn't exist. Use [hasConstant] to check for existence.
+   */
+  public final fun getConstant(name: String, themeType: String): Int =
+      getConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the constant property defined by [name] and [themeType] exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setConstant] to define it.
+   */
+  public final fun hasConstant(name: String, themeType: String): Boolean =
+      hasConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the constant property defined by [oldName] and [themeType] to [name], if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasConstant] to check for existence, and [clearConstant] to remove the existing property.
+   */
+  public final fun renameConstant(
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameConstant(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the constant property defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasConstant] to check for existence.
+   */
+  public final fun clearConstant(name: String, themeType: String) =
+      clearConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Creates or changes the value of the theme property of [dataType] defined by [name] and
+   * [themeType]. Use [clearThemeItem] to remove the property.
+   *
+   * Fails if the [value] type is not accepted by [dataType].
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but
+   * can be used for more generalized logic.
+   */
+  public final fun setThemeItem(
+    dataType: DataType,
+    name: String,
+    themeType: String,
+    `value`: Any?,
+  ) = setThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName(), value)
+
+  /**
+   * Returns the theme property of [dataType] defined by [name] and [themeType], if it exists.
+   *
+   * Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use
+   * [hasThemeItem] to check for existence.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but
+   * can be used for more generalized logic.
+   */
+  public final fun getThemeItem(
+    dataType: DataType,
+    name: String,
+    themeType: String,
+  ): Any? = getThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if the theme property of [dataType] defined by [name] and [themeType] exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setThemeItem] to define it.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but
+   * can be used for more generalized logic.
+   */
+  public final fun hasThemeItem(
+    dataType: DataType,
+    name: String,
+    themeType: String,
+  ): Boolean = hasThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Renames the theme property of [dataType] defined by [oldName] and [themeType] to [name], if it
+   * exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
+   * [hasThemeItem] to check for existence, and [clearThemeItem] to remove the existing property.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but
+   * can be used for more generalized logic.
+   */
+  public final fun renameThemeItem(
+    dataType: DataType,
+    oldName: String,
+    name: String,
+    themeType: String,
+  ) =
+      renameThemeItem(dataType, oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Removes the theme property of [dataType] defined by [name] and [themeType], if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasThemeItem] to check for existence.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but
+   * can be used for more generalized logic.
+   */
+  public final fun clearThemeItem(
+    dataType: DataType,
+    name: String,
+    themeType: String,
+  ) = clearThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Marks [themeType] as a variation of [baseType].
+   *
+   * This adds [themeType] as a suggested option for [Control.themeTypeVariation] on a [Control]
+   * that is of the [baseType] class.
+   *
+   * Variations can also be nested, i.e. [baseType] can be another variation. If a chain of
+   * variations ends with a [baseType] matching the class of the [Control], the whole chain is going to
+   * be suggested as options.
+   *
+   * **Note:** Suggestions only show up if this theme resource is set as the project default theme.
+   * See [ProjectSettings.gui/theme/custom].
+   */
+  public final fun setTypeVariation(themeType: String, baseType: String) =
+      setTypeVariation(themeType.asCachedStringName(), baseType.asCachedStringName())
+
+  /**
+   * Returns `true` if [themeType] is marked as a variation of [baseType].
+   */
+  public final fun isTypeVariation(themeType: String, baseType: String): Boolean =
+      isTypeVariation(themeType.asCachedStringName(), baseType.asCachedStringName())
+
+  /**
+   * Unmarks [themeType] as being a variation of another theme type. See [setTypeVariation].
+   */
+  public final fun clearTypeVariation(themeType: String) =
+      clearTypeVariation(themeType.asCachedStringName())
+
+  /**
+   * Returns the name of the base theme type if [themeType] is a valid variation type. Returns an
+   * empty string otherwise.
+   */
+  public final fun getTypeVariationBase(themeType: String): StringName =
+      getTypeVariationBase(themeType.asCachedStringName())
+
+  /**
+   * Returns a list of all type variations for the given [baseType].
+   */
+  public final fun getTypeVariationList(baseType: String): PackedStringArray =
+      getTypeVariationList(baseType.asCachedStringName())
+
+  /**
+   * Adds an empty theme type for every valid data type.
+   *
+   * **Note:** Empty types are not saved with the theme. This method only exists to perform
+   * in-memory changes to the resource. Use available `set_*` methods to add theme items.
+   */
+  public final fun addType(themeType: String) = addType(themeType.asCachedStringName())
+
+  /**
+   * Removes the theme type, gracefully discarding defined theme items. If the type is a variation,
+   * this information is also erased. If the type is a base for type variations, those variations lose
+   * their base.
+   */
+  public final fun removeType(themeType: String) = removeType(themeType.asCachedStringName())
+
   public enum class DataType(
     id: Long,
   ) {
     /**
      * Theme's [Color] item type.
      */
-    DATA_TYPE_COLOR(0),
+    COLOR(0),
     /**
      * Theme's constant item type.
      */
-    DATA_TYPE_CONSTANT(1),
+    CONSTANT(1),
     /**
      * Theme's [Font] item type.
      */
-    DATA_TYPE_FONT(2),
+    FONT(2),
     /**
      * Theme's font size item type.
      */
-    DATA_TYPE_FONT_SIZE(3),
+    FONT_SIZE(3),
     /**
      * Theme's icon [Texture2D] item type.
      */
-    DATA_TYPE_ICON(4),
+    ICON(4),
     /**
      * Theme's [StyleBox] item type.
      */
-    DATA_TYPE_STYLEBOX(5),
+    STYLEBOX(5),
     /**
      * Maximum value for the DataType enum.
      */
-    DATA_TYPE_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long

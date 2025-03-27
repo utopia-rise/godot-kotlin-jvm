@@ -17,6 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -26,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Skin : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(617, scriptIndex)
+    createNativeObject(611, scriptIndex)
   }
 
   public final fun setBindCount(bindCount: Int): Unit {
@@ -87,6 +88,9 @@ public open class Skin : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBindsPtr, NIL)
   }
+
+  public final fun setBindName(bindIndex: Int, name: String) =
+      setBindName(bindIndex, name.asCachedStringName())
 
   public companion object
 

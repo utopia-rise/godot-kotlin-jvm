@@ -32,6 +32,7 @@ import kotlin.jvm.JvmName
 /**
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur
  * to simulate different material roughnesses.
+ *
  * The [ReflectionProbe] is used to create high-quality reflections at a low performance cost (when
  * [updateMode] is [UPDATE_ONCE]). [ReflectionProbe]s can be blended together and with the rest of the
  * scene smoothly. [ReflectionProbe]s can also be combined with [VoxelGI], SDFGI
@@ -39,14 +40,17 @@ import kotlin.jvm.JvmName
  * accurate reflections in specific areas. [ReflectionProbe]s render all objects within their
  * [cullMask], so updating them can be quite expensive. It is best to update them once with the
  * important static objects and then leave them as-is.
+ *
  * **Note:** Unlike [VoxelGI] and SDFGI, [ReflectionProbe]s only source their environment from a
  * [WorldEnvironment] node. If you specify an [Environment] resource within a [Camera3D] node, it will
  * be ignored by the [ReflectionProbe]. This can lead to incorrect lighting within the
  * [ReflectionProbe].
+ *
  * **Note:** Reflection probes are only supported in the Forward+ and Mobile rendering methods, not
  * Compatibility. When using the Mobile rendering method, only 8 reflection probes can be displayed on
  * each mesh resource. Attempting to display more than 8 reflection probes on a single mesh resource
  * will result in reflection probes flickering in and out as the camera moves.
+ *
  * **Note:** When using the Mobile rendering method, reflection probes will only correctly affect
  * meshes whose visibility AABB intersects with the reflection probe's AABB. If using a shader to
  * deform the mesh in a way that makes it go outside its AABB, [GeometryInstance3D.extraCullMargin]
@@ -90,6 +94,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The maximum distance away from the [ReflectionProbe] an object can be before it is culled.
    * Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
+   *
    * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This
    * means that decreasing [maxDistance] will not always cull objects from reflections, especially if
    * the reflection probe's box defined by its [size] is already large.
@@ -106,8 +111,16 @@ public open class ReflectionProbe : VisualInstance3D() {
    * The size of the reflection probe. The larger the size, the more space covered by the probe,
    * which will lower the perceived resolution. It is best to keep the size only as large as you need
    * it.
+   *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
    * [ReflectionProbe] node.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -122,6 +135,13 @@ public open class ReflectionProbe : VisualInstance3D() {
    * Sets the origin offset to be used when this [ReflectionProbe] is in [boxProjection] mode. This
    * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
    * the number of objects that "get in the way" of the reflection.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var originOffset: Vector3
@@ -135,6 +155,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * If `true`, enables box projection. This makes reflections look more correct in rectangle-shaped
    * rooms by offsetting the reflection center depending on the camera's location.
+   *
    * **Note:** To better fit rectangle-shaped rooms that are not aligned to the grid, you can rotate
    * the [ReflectionProbe] node.
    */
@@ -174,6 +195,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * [VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. It is
    * best to only include large objects which are likely to take up a lot of space in the reflection in
    * order to save on rendering cost.
+   *
    * This can also be used to prevent an object from reflecting upon itself (for instance, a
    * [ReflectionProbe] centered on a vehicle).
    */
@@ -205,6 +227,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [meshLodThreshold]
    * to improve performance at the cost of geometry detail, especially when using the [UPDATE_ALWAYS]
    * [updateMode].
+   *
    * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
    * as "manual" LOD or hierarchical LOD).
    */
@@ -232,6 +255,13 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
    * effective if [ambientMode] is [AMBIENT_COLOR].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var ambientColor: Color
@@ -255,21 +285,11 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(548, scriptIndex)
+    createNativeObject(538, scriptIndex)
   }
 
   /**
-   * The size of the reflection probe. The larger the size, the more space covered by the probe,
-   * which will lower the perceived resolution. It is best to keep the size only as large as you need
-   * it.
-   * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
-   * [ReflectionProbe] node.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -278,24 +298,22 @@ public open class ReflectionProbe : VisualInstance3D() {
    * //Your changes
    * reflectionprobe.size = myCoreType
    * ``````
+   *
+   * The size of the reflection probe. The larger the size, the more space covered by the probe,
+   * which will lower the perceived resolution. It is best to keep the size only as large as you need
+   * it.
+   *
+   * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
+   * [ReflectionProbe] node.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
 
-
   /**
-   * Sets the origin offset to be used when this [ReflectionProbe] is in [boxProjection] mode. This
-   * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
-   * the number of objects that "get in the way" of the reflection.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [originOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -304,23 +322,19 @@ public open class ReflectionProbe : VisualInstance3D() {
    * //Your changes
    * reflectionprobe.originOffset = myCoreType
    * ``````
+   *
+   * Sets the origin offset to be used when this [ReflectionProbe] is in [boxProjection] mode. This
+   * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
+   * the number of objects that "get in the way" of the reflection.
    */
   @CoreTypeHelper
-  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
-      block(this)
-      originOffset = this
+  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply {
+     block(this)
+     originOffset = this
   }
 
-
   /**
-   * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
-   * effective if [ambientMode] is [AMBIENT_COLOR].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [ambientColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -329,13 +343,15 @@ public open class ReflectionProbe : VisualInstance3D() {
    * //Your changes
    * reflectionprobe.ambientColor = myCoreType
    * ``````
+   *
+   * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
+   * effective if [ambientMode] is [AMBIENT_COLOR].
    */
   @CoreTypeHelper
-  public final fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply{
-      block(this)
-      ambientColor = this
+  public final fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply {
+     block(this)
+     ambientColor = this
   }
-
 
   public final fun setIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
@@ -367,7 +383,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   public final fun getAmbientMode(): AmbientMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientModePtr, LONG)
-    return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAmbientColor(ambient: Color): Unit {
@@ -499,7 +515,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
-    return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class UpdateMode(
@@ -513,14 +529,14 @@ public open class ReflectionProbe : VisualInstance3D() {
      * geometry changes. You can force a [ReflectionProbe] update by moving the [ReflectionProbe]
      * slightly in any direction.
      */
-    UPDATE_ONCE(0),
+    ONCE(0),
     /**
      * Update the probe every frame. This provides better results for fast-moving dynamic objects
      * (such as cars). However, it has a significant performance cost. Due to the cost, it's
      * recommended to only use one ReflectionProbe with [UPDATE_ALWAYS] at most per scene. For all
      * other use cases, use [UPDATE_ONCE].
      */
-    UPDATE_ALWAYS(1),
+    ALWAYS(1),
     ;
 
     public val id: Long
@@ -539,17 +555,17 @@ public open class ReflectionProbe : VisualInstance3D() {
     /**
      * Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [size].
      */
-    AMBIENT_DISABLED(0),
+    DISABLED(0),
     /**
      * Apply automatically-sourced environment lighting inside the [ReflectionProbe]'s box defined
      * by its [size].
      */
-    AMBIENT_ENVIRONMENT(1),
+    ENVIRONMENT(1),
     /**
      * Apply custom ambient lighting inside the [ReflectionProbe]'s box defined by its [size]. See
      * [ambientColor] and [ambientColorEnergy].
      */
-    AMBIENT_COLOR(2),
+    COLOR(2),
     ;
 
     public val id: Long

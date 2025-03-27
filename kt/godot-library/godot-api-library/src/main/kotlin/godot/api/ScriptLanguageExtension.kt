@@ -24,45 +24,47 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(584, scriptIndex)
+    createNativeObject(578, scriptIndex)
   }
 
   public open fun _getName(): String {
-    throw NotImplementedError("_get_name is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getName is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _init(): Unit {
+    throw NotImplementedError("_init is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getType(): String {
-    throw NotImplementedError("_get_type is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getType is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getExtension(): String {
-    throw NotImplementedError("_get_extension is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getExtension is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _finish(): Unit {
+    throw NotImplementedError("_finish is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getReservedWords(): PackedStringArray {
-    throw NotImplementedError("_get_reserved_words is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getReservedWords is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _isControlFlowKeyword(keyword: String): Boolean {
-    throw NotImplementedError("_is_control_flow_keyword is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_isControlFlowKeyword is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getCommentDelimiters(): PackedStringArray {
-    throw NotImplementedError("_get_comment_delimiters is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getCommentDelimiters is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getDocCommentDelimiters(): PackedStringArray {
-    throw NotImplementedError("_get_doc_comment_delimiters is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getDocCommentDelimiters is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getStringDelimiters(): PackedStringArray {
-    throw NotImplementedError("_get_string_delimiters is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getStringDelimiters is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _makeTemplate(
@@ -70,15 +72,15 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     className: String,
     baseClassName: String,
   ): Script? {
-    throw NotImplementedError("_make_template is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_makeTemplate is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getBuiltInTemplates(`object`: StringName): VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_get_built_in_templates is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getBuiltInTemplates is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _isUsingTemplates(): Boolean {
-    throw NotImplementedError("_is_using_templates is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_isUsingTemplates is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _validate(
@@ -93,27 +95,27 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _validatePath(path: String): String {
-    throw NotImplementedError("_validate_path is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_validatePath is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _createScript(): Object? {
-    throw NotImplementedError("_create_script is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_createScript is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _hasNamedClasses(): Boolean {
-    throw NotImplementedError("_has_named_classes is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_hasNamedClasses is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _supportsBuiltinMode(): Boolean {
-    throw NotImplementedError("_supports_builtin_mode is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_supportsBuiltinMode is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _supportsDocumentation(): Boolean {
-    throw NotImplementedError("_supports_documentation is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_supportsDocumentation is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _canInheritFromFile(): Boolean {
-    throw NotImplementedError("_can_inherit_from_file is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_canInheritFromFile is not implemented for ScriptLanguageExtension")
   }
 
   /**
@@ -121,7 +123,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    * present.
    */
   public open fun _findFunction(function: String, code: String): Int {
-    throw NotImplementedError("_find_function is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_findFunction is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _makeFunction(
@@ -129,11 +131,11 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     functionName: String,
     functionArgs: PackedStringArray,
   ): String {
-    throw NotImplementedError("_make_function is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_makeFunction is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _canMakeFunction(): Boolean {
-    throw NotImplementedError("_can_make_function is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_canMakeFunction is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _openInExternalEditor(
@@ -141,15 +143,15 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     line: Int,
     column: Int,
   ): Error {
-    throw NotImplementedError("_open_in_external_editor is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_openInExternalEditor is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _overridesExternalEditor(): Boolean {
-    throw NotImplementedError("_overrides_external_editor is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_overridesExternalEditor is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _preferredFileNameCasing(): ScriptLanguage.ScriptNameCasing {
-    throw NotImplementedError("_preferred_file_name_casing is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_preferredFileNameCasing is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _completeCode(
@@ -157,7 +159,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     path: String,
     owner: Object?,
   ): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_complete_code is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_completeCode is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _lookupCode(
@@ -166,7 +168,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     path: String,
     owner: Object?,
   ): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_lookup_code is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_lookupCode is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _autoIndentCode(
@@ -174,45 +176,50 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     fromLine: Int,
     toLine: Int,
   ): String {
-    throw NotImplementedError("_auto_indent_code is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_autoIndentCode is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _addGlobalConstant(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("_addGlobalConstant is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _addNamedGlobalConstant(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("_addNamedGlobalConstant is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _removeNamedGlobalConstant(name: StringName): Unit {
+    throw NotImplementedError("_removeNamedGlobalConstant is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _threadEnter(): Unit {
+    throw NotImplementedError("_threadEnter is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _threadExit(): Unit {
+    throw NotImplementedError("_threadExit is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetError(): String {
-    throw NotImplementedError("_debug_get_error is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetError is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetStackLevelCount(): Int {
-    throw NotImplementedError("_debug_get_stack_level_count is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetStackLevelCount is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetStackLevelLine(level: Int): Int {
-    throw NotImplementedError("_debug_get_stack_level_line is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetStackLevelLine is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetStackLevelFunction(level: Int): String {
-    throw NotImplementedError("_debug_get_stack_level_function is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetStackLevelFunction is not implemented for ScriptLanguageExtension")
   }
 
   /**
    * Returns the source associated with a given debug stack position.
    */
   public open fun _debugGetStackLevelSource(level: Int): String {
-    throw NotImplementedError("_debug_get_stack_level_source is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetStackLevelSource is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetStackLevelLocals(
@@ -220,7 +227,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     maxSubitems: Int,
     maxDepth: Int,
   ): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_debug_get_stack_level_locals is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetStackLevelLocals is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetStackLevelMembers(
@@ -228,11 +235,11 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     maxSubitems: Int,
     maxDepth: Int,
   ): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_debug_get_stack_level_members is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetStackLevelMembers is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetGlobals(maxSubitems: Int, maxDepth: Int): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_debug_get_globals is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetGlobals is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugParseStackLevelExpression(
@@ -241,73 +248,80 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     maxSubitems: Int,
     maxDepth: Int,
   ): String {
-    throw NotImplementedError("_debug_parse_stack_level_expression is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugParseStackLevelExpression is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetCurrentStackInfo(): VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_debug_get_current_stack_info is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_debugGetCurrentStackInfo is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _reloadAllScripts(): Unit {
+    throw NotImplementedError("_reloadAllScripts is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean): Unit {
+    throw NotImplementedError("_reloadScripts is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _reloadToolScript(script: Script?, softReload: Boolean): Unit {
+    throw NotImplementedError("_reloadToolScript is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getRecognizedExtensions is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getPublicFunctions(): VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_get_public_functions is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getPublicFunctions is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getPublicConstants(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_public_constants is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getPublicConstants is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getPublicAnnotations(): VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_get_public_annotations is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getPublicAnnotations is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _profilingStart(): Unit {
+    throw NotImplementedError("_profilingStart is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _profilingStop(): Unit {
+    throw NotImplementedError("_profilingStop is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _profilingSetSaveNativeCalls(enable: Boolean): Unit {
+    throw NotImplementedError("_profilingSetSaveNativeCalls is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _frame(): Unit {
+    throw NotImplementedError("_frame is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _handlesGlobalClassType(type: String): Boolean {
-    throw NotImplementedError("_handles_global_class_type is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_handlesGlobalClassType is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _getGlobalClassName(path: String): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_global_class_name is not implemented for ScriptLanguageExtension")
+    throw NotImplementedError("_getGlobalClassName is not implemented for ScriptLanguageExtension")
   }
 
   public enum class LookupResultType(
     id: Long,
   ) {
-    LOOKUP_RESULT_SCRIPT_LOCATION(0),
-    LOOKUP_RESULT_CLASS(1),
-    LOOKUP_RESULT_CLASS_CONSTANT(2),
-    LOOKUP_RESULT_CLASS_PROPERTY(3),
-    LOOKUP_RESULT_CLASS_METHOD(4),
-    LOOKUP_RESULT_CLASS_SIGNAL(5),
-    LOOKUP_RESULT_CLASS_ENUM(6),
-    LOOKUP_RESULT_CLASS_TBD_GLOBALSCOPE(7),
-    LOOKUP_RESULT_CLASS_ANNOTATION(8),
-    LOOKUP_RESULT_LOCAL_CONSTANT(9),
-    LOOKUP_RESULT_LOCAL_VARIABLE(10),
-    LOOKUP_RESULT_MAX(11),
+    SCRIPT_LOCATION(0),
+    CLASS(1),
+    CLASS_CONSTANT(2),
+    CLASS_PROPERTY(3),
+    CLASS_METHOD(4),
+    CLASS_SIGNAL(5),
+    CLASS_ENUM(6),
+    CLASS_TBD_GLOBALSCOPE(7),
+    CLASS_ANNOTATION(8),
+    LOCAL_CONSTANT(9),
+    LOCAL_VARIABLE(10),
+    MAX(11),
     ;
 
     public val id: Long
@@ -361,17 +375,17 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public enum class CodeCompletionKind(
     id: Long,
   ) {
-    CODE_COMPLETION_KIND_CLASS(0),
-    CODE_COMPLETION_KIND_FUNCTION(1),
-    CODE_COMPLETION_KIND_SIGNAL(2),
-    CODE_COMPLETION_KIND_VARIABLE(3),
-    CODE_COMPLETION_KIND_MEMBER(4),
-    CODE_COMPLETION_KIND_ENUM(5),
-    CODE_COMPLETION_KIND_CONSTANT(6),
-    CODE_COMPLETION_KIND_NODE_PATH(7),
-    CODE_COMPLETION_KIND_FILE_PATH(8),
-    CODE_COMPLETION_KIND_PLAIN_TEXT(9),
-    CODE_COMPLETION_KIND_MAX(10),
+    CLASS(0),
+    FUNCTION(1),
+    SIGNAL(2),
+    VARIABLE(3),
+    MEMBER(4),
+    ENUM(5),
+    CONSTANT(6),
+    NODE_PATH(7),
+    FILE_PATH(8),
+    PLAIN_TEXT(9),
+    MAX(10),
     ;
 
     public val id: Long

@@ -30,12 +30,13 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Marshalls : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(15)
+    getSingleton(14)
   }
 
   /**
    * Returns a Base64-encoded string of the [Variant] [variant]. If [fullObjects] is `true`,
    * encoding objects is allowed (and can potentially include code).
+   *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
@@ -49,7 +50,9 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded [Variant] corresponding to the Base64-encoded string [base64Str]. If
    * [allowObjects] is `true`, decoding objects is allowed.
+   *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
+   *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
    * if the serialized object comes from untrusted sources to avoid potential security threats such as
    * remote code execution.

@@ -23,13 +23,14 @@ import kotlin.Unit
  * [url=https://en.wikipedia.org/wiki/Shared_library]shared library[/url] which can expand the
  * functionality of the engine. The [GDExtensionManager] singleton is responsible for loading,
  * reloading, and unloading [GDExtension] resources.
+ *
  * **Note:** GDExtension itself is not a scripting language and has no relation to [GDScript]
  * resources.
  */
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(251, scriptIndex)
+    createNativeObject(221, scriptIndex)
   }
 
   /**
@@ -48,7 +49,7 @@ public open class GDExtension : Resource() {
   public final fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
-    return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
+    return InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class InitializationLevel(
@@ -57,21 +58,21 @@ public open class GDExtension : Resource() {
     /**
      * The library is initialized at the same time as the core features of the engine.
      */
-    INITIALIZATION_LEVEL_CORE(0),
+    CORE(0),
     /**
      * The library is initialized at the same time as the engine's servers (such as
      * [RenderingServer] or [PhysicsServer3D]).
      */
-    INITIALIZATION_LEVEL_SERVERS(1),
+    SERVERS(1),
     /**
      * The library is initialized at the same time as the engine's scene-related classes.
      */
-    INITIALIZATION_LEVEL_SCENE(2),
+    SCENE(2),
     /**
      * The library is initialized at the same time as the engine's editor classes. Only happens when
      * loading the GDExtension in the editor.
      */
-    INITIALIZATION_LEVEL_EDITOR(3),
+    EDITOR(3),
     ;
 
     public val id: Long

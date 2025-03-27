@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -31,8 +32,10 @@ import kotlin.jvm.JvmName
 
 /**
  * A control used for playback of [VideoStream] resources.
+ *
  * Supported video formats are [url=https://www.theora.org/]Ogg Theora[/url] (`.ogv`,
  * [VideoStreamTheora]) and any format exposed via a GDExtension plugin.
+ *
  * **Warning:** On Web, video playback *will* perform poorly due to missing architecture-specific
  * assembly optimizations.
  */
@@ -145,6 +148,7 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * The current position of the stream, in seconds.
+   *
    * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except
    * in video formats implemented by a GDExtension add-on.
    */
@@ -168,7 +172,7 @@ public open class VideoStreamPlayer : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(722, scriptIndex)
+    createNativeObject(720, scriptIndex)
   }
 
   public final fun setStream(stream: VideoStream?): Unit {
@@ -193,6 +197,7 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * Stops the video playback and sets the stream position to 0.
+   *
    * **Note:** Although the stream position will be set to 0, the first frame of the video stream
    * won't become the current frame.
    */
@@ -203,6 +208,7 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * Returns `true` if the video is playing.
+   *
    * **Note:** The video is still considered playing if paused during playback.
    */
   public final fun isPlaying(): Boolean {
@@ -277,6 +283,7 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * The length of the current stream, in seconds.
+   *
    * **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value
    * will always be zero, as getting the stream length is not implemented yet. The feature may be
    * supported by video formats implemented by a GDExtension add-on.
@@ -350,6 +357,8 @@ public open class VideoStreamPlayer : Control() {
     TransferContext.callMethod(ptr, MethodBindings.getVideoTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
+
+  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public companion object
 

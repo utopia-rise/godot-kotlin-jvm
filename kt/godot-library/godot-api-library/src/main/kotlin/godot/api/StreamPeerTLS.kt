@@ -25,6 +25,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or
  * accept a single TLS client connection.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -32,7 +33,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(648, scriptIndex)
+    createNativeObject(642, scriptIndex)
   }
 
   /**
@@ -76,7 +77,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public final fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
-    return StreamPeerTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
+    return Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -102,24 +103,24 @@ public open class StreamPeerTLS : StreamPeer() {
     /**
      * A status representing a [StreamPeerTLS] that is disconnected.
      */
-    STATUS_DISCONNECTED(0),
+    DISCONNECTED(0),
     /**
      * A status representing a [StreamPeerTLS] during handshaking.
      */
-    STATUS_HANDSHAKING(1),
+    HANDSHAKING(1),
     /**
      * A status representing a [StreamPeerTLS] that is connected to a host.
      */
-    STATUS_CONNECTED(2),
+    CONNECTED(2),
     /**
      * A status representing a [StreamPeerTLS] in error state.
      */
-    STATUS_ERROR(3),
+    ERROR(3),
     /**
      * An error status that shows a mismatch in the TLS certificate domain presented by the host and
      * the domain requested for validation.
      */
-    STATUS_ERROR_HOSTNAME_MISMATCH(4),
+    ERROR_HOSTNAME_MISMATCH(4),
     ;
 
     public val id: Long

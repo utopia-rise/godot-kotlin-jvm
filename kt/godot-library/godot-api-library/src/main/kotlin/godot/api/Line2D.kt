@@ -37,8 +37,10 @@ import kotlin.jvm.JvmOverloads
  * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments.
  * [Line2D] is not a mathematical polyline, i.e. the segments are not infinitely thin. It is intended
  * for rendering and it can be colored and optionally textured.
+ *
  * **Warning:** Certain configurations may be impossible to draw nicely, such as very sharp angles.
  * In these situations, the node uses fallback drawing logic to look decent.
+ *
  * **Note:** [Line2D] is drawn using a 2D mesh.
  */
 @GodotBaseType
@@ -46,7 +48,15 @@ public open class Line2D : Node2D() {
   /**
    * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
    * adjacent points in this array.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var points: PackedVector2Array
     @JvmName("pointsProperty")
     get() = getPoints()
@@ -58,8 +68,10 @@ public open class Line2D : Node2D() {
   /**
    * If `true` and the polyline has more than 2 points, the last point and the first one will be
    * connected by a segment.
+   *
    * **Note:** The shape of the closing segment is not guaranteed to be seamless if a [widthCurve]
    * is provided.
+   *
    * **Note:** The joint between the closing segment and the first segment is drawn first and it
    * samples the [gradient] and the [widthCurve] at the beginning. This is an implementation detail
    * that might change in a future version.
@@ -97,6 +109,13 @@ public open class Line2D : Node2D() {
 
   /**
    * The color of the polyline. Will not be used if a gradient is set.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var defaultColor: Color
@@ -203,6 +222,7 @@ public open class Line2D : Node2D() {
 
   /**
    * If `true`, the polyline's border will be anti-aliased.
+   *
    * **Note:** [Line2D] is not accelerated by batching when being anti-aliased.
    */
   public final inline var antialiased: Boolean
@@ -214,17 +234,50 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(361, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   /**
-   * The color of the polyline. Will not be used if a gradient is set.
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = line2d.points
+   * //Your changes
+   * line2d.points = myCoreType
+   * ``````
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
+   * adjacent points in this array.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      points.apply {
+     block(this)
+     points = this
+  }
+
+  /**
+   * This is a helper function for [points] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
+   * adjacent points in this array.
+   */
+  @CoreTypeHelper
+  public final fun pointsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = points.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     points = this
+  }
+
+  /**
+   * This is a helper function for [defaultColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -233,13 +286,14 @@ public open class Line2D : Node2D() {
    * //Your changes
    * line2d.defaultColor = myCoreType
    * ``````
+   *
+   * The color of the polyline. Will not be used if a gradient is set.
    */
   @CoreTypeHelper
-  public final fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply{
-      block(this)
-      defaultColor = this
+  public final fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply {
+     block(this)
+     defaultColor = this
   }
-
 
   public final fun setPoints(points: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
@@ -281,6 +335,7 @@ public open class Line2D : Node2D() {
   /**
    * Adds a point with the specified [position] relative to the polyline's own position. If no
    * [index] is provided, the new point will be added to the end of the points array.
+   *
    * If [index] is given, the new point is inserted before the existing point identified by index
    * [index]. The indices of the points after the new point get increased by 1. The provided [index]
    * must not exceed the number of existing points in the polyline. See [getPointCount].
@@ -381,7 +436,7 @@ public open class Line2D : Node2D() {
   public final fun getTextureMode(): LineTextureMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureModePtr, LONG)
-    return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointMode(mode: LineJointMode): Unit {
@@ -392,7 +447,7 @@ public open class Line2D : Node2D() {
   public final fun getJointMode(): LineJointMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointModePtr, LONG)
-    return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBeginCapMode(mode: LineCapMode): Unit {
@@ -403,7 +458,7 @@ public open class Line2D : Node2D() {
   public final fun getBeginCapMode(): LineCapMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBeginCapModePtr, LONG)
-    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEndCapMode(mode: LineCapMode): Unit {
@@ -414,7 +469,7 @@ public open class Line2D : Node2D() {
   public final fun getEndCapMode(): LineCapMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEndCapModePtr, LONG)
-    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSharpLimit(limit: Float): Unit {
@@ -458,17 +513,17 @@ public open class Line2D : Node2D() {
      * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
      * joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
      */
-    LINE_JOINT_SHARP(0),
+    SHARP(0),
     /**
      * Makes the polyline's joints bevelled/chamfered, connecting the sides of the two segments with
      * a simple line.
      */
-    LINE_JOINT_BEVEL(1),
+    BEVEL(1),
     /**
      * Makes the polyline's joints rounded, connecting the sides of the two segments with an arc.
      * The detail of this arc depends on [roundPrecision].
      */
-    LINE_JOINT_ROUND(2),
+    ROUND(2),
     ;
 
     public val id: Long
@@ -487,15 +542,15 @@ public open class Line2D : Node2D() {
     /**
      * Draws no line cap.
      */
-    LINE_CAP_NONE(0),
+    NONE(0),
     /**
      * Draws the line cap as a box, slightly extending the first/last segment.
      */
-    LINE_CAP_BOX(1),
+    BOX(1),
     /**
      * Draws the line cap as a semicircle attached to the first/last segment.
      */
-    LINE_CAP_ROUND(2),
+    ROUND(2),
     ;
 
     public val id: Long
@@ -514,18 +569,18 @@ public open class Line2D : Node2D() {
     /**
      * Takes the left pixels of the texture and renders them over the whole polyline.
      */
-    LINE_TEXTURE_NONE(0),
+    NONE(0),
     /**
      * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be
      * [CanvasItem.TEXTURE_REPEAT_ENABLED] or [CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work
      * properly.
      */
-    LINE_TEXTURE_TILE(1),
+    TILE(1),
     /**
      * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node
      * must be [CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
-    LINE_TEXTURE_STRETCH(2),
+    STRETCH(2),
     ;
 
     public val id: Long

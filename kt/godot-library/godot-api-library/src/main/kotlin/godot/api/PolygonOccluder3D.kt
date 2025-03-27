@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -13,6 +15,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -25,6 +28,7 @@ import kotlin.jvm.JvmName
  * the same 2D plane, which means it is not possible to create arbitrary 3D shapes with a single
  * [PolygonOccluder3D]. To use arbitrary 3D shapes as occluders, use [ArrayOccluder3D] or
  * [OccluderInstance3D]'s baking feature instead.
+ *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
@@ -32,9 +36,18 @@ public open class PolygonOccluder3D : Occluder3D() {
   /**
    * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
    * have as few points as possible to maximize performance.
+   *
    * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
    * error message printed).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -44,7 +57,52 @@ public open class PolygonOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(513, scriptIndex)
+    createNativeObject(502, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = polygonoccluder3d.polygon
+   * //Your changes
+   * polygonoccluder3d.polygon = myCoreType
+   * ``````
+   *
+   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
+   * have as few points as possible to maximize performance.
+   *
+   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
+   * error message printed).
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
+   * have as few points as possible to maximize performance.
+   *
+   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
+   * error message printed).
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

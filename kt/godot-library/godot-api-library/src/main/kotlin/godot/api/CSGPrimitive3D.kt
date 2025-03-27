@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
  * Parent class for various CSG primitives. It contains code and functionality that is common
  * between them. It cannot be used directly. Instead use one of the various classes that inherit from
  * it.
+ *
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
  * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
  * node within another CSG node also has a significant CPU cost, so it should be avoided during
@@ -42,7 +43,7 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(157, scriptIndex)
+    createNativeObject(122, scriptIndex)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {

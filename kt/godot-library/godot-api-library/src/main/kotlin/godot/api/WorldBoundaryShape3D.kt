@@ -25,6 +25,7 @@ import kotlin.jvm.JvmName
  * infinite plane that forces all physics bodies to stay above it. The [plane]'s normal determines
  * which direction is considered as "above" and in the editor, the line over the plane represents this
  * direction. It can for example be used for endless flat floors.
+ *
  * **Note:** When the physics engine is set to **Jolt Physics** in the project settings
  * ([ProjectSettings.physics/3d/physicsEngine]), [WorldBoundaryShape3D] has a finite size (centered at
  * the shape's origin). It can be adjusted by changing
@@ -34,6 +35,13 @@ import kotlin.jvm.JvmName
 public open class WorldBoundaryShape3D : Shape3D() {
   /**
    * The [Plane] used by the [WorldBoundaryShape3D] for collision.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var plane: Plane
@@ -45,17 +53,11 @@ public open class WorldBoundaryShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(858, scriptIndex)
+    createNativeObject(857, scriptIndex)
   }
 
   /**
-   * The [Plane] used by the [WorldBoundaryShape3D] for collision.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [plane] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -64,13 +66,14 @@ public open class WorldBoundaryShape3D : Shape3D() {
    * //Your changes
    * worldboundaryshape3d.plane = myCoreType
    * ``````
+   *
+   * The [Plane] used by the [WorldBoundaryShape3D] for collision.
    */
   @CoreTypeHelper
-  public final fun planeMutate(block: Plane.() -> Unit): Plane = plane.apply{
-      block(this)
-      plane = this
+  public final fun planeMutate(block: Plane.() -> Unit): Plane = plane.apply {
+     block(this)
+     plane = this
   }
-
 
   public final fun setPlane(plane: Plane): Unit {
     TransferContext.writeArguments(PLANE to plane)

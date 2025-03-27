@@ -49,6 +49,13 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
    * to avoid unexpected culling when using a shader to offset vertices.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var customAabb: AABB
@@ -62,6 +69,7 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * If set, the order of the vertices in each triangle are reversed resulting in the backside of
    * the mesh being drawn.
+   *
    * This gives the same result as using [BaseMaterial3D.CULL_FRONT] in [BaseMaterial3D.cullMode].
    */
   public final inline var flipFaces: Boolean
@@ -88,6 +96,7 @@ public open class PrimitiveMesh : Mesh() {
    * If [addUv2] is set, specifies the padding in pixels applied along seams of the mesh. Lower
    * padding values allow making better use of the lightmap texture (resulting in higher texel
    * density), but may introduce visible lightmap bleeding along edges.
+   *
    * If the size of the lightmap texture can't be determined when generating the mesh, UV2 is
    * calculated assuming a texture size of 1024x1024.
    */
@@ -100,18 +109,11 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(519, scriptIndex)
+    createNativeObject(508, scriptIndex)
   }
 
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
-   * to avoid unexpected culling when using a shader to offset vertices.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [customAabb] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -120,13 +122,15 @@ public open class PrimitiveMesh : Mesh() {
    * //Your changes
    * primitivemesh.customAabb = myCoreType
    * ``````
+   *
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
+   * to avoid unexpected culling when using a shader to offset vertices.
    */
   @CoreTypeHelper
-  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
-      block(this)
-      customAabb = this
+  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply {
+     block(this)
+     customAabb = this
   }
-
 
   /**
    * Override this method to customize how this primitive mesh should be generated. Should return an
@@ -134,7 +138,7 @@ public open class PrimitiveMesh : Mesh() {
    * [Mesh.ArrayType] constants).
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
-    throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
+    throw NotImplementedError("_createMeshArray is not implemented for PrimitiveMesh")
   }
 
   public final fun setMaterial(material: Material?): Unit {
@@ -150,16 +154,18 @@ public open class PrimitiveMesh : Mesh() {
 
   /**
    * Returns the mesh arrays used to make up the surface of this primitive mesh.
+   *
    * **Example:** Pass the result to [ArrayMesh.addSurfaceFromArrays] to create a new surface:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var c = CylinderMesh.new()
    * var arr_mesh = ArrayMesh.new()
    * arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, c.get_mesh_arrays())
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var c = new CylinderMesh();
    * var arrMesh = new ArrayMesh();
    * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, c.GetMeshArrays());

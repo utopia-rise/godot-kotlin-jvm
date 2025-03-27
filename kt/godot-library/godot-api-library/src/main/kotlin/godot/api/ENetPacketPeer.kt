@@ -29,8 +29,10 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A PacketPeer implementation representing a peer of an [ENetConnection].
+ *
  * This class cannot be instantiated directly but can be retrieved during [ENetConnection.service]
  * or via [ENetConnection.getPeers].
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -38,7 +40,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(233, scriptIndex)
+    createNativeObject(201, scriptIndex)
   }
 
   /**
@@ -118,16 +120,20 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   /**
    * Configures throttle parameter for a peer.
+   *
    * Unreliable packets are dropped by ENet in response to the varying conditions of the Internet
    * connection to the peer. The throttle represents a probability that an unreliable packet should not
    * be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of
    * reliable packets over the specified [interval], ENet will either increase the probability by the
    * amount specified in the [acceleration] parameter, or decrease it by the amount specified in the
    * [deceleration] parameter (both are ratios to [PACKET_THROTTLE_SCALE]).
+   *
    * When the throttle has a value of [PACKET_THROTTLE_SCALE], no unreliable packets are dropped by
    * ENet, and so 100&#37; of all unreliable packets will be sent.
+   *
    * When the throttle has a value of `0`, all unreliable packets are dropped by ENet, and so 0&#37;
    * of all unreliable packets will be sent.
+   *
    * Intermediate values for the throttle represent intermediate probabilities between 0&#37; and
    * 100&#37; of unreliable packets being sent. The bandwidth limits of the local and foreign hosts are
    * taken into account to determine a sensible limit for the throttle probability above which it
@@ -146,6 +152,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Sets the timeout parameters for a peer. The timeout parameters control how and when a peer will
    * timeout from a failure to acknowledge reliable traffic. Timeout values are expressed in
    * milliseconds.
+   *
    * The [timeout] is a factor that, multiplied by a value based on the average round trip time,
    * will determine the timeout limit for a reliable packet. When that limit is reached, the timeout
    * will be doubled, and the peer will be disconnected if that limit has reached [timeoutMin]. The
@@ -205,7 +212,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatePtr, LONG)
-    return ENetPacketPeer.PeerState.from(TransferContext.readReturnValue(LONG) as Long)
+    return PeerState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -290,67 +297,67 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     /**
      * Mean packet loss of reliable packets as a ratio with respect to the [PACKET_LOSS_SCALE].
      */
-    PEER_PACKET_LOSS(0),
+    PACKET_LOSS(0),
     /**
      * Packet loss variance.
      */
-    PEER_PACKET_LOSS_VARIANCE(1),
+    PACKET_LOSS_VARIANCE(1),
     /**
      * The time at which packet loss statistics were last updated (in milliseconds since the
      * connection started). The interval for packet loss statistics updates is 10 seconds, and at least
      * one packet must have been sent since the last statistics update.
      */
-    PEER_PACKET_LOSS_EPOCH(2),
+    PACKET_LOSS_EPOCH(2),
     /**
      * Mean packet round trip time for reliable packets.
      */
-    PEER_ROUND_TRIP_TIME(3),
+    ROUND_TRIP_TIME(3),
     /**
      * Variance of the mean round trip time.
      */
-    PEER_ROUND_TRIP_TIME_VARIANCE(4),
+    ROUND_TRIP_TIME_VARIANCE(4),
     /**
      * Last recorded round trip time for a reliable packet.
      */
-    PEER_LAST_ROUND_TRIP_TIME(5),
+    LAST_ROUND_TRIP_TIME(5),
     /**
      * Variance of the last trip time recorded.
      */
-    PEER_LAST_ROUND_TRIP_TIME_VARIANCE(6),
+    LAST_ROUND_TRIP_TIME_VARIANCE(6),
     /**
      * The peer's current throttle status.
      */
-    PEER_PACKET_THROTTLE(7),
+    PACKET_THROTTLE(7),
     /**
      * The maximum number of unreliable packets that should not be dropped. This value is always
      * greater than or equal to `1`. The initial value is equal to [PACKET_THROTTLE_SCALE].
      */
-    PEER_PACKET_THROTTLE_LIMIT(8),
+    PACKET_THROTTLE_LIMIT(8),
     /**
      * Internal value used to increment the packet throttle counter. The value is hardcoded to `7`
      * and cannot be changed. You probably want to look at [PEER_PACKET_THROTTLE_ACCELERATION] instead.
      */
-    PEER_PACKET_THROTTLE_COUNTER(9),
+    PACKET_THROTTLE_COUNTER(9),
     /**
      * The time at which throttle statistics were last updated (in milliseconds since the connection
      * started). The interval for throttle statistics updates is [PEER_PACKET_THROTTLE_INTERVAL].
      */
-    PEER_PACKET_THROTTLE_EPOCH(10),
+    PACKET_THROTTLE_EPOCH(10),
     /**
      * The throttle's acceleration factor. Higher values will make ENet adapt to fluctuating network
      * conditions faster, causing unrelaible packets to be sent *more* often. The default value is `2`.
      */
-    PEER_PACKET_THROTTLE_ACCELERATION(11),
+    PACKET_THROTTLE_ACCELERATION(11),
     /**
      * The throttle's deceleration factor. Higher values will make ENet adapt to fluctuating network
      * conditions faster, causing unrelaible packets to be sent *less* often. The default value is `2`.
      */
-    PEER_PACKET_THROTTLE_DECELERATION(12),
+    PACKET_THROTTLE_DECELERATION(12),
     /**
      * The interval over which the lowest mean round trip time should be measured for use by the
      * throttle mechanism (in milliseconds). The default value is `5000`.
      */
-    PEER_PACKET_THROTTLE_INTERVAL(13),
+    PACKET_THROTTLE_INTERVAL(13),
     ;
 
     public val id: Long

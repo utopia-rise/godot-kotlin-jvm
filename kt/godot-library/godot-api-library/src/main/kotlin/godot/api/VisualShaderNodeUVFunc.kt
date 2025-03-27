@@ -36,7 +36,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(823, scriptIndex)
+    createNativeObject(821, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -47,7 +47,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeUVFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(
@@ -57,16 +57,16 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
      * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv +
      * offset * scale`. `uv` port is connected to `UV` built-in by default.
      */
-    FUNC_PANNING(0),
+    PANNING(0),
     /**
      * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv -
      * pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
      */
-    FUNC_SCALING(1),
+    SCALING(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

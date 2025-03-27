@@ -32,6 +32,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * [PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics
  * bodies inherit from it.
+ *
  * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is
  * advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
@@ -42,10 +43,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockLinearX: Boolean
     @JvmName("axisLockLinearXProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_X)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.LINEAR_X)
     @JvmName("axisLockLinearXProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_X, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.LINEAR_X, value)
     }
 
   /**
@@ -53,10 +54,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockLinearY: Boolean
     @JvmName("axisLockLinearYProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Y)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Y)
     @JvmName("axisLockLinearYProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Y, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Y, value)
     }
 
   /**
@@ -64,10 +65,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockLinearZ: Boolean
     @JvmName("axisLockLinearZProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Z)
     @JvmName("axisLockLinearZProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Z, value)
     }
 
   /**
@@ -75,10 +76,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockAngularX: Boolean
     @JvmName("axisLockAngularXProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_X)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_X)
     @JvmName("axisLockAngularXProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_X, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_X, value)
     }
 
   /**
@@ -86,10 +87,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockAngularY: Boolean
     @JvmName("axisLockAngularYProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Y)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Y)
     @JvmName("axisLockAngularYProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Y, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Y, value)
     }
 
   /**
@@ -97,28 +98,33 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockAngularZ: Boolean
     @JvmName("axisLockAngularZProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Z)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Z)
     @JvmName("axisLockAngularZProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Z, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Z, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(478, scriptIndex)
+    createNativeObject(463, scriptIndex)
   }
 
   /**
    * Moves the body along the vector [motion]. In order to be frame rate independent in
    * [Node.PhysicsProcess] or [Node.Process], [motion] should be computed using `delta`.
+   *
    * The body will stop if it collides. Returns a [KinematicCollision3D], which contains information
    * about the collision when stopped, or when touching another body along the motion.
+   *
    * If [testOnly] is `true`, the body does not move but the would-be collision information is
    * given.
+   *
    * [safeMargin] is the extra margin used for collision recovery (see [CharacterBody3D.safeMargin]
    * for more details).
+   *
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported
    * as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor
    * snapping.
+   *
    * [maxCollisions] allows to retrieve more than one collision result.
    */
   @JvmOverloads
@@ -137,15 +143,20 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Checks for collisions without moving the body. In order to be frame rate independent in
    * [Node.PhysicsProcess] or [Node.Process], [motion] should be computed using `delta`.
+   *
    * Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then
    * tries to move the body along the vector [motion]. Returns `true` if a collision would stop the
    * body from moving along the whole path.
+   *
    * [collision] is an optional object of type [KinematicCollision3D], which contains additional
    * information about the collision when stopped, or when touching another body along the motion.
+   *
    * [safeMargin] is the extra margin used for collision recovery (see [CharacterBody3D.safeMargin]
    * for more details).
+   *
    * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported
    * as a collision; this is useful for checking whether the body would *touch* any other bodies.
+   *
    * [maxCollisions] allows to retrieve more than one collision result.
    */
   @JvmOverloads

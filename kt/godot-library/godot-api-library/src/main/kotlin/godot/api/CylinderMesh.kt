@@ -94,6 +94,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   /**
    * If `true`, generates a cap at the top of the cylinder. This can be set to `false` to speed up
    * generation and rendering when the cap is never seen by the camera. See also [topRadius].
+   *
    * **Note:** If [topRadius] is `0.0`, cap generation is always skipped even if [capTop] is `true`.
    */
   public final inline var capTop: Boolean
@@ -107,6 +108,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   /**
    * If `true`, generates a cap at the bottom of the cylinder. This can be set to `false` to speed
    * up generation and rendering when the cap is never seen by the camera. See also [bottomRadius].
+   *
    * **Note:** If [bottomRadius] is `0.0`, cap generation is always skipped even if [capBottom] is
    * `true`.
    */
@@ -119,7 +121,7 @@ public open class CylinderMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(223, scriptIndex)
+    createNativeObject(190, scriptIndex)
   }
 
   public final fun setTopRadius(radius: Float): Unit {

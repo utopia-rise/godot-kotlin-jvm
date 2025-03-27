@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.NavigationPathQueryParameters3D.PathMetadataFlagsValue
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -43,8 +42,10 @@ import kotlin.jvm.JvmName
  * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
  * calculation can be used by the parent node to dynamically move it along the path. Requires
  * navigation data to work correctly.
+ *
  * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before
  * physics, so the pathfinding information can be used safely in the physics step.
+ *
  * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be
  * used once every physics frame to update the internal path logic of the navigation agent. The vector
  * position it returns should be used as the next movement position for the agent's parent node.
@@ -53,8 +54,11 @@ import kotlin.jvm.JvmName
 public open class NavigationAgent3D : Node() {
   /**
    * Emitted when the agent had to update the loaded path:
+   *
    * - because path was previously empty.
+   *
    * - because navigation map has changed.
+   *
    * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
   public val pathChanged: Signal0 by Signal0
@@ -62,8 +66,10 @@ public open class NavigationAgent3D : Node() {
   /**
    * Signals that the agent reached the target, i.e. the agent moved within [targetDesiredDistance]
    * of the [targetPosition]. This signal is emitted only once per loaded path.
+   *
    * This signal will be emitted just before [signal navigation_finished] when the target is
    * reachable.
+   *
    * It may not always be possible to reach the target but it should always be possible to reach the
    * final position. See [getFinalPosition].
    */
@@ -72,11 +78,16 @@ public open class NavigationAgent3D : Node() {
   /**
    * Signals that the agent reached a waypoint. Emitted when the agent moves within
    * [pathDesiredDistance] of the next position of the path.
+   *
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
+   *
    * - `position`: The position of the waypoint that was reached.
+   *
    * - `type`: The type of navigation primitive (region or link) that contains this waypoint.
+   *
    * - `rid`: The [RID] of the containing navigation primitive (region or link).
+   *
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
   public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
@@ -84,14 +95,21 @@ public open class NavigationAgent3D : Node() {
   /**
    * Signals that the agent reached a navigation link. Emitted when the agent moves within
    * [pathDesiredDistance] of the next position of the path when that position is a navigation link.
+   *
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
+   *
    * - `position`: The start position of the link that was reached.
+   *
    * - `type`: Always [NavigationPathQueryResult3D.PATH_SEGMENT_TYPE_LINK].
+   *
    * - `rid`: The [RID] of the link.
+   *
    * - `owner`: The object which manages the link (usually [NavigationLink3D]).
+   *
    * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
    * contain the global position of the link's point the agent is entering.
+   *
    * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
    * contain the global position of the link's point which the agent is exiting.
    */
@@ -101,6 +119,7 @@ public open class NavigationAgent3D : Node() {
    * Signals that the agent's navigation has finished. If the target is reachable, navigation ends
    * when the target is reached. If the target is unreachable, navigation ends when the last waypoint
    * of the path is reached. This signal is emitted only once per loaded path.
+   *
    * This signal will be emitted just after [signal target_reached] when the target is reachable.
    */
   public val navigationFinished: Signal0 by Signal0
@@ -114,6 +133,13 @@ public open class NavigationAgent3D : Node() {
   /**
    * If set, a new navigation path from the current agent position to the [targetPosition] is
    * requested from the NavigationServer.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -144,8 +170,10 @@ public open class NavigationAgent3D : Node() {
    * The distance threshold before the target is considered to be reached. On reaching the target,
    * [signal target_reached] is emitted and navigation ends (see [isNavigationFinished] and [signal
    * navigation_finished]).
+   *
    * You can make navigation end early by setting this property to a value greater than
    * [pathDesiredDistance] (navigation will end before reaching the last waypoint).
+   *
    * You can also make navigation end closer to the target than each individual path position by
    * setting this property to a value lower than [pathDesiredDistance] (navigation won't immediately
    * end when reaching the last waypoint). However, if the value set is too low, the agent will be
@@ -238,6 +266,7 @@ public open class NavigationAgent3D : Node() {
    * If `true` a simplified version of the path will be returned with less critical path points
    * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
    * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   *
    * Path simplification can be helpful to mitigate various path following issues that can arise
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".
@@ -281,6 +310,13 @@ public open class NavigationAgent3D : Node() {
    * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
    * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
    * simulation velocity.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector3
@@ -307,6 +343,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the
    * avoidance maneuver starting radius (which is controlled by [neighborDistance]).
+   *
    * Does not affect normal pathfinding. To change an actor's pathfinding radius bake
    * [NavigationMesh] resources with a different [NavigationMesh.agentRadius] property and use
    * different navigation maps for each actor size.
@@ -386,6 +423,7 @@ public open class NavigationAgent3D : Node() {
    * that take place in air, underwater or space. Agents using 3D avoidance only avoid other agents
    * using 3D avoidance, and react to radius-based avoidance obstacles. They ignore any vertex-based
    * obstacles.
+   *
    * If `false`, the agent calculates avoidance velocities in 2D along the x and z-axes, ignoring
    * the y-axis. Agents using 2D avoidance only avoid other agents using 2D avoidance, and react to
    * radius-based avoidance obstacles or vertex-based avoidance obstacles. Other agents using 2D
@@ -473,6 +511,13 @@ public open class NavigationAgent3D : Node() {
 
   /**
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugPathCustomColor: Color
@@ -496,18 +541,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(395, scriptIndex)
+    createNativeObject(375, scriptIndex)
   }
 
   /**
-   * If set, a new navigation path from the current agent position to the [targetPosition] is
-   * requested from the NavigationServer.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [targetPosition] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -516,25 +554,18 @@ public open class NavigationAgent3D : Node() {
    * //Your changes
    * navigationagent3d.targetPosition = myCoreType
    * ``````
+   *
+   * If set, a new navigation path from the current agent position to the [targetPosition] is
+   * requested from the NavigationServer.
    */
   @CoreTypeHelper
-  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
-      block(this)
-      targetPosition = this
+  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply {
+     block(this)
+     targetPosition = this
   }
 
-
   /**
-   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
-   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
-   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
-   * simulation velocity.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -543,22 +574,20 @@ public open class NavigationAgent3D : Node() {
    * //Your changes
    * navigationagent3d.velocity = myCoreType
    * ``````
+   *
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
+   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
+   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
+   * simulation velocity.
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
+     block(this)
+     velocity = this
   }
 
-
   /**
-   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [debugPathCustomColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -567,14 +596,15 @@ public open class NavigationAgent3D : Node() {
    * //Your changes
    * navigationagent3d.debugPathCustomColor = myCoreType
    * ``````
+   *
+   * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    */
   @CoreTypeHelper
   public final fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
-      debugPathCustomColor.apply{
-      block(this)
-      debugPathCustomColor = this
+      debugPathCustomColor.apply {
+     block(this)
+     debugPathCustomColor = this
   }
-
 
   /**
    * Returns the [RID] of this agent on the [NavigationServer3D].
@@ -804,7 +834,7 @@ public open class NavigationAgent3D : Node() {
   public final fun getPathMetadataFlags(): NavigationPathQueryParameters3D.PathMetadataFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMetadataFlagsPtr, LONG)
-    return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return NavigationPathQueryParameters3D.PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -962,6 +992,7 @@ public open class NavigationAgent3D : Node() {
    * Returns `true` if the agent's navigation has finished. If the target is reachable, navigation
    * ends when the target is reached. If the target is unreachable, navigation ends when the last
    * waypoint of the path is reached.
+   *
    * **Note:** While `true` prefer to stop calling update functions like [getNextPathPosition]. This
    * avoids jittering the standing agent due to calling repeated path updates.
    */

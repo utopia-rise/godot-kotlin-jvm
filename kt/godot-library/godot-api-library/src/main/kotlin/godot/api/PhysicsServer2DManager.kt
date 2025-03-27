@@ -24,13 +24,14 @@ import kotlin.jvm.JvmStatic
 /**
  * [PhysicsServer2DManager] is the API for registering [PhysicsServer2D] implementations and for
  * setting the default implementation.
+ *
  * **Note:** It is not possible to switch physics servers at runtime. This class is only used on
  * startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(6)
+    getSingleton(22)
   }
 
   /**

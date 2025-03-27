@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -27,6 +28,7 @@ import kotlin.jvm.JvmName
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
  * in a [Skeleton2D] can be mixed and matched together to create complex interactions.
+ *
  * This is used to provide Godot with a flexible and powerful Inverse Kinematics solution that can
  * be adapted for many different uses.
  */
@@ -57,7 +59,7 @@ public open class SkeletonModification2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(605, scriptIndex)
+    createNativeObject(599, scriptIndex)
   }
 
   /**
@@ -65,21 +67,25 @@ public open class SkeletonModification2D : Resource() {
    * is designed to do.
    */
   public open fun _execute(delta: Double): Unit {
+    throw NotImplementedError("_execute is not implemented for SkeletonModification2D")
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
   public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
+    throw NotImplementedError("_setupModification is not implemented for SkeletonModification2D")
   }
 
   /**
    * Used for drawing **editor-only** modification gizmos. This function will only be called in the
    * Godot editor and can be overridden to draw custom gizmos.
+   *
    * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton]
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo(): Unit {
+    throw NotImplementedError("_drawEditorGizmo is not implemented for SkeletonModification2D")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {

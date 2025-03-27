@@ -21,6 +21,7 @@ import kotlin.Unit
  * The engine can save resources when you do it from the editor, or when you use the [ResourceSaver]
  * singleton. This is accomplished thanks to multiple [ResourceFormatSaver]s, each handling its own
  * format and called automatically by the engine.
+ *
  * By default, Godot saves resources as `.tres` (text-based), `.res` (binary) or another built-in
  * format, but you can choose to create your own format by extending this class. Be sure to respect the
  * documented return types and values. You should give it a global class name with `class_name` for it
@@ -30,12 +31,13 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(566, scriptIndex)
+    createNativeObject(557, scriptIndex)
   }
 
   /**
    * Saves the given resource object to a file at the target [path]. [flags] is a bitmask composed
    * with [ResourceSaver.SaverFlags] constants.
+   *
    * Returns [OK] on success, or an [Error] constant in case of failure.
    */
   public open fun _save(
@@ -51,7 +53,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * constant in case of failure.
    */
   public open fun _setUid(path: String, uid: Long): Error {
-    throw NotImplementedError("_set_uid is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_setUid is not implemented for ResourceFormatSaver")
   }
 
   /**
@@ -66,16 +68,17 @@ public open class ResourceFormatSaver : RefCounted() {
    * recognized (see [_recognize]).
    */
   public open fun _getRecognizedExtensions(resource: Resource?): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_getRecognizedExtensions is not implemented for ResourceFormatSaver")
   }
 
   /**
    * Returns `true` if this saver handles a given save path and `false` otherwise.
+   *
    * If this method is not implemented, the default behavior returns whether the path's extension is
    * within the ones provided by [_getRecognizedExtensions].
    */
   public open fun _recognizePath(resource: Resource?, path: String): Boolean {
-    throw NotImplementedError("_recognize_path is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_recognizePath is not implemented for ResourceFormatSaver")
   }
 
   public companion object

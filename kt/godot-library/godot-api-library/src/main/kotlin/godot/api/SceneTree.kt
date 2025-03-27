@@ -26,6 +26,8 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -41,9 +43,11 @@ import kotlin.jvm.JvmOverloads
  * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene,
  * as well as scenes themselves. Nodes can be added, fetched and removed. The whole scene tree (and
  * thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
+ *
  * You can also use the [SceneTree] to organize your nodes into **groups**: every node can be added
  * to as many groups as you want to create, e.g. an "enemy" group. You can then iterate these groups or
  * even call methods and set properties on all the nodes belonging to any given group.
+ *
  * [SceneTree] is the default [MainLoop] implementation used by the engine, and is thus in charge of
  * the game loop.
  */
@@ -93,6 +97,7 @@ public open class SceneTree : MainLoop() {
 
   /**
    * If `true`, the application automatically accepts quitting requests.
+   *
    * For mobile platforms, see [quitOnGoBack].
    */
   public final inline var autoAcceptQuit: Boolean
@@ -106,6 +111,7 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true`, the application quits automatically when navigating back (e.g. using the system
    * "Back" button on Android).
+   *
    * To handle 'Go Back' button when this option is disabled, use
    * [DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
    */
@@ -120,6 +126,7 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true`, collision shapes will be visible when running the game from the editor for debugging
    * purposes.
+   *
    * **Note:** This property is not designed to be changed at run-time. Changing the value of
    * [debugCollisionsHint] while the project is running will not have the desired effect.
    */
@@ -134,6 +141,7 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true`, curves from [Path2D] and [Path3D] nodes will be visible when running the game from
    * the editor for debugging purposes.
+   *
    * **Note:** This property is not designed to be changed at run-time. Changing the value of
    * [debugPathsHint] while the project is running will not have the desired effect.
    */
@@ -148,6 +156,7 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true`, navigation polygons will be visible when running the game from the editor for
    * debugging purposes.
+   *
    * **Note:** This property is not designed to be changed at run-time. Changing the value of
    * [debugNavigationHint] while the project is running will not have the desired effect.
    */
@@ -161,7 +170,9 @@ public open class SceneTree : MainLoop() {
 
   /**
    * If `true`, the scene tree is considered paused. This causes the following behavior:
+   *
    * - 2D and 3D physics will be stopped, as well as collision detection and related signals.
+   *
    * - Depending on each node's [Node.processMode], their [Node.Process], [Node.PhysicsProcess] and
    * [Node.Input] callback methods may not called anymore.
    */
@@ -176,6 +187,7 @@ public open class SceneTree : MainLoop() {
   /**
    * The root of the scene currently being edited in the editor. This is usually a direct child of
    * [root].
+   *
    * **Note:** This property does nothing in release builds.
    */
   public final inline var editedSceneRoot: Node?
@@ -189,6 +201,7 @@ public open class SceneTree : MainLoop() {
   /**
    * The root node of the currently loaded main scene, usually as a direct child of [root]. See also
    * [changeSceneToFile], [changeSceneToPacked], and [reloadCurrentScene].
+   *
    * **Warning:** Setting this property directly may not work as expected, as it does *not* add or
    * remove any nodes from this tree.
    */
@@ -206,6 +219,7 @@ public open class SceneTree : MainLoop() {
    * [currentScene], as well as any
    * [url=$DOCS_URL/tutorials/scripting/singletons_autoload.html]AutoLoad[/url] configured in the
    * Project Settings.
+   *
    * **Warning:** Do not delete this node. This will result in unstable behavior, followed by a
    * crash.
    */
@@ -216,6 +230,7 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true` (default value), enables automatic polling of the [MultiplayerAPI] for this SceneTree
    * during [signal process_frame].
+   *
    * If `false`, you need to manually call [MultiplayerAPI.poll] to process network packets and
    * deliver RPCs. This allows running RPCs in a different loop (e.g. physics, thread, specific time
    * step) and for manual [Mutex] protection when accessing the [MultiplayerAPI] from threads.
@@ -232,6 +247,7 @@ public open class SceneTree : MainLoop() {
    * If `true`, the renderer will interpolate the transforms of physics objects between the last two
    * transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered
    * frames.
+   *
    * The default value of this property is controlled by
    * [ProjectSettings.physics/common/physicsInterpolation].
    */
@@ -244,7 +260,7 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(579, scriptIndex)
+    createNativeObject(573, scriptIndex)
   }
 
   public final fun getRoot(): Window? {
@@ -342,23 +358,28 @@ public open class SceneTree : MainLoop() {
   /**
    * Returns a new [SceneTreeTimer]. After [timeSec] in seconds have passed, the timer will emit
    * [signal SceneTreeTimer.timeout] and will be automatically freed.
+   *
    * If [processAlways] is `false`, the timer will be paused when setting [SceneTree.paused] to
    * `true`.
+   *
    * If [processInPhysics] is `true`, the timer will update at the end of the physics frame, instead
    * of the process frame.
+   *
    * If [ignoreTimeScale] is `true`, the timer will ignore [Engine.timeScale] and update with the
    * real, elapsed time.
+   *
    * This method is commonly used to create a one-shot delay timer, as in the following example:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func some_function():
    *     print("start")
    *     await get_tree().create_timer(1.0).timeout
    *     print("end")
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * public async Task SomeFunction()
    * {
    *     GD.Print("start");
@@ -386,6 +407,7 @@ public open class SceneTree : MainLoop() {
   /**
    * Creates and returns a new [Tween] processed in this tree. The Tween will start automatically on
    * the next process frame or physics frame (depending on its [Tween.TweenProcessMode]).
+   *
    * **Note:** A [Tween] created using this method is not bound to any [Node]. It may keep working
    * until there is nothing left to animate. If you want the [Tween] to be automatically killed when
    * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
@@ -426,8 +448,10 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Quits the application at the end of the current iteration, with the given [exitCode].
+   *
    * By convention, an exit code of `0` indicates success, whereas any other exit code indicates an
    * error. For portability reasons, it should be between `0` and `125` (inclusive).
+   *
    * **Note:** On iOS this method doesn't work. Instead, as recommended by the
    * [url=https://developer.apple.com/library/archive/qa/qa1561/_index.html]iOS Human Interface
    * Guidelines[/url], the user is expected to close apps via the Home button.
@@ -463,13 +487,15 @@ public open class SceneTree : MainLoop() {
    * to customize this method's behavior (see [GroupCallFlags]). Additional arguments for [method] can
    * be passed at the end of this method. Nodes that cannot call [method] (either because the method
    * doesn't exist or the arguments do not match) are ignored.
-   * [codeblock]
+   *
+   * ```
    * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
    * order.
    * get_tree().call_group_flags(
    *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
    *         "enemies", "hide")
-   * [/codeblock]
+   * ```
+   *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
    * each call.
@@ -478,9 +504,9 @@ public open class SceneTree : MainLoop() {
     flags: Long,
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupFlagsPtr, NIL)
   }
 
@@ -501,6 +527,7 @@ public open class SceneTree : MainLoop() {
    * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
    * Nodes that do not have the [property] are ignored. Use [callFlags] to customize this method's
    * behavior (see [GroupCallFlags]).
+   *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
    * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
    * on each call.
@@ -520,8 +547,10 @@ public open class SceneTree : MainLoop() {
    * to [method] by specifying them at the end of this method call. Nodes that cannot call [method]
    * (either because the method doesn't exist or the arguments do not match) are ignored. See also
    * [setGroup] and [notifyGroup].
+   *
    * **Note:** This method acts immediately on all selected nodes at once, which may cause
    * stuttering in some performance-intensive situations.
+   *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
    * each call.
@@ -529,9 +558,9 @@ public open class SceneTree : MainLoop() {
   public final fun callGroup(
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupPtr, NIL)
   }
 
@@ -539,6 +568,7 @@ public open class SceneTree : MainLoop() {
    * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
    * to the [group]. See also [url=$DOCS_URL/tutorials/best_practices/godot_notifications.html]Godot
    * notifications[/url] and [callGroup] and [setGroup].
+   *
    * **Note:** This method acts immediately on all selected nodes at once, which may cause
    * stuttering in some performance-intensive situations.
    */
@@ -550,8 +580,10 @@ public open class SceneTree : MainLoop() {
   /**
    * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
    * Nodes that do not have the [property] are ignored. See also [callGroup] and [notifyGroup].
+   *
    * **Note:** This method acts immediately on all selected nodes at once, which may cause
    * stuttering in some performance-intensive situations.
+   *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
    * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
    * on each call.
@@ -608,8 +640,10 @@ public open class SceneTree : MainLoop() {
   /**
    * Changes the running scene to the one at the given [path], after loading it into a [PackedScene]
    * and creating a new instance.
+   *
    * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [PackedScene],
    * or [ERR_CANT_CREATE] if that scene cannot be instantiated.
+   *
    * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public final fun changeSceneToFile(path: String): Error {
@@ -620,15 +654,20 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Changes the running scene to a new instance of the given [PackedScene] (which must be valid).
+   *
    * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or
    * [ERR_INVALID_PARAMETER] if the scene is invalid.
+   *
    * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
+   *
    * 1. The current scene node is immediately removed from the tree. From that point, [Node.getTree]
    * called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too,
    * because the new scene is not available yet.
+   *
    * 2. At the end of the frame, the formerly current scene, already removed from the tree, will be
    * deleted (freed from memory) and then the new scene will be instantiated and added to the tree.
    * [Node.getTree] and [currentScene] will be back to working as usual.
+   *
    * This ensures that both scenes aren't running at the same time, while still freeing the previous
    * scene in a safe way similar to [Node.queueFree].
    */
@@ -641,6 +680,7 @@ public open class SceneTree : MainLoop() {
   /**
    * Reloads the currently active scene, replacing [currentScene] with a new instance of its
    * original [PackedScene].
+   *
    * Returns [OK] on success, [ERR_UNCONFIGURED] if no [currentScene] is defined, [ERR_CANT_OPEN] if
    * [currentScene] cannot be loaded into a [PackedScene], or [ERR_CANT_CREATE] if the scene cannot be
    * instantiated.
@@ -662,11 +702,11 @@ public open class SceneTree : MainLoop() {
   /**
    * Sets a custom [MultiplayerAPI] with the given [rootPath] (controlling also the relative
    * subpaths), or override the default one if [rootPath] is empty.
+   *
    * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
    * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
    * `"/root/Foo/Bar"` will cause an error.
    */
-  @JvmOverloads
   public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: NodePath = NodePath("")):
       Unit {
     TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
@@ -678,7 +718,6 @@ public open class SceneTree : MainLoop() {
    * searches the parent paths until one is found. If the path is empty, or none is found, the default
    * one is returned. See [setMultiplayer].
    */
-  @JvmOverloads
   public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerPtr, OBJECT)
@@ -696,30 +735,173 @@ public open class SceneTree : MainLoop() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns `true` if a node added to the given group [name] exists in the tree.
+   */
+  public final fun hasGroup(name: String): Boolean = hasGroup(name.asCachedStringName())
+
+  /**
+   * Calls the given [method] on each node inside this tree added to the given [group]. Use [flags]
+   * to customize this method's behavior (see [GroupCallFlags]). Additional arguments for [method] can
+   * be passed at the end of this method. Nodes that cannot call [method] (either because the method
+   * doesn't exist or the arguments do not match) are ignored.
+   *
+   * ```
+   * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
+   * order.
+   * get_tree().call_group_flags(
+   *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   *         "enemies", "hide")
+   * ```
+   *
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun callGroupFlags(
+    flags: Long,
+    group: String,
+    method: String,
+    vararg args: Any?,
+  ) = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. Use [callFlags] to customize this method's behavior (see [GroupCallFlags]).
+   */
+  public final fun notifyGroupFlags(
+    callFlags: Long,
+    group: String,
+    notification: Int,
+  ) = notifyGroupFlags(callFlags, group.asCachedStringName(), notification)
+
+  /**
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. Use [callFlags] to customize this method's
+   * behavior (see [GroupCallFlags]).
+   *
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
+   */
+  public final fun setGroupFlags(
+    callFlags: Long,
+    group: String,
+    `property`: String,
+    `value`: Any?,
+  ) = setGroupFlags(callFlags, group.asCachedStringName(), property, value)
+
+  /**
+   * Calls [method] on each node inside this tree added to the given [group]. You can pass arguments
+   * to [method] by specifying them at the end of this method call. Nodes that cannot call [method]
+   * (either because the method doesn't exist or the arguments do not match) are ignored. See also
+   * [setGroup] and [notifyGroup].
+   *
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   *
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun callGroup(
+    group: String,
+    method: String,
+    vararg args: Any?,
+  ) = callGroup(group.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. See also [url=$DOCS_URL/tutorials/best_practices/godot_notifications.html]Godot
+   * notifications[/url] and [callGroup] and [setGroup].
+   *
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   */
+  public final fun notifyGroup(group: String, notification: Int) =
+      notifyGroup(group.asCachedStringName(), notification)
+
+  /**
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. See also [callGroup] and [notifyGroup].
+   *
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   *
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
+   */
+  public final fun setGroup(
+    group: String,
+    `property`: String,
+    `value`: Any?,
+  ) = setGroup(group.asCachedStringName(), property, value)
+
+  /**
+   * Returns an [Array] containing all nodes inside this tree, that have been added to the given
+   * [group], in scene hierarchy order.
+   */
+  public final fun getNodesInGroup(group: String): VariantArray<Node> =
+      getNodesInGroup(group.asCachedStringName())
+
+  /**
+   * Returns the first [Node] found inside the tree, that has been added to the given [group], in
+   * scene hierarchy order. Returns `null` if no match is found. See also [getNodesInGroup].
+   */
+  public final fun getFirstNodeInGroup(group: String): Node? =
+      getFirstNodeInGroup(group.asCachedStringName())
+
+  /**
+   * Returns the number of nodes assigned to the given group.
+   */
+  public final fun getNodeCountInGroup(group: String): Int =
+      getNodeCountInGroup(group.asCachedStringName())
+
+  /**
+   * Sets a custom [MultiplayerAPI] with the given [rootPath] (controlling also the relative
+   * subpaths), or override the default one if [rootPath] is empty.
+   *
+   * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
+   * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
+   * `"/root/Foo/Bar"` will cause an error.
+   */
+  public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: String) =
+      setMultiplayer(multiplayer, rootPath.asCachedNodePath())
+
+  /**
+   * Searches for the [MultiplayerAPI] configured for the given path, if one does not exist it
+   * searches the parent paths until one is found. If the path is empty, or none is found, the default
+   * one is returned. See [setMultiplayer].
+   */
+  public final fun getMultiplayer(forPath: String): MultiplayerAPI? =
+      getMultiplayer(forPath.asCachedNodePath())
+
   public enum class GroupCallFlags(
     id: Long,
   ) {
     /**
      * Call nodes within a group with no special behavior (default).
      */
-    GROUP_CALL_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Call nodes within a group in reverse tree hierarchy order (all nested children are called
      * before their respective parent nodes).
      */
-    GROUP_CALL_REVERSE(1),
+    REVERSE(1),
     /**
      * Call nodes within a group at the end of the current frame (can be either process or physics
      * frame), similar to [Object.callDeferred].
      */
-    GROUP_CALL_DEFERRED(2),
+    DEFERRED(2),
     /**
      * Call nodes within a group only once, even if the call is executed many times in the same
      * frame. Must be combined with [GROUP_CALL_DEFERRED] to work.
+     *
      * **Note:** Different arguments are not taken into account. Therefore, when the same call is
      * executed with different arguments, only the first call will be performed.
      */
-    GROUP_CALL_UNIQUE(4),
+    UNIQUE(4),
     ;
 
     public val id: Long

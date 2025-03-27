@@ -19,11 +19,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -34,6 +36,7 @@ import kotlin.jvm.JvmOverloads
  * table. Clips must be added first, and then the transition rules via the [addTransition].
  * Additionally, this stream exports a property parameter to control the playback via
  * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D].
+ *
  * The way this is used is by filling a number of clips, then configuring the transition table. From
  * there, clips are selected for playback and the music will smoothly go from the current to the new
  * one while using the corresponding transition rule defined in the transition table.
@@ -63,7 +66,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(118, scriptIndex)
+    createNativeObject(83, scriptIndex)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {
@@ -136,7 +139,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getClipAutoAdvance(clipIndex: Int): AutoAdvanceMode {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getClipAutoAdvancePtr, LONG)
-    return AudioStreamInteractive.AutoAdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AutoAdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -160,15 +163,22 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Add a transition between two clips. Provide the indices of the source and destination clips, or
    * use the [CLIP_ANY] constant to indicate that transition happens to/from any clip to this one.
+   *
    * * [fromTime] indicates the moment in the current clip the transition will begin after
    * triggered.
+   *
    * * [toTime] indicates the time in the next clip that the playback will start from.
+   *
    * * [fadeMode] indicates how the fade will happen between clips. If unsure, just use
    * [FADE_AUTOMATIC] which uses the most common type of fade for each situation.
+   *
    * * [fadeBeats] indicates how many beats the fade will take. Using decimals is allowed.
+   *
    * * [useFillerClip] indicates that there will be a filler clip used between the source and
    * destination clips.
+   *
    * * [fillerClip] the index of the filler clip.
+   *
    * * If [holdPrevious] is used, then this clip will be remembered. This can be used together with
    * [AUTO_ADVANCE_RETURN_TO_HOLD] to return to this clip after another is done playing.
    */
@@ -221,7 +231,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionFromTime(fromClip: Int, toClip: Int): TransitionFromTime {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTransitionFromTimePtr, LONG)
-    return AudioStreamInteractive.TransitionFromTime.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransitionFromTime.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -230,7 +240,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionToTime(fromClip: Int, toClip: Int): TransitionToTime {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTransitionToTimePtr, LONG)
-    return AudioStreamInteractive.TransitionToTime.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransitionToTime.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -239,7 +249,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionFadeMode(fromClip: Int, toClip: Int): FadeMode {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTransitionFadeModePtr, LONG)
-    return AudioStreamInteractive.FadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return FadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -278,25 +288,31 @@ public open class AudioStreamInteractive : AudioStream() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Set the name of the current clip (for easier identification).
+   */
+  public final fun setClipName(clipIndex: Int, name: String) =
+      setClipName(clipIndex, name.asCachedStringName())
+
   public enum class TransitionFromTime(
     id: Long,
   ) {
     /**
      * Start transition as soon as possible, don't wait for any specific time position.
      */
-    TRANSITION_FROM_TIME_IMMEDIATE(0),
+    IMMEDIATE(0),
     /**
      * Transition when the clip playback position reaches the next beat.
      */
-    TRANSITION_FROM_TIME_NEXT_BEAT(1),
+    NEXT_BEAT(1),
     /**
      * Transition when the clip playback position reaches the next bar.
      */
-    TRANSITION_FROM_TIME_NEXT_BAR(2),
+    NEXT_BAR(2),
     /**
      * Transition when the current clip finished playing.
      */
-    TRANSITION_FROM_TIME_END(3),
+    END(3),
     ;
 
     public val id: Long
@@ -316,11 +332,11 @@ public open class AudioStreamInteractive : AudioStream() {
      * Transition to the same position in the destination clip. This is useful when both clips have
      * exactly the same length and the music should fade between them.
      */
-    TRANSITION_TO_TIME_SAME_POSITION(0),
+    SAME_POSITION(0),
     /**
      * Transition to the start of the destination clip.
      */
-    TRANSITION_TO_TIME_START(1),
+    START(1),
     ;
 
     public val id: Long
@@ -340,24 +356,24 @@ public open class AudioStreamInteractive : AudioStream() {
      * Do not use fade for the transition. This is useful when transitioning from a clip-end to
      * clip-beginning, and each clip has their begin/end.
      */
-    FADE_DISABLED(0),
+    DISABLED(0),
     /**
      * Use a fade-in in the next clip, let the current clip finish.
      */
-    FADE_IN(1),
+    IN(1),
     /**
      * Use a fade-out in the current clip, the next clip will start by itself.
      */
-    FADE_OUT(2),
+    OUT(2),
     /**
      * Use a cross-fade between clips.
      */
-    FADE_CROSS(3),
+    CROSS(3),
     /**
      * Use automatic fade logic depending on the transition from/to. It is recommended to use this
      * by default.
      */
-    FADE_AUTOMATIC(4),
+    AUTOMATIC(4),
     ;
 
     public val id: Long
@@ -376,16 +392,16 @@ public open class AudioStreamInteractive : AudioStream() {
     /**
      * Disable auto-advance (default).
      */
-    AUTO_ADVANCE_DISABLED(0),
+    DISABLED(0),
     /**
      * Enable auto-advance, a clip must be specified.
      */
-    AUTO_ADVANCE_ENABLED(1),
+    ENABLED(1),
     /**
      * Enable auto-advance, but instead of specifying a clip, the playback will return to hold (see
      * [addTransition]).
      */
-    AUTO_ADVANCE_RETURN_TO_HOLD(2),
+    RETURN_TO_HOLD(2),
     ;
 
     public val id: Long

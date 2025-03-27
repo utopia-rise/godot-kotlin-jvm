@@ -37,6 +37,7 @@ import kotlin.jvm.JvmOverloads
  * [PhysicsBody2D.moveAndCollide]. This makes it useful for highly configurable physics bodies that
  * must move in specific ways and collide with the world, as is often the case with user-controlled
  * characters.
+ *
  * For game objects that don't require complex movement or collision detection, such as moving
  * platforms, [AnimatableBody2D] is simpler to configure.
  */
@@ -59,6 +60,13 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
    * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
    * [MOTION_MODE_FLOATING] as [motionMode].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var upDirection: Vector2
@@ -71,6 +79,13 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   /**
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -121,6 +136,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * If `true`, the body will not slide on slopes when calling [moveAndSlide] when the body is
    * standing still.
+   *
    * If `false`, the body will slide on floor's slopes when [velocity] applies a downward force.
    */
   public final inline var floorStopOnSlope: Boolean
@@ -134,6 +150,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * If `false` (by default), the body will move faster on downward slopes and slower on upward
    * slopes.
+   *
    * If `true`, the body will always move at the same speed on the ground no matter the slope. Note
    * that you need to use [floorSnapLength] to stick along a downward slope at constant speed.
    */
@@ -173,6 +190,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached
    * to slopes when calling [moveAndSlide]. The snapping vector is determined by the given distance
    * along the opposite direction of the [upDirection].
+   *
    * As long as the snapping vector is in contact with the ground and the body moves against
    * [upDirection], the body will remain attached to the surface. Snapping is not applied if the body
    * moves along [upDirection], meaning it contains vertical rising velocity, so it will be able to
@@ -227,10 +245,13 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   /**
    * Extra margin used for collision recovery when calling [moveAndSlide].
+   *
    * If the body is at least this close to another body, it will consider them to be colliding and
    * will be pushed away before performing the actual motion.
+   *
    * A higher value means it's more flexible for detecting collision, which helps with consistently
    * detecting walls and floors.
+   *
    * A lower value forces the collision algorithm to use more exact detection, so it can be used in
    * cases that specifically require precision, e.g at very low scale to avoid visible jittering, or
    * for stability with a stack of character bodies.
@@ -244,20 +265,11 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(180, scriptIndex)
+    createNativeObject(146, scriptIndex)
   }
 
   /**
-   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
-   * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
-   * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTION_MODE_FLOATING] as [motionMode].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [upDirection] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -266,22 +278,20 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * //Your changes
    * characterbody2d.upDirection = myCoreType
    * ``````
+   *
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
+   * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
+   * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
+   * [MOTION_MODE_FLOATING] as [motionMode].
    */
   @CoreTypeHelper
-  public final fun upDirectionMutate(block: Vector2.() -> Unit): Vector2 = upDirection.apply{
-      block(this)
-      upDirection = this
+  public final fun upDirectionMutate(block: Vector2.() -> Unit): Vector2 = upDirection.apply {
+     block(this)
+     upDirection = this
   }
 
-
   /**
-   * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [velocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -290,26 +300,31 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * //Your changes
    * characterbody2d.velocity = myCoreType
    * ``````
+   *
+   * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    */
   @CoreTypeHelper
-  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
-      block(this)
-      velocity = this
+  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
+     block(this)
+     velocity = this
   }
-
 
   /**
    * Moves the body based on [velocity]. If the body collides with another, it will slide along the
    * other body (by default only on floor) rather than stop immediately. If the other body is a
    * [CharacterBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You
    * can use this to make moving and rotating platforms, or to make nodes push other nodes.
+   *
    * Modifies [velocity] if a slide collision occurred. To get the latest collision call
    * [getLastSlideCollision], for detailed information about collisions that occurred, use
    * [getSlideCollision].
+   *
    * When the body touches a moving platform, the platform's velocity is automatically added to the
    * body motion. If a collision occurs due to the platform's motion, it will always be first in the
    * slide collisions.
+   *
    * The general behavior and available properties change according to the [motionMode].
+   *
    * Returns `true` if the body collided, otherwise, returns `false`.
    */
   public final fun moveAndSlide(): Boolean {
@@ -478,7 +493,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public final fun getMotionMode(): MotionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMotionModePtr, LONG)
-    return CharacterBody2D.MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave): Unit {
@@ -489,7 +504,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public final fun getPlatformOnLeave(): PlatformOnLeave {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlatformOnLeavePtr, LONG)
-    return CharacterBody2D.PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
+    return PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -561,6 +576,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the collision normal of the floor at the last collision point. Only valid after calling
    * [moveAndSlide] and when [isOnFloor] returns `true`.
+   *
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getFloorNormal(): Vector2 {
@@ -572,6 +588,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the collision normal of the wall at the last collision point. Only valid after calling
    * [moveAndSlide] and when [isOnWall] returns `true`.
+   *
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getWallNormal(): Vector2 {
@@ -648,16 +665,18 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * during the last call to [moveAndSlide]. Since the body can collide several times in a single call
    * to [moveAndSlide], you must specify the index of the collision in the range 0 to
    * ([getSlideCollisionCount] - 1).
+   *
    * **Example:** Iterate through the collisions with a `for` loop:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * for i in get_slide_collision_count():
    *     var collision = get_slide_collision(i)
    *     print("Collided with: ", collision.get_collider().name)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * for (int i = 0; i < GetSlideCollisionCount(); i++)
    * {
    *     KinematicCollision2D collision = GetSlideCollision(i);
@@ -689,13 +708,13 @@ public open class CharacterBody2D : PhysicsBody2D() {
      * will react to slopes (acceleration/slowdown). This mode is suitable for sided games like
      * platformers.
      */
-    MOTION_MODE_GROUNDED(0),
+    GROUNDED(0),
     /**
      * Apply when there is no notion of floor or ceiling. All collisions will be reported as
      * `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is
      * suitable for top-down games.
      */
-    MOTION_MODE_FLOATING(1),
+    FLOATING(1),
     ;
 
     public val id: Long
@@ -714,17 +733,17 @@ public open class CharacterBody2D : PhysicsBody2D() {
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform.
      */
-    PLATFORM_ON_LEAVE_ADD_VELOCITY(0),
+    ADD_VELOCITY(0),
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform, but any
      * downward motion is ignored. It's useful to keep full jump height even when the platform is
      * moving down.
      */
-    PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY(1),
+    ADD_UPWARD_VELOCITY(1),
     /**
      * Do nothing when leaving a platform.
      */
-    PLATFORM_ON_LEAVE_DO_NOTHING(2),
+    DO_NOTHING(2),
     ;
 
     public val id: Long

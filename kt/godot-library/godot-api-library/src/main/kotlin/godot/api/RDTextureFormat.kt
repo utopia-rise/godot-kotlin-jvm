@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.RenderingDevice.TextureUsageBitsValue
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -139,6 +138,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    * If a texture is discardable, its contents do not need to be preserved between frames. This flag
    * is only relevant when the texture is used as target in a draw list.
+   *
    * This information is used by [RenderingDevice] to figure out if a texture's contents can be
    * discarded, eliminating unnecessary writes to memory and boosting performance.
    */
@@ -151,7 +151,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(538, scriptIndex)
+    createNativeObject(528, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
@@ -250,7 +250,7 @@ public open class RDTextureFormat : RefCounted() {
   public final fun getUsageBits(): RenderingDevice.TextureUsageBits {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsageBitsPtr, LONG)
-    return TextureUsageBitsValue(TransferContext.readReturnValue(LONG) as Long)
+    return RenderingDevice.TextureUsageBits(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIsResolveBuffer(pMember: Boolean): Unit {

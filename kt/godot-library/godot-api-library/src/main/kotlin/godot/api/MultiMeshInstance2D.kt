@@ -20,6 +20,7 @@ import kotlin.jvm.JvmName
 
 /**
  * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.
+ *
  * Usage is the same as [MultiMeshInstance3D].
  */
 @GodotBaseType
@@ -53,7 +54,7 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(385, scriptIndex)
+    createNativeObject(364, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

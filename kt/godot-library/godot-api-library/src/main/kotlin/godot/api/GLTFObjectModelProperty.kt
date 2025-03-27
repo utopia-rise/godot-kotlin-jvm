@@ -22,9 +22,12 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantType
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -34,11 +37,13 @@ import kotlin.jvm.JvmName
  * NodePath in the Godot scene tree. This can be used to animate properties in a glTF file using the
  * `KHR_animation_pointer` extension, or to access them through an engine-agnostic script such as a
  * behavior graph as defined by the `KHR_interactivity` extension.
+ *
  * The glTF property is identified by JSON pointer(s) stored in [jsonPointers], while the Godot
  * property it maps to is defined by [nodePaths]. In most cases [jsonPointers] and [nodePaths] will
  * each only have one item, but in some cases a single glTF JSON pointer will map to multiple Godot
  * properties, or a single Godot property will be mapped to multiple glTF JSON pointers, or it might be
  * a many-to-many relationship.
+ *
  * [Expression] objects can be used to define conversions between the data, such as when glTF
  * defines an angle in radians and Godot uses degrees. The [objectModelType] property defines the type
  * of data stored in the glTF file as defined by the object model, see [GLTFObjectModelType] for
@@ -78,6 +83,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * An array of [NodePath]s that point to a property, or multiple properties, in the Godot scene
    * tree. On import, this will either be set by [GLTFDocument], or by a [GLTFDocumentExtension] class.
    * For simple cases, use [appendPathToProperty] to add properties to this array.
+   *
    * In most cases [nodePaths] will only have one item, but in some cases a single glTF JSON pointer
    * will map to multiple Godot properties. For example, a [GLTFCamera] or [GLTFLight] used on multiple
    * glTF nodes will be represented by multiple Godot nodes.
@@ -130,7 +136,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(263, scriptIndex)
+    createNativeObject(234, scriptIndex)
   }
 
   /**
@@ -211,7 +217,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   public final fun getObjectModelType(): GLTFObjectModelType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getObjectModelTypePtr, LONG)
-    return GLTFObjectModelProperty.GLTFObjectModelType.from(TransferContext.readReturnValue(LONG) as Long)
+    return GLTFObjectModelType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setObjectModelType(type: GLTFObjectModelType): Unit {
@@ -261,6 +267,22 @@ public open class GLTFObjectModelProperty : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setTypesPtr, NIL)
   }
 
+  /**
+   * Appends a [NodePath] to [nodePaths]. This can be used by [GLTFDocumentExtension] classes to
+   * define how a glTF object model property maps to a Godot property, or multiple Godot properties.
+   * Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the
+   * order does not matter).
+   */
+  public final fun appendNodePath(nodePath: String) = appendNodePath(nodePath.asCachedNodePath())
+
+  /**
+   * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a
+   * new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also
+   * call [setTypes] once (the order does not matter).
+   */
+  public final fun appendPathToProperty(nodePath: String, propName: String) =
+      appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
+
   public enum class GLTFObjectModelType(
     id: Long,
   ) {
@@ -268,59 +290,59 @@ public open class GLTFObjectModelProperty : RefCounted() {
      * Unknown or not set object model type. If the object model type is set to this value, the real
      * type still needs to be determined.
      */
-    GLTF_OBJECT_MODEL_TYPE_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * Object model type "bool". Represented in the glTF JSON as a boolean, and encoded in a
      * [GLTFAccessor] as "SCALAR". When encoded in an accessor, a value of `0` is `false`, and any
      * other value is `true`.
      */
-    GLTF_OBJECT_MODEL_TYPE_BOOL(1),
+    BOOL(1),
     /**
      * Object model type "float". Represented in the glTF JSON as a number, and encoded in a
      * [GLTFAccessor] as "SCALAR".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT(2),
+    FLOAT(2),
     /**
      * Object model type "float[lb][rb]". Represented in the glTF JSON as an array of numbers, and
      * encoded in a [GLTFAccessor] as "SCALAR".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT_ARRAY(3),
+    FLOAT_ARRAY(3),
     /**
      * Object model type "float2". Represented in the glTF JSON as an array of two numbers, and
      * encoded in a [GLTFAccessor] as "VEC2".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT2(4),
+    FLOAT2(4),
     /**
      * Object model type "float3". Represented in the glTF JSON as an array of three numbers, and
      * encoded in a [GLTFAccessor] as "VEC3".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT3(5),
+    FLOAT3(5),
     /**
      * Object model type "float4". Represented in the glTF JSON as an array of four numbers, and
      * encoded in a [GLTFAccessor] as "VEC4".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT4(6),
+    FLOAT4(6),
     /**
      * Object model type "float2x2". Represented in the glTF JSON as an array of four numbers, and
      * encoded in a [GLTFAccessor] as "MAT2".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT2X2(7),
+    FLOAT2X2(7),
     /**
      * Object model type "float3x3". Represented in the glTF JSON as an array of nine numbers, and
      * encoded in a [GLTFAccessor] as "MAT3".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT3X3(8),
+    FLOAT3X3(8),
     /**
      * Object model type "float4x4". Represented in the glTF JSON as an array of sixteen numbers,
      * and encoded in a [GLTFAccessor] as "MAT4".
      */
-    GLTF_OBJECT_MODEL_TYPE_FLOAT4X4(9),
+    FLOAT4X4(9),
     /**
      * Object model type "int". Represented in the glTF JSON as a number, and encoded in a
      * [GLTFAccessor] as "SCALAR". The range of values is limited to signed integers. For
      * `KHR_interactivity`, only 32-bit integers are supported.
      */
-    GLTF_OBJECT_MODEL_TYPE_INT(10),
+    INT(10),
     ;
 
     public val id: Long

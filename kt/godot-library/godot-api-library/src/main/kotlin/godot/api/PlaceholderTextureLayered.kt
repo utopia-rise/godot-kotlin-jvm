@@ -23,11 +23,14 @@ import kotlin.jvm.JvmName
 
 /**
  * This class is used when loading a project that uses a [TextureLayered] subclass in 2 conditions:
+ *
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
  * kept (as they may be relied upon for gameplay purposes or positioning of other elements). This
  * allows reducing the exported PCK's size significantly.
+ *
  * - When this subclass is missing due to using a different engine version or build (e.g. modules
  * disabled).
+ *
  * **Note:** This is not intended to be used as an actual texture for rendering. It is not
  * guaranteed to work like one in shaders or materials (for example when calculating UV).
  */
@@ -35,6 +38,13 @@ import kotlin.jvm.JvmName
 public open class PlaceholderTextureLayered internal constructor() : TextureLayered() {
   /**
    * The size of each texture layer (in pixels).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -57,17 +67,11 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(508, scriptIndex)
+    createNativeObject(497, scriptIndex)
   }
 
   /**
-   * The size of each texture layer (in pixels).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -76,13 +80,14 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
    * //Your changes
    * placeholdertexturelayered.size = myCoreType
    * ``````
+   *
+   * The size of each texture layer (in pixels).
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)

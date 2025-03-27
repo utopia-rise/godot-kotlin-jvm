@@ -22,6 +22,7 @@ import kotlin.jvm.JvmName
 /**
  * A 2D circle shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
+ *
  * **Performance:** [CircleShape2D] is fast to check collisions against. It is faster than
  * [RectangleShape2D] and [CapsuleShape2D].
  */
@@ -39,7 +40,7 @@ public open class CircleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(184, scriptIndex)
+    createNativeObject(150, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

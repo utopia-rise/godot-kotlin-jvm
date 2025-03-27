@@ -19,6 +19,7 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -31,6 +32,7 @@ import kotlin.jvm.JvmName
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
  * allows to edit it. The polygon can be concave or convex. This can give a detection shape to an
  * [Area3D] or turn [PhysicsBody3D] into a solid object.
+ *
  * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its shape resource instead.
  */
@@ -61,7 +63,15 @@ public open class CollisionPolygon3D : Node3D() {
 
   /**
    * Array of vertices which define the 2D polygon in the local XY plane.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
@@ -84,9 +94,17 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugColor: Color
@@ -110,21 +128,48 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(190, scriptIndex)
+    createNativeObject(157, scriptIndex)
   }
 
   /**
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
-   * This is a helper function to make dealing with local copies easier.
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionpolygon3d.polygon
+   * //Your changes
+   * collisionpolygon3d.polygon = myCoreType
+   * ``````
    *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   * Array of vertices which define the 2D polygon in the local XY plane.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
+      polygon.apply {
+     block(this)
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [polygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
    *
+   * Array of vertices which define the 2D polygon in the local XY plane.
+   */
+  @CoreTypeHelper
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
+      PackedVector2Array = polygon.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     polygon = this
+  }
+
+  /**
+   * This is a helper function for [debugColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -133,13 +178,19 @@ public open class CollisionPolygon3D : Node3D() {
    * //Your changes
    * collisionpolygon3d.debugColor = myCoreType
    * ``````
+   *
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
+   *
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
+   * color.
    */
   @CoreTypeHelper
-  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
-      block(this)
-      debugColor = this
+  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply {
+     block(this)
+     debugColor = this
   }
-
 
   public final fun setDepth(depth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())

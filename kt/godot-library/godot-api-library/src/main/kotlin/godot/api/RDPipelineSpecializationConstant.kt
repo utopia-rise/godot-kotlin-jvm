@@ -25,6 +25,7 @@ import kotlin.jvm.JvmName
  * increasing the number of shader versions that are compiled. This allows improving performance by
  * reducing the number of shader versions and reducing `if` branching, while still allowing shaders to
  * be flexible for different use cases.
+ *
  * This object is used by [RenderingDevice].
  */
 @GodotBaseType
@@ -54,7 +55,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(533, scriptIndex)
+    createNativeObject(523, scriptIndex)
   }
 
   public final fun setValue(`value`: Any?): Unit {

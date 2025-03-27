@@ -19,11 +19,14 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -72,7 +75,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(376, scriptIndex)
+    createNativeObject(355, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
@@ -131,6 +134,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Sets the override [material] for the specified [surface] of the [Mesh] resource. This material
    * is associated with this [MeshInstance3D] rather than with [mesh].
+   *
    * **Note:** This assigns the [Material] associated to the [MeshInstance3D]'s Surface Material
    * Override properties, not the material within the [Mesh] resource. To set the material within the
    * [Mesh] resource, use [Mesh.surfaceSetMaterial] instead.
@@ -143,6 +147,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the override [Material] for the specified [surface] of the [Mesh] resource. See also
    * [getSurfaceOverrideMaterialCount].
+   *
    * **Note:** This returns the [Material] associated to the [MeshInstance3D]'s Surface Material
    * Override properties, not the material within the [Mesh] resource. To get the material within the
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
@@ -158,6 +163,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * [GeometryInstance3D.materialOverride], the surface override [Material] defined in this
    * [MeshInstance3D], or the surface [Material] defined in the [mesh]. For example, if
    * [GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
+   *
    * Returns `null` if no material is active, including when [mesh] is `null`.
    */
   public final fun getActiveMaterial(surface: Int): Material? {
@@ -178,8 +184,10 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [StaticBody3D] child node with a [ConvexPolygonShape3D] collision shape
    * calculated from the mesh geometry. It's mainly used for testing.
+   *
    * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
    * can set it to `false` to make the process faster if not needed.
+   *
    * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
    * vertices. Disabled by default.
    */
@@ -252,6 +260,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Takes a snapshot from the current [ArrayMesh] with all blend shapes applied according to their
    * current weights and bakes it to the provided [existing] mesh. If no [existing] mesh is provided a
    * new [ArrayMesh] is created, baked and returned. Mesh surface materials are not copied.
+   *
    * **Performance:** [Mesh] data needs to be received from the GPU, stalling the [RenderingServer]
    * in the process.
    */
@@ -267,6 +276,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * provided [existing] mesh. If no [existing] mesh is provided a new [ArrayMesh] is created, baked,
    * and returned. Requires a skeleton with a registered skin to work. Blendshapes are ignored. Mesh
    * surface materials are not copied.
+   *
    * **Performance:** [Mesh] data needs to be retrieved from the GPU, stalling the [RenderingServer]
    * in the process.
    */
@@ -276,6 +286,16 @@ public open class MeshInstance3D : GeometryInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.bakeMeshFromCurrentSkeletonPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
+
+  public final fun setSkeletonPath(skeletonPath: String) =
+      setSkeletonPath(skeletonPath.asCachedNodePath())
+
+  /**
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
+   * this name exists, including when [mesh] is `null`.
+   */
+  public final fun findBlendShapeByName(name: String): Int =
+      findBlendShapeByName(name.asCachedStringName())
 
   public companion object
 

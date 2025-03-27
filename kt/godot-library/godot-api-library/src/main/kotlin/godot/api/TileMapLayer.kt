@@ -6,6 +6,8 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -28,6 +30,7 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import kotlin.Boolean
+import kotlin.Byte
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -41,10 +44,13 @@ import kotlin.jvm.JvmOverloads
  * which are used to create grid-based maps. Unlike the [TileMap] node, which is deprecated,
  * [TileMapLayer] has only one layer of tiles. You can use several [TileMapLayer] to achieve the same
  * result as a [TileMap] node.
+ *
  * For performance reasons, all TileMap updates are batched at the end of a frame. Notably, this
  * means that scene tiles from a [TileSetScenesCollectionSource] may be initialized after their parent.
  * This is only queued when inside the scene tree.
+ *
  * To force an update earlier on, call [updateInternals].
+ *
  * **Note:** For performance and compatibility reasons, the coordinates serialized by [TileMapLayer]
  * are limited to 16-bit signed integers, i.e. the range for X and Y coordinates is from `-32768` to
  * `32767`. When saving tile data, tiles outside this range are wrapped.
@@ -54,6 +60,7 @@ public open class TileMapLayer : Node2D() {
   /**
    * Emitted when this [TileMapLayer]'s properties changes. This includes modified cells,
    * properties, or changes made to its assigned [TileSet].
+   *
    * **Note:** This signal may be emitted very often when batch-modifying a [TileMapLayer]. Avoid
    * executing complex processing in a connected function, and consider delaying it to the end of the
    * frame instead (i.e. calling [Object.callDeferred]).
@@ -62,7 +69,15 @@ public open class TileMapLayer : Node2D() {
 
   /**
    * The raw tile map data as a byte array.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
+  @CoreTypeLocalCopy
   public final inline var tileMapData: PackedByteArray
     @JvmName("tileMapDataProperty")
     get() = getTileMapDataAsArray()
@@ -135,8 +150,10 @@ public open class TileMapLayer : Node2D() {
    * single canvas item, for optimization purposes. [renderingQuadrantSize] defines the length of a
    * square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quadrant
    * size groups together `16 * 16 = 256` tiles.
+   *
    * The quadrant size does not apply on a Y-sorted [TileMapLayer], as tiles are grouped by Y
    * position instead in that case.
+   *
    * **Note:** As quadrants are created according to the map's coordinate system, the quadrant's
    * "square shape" might not look like square in the [TileMapLayer]'s local coordinate system.
    */
@@ -207,31 +224,74 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(690, scriptIndex)
+    createNativeObject(686, scriptIndex)
+  }
+
+  /**
+   * This is a helper function for [tileMapData] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = tilemaplayer.tileMapData
+   * //Your changes
+   * tilemaplayer.tileMapData = myCoreType
+   * ``````
+   *
+   * The raw tile map data as a byte array.
+   */
+  @CoreTypeHelper
+  public final fun tileMapDataMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      tileMapData.apply {
+     block(this)
+     tileMapData = this
+  }
+
+  /**
+   * This is a helper function for [tileMapData] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The raw tile map data as a byte array.
+   */
+  @CoreTypeHelper
+  public final fun tileMapDataMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = tileMapData.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     tileMapData = this
   }
 
   /**
    * Should return `true` if the tile at coordinates [coords] requires a runtime update.
+   *
    * **Warning:** Make sure this function only returns `true` when needed. Any tile processed at
    * runtime without a need for it will imply a significant performance penalty.
+   *
    * **Note:** If the result of this function should change, use [notifyRuntimeTileDataUpdate] to
    * notify the [TileMapLayer] it needs an update.
    */
   public open fun _useTileDataRuntimeUpdate(coords: Vector2i): Boolean {
-    throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMapLayer")
+    throw NotImplementedError("_useTileDataRuntimeUpdate is not implemented for TileMapLayer")
   }
 
   /**
    * Called with a [TileData] object about to be used internally by the [TileMapLayer], allowing its
    * modification at runtime.
+   *
    * This method is only called if [_useTileDataRuntimeUpdate] is implemented and returns `true` for
    * the given tile [coords].
+   *
    * **Warning:** The [tileData] object's sub-resources are the same as the one in the TileSet.
    * Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
+   *
    * **Note:** If the properties of [tileData] object should change over time, use
    * [notifyRuntimeTileDataUpdate] to notify the [TileMapLayer] it needs an update.
    */
   public open fun _tileDataRuntimeUpdate(coords: Vector2i, tileData: TileData?): Unit {
+    throw NotImplementedError("_tileDataRuntimeUpdate is not implemented for TileMapLayer")
   }
 
   /**
@@ -241,28 +301,40 @@ public open class TileMapLayer : Node2D() {
    * [TileMapLayer]'s cells. [coords] contains the coordinates of all modified cells, roughly in the
    * order they were modified. [forcedCleanup] is `true` when the [TileMapLayer]'s internals should be
    * fully cleaned up. This is the case when:
+   *
    * - The layer is disabled;
+   *
    * - The layer is not visible;
+   *
    * - [tileSet] is set to `null`;
+   *
    * - The node is removed from the tree;
+   *
    * - The node is freed.
+   *
    * Note that any internal update happening while one of these conditions is verified is considered
    * to be a "cleanup". See also [updateInternals].
+   *
    * **Warning:** Implementing this method may degrade the [TileMapLayer]'s performance.
    */
   public open fun _updateCells(coords: VariantArray<Vector2i>, forcedCleanup: Boolean): Unit {
+    throw NotImplementedError("_updateCells is not implemented for TileMapLayer")
   }
 
   /**
    * Sets the tile identifiers for the cell at coordinates [coords]. Each tile of the [TileSet] is
    * identified using three parts:
+   *
    * - The source identifier [sourceId] identifies a [TileSetSource] identifier. See
    * [TileSet.setSourceId],
+   *
    * - The atlas coordinate identifier [atlasCoords] identifies a tile coordinates in the atlas (if
    * the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should always be
    * `Vector2i(0, 0)`,
+   *
    * - The alternative tile identifier [alternativeTile] identifies a tile alternative in the atlas
    * (if the source is a [TileSetAtlasSource]), and the scene for a [TileSetScenesCollectionSource].
+   *
    * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)`, or [alternativeTile] to
    * `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to
    * their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
@@ -334,7 +406,8 @@ public open class TileMapLayer : Node2D() {
   /**
    * Returns the [TileData] object associated with the given cell, or `null` if the cell does not
    * exist or is not a [TileSetAtlasSource].
-   * [codeblock]
+   *
+   * ```
    * func get_clicked_tile_power():
    *     var clicked_cell = tile_map_layer.local_to_map(tile_map_layer.get_local_mouse_position())
    *     var data = tile_map_layer.get_cell_tile_data(clicked_cell)
@@ -342,7 +415,7 @@ public open class TileMapLayer : Node2D() {
    *         return data.get_custom_data("power")
    *     else:
    *         return 0
-   * [/codeblock]
+   * ```
    */
   public final fun getCellTileData(coords: Vector2i): TileData? {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -395,9 +468,11 @@ public open class TileMapLayer : Node2D() {
    * Returns a [Vector2i] array with the positions of all cells containing a tile. Tiles may be
    * filtered according to their source ([sourceId]), their atlas coordinates ([atlasCoords]), or
    * alternative id ([alternativeTile]).
+   *
    * If a parameter has its value set to the default one, this parameter is not used to filter a
    * cell. Thus, if all parameters have their respective default values, this method returns the same
    * result as [getUsedCells].
+   *
    * A cell is considered empty if its source identifier equals `-1`, its atlas coordinate
    * identifier is `Vector2(-1, -1)` and its alternative identifier is `-1`.
    */
@@ -444,8 +519,10 @@ public open class TileMapLayer : Node2D() {
    * the given [terrainSet]. If an updated cell has the same terrain as one of its neighboring cells,
    * this function tries to join the two. This function might update neighboring tiles if needed to
    * create correct terrain transitions.
+   *
    * If [ignoreEmptyTerrains] is `true`, empty terrains will be ignored when trying to find the best
    * fitting tile for the given terrain constraints.
+   *
    * **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains
    * set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
@@ -465,8 +542,10 @@ public open class TileMapLayer : Node2D() {
    * the given [terrainSet]. The function will also connect two successive cell in the path with the
    * same terrain. This function might update neighboring tiles if needed to create correct terrain
    * transitions.
+   *
    * If [ignoreEmptyTerrains] is `true`, empty terrains will be ignored when trying to find the best
    * fitting tile for the given terrain constraints.
+   *
    * **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains
    * set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
@@ -503,8 +582,10 @@ public open class TileMapLayer : Node2D() {
   /**
    * Triggers a direct update of the [TileMapLayer]. Usually, calling this function is not needed,
    * as [TileMapLayer] node updates automatically when one of its properties or cells is modified.
+   *
    * However, for performance reasons, those updates are batched and delayed to the end of the
    * frame. Calling this function will force the [TileMapLayer] to update right away instead.
+   *
    * **Warning:** Updating the [TileMapLayer] is computationally expensive and may impact
    * performance. Try to limit the number of updates and how many tiles they impact.
    */
@@ -517,8 +598,10 @@ public open class TileMapLayer : Node2D() {
    * Notifies the [TileMapLayer] node that calls to [_useTileDataRuntimeUpdate] or
    * [_tileDataRuntimeUpdate] will lead to different results. This will thus trigger a [TileMapLayer]
    * update.
+   *
    * **Warning:** Updating the [TileMapLayer] is computationally expensive and may impact
    * performance. Try to limit the number of calls to this function to avoid unnecessary update.
+   *
    * **Note:** This does not trigger a direct update of the [TileMapLayer], the update will be done
    * at the end of the frame as usual (unless you call [updateInternals]).
    */
@@ -567,6 +650,7 @@ public open class TileMapLayer : Node2D() {
   /**
    * Returns the centered position of a cell in the [TileMapLayer]'s local coordinate space. To
    * convert the returned value into global coordinates, use [Node2D.toGlobal]. See also [localToMap].
+   *
    * **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the
    * [TileData.textureOrigin] property of individual tiles.
    */
@@ -683,7 +767,7 @@ public open class TileMapLayer : Node2D() {
   public final fun getCollisionVisibilityMode(): DebugVisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionVisibilityModePtr, LONG)
-    return TileMapLayer.DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOcclusionEnabled(enabled: Boolean): Unit {
@@ -719,6 +803,7 @@ public open class TileMapLayer : Node2D() {
 
   /**
    * Returns the [RID] of the [NavigationServer2D] navigation used by this [TileMapLayer].
+   *
    * By default this returns the default [World2D] navigation map, unless a custom map was provided
    * using [setNavigationMap].
    */
@@ -736,7 +821,7 @@ public open class TileMapLayer : Node2D() {
   public final fun getNavigationVisibilityMode(): DebugVisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationVisibilityModePtr, LONG)
-    return TileMapLayer.DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class DebugVisibilityMode(
@@ -747,15 +832,15 @@ public open class TileMapLayer : Node2D() {
      * determine their visibility in game (i.e. [SceneTree.debugCollisionsHint] or
      * [SceneTree.debugNavigationHint]).
      */
-    DEBUG_VISIBILITY_MODE_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Always hide the collisions or navigation debug shapes.
      */
-    DEBUG_VISIBILITY_MODE_FORCE_HIDE(2),
+    FORCE_HIDE(2),
     /**
      * Always show the collisions or navigation debug shapes.
      */
-    DEBUG_VISIBILITY_MODE_FORCE_SHOW(1),
+    FORCE_SHOW(1),
     ;
 
     public val id: Long

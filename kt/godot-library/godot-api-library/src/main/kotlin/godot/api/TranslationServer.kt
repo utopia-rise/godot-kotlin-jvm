@@ -19,17 +19,20 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
  * The translation server is the API backend that manages all language translations.
+ *
  * Translations are stored in [TranslationDomain]s, which can be accessed by name. The most commonly
  * used translation domain is the main translation domain. It always exists and can be accessed using
  * an empty [StringName]. The translation server provides wrapper methods for accessing the main
@@ -39,13 +42,27 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object TranslationServer : Object() {
+  /**
+   * If `true`, enables the use of pseudolocalization on the main translation domain. See
+   * [ProjectSettings.internationalization/pseudolocalization/usePseudolocalization] for details.
+   */
+  @JvmStatic
+  public final inline var pseudolocalizationEnabled: Boolean
+    @JvmName("pseudolocalizationEnabledProperty")
+    get() = isPseudolocalizationEnabled()
+    @JvmName("pseudolocalizationEnabledProperty")
+    set(`value`) {
+      setPseudolocalizationEnabled(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(16)
+    getSingleton(33)
   }
 
   /**
    * Sets the locale of the project. The [locale] string will be standardized to match known locales
    * (e.g. `en-US` would be matched to `en_US`).
+   *
    * If translations have been loaded beforehand for the new locale, they will be applied.
    */
   @JvmStatic
@@ -56,6 +73,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale of the project.
+   *
    * See also [OS.getLocale] and [OS.getLocaleLanguage] to query the locale of the user system.
    */
   @JvmStatic
@@ -67,6 +85,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale of the editor.
+   *
    * **Note:** When called from an exported project returns the same value as [getLocale].
    */
   @JvmStatic
@@ -172,9 +191,9 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale's translation for the given message and context.
+   *
    * **Note:** This method always uses the main translation domain.
    */
-  @JvmOverloads
   @JvmStatic
   public final fun translate(message: StringName, context: StringName = StringName("")):
       StringName {
@@ -185,11 +204,12 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale's translation for the given message, plural message and context.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
+   *
    * **Note:** This method always uses the main translation domain.
    */
-  @JvmOverloads
   @JvmStatic
   public final fun translatePlural(
     message: StringName,
@@ -254,6 +274,7 @@ public object TranslationServer : Object() {
 
   /**
    * Removes the translation domain with the specified name.
+   *
    * **Note:** Trying to remove the main translation domain is an error.
    */
   @JvmStatic
@@ -306,6 +327,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the pseudolocalized string based on the [message] passed in.
+   *
    * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
@@ -314,6 +336,63 @@ public object TranslationServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.pseudolocalizePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  /**
+   * Returns the current locale's translation for the given message and context.
+   *
+   * **Note:** This method always uses the main translation domain.
+   */
+  @JvmStatic
+  public final fun translate(message: String, context: String): StringName =
+      translate(message.asCachedStringName(), context.asCachedStringName())
+
+  /**
+   * Returns the current locale's translation for the given message, plural message and context.
+   *
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
+   *
+   * **Note:** This method always uses the main translation domain.
+   */
+  @JvmStatic
+  public final fun translatePlural(
+    message: String,
+    pluralMessage: String,
+    n: Int,
+    context: String,
+  ): StringName =
+      translatePlural(message.asCachedStringName(), pluralMessage.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Returns `true` if a translation domain with the specified name exists.
+   */
+  @JvmStatic
+  public final fun hasDomain(domain: String): Boolean = hasDomain(domain.asCachedStringName())
+
+  /**
+   * Returns the translation domain with the specified name. An empty translation domain will be
+   * created and added if it does not exist.
+   */
+  @JvmStatic
+  public final fun getOrAddDomain(domain: String): TranslationDomain? =
+      getOrAddDomain(domain.asCachedStringName())
+
+  /**
+   * Removes the translation domain with the specified name.
+   *
+   * **Note:** Trying to remove the main translation domain is an error.
+   */
+  @JvmStatic
+  public final fun removeDomain(domain: String) = removeDomain(domain.asCachedStringName())
+
+  /**
+   * Returns the pseudolocalized string based on the [message] passed in.
+   *
+   * **Note:** This method always uses the main translation domain.
+   */
+  @JvmStatic
+  public final fun pseudolocalize(message: String): StringName =
+      pseudolocalize(message.asCachedStringName())
 
   public object MethodBindings {
     internal val setLocalePtr: VoidPtr =

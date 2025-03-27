@@ -25,6 +25,7 @@ import kotlin.Unit
 /**
  * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
  * [ImageTextureLayered].
+ *
  * 3D textures are typically used to store density maps for [FogMaterial], color correction LUTs for
  * [Environment], vector fields for [GPUParticlesAttractorVectorField3D] and collision maps for
  * [GPUParticlesCollisionSDF3D]. 3D textures can also be used in custom shaders.
@@ -32,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(312, scriptIndex)
+    createNativeObject(286, scriptIndex)
   }
 
   /**

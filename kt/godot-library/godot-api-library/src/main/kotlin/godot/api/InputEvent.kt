@@ -22,6 +22,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,6 +41,7 @@ import kotlin.jvm.JvmOverloads
 public open class InputEvent internal constructor() : Resource() {
   /**
    * The event's device ID.
+   *
    * **Note:** [device] can be negative for special use cases that don't refer to devices physically
    * present on the system. See [DEVICE_ID_EMULATION].
    */
@@ -52,7 +54,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(317, scriptIndex)
+    createNativeObject(292, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {
@@ -68,6 +70,7 @@ public open class InputEvent internal constructor() : Resource() {
 
   /**
    * Returns `true` if this input event matches a pre-defined action of any type.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
@@ -82,8 +85,10 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if the given action is being pressed (and is not an echo event for
    * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
    * [InputEventMouseMotion] or [InputEventScreenDrag].
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
@@ -103,6 +108,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
    * type [InputEventMouseMotion] or [InputEventScreenDrag].
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
@@ -116,6 +122,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting
    * the value of events of type [InputEventJoypadMotion].
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
@@ -138,6 +145,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns `true` if this input event is pressed. Not relevant for events of type
    * [InputEventMouseMotion] or [InputEventScreenDrag].
+   *
    * **Note:** Due to keyboard ghosting, [isPressed] may return `false` even if one of the action's
    * keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input
    * examples[/url] in the documentation for more information.
@@ -162,6 +170,7 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if this input event is an echo event (only for events of type [InputEventKey]).
    * An echo event is a repeated key event sent when the user is holding down the key. Any other event
    * type returns `false`.
+   *
    * **Note:** The rate at which echo events are sent is typically around 20 events per second
    * (after holding down the key for roughly half a second). However, the key repeat delay/speed can be
    * changed by the user or disabled entirely in the operating system settings. To ensure your project
@@ -187,8 +196,10 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if the specified [event] matches this event. Only valid for action events i.e
    * key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis
    * [InputEventJoypadMotion] or action ([InputEventAction]) events.
+   *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
    * **Note:** Only considers the event configuration (such as the keyboard key or joypad axis), not
    * state information like [isPressed], [isReleased], [isEcho], or [isCanceled].
    */
@@ -211,6 +222,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns `true` if the given input event and this input event can be added together (only for
    * events of type [InputEventMouseMotion]).
+   *
    * The given input event's position, global position and speed will be copied. The resulting
    * `relative` is a sum of both events. Both events' modifiers have to be identical.
    */
@@ -232,6 +244,58 @@ public open class InputEvent internal constructor() : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.xformedByPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
   }
+
+  /**
+   * Returns `true` if this input event matches a pre-defined action of any type.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  public final fun isAction(action: String, exactMatch: Boolean = false): Boolean =
+      isAction(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` if the given action is being pressed (and is not an echo event for
+   * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
+   * [InputEventMouseMotion] or [InputEventScreenDrag].
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   */
+  @JvmOverloads
+  public final fun isActionPressed(
+    action: String,
+    allowEcho: Boolean = false,
+    exactMatch: Boolean = false,
+  ): Boolean = isActionPressed(action.asCachedStringName(), allowEcho, exactMatch)
+
+  /**
+   * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
+   * type [InputEventMouseMotion] or [InputEventScreenDrag].
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  public final fun isActionReleased(action: String, exactMatch: Boolean = false): Boolean =
+      isActionReleased(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting
+   * the value of events of type [InputEventJoypadMotion].
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  public final fun getActionStrength(action: String, exactMatch: Boolean = false): Float =
+      getActionStrength(action.asCachedStringName(), exactMatch)
 
   public companion object {
     /**

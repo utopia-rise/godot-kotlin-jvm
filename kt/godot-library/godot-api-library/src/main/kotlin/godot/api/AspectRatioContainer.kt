@@ -74,7 +74,7 @@ public open class AspectRatioContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(78, scriptIndex)
+    createNativeObject(42, scriptIndex)
   }
 
   public final fun setRatio(ratio: Float): Unit {
@@ -96,7 +96,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getStretchMode(): StretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
-    return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlignmentHorizontal(alignmentHorizontal: AlignmentMode): Unit {
@@ -107,7 +107,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getAlignmentHorizontal(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentHorizontalPtr, LONG)
-    return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlignmentVertical(alignmentVertical: AlignmentMode): Unit {
@@ -118,7 +118,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getAlignmentVertical(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentVerticalPtr, LONG)
-    return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class StretchMode(
@@ -127,24 +127,25 @@ public open class AspectRatioContainer : Container() {
     /**
      * The height of child controls is automatically adjusted based on the width of the container.
      */
-    STRETCH_WIDTH_CONTROLS_HEIGHT(0),
+    WIDTH_CONTROLS_HEIGHT(0),
     /**
      * The width of child controls is automatically adjusted based on the height of the container.
      */
-    STRETCH_HEIGHT_CONTROLS_WIDTH(1),
+    HEIGHT_CONTROLS_WIDTH(1),
     /**
      * The bounding rectangle of child controls is automatically adjusted to fit inside the
      * container while keeping the aspect ratio.
      */
-    STRETCH_FIT(2),
+    FIT(2),
     /**
      * The width and height of child controls is automatically adjusted to make their bounding
      * rectangle cover the entire area of the container while keeping the aspect ratio.
+     *
      * When the bounding rectangle of child controls exceed the container's size and
      * [Control.clipContents] is enabled, this allows to show only the container's area restricted by
      * its own bounding rectangle.
      */
-    STRETCH_COVER(3),
+    COVER(3),
     ;
 
     public val id: Long
@@ -163,15 +164,15 @@ public open class AspectRatioContainer : Container() {
     /**
      * Aligns child controls with the beginning (left or top) of the container.
      */
-    ALIGNMENT_BEGIN(0),
+    BEGIN(0),
     /**
      * Aligns child controls with the center of the container.
      */
-    ALIGNMENT_CENTER(1),
+    CENTER(1),
     /**
      * Aligns child controls with the end (right or bottom) of the container.
      */
-    ALIGNMENT_END(2),
+    END(2),
     ;
 
     public val id: Long

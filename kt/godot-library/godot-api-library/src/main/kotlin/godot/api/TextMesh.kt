@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
 import godot.core.VariantArray
@@ -38,9 +37,11 @@ import kotlin.jvm.JvmName
 
 /**
  * Generate an [PrimitiveMesh] from the text.
+ *
  * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
  * (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not
  * supported.
+ *
  * The UV layout is arranged in 4 horizontal strips, top to bottom: 40&#37; of the height for the
  * front face, 40&#37; for the back face, 10&#37; for the outer edges and 10&#37; for the inner edges.
  */
@@ -48,6 +49,7 @@ import kotlin.jvm.JvmName
 public open class TextMesh : PrimitiveMesh() {
   /**
    * The text to generate mesh from.
+   *
    * **Note:** Due to being a [Resource], it doesn't follow the rules of [Node.autoTranslateMode].
    * If disabling translation is desired, it should be done manually with
    * [Object.setMessageTranslation].
@@ -200,6 +202,13 @@ public open class TextMesh : PrimitiveMesh() {
 
   /**
    * The text drawing offset (in pixels).
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -255,17 +264,11 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(666, scriptIndex)
+    createNativeObject(660, scriptIndex)
   }
 
   /**
-   * The text drawing offset (in pixels).
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [offset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -274,13 +277,14 @@ public open class TextMesh : PrimitiveMesh() {
    * //Your changes
    * textmesh.offset = myCoreType
    * ``````
+   *
+   * The text drawing offset (in pixels).
    */
   @CoreTypeHelper
-  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
-      block(this)
-      offset = this
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
+     block(this)
+     offset = this
   }
-
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
@@ -367,7 +371,7 @@ public open class TextMesh : PrimitiveMesh() {
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(depth: Float): Unit {

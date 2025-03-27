@@ -36,7 +36,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(777, scriptIndex)
+    createNativeObject(775, scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {
@@ -47,7 +47,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
-    return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Mode(
@@ -56,20 +56,20 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     /**
      * The particles will be accelerated based on their velocity.
      */
-    MODE_LINEAR(0),
+    LINEAR(0),
     /**
      * The particles will be accelerated towards or away from the center.
      */
-    MODE_RADIAL(1),
+    RADIAL(1),
     /**
      * The particles will be accelerated tangentially to the radius vector from center to their
      * position.
      */
-    MODE_TANGENTIAL(2),
+    TANGENTIAL(2),
     /**
      * Represents the size of the [Mode] enum.
      */
-    MODE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

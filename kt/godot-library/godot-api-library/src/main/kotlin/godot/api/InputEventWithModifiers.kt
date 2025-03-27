@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.KeyModifierMask
-import godot.core.KeyModifierMaskValue
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -26,6 +25,7 @@ import kotlin.jvm.JvmName
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
  * information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See
  * [Node.Input].
+ *
  * **Note:** Modifier keys are considered modifiers only when used in combination with another key.
  * As a result, their corresponding member variables, such as [ctrlPressed], will return `false` if the
  * key is pressed on its own.
@@ -90,7 +90,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(333, scriptIndex)
+    createNativeObject(308, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {
@@ -106,6 +106,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
 
   /**
    * On macOS, returns `true` if [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) is pressed.
+   *
    * On other platforms, returns `true` if [kbd]Ctrl[/kbd] is pressed.
    */
   public final fun isCommandOrControlPressed(): Boolean {
@@ -164,7 +165,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public final fun getModifiersMask(): KeyModifierMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModifiersMaskPtr, LONG)
-    return KeyModifierMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return KeyModifierMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

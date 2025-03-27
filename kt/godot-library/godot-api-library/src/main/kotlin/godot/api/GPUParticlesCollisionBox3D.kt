@@ -22,17 +22,27 @@ import kotlin.jvm.JvmName
 
 /**
  * A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
+ *
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.
  * Unlike attractors, non-uniform scaling of collision shapes is *not* supported.
+ *
  * **Note:** [ParticleProcessMaterial.collisionMode] must be
  * [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on
  * the [GPUParticles3D]'s process material for collision to work.
+ *
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
   /**
    * The collision box's size in 3D units.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -44,17 +54,11 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(279, scriptIndex)
+    createNativeObject(250, scriptIndex)
   }
 
   /**
-   * The collision box's size in 3D units.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [size] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -63,13 +67,14 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
    * //Your changes
    * gpuparticlescollisionbox3d.size = myCoreType
    * ``````
+   *
+   * The collision box's size in 3D units.
    */
   @CoreTypeHelper
-  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
-      block(this)
-      size = this
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
+     block(this)
+     size = this
   }
-
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)

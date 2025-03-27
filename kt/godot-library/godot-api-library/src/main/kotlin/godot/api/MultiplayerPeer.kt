@@ -25,8 +25,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * Manages the connection with one or more remote peers acting as server or client and assigning
  * unique IDs to each of them. See also [MultiplayerAPI].
+ *
  * **Note:** The [MultiplayerAPI] protocol is an implementation detail and isn't meant to be used by
  * non-Godot servers. It may change without notice.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -73,6 +75,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * will only be in respect to the channel the packet is being sent on. Using different channels to
    * send **different and independent** state updates is a common way to optimize network usage and
    * decrease latency in fast-paced games.
+   *
    * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each
    * [TransferMode]) so that [TRANSFER_MODE_RELIABLE] and [TRANSFER_MODE_UNRELIABLE_ORDERED] does not
    * interact with each other by default. Refer to the specific network API documentation (e.g. ENet or
@@ -87,7 +90,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(389, scriptIndex)
+    createNativeObject(368, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {
@@ -109,11 +112,12 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getTransferMode(): TransferMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransferModePtr, LONG)
-    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the peer to which packets will be sent.
+   *
    * The [id] can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers,
    * [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that
    * specific peer, a negative peer ID to send to all peers except that one. By default, the target
@@ -151,7 +155,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getPacketMode(): TransferMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketModePtr, LONG)
-    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -187,7 +191,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getConnectionStatus(): ConnectionStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionStatusPtr, LONG)
-    return MultiplayerPeer.ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    return ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -236,15 +240,15 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     /**
      * The MultiplayerPeer is disconnected.
      */
-    CONNECTION_DISCONNECTED(0),
+    DISCONNECTED(0),
     /**
      * The MultiplayerPeer is currently connecting to a server.
      */
-    CONNECTION_CONNECTING(1),
+    CONNECTING(1),
     /**
      * This MultiplayerPeer is connected.
      */
-    CONNECTION_CONNECTED(2),
+    CONNECTED(2),
     ;
 
     public val id: Long
@@ -265,14 +269,14 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
      * arrive in any order. Potentially faster than [TRANSFER_MODE_UNRELIABLE_ORDERED]. Use for
      * non-critical data, and always consider whether the order matters.
      */
-    TRANSFER_MODE_UNRELIABLE(0),
+    UNRELIABLE(0),
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets are
      * received in the order they were sent in. Potentially faster than [TRANSFER_MODE_RELIABLE]. Use
      * for non-critical data or data that would be outdated if received late due to resend attempt(s)
      * anyway, for example movement and positional data.
      */
-    TRANSFER_MODE_UNRELIABLE_ORDERED(1),
+    UNRELIABLE_ORDERED(1),
     /**
      * Packets must be received and resend attempts should be made until the packets are
      * acknowledged. Packets must be received in the order they were sent in. Most reliable transfer
@@ -280,7 +284,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
      * transmitted and arrive in order, for example an ability being triggered or a chat message.
      * Consider carefully if the information really is critical, and use sparingly.
      */
-    TRANSFER_MODE_RELIABLE(2),
+    RELIABLE(2),
     ;
 
     public val id: Long

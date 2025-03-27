@@ -54,16 +54,17 @@ import kotlin.jvm.JvmOverloads
  * can be used to construct a [Mesh] from a script. All properties except indices need to be added
  * before calling [addVertex]. For example, to add vertex colors and UVs:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var st = SurfaceTool.new()
  * st.begin(Mesh.PRIMITIVE_TRIANGLES)
  * st.set_color(Color(1, 0, 0))
  * st.set_uv(Vector2(0, 0))
  * st.add_vertex(Vector3(0, 0, 0))
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var st = new SurfaceTool();
  * st.Begin(Mesh.PrimitiveType.Triangles);
  * st.SetColor(new Color(1, 0, 0));
@@ -74,24 +75,30 @@ import kotlin.jvm.JvmOverloads
  * The above [SurfaceTool] now contains one vertex of a triangle which has a UV coordinate and a
  * specified [Color]. If another vertex were added without calling [setUv] or [setColor], then the last
  * values would be used.
+ *
  * Vertex attributes must be passed **before** calling [addVertex]. Failure to do so will result in
  * an error when committing the vertex information to a mesh.
+ *
  * Additionally, the attributes used before the first vertex is added determine the format of the
  * mesh. For example, if you only add UVs to the first vertex, you cannot add color to any of the
  * subsequent vertices.
+ *
  * See also [ArrayMesh], [ImmediateMesh] and [MeshDataTool] for procedural geometry generation.
+ *
  * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
  * order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(657, scriptIndex)
+    createNativeObject(651, scriptIndex)
   }
 
   /**
    * Set to [SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
+   *
    * By default, only 4 bone influences are used ([SKIN_4_WEIGHTS]).
+   *
    * **Note:** This function takes an enum, not the exact number of weights.
    */
   public final fun setSkinWeightCount(count: SkinWeightCount): Unit {
@@ -101,17 +108,20 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * By default, returns [SKIN_4_WEIGHTS] to indicate only 4 bone influences per vertex are used.
+   *
    * Returns [SKIN_8_WEIGHTS] if up to 8 influences are used.
+   *
    * **Note:** This function returns an enum, not the exact number of weights.
    */
   public final fun getSkinWeightCount(): SkinWeightCount {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinWeightCountPtr, LONG)
-    return SurfaceTool.SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the color format for this custom [channelIndex]. Use [CUSTOM_MAX] to disable.
+   *
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
   public final fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
@@ -126,7 +136,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCustomFormatPtr, LONG)
-    return SurfaceTool.CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
+    return CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -151,6 +161,7 @@ public open class SurfaceTool : RefCounted() {
    * Specifies a [Color] to use for the *next* vertex. If every vertex needs to have this
    * information set and you fail to submit it for the first vertex, this information may not be used
    * at all.
+   *
    * **Note:** The material must have [BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex
    * color to be visible.
    */
@@ -218,6 +229,7 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * Sets the custom value on this vertex for [channelIndex].
+   *
    * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will
    * ignore other color channels.
    */
@@ -230,6 +242,7 @@ public open class SurfaceTool : RefCounted() {
    * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices
    * will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same
    * group. To produce a mesh with flat normals, set the smooth group to `-1`.
+   *
    * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue`
    * instead of `-1` to produce a mesh with flat normals.
    */
@@ -240,6 +253,7 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * Inserts a triangle fan made of array data into [Mesh] being constructed.
+   *
    * Requires the primitive type be set to [Mesh.PRIMITIVE_TRIANGLES].
    */
   @JvmOverloads
@@ -286,8 +300,10 @@ public open class SurfaceTool : RefCounted() {
    * resulting normals will be inverted. [generateNormals] should be called *after* generating geometry
    * and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of
    * normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
+   *
    * **Note:** [generateNormals] only works if the primitive type is set to
    * [Mesh.PRIMITIVE_TRIANGLES].
+   *
    * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set
    * the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the
    * smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using
@@ -378,7 +394,7 @@ public open class SurfaceTool : RefCounted() {
    */
   @JvmOverloads
   public final fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
-      Mesh.PrimitiveType.PRIMITIVE_TRIANGLES): Unit {
+      Mesh.PrimitiveType.TRIANGLES): Unit {
     TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.id)
     TransferContext.callMethod(ptr, MethodBindings.createFromArraysPtr, NIL)
   }
@@ -412,6 +428,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns a constructed [ArrayMesh] from current information passed in. If an existing
    * [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
+   *
    * The [flags] argument can be the bitwise OR of [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE],
    * [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
    */
@@ -440,46 +457,46 @@ public open class SurfaceTool : RefCounted() {
      * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
      * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
      */
-    CUSTOM_RGBA8_UNORM(0),
+    RGBA8_UNORM(0),
     /**
      * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per
      * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
      */
-    CUSTOM_RGBA8_SNORM(1),
+    RGBA8_SNORM(1),
     /**
      * Stores data passed to [setCustom] as half precision floats, and uses only red and green color
      * channels. See [Mesh.ARRAY_CUSTOM_RG_HALF].
      */
-    CUSTOM_RG_HALF(2),
+    RG_HALF(2),
     /**
      * Stores data passed to [setCustom] as half precision floats and uses all color channels. See
      * [Mesh.ARRAY_CUSTOM_RGBA_HALF].
      */
-    CUSTOM_RGBA_HALF(3),
+    RGBA_HALF(3),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses only red color channel.
      * See [Mesh.ARRAY_CUSTOM_R_FLOAT].
      */
-    CUSTOM_R_FLOAT(4),
+    R_FLOAT(4),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses only red and green color
      * channels. See [Mesh.ARRAY_CUSTOM_RG_FLOAT].
      */
-    CUSTOM_RG_FLOAT(5),
+    RG_FLOAT(5),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue
      * color channels. See [Mesh.ARRAY_CUSTOM_RGB_FLOAT].
      */
-    CUSTOM_RGB_FLOAT(6),
+    RGB_FLOAT(6),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See
      * [Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
      */
-    CUSTOM_RGBA_FLOAT(7),
+    RGBA_FLOAT(7),
     /**
      * Used to indicate a disabled custom channel.
      */
-    CUSTOM_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long

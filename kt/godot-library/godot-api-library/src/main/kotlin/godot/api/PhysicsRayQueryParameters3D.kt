@@ -28,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the ray position, you can configure the
@@ -37,6 +38,13 @@ import kotlin.jvm.JvmOverloads
 public open class PhysicsRayQueryParameters3D : RefCounted() {
   /**
    * The starting point of the ray being queried for, in global coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var from: Vector3
@@ -49,6 +57,13 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   /**
    * The ending point of the ray being queried for, in global coordinates.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var to: Vector3
@@ -76,6 +91,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
    * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -135,17 +151,11 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(491, scriptIndex)
+    createNativeObject(476, scriptIndex)
   }
 
   /**
-   * The starting point of the ray being queried for, in global coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [from] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -154,22 +164,17 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsrayqueryparameters3d.from = myCoreType
    * ``````
+   *
+   * The starting point of the ray being queried for, in global coordinates.
    */
   @CoreTypeHelper
-  public final fun fromMutate(block: Vector3.() -> Unit): Vector3 = from.apply{
-      block(this)
-      from = this
+  public final fun fromMutate(block: Vector3.() -> Unit): Vector3 = from.apply {
+     block(this)
+     from = this
   }
 
-
   /**
-   * The ending point of the ray being queried for, in global coordinates.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [to] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -178,13 +183,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * //Your changes
    * physicsrayqueryparameters3d.to = myCoreType
    * ``````
+   *
+   * The ending point of the ray being queried for, in global coordinates.
    */
   @CoreTypeHelper
-  public final fun toMutate(block: Vector3.() -> Unit): Vector3 = to.apply{
-      block(this)
-      to = this
+  public final fun toMutate(block: Vector3.() -> Unit): Vector3 = to.apply {
+     block(this)
+     to = this
   }
-
 
   public final fun setFrom(from: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to from)
@@ -278,12 +284,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     /**
      * Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create
      * query parameters using the most common options.
-     * [codeblock]
+     *
+     * ```
      * var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
      * var collision = get_world_3d().direct_space_state.intersect_ray(query)
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
+    @JvmStatic
     public final fun create(
       from: Vector3,
       to: Vector3,

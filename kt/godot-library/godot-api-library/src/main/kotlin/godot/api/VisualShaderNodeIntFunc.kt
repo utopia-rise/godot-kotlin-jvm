@@ -35,7 +35,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(766, scriptIndex)
+    createNativeObject(764, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -46,7 +46,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeIntFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(
@@ -56,24 +56,24 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
      * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader
      * Language.
      */
-    FUNC_ABS(0),
+    ABS(0),
     /**
      * Negates the `x` using `-(x)`.
      */
-    FUNC_NEGATE(1),
+    NEGATE(1),
     /**
      * Extracts the sign of the parameter. Translates to `sign(x)` in the Godot Shader Language.
      */
-    FUNC_SIGN(2),
+    SIGN(2),
     /**
      * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot
      * Shader Language.
      */
-    FUNC_BITWISE_NOT(3),
+    BITWISE_NOT(3),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long

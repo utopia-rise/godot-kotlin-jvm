@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
 public open class VideoStream : Resource() {
   /**
    * The video file path or URI that this [VideoStream] resource handles.
+   *
    * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv`
    * extension.
    */
@@ -39,7 +40,7 @@ public open class VideoStream : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(720, scriptIndex)
+    createNativeObject(718, scriptIndex)
   }
 
   /**
@@ -47,7 +48,7 @@ public open class VideoStream : Resource() {
    * [VideoStreamPlayback].
    */
   public open fun _instantiatePlayback(): VideoStreamPlayback? {
-    throw NotImplementedError("_instantiate_playback is not implemented for VideoStream")
+    throw NotImplementedError("_instantiatePlayback is not implemented for VideoStream")
   }
 
   public final fun setFile(`file`: String): Unit {

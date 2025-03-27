@@ -36,7 +36,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(818, scriptIndex)
+    createNativeObject(816, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {
@@ -47,7 +47,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   public final fun getOperator(): Operator {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperatorPtr, LONG)
-    return VisualShaderNodeTransformVecMult.Operator.from(TransferContext.readReturnValue(LONG) as Long)
+    return Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Operator(
@@ -56,11 +56,11 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     /**
      * Multiplies transform `a` by the vector `b`.
      */
-    OP_AxB(0),
+    AxB(0),
     /**
      * Multiplies vector `b` by the transform `a`.
      */
-    OP_BxA(1),
+    BxA(1),
     /**
      * Multiplies transform `a` by the vector `b`, skipping the last row and column of the
      * transform.
@@ -74,7 +74,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     /**
      * Represents the size of the [Operator] enum.
      */
-    OP_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long

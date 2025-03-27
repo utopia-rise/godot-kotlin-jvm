@@ -17,10 +17,12 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -29,13 +31,14 @@ import kotlin.jvm.JvmOverloads
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
  * Retrieve with `$AnimationTree.get("parameters/playback")`.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var state_machine = $AnimationTree.get("parameters/playback")
  * state_machine.travel("some_state")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var stateMachine =
  * GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
  * stateMachine.Travel("some_state");
@@ -44,13 +47,15 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(64, scriptIndex)
+    createNativeObject(28, scriptIndex)
   }
 
   /**
    * Transitions from the current state to another one, following the shortest path.
+   *
    * If the path does not connect from the current state, the animation will play after the state
    * teleports.
+   *
    * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel
    * cause a teleportation.
    */
@@ -62,6 +67,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Starts playing the given animation.
+   *
    * If [reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads
@@ -98,6 +104,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Returns the currently playing animation state.
+   *
    * **Note:** When using a cross-fade, the current state changes to the next state immediately
    * after the cross-fade begins.
    */
@@ -118,6 +125,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Returns the current state length.
+   *
    * **Note:** It is possible that any [AnimationRootNode] can be nodes as well as animations. This
    * means that there can be multiple animations within a single state. Which animation length has
    * priority depends on the nodes connected inside it. Also, if a transition does not reset, the
@@ -146,6 +154,28 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getTravelPathPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
+
+  /**
+   * Transitions from the current state to another one, following the shortest path.
+   *
+   * If the path does not connect from the current state, the animation will play after the state
+   * teleports.
+   *
+   * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel
+   * cause a teleportation.
+   */
+  @JvmOverloads
+  public final fun travel(toNode: String, resetOnTeleport: Boolean = true) =
+      travel(toNode.asCachedStringName(), resetOnTeleport)
+
+  /**
+   * Starts playing the given animation.
+   *
+   * If [reset] is `true`, the animation is played from the beginning.
+   */
+  @JvmOverloads
+  public final fun start(node: String, reset: Boolean = true) =
+      start(node.asCachedStringName(), reset)
 
   public companion object
 

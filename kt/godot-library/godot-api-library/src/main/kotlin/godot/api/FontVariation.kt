@@ -26,25 +26,26 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType
  * features and extra spacing.
+ *
  * To use simulated bold font variant:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var fv = FontVariation.new()
  * fv.base_font = load("res://BarlowCondensed-Regular.ttf")
  * fv.variation_embolden = 1.2
  * $Label.add_theme_font_override("font", fv)
  * $Label.add_theme_font_size_override("font_size", 64)
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var fv = new FontVariation();
  * fv.SetBaseFont(ResourceLoader.Load<FontFile>("res://BarlowCondensed-Regular.ttf"));
  * fv.SetVariationEmbolden(1.2);
@@ -53,12 +54,13 @@ import kotlin.jvm.JvmName
  * ```
  *
  * To set the coordinate of multiple variation axes:
- * [codeblock]
+ *
+ * ```
  * var fv = FontVariation.new();
  * var ts = TextServerManager.get_primary_interface()
  * fv.base_font = load("res://BarlowCondensed-Regular.ttf")
  * fv.variation_opentype = { ts.name_to_tag("wght"): 900, ts.name_to_tag("custom_hght"): 900 }
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class FontVariation : Font() {
@@ -77,11 +79,13 @@ public open class FontVariation : Font() {
    * Font OpenType variation coordinates. More info:
    * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]OpenType variation
    * tags[/url].
+   *
    * **Note:** This [Dictionary] uses OpenType tags as keys. Variation axes can be identified both
    * by tags ([int], e.g. `0x77678674`) and names ([String], e.g. `wght`). Some axes might be
    * accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the
    * other hand are unique. To convert between names and tags, use [TextServer.nameToTag] and
    * [TextServer.tagToName].
+   *
    * **Note:** To get available variation axes of a font, use [Font.getSupportedVariationList].
    */
   public final inline var variationOpentype: Dictionary<Any?, Any?>
@@ -106,6 +110,7 @@ public open class FontVariation : Font() {
   /**
    * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline
    * thickness.
+   *
    * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts
    * and [TextMesh] from working correctly.
    */
@@ -120,8 +125,16 @@ public open class FontVariation : Font() {
   /**
    * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
    * glyphs.
+   *
    * For example, to simulate italic typeface by slanting, apply the following transform
    * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
   @CoreTypeLocalCopy
   public final inline var variationTransform: Transform2D
@@ -148,36 +161,45 @@ public open class FontVariation : Font() {
   /**
    * Extra spacing between graphical glyphs.
    */
-  public final val spacingGlyph: Int
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
+  public final inline var spacingGlyph: Int
+    @JvmName("spacingGlyphProperty")
+    get() = getSpacing(TextServer.SpacingType.GLYPH)
+    @JvmName("spacingGlyphProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.GLYPH, value)
     }
 
   /**
    * Extra width of the space glyphs.
    */
-  public final val spacingSpace: Int
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
+  public final inline var spacingSpace: Int
+    @JvmName("spacingSpaceProperty")
+    get() = getSpacing(TextServer.SpacingType.SPACE)
+    @JvmName("spacingSpaceProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.SPACE, value)
     }
 
   /**
    * Extra spacing at the top of the line in pixels.
    */
-  public final val spacingTop: Int
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
+  public final inline var spacingTop: Int
+    @JvmName("spacingTopProperty")
+    get() = getSpacing(TextServer.SpacingType.TOP)
+    @JvmName("spacingTopProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.TOP, value)
     }
 
   /**
    * Extra spacing at the bottom of the line in pixels.
    */
-  public final val spacingBottom: Int
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
+  public final inline var spacingBottom: Int
+    @JvmName("spacingBottomProperty")
+    get() = getSpacing(TextServer.SpacingType.BOTTOM)
+    @JvmName("spacingBottomProperty")
+    set(`value`) {
+      setSpacing(TextServer.SpacingType.BOTTOM, value)
     }
 
   /**
@@ -192,20 +214,11 @@ public open class FontVariation : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(249, scriptIndex)
+    createNativeObject(219, scriptIndex)
   }
 
   /**
-   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
-   * glyphs.
-   * For example, to simulate italic typeface by slanting, apply the following transform
-   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
+   * This is a helper function for [variationTransform] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -214,14 +227,19 @@ public open class FontVariation : Font() {
    * //Your changes
    * fontvariation.variationTransform = myCoreType
    * ``````
+   *
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
+   * glyphs.
+   *
+   * For example, to simulate italic typeface by slanting, apply the following transform
+   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
   @CoreTypeHelper
   public final fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      variationTransform.apply{
-      block(this)
-      variationTransform = this
+      variationTransform.apply {
+     block(this)
+     variationTransform = this
   }
-
 
   public final fun setBaseFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
