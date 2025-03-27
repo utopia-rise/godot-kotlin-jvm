@@ -74,13 +74,13 @@ tasks {
             commandLine(
                 "cmd",
                 "/c",
-                "$editorExecutable --headless --import",
+                "$editorExecutable --headless --import --quiet",
             )
         } else {
             commandLine(
                 "bash",
                 "-c",
-                "$editorExecutable --headless --import",
+                "$editorExecutable --headless --import --quiet",
             )
         }
     }
