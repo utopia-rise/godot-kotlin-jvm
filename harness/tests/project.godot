@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Godot Kotlin Tests"
 run/main_scene="uid://cnqp52df0ln8e"
-config/features=PackedStringArray("4.4")
+config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
 [debug]
@@ -27,7 +27,6 @@ enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 settings/test/test_suite_naming_convention=1
 settings/test/test_discovery=true
-ui/inspector/tree_view_mode=1
 ui/toolbar/run_overall=true
 
 [rendering]

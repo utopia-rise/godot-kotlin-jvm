@@ -1,0 +1,81 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = CoreTest
+fqName = godot.tests.core.CoreTest
+baseType = Node
+supertypes = [
+    godot.api.Node,
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
+]
+signals = [
+    
+]
+properties = [
+    
+]
+functions = [
+    read_vector2,
+    echo_vector2,
+    read_short_string,
+    echo_short_string,
+    read_long_string,
+    echo_long_string,
+    read_vector2i,
+    echo_vector2i,
+    read_rect2,
+    echo_rect2,
+    read_rect2i,
+    echo_rect2i,
+    read_vector3,
+    echo_vector3,
+    read_vector3i,
+    echo_vector3i,
+    read_transform2_d,
+    echo_transform2_d,
+    read_vector4,
+    echo_vector4,
+    read_vector4i,
+    echo_vector4i,
+    read_plane,
+    echo_plane,
+    read_quaternion,
+    echo_quaternion,
+    read_aabb,
+    echo_aabb,
+    read_basis,
+    echo_basis,
+    read_transform3_d,
+    echo_transform3_d,
+    read_projection,
+    echo_projection,
+    read_color,
+    echo_color,
+    read_string_name,
+    echo_string_name,
+    read_node_path,
+    echo_node_path,
+    read_rid,
+    echo_rid,
+    read_packed_byte_array,
+    echo_packed_byte_array,
+    read_packed_int32_array,
+    echo_packed_int32_array,
+    read_packed_int64_array,
+    echo_packed_int64_array,
+    read_packed_float32_array,
+    echo_packed_float32_array,
+    read_packed_float64_array,
+    echo_packed_float64_array,
+    read_packed_string_array,
+    echo_packed_string_array,
+    read_packed_vector2_array,
+    echo_packed_vector2_array,
+    read_packed_vector3_array,
+    echo_packed_vector3_array,
+    read_packed_color_array,
+    echo_packed_color_array
+]

@@ -7,7 +7,8 @@ signal select_error_next()
 signal select_error_prevous()
 signal select_flaky_next()
 signal select_flaky_prevous()
-signal request_discover_tests()
+signal select_skipped_next()
+signal select_skipped_prevous()
 
 @warning_ignore("unused_signal")
 signal tree_view_mode_changed(flat :bool)
@@ -15,19 +16,22 @@ signal tree_view_mode_changed(flat :bool)
 @onready var _errors: Label = %error_value
 @onready var _failures: Label = %failure_value
 @onready var _flaky_value: Label = %flaky_value
-@onready var _button_failure_up: Button = %btn_failure_up
-@onready var _button_failure_down: Button = %btn_failure_down
+@onready var _skipped_value: Label = %skipped_value
+#@onready var _button_failure_up: Button = %btn_failure_up
+#@onready var _button_failure_down: Button = %btn_failure_down
 @onready var _button_sync: Button = %btn_tree_sync
-@onready var _button_view_mode: Button = %btn_tree_mode
-@onready var _button_sort_mode: Button = %btn_tree_sort
+@onready var _button_view_mode: MenuButton = %btn_tree_mode
+@onready var _button_sort_mode: MenuButton = %btn_tree_sort
 
 @onready var _icon_errors: TextureRect = %icon_errors
 @onready var _icon_failures: TextureRect = %icon_failures
 @onready var _icon_flaky: TextureRect = %icon_flaky
+@onready var _icon_skipped: TextureRect = %icon_skipped
 
 var total_failed := 0
 var total_errors := 0
 var total_flaky := 0
+var total_skipped := 0
 
 
 var icon_mappings := {
@@ -46,21 +50,20 @@ var icon_mappings := {
 func _ready() -> void:
 	_failures.text = "0"
 	_errors.text = "0"
+	_flaky_value.text = "0"
+	_skipped_value.text = "0"
 	_icon_failures.texture = GdUnitUiTools.get_icon("StatusError", Color.SKY_BLUE)
 	_icon_errors.texture = GdUnitUiTools.get_icon("StatusError", Color.DARK_RED)
 	_icon_flaky.texture = GdUnitUiTools.get_icon("CheckBox", Color.GREEN_YELLOW)
+	_icon_skipped.texture = GdUnitUiTools.get_icon("CheckBox", Color.WEB_GRAY)
 
-	_button_failure_up.icon = GdUnitUiTools.get_icon("ArrowUp")
-	_button_failure_down.icon = GdUnitUiTools.get_icon("ArrowDown")
+	#_button_failure_up.icon = GdUnitUiTools.get_icon("ArrowUp")
+	#_button_failure_down.icon = GdUnitUiTools.get_icon("ArrowDown")
 	_button_sync.icon = GdUnitUiTools.get_icon("Loop")
 	_set_sort_mode_menu_options()
 	_set_view_mode_menu_options()
 	GdUnitSignals.instance().gdunit_event.connect(_on_gdunit_event)
 	GdUnitSignals.instance().gdunit_settings_changed.connect(_on_settings_changed)
-	var command_handler := GdUnitCommandHandler.instance()
-	command_handler.gdunit_runner_start.connect(_on_gdunit_runner_start)
-	command_handler.gdunit_runner_stop.connect(_on_gdunit_runner_stop)
-
 
 
 func _set_sort_mode_menu_options() -> void:
@@ -105,13 +108,15 @@ func normalise(value: String) -> String:
 	return " ".join(parts)
 
 
-func status_changed(errors: int, failed: int, flaky: int) -> void:
+func status_changed(errors: int, failed: int, flaky: int, skipped: int) -> void:
 	total_failed += failed
 	total_errors += errors
 	total_flaky += flaky
+	total_skipped += skipped
 	_failures.text = str(total_failed)
 	_errors.text = str(total_errors)
 	_flaky_value.text = str(total_flaky)
+	_skipped_value.text = str(total_skipped)
 
 
 func disable_buttons(value :bool) -> void:
@@ -129,24 +134,23 @@ func _on_gdunit_event(event: GdUnitEvent) -> void:
 			disable_buttons(false)
 
 		GdUnitEvent.INIT:
-			total_failed = 0
 			total_errors = 0
+			total_failed = 0
 			total_flaky = 0
-			status_changed(0, 0, 0)
-		GdUnitEvent.TESTCASE_BEFORE:
-			pass
-		GdUnitEvent.TESTCASE_STATISTICS:
-			if event.is_error():
-				status_changed(event.error_count(), 0, event.is_flaky())
-			else:
-				status_changed(0, event.failed_count(), event.is_flaky())
-		GdUnitEvent.TESTSUITE_BEFORE:
-			pass
+			total_skipped = 0
+			status_changed(total_errors, total_failed, total_flaky, total_skipped)
+
+		GdUnitEvent.TESTCASE_AFTER:
+			status_changed(event.error_count(), event.failed_count(), event.is_flaky(), event.is_skipped())
+
 		GdUnitEvent.TESTSUITE_AFTER:
-			if event.is_error():
-				status_changed(event.error_count(), 0, 0)
-			else:
-				status_changed(0, event.failed_count(), 0)
+			status_changed(event.error_count(), event.failed_count(),  event.is_flaky(), 0)
+
+		GdUnitEvent.SESSION_START:
+			disable_buttons(true)
+
+		GdUnitEvent.SESSION_CLOSE:
+			disable_buttons(false)
 
 
 func _on_btn_error_up_pressed() -> void:
@@ -173,8 +177,16 @@ func _on_btn_flaky_down_pressed() -> void:
 	select_flaky_next.emit()
 
 
-func _on_tree_sync_pressed() -> void:
-	request_discover_tests.emit()
+func _on_btn_skipped_up_pressed() -> void:
+	select_skipped_prevous.emit()
+
+
+func _on_btn_skipped_down_pressed() -> void:
+	select_skipped_next.emit()
+
+
+func _on_btn_tree_sync_pressed() -> void:
+	await GdUnitTestDiscoverer.run()
 
 
 func _on_sort_mode_changed(index: int) -> void:
@@ -190,14 +202,6 @@ func _on_tree_view_mode_changed(index: int) ->void:
 ################################################################################
 # external signal receiver
 ################################################################################
-func _on_gdunit_runner_start() -> void:
-	disable_buttons(true)
-
-
-func _on_gdunit_runner_stop(_client_id: int) -> void:
-	disable_buttons(false)
-
-
 func _on_settings_changed(property :GdUnitProperty) -> void:
 	if property.name() == GdUnitSettings.INSPECTOR_TREE_SORT_MODE:
 		_set_sort_mode_menu_options()

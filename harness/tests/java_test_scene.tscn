@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3xd5i600pyse"]
+[gd_scene format=3 uid="uid://c3xd5i600pyse"]
 
-[ext_resource type="Script" path="res://scripts/godot/tests/JavaTestClass.gdj" id="1_miwg5"]
+[ext_resource type="Script" uid="uid://btj4182fd3qi7" path="res://scripts/godot/tests/syntax/JavaTestClass.gdj" id="1_miwg5"]
 
-[node name="JavaTestScene" type="Node3D"]
+[node name="JavaTestScene" type="Node3D" unique_id=1318998076]
 script = ExtResource("1_miwg5")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1829532690]
 offset_right = 8.0
 offset_bottom = 8.0

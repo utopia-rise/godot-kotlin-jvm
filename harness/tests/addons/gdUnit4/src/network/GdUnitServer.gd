@@ -1,7 +1,9 @@
 @tool
 extends Node
 
-@onready var _server :GdUnitTcpServer = $TcpServer
+var _client_id: int
+
+@onready var _server: GdUnitTcpServer = $TcpServer
 
 
 @warning_ignore("return_value_discarded")
@@ -15,10 +17,10 @@ func _ready() -> void:
 	_server.client_connected.connect(_on_client_connected)
 	_server.client_disconnected.connect(_on_client_disconnected)
 	_server.rpc_data.connect(_receive_rpc_data)
-	GdUnitCommandHandler.instance().gdunit_runner_stop.connect(_on_gdunit_runner_stop)
 
 
 func _on_client_connected(client_id: int) -> void:
+	_client_id = client_id
 	GdUnitSignals.instance().gdunit_client_connected.emit(client_id)
 
 
@@ -26,17 +28,14 @@ func _on_client_disconnected(client_id: int) -> void:
 	GdUnitSignals.instance().gdunit_client_disconnected.emit(client_id)
 
 
-func _on_gdunit_runner_stop(client_id: int) -> void:
-	if _server:
-		_server.disconnect_client(client_id)
-
-
-func _receive_rpc_data(p_rpc: Variant) -> void:
+func _receive_rpc_data(p_rpc: RPC) -> void:
 	if p_rpc is RPCMessage:
-		GdUnitSignals.instance().gdunit_message.emit(p_rpc.message())
+		var rpc_message: RPCMessage = p_rpc
+		GdUnitSignals.instance().gdunit_message.emit(rpc_message.message())
 		return
 	if p_rpc is RPCGdUnitEvent:
-		GdUnitSignals.instance().gdunit_event.emit(p_rpc.event())
-		return
-	if p_rpc is RPCGdUnitTestSuite:
-		GdUnitSignals.instance().gdunit_add_test_suite.emit(p_rpc.dto())
+		var rpc_event: RPCGdUnitEvent = p_rpc
+		var event := rpc_event.event()
+		GdUnitSignals.instance().gdunit_event.emit(event)
+		if event.type() == GdUnitEvent.SESSION_CLOSE and _server != null:
+			_server.disconnect_client(_client_id)

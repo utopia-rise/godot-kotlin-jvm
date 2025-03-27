@@ -1,43 +1,41 @@
 package godot.tests.registration
 
 import godot.annotation.Export
-import godot.annotation.Script
-import godot.annotation.Register
-import godot.annotation.Visible
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
 import godot.api.Node
 import godot.api.Tween
 import godot.core.Error
 
-// GH-835
-enum class RegistrationTestEnum {
+enum class RegistrationEnum {
     ENUM_1,
-    ENUM_2
+    ENUM_2,
 }
 
-@Script
+// GH-835
+@RegisterClass
 class EnumRegistration: Node() {
     // do not test enums with ordinal 0 here! On the GDScript side, failed returns are returned as NULL which will equal ordinal 0 and thus tests might pass even if they should not
 
     @Export
-    @Visible
-    var enumValue = RegistrationTestEnum.ENUM_2
+    @RegisterProperty
+    var enumValue = RegistrationEnum.ENUM_2
 
     @Export
-    @Visible
+    @RegisterProperty
     var godotErrorEnumValue = Error.BUG
 
     @Export
-    @Visible
+    @RegisterProperty
     var godotEnumValue = Tween.EaseType.IN_OUT
 
-    @Register
+    @RegisterFunction
     fun provideEnumValue() = enumValue
 
-    @Register
+    @RegisterFunction
     fun provideGodotErrorEnumValue() = godotErrorEnumValue
 
-    @Register
+    @RegisterFunction
     fun provideGodotEnumValue() = godotEnumValue
 }
-
-

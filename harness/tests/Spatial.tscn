@@ -1,35 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnqp52df0ln8e"]
+[gd_scene format=3 uid="uid://cnqp52df0ln8e"]
 
-[ext_resource type="Script" uid="uid://dtjsjsnpovihy" path="res://scripts/godot/tests/Invocation.gdj" id="1"]
+[ext_resource type="Script" uid="uid://c8hudoddexy5h" path="res://scripts/godot/tests/registration/KotlinExport.gdj" id="1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ex3u"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_q3pqa"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_hn8kg"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_87cay"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_b12lh"]
-
-[node name="Spatial" type="Node3D" node_paths=PackedStringArray("button")]
+[node name="Spatial" type="Node3D" unique_id=1901248194 node_paths=PackedStringArray("button")]
 script = ExtResource("1")
 button = NodePath("CanvasLayer/Button")
 resource_test = SubResource("NavigationMesh_1ex3u")
 jvm_id = 319061373
-nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_q3pqa")])
-nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_hn8kg"), null])
-nav_meshes_dictionary = Dictionary[String, NavigationMesh]({
-"AwesomeNavmesh": SubResource("NavigationMesh_87cay")
-})
-nullable_dictionary = Dictionary[String, NavigationMesh]({
-"notnull": SubResource("NavigationMesh_b12lh"),
-"null": null
-})
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="." unique_id=1049929]
 transform = Transform3D(1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1657114739]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=577865751]
