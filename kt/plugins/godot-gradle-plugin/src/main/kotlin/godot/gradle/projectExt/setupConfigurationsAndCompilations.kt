@@ -36,8 +36,9 @@ fun Project.setupConfigurationsAndCompilations() {
     val bootstrapConfiguration = configurations.create("bootstrap") {
         with(it.dependencies) {
             add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${kotlinJvmExtension.coreLibrariesVersion}"))
-            add(dependencies.create("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotInternalArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
