@@ -403,17 +403,23 @@ enum class VariantParser(override val id: Int) : VariantConverter {
         }
     },
     DICTIONARY(27) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer) = Dictionary<Any, Any?>(buffer.long)
+        override fun toUnsafeKotlin(buffer: ByteBuffer): Dictionary<*, *> {
+            val ptr = buffer.long
+            val keyType = VariantParser.entries[buffer.long.toInt()]
+            val valueType = VariantParser.entries[buffer.long.toInt()]
+            return Dictionary<Any?, Any?>(ptr, keyType, valueType)
+        }
+
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) =
             toGodotNativeCoreType<Dictionary<Any, Any?>>(buffer, any)
     },
     ARRAY(28) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer) : VariantArray<*>{
+        override fun toUnsafeKotlin(buffer: ByteBuffer): VariantArray<*> {
             val ptr = buffer.long
-            val type = buffer.long
-            // TODO: Use the type to create the correct VariantArray type. For now, we just use the less efficient but flexible Any type.
-            return VariantArray<Any?>(ptr)
+            val type = VariantParser.entries[buffer.long.toInt()]
+            return VariantArray<Any?>(ptr, type)
         }
+
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) =
             toGodotNativeCoreType<VariantArray<Any?>>(buffer, any)
     },
@@ -470,7 +476,7 @@ enum class VariantParser(override val id: Int) : VariantConverter {
         val idInBuffer = buffer.variantType
         if (idInBuffer == id) {
             return toUnsafeKotlin(buffer)
-        } else if(id == OBJECT.id && idInBuffer == NIL.id) {
+        } else if (id == OBJECT.id && idInBuffer == NIL.id) {
             // Godot can sometimes send null pointer as NIL variant, so we need to test for that case.
             return null
         }

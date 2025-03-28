@@ -76,6 +76,16 @@ class VariantToBuffer {
         des->increment_position(encode_uint64(type, des->get_cursor()));
     }
 
+    static void write_dictionary(SharedBuffer* des, const Variant& src) {
+        Dictionary dict = src.operator Dictionary();
+        uint64_t key_type = dict.get_typed_key_builtin();
+        uint64_t value_type = dict.get_typed_value_builtin();
+        set_variant_type(des, Variant::Type::DICTIONARY);
+        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Dictionary(dict))), des->get_cursor()));
+        des->increment_position(encode_uint64(key_type, des->get_cursor()));
+        des->increment_position(encode_uint64(value_type, des->get_cursor()));
+    }
+
     static void append_object(SharedBuffer* des, Object* ptr) {
         if (ptr == nullptr) {
             des->increment_position(encode_uint32(0, des->get_cursor()));
@@ -144,7 +154,7 @@ public:
             &VariantToBuffer::write_object,
             &VariantToBuffer::write_native_core_type<Variant::CALLABLE, Callable, &Variant::operator Callable>,
             &VariantToBuffer::write_signal,
-            &VariantToBuffer::write_native_core_type<Variant::DICTIONARY, Dictionary,&Variant::operator Dictionary>,
+            &VariantToBuffer::write_dictionary,
             &VariantToBuffer::write_array,
 
             // typed arrays

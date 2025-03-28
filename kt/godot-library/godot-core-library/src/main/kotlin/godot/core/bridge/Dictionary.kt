@@ -27,12 +27,20 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
     }
 
+    @PublishedApi
+    internal constructor(handle: VoidPtr, keyConverter: VariantConverter, valueConverter: VariantConverter) {
+        keyVariantConverter = if(keyConverter == VariantParser.NIL) VariantCaster.ANY else keyConverter
+        valueVariantConverter = if(valueConverter == VariantParser.NIL) VariantCaster.ANY else valueConverter
+        ptr = handle
+        MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
+    }
+
     constructor(keyClass: Class<*>, valueClass: Class<*>) : this(Reflection.getOrCreateKotlinClass(keyClass), Reflection.getOrCreateKotlinClass(valueClass))
 
     @PublishedApi
     internal constructor(keyClass: KClass<*>, valueClass: KClass<*>) {
         val keyVariantConverter = variantMapper[keyClass]
-        val valueVariantConverter  = variantMapper[valueClass]
+        val valueVariantConverter = variantMapper[valueClass]
 
         if (GodotJvmBuildConfig.DEBUG) {
             checkNotNull(keyVariantConverter) {
@@ -43,7 +51,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
                 "Can't create a Dictionary with generic key ${valueClass}."
             }
         }
-        
+
         this.keyVariantConverter = keyVariantConverter!!
         this.valueVariantConverter = valueVariantConverter!!
 
@@ -137,10 +145,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
             override operator fun contains(element: MutableMap.MutableEntry<K, V>): Boolean {
                 val value = get(element.key, null)
-                if (value == element.value) {
-                    return true
-                }
-                return false
+                return value == element.value
             }
 
             override operator fun iterator(): MapIterator<K, V> {
@@ -403,14 +408,14 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     companion object {
         inline operator fun <reified K, reified V> invoke(): Dictionary<K, V> {
-            
+
             // The nullable check can't be inside the regular constructor because of Java
             if (GodotJvmBuildConfig.DEBUG) {
-                if(isNullable<K>() && K::class in notNullableVariantSet){
+                if (isNullable<K>() && K::class in notNullableVariantSet) {
                     error("Can't create a Dictionary with generic key ${K::class} as nullable.")
                 }
 
-                if(isNullable<V>() && V::class in notNullableVariantSet){
+                if (isNullable<V>() && V::class in notNullableVariantSet) {
                     error("Can't create a Dictionary with generic value ${V::class} as nullable.")
                 }
             }
