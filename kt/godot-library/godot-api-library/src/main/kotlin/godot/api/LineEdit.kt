@@ -395,7 +395,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [LineEdit] will always show the caret, even if focus is lost.
+   * If `true`, the [LineEdit] will always show the caret, even if not editing or focus is lost.
    */
   public final inline var caretForceDisplayed: Boolean
     @JvmName("caretForceDisplayedProperty")

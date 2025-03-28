@@ -79,7 +79,7 @@ public open class XRNode3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(874, scriptIndex)
+    createNativeObject(871, scriptIndex)
   }
 
   public final fun setTracker(trackerName: StringName): Unit {

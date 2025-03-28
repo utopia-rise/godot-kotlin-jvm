@@ -210,7 +210,7 @@ public operator fun Long.rem(other: godot.api.RenderingDevice.DrawFlags): Long =
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(563, scriptIndex)
+    createNativeObject(560, scriptIndex)
   }
 
   /**
@@ -3222,10 +3222,24 @@ public open class RenderingDevice internal constructor() : Object() {
      * Values are in the `[0.0, 1.0]` range.
      */
     DATA_FORMAT_G16_B16_R16_3PLANE_444_UNORM(217),
+    DATA_FORMAT_ASTC_4x4_SFLOAT_BLOCK(218),
+    DATA_FORMAT_ASTC_5x4_SFLOAT_BLOCK(219),
+    DATA_FORMAT_ASTC_5x5_SFLOAT_BLOCK(220),
+    DATA_FORMAT_ASTC_6x5_SFLOAT_BLOCK(221),
+    DATA_FORMAT_ASTC_6x6_SFLOAT_BLOCK(222),
+    DATA_FORMAT_ASTC_8x5_SFLOAT_BLOCK(223),
+    DATA_FORMAT_ASTC_8x6_SFLOAT_BLOCK(224),
+    DATA_FORMAT_ASTC_8x8_SFLOAT_BLOCK(225),
+    DATA_FORMAT_ASTC_10x5_SFLOAT_BLOCK(226),
+    DATA_FORMAT_ASTC_10x6_SFLOAT_BLOCK(227),
+    DATA_FORMAT_ASTC_10x8_SFLOAT_BLOCK(228),
+    DATA_FORMAT_ASTC_10x10_SFLOAT_BLOCK(229),
+    DATA_FORMAT_ASTC_12x10_SFLOAT_BLOCK(230),
+    DATA_FORMAT_ASTC_12x12_SFLOAT_BLOCK(231),
     /**
      * Represents the size of the [DataFormat] enum.
      */
-    DATA_FORMAT_MAX(218),
+    DATA_FORMAT_MAX(232),
     ;
 
     public val id: Long

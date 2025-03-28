@@ -608,7 +608,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(664, scriptIndex)
+    createNativeObject(661, scriptIndex)
   }
 
   /**

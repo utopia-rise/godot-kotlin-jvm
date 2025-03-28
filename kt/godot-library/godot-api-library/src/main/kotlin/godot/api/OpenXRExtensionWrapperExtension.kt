@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(439, scriptIndex)
+    createNativeObject(438, scriptIndex)
   }
 
   /**

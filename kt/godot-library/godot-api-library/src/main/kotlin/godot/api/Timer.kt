@@ -131,7 +131,7 @@ public open class Timer : Node() {
     get() = getTimeLeft()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(696, scriptIndex)
+    createNativeObject(693, scriptIndex)
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {

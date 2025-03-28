@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRControllerTracker : XRPositionalTracker() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(867, scriptIndex)
+    createNativeObject(864, scriptIndex)
   }
 
   public companion object

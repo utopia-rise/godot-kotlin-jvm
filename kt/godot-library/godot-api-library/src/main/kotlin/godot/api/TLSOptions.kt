@@ -41,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(661, scriptIndex)
+    createNativeObject(658, scriptIndex)
   }
 
   /**

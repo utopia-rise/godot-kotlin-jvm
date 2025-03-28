@@ -43,7 +43,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(764, scriptIndex)
+    createNativeObject(761, scriptIndex)
   }
 
   public final fun setInputName(name: String): Unit {

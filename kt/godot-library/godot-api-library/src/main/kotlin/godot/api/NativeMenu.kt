@@ -198,7 +198,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns global menu open callback.
-   * b]Note:[/b] This method is implemented only on macOS.
+   * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
   public final fun getPopupOpenCallback(rid: RID): Callable {

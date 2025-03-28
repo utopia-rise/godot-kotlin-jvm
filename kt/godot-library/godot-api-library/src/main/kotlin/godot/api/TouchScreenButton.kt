@@ -152,7 +152,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(698, scriptIndex)
+    createNativeObject(695, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

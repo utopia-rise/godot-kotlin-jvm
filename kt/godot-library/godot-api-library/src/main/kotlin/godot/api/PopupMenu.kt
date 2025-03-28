@@ -174,7 +174,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(516, scriptIndex)
+    createNativeObject(513, scriptIndex)
   }
 
   /**

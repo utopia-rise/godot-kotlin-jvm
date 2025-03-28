@@ -64,11 +64,11 @@ While Kotlin and Godot supports a wide range of platforms, this module for the m
 
 The module uses semantic versioning for its own versions but adds a suffix for the supported Godot version:
 
-Full version: `0.12.2-4.4`
+Full version: `0.12.3-4.4.1`
 
-Module Version: `0.12.2`
+Module Version: `0.12.3`
 
-Supported Godot Version: `4.4`
+Supported Godot Version: `4.4.1`
 
 This module relies on a Kotlin *compiler plugin* for registering your classes and members to Godot. As the compiler API from Kotlin is not stable yet, at the moment we can only support specific Kotlin version per release.
 

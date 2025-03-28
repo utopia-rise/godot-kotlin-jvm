@@ -123,7 +123,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(564, scriptIndex)
+    createNativeObject(561, scriptIndex)
   }
 
   /**

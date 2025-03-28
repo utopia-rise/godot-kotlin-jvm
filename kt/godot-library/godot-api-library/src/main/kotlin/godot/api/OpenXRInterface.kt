@@ -190,7 +190,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(449, scriptIndex)
+    createNativeObject(446, scriptIndex)
   }
 
   public final fun getDisplayRefreshRate(): Float {

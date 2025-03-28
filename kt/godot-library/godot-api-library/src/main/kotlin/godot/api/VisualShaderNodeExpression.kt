@@ -40,7 +40,7 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(753, scriptIndex)
+    createNativeObject(750, scriptIndex)
   }
 
   public final fun setExpression(expression: String): Unit {

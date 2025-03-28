@@ -150,7 +150,7 @@ public open class TextLine : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(665, scriptIndex)
+    createNativeObject(662, scriptIndex)
   }
 
   /**

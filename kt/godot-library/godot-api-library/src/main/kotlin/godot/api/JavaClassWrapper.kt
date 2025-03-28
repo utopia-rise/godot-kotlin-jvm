@@ -44,6 +44,9 @@ public object JavaClassWrapper : Object() {
   /**
    * Wraps a class defined in Java, and returns it as a [JavaClass] [Object] type that Godot can
    * interact with.
+   * When wrapping inner (nested) classes, use `$` instead of `.` to separate them. For example,
+   * `JavaClassWrapper.wrap("android.view.WindowManager$LayoutParams")` wraps the
+   * **WindowManager.LayoutParams** class.
    * **Note:** This method only works on Android. On every other platform, this method does nothing
    * and returns an empty [JavaClass].
    */

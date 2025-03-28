@@ -207,7 +207,7 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(690, scriptIndex)
+    createNativeObject(687, scriptIndex)
   }
 
   /**

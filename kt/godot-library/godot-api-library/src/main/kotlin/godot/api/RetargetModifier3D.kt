@@ -103,7 +103,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(569, scriptIndex)
+    createNativeObject(566, scriptIndex)
   }
 
   public final fun setProfile(profile: SkeletonProfile?): Unit {

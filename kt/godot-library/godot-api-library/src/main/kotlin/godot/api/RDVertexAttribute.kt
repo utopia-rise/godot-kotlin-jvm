@@ -80,7 +80,7 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(541, scriptIndex)
+    createNativeObject(538, scriptIndex)
   }
 
   public final fun setLocation(pMember: Long): Unit {

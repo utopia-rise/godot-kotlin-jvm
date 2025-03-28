@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TCPServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(660, scriptIndex)
+    createNativeObject(657, scriptIndex)
   }
 
   /**

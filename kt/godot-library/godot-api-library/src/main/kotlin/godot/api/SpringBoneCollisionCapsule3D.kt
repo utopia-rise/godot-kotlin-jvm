@@ -60,7 +60,7 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(631, scriptIndex)
+    createNativeObject(628, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

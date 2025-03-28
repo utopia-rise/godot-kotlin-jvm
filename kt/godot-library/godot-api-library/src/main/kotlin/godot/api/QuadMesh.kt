@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class QuadMesh : PlaneMesh() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(524, scriptIndex)
+    createNativeObject(521, scriptIndex)
   }
 
   public companion object

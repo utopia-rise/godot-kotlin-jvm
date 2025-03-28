@@ -123,7 +123,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(490, scriptIndex)
+    createNativeObject(487, scriptIndex)
   }
 
   /**

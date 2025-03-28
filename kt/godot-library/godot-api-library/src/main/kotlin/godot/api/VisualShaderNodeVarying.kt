@@ -49,7 +49,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(825, scriptIndex)
+    createNativeObject(822, scriptIndex)
   }
 
   public final fun setVaryingName(name: String): Unit {
