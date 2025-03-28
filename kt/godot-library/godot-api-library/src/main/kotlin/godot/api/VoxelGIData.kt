@@ -140,7 +140,7 @@ public open class VoxelGIData : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(844, scriptIndex)
+    createNativeObject(841, scriptIndex)
   }
 
   public final fun allocate(

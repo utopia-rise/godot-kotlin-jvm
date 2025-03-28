@@ -39,7 +39,7 @@ public open class VideoStream : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(720, scriptIndex)
+    createNativeObject(717, scriptIndex)
   }
 
   /**

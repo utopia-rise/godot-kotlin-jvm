@@ -90,7 +90,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(549, scriptIndex)
+    createNativeObject(546, scriptIndex)
   }
 
   /**

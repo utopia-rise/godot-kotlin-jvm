@@ -35,7 +35,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(796, scriptIndex)
+    createNativeObject(793, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

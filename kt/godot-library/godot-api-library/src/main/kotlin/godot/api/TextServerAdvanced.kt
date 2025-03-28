@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(669, scriptIndex)
+    createNativeObject(666, scriptIndex)
   }
 
   public companion object

@@ -418,7 +418,6 @@ import godot.api.OpenXRActionMap
 import godot.api.OpenXRActionSet
 import godot.api.OpenXRAnalogThresholdModifier
 import godot.api.OpenXRBindingModifier
-import godot.api.OpenXRBindingModifierEditor
 import godot.api.OpenXRCompositionLayer
 import godot.api.OpenXRCompositionLayerCylinder
 import godot.api.OpenXRCompositionLayerEquirect
@@ -431,8 +430,6 @@ import godot.api.OpenXRHapticVibration
 import godot.api.OpenXRIPBinding
 import godot.api.OpenXRIPBindingModifier
 import godot.api.OpenXRInteractionProfile
-import godot.api.OpenXRInteractionProfileEditor
-import godot.api.OpenXRInteractionProfileEditorBase
 import godot.api.OpenXRInteractionProfileMetadata
 import godot.api.OpenXRInterface
 import godot.api.OpenXRVisibilityMask
@@ -1495,8 +1492,6 @@ public fun registerEngineTypes(): Unit {
       OpenXRAnalogThresholdModifier::class, ::OpenXRAnalogThresholdModifier)
   TypeManager.registerEngineType("OpenXRBindingModifier", OpenXRBindingModifier::class,
       ::OpenXRBindingModifier)
-  TypeManager.registerEngineType("OpenXRBindingModifierEditor", OpenXRBindingModifierEditor::class,
-      ::OpenXRBindingModifierEditor)
   TypeManager.registerEngineType("OpenXRCompositionLayer", OpenXRCompositionLayer::class,
       ::OpenXRCompositionLayer)
   TypeManager.registerEngineType("OpenXRCompositionLayerCylinder",
@@ -1518,10 +1513,6 @@ public fun registerEngineTypes(): Unit {
       ::OpenXRIPBindingModifier)
   TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class,
       ::OpenXRInteractionProfile)
-  TypeManager.registerEngineType("OpenXRInteractionProfileEditor",
-      OpenXRInteractionProfileEditor::class, ::OpenXRInteractionProfileEditor)
-  TypeManager.registerEngineType("OpenXRInteractionProfileEditorBase",
-      OpenXRInteractionProfileEditorBase::class, ::OpenXRInteractionProfileEditorBase)
   TypeManager.registerEngineType("OpenXRInteractionProfileMetadata",
       OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
   TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
@@ -2604,7 +2595,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OpenXRActionSet::class] = OBJECT
   variantMapper[OpenXRAnalogThresholdModifier::class] = OBJECT
   variantMapper[OpenXRBindingModifier::class] = OBJECT
-  variantMapper[OpenXRBindingModifierEditor::class] = OBJECT
   variantMapper[OpenXRCompositionLayer::class] = OBJECT
   variantMapper[OpenXRCompositionLayerCylinder::class] = OBJECT
   variantMapper[OpenXRCompositionLayerEquirect::class] = OBJECT
@@ -2617,8 +2607,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OpenXRIPBinding::class] = OBJECT
   variantMapper[OpenXRIPBindingModifier::class] = OBJECT
   variantMapper[OpenXRInteractionProfile::class] = OBJECT
-  variantMapper[OpenXRInteractionProfileEditor::class] = OBJECT
-  variantMapper[OpenXRInteractionProfileEditorBase::class] = OBJECT
   variantMapper[OpenXRInteractionProfileMetadata::class] = OBJECT
   variantMapper[OpenXRInterface::class] = OBJECT
   variantMapper[OpenXRVisibilityMask::class] = OBJECT
@@ -3489,7 +3477,6 @@ public fun registerEngineTypeMethods(): Unit {
   OpenXRActionSet.MethodBindings
   OpenXRAnalogThresholdModifier.MethodBindings
   OpenXRBindingModifier.MethodBindings
-  OpenXRBindingModifierEditor.MethodBindings
   OpenXRCompositionLayer.MethodBindings
   OpenXRCompositionLayerCylinder.MethodBindings
   OpenXRCompositionLayerEquirect.MethodBindings
@@ -3502,8 +3489,6 @@ public fun registerEngineTypeMethods(): Unit {
   OpenXRIPBinding.MethodBindings
   OpenXRIPBindingModifier.MethodBindings
   OpenXRInteractionProfile.MethodBindings
-  OpenXRInteractionProfileEditor.MethodBindings
-  OpenXRInteractionProfileEditorBase.MethodBindings
   OpenXRInteractionProfileMetadata.MethodBindings
   OpenXRInterface.MethodBindings
   OpenXRVisibilityMask.MethodBindings

@@ -2692,6 +2692,11 @@ public open class Node : Object() {
     public final const val NOTIFICATION_VP_MOUSE_EXIT: Long = 1011
 
     /**
+     * Notification received when the window is moved.
+     */
+    public final const val NOTIFICATION_WM_POSITION_CHANGED: Long = 1012
+
+    /**
      * Notification received from the OS when the application is exceeding its allocated memory.
      * Implemented only on iOS.
      */

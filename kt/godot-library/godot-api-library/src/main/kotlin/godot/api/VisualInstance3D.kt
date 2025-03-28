@@ -90,7 +90,7 @@ public open class VisualInstance3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(730, scriptIndex)
+    createNativeObject(727, scriptIndex)
   }
 
   public open fun _getAabb(): AABB {

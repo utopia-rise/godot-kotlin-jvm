@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(850, scriptIndex)
+    createNativeObject(847, scriptIndex)
   }
 
   public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {

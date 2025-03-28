@@ -471,7 +471,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(572, scriptIndex)
+    createNativeObject(569, scriptIndex)
   }
 
   /**

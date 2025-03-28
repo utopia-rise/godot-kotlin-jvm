@@ -159,7 +159,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(599, scriptIndex)
+    createNativeObject(596, scriptIndex)
   }
 
   /**

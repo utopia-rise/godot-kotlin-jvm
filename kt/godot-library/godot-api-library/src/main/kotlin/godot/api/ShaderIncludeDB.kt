@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ShaderIncludeDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(595, scriptIndex)
+    createNativeObject(592, scriptIndex)
   }
 
   public companion object {

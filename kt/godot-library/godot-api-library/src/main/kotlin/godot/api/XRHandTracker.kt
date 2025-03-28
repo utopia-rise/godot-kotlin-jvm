@@ -82,7 +82,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(871, scriptIndex)
+    createNativeObject(868, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

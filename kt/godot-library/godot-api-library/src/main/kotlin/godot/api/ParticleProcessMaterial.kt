@@ -1412,7 +1412,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(468, scriptIndex)
+    createNativeObject(465, scriptIndex)
   }
 
   /**

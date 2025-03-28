@@ -37,7 +37,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(780, scriptIndex)
+    createNativeObject(777, scriptIndex)
   }
 
   public final fun setFlags(flags: EmitFlags): Unit {

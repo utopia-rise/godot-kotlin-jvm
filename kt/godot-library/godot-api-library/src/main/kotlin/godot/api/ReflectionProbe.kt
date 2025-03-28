@@ -255,7 +255,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(548, scriptIndex)
+    createNativeObject(545, scriptIndex)
   }
 
   /**

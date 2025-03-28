@@ -199,7 +199,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(667, scriptIndex)
+    createNativeObject(664, scriptIndex)
   }
 
   /**

@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RichTextEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(571, scriptIndex)
+    createNativeObject(568, scriptIndex)
   }
 
   /**

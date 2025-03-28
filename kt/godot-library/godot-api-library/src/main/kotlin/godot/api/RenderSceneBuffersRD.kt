@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(559, scriptIndex)
+    createNativeObject(556, scriptIndex)
   }
 
   /**

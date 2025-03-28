@@ -70,7 +70,7 @@ public open class XRTracker internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(878, scriptIndex)
+    createNativeObject(875, scriptIndex)
   }
 
   public final fun getTrackerType(): XRServer.TrackerType {

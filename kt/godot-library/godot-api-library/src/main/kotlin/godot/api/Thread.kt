@@ -40,7 +40,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Thread : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(687, scriptIndex)
+    createNativeObject(684, scriptIndex)
   }
 
   /**

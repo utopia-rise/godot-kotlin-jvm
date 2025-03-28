@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeDeterminant : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(750, scriptIndex)
+    createNativeObject(747, scriptIndex)
   }
 
   public companion object

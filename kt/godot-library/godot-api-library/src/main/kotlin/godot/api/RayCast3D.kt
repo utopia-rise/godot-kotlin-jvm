@@ -168,7 +168,7 @@ public open class RayCast3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(545, scriptIndex)
+    createNativeObject(542, scriptIndex)
   }
 
   /**

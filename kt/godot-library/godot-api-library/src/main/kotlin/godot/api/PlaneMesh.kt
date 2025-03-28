@@ -92,7 +92,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(509, scriptIndex)
+    createNativeObject(506, scriptIndex)
   }
 
   /**
