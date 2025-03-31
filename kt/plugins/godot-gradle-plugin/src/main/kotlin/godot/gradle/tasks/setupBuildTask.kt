@@ -28,7 +28,7 @@ fun Project.setupBuildTask(
             task.finalizedBy(
                 copyJarTask,
                 packageBootstrapJarTask,
-                packageMainJarTask,
+                packageMainJarTask
             )
 
             if (godotJvmExtension.isAndroidExportEnabled.get()) {

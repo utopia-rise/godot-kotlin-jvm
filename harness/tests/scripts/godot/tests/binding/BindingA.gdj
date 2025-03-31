@@ -3,15 +3,13 @@
 
 registeredName = BindingA
 fqName = godot.tests.binding.BindingA
-relativeSourcePath = src/main/kotlin/godot/tests/binding/BindingA.kt
 baseType = Node
 supertypes = [
     godot.api.Node,
 	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer,
-	kotlin.Any
+	godot.common.interop.NativePointer
 ]
 signals = [
     
