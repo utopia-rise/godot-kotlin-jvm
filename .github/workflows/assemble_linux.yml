@@ -35,12 +35,6 @@ jobs:
           name: editor_${{ matrix.target }}_linux_${{ matrix.arch }}
           path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
-      - name: Download ${{ matrix.target }} bootstrap jar
-        uses: actions/download-artifact@v4
-        with:
-          name: jvm_godot-bootstrap_${{ matrix.target }}
-          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
-
       - name: Create linux editor zip
         run: |
           cd godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}

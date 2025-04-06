@@ -56,32 +56,6 @@ tasks {
     withType<Jar> {
         dependsOn(generateAPI)
     }
-
-    @Suppress("UNUSED_VARIABLE")
-    val jar by getting {
-        outputs.upToDateWhen {
-            // force this to always run. So we ensure that the bootstrap jar in the godot bin dir is always up to date
-            // only relevant for local testing
-            false
-        }
-        finalizedBy(shadowJar)
-    }
-    build.get().finalizedBy(shadowJar)
-
-    val copyBootstrapJar by registering(Copy::class) {
-        group = "godot-jvm"
-        from(shadowJar)
-        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
-        dependsOn(shadowJar)
-    }
-
-    withType<ShadowJar> {
-        archiveBaseName.set("godot-bootstrap")
-        archiveVersion.set("")
-        archiveClassifier.set("")
-        exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
-        finalizedBy(copyBootstrapJar)
-    }
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"

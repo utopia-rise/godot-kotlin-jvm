@@ -40,7 +40,6 @@ jobs:
           cache-cleanup: always
 
       - name: Compilation
-        # we build the release bootstrap jar here. Debug gets its own trigger later
         run: |
           kt/gradlew -p kt/ build -Prelease buildPlugin
 
@@ -49,12 +48,6 @@ jobs:
         with:
           name: jvm_api-generator
           path: kt/api-generator/build/libs/api-generator.jar
-
-      - name: Upload release bootstrap artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: jvm_godot-bootstrap_release
-          path: kt/godot-library/build/libs/godot-bootstrap.jar
 
       - name: Upload entry-generator artifact
         uses: actions/upload-artifact@v4
@@ -91,16 +84,6 @@ jobs:
         with:
           name: jvm_tools-common
           path: kt/tools-common/build/libs/tools-common-*.jar
-
-      - name: Bootstrap debug compilation
-        run: |
-          kt/gradlew -p kt/ build -Pdebug
-
-      - name: Upload debug bootstrap artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: jvm_godot-bootstrap_debug
-          path: kt/godot-library/build/libs/godot-bootstrap.jar
 
       - name: Verify ide plugin
         run: |

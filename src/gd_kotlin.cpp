@@ -233,14 +233,21 @@ bool GDKotlin::load_bootstrap() {
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type != jni::JvmType::GRAAL_NATIVE_IMAGE) { // Bootstrap already part of the image
 #ifdef TOOLS_ENABLED
-        String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(EDITOR_BOOTSTRAP_PATH)};
-        constexpr const char* hint_text {" This file needs to stay alongside the godot editor executable!"};
+        String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(String(RES_DIRECTORY).path_join(BOOTSTRAP_FILE))};
+        constexpr const char* hint_text {"Make sure to build your gradle project before running the game."};
 #else
         String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(BOOTSTRAP_FILE))};
         constexpr const char* hint_text {"The export of the project might be invalid."};
 #endif
 
-        if (!FileAccess::exists(bootstrap_jar)) { DISPLAY_ERROR("No godot-bootstrap.jar found!", hint_text); }
+        if (!FileAccess::exists(bootstrap_jar)) {
+            if (Engine::get_singleton()->is_project_manager_hint()) {
+                // Most likely when starting a new project, there is no need to log it as an error or warning as long as the users doesn't run the game.
+                // We already have node warning if they try to attach a JVM script without building.
+                return false;
+            }
+            DISPLAY_ERROR("No godot-bootstrap.jar found!", hint_text);
+        }
 
         JVM_LOG_VERBOSE("Loading bootstrap jar: %s", bootstrap_jar);
         bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
