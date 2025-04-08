@@ -20,7 +20,7 @@ object GodotDispatchers {
 
     private object GodotMainThreadCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            { block.run() }.asCallable().setAsCancellable { context.cancel() }.unsafeCallDeferred()
+            { block.run() }.asCallable().callDeferred()
         }
     }
 

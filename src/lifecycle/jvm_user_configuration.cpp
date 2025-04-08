@@ -278,9 +278,11 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             configuration_map[JVM_ARGUMENTS_CMD_IDENTIFIER] = arr;
         }
 
+#ifdef DEV_ENABLED
         for (const auto& map_element : configuration_map) {
             JVM_DEV_VERBOSE("Value for commandline argument: %s -> %s", map_element.key, map_element.value);
         }
+#endif
     }
 }
 

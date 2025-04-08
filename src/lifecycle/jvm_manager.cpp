@@ -43,6 +43,7 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #else
     // Sanity check in case we mess up preprocessors
     JVM_DEV_ASSERT(false, "Current configuration doesn't provide a way to create a JVM!");
+    return nullptr;
 #endif
 }
 
