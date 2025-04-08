@@ -4,7 +4,7 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
-    JVM_SINGLETON_WRAPPER(CallableBridge, "godot.core.NativeCallable$Bridge") {
+    JVM_SINGLETON_WRAPPER(CallableBridge, "godot.core.Callable$Bridge") {
         SINGLETON_CLASS(CallableBridge)
 
         // clang-format off
