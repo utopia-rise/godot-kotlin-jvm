@@ -84,7 +84,7 @@ namespace jni {
         template<bool CHECK_EXCEPTION = true>
         JObject call_object_method(Env& p_env, ObjectMethodID method, jvalue* args = {}) const;
 
-        bool is_null();
+        bool is_null() const;
 
         bool is_same_object(Env& env, const JObject& other) const;
     };

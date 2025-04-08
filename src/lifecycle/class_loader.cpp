@@ -41,8 +41,7 @@ ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_
     chmod(full_jar_path.utf8().get_data(), S_IRUSR | S_IRGRP | S_IROTH);
 
     jni::JClass class_loader_cls {env.find_class("dalvik/system/DexClassLoader")};
-    jni::MethodID ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
-    };
+    jni::MethodID ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")};
     jni::JObject jar_path {env.new_string(full_jar_path.utf8().get_data())};
     jvalue args[4] = {
       jni::to_jni_arg(jar_path),
@@ -56,7 +55,15 @@ ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_
     jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
     jni::JClass class_loader_cls = env.find_class("java/net/URLClassLoader");
     jni::MethodID ctor = class_loader_cls.get_constructor_method_id(env, "([Ljava/net/URL;Ljava/lang/ClassLoader;)V");
-    jvalue args[2] = {jni::to_jni_arg(urls), jni::to_jni_arg(p_parent_loader)};
+
+    jni::JObject parent_loader;
+    if (p_parent_loader.is_null()) {
+        jni::MethodID get_system_loader = class_loader_cls.get_static_method_id(env, "getSystemClassLoader", "()Ljava/lang/ClassLoader;");
+        parent_loader = class_loader_cls.call_static_object_method(env, get_system_loader);
+    } else {
+        parent_loader = p_parent_loader;
+    }
+    jvalue args[2] = {jni::to_jni_arg(urls), jni::to_jni_arg(parent_loader)};
 #endif
     jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
     assert(!class_loader_cls.is_null());
