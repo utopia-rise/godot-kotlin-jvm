@@ -135,13 +135,13 @@ tasks {
     @Suppress("UNUSED_VARIABLE")
     val buildAndRunEngineDebug by registering {
         group = "godot-kotlin-jvm"
-        dependsOn(buildEngineDebug, getTasksByName("copyBootstrapJar", true).first())
+        dependsOn(buildEngineDebug)
         finalizedBy(runEngineDebug)
     }
     @Suppress("UNUSED_VARIABLE")
     val buildAndRunEngineReleaseDebug by registering {
         group = "godot-kotlin-jvm"
-        dependsOn(buildEngineReleaseDebug, getTasksByName("copyBootstrapJar", true).first())
+        dependsOn(buildEngineReleaseDebug)
         finalizedBy(runEngineReleaseDebug)
     }
 }

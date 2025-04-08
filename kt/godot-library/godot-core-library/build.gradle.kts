@@ -11,7 +11,6 @@ val isRelease = project.hasProperty("release")
 
 kotlinDefinitions {
     definitionsObjectName.set("GodotJvmBuildConfig")
-
     define("DEBUG", !isRelease)
 }
 

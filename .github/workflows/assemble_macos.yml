@@ -89,20 +89,12 @@ jobs:
           name: editor_${{ matrix.target }}_macos_universal
           path: .
 
-      - name: Download ${{ matrix.target }} bootstrap jar
-        uses: actions/download-artifact@v4
-        with:
-          name: jvm_godot-bootstrap_${{ matrix.target }}
-          path: .
-
       - name: Create MacOs editor app
         run: |
           cp -r misc/dist/macos_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
           cp godot.macos.editor.${{ matrix.target }}.universal Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
-          cp godot-bootstrap.jar Godot.app/Contents/MacOS/
-          chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar
           zip -q -9 -r godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip Godot.app
         shell: bash
 

@@ -22,10 +22,10 @@ jobs:
         include:
           - name: dev tests
             target: dev
-            bootstrap-target: debug
+            jvm-target: debug
           - name: release tests
             target: release
-            bootstrap-target: release
+            jvm-target: release
 
     steps:
       - name: Clone Godot JVM module.
@@ -47,26 +47,20 @@ jobs:
           name: editor_${{ matrix.target }}_windows_x86_64
           path: './harness/tests/bin'
 
-      - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
+      - name: Download windows x86_64 ${{ matrix.jvm-target }} export template
         uses: actions/download-artifact@v4
         with:
-          name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: './harness/tests/bin'
-
-      - name: Download windows x86_64 ${{ matrix.bootstrap-target }} export template
-        uses: actions/download-artifact@v4
-        with:
-          name: export_template_${{ matrix.bootstrap-target }}_windows_x86_64
+          name: export_template_${{ matrix.jvm-target }}_windows_x86_64
           path: "./"
 
       - name: Prepare export
         run: |
           mkdir -p harness/tests/export
-          mv godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.jvm.${{ inputs.build-version }}.exe harness/tests/godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.exe
+          mv godot.windows.template_${{ matrix.jvm-target }}.x86_64.jvm.${{ inputs.build-version }}.exe harness/tests/godot.windows.template_${{ matrix.jvm-target }}.x86_64.exe
 
       - name: Build tests project
         run: |
-          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.bootstrap-target }}
+          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.jvm-target }}
 
       - name: Create JRE
         run: |
@@ -74,14 +68,14 @@ jobs:
           jlink --add-modules java.base,java.logging --output jvm/jre-amd64-windows
 
       - name: Export tests debug
-        if: ${{ matrix.bootstrap-target == 'debug' }}
+        if: ${{ matrix.jvm-target == 'debug' }}
         run: |
           cd harness/tests/
           ./gradlew exportDebug
         timeout-minutes: 30
 
       - name: Export tests release
-        if: ${{ matrix.bootstrap-target == 'release' }}
+        if: ${{ matrix.jvm-target == 'release' }}
         run: |
           cd harness/tests/
           ./gradlew exportRelease

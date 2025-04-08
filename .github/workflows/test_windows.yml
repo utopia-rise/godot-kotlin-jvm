@@ -22,10 +22,10 @@ jobs:
         include:
           - name: dev tests
             target: dev
-            bootstrap-target: debug
+            jvm-target: debug
           - name: release tests
             target: release
-            bootstrap-target: release
+            jvm-target: release
 
     steps:
       - name: Clone Godot JVM module.
@@ -47,15 +47,9 @@ jobs:
           name: editor_${{ matrix.target }}_windows_x86_64
           path: './harness/tests/bin'
 
-      - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
-        uses: actions/download-artifact@v4
-        with:
-          name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: './harness/tests/bin'
-
       - name: Build tests project
         run: |
-          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.bootstrap-target }}
+          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.jvm-target }}
 
       - name: Run Tests
         run: |

@@ -11,10 +11,8 @@ val isRelease = project.hasProperty("release")
 
 kotlinDefinitions {
     definitionsObjectName.set("GodotJvmBuildConfig")
-
     define("DEBUG", !isRelease)
 }
-
 
 kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())

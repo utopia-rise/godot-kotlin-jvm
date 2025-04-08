@@ -22,10 +22,10 @@ jobs:
         include:
           - name: dev tests
             target: dev
-            bootstrap-target: debug
+            jvm-target: debug
           - name: release tests
             target: release
-            bootstrap-target: release
+            jvm-target: release
 
     steps:
       - name: Clone Godot JVM module.
@@ -47,12 +47,6 @@ jobs:
           name: editor_${{ matrix.target }}_macos_universal
           path: './harness/tests/bin'
 
-      - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
-        uses: actions/download-artifact@v4
-        with:
-          name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: './harness/tests/bin'
-
       - name: Download macos export template
         uses: actions/download-artifact@v4
         with:
@@ -67,7 +61,7 @@ jobs:
 
       - name: Build tests project
         run: |
-          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.bootstrap-target }}
+          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.jvm-target }}
 
       - name: Create JRE
         run: |
@@ -76,14 +70,14 @@ jobs:
           mkdir jvm/jre-amd64-macos #create a fake jre dir for amd64 so the export is happy. The test will run on arm anyways
 
       - name: Export tests debug
-        if: ${{ matrix.bootstrap-target == 'debug' }}
+        if: ${{ matrix.jvm-target == 'debug' }}
         run: |
           cd harness/tests/
           ./gradlew exportDebug
         timeout-minutes: 30
 
       - name: Export tests release
-        if: ${{ matrix.bootstrap-target == 'release' }}
+        if: ${{ matrix.jvm-target == 'release' }}
         run: |
           cd harness/tests/
           ./gradlew exportRelease
