@@ -12,7 +12,20 @@ concurrency:
 jobs:
   ios-template:
     runs-on: macos-latest
-    name: Build ios template (all)
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Build ios debug (arm64)
+            cache-name: export_template_debug_ios_arm64
+            target: template_debug
+            sconsflags: arch=arm64
+
+          - name: Build ios release (arm64)
+            cache-name: export_template_release_ios_arm64
+            target: template_release
+            sconsflags: arch=arm64
 
     steps:
       - name: Clone Godot Engine
@@ -33,22 +46,15 @@ jobs:
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
 
-      - name: Compilation release (arm64)
+      - name: ${{ matrix.name }}
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: ${{ env.SCONSFLAGS }}
+          sconsflags: ${{ matrix.sconsflags }}
           platform: ios
-          target: template_release
-
-      - name: Compilation debug (arm64)
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: ${{ env.SCONSFLAGS }}
-          platform: ios
-          target: template_debug
+          target: ${{ matrix.target }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: export_template_ios_all
+          name: ${{ matrix.cache-name }}
           path: "bin/*"

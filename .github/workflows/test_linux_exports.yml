@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   test-linux-exports:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04 # run tests on oldest ubuntu we still support. See build_linux.yml
     name: ${{ matrix.name }}
     strategy:
       matrix:
@@ -33,7 +33,7 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          distribution: adopt-hotspot
+          distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
