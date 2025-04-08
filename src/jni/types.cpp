@@ -56,7 +56,7 @@ namespace jni {
         p_env.env->DeleteLocalRef(obj);
     }
 
-    bool JObject::is_null() {
+    bool JObject::is_null() const{
         return obj == nullptr;
     }
 
