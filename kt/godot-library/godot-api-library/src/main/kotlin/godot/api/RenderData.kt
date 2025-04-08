@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(550, scriptIndex)
+    createNativeObject(540, scriptIndex)
   }
 
   /**

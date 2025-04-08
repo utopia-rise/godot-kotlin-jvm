@@ -283,7 +283,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(471, scriptIndex)
+    createNativeObject(456, scriptIndex)
   }
 
   /**

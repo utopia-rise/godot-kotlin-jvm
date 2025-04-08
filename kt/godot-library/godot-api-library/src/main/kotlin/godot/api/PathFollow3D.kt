@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
@@ -155,7 +156,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(469, scriptIndex)
+    createNativeObject(453, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {
@@ -298,6 +299,7 @@ public open class PathFollow3D : Node3D() {
      * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and
      * sideway direction) is calculated.
      */
+    @JvmStatic
     public final fun correctPosture(transform: Transform3D, rotationMode: RotationMode):
         Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)

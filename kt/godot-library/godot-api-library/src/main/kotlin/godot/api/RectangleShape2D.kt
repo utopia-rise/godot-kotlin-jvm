@@ -49,7 +49,7 @@ public open class RectangleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(543, scriptIndex)
+    createNativeObject(533, scriptIndex)
   }
 
   /**

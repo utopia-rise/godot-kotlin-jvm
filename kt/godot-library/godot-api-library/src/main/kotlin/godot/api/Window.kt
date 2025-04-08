@@ -677,7 +677,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(851, scriptIndex)
+    createNativeObject(849, scriptIndex)
   }
 
   /**
@@ -905,7 +905,7 @@ public open class Window : Viewport() {
    * [getContentsMinimumSize].
    */
   public open fun _getContentsMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_contents_minimum_size is not implemented for Window")
+    throw NotImplementedError("_getContentsMinimumSize is not implemented for Window")
   }
 
   public final fun setTitle(title: String): Unit {

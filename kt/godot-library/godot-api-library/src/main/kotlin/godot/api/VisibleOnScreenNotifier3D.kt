@@ -67,7 +67,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(726, scriptIndex)
+    createNativeObject(724, scriptIndex)
   }
 
   /**

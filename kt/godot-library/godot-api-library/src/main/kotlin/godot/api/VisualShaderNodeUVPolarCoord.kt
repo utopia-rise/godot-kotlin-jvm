@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeUVPolarCoord : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(821, scriptIndex)
+    createNativeObject(819, scriptIndex)
   }
 
   public companion object

@@ -269,7 +269,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(527, scriptIndex)
+    createNativeObject(517, scriptIndex)
   }
 
   public final fun setEnableDepthTest(pMember: Boolean): Unit {

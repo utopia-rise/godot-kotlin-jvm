@@ -275,7 +275,7 @@ public open class Polygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(509, scriptIndex)
+    createNativeObject(498, scriptIndex)
   }
 
   /**

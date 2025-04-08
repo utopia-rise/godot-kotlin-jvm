@@ -65,7 +65,7 @@ public open class WorldEnvironment : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(856, scriptIndex)
+    createNativeObject(855, scriptIndex)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {

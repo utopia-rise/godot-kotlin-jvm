@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
 import godot.core.VariantArray
@@ -265,7 +264,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(663, scriptIndex)
+    createNativeObject(657, scriptIndex)
   }
 
   /**
@@ -372,7 +371,7 @@ public open class TextMesh : PrimitiveMesh() {
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(depth: Float): Unit {

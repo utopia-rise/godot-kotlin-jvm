@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class X509Certificate : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(857, scriptIndex)
+    createNativeObject(856, scriptIndex)
   }
 
   /**

@@ -26,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A unit of execution in a process. Can run methods on [Object]s simultaneously. The use of
@@ -45,7 +46,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Thread : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(684, scriptIndex)
+    createNativeObject(680, scriptIndex)
   }
 
   /**
@@ -166,6 +167,7 @@ public open class Thread : RefCounted() {
      * **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task,
      * there's no need to re-enable them at the end. The engine will do so.
      */
+    @JvmStatic
     public final fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
       TransferContext.writeArguments(BOOL to enabled)
       TransferContext.callMethod(0, MethodBindings.setThreadSafetyChecksEnabledPtr, NIL)

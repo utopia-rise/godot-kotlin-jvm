@@ -180,7 +180,7 @@ public open class TranslationDomain : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(697, scriptIndex)
+    createNativeObject(694, scriptIndex)
   }
 
   /**

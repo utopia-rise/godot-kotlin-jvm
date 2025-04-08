@@ -61,7 +61,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(595, scriptIndex)
+    createNativeObject(589, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

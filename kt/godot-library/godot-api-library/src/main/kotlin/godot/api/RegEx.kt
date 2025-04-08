@@ -27,6 +27,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A regular expression (or regex) is a compact language that can be used to recognize strings that
@@ -104,7 +105,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(546, scriptIndex)
+    createNativeObject(536, scriptIndex)
   }
 
   /**
@@ -236,6 +237,7 @@ public open class RegEx : RefCounted() {
      * Creates and compiles a new [RegEx] object. See also [compile].
      */
     @JvmOverloads
+    @JvmStatic
     public final fun createFromString(pattern: String, showError: Boolean = true): RegEx? {
       TransferContext.writeArguments(STRING to pattern, BOOL to showError)
       TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)

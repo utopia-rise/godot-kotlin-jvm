@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ShaderGlobalsOverride : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(590, scriptIndex)
+    createNativeObject(584, scriptIndex)
   }
 
   public companion object

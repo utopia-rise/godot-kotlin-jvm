@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(445, scriptIndex)
+    createNativeObject(429, scriptIndex)
   }
 
   /**

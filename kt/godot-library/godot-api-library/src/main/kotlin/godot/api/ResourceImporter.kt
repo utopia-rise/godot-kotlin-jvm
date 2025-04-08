@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(564, scriptIndex)
+    createNativeObject(555, scriptIndex)
   }
 
   public enum class ImportOrder(

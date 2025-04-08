@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderMaterial : Material() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(500, scriptIndex)
+    createNativeObject(489, scriptIndex)
   }
 
   public companion object

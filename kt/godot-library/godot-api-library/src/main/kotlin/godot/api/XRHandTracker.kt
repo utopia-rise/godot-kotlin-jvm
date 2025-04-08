@@ -28,28 +28,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.XRHandTracker.HandJointFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: XRHandTracker.HandJointFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: XRHandTracker.HandJointFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: XRHandTracker.HandJointFlags): Long = this.and(other.flag)
 
 /**
  * A hand tracking system will create an instance of this object and add it to the [XRServer]. This
@@ -83,7 +66,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(868, scriptIndex)
+    createNativeObject(867, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -123,7 +106,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointFlagsPtr, LONG)
-    return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return HandJointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -200,26 +183,26 @@ public open class XRHandTracker : XRPositionalTracker() {
     /**
      * The source of hand tracking data is unknown.
      */
-    HAND_TRACKING_SOURCE_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * The source of hand tracking data is unobstructed, meaning that an accurate method of hand
      * tracking is used. These include optical hand tracking, data gloves, etc.
      */
-    HAND_TRACKING_SOURCE_UNOBSTRUCTED(1),
+    UNOBSTRUCTED(1),
     /**
      * The source of hand tracking data is a controller, meaning that joint positions are inferred
      * from controller inputs.
      */
-    HAND_TRACKING_SOURCE_CONTROLLER(2),
+    CONTROLLER(2),
     /**
      * No hand tracking data is tracked, this either means the hand is obscured, the controller is
      * turned off, or tracking is not supported for the current input type.
      */
-    HAND_TRACKING_SOURCE_NOT_TRACKED(3),
+    NOT_TRACKED(3),
     /**
      * Represents the size of the [HandTrackingSource] enum.
      */
-    HAND_TRACKING_SOURCE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -238,111 +221,111 @@ public open class XRHandTracker : XRPositionalTracker() {
     /**
      * Palm joint.
      */
-    HAND_JOINT_PALM(0),
+    PALM(0),
     /**
      * Wrist joint.
      */
-    HAND_JOINT_WRIST(1),
+    WRIST(1),
     /**
      * Thumb metacarpal joint.
      */
-    HAND_JOINT_THUMB_METACARPAL(2),
+    THUMB_METACARPAL(2),
     /**
      * Thumb phalanx proximal joint.
      */
-    HAND_JOINT_THUMB_PHALANX_PROXIMAL(3),
+    THUMB_PHALANX_PROXIMAL(3),
     /**
      * Thumb phalanx distal joint.
      */
-    HAND_JOINT_THUMB_PHALANX_DISTAL(4),
+    THUMB_PHALANX_DISTAL(4),
     /**
      * Thumb tip joint.
      */
-    HAND_JOINT_THUMB_TIP(5),
+    THUMB_TIP(5),
     /**
      * Index finger metacarpal joint.
      */
-    HAND_JOINT_INDEX_FINGER_METACARPAL(6),
+    INDEX_FINGER_METACARPAL(6),
     /**
      * Index finger phalanx proximal joint.
      */
-    HAND_JOINT_INDEX_FINGER_PHALANX_PROXIMAL(7),
+    INDEX_FINGER_PHALANX_PROXIMAL(7),
     /**
      * Index finger phalanx intermediate joint.
      */
-    HAND_JOINT_INDEX_FINGER_PHALANX_INTERMEDIATE(8),
+    INDEX_FINGER_PHALANX_INTERMEDIATE(8),
     /**
      * Index finger phalanx distal joint.
      */
-    HAND_JOINT_INDEX_FINGER_PHALANX_DISTAL(9),
+    INDEX_FINGER_PHALANX_DISTAL(9),
     /**
      * Index finger tip joint.
      */
-    HAND_JOINT_INDEX_FINGER_TIP(10),
+    INDEX_FINGER_TIP(10),
     /**
      * Middle finger metacarpal joint.
      */
-    HAND_JOINT_MIDDLE_FINGER_METACARPAL(11),
+    MIDDLE_FINGER_METACARPAL(11),
     /**
      * Middle finger phalanx proximal joint.
      */
-    HAND_JOINT_MIDDLE_FINGER_PHALANX_PROXIMAL(12),
+    MIDDLE_FINGER_PHALANX_PROXIMAL(12),
     /**
      * Middle finger phalanx intermediate joint.
      */
-    HAND_JOINT_MIDDLE_FINGER_PHALANX_INTERMEDIATE(13),
+    MIDDLE_FINGER_PHALANX_INTERMEDIATE(13),
     /**
      * Middle finger phalanx distal joint.
      */
-    HAND_JOINT_MIDDLE_FINGER_PHALANX_DISTAL(14),
+    MIDDLE_FINGER_PHALANX_DISTAL(14),
     /**
      * Middle finger tip joint.
      */
-    HAND_JOINT_MIDDLE_FINGER_TIP(15),
+    MIDDLE_FINGER_TIP(15),
     /**
      * Ring finger metacarpal joint.
      */
-    HAND_JOINT_RING_FINGER_METACARPAL(16),
+    RING_FINGER_METACARPAL(16),
     /**
      * Ring finger phalanx proximal joint.
      */
-    HAND_JOINT_RING_FINGER_PHALANX_PROXIMAL(17),
+    RING_FINGER_PHALANX_PROXIMAL(17),
     /**
      * Ring finger phalanx intermediate joint.
      */
-    HAND_JOINT_RING_FINGER_PHALANX_INTERMEDIATE(18),
+    RING_FINGER_PHALANX_INTERMEDIATE(18),
     /**
      * Ring finger phalanx distal joint.
      */
-    HAND_JOINT_RING_FINGER_PHALANX_DISTAL(19),
+    RING_FINGER_PHALANX_DISTAL(19),
     /**
      * Ring finger tip joint.
      */
-    HAND_JOINT_RING_FINGER_TIP(20),
+    RING_FINGER_TIP(20),
     /**
      * Pinky finger metacarpal joint.
      */
-    HAND_JOINT_PINKY_FINGER_METACARPAL(21),
+    PINKY_FINGER_METACARPAL(21),
     /**
      * Pinky finger phalanx proximal joint.
      */
-    HAND_JOINT_PINKY_FINGER_PHALANX_PROXIMAL(22),
+    PINKY_FINGER_PHALANX_PROXIMAL(22),
     /**
      * Pinky finger phalanx intermediate joint.
      */
-    HAND_JOINT_PINKY_FINGER_PHALANX_INTERMEDIATE(23),
+    PINKY_FINGER_PHALANX_INTERMEDIATE(23),
     /**
      * Pinky finger phalanx distal joint.
      */
-    HAND_JOINT_PINKY_FINGER_PHALANX_DISTAL(24),
+    PINKY_FINGER_PHALANX_DISTAL(24),
     /**
      * Pinky finger tip joint.
      */
-    HAND_JOINT_PINKY_FINGER_TIP(25),
+    PINKY_FINGER_TIP(25),
     /**
      * Represents the size of the [HandJoint] enum.
      */
-    HAND_JOINT_MAX(26),
+    MAX(26),
     ;
 
     public val id: Long
@@ -355,80 +338,70 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
   }
 
-  public sealed interface HandJointFlags {
-    public val flag: Long
+  @JvmInline
+  public value class HandJointFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
 
-    public infix fun or(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.or(other.flag))
-
-    public infix fun or(other: Long): HandJointFlags = HandJointFlagsValue(flag.or(other))
+    public infix fun or(other: Long): HandJointFlags = HandJointFlags(flag.or(other))
 
     public infix fun xor(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.xor(other.flag))
+        HandJointFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): HandJointFlags = HandJointFlagsValue(flag.xor(other))
+    public infix fun xor(other: Long): HandJointFlags = HandJointFlags(flag.xor(other))
 
     public infix fun and(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.and(other.flag))
+        HandJointFlags(flag.and(other.flag))
 
-    public infix fun and(other: Long): HandJointFlags = HandJointFlagsValue(flag.and(other))
+    public infix fun and(other: Long): HandJointFlags = HandJointFlags(flag.and(other))
 
-    public operator fun plus(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.plus(other.flag))
+    public fun unaryPlus(): HandJointFlags = HandJointFlags(flag.unaryPlus())
 
-    public operator fun plus(other: Long): HandJointFlags = HandJointFlagsValue(flag.plus(other))
+    public fun unaryMinus(): HandJointFlags = HandJointFlags(flag.unaryMinus())
 
-    public operator fun minus(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.minus(other.flag))
+    public fun inv(): HandJointFlags = HandJointFlags(flag.inv())
 
-    public operator fun minus(other: Long): HandJointFlags = HandJointFlagsValue(flag.minus(other))
+    public infix fun shl(bits: Int): HandJointFlags = HandJointFlags(flag shl bits)
 
-    public operator fun times(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): HandJointFlags = HandJointFlags(flag shr bits)
 
-    public operator fun times(other: Long): HandJointFlags = HandJointFlagsValue(flag.times(other))
-
-    public operator fun div(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): HandJointFlags = HandJointFlagsValue(flag.div(other))
-
-    public operator fun rem(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): HandJointFlags = HandJointFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): HandJointFlags = HandJointFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): HandJointFlags = HandJointFlagsValue(flag.unaryMinus())
-
-    public fun inv(): HandJointFlags = HandJointFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): HandJointFlags = HandJointFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): HandJointFlags = HandJointFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
-      public val HAND_JOINT_FLAG_ORIENTATION_VALID: HandJointFlags = HandJointFlagsValue(1)
+      /**
+       * The hand joint's orientation data is valid.
+       */
+      public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
-      public val HAND_JOINT_FLAG_ORIENTATION_TRACKED: HandJointFlags = HandJointFlagsValue(2)
+      /**
+       * The hand joint's orientation is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
+      public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
-      public val HAND_JOINT_FLAG_POSITION_VALID: HandJointFlags = HandJointFlagsValue(4)
+      /**
+       * The hand joint's position data is valid.
+       */
+      public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
-      public val HAND_JOINT_FLAG_POSITION_TRACKED: HandJointFlags = HandJointFlagsValue(8)
+      /**
+       * The hand joint's position is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
+      public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
-      public val HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlagsValue(16)
+      /**
+       * The hand joint's linear velocity data is valid.
+       */
+      public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
-      public val HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlagsValue(32)
+      /**
+       * The hand joint's angular velocity data is valid.
+       */
+      public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
-
-  @JvmInline
-  public value class HandJointFlagsValue(
-    public override val flag: Long,
-  ) : HandJointFlags
 
   public companion object
 

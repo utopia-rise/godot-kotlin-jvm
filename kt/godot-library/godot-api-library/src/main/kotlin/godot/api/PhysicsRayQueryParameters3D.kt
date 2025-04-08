@@ -28,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the ray position, you can configure the
@@ -150,7 +151,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(488, scriptIndex)
+    createNativeObject(473, scriptIndex)
   }
 
   /**
@@ -290,6 +291,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
      * ```
      */
     @JvmOverloads
+    @JvmStatic
     public final fun create(
       from: Vector3,
       to: Vector3,

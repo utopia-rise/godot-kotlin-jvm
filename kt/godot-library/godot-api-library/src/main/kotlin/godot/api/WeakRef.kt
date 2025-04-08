@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class WeakRef : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(842, scriptIndex)
+    createNativeObject(840, scriptIndex)
   }
 
   /**

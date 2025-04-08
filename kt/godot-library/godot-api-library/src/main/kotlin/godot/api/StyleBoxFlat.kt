@@ -396,7 +396,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(648, scriptIndex)
+    createNativeObject(642, scriptIndex)
   }
 
   /**

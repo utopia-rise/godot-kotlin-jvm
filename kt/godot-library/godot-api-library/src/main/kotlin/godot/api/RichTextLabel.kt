@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -54,28 +53,11 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-public infix fun Long.or(other: godot.api.RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
+public infix fun Long.or(other: RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: RichTextLabel.ImageUpdateMask): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: RichTextLabel.ImageUpdateMask): Long = this.and(other.flag)
 
 /**
  * A control for displaying text that can contain custom fonts, images, and basic formatting.
@@ -494,7 +476,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(569, scriptIndex)
+    createNativeObject(563, scriptIndex)
   }
 
   /**
@@ -580,7 +562,7 @@ public open class RichTextLabel : Control() {
     width: Int = 0,
     height: Int = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     key: Any? = null,
     pad: Boolean = false,
@@ -603,7 +585,7 @@ public open class RichTextLabel : Control() {
     width: Int = 0,
     height: Int = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     pad: Boolean = false,
     tooltip: String = "",
@@ -744,11 +726,10 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushParagraph(
     alignment: HorizontalAlignment,
-    baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
+    baseDirection: Control.TextDirection = Control.TextDirection.AUTO,
     language: String = "",
-    stParser: TextServer.StructuredTextParser =
-        TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT,
-    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(163),
+    stParser: TextServer.StructuredTextParser = TextServer.StructuredTextParser.DEFAULT,
+    justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
     TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
@@ -792,7 +773,7 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushMeta(
     `data`: Any?,
-    underlineMode: MetaUnderline = RichTextLabel.MetaUnderline.META_UNDERLINE_ALWAYS,
+    underlineMode: MetaUnderline = RichTextLabel.MetaUnderline.ALWAYS,
     tooltip: String = "",
   ): Unit {
     TransferContext.writeArguments(ANY to data, LONG to underlineMode.id, STRING to tooltip)
@@ -839,7 +820,7 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushTable(
     columns: Int,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_TOP_TO,
+    inlineAlign: InlineAlignment = InlineAlignment.TOP_TO,
     alignToRow: Int = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.id, LONG to alignToRow.toLong())
@@ -1072,7 +1053,7 @@ public open class RichTextLabel : Control() {
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTabStops(tabStops: PackedFloat32Array): Unit {
@@ -1708,19 +1689,19 @@ public open class RichTextLabel : Control() {
     /**
      * Each list item has a number marker.
      */
-    LIST_NUMBERS(0),
+    NUMBERS(0),
     /**
      * Each list item has a letter marker.
      */
-    LIST_LETTERS(1),
+    LETTERS(1),
     /**
      * Each list item has a roman number marker.
      */
-    LIST_ROMAN(2),
+    ROMAN(2),
     /**
      * Each list item has a filled circle marker.
      */
-    LIST_DOTS(3),
+    DOTS(3),
     ;
 
     public val id: Long
@@ -1739,15 +1720,15 @@ public open class RichTextLabel : Control() {
     /**
      * Copies the selected text.
      */
-    MENU_COPY(0),
+    COPY(0),
     /**
      * Selects the whole [RichTextLabel] text.
      */
-    MENU_SELECT_ALL(1),
+    SELECT_ALL(1),
     /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -1766,16 +1747,16 @@ public open class RichTextLabel : Control() {
     /**
      * Meta tag does not display an underline, even if [metaUnderlined] is `true`.
      */
-    META_UNDERLINE_NEVER(0),
+    NEVER(0),
     /**
      * If [metaUnderlined] is `true`, meta tag always display an underline.
      */
-    META_UNDERLINE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * If [metaUnderlined] is `true`, meta tag display an underline when the mouse cursor is over
      * it.
      */
-    META_UNDERLINE_ON_HOVER(2),
+    ON_HOVER(2),
     ;
 
     public val id: Long
@@ -1788,86 +1769,79 @@ public open class RichTextLabel : Control() {
     }
   }
 
-  public sealed interface ImageUpdateMask {
-    public val flag: Long
-
+  @JvmInline
+  public value class ImageUpdateMask(
+    public val flag: Long,
+  ) {
     public infix fun or(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.or(other.flag))
+        ImageUpdateMask(flag.or(other.flag))
 
-    public infix fun or(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.or(other))
+    public infix fun or(other: Long): ImageUpdateMask = ImageUpdateMask(flag.or(other))
 
     public infix fun xor(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.xor(other.flag))
+        ImageUpdateMask(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.xor(other))
+    public infix fun xor(other: Long): ImageUpdateMask = ImageUpdateMask(flag.xor(other))
 
     public infix fun and(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.and(other.flag))
+        ImageUpdateMask(flag.and(other.flag))
 
-    public infix fun and(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.and(other))
+    public infix fun and(other: Long): ImageUpdateMask = ImageUpdateMask(flag.and(other))
 
-    public operator fun plus(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.plus(other.flag))
+    public fun unaryPlus(): ImageUpdateMask = ImageUpdateMask(flag.unaryPlus())
 
-    public operator fun plus(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.plus(other))
+    public fun unaryMinus(): ImageUpdateMask = ImageUpdateMask(flag.unaryMinus())
 
-    public operator fun minus(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.minus(other.flag))
+    public fun inv(): ImageUpdateMask = ImageUpdateMask(flag.inv())
 
-    public operator fun minus(other: Long): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.minus(other))
+    public infix fun shl(bits: Int): ImageUpdateMask = ImageUpdateMask(flag shl bits)
 
-    public operator fun times(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): ImageUpdateMask = ImageUpdateMask(flag shr bits)
 
-    public operator fun times(other: Long): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.times(other))
-
-    public operator fun div(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.div(other))
-
-    public operator fun rem(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMaskValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.rem(other))
-
-    public fun unaryPlus(): ImageUpdateMask = ImageUpdateMaskValue(flag.unaryPlus())
-
-    public fun unaryMinus(): ImageUpdateMask = ImageUpdateMaskValue(flag.unaryMinus())
-
-    public fun inv(): ImageUpdateMask = ImageUpdateMaskValue(flag.inv())
-
-    public infix fun shl(bits: Int): ImageUpdateMask = ImageUpdateMaskValue(flag shl bits)
-
-    public infix fun shr(bits: Int): ImageUpdateMask = ImageUpdateMaskValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): ImageUpdateMask = ImageUpdateMaskValue(flag ushr bits)
+    public infix fun ushr(bits: Int): ImageUpdateMask = ImageUpdateMask(flag ushr bits)
 
     public companion object {
-      public val UPDATE_TEXTURE: ImageUpdateMask = ImageUpdateMaskValue(1)
+      /**
+       * If this bit is set, [updateImage] changes image texture.
+       */
+      public val UPDATE_TEXTURE: ImageUpdateMask = ImageUpdateMask(1)
 
-      public val UPDATE_SIZE: ImageUpdateMask = ImageUpdateMaskValue(2)
+      /**
+       * If this bit is set, [updateImage] changes image size.
+       */
+      public val UPDATE_SIZE: ImageUpdateMask = ImageUpdateMask(2)
 
-      public val UPDATE_COLOR: ImageUpdateMask = ImageUpdateMaskValue(4)
+      /**
+       * If this bit is set, [updateImage] changes image color.
+       */
+      public val UPDATE_COLOR: ImageUpdateMask = ImageUpdateMask(4)
 
-      public val UPDATE_ALIGNMENT: ImageUpdateMask = ImageUpdateMaskValue(8)
+      /**
+       * If this bit is set, [updateImage] changes image inline alignment.
+       */
+      public val UPDATE_ALIGNMENT: ImageUpdateMask = ImageUpdateMask(8)
 
-      public val UPDATE_REGION: ImageUpdateMask = ImageUpdateMaskValue(16)
+      /**
+       * If this bit is set, [updateImage] changes image texture region.
+       */
+      public val UPDATE_REGION: ImageUpdateMask = ImageUpdateMask(16)
 
-      public val UPDATE_PAD: ImageUpdateMask = ImageUpdateMaskValue(32)
+      /**
+       * If this bit is set, [updateImage] changes image padding.
+       */
+      public val UPDATE_PAD: ImageUpdateMask = ImageUpdateMask(32)
 
-      public val UPDATE_TOOLTIP: ImageUpdateMask = ImageUpdateMaskValue(64)
+      /**
+       * If this bit is set, [updateImage] changes image tooltip.
+       */
+      public val UPDATE_TOOLTIP: ImageUpdateMask = ImageUpdateMask(64)
 
-      public val UPDATE_WIDTH_IN_PERCENT: ImageUpdateMask = ImageUpdateMaskValue(128)
+      /**
+       * If this bit is set, [updateImage] changes image width from/to percents.
+       */
+      public val UPDATE_WIDTH_IN_PERCENT: ImageUpdateMask = ImageUpdateMask(128)
     }
   }
-
-  @JvmInline
-  public value class ImageUpdateMaskValue(
-    public override val flag: Long,
-  ) : ImageUpdateMask
 
   public companion object
 

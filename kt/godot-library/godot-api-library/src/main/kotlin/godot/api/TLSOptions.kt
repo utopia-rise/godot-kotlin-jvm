@@ -19,6 +19,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS]
@@ -42,7 +43,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(658, scriptIndex)
+    createNativeObject(652, scriptIndex)
   }
 
   /**
@@ -114,6 +115,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
      * web browser. This is considered a security feature.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun client(trustedChain: X509Certificate? = null, commonNameOverride: String = ""):
         TLSOptions? {
       TransferContext.writeArguments(OBJECT to trustedChain, STRING to commonNameOverride)
@@ -131,6 +133,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
      * web browser. This is considered a security feature.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun clientUnsafe(trustedChain: X509Certificate? = null): TLSOptions? {
       TransferContext.writeArguments(OBJECT to trustedChain)
       TransferContext.callMethod(0, MethodBindings.clientUnsafePtr, OBJECT)
@@ -143,6 +146,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
      * **Note:** The [certificate] should include the full certificate chain up to the signing CA
      * (certificates file can be concatenated using a general purpose text editor).
      */
+    @JvmStatic
     public final fun server(key: CryptoKey?, certificate: X509Certificate?): TLSOptions? {
       TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)
       TransferContext.callMethod(0, MethodBindings.serverPtr, OBJECT)

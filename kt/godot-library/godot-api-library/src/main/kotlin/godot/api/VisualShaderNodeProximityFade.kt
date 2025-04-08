@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeProximityFade : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(785, scriptIndex)
+    createNativeObject(783, scriptIndex)
   }
 
   public companion object

@@ -25,6 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Resource is the base class for all Godot-specific resource types, serving primarily as data
@@ -133,7 +134,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(561, scriptIndex)
+    createNativeObject(552, scriptIndex)
   }
 
   /**
@@ -159,7 +160,7 @@ public open class Resource : RefCounted() {
    * Override this method to return a custom [RID] when [getRid] is called.
    */
   public open fun _getRid(): RID {
-    throw NotImplementedError("_get_rid is not implemented for Resource")
+    throw NotImplementedError("_getRid is not implemented for Resource")
   }
 
   /**
@@ -367,6 +368,7 @@ public open class Resource : RefCounted() {
      * the current date, time, and a random value. The returned string is only composed of letters (`a`
      * to `y`) and numbers (`0` to `8`). See also [resourceSceneUniqueId].
      */
+    @JvmStatic
     public final fun generateSceneUniqueId(): String {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)

@@ -68,7 +68,7 @@ public open class Sky : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(616, scriptIndex)
+    createNativeObject(610, scriptIndex)
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {

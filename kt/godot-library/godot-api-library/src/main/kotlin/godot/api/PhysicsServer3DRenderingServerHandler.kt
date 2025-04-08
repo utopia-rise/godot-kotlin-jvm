@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(489, scriptIndex)
+    createNativeObject(478, scriptIndex)
   }
 
   /**
