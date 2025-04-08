@@ -33,6 +33,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a
@@ -197,7 +198,7 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(702, scriptIndex)
+    createNativeObject(700, scriptIndex)
   }
 
   /**
@@ -976,6 +977,7 @@ public open class Tween : RefCounted() {
      * **Note:** If [duration] is equal to `0`, the method will always return the final value,
      * regardless of [elapsedTime] provided.
      */
+    @JvmStatic
     public final fun interpolateValue(
       initialValue: Any?,
       deltaValue: Any?,

@@ -71,7 +71,7 @@ public open class TorusMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(694, scriptIndex)
+    createNativeObject(691, scriptIndex)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

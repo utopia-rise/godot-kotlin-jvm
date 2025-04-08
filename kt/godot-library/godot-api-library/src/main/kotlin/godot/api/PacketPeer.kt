@@ -55,7 +55,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(454, scriptIndex)
+    createNativeObject(438, scriptIndex)
   }
 
   /**

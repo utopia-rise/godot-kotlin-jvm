@@ -65,7 +65,7 @@ public open class SegmentShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(584, scriptIndex)
+    createNativeObject(578, scriptIndex)
   }
 
   /**

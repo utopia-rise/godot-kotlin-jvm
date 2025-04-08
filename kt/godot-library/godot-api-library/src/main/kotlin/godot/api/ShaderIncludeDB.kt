@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This object contains shader fragments from Godot's internal shaders. These can be used when
@@ -28,13 +29,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class ShaderIncludeDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(592, scriptIndex)
+    createNativeObject(586, scriptIndex)
   }
 
   public companion object {
     /**
      * Returns a list of built-in include files that are currently registered.
      */
+    @JvmStatic
     public final fun listBuiltInIncludeFiles(): PackedStringArray {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.listBuiltInIncludeFilesPtr, PACKED_STRING_ARRAY)
@@ -44,6 +46,7 @@ public open class ShaderIncludeDB : Object() {
     /**
      * Returns `true` if an include file with this name exists.
      */
+    @JvmStatic
     public final fun hasBuiltInIncludeFile(filename: String): Boolean {
       TransferContext.writeArguments(STRING to filename)
       TransferContext.callMethod(0, MethodBindings.hasBuiltInIncludeFilePtr, BOOL)
@@ -54,6 +57,7 @@ public open class ShaderIncludeDB : Object() {
      * Returns the code for the built-in shader fragment. You can also access this in your shader
      * code through `#include "filename"`.
      */
+    @JvmStatic
     public final fun getBuiltInIncludeFile(filename: String): String {
       TransferContext.writeArguments(STRING to filename)
       TransferContext.callMethod(0, MethodBindings.getBuiltInIncludeFilePtr, STRING)

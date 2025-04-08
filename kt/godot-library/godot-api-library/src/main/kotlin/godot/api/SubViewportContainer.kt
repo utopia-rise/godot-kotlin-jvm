@@ -82,7 +82,7 @@ public open class SubViewportContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(652, scriptIndex)
+    createNativeObject(646, scriptIndex)
   }
 
   /**
@@ -91,7 +91,7 @@ public open class SubViewportContainer : Container() {
    * not implemented, all events are propagated to SubViewports.
    */
   public open fun _propagateInputEvent(event: InputEvent?): Boolean {
-    throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")
+    throw NotImplementedError("_propagateInputEvent is not implemented for SubViewportContainer")
   }
 
   public final fun setStretch(enable: Boolean): Unit {

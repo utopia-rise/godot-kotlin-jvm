@@ -369,7 +369,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(850, scriptIndex)
+    createNativeObject(848, scriptIndex)
   }
 
   /**

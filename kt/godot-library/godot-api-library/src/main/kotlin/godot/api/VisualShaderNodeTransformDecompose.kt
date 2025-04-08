@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTransformDecompose : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(811, scriptIndex)
+    createNativeObject(809, scriptIndex)
   }
 
   public companion object

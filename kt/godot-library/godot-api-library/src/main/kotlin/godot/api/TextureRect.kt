@@ -85,7 +85,7 @@ public open class TextureRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(682, scriptIndex)
+    createNativeObject(677, scriptIndex)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {

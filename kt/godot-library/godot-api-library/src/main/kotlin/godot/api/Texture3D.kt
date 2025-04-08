@@ -35,49 +35,49 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture3D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(674, scriptIndex)
+    createNativeObject(669, scriptIndex)
   }
 
   /**
    * Called when the [Texture3D]'s format is queried.
    */
   public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_get_format is not implemented for Texture3D")
+    throw NotImplementedError("_getFormat is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s width is queried.
    */
   public open fun _getWidth(): Int {
-    throw NotImplementedError("_get_width is not implemented for Texture3D")
+    throw NotImplementedError("_getWidth is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s height is queried.
    */
   public open fun _getHeight(): Int {
-    throw NotImplementedError("_get_height is not implemented for Texture3D")
+    throw NotImplementedError("_getHeight is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s depth is queried.
    */
   public open fun _getDepth(): Int {
-    throw NotImplementedError("_get_depth is not implemented for Texture3D")
+    throw NotImplementedError("_getDepth is not implemented for Texture3D")
   }
 
   /**
    * Called when the presence of mipmaps in the [Texture3D] is queried.
    */
   public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_has_mipmaps is not implemented for Texture3D")
+    throw NotImplementedError("_hasMipmaps is not implemented for Texture3D")
   }
 
   /**
    * Called when the [Texture3D]'s data is queried.
    */
   public open fun _getData(): VariantArray<Image> {
-    throw NotImplementedError("_get_data is not implemented for Texture3D")
+    throw NotImplementedError("_getData is not implemented for Texture3D")
   }
 
   /**

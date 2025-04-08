@@ -31,11 +31,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(483, scriptIndex)
+    createNativeObject(468, scriptIndex)
   }
 
   public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {
-    throw NotImplementedError("_get_closest_point_to_object_volume is not implemented for PhysicsDirectSpaceState3DExtension")
+    throw NotImplementedError("_getClosestPointToObjectVolume is not implemented for PhysicsDirectSpaceState3DExtension")
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {

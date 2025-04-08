@@ -39,7 +39,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RichTextEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(568, scriptIndex)
+    createNativeObject(562, scriptIndex)
   }
 
   /**
@@ -48,7 +48,7 @@ public open class RichTextEffect : Resource() {
    * transformation to avoid displaying broken text.
    */
   public open fun _processCustomFx(charFx: CharFXTransform?): Boolean {
-    throw NotImplementedError("_process_custom_fx is not implemented for RichTextEffect")
+    throw NotImplementedError("_processCustomFx is not implemented for RichTextEffect")
   }
 
   public companion object

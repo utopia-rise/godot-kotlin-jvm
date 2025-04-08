@@ -40,11 +40,14 @@ import kotlin.jvm.JvmStatic
 
 /**
  * [NativeMenu] handles low-level access to the OS native global menu bar and popup menus.
+ *
  * **Note:** This is low-level API, consider using [MenuBar] with [MenuBar.preferGlobalMenu] set to
  * `true`, and [PopupMenu] with [PopupMenu.preferNativeMenu] set to `true`.
+ *
  * To create a menu, use [createMenu], add menu items using `add_*_item` methods. To remove a menu,
  * use [freeMenu].
- * [codeblock]
+ *
+ * ```
  * var menu
  *
  * func _menu_callback(item_id):
@@ -70,7 +73,7 @@ import kotlin.jvm.JvmStatic
  * func _exit_tree():
  *     # Remove menu when it's no longer needed:
  *     NativeMenu.free_menu(menu)
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public object NativeMenu : Object() {
@@ -81,6 +84,7 @@ public object NativeMenu : Object() {
   /**
    * Returns `true` if the specified [feature] is supported by the current [NativeMenu], `false`
    * otherwise.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -92,6 +96,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns `true` if a special system menu is supported.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -103,6 +108,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns RID of a special system menu.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -114,6 +120,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns readable name of a special system menu.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -125,6 +132,7 @@ public object NativeMenu : Object() {
 
   /**
    * Creates a new global menu object.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -136,6 +144,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns `true` if [rid] is valid global menu.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -147,6 +156,7 @@ public object NativeMenu : Object() {
 
   /**
    * Frees a global menu object created by this [NativeMenu].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -157,6 +167,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns global menu size.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -168,6 +179,7 @@ public object NativeMenu : Object() {
 
   /**
    * Shows the global menu at [position] in the screen coordinates.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -178,6 +190,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the menu text layout direction from right-to-left if [isRtl] is `true`.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -188,6 +201,7 @@ public object NativeMenu : Object() {
 
   /**
    * Registers callable to emit after the menu is closed.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -198,6 +212,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns global menu open callback.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -209,9 +224,11 @@ public object NativeMenu : Object() {
 
   /**
    * Registers callable to emit when the menu is about to show.
+   *
    * **Note:** The OS can simulate menu opening to track menu item changes and global shortcuts, in
    * which case the corresponding close callback is not triggered. Use [isOpened] to check if the menu
    * is currently opened.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -222,6 +239,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns global menu close callback.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -233,6 +251,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the minimum width of the global menu.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -243,6 +262,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns global menu minimum width.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -254,6 +274,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns `true` if the menu is currently opened.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -266,7 +287,9 @@ public object NativeMenu : Object() {
   /**
    * Adds an item that will act as a submenu of the global menu [rid]. The [submenuRid] argument is
    * the RID of the global menu that will be shown when the item is clicked.
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
@@ -285,14 +308,19 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new item with text [label] to the global menu [rid].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -313,14 +341,19 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new checkable item with text [label] to the global menu [rid].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -341,14 +374,19 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new item with text [label] and icon [icon] to the global menu [rid].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -370,14 +408,19 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new checkable item with text [label] and icon [icon] to the global menu [rid].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -399,17 +442,23 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new radio-checkable item with text [label] to the global menu [rid].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -430,17 +479,23 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new radio-checkable item with text [label] and icon [icon] to the global menu [rid].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -462,19 +517,26 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a new item with text [label] to the global menu [rid].
+   *
    * Contrarily to normal binary items, multistate items can have more than two states, as defined
    * by [maxStates]. Each press or activate of the item will increase the state by one. The default
    * value is defined by [defaultState].
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
    * trigger the menu button even if it's not currently open. The [accelerator] is generally a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** By default, there's no indication of the current item state, it should be changed
    * manually.
+   *
    * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
@@ -497,7 +559,9 @@ public object NativeMenu : Object() {
 
   /**
    * Adds a separator between items to the global menu [rid]. Separators also occupy an index.
+   *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
@@ -511,6 +575,7 @@ public object NativeMenu : Object() {
   /**
    * Returns the index of the item with the specified [text]. Indices are automatically assigned to
    * each item by the engine, and cannot be set manually.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -523,6 +588,7 @@ public object NativeMenu : Object() {
   /**
    * Returns the index of the item with the specified [tag]. Indices are automatically assigned to
    * each item by the engine, and cannot be set manually.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -535,6 +601,7 @@ public object NativeMenu : Object() {
   /**
    * Returns the index of the item with the submenu specified by [submenuRid]. Indices are
    * automatically assigned to each item by the engine, and cannot be set manually.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -546,6 +613,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns `true` if the item at index [idx] is checked.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -558,6 +626,7 @@ public object NativeMenu : Object() {
   /**
    * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox
    * or radio button.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -569,8 +638,10 @@ public object NativeMenu : Object() {
 
   /**
    * Returns `true` if the item at index [idx] has radio button-style checkability.
+   *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
    * radio groups.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -582,6 +653,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the callback of the item at index [idx].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -593,6 +665,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the callback of the item accelerator at index [idx].
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -605,6 +678,7 @@ public object NativeMenu : Object() {
   /**
    * Returns the metadata of the specified item, which might be of any type. You can set it with
    * [setItemTag], which provides a simple way of assigning context data to items.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -616,6 +690,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the text of the item at index [idx].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -628,6 +703,7 @@ public object NativeMenu : Object() {
   /**
    * Returns the submenu ID of the item at index [idx]. See [addSubmenuItem] for more info on how to
    * add a submenu.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -640,6 +716,7 @@ public object NativeMenu : Object() {
   /**
    * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of
    * keys that activate the item, no matter which control is focused.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -652,7 +729,9 @@ public object NativeMenu : Object() {
   /**
    * Returns `true` if the item at index [idx] is disabled. When it is disabled it can't be
    * selected, or its action invoked.
+   *
    * See [setItemDisabled] for more info on how to disable an item.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -664,7 +743,9 @@ public object NativeMenu : Object() {
 
   /**
    * Returns `true` if the item at index [idx] is hidden.
+   *
    * See [setItemHidden] for more info on how to hide an item.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -676,6 +757,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the tooltip associated with the specified index [idx].
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -687,6 +769,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the state of a multistate item. See [addMultistateItem] for details.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -698,6 +781,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns number of states of a multistate item. See [addMultistateItem] for details.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -709,6 +793,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the icon of the item at index [idx].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -720,6 +805,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the horizontal offset of the item at the given [idx].
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -731,6 +817,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the checkstate status of the item at index [idx].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -746,6 +833,7 @@ public object NativeMenu : Object() {
   /**
    * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to
    * plain text.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -761,8 +849,10 @@ public object NativeMenu : Object() {
   /**
    * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the
    * type of the item to plain text.
+   *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
    * radio groups.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -777,9 +867,11 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when an item is pressed.
+   *
    * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
    * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
    * created.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -794,9 +886,11 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the callback of the item at index [idx]. The callback is emitted when an item is hovered.
+   *
    * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
    * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
    * created.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -812,9 +906,11 @@ public object NativeMenu : Object() {
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is
    * activated.
+   *
    * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the
    * parameter passed to the Callable will be the value passed to the `tag` parameter when the menu
    * item was created.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -830,6 +926,7 @@ public object NativeMenu : Object() {
   /**
    * Sets the metadata of an item, which may be of any type. You can later get it with [getItemTag],
    * which provides a simple way of assigning context data to items.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -844,6 +941,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the text of the item at index [idx].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -859,6 +957,7 @@ public object NativeMenu : Object() {
   /**
    * Sets the submenu RID of the item at index [idx]. The submenu is a global menu that would be
    * shown when the item is clicked.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -875,6 +974,7 @@ public object NativeMenu : Object() {
    * Sets the accelerator of the item at index [idx]. [keycode] can be a single [Key], or a
    * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
    * ([kbd]Ctrl + A[/kbd]).
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -890,6 +990,7 @@ public object NativeMenu : Object() {
   /**
    * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its
    * action can't be invoked.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -905,6 +1006,7 @@ public object NativeMenu : Object() {
   /**
    * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and
    * its action cannot be invoked.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -919,6 +1021,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the [String] tooltip of the item at the specified index [idx].
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -933,6 +1036,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the state of a multistate item. See [addMultistateItem] for details.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -947,6 +1051,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets number of state of a multistate item. See [addMultistateItem] for details.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -961,7 +1066,9 @@ public object NativeMenu : Object() {
 
   /**
    * Replaces the [Texture2D] icon of the specified [idx].
+   *
    * **Note:** This method is implemented on macOS and Windows.
+   *
    * **Note:** This method is not supported by macOS Dock menu items.
    */
   @JvmStatic
@@ -976,6 +1083,7 @@ public object NativeMenu : Object() {
 
   /**
    * Sets the horizontal offset of the item at the given [idx].
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -990,6 +1098,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns number of items in the global menu [rid].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -1001,6 +1110,7 @@ public object NativeMenu : Object() {
 
   /**
    * Return `true` is global menu is a special system menu.
+   *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
@@ -1012,7 +1122,9 @@ public object NativeMenu : Object() {
 
   /**
    * Removes the item at index [idx] from the global menu [rid].
+   *
    * **Note:** The indices of items after the removed item will be shifted by one.
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
@@ -1023,6 +1135,7 @@ public object NativeMenu : Object() {
 
   /**
    * Removes all items from the global menu [rid].
+   *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic

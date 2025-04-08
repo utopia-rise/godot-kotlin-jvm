@@ -35,7 +35,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(753, scriptIndex)
+    createNativeObject(751, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

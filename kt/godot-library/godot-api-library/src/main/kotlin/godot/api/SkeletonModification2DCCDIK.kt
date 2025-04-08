@@ -82,7 +82,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(603, scriptIndex)
+    createNativeObject(597, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

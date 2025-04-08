@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderTexture2DArray : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(503, scriptIndex)
+    createNativeObject(492, scriptIndex)
   }
 
   public companion object

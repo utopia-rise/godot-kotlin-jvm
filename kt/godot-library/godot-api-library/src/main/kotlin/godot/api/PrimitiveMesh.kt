@@ -109,7 +109,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(516, scriptIndex)
+    createNativeObject(505, scriptIndex)
   }
 
   /**
@@ -138,7 +138,7 @@ public open class PrimitiveMesh : Mesh() {
    * [Mesh.ArrayType] constants).
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
-    throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
+    throw NotImplementedError("_createMeshArray is not implemented for PrimitiveMesh")
   }
 
   public final fun setMaterial(material: Material?): Unit {

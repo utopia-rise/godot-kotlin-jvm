@@ -36,7 +36,7 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(803, scriptIndex)
+    createNativeObject(801, scriptIndex)
   }
 
   public final fun setTexture(`value`: Texture3D?): Unit {

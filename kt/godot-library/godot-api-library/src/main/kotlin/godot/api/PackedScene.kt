@@ -106,7 +106,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PackedScene : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(453, scriptIndex)
+    createNativeObject(437, scriptIndex)
   }
 
   /**

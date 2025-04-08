@@ -95,7 +95,7 @@ public open class OpenXRIPBinding : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(442, scriptIndex)
+    createNativeObject(426, scriptIndex)
   }
 
   /**
