@@ -1,6 +1,7 @@
 package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.ARRAY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
@@ -175,7 +176,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 )
                 .addProperty(
                     PropertySpec
-                        .builder("container", lambdaContainerClassName.parameterizedBy(genericParameterWithReturn))
+                        .builder(CONTAINER_ARGUMENT_NAME, lambdaContainerClassName.parameterizedBy(genericParameterWithReturn))
                         .addModifiers(KModifier.OVERRIDE)
                         .initializer(
                             CodeBlock.of(
@@ -193,7 +194,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                         .addCode(
                             CodeBlock.of(
                                 buildString {
-                                    append("return·container.unsafeInvoke(")
+                                    append("return·$CONTAINER_ARGUMENT_NAME.unsafeInvoke(")
                                     append(classInfo.toArgumentsString("pINDEX", "INDEX"))
                                     append(')')
                                 }
@@ -251,7 +252,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                         )
                         .addCode(
                             buildString {
-                                append("return·%T(container.returnConverter,·container.typeConverters.take(${remainingParameters}).toTypedArray())·{")
+                                append("return·%T($CONTAINER_ARGUMENT_NAME.returnConverter,·$CONTAINER_ARGUMENT_NAME.typeConverters.take(${remainingParameters}).toTypedArray())·{")
 
                                 for (index in (0..<remainingParameters)) {
                                     if (index != 0) append(",·")
@@ -259,7 +260,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                                     append("p${index}:·%T")
                                 }
 
-                                append("·->·container.unsafeInvoke(")
+                                append("·->·$CONTAINER_ARGUMENT_NAME.unsafeInvoke(")
 
                                 for (i in genericParameters.indices) {
                                     if (i != 0) append(",·")

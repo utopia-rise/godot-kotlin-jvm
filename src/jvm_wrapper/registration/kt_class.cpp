@@ -100,7 +100,6 @@ void KtClass::fetch_methods(jni::Env& env) {
     for (int i = 0; i < functionsArray.length(env); i++) {
         jni::JObject object = functionsArray.get(env, i);
         auto* ktFunction {new KtFunction(env, object)};
-        auto test = methods[ktFunction->get_name()];
         methods[ktFunction->get_name()] = ktFunction;
         JVM_DEV_VERBOSE("Fetched method %s for class %s", ktFunction->get_name(), registered_class_name);
     }

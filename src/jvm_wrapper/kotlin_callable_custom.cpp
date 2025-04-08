@@ -31,8 +31,8 @@ bool LambdaContainer::equals(const LambdaContainer& other) const {
 
 LambdaContainer::LambdaContainer(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code, bool p_has_on_cancel) :
   JvmInstanceWrapper(p_env, p_wrapped),
-  has_return_value {return_type != Variant::NIL},
   hash_code {p_hash_code},
+  has_return_value {return_type != Variant::NIL},
   has_on_cancel {p_has_on_cancel},
   has_been_called {false} {}
 
