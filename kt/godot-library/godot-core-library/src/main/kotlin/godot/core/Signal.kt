@@ -27,9 +27,11 @@ open class Signal internal constructor(
 
     fun getConnections() = godotObject.getSignalConnectionList(name)
 
+    fun hasConnections() = godotObject.hasConnections(name)
+
     fun isConnected(callable: Callable) = godotObject.isConnected(name, callable)
 
-    fun isNull() = !(MemoryManager.isInstanceValid(godotObject) && godotObject.hasSignal(name))
+    fun isValid() = MemoryManager.isInstanceValid(godotObject) && godotObject.hasSignal(name)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

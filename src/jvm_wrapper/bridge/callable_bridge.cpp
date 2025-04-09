@@ -25,7 +25,7 @@ uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_r
                                                                      jboolean p_has_on_destroy) {
     jni::Env env {p_raw_env};
     return reinterpret_cast<uintptr_t>(
-        VariantAllocator::alloc(Callable(memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy))))
+        VariantAllocator::alloc(Callable(memnew(JvmCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy))))
     );
 }
 
@@ -51,7 +51,7 @@ void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlo
     TransferContext::get_instance().write_return_value(env, result);
 }
 
-void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject _, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
@@ -60,7 +60,7 @@ void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jl
     TransferContext::get_instance().write_return_value(env, result);
 }
 
-void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject _, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
     Variant args[MAX_FUNCTION_ARG_COUNT];

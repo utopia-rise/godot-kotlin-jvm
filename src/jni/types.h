@@ -13,7 +13,7 @@ namespace jni {
 
     class JValue {
     public:
-        jvalue value;
+        jvalue value{};
 
         JValue(JObject obj);
 

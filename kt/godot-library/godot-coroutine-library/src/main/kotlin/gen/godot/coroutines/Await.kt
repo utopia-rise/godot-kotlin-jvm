@@ -34,7 +34,8 @@ public suspend inline fun Signal0.await(): Unit = suspendCancellableCoroutine {
          ->
         cont.resume(Unit)
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -45,7 +46,8 @@ public suspend inline fun <reified P0> Signal1<P0>.await(): P0 = suspendCancella
         p0: P0 ->
         cont.resume(p0)
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -62,7 +64,8 @@ public suspend inline fun <reified P0, reified P1> Signal2<P0, P1>.await(): Sign
         p0: P0, p1: P1 ->
         cont.resume(SignalArguments2(p0, p1))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -80,7 +83,8 @@ public suspend inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P
         p0: P0, p1: P1, p2: P2 ->
         cont.resume(SignalArguments3(p0, p1, p2))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -100,7 +104,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3>
         p0: P0, p1: P1, p2: P2, p3: P3 ->
         cont.resume(SignalArguments4(p0, p1, p2, p3))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -121,7 +126,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 ->
         cont.resume(SignalArguments5(p0, p1, p2, p3, p4))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -143,7 +149,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 ->
         cont.resume(SignalArguments6(p0, p1, p2, p3, p4, p5))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -166,7 +173,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 ->
         cont.resume(SignalArguments7(p0, p1, p2, p3, p4, p5, p6))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -190,7 +198,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 ->
         cont.resume(SignalArguments8(p0, p1, p2, p3, p4, p5, p6, p7))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -215,7 +224,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 ->
         cont.resume(SignalArguments9(p0, p1, p2, p3, p4, p5, p6, p7, p8))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -242,7 +252,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 ->
         cont.resume(SignalArguments10(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -271,7 +282,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 ->
         cont.resume(SignalArguments11(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -301,7 +313,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 ->
         cont.resume(SignalArguments12(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -332,7 +345,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 ->
         cont.resume(SignalArguments13(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -364,7 +378,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 ->
         cont.resume(SignalArguments14(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -399,7 +414,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 ->
         cont.resume(SignalArguments15(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
@@ -435,7 +451,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14, p15: P15 ->
         cont.resume(SignalArguments16(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
     }
-    .asCallable {
+    .asCallable()
+    .setAsCancellable {
         cont.cancel()
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
