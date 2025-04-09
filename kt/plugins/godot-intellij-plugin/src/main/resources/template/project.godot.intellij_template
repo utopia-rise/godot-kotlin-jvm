@@ -11,5 +11,5 @@ config_version=5
 [application]
 
 config/name="PROJECT_NAME"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("GODOT_VERSION", "Forward Plus")
 config/icon="res://icon.svg"

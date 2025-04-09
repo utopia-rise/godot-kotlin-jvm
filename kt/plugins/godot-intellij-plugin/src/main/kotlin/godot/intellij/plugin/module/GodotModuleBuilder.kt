@@ -343,6 +343,21 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             outFile.writeText(
                 outFile
                     .readText()
+                    .replace(
+                        "GODOT_VERSION",
+                        GodotBuildProperties.godotVersion.run {
+                            // Ensure that the version string has at least one dot.
+                            val firstDotIndex = indexOf('.')
+                            if (firstDotIndex == -1) {
+                                throw IllegalArgumentException("Version must be in x.y or x.y.z format")
+                            }
+
+                            // If there's no second dot, the version is already in x.y format.
+                            // Otherwise, cut off the version after the second dot to handle x.y.z format.
+                            val secondDotIndex = indexOf('.', firstDotIndex + 1)
+                            if (secondDotIndex == -1) this else substring(0, secondDotIndex)
+                        }
+                    )
                     .replace("PROJECT_NAME", module.project.name)
             )
         }
