@@ -40,7 +40,7 @@ public MyScript extends Node {
 @RegisterClass
 class MyScript extends Node {
     @RegisterSignal("reverse")
-    val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal") // Only one way to do it in Java.
+    val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal") // Only one way to do it in Scala.
 }
 ```
 ///
@@ -190,7 +190,7 @@ class AnotherObject extends Object {
     private val targetObject = new SomeObject()
 
     public AnotherObject() {
-        // Here are 3 different ways to connect a signal to a registered method. The method reference syntax is not implemented for Java.
+        // Here are 3 different ways to connect a signal to a registered method. The method reference syntax is not implemented for Scala.
         mySignal.connect(Callable.create(targetObject, StringNames.toGodotName("onReverseChanged"))) // The recommanded way.
         mySignal.connect(Callable.create(targetObject, "on_reverse_changed")) // Unsafe, try to use snake_case in your code as least as possible.
         connect("my_signal", Callable.create(targetObject, "on_reverse_changed")) // Really, don't do that.
