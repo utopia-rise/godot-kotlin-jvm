@@ -78,7 +78,7 @@ class ScalaTestClass extends Node {
 
   @RegisterFunction
   def connectAndTriggerSignal(): Unit = {
-    connect(StringNames.asStringName("test_signal"), new NativeCallable(this, StringNames.asStringName("signal_callback")), ConnectFlags.CONNECT_ONE_SHOT.getId.toInt)
+    connect(StringNames.asStringName("test_signal"), new NativeCallable(this, StringNames.asStringName("signal_callback")), ConnectFlags.ONE_SHOT.getId.toInt)
     emitSignal(StringNames.asStringName("test_signal"))
   }
 

@@ -49,7 +49,7 @@ public open class ShaderMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(587, scriptIndex)
+    createNativeObject(588, scriptIndex)
   }
 
   public final fun setShader(shader: Shader?): Unit {

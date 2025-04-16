@@ -74,7 +74,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(844, scriptIndex)
+    createNativeObject(845, scriptIndex)
   }
 
   /**

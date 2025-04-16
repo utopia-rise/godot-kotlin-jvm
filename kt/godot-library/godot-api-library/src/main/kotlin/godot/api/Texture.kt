@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(664, scriptIndex)
+    createNativeObject(665, scriptIndex)
   }
 
   public companion object

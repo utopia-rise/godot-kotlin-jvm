@@ -11,13 +11,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * Translated to `length(p0)` in the shader language.
- */
 @GodotBaseType
-public open class VisualShaderNodeVectorLen : VisualShaderNodeVectorBase() {
+public open class ScalaScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(835, scriptIndex)
+    createNativeObject(567, scriptIndex)
   }
 
   public companion object

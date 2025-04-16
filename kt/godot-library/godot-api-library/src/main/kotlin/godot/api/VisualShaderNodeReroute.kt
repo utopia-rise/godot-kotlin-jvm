@@ -28,7 +28,7 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
     get() = getPortType()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(786, scriptIndex)
+    createNativeObject(787, scriptIndex)
   }
 
   /**

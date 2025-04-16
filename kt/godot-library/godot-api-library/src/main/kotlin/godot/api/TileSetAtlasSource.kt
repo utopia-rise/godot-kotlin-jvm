@@ -139,7 +139,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(686, scriptIndex)
+    createNativeObject(687, scriptIndex)
   }
 
   /**
