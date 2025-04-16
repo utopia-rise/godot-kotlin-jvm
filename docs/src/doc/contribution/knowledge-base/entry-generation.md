@@ -5,7 +5,7 @@
 To make it more language agnostic, the entry generator provides a set of model classes which represent the needed information about the source code by the entry genenerator.
 It expects this information to be gathered and assembled by the calling tool and to be provided in the entry point of the entry generator.
 
-For Kotlin and Java, this tool is `godot-kotlin-symbol-processor` (a Kotlin compiler's plugin), which analyses the source code, and gathers the information needed by the entry generator.
+For Kotlin, Java and Scala, this tool is `godot-class-graph-symbol-processor`, which analyses the byte code, and gathers the information needed by the entry generator.
 It then calls the entry generator which in turn generates the needed entry files.
 
 ## The godot-kotlin-symbol-processor
