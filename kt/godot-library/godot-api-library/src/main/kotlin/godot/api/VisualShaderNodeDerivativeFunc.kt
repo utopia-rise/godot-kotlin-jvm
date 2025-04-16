@@ -58,7 +58,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(744, scriptIndex)
+    createNativeObject(745, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

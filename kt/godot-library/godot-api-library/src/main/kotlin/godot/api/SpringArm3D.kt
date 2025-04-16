@@ -95,7 +95,7 @@ public open class SpringArm3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(620, scriptIndex)
+    createNativeObject(621, scriptIndex)
   }
 
   /**

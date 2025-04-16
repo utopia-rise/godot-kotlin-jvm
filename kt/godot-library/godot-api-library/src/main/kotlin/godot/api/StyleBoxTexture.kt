@@ -239,7 +239,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(644, scriptIndex)
+    createNativeObject(645, scriptIndex)
   }
 
   /**

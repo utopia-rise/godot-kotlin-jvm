@@ -120,7 +120,7 @@ class ClassBuilderDsl<T : KtObject>(
         variantType: VariantConverter,
         type: VariantConverter,
         className: String,
-        hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
+        hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
         usage: Long
     ) {

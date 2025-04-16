@@ -68,7 +68,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(625, scriptIndex)
+    createNativeObject(626, scriptIndex)
   }
 
   /**

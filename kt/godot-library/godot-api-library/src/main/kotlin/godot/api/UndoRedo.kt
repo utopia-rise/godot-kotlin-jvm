@@ -159,7 +159,7 @@ public open class UndoRedo : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(705, scriptIndex)
+    createNativeObject(706, scriptIndex)
   }
 
   /**

@@ -36,7 +36,7 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(780, scriptIndex)
+    createNativeObject(781, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {
