@@ -5,9 +5,9 @@ Godot Kotlin/JVM offers two different ways to attach scripts:
 - Source files
 - Registration files.
 
-## Source files .kt and .java
+## Source files .kt, .java and .scala
 
-Just like you would do with GDScript, you can directly attach your Kotlin/Java files to Nodes as scripts.
+Just like you would do with GDScript, you can directly attach your Kotlin/Java/Scala files to Nodes as scripts.
 This is the most straightforward method to use Kotlin scripts but not the most flexible.
 
 The limitations are the following:
@@ -20,7 +20,7 @@ The limitations are the following:
     var test_script: MyScript = load("res://pathToScript/MyScript.kt").new() // Wrong
     var test_script: Node = load("res://pathToScript/MyScript.kt").new() // Correct
     ```
-    The same applies if you use a Godot object with a .kt/.java attached to it
+    The same applies if you use a Godot object with a .kt/.java/.scala attached to it
 
 If those limitations don't apply to you, feel free to use Kotlin source files directly.
 
@@ -32,7 +32,7 @@ They have several benefits over source files:
 - .gdj can be placed wherever you want in your Godot project, you are not limited to the source set.
 - Each script get its own .gdj. This includes scripts in different modules and libraries.
 - If a source file contains several scripts. A different .gdj will be generated for each.
-- Registration files are language agnostic, they are generated for Kotlin and Java files with no difference.
+- Registration files are language agnostic, they are generated for Kotlin, Java and Scala files with no difference.
 - When creating a script from code using its registered name. The module is going to use the registration file as the script. Therefore, registration files are treated as the default way to use scripts inside the module.
 
 By default, these files are generated into a folder called `gdj` in the root of your project.
@@ -186,6 +186,14 @@ This kind of operation can be costly so we provide extension functions which cac
 ```
 ///
 
+/// tab | Scala
+```scala
+    val stringName = StringNames.asCachedStringName("myString")
+    val nodePath = NodePaths.asCachedNodePath("myNode/myChildNode")
+    val snakeCaseStringName = StringNames.toGodotName("myString")
+```
+///
+
 You can also use the non-cached version of them if you simply want ease of conversion:
 
 /// tab | Kotlin
@@ -199,6 +207,13 @@ You can also use the non-cached version of them if you simply want ease of conve
 ```java
     StringName stringName = StringNames.asStringName("myString");
     NodePath nodePath = NodePaths.asNodePath("myNode/myChildNode");
+```
+///
+
+/// tab | Scala
+```scala
+    val stringName = StringNames.asStringName("myString")
+    val nodePath = NodePaths.asNodePath("myNode/myChildNode")
 ```
 ///
 

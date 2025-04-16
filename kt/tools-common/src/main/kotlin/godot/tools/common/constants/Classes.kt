@@ -54,7 +54,6 @@ object GodotKotlinJvmTypes {
         const val coreTypeLocalCopy = "CoreTypeLocalCopy"
 
         const val registerClass = "RegisterClass"
-        const val registerConstructor = "RegisterConstructor"
         const val registerProperty = "RegisterProperty"
         const val registerFunction = "RegisterFunction"
         const val registerSignal = "RegisterSignal"

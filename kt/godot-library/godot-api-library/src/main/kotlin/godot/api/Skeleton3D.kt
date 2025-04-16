@@ -149,7 +149,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(594, scriptIndex)
+    createNativeObject(595, scriptIndex)
   }
 
   /**

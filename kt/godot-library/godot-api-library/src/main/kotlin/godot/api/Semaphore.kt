@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Semaphore : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(579, scriptIndex)
+    createNativeObject(580, scriptIndex)
   }
 
   /**

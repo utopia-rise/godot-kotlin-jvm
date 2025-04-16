@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeSDFRaymarch : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(789, scriptIndex)
+    createNativeObject(790, scriptIndex)
   }
 
   public companion object

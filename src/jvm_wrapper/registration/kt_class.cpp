@@ -5,11 +5,11 @@
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
-  constructors {},
+  kt_constructor {nullptr},
   _has_notification() {
     LOCAL_FRAME(4);
     registered_class_name = get_registered_name(p_env);
-    relative_source_path = get_relative_source_path(p_env);
+    fqdn = get_fqdn(p_env);
     compilation_time_relative_registration_file_path = get_compilation_time_relative_registration_file_path(p_env);
     base_godot_class = get_base_godot_class(p_env);
     _has_notification = get_has_notification(p_env);
@@ -19,28 +19,19 @@ KtClass::~KtClass() {
     delete_members(methods);
     delete_members(properties);
     delete_members(signal_infos);
-    for (auto& constructor : constructors) {
-        delete constructor;
-    }
+    delete kt_constructor;
 }
 
-KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
-    JVM_DEV_ASSERT(
-      p_arg_count <= MAX_CONSTRUCTOR_SIZE,
-      "Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE
-      );
-
-    KtConstructor* constructor {constructors[p_arg_count]};
-
+KtObject* KtClass::create_instance(jni::Env& env, Object* p_owner) {
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(
-      constructor == nullptr,
+      kt_constructor == nullptr,
       nullptr,
-      "Cannot find constructor with %s parameters for class %s", p_arg_count, registered_class_name
+      "Cannot find constructor for class %s", registered_class_name
     );
 #endif
 
-    KtObject* jvm_instance {constructor->create_instance(env, p_args, p_owner)};
+    KtObject* jvm_instance {kt_constructor->create_instance(env, p_owner)};
     JVM_DEV_VERBOSE("Instantiated a Jvm script: %s", registered_class_name);
 
     return jvm_instance;
@@ -66,8 +57,8 @@ String KtClass::get_registered_name(jni::Env& env) {
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-String KtClass::get_relative_source_path(jni::Env& env) {
-    jni::JObject ret = wrapped.call_object_method(env, GET_RELATIVE_SOURCE_PATH);
+String KtClass::get_fqdn(jni::Env& env) {
+    jni::JObject ret = wrapped.call_object_method(env, GET_FQDN);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
@@ -126,18 +117,12 @@ void KtClass::fetch_signals(jni::Env& env) {
     signal_info_array.delete_local_ref(env);
 }
 
-void KtClass::fetch_constructors(jni::Env& env) {
-    jni::JObjectArray constructors_array {wrapped.call_object_method(env, GET_CONSTRUCTORS)};
-    for (int i = 0; i < constructors_array.length(env); i++) {
-        const jni::JObject& constructor {constructors_array.get(env, i)};
-        KtConstructor* kt_constructor {nullptr};
-        if (constructor.obj != nullptr) {
-            kt_constructor = new KtConstructor(env, constructor);
-            JVM_DEV_VERBOSE("Fetched constructor with %s parameters for class %s", i, registered_class_name);
-        }
-        constructors[i] = kt_constructor;
+void KtClass::fetch_constructor(jni::Env& env) {
+    jni::JObject constructor {wrapped.call_object_method(env, GET_CONSTRUCTOR)};
+    if (constructor.obj != nullptr) {
+        kt_constructor = new KtConstructor(env, constructor);
+        JVM_DEV_VERBOSE("Fetched constructor for class %s", registered_class_name);
     }
-    constructors_array.delete_local_ref(env);
 }
 
 void KtClass::get_method_list(List<MethodInfo>* p_list) {
@@ -181,5 +166,5 @@ void KtClass::fetch_members(jni::Env& env) {
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);
-    fetch_constructors(env);
+    fetch_constructor(env);
 }

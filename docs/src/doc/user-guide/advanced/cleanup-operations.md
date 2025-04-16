@@ -1,4 +1,4 @@
-When running Kotlin/Java code, the JVM is embedded and managed directly by Godot, which offer little control when the game is closing. 
+When running Kotlin/Java/Scala code, the JVM is embedded and managed directly by Godot, which offer little control when the game is closing. 
 If you use third-party library that needs resources to be freed/saved or threads to be closed. 
 To that end, we provide a simple method that allows you to register callbacks that will be called when the JVM is shutdown.
 

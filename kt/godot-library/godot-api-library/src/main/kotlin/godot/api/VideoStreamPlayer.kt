@@ -172,7 +172,7 @@ public open class VideoStreamPlayer : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(717, scriptIndex)
+    createNativeObject(718, scriptIndex)
   }
 
   public final fun setStream(stream: VideoStream?): Unit {
