@@ -24,7 +24,7 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
     val supertypes = superclasses.union(interfaces).map { it.mapToClazz(settings) }
 
     val annotations = annotationInfo
-        .mapNotNull { it.mapToGodotAnnotation(this) as? ClassAnnotation }
+        .mapNotNull { it.mapToGodotAnnotation(this, fqName) as? ClassAnnotation }
 
     val methods = methodInfo
         .filter { it.hasAnnotation(RegisterFunction::class.java) }

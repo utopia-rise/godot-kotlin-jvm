@@ -9,7 +9,7 @@ import io.github.classgraph.MethodInfo
 
 fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: Settings): RegisteredFunction {
     val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
-    val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this) as? FunctionAnnotation }
+    val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? FunctionAnnotation }
 
     val typeDescriptor = TypeDescriptor(this)
     return RegisteredFunction(

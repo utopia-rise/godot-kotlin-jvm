@@ -44,7 +44,7 @@ import io.github.classgraph.AnnotationInfo
 import io.github.classgraph.ClassRefTypeSignature
 import io.github.classgraph.FieldInfo
 
-fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation? {
+fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationString: String): GodotAnnotation? {
     @Suppress("UNCHECKED_CAST")
     return when (name) {
         RegisterClass::class.java.name -> RegisterClassAnnotation(
@@ -67,7 +67,7 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
         EnumFlag::class.java.name -> {
             if (parentDeclaration !is FieldInfo) {
                 ErrorsDatabase.add(
-                    "EnumFlag annotation should be placed on property."
+                    "EnumFlag annotation has been set on $declarationString. It should be placed on property only."
                 )
                 return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
             }
@@ -76,9 +76,10 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
 
             require(typeDescriptor is ClassRefTypeSignature)
 
-            if (typeDescriptor.fullyQualifiedClassName != SET) {
+            val fullyQualifiedClassName = typeDescriptor.fullyQualifiedClassName
+            if (fullyQualifiedClassName != SET) {
                 ErrorsDatabase.add(
-                    "Property annotated with EnumFlag should be of type $SET"
+                    "Property annotated with EnumFlag should be of type $SET, $declarationString is of type $fullyQualifiedClassName"
                 )
                 return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
             }
