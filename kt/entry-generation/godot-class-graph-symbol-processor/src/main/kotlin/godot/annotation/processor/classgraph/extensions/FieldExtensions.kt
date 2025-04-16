@@ -19,7 +19,7 @@ import io.github.classgraph.MethodInfo
 fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo): RegisteredProperty {
     // Map annotations
     val annotations = getAnnotations(classInfo)
-        .mapNotNull { it.mapToGodotAnnotation(this) as? PropertyAnnotation }
+        .mapNotNull { it.mapToGodotAnnotation(this, fqName) as? PropertyAnnotation }
         .toMutableList()
 
     // Handle enums and collections with enums
@@ -121,7 +121,7 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
                     .getValue(signalParametersName) as Array<String>
                 ).toList(),
         isOverridee = isOverridee,
-        annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this) as? PropertyAnnotation },
+        annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? PropertyAnnotation },
         symbolProcessorSource = this
     )
 }
