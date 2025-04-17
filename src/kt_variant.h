@@ -215,8 +215,7 @@ class BufferToVariant {
         } else {
             uint32_t size {decode_uint32(byte_buffer->get_cursor())};
             byte_buffer->increment_position(INT_SIZE);
-            String str;
-            str.parse_utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
+            String str = String::utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
             byte_buffer->increment_position(size);
             return Variant(str);
         }

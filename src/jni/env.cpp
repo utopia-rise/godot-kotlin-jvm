@@ -34,12 +34,6 @@ namespace jni {
         return JClass(cls);
     }
 
-    JObject Env::new_string(const char* str) {
-        auto jstr = env->NewStringUTF(str);
-        handle_exception();
-        return JObject(jstr);
-    }
-
     bool Env::exception_check() {
         return env->ExceptionCheck();
     }
@@ -85,10 +79,16 @@ namespace jni {
         return env->IsSameObject(obj_1.obj, obj_2.obj);
     }
 
+    JObject Env::new_string(const char* str) {
+        auto jstr = env->NewStringUTF(str);
+        handle_exception();
+        return JObject(jstr);
+    }
+
     String Env::from_jstring(jni::JString str) {
         auto jstr = (jstring) str.obj;
         auto utfString = env->GetStringUTFChars(jstr, nullptr);
-        auto ret = String(utfString);
+        String ret = String::utf8(utfString);
         handle_exception();
         env->ReleaseStringUTFChars(jstr, utfString);
         return ret;
