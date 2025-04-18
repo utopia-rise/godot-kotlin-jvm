@@ -64,7 +64,8 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         // ####PATH SCRIPT#######
         script_path = RES_DIRECTORY + kotlin_class->relative_source_path;
         // We check if the file even exist, the KtClass can come from a library or module.
-        if (FileAccess::exists(script_path)) {
+        // We also verify if that path is not already in cache, in case several registered classes are in the same file. We only create a script for the first one.
+        if (FileAccess::exists(script_path) && !filepath_to_name_map.has(script_path)) {
             name_to_filepath_map[kotlin_class->registered_class_name] = script_path;
             filepath_to_name_map[script_path] = kotlin_class->registered_class_name;
 
@@ -73,10 +74,10 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             // Try to find if a matching PathScript exist
             if (name_to_filepath_cache.has(script_name)) {
                 // First we try using the path in cache. Necessary if the Kotlin file has been moved since the previous loading.
-                script_path = name_to_filepath_cache[script_name];// Use the old path so we can properly remove its entry in the cache.
+                script_path = name_to_filepath_cache[script_name]; // Use the old path so we can properly remove its entry in the cache.
                 path_script = path_script_cache[script_path];
             } else if (path_script_cache.has(script_path)) {
-                // Second we try with the name provided by the KtClass directly;
+                // Second we try with the path provided by the KtClass directly;
                 path_script = path_script_cache[script_path];
             }
 
