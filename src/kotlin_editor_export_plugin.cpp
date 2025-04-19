@@ -130,8 +130,6 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         }
     } else if (is_android_export) {
-        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
-        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
         String base_ios_build_dir {String(RES_DIRECTORY).path_join(JVM_DIRECTORY).path_join("ios")};
@@ -177,6 +175,17 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
         // this could happen if a user adds json files globally with the include filter `*.json` for example
         // it also seems that json files are added by default now, which also triggers this issue
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
+    }
+
+    if (const String build_dir = String {BUILD_DIRECTORY}.path_join("*"); !get_export_preset()->get_exclude_filter().contains(build_dir)) {
+        // exclude build folder
+        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + build_dir);
+    }
+
+    if (const String jre_jars = String {"res://"} + JVM_DIRECTORY + "jre-*/**/*.jar";
+        !get_export_preset()->get_exclude_filter().contains(jre_jars)) {
+        // exclude any jars in the embedded jre
+        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + jre_jars);
     }
 
     add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
