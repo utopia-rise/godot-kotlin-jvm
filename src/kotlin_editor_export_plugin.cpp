@@ -130,8 +130,6 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         }
     } else if (is_android_export) {
-        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
-        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
         String base_ios_build_dir {String(RES_DIRECTORY).path_join(JVM_DIRECTORY).path_join("ios")};
@@ -179,9 +177,10 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
     }
 
-    // we exclude the jvm directory here as the resource loaders for jar files would add all jar files a second time
-    // which breaks android builds
-    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + "res://" + JVM_DIRECTORY + "*");
+    // exclude build folder
+    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + BUILD_DIRECTORY + "/*");
+    // exclude any jars in the embedded jre
+    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + "res://" + JVM_DIRECTORY + "jre-*/**/*.jar");
 
     add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
 }
