@@ -179,6 +179,10 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
     }
 
+    // we exclude the jvm directory here as the resource loaders for jar files would add all jar files a second time
+    // which breaks android builds
+    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + "res://" + JVM_DIRECTORY + "*");
+
     add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
 }
 
