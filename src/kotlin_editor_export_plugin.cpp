@@ -177,10 +177,16 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
     }
 
-    // exclude build folder
-    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + BUILD_DIRECTORY + "/*");
-    // exclude any jars in the embedded jre
-    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + "res://" + JVM_DIRECTORY + "jre-*/**/*.jar");
+    if (const String build_dir = String {BUILD_DIRECTORY}.path_join("*"); !get_export_preset()->get_exclude_filter().contains(build_dir)) {
+        // exclude build folder
+        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + build_dir);
+    }
+
+    if (const String jre_jars = String {"res://"} + JVM_DIRECTORY + "jre-*/**/*.jar";
+        !get_export_preset()->get_exclude_filter().contains(jre_jars)) {
+        // exclude any jars in the embedded jre
+        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + jre_jars);
+    }
 
     add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
 }
