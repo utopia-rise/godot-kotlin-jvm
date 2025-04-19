@@ -16,8 +16,16 @@ fun Project.packageMainDexJarTask(
 
             archiveBaseName.set("main-dex")
 
-            from("src/main/resources").include("**/godot.registration.Entry")
+            // add all dex files (converted class files)
             from("${project.layout.buildDirectory.asFile.get().absolutePath}/libs/").include("*.dex")
+
+            from(zipTree(project.layout.buildDirectory.asFile.get().resolve("libs/main.jar"))) { copySpec ->
+                // copy everything from the main.jar
+                copySpec.include("**/*")
+
+                // except class files as these are contained in converted form in the dex files
+                copySpec.exclude("**/*.class")
+            }
 
             dependsOn(createMainDexFileTask)
         }
