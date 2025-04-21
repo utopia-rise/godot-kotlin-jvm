@@ -5,5 +5,5 @@ When updating this project version, here the list of strings to changes:
 - config.py: Change the String to "jvm-x.x.x".
 
 If you've updated the kotlin version, ensure to check if the R8 version is compatible with the chosen kotlin version! Then update the required minimum build tool versions by doing a search and replace on the following strings:
-- `android-35`
-- `35.0.0`
+- `android-36`
+- `36.0.0`
