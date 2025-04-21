@@ -2,6 +2,7 @@ package godot.gradle.projectExt
 
 import godot.gradle.tasks.android.checkAndroidJarAccessibleTask
 import godot.gradle.tasks.android.checkD8ToolAccessibleTask
+import godot.gradle.tasks.android.createBootstrapDexJarTask
 import godot.gradle.tasks.android.createMainDexFileTask
 import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
@@ -32,10 +33,13 @@ fun Project.setupTasks() {
             // START: android specific tasks
             val checkD8ToolAccessibleTask = checkD8ToolAccessibleTask()
             val checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask()
-            val packageBootstrapDexJarTask = packageBootstrapDexJarTask(
+            val createBootstrapDexJarTask = createBootstrapDexJarTask(
                 checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask,
                 checkD8ToolAccessibleTask = checkD8ToolAccessibleTask,
-                packageBootstrapJarTask = packageBootstrapJarTask
+                packageBootstrapJarTask = packageBootstrapJarTask,
+            )
+            val packageBootstrapDexJarTask = packageBootstrapDexJarTask(
+                createBootstrapDexJarTask = createBootstrapDexJarTask,
             )
             val createMainDexFileTask = createMainDexFileTask(
                 checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask,
