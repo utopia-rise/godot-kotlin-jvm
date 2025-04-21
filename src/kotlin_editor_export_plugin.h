@@ -20,6 +20,7 @@ public:
 
 private:
     void _generate_export_configuration_file(jni::JvmType vm_type);
+    void _add_exclude_filter_preset();
 };
 
 #endif// GODOT_JVM_KOTLINEDITOREXPORTPLUGIN_H
