@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.idea.configuration.GRADLE_SYSTEM_ID
 class GradleSystemListener : ExternalSystemTaskNotificationListenerAdapter(null) {
     override fun onStart(
         id: ExternalSystemTaskId,
-        workingDir: String?,
+        workingDir: String,
     ) {
         if (id.projectSystemId == GRADLE_SYSTEM_ID && id.type == RESOLVE_PROJECT) {
             // Gradle sync just started, pause our existing import if one is happening.

@@ -74,7 +74,7 @@ tasks {
         } else {
             this.pluginVersion.set("${project.version}-IJ$intellijVersion")
         }
-        sinceBuild.set("243.1")
+        sinceBuild.set("251.1")
         // magic values like 999.* are no longer supported. But we can support current version +2 years. Example: current 242.3 (2024.2.3) until 279.* (2027.9.*)
         // this prevents us from needing to update the ide plugin with every ide version update and gives us ~2 years time for that after the last release
         untilBuild.set("279.*")
