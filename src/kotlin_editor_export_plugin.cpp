@@ -130,8 +130,6 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         }
     } else if (is_android_export) {
-        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
-        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
         String base_ios_build_dir {String(RES_DIRECTORY).path_join(JVM_DIRECTORY).path_join("ios")};
@@ -158,12 +156,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         JVM_LOG_INFO("Exporting %s", file_to_add);
     }
 
+    _add_exclude_filter_preset();
+
     JVM_LOG_INFO("Finished Godot-Jvm specific exports.");
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
-    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration();// Copy
-    configuration.vm_type = vm_type;// We only need to change the vm type
+    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
+    configuration.vm_type = vm_type; // We only need to change the vm type
 
     const char32_t* json_string {JvmUserConfiguration::export_configuration_to_json(configuration).get_data()};
     Vector<uint8_t> json_bytes;
@@ -171,6 +171,10 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
         json_bytes.push_back(json_string[i]);
     }
 
+    add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
+}
+
+void KotlinEditorExportPlugin::_add_exclude_filter_preset() {
     // only add our configuration file to the exclude filter if it is not already present
     if (!get_export_preset()->get_exclude_filter().contains(JVM_CONFIGURATION_PATH)) {
         // we manually add the configuration file to the exclude filter to prevent it from being added multiple times
@@ -179,7 +183,15 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
     }
 
-    add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
+    if (const String build_dir = String {BUILD_DIRECTORY}.path_join("*"); !get_export_preset()->get_exclude_filter().contains(build_dir)) {
+        // exclude build folder
+        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + build_dir);
+    }
+
+    if (const String jre_jars = String {"res://"} + JVM_DIRECTORY + "jre-*/**/*.jar"; !get_export_preset()->get_exclude_filter().contains(jre_jars)) {
+        // exclude any jars in the embedded jre
+        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + jre_jars);
+    }
 }
 
 String KotlinEditorExportPlugin::get_name() const {
