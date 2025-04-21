@@ -1,5 +1,6 @@
 package godot.gradle.projectExt
 
+import godot.gradle.tasks.GenerateEmbeddedJreTask
 import godot.gradle.tasks.android.checkAndroidJarAccessibleTask
 import godot.gradle.tasks.android.checkD8ToolAccessibleTask
 import godot.gradle.tasks.android.createBootstrapDexJarTask
@@ -24,6 +25,11 @@ import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
 
 fun Project.setupTasks() {
+    tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
+        task.group = "godot-kotlin-jvm"
+        task.description = "Generates an embedded jre using jlink"
+    }
+
     afterEvaluate {
         with(it) {
             val packageBootstrapJarTask = packageBootstrapJarTask()
