@@ -35,7 +35,7 @@ fun Project.packageBootstrapDexJarTask(
                     if (resourceFile == null) {
                         project.logger.error("Could not copy $resourcePath to godot-bootstrap-dex.jar")
                     } else {
-                        resourceFile.copyTo(resourcesDir.resolve(resourcePath))
+                        resourceFile.copyTo(resourcesDir.resolve(resourcePath), overwrite = true)
                     }
                 }
 
