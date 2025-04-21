@@ -90,14 +90,14 @@ open class GodotExtension(objects: ObjectFactory) {
     /**
      * path to the d8 tool used for desugaring and converting the jar to a dex file
      *
-     * example: "${System.getenv("ANDROID_SDK_ROOT")}/build-tools/35.0.0/d8"
+     * example: "${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"
      */
     var d8ToolPath: RegularFileProperty = objects.fileProperty()
 
     /**
      * path to the sdk dir for your target sdk compilation dir
      *
-     * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-35"
+     * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"
      */
     var androidCompileSdkDir: RegularFileProperty = objects.fileProperty()
 

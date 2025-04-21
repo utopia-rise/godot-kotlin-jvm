@@ -67,8 +67,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             private var artifact = "game"
             private var version = "0.0.1-SNAPSHOT"
             private var isAndroidEnabled = false
-            private var d8Path = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8"
-            private var androidCompileSdkDir = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35"
+            private var d8Path = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/36.0.0/d8"
+            private var androidCompileSdkDir = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-36"
 
             private var isGraalNativeImageEnabled = false
             private var graalVmDirectory = "\${System.getenv(\"GRAALVM_HOME\")}"
@@ -232,12 +232,12 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .replace(
                             "D8_TOOL_PATH",
                             wizardContext.getUserData(d8ToolPathKey)
-                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8"
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/36.0.0/d8"
                         )
                         .replace(
                             "ANDROID_COMPILE_SDK_DIR",
                             wizardContext.getUserData(androidCompileSdkDirKey)
-                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35"
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-36"
                         )
                         .replace(
                             "IS_GRAAL_VM_ENABLED",
@@ -289,12 +289,12 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .replace(
                             "D8_TOOL_PATH",
                             wizardContext.getUserData(d8ToolPathKey)
-                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8"
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/36.0.0/d8"
                         )
                         .replace(
                             "ANDROID_COMPILE_SDK_DIR",
                             wizardContext.getUserData(androidCompileSdkDirKey)
-                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35"
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-36"
                         )
                         .replace(
                             "IS_GRAAL_VM_ENABLED",

@@ -85,14 +85,14 @@ While our gradle plugin is able to automatically find the newest installed build
 - Setting the `d8` tool:
     ```kt
     godot {
-        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/35.0.0/d8")
+        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8")
     }
     ```
 
 - Setting the `androidCompileSdkDir` to your target SDK version (most of the time, you want to set it to the newest version available):
     ```kt
     godot {
-        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-35")
+        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36")
     }
     ```
 
