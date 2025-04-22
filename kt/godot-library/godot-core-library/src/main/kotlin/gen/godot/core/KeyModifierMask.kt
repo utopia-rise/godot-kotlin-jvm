@@ -9,7 +9,7 @@ package godot.core
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 
 public infix fun Long.or(other: KeyModifierMask): Long = this.or(other.flag)
 
@@ -17,8 +17,7 @@ public infix fun Long.xor(other: KeyModifierMask): Long = this.xor(other.flag)
 
 public infix fun Long.and(other: KeyModifierMask): Long = this.and(other.flag)
 
-@JvmInline
-public value class KeyModifierMask(
+public class KeyModifierMask(
   public val flag: Long,
 ) {
   public infix fun or(other: KeyModifierMask): KeyModifierMask =
@@ -52,47 +51,56 @@ public value class KeyModifierMask(
     /**
      * Key Code mask.
      */
+    @JvmField
     public val CODE: KeyModifierMask = KeyModifierMask(8388607)
 
     /**
      * Modifier key mask.
      */
+    @JvmField
     public val KEY_MODIFIER_MASK: KeyModifierMask = KeyModifierMask(2130706432)
 
     /**
      * Automatically remapped to [KEY_META] on macOS and [KEY_CTRL] on other platforms, this mask is
      * never set in the actual events, and should be used for key mapping only.
      */
+    @JvmField
     public val MASK_CMD_OR_CTRL: KeyModifierMask = KeyModifierMask(16777216)
 
     /**
      * Shift key mask.
      */
+    @JvmField
     public val MASK_SHIFT: KeyModifierMask = KeyModifierMask(33554432)
 
     /**
      * Alt or Option (on macOS) key mask.
      */
+    @JvmField
     public val MASK_ALT: KeyModifierMask = KeyModifierMask(67108864)
 
     /**
      * Command (on macOS) or Meta/Windows key mask.
      */
+    @JvmField
     public val MASK_META: KeyModifierMask = KeyModifierMask(134217728)
 
     /**
      * Control key mask.
      */
+    @JvmField
     public val MASK_CTRL: KeyModifierMask = KeyModifierMask(268435456)
 
     /**
      * Keypad key mask.
      */
+    @JvmField
     public val MASK_KPAD: KeyModifierMask = KeyModifierMask(536870912)
 
     /**
      * Group Switch key mask.
      */
+    @JvmField
     public val MASK_GROUP_SWITCH: KeyModifierMask = KeyModifierMask(1073741824)
   }
 }

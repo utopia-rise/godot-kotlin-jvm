@@ -65,8 +65,6 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
     fun TypeSpec.Builder.generateBitfield(enum: EnrichedEnum) {
         val className = enum.className
 
-        addAnnotation(JvmInline::class)
-        addModifiers(KModifier.VALUE)
         primaryConstructor(
             FunSpec.constructorBuilder()
                 .addParameter(
@@ -118,6 +116,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
             bitfieldCompanion
                 .addProperty(
                     PropertySpec.builder(value.name, className)
+                        .addAnnotation(JvmField::class)
                         .initializer(CodeBlock.of("%T(%L)", className, value.value))
                         .addKdoc(value)
                         .build()

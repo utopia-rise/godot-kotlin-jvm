@@ -32,7 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 public infix fun Long.or(other: OpenXRInterface.HandJointFlags): Long = this.or(other.flag)
@@ -628,8 +628,7 @@ public open class OpenXRInterface : XRInterface() {
     }
   }
 
-  @JvmInline
-  public value class HandJointFlags(
+  public class HandJointFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
@@ -662,42 +661,49 @@ public open class OpenXRInterface : XRInterface() {
       /**
        * No flags are set.
        */
+      @JvmField
       public val NONE: HandJointFlags = HandJointFlags(0)
 
       /**
        * If set, the orientation data is valid, otherwise, the orientation data is unreliable and
        * should not be used.
        */
+      @JvmField
       public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
       /**
        * If set, the orientation data comes from tracking data, otherwise, the orientation data
        * contains predicted data.
        */
+      @JvmField
       public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
       /**
        * If set, the positional data is valid, otherwise, the positional data is unreliable and
        * should not be used.
        */
+      @JvmField
       public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
       /**
        * If set, the positional data comes from tracking data, otherwise, the positional data
        * contains predicted data.
        */
+      @JvmField
       public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
       /**
        * If set, our linear velocity data is valid, otherwise, the linear velocity data is
        * unreliable and should not be used.
        */
+      @JvmField
       public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
       /**
        * If set, our angular velocity data is valid, otherwise, the angular velocity data is
        * unreliable and should not be used.
        */
+      @JvmField
       public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }

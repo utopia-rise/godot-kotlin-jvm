@@ -19,7 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 public infix fun Long.or(other: RetargetModifier3D.TransformFlag): Long = this.or(other.flag)
@@ -178,8 +178,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  @JvmInline
-  public value class TransformFlag(
+  public class TransformFlag(
     public val flag: Long,
   ) {
     public infix fun or(other: TransformFlag): TransformFlag = TransformFlag(flag.or(other.flag))
@@ -210,21 +209,25 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
       /**
        * If set, allows to retarget the position.
        */
+      @JvmField
       public val POSITION: TransformFlag = TransformFlag(1)
 
       /**
        * If set, allows to retarget the rotation.
        */
+      @JvmField
       public val ROTATION: TransformFlag = TransformFlag(2)
 
       /**
        * If set, allows to retarget the scale.
        */
+      @JvmField
       public val SCALE: TransformFlag = TransformFlag(4)
 
       /**
        * If set, allows to retarget the position/rotation/scale.
        */
+      @JvmField
       public val ALL: TransformFlag = TransformFlag(7)
     }
   }

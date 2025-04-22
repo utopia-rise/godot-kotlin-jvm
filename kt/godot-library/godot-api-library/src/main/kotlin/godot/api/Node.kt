@@ -39,7 +39,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -2801,8 +2801,7 @@ public open class Node : Object() {
     }
   }
 
-  @JvmInline
-  public value class ProcessThreadMessages(
+  public class ProcessThreadMessages(
     public val flag: Long,
   ) {
     public infix fun or(other: ProcessThreadMessages): ProcessThreadMessages =
@@ -2839,18 +2838,21 @@ public open class Node : Object() {
        * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
        * before [_process] is called.
        */
+      @JvmField
       public val FLAG: ProcessThreadMessages = ProcessThreadMessages(1)
 
       /**
        * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
        * before [_physicsProcess] is called.
        */
+      @JvmField
       public val FLAG_PHYSICS: ProcessThreadMessages = ProcessThreadMessages(2)
 
       /**
        * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
        * before either [_process] or [_physicsProcess] are called.
        */
+      @JvmField
       public val FLAG_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
     }
   }

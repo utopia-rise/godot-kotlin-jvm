@@ -25,7 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 public infix fun Long.or(other: XRHandTracker.HandJointFlags): Long = this.or(other.flag)
@@ -338,8 +338,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
   }
 
-  @JvmInline
-  public value class HandJointFlags(
+  public class HandJointFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
@@ -372,33 +371,39 @@ public open class XRHandTracker : XRPositionalTracker() {
       /**
        * The hand joint's orientation data is valid.
        */
+      @JvmField
       public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
       /**
        * The hand joint's orientation is actively tracked. May not be set if tracking has been
        * temporarily lost.
        */
+      @JvmField
       public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
       /**
        * The hand joint's position data is valid.
        */
+      @JvmField
       public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
       /**
        * The hand joint's position is actively tracked. May not be set if tracking has been
        * temporarily lost.
        */
+      @JvmField
       public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
       /**
        * The hand joint's linear velocity data is valid.
        */
+      @JvmField
       public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
       /**
        * The hand joint's angular velocity data is valid.
        */
+      @JvmField
       public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }

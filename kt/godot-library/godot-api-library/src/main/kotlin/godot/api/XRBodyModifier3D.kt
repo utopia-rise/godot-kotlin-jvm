@@ -20,7 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 public infix fun Long.or(other: XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
@@ -114,8 +114,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   public final fun setBodyTracker(trackerName: String) =
       setBodyTracker(trackerName.asCachedStringName())
 
-  @JvmInline
-  public value class BodyUpdate(
+  public class BodyUpdate(
     public val flag: Long,
   ) {
     public infix fun or(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.or(other.flag))
@@ -146,16 +145,19 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
       /**
        * The skeleton's upper body joints are updated.
        */
+      @JvmField
       public val UPPER_BODY: BodyUpdate = BodyUpdate(1)
 
       /**
        * The skeleton's lower body joints are updated.
        */
+      @JvmField
       public val LOWER_BODY: BodyUpdate = BodyUpdate(2)
 
       /**
        * The skeleton's hand joints are updated.
        */
+      @JvmField
       public val HANDS: BodyUpdate = BodyUpdate(4)
     }
   }

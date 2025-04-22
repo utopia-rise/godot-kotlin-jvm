@@ -44,7 +44,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 public infix fun Long.or(other: RenderingDevice.BarrierMask): Long = this.or(other.flag)
@@ -3282,8 +3282,7 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  @JvmInline
-  public value class BarrierMask(
+  public class BarrierMask(
     public val flag: Long,
   ) {
     public infix fun or(other: BarrierMask): BarrierMask = BarrierMask(flag.or(other.flag))
@@ -3314,37 +3313,44 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Vertex shader barrier mask.
        */
+      @JvmField
       public val VERTEX: BarrierMask = BarrierMask(1)
 
       /**
        * Fragment shader barrier mask.
        */
+      @JvmField
       public val FRAGMENT: BarrierMask = BarrierMask(8)
 
       /**
        * Compute barrier mask.
        */
+      @JvmField
       public val COMPUTE: BarrierMask = BarrierMask(2)
 
       /**
        * Transfer barrier mask.
        */
+      @JvmField
       public val TRANSFER: BarrierMask = BarrierMask(4)
 
       /**
        * Raster barrier mask (vertex and fragment). Equivalent to `BARRIER_MASK_VERTEX |
        * BARRIER_MASK_FRAGMENT`.
        */
+      @JvmField
       public val RASTER: BarrierMask = BarrierMask(9)
 
       /**
        * Barrier mask for all types (vertex, fragment, compute, transfer).
        */
+      @JvmField
       public val ALL_BARRIERS: BarrierMask = BarrierMask(32767)
 
       /**
        * No barrier for any type.
        */
+      @JvmField
       public val NO_BARRIER: BarrierMask = BarrierMask(32768)
     }
   }
@@ -3444,8 +3450,7 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  @JvmInline
-  public value class TextureUsageBits(
+  public class TextureUsageBits(
     public val flag: Long,
   ) {
     public infix fun or(other: TextureUsageBits): TextureUsageBits =
@@ -3479,16 +3484,19 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Texture can be sampled.
        */
+      @JvmField
       public val SAMPLING: TextureUsageBits = TextureUsageBits(1)
 
       /**
        * Texture can be used as a color attachment in a framebuffer.
        */
+      @JvmField
       public val COLOR_ATTACHMENT: TextureUsageBits = TextureUsageBits(2)
 
       /**
        * Texture can be used as a depth/stencil attachment in a framebuffer.
        */
+      @JvmField
       public val DEPTH_STENCIL_ATTACHMENT: TextureUsageBits = TextureUsageBits(4)
 
       /**
@@ -3496,6 +3504,7 @@ public open class RenderingDevice internal constructor() : Object() {
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
        * image[/url].
        */
+      @JvmField
       public val STORAGE: TextureUsageBits = TextureUsageBits(8)
 
       /**
@@ -3503,27 +3512,32 @@ public open class RenderingDevice internal constructor() : Object() {
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
        * image[/url] with support for atomic operations.
        */
+      @JvmField
       public val STORAGE_ATOMIC: TextureUsageBits = TextureUsageBits(16)
 
       /**
        * Texture can be read back on the CPU using [textureGetData] faster than without this bit,
        * since it is always kept in the system memory.
        */
+      @JvmField
       public val CPU_READ: TextureUsageBits = TextureUsageBits(32)
 
       /**
        * Texture can be updated using [textureUpdate].
        */
+      @JvmField
       public val CAN_UPDATE: TextureUsageBits = TextureUsageBits(64)
 
       /**
        * Texture can be a source for [textureCopy].
        */
+      @JvmField
       public val CAN_COPY_FROM: TextureUsageBits = TextureUsageBits(128)
 
       /**
        * Texture can be a destination for [textureCopy].
        */
+      @JvmField
       public val CAN_COPY_TO: TextureUsageBits = TextureUsageBits(256)
 
       /**
@@ -3531,6 +3545,7 @@ public open class RenderingDevice internal constructor() : Object() {
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment]input
        * attachment[/url] in a framebuffer.
        */
+      @JvmField
       public val INPUT_ATTACHMENT: TextureUsageBits = TextureUsageBits(512)
     }
   }
@@ -3778,8 +3793,7 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  @JvmInline
-  public value class StorageBufferUsage(
+  public class StorageBufferUsage(
     public val flag: Long,
   ) {
     public infix fun or(other: StorageBufferUsage): StorageBufferUsage =
@@ -3810,12 +3824,12 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): StorageBufferUsage = StorageBufferUsage(flag ushr bits)
 
     public companion object {
+      @JvmField
       public val DISPATCH_INDIRECT: StorageBufferUsage = StorageBufferUsage(1)
     }
   }
 
-  @JvmInline
-  public value class BufferCreationBits(
+  public class BufferCreationBits(
     public val flag: Long,
   ) {
     public infix fun or(other: BufferCreationBits): BufferCreationBits =
@@ -3860,6 +3874,7 @@ public open class RenderingDevice internal constructor() : Object() {
        *       storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
        * ```
        */
+      @JvmField
       public val DEVICE_ADDRESS: BufferCreationBits = BufferCreationBits(1)
 
       /**
@@ -3868,6 +3883,7 @@ public open class RenderingDevice internal constructor() : Object() {
        * Compute Shaders which need access to vertex buffers, to be later consumed by vertex shaders as
        * part of the regular rasterization pipeline.
        */
+      @JvmField
       public val AS_STORAGE: BufferCreationBits = BufferCreationBits(2)
     }
   }
@@ -4397,8 +4413,7 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  @JvmInline
-  public value class PipelineDynamicStateFlags(
+  public class PipelineDynamicStateFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
@@ -4439,25 +4454,32 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Allows dynamically changing the width of rendering lines.
        */
+      @JvmField
       public val DYNAMIC_STATE_LINE_WIDTH: PipelineDynamicStateFlags = PipelineDynamicStateFlags(1)
 
       /**
        * Allows dynamically changing the depth bias.
        */
+      @JvmField
       public val DYNAMIC_STATE_DEPTH_BIAS: PipelineDynamicStateFlags = PipelineDynamicStateFlags(2)
 
+      @JvmField
       public val DYNAMIC_STATE_BLEND_CONSTANTS: PipelineDynamicStateFlags =
           PipelineDynamicStateFlags(4)
 
+      @JvmField
       public val DYNAMIC_STATE_DEPTH_BOUNDS: PipelineDynamicStateFlags =
           PipelineDynamicStateFlags(8)
 
+      @JvmField
       public val DYNAMIC_STATE_STENCIL_COMPARE_MASK: PipelineDynamicStateFlags =
           PipelineDynamicStateFlags(16)
 
+      @JvmField
       public val DYNAMIC_STATE_STENCIL_WRITE_MASK: PipelineDynamicStateFlags =
           PipelineDynamicStateFlags(32)
 
+      @JvmField
       public val DYNAMIC_STATE_STENCIL_REFERENCE: PipelineDynamicStateFlags =
           PipelineDynamicStateFlags(64)
     }
@@ -4905,8 +4927,7 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
-  @JvmInline
-  public value class DrawFlags(
+  public class DrawFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: DrawFlags): DrawFlags = DrawFlags(flag.or(other.flag))
@@ -4937,136 +4958,163 @@ public open class RenderingDevice internal constructor() : Object() {
       /**
        * Do not clear or ignore any attachments.
        */
+      @JvmField
       public val DEFAULT_ALL: DrawFlags = DrawFlags(0)
 
       /**
        * Clear the first color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
 
       /**
        * Clear the second color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
 
       /**
        * Clear the third color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
 
       /**
        * Clear the fourth color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
 
       /**
        * Clear the fifth color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
 
       /**
        * Clear the sixth color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
 
       /**
        * Clear the seventh color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
 
       /**
        * Clear the eighth color attachment.
        */
+      @JvmField
       public val CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
 
       /**
        * Mask for clearing all color attachments.
        */
+      @JvmField
       public val CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
 
       /**
        * Clear all color attachments.
        */
+      @JvmField
       public val CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
 
       /**
        * Ignore the previous contents of the first color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
 
       /**
        * Ignore the previous contents of the second color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
 
       /**
        * Ignore the previous contents of the third color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
 
       /**
        * Ignore the previous contents of the fourth color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
 
       /**
        * Ignore the previous contents of the fifth color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
 
       /**
        * Ignore the previous contents of the sixth color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
 
       /**
        * Ignore the previous contents of the seventh color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
 
       /**
        * Ignore the previous contents of the eighth color attachment.
        */
+      @JvmField
       public val IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
 
       /**
        * Mask for ignoring all the previous contents of the color attachments.
        */
+      @JvmField
       public val IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
 
       /**
        * Ignore the previous contents of all color attachments.
        */
+      @JvmField
       public val IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
 
       /**
        * Clear the depth attachment.
        */
+      @JvmField
       public val CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
 
       /**
        * Ignore the previous contents of the depth attachment.
        */
+      @JvmField
       public val IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
 
       /**
        * Clear the stencil attachment.
        */
+      @JvmField
       public val CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
 
       /**
        * Ignore the previous contents of the stencil attachment.
        */
+      @JvmField
       public val IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
 
       /**
        * Clear all attachments.
        */
+      @JvmField
       public val CLEAR_ALL: DrawFlags = DrawFlags(327935)
 
       /**
        * Ignore the previous contents of all attachments.
        */
+      @JvmField
       public val IGNORE_ALL: DrawFlags = DrawFlags(720640)
     }
   }

@@ -34,7 +34,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -532,8 +532,7 @@ public open class Mesh : Resource() {
     }
   }
 
-  @JvmInline
-  public value class ArrayFormat(
+  public class ArrayFormat(
     public val flag: Long,
   ) {
     public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.or(other.flag))
@@ -565,134 +564,160 @@ public open class Mesh : Resource() {
        * Mesh array contains vertices. All meshes require a vertex array so this should always be
        * present.
        */
+      @JvmField
       public val VERTEX: ArrayFormat = ArrayFormat(1)
 
       /**
        * Mesh array contains normals.
        */
+      @JvmField
       public val NORMAL: ArrayFormat = ArrayFormat(2)
 
       /**
        * Mesh array contains tangents.
        */
+      @JvmField
       public val TANGENT: ArrayFormat = ArrayFormat(4)
 
       /**
        * Mesh array contains colors.
        */
+      @JvmField
       public val COLOR: ArrayFormat = ArrayFormat(8)
 
       /**
        * Mesh array contains UVs.
        */
+      @JvmField
       public val TEX_UV: ArrayFormat = ArrayFormat(16)
 
       /**
        * Mesh array contains second UV.
        */
+      @JvmField
       public val TEX_UV2: ArrayFormat = ArrayFormat(32)
 
       /**
        * Mesh array contains custom channel index 0.
        */
+      @JvmField
       public val CUSTOM0: ArrayFormat = ArrayFormat(64)
 
       /**
        * Mesh array contains custom channel index 1.
        */
+      @JvmField
       public val CUSTOM1: ArrayFormat = ArrayFormat(128)
 
       /**
        * Mesh array contains custom channel index 2.
        */
+      @JvmField
       public val CUSTOM2: ArrayFormat = ArrayFormat(256)
 
       /**
        * Mesh array contains custom channel index 3.
        */
+      @JvmField
       public val CUSTOM3: ArrayFormat = ArrayFormat(512)
 
       /**
        * Mesh array contains bones.
        */
+      @JvmField
       public val BONES: ArrayFormat = ArrayFormat(1024)
 
       /**
        * Mesh array contains bone weights.
        */
+      @JvmField
       public val WEIGHTS: ArrayFormat = ArrayFormat(2048)
 
       /**
        * Mesh array uses indices.
        */
+      @JvmField
       public val INDEX: ArrayFormat = ArrayFormat(4096)
 
       /**
        * Mask of mesh channels permitted in blend shapes.
        */
+      @JvmField
       public val BLEND_SHAPE_MASK: ArrayFormat = ArrayFormat(7)
 
       /**
        * Shift of first custom channel.
        */
+      @JvmField
       public val CUSTOM_BASE: ArrayFormat = ArrayFormat(13)
 
       /**
        * Number of format bits per custom channel. See [ArrayCustomFormat].
        */
+      @JvmField
       public val CUSTOM_BITS: ArrayFormat = ArrayFormat(3)
 
       /**
        * Amount to shift [ArrayCustomFormat] for custom channel index 0.
        */
+      @JvmField
       public val CUSTOM0_SHIFT: ArrayFormat = ArrayFormat(13)
 
       /**
        * Amount to shift [ArrayCustomFormat] for custom channel index 1.
        */
+      @JvmField
       public val CUSTOM1_SHIFT: ArrayFormat = ArrayFormat(16)
 
       /**
        * Amount to shift [ArrayCustomFormat] for custom channel index 2.
        */
+      @JvmField
       public val CUSTOM2_SHIFT: ArrayFormat = ArrayFormat(19)
 
       /**
        * Amount to shift [ArrayCustomFormat] for custom channel index 3.
        */
+      @JvmField
       public val CUSTOM3_SHIFT: ArrayFormat = ArrayFormat(22)
 
       /**
        * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT
        * constants. See [ArrayCustomFormat].
        */
+      @JvmField
       public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
       /**
        * Shift of first compress flag. Compress flags should be passed to
        * [ArrayMesh.addSurfaceFromArrays] and [SurfaceTool.commit].
        */
+      @JvmField
       public val COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
       /**
        * Flag used to mark that the array contains 2D vertices.
        */
+      @JvmField
       public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
       /**
        * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
        */
+      @JvmField
       public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
       /**
        * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag
        * indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
        */
+      @JvmField
       public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
       /**
        * Flag used to mark that the mesh intentionally contains no vertex array.
        */
+      @JvmField
       public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
       /**
@@ -705,6 +730,7 @@ public open class Mesh : Resource() {
        * You cannot use normals without tangents. Importers will automatically enable this compression
        * if they can.
        */
+      @JvmField
       public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
     }
   }

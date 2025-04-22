@@ -1,6 +1,7 @@
 package godot.tests;
 
 import godot.api.Button;
+import godot.api.Control;
 import godot.api.Node;
 import godot.api.RenderingServer;
 import godot.annotation.*;
@@ -87,6 +88,10 @@ public class JavaTestClass extends Node {
         long constant = RenderingServer.NO_INDEX_ARRAY;
         Signal signal = RenderingServer.getFramePreDraw();
         RenderingServer.getDefaultClearColor();
+        // Check what Enum/Bitfields look like
+        Control control = new Control();
+        control.setHSizeFlags(Control.SizeFlags.FILL);
+        control.free();
     }
 
     @RegisterFunction

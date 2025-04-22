@@ -49,7 +49,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -1769,8 +1769,7 @@ public open class RichTextLabel : Control() {
     }
   }
 
-  @JvmInline
-  public value class ImageUpdateMask(
+  public class ImageUpdateMask(
     public val flag: Long,
   ) {
     public infix fun or(other: ImageUpdateMask): ImageUpdateMask =
@@ -1804,41 +1803,49 @@ public open class RichTextLabel : Control() {
       /**
        * If this bit is set, [updateImage] changes image texture.
        */
+      @JvmField
       public val UPDATE_TEXTURE: ImageUpdateMask = ImageUpdateMask(1)
 
       /**
        * If this bit is set, [updateImage] changes image size.
        */
+      @JvmField
       public val UPDATE_SIZE: ImageUpdateMask = ImageUpdateMask(2)
 
       /**
        * If this bit is set, [updateImage] changes image color.
        */
+      @JvmField
       public val UPDATE_COLOR: ImageUpdateMask = ImageUpdateMask(4)
 
       /**
        * If this bit is set, [updateImage] changes image inline alignment.
        */
+      @JvmField
       public val UPDATE_ALIGNMENT: ImageUpdateMask = ImageUpdateMask(8)
 
       /**
        * If this bit is set, [updateImage] changes image texture region.
        */
+      @JvmField
       public val UPDATE_REGION: ImageUpdateMask = ImageUpdateMask(16)
 
       /**
        * If this bit is set, [updateImage] changes image padding.
        */
+      @JvmField
       public val UPDATE_PAD: ImageUpdateMask = ImageUpdateMask(32)
 
       /**
        * If this bit is set, [updateImage] changes image tooltip.
        */
+      @JvmField
       public val UPDATE_TOOLTIP: ImageUpdateMask = ImageUpdateMask(64)
 
       /**
        * If this bit is set, [updateImage] changes image width from/to percents.
        */
+      @JvmField
       public val UPDATE_WIDTH_IN_PERCENT: ImageUpdateMask = ImageUpdateMask(128)
     }
   }
