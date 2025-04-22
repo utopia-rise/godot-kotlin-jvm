@@ -29,14 +29,12 @@ void GodotKotlinJvmEditor::on_generate_project(bool erase_existing) {
     project_dialog->hide();
 }
 
-void GodotKotlinJvmEditor::on_build_project_pressed() {
-    BuildManager::get_instance().build_project_non_blocking();
-}
-
-void GodotKotlinJvmEditor::on_build_finished() {
-    MessageQueue::get_singleton()->push_callable(
-      callable_mp(get_editor_interface()->get_resource_file_system(), &EditorFileSystem::scan_changes)
-    );
+void GodotKotlinJvmEditor::on_gradle_task_pressed() {
+    if (GradleTaskManager::get_instance().is_task_started()) { return; }
+    task_dialog->make_appear();
+    String log;
+    GradleTaskManager::get_instance().run_task(GradleTaskManager::Task::BUILD_DEBUG, log, false);
+    JVM_LOG_INFO(log);
 }
 
 void GodotKotlinJvmEditor::on_filesystem_change() {
@@ -55,8 +53,17 @@ bool GodotKotlinJvmEditor::build() {
     bool build_gradle_before_start = EDITOR_GET(build_before_start);
 
     if (build_gradle_before_start) {
-        bool is_successful = BuildManager::get_instance().build_project_blocking();
-        return is_successful;
+        String log;
+        Error error = GradleTaskManager::get_instance().run_task(GradleTaskManager::Task::BUILD_DEBUG, log, true);
+        JVM_LOG_INFO(log);
+
+        if(error != OK){
+            task_dialog->make_appear();
+            task_dialog->update_state(log);
+            return false;
+        }
+
+        return true;
     } else {
         return true;
     }
@@ -67,9 +74,6 @@ GodotKotlinJvmEditor* GodotKotlinJvmEditor::get_instance() {
     return instance;
 }
 
-void GodotKotlinJvmEditor::update_build_dialog(String log) {
-    MessageQueue::get_singleton()->push_callable(callable_mp(build_dialog, &BuildDialog::update_state).bind(log));
-}
 
 void GodotKotlinJvmEditor::_notification(int notification) {
     Control* editor_base_control = get_editor_interface()->get_base_control();
@@ -105,10 +109,10 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             tool_bar_build_button->set_text("Build");
             tool_bar_build_button->set_tooltip_text("Build gradle project");
             tool_bar_build_button->set_focus_mode(Control::FOCUS_NONE);
-            tool_bar_build_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_build_project_pressed));
+            tool_bar_build_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_gradle_task_pressed));
             add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_build_button);
 
-            editor_base_control->add_child(build_dialog);
+            editor_base_control->add_child(task_dialog);
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
 
@@ -116,11 +120,32 @@ void GodotKotlinJvmEditor::_notification(int notification) {
               SNAME("filesystem_changed"),
               callable_mp(this, &GodotKotlinJvmEditor::on_filesystem_change)
             );
+            set_process(true);
+            break;
 
+        case NOTIFICATION_PROCESS:
+            if (GradleTaskManager::get_instance().is_task_started()) {
+                String log;
+                String error;
+                GradleTaskManager::get_instance().get_task_output(log, error);
+                task_dialog->update_state(log + error);
+
+                if(!log.is_empty()){
+                    print_line(log); // Use regular Godot print to avoid spamming the JVM prefix for every line of the output.
+                }
+                if(!error.is_empty()){
+                    JVM_ERR_FAIL_MSG(error);
+                }
+
+                if (GradleTaskManager::get_instance().is_task_terminated()) {
+                    JVM_LOG_INFO("Gradle Task terminated");
+                    get_editor_interface()->get_resource_file_system()->scan_changes();
+                }
+            }
             break;
 
         case NOTIFICATION_EXIT_TREE:
-            editor_base_control->remove_child(build_dialog);
+            editor_base_control->remove_child(task_dialog);
             editor_base_control->remove_child(about_dialog);
             editor_base_control->remove_child(project_dialog);
             remove_tool_menu_item("Kotlin/JVM");
@@ -132,15 +157,16 @@ void GodotKotlinJvmEditor::_notification(int notification) {
 GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
   about_pop_menu(memnew(PopupMenu)),
   about_dialog(memnew(AboutDialog)),
-  build_dialog(memnew(BuildDialog)),
+  task_dialog(memnew(BuildDialog)),
   project_dialog(memnew(AcceptDialog)),
   tool_bar_build_button(memnew(Button)) {}
 
 GodotKotlinJvmEditor::~GodotKotlinJvmEditor() {
+    GradleTaskManager::get_instance().cleanup();
     memdelete(about_dialog);
-    memdelete(build_dialog);
+    memdelete(task_dialog);
     memdelete(project_dialog);
     memdelete(tool_bar_build_button);
 }
 
-#endif// TOOLS_ENABLED
+#endif // TOOLS_ENABLED

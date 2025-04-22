@@ -17,6 +17,7 @@ public:
     BuildDialog();
 
     void set_scrollbar_at_bottom();
+    void make_appear();
     void update_state(String log);
     void _notification(int notification);
 };

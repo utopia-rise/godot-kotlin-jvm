@@ -4,30 +4,40 @@
 #ifndef GODOT_JVM_BUILD_MANAGER_H
 #define GODOT_JVM_BUILD_MANAGER_H
 
+#include <core/object/worker_thread_pool.h>
 #include <core/os/os.h>
 #include <core/os/thread.h>
-#include <core/object/worker_thread_pool.h>
 
-class BuildManager {
-    WorkerThreadPool::TaskID taskId = WorkerThreadPool::INVALID_TASK_ID;
-
-    String build_log;
-
-    BuildManager() = default;
-    Error build_project();
-
-    static void build_task(void* p_userdata);
-
+class GradleTaskManager {
 public:
-    static BuildManager& get_instance();
+    enum class Task {
+        NONE,
+        BUILD_DEBUG,
+        BUILD_RELEASE,
+        GENERATE_EMBEDDED_JVM
+    };
 
-    BuildManager(const BuildManager&) = delete;
-    BuildManager& operator=(const BuildManager&) = delete;
+private:
+    Ref<FileAccess> stdio;
+    Ref<FileAccess> stderr_io;
+    int pid = -1;
 
-    bool build_project_blocking();
-    void build_project_non_blocking();
+    GradleTaskManager() = default;
+
+    void reset();
+public:
+    static GradleTaskManager& get_instance();
+    void cleanup();
+
+    GradleTaskManager(const GradleTaskManager&) = delete;
+    GradleTaskManager& operator=(const GradleTaskManager&) = delete;
+
+    Error run_task(Task task, String& log, bool blocking);
+    bool is_task_started();
+    bool is_task_terminated();
+    void get_task_output(String& log, String& error);
 };
 
-#endif// GODOT_JVM_BUILD_MANAGER_H
+#endif // GODOT_JVM_BUILD_MANAGER_H
 
-#endif// TOOLS_ENABLED
+#endif // TOOLS_ENABLED
