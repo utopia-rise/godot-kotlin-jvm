@@ -45,6 +45,8 @@ Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
         case Task::GENERATE_EMBEDDED_JVM:
             args.push_back("generateEmbeddedJre");
             break;
+        default:
+            return Error::ERR_INVALID_PARAMETER;
     }
 
     String gradlew_path = get_gradlew_path();
@@ -58,7 +60,7 @@ Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
 
         if (info.is_empty()) { JVM_ERR_FAIL_V_MSG(Error::ERR_CANT_CREATE, "Failed to start process"); }
 
-        log = vformat("Running %s build task...", gradlew_path);
+        log = vformat("Running gradle task: %s", args.get(0));
         stdio = info["stdio"];
         stderr_io = info["stderr"];
         pid = info["pid"];
