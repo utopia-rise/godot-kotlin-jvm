@@ -27,7 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 public infix fun Long.or(other: NavigationPathQueryParameters2D.PathMetadataFlags): Long =
@@ -360,8 +360,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
   }
 
-  @JvmInline
-  public value class PathMetadataFlags(
+  public class PathMetadataFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: PathMetadataFlags): PathMetadataFlags =
@@ -395,28 +394,33 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       /**
        * Don't include any additional metadata about the returned path.
        */
+      @JvmField
       public val INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
 
       /**
        * Include the type of navigation primitive (region or link) that each point of the path goes
        * through.
        */
+      @JvmField
       public val INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
 
       /**
        * Include the [RID]s of the regions and links that each point of the path goes through.
        */
+      @JvmField
       public val INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
 
       /**
        * Include the `ObjectID`s of the [Object]s which manage the regions and links each point of
        * the path goes through.
        */
+      @JvmField
       public val INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
 
       /**
        * Include all available metadata about the returned path.
        */
+      @JvmField
       public val INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
     }
   }

@@ -20,7 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 public infix fun Long.or(other: XRBodyTracker.BodyFlags): Long = this.or(other.flag)
@@ -127,8 +127,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  @JvmInline
-  public value class BodyFlags(
+  public class BodyFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: BodyFlags): BodyFlags = BodyFlags(flag.or(other.flag))
@@ -159,16 +158,19 @@ public open class XRBodyTracker : XRPositionalTracker() {
       /**
        * Upper body tracking supported.
        */
+      @JvmField
       public val UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
 
       /**
        * Lower body tracking supported.
        */
+      @JvmField
       public val LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
 
       /**
        * Hand tracking supported.
        */
+      @JvmField
       public val HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
     }
   }
@@ -496,8 +498,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
   }
 
-  @JvmInline
-  public value class JointFlags(
+  public class JointFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: JointFlags): JointFlags = JointFlags(flag.or(other.flag))
@@ -528,23 +529,27 @@ public open class XRBodyTracker : XRPositionalTracker() {
       /**
        * The joint's orientation data is valid.
        */
+      @JvmField
       public val ORIENTATION_VALID: JointFlags = JointFlags(1)
 
       /**
        * The joint's orientation is actively tracked. May not be set if tracking has been
        * temporarily lost.
        */
+      @JvmField
       public val ORIENTATION_TRACKED: JointFlags = JointFlags(2)
 
       /**
        * The joint's position data is valid.
        */
+      @JvmField
       public val POSITION_VALID: JointFlags = JointFlags(4)
 
       /**
        * The joint's position is actively tracked. May not be set if tracking has been temporarily
        * lost.
        */
+      @JvmField
       public val POSITION_TRACKED: JointFlags = JointFlags(8)
     }
   }

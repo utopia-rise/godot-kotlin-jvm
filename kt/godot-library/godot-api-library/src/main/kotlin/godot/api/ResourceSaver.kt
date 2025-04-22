@@ -24,7 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -117,8 +117,7 @@ public object ResourceSaver : Object() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  @JvmInline
-  public value class SaverFlags(
+  public class SaverFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: SaverFlags): SaverFlags = SaverFlags(flag.or(other.flag))
@@ -149,42 +148,50 @@ public object ResourceSaver : Object() {
       /**
        * No resource saving option.
        */
+      @JvmField
       public val FLAG_NONE: SaverFlags = SaverFlags(0)
 
       /**
        * Save the resource with a path relative to the scene which uses it.
        */
+      @JvmField
       public val FLAG_RELATIVE_PATHS: SaverFlags = SaverFlags(1)
 
       /**
        * Bundles external resources.
        */
+      @JvmField
       public val FLAG_BUNDLE_RESOURCES: SaverFlags = SaverFlags(2)
 
       /**
        * Changes the [Resource.resourcePath] of the saved resource to match its new location.
        */
+      @JvmField
       public val FLAG_CHANGE_PATH: SaverFlags = SaverFlags(4)
 
       /**
        * Do not save editor-specific metadata (identified by their `__editor` prefix).
        */
+      @JvmField
       public val FLAG_OMIT_EDITOR_PROPERTIES: SaverFlags = SaverFlags(8)
 
       /**
        * Save as big endian (see [FileAccess.bigEndian]).
        */
+      @JvmField
       public val FLAG_SAVE_BIG_ENDIAN: SaverFlags = SaverFlags(16)
 
       /**
        * Compress the resource on save using [FileAccess.COMPRESSION_ZSTD]. Only available for
        * binary resource types.
        */
+      @JvmField
       public val FLAG_COMPRESS: SaverFlags = SaverFlags(32)
 
       /**
        * Take over the paths of the saved subresources (see [Resource.takeOverPath]).
        */
+      @JvmField
       public val FLAG_REPLACE_SUBRESOURCE_PATHS: SaverFlags = SaverFlags(64)
     }
   }

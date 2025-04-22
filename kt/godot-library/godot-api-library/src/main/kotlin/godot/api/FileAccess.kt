@@ -31,7 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -769,8 +769,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
   }
 
-  @JvmInline
-  public value class UnixPermissionFlags(
+  public class UnixPermissionFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: UnixPermissionFlags): UnixPermissionFlags =
@@ -804,61 +803,73 @@ public open class FileAccess internal constructor() : RefCounted() {
       /**
        * Read for owner bit.
        */
+      @JvmField
       public val READ_OWNER: UnixPermissionFlags = UnixPermissionFlags(256)
 
       /**
        * Write for owner bit.
        */
+      @JvmField
       public val WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlags(128)
 
       /**
        * Execute for owner bit.
        */
+      @JvmField
       public val EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlags(64)
 
       /**
        * Read for group bit.
        */
+      @JvmField
       public val READ_GROUP: UnixPermissionFlags = UnixPermissionFlags(32)
 
       /**
        * Write for group bit.
        */
+      @JvmField
       public val WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlags(16)
 
       /**
        * Execute for group bit.
        */
+      @JvmField
       public val EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlags(8)
 
       /**
        * Read for other bit.
        */
+      @JvmField
       public val READ_OTHER: UnixPermissionFlags = UnixPermissionFlags(4)
 
       /**
        * Write for other bit.
        */
+      @JvmField
       public val WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlags(2)
 
       /**
        * Execute for other bit.
        */
+      @JvmField
       public val EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlags(1)
 
       /**
        * Set user id on execution bit.
        */
+      @JvmField
       public val SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2048)
 
       /**
        * Set group id on execution bit.
        */
+      @JvmField
       public val SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1024)
 
       /**
        * Restricted deletion (sticky) bit.
        */
+      @JvmField
       public val RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlags(512)
     }
   }

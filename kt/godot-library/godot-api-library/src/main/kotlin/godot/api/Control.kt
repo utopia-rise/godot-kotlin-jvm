@@ -48,7 +48,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -3042,8 +3042,7 @@ public open class Control : CanvasItem() {
     }
   }
 
-  @JvmInline
-  public value class SizeFlags(
+  public class SizeFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: SizeFlags): SizeFlags = SizeFlags(flag.or(other.flag))
@@ -3078,6 +3077,7 @@ public open class Control : CanvasItem() {
        *
        * **Note:** Setting this flag is equal to not having any size flags.
        */
+      @JvmField
       public val SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
       /**
@@ -3085,6 +3085,7 @@ public open class Control : CanvasItem() {
        * space without pushing any other node. It is mutually exclusive with shrink size flags. Use
        * with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        */
+      @JvmField
       public val FILL: SizeFlags = SizeFlags(1)
 
       /**
@@ -3093,12 +3094,14 @@ public open class Control : CanvasItem() {
        * stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and
        * [sizeFlagsVertical].
        */
+      @JvmField
       public val EXPAND: SizeFlags = SizeFlags(2)
 
       /**
        * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for
        * more information.
        */
+      @JvmField
       public val EXPAND_FILL: SizeFlags = SizeFlags(3)
 
       /**
@@ -3106,6 +3109,7 @@ public open class Control : CanvasItem() {
        * exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in
        * some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        */
+      @JvmField
       public val SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
       /**
@@ -3113,6 +3117,7 @@ public open class Control : CanvasItem() {
        * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
        * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
        */
+      @JvmField
       public val SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }

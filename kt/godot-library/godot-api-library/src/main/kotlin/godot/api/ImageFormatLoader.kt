@@ -11,7 +11,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmField
 
 public infix fun Long.or(other: ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
 
@@ -30,8 +30,7 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
     createNativeObject(283, scriptIndex)
   }
 
-  @JvmInline
-  public value class LoaderFlags(
+  public class LoaderFlags(
     public val flag: Long,
   ) {
     public infix fun or(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.or(other.flag))
@@ -59,10 +58,13 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): LoaderFlags = LoaderFlags(flag ushr bits)
 
     public companion object {
+      @JvmField
       public val FLAG_NONE: LoaderFlags = LoaderFlags(0)
 
+      @JvmField
       public val FLAG_FORCE_LINEAR: LoaderFlags = LoaderFlags(1)
 
+      @JvmField
       public val FLAG_CONVERT_COLORS: LoaderFlags = LoaderFlags(2)
     }
   }
