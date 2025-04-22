@@ -8,10 +8,9 @@
 #include <core/os/os.h>
 #include <core/os/thread.h>
 
-class GradleTaskManager {
+class GradleTaskRunner {
 public:
-    enum class Task {
-        NONE,
+    enum Task {
         BUILD_DEBUG,
         BUILD_RELEASE,
         GENERATE_EMBEDDED_JVM
@@ -22,17 +21,18 @@ private:
     Ref<FileAccess> stderr_io;
     int pid = -1;
 
-    GradleTaskManager() = default;
+    GradleTaskRunner() = default;
 
     void reset();
+
 public:
-    static GradleTaskManager& get_instance();
+    static GradleTaskRunner& get_instance();
     void cleanup();
 
-    GradleTaskManager(const GradleTaskManager&) = delete;
-    GradleTaskManager& operator=(const GradleTaskManager&) = delete;
+    GradleTaskRunner(const GradleTaskRunner&) = delete;
+    GradleTaskRunner& operator=(const GradleTaskRunner&) = delete;
 
-    Error run_task(Task task, String& log, bool blocking);
+    Error run_task(int task_id, String& log, bool blocking);
     bool is_task_started();
     bool is_task_terminated();
     void get_task_output(String& log, String& error);

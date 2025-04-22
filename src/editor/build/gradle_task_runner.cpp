@@ -1,10 +1,9 @@
 
 #ifdef TOOLS_ENABLED
 
-#include "build_manager.h"
-
 #include "../godot_kotlin_jvm_editor.h"
 #include "editor/strings.h"
+#include "gradle_task_runner.h"
 #include "logging.h"
 
 #include <core/config/project_settings.h>
@@ -27,7 +26,7 @@ String get_gradlew_path() {
     return gradle_wrapper_path.path_join(gradle_wrapper);
 }
 
-Error GradleTaskManager::run_task(GradleTaskManager::Task task, String& log, bool blocking) {
+Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
     JVM_ERR_FAIL_COND_V_MSG(
       !FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists(get_build_gradle_path()),
       Error::ERR_FILE_NOT_FOUND,
@@ -35,7 +34,18 @@ Error GradleTaskManager::run_task(GradleTaskManager::Task task, String& log, boo
     );
 
     List<String> args {};
-    args.push_back("build");
+    switch (task_id) {
+        case Task::BUILD_DEBUG:
+            args.push_back("build");
+            break;
+        case Task::BUILD_RELEASE:
+            args.push_back("build");
+            args.push_back("-Prelease=true");
+            break;
+        case Task::GENERATE_EMBEDDED_JVM:
+            args.push_back("generateEmbeddedJre");
+            break;
+    }
 
     String gradlew_path = get_gradlew_path();
 
@@ -57,31 +67,29 @@ Error GradleTaskManager::run_task(GradleTaskManager::Task task, String& log, boo
     return Error::OK;
 }
 
-GradleTaskManager& GradleTaskManager::get_instance() {
-    static GradleTaskManager instance;
+GradleTaskRunner& GradleTaskRunner::get_instance() {
+    static GradleTaskRunner instance;
     return instance;
 }
 
-bool GradleTaskManager::is_task_started() {
+bool GradleTaskRunner::is_task_started() {
     return pid > -1;
 }
 
-bool GradleTaskManager::is_task_terminated() {
+bool GradleTaskRunner::is_task_terminated() {
     bool ret = !OS::get_singleton()->is_process_running(pid);
     if (ret) { reset(); }
     return ret;
 }
 
-void GradleTaskManager::get_task_output(String& log, String& error) {
+void GradleTaskRunner::get_task_output(String& log, String& error) {
     if (stdio.is_valid()) {
         // keep reading until no full line is available
         Error err;
         do {
             String line = stdio->get_line();
             err = stdio->get_error();
-            if (!line.is_empty()) {
-                log += line + "\n";
-            }
+            if (!line.is_empty()) { log += line + "\n"; }
         } while (err == OK);
     }
 
@@ -91,20 +99,18 @@ void GradleTaskManager::get_task_output(String& log, String& error) {
         do {
             String line = stderr_io->get_line();
             err = stderr_io->get_error();
-            if (!line.is_empty()) {
-                error += line + "\n";
-            }
+            if (!line.is_empty()) { error += line + "\n"; }
         } while (err == OK);
     }
 }
 
-void GradleTaskManager::reset() {
+void GradleTaskRunner::reset() {
     stdio = {};
     stderr_io = {};
     pid = -1;
 }
 
-void GradleTaskManager::cleanup() {
+void GradleTaskRunner::cleanup() {
     reset();
 }
 
