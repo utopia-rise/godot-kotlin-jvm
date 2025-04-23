@@ -8,7 +8,7 @@ void Bootstrap::load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_class
     jni::JObjectArray jni_classes {p_classes};
     jni::JObject j_object {p_this};
 
-    Vector<KtClass*> classes;
+    godot::Vector<KtClass*> classes;
     for (auto i = 0; i < jni_classes.length(env); i++) {
         KtClass* kt_class = new KtClass(env, jni_classes.get(env, i));
         kt_class->fetch_members(env);

@@ -9,8 +9,8 @@
 #include "script/jvm_script_manager.h"
 #include "script/source_script_parser.h"
 
-#include <core/config/project_settings.h>
-#include <core/io/file_access.h>
+#include <core/config/project_settings.hpp>
+#include <core/io/file_access.hpp>
 
 static constexpr const char* graal_feature {"export-graal-native-image"};
 static constexpr const char* all_jvm_feature {"export-all-jvm"};

@@ -3,8 +3,8 @@
 #include "names.h"
 #include "script/jvm_script.h"
 
-#include <core/io/resource_loader.h>
-#include <core/object/class_db.h>
+#include <core/io/resource_loader.hpp>
+#include <core/object/class_db.hpp>
 
 constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "\n"
@@ -164,3 +164,4 @@ bool JavaLanguage::is_using_templates() {
 bool JavaLanguage::supports_builtin_mode() const {
     return false;
 }
+

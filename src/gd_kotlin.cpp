@@ -1,5 +1,6 @@
 #include "gd_kotlin.h"
 
+#include "jni/env.h"
 #include "jvm_wrapper/memory/long_string_queue.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/type_manager.h"
@@ -7,10 +8,16 @@
 #include "script/jvm_script_manager.h"
 #include "version.h"
 
-#include <core/config/project_settings.h>
-#include <core/io/dir_access.h>
-#include <core/io/file_access.h>
-#include <core/io/resource_loader.h>
+#include <core/config/project_settings.hpp>
+#include <core/io/file_access.hpp>
+#include <core/io/resource_loader.hpp>
+#include <main/main.hpp>
+
+using namespace godot;
+
+#define DISPLAY_ERROR(cause, hint)                  \
+    display_initialization_error_hint(cause, hint); \
+    JVM_ERR_FAIL_V_MSG(false, cause)
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
@@ -43,6 +50,7 @@ bool GDKotlin::load_dynamic_lib() {
                     );
                     path_to_jvm_lib = dynamic_jvm;
                 } else {
+#ifdef MACOS_ENABLED
                     JVM_WARN_FAIL_V_MSG(
                       false,
                       "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
@@ -50,6 +58,15 @@ bool GDKotlin::load_dynamic_lib() {
                       "Make sure a JDK 11+ is available through JAVA_HOME or PATH, or add an embedded JRE to your "
                       "project using jlink."
                     );
+#else
+                    JVM_WARN_FAIL_V_MSG(
+                      false,
+                      "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+                      "No embedded JRE or usable Java installation was found.",
+                      "Make sure a JDK 11+ is available through JAVA_HOME or PATH, or add an embedded JRE to your "
+                      "project using jlink."
+                    );
+#endif
                 }
             }
 #else
@@ -241,7 +258,7 @@ void GDKotlin::set_jvm_options() {
 
 #ifndef TOOLS_ENABLED
 
-#include <core/io/dir_access.h>
+#include <core/io/dir_access.hpp>
 
 #ifdef __ANDROID__
 #include <unistd.h>

@@ -1,6 +1,7 @@
 #include "jvm_script.h"
 
 #include "binding/kotlin_binding_manager.h"
+#include <core/os/thread.hpp>
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
@@ -11,18 +12,19 @@
 #include "script/jvm_script_manager.h"
 #include "source_script_parser.h"
 
-#include <core/config/project_settings.h>
-#include <core/io/file_access.h>
-#include <core/io/resource_loader.h>
-#include <core/object/class_db.h>
-#include <core/os/thread.h>
-#include <scene/main/node.h>
+#include <core/config/project_settings.hpp>
+#include <core/io/file_access.hpp>
+#include <core/io/resource_loader.hpp>
+#include <core/object/class_db.hpp>
+#include <scene/main/node.hpp>
 
 #ifdef TOOLS_ENABLED
 void JvmScript::_notification(int p_what) {
     if (p_what == NOTIFICATION_PREDELETE) { JvmScriptManager::untrack_physical_script(this); }
 }
 #endif
+
+using namespace godot;
 
 Variant JvmScript::_new() {
     Object* obj = _object_create();

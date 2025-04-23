@@ -6,11 +6,10 @@
 #include <core/object/callable_mp.h>
 #include <core/os/os.h>
 #include <editor/editor_interface.h>
-#include <editor/settings/editor_settings.h>
 #include <editor/themes/editor_scale.h>
-#include <scene/gui/check_box.h>
 #include <scene/gui/rich_text_label.h>
 #include <scene/gui/texture_rect.h>
+#include <editor/settings/editor_settings.hpp>
 
 AboutDialog::AboutDialog() {
     set_title("About Godot Kotlin JVM");
