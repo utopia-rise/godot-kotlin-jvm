@@ -4,7 +4,6 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
@@ -16,7 +15,7 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
 /**
- * Collects [RegisterClass], [RegisterConstructor], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
+ * Collects [RegisterClass], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
  * for registrar generation and entry generation
  */
 internal class RegistrationAnnotationVisitor(
@@ -25,7 +24,6 @@ internal class RegistrationAnnotationVisitor(
 
     private val registerAnnotations = listOf(
         RegisterClass::class.qualifiedName!!,
-        RegisterConstructor::class.qualifiedName!!,
         RegisterFunction::class.qualifiedName!!,
         RegisterProperty::class.qualifiedName!!,
         RegisterSignal::class.qualifiedName!!

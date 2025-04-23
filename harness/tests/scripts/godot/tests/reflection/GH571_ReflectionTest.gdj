@@ -3,15 +3,13 @@
 
 registeredName = GH571_ReflectionTest
 fqName = godot.tests.reflection.GH571_ReflectionTest
-relativeSourcePath = src/main/kotlin/godot/tests/reflection/GH571_ReflectionTest.kt
 baseType = Node
 supertypes = [
     godot.api.Node,
 	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer,
-	kotlin.Any
+	godot.common.interop.NativePointer
 ]
 signals = [
     

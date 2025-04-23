@@ -3,6 +3,7 @@
 
 #include "core/object/script_language.h"
 #include "jvm_wrapper/registration/kt_class.h"
+#include "resource_format/hash.h"
 
 class JvmInstance;
 
@@ -17,14 +18,14 @@ protected:
     String source;
 
     template<bool isCreator>
-    ScriptInstance* _instance_create(const Variant** p_args, int p_arg_count, Object* p_this);
-    Object* _object_create(const Variant** p_args, int p_arg_count);
+    ScriptInstance* _instance_create(Object* p_this);
+    Object* _object_create();
 
 public:
     JvmScript();
     ~JvmScript() override;
 
-    Variant _new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error);
+    Variant _new();
     bool can_instantiate() const override;
     bool inherits_script(const Ref<Script>& p_script) const override;
     Ref<Script> get_base_script() const override;
@@ -82,12 +83,29 @@ protected:
     static void _bind_methods();
 };
 
-class PathScript : public JvmScript {
-    GDSOFTCLASS(PathScript, JvmScript);
+class SourceScript : public JvmScript {
+    GDSOFTCLASS(SourceScript, JvmScript);
+    friend class JvmScriptManager;
+
 public:
-    PathScript() = default;
-    ~PathScript() override = default;
+    SourceScript() = default;
+    ~SourceScript() override = default;
+    StringName get_functional_name() const;
     StringName get_global_name() const override;
+    static StringName parse_source_to_fqdn(const String& p_path, String& r_source, Error* r_error);
+
+protected:
+    static constexpr const char* PACKAGE_KEYWORD = "package";
+    static constexpr const char* CLASS_KEYWORD = "class";
+    static constexpr const char* REGISTER_CLASS_ANNOTATION = "@RegisterClass";
+    static bool is_whitespace_or_linebreak(char32_t character);
+    static bool is_package_end(char32_t character);
+    static bool is_class_name_end(char32_t character);
+    static bool skip_spaces_and_newlines(const String& source, int& start_index);
+    static bool skip_comments(const String& source, const String& p_path, int& start_index);
+
+private:
+    StringName _functional_name;
 };
 
 class NamedScript : public JvmScript {

@@ -1,9 +1,8 @@
 package godot.entrygenerator.model
 
-data class Type(
+open class Type(
     val fqName: String,
     val kind: TypeKind,
-    val isNullable: Boolean,
     val supertypes: List<Type>,
     val arguments: () -> List<Type>,
     val registeredName: () -> String?,
@@ -18,6 +17,17 @@ data class Type(
         )
     }
 }
+
+class PropertyType(
+    type: Type,
+    val isNullable: Boolean,
+) : Type(
+    type.fqName,
+    type.kind,
+    type.supertypes,
+    type.arguments,
+    type.registeredName
+)
 
 enum class TypeKind {
     INTERFACE,

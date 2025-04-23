@@ -7,7 +7,6 @@ import com.google.devtools.ksp.isAbstract
 import com.google.devtools.ksp.isPublic
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.Settings
@@ -17,7 +16,6 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
-import java.io.File
 
 internal fun KSClassDeclaration.mapToClazz(
     settings: Settings,
@@ -59,29 +57,32 @@ internal fun KSClassDeclaration.mapToClazz(
         isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
         isAbstractAndInheritsGodotBaseClass()
 
-    val absoluteSourcePath = this.containingFile?.filePath?.let { File(it) }
-    val relativeSourcePath = absoluteSourcePath?.relativeTo(settings.projectBaseDir)?.invariantSeparatorsPath ?: ""
-
     return if (shouldBeRegistered) {
+        val constructors = getConstructors()
 
-        val registeredConstructors = getConstructors()
-            .filter { it.isPublic() }
-            .filter { constructor ->
-                constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
-                    constructor.parameters.isEmpty()
-            }
-            .map { it.mapToRegisteredConstructor(settings) }
+        val duplicateConstructorArgumentCount = constructors
+            .groupBy { it.parameters.size }
             .toList()
+            .firstOrNull { it.second.size > 1 }
+            ?.first
+
+        if (duplicateConstructorArgumentCount != null) {
+            throw Exception(
+                "Cannot have more than one constructor with $duplicateConstructorArgumentCount arguments in registered class $fqName"
+            )
+        }
+
+        require(constructors.any { it.isPublic() && it.parameters.isEmpty() }) {
+            "You should provide a default constructor"
+        }
 
         RegisteredClass(
             registeredName = requireNotNull(provideRegisteredClassName(settings)) {
                 "Failed to calculate RegisteredName for a registered class: ${this.qualifiedName?.asString()}. This is a bug. Please report it on Github"
             },
             fqName = fqName,
-            relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
             annotations = mappedAnnotations,
-            constructors = registeredConstructors,
             functions = registeredFunctions,
             signals = registeredSignals,
             properties = registeredProperties,
@@ -93,7 +94,6 @@ internal fun KSClassDeclaration.mapToClazz(
     } else {
         Clazz(
             fqName = fqName,
-            relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
             annotations = mappedAnnotations,
             symbolProcessorSource = this

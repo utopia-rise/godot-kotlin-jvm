@@ -133,6 +133,34 @@ fun Type.isDictionary(): Boolean = when (fqName) {
 
 fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackage)
 
+private val javaCollection = arrayOf(
+    "java.util.ArrayList",
+    "java.util.LinkedList",
+    "java.util.Vector",
+    "java.util.Stack",
+    "java.util.HashSet",
+    "java.util.LinkedHashSet",
+    "java.util.TreeSet",
+    "java.util.PriorityQueue",
+    "java.util.ArrayDeque",
+    "java.util.HashMap",
+    "java.util.LinkedHashMap",
+    "java.util.TreeMap",
+    "java.util.Hashtable",
+    "java.util.List",
+    "java.util.Set",
+    "java.util.Queue",
+    "java.util.Deque",
+    "java.util.Map",
+    "java.util.SortedSet",
+    "java.util.NavigableSet",
+    "java.util.SortedMap",
+    "java.util.NavigableMap"
+)
+
+fun Type.isJavaCollection(): Boolean = javaCollection.contains(fqName)
+fun String.isJavaCollection(): Boolean = javaCollection.contains(this)
+
 fun Type.isEnum(): Boolean = kind == TypeKind.ENUM_CLASS
 
 fun Type.isRefCounted(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" || this
