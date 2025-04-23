@@ -1,7 +1,7 @@
 #include "kt_function.h"
 
 #include "gd_kotlin.h"
-#include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm/wrapper/memory/transfer_context.h"
 
 KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),

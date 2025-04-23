@@ -1,7 +1,7 @@
 #include "kotlin_language.h"
 
 #include "names.h"
-#include "script/language/kotlin_script.h"
+#include "api/script/language/kotlin_script.h"
 
 #include <core/io/resource_loader.hpp>
 

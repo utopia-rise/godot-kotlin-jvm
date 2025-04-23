@@ -4,8 +4,8 @@
 #include <core/os/thread.hpp>
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
-#include "language/gdj_language.h"
-#include "script/jvm_script_manager.h"
+#include "api/language/gdj_language.h"
+#include "api/script/jvm_script_manager.h"
 #include <core/config/project_settings.hpp>
 #include <scene/main/node.hpp>
 #include <core/io/resource_loader.hpp>

@@ -2,9 +2,9 @@
 
 #include "bridges_utils.h"
 #include "constraints.h"
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "script/jvm_script.h"
-#include "script/jvm_script_manager.h"
+#include "jvm/wrapper/memory/transfer_context.h"
+#include "api/script/jvm_script.h"
+#include "api/script/jvm_script_manager.h"
 #include "variant_allocator.h"
 
 using namespace bridges;
