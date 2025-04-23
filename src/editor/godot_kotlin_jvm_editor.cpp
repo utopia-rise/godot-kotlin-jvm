@@ -1,5 +1,3 @@
-#ifdef TOOLS_ENABLED
-
 #include "godot_kotlin_jvm_editor.h"
 
 #include "editor/build/build_manager.h"
@@ -142,5 +140,3 @@ GodotKotlinJvmEditor::~GodotKotlinJvmEditor() {
     memdelete(project_dialog);
     memdelete(tool_bar_build_button);
 }
-
-#endif// TOOLS_ENABLED

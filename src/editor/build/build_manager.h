@@ -1,6 +1,3 @@
-
-#ifdef TOOLS_ENABLED
-
 #ifndef GODOT_JVM_BUILD_MANAGER_H
 #define GODOT_JVM_BUILD_MANAGER_H
 
@@ -29,5 +26,3 @@ public:
 };
 
 #endif// GODOT_JVM_BUILD_MANAGER_H
-
-#endif// TOOLS_ENABLED

@@ -1,6 +1,3 @@
-
-#ifdef TOOLS_ENABLED
-
 #include "build_dialog.h"
 
 #include "editor/build/build_manager.h"
@@ -38,5 +35,3 @@ void BuildDialog::_notification(int notification) {
     log_label->set_h_size_flags(Control::SizeFlags::SIZE_EXPAND_FILL);
     scroll_container->add_child(log_label);
 }
-
-#endif// TOOLS_ENABLED
