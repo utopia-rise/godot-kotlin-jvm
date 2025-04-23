@@ -3,7 +3,7 @@
 #include "editor/build/gradle_task_runner.h"
 #include "logging.h"
 
-#include <editor/themes/editor_scale.h>
+#include <editor/themes/editor_scale.hpp>
 
 TaskDialog::TaskDialog() :
   scroll_container(memnew(ScrollContainer)),

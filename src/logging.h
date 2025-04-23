@@ -3,17 +3,18 @@
 
 #include <classes/os.hpp>
 #include <variant/string.hpp>
-#include <variant/utility_functions.hpp>
+#include <variant/variant.hpp>
+
 
 inline godot::String format_prefix{"Godot-JVM: "};
 
 #define JVM_STRING_FORMAT(message, ...)  vformat(format_prefix + message,  ##__VA_ARGS__)
 
 #define JVM_LOG_INFO(message, ...) print_line(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
-#define JVM_LOG_VERBOSE(message, ...) print_verbose(JVM_STRING_FORMAT(message, ##__VA_ARGS__)) (void) 0
+#define JVM_LOG_VERBOSE(message, ...) print_verbose(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 #define JVM_LOG_WARNING(message, ...) WARN_PRINT(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 
-
+#ifdef TOOLS_ENABLED
 #define JVM_ERR_FAIL_MSG(message, ...) ERR_FAIL_EDMSG(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 #define JVM_ERR_FAIL_V_MSG(ret_var, message, ...) \
     ERR_FAIL_V_EDMSG(ret_var, JVM_STRING_FORMAT(message, ##__VA_ARGS__))
@@ -21,6 +22,15 @@ inline godot::String format_prefix{"Godot-JVM: "};
     ERR_FAIL_COND_EDMSG(condition, JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 #define JVM_ERR_FAIL_COND_V_MSG(condition, ret_var, message, ...) \
     ERR_FAIL_COND_V_EDMSG(condition, ret_var, JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#else
+#define JVM_ERR_FAIL_MSG(message, ...) ERR_FAIL_MSG(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#define JVM_ERR_FAIL_V_MSG(ret_var, message, ...) \
+    ERR_FAIL_V_MSG(ret_var, JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#define JVM_ERR_FAIL_COND_MSG(condition, message, ...) \
+    ERR_FAIL_COND_MSG(condition, JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#define JVM_ERR_FAIL_COND_V_MSG(condition, ret_var, message, ...) \
+    ERR_FAIL_COND_V_MSG(condition, ret_var, JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#endif
 
 #ifdef DEV_ENABLED
 #define JVM_DEV_LOG(message, ...) JVM_LOG_INFO(message, ##__VA_ARGS__)

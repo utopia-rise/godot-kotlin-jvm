@@ -2,13 +2,14 @@
 #define GODOT_JVM_KTCLASS_H
 
 #include "constraints.h"
-#include "core/object/ref_counted.h"
 #include "jni/wrapper.h"
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "kt_constructor.h"
 #include "kt_function.h"
 #include "kt_object.h"
 #include "kt_signal_info.h"
+
+#include <classes/ref_counted.hpp>
 
 JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     JVM_CLASS(KtClass)
@@ -42,6 +43,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
 
     friend class JvmScript;
     // clang-format on
+
 public:
     StringName registered_class_name;
     StringName fqdn;
@@ -49,11 +51,11 @@ public:
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
-    explicit KtClass(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtClass(jni::Env & p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
-    KtObject* create_instance(jni::Env& env, Object* p_owner);
+    KtObject* create_instance(jni::Env & env, Object * p_owner);
 
     KtFunction* get_method(const StringName& methodName);
 
@@ -61,17 +63,17 @@ public:
 
     KtSignalInfo* get_signal(const StringName& p_signal_name);
 
-    void get_method_list(List<MethodInfo>* p_list);
+    void get_method_list(List<MethodInfo> * p_list);
 
-    void get_property_list(List<PropertyInfo>* p_list);
+    void get_property_list(List<PropertyInfo> * p_list);
 
-    void get_signal_list(List<MethodInfo>* p_list);
+    void get_signal_list(List<MethodInfo> * p_list);
 
-    void fetch_members(jni::Env& env);
+    void fetch_members(jni::Env & env);
 
     const Dictionary get_rpc_config();
 
-    void do_notification(jni::Env& env, KtObject* p_instance, int p_notification, bool p_reversed);
+    void do_notification(jni::Env & env, KtObject * p_instance, int p_notification, bool p_reversed);
 
 private:
     HashMap<StringName, KtFunction*> methods;
@@ -80,35 +82,35 @@ private:
     KtConstructor* kt_constructor;
     bool _has_notification;
 
-    String get_registered_name(jni::Env& env);
+    String get_registered_name(jni::Env & env);
 
-    String get_fqdn(jni::Env& env);
+    String get_fqdn(jni::Env & env);
 
-    String get_compilation_time_relative_registration_file_path(jni::Env& env);
+    String get_compilation_time_relative_registration_file_path(jni::Env & env);
 
-    StringName get_base_godot_class(jni::Env& env);
+    StringName get_base_godot_class(jni::Env & env);
 
-    bool get_has_notification(jni::Env& env);
+    bool get_has_notification(jni::Env & env);
 
-    void fetch_registered_supertypes(jni::Env& env);
+    void fetch_registered_supertypes(jni::Env & env);
 
-    void fetch_methods(jni::Env& env);
+    void fetch_methods(jni::Env & env);
 
-    void fetch_properties(jni::Env& env);
+    void fetch_properties(jni::Env & env);
 
-    void fetch_signals(jni::Env& env);
+    void fetch_signals(jni::Env & env);
 
-    void fetch_constructor(jni::Env& env);
+    void fetch_constructor(jni::Env & env);
 
     template<typename F, typename T>
-    void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {
+    void get_member_list(List<F> * p_list, HashMap<StringName, T*> & members) {
         for (const KeyValue<StringName, T*>& E : members) {
             p_list->push_back(E.value->get_member_info());
         }
     }
 
     template<class T>
-    void delete_members(HashMap<StringName, T*>& members) {
+    void delete_members(HashMap<StringName, T*> & members) {
         for (const KeyValue<StringName, T*>& E : members) {
             delete E.value;
         }
@@ -116,4 +118,4 @@ private:
     }
 };
 
-#endif// GODOT_JVM_KTCLASS_H
+#endif // GODOT_JVM_KTCLASS_H

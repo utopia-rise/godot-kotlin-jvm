@@ -2,26 +2,30 @@
 #include "kotlin_editor_export_plugin.h"
 #include "editor/godot_kotlin_jvm_editor.h"
 
-#include "classes/editor_node.h"
-#include "classes/export/editor_export.h"
+#include <classes/editor_node.hpp>
+#include <classes/export/editor_export.hpp>
 #endif
+
+#include <classes/engine.hpp>
+#include <classes/resource_format_loader.hpp.hpp>
+#include <classes/engine.hpp>
 
 #include "gd_kotlin.h"
 #include "language/gdj_language.h"
 #include "language/java_language.h"
 #include "language/jvm_language.h"
 #include "language/kotlin_language.h"
+#include "language/scala_language.h"
 #include "register_types.h"
+#include "resource_format/java_archive_resource_format_loader.h"
 #include "resource_format/jvm_resource_format_loader.h"
 #include "resource_format/jvm_resource_format_saver.h"
-#include "resource_format/java_archive_resource_format_loader.h"
 #include "script/jvm_script.h"
+#include "script/jvm_script_manager.h"
 #include "script/language/gdj_script.h"
 #include "script/language/java_script.h"
 #include "script/language/kotlin_script.h"
-#include "script/jvm_script_manager.h"
 #include "script/language/scala_script.h"
-#include "language/scala_language.h"
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
@@ -74,9 +78,6 @@ void initialize__godot_jvm_module(ModuleInitializationLevel p_level) {
 }
 
 void uninitialize_godot_jvm_module(ModuleInitializationLevel p_level) {
-#ifdef TOOLS_ENABLED
-    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
-#endif
 
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
 
