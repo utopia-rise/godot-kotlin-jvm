@@ -1,6 +1,6 @@
 #include "kt_class.h"
 
-#include "gd_kotlin.h"
+#include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :

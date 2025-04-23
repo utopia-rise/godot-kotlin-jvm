@@ -1,6 +1,7 @@
 #include "kotlin_callable_custom.h"
+
+#include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
-#include "gd_kotlin.h"
 
 void LambdaCallable::invoke(jni::Env& p_env, const Variant** p_args, int args_count, Variant& r_ret) const {
     TransferContext& transfer_context{TransferContext::get_instance()};
@@ -61,7 +62,7 @@ String KotlinCallableCustom::get_as_text() const {
 }
 
 ObjectID KotlinCallableCustom::get_object() const {
-    return GDKotlin::get_instance().get_callable_middleman()->get_instance_id();
+    return GodotJvm::get_instance().get_callable_middleman()->get_instance_id();
 }
 
 CallableCustom::CompareEqualFunc KotlinCallableCustom::get_compare_equal_func() const {
