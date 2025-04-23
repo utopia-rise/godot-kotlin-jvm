@@ -1,5 +1,3 @@
-#ifdef TOOLS_ENABLED
-
 #ifndef GODOT_JVM_STRINGS_H
 #define GODOT_JVM_STRINGS_H
 
@@ -33,6 +31,4 @@ constexpr const char* about_text =
   "[url=https://github.com/utopia-rise/godot-kotlin-jvm/issues]issue tracker[/url]";
 
 #endif// GODOT_JVM_STRINGS_H
-
-#endif// TOOLS_ENABLED
 

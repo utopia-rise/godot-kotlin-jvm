@@ -1,5 +1,3 @@
-#ifdef TOOLS_ENABLED
-
 #include "godot_kotlin_jvm_editor.h"
 
 #include "editor/build/gradle_task_runner.h"
@@ -179,5 +177,3 @@ GodotKotlinJvmEditor::~GodotKotlinJvmEditor() {
     memdelete(tool_bar_gradle_task_choice);
     memdelete(separator);
 }
-
-#endif // TOOLS_ENABLED

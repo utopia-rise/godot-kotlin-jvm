@@ -1,6 +1,3 @@
-
-#ifdef TOOLS_ENABLED
-
 #include "about_dialog.h"
 
 #include "editor/godot_kotlin_jvm_editor.h"
@@ -58,5 +55,3 @@ void AboutDialog::_notification(int notification) {
         set_exclusive(false);
     }
 }
-
-#endif // TOOLS_ENABLED
