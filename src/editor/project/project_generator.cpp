@@ -1,5 +1,3 @@
-#ifdef TOOLS_ENABLED
-
 #include "project_generator.h"
 
 #include "editor/strings.h"

@@ -1,6 +1,3 @@
-
-#ifdef TOOLS_ENABLED
-
 #ifndef GODOT_JVM_ABOUT_DIALOG_H
 #define GODOT_JVM_ABOUT_DIALOG_H
 
@@ -20,5 +17,3 @@ public:
 };
 
 #endif// GODOT_JVM_ABOUT_DIALOG_H
-
-#endif// TOOLS_ENABLED
