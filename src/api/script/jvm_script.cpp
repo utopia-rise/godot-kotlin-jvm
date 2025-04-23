@@ -1,15 +1,16 @@
 #include "jvm_script.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include <core/os/thread.h>
+#include <core/os/thread.hpp>
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
 #include "script/jvm_script_manager.h"
-#include <core/config/project_settings.h>
-#include <scene/main/node.h>
-#include <core/io/resource_loader.h>
+#include <core/config/project_settings.hpp>
+#include <scene/main/node.hpp>
+#include <core/io/resource_loader.hpp>
 
+using namespace godot;
 
 Variant JvmScript::_new() {
     Object* obj = _object_create();

@@ -5,10 +5,10 @@
 #include "project/project_generator.h"
 #include "strings.h"
 
-#include <core/config/project_settings.h>
-#include <editor/editor_interface.h>
-#include <editor/filesystem_dock.h>
-#include <gd_kotlin.h>
+#include <core/config/project_settings.hpp>
+#include <editor/editor_interface.hpp>
+#include <editor/filesystem_dock.hpp>
+#include "gd_kotlin.h"
 
 void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
     switch (option_id) {

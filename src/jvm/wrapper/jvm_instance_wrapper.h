@@ -30,7 +30,7 @@
                                                                                      \
 public:                                                                              \
     static void initialize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) { \
-        Vector<jni::JNativeMethod> methods;                                          \
+        godot::Vector<jni::JNativeMethod> methods;                                          \
         jni::JClass clazz;                                                           \
         if (class_loader) {                                                          \
             clazz = class_loader->load_class(p_env, fq_name);                        \

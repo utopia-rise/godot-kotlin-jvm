@@ -3,7 +3,7 @@
 #include "names.h"
 #include "script/language/scala_script.h"
 
-#include <core/io/resource_loader.h>
+#include <core/io/resource_loader.hpp>
 
 constexpr const char* SCALA_TEMPLATE = PACKAGE_TEMPLATE
                                       "\n"

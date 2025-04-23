@@ -10,8 +10,8 @@
 #include "variant_allocator.h"
 
 #include <core/io/marshalls.h>
-#include <core/os/os.h>
-#include <core/variant/variant.h>
+#include <classes/os.hpp>
+#include <variant/variant.h>
 
 constexpr const int BOOL_SIZE = 4;
 constexpr const int PTR_SIZE = 8;

@@ -8,7 +8,7 @@
 #include "lifecycle/paths.h"
 #include "script/jvm_script_manager.h"
 
-#include <core/config/project_settings.h>
+#include <core/config/project_settings.hpp>
 
 static constexpr const char* graal_feature {"export-graal-native-image"};
 static constexpr const char* all_jvm_feature {"export-all-jvm"};

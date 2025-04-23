@@ -1,43 +1,43 @@
 #ifndef GODOT_JVM_VARIANT_ALLOCATOR_H
 #define GODOT_JVM_VARIANT_ALLOCATOR_H
 
-#include <core/templates/paged_allocator.h>
-#include <core/variant/variant.h>
+#include "paged_allocator.h"
+#include <variant/variant.hpp>
 
 class VariantAllocator {
     union BucketSmall {
         BucketSmall() {}
         ~BucketSmall() {}
 
-        StringName string_name;
-        NodePath node_path;
-        Array array;
-        Dictionary dictionary;
+        godot::StringName string_name;
+        godot::NodePath node_path;
+        godot::Array array;
+        godot::Dictionary dictionary;
     };
 
     union BucketLarge {
         BucketLarge() {}
         ~BucketLarge() {}
 
-        Callable callable;
-        PackedByteArray byte_array;
-        PackedColorArray color_array;
-        PackedInt32Array int32_array;
-        PackedInt64Array int64_array;
-        PackedFloat32Array float_array;
-        PackedFloat64Array double_array;
-        PackedVector2Array vector2_array;
-        PackedVector3Array vector3_array;
-        PackedVector4Array vector4_array;
-        PackedStringArray string_array;
+        godot::Callable callable;
+        godot::PackedByteArray byte_array;
+        godot::PackedColorArray color_array;
+        godot::PackedInt32Array int32_array;
+        godot::PackedInt64Array int64_array;
+        godot::PackedFloat32Array float_array;
+        godot::PackedFloat64Array double_array;
+        godot::PackedVector2Array vector2_array;
+        godot::PackedVector3Array vector3_array;
+        godot::PackedVector4Array vector4_array;
+        godot::PackedStringArray string_array;
     };
 
     static_assert(sizeof(BucketSmall) <= 8, "BucketSmall should have at most a size of 8 bytes");
     static_assert(sizeof(BucketLarge) <= 16, "BucketLarge should have at most a size of 16 bytes");
     static_assert(sizeof(BucketSmall) < sizeof(BucketLarge), "BucketLarge should be larger than BucketSmall");
 
-    inline static PagedAllocator<BucketSmall, true> bucket_small;
-    inline static PagedAllocator<BucketLarge, true> bucket_large;
+    inline static godot::PagedAllocator<BucketSmall, true> bucket_small;
+    inline static godot::PagedAllocator<BucketLarge, true> bucket_large;
 
 public:
     template<typename T>

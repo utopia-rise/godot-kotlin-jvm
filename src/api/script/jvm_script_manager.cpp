@@ -3,7 +3,7 @@
 
 #include "lifecycle/paths.h"
 
-#include <core/io/resource_loader.h>
+#include <core/io/resource_loader.hpp>
 
 void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)

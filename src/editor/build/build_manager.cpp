@@ -7,8 +7,8 @@
 #include "editor/strings.h"
 #include "logging.h"
 
-#include <core/config/project_settings.h>
-#include <editor/editor_node.h>
+#include <core/config/project_settings.hpp>
+#include <editor/editor_node.hpp>
 
 Mutex build_mutex {};
 

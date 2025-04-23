@@ -3,7 +3,7 @@
 #include "names.h"
 #include "script/language/java_script.h"
 
-#include <core/io/resource_loader.h>
+#include <core/io/resource_loader.hpp>
 
 constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "\n"

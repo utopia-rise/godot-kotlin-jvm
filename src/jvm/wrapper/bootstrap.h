@@ -35,7 +35,7 @@ public:
 
     void init_jar(jni::Env& p_env, const jni::JObject& p_class_loader);
     void init_native_image(jni::Env& p_env);
-    String get_version(jni::Env& p_env);
+    godot::String get_version(jni::Env& p_env);
     void finish(jni::Env& p_env);
 };
 

@@ -3,10 +3,10 @@
 #include "editor/godot_kotlin_jvm_editor.h"
 #include "editor/strings.h"
 
-#include <editor/editor_interface.h>
-#include <editor/themes/editor_scale.h>
-#include <scene/gui/rich_text_label.h>
-#include <scene/gui/texture_rect.h>
+#include <editor/editor_interface.hpp>
+#include <editor/themes/editor_scale.hpp>
+#include <scene/gui/rich_text_label.hpp>
+#include <scene/gui/texture_rect.hpp>
 
 AboutDialog::AboutDialog() {
     set_title("About Godot Kotlin JVM");

@@ -3,7 +3,7 @@
 #include "editor/build/build_manager.h"
 #include "logging.h"
 
-#include <editor/themes/editor_scale.h>
+#include <editor/themes/editor_scale.hpp>
 
 BuildDialog::BuildDialog() : scroll_container(memnew(ScrollContainer)), log_label(memnew(Label)) {
     set_title("Godot Kotlin/JVM Gradle build");
