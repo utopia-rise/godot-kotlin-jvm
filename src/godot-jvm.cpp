@@ -1,11 +1,10 @@
-#include "gd_kotlin.h"
-
+#include "api/script/jvm_script_manager.h"
+#include "godot_jvm.h"
 #include "jni/env.h"
 #include "jvm/wrapper/memory/long_string_queue.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "jvm/wrapper/memory/type_manager.h"
 #include "lifecycle/paths.h"
-#include "api/script/jvm_script_manager.h"
 #include "version.h"
 
 #include <core/config/project_settings.hpp>
@@ -17,17 +16,17 @@
     display_initialization_error_hint(cause, hint); \
     JVM_ERR_FAIL_V_MSG(false, cause)
 
-GDKotlin& GDKotlin::get_instance() {
-    static GDKotlin instance;
+GodotJvm& GodotJvm::get_instance() {
+    static GodotJvm instance;
     return instance;
 }
 
-const JvmUserConfiguration& GDKotlin::get_configuration() {
+const JvmUserConfiguration& GodotJvm::get_configuration() {
     return user_configuration;
 }
 
 #ifdef DYNAMIC_JVM
-bool GDKotlin::load_dynamic_lib() {
+bool GodotJvm::load_dynamic_lib() {
     String path_to_jvm_lib;
     switch (user_configuration.vm_type) {
         case jni::JvmType::JVM:
@@ -103,16 +102,16 @@ bool GDKotlin::load_dynamic_lib() {
 }
 
 #ifdef TOOLS_ENABLED
-String GDKotlin::get_path_to_embedded_jvm() {
+String GodotJvm::get_path_to_embedded_jvm() {
     String godot_path {String(HOST_EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
     return ProjectSettings::get_singleton()->globalize_path(godot_path);
 }
 
-String GDKotlin::get_path_to_native_image() {
+String GodotJvm::get_path_to_native_image() {
     return ProjectSettings::get_singleton()->globalize_path(GRAAL_NATIVE_IMAGE_FILE);
 }
 
-String GDKotlin::get_path_to_environment_jvm() {
+String GodotJvm::get_path_to_environment_jvm() {
     String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
     if (javaHome.is_empty()) { return {}; }
 
@@ -163,7 +162,7 @@ String GDKotlin::get_path_to_java_executable() {
 
 #else
 
-String GDKotlin::get_path_to_embedded_jvm() {
+String GodotJvm::get_path_to_embedded_jvm() {
     return OS::get_singleton()
       ->get_executable_path()
       .get_base_dir()
@@ -176,19 +175,19 @@ String GDKotlin::get_path_to_embedded_jvm() {
       .path_join(RELATIVE_JVM_LIB_PATH);
 }
 
-String GDKotlin::get_path_to_native_image() {
+String GodotJvm::get_path_to_native_image() {
     return ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_FILE));
 }
 #endif
 
-void GDKotlin::unload_dynamic_lib() {
+void GodotJvm::unload_dynamic_lib() {
     if (OS::get_singleton()->close_dynamic_library(jvm_dynamic_library_handle) != OK) {
         JVM_ERR_FAIL_MSG("Failed to close the jvm dynamic library!");
     }
 }
 #endif
 
-void GDKotlin::fetch_user_configuration() {
+void GodotJvm::fetch_user_configuration() {
     bool invalid_file_content = false;
     bool configuration_file_exist = FileAccess::exists(JVM_CONFIGURATION_PATH);
 
@@ -227,7 +226,7 @@ void GDKotlin::fetch_user_configuration() {
     JvmUserConfiguration::sanitize_and_log_configuration(user_configuration);
 }
 
-void GDKotlin::set_jvm_options() {
+void GodotJvm::set_jvm_options() {
 #ifdef DEV_ENABLED
     jvm_options.add_jni_checks();
 #endif
@@ -263,7 +262,7 @@ void GDKotlin::set_jvm_options() {
 #include <unistd.h>
 #endif
 
-String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
+String GodotJvm::copy_new_file_to_user_dir(const String& file_name) {
     String file_res_path {String(RES_DIRECTORY) + file_name};
     String file_user_path {String(USER_DIRECTORY) + file_name};
 
@@ -289,7 +288,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
 #endif
 
-bool GDKotlin::load_bootstrap() {
+bool GodotJvm::load_bootstrap() {
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type != jni::JvmType::GRAAL_NATIVE_IMAGE) { // Bootstrap already part of the image
 #ifdef TOOLS_ENABLED
@@ -344,7 +343,7 @@ bool GDKotlin::load_bootstrap() {
     return true;
 }
 
-bool GDKotlin::initialize_core_library() {
+bool GodotJvm::initialize_core_library() {
     callable_middleman = memnew(Object);
     jni::Env env {jni::Jvm::current_env()};
 
@@ -364,7 +363,7 @@ bool GDKotlin::initialize_core_library() {
     return true;
 }
 
-bool GDKotlin::load_user_code() {
+bool GodotJvm::load_user_code() {
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
         bootstrap->init_native_image(env);
@@ -406,7 +405,7 @@ bool GDKotlin::load_user_code() {
     }
 }
 
-void GDKotlin::unload_user_code() {
+void GodotJvm::unload_user_code() {
     jni::Env env {jni::Jvm::current_env()};
 
     // reset context classloader to bootstrap
@@ -416,7 +415,7 @@ void GDKotlin::unload_user_code() {
     jar.unref();
 }
 
-void GDKotlin::finalize_core_library() {
+void GodotJvm::finalize_core_library() {
     jni::Env env {jni::Jvm::current_env()};
 
     MemoryManager::get_instance().clean_up(env);
@@ -428,13 +427,13 @@ void GDKotlin::finalize_core_library() {
     callable_middleman = nullptr;
 }
 
-bool GDKotlin::initialize_engine_types() const {
+bool GodotJvm::initialize_engine_types() const {
     jni::Env env = jni::Jvm::current_env();
     bootstrap->initialize_engine_types(env);
     return true;
 }
 
-void GDKotlin::unload_boostrap() {
+void GodotJvm::unload_boostrap() {
     jni::Env env {jni::Jvm::current_env()};
     Bootstrap::finalize(env, bootstrap_class_loader);
     delete bootstrap;
@@ -450,7 +449,7 @@ void GDKotlin::unload_boostrap() {
         if (new_state == target_state) { return; }       \
     }
 
-void GDKotlin::initialize_up_to(State target_state) {
+void GodotJvm::initialize_up_to(State target_state) {
     if (state == State::NOT_STARTED) {
         fetch_user_configuration();
         set_jvm_options();
@@ -475,7 +474,7 @@ void GDKotlin::initialize_up_to(State target_state) {
         if (new_state == target_state) { return; }             \
     }
 
-void GDKotlin::finalize_down_to(State target_state) {
+void GodotJvm::finalize_down_to(State target_state) {
     UNSET_LOADING_STATE(unload_user_code(), ENGINE_TYPES_INITIALIZED, target_state)
     UNSET_LOADING_STATE(TypeManager::get_instance().clear(), CORE_LIBRARY_INITIALIZED, target_state)
     UNSET_LOADING_STATE(finalize_core_library(), BOOTSTRAP_LOADED, target_state)
@@ -489,7 +488,7 @@ void GDKotlin::finalize_down_to(State target_state) {
 }
 
 #ifdef TOOLS_ENABLED
-void GDKotlin::reload_user_code() {
+void GodotJvm::reload_user_code() {
     if (user_configuration.vm_type == jni::JvmType::JVM) {
         finalize_down_to(ENGINE_TYPES_INITIALIZED);
         initialize_up_to(JVM_SCRIPTS_INITIALIZED);
@@ -497,11 +496,19 @@ void GDKotlin::reload_user_code() {
 }
 #endif
 
-Object* GDKotlin::get_callable_middleman() const {
+Object* GodotJvm::get_callable_middleman() const {
     return callable_middleman;
 }
 
-void GDKotlin::validate_state() {
+void GodotJvm::display_initialization_error_hint(String cause, String hint) {
+    String warning {"Godot Kotlin/JVM module couldn't be fully initialized.\n"
+                    "Java and Kotlin scripts will still appear in the editor but won't be functional.\n"
+                    "The cause was:\n"};
+    String pre_hint {"\nOne possible solution is:\n"};
+    OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
+}
+
+void GodotJvm::validate_state() {
     // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
     if (state >= State::JVM_STARTED) { return; }
 
