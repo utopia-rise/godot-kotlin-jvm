@@ -3,8 +3,8 @@
 
 #include "script/jvm_script.h"
 
-class KotlinScript : public PathScript {
-    GDCLASS(KotlinScript, PathScript);
+class KotlinScript : public SourceScript {
+    GDCLASS(KotlinScript, SourceScript);
 
 public:
     KotlinScript() = default;

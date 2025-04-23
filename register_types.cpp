@@ -20,6 +20,8 @@
 #include "script/language/java_script.h"
 #include "script/language/kotlin_script.h"
 #include "script/jvm_script_manager.h"
+#include "script/language/scala_script.h"
+#include "language/scala_language.h"
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
@@ -47,10 +49,12 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
         GDREGISTER_CLASS(GdjScript);
         GDREGISTER_CLASS(KotlinScript);
         GDREGISTER_CLASS(JavaScript);
+        GDREGISTER_CLASS(ScalaScript);
 
         ScriptServer::register_language(GdjLanguage::get_instance());
         ScriptServer::register_language(KotlinLanguage::get_instance());
         ScriptServer::register_language(JavaLanguage::get_instance());
+        ScriptServer::register_language(ScalaLanguage::get_instance());
 
         resource_format_loader.instantiate();
         ResourceLoader::add_resource_format_loader(resource_format_loader);
@@ -90,6 +94,10 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     KotlinLanguage* kotlin_language {KotlinLanguage::get_instance()};
     ScriptServer::unregister_language(kotlin_language);
     memdelete(kotlin_language);
+
+    ScalaLanguage* scala_language {ScalaLanguage::get_instance()};
+    ScriptServer::unregister_language(scala_language);
+    memdelete(scala_language);
 
     JvmLanguage* jvm_language {GdjLanguage::get_instance()};
     ScriptServer::unregister_language(jvm_language);

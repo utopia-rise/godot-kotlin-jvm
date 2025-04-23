@@ -1,28 +1,29 @@
 #include "jvm_script.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include "core/os/thread.h"
+#include <core/os/thread.h>
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
 #include "script/jvm_script_manager.h"
-
+#include <core/config/project_settings.h>
 #include <scene/main/node.h>
+#include <core/io/resource_loader.h>
 
-Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
-    Object* obj = _object_create(p_args, p_arg_count);
+
+Variant JvmScript::_new() {
+    Object* obj = _object_create();
     if (obj) {
-        r_error.error = Callable::CallError::CALL_OK;
         return Variant(obj);
     }
-    r_error.error = Callable::CallError::CALL_ERROR_INVALID_ARGUMENT;
-    return Variant();
+
+    JVM_ERR_FAIL_V_MSG({}, vformat("Cannot instantiate JVM script %s", kotlin_class->registered_class_name));
 }
 
-Object* JvmScript::_object_create(const Variant** p_args, int p_arg_count) {
+Object* JvmScript::_object_create() {
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
-    ScriptInstance* instance {_instance_create<true>(p_args, p_arg_count, owner)};
+    ScriptInstance* instance {_instance_create<true>(owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         memdelete(owner);// no owner, sorry
@@ -69,11 +70,11 @@ StringName JvmScript::get_instance_base_type() const {
 }
 
 ScriptInstance* JvmScript::instance_create(Object* p_this) {
-    return _instance_create<false>(nullptr, 0, p_this);
+    return _instance_create<false>(p_this);
 }
 
 template<bool isCreator>
-ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_count, Object* p_this) {
+ScriptInstance* JvmScript::_instance_create(Object* p_this) {
     if (isCreator) {
         KotlinBindingManager::set_instance_binding(p_this);
     } else {
@@ -86,7 +87,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
 #endif
 
     jni::Env env = jni::Jvm::current_env();
-    KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_arg_count, p_this);
+    KtObject* wrapped = kotlin_class->create_instance(env, p_this);
 
 #ifdef DEBUG_ENABLED
     if (unlikely(!wrapped)) { return nullptr; }// Error already throw by create_instance()
@@ -253,7 +254,7 @@ void JvmScript::update_script_exports() {
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 
-    Object* tmp_object = _object_create({}, 0);
+    Object* tmp_object = _object_create();
     JvmInstance* kotlin_script_instance {reinterpret_cast<JvmInstance*>(tmp_object->get_script_instance())};
 
     List<PropertyInfo> exported_properties;
@@ -298,8 +299,182 @@ JvmScript::~JvmScript() {
     kotlin_class = nullptr;
 }
 
-StringName PathScript::get_global_name() const {
+StringName SourceScript::parse_source_to_fqdn(const String& p_path, String& r_source, Error* r_error) {
+    String source;
+    *r_error = JvmResourceFormatLoader::read_all_file_utf8(p_path, source);
+    r_source = source;
+
+#ifdef TOOLS_ENABLED
+    static String package_keyword { PACKAGE_KEYWORD };
+    static int package_keyword_size { package_keyword.size() };
+
+    int initial_start_index = 0;
+    while (skip_comments(source, p_path, initial_start_index) || skip_spaces_and_newlines(source, initial_start_index)) {}
+
+    int package_keyword_index { source.find(package_keyword, initial_start_index) };
+
+    String package_name;
+    if (package_keyword_index != -1) {
+        int package_start_index = package_keyword_index + package_keyword_size - 1;
+
+        while (skip_comments(source, p_path, package_start_index) || skip_spaces_and_newlines(source, package_start_index)) {}
+
+        char32_t next_character = source[package_start_index];
+        int package_end_index = package_start_index;
+        while (package_end_index < source.size() && !is_package_end(next_character)) {
+            next_character = source[++package_end_index];
+        }
+
+        package_name = source.substr(package_start_index, package_end_index - package_start_index);
+    }
+
+    static String register_class_annotation { REGISTER_CLASS_ANNOTATION };
+    static int register_class_annotation_size { register_class_annotation.size() };
+    int register_class_search_start = package_keyword_index == -1 ? 0 : package_keyword_index;
+
+    while (skip_comments(source, p_path, register_class_search_start) || skip_spaces_and_newlines(source, register_class_search_start)) {}
+
+    int register_class_index { source.find(register_class_annotation, register_class_search_start) };
+
+    if (register_class_index == -1) {
+        return StringName();
+    }
+
+    int class_search_start_index = register_class_index + register_class_annotation_size - 1;
+
+    while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
+
+    char32_t next_character = source[class_search_start_index];
+    if (next_character == U'(') {
+        next_character = source[++class_search_start_index];
+
+        while (class_search_start_index < source.size() && next_character != U')') {
+            next_character = source[++class_search_start_index];
+        }
+
+        while (class_search_start_index < source.size() && next_character == U')') {
+            ++class_search_start_index;
+            while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
+            next_character = source[class_search_start_index];
+        }
+    }
+
+    while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
+
+    static String class_keyword { CLASS_KEYWORD };
+    static int class_keyword_size { class_keyword.size() };
+    int class_keyword_index { source.find(class_keyword, class_search_start_index) };
+
+    if (class_keyword_index == -1) {
+        JVM_LOG_WARNING(vformat("Cannot find class declaration in %s", p_path));
+        return StringName();
+    }
+
+    int class_start_index = class_keyword_index + class_keyword_size - 1;
+
+    while (skip_comments(source, p_path, class_start_index) || skip_spaces_and_newlines(source, class_start_index)) {}
+
+    next_character = source[class_start_index];
+    int class_end_index = class_start_index;
+    while (class_end_index < source.size() && !is_class_name_end(next_character)) {
+        next_character = source[++class_end_index];
+    }
+
+    String class_name { source.substr(class_start_index, class_end_index - class_start_index) };
+
+    if (package_name.is_empty()) {
+        return class_name;
+    }
+
+    return vformat("%s.%s", package_name, class_name);
+#else
+    return source;
+#endif
+}
+
+StringName SourceScript::get_functional_name() const {
+    return _functional_name;
+}
+
+
+StringName SourceScript::get_global_name() const {
     return {};
+}
+//
+bool SourceScript::is_whitespace_or_linebreak(char32_t character) {
+    return is_whitespace(character) || is_linebreak(character);
+}
+
+bool SourceScript::is_package_end(char32_t character) {
+    return is_whitespace_or_linebreak(character) || character == U';' || character == U'/';
+}
+
+bool SourceScript::is_class_name_end(char32_t character) {
+    return is_whitespace_or_linebreak(character) ||
+        character == U':' ||
+        character == U'{' ||
+        character == U'<' ||
+        character == U'[' ||
+        character == U'(' ||
+        character == U'/';
+}
+
+bool SourceScript::skip_spaces_and_newlines(const String& source, int& start_index) {
+    int initial_index = start_index;
+    char32_t next_character = source[start_index];
+
+    while (start_index < source.size() && is_whitespace_or_linebreak(next_character)) {
+        next_character = source[++start_index];
+    }
+
+    return start_index != initial_index;
+}
+
+bool SourceScript::skip_comments(const String& source, const String& p_path, int& start_index) {
+    char32_t next_character = source[start_index];
+
+    if (next_character != U'/') {
+        return false;
+    }
+
+    bool isLineComment = false;
+    bool isMultilineComment = false;
+    if (start_index < source.size() - 1) {
+        next_character = source[++start_index];
+
+        isLineComment = next_character == U'/';
+        isMultilineComment = next_character == U'*';
+    }
+
+    if (!isLineComment && !isMultilineComment) {
+        JVM_LOG_WARNING(vformat("Cannot parse %s, found unexpected '/' character", p_path));
+    }
+
+    if (isLineComment) {
+        while (start_index < source.size() && !is_linebreak(next_character)) {
+            next_character = source[++start_index];
+        }
+    }
+
+    if (isMultilineComment) {
+        while (start_index < source.size()) {
+            bool isCommentEnd = next_character == U'*';
+            next_character = source[++start_index];
+
+            if (start_index == source.size()) {
+                JVM_LOG_WARNING(vformat("Cannot parse %s, found unclosed multiline comment", p_path));
+            }
+
+            isCommentEnd = isCommentEnd && next_character == U'/';
+
+            if (isCommentEnd) {
+                ++start_index;
+                break;
+            }
+        }
+    }
+
+    return true;
 }
 
 NamedScript::~NamedScript() {
@@ -316,5 +491,5 @@ StringName NamedScript::get_global_name() const {
 }
 
 void JvmScript::_bind_methods() {
-    ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &JvmScript::_new, MethodInfo("new"));
+    ClassDB::bind_method(D_METHOD("new"), &JvmScript::_new);
 }

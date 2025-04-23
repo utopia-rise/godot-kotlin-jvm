@@ -40,7 +40,6 @@ internal fun KSTypeReference.mapToType(
     return Type(
         fqName = fqName,
         kind = typeKind,
-        isNullable = resolvedType.isMarkedNullable,
         supertypes = superTypes,
         arguments = { resolvedType.arguments.mapNotNull { it.type?.mapToType(settings) } },
         registeredName = { resolvedType.provideRegisteredClassName(settings) },

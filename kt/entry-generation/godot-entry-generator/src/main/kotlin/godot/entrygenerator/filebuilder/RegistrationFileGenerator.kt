@@ -1,7 +1,7 @@
 package godot.entrygenerator.filebuilder
 
-import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import godot.common.extensions.convertToSnakeCase
+import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import java.io.BufferedWriter
 
 class RegistrationFileGenerator(
@@ -17,7 +17,6 @@ class RegistrationFileGenerator(
                     |
                     |registeredName = ${metadata.registeredName}
                     |fqName = ${metadata.fqName}
-                    |relativeSourcePath = ${metadata.relativeSourcePath}
                     |baseType = ${metadata.baseType}
                     |supertypes = [
                     |    ${metadata.superTypes.split(",").joinToString(",\n\t") { it.trim() }}

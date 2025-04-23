@@ -5,7 +5,6 @@ import godot.tools.common.constants.godotAnnotationPackage
 
 const val REGISTER_CLASS_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerClass}"
 const val TOOL_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.tool}"
-const val REGISTER_CONSTRUCTOR_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerConstructor}"
 const val REGISTER_FUNCTION_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerFunction}"
 const val REGISTER_PROPERTY_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.registerProperty}"
 const val EXPORT_ANNOTATION = "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.export}"

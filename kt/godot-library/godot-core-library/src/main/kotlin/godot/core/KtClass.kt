@@ -5,10 +5,10 @@ import godot.internal.memory.TransferContext
 @Suppress("unused")
 data class KtClass<T : KtObject>(
     val registeredName: String,
-    val relativeSourcePath: String,
+    val fqdn: String,
     val compilationTimeRelativeRegistrationFilePath: String,
     private val _registeredSupertypes: List<String>,
-    private val _constructors: List<KtConstructor<T>?>,
+    val constructor: KtConstructor<T>,
     private val _properties: Map<String, KtProperty<T, *>>,
     private val _functions: Map<String, KtFunction<T, *>>,
     private val _notificationFunctions: List<Any.(Int) -> Unit>,
@@ -17,8 +17,6 @@ data class KtClass<T : KtObject>(
 ) {
     val registeredSupertypes: Array<String>
         get() = _registeredSupertypes.toTypedArray()
-    val constructors: Array<KtConstructor<T>?>
-        get() = _constructors.toTypedArray()
     val functions: Array<KtFunction<T, *>>
         get() = _functions.values.toTypedArray()
     val properties: Array<KtProperty<T, *>>
