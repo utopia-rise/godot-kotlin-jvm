@@ -1,6 +1,6 @@
 #include "kotlin_binding.h"
 
-#include "jvm_wrapper/memory/type_manager.h"
+#include "jvm/wrapper/memory/type_manager.h"
 
 #include <core/object/class_db.h>
 

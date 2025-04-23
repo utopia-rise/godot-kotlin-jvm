@@ -1,12 +1,12 @@
 #include "jvm_resource_format_loader.h"
 
 #include "hash.h"
-#include "language/names.h"
-#include "script/jvm_script.h"
-#include "script/jvm_script_manager.h"
-#include "script/source_script_parser.h"
+#include "api/language/names.h"
+#include "api/script/jvm_script.h"
+#include "api/script/jvm_script_manager.h"
+#include "api/script/source_script_parser.h"
 
-#include <core/io/file_access.h>
+#include <core/io/file_access.hpp>
 
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);

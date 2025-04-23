@@ -1,10 +1,10 @@
 #include "kt_object.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include "jvm_wrapper/bridge/bridges_utils.h"
-#include "script/jvm_script_manager.h"
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "script//jvm_instance.h"
+#include "jvm/wrapper/bridge/bridges_utils.h"
+#include "api/script/jvm_script_manager.h"
+#include "jvm/wrapper/memory/transfer_context.h"
+#include "api/script//jvm_instance.h"
 
 #include <core/object/class_db.h>
 

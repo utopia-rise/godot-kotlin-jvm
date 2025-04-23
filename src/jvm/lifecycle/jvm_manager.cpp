@@ -1,25 +1,25 @@
 #include "jvm_manager.h"
 
-#include "jvm_wrapper/bootstrap.h"
-#include "jvm_wrapper/bridge/callable_bridge.h"
-#include "jvm_wrapper/bridge/dictionary_bridge.h"
-#include "jvm_wrapper/bridge/godot_print_bridge.h"
-#include "jvm_wrapper/bridge/node_path_bridge.h"
-#include "jvm_wrapper/bridge/packed_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_color_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_float_32_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_float_64_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_int_32_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_int_64_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_string_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_vector2_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_vector3_array_bridge.h"
-#include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
-#include "jvm_wrapper/bridge/string_name_bridge.h"
-#include "jvm_wrapper/bridge/variant_array_bridge.h"
-#include "jvm_wrapper/kotlin_callable_custom.h"
-#include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm/wrapper/bootstrap.h"
+#include "jvm/wrapper/bridge/callable_bridge.h"
+#include "jvm/wrapper/bridge/dictionary_bridge.h"
+#include "jvm/wrapper/bridge/godot_print_bridge.h"
+#include "jvm/wrapper/bridge/node_path_bridge.h"
+#include "jvm/wrapper/bridge/packed_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_byte_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_color_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_float_32_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_float_64_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_int_32_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_int_64_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_string_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_vector2_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_vector3_array_bridge.h"
+#include "jvm/wrapper/bridge/packed_vector4_array_bridge.h"
+#include "jvm/wrapper/bridge/string_name_bridge.h"
+#include "jvm/wrapper/bridge/variant_array_bridge.h"
+#include "jvm/wrapper/kotlin_callable_custom.h"
+#include "jvm/wrapper/memory/memory_manager.h"
 
 #include <jni.h>
 
@@ -43,7 +43,6 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #else
     // Sanity check in case we mess up preprocessors
     JVM_DEV_ASSERT(false, "Current configuration doesn't provide a way to create a JVM!");
-    return nullptr;
 #endif
 }
 
@@ -105,13 +104,14 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && KtFunctionInfo::initialize(p_env, class_loader)
             && KtFunction::initialize(p_env, class_loader)
             && KtClass::initialize(p_env, class_loader)
-            && LambdaContainer::initialize(p_env, class_loader)
+            && LambdaCallable::initialize(p_env, class_loader)
             && TransferContext::initialize(p_env, class_loader)
             && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader)
             && MemoryManager::initialize(p_env, class_loader)
             && bridges::GodotPrintBridge::initialize(p_env, class_loader)
             && bridges::CallableBridge::initialize(p_env, class_loader)
+            && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
             && bridges::DictionaryBridge::initialize(p_env, class_loader)
             && bridges::StringNameBridge::initialize(p_env, class_loader)
             && bridges::NodePathBridge::initialize(p_env, class_loader)
@@ -141,6 +141,7 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     MemoryManager::finalize(p_env, class_loader);
     bridges::GodotPrintBridge::finalize(p_env, class_loader);
     bridges::CallableBridge::finalize(p_env, class_loader);
+    bridges::LambdaCallableBridge::finalize(p_env, class_loader);
     bridges::DictionaryBridge::finalize(p_env, class_loader);
     bridges::StringNameBridge::finalize(p_env, class_loader);
     bridges::NodePathBridge::finalize(p_env, class_loader);
@@ -155,7 +156,6 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     bridges::PackedVector2ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector3ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector4ArrayBridge::finalize(p_env, class_loader);
-    LambdaContainer::finalize(p_env, class_loader);
     KtObject::finalize(p_env, class_loader);
     KtPropertyInfo::finalize(p_env, class_loader);
     KtProperty::finalize(p_env, class_loader);
@@ -169,8 +169,9 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
-    JVM_LOG_VERBOSE("Shutting down JVM ...");
+    //TODO: Remove the return jvm when https://github.com/godotengine/godot/issues/95809 is resolved
     return;
+    JVM_LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif
 }

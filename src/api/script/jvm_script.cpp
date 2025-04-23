@@ -4,14 +4,13 @@
 #include <core/os/thread.hpp>
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
-#include "language/gdj_language.h"
-#include "language/java_language.h"
-#include "language/kotlin_language.h"
-#include "language/names.h"
-#include "language/scala_language.h"
-#include "script/jvm_script_manager.h"
-#include "source_script_parser.h"
-
+#include "api/language/gdj_language.h"
+#include "api/script/jvm_script_manager.h"
+#include "api/language/java_language.h"
+#include "api/language/kotlin_language.h"
+#include "api/language/names.h"
+#include "api/language/scala_language.h"
+#include "api/script/source_script_parser.h"
 #include <core/config/project_settings.hpp>
 #include <core/io/file_access.hpp>
 #include <core/io/resource_loader.hpp>

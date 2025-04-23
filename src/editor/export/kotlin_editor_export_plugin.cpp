@@ -3,11 +3,11 @@
 #include "kotlin_editor_export_plugin.h"
 
 #include "gd_kotlin.h"
-#include "language/names.h"
+#include "api/language/names.h"
 #include "lifecycle/jvm_user_configuration.h"
 #include "lifecycle/paths.h"
-#include "script/jvm_script_manager.h"
-#include "script/source_script_parser.h"
+#include "api/script/jvm_script_manager.h"
+#include "api/script/source_script_parser.h"
 
 #include <core/config/project_settings.hpp>
 #include <core/io/file_access.hpp>
