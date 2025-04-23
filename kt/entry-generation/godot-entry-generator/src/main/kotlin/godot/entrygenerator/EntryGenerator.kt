@@ -126,7 +126,7 @@ object EntryGenerator {
         initialRegistrationFilesOutDir: File,
         existingRegistrationFilesMap: Map<String, File>
     ) {
-        val kspRegistrationFiles = generatedRegistrationFilesBaseDir
+        val registrationFiles = generatedRegistrationFilesBaseDir
             .walkTopDown()
             .filter { file ->
                 file.extension == FileExtensions.GodotKotlinJvm.registrationFile
@@ -135,15 +135,15 @@ object EntryGenerator {
                 file.name
             }
 
-        // compare ksp and existing registration files
+        // compare new and existing registration files
         val deletedRegistrationFiles = existingRegistrationFilesMap
-            .filterKeys { registrationFileName -> !kspRegistrationFiles.containsKey(registrationFileName) }
+            .filterKeys { registrationFileName -> !registrationFiles.containsKey(registrationFileName) }
             .values
 
         val updatedRegistrationFiles = existingRegistrationFilesMap
-            .filterKeys { registrationFileName -> kspRegistrationFiles.containsKey(registrationFileName) }
+            .filterKeys { registrationFileName -> registrationFiles.containsKey(registrationFileName) }
 
-        val newRegistrationFiles = kspRegistrationFiles
+        val newRegistrationFiles = registrationFiles
             .filterKeys { registrationFileName -> !existingRegistrationFilesMap.containsKey(registrationFileName) }
 
 
@@ -169,7 +169,7 @@ object EntryGenerator {
 
         // replace existing registration files
         updatedRegistrationFiles.forEach { (registrationFileName, registrationFile) ->
-            kspRegistrationFiles[registrationFileName]?.copyTo(registrationFile, overwrite = true)
+            registrationFiles[registrationFileName]?.copyTo(registrationFile, overwrite = true)
         }
 
         // copy new registration files

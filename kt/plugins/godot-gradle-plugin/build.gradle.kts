@@ -31,7 +31,6 @@ gradlePlugin {
 dependencies {
     implementation(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
     implementation(libs.shadowJar)
-    implementation(libs.kspGradlePlugin)
 
     // used for idea sync gradle task integration (ex. generateGdIgnoreFilesTask)
     implementation(libs.ideaSync)

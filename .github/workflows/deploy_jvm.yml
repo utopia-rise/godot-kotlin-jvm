@@ -67,10 +67,10 @@ jobs:
         run: |
           modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-entry-generator:publish
 
-      - name: Publish godot-kotlin-symbol-processor
+      - name: Publish godot-class-graph-symbol-processor
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-kotlin-symbol-processor:publish
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-class-graph-symbol-processor:publish
 
       - name: Publish godot-internal-library debug
         shell: sh

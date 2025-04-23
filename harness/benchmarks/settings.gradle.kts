@@ -10,7 +10,7 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-gradle-plugin")).using(project(":godot-gradle-plugin"))
         substitute(module("com.utopia-rise:godot-library-debug")).using(project(":godot-library"))
         substitute(module("com.utopia-rise:godot-library-release")).using(project(":godot-library"))
-        substitute(module("com.utopia-rise:godot-kotlin-symbol-processor")).using(project(":godot-kotlin-symbol-processor"))
+        substitute(module("com.utopia-rise:godot-class-graph-symbol-processor")).using(project(":godot-class-graph-symbol-processor"))
         substitute(module("com.utopia-rise:godot-entry-generator")).using(project(":godot-entry-generator"))
     }
 }
