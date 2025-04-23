@@ -36,7 +36,7 @@ The items in this list are explicitly mentioned here as these will be implemente
 Also consider the [API Differences](user-guide/api-differences.md) section for general differences
 and limitations which will not be or cannot be adressed in the near forseable future or ever.
 
-- Each registered constructor must have a unique number of arguments, constructor overloading is not yet supported.
+- Only a default no arg constructor can be registered.
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet).
 - No addon support, you cannot use Godot Kotlin/JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
 - Web is currently not supported. See [Supported platforms](#supported-platforms) to see what platforms we currently support
@@ -48,7 +48,7 @@ If you don't have Discord or you don't want to use it, please file an issue on G
 
 ## Supported languages
 
-The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support-for-other-jvm-based-languages.md).
+The main language supported is Kotlin. We do however support Java and Scala experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support-for-other-jvm-based-languages.md).
 
 ## Supported platforms
 
@@ -85,7 +85,7 @@ Contrary to the official binaries, there are two builds of the editor per Platfo
 `release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports. 
 
 !!! warning
-    This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
+    This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin, Java and Scala scripts in Godot, you need our Editor and Export Templates builds.
 
 ## Developer discussion
 

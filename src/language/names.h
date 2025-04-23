@@ -15,6 +15,10 @@
 #define GODOT_JAVA_SCRIPT_NAME "JavaScript"
 #define GODOT_JAVA_LANGUAGE_NAME "Java"
 
+#define GODOT_SCALA_SCRIPT_EXTENSION "scala"
+#define GODOT_SCALA_SCRIPT_NAME "ScalaScript"
+#define GODOT_SCALA_LANGUAGE_NAME "Scala"
+
 #define GODOT_KOTLIN_PACKAGE "godot"
 
 #define PACKAGE_TEMPLATE "%PACKAGE%"

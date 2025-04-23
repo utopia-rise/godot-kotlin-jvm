@@ -132,7 +132,7 @@ public open class TileMap : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(682, scriptIndex)
+    createNativeObject(683, scriptIndex)
   }
 
   /**

@@ -6,10 +6,8 @@ import godot.entrygenerator.ext.hasAnnotation
 data class RegisteredClass(
     val registeredName: String,
     override val fqName: String,
-    override val relativeSourcePath: String,
     override val supertypes: List<Clazz>,
     override val annotations: List<ClassAnnotation> = emptyList(),
-    val constructors: List<RegisteredConstructor> = emptyList(),
     val functions: List<RegisteredFunction> = emptyList(),
     val signals: List<RegisteredSignal> = emptyList(),
     val properties: List<RegisteredProperty> = emptyList(),
@@ -17,12 +15,12 @@ data class RegisteredClass(
     private val isFqNameRegistrationEnabled: Boolean = false,
     private val classNamePrefix: String? = null,
     override val symbolProcessorSource: Any
-) : Clazz(fqName, relativeSourcePath, supertypes, isAbstract = isAbstract, symbolProcessorSource = symbolProcessorSource) {
+) : Clazz(fqName, supertypes, isAbstract = isAbstract, symbolProcessorSource = symbolProcessorSource) {
 
     internal val isTool: Boolean
         get() = annotations.getAnnotation<ToolAnnotation>() != null
 
-    internal val godotBaseClass: String
+    val godotBaseClass: String
         get() = if (isAbstract) {
             ""
         } else {

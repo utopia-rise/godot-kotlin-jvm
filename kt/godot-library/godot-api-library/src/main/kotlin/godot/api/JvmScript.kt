@@ -22,8 +22,8 @@ public open class JvmScript internal constructor() : Script() {
     createNativeObject(324, scriptIndex)
   }
 
-  public final fun new(vararg args: Any?): Any? {
-    TransferContext.writeArguments( *args.map { ANY to it }.toTypedArray())
+  public final fun new(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -31,6 +31,6 @@ public open class JvmScript internal constructor() : Script() {
   public companion object
 
   public object MethodBindings {
-    internal val newPtr: VoidPtr = TypeManager.getMethodBindPtr("JvmScript", "new", 1545262638)
+    internal val newPtr: VoidPtr = TypeManager.getMethodBindPtr("JvmScript", "new", 1460262497)
   }
 }

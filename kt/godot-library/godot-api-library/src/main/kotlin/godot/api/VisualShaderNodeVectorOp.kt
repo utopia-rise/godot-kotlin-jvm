@@ -35,7 +35,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(835, scriptIndex)
+    createNativeObject(836, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

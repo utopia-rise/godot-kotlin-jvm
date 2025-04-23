@@ -188,7 +188,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(613, scriptIndex)
+    createNativeObject(614, scriptIndex)
   }
 
   /**

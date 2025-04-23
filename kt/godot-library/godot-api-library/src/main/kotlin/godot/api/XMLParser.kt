@@ -71,7 +71,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XMLParser : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(857, scriptIndex)
+    createNativeObject(858, scriptIndex)
   }
 
   /**

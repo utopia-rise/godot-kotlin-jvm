@@ -126,7 +126,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(685, scriptIndex)
+    createNativeObject(686, scriptIndex)
   }
 
   /**

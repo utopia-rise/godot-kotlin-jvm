@@ -1,8 +1,5 @@
 package godot.entrygenerator
 
-import godot.entrygenerator.checks.ConstructorArgCountCheck
-import godot.entrygenerator.checks.ConstructorOverloadingCheck
-import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
 import godot.entrygenerator.checks.NullablePropertyCheck
@@ -19,6 +16,7 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
+import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
 import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
@@ -45,6 +43,32 @@ object EntryGenerator {
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
+        generateEntryFilesUsingRegisteredClasses(
+            projectDir,
+            projectName,
+            classRegistrarFromDependencyCount,
+            logger,
+            sourceFiles.flatMap { it.registeredClasses },
+            isRegistrationFileHierarchyEnabled,
+            jvmTypeFqNamesProvider,
+            compilationTimeRelativeRegistrationFilePathProvider,
+            classRegistrarAppendableProvider,
+            mainBufferedWriterProvider
+        )
+    }
+
+    fun generateEntryFilesUsingRegisteredClasses(
+        projectDir: String,
+        projectName: String,
+        classRegistrarFromDependencyCount: Int,
+        logger: Logger,
+        registeredClasses: List<RegisteredClass>,
+        isRegistrationFileHierarchyEnabled: Boolean,
+        jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
+        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
+        classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
+        mainBufferedWriterProvider: () -> BufferedWriter
+    ) {
         val serviceFile = File(projectDir)
             .resolve("src/main/resources/META-INF/services")
             .apply { mkdirs() }
@@ -56,27 +80,25 @@ object EntryGenerator {
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
 
-        if (executeSanityChecks(logger, sourceFiles)) {
+        if (executeSanityChecksUsingRegisteredClasses(logger, registeredClasses)) {
             throw ChecksFailedException()
         }
 
-        with(MainEntryFileBuilder) {
-            sourceFiles.forEach { sourceFile ->
-                sourceFile.registeredClasses.forEach { registeredClass ->
-                    registerClassRegistrar(
-                        ClassRegistrarFileBuilder(
-                            projectName = projectName,
-                            registeredClass = registeredClass,
-                            registrarAppendableProvider = classRegistrarAppendableProvider,
-                            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
-                            isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled,
-                        )
+        with(MainEntryFileBuilder()) {
+            registeredClasses.forEach { registeredClass ->
+                registerClassRegistrar(
+                    ClassRegistrarFileBuilder(
+                        projectName = projectName,
+                        registeredClass = registeredClass,
+                        registrarAppendableProvider = classRegistrarAppendableProvider,
+                        compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
+                        isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled
                     )
-                }
+                )
             }
-            registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
+            registerUserTypesVariantMappings(registeredClasses)
             registerProjectName(projectName)
-            val classRegistrarsForCurrentCompilationCount = sourceFiles.flatMap { it.registeredClasses }.size
+            val classRegistrarsForCurrentCompilationCount = registeredClasses.size
             registerClassRegistrarCount(
                 classRegistrarFromCurrentCompilationCount = classRegistrarsForCurrentCompilationCount,
                 classRegistrarFromDependencyCount = classRegistrarFromDependencyCount
@@ -99,31 +121,91 @@ object EntryGenerator {
         }
     }
 
+    fun updateRegistrationFiles(
+        generatedRegistrationFilesBaseDir: File,
+        initialRegistrationFilesOutDir: File,
+        existingRegistrationFilesMap: Map<String, File>
+    ) {
+        val kspRegistrationFiles = generatedRegistrationFilesBaseDir
+            .walkTopDown()
+            .filter { file ->
+                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
+            }
+            .associateBy { file ->
+                file.name
+            }
+
+        // compare ksp and existing registration files
+        val deletedRegistrationFiles = existingRegistrationFilesMap
+            .filterKeys { registrationFileName -> !kspRegistrationFiles.containsKey(registrationFileName) }
+            .values
+
+        val updatedRegistrationFiles = existingRegistrationFilesMap
+            .filterKeys { registrationFileName -> kspRegistrationFiles.containsKey(registrationFileName) }
+
+        val newRegistrationFiles = kspRegistrationFiles
+            .filterKeys { registrationFileName -> !existingRegistrationFilesMap.containsKey(registrationFileName) }
+
+
+        // delete obsolete registration files
+        deletedRegistrationFiles.forEach { obsoleteRegistrationFile ->
+            try {
+                obsoleteRegistrationFile.delete()
+            } catch (e: Throwable) {
+                logger.warn("Could not delete obsolete registration file. You need to delete it manually! ${obsoleteRegistrationFile.absolutePath}")
+            }
+        }
+        // delete empty dirs in the initial gdj out folder (but not anywhere else!)
+        initialRegistrationFilesOutDir
+            .walkBottomUp()
+            .filter { dir -> dir.isDirectory && dir.listFiles()?.isEmpty() == true }
+            .forEach { emptyDir ->
+                try {
+                    emptyDir.delete()
+                } catch (e: Throwable) {
+                    logger.warn("Could not delete seemingly empty registration directory! ${emptyDir.absolutePath}")
+                }
+            }
+
+        // replace existing registration files
+        updatedRegistrationFiles.forEach { (registrationFileName, registrationFile) ->
+            kspRegistrationFiles[registrationFileName]?.copyTo(registrationFile, overwrite = true)
+        }
+
+        // copy new registration files
+        newRegistrationFiles.forEach { (_, registrationFile) ->
+            val relativePath = registrationFile.toRelativeString(generatedRegistrationFilesBaseDir)
+            val targetFile = initialRegistrationFilesOutDir.resolve(relativePath)
+            registrationFile.copyTo(targetFile, overwrite = true)
+        }
+    }
+
     private fun generateServiceFile(randomPackagePathForEntryFile: String, serviceFile: File) {
         serviceFile.writeText("$randomPackagePathForEntryFile.Entry")
+    }
+
+    private fun executeSanityChecksUsingRegisteredClasses(
+        logger: Logger,
+        registeredClasses: List<RegisteredClass>
+    ): Boolean {
+        return listOf(
+            FunctionArgCountCheck(logger, registeredClasses).execute(),
+
+            SignalTypeCheck(logger, registeredClasses).execute(),
+
+            PropertyTypeCheck(logger, registeredClasses).execute(),
+            PropertyMutablilityCheck(logger, registeredClasses).execute(),
+            LateinitPropertyCheck(logger, registeredClasses).execute(),
+            NullablePropertyCheck(logger, registeredClasses).execute(),
+
+            RpcCheck(logger, registeredClasses).execute(),
+        ).any { hasIssue -> hasIssue }
     }
 
     private fun executeSanityChecks(
         logger: Logger,
         sourceFiles: List<SourceFile>
-    ): Boolean {
-        return listOf(
-            DefaultConstructorCheck(logger, sourceFiles).execute(),
-            ConstructorArgCountCheck(logger, sourceFiles).execute(),
-            ConstructorOverloadingCheck(logger, sourceFiles).execute(),
-
-            FunctionArgCountCheck(logger, sourceFiles).execute(),
-
-            SignalTypeCheck(logger, sourceFiles).execute(),
-
-            PropertyTypeCheck(logger, sourceFiles).execute(),
-            PropertyMutablilityCheck(logger, sourceFiles).execute(),
-            LateinitPropertyCheck(logger, sourceFiles).execute(),
-            NullablePropertyCheck(logger, sourceFiles).execute(),
-
-            RpcCheck(logger, sourceFiles).execute(),
-        ).any { hasIssue -> hasIssue }
-    }
+    ) = executeSanityChecksUsingRegisteredClasses(logger, sourceFiles.flatMap { it.registeredClasses })
 
     /**
      * Either gets the previously generated random package path of the entry class or creates a new one.

@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeVectorDistance : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(832, scriptIndex)
+    createNativeObject(833, scriptIndex)
   }
 
   public companion object

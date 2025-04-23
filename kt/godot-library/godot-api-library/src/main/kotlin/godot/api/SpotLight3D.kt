@@ -95,7 +95,7 @@ public open class SpotLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(619, scriptIndex)
+    createNativeObject(620, scriptIndex)
   }
 
   public companion object
