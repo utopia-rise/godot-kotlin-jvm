@@ -1,6 +1,6 @@
 #include "transfer_context.h"
 
-#include "script/jvm_instance.h"
+#include "api/script/jvm_instance.h"
 
 #include <core/object/method_bind.h>
 

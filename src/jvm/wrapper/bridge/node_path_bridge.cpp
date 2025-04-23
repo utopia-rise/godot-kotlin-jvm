@@ -1,7 +1,7 @@
 #include "node_path_bridge.h"
 
 #include "bridges_utils.h"
-#include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm/wrapper/memory/transfer_context.h"
 #include "variant_allocator.h"
 
 using namespace bridges;
