@@ -35,6 +35,7 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
 # Includes
 target_include_directories(godot
         PUBLIC
+        src
         godot-cpp/include
         godot-cpp/include/godot_cpp
         godot-cpp/gen/include
