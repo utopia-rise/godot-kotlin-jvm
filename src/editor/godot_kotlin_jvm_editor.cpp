@@ -1,6 +1,7 @@
 #include "godot_kotlin_jvm_editor.h"
 
 #include "editor/build/gradle_task_runner.h"
+#include "godot_jvm.h"
 #include "lifecycle/paths.h"
 #include "project/project_generator.h"
 #include "strings.h"
@@ -39,13 +40,13 @@ void GodotKotlinJvmEditor::on_gradle_task_pressed() {
 }
 
 void GodotKotlinJvmEditor::on_filesystem_change() {
-    if (GDKotlin::get_instance().state == GDKotlin::State::JVM_SCRIPTS_INITIALIZED) { return; }
+    if (GodotJvm::get_instance().state == GodotJvm::State::JVM_SCRIPTS_INITIALIZED) { return; }
 
     // We check for changes in the file system in case the main.jar has been added (not reloaded, just was not present when the editor started)
-    if (GDKotlin::get_instance().state == GDKotlin::State::JVM_STARTED) {
+    if (GodotJvm::get_instance().state == GodotJvm::State::JVM_STARTED) {
         String bootstrap {String(RES_DIRECTORY).path_join(BOOTSTRAP_FILE)};
         if (FileAccess::exists(bootstrap)) {
-            GDKotlin::get_instance().initialize_up_to(GDKotlin::State::JVM_SCRIPTS_INITIALIZED);
+            GodotJvm::get_instance().initialize_up_to(GodotJvm::State::JVM_SCRIPTS_INITIALIZED);
         }
     }
 }

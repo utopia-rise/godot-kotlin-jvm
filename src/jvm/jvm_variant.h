@@ -1,5 +1,5 @@
-#ifndef GODOT_JVM_KT_VARIANT_H
-#define GODOT_JVM_KT_VARIANT_H
+#ifndef GODOT_JVM_JVM_VARIANT_H
+#define GODOT_JVM_JVM_VARIANT_H
 
 #include "binding/kotlin_binding_manager.h"
 #include "jni/wrapper.h"
@@ -304,4 +304,4 @@ public:
     }
 };
 
-#endif// GODOT_JVM_KT_VARIANT_H
+#endif // GODOT_JVM_JVM_VARIANT_H

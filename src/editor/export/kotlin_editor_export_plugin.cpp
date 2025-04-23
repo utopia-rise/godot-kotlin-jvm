@@ -2,11 +2,11 @@
 
 #include "kotlin_editor_export_plugin.h"
 
-#include "gd_kotlin.h"
 #include "api/language/names.h"
+#include "api/script/jvm_script_manager.h"
+#include "godot_jvm.h"
 #include "lifecycle/jvm_user_configuration.h"
 #include "lifecycle/paths.h"
-#include "api/script/jvm_script_manager.h"
 
 #include <core/config/project_settings.hpp>
 
@@ -124,7 +124,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
         // add Godot Kotlin/JVM configuration file based on export targets
         if (export_all) {
-            _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().vm_type);
+            _generate_export_configuration_file(GodotJvm::get_instance().get_configuration().vm_type);
         } else if (export_jvm) {
             _generate_export_configuration_file(jni::JvmType::JVM);
         } else if (export_graal) {
@@ -163,7 +163,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
-    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
+    JvmUserConfiguration configuration = GodotJvm::get_instance().get_configuration(); // Copy
     configuration.vm_type = vm_type; // We only need to change the vm type
 
     const char32_t* json_string {JvmUserConfiguration::export_configuration_to_json(configuration).get_data()};
