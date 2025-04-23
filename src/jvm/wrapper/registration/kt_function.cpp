@@ -1,6 +1,6 @@
 #include "kt_function.h"
 
-#include "gd_kotlin.h"
+#include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
 
 KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :

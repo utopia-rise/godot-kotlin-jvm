@@ -1,6 +1,6 @@
 #include "gdj_language.h"
 
-#include "gd_kotlin.h"
+#include "godot_jvm.h"
 #include "jvm/wrapper/bridge/godot_print_bridge.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "lifecycle/paths.h"
@@ -28,23 +28,23 @@ GdjLanguage* GdjLanguage::get_instance() {
 }
 
 void GdjLanguage::init() {
-    GDKotlin::get_instance().initialize_up_to(GDKotlin::State::JVM_SCRIPTS_INITIALIZED);
+    GodotJvm::get_instance().initialize_up_to(GodotJvm::State::JVM_SCRIPTS_INITIALIZED);
 
 #ifdef DEBUG_ENABLED
-    GDKotlin::get_instance().validate_state();
+    GodotJvm::get_instance().validate_state();
 #endif
 }
 
 void GdjLanguage::frame() {
-    if (unlikely(GDKotlin::get_instance().state < GDKotlin::State::CORE_LIBRARY_INITIALIZED)) { return; }
-    if (unlikely(GDKotlin::get_instance().user_configuration.disable_gc)) { return; }
+    if (unlikely(GodotJvm::get_instance().state < GodotJvm::State::CORE_LIBRARY_INITIALIZED)) { return; }
+    if (unlikely(GodotJvm::get_instance().user_configuration.disable_gc)) { return; }
 
     jni::Env env {jni::Jvm::current_env()};
     MemoryManager::get_instance().sync_memory(env);
 }
 
 void GdjLanguage::finish() {
-    GDKotlin::get_instance().finalize_down_to(GDKotlin::State::NOT_STARTED);
+    GodotJvm::get_instance().finalize_down_to(GodotJvm::State::NOT_STARTED);
 }
 
 void GdjLanguage::thread_enter() {

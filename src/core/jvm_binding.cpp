@@ -1,11 +1,7 @@
-#include "kotlin_binding.h"
-
 #include "jvm/wrapper/memory/type_manager.h"
+#include "jvm_binding.h"
 
-#include <core/object/class_db.h>
-
-
-void KotlinBinding::init(Object* p_object) {
+void JvmBinding::init(Object* p_object) {
     object_id = p_object->get_instance_id();
     StringName class_name {p_object->get_class_name()};
     do {
@@ -18,15 +14,15 @@ void KotlinBinding::init(Object* p_object) {
     constructor_id = TypeManager::get_instance().get_java_engine_type_constructor_index_for_type(class_name);
 }
 
-int KotlinBinding::get_constructor_id() const{
+int JvmBinding::get_constructor_id() const{
     return constructor_id;
 }
 
-ObjectID KotlinBinding::get_object_id() const {
+ObjectID JvmBinding::get_object_id() const {
     return object_id;
 }
 
-bool KotlinBinding::test_and_set_incremented() {
+bool JvmBinding::test_and_set_incremented() {
     // Set to true and return the previous value.
     return is_incremented.test_and_set(std::memory_order_acq_rel);
 }

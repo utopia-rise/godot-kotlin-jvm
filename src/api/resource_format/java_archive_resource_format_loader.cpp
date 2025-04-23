@@ -1,7 +1,7 @@
 
 #include "java_archive_resource_format_loader.h"
 
-#include "gd_kotlin.h"
+#include "godot_jvm.h"
 #include "hash.h"
 #include "java_archive.h"
 #include "lifecycle/paths.h"
@@ -35,8 +35,7 @@ Ref<Resource> JavaArchiveFormatLoader::load(
     ref.instantiate();
 
 #ifdef TOOLS_ENABLED
-    if(p_path.ends_with(USER_CODE_FILE)){
-        GDKotlin::get_instance().reload_user_code();
+    if(p_path.ends_with(USER_CODE_FILE)){ GodotJvm::get_instance().reload_user_code();
     }
 #endif
 
