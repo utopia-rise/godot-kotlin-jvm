@@ -9,8 +9,8 @@ generate_templates.generate_header_from_files("kt/plugins/godot-intellij-plugin/
 
 # Add those directory manually, so we can skip the godot_cpp directory when including headers in C++ files
 source_path = [
-    os.path.join("godot-cpp", "include","godot_cpp"),
-    os.path.join("godot-cpp", "gen", "include","godot_cpp")
+    os.path.join("godot-cpp", "include", "godot_cpp"),
+    os.path.join("godot-cpp", "gen", "include", "godot_cpp")
 ]
 env.Append(CPPPATH=[env.Dir(d) for d in source_path])
 
@@ -46,8 +46,8 @@ if env["target"] in ["editor", "template_debug"]:
     sources.append(Glob("src/editor/*.cpp"))
     sources.append(Glob("src/editor/project/*.cpp"))
     sources.append(Glob("src/editor/build/*.cpp"))
-    sources.append(Glob("src/editor/dialog/*.cpp"))
-    sources.append(Glob("src/editor/panel/*.cpp"))
+    sources.append(Glob("src/editor/ui/*.cpp"))
+    sources.append(Glob("src/editor/export/*.cpp"))
 
 # Android
 if env["platform"] != "android":

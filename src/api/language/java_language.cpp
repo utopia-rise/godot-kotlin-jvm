@@ -1,7 +1,7 @@
 #include "java_language.h"
 
 #include "names.h"
-#include "script/language/java_script.h"
+#include "api/script/language/java_script.h"
 
 #include <core/io/resource_loader.hpp>
 

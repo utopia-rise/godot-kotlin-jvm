@@ -1,8 +1,8 @@
 #include "jvm_resource_format_saver.h"
 
-#include "language/names.h"
-#include "script/jvm_script.h"
-#include "script/jvm_script_manager.h"
+#include "api/language/names.h"
+#include "api/script/jvm_script.h"
+#include "api/script/jvm_script_manager.h"
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {

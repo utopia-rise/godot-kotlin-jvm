@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_BOOTSTRAP_H
 #define GODOT_JVM_BOOTSTRAP_H
 
-#include "jvm_wrapper/jvm_instance_wrapper.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
 
 JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
     JVM_CLASS(Bootstrap)

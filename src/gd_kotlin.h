@@ -1,15 +1,13 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
 
-#include "jvm_wrapper/bootstrap.h"
-#include "lifecycle/jvm_manager.h"
-#include "lifecycle/jvm_options.h"
-#include "lifecycle/jvm_user_configuration.h"
-#include "resource_format/java_archive.h"
+#include "jvm/lifecycle/class_loader.h"
+#include "jvm/lifecycle/jvm_options.h"
+#include "jvm/lifecycle/jvm_user_configuration.h"
+#include "jvm/wrapper/bootstrap.h"
 
 #include <variant/string.hpp>
 
-namespace godot {
     class GDKotlin {
         friend class GdjLanguage;
 #ifdef TOOLS_ENABLED
@@ -87,5 +85,4 @@ namespace godot {
         Object* get_callable_middleman() const;
     };
 
-} // namespace godot
 #endif // GODOT_JVM_GD_KOTLIN_H

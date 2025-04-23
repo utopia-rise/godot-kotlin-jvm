@@ -1,6 +1,6 @@
 #include "scala_script.h"
-#include "language/names.h"
-#include "language/scala_language.h"
+#include "api/language/names.h"
+#include "api/language/scala_language.h"
 
 ScriptLanguage* ScalaScript::get_language() const {
     return ScalaLanguage::get_instance();

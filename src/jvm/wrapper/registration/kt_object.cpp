@@ -1,9 +1,9 @@
 #include "kt_object.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include "script/jvm_script_manager.h"
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "script//jvm_instance.h"
+#include "api/script/jvm_script_manager.h"
+#include "jvm/wrapper/memory/transfer_context.h"
+#include "api/script//jvm_instance.h"
 
 KtObject::KtObject(jni::Env& p_env, jni::JObject p_wrapped, bool p_is_ref) : JvmInstanceWrapper(p_env, p_wrapped), is_ref(p_is_ref) {}
 

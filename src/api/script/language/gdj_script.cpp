@@ -1,6 +1,6 @@
 #include "gdj_script.h"
 
-#include "language/gdj_language.h"
+#include "api/language/gdj_language.h"
 
 ScriptLanguage* GdjScript::get_language() const {
     return GdjLanguage::get_instance();

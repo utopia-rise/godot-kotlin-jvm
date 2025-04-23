@@ -1,6 +1,6 @@
 #include "kotlin_binding.h"
 
-#include "jvm_wrapper/memory/type_manager.h"
+#include "jvm/wrapper/memory/type_manager.h"
 
 
 void KotlinBinding::init(Object* p_object) {

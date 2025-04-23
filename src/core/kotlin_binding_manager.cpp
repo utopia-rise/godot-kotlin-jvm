@@ -1,7 +1,7 @@
 #include "kotlin_binding_manager.h"
 
 #include "gd_kotlin.h"
-#include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm/wrapper/memory/memory_manager.h"
 
 GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,

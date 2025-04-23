@@ -1,7 +1,7 @@
 #include "kotlin_script.h"
 
-#include "language/kotlin_language.h"
-#include "language/names.h"
+#include "api/language/kotlin_language.h"
+#include "api/language/names.h"
 
 ScriptLanguage* KotlinScript::get_language() const {
     return KotlinLanguage::get_instance();

@@ -1,7 +1,7 @@
 #include "memory_manager.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include "script/jvm_script_manager.h"
+#include "api/script/jvm_script_manager.h"
 #include "variant_allocator.h"
 
 static LocalVector<uint64_t> ids;

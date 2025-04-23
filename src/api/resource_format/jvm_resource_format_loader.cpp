@@ -1,13 +1,13 @@
 #include "jvm_resource_format_loader.h"
 
 #include "hash.h"
-#include "language/names.h"
-#include "script/jvm_script.h"
-#include "script/jvm_script_manager.h"
-#include "script/language/gdj_script.h"
-#include "script/language/java_script.h"
-#include "script/language/kotlin_script.h"
-#include "script/language/scala_script.h"
+#include "api/language/names.h"
+#include "api/script/jvm_script.h"
+#include "api/script/jvm_script_manager.h"
+#include "api/script/language/gdj_script.h"
+#include "api/script/language/java_script.h"
+#include "api/script/language/kotlin_script.h"
+#include "api/script/language/scala_script.h"
 
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);

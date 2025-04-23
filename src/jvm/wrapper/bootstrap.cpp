@@ -1,7 +1,7 @@
 #include "bootstrap.h"
 
-#include "jvm_wrapper/memory/type_manager.h"
-#include "script/jvm_script_manager.h"
+#include "jvm/wrapper/memory/type_manager.h"
+#include "api/script/jvm_script_manager.h"
 
 void Bootstrap::load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);

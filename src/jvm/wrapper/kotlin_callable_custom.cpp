@@ -1,5 +1,5 @@
 #include "kotlin_callable_custom.h"
-#include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm/wrapper/memory/transfer_context.h"
 #include "gd_kotlin.h"
 
 void LambdaCallable::invoke(jni::Env& p_env, const Variant** p_args, int args_count, Variant& r_ret) const {

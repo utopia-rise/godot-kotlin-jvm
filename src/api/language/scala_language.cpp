@@ -1,7 +1,7 @@
 #include "scala_language.h"
 
 #include "names.h"
-#include "script/language/scala_script.h"
+#include "api/script/language/scala_script.h"
 
 #include <core/io/resource_loader.hpp>
 

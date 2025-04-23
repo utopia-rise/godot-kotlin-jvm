@@ -1,6 +1,6 @@
 #include "lambda_callable_bridge.h"
 
-#include "jvm_wrapper/kotlin_callable_custom.h"
+#include "jvm/wrapper/kotlin_callable_custom.h"
 
 using namespace bridges;
 

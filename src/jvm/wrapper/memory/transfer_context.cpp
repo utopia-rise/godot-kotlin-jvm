@@ -1,6 +1,6 @@
 #include "transfer_context.h"
 
-#include "script/jvm_instance.h"
+#include "api/script/jvm_instance.h"
 
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
