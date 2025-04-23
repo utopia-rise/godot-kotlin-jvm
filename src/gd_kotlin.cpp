@@ -1,5 +1,6 @@
 #include "gd_kotlin.h"
 
+#include "jni/env.h"
 #include "jvm_wrapper/memory/long_string_queue.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/type_manager.h"
@@ -7,9 +8,17 @@
 #include "script/jvm_script_manager.h"
 #include "version.h"
 
-#include <core/config/project_settings.h>
-#include <core/io/file_access.h>
-#include <core/io/resource_loader.h>
+#include <core/config/project_settings.hpp>
+#include <core/io/file_access.hpp>
+#include <core/io/resource_loader.hpp>
+#include <main/main.hpp>
+
+using namespace godot;
+
+#define DISPLAY_ERROR(cause, hint)                  \
+    display_initialization_error_hint(cause, hint); \
+    JVM_ERR_FAIL_V_MSG(false, cause)
+
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
@@ -203,7 +212,7 @@ void GDKotlin::set_jvm_options() {
 
 #ifndef TOOLS_ENABLED
 
-#include <core/io/dir_access.h>
+#include <core/io/dir_access.hpp>
 
 #ifdef __ANDROID__
 #include <unistd.h>

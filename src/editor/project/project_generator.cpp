@@ -3,9 +3,9 @@
 #include "editor/strings.h"
 #include "version.h"
 
-#include <core/config/project_settings.h>
-#include <core/io/dir_access.h>
-#include <core/io/file_access.h>
+#include <core/config/project_settings.hpp>
+#include <core/io/dir_access.hpp>
+#include <core/io/file_access.hpp>
 
 constexpr const int permissions = FileAccess::UnixPermissionFlags::UNIX_READ_OTHER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OTHER
                                   | FileAccess::UnixPermissionFlags::UNIX_READ_GROUP | FileAccess::UnixPermissionFlags::UNIX_WRITE_GROUP

@@ -3,10 +3,11 @@
 #include "jvm_wrapper/memory/type_manager.h"
 #include "language/names.h"
 
-#include <core/io/file_access.h>
-#include <core/object/callable_mp.h>
-#include <core/object/message_queue.h>
-#include <core/os/os.h>
+#include <core/io/file_access.hpp>
+#include <core/io/resource_loader.hpp>
+#include <core/object/callable_mp.hpp>
+#include <core/object/message_queue.hpp>
+#include <core/os/os.hpp>
 
 JvmScriptManager* JvmScriptManager::singleton = nullptr;
 
