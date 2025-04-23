@@ -16,7 +16,6 @@ fun Project.packageMainDexJarTask(
 
             archiveBaseName.set("main-dex")
 
-            from("src/main/resources").include("**/godot.registration.Entry")
             // add all dex files (converted class files)
             from("${project.layout.buildDirectory.asFile.get().absolutePath}/libs/").include("*.dex")
 
