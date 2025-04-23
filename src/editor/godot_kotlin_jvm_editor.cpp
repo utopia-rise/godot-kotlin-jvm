@@ -2,7 +2,7 @@
 
 #include "godot_kotlin_jvm_editor.h"
 
-#include "editor/build/build_manager.h"
+#include "editor/build/gradle_task_runner.h"
 #include "lifecycle/paths.h"
 #include "project/project_generator.h"
 #include "strings.h"
@@ -29,14 +29,13 @@ void GodotKotlinJvmEditor::on_generate_project(bool erase_existing) {
     project_dialog->hide();
 }
 
-void GodotKotlinJvmEditor::on_build_project_pressed() {
-    BuildManager::get_instance().build_project_non_blocking();
-}
+void GodotKotlinJvmEditor::on_gradle_task_pressed() {
+    if (GradleTaskRunner::get_instance().is_task_started()) { return; }
+    task_dialog->make_appear();
+    String log;
 
-void GodotKotlinJvmEditor::on_build_finished() {
-    MessageQueue::get_singleton()->push_callable(
-      callable_mp(get_editor_interface()->get_resource_file_system(), &EditorFileSystem::scan_changes)
-    );
+    GradleTaskRunner::get_instance().run_task(tool_bar_gradle_task_choice->get_selected_id(), log, false);
+    JVM_LOG_INFO(log);
 }
 
 void GodotKotlinJvmEditor::on_filesystem_change() {
@@ -55,20 +54,18 @@ bool GodotKotlinJvmEditor::build() {
     bool build_gradle_before_start = EDITOR_GET(build_before_start);
 
     if (build_gradle_before_start) {
-        bool is_successful = BuildManager::get_instance().build_project_blocking();
-        return is_successful;
-    } else {
-        return true;
+        String log;
+        Error error = GradleTaskRunner::get_instance().run_task(GradleTaskRunner::Task::BUILD_DEBUG, log, true);
+
+        if (error != OK) { JVM_ERR_FAIL_V_MSG(false, log); }
+        JVM_LOG_INFO(log);
     }
+    return true;
 }
 
 GodotKotlinJvmEditor* GodotKotlinJvmEditor::get_instance() {
     static GodotKotlinJvmEditor* instance {memnew(GodotKotlinJvmEditor)};
     return instance;
-}
-
-void GodotKotlinJvmEditor::update_build_dialog(String log) {
-    MessageQueue::get_singleton()->push_callable(callable_mp(build_dialog, &BuildDialog::update_state).bind(log));
 }
 
 void GodotKotlinJvmEditor::_notification(int notification) {
@@ -101,14 +98,23 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             about_pop_menu->add_item("About Godot Kotlin JVM", ABOUT);
             add_tool_submenu_item("Kotlin/JVM", about_pop_menu);
 
-            tool_bar_build_button->set_flat(true);
-            tool_bar_build_button->set_text("Build");
-            tool_bar_build_button->set_tooltip_text("Build gradle project");
-            tool_bar_build_button->set_focus_mode(Control::FOCUS_NONE);
-            tool_bar_build_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_build_project_pressed));
-            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_build_button);
+            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, separator);
 
-            editor_base_control->add_child(build_dialog);
+            tool_bar_gradle_task_choice->set_flat(true);
+            tool_bar_gradle_task_choice->add_item("Build", GradleTaskRunner::Task::BUILD_DEBUG);
+            tool_bar_gradle_task_choice->add_item("Build Release", GradleTaskRunner::Task::BUILD_RELEASE);
+            tool_bar_gradle_task_choice->add_item("Generate JRE", GradleTaskRunner::Task::GENERATE_EMBEDDED_JVM);
+            tool_bar_gradle_task_choice->select(GradleTaskRunner::Task::BUILD_DEBUG);
+            tool_bar_gradle_task_choice->set_fit_to_longest_item(false);
+            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_choice);
+
+            tool_bar_gradle_task_button->set_text("Run Gradle");
+            tool_bar_gradle_task_button->set_tooltip_text("Run the selected Gradle task");
+            tool_bar_gradle_task_button->set_focus_mode(Control::FOCUS_NONE);
+            tool_bar_gradle_task_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_gradle_task_pressed));
+            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
+
+            editor_base_control->add_child(task_dialog);
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
 
@@ -116,15 +122,38 @@ void GodotKotlinJvmEditor::_notification(int notification) {
               SNAME("filesystem_changed"),
               callable_mp(this, &GodotKotlinJvmEditor::on_filesystem_change)
             );
+            set_process(true);
+            break;
 
+        case NOTIFICATION_PROCESS:
+            if (GradleTaskRunner::get_instance().is_task_started()) {
+                String log;
+                String error;
+                GradleTaskRunner::get_instance().get_task_output(log, error);
+                task_dialog->update_state(log + error);
+
+                if (!log.is_empty()) {
+                    // We are streaming the output, we use the regular Godot print to avoid spamming the JVM prefix.
+                    print_line(log);
+                }
+                if (!error.is_empty()) { JVM_ERR_FAIL_MSG(error); }
+
+                if (GradleTaskRunner::get_instance().is_task_terminated()) {
+                    task_dialog->stop();
+                    get_editor_interface()->get_resource_file_system()->scan_changes();
+                    JVM_LOG_INFO("Gradle Task terminated");
+                }
+            }
             break;
 
         case NOTIFICATION_EXIT_TREE:
-            editor_base_control->remove_child(build_dialog);
+            editor_base_control->remove_child(task_dialog);
             editor_base_control->remove_child(about_dialog);
             editor_base_control->remove_child(project_dialog);
             remove_tool_menu_item("Kotlin/JVM");
-            remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_build_button);
+            remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, separator);
+            remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_choice);
+            remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
             break;
     }
 }
@@ -132,15 +161,20 @@ void GodotKotlinJvmEditor::_notification(int notification) {
 GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
   about_pop_menu(memnew(PopupMenu)),
   about_dialog(memnew(AboutDialog)),
-  build_dialog(memnew(BuildDialog)),
+  task_dialog(memnew(TaskDialog)),
   project_dialog(memnew(AcceptDialog)),
-  tool_bar_build_button(memnew(Button)) {}
+  tool_bar_gradle_task_button(memnew(Button)),
+  tool_bar_gradle_task_choice(memnew(OptionButton)),
+  separator(memnew(VSeparator)) {}
 
 GodotKotlinJvmEditor::~GodotKotlinJvmEditor() {
+    GradleTaskRunner::get_instance().cleanup();
     memdelete(about_dialog);
-    memdelete(build_dialog);
+    memdelete(task_dialog);
     memdelete(project_dialog);
-    memdelete(tool_bar_build_button);
+    memdelete(tool_bar_gradle_task_button);
+    memdelete(tool_bar_gradle_task_choice);
+    memdelete(separator);
 }
 
-#endif// TOOLS_ENABLED
+#endif // TOOLS_ENABLED

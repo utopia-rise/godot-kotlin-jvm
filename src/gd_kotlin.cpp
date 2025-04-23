@@ -241,7 +241,7 @@ bool GDKotlin::load_bootstrap() {
 #endif
 
         if (!FileAccess::exists(bootstrap_jar)) {
-            if (Engine::get_singleton()->is_project_manager_hint()) {
+            if (Engine::get_singleton()->is_editor_hint()) {
                 // Most likely when starting a new project, there is no need to log it as an error or warning as long as the users doesn't run the game.
                 // We already have node warning if they try to attach a JVM script without building.
                 return false;
