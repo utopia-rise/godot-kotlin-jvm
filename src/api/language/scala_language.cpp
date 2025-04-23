@@ -1,7 +1,7 @@
 #include "scala_language.h"
 
 #include "names.h"
-#include "script/jvm_script.h"
+#include "api/script/jvm_script.h"
 
 #include <core/io/resource_loader.hpp>
 #include <core/object/class_db.hpp>
