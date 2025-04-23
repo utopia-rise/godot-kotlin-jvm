@@ -1,6 +1,3 @@
-
-#ifdef TOOLS_ENABLED
-
 #include "build_dialog.h"
 
 #include "editor/build/gradle_task_runner.h"
@@ -60,5 +57,3 @@ void TaskDialog::_notification(int notification) {
 
     add_child(vertical_container);
 }
-
-#endif // TOOLS_ENABLED

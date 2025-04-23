@@ -1,5 +1,3 @@
-#ifdef TOOLS_ENABLED
-
 #include "project_generator.h"
 
 #include "editor/strings.h"
@@ -53,5 +51,3 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
     memdelete(marshall);
     JVM_LOG_INFO("JVM project files generated.");
 }
-
-#endif// TOOLS_ENABLED

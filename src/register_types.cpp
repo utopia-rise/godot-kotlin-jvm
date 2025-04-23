@@ -1,11 +1,9 @@
 #ifdef TOOLS_ENABLED
 #include "kotlin_editor_export_plugin.h"
-#include "src/editor/godot_kotlin_jvm_editor.h"
-#include "src/editor/jvm_syntax_highlighter.h"
+#include "editor/godot_kotlin_jvm_editor.h"
 
-#include <editor/editor_node.h>
-#include <editor/export/editor_export.h>
-#include <editor/script/script_editor_plugin.h>
+#include "classes/editor_node.h"
+#include "classes/export/editor_export.h"
 #endif
 
 #include "gd_kotlin.h"
@@ -42,7 +40,7 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 }
 #endif
 
-void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+void initialize__godot_jvm_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
@@ -77,7 +75,7 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 #endif
 }
 
-void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+void uninitialize_godot_jvm_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
