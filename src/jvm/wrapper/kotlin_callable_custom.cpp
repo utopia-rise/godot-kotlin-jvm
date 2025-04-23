@@ -1,6 +1,7 @@
 #include "kotlin_callable_custom.h"
+
+#include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
-#include "gd_kotlin.h"
 
 #include "gd_kotlin.h"
 #include "jvm_wrapper/memory/transfer_context.h"
@@ -58,8 +59,8 @@ String JvmCallableCustom::get_as_text() const {
     return "JvmCallableCustom::invoke";
 }
 
-ObjectID JvmCallableCustom::get_object() const {
-    return GDKotlin::get_instance().get_callable_middleman()->get_instance_id();
+ObjectID KotlinCallableCustom::get_object() const {
+    return GodotJvm::get_instance().get_callable_middleman()->get_instance_id();
 }
 
 CallableCustom::CompareEqualFunc JvmCallableCustom::get_compare_equal_func() const {

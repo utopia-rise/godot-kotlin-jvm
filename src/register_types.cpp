@@ -6,22 +6,21 @@
 #include <classes/export/editor_export.hpp>
 #endif
 
-#include <classes/engine.hpp>
-#include <classes/resource_format_loader.hpp.hpp>
-#include <classes/engine.hpp>
-
-#include "gd_kotlin.h"
 #include "api/language/gdj_language.h"
 #include "api/language/java_language.h"
 #include "api/language/jvm_language.h"
 #include "api/language/kotlin_language.h"
 #include "api/language/scala_language.h"
-#include "register_types.h"
 #include "api/resource_format/java_archive_resource_format_loader.h"
 #include "api/resource_format/jvm_resource_format_loader.h"
 #include "api/resource_format/jvm_resource_format_saver.h"
 #include "api/script/jvm_script.h"
 #include "api/script/jvm_script_manager.h"
+#include "godot_jvm.h"
+#include "register_types.h"
+
+#include <classes/engine.hpp>
+#include <classes/resource_format_loader.hpp.hpp>
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
