@@ -2,22 +2,27 @@
 #define GODOT_JVM_GDJ_LANGUAGE_H
 
 #include "jvm_language.h"
+namespace godot {
+    class GdjLanguage : public JvmLanguage {
+    public:
+        GdjLanguage() = default;
+        ~GdjLanguage() override = default;
+        GdjLanguage(const GdjLanguage&) = delete;
+        void operator=(const GdjLanguage&) = delete;
 
-class GdjLanguage : public JvmLanguage {
-public:
-    GdjLanguage() = default;
-    ~GdjLanguage() override = default;
-    GdjLanguage(const GdjLanguage&) = delete;
-    void operator=(const GdjLanguage&) = delete;
+        static GdjLanguage* get_instance();
 
-    static GdjLanguage* get_instance();
+        void init() override;
+        void frame() override;
+        void finish() override;
 
-    void init() override;
-    void frame() override;
-    void finish() override;
+        void thread_enter() override;
+        void thread_exit() override;
 
-    void thread_enter() override;
-    void thread_exit() override;
+        String get_name() const override;
+        String get_type() const override;
+        String get_extension() const override;
+        void get_recognized_extensions(List<String>* p_extensions) const override;
 
     String get_name() const override;
     String get_type() const override;

@@ -20,12 +20,15 @@ add_compile_definitions(X11_ENABLED)
 #add_compile_definitions(__ANDROID__)
 
 
-# Godot-cpp
-file(GLOB_RECURSE GODOT-CPP godot-cpp/*.cpp)
-add_library(godot STATIC ${GODOT-CPP})
+# Project
+file(GLOB_RECURSE SOURCES src/*.c**)
+file(GLOB_RECURSE HEADERS src/*.h**)
 
-target_include_directories(godot
-        PUBLIC
+add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
+
+include_directories(src)
+include_directories(
+        SYSTEM
         godot-cpp/include
         godot-cpp/include/godot_cpp
         godot-cpp/gen/include
@@ -33,22 +36,9 @@ target_include_directories(godot
         godot-cpp/gdextension
 )
 
-
-# Project
-file(GLOB_RECURSE SOURCES src/*.c**)
-file(GLOB_RECURSE HEADERS src/*.h**)
-add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
-
-target_include_directories(${PROJECT_NAME}
-        PUBLIC
-        src
-)
-
-
 find_package(JNI REQUIRED)
-include_directories(${JNI_INCLUDE_DIRS})
-
-target_link_libraries(${PROJECT_NAME}
-        PRIVATE
-        godot
+include_directories(
+        SYSTEM
+        ${JNI_INCLUDE_DIRS}
 )
+

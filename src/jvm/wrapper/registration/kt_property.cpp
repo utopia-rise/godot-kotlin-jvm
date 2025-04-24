@@ -3,7 +3,7 @@
 #include "jvm/wrapper/memory/transfer_context.h"
 
 KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
-    type = static_cast<Variant::Type>(wrapped.call_int_method(p_env, GET_TYPE));
+    type = static_cast<godot::Variant::Type>(wrapped.call_int_method(p_env, GET_TYPE));
 
     jni::JString jname {wrapped.call_object_method(p_env, GET_NAME)};
     name = p_env.from_jstring(jname);
@@ -42,7 +42,7 @@ KtProperty::~KtProperty() {
     delete propertyInfo;
 }
 
-StringName KtProperty::get_name() const {
+godot::StringName KtProperty::get_name() const {
     return propertyInfo->name;
 }
 
@@ -50,14 +50,14 @@ PropertyInfo KtProperty::get_member_info() {
     return propertyInfo->toPropertyInfo();
 }
 
-void KtProperty::call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret) {
+void KtProperty::call_get(jni::Env& p_env, KtObject* instance, godot::Variant& r_ret) {
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     wrapped.call_void_method<false>(p_env, CALL_GET, call_args);
     TransferContext::get_instance().read_return_value(p_env, r_ret);
 }
 
-void KtProperty::call_set(jni::Env& p_env, KtObject* instance, const Variant& p_value) {
-    const Variant* arg[1] = {&p_value};
+void KtProperty::call_set(jni::Env& p_env, KtObject* instance, const godot::Variant& p_value) {
+    const godot::Variant* arg[1] = {&p_value};
     TransferContext::get_instance().write_args(p_env, arg, 1);
     jvalue args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     wrapped.call_void_method<false>(p_env, CALL_SET, args);

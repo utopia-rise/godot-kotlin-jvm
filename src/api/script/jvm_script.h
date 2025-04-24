@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_JVM_SCRIPT_H
 #define GODOT_JVM_JVM_SCRIPT_H
 
-#include "jvm_wrapper/registration/kt_class.h"
+#include "jvm/wrapper/registration/kt_class.h"
 #include "resource_format/hash.h"
 
 #include <classes/script_language_extension.hpp>

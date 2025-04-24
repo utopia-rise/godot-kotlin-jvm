@@ -7,11 +7,8 @@
 #include "godot_jvm.h"
 #include "lifecycle/jvm_user_configuration.h"
 #include "lifecycle/paths.h"
-<<<<<<< HEAD
 #include "api/script/jvm_script_manager.h"
 #include "api/script/source_script_parser.h"
-=======
->>>>>>> 75fe63fb7 (Renames)
 
 #include <core/config/project_settings.hpp>
 #include <core/io/file_access.hpp>

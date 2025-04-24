@@ -4,6 +4,8 @@
 
 #include "jvm_script_manager.h"
 
+using namespace godot;
+
 JvmPlaceHolderInstance::JvmPlaceHolderInstance(ScriptLanguage* p_language, Ref<Script> p_script, Object* p_owner) :
   PlaceHolderScriptInstance(p_language, p_script, p_owner) {}
 

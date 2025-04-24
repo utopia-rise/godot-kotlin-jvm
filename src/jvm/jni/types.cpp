@@ -85,7 +85,7 @@ namespace jni {
         return id;
     }
 
-    void JClass::register_natives(Env& env, Vector<JNativeMethod> methods) {
+    void JClass::register_natives(Env& env, godot::Vector<JNativeMethod> methods) {
         env.env->RegisterNatives((jclass) obj, methods.ptr(), methods.size());
         env.handle_exception();
     }
