@@ -6,6 +6,8 @@
 #include <core/io/resource_loader.hpp>
 #include <core/object/class_db.hpp>
 
+using namespace godot;
+
 constexpr const char* SCALA_TEMPLATE = PACKAGE_TEMPLATE
                                       "\n"
                                       "\n"

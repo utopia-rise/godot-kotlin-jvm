@@ -1,9 +1,11 @@
 #include "jvm/wrapper/memory/type_manager.h"
 #include "jvm_binding.h"
 
+using namespace godot;
+
 void JvmBinding::init(Object* p_object) {
     object_id = p_object->get_instance_id();
-    StringName class_name {p_object->get_class_name()};
+    StringName class_name {p_object->get_class_static()};
     do {
         if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
             class_name = ClassDB::get_parent_class(class_name);

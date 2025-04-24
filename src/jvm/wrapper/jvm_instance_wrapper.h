@@ -1,9 +1,11 @@
 #ifndef GODOT_JVM_JVM_INSTANCE_WRAPPER_H
 #define GODOT_JVM_JVM_INSTANCE_WRAPPER_H
 
-#include "jni/methods.h"
-#include "jni/wrapper.h"
-#include "lifecycle/class_loader.h"
+#include "jvm/jni/methods.h"
+#include "jvm/jni/wrapper.h"
+#include "jvm/lifecycle/class_loader.h"
+
+#include <templates/vector.hpp>
 
 #define JVM_INSTANCE_WRAPPER(NAME, FQNAME)                \
     inline constexpr char NAME##QualifiedName[] = FQNAME; \

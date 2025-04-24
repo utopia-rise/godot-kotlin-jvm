@@ -1,10 +1,6 @@
+#include "jvm.h"
+
 #include "logging.h"
-
-#ifdef __ANDROID__
-#include <platform/android/thread_jandroid.h>
-#endif
-
-#include "jni/jvm.h"
 
 namespace jni {
     static thread_local Env* env {nullptr};
@@ -53,4 +49,4 @@ namespace jni {
     JvmType Jvm::get_type() {
         return _instance->vm_type;
     }
-}// namespace jni
+} // namespace jni

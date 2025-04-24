@@ -8,6 +8,8 @@
 
 #include <core/io/file_access.hpp>
 
+using namespace godot;
+
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
     p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);

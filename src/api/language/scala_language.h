@@ -1,17 +1,17 @@
 #ifndef GODOT_JVM_SCALA_LANGUAGE_H
 #define GODOT_JVM_SCALA_LANGUAGE_H
 
-
 #include "jvm_language.h"
 
-class ScalaLanguage : public JvmLanguage {
-public:
-    ScalaLanguage() = default;
-    ~ScalaLanguage() override = default;
-    ScalaLanguage(const ScalaLanguage&) = delete;
-    void operator=(const ScalaLanguage&) = delete;
+namespace godot {
+    class ScalaLanguage : public JvmLanguage {
+    public:
+        ScalaLanguage() = default;
+        ~ScalaLanguage() override = default;
+        ScalaLanguage(const ScalaLanguage&) = delete;
+        void operator=(const ScalaLanguage&) = delete;
 
-    static ScalaLanguage* get_instance();
+        static ScalaLanguage* get_instance();
 
     String get_name() const override;
     String get_type() const override;
