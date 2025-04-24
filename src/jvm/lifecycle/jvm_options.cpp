@@ -1,4 +1,4 @@
-#include "core/variant/variant.h"
+#include <variant/variant.hpp>
 #include "jvm_options.h"
 
 void JvmOptions::add_jni_checks() {

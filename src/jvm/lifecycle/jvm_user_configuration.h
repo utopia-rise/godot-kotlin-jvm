@@ -1,8 +1,10 @@
 #ifndef GODOT_JVM_JVM_USER_CONFIGURATION_H
 #define GODOT_JVM_JVM_USER_CONFIGURATION_H
 
-#include "core/variant/typed_array.h"
-#include "jni/jvm.h"
+#include "jvm/jni/jvm.h"
+
+#include <variant/typed_array.hpp>
+#include <templates/hash_map.hpp>
 
 // JSON IDENTIFIER
 static constexpr const char* VERSION_JSON_IDENTIFIER {"version"};
@@ -36,7 +38,6 @@ static constexpr const char* TRUE_STRING {"true"};
 static constexpr const char* FALSE_STRING {"false"};
 static constexpr const char* JSON_ARGUMENT_VERSION {"2.0"};
 
-
 struct JvmUserConfiguration {
     jni::JvmType vm_type {jni::JvmType::NONE};
 
@@ -52,7 +53,7 @@ struct JvmUserConfiguration {
 
     bool disable_gc {false};
 
-    Array jvm_args;
+    godot::Array jvm_args;
 
     JvmUserConfiguration() = default;
     ~JvmUserConfiguration() = default;
@@ -60,10 +61,10 @@ struct JvmUserConfiguration {
     static bool parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config);
     static String export_configuration_to_json(const JvmUserConfiguration& configuration);
 
-    static void parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map);
+    static void parse_command_line(const List<String>& args, godot::HashMap<String, Variant>& configuration_map);
 
-    static void merge_with_command_line(JvmUserConfiguration& json_config, const HashMap<String, Variant>& cmd_map);
+    static void merge_with_command_line(JvmUserConfiguration& json_config, const godot::HashMap<String, Variant>& cmd_map);
     static void sanitize_and_log_configuration(JvmUserConfiguration& config);
 };
 
-#endif// GODOT_JVM_JVM_USER_CONFIGURATION_H
+#endif // GODOT_JVM_JVM_USER_CONFIGURATION_H

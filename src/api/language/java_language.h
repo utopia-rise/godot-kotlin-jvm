@@ -2,26 +2,26 @@
 #define GODOT_JVM_JAVA_LANGUAGE_H
 
 #include "jvm_language.h"
+namespace godot {
+    class JavaLanguage : public JvmLanguage {
+    public:
+        JavaLanguage() = default;
+        ~JavaLanguage() override = default;
+        JavaLanguage(const JavaLanguage&) = delete;
+        void operator=(const JavaLanguage&) = delete;
 
-class JavaLanguage : public JvmLanguage {
-public:
-    JavaLanguage() = default;
-    ~JavaLanguage() override = default;
-    JavaLanguage(const JavaLanguage&) = delete;
-    void operator=(const JavaLanguage&) = delete;
+        static JavaLanguage* get_instance();
 
-    static JavaLanguage* get_instance();
+        String get_name() const override;
+        String get_type() const override;
+        String get_extension() const override;
+        void get_recognized_extensions(List<String>* p_extensions) const override;
 
-    String get_name() const override;
-    String get_type() const override;
-    String get_extension() const override;
-    void get_recognized_extensions(List<String>* p_extensions) const override;
-
-    bool handles_global_class_type(const String& p_type) const override;
-    String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract = nullptr, bool *r_is_tool = nullptr) const override;
-    bool has_named_classes() const override;
-    bool supports_builtin_mode() const override;
-    Script* create_script() const override;
+        bool handles_global_class_type(const String& p_type) const override;
+        String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool* r_is_abstract = nullptr, bool* r_is_tool = nullptr) const override;
+        bool has_named_classes() const override;
+        bool supports_builtin_mode() const override;
+        Script* create_script() const override;
 
     Vector<String> get_reserved_words() const override;
     bool is_control_flow_keyword(const String& p_keyword) const override;

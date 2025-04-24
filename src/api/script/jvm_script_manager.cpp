@@ -5,6 +5,8 @@
 
 #include <core/io/resource_loader.hpp>
 
+using namespace godot;
+
 void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)
     JVM_ERR_FAIL_COND_MSG(named_scripts.size() != 0, "JVM scripts are being initialized more than once.");

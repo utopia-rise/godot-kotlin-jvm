@@ -4,6 +4,8 @@
 #include "api/script/jvm_script.h"
 #include "api/script/jvm_script_manager.h"
 
+using namespace godot;
+
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {
         p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);

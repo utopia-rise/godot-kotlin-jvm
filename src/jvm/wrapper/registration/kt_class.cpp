@@ -22,7 +22,7 @@ KtClass::~KtClass() {
     delete kt_constructor;
 }
 
-KtObject* KtClass::create_instance(jni::Env& env, Object* p_owner) {
+KtObject* KtClass::create_instance(jni::Env& env, godot::godot::Object* p_owner) {
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(
       kt_constructor == nullptr,
@@ -129,7 +129,7 @@ void KtClass::get_method_list(List<MethodInfo>* p_list) {
     get_member_list(p_list, methods);
 }
 
-void KtClass::get_property_list(List<PropertyInfo>* p_list) {
+void KtClass::get_property_list(List<godot::PropertyInfo>* p_list) {
     get_member_list(p_list, properties);
 }
 
@@ -137,10 +137,10 @@ void KtClass::get_signal_list(List<MethodInfo>* p_list) {
     get_member_list(p_list, signal_infos);
 }
 
-const Dictionary KtClass::get_rpc_config() {
-    Dictionary rpc_configs {};
+const godot::Dictionary KtClass::get_rpc_config() {
+    godot::Dictionary rpc_configs {};
 
-    for (const KeyValue<StringName, KtFunction*>& E : methods) {
+    for (const godot::KeyValue<StringName, KtFunction*>& E : methods) {
         rpc_configs[E.key] = E.value->get_rpc_config()->toRpcConfigDictionary();
     }
 

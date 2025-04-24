@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H
 #define GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H
 
-#include "jvm_wrapper/jvm_singleton_wrapper.h"
+#include "jvm/wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
     JVM_SINGLETON_WRAPPER(LambdaCallableBridge, "godot.core.LambdaCallable$Bridge") {

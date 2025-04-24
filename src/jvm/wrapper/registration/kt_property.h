@@ -1,9 +1,9 @@
 #ifndef GODOT_JVM_KT_PROPERTY_H
 #define GODOT_JVM_KT_PROPERTY_H
 
-#include "core/object/object.h"
-#include "jni/wrapper.h"
-#include "jvm_wrapper/jvm_instance_wrapper.h"
+#include <classes/object.hpp>
+#include "jvm/jni/wrapper.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
 #include "kt_object.h"
 
 JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
@@ -19,10 +19,10 @@ JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_TYPE, "getType", "()I")
-        INIT_JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/godot::String;")
         INIT_JNI_METHOD(GET_HINT, "getHint", "()I")
-        INIT_JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/godot::String;")
         INIT_JNI_METHOD(GET_USAGE, "getUsage", "()J")
     )
     // clang-format on
@@ -31,14 +31,14 @@ public:
     explicit KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtPropertyInfo() = default;
 
-    Variant::Type type;
-    String name;
-    StringName class_name;
-    PropertyHint hint;
-    String hint_string;
-    PropertyUsageFlags usage;
+    godot::Variant::Type type;
+    godot::String name;
+    godot::StringName class_name;
+    godot::PropertyHint hint;
+    godot::String hint_string;
+    godot::PropertyUsageFlags usage;
 
-    PropertyInfo toPropertyInfo() const;
+    godot::PropertyInfo toPropertyInfo() const;
 
 
 };
@@ -64,12 +64,12 @@ public:
     explicit KtProperty(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtProperty();
 
-    StringName get_name() const;
+    godot::StringName get_name() const;
 
-    PropertyInfo get_member_info();
+    godot::PropertyInfo get_member_info();
 
-    void call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret);
-    void call_set(jni::Env& p_env, KtObject* instance, const Variant& p_value);
+    void call_get(jni::Env& p_env, KtObject* instance, godot::Variant& r_ret);
+    void call_set(jni::Env& p_env, KtObject* instance, const godot::Variant& p_value);
 };
 
 #endif// GODOT_JVM_KT_PROPERTY_H

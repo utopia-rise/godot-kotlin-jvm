@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KT_CONSTRUCTOR_H
 #define GODOT_JVM_KT_CONSTRUCTOR_H
 
-#include "jvm_wrapper/jvm_instance_wrapper.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
 #include "kt_object.h"
 
 JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
@@ -18,7 +18,7 @@ JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
 public:
     explicit KtConstructor(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtConstructor() = default;
-    KtObject* create_instance(jni::Env& env, Object* p_owner);
+    KtObject* create_instance(jni::Env& env, godot::godot::Object* p_owner);
 };
 
 #endif// GODOT_JVM_KT_CONSTRUCTOR_H

@@ -6,15 +6,15 @@
 class GdjScript : public NamedScript {
     GDCLASS(GdjScript, NamedScript);
 
-public:
-    GdjScript() = default;
-    ~GdjScript() override = default;
+    public:
+        GdjScript() = default;
+        ~GdjScript() override = default;
 
-    ScriptLanguage* get_language() const override;
-    void set_path(const String& p_path, bool p_take_over) override;
+        ScriptLanguage* get_language() const override;
+        void set_path(const String& p_path, bool p_take_over) override;
 
-protected:
-    static void _bind_methods();
-};
-
+    protected:
+        static void _bind_methods();
+    };
+}
 #endif// GODOT_JVM_GDJ_SCRIPT_H

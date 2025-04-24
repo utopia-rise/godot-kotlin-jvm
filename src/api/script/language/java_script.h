@@ -6,15 +6,15 @@
 class JavaScript : public SourceScript {
     GDCLASS(JavaScript, SourceScript);
 
-public:
-    JavaScript() = default;
-    ~JavaScript() override = default;
+    public:
+        JavaScript() = default;
+        ~JavaScript() override = default;
 
-    ScriptLanguage* get_language() const override;
-    void set_path(const String& p_path, bool p_take_over) override;
+        ScriptLanguage* get_language() const override;
+        void set_path(const String& p_path, bool p_take_over) override;
 
-protected:
-    static void _bind_methods();
-};
-
-#endif// GODOT_JVM_JAVA_SCRIPT_H
+    protected:
+        static void _bind_methods();
+    };
+} // namespace godot
+#endif // GODOT_JVM_JAVA_SCRIPT_H

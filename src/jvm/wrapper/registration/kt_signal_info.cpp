@@ -21,8 +21,8 @@ KtSignalInfo::~KtSignalInfo() {
     }
 }
 
-MethodInfo KtSignalInfo::get_member_info() const {
-    MethodInfo method_info;
+godot::MethodInfo KtSignalInfo::get_member_info() const {
+    godot::MethodInfo method_info;
     method_info.name = name;
     for (const KtPropertyInfo* argument : arguments) {
         method_info.arguments.push_back(argument->toPropertyInfo());

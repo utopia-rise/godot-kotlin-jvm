@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_GODOT_PRINT_BRIDGE_H
 #define GODOT_JVM_GODOT_PRINT_BRIDGE_H
 
-#include "jvm_wrapper/jvm_singleton_wrapper.h"
+#include "jvm/wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
 
@@ -13,16 +13,16 @@ namespace bridges {
 
         // clang-format off
         INIT_JNI_BINDINGS(
-            INIT_NATIVE_METHOD("print", "(Ljava/lang/String;)V", GodotPrintBridge::print)
-            INIT_NATIVE_METHOD("printRich", "(Ljava/lang/String;)V", GodotPrintBridge::print_rich)
-            INIT_NATIVE_METHOD("printVerbose", "(Ljava/lang/String;)V", GodotPrintBridge::print_verbose2)
-            INIT_NATIVE_METHOD("printErr", "(Ljava/lang/String;)V", GodotPrintBridge::print_err)
-            INIT_NATIVE_METHOD("printRaw", "(Ljava/lang/String;)V", GodotPrintBridge::print_raw)
-            INIT_NATIVE_METHOD("pushError", "(Ljava/lang/String;)V", GodotPrintBridge::push_error)
-            INIT_NATIVE_METHOD("pushWarning", "(Ljava/lang/String;)V", GodotPrintBridge::push_warning)
+            INIT_NATIVE_METHOD("print", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print)
+            INIT_NATIVE_METHOD("printRich", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_rich)
+            INIT_NATIVE_METHOD("printVerbose", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_verbose2)
+            INIT_NATIVE_METHOD("printErr", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_err)
+            INIT_NATIVE_METHOD("printRaw", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_raw)
+            INIT_NATIVE_METHOD("pushError", "(Ljava/lang/godot::String;)V", GodotPrintBridge::push_error)
+            INIT_NATIVE_METHOD("pushWarning", "(Ljava/lang/godot::String;)V", GodotPrintBridge::push_warning)
 
-            INIT_JNI_METHOD(GET_EXCEPTION_STACKTRACE, "getExceptionStackTrace", "(Ljava/lang/Throwable;)Ljava/lang/String;")
-            INIT_JNI_METHOD(GET_STACKTRACE, "getCurrentStacktrace", "()Ljava/lang/String;")
+            INIT_JNI_METHOD(GET_EXCEPTION_STACKTRACE, "getExceptionStackTrace", "(Ljava/lang/Throwable;)Ljava/lang/godot::String;")
+            INIT_JNI_METHOD(GET_STACKTRACE, "getCurrentStacktrace", "()Ljava/lang/godot::String;")
           )
         // clang-format on
 
@@ -37,7 +37,7 @@ namespace bridges {
 
         static void print_exception_stacktrace(jni::Env p_env, jni::JThrowable p_throwable);
         // TODO: Use this method to get the JVM stacktrace when Godot will add the features to script https://github.com/godotengine/godot/pull/91006
-        String get_jvm_stacktrace(jni::Env& p_env);
+        godot::String get_jvm_stacktrace(jni::Env& p_env);
     };
 
 }// namespace bridge

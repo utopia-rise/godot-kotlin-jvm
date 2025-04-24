@@ -1,11 +1,11 @@
 #ifndef GODOT_JVM_CLASS_LOADER_H
 #define GODOT_JVM_CLASS_LOADER_H
 
-#include "jni/wrapper.h"
+#include "jvm/jni/wrapper.h"
 
 class ClassLoader {
 private:
-    jni::JObject wrapped {};
+    jni::JObject wrapped;
 
     ClassLoader(jni::Env& p_env, jni::JObject p_wrapped);
 

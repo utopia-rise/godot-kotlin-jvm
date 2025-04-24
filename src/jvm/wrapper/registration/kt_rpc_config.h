@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KT_RPC_CONFIG_H
 #define GODOT_JVM_KT_RPC_CONFIG_H
 
-#include "core/variant/dictionary.h"
 #include "jni/types.h"
-#include "jvm_wrapper/jvm_instance_wrapper.h"
-#include "scene/main/multiplayer_api.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
+
+#include <classes/multiplayer_api.hpp>
+#include <variant/dictionary.hpp>
 
 JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
     JVM_CLASS(KtRpcConfig)
@@ -24,7 +25,7 @@ JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
     // clang-format on
 
 public:
-    explicit KtRpcConfig(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtRpcConfig(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtRpcConfig() = default;
 
     MultiplayerAPI::RPCMode rpc_mode;
@@ -33,8 +34,6 @@ public:
     int rpc_channel;
 
     Dictionary toRpcConfigDictionary();
-
-
 };
 
-#endif// GODOT_JVM_KT_RPC_CONFIG_H
+#endif // GODOT_JVM_KT_RPC_CONFIG_H

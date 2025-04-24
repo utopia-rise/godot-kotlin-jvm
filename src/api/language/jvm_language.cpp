@@ -1,5 +1,7 @@
 #include "jvm_language.h"
 
+using namespace godot;
+
 void JvmLanguage::init() {}
 
 void JvmLanguage::frame() {}

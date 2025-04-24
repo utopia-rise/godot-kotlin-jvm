@@ -1,9 +1,9 @@
 #ifndef GODOT_JVM_STRINGS_H
 #define GODOT_JVM_STRINGS_H
 
-constexpr const char* gradle_dir = "kotlin_jvm/gradle/gradle_wrapper_dir";
-constexpr const char* build_before_start = "kotlin_jvm/editor/build_gradle_before_start";
-constexpr const char* show_info_on_start = "kotlin_jvm/editor/show_info_on_start";
+constexpr const char* GRADLE_DIR = "kotlin_jvm/gradle/gradle_wrapper_dir";
+constexpr const char* BUILD_BEFORE_START = "kotlin_jvm/editor/build_gradle_before_start";
+constexpr const char* SHOW_INFO_ON_START = "kotlin_jvm/editor/show_info_on_start";
 
 constexpr const char* start_build = "Building JVM project...";
 
@@ -30,5 +30,4 @@ constexpr const char* about_text =
   "If you encounter any bugs or problems, please report them on our "
   "[url=https://github.com/utopia-rise/godot-kotlin-jvm/issues]issue tracker[/url]";
 
-#endif// GODOT_JVM_STRINGS_H
-
+#endif // GODOT_JVM_STRINGS_H

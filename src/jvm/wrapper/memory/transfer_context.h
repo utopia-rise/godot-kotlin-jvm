@@ -1,8 +1,9 @@
 #ifndef GODOT_JVM_TRANSFER_CONTEXT_H
 #define GODOT_JVM_TRANSFER_CONTEXT_H
 
-#include "jvm_wrapper/jvm_instance_wrapper.h"
-#include "kt_variant.h"
+#include "engine/marshalls.h"
+#include "jvm/jvm_variant.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
 
 // clang-format off
 JVM_SINGLETON_WRAPPER(TransferContext, "godot.internal.memory.TransferContext") {
@@ -17,11 +18,11 @@ JVM_SINGLETON_WRAPPER(TransferContext, "godot.internal.memory.TransferContext") 
 
 public:
 
-    void write_return_value(jni::Env& p_env, Variant& variant);
-    void read_return_value(jni::Env& p_env, Variant& r_ret);
-    void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
-    uint32_t read_args(jni::Env& p_env, Variant* args);
-    void write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID id);
+    void write_return_value(jni::Env& p_env, godot::Variant& variant);
+    void read_return_value(jni::Env& p_env, godot::Variant& r_ret);
+    void write_args(jni::Env& p_env, const godot::Variant** p_args, int args_size);
+    uint32_t read_args(jni::Env& p_env, godot::Variant* args);
+    void write_object_data(jni::Env& p_env, uintptr_t ptr, godot::ObjectID id);
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType);
 
@@ -34,7 +35,7 @@ private:
         return args_size;
     }
 
-    _FORCE_INLINE_ static void read_args_to_array(SharedBuffer* buffer, Variant* p_args, uint32_t args_size) {
+    _FORCE_INLINE_ static void read_args_to_array(SharedBuffer* buffer, godot::Variant* p_args, uint32_t args_size) {
         for (uint32_t i = 0; i < args_size; ++i) {
             BufferToVariant::read_variant(buffer, p_args[i]);
         }

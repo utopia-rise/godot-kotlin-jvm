@@ -4,8 +4,9 @@
 #include "env.h"
 #include "methods.h"
 
-#include <core/templates/vector.h>
 #include <jni.h>
+
+#include <templates/vector.hpp>
 
 namespace jni {
 
@@ -45,7 +46,6 @@ namespace jni {
         JObject() = default;
         JObject(jobject);
 
-        // todo: delete copy ctor and assignment?
         JObject(const JObject&) = default;
         JObject& operator=(const JObject&) = default;
 
@@ -248,9 +248,9 @@ namespace jni {
     class JClass : public JObject {
     public:
         JClass() = default;
-        JClass(jclass clazz): JObject(clazz){};
+        JClass(jclass clazz) : JObject(clazz) {};
 
-        explicit JClass(JObject jObject): JObject(jObject){};
+        explicit JClass(JObject jObject) : JObject(jObject) {};
 
         JObject new_instance(Env& env, MethodID ctor, jvalue* args = {});
 
@@ -264,7 +264,7 @@ namespace jni {
 
         FieldID get_static_field_id(Env& env, const char* name, const char* signature);
 
-        void register_natives(Env& env, Vector<JNativeMethod> methods);
+        void register_natives(Env& env, godot::Vector<JNativeMethod> methods);
 
         void unregister_natives(Env& env);
 
@@ -283,6 +283,6 @@ namespace jni {
         explicit JThrowable(JObject jObject) : JObject(jObject) {};
     };
 
-}// namespace jni
+} // namespace jni
 
-#endif// GODOT_LOADER_JOBJECT_H
+#endif // GODOT_LOADER_JOBJECT_H

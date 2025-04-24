@@ -41,8 +41,8 @@ namespace jni {
 
         static JvmType get_type();
     };
-}// namespace jni
+} // namespace jni
 
 VARIANT_ENUM_CAST(jni::JvmType)
 
-#endif// GODOT_LOADER_JVM_H
+#endif // GODOT_LOADER_JVM_H

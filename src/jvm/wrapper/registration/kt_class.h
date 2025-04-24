@@ -2,14 +2,15 @@
 #define GODOT_JVM_KTCLASS_H
 
 #include "constraints.h"
-#include "jni/wrapper.h"
-#include "jvm_wrapper/jvm_instance_wrapper.h"
+#include "jvm/jni/wrapper.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
 #include "kt_constructor.h"
 #include "kt_function.h"
 #include "kt_object.h"
 #include "kt_signal_info.h"
 
 #include <classes/ref_counted.hpp>
+#include <templates/hash_map.hpp>
 
 JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     JVM_CLASS(KtClass)
@@ -28,11 +29,11 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     JNI_VOID_METHOD(DO_NOTIFICATION)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/godot::String;")
         INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
         INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
         INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
@@ -48,14 +49,14 @@ public:
     StringName registered_class_name;
     StringName fqdn;
     StringName compilation_time_relative_registration_file_path;
-    Vector<StringName> registered_supertypes;
+    godot::Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
     explicit KtClass(jni::Env & p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
-    KtObject* create_instance(jni::Env & env, Object * p_owner);
+    KtObject* create_instance(jni::Env & env, godot::godot::Object * p_owner);
 
     KtFunction* get_method(const StringName& methodName);
 
@@ -65,20 +66,20 @@ public:
 
     void get_method_list(List<MethodInfo> * p_list);
 
-    void get_property_list(List<PropertyInfo> * p_list);
+    void get_property_list(List<godot::PropertyInfo> * p_list);
 
     void get_signal_list(List<MethodInfo> * p_list);
 
     void fetch_members(jni::Env & env);
 
-    const Dictionary get_rpc_config();
+    const godot::Dictionary get_rpc_config();
 
     void do_notification(jni::Env & env, KtObject * p_instance, int p_notification, bool p_reversed);
 
 private:
-    HashMap<StringName, KtFunction*> methods;
-    HashMap<StringName, KtProperty*> properties;
-    HashMap<StringName, KtSignalInfo*> signal_infos;
+    godot::HashMap<StringName, KtFunction*> methods;
+    godot::HashMap<StringName, KtProperty*> properties;
+    godot::HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* kt_constructor;
     bool _has_notification;
 
@@ -103,15 +104,15 @@ private:
     void fetch_constructor(jni::Env & env);
 
     template<typename F, typename T>
-    void get_member_list(List<F> * p_list, HashMap<StringName, T*> & members) {
-        for (const KeyValue<StringName, T*>& E : members) {
+    void get_member_list(List<F> * p_list, godot::HashMap<StringName, T*> & members) {
+        for (const godot::KeyValue<StringName, T*>& E : members) {
             p_list->push_back(E.value->get_member_info());
         }
     }
 
     template<class T>
-    void delete_members(HashMap<StringName, T*> & members) {
-        for (const KeyValue<StringName, T*>& E : members) {
+    void delete_members(godot::HashMap<StringName, T*> & members) {
+        for (const godot::KeyValue<StringName, T*>& E : members) {
             delete E.value;
         }
         members.clear();
