@@ -9,8 +9,8 @@ KtRpcConfig::KtRpcConfig(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceW
     rpc_channel = wrapped.call_int_method(env, GET_RPC_CHANNEL);
 }
 
-Dictionary KtRpcConfig::toRpcConfigDictionary() {
-    Dictionary rpc_config {};
+godot::Dictionary KtRpcConfig::toRpcConfigDictionary() {
+    godot::Dictionary rpc_config {};
 
     // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
     rpc_config["rpc_mode"] = rpc_mode;

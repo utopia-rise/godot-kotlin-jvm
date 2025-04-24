@@ -19,9 +19,9 @@ ClassLoader::~ClassLoader() {
 }
 
 #ifndef __ANDROID__
-jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
+jni::JObject to_java_url(jni::Env& env, const godot::String& bootstrapJar) {
     jni::JClass cls {env.find_class("java/io/File")};
-    jni::MethodID ctor {cls.get_constructor_method_id(env, "(Ljava/lang/String;)V")};
+    jni::MethodID ctor {cls.get_constructor_method_id(env, "(Ljava/lang/godot::String;)V")};
     jni::JObject path {env.new_string(bootstrapJar.utf8().get_data())};
     jvalue args[1] = {jni::to_jni_arg(path)};
     jni::JObject file {cls.new_instance(env, ctor, args)};
@@ -35,13 +35,13 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
 }
 #endif
 
-ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader) {
+ClassLoader* ClassLoader::create_instance(jni::Env& env, const godot::String& full_jar_path, const jni::JObject& p_parent_loader) {
 #ifdef __ANDROID__
     // mark file as read only. Needed since android 14: https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading
     chmod(full_jar_path.utf8().get_data(), S_IRUSR | S_IRGRP | S_IROTH);
 
     jni::JClass class_loader_cls {env.find_class("dalvik/system/DexClassLoader")};
-    jni::MethodID ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")};
+    jni::MethodID ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/godot::String;Ljava/lang/godot::String;Ljava/lang/godot::String;Ljava/lang/ClassLoader;)V")};
     jni::JObject jar_path {env.new_string(full_jar_path.utf8().get_data())};
     jvalue args[4] = {
       jni::to_jni_arg(jar_path),
@@ -75,7 +75,7 @@ jni::JClass ClassLoader::load_class(jni::Env& env, const char* name) {
 
     if (loadClassMethodId.methodId == nullptr) {
         auto cls = env.find_class("java/lang/ClassLoader");
-        loadClassMethodId.methodId = cls.get_method_id(env, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+        loadClassMethodId.methodId = cls.get_method_id(env, "loadClass", "(Ljava/lang/godot::String;)Ljava/lang/Class;");
     }
     jvalue args[1] = {static_cast<jni::JValue>(env.new_string(name)).value};
     jni::JObject ret = wrapped.call_object_method(env, loadClassMethodId, args);

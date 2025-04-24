@@ -1,12 +1,16 @@
 #ifndef GODOT_JVM_MEMORY_MANAGER_H
 #define GODOT_JVM_MEMORY_MANAGER_H
 
-#include "jni/types.h"
-#include "jvm_wrapper/jvm_singleton_wrapper.h"
-#include "jvm_wrapper/registration/kt_object.h"
-#include "script/jvm_instance.h"
+#include "api/script/jvm_instance.h"
+#include "jvm/jni/types.h"
+#include "jvm/wrapper/jvm_singleton_wrapper.h"
+#include "jvm/wrapper/registration/kt_object.h"
 
 #include <jni.h>
+
+#include <classes/mutex.hpp>
+#include <templates/local_vector.hpp>
+#include <templates/hash_set.hpp>
 
 // clang-format off
 JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
@@ -26,11 +30,11 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
         INIT_NATIVE_METHOD("releaseBinding", "(J)V", MemoryManager::release_binding)
       )
 
-    Mutex dead_objects_mutex;
-    LocalVector<ObjectID> dead_objects;
+    godot::Mutex dead_objects_mutex;
+    godot::LocalVector<godot::ObjectID> dead_objects;
 
-    Mutex to_demote_mutex;
-    HashSet<JvmInstance*> to_demote_objects;
+    godot::Mutex to_demote_mutex;
+    godot::HashSet<JvmInstance*> to_demote_objects;
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
     static void unref_native_core_types(JNIEnv* p_raw_env, jobject p_instance, jobject p_ptr_array, jobject p_var_type_array);
@@ -38,8 +42,8 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
     static void release_binding(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
 
 public:
-    void direct_object_deletion(jni::Env& p_env, Object* obj);
-    void queue_dead_object(Object* obj);
+    void direct_object_deletion(jni::Env& p_env, godot::Object* obj);
+    void queue_dead_object(godot::Object* obj);
     void queue_demotion(JvmInstance* script_instance);
     void cancel_demotion(JvmInstance* script_instance);
     void try_promotion(JvmInstance* script_instance);
@@ -48,4 +52,4 @@ public:
 };
 
 // clang-format on
-#endif// GODOT_JVM_MEMORY_MANAGER_H
+#endif // GODOT_JVM_MEMORY_MANAGER_H

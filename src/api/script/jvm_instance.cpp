@@ -2,6 +2,8 @@
 
 #include "binding/kotlin_binding_manager.h"
 
+using namespace godot;
+
 JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),

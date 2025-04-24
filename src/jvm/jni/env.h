@@ -3,8 +3,9 @@
 
 #include "logging.h"
 
-#include <core/string/ustring.h>
 #include <jni.h>
+
+#include <variant/string.hpp>
 
 namespace jni {
 
@@ -34,7 +35,7 @@ namespace jni {
 
         JNIEnv* env;
 
-        static inline void(*exception_handler)(Env, JThrowable) = nullptr;
+        static inline void (*exception_handler)(Env, JThrowable) = nullptr;
 
     public:
         explicit Env(JNIEnv*);
@@ -42,7 +43,7 @@ namespace jni {
         Env(const Env&) = default;
         Env& operator=(const Env&) = default;
 
-        static void set_exception_handler(void(*p_exception_handler)(Env, JThrowable));
+        static void set_exception_handler(void (*p_exception_handler)(Env, JThrowable));
 
         JavaVM* get_jvm();
 
@@ -52,7 +53,7 @@ namespace jni {
         JClass find_class(const char* name);
 
         JObject new_string(const char* str);
-        String from_jstring(JString str);
+        godot::String from_jstring(JString str);
 
         bool exception_check();
         void exception_describe();
@@ -68,6 +69,6 @@ namespace jni {
 
         bool is_valid();
     };
-}// namespace jni
+} // namespace jni
 
-#endif// GODOT_LOADER_ENV_H
+#endif // GODOT_LOADER_ENV_H

@@ -1,6 +1,6 @@
 #ifdef TOOLS_ENABLED
+#include "editor/godot_jvm_editor.h"
 #include "kotlin_editor_export_plugin.h"
-#include "editor/godot_kotlin_jvm_editor.h"
 
 #include <classes/editor_node.hpp>
 #include <classes/export/editor_export.hpp>
@@ -38,11 +38,11 @@ static void export_plugin_init() {
 }
 
 static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
-    return GodotKotlinJvmEditor::get_instance();
+    return GodotJvmEditor::get_instance();
 }
 #endif
 
-void initialize__godot_jvm_module(ModuleInitializationLevel p_level) {
+void initialize_godot_jvm_library(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
@@ -76,7 +76,7 @@ void initialize__godot_jvm_module(ModuleInitializationLevel p_level) {
 #endif
 }
 
-void uninitialize_godot_jvm_module(ModuleInitializationLevel p_level) {
+void uninitialize_godot_jvm_library(ModuleInitializationLevel p_level) {
 
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
 
@@ -104,4 +104,16 @@ void uninitialize_godot_jvm_module(ModuleInitializationLevel p_level) {
     memdelete(jvm_language);
 
     JvmScriptManager::finalize();
+}
+
+
+GDExtensionBool GDE_EXPORT
+godot_jvm_library_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
+    GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
+
+    init_obj.register_initializer(initialize_godot_jvm_library);
+    init_obj.register_terminator(uninitialize_godot_jvm_library);
+    init_obj.set_minimum_library_initialization_level(MODULE_INITIALIZATION_LEVEL_SERVERS);
+
+    return init_obj.init();
 }

@@ -1,25 +1,26 @@
 #include "memory_manager.h"
 
-#include "binding/kotlin_binding_manager.h"
 #include "api/script/jvm_script_manager.h"
-#include "variant_allocator.h"
+#include "core/jvm_binding_manager.h"
+#include "core/variant_allocator.h"
+#include "engine/utilities.h"
 
-static LocalVector<uint64_t> ids;
-static LocalVector<uintptr_t> pointers;
-static LocalVector<uint32_t> variant_types;
+static godot::LocalVector<uint64_t> ids;
+static godot::LocalVector<uintptr_t> pointers;
+static godot::LocalVector<uint32_t> variant_types;
 
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
-    auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
-    return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
+    auto* instance {reinterpret_cast<godot::Object*>(static_cast<uintptr_t>(p_raw_ptr))};
+    return instance == godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(static_cast<uint64_t>(instance_id)));
 }
 
 void MemoryManager::release_binding(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
-    Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
+    godot::Object* obj = godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(static_cast<uint64_t>(instance_id)));
     if (obj == nullptr) { return; }
 
-    KotlinBindingManager::free_binding(obj);
-    if (obj->is_ref_counted()) {
-        RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
+    JvmBindingManager::free_binding(obj);
+    if (is_ref_counted(obj)) {
+        godot::RefCounted* ref = reinterpret_cast<godot::RefCounted*>(obj);
         if (ref->unreference()) { memdelete(ref); }
     }
 }
@@ -40,52 +41,52 @@ void MemoryManager::unref_native_core_types(JNIEnv* p_raw_env, jobject p_instanc
         uintptr_t p_raw_ptr = pointers[i];
         uint32_t var_type = variant_types[i];
 
-        Variant::Type variant_type {static_cast<Variant::Type>(var_type)};
+        godot::Variant::Type variant_type {static_cast<godot::Variant::Type>(var_type)};
         switch (variant_type) {
-            case Variant::CALLABLE:
-                VariantAllocator::free(reinterpret_cast<Callable*>(p_raw_ptr));
+            case godot::Variant::CALLABLE:
+                VariantAllocator::free(reinterpret_cast<godot::Callable*>(p_raw_ptr));
                 break;
-            case Variant::DICTIONARY:
-                VariantAllocator::free(reinterpret_cast<Dictionary*>(p_raw_ptr));
+            case godot::Variant::DICTIONARY:
+                VariantAllocator::free(reinterpret_cast<godot::Dictionary*>(p_raw_ptr));
                 break;
-            case Variant::ARRAY:
-                VariantAllocator::free(reinterpret_cast<Array*>(p_raw_ptr));
+            case godot::Variant::ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::Array*>(p_raw_ptr));
                 break;
-            case Variant::STRING_NAME:
-                VariantAllocator::free(reinterpret_cast<StringName*>(p_raw_ptr));
+            case godot::Variant::STRING_NAME:
+                VariantAllocator::free(reinterpret_cast<godot::StringName*>(p_raw_ptr));
                 break;
-            case Variant::NODE_PATH:
-                VariantAllocator::free(reinterpret_cast<NodePath*>(p_raw_ptr));
+            case godot::Variant::NODE_PATH:
+                VariantAllocator::free(reinterpret_cast<godot::NodePath*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_BYTE_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedByteArray*>(p_raw_ptr));
+            case godot::Variant::PACKED_BYTE_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedByteArray*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_INT32_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedInt32Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_INT32_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedInt32Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_INT64_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedInt64Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_INT64_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedInt64Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_FLOAT32_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedFloat32Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_FLOAT32_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedFloat32Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_FLOAT64_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedFloat64Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_FLOAT64_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedFloat64Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_STRING_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedStringArray*>(p_raw_ptr));
+            case godot::Variant::PACKED_STRING_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedStringArray*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_VECTOR2_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedVector2Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_VECTOR2_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedVector2Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_VECTOR3_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedVector3Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_VECTOR3_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedVector3Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_VECTOR4_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedVector4Array*>(p_raw_ptr));
+            case godot::Variant::PACKED_VECTOR4_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedVector4Array*>(p_raw_ptr));
                 break;
-            case Variant::PACKED_COLOR_ARRAY:
-                VariantAllocator::free(reinterpret_cast<PackedColorArray*>(p_raw_ptr));
+            case godot::Variant::PACKED_COLOR_ARRAY:
+                VariantAllocator::free(reinterpret_cast<godot::PackedColorArray*>(p_raw_ptr));
                 break;
             default:
                 break;
@@ -131,8 +132,8 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
     refs_to_decrement.delete_local_ref(p_env);
 
     for (uint64_t id : ids) {
-        RefCounted* ref = reinterpret_cast<RefCounted*>(ObjectDB::get_instance(static_cast<ObjectID>(id)));
-        KotlinBindingManager::free_binding(ref);
+        godot::RefCounted* ref = reinterpret_cast<godot::RefCounted*>(godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(id)));
+        JvmBindingManager::free_binding(ref);
         if (ref->unreference()) { memdelete(ref); }
     }
 
@@ -145,9 +146,9 @@ void MemoryManager::clean_up(jni::Env& p_env) {
     JVM_LOG_VERBOSE("JVM Memory cleaned!");
 }
 
-void MemoryManager::queue_dead_object(Object* obj) {
+void MemoryManager::queue_dead_object(godot::Object* obj) {
     dead_objects_mutex.lock();
-    dead_objects.push_back(obj->get_instance_id());
+    dead_objects.push_back(godot::ObjectID(obj->get_instance_id()));
     dead_objects_mutex.unlock();
 }
 
@@ -169,8 +170,8 @@ void MemoryManager::try_promotion(JvmInstance* script_instance) {
     to_demote_mutex.unlock();
 }
 
-void MemoryManager::direct_object_deletion(jni::Env& p_env, Object* p_obj) {
-    jvalue args[1] = {jni::to_jni_arg(p_obj->get_instance_id().operator uint64_t())};
+void MemoryManager::direct_object_deletion(jni::Env& p_env, godot::Object* p_obj) {
+    jvalue args[1] = {jni::to_jni_arg(p_obj->get_instance_id())};
     wrapped.call_void_method(p_env, DELETE_OBJECT, args);
     memdelete(p_obj);
 }

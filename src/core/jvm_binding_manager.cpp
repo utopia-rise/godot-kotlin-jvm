@@ -1,6 +1,10 @@
+#include "jvm_binding_manager.h"
+
+#include "engine/utilities.h"
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/memory_manager.h"
-#include "jvm_binding_manager.h"
+
+using namespace godot;
 
 GDExtensionInstanceBindingCallbacks JvmBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
@@ -23,7 +27,7 @@ void JvmBindingManager::_instance_binding_free_callback(void* p_token, void* p_i
     godot::memdelete(reinterpret_cast<JvmBinding*>(p_binding));
 
     godot::Object* object = reinterpret_cast<godot::Object*>(p_instance);
-    if (!object->is_ref_counted()) { MemoryManager::get_instance().queue_dead_object(object); }
+    if (!is_ref_counted(object)) { MemoryManager::get_instance().queue_dead_object(object); }
 }
 
 JvmBinding* JvmBindingManager::set_instance_binding(godot::Object* p_object) {
@@ -33,11 +37,13 @@ JvmBinding* JvmBindingManager::set_instance_binding(godot::Object* p_object) {
     JvmBinding* binding = memnew(JvmBinding);
     binding->init(p_object);
 
-    if (p_object->is_ref_counted()) {
+    if (is_ref_counted(p_object)) {
         reinterpret_cast<godot::RefCounted*>(p_object)->init_ref();
         binding->test_and_set_incremented();
     }
-    p_object->set_instance_binding(&GodotJvm::get_instance(), binding, &_instance_binding_callbacks);
+
+
+    internal::gdextension_interface_object_set_instance_binding(p_object,&GodotJvm::get_instance(), binding, &_instance_binding_callbacks);
 
     return binding;
 }
@@ -46,14 +52,14 @@ JvmBinding* JvmBindingManager::get_instance_binding(godot::Object* p_object) {
     // Godot being weird but this is how you create a binding if it doesn't exist already, otherwise just retrieve it.
     //  Use this function to bind an existing object to the JVM, the callbacks provided will handle the creation of the binding.
     JvmBinding* binding =
-      reinterpret_cast<JvmBinding*>(p_object->get_instance_binding(&GodotJvm::get_instance(), &_instance_binding_callbacks));
+      reinterpret_cast<JvmBinding*>(internal::gdextension_interface_object_get_instance_binding(p_object, &GodotJvm::get_instance(), &_instance_binding_callbacks));
 
-    if (p_object->is_ref_counted() && !binding->test_and_set_incremented()) {
+    if (is_ref_counted(p_object) && !binding->test_and_set_incremented()) {
         reinterpret_cast<godot::RefCounted*>(p_object)->reference();
     }
     return binding;
 }
 
 void JvmBindingManager::free_binding(godot::Object* p_ref) {
-    p_ref->free_instance_binding(&GodotJvm::get_instance());
+    internal::gdextension_interface_object_free_instance_binding(p_ref, &GodotJvm::get_instance());
 }

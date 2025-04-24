@@ -1,15 +1,14 @@
 #include "api/script/jvm_script_manager.h"
 #include "godot_jvm.h"
-#include "jni/env.h"
+#include "jvm/jni/env.h"
 #include "jvm/wrapper/memory/long_string_queue.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "jvm/wrapper/memory/type_manager.h"
-#include "lifecycle/paths.h"
+#include "paths.h"
 #include "version.h"
 
-#include <core/config/project_settings.hpp>
-#include <core/io/resource_loader.hpp>
-#include <main/main.hpp>
+
+using namespace godot;
 
 #define DISPLAY_ERROR(cause, hint)                  \
     display_initialization_error_hint(cause, hint); \

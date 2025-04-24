@@ -35,7 +35,7 @@ typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
 CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #ifdef DYNAMIC_JVM
     void* createJavaVMSymbolHandle;
-    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
+    if (godot::OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
         return nullptr;
     }
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);

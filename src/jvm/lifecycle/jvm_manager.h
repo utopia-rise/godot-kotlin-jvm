@@ -2,7 +2,7 @@
 #define GODOT_JVM_JVM_MANAGER_H
 
 #include "class_loader.h"
-#include "jni/env.h"
+#include "jvm/jni/env.h"
 #include "jvm_options.h"
 #include "jvm_user_configuration.h"
 

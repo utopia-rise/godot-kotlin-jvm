@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
 #define GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
 
-#include "jvm_wrapper/jvm_singleton_wrapper.h"
+#include "jvm/wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
 

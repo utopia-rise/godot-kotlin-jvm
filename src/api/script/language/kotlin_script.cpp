@@ -3,6 +3,8 @@
 #include "api/language/kotlin_language.h"
 #include "api/language/names.h"
 
+using namespace godot;
+
 ScriptLanguage* KotlinScript::get_language() const {
     return KotlinLanguage::get_instance();
 }

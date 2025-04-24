@@ -2,6 +2,8 @@
 #include "api/language/names.h"
 #include "api/language/scala_language.h"
 
+using namespace godot;
+
 ScriptLanguage* ScalaScript::get_language() const {
     return ScalaLanguage::get_instance();
 }

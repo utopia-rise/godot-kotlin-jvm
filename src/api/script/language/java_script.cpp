@@ -3,6 +3,8 @@
 #include "api/language/java_language.h"
 #include "api/language/names.h"
 
+using namespace godot;
+
 ScriptLanguage* JavaScript::get_language() const {
     return JavaLanguage::get_instance();
 }

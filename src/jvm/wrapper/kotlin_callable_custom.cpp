@@ -3,7 +3,7 @@
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
 
-void LambdaCallable::invoke(jni::Env& p_env, const Variant** p_args, int args_count, Variant& r_ret) const {
+void LambdaCallable::invoke(jni::Env& p_env, const godot::Variant** p_args, int args_count, godot::Variant& r_ret) const {
     TransferContext& transfer_context{TransferContext::get_instance()};
     transfer_context.write_args(p_env, p_args, args_count);
 
@@ -37,9 +37,9 @@ bool LambdaCallable::equals(const LambdaCallable& other) const {
     return wrapped.is_same_object(env, other.wrapped);
 }
 
-LambdaCallable::LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code,
+LambdaCallable::LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, godot::Variant::Type return_type, int p_hash_code,
                                bool p_has_on_cancel) : JvmInstanceWrapper(p_env, p_wrapped) {
-    has_return_value = return_type != Variant::NIL;
+    has_return_value = return_type != godot::Variant::NIL;
 
     hash_code = p_hash_code;
     has_on_cancel = p_has_on_cancel;
@@ -47,7 +47,7 @@ LambdaCallable::LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, Variant:
 }
 
 
-void KotlinCallableCustom::call(const Variant** p_arguments, int p_argcount, Variant& r_return_value,
+void KotlinCallableCustom::call(const godot::Variant** p_arguments, int p_argcount, godot::Variant& r_return_value,
                                 Callable::CallError& r_call_error) const {
     jni::Env env{jni::Jvm::current_env()};
     kt_callable.invoke(env, p_arguments, p_argcount, r_return_value);
@@ -57,7 +57,7 @@ uint32_t KotlinCallableCustom::hash() const {
     return kt_callable.get_hash_code();
 }
 
-String KotlinCallableCustom::get_as_text() const {
+godot::String KotlinCallableCustom::get_as_text() const {
     return "KotlinCallableCustom::invoke";
 }
 
@@ -88,7 +88,7 @@ bool KotlinCallableCustom::compare_less(const CallableCustom* p_a, const Callabl
     return !compare_equal(p_a, p_b) && p_a < p_b;
 }
 
-KotlinCallableCustom::KotlinCallableCustom(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type,
+KotlinCallableCustom::KotlinCallableCustom(jni::Env& p_env, jni::JObject p_wrapped, godot::Variant::Type return_type,
                                            int p_hash_code, bool p_has_on_destroy) : CallableCustom(),
                                                                                      kt_callable(p_env, p_wrapped,
                                                                                                  return_type,

@@ -1,19 +1,23 @@
 #include "about_dialog.h"
 
-#include "editor/godot_kotlin_jvm_editor.h"
+#include "editor/godot_jvm_editor.h"
 #include "editor/strings.h"
+#include "engine/utilities.h"
 
-#include <editor/editor_interface.hpp>
-#include <editor/themes/editor_scale.hpp>
-#include <scene/gui/rich_text_label.hpp>
-#include <scene/gui/texture_rect.hpp>
+#include <classes/check_box.hpp>
+#include <classes/editor_interface.hpp>
+#include <classes/os.hpp>
+#include <classes/rich_text_label.hpp>
+#include <classes/v_box_container.hpp>
+
+using namespace godot;
 
 AboutDialog::AboutDialog() {
     set_title("About Godot Kotlin JVM");
 }
 
 void AboutDialog::on_checkbox_toggled(bool is_selected) {
-    GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->set_setting(show_info_on_start, is_selected);
+    GodotJvmEditor::editor_settings->set_setting(SHOW_INFO_ON_START, is_selected);
 }
 
 void AboutDialog::on_url_clicked(const String& url) {
@@ -27,9 +31,8 @@ void AboutDialog::_notification(int notification) {
     VBoxContainer* about_vbox {memnew(VBoxContainer)};
     add_child(about_vbox);
 
-
     RichTextLabel* about_label {memnew(RichTextLabel)};
-    about_label->set_custom_minimum_size(Size2 {600, 150} * EDSCALE);
+    about_label->set_custom_minimum_size(Size2 {600, 150} * GodotJvmEditor::editor_scale);
     about_label->set_v_size_flags(Control::SizeFlags::SIZE_EXPAND_FILL);
     about_label->set_text(about_text);
     about_label->set_scroll_active(false);
@@ -42,7 +45,7 @@ void AboutDialog::_notification(int notification) {
     about_dialog_check_box->set_h_size_flags(Control::SizeFlags::SIZE_SHRINK_CENTER);
     about_dialog_check_box->connect(SNAME("toggled"), callable_mp(this, &AboutDialog::on_checkbox_toggled));
 
-    bool show_on_start = EDITOR_GET(show_info_on_start);
+    bool show_on_start = GodotJvmEditor::editor_settings->get_setting(SHOW_INFO_ON_START);
     about_dialog_check_box->set_pressed(show_on_start);
 
     about_vbox->add_child(about_dialog_check_box);
@@ -54,3 +57,5 @@ void AboutDialog::_notification(int notification) {
         set_exclusive(false);
     }
 }
+
+void AboutDialog::_bind_methods() {}

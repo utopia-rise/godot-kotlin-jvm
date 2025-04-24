@@ -1,12 +1,14 @@
 #ifndef GODOT_JVM_VARIANT_ALLOCATOR_H
 #define GODOT_JVM_VARIANT_ALLOCATOR_H
 
-#include "paged_allocator.h"
+#include "engine/paged_allocator.h"
+
 #include <variant/variant.hpp>
 
 class VariantAllocator {
     union BucketSmall {
         BucketSmall() {}
+
         ~BucketSmall() {}
 
         godot::StringName string_name;
@@ -17,6 +19,7 @@ class VariantAllocator {
 
     union BucketLarge {
         BucketLarge() {}
+
         ~BucketLarge() {}
 
         godot::Callable callable;

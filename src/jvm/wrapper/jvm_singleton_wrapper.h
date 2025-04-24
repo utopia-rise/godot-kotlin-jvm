@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_JVM_SINGLETON_WRAPPER_H
 #define GODOT_JVM_JVM_SINGLETON_WRAPPER_H
 
-#include "jvm_wrapper/jvm_instance_wrapper.h"
+#include "jvm_instance_wrapper.h"
 
 #define JVM_SINGLETON_WRAPPER(NAME, FQNAME)               \
     inline constexpr char NAME##QualifiedName[] = FQNAME; \
@@ -63,7 +63,7 @@ bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoad
         singleton_cls = p_env.find_class(FqName);
     }
     jni::FieldID singleton_instance_field =
-      singleton_cls.get_static_field_id(p_env, "INSTANCE", vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
+      singleton_cls.get_static_field_id(p_env, "INSTANCE", godot::vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(p_env, singleton_instance_field);
 
     JVM_ERR_FAIL_COND_V_MSG(singleton_instance.is_null(), false, "Failed to retrieve " + String(FqName) + " singleton");
