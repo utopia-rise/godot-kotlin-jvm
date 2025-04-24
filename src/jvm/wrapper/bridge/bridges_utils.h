@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_BRIDGES_UTILS_H
 #define GODOT_JVM_BRIDGES_UTILS_H
 
-#include "jni/wrapper.h"
+#include "jvm/jni/wrapper.h"
 
 namespace bridges {
 

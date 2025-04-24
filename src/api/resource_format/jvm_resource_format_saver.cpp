@@ -4,7 +4,9 @@
 #include "api/script/jvm_script.h"
 #include "api/script/jvm_script_manager.h"
 
-#include <core/io/file_access.h>
+using namespace godot;
+
+#include <core/io/file_access.hpp>
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {

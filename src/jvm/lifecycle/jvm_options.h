@@ -3,8 +3,8 @@
 
 #include "jvm_user_configuration.h"
 
-#include <core/string//ustring.h>
-#include <core/templates/local_vector.h>
+#include <variant/string.hpp>
+#include <templates/local_vector.hpp>
 #include <jni.h>
 
 class JvmManager;
@@ -21,7 +21,7 @@ class JvmOptions {
     int version {JNI_VERSION_1_8};
 #endif
 
-    LocalVector<CharString> options;
+    godot::LocalVector<godot::CharString> options;
 
     void add_jni_checks();
     void add_debug_options(uint16_t p_port, String& p_address, bool p_wait);
