@@ -2,9 +2,9 @@
 
 #include "bridges_utils.h"
 #include "constraints.h"
+#include "core/variant_allocator.h"
 #include "jvm/wrapper/kotlin_callable_custom.h"
 #include "jvm/wrapper/memory/transfer_context.h"
-#include "core/variant_allocator.h"
 
 using namespace bridges;
 
@@ -16,17 +16,25 @@ uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_r
     jni::Env env {p_raw_env};
     godot::Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(godot::Callable(args[0].operator godot::Object*(), args[1].operator godot::StringName())));
+    return reinterpret_cast<uintptr_t>(
+      VariantAllocator::alloc(godot::Callable(args[0].operator godot::Object*(), args[1].operator godot::StringName()))
+    );
 }
 
-uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
-                                                                     jobject p_kt_custom_callable_instance,
-                                                                     jint p_variant_type_ordinal, jint p_hash_code,
-                                                                     jboolean p_has_on_destroy) {
+uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(
+  JNIEnv* p_raw_env,
+  jobject p_instance,
+  jobject p_kt_custom_callable_instance,
+  jint p_variant_type_ordinal,
+  jint p_hash_code,
+  jboolean p_has_on_destroy
+) {
     jni::Env env {p_raw_env};
-    return reinterpret_cast<uintptr_t>(
-        VariantAllocator::alloc(godot::Callable(memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy))))
-    );
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(
+      godot::Callable(memnew(
+        KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy)
+      ))
+    ));
 }
 
 uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {

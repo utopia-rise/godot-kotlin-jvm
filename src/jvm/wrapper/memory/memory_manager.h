@@ -9,8 +9,8 @@
 #include <jni.h>
 
 #include <classes/mutex.hpp>
-#include <templates/local_vector.hpp>
 #include <templates/hash_set.hpp>
+#include <templates/local_vector.hpp>
 
 // clang-format off
 JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
@@ -34,7 +34,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
     godot::LocalVector<godot::ObjectID> dead_objects;
 
     godot::Mutex to_demote_mutex;
-    godot::HashSet<JvmInstance*> to_demote_objects;
+    godot::HashSet<godot::JvmInstance*> to_demote_objects;
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
     static void unref_native_core_types(JNIEnv* p_raw_env, jobject p_instance, jobject p_ptr_array, jobject p_var_type_array);
@@ -44,9 +44,9 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
 public:
     void direct_object_deletion(jni::Env& p_env, godot::Object* obj);
     void queue_dead_object(godot::Object* obj);
-    void queue_demotion(JvmInstance* script_instance);
-    void cancel_demotion(JvmInstance* script_instance);
-    void try_promotion(JvmInstance* script_instance);
+    void queue_demotion(godot::JvmInstance* script_instance);
+    void cancel_demotion(godot::JvmInstance* script_instance);
+    void try_promotion(godot::JvmInstance* script_instance);
     void sync_memory(jni::Env& p_env);
     void clean_up(jni::Env& p_env);
 };

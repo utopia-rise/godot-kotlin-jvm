@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KT_PROPERTY_H
 #define GODOT_JVM_KT_PROPERTY_H
 
-#include <classes/object.hpp>
 #include "jvm/jni/wrapper.h"
 #include "jvm/wrapper/jvm_instance_wrapper.h"
 #include "kt_object.h"
+
+#include <classes/object.hpp>
 
 JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
     JVM_CLASS(KtPropertyInfo)
@@ -28,7 +29,7 @@ JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
     // clang-format on
 
 public:
-    explicit KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtPropertyInfo(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtPropertyInfo() = default;
 
     godot::Variant::Type type;
@@ -39,8 +40,6 @@ public:
     godot::PropertyUsageFlags usage;
 
     godot::PropertyInfo toPropertyInfo() const;
-
-
 };
 
 JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
@@ -61,15 +60,15 @@ JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
     KtPropertyInfo* propertyInfo;
 
 public:
-    explicit KtProperty(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtProperty(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtProperty();
 
     godot::StringName get_name() const;
 
     godot::PropertyInfo get_member_info();
 
-    void call_get(jni::Env& p_env, KtObject* instance, godot::Variant& r_ret);
-    void call_set(jni::Env& p_env, KtObject* instance, const godot::Variant& p_value);
+    void call_get(jni::Env & p_env, KtObject * instance, godot::Variant & r_ret);
+    void call_set(jni::Env & p_env, KtObject * instance, const godot::Variant& p_value);
 };
 
-#endif// GODOT_JVM_KT_PROPERTY_H
+#endif // GODOT_JVM_KT_PROPERTY_H

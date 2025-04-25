@@ -4,12 +4,12 @@
 #include "packed_array_bridge.h"
 
 namespace bridges {
-    PACKED_ARRAY_BRIDGE(PackedVector3ArrayBridge, Vector3, "godot.core.PackedVector3Array$Bridge") {
-        PACKED_ARRAY_BRIDGE_CLASS(PackedVector3ArrayBridge, Vector3)
+    PACKED_ARRAY_BRIDGE(PackedVector3ArrayBridge, godot::Vector3, "godot.core.PackedVector3Array$Bridge") {
+        PACKED_ARRAY_BRIDGE_CLASS(PackedVector3ArrayBridge, godot::Vector3)
 
         // clang-format off
         INIT_JNI_BINDINGS(
-            PackedArrayBridge<PackedVector3ArrayBridge, Vector3, PackedVector3ArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
+            PackedArrayBridge<PackedVector3ArrayBridge, godot::Vector3, PackedVector3ArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
             INIT_NATIVE_METHOD("engine_convert_to_godot", "([F)J", PackedVector3ArrayBridge::engine_convert_to_godot)
             INIT_NATIVE_METHOD("engine_convert_to_jvm", "(J)[F", PackedVector3ArrayBridge::engine_convert_to_jvm)
         )

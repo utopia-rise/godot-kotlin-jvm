@@ -22,13 +22,9 @@ KtClass::~KtClass() {
     delete kt_constructor;
 }
 
-KtObject* KtClass::create_instance(jni::Env& env, godot::godot::Object* p_owner) {
+KtObject* KtClass::create_instance(jni::Env& env, godot::Object* p_owner) {
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_V_MSG(
-      kt_constructor == nullptr,
-      nullptr,
-      "Cannot find constructor for class %s", registered_class_name
-    );
+    JVM_ERR_FAIL_COND_V_MSG(kt_constructor == nullptr, nullptr, "Cannot find constructor for class %s", registered_class_name);
 #endif
 
     KtObject* jvm_instance {kt_constructor->create_instance(env, p_owner)};
@@ -37,37 +33,37 @@ KtObject* KtClass::create_instance(jni::Env& env, godot::godot::Object* p_owner)
     return jvm_instance;
 }
 
-KtFunction* KtClass::get_method(const StringName& methodName) {
+KtFunction* KtClass::get_method(const godot::StringName& methodName) {
     KtFunction** method = methods.getptr(methodName);
     return method ? *method : nullptr;
 }
 
-KtProperty* KtClass::get_property(const StringName& p_property_name) {
+KtProperty* KtClass::get_property(const godot::StringName& p_property_name) {
     KtProperty** property = properties.getptr(p_property_name);
     return property ? *property : nullptr;
 }
 
-KtSignalInfo* KtClass::get_signal(const StringName& p_signal_name) {
+KtSignalInfo* KtClass::get_signal(const godot::StringName& p_signal_name) {
     KtSignalInfo** signal_info {signal_infos.getptr(p_signal_name)};
     return signal_info ? *signal_info : nullptr;
 }
 
-String KtClass::get_registered_name(jni::Env& env) {
+godot::String KtClass::get_registered_name(jni::Env& env) {
     jni::JObject ret = wrapped.call_object_method(env, GET_REGISTERED_NAME);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-String KtClass::get_fqdn(jni::Env& env) {
+godot::String KtClass::get_fqdn(jni::Env& env) {
     jni::JObject ret = wrapped.call_object_method(env, GET_FQDN);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-String KtClass::get_compilation_time_relative_registration_file_path(jni::Env& env) {
+godot::String KtClass::get_compilation_time_relative_registration_file_path(jni::Env& env) {
     jni::JObject ret = wrapped.call_object_method(env, GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-StringName KtClass::get_base_godot_class(jni::Env& env) {
+godot::StringName KtClass::get_base_godot_class(jni::Env& env) {
     jni::JObject ret = wrapped.call_object_method(env, GET_BASE_GODOT_CLASS);
     return {env.from_jstring(jni::JString((jstring) ret.obj))};
 }
@@ -79,7 +75,7 @@ bool KtClass::get_has_notification(jni::Env& env) {
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
     jni::JObjectArray classesArray {wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES)};
     for (int i = 0; i < classesArray.length(env); i++) {
-        StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
+        godot::StringName parent_name = godot::StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
         registered_supertypes.append(parent_name);
         JVM_DEV_VERBOSE("%s user type is parent of %s.", parent_name, registered_class_name);
     }
@@ -125,22 +121,22 @@ void KtClass::fetch_constructor(jni::Env& env) {
     }
 }
 
-void KtClass::get_method_list(List<MethodInfo>* p_list) {
+void KtClass::get_method_list(godot::List<godot::MethodInfo>* p_list) {
     get_member_list(p_list, methods);
 }
 
-void KtClass::get_property_list(List<godot::PropertyInfo>* p_list) {
+void KtClass::get_property_list(godot::List<godot::PropertyInfo>* p_list) {
     get_member_list(p_list, properties);
 }
 
-void KtClass::get_signal_list(List<MethodInfo>* p_list) {
+void KtClass::get_signal_list(godot::List<godot::MethodInfo>* p_list) {
     get_member_list(p_list, signal_infos);
 }
 
 const godot::Dictionary KtClass::get_rpc_config() {
     godot::Dictionary rpc_configs {};
 
-    for (const godot::KeyValue<StringName, KtFunction*>& E : methods) {
+    for (const godot::KeyValue<godot::StringName, KtFunction*>& E : methods) {
         rpc_configs[E.key] = E.value->get_rpc_config()->toRpcConfigDictionary();
     }
 
@@ -150,10 +146,10 @@ const godot::Dictionary KtClass::get_rpc_config() {
 void KtClass::do_notification(jni::Env& env, KtObject* p_instance, int p_notification, bool p_reversed) {
     if (!_has_notification) { return; }
 
-    Variant notification = p_notification;
-    Variant reversed = p_reversed;
+    godot::Variant notification = p_notification;
+    godot::Variant reversed = p_reversed;
     const int arg_size = 2;
-    const Variant* args[arg_size] = {&notification, &reversed};
+    const godot::Variant* args[arg_size] = {&notification, &reversed};
 
     TransferContext::get_instance().write_args(env, args, arg_size);
 

@@ -16,9 +16,9 @@ JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
     // clang-format on
 
 public:
-    explicit KtConstructor(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtConstructor(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtConstructor() = default;
-    KtObject* create_instance(jni::Env& env, godot::godot::Object* p_owner);
+    KtObject* create_instance(jni::Env & env, godot::Object * p_owner);
 };
 
-#endif// GODOT_JVM_KT_CONSTRUCTOR_H
+#endif // GODOT_JVM_KT_CONSTRUCTOR_H

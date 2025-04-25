@@ -59,7 +59,7 @@ void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, godot::O
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
     if (unlikely(stack_offset == -1)) {
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];

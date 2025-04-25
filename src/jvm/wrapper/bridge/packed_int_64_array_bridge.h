@@ -18,9 +18,9 @@ namespace bridges {
         // clang-format on
 
     public:
-        static uintptr_t engine_convert_to_godot(JNIEnv* p_raw_env, jobject p_instance, jlongArray p_array);
-        static jlongArray engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static uintptr_t engine_convert_to_godot(JNIEnv * p_raw_env, jobject p_instance, jlongArray p_array);
+        static jlongArray engine_convert_to_jvm(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
-}// namespace bridge
+} // namespace bridges
 
-#endif// GODOT_JVM_PACKED_INT_64_ARRAY_BRIDGE_H
+#endif // GODOT_JVM_PACKED_INT_64_ARRAY_BRIDGE_H

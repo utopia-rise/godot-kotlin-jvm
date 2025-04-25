@@ -14,6 +14,6 @@ namespace bridges {
           )
         // clang-format on
     };
-}// namespace bridge
+} // namespace bridges
 
 #endif

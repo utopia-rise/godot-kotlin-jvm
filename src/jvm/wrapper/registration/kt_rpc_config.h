@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KT_RPC_CONFIG_H
 #define GODOT_JVM_KT_RPC_CONFIG_H
 
-#include "jni/types.h"
+#include "jvm/jni/types.h"
 #include "jvm/wrapper/jvm_instance_wrapper.h"
 
 #include <classes/multiplayer_api.hpp>
+#include <classes/multiplayer_peer.hpp>
 #include <variant/dictionary.hpp>
 
 JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
@@ -28,12 +29,12 @@ public:
     explicit KtRpcConfig(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtRpcConfig() = default;
 
-    MultiplayerAPI::RPCMode rpc_mode;
-    MultiplayerPeer::TransferMode rpc_transfer_mode;
+    godot::MultiplayerAPI::RPCMode rpc_mode;
+    godot::MultiplayerPeer::TransferMode rpc_transfer_mode;
     bool rpc_call_local;
     int rpc_channel;
 
-    Dictionary toRpcConfigDictionary();
+    godot::Dictionary toRpcConfigDictionary();
 };
 
 #endif // GODOT_JVM_KT_RPC_CONFIG_H
