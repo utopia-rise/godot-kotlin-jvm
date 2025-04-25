@@ -1,4 +1,5 @@
 #include "godot_print_bridge.h"
+
 #include "jvm/wrapper/memory/transfer_context.h"
 
 #include <core/print_string.hpp>

@@ -3,23 +3,31 @@
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
 
+#include <classes/global_constants.hpp>
+
 KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
-  has_return_value(false) {
+  parameter_count(-1) {
     method_info = new KtFunctionInfo(p_env, wrapped.call_object_method(p_env, GET_FUNCTION_INFO));
-    has_return_value = method_info->return_val->type != Variant::NIL || (method_info->return_val->usage & PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
+    parameter_count = wrapped.call_int_method(p_env, GET_PARAMETER_COUNT);
+    has_return_value = method_info->return_val->type != godot::Variant::NIL
+                    || (method_info->return_val->usage & godot::PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
 }
 
 KtFunction::~KtFunction() {
     delete method_info;
 }
 
-MethodInfo KtFunction::get_member_info() {
+godot::MethodInfo KtFunction::get_member_info() {
     return method_info->to_method_info();
 }
 
-StringName KtFunction::get_name() const {
+godot::StringName KtFunction::get_name() const {
     return method_info->name;
+}
+
+int KtFunction::get_parameter_count() const {
+    return parameter_count;
 }
 
 KtRpcConfig* KtFunction::get_rpc_config() const {
@@ -30,7 +38,7 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
     return method_info;
 }
 
-void KtFunction::invoke(jni::Env& p_env, const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret) {
+void KtFunction::invoke(jni::Env& p_env, const KtObject* instance, const godot::Variant** p_args, int args_count, godot::Variant& r_ret) {
     TransferContext& transferContext = TransferContext::get_instance();
     transferContext.write_args(p_env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
@@ -63,7 +71,7 @@ KtFunctionInfo::KtFunctionInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmIns
 KtFunctionInfo::~KtFunctionInfo() {
     delete return_val;
 
-    List<KtPropertyInfo*>::Element* current = arguments.front();
+    godot::List<KtPropertyInfo*>::Element* current = arguments.front();
     while (current) {
         KtPropertyInfo* propertyInfo = current->get();
         delete propertyInfo;
@@ -72,10 +80,10 @@ KtFunctionInfo::~KtFunctionInfo() {
     arguments.clear();
 }
 
-MethodInfo KtFunctionInfo::to_method_info() const {
-    MethodInfo methodInfo;
+godot::MethodInfo KtFunctionInfo::to_method_info() const {
+    godot::MethodInfo methodInfo;
     methodInfo.name = name;
-    Vector<PropertyInfo> pInfoList;
+    std::vector<godot::PropertyInfo> pInfoList;
     for (auto argument : arguments) {
         pInfoList.push_back(argument->toPropertyInfo());
     }

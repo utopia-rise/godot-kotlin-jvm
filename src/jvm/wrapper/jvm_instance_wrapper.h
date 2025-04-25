@@ -32,7 +32,7 @@
                                                                                      \
 public:                                                                              \
     static void initialize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) { \
-        godot::Vector<jni::JNativeMethod> methods;                                          \
+        godot::Vector<jni::JNativeMethod> methods;                                   \
         jni::JClass clazz;                                                           \
         if (class_loader) {                                                          \
             clazz = class_loader->load_class(p_env, fq_name);                        \
@@ -156,4 +156,4 @@ const jni::JObject& JvmInstanceWrapper<Derived, FqName>::get_wrapped() const {
     return wrapped;
 }
 
-#endif// GODOT_JVM_JVM_INSTANCE_WRAPPER_H
+#endif // GODOT_JVM_JVM_INSTANCE_WRAPPER_H
