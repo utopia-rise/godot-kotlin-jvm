@@ -2,6 +2,8 @@
 
 #include "jvm/wrapper/memory/transfer_context.h"
 
+#include <classes/global_constants.hpp>
+
 KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
     type = static_cast<godot::Variant::Type>(wrapped.call_int_method(p_env, GET_TYPE));
 
@@ -11,20 +13,20 @@ KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmIns
     jni::JString jclass_name {wrapped.call_object_method(p_env, GET_CLASS_NAME)};
     class_name = p_env.from_jstring(jclass_name);
 
-    hint = static_cast<PropertyHint>(wrapped.call_int_method(p_env, GET_HINT));
+    hint = static_cast<godot::PropertyHint>(wrapped.call_int_method(p_env, GET_HINT));
 
     jni::JString jhint_string {wrapped.call_object_method(p_env, GET_HINT_STRING)};
     hint_string = p_env.from_jstring(jhint_string);
 
-    usage = static_cast<PropertyUsageFlags>(wrapped.call_long_method(p_env, GET_USAGE));
+    usage = static_cast<godot::PropertyUsageFlags>(wrapped.call_long_method(p_env, GET_USAGE));
 
     jhint_string.delete_local_ref(p_env);
     jclass_name.delete_local_ref(p_env);
     jname.delete_local_ref(p_env);
 }
 
-PropertyInfo KtPropertyInfo::toPropertyInfo() const {
-    PropertyInfo info;
+godot::PropertyInfo KtPropertyInfo::toPropertyInfo() const {
+    godot::PropertyInfo info;
     info.type = type;
     info.name = name;
     info.class_name = class_name;
@@ -46,7 +48,7 @@ godot::StringName KtProperty::get_name() const {
     return propertyInfo->name;
 }
 
-PropertyInfo KtProperty::get_member_info() {
+godot::PropertyInfo KtProperty::get_member_info() {
     return propertyInfo->toPropertyInfo();
 }
 

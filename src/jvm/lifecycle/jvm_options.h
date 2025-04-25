@@ -24,9 +24,9 @@ class JvmOptions {
     godot::LocalVector<godot::CharString> options;
 
     void add_jni_checks();
-    void add_debug_options(uint16_t p_port, String& p_address, bool p_wait);
+    void add_debug_options(uint16_t p_port, godot::String& p_address, bool p_wait);
     void add_jmx_option(uint16_t p_port);
-    void add_custom_options(const String& custom_options);
+    void add_custom_options(const godot::String& custom_options);
 
 public:
     JvmOptions() = default;

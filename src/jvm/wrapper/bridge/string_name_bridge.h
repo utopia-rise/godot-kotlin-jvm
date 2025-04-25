@@ -17,13 +17,12 @@ namespace bridges {
         // clang-format on
 
     public:
+        static uintptr_t engine_call_constructor(JNIEnv * p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_copy_constructor(JNIEnv * p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_constructor_string(JNIEnv * p_raw_env, jobject p_instance);
 
-        static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
-        static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
-        static uintptr_t engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance);
-
-        static void engine_call_operator_string(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_operator_string(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
-}// namespace bridge
+} // namespace bridges
 
-#endif// GODOT_JVM_STRING_NAME_BRIDGE_H
+#endif // GODOT_JVM_STRING_NAME_BRIDGE_H
