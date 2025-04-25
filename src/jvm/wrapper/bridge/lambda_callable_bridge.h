@@ -14,9 +14,15 @@ namespace bridges {
         // clang-format on
 
     public:
-        static uintptr_t wrap_in_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance, jint p_variant_type_ordinal, jint p_hash_code, jboolean p_has_on_destroy);
+        static uintptr_t wrap_in_custom_callable(
+          JNIEnv * p_raw_env,
+          jobject p_instance,
+          jobject p_kt_custom_callable_instance,
+          jint p_variant_type_ordinal,
+          jint p_hash_code,
+          jboolean p_has_on_destroy
+        );
     };
-}
+} // namespace bridges
 
-
-#endif// GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H
+#endif // GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H

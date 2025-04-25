@@ -2,18 +2,16 @@
 
 #include "api/script/jvm_instance.h"
 
-#include <core/object/method_bind.h>
-
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
-thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cpp)
-thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
+thread_local static godot::Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
+thread_local static const godot::Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
 TransferContext::~TransferContext() = default;
 
 SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
-    thread_local SharedBuffer shared_buffer;
+    thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
         jni::JObject buffer = wrapped.call_object_method(p_env, GET_BUFFER);
@@ -29,12 +27,12 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     return &shared_buffer;
 }
 
-void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
+void TransferContext::read_return_value(jni::Env& p_env, godot::Variant& r_ret) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     BufferToVariant::read_variant(buffer, r_ret);
 }
 
-void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
+void TransferContext::write_args(jni::Env& p_env, const godot::Variant** p_args, int args_size) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     buffer->increment_position(encode_uint32(args_size, buffer->get_cursor()));
     for (auto i = 0; i < args_size; ++i) {
@@ -42,7 +40,7 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
     }
 }
 
-uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
+uint32_t TransferContext::read_args(jni::Env& p_env, godot::Variant* args) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     uint32_t size {read_args_size(buffer)};
     for (uint32_t i = 0; i < size; ++i) {
@@ -51,17 +49,17 @@ uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
     return size;
 }
 
-void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
+void TransferContext::write_return_value(jni::Env& p_env, godot::Variant& variant) {
     VariantToBuffer::write_variant(variant, get_and_rewind_buffer(p_env));
 }
 
-void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID id) {
+void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, godot::ObjectID id) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     buffer->increment_position(encode_uint64(ptr, buffer->get_cursor()));
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_method_ptr) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
     if (unlikely(stack_offset == -1)) {
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];
@@ -72,27 +70,11 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_method_ptr
     jni::Env env {rawEnv};
 
     SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
-    uintptr_t receiver_ptr {static_cast<uintptr_t>(decode_uint64(buffer->get_cursor()))};
-#ifdef DEBUG_ENABLED
-    ObjectID receiver_id {decode_uint64(buffer->get_cursor() + PTR_SIZE)};
-#endif
-    buffer->increment_position(PTR_SIZE + LONG_SIZE);
-    Object* ptr {reinterpret_cast<Object*>(receiver_ptr)};
     uint32_t args_size {read_args_size(buffer)};
 
-    MethodBind* method_bind {reinterpret_cast<MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
+    auto* ptr {reinterpret_cast<godot::Object*>(static_cast<uintptr_t>(j_ptr))};
 
-#ifdef DEBUG_ENABLED
-    if (unlikely(!method_bind->is_static() && ptr != ObjectDB::get_instance(receiver_id))) {
-        buffer->rewind();
-        Variant return_value;
-        VariantToBuffer::write_variant(return_value, buffer);
-        String message {vformat("Cannot call method '%s' on a previously freed instance.", method_bind->get_name())};
-        JVM_ERR_PRINT("%s", message);
-        env.throw_new(message.utf8().get_data());
-        return;
-    }
-#endif
+    godot::MethodBind* method_bind {reinterpret_cast<godot::MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
 
     JVM_DEV_ASSERT(
       args_size <= MAX_FUNCTION_ARG_COUNT,
@@ -103,32 +85,32 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_method_ptr
       args_size
     );
 
-    Callable::CallError r_error {Callable::CallError::CALL_OK};
+    GDExtensionCallError r_error {GDExtensionCallErrorType::GDEXTENSION_CALL_OK, 0, 0};
 
     if (unlikely(stack_offset + args_size > MAX_STACK_SIZE)) {
-        Variant args[MAX_FUNCTION_ARG_COUNT];
+        godot::Variant args[MAX_FUNCTION_ARG_COUNT];
         read_args_to_array(buffer, args, args_size);
 
-        const Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
+        const godot::Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
         for (uint32_t i = 0; i < args_size; i++) {
             args_ptr[i] = &args[i];
         }
 
-        const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
-        buffer->rewind();
+        const godot::Variant& ret_value {method_bind->call(ptr, reinterpret_cast<GDExtensionConstVariantPtr*>(args_ptr), args_size, r_error)};
 
+        buffer->rewind();
         VariantToBuffer::write_variant(ret_value, buffer);
     } else {
-        Variant* args {variant_args + stack_offset};
+        godot::Variant* args {variant_args + stack_offset};
         read_args_to_array(buffer, args, args_size);
 
-        const Variant** args_ptr {variant_args_ptr + stack_offset};
+        const godot::Variant** args_ptr {variant_args_ptr + stack_offset};
 
         stack_offset += args_size;
-        const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
+        const godot::Variant& ret_value {method_bind->call(ptr, reinterpret_cast<GDExtensionConstVariantPtr*>(args_ptr), args_size, r_error)};
         // Remove Variants so memory can be freed immediately after method call.
         for (uint32_t i = 0; i < args_size; i++) {
-            args[i] = Variant();
+            args[i] = godot::Variant();
         }
         stack_offset -= args_size;
 
@@ -137,6 +119,10 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_method_ptr
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(r_error.error != Callable::CallError::CALL_OK, "Call to method %s failed.", method_bind->get_name());
+    JVM_ERR_FAIL_COND_MSG(
+      r_error.error != GDExtensionCallErrorType::GDEXTENSION_CALL_OK,
+      "Call to method %s failed.",
+      method_bind->get_name()
+    );
 #endif
 }
