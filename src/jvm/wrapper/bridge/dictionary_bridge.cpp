@@ -1,11 +1,11 @@
 #include "dictionary_bridge.h"
 
-#include "bridges_utils.h"
-#include "constraints.h"
-#include "jvm/wrapper/memory/transfer_context.h"
 #include "api/script/jvm_script.h"
 #include "api/script/jvm_script_manager.h"
+#include "bridges_utils.h"
+#include "constraints.h"
 #include "core/variant_allocator.h"
+#include "jvm/wrapper/memory/transfer_context.h"
 
 using namespace bridges;
 
@@ -48,14 +48,7 @@ uintptr_t DictionaryBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, job
         value_base_class_name = TypeManager::get_instance().get_engine_type_for_index(value_engine_type_index);
     }
 
-    ret->set_typed(
-      key_variant_type,
-      key_base_class_name,
-      key_script,
-      value_variant_type,
-      value_base_class_name,
-      value_script
-      );
+    ret->set_typed(key_variant_type, key_base_class_name, key_script, value_variant_type, value_base_class_name, value_script);
     return reinterpret_cast<uintptr_t>(ret);
 }
 
@@ -193,6 +186,5 @@ void DictionaryBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance,
     godot::Variant variant = *from_uint_to_ptr<godot::Dictionary>(p_raw_ptr) == args[0].operator godot::Dictionary();
     TransferContext::get_instance().write_return_value(env, variant);
 }
-
 
 DictionaryBridge::~DictionaryBridge() = default;

@@ -170,8 +170,6 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
-    //TODO: Remove the return jvm when https://github.com/godotengine/godot/issues/95809 is resolved
-    return;
     JVM_LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif

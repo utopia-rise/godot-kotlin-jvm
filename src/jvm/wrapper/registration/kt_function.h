@@ -23,8 +23,9 @@ JVM_INSTANCE_WRAPPER(KtFunctionInfo, "godot.core.KtFunctionInfo") {
     )
 
     // clang-format on
+
 public:
-    explicit KtFunctionInfo(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtFunctionInfo(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtFunctionInfo();
 
     godot::String name;
@@ -58,7 +59,7 @@ private:
     bool has_return_value;
 
 public:
-    explicit KtFunction(jni::Env& p_env, jni::JObject p_wrapped);
+    explicit KtFunction(jni::Env & p_env, jni::JObject p_wrapped);
     ~KtFunction();
 
     godot::StringName get_name() const;
@@ -68,7 +69,7 @@ public:
     godot::MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();
 
-    void invoke(jni::Env& p_env, const KtObject* instance, const godot::Variant** p_args, int args_count, godot::Variant& r_ret);
+    void invoke(jni::Env & p_env, const KtObject* instance, const godot::Variant** p_args, int args_count, godot::Variant& r_ret);
 };
 
-#endif// GODOT_JVM_KT_FUNCTION_H
+#endif // GODOT_JVM_KT_FUNCTION_H

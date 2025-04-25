@@ -3,8 +3,7 @@
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 uint16_t LongStringQueue::max_string_size = 512;
 
-thread_local static godot::List<godot::String> string_queue;// NOLINT(cert-err58-cpp)
-
+thread_local static godot::List<godot::String> string_queue; // NOLINT(cert-err58-cpp)
 
 void LongStringQueue::set_string_max_size(jni::Env& p_env, int max_size) {
     LongStringQueue::max_string_size = max_size;
@@ -28,7 +27,7 @@ void LongStringQueue::send_string_to_jvm(jni::Env& p_env, const godot::String& s
     wrapped.call_void_method(p_env, QUEUE_STRING, args);
 }
 
-void LongStringQueue::send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, jstring p_string) {
+void LongStringQueue::send_string_to_cpp(JNIEnv* p_raw_env, jobject, jstring p_string) {
     jni::Env env {p_raw_env};
     const godot::String nativeString = env.from_jstring(jni::JString {p_string});
     queue_string(nativeString);

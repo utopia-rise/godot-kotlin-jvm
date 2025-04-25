@@ -60,6 +60,6 @@ namespace bridges {
         static void engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
 
-}// namespace bridge
+} // namespace bridges
 
-#endif// GODOT_JVM_DICTIONARY_BRIDGE_H
+#endif // GODOT_JVM_DICTIONARY_BRIDGE_H

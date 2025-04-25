@@ -23,13 +23,13 @@ private:
     bool is_ref;
 
 public:
-    explicit KtObject(jni::Env& p_env, jni::JObject p_wrapped, bool p_is_ref);
+    explicit KtObject(jni::Env & p_env, jni::JObject p_wrapped, bool p_is_ref);
     ~KtObject();
 
-    void script_instance_removed(jni::Env& p_env, uint32_t constructor_index);
-    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jint p_script_index);
-    static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
-    static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+    void script_instance_removed(jni::Env & p_env, uint32_t constructor_index);
+    static void create_native_object(JNIEnv * p_raw_env, jobject instance, jint p_class_index, jint p_script_index);
+    static void get_singleton(JNIEnv * p_raw_env, jobject p_instance, jint p_class_index);
+    static void free_object(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
 };
 
-#endif// GODOT_JVM_KT_OBJECT_H
+#endif // GODOT_JVM_KT_OBJECT_H

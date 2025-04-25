@@ -1,8 +1,8 @@
 #ifndef GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
 #define GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
 
-#include "jvm/wrapper/jvm_instance_wrapper.h"
 #include "core/variant/callable.h"
+#include "jvm/wrapper/jvm_instance_wrapper.h"
 
 JVM_INSTANCE_WRAPPER(LambdaCallable, "godot.core.LambdaCallable") {
     JVM_CLASS(LambdaCallable)
@@ -23,12 +23,12 @@ JVM_INSTANCE_WRAPPER(LambdaCallable, "godot.core.LambdaCallable") {
     // clang-format on
 
 public:
-    void invoke(jni::Env& p_env, const godot::Variant** p_args, int args_count, godot::Variant& r_ret) const;
-    void on_destroy(jni::Env& p_env) const;
+    void invoke(jni::Env & p_env, const godot::Variant** p_args, int args_count, godot::Variant& r_ret) const;
+    void on_destroy(jni::Env & p_env) const;
     int get_hash_code() const;
     bool equals(const LambdaCallable& other) const;
 
-    LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, godot::Variant::Type return_type, int p_hash_code, bool p_has_on_cancel);
+    LambdaCallable(jni::Env & p_env, jni::JObject p_wrapped, godot::Variant::Type return_type, int p_hash_code, bool p_has_on_cancel);
 
 private:
     int hash_code;
@@ -57,5 +57,4 @@ private:
     static bool compare_less(const CallableCustom* p_a, const CallableCustom* p_b);
 };
 
-
-#endif //GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
+#endif // GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H

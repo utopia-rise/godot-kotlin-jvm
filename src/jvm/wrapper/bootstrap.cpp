@@ -55,9 +55,9 @@ void Bootstrap::init_native_image(jni::Env& p_env) {
     wrapped.call_void_method(p_env, INIT_NATIVE_IMAGE);
 }
 
-String Bootstrap::get_version(jni::Env& p_env) {
+godot::String Bootstrap::get_version(jni::Env& p_env) {
     jni::JString str {wrapped.call_object_method(p_env, GET_VERSION)};
-    String ret {p_env.from_jstring(str)};
+    godot::String ret {p_env.from_jstring(str)};
     str.delete_local_ref(p_env);
     return ret;
 }

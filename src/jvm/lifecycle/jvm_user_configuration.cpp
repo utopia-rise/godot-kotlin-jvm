@@ -2,19 +2,19 @@
 
 #include <classes/json.hpp>
 
-bool JvmUserConfiguration::parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config) {
+bool JvmUserConfiguration::parse_configuration_json(const godot::String& json_string, JvmUserConfiguration& json_config) {
     bool is_invalid = false;
     godot::JSON json;
     godot::Error error = json.parse(json_string);
-    Variant result = json.get_data();
+    godot::Variant result = json.get_data();
 
-    if (error != godot::OK || result.get_type() != Variant::DICTIONARY) {
+    if (error != godot::OK || result.get_type() != godot::Variant::DICTIONARY) {
         JVM_ERR_FAIL_V_MSG(true, "Error parsing Godot Kotlin configuration file! Falling back to default configuration");
     }
 
     godot::Dictionary json_dict = result;
     if (json_dict.has(VM_TYPE_JSON_IDENTIFIER)) {
-        String value = json_dict[VM_TYPE_JSON_IDENTIFIER];
+        godot::String value = json_dict[VM_TYPE_JSON_IDENTIFIER];
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", VM_TYPE_JSON_IDENTIFIER, value);
         if (value == AUTO_STRING) {
             json_config.vm_type = jni::JvmType::NONE;
@@ -31,7 +31,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         json_dict.erase(VM_TYPE_JSON_IDENTIFIER);
     }
     if (json_dict.has(USE_DEBUG_JSON_IDENTIFIER)) {
-        String boolean = json_dict[USE_DEBUG_JSON_IDENTIFIER];
+        godot::String boolean = json_dict[USE_DEBUG_JSON_IDENTIFIER];
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", USE_DEBUG_JSON_IDENTIFIER, boolean);
         if (boolean == TRUE_STRING) {
             json_config.use_debug = true;
@@ -55,7 +55,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         json_dict.erase(DEBUG_PORT_JSON_IDENTIFIER);
     }
     if (json_dict.has(DEBUG_ADDRESS_JSON_IDENTIFIER)) {
-        String address = json_dict[DEBUG_ADDRESS_JSON_IDENTIFIER];
+        godot::String address = json_dict[DEBUG_ADDRESS_JSON_IDENTIFIER];
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", DEBUG_ADDRESS_JSON_IDENTIFIER, address);
         if (address.is_valid_ip_address() || address == "*") {
             json_config.jvm_debug_address = address;
@@ -66,7 +66,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         json_dict.erase(DEBUG_ADDRESS_JSON_IDENTIFIER);
     }
     if (json_dict.has(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER)) {
-        String boolean = json_dict[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER];
+        godot::String boolean = json_dict[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER];
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", WAIT_FOR_DEBUGGER_JSON_IDENTIFIER, boolean);
         if (boolean == TRUE_STRING) {
             json_config.wait_for_debugger = true;
@@ -101,7 +101,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         json_dict.erase(MAX_STRING_SIZE_JSON_IDENTIFIER);
     }
     if (json_dict.has(DISABLE_GC_JSON_IDENTIFIER)) {
-        String boolean = json_dict[DISABLE_GC_JSON_IDENTIFIER];
+        godot::String boolean = json_dict[DISABLE_GC_JSON_IDENTIFIER];
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", DISABLE_GC_JSON_IDENTIFIER, boolean);
         if (boolean == TRUE_STRING) {
             json_config.disable_gc = true;
@@ -120,7 +120,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     }
 
     if (json_dict.has(VERSION_JSON_IDENTIFIER)) {
-        String version {json_dict[VERSION_JSON_IDENTIFIER]};
+        godot::String version {json_dict[VERSION_JSON_IDENTIFIER]};
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", VERSION_JSON_IDENTIFIER, version);
         if (version != JSON_ARGUMENT_VERSION) {
             JVM_LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A "
@@ -136,8 +136,8 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     if (!json_dict.is_empty()) {
         godot::Array keys = json_dict.keys();
         for (int i = 0; i < keys.size(); i++) {
-            String key = keys[i];
-            String value = json_dict[key];
+            godot::String key = keys[i];
+            godot::String value = json_dict[key];
             JVM_LOG_WARNING("Invalid json configuration argument name: %s", key);
         }
         is_invalid = true;
@@ -146,11 +146,11 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     return is_invalid;
 }
 
-String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfiguration& configuration) {
+godot::String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfiguration& configuration) {
     // This function assumes all values are valid.
     godot::Dictionary json;
 
-    String vm_type_value;
+    godot::String vm_type_value;
     switch (configuration.vm_type) {
         case jni::JvmType::NONE:
             vm_type_value = AUTO_STRING;
@@ -184,7 +184,7 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
     return godot::JSON::stringify(json, "    ", true, false);
 }
 
-godot::Error split_argument(const String& cmd_arg, String& identifier, String& value) {
+godot::Error split_argument(const godot::String& cmd_arg, godot::String& identifier, godot::String& value) {
     godot::PackedStringArray jvm_debug_split {cmd_arg.split("=")};
 
     if (jvm_debug_split.size() == 2) {
@@ -199,7 +199,7 @@ godot::Error split_argument(const String& cmd_arg, String& identifier, String& v
     return godot::OK;
 }
 
-bool get_cmd_bool_or_default(const String& value, bool default_if_empty) {
+bool get_cmd_bool_or_default(const godot::String& value, bool default_if_empty) {
     if (value.is_empty()) {
         return default_if_empty;
     } else if (value == TRUE_STRING) {
@@ -211,15 +211,15 @@ bool get_cmd_bool_or_default(const String& value, bool default_if_empty) {
     }
 }
 
-void JvmUserConfiguration::parse_command_line(const List<String>& args, godot::HashMap<String, Variant>& configuration_map) {
+void JvmUserConfiguration::parse_command_line(const godot::List<godot::String>& args, godot::HashMap<godot::String, godot::Variant>& configuration_map) {
     // We use a HashMap instead of JvmUserConfiguration so we can still make the difference between a
     // JvmUserConfiguration default value and the absence of the matching command line argument. Knowing this is
     // essential when merging with the json configuration later.
 
     // Keep in sync with https://godot-kotl.in/en/latest/advanced/commandline-args/
     for (const auto& arg : args) {
-        String identifier;
-        String value;
+        godot::String identifier;
+        godot::String value;
         if (split_argument(arg, identifier, value) != godot::Error::OK) { continue; }
 
         if (identifier == VM_TYPE_CMD_IDENTIFIER) {
@@ -272,7 +272,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, godot::H
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == JVM_ARGUMENTS_CMD_IDENTIFIER) {
             godot::Array arr {};
-            for(String jvm_arg: value.split(" ")){
+            for(godot::String jvm_arg: value.split(" ")){
                 arr.append(arg);
             }
             configuration_map[JVM_ARGUMENTS_CMD_IDENTIFIER] = arr;
@@ -285,11 +285,11 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, godot::H
 }
 
 template<typename T>
-void replace_json_value_by_cmd_value(const godot::HashMap<String, Variant>& map, T& json_value, const String& cmd_key) {
+void replace_json_value_by_cmd_value(const godot::HashMap<godot::String, godot::Variant>& map, T& json_value, const godot::String& cmd_key) {
     if (map.has(cmd_key)) { json_value = godot::VariantCaster<T>::cast(map[cmd_key]); }
 }
 
-void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_config, const godot::HashMap<String, Variant>& cmd_map) {
+void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_config, const godot::HashMap<godot::String, godot::Variant>& cmd_map) {
     replace_json_value_by_cmd_value(cmd_map, json_config.vm_type, VM_TYPE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_port, DEBUG_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_address, DEBUG_ADDRESS_CMD_IDENTIFIER);

@@ -3,12 +3,15 @@
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
 
+#include <classes/global_constants.hpp>
+
 KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
   parameter_count(-1) {
     method_info = new KtFunctionInfo(p_env, wrapped.call_object_method(p_env, GET_FUNCTION_INFO));
     parameter_count = wrapped.call_int_method(p_env, GET_PARAMETER_COUNT);
-    has_return_value = method_info->return_val->type != godot::Variant::NIL || (method_info->return_val->usage & PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
+    has_return_value = method_info->return_val->type != godot::Variant::NIL
+                    || (method_info->return_val->usage & godot::PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
 }
 
 KtFunction::~KtFunction() {
@@ -80,7 +83,7 @@ KtFunctionInfo::~KtFunctionInfo() {
 godot::MethodInfo KtFunctionInfo::to_method_info() const {
     godot::MethodInfo methodInfo;
     methodInfo.name = name;
-    godot::List<PropertyInfo> pInfoList;
+    std::vector<godot::PropertyInfo> pInfoList;
     for (auto argument : arguments) {
         pInfoList.push_back(argument->toPropertyInfo());
     }

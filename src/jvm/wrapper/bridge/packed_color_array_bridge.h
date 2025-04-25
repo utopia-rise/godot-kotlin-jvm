@@ -4,16 +4,15 @@
 #include "packed_array_bridge.h"
 
 namespace bridges {
-    PACKED_ARRAY_BRIDGE(PackedColorArrayBridge, Color, "godot.core.PackedColorArray$Bridge") {
-        PACKED_ARRAY_BRIDGE_CLASS(PackedColorArrayBridge, Color)
+    PACKED_ARRAY_BRIDGE(PackedColorArrayBridge, godot::Color, "godot.core.PackedColorArray$Bridge") {
+        PACKED_ARRAY_BRIDGE_CLASS(PackedColorArrayBridge, godot::Color)
 
-          // clang-format off
+        // clang-format off
           INIT_JNI_BINDINGS(
-              PackedArrayBridge<PackedColorArrayBridge, Color, PackedColorArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
+              PackedArrayBridge<PackedColorArrayBridge, godot::Color, PackedColorArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
           )
-          // clang-format on
-
+        // clang-format on
     };
-}// namespace bridge
+} // namespace bridges
 
 #endif

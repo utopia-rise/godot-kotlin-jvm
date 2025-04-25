@@ -23,20 +23,16 @@ JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
     // clang-format on
 
 public:
+    static void load_classes(JNIEnv * p_env, jobject p_this, jobjectArray p_classes);
+    static void register_engine_type(JNIEnv * p_env, jobject p_this, jobjectArray p_classes_names, jobjectArray p_singleton_names);
 
-    static void load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_classes);
-    static void register_engine_type(
-      JNIEnv* p_env, jobject p_this, jobjectArray p_classes_names,
-      jobjectArray p_singleton_names
-    );
-
-    Bootstrap(jni::Env& p_env, jni::JObject p_wrapped);
+    Bootstrap(jni::Env & p_env, jni::JObject p_wrapped);
     ~Bootstrap() = default;
 
-    void init_jar(jni::Env& p_env, const jni::JObject& p_class_loader);
-    void init_native_image(jni::Env& p_env);
-    String get_version(jni::Env& p_env);
-    void finish(jni::Env& p_env);
+    void init_jar(jni::Env & p_env, const jni::JObject& p_class_loader);
+    void init_native_image(jni::Env & p_env);
+    godot::String get_version(jni::Env & p_env);
+    void finish(jni::Env & p_env);
 };
 
-#endif// GODOT_JVM_BOOTSTRAP_H
+#endif // GODOT_JVM_BOOTSTRAP_H

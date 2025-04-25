@@ -46,29 +46,29 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     // clang-format on
 
 public:
-    StringName registered_class_name;
-    StringName fqdn;
-    StringName compilation_time_relative_registration_file_path;
-    godot::Vector<StringName> registered_supertypes;
-    StringName base_godot_class;
+    godot::StringName registered_class_name;
+    godot::StringName fqdn;
+    godot::StringName compilation_time_relative_registration_file_path;
+    godot::Vector<godot::StringName> registered_supertypes;
+    godot::StringName base_godot_class;
 
     explicit KtClass(jni::Env & p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
-    KtObject* create_instance(jni::Env & env, godot::godot::Object * p_owner);
+    KtObject* create_instance(jni::Env & env, godot::Object * p_owner);
 
-    KtFunction* get_method(const StringName& methodName);
+    KtFunction* get_method(const godot::StringName& methodName);
 
-    KtProperty* get_property(const StringName& p_property_name);
+    KtProperty* get_property(const godot::StringName& p_property_name);
 
-    KtSignalInfo* get_signal(const StringName& p_signal_name);
+    KtSignalInfo* get_signal(const godot::StringName& p_signal_name);
 
-    void get_method_list(List<MethodInfo> * p_list);
+    void get_method_list(godot::List<godot::MethodInfo> * p_list);
 
-    void get_property_list(List<godot::PropertyInfo> * p_list);
+    void get_property_list(godot::List<godot::PropertyInfo> * p_list);
 
-    void get_signal_list(List<MethodInfo> * p_list);
+    void get_signal_list(godot::List<godot::MethodInfo> * p_list);
 
     void fetch_members(jni::Env & env);
 
@@ -77,19 +77,19 @@ public:
     void do_notification(jni::Env & env, KtObject * p_instance, int p_notification, bool p_reversed);
 
 private:
-    godot::HashMap<StringName, KtFunction*> methods;
-    godot::HashMap<StringName, KtProperty*> properties;
-    godot::HashMap<StringName, KtSignalInfo*> signal_infos;
+    godot::HashMap<godot::StringName, KtFunction*> methods;
+    godot::HashMap<godot::StringName, KtProperty*> properties;
+    godot::HashMap<godot::StringName, KtSignalInfo*> signal_infos;
     KtConstructor* kt_constructor;
     bool _has_notification;
 
-    String get_registered_name(jni::Env & env);
+    godot::String get_registered_name(jni::Env & env);
 
-    String get_fqdn(jni::Env & env);
+    godot::String get_fqdn(jni::Env & env);
 
-    String get_compilation_time_relative_registration_file_path(jni::Env & env);
+    godot::String get_compilation_time_relative_registration_file_path(jni::Env & env);
 
-    StringName get_base_godot_class(jni::Env & env);
+    godot::StringName get_base_godot_class(jni::Env & env);
 
     bool get_has_notification(jni::Env & env);
 
@@ -104,15 +104,15 @@ private:
     void fetch_constructor(jni::Env & env);
 
     template<typename F, typename T>
-    void get_member_list(List<F> * p_list, godot::HashMap<StringName, T*> & members) {
-        for (const godot::KeyValue<StringName, T*>& E : members) {
+    void get_member_list(godot::List<F> * p_list, godot::HashMap<godot::StringName, T*> & members) {
+        for (const godot::KeyValue<godot::StringName, T*>& E : members) {
             p_list->push_back(E.value->get_member_info());
         }
     }
 
     template<class T>
-    void delete_members(godot::HashMap<StringName, T*> & members) {
-        for (const godot::KeyValue<StringName, T*>& E : members) {
+    void delete_members(godot::HashMap<godot::StringName, T*> & members) {
+        for (const godot::KeyValue<godot::StringName, T*>& E : members) {
             delete E.value;
         }
         members.clear();
