@@ -1,49 +1,16 @@
 #include "jvm_instance.h"
 
-#include "binding/kotlin_binding_manager.h"
-
 using namespace godot;
 
-JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
-  owner(p_owner),
-  kt_object(p_kt_object),
-  kt_class(p_script->kotlin_class),
-  script(p_script),
-  to_demote_flag(false),
-  delete_flag(true) {
-    if (!owner->is_ref_counted()) { return; }
+GDExtensionBool JvmInstance::set(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
 
-    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
-    int refcount = ref->get_reference_count();
-
-    if (refcount == 1 && !kt_object->is_ref_weak()) {
-        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
-        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        kt_object->swap_to_weak_unsafe(p_env);
-    }
-}
-
-JvmInstance::~JvmInstance() {
-    jni::Env env {jni::Jvm::current_env()};
-    if (delete_flag) {
-        kt_object->script_instance_removed(
-          env,
-          KotlinBindingManager::get_instance_binding(owner)->get_constructor_id()
-        );
-    }
-    if (to_demote_flag.is_set()) { MemoryManager::get_instance().cancel_demotion(this); }
-    memdelete(kt_object);
-}
-
-Object* JvmInstance::get_owner() {
-    return owner;
-}
-
-bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(1000);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtProperty* ktProperty {kt_class->get_property(p_name)}) {
+    if (KtProperty* ktProperty {kt_class->get_property(*reinterpret_cast<const StringName*>(p_name))}) {
         ktProperty->call_set(env, kt_object, p_value);
         return true;
     }
@@ -52,7 +19,7 @@ bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
         Variant ret;
         const int arg_count = 2;
         Variant name = p_name;
-        const Variant* args[arg_count] {&name, &p_value};
+        const Variant* args[arg_count] {&name, reinterpret_cast<const Variant*>(p_value)};
         function->invoke(env, kt_object, args, arg_count, ret);
         return true;
     }
@@ -60,50 +27,50 @@ bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
     return false;
 }
 
-bool JvmInstance::get(const StringName& p_name, Variant& r_ret) const {
+GDExtensionBool JvmInstance::get(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionVariantPtr r_ret) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
+    Object* owner = instance_data->owner;
+    const StringName& parameter_name = *reinterpret_cast<const StringName*>(p_name);
+    Variant& r_return = *reinterpret_cast<Variant*>(r_ret);
+
+
     jni::LocalFrame localFrame(1000);
     jni::Env env {jni::Jvm::current_env()};
 
-    KtProperty* ktProperty {kt_class->get_property(p_name)};
+    KtProperty* ktProperty {kt_class->get_property(parameter_name)};
     if (ktProperty) {
-        ktProperty->call_get(env, kt_object, r_ret);
+        ktProperty->call_get(env, kt_object, r_return);
         return true;
     }
 
-    KtSignalInfo* kt_signal {kt_class->get_signal(p_name)};
+    KtSignalInfo* kt_signal {kt_class->get_signal(parameter_name)};
     if (kt_signal) {
-        r_ret = Signal(owner, p_name);
+        r_return = Signal(owner, parameter_name);
         return true;
     }
 
     if (KtFunction* function {kt_class->get_method(SNAME("_get"))}) {
         const int arg_count = 1;
-        Variant name = p_name;
+        Variant name = parameter_name;
         const Variant* args[arg_count] = {&name};
-        function->invoke(env, kt_object, args, arg_count, r_ret);
+        function->invoke(env, kt_object, args, arg_count, r_return);
         return true;
     }
 
     return false;
 }
 
-#ifdef TOOLS_ENABLED
-bool JvmInstance::get_or_default(const StringName& p_name, Variant& r_ret) const {
-    jni::LocalFrame localFrame(1000);
-    jni::Env env {jni::Jvm::current_env()};
+const GDExtensionPropertyInfo* JvmInstance::get_property_list(GDExtensionScriptInstanceDataPtr p_instance, uint32_t* r_count) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
 
-    KtProperty* ktProperty {kt_class->get_property(p_name)};
-    if (ktProperty) {
-        ktProperty->call_get(env, kt_object, r_ret);
-        return true;
-    } else {
-        return false;
-    }
-}
-#endif
+    List<PropertyInfo>& properties = instance_data->property_list;
+    JVM_ERR_FAIL_COND_V_MSG(!properties.is_empty(), nullptr, "Internal error, property list was not freed by engine");
 
-void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
-    kt_class->get_property_list(p_properties);
+    kt_class->get_property_list(&properties);
     jni::Env env {jni::Jvm::current_env()};
 
     if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
@@ -111,153 +78,35 @@ void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
         function->invoke(env, kt_object, {}, 0, ret_var);
         Array ret_array = ret_var;
         for (int i = 0; i < ret_array.size(); ++i) {
-            p_properties->push_back(PropertyInfo::from_dict(ret_array.get(i)));
+            properties.push_back(PropertyInfo::from_dict(ret_array.get(i)));
         }
     }
+
+    return internal::create_c_property_list(properties, r_count);
 }
 
-Variant::Type JvmInstance::get_property_type(const StringName& p_name, bool* r_is_valid) const {
-    return Variant::VECTOR3;
+void JvmInstance::free_property_list(GDExtensionScriptInstanceDataPtr p_instance, const GDExtensionPropertyInfo* p_list, uint32_t p_count) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    instance_data->property_list.clear();
+    internal::free_c_property_list(const_cast<GDExtensionPropertyInfo*>(p_list));
 }
 
-void JvmInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
-    ScriptInstance::get_property_state(state);
+GDExtensionBool JvmInstance::get_class_category(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionPropertyInfo* p_class_category) {
+    internal::convert_property_to_c(reinterpret_cast<JvmInstanceData*>(p_instance)->script->get_class_category(), p_class_category);
 }
 
-void JvmInstance::get_method_list(List<MethodInfo>* p_list) const {
-    kt_class->get_method_list(p_list);
-}
+GDExtensionBool JvmInstance::property_can_revert(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
+    const StringName& property_name = *reinterpret_cast<const StringName*>(p_name);
 
-bool JvmInstance::has_method(const StringName& p_method) const {
-    return kt_class->get_method(p_method) != nullptr;
-}
-
-Variant JvmInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
-    jni::Env env {jni::Jvm::current_env()};
-
-    KtFunction* function {kt_class->get_method(p_method)};
-    Variant ret_var;
-    if (function) {
-        function->invoke(env, kt_object, p_args, p_argcount, ret_var);
-    } else {
-        r_error.error = Callable::CallError::CALL_ERROR_INVALID_METHOD;
-    }
-    return ret_var;
-}
-
-void JvmInstance::notification(int p_notification, bool p_reversed) {
-    if (p_notification == Object::NOTIFICATION_PREDELETE) { delete_flag = false; }
-
-    jni::Env env {jni::Jvm::current_env()};
-    kt_class->do_notification(env, kt_object, p_notification, p_reversed);
-}
-
-void JvmInstance::validate_property(PropertyInfo& p_property) const {
-    jni::Env env {jni::Jvm::current_env()};
-
-    if (KtFunction* function {kt_class->get_method(SNAME("_validate_property"))}) {
-        Variant ret_var;
-        Variant property_arg = (Dictionary) p_property;
-        const int arg_count {1};
-        const Variant* args[arg_count] = {&property_arg};
-        function->invoke(env, kt_object, args, arg_count, ret_var);
-        p_property = PropertyInfo::from_dict(property_arg);
-    }
-}
-
-String JvmInstance::to_string(bool* r_valid) {
-    jni::Env env {jni::Jvm::current_env()};
-
-    if (KtFunction* function {kt_class->get_method(SNAME("_to_string"))}) {
-        const int arg_count = 0;
-        Variant ret;
-        function->invoke(env, kt_object, nullptr, arg_count, ret);
-        *r_valid = true;
-        return ret.operator String();
-    }
-    *r_valid = false;
-    return {};
-}
-
-void JvmInstance::refcount_incremented() {
-    // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
-    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
-    int refcount = ref->get_reference_count();
-
-    if (refcount > 1 && kt_object->is_ref_weak()) {
-        // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well.
-        // The reference is changed to a strong one so the JVM instance is not collected if it is not referenced anymore on the JVM side.
-        MemoryManager::get_instance().try_promotion(this);
-    }
-}
-
-bool JvmInstance::refcount_decremented() {
-    // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
-    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
-    int refcount = ref->get_reference_count();
-
-    if (refcount == 1) {
-        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
-        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        if (!to_demote_flag.is_set()) {
-            MemoryManager::get_instance().queue_demotion(this);
-            to_demote_flag.set();
-        }
-    }
-    // Return true when the counter is 0, it means that the JVM and the native side are no longer using the reference, so it can be safely deleted.
-    return refcount == 0;
-}
-
-void JvmInstance::demote_reference() {
-    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
-    int refcount = ref->get_reference_count();
-
-    if (refcount == 1 && !kt_object->is_ref_weak()) {
-        jni::Env env {jni::Jvm::current_env()};
-        kt_object->swap_to_weak_unsafe(env);
-    }
-
-    to_demote_flag.clear();
-}
-
-void JvmInstance::promote_reference() {
-    if (kt_object->is_ref_weak()) {
-        jni::Env env {jni::Jvm::current_env()};
-        kt_object->swap_to_strong_unsafe(env);
-    }
-}
-
-Ref<Script> JvmInstance::get_script() const {
-    return script;
-}
-
-bool JvmInstance::is_placeholder() const {
-    return ScriptInstance::is_placeholder();
-}
-
-void JvmInstance::property_set_fallback(const StringName& p_name, const Variant& p_value, bool* r_valid) {
-    ScriptInstance::property_set_fallback(p_name, p_value, r_valid);
-}
-
-Variant JvmInstance::property_get_fallback(const StringName& p_name, bool* r_valid) {
-    return ScriptInstance::property_get_fallback(p_name, r_valid);
-}
-
-const Variant JvmInstance::get_rpc_config() const {
-    return kt_class->get_rpc_config();
-}
-
-ScriptLanguage* JvmInstance::get_language() {
-    return script->get_language();
-}
-
-bool JvmInstance::property_can_revert(const StringName& p_name) const {
     jni::Env env {jni::Jvm::current_env()};
 
     if (KtFunction* function {kt_class->get_method(SNAME("_property_can_revert"))}) {
         const int arg_count = 1;
         Variant ret;
-        Variant name = p_name;
+        Variant name = property_name;
         const Variant* args[arg_count] = {&name};
         function->invoke(env, kt_object, args, arg_count, ret);
         return ret.operator bool();
@@ -266,16 +115,260 @@ bool JvmInstance::property_can_revert(const StringName& p_name) const {
     return false;
 }
 
-bool JvmInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
+GDExtensionBool JvmInstance::property_get_revert(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionVariantPtr r_ret) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
+    Variant& r_return = *reinterpret_cast<Variant*>(r_ret);
+
     jni::Env env {jni::Jvm::current_env()};
 
     if (KtFunction* function {kt_class->get_method(SNAME("_property_get_revert"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
-        function->invoke(env, kt_object, args, arg_count, r_ret);
+        function->invoke(env, kt_object, args, arg_count, r_return);
         return true;
     }
 
     return false;
+}
+
+GDExtensionObjectPtr JvmInstance::get_owner(GDExtensionScriptInstanceDataPtr p_instance) {
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->owner;
+}
+
+//TODO: Copy of engine's ScriptInstance::get_property_state. Should fallback be handled by engine ?
+void JvmInstance::get_property_state(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionScriptInstancePropertyStateAdd p_add_func, void* p_userdata) {
+    uint32_t property_count;
+    const GDExtensionPropertyInfo* property_infos = get_property_list(p_instance, &property_count);
+    for (int i = 0; i < property_count; ++i) {
+        const GDExtensionPropertyInfo property_info = property_infos[i];
+        if (property_info.usage & PROPERTY_USAGE_STORAGE) {
+            GDExtensionVariantPtr r_ret;
+            if (get(p_instance, property_info.name, r_ret)) {
+                p_add_func(property_info.name, r_ret, p_userdata);
+            }
+        }
+    }
+}
+
+//TODO: Do the conversion within ktClass
+const GDExtensionMethodInfo* JvmInstance::get_method_list(GDExtensionScriptInstanceDataPtr p_instance, uint32_t* r_count) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+
+    List<MethodInfo>& methods = instance_data->method_list;
+    JVM_ERR_FAIL_COND_V_MSG(!methods.is_empty(), nullptr, "Internal error, method list was not freed by engine");
+
+    kt_class->get_method_list(&methods);
+    return internal::create_c_method_list(methods, r_count);
+}
+
+void JvmInstance::free_method_list(GDExtensionScriptInstanceDataPtr p_instance, const GDExtensionMethodInfo* p_list, uint32_t p_count) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    instance_data->method_list.clear();
+    internal::free_c_method_list(const_cast<GDExtensionMethodInfo*>(p_list), p_count);
+}
+
+GDExtensionVariantType JvmInstance::get_property_type(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionBool* r_is_valid) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    const StringName& parameter_name = *reinterpret_cast<const StringName*>(p_name);
+
+    if (KtProperty* kt_property = kt_class->get_property(parameter_name)) {
+        *r_is_valid = true;
+        return (GDExtensionVariantType) kt_property->get_member_info().type;
+    }
+
+    *r_is_valid = false;
+    return GDExtensionVariantType::GDEXTENSION_VARIANT_TYPE_NIL;
+}
+
+GDExtensionBool JvmInstance::validate_property(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionPropertyInfo* p_property) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
+
+    jni::Env env {jni::Jvm::current_env()};
+
+    if (KtFunction* function {kt_class->get_method(SNAME("_validate_property"))}) {
+        Variant ret_var;
+        PropertyInfo converted;
+        converted.type = (Variant::Type) p_property->type;
+        converted.name = *reinterpret_cast<StringName*>(p_property->name);
+        converted.class_name = *reinterpret_cast<StringName*>(p_property->class_name);
+        converted.hint = p_property->hint;
+        converted.hint_string = *reinterpret_cast<String*>(p_property->hint_string);
+        converted.usage = p_property->usage;
+        Variant property_arg = (Dictionary) converted;
+        const int arg_count {1};
+        const Variant* args[arg_count] = {&property_arg};
+        function->invoke(env, kt_object, args, arg_count, ret_var);
+        internal::convert_property_to_c(PropertyInfo::from_dict(property_arg), p_property);
+    }
+}
+
+GDExtensionBool JvmInstance::has_method(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+
+    return kt_class->get_method(*reinterpret_cast<const StringName*>(p_name)) != nullptr;
+}
+
+GDExtensionInt JvmInstance::get_method_argument_count(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionBool* r_is_valid) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+
+    if (KtFunction* method = kt_class->get_method(*reinterpret_cast<const StringName*>(p_name))) {
+        *r_is_valid = true;
+        return method->get_parameter_count();
+    }
+
+    *r_is_valid = false;
+    return -1;
+}
+
+void JvmInstance::call(
+  GDExtensionScriptInstanceDataPtr p_instance,
+  GDExtensionConstStringNamePtr p_method,
+  const GDExtensionConstVariantPtr* p_args,
+  GDExtensionInt p_argument_count,
+  GDExtensionVariantPtr r_return,
+  GDExtensionCallError* r_error
+) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
+
+    jni::Env env {jni::Jvm::current_env()};
+
+    if (KtFunction* function {kt_class->get_method(*reinterpret_cast<const StringName*>(p_method))}) {
+        auto* arguments = reinterpret_cast<const Variant* const*>(p_args);
+        Variant& r_ret = *reinterpret_cast<Variant*>(r_return);
+        function->invoke(env, kt_object, const_cast<const Variant**>(arguments), static_cast<int>(p_argument_count), r_ret);
+    } else {
+        r_error->error = GDExtensionCallErrorType::GDEXTENSION_CALL_ERROR_INVALID_METHOD;
+    }
+}
+
+void JvmInstance::notification(GDExtensionScriptInstanceDataPtr p_instance, int32_t p_what, GDExtensionBool p_reversed) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+
+    if (p_what == Object::NOTIFICATION_PREDELETE) { instance_data->delete_flag = false; }
+
+    jni::Env env {jni::Jvm::current_env()};
+    kt_class->do_notification(env, instance_data->kt_object, p_what, p_reversed);
+}
+
+void JvmInstance::to_string(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionBool* r_is_valid, GDExtensionStringPtr r_out) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtClass* kt_class = instance_data->kt_class;
+    KtObject* kt_object = instance_data->kt_object;
+
+    jni::Env env {jni::Jvm::current_env()};
+
+    if (KtFunction* function {kt_class->get_method(SNAME("_to_string"))}) {
+        const int arg_count = 0;
+        Variant ret;
+        function->invoke(env, kt_object, nullptr, arg_count, ret);
+        *r_is_valid = true;
+        *reinterpret_cast<String*>(r_out) = ret;
+    }
+    *r_is_valid = false;
+}
+
+void JvmInstance::refcount_incremented(GDExtensionScriptInstanceDataPtr p_instance) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtObject* kt_object = instance_data->kt_object;
+    Object* owner = instance_data->owner;
+
+    // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
+    auto* ref = reinterpret_cast<RefCounted*>(owner);
+    int refcount = ref->get_reference_count();
+
+    if (refcount > 1 && kt_object->is_ref_weak()) {
+        // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well.
+        // The reference is changed to a strong one so the JVM instance is not collected if it is not referenced anymore on the JVM side.
+        MemoryManager::get_instance().try_promotion(instance_data);
+    }
+}
+
+GDExtensionBool JvmInstance::refcount_decremented(GDExtensionScriptInstanceDataPtr p_instance) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    Object* owner = instance_data->owner;
+
+    // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
+    auto* ref = reinterpret_cast<RefCounted*>(owner);
+    int refcount = ref->get_reference_count();
+
+    if (refcount == 1) {
+        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
+        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
+        if (!instance_data->to_demote_flag.is_set()) {
+            MemoryManager::get_instance().queue_demotion(instance_data);
+            instance_data->to_demote_flag.set();
+        }
+    }
+    // Return true when the counter is 0, it means that the JVM and the native side are no longer using the reference, so it can be safely deleted.
+    return refcount == 0;
+}
+
+GDExtensionObjectPtr JvmInstance::get_script(GDExtensionScriptInstanceDataPtr p_instance) {
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->script.ptr();
+}
+
+GDExtensionBool JvmInstance::set_fallback(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value) {
+    return false;
+}
+
+GDExtensionBool JvmInstance::get_fallback(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionVariantPtr r_ret) {
+    *reinterpret_cast<Variant*>(r_ret) = Variant();
+    return false;
+}
+
+GDExtensionScriptLanguagePtr JvmInstance::get_language(GDExtensionScriptInstanceDataPtr p_instance) {
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->script->_get_language();
+}
+
+void JvmInstance::free(GDExtensionScriptInstanceDataPtr p_instance) {
+    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
+    KtObject* kt_object = instance_data->kt_object;
+
+    jni::Env env {jni::Jvm::current_env()};
+    if (instance_data->delete_flag) {
+        kt_object->script_instance_removed(
+          env,
+          JvmBindingManager::get_instance_binding(instance_data->owner)->get_constructor_id()
+        );
+    }
+    if (instance_data->to_demote_flag.is_set()) {
+        MemoryManager::get_instance().cancel_demotion(instance_data);
+    }
+    memdelete(kt_object);
+    memdelete(instance_data);
+}
+
+void JvmInstance::promote_reference(JvmInstance::JvmInstanceData* instance_data) {
+    KtObject* kt_object = instance_data->kt_object;
+
+    if (kt_object->is_ref_weak()) {
+        jni::Env env {jni::Jvm::current_env()};
+        kt_object->swap_to_strong_unsafe(env);
+    }
+}
+
+void JvmInstance::demote_reference(JvmInstance::JvmInstanceData* instance_data) {
+    auto* ref = reinterpret_cast<RefCounted*>(instance_data->owner);
+    int refcount = ref->get_reference_count();
+
+    KtObject* kt_object = instance_data->kt_object;
+
+    if (refcount == 1 && !kt_object->is_ref_weak()) {
+        jni::Env env {jni::Jvm::current_env()};
+        kt_object->swap_to_weak_unsafe(env);
+    }
+
+    instance_data->to_demote_flag.clear();
 }

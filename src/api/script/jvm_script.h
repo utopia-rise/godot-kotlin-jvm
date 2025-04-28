@@ -2,10 +2,11 @@
 #define GODOT_JVM_JVM_SCRIPT_H
 
 #include "jvm/wrapper/registration/kt_class.h"
-#include "resource_format/hash.h"
+#include "jvm_placeholder_instance.h"
+#include "templates/hash_set.hpp"
 
-#include <classes/script_language_extension.hpp>
 #include <classes/script_extension.hpp>
+#include <classes/script_language_extension.hpp>
 
 namespace godot {
 
@@ -22,7 +23,7 @@ namespace godot {
         String source;
 
         template<bool isCreator>
-        ScriptInstance* _instance_create(Object* p_this);
+        JvmInstance* _instance_create(Object* p_this);
         Object* _object_create();
 
     public:
@@ -30,29 +31,29 @@ namespace godot {
         ~JvmScript() override;
 
         Variant _new();
-        bool can_instantiate() const override;
-        bool inherits_script(const Ref<Script>& p_script) const override;
-        Ref<Script> get_base_script() const override;
-        StringName get_instance_base_type() const override;
-        ScriptInstance* instance_create(Object* p_this) override;
-        bool instance_has(const Object* p_this) const override;
-        bool has_source_code() const override;
-        String get_source_code() const override;
-        void set_source_code(const String& p_code) override;
-        Error reload(bool p_keep_state) override;
-        bool has_method(const StringName& p_method) const override;
-        MethodInfo get_method_info(const StringName& p_method) const override;
-        bool is_tool() const override;
-        bool is_valid() const override;
-        bool is_placeholder_fallback_enabled() const override;
-        bool is_abstract() const override;
-        bool has_script_signal(const StringName& p_signal) const override;
-        void get_script_signal_list(List<MethodInfo>* r_signals) const override;
-        bool get_property_default_value(const StringName& p_property, Variant& r_value) const override;
-        void get_script_method_list(List<MethodInfo>* p_list) const override;
-        void get_script_property_list(List<PropertyInfo>* p_list) const override;
+        bool _can_instantiate() const override;
+        bool _inherits_script(const Ref<Script>& p_script) const override;
+        Ref<Script> _get_base_script() const override;
+        StringName _get_instance_base_type() const override;
+        void* _instance_create(Object* p_this) const override;
+        bool _instance_has(Object* p_this) const override;
+        bool _has_source_code() const override;
+        String _get_source_code() const override;
+        void _set_source_code(const String& p_code) override;
+        Error _reload(bool p_keep_state) override;
+        bool _has_method(const StringName& p_method) const override;
+        Dictionary _get_method_info(const StringName& p_method) const override;
+        bool _is_tool() const override;
+        bool _is_valid() const override;
+        bool _is_placeholder_fallback_enabled() const override;
+        bool _is_abstract() const override;
+        bool _has_script_signal(const StringName& p_signal) const override;
+        TypedArray<Dictionary> _get_script_signal_list() const override;
+        Variant _get_property_default_value(const StringName& p_property) const override;
+        TypedArray<Dictionary> _get_script_method_list() const override;
+        TypedArray<Dictionary> _get_script_property_list() const override;
         void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
-        Variant get_rpc_config() const override;
+        Variant _get_rpc_config() const override;
 
         _FORCE_INLINE_ static String get_script_file_name(const String& path) {
             return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
@@ -62,19 +63,19 @@ namespace godot {
         // This concerns placeholders script instances only
 
     private:
-        HashSet<PlaceHolderScriptInstance*> placeholders;
+        HashSet<JvmPlaceHolderInstance*> placeholders;
         HashMap<StringName, Variant> exported_members_default_value_cache;
         uint64_t last_time_source_modified = 0;
         bool export_dirty_flag = true;
 
-        void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
+        void _placeholder_erased(void* p_placeholder) override;
 
     public:
-        PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
+        void* _placeholder_instance_create(Object* p_this) const override;
         uint64_t get_last_time_source_modified();
         void set_last_time_source_modified(uint64_t p_time);
 
-        Vector<DocData::ClassDoc> get_documentation() const override;
+        TypedArray<Dictionary> _get_documentation() const override;
         PropertyInfo get_class_category() const override;
         String get_class_icon_path() const override;
         StringName get_doc_class_name() const override;

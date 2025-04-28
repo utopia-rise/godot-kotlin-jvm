@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_JAVA_ARCHIVE_H
 #define GODOT_JVM_JAVA_ARCHIVE_H
 
-#include <core/io/resource.h>
+#include <classes/resource.hpp>
 
 namespace godot {
     class JavaArchive : public Resource {

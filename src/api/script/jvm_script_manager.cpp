@@ -1,9 +1,6 @@
-
 #include "jvm_script_manager.h"
-
-#include "lifecycle/paths.h"
-
-#include <core/io/resource_loader.hpp>
+#include <classes/resource_loader.hpp>
+#include "paths.h"
 
 using namespace godot;
 
@@ -48,7 +45,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
         } else {
 #endif
-            named_script = Ref<NamedScript>(ResourceLoader::load(script_path));
+            named_script = Ref<NamedScript>(ResourceLoader::get_singleton()->load(script_path));
             named_script->kotlin_class = kotlin_class;
 
             JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
@@ -120,7 +117,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     fqdn_to_kt_class = new_fqdn_to_kt_class;
 
     // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
-    MessageQueue::get_singleton()->push_callable(callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload));
+    callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload).call_deferred()
 #endif
 
     JVM_DEV_LOG("JVM scripts are now loaded.");
@@ -185,7 +182,7 @@ void JvmScriptManager::invalidate_source(const Ref<SourceScript>& source_script)
     if (named_script.is_valid()) { named_script->set_last_time_source_modified(last_modified); }
 }
 
-int64_t JvmScriptManager::get_last_reload() {
+uint64_t JvmScriptManager::get_last_reload() const {
     return last_reload;
 }
 #endif
