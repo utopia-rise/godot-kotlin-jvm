@@ -1,94 +1,63 @@
 #include "jvm_script.h"
 
-#include "binding/kotlin_binding_manager.h"
-#include <core/os/thread.hpp>
-#include "jvm_instance.h"
-#include "jvm_placeholder_instance.h"
 #include "api/language/gdj_language.h"
 #include "api/script/jvm_script_manager.h"
-#include "api/language/java_language.h"
-#include "api/language/kotlin_language.h"
-#include "api/language/names.h"
-#include "api/language/scala_language.h"
-#include "api/script/source_script_parser.h"
-#include <core/config/project_settings.hpp>
-#include <core/io/file_access.hpp>
-#include <core/io/resource_loader.hpp>
-#include <core/object/class_db.hpp>
-#include <scene/main/node.hpp>
-
-#ifdef TOOLS_ENABLED
-void JvmScript::_notification(int p_what) {
-    if (p_what == NOTIFICATION_PREDELETE) { JvmScriptManager::untrack_physical_script(this); }
-}
-#endif
+#include "classes/engine.hpp"
+#include "jvm_instance.h"
+#include "jvm_placeholder_instance.h"
 
 using namespace godot;
 
 Variant JvmScript::_new() {
     Object* obj = _object_create();
-    if (obj) { return Variant(obj); }
+    if (obj) {
+        return Variant(obj);
+    }
 
     JVM_ERR_FAIL_V_MSG({}, vformat("Cannot instantiate JVM script %s", kotlin_class->registered_class_name));
 }
 
 Object* JvmScript::_object_create() {
-    ERR_FAIL_NULL_V_MSG(kotlin_class, nullptr, "Cannot instantiate JVM script: no KtClass is associated with this script resource.");
-#ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_V_MSG(
-      !kotlin_class->can_instantiate(),
-      nullptr,
-      "Cannot instantiate JVM script %s: no public zero-argument constructor is registered.",
-      kotlin_class->registered_class_name
-    );
-#endif
-
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
-    ScriptInstance* instance {_instance_create<true>(owner)};
+    JvmInstance* instance {_instance_create<true>(owner)};
     owner->set_script_instance(instance);
     if (!instance) {
-        memdelete(owner); // no owner, sorry
+        memdelete(owner);// no owner, sorry
         return nullptr;
     }
 
     return owner;
 }
 
-bool JvmScript::can_instantiate() const {
+bool JvmScript::_can_instantiate() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
         return false;
     } else {
-        return is_valid() && kotlin_class->can_instantiate();
+        return _is_valid();
     }
 #else
-    return is_valid() && kotlin_class->can_instantiate();
+    return is_valid();
     ;
 #endif
 }
 
-bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
+bool JvmScript::_inherits_script(const Ref<Script>& p_script) const {
     Ref<JvmScript> kotlin_script {p_script};
     if (kotlin_script.is_null()) { return false; }
-    if (!is_valid() || !kotlin_script->is_valid()) { return false; }
+    if (!_is_valid() || !kotlin_script->_is_valid()) { return false; }
 
     KtClass* parent_class {kotlin_script->kotlin_class};
     if (kotlin_class == parent_class) { return true; }
 
-    Ref<Script> current = get_base_script();
-    while (current.is_valid()) {
-        Ref<JvmScript> current_jvm_script {current};
-        if (current_jvm_script.is_null()) { return false; }
-        if (current_jvm_script->kotlin_class == parent_class) { return true; }
-        current = current_jvm_script->get_base_script();
-    }
-    return false;
+    return kotlin_class->registered_supertypes.find(parent_class->registered_class_name);
 }
 
-Ref<Script> JvmScript::get_base_script() const {
-    if (!is_valid() || kotlin_class->registered_supertypes.is_empty()) { return {}; }
-    return JvmScriptManager::get_instance()->get_script_from_registered_name(kotlin_class->registered_supertypes[0]);
+Ref<Script> JvmScript::_get_base_script() const {
+    if (!_is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
+    StringName parent_name = kotlin_class->registered_supertypes[0];
+    return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -118,10 +87,14 @@ ScriptInstance* JvmScript::_instance_create(Object* p_this) {
     KtObject* wrapped = kotlin_class->create_instance(env, p_this);
 
 #ifdef DEBUG_ENABLED
-    if (unlikely(!wrapped)) { return nullptr; } // Error already throw by create_instance()
+    if (unlikely(!wrapped)) { return nullptr; }// Error already throw by create_instance()
 #endif
 
     return memnew(JvmInstance(env, p_this, wrapped, this));
+}
+
+bool JvmScript::instance_has(const Object* p_this) const {
+    return false;
 }
 
 bool JvmScript::has_source_code() const {
@@ -135,28 +108,6 @@ String JvmScript::get_source_code() const {
 void JvmScript::set_source_code(const String& p_code) {
     source = p_code;
     // TODO : deal with tool mode
-}
-
-void JvmScript::set_path(const String& p_path, bool p_take_over) {
-    Resource::set_path(p_path, p_take_over);
-}
-
-void JvmScript::set_path_cache(const String& p_path) {
-    Resource::set_path_cache(p_path);
-}
-
-void JvmScript::reload_from_file() {
-#ifdef TOOLS_ENABLED
-    const String path = get_path();
-    if (path.begins_with(GODOT_JVM_VIRTUAL_PATH_PREFIX)) { return; }
-
-    String reloaded_source;
-    if (read_source_script_file(path, reloaded_source) != OK) { return; }
-
-    set_source_code(reloaded_source);
-    set_last_source_modified_time(FileAccess::get_modified_time(path));
-    JvmScriptManager::get_instance()->update_physical_script(this, parse_source_script_fqname(source, path));
-#endif
 }
 
 Error JvmScript::reload(bool p_keep_state) {
@@ -179,7 +130,7 @@ bool JvmScript::is_tool() const {
     return false;
 }
 
-bool JvmScript::is_valid() const {
+bool JvmScript::_is_valid() const {
     return kotlin_class != nullptr;
 }
 
@@ -188,7 +139,8 @@ bool JvmScript::is_placeholder_fallback_enabled() const {
 }
 
 bool JvmScript::is_abstract() const {
-    return is_valid() && kotlin_class->is_abstract;
+    // TODO/4.2
+    return false;
 }
 
 bool JvmScript::has_script_signal(const StringName& p_signal) const {
@@ -219,14 +171,14 @@ void JvmScript::get_script_property_list(List<PropertyInfo>* p_list) const {
     if (is_valid()) { kotlin_class->get_property_list(p_list); }
 }
 
-void JvmScript::get_constants(HashMap<StringName, Variant>* p_constants) {}
+void JvmScript::get_constants(HashMap<StringName, Variant> *p_constants) {}
 
-void JvmScript::get_members(HashSet<StringName>* p_members) {
+void JvmScript::get_members(HashSet<StringName> *p_members){
 #ifdef TOOLS_ENABLED
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
     if (p_members) {
-        for (const PropertyInfo& E : exported_properties) {
+        for (const PropertyInfo &E : exported_properties) {
             p_members->insert(E.name);
         }
     }
@@ -263,14 +215,16 @@ String JvmScript::get_class_icon_path() const {
 
 StringName JvmScript::get_doc_class_name() const {
     String class_name = get_global_name();
-    if (class_name.is_empty()) { return get_path().get_file(); }
+    if (class_name.is_empty()) {
+        return get_path().get_file();
+    }
     return class_name;
 }
 
 PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this) {
-    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(get_language(), Ref<Script>(this), p_this))};
+    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(GdjLanguage::get_instance(), Ref<Script>(this), p_this))};
 
-    update_script_exports(); // Update in case this method is called between the (re)loading and the delayed update_script_exports().
+    update_script_exports();// Update in case this method is called between the (re)loading and the delayed update_script_exports().
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
@@ -279,39 +233,13 @@ PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this
     return placeholder;
 }
 
-void JvmScript::move_placeholders_to(JvmScript* p_script) {
-    Vector<PlaceHolderScriptInstance*> current_placeholders;
-    for (PlaceHolderScriptInstance* placeholder : placeholders) {
-        current_placeholders.append(placeholder);
-    }
-    for (PlaceHolderScriptInstance* placeholder : current_placeholders) {
-        Object* owner = placeholder->get_owner();
-
-        List<PropertyInfo> properties;
-        placeholder->get_property_list(&properties);
-        HashMap<StringName, Variant> values;
-        for (const PropertyInfo& property : properties) {
-            Variant value;
-            if (placeholder->get(property.name, value)) { values[property.name] = value; }
-        }
-
-        owner->set_script(Ref<Script>(p_script));
-        for (const KeyValue<StringName, Variant>& value : values) {
-            owner->set(value.key, value.value);
-        }
-    }
+uint64_t JvmScript::get_last_time_source_modified() {
+    return last_time_source_modified;
 }
 
-uint64_t JvmScript::get_last_source_modified_time() const {
-    return last_source_modified_time;
-}
+void JvmScript::set_last_time_source_modified(uint64_t p_time) {
+    last_time_source_modified = p_time;
 
-void JvmScript::set_last_source_modified_time(uint64_t p_time) {
-    last_source_modified_time = p_time;
-    update_source_sync_warning();
-}
-
-void JvmScript::update_source_sync_warning() {
     for (PlaceHolderScriptInstance* placeholder : placeholders) {
         if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
     }
@@ -322,13 +250,8 @@ void JvmScript::update_script_exports() {
 
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
-    if (!kotlin_class->can_instantiate()) {
-        export_dirty_flag = false;
-        return;
-    }
 
     Object* tmp_object = _object_create();
-    ERR_FAIL_NULL(tmp_object);
     JvmInstance* kotlin_script_instance {reinterpret_cast<JvmInstance*>(tmp_object->get_script_instance())};
 
     List<PropertyInfo> exported_properties;
@@ -370,86 +293,200 @@ JvmScript::~JvmScript() {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 #endif
-    if (kotlin_class) { delete kotlin_class; }
     kotlin_class = nullptr;
 }
 
-StringName JvmScript::get_global_name() const {
-    if (is_valid()) { return kotlin_class->registered_class_name; }
+StringName SourceScript::parse_source_to_fqdn(const String& p_path, String& r_source, Error* r_error) {
+    String source;
+    *r_error = JvmResourceFormatLoader::read_all_file_utf8(p_path, source);
+    r_source = source;
+
+#ifdef TOOLS_ENABLED
+    static String package_keyword { PACKAGE_KEYWORD };
+    static int package_keyword_size { package_keyword.size() };
+
+    int initial_start_index = 0;
+    while (skip_comments(source, p_path, initial_start_index) || skip_spaces_and_newlines(source, initial_start_index)) {}
+
+    int package_keyword_index { source.find(package_keyword, initial_start_index) };
+
+    String package_name;
+    if (package_keyword_index != -1) {
+        int package_start_index = package_keyword_index + package_keyword_size - 1;
+
+        while (skip_comments(source, p_path, package_start_index) || skip_spaces_and_newlines(source, package_start_index)) {}
+
+        char32_t next_character = source[package_start_index];
+        int package_end_index = package_start_index;
+        while (package_end_index < source.size() && !is_package_end(next_character)) {
+            next_character = source[++package_end_index];
+        }
+
+        package_name = source.substr(package_start_index, package_end_index - package_start_index);
+    }
+
+    static String register_class_annotation { REGISTER_CLASS_ANNOTATION };
+    static int register_class_annotation_size { register_class_annotation.size() };
+    int register_class_search_start = package_keyword_index == -1 ? 0 : package_keyword_index;
+
+    while (skip_comments(source, p_path, register_class_search_start) || skip_spaces_and_newlines(source, register_class_search_start)) {}
+
+    int register_class_index { source.find(register_class_annotation, register_class_search_start) };
+
+    if (register_class_index == -1) {
+        return StringName();
+    }
+
+    int class_search_start_index = register_class_index + register_class_annotation_size - 1;
+
+    while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
+
+    char32_t next_character = source[class_search_start_index];
+    if (next_character == U'(') {
+        next_character = source[++class_search_start_index];
+
+        while (class_search_start_index < source.size() && next_character != U')') {
+            next_character = source[++class_search_start_index];
+        }
+
+        while (class_search_start_index < source.size() && next_character == U')') {
+            ++class_search_start_index;
+            while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
+            next_character = source[class_search_start_index];
+        }
+    }
+
+    while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
+
+    static String class_keyword { CLASS_KEYWORD };
+    static int class_keyword_size { class_keyword.size() };
+    int class_keyword_index { source.find(class_keyword, class_search_start_index) };
+
+    if (class_keyword_index == -1) {
+        JVM_LOG_WARNING(vformat("Cannot find class declaration in %s", p_path));
+        return StringName();
+    }
+
+    int class_start_index = class_keyword_index + class_keyword_size - 1;
+
+    while (skip_comments(source, p_path, class_start_index) || skip_spaces_and_newlines(source, class_start_index)) {}
+
+    next_character = source[class_start_index];
+    int class_end_index = class_start_index;
+    while (class_end_index < source.size() && !is_class_name_end(next_character)) {
+        next_character = source[++class_end_index];
+    }
+
+    String class_name { source.substr(class_start_index, class_end_index - class_start_index) };
+
+    if (package_name.is_empty()) {
+        return class_name;
+    }
+
+    return vformat("%s.%s", package_name, class_name);
+#else
+    return source;
+#endif
+}
+
+StringName SourceScript::get_functional_name() const {
+    return _functional_name;
+}
+
+
+StringName SourceScript::get_global_name() const {
     return {};
+}
+//
+bool SourceScript::is_whitespace_or_linebreak(char32_t character) {
+    return is_whitespace(character) || is_linebreak(character);
+}
+
+bool SourceScript::is_package_end(char32_t character) {
+    return is_whitespace_or_linebreak(character) || character == U';' || character == U'/';
+}
+
+bool SourceScript::is_class_name_end(char32_t character) {
+    return is_whitespace_or_linebreak(character) ||
+        character == U':' ||
+        character == U'{' ||
+        character == U'<' ||
+        character == U'[' ||
+        character == U'(' ||
+        character == U'/';
+}
+
+bool SourceScript::skip_spaces_and_newlines(const String& source, int& start_index) {
+    int initial_index = start_index;
+    char32_t next_character = source[start_index];
+
+    while (start_index < source.size() && is_whitespace_or_linebreak(next_character)) {
+        next_character = source[++start_index];
+    }
+
+    return start_index != initial_index;
+}
+
+bool SourceScript::skip_comments(const String& source, const String& p_path, int& start_index) {
+    char32_t next_character = source[start_index];
+
+    if (next_character != U'/') {
+        return false;
+    }
+
+    bool isLineComment = false;
+    bool isMultilineComment = false;
+    if (start_index < source.size() - 1) {
+        next_character = source[++start_index];
+
+        isLineComment = next_character == U'/';
+        isMultilineComment = next_character == U'*';
+    }
+
+    if (!isLineComment && !isMultilineComment) {
+        JVM_LOG_WARNING(vformat("Cannot parse %s, found unexpected '/' character", p_path));
+    }
+
+    if (isLineComment) {
+        while (start_index < source.size() && !is_linebreak(next_character)) {
+            next_character = source[++start_index];
+        }
+    }
+
+    if (isMultilineComment) {
+        while (start_index < source.size()) {
+            bool isCommentEnd = next_character == U'*';
+            next_character = source[++start_index];
+
+            if (start_index == source.size()) {
+                JVM_LOG_WARNING(vformat("Cannot parse %s, found unclosed multiline comment", p_path));
+            }
+
+            isCommentEnd = isCommentEnd && next_character == U'/';
+
+            if (isCommentEnd) {
+                ++start_index;
+                break;
+            }
+        }
+    }
+
+    return true;
+}
+
+NamedScript::~NamedScript() {
+    // The named script is the one that should delete the KtClass as its existence is guaranteed unlike its path based twin.
+    delete kotlin_class;
+}
+
+StringName NamedScript::get_global_name() const {
+    if (is_valid()) { return kotlin_class->registered_class_name; }
+    // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from path scripts)
+    // Even in the case of an invalid file, we can then use its path to find the right name.
+    String path = get_path();
+    return get_script_file_name(path);
 }
 
 void JvmScript::_bind_methods() {
     ClassDB::bind_method(D_METHOD("new"), &JvmScript::_new);
 }
-
-ScriptLanguage* GdjScript::get_language() const {
-    return GdjLanguage::get_instance();
-}
-
-StringName GdjScript::get_global_name() const {
-    if (is_valid()) { return JvmScript::get_global_name(); }
-    return get_script_file_name(get_path());
-}
-
-void GdjScript::_bind_methods() {}
-
-ScriptLanguage* KotlinScript::get_language() const {
-    return KotlinLanguage::get_instance();
-}
-
-void KotlinScript::set_path(const String& p_path, bool p_take_over) {
-    if (source.contains(PACKAGE_TEMPLATE)) {
-        String package = p_path.replace("src/main/kotlin/", "")
-                           .trim_prefix("res://")
-                           .trim_suffix(get_name() + "." + GODOT_KOTLIN_SCRIPT_EXTENSION)
-                           .trim_suffix("/")
-                           .replace("/", ".");
-        if (!package.is_empty()) { package = "package " + package; }
-        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
-    }
-
-    JvmScript::set_path(p_path, p_take_over);
-}
-
-void KotlinScript::_bind_methods() {}
-
-ScriptLanguage* JavaScript::get_language() const {
-    return JavaLanguage::get_instance();
-}
-
-void JavaScript::set_path(const String& p_path, bool p_take_over) {
-    if (source.contains(PACKAGE_TEMPLATE)) {
-        String package = p_path.replace("src/main/java/", "")
-                           .trim_prefix("res://")
-                           .trim_suffix(get_name() + "." + GODOT_JAVA_SCRIPT_EXTENSION)
-                           .trim_suffix("/")
-                           .replace("/", ".");
-        if (!package.is_empty()) { package = "package " + package + ";"; }
-        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
-    }
-
-    JvmScript::set_path(p_path, p_take_over);
-}
-
-void JavaScript::_bind_methods() {}
-
-ScriptLanguage* ScalaScript::get_language() const {
-    return ScalaLanguage::get_instance();
-}
-
-void ScalaScript::set_path(const String& p_path, bool p_take_over) {
-    if (source.contains(PACKAGE_TEMPLATE)) {
-        String package = p_path.replace("src/main/scala/", "")
-                           .trim_prefix("res://")
-                           .trim_suffix(get_name() + "." + GODOT_SCALA_SCRIPT_EXTENSION)
-                           .trim_suffix("/")
-                           .replace("/", ".");
-        if (!package.is_empty()) { package = "package " + package + ";"; }
-        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
-    }
-
-    JvmScript::set_path(p_path, p_take_over);
-}
-
-void ScalaScript::_bind_methods() {}

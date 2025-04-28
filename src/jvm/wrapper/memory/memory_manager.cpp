@@ -18,9 +18,9 @@ void MemoryManager::release_binding(JNIEnv*, jobject, jlong instance_id) {
     godot::Object* obj = godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(static_cast<uint64_t>(instance_id)));
     if (obj == nullptr) { return; }
 
-    godot::JvmBindingManager::free_binding(obj);
+    ::godot::JvmBindingManager::free_binding(obj);
     if (is_ref_counted(obj)) {
-        godot::RefCounted* ref = reinterpret_cast<godot::RefCounted*>(obj);
+        auto* ref = reinterpret_cast<godot::RefCounted*>(obj);
         if (ref->unreference()) { memdelete(ref); }
     }
 }
@@ -105,8 +105,8 @@ void MemoryManager::query_sync(JNIEnv* p_raw_env, jobject) {
 void MemoryManager::sync_memory(jni::Env& p_env) {
     // Read the list of references to demote, we do it at the end of a frame instead of the constant ping-pong happening each call.
     to_demote_mutex.lock();
-    for (godot::JvmInstance* script_instance : to_demote_objects) {
-        script_instance->demote_reference();
+    for (::godot::JvmInstance::JvmInstanceData* script_instance : to_demote_objects) {
+        ::godot::JvmInstance::demote_reference(script_instance);
     }
     to_demote_objects.clear();
     to_demote_mutex.unlock();
@@ -130,9 +130,8 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
     refs_to_decrement.delete_local_ref(p_env);
 
     for (uint64_t id : ids) {
-        godot::RefCounted* ref =
-          reinterpret_cast<godot::RefCounted*>(godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(id)));
-        godot::JvmBindingManager::free_binding(ref);
+        godot::RefCounted* ref = reinterpret_cast<godot::RefCounted*>(godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(id)));
+        ::godot::JvmBindingManager::free_binding(ref);
         if (ref->unreference()) { memdelete(ref); }
     }
 
@@ -151,21 +150,21 @@ void MemoryManager::queue_dead_object(godot::Object* obj) {
     dead_objects_mutex.unlock();
 }
 
-void MemoryManager::queue_demotion(godot::JvmInstance* script_instance) {
+void MemoryManager::queue_demotion(::godot::JvmInstance::JvmInstanceData* script_instance) {
     to_demote_mutex.lock();
     to_demote_objects.insert(script_instance);
     to_demote_mutex.unlock();
 }
 
-void MemoryManager::cancel_demotion(godot::JvmInstance* script_instance) {
+void MemoryManager::cancel_demotion(::godot::JvmInstance::JvmInstanceData* script_instance) {
     to_demote_mutex.lock();
     to_demote_objects.erase(script_instance);
     to_demote_mutex.unlock();
 }
 
-void MemoryManager::try_promotion(godot::JvmInstance* script_instance) {
+void MemoryManager::try_promotion(::godot::JvmInstance::JvmInstanceData* script_instance) {
     to_demote_mutex.lock();
-    script_instance->promote_reference();
+    ::godot::JvmInstance::promote_reference(script_instance);
     to_demote_mutex.unlock();
 }
 
