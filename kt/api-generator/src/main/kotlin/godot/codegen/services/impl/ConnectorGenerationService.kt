@@ -1,0 +1,123 @@
+package godot.codegen.services.impl
+
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.UNIT
+import com.squareup.kotlinpoet.asClassName
+import godot.codegen.poet.GenericClassNameInfo
+import godot.codegen.services.IConnectorGenerationService
+import godot.common.constants.Constraints
+import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
+import godot.tools.common.constants.GODOT_CALLABLE
+import godot.tools.common.constants.GODOT_ERROR
+import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
+import godot.tools.common.constants.godotCorePackage
+import java.io.File
+import kotlin.reflect.KCallable
+
+object ConnectorGenerationService : IConnectorGenerationService {
+    private const val UNSAFE_SUFFIX = "Unsafe"
+    private const val SIGNAL_CLASS_NAME = "Signal"
+    private const val CONNECT_METHOD_NAME = "connect"
+    private const val METHOD_PARAMETER_NAME = "method"
+    private const val FLAGS_PARAMETER_NAME = "flags"
+    private const val DISCONNECT_METHOD_NAME = "disconnect"
+    private const val TARGET_PARAMETER_NAME = "target"
+    private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
+
+    override fun generate(output: File) {
+        val connectorFileSpec = FileSpec.builder(godotCorePackage, "SignalConnectors")
+
+        for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
+            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
+            val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
+
+
+            val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, INT)
+                .defaultValue("0")
+                .build()
+
+            val signalConnectExtensionGenericParameters = ParameterSpec
+                .builder(
+                    METHOD_PARAMETER_NAME,
+                    LambdaTypeName.get(
+                        parameters = genericClassNameInfo.toParameterSpecList(),
+                        returnType = UNIT
+                    )
+                )
+                .addModifiers(KModifier.NOINLINE)
+                .build()
+
+            connectorFileSpec.addFunction(
+                genericClassNameInfo
+                    .toReifiedExtensionFunSpecBuilder(CONNECT_METHOD_NAME)
+                    .addParameters(
+                        listOf(
+                            flagsParameter,
+                            signalConnectExtensionGenericParameters
+                        )
+                    )
+                    .addCode(
+                        "return·$CONNECT_METHOD_NAME$UNSAFE_SUFFIX($METHOD_PARAMETER_NAME.%M(),·${FLAGS_PARAMETER_NAME})",
+                        AS_CALLABLE_UTIL_FUNCTION
+                    )
+                    .returns(
+                        GODOT_ERROR
+                    )
+                    .build()
+            )
+
+
+            val lambdaTypeName = genericClassNameInfo.toLambdaTypeName(UNIT, godotObjectBoundTypeVariable)
+
+
+            connectorFileSpec.addFunction(
+                genericClassNameInfo
+                    .toExtensionFunSpecBuilder(CONNECT_METHOD_NAME, listOf(godotObjectBoundTypeVariable))
+                    .addParameters(
+                        listOf(
+                            ParameterSpec
+                                .builder(TARGET_PARAMETER_NAME, godotObjectBoundTypeVariable)
+                                .build(),
+                            ParameterSpec
+                                .builder(METHOD_PARAMETER_NAME, lambdaTypeName)
+                                .build(),
+                            flagsParameter
+                        )
+                    )
+                    .returns(GODOT_ERROR)
+                    .addCode(
+                        CodeBlock.of(
+                            "return·$CONNECT_METHOD_NAME$UNSAFE_SUFFIX(%T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M()),·$FLAGS_PARAMETER_NAME)",
+                            GODOT_CALLABLE,
+                            KCallable::class.asClassName(),
+                            TO_GODOT_NAME_UTIL_FUNCTION,
+                        )
+                    )
+                    .build()
+            )
+
+        }
+
+        connectorFileSpec
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(ClassName("kotlin", "Suppress"))
+                    .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
+                    .addMember("\"unused\"")
+                    .addMember("\"NOTHING_TO_INLINE\"")
+                    .build()
+            )
+            .build()
+            .writeTo(output)
+    }
+}

@@ -1,7 +1,14 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package godot.core
 
 import godot.api.Object
+import godot.api.Object.ConnectFlags
 import godot.common.extensions.convertToSnakeCase
+import godot.core.Callable
+import godot.core.CoreType
+import godot.core.StringName
+import godot.core.asStringName
 import godot.internal.memory.MemoryManager
 
 open class Signal internal constructor(
@@ -14,16 +21,16 @@ open class Signal internal constructor(
         jvmName.convertToSnakeCase().asStringName()
     )
 
-    fun emitSignal(vararg args: Any?) {
+    fun emitUnsafe(vararg args: Any?) {
         godotObject.emitSignal(name, *args)
     }
 
-    fun connect(
+    fun connectUnsafe(
         callable: Callable,
-        flags: Int = 0
-    ) = godotObject.connect(name, callable, flags.toLong())
+        flags: ConnectFlags = ConnectFlags.PERSIST
+    ) = godotObject.connect(name, callable, flags.id)
 
-    fun disconnect(callable: Callable) = godotObject.disconnect(name, callable)
+    fun disconnectUnsafe(callable: Callable) = godotObject.disconnect(name, callable)
 
     fun getConnections() = godotObject.getSignalConnectionList(name)
 

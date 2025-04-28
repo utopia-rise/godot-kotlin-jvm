@@ -1,4 +1,3 @@
-@file:JvmName("Callables")
 @file:Suppress("PackageDirectoryMismatch")
 
 package godot.core
@@ -128,31 +127,27 @@ interface Callable: CoreType {
      *
      * Note: When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.
      * */
-    fun unbind(argCount: Int): NativeCallable
+    fun unbind(argCount: Int): VariantCallable
 
     companion object {
         @JvmStatic
         @JvmName("create")
-        operator fun invoke() = NativeCallable()
-
-        @JvmStatic
-        @JvmName("create")
-        operator fun invoke(target: Object, methodName: StringName) = NativeCallable(target, methodName)
-
-        @JvmStatic
-        @JvmName("create")
-        operator fun invoke(nativeCallable: NativeCallable) = NativeCallable(nativeCallable)
+        operator fun invoke(target: Object, methodName: StringName) = VariantCallable(target, methodName)
     }
 
     @Suppress("FunctionName")
     object Bridge {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_object_string_name(): VoidPtr
-        external fun engine_call_constructor_kt_custom_callable(
+        external fun engine_call_constructor_lambda_callable(
             callable: LambdaContainer<*>,
             variantTypeOrdinal: Int,
             hashCode: Int,
-            hasOnCancel: Boolean
+        ): VoidPtr
+        external fun engine_call_constructor_cancellable(
+            callable: LambdaContainer<*>,
+            variantTypeOrdinal: Int,
+            hashCode: Int,
         ): VoidPtr
 
         external fun engine_call_copy_constructor(): VoidPtr

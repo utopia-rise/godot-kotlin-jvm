@@ -1,5 +1,7 @@
 package godot.core
 
+import godot.core.Signal
+
 val variantMapper = mutableMapOf(
     Unit::class to VariantParser.NIL,
     Void::class to VariantParser.NIL,
@@ -33,7 +35,7 @@ val variantMapper = mutableMapOf(
     Vector4::class to VariantParser.VECTOR4,
     Vector4i::class to VariantParser.VECTOR4I,
     Projection::class to VariantParser.PROJECTION,
-    NativeCallable::class to VariantParser.CALLABLE,
+    VariantCallable::class to VariantParser.CALLABLE,
     LambdaCallable0::class to VariantParser.CALLABLE,
     LambdaCallable1::class to VariantParser.CALLABLE,
     LambdaCallable2::class to VariantParser.CALLABLE,
@@ -109,7 +111,7 @@ val notNullableVariantSet = hashSetOf(
     Vector4::class,
     Vector4i::class,
     Projection::class,
-    NativeCallable::class,
+    VariantCallable::class,
     LambdaCallable::class,
     Signal::class,
     PackedByteArray::class,

@@ -16,7 +16,7 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import godot.codegen.poet.GenericClassNameInfo
-import godot.codegen.services.ILambdaCallableGenerationService
+import godot.codegen.services.ICallableGenerationService
 import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
@@ -26,23 +26,18 @@ import godot.tools.common.constants.godotInteropPackage
 import java.io.File
 
 
-object LambdaCallableGenerationService : ILambdaCallableGenerationService {
+object CallableGenerationService : ICallableGenerationService {
     private const val FUNCTION_PARAMETER_NAME = "function"
     private const val LAMBDA_CALLABLE_NAME = "LambdaCallable"
     private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
-    private const val CALLABLE_FUNCTION_NAME = "callable"
-    private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
     private const val CONTAINER_ARGUMENT_NAME = "container"
+    private const val CALLABLE_FUNCTION_NAME = "callable"
     private const val VARIANT_TYPE_RETURN_NAME = "returnConverter"
     private const val VARIANT_TYPE_ARGUMENT_NAME = "typeConverters"
     private val LAMBDA_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CALLABLE_NAME)
     private val LAMBDA_CONTAINER_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CONTAINER_NAME)
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
     private val variantConverterClassName = ClassName(godotInteropPackage, GodotKotlinJvmTypes.variantConverter)
-
-    //Java
-    private val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
-    private val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
 
     override fun generate(outputDir: File) {
         val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
@@ -280,9 +275,6 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 ++remainingParameters
             }
 
-            val genericClassNameInfo = GenericClassNameInfo(lambdaCallableClassName, argCount)
-            lambdaCallableClassBuilder.addType(generateKtCallableCompanion(argCount, genericClassNameInfo))
-
             containerFileSpec.addType(lambdaContainerClassBuilder.build())
             callableFileSpec.addType(lambdaCallableClassBuilder.build())
 
@@ -308,7 +300,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                             buildString {
                                 append("return·$LAMBDA_CALLABLE_NAME$argCount(")
                                 append("%M.getOrDefault(%T::class,·%T),·arrayOf(")
-                                for (typeParameter in genericParameters) {
+                                genericParameters.forEach { _ ->
                                     append("%M[%T::class]!!,·")
                                 }
                                 append("),·")
@@ -346,6 +338,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 AnnotationSpec
                     .builder(ClassName("kotlin", "Suppress"))
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
+                    .addMember("\"unused\"")
                     .build()
             )
             .build()
@@ -356,72 +349,10 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 AnnotationSpec
                     .builder(ClassName("kotlin", "Suppress"))
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
+                    .addMember("\"unused\"")
                     .build()
             )
             .build()
             .writeTo(outputDir)
-    }
-
-    // JAVA BRIDGE FUNCTION
-    private fun generateKtCallableCompanion(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
-        val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
-
-        return TypeSpec
-            .companionObjectBuilder()
-            .addFunction(
-                FunSpec
-                    .builder(JAVA_CREATE_METHOD_NAME)
-                    .addTypeVariable(returnTypeParameter)
-                    .addTypeVariables(genericClassNameInfo.genericTypes)
-                    .addParameter(
-                        ParameterSpec
-                            .builder("returnClass", JAVA_CLASS_CLASS_NAME.parameterizedBy(returnTypeParameter))
-                            .build()
-                    )
-                    .addParameters(genericClassNameInfo.toParameterSpecList().map {
-                        ParameterSpec
-                            .builder(it.name + "Class", JAVA_CLASS_CLASS_NAME.parameterizedBy(it.type))
-                            .build()
-                    })
-                    .addParameter(
-                        ParameterSpec
-                            .builder(
-                                FUNCTION_PARAMETER_NAME,
-                                genericClassNameInfo.toLambdaTypeName(returnTypeParameter)
-                            )
-                            .build()
-                    )
-                    .addCode(
-                        CodeBlock.of(
-                            buildString {
-                                append("return·$LAMBDA_CALLABLE_NAME$argCount(")
-                                append("%M.getOrDefault(%T.getOrCreateKotlinClass(returnClass),·%T),·arrayOf(")
-                                genericClassNameInfo.toParameterSpecList().forEach {
-                                    append("%M[%T.getOrCreateKotlinClass(${it.name}Class)]!!,·")
-                                }
-                                append("),·")
-                                append(FUNCTION_PARAMETER_NAME)
-                                append(')')
-                            },
-                            variantMapperMember,
-                            REFLECTION_CLASS_NAME,
-                            VARIANT_PARSER_NIL,
-                            *genericClassNameInfo.genericTypes
-                                .flatMap {
-                                    listOf(variantMapperMember, REFLECTION_CLASS_NAME)
-                                }
-                                .toTypedArray()
-                        )
-                    )
-                    .addAnnotation(JvmStatic::class)
-                    .addAnnotation(
-                        AnnotationSpec
-                            .builder(JvmName::class)
-                            .addMember("\"create\"")
-                            .build()
-                    )
-                    .build()
-            )
-            .build()
     }
 }

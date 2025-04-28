@@ -23,17 +23,13 @@ import kotlin.coroutines.resumeWithException
  *
  * @param path The path of the resource to be loaded.
  * @param typeHint A hint about the type of resource being loaded.
- * @param useSubThreads Specifies whether to use sub-threads for loading the resource.
  * @param cacheMode The cache mode to be used while loading the resource.
- * @param onProgress A callback function to track the progress of resource loading.
  * @return The loaded resource, or null if there was an error.
  */
 public suspend inline fun ResourceLoader.awaitLoad(
     path: String,
     typeHint: String = "",
-    useSubThreads: Boolean = false,
-    cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
-    crossinline onProgress: (RealT) -> Unit = {},
+    cacheMode: CacheMode = CacheMode.REUSE,
 ): Resource? {
     // early return in case the resource is already loaded
     if (hasCached(path)) {
@@ -41,8 +37,8 @@ public suspend inline fun ResourceLoader.awaitLoad(
     }
 
     // Start a new job so we have a suspension point in case the coroutine is currently in the main thread.
-    val job = GodotCoroutine.async(Dispatchers.Default) {
-        load(path)
+    val job = GodotCoroutine.async(GodotDispatchers.ThreadPool) {
+        load(path, typeHint, cacheMode)
     }
 
     return job.await()
@@ -53,18 +49,14 @@ public suspend inline fun ResourceLoader.awaitLoad(
  *
  * @param path The path of the resource to be loaded.
  * @param typeHint A hint about the type of resource being loaded.
- * @param useSubThreads Specifies whether to use sub-threads for loading the resource.
  * @param cacheMode The cache mode to be used while loading the resource.
- * @param onProgress A callback function to track the progress of resource loading.
  * @return The loaded resource, or null if there was an error.
  */
 public suspend inline fun <R> ResourceLoader.awaitLoadAs(
     path: String,
     typeHint: String = "",
-    useSubThreads: Boolean = false,
-    cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
-    crossinline onProgress: (RealT) -> Unit = {},
+    cacheMode: CacheMode = CacheMode.REUSE,
 ): R? {
     @Suppress("UNCHECKED_CAST")
-    return this.awaitLoad(path, typeHint, useSubThreads, cacheMode, onProgress) as? R
+    return this.awaitLoad(path, typeHint, cacheMode) as? R
 }

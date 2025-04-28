@@ -22,12 +22,12 @@ abstract class LambdaCallable<R> : Callable {
     override fun isValid() = true
     override fun rpc(vararg args: Any?) = throw UnsupportedOperationException("Can't make a RPC call from a LambdaCallable")
     override fun rpcId(peerId: Long, vararg args: Any?) = throw UnsupportedOperationException("Can't make a RPC call from a LambdaCallable")
-    override fun unbind(argCount: Int): NativeCallable = throw UnsupportedOperationException("Can't unbind a LambdaCallable")
+    override fun unbind(argCount: Int): VariantCallable = throw UnsupportedOperationException("Can't unbind a LambdaCallable")
 
-    fun toNativeCallable(): NativeCallable {
+    fun toNativeCallable(): VariantCallable {
         // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
-        val ptr = Bridge.engine_call_constructor_kt_custom_callable(container, container.returnConverter.id, hashCode(), container.canBeCancelled())
-        return NativeCallable(ptr)
+        val ptr = Bridge.engine_call_constructor_lambda_callable(container, container.returnConverter.id, hashCode())
+        return VariantCallable(ptr)
     }
 
     /**
@@ -37,20 +37,11 @@ abstract class LambdaCallable<R> : Callable {
      */
     fun invalidate() = container.invalidate()
 
-    /**
-     * Code to run if the Callable is destroyed without ever being called once.
-     * Used internal in the context of coroutines.
-     */
-    fun setAsCancellable(block: () -> Unit):  LambdaCallable<R>{
-        container.onCancelCall = block
-        return this
-    }
-
     /*
     * Implement those Callable methods so they fallback to a NativeCallable created on the fly.
     * Inefficient but implemented for the sake of having all Callable's methods usable. The typed version of call() and callDeferred() are supposed to be used.
     */
-    protected fun <R> asCallable(block: NativeCallable.() -> R) = toNativeCallable().block()
+    protected fun <R> asCallable(block: VariantCallable.() -> R) = toNativeCallable().block()
     override fun unsafeBind(vararg args: Any?) = asCallable { unsafeBind(*args) }
     override fun unsafeBindV(args: VariantArray<Any?>) = asCallable { unsafeBindV(args) }
     override fun unsafeCall(vararg args: Any?) = asCallable { unsafeCall(*args) as R }
@@ -62,10 +53,13 @@ abstract class LambdaContainer<R>(
     val returnConverter: VariantConverter,
     val typeConverters: Array<VariantConverter>,
 ) {
-    var onCancelCall: (() -> Unit)? = null
+    var cancelLambda: (() -> Unit)? = null
+    fun cancel() = cancelLambda?.invoke()
 
-    fun canBeCancelled() = onCancelCall != null
-    fun onCancel() = onCancelCall!!.invoke()
+    fun setAsCancellable(signal: Signal, block: () -> Unit) {
+        cancelLambda = block
+        Bridge.engine_call_constructor_lambda_callable(container, container.returnConverter.id, hashCode())
+    }
 
     abstract fun invalidate()
     abstract fun unsafeInvokeFromBuffer(): R

@@ -1,4 +1,3 @@
-@file:JvmName("CallableUtils")
 @file:Suppress("PackageDirectoryMismatch")
 
 package godot.core
@@ -11,7 +10,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable.Bridge
 import kotlin.reflect.KCallable
 
-class NativeCallable : NativeCoreType, Callable {
+class VariantCallable : NativeCoreType, Callable {
 
     internal constructor() {
         ptr = Bridge.engine_call_constructor()
@@ -24,7 +23,7 @@ class NativeCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(callable: NativeCallable) {
+    internal constructor(callable: VariantCallable) {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
         ptr = Bridge.engine_call_copy_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
@@ -125,15 +124,15 @@ class NativeCallable : NativeCoreType, Callable {
         Bridge.engine_call_rpc_id(ptr)
     }
 
-    override fun unbind(argCount: Int): NativeCallable {
+    override fun unbind(argCount: Int): VariantCallable {
         TransferContext.writeArguments(VariantCaster.INT to argCount)
         Bridge.engine_call_unbind(ptr)
-        return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
+        return TransferContext.readReturnValue(VariantParser.CALLABLE) as VariantCallable
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is NativeCallable) return false
+        if (other !is VariantCallable) return false
         if(getObject() != other.getObject() || getMethod() != other.getMethod()) return false
         return true
     }
@@ -143,56 +142,56 @@ class NativeCallable : NativeCoreType, Callable {
         operator fun <T : Object> invoke(
             target: T,
             callable: T.() -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P> invoke(
             target: T,
             callable: T.(P) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2> invoke(
             target: T,
             callable: T.(P1, P2) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3> invoke(
             target: T,
             callable: T.(P1, P2, P3) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.toGodotName())
+        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
     }
 }

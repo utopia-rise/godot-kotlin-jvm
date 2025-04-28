@@ -1,4 +1,7 @@
-@file:Suppress("PackageDirectoryMismatch", "UNCHECKED_CAST")
+@file:Suppress(
+  "PackageDirectoryMismatch", "UNCHECKED_CAST",
+  "unused",
+)
 
 package godot.core
 
