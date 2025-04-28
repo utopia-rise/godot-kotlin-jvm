@@ -1,8 +1,9 @@
 #ifndef GODOT_JVM_JVM_SCRIPT_MANAGER_H
 #define GODOT_JVM_JVM_SCRIPT_MANAGER_H
 
-#include "jvm_script.h"
 #include "api/resource_format/jvm_resource_format_loader.h"
+#include "classes/weak_ref.hpp"
+#include "jvm_script.h"
 
 namespace godot {
 
@@ -53,7 +54,7 @@ namespace godot {
         static void finalize();
 
 #ifdef TOOLS_ENABLED
-        int64_t get_last_reload();
+        uint64_t get_last_reload() const;
 
         void invalidate_source(const Ref<SourceScript>& source_script);
 #endif

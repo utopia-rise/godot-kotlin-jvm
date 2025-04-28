@@ -1,37 +1,39 @@
 
 #include "java_archive_resource_format_loader.h"
 
+#include <classes/resource_uid.hpp>
+#include "engine/utilities.h"
 #include "godot_jvm.h"
 #include "hash.h"
 #include "java_archive.h"
-#include "lifecycle/paths.h"
 #include "logging.h"
+#include "paths.h"
 
 using namespace godot;
 
-void JavaArchiveFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back("jar");
-    p_extensions->push_back("dex");
+PackedStringArray JavaArchiveFormatLoader::_get_recognized_extensions() const {
+    PackedStringArray recognized_extensions;
+    recognized_extensions.push_back("jar");
+    recognized_extensions.push_back("dex");
+    return recognized_extensions;
 }
 
-String JavaArchiveFormatLoader::get_resource_type(const String& p_path) const {
+String JavaArchiveFormatLoader::_get_resource_type(const String& p_path) const {
     String ext = p_path.get_extension().to_lower();
     if(ext == "jar" || ext == "dex"){ return "JavaArchive";}
     return "";
 }
 
-bool JavaArchiveFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "JavaArchive";
+bool JavaArchiveFormatLoader::_handles_type(const StringName& p_type) const {
+    return p_type == SNAME("JavaArchive");
 }
 
-Ref<Resource> JavaArchiveFormatLoader::load(
+Variant JavaArchiveFormatLoader::_load(
   const String& p_path,
   const String& p_original_path,
-  Error* r_error,
   bool p_use_sub_threads,
-  float* r_progress,
-  ResourceFormatLoader::CacheMode p_cache_mode
-) {
+  int32_t p_cache_mode
+) const {
     JVM_LOG_VERBOSE(vformat("Loading Java Archive at: %s", p_path));
     Ref<JavaArchive> ref;
     ref.instantiate();
@@ -44,16 +46,12 @@ Ref<Resource> JavaArchiveFormatLoader::load(
     return ref;
 }
 
-ResourceUID::ID JavaArchiveFormatLoader::get_resource_uid(const String& p_path) const {
+int64_t JavaArchiveFormatLoader::_get_resource_uid(const String& p_path) const {
     String ext = p_path.get_extension().to_lower();
-    ResourceUID::ID id = ResourceUID::INVALID_ID;
+    int64_t id = ResourceUID::INVALID_ID;
     if(ext == "jar" || ext == "dex"){
-        id = (p_path + UUID_HASH_SEED).hash64();
+        id = (int64_t) hash64(p_path + UUID_HASH_SEED);
         id &= 0x7FFFFFFFFFFFFFFF;
     }
     return id;
-}
-
-bool JavaArchiveFormatLoader::has_custom_uid_support() const {
-    return true;
 }

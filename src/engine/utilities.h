@@ -13,4 +13,19 @@ _ALWAYS_INLINE_ bool is_ref_counted(godot::Object* obj) {
     return (obj->get_instance_id() & (uint64_t(1) << 63)) != 0;
 }
 
+static uint64_t hash64(const godot::String& str) {
+    /* simple djb2 hashing */
+
+    const char32_t *chr = str.ptr();
+    uint64_t hashv = 5381;
+    uint64_t c = *chr++;
+
+    while (c) {
+        hashv = ((hashv << 5) + hashv) + c; /* hash * 33 + c */
+        c = *chr++;
+    }
+
+    return hashv;
+}
+
 #endif // GODOT_JVM_UTILITIES_H

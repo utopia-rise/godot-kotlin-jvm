@@ -1,14 +1,10 @@
 #include "jvm_script.h"
 
-#include "binding/kotlin_binding_manager.h"
-#include <core/os/thread.hpp>
-#include "jvm_instance.h"
-#include "jvm_placeholder_instance.h"
 #include "api/language/gdj_language.h"
 #include "api/script/jvm_script_manager.h"
-#include <core/config/project_settings.hpp>
-#include <scene/main/node.hpp>
-#include <core/io/resource_loader.hpp>
+#include "classes/engine.hpp"
+#include "jvm_instance.h"
+#include "jvm_placeholder_instance.h"
 
 using namespace godot;
 
@@ -24,7 +20,7 @@ Variant JvmScript::_new() {
 Object* JvmScript::_object_create() {
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
-    ScriptInstance* instance {_instance_create<true>(owner)};
+    JvmInstance* instance {_instance_create<true>(owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         memdelete(owner);// no owner, sorry
@@ -34,12 +30,12 @@ Object* JvmScript::_object_create() {
     return owner;
 }
 
-bool JvmScript::can_instantiate() const {
+bool JvmScript::_can_instantiate() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
         return false;
     } else {
-        return is_valid();
+        return _is_valid();
     }
 #else
     return is_valid();
@@ -47,10 +43,10 @@ bool JvmScript::can_instantiate() const {
 #endif
 }
 
-bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
+bool JvmScript::_inherits_script(const Ref<Script>& p_script) const {
     Ref<JvmScript> kotlin_script {p_script};
     if (kotlin_script.is_null()) { return false; }
-    if (!is_valid() || !kotlin_script->is_valid()) { return false; }
+    if (!_is_valid() || !kotlin_script->_is_valid()) { return false; }
 
     KtClass* parent_class {kotlin_script->kotlin_class};
     if (kotlin_class == parent_class) { return true; }
@@ -58,8 +54,8 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
     return kotlin_class->registered_supertypes.find(parent_class->registered_class_name);
 }
 
-Ref<Script> JvmScript::get_base_script() const {
-    if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
+Ref<Script> JvmScript::_get_base_script() const {
+    if (!_is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
     return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
 }
@@ -134,7 +130,7 @@ bool JvmScript::is_tool() const {
     return false;
 }
 
-bool JvmScript::is_valid() const {
+bool JvmScript::_is_valid() const {
     return kotlin_class != nullptr;
 }
 
