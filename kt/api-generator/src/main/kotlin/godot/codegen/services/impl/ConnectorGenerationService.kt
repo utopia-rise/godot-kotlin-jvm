@@ -30,9 +30,10 @@ object ConnectorGenerationService : IConnectorGenerationService {
     private const val CONNECT_METHOD_NAME = "connect"
     private const val METHOD_PARAMETER_NAME = "method"
     private const val FLAGS_PARAMETER_NAME = "flags"
-    private const val DISCONNECT_METHOD_NAME = "disconnect"
     private const val TARGET_PARAMETER_NAME = "target"
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
+    private val connectFlagClassName = ClassName(godotCorePackage, "Object.ConnectFlags")
+
 
     override fun generate(output: File) {
         val connectorFileSpec = FileSpec.builder(godotCorePackage, "SignalConnectors")
@@ -42,8 +43,8 @@ object ConnectorGenerationService : IConnectorGenerationService {
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
 
-            val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, INT)
-                .defaultValue("0")
+            val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, connectFlagClassName)
+                .defaultValue("%T.%L", connectFlagClassName, "DEFAULT")
                 .build()
 
             val signalConnectExtensionGenericParameters = ParameterSpec

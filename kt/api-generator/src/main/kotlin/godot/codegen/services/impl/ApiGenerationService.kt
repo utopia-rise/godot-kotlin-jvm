@@ -18,6 +18,7 @@ import godot.codegen.generation.rule.MemberRule
 import godot.codegen.generation.rule.MethodRule
 import godot.codegen.generation.rule.ObjectRule
 import godot.codegen.generation.rule.OverLoadRule
+import godot.codegen.generation.rule.UseConnectFlagRule
 import godot.codegen.generation.rule.PropertyRule
 import godot.codegen.generation.rule.RegistrationRule
 import godot.codegen.generation.rule.SignalRule
@@ -43,6 +44,7 @@ class ApiGenerationService(
         val context = GenerationContext(api)
 
         ApiTask(coreDir, apiDir).compile(context) {
+            rule(::UseConnectFlagRule)
             rule(::EnrichedCoreRule)
             rule(::EnrichedClassRule)
             rule(::CoreRule)
