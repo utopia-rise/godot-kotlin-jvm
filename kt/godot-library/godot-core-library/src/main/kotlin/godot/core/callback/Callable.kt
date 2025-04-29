@@ -24,12 +24,6 @@ interface Callable: CoreType {
      */
     fun unsafeBind(vararg args: Any?): Callable
 
-    /**
-     * Returns a copy of this Callable with one or more arguments bound, reading them from an array. When called, the bound arguments are passed after the arguments supplied by call. See also unbind.
-     *
-     * Note: When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.
-     */
-    fun unsafeBindV(args: VariantArray<Any?>): Callable
 
     /**
      * Calls the method represented by this Callable. Arguments can be passed and should match the method's signature.
@@ -46,13 +40,10 @@ interface Callable: CoreType {
      */
     fun unsafeCallDeferred(vararg args: Any?)
 
-    /**Calls the method represented by this Callable. Unlike call, this method expects all arguments to be contained inside the arguments Array.*/
-    fun unsafeCallV(args: VariantArray<Any?>): Any?
-
     /**
      * Returns the array of arguments bound via successive bind or unbind calls. These arguments will be added after the arguments passed to the call, from which get_unbound_arguments_count arguments on the right have been previously excluded.
      * */
-    fun getBoundArguments(): VariantArray<Any?>
+    fun getBoundArguments(): Collection<Any?>
 
     /**
      * Returns the total amount of arguments bound via successive bind or unbind calls. This is the same as the size of the array returned by get_bound_arguments. See get_bound_arguments for details
@@ -123,7 +114,7 @@ interface Callable: CoreType {
      * In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to argcount.
      * The remaining arguments are passed to the callable.
      * This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments.
-     * See also [bind].
+     * See also [unsafeBind].
      *
      * Note: When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.
      * */
@@ -152,23 +143,21 @@ interface Callable: CoreType {
 
         external fun engine_call_copy_constructor(): VoidPtr
 
-        external fun engine_call_bind(_handle: VoidPtr)
-        external fun engine_call_bindv(_handle: VoidPtr)
+        external fun engine_call_bind(handle: VoidPtr)
         external fun engine_call_call(handle: VoidPtr)
         external fun engine_call_call_deferred(handle: VoidPtr)
-        external fun engine_call_callv(_handle: VoidPtr)
-        external fun engine_call_get_bound_arguments(_handle: VoidPtr)
-        external fun engine_call_get_bound_arguments_count(_handle: VoidPtr)
-        external fun engine_call_get_method(_handle: VoidPtr)
-        external fun engine_call_get_object(_handle: VoidPtr)
-        external fun engine_call_get_object_id(_handle: VoidPtr)
-        external fun engine_call_hash(_handle: VoidPtr)
-        external fun engine_call_is_custom(_handle: VoidPtr)
-        external fun engine_call_is_null(_handle: VoidPtr)
-        external fun engine_call_is_standard(_handle: VoidPtr)
-        external fun engine_call_is_valid(_handle: VoidPtr)
-        external fun engine_call_rpc(_handle: VoidPtr)
-        external fun engine_call_rpc_id(_handle: VoidPtr)
-        external fun engine_call_unbind(_handle: VoidPtr)
+        external fun engine_call_get_bound_arguments(handle: VoidPtr)
+        external fun engine_call_get_bound_arguments_count(handle: VoidPtr)
+        external fun engine_call_get_method(handle: VoidPtr)
+        external fun engine_call_get_object(handle: VoidPtr)
+        external fun engine_call_get_object_id(handle: VoidPtr)
+        external fun engine_call_hash(handle: VoidPtr)
+        external fun engine_call_is_custom(handle: VoidPtr)
+        external fun engine_call_is_null(handle: VoidPtr)
+        external fun engine_call_is_standard(handle: VoidPtr)
+        external fun engine_call_is_valid(handle: VoidPtr)
+        external fun engine_call_rpc(handle: VoidPtr)
+        external fun engine_call_rpc_id(handle: VoidPtr)
+        external fun engine_call_unbind(handle: VoidPtr)
     }
 }

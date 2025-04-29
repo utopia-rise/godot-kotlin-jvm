@@ -14,10 +14,8 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/LambdaContainer;IIZ)J", CallableBridge::engine_call_constructor_kt_custom_callable)
             INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
             INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
-            INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
             INIT_NATIVE_METHOD("engine_call_call", "(J)V", CallableBridge::engine_call_call)
             INIT_NATIVE_METHOD("engine_call_call_deferred", "(J)V", CallableBridge::engine_call_call_deferred)
-            INIT_NATIVE_METHOD("engine_call_callv", "(J)V", CallableBridge::engine_call_callv)
             INIT_NATIVE_METHOD("engine_call_get_bound_arguments", "(J)V", CallableBridge::engine_call_get_bound_arguments)
             INIT_NATIVE_METHOD("engine_call_get_bound_arguments_count", "(J)V", CallableBridge::engine_call_get_bound_arguments_count)
             INIT_NATIVE_METHOD("engine_call_get_method", "(J)V", CallableBridge::engine_call_get_method)
@@ -48,10 +46,8 @@ namespace bridges {
         static uintptr_t engine_call_copy_constructor(JNIEnv * p_raw_env, jobject p_instance);
 
         static void engine_call_bind(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_bindv(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_call(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_call_deferred(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_callv(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_get_bound_arguments(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_get_bound_arguments_count(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_get_method(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);

@@ -117,7 +117,7 @@ public enum class VariantType(
    */
   TYPE_CALLABLE(25),
   /**
-   * Variable is of type [godot.core.Signal].
+   * Variable is of type [Signal].
    */
   TYPE_SIGNAL(26),
   /**

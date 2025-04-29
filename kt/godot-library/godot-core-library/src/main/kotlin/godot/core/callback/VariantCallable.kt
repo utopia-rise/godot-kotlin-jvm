@@ -29,8 +29,8 @@ class VariantCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(_handle: VoidPtr){
-        this.ptr = _handle
+    internal constructor(handle: VoidPtr){
+        this.ptr = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
@@ -38,12 +38,6 @@ class VariantCallable : NativeCoreType, Callable {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_bind(ptr)
         return TransferContext.readReturnValue(VariantParser.CALLABLE) as Callable
-    }
-
-    override fun unsafeBindV(args: VariantArray<Any?>): Callable {
-        TransferContext.writeArguments(VariantParser.ARRAY to args)
-        Bridge.engine_call_bindv(ptr)
-        return TransferContext.readReturnValue(VariantParser.CALLABLE)as Callable
     }
 
     override fun unsafeCall(vararg args: Any?): Any? {
@@ -55,12 +49,6 @@ class VariantCallable : NativeCoreType, Callable {
     override fun unsafeCallDeferred(vararg args: Any?) {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_call_deferred(ptr)
-    }
-
-    override fun unsafeCallV(args: VariantArray<Any?>): Any? {
-        TransferContext.writeArguments(VariantParser.ARRAY to args)
-        Bridge.engine_call_callv(ptr)
-        return TransferContext.readReturnValue(VariantCaster.ANY)
     }
 
     override fun getBoundArguments(): VariantArray<Any?> {

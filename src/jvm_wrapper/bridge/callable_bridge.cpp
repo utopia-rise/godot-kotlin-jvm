@@ -51,14 +51,6 @@ void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlo
     TransferContext::get_instance().write_return_value(env, result);
 }
 
-void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject _, jlong p_raw_ptr) {
-    jni::Env env {p_raw_env};
-    Variant args[1] = {};
-    TransferContext::get_instance().read_args(env, args);
-
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->bindv(args[0])};
-    TransferContext::get_instance().write_return_value(env, result);
-}
 
 void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject _, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
@@ -89,15 +81,6 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
     }
 
     from_uint_to_ptr<Callable>(p_raw_ptr)->call_deferredp(args_ptr, args_size);
-}
-
-void CallableBridge::engine_call_callv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env {p_raw_env};
-    Variant args[1] = {};
-    TransferContext::get_instance().read_args(env, args);
-
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->callv(args[0])};
-    TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_bound_arguments(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

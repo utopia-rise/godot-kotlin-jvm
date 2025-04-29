@@ -32,6 +32,14 @@ class GenericClassNameInfo(
 
 
     /**
+     * List of reified type variables for inline functions.
+     *
+     * Example: [reified P0, reified P1]
+     */
+    val reifiedTypes = genericTypes.map { it.copy(reified = true) }
+
+
+    /**
      * Parameterized [ClassName] with generic type variables.
      *
      * Example: MyClass<P0, P1>
@@ -43,13 +51,6 @@ class GenericClassNameInfo(
             this
         }
     }
-
-    /**
-     * List of reified type variables for inline functions.
-     *
-     * Example: [reified P0, reified P1]
-     */
-    val reifiedTypes = genericTypes.map { it.copy(reified = true) }
 
     /**
      * Parameterized [ClassName] with reified generic type variables.
@@ -107,7 +108,6 @@ class GenericClassNameInfo(
         suffix: List<TypeVariableName> = emptyList()
     ) = FunSpec.builder(name)
         .addTypeVariables(allTypeVariables(prefix, suffix))
-
 
 
     /**
@@ -182,11 +182,25 @@ class GenericClassNameInfo(
      *
      * Example: toLambdaTypeName(R) -> (p0: P0, p1: P1) -> R
      */
-    fun toLambdaTypeName(returnType:  TypeName, receiver:  TypeName? = null) = LambdaTypeName.get(
+    fun toLambdaTypeName(returnType: TypeName, receiver: TypeName? = null) = LambdaTypeName.get(
         receiver = receiver,
         parameters = genericTypes
             .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
                 ParameterSpec.builder("p$index", typeVariableName).build()
+            },
+        returnType = returnType
+    )
+
+    /**
+     * Create a LambdaTypeName that use all parameters as Any? and returning [returnType].
+     *
+     * Example: toErasedLambdaTypeName(R) -> (p0: Any?, p1: Any?) -> R
+     */
+    fun toErasedLambdaTypeName(returnType: TypeName, receiver: TypeName? = null) = LambdaTypeName.get(
+        receiver = receiver,
+        parameters = genericTypes
+            .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
+                ParameterSpec.builder("p$index", ANY.copy(nullable = true)).build()
             },
         returnType = returnType
     )

@@ -8,7 +8,6 @@
 package godot.core
 
 import godot.api.Object
-import godot.core.Signal
 import kotlin.Any
 import kotlin.PublishedApi
 import kotlin.String

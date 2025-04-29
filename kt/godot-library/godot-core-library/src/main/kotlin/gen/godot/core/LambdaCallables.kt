@@ -5,95 +5,68 @@
 
 package godot.core
 
-import godot.common.interop.VariantConverter
 import godot.core.VariantParser.NIL
-import kotlin.Array
 import kotlin.PublishedApi
 import kotlin.Suppress
 
 public class LambdaCallable0<R> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: () -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer0<R> = LambdaContainer0<R>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(): R = container.unsafeInvoke()
 
-  public fun callDeferred(): R = unsafeCallDeferred() as R
+  public fun callDeferred() = unsafeCallDeferred()
 
   public operator fun invoke(): R = call()
 }
 
 public inline fun <reified R> callable0(noinline function: () -> R) =
-    LambdaCallable0(variantMapper.getOrDefault(R::class, NIL), arrayOf(), function)
+    LambdaCallable0<R>(LambdaContainer0<R>(variantMapper.getOrDefault(R::class, NIL), arrayOf(), function))
 
 public inline fun <reified R> (() -> R).asCallable() = callable0(this)
 
 public class LambdaCallable1<R, P0> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (p0: P0) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer1<R, P0> = LambdaContainer1<R, P0>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(p0: P0): R = container.unsafeInvoke(p0)
 
-  public fun callDeferred(p0: P0): R = unsafeCallDeferred(p0) as R
+  public fun callDeferred(p0: P0) = unsafeCallDeferred(p0)
 
   public operator fun invoke(p0: P0): R = call(p0)
 
-  public fun bind(p0: P0) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0) }
+  public fun bind(p0: P0) = LambdaCallable0<R>(container).unsafeBind(p0) as LambdaCallable0<R>
 }
 
 public inline fun <reified P0, reified R> callable1(noinline function: (p0: P0) -> R) =
-    LambdaCallable1(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, ), function)
+    LambdaCallable1<R, P0>(LambdaContainer1<R, P0>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!), function))
 
 public inline fun <reified P0, reified R> ((p0: P0) -> R).asCallable() = callable1(this)
 
 public class LambdaCallable2<R, P0, P1> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (p0: P0, p1: P1) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer2<R, P0, P1> =
-      LambdaContainer2<R, P0, P1>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(p0: P0, p1: P1): R = container.unsafeInvoke(p0, p1)
 
-  public fun callDeferred(p0: P0, p1: P1): R = unsafeCallDeferred(p0, p1) as R
+  public fun callDeferred(p0: P0, p1: P1) = unsafeCallDeferred(p0, p1)
 
   public operator fun invoke(p0: P0, p1: P1): R = call(p0, p1)
 
   public fun bind(p0: P0, p1: P1) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1) as LambdaCallable0<R>
 
   public fun bind(p1: P1) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1) as LambdaCallable1<R, P0>
 }
 
 public inline fun <reified P0, reified P1, reified R> callable2(noinline function: (p0: P0,
     p1: P1) -> R) =
-    LambdaCallable2(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, ), function)
+    LambdaCallable2<R, P0, P1>(LambdaContainer2<R, P0, P1>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified R> ((p0: P0, p1: P1) -> R).asCallable() =
     callable2(this)
 
 public class LambdaCallable3<R, P0, P1, P2> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer3<R, P0, P1, P2> =
-      LambdaContainer3<R, P0, P1, P2>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -104,7 +77,7 @@ public class LambdaCallable3<R, P0, P1, P2> @PublishedApi internal constructor(
     p0: P0,
     p1: P1,
     p2: P2,
-  ): R = unsafeCallDeferred(p0, p1, p2) as R
+  ) = unsafeCallDeferred(p0, p1, p2)
 
   public operator fun invoke(
     p0: P0,
@@ -116,14 +89,13 @@ public class LambdaCallable3<R, P0, P1, P2> @PublishedApi internal constructor(
     p0: P0,
     p1: P1,
     p2: P2,
-  ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2) }
+  ) = LambdaCallable0<R>(container).unsafeBind(p0, p1, p2) as LambdaCallable0<R>
 
   public fun bind(p1: P1, p2: P2) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2) as LambdaCallable1<R, P0>
 
   public fun bind(p2: P2) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2) as LambdaCallable2<R, P0, P1>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified R> callable3(noinline function: (
@@ -131,7 +103,7 @@ public inline fun <reified P0, reified P1, reified P2, reified R> callable3(noin
   p1: P1,
   p2: P2,
 ) -> R) =
-    LambdaCallable3(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, ), function)
+    LambdaCallable3<R, P0, P1, P2>(LambdaContainer3<R, P0, P1, P2>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified R> ((
   p0: P0,
@@ -140,18 +112,8 @@ public inline fun <reified P0, reified P1, reified P2, reified R> ((
 ) -> R).asCallable() = callable3(this)
 
 public class LambdaCallable4<R, P0, P1, P2, P3> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer4<R, P0, P1, P2, P3> =
-      LambdaContainer4<R, P0, P1, P2, P3>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -164,7 +126,7 @@ public class LambdaCallable4<R, P0, P1, P2, P3> @PublishedApi internal construct
     p1: P1,
     p2: P2,
     p3: P3,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3)
 
   public operator fun invoke(
     p0: P0,
@@ -178,21 +140,19 @@ public class LambdaCallable4<R, P0, P1, P2, P3> @PublishedApi internal construct
     p1: P1,
     p2: P2,
     p3: P3,
-  ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3) }
+  ) = LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
-  ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3) }
+  ) = LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3) as LambdaCallable1<R, P0>
 
   public fun bind(p2: P2, p3: P3) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3) as LambdaCallable2<R, P0, P1>
 
   public fun bind(p3: P3) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3) as LambdaCallable3<R, P0, P1, P2>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> callable4(noinline
@@ -202,7 +162,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ca
   p2: P2,
   p3: P3,
 ) -> R) =
-    LambdaCallable4(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, ), function)
+    LambdaCallable4<R, P0, P1, P2, P3>(LambdaContainer4<R, P0, P1, P2, P3>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
   p0: P0,
@@ -212,19 +172,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
 ) -> R).asCallable() = callable4(this)
 
 public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer5<R, P0, P1, P2, P3, P4> =
-      LambdaContainer5<R, P0, P1, P2, P3, P4>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -239,7 +188,7 @@ public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal const
     p2: P2,
     p3: P3,
     p4: P4,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4)
 
   public operator fun invoke(
     p0: P0,
@@ -255,29 +204,26 @@ public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal const
     p2: P2,
     p3: P3,
     p4: P4,
-  ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4) }
+  ) = LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
-  ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4) }
+  ) = LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
-  ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4) }
+  ) = LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4) as LambdaCallable2<R, P0, P1>
 
   public fun bind(p3: P3, p4: P4) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(p4: P4) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4) as LambdaCallable4<R, P0, P1, P2, P3>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R>
@@ -288,7 +234,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
 ) -> R) =
-    LambdaCallable5(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, ), function)
+    LambdaCallable5<R, P0, P1, P2, P3, P4>(LambdaContainer5<R, P0, P1, P2, P3, P4>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R> ((
   p0: P0,
@@ -299,20 +245,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 ) -> R).asCallable() = callable5(this)
 
 public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer6<R, P0, P1, P2, P3, P4, P5> =
-      LambdaContainer6<R, P0, P1, P2, P3, P4, P5>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -329,7 +263,7 @@ public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
     p3: P3,
     p4: P4,
     p5: P5,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5)
 
   public operator fun invoke(
     p0: P0,
@@ -347,8 +281,7 @@ public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
     p3: P3,
     p4: P4,
     p5: P5,
-  ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5) }
+  ) = LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -356,29 +289,27 @@ public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
     p3: P3,
     p4: P4,
     p5: P5,
-  ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5) }
+  ) = LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
-  ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5) }
+  ) = LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(p4: P4, p5: P5) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(p5: P5) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -390,7 +321,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
 ) -> R) =
-    LambdaCallable6(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, ), function)
+    LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(LambdaContainer6<R, P0, P1, P2, P3, P4, P5>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     R> ((
@@ -403,21 +334,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 ) -> R).asCallable() = callable6(this)
 
 public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6> =
-      LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -436,7 +354,7 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6)
 
   public operator fun invoke(
     p0: P0,
@@ -456,8 +374,7 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+  ) = LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -466,8 +383,7 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+  ) = LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -476,7 +392,7 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p5: P5,
     p6: P6,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -484,20 +400,20 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p5: P5,
     p6: P6,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(p5: P5, p6: P6) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(p6: P6) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -510,7 +426,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
 ) -> R) =
-    LambdaCallable7(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, ), function)
+    LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified R> ((
@@ -524,22 +440,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 ) -> R).asCallable() = callable7(this)
 
 public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7> =
-      LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7>(returnConverter, typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -560,7 +462,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7)
 
   public operator fun invoke(
     p0: P0,
@@ -582,8 +484,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+  ) = LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -594,7 +495,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p6: P6,
     p7: P7,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -604,7 +505,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p6: P6,
     p7: P7,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -613,7 +514,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p6: P6,
     p7: P7,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -621,20 +522,20 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p6: P6,
     p7: P7,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(p6: P6, p7: P7) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(p7: P7) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -648,7 +549,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
 ) -> R) =
-    LambdaCallable8(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, ), function)
+    LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified R> ((
@@ -664,24 +565,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal
     constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> =
-      LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(returnConverter, typeConverters,
-      function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -704,7 +589,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8)
 
   public operator fun invoke(
     p0: P0,
@@ -729,7 +614,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -741,7 +626,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -752,7 +637,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -762,7 +647,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -771,7 +656,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -779,20 +664,20 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(p7: P7, p8: P8) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(p8: P8) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -807,7 +692,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
 ) -> R) =
-    LambdaCallable9(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, ), function)
+    LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified R> ((
@@ -824,25 +709,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi internal
     constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
-      LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(returnConverter, typeConverters,
-      function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -867,7 +735,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 
   public operator fun invoke(
     p0: P0,
@@ -894,7 +762,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -907,7 +775,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -919,7 +787,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -930,7 +798,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -940,7 +808,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -949,7 +817,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -957,20 +825,20 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(p8: P8, p9: P9) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(p9: P9) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -986,7 +854,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
 ) -> R) =
-    LambdaCallable10(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, ), function)
+    LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified R> ((
@@ -1004,26 +872,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi internal
     constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container: LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
-      LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -1050,7 +900,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
 
   public operator fun invoke(
     p0: P0,
@@ -1079,7 +929,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -1093,7 +943,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -1106,7 +956,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9, p10) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -1118,7 +968,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9, p10) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -1129,7 +979,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9, p10) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -1139,7 +989,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9, p10) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -1148,7 +998,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9, p10) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
@@ -1156,20 +1006,20 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9, p10) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
   ) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9, p10) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(p9: P9, p10: P10) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9, p10) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 
   public fun bind(p10: P10) =
-      LambdaCallable10(container.returnConverter, container.typeConverters.take(10).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container).unsafeBind(p10) as LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1186,7 +1036,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
 ) -> R) =
-    LambdaCallable11(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, ), function)
+    LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified R> ((
@@ -1205,28 +1055,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @PublishedApi
     internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container:
-      LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
-      LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -1255,7 +1085,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p9: P9,
     p10: P10,
     p11: P11,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
 
   public operator fun invoke(
     p0: P0,
@@ -1286,7 +1116,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -1301,7 +1131,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -1315,7 +1145,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -1328,7 +1158,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9, p10, p11) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -1340,7 +1170,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9, p10, p11) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -1351,7 +1181,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9, p10, p11) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -1361,7 +1191,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9, p10, p11) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
@@ -1370,7 +1200,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9, p10, p11) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(
     p8: P8,
@@ -1378,20 +1208,20 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9, p10, p11) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
   ) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9, p10, p11) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 
   public fun bind(p10: P10, p11: P11) =
-      LambdaCallable10(container.returnConverter, container.typeConverters.take(10).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container).unsafeBind(p10, p11) as LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 
   public fun bind(p11: P11) =
-      LambdaCallable11(container.returnConverter, container.typeConverters.take(11).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container).unsafeBind(p11) as LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1410,7 +1240,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
 ) -> R) =
-    LambdaCallable12(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, ), function)
+    LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified R> ((
@@ -1430,29 +1260,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
     @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container:
-      LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
-      LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -1483,7 +1292,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
     p12: P12,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
 
   public operator fun invoke(
     p0: P0,
@@ -1516,7 +1325,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -1532,7 +1341,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -1547,7 +1356,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -1561,7 +1370,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -1574,7 +1383,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9, p10, p11, p12) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -1586,7 +1395,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9, p10, p11, p12) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -1597,7 +1406,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9, p10, p11, p12) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
@@ -1607,7 +1416,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9, p10, p11, p12) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(
     p8: P8,
@@ -1616,7 +1425,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9, p10, p11, p12) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(
     p9: P9,
@@ -1624,20 +1433,20 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9, p10, p11, p12) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 
   public fun bind(
     p10: P10,
     p11: P11,
     p12: P12,
   ) =
-      LambdaCallable10(container.returnConverter, container.typeConverters.take(10).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container).unsafeBind(p10, p11, p12) as LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 
   public fun bind(p11: P11, p12: P12) =
-      LambdaCallable11(container.returnConverter, container.typeConverters.take(11).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container).unsafeBind(p11, p12) as LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 
   public fun bind(p12: P12) =
-      LambdaCallable12(container.returnConverter, container.typeConverters.take(12).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container).unsafeBind(p12) as LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1657,7 +1466,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
 ) -> R) =
-    LambdaCallable13(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, ), function)
+    LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified R> ((
@@ -1678,30 +1487,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
     @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container:
-      LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
-      LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -1734,7 +1521,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
     p13: P13,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
 
   public operator fun invoke(
     p0: P0,
@@ -1769,7 +1556,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -1786,7 +1573,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -1802,7 +1589,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -1817,7 +1604,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -1831,7 +1618,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -1844,7 +1631,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -1856,7 +1643,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9, p10, p11, p12, p13) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
@@ -1867,7 +1654,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9, p10, p11, p12, p13) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(
     p8: P8,
@@ -1877,7 +1664,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9, p10, p11, p12, p13) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(
     p9: P9,
@@ -1886,7 +1673,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9, p10, p11, p12, p13) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 
   public fun bind(
     p10: P10,
@@ -1894,20 +1681,20 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable10(container.returnConverter, container.typeConverters.take(10).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container).unsafeBind(p10, p11, p12, p13) as LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 
   public fun bind(
     p11: P11,
     p12: P12,
     p13: P13,
   ) =
-      LambdaCallable11(container.returnConverter, container.typeConverters.take(11).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container).unsafeBind(p11, p12, p13) as LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 
   public fun bind(p12: P12, p13: P13) =
-      LambdaCallable12(container.returnConverter, container.typeConverters.take(12).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container).unsafeBind(p12, p13) as LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
 
   public fun bind(p13: P13) =
-      LambdaCallable13(container.returnConverter, container.typeConverters.take(13).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container).unsafeBind(p13) as LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1928,7 +1715,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
 ) -> R) =
-    LambdaCallable14(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, ), function)
+    LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
@@ -1951,31 +1738,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
     @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container:
-      LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
-      LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -2010,7 +1774,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
     p14: P14,
-  ): R = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
 
   public operator fun invoke(
     p0: P0,
@@ -2047,7 +1811,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -2065,7 +1829,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -2082,7 +1846,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -2098,7 +1862,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -2113,7 +1877,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -2127,7 +1891,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -2140,7 +1904,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
@@ -2152,7 +1916,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9, p10, p11, p12, p13, p14) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(
     p8: P8,
@@ -2163,7 +1927,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9, p10, p11, p12, p13, p14) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(
     p9: P9,
@@ -2173,7 +1937,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9, p10, p11, p12, p13, p14) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 
   public fun bind(
     p10: P10,
@@ -2182,7 +1946,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable10(container.returnConverter, container.typeConverters.take(10).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container).unsafeBind(p10, p11, p12, p13, p14) as LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 
   public fun bind(
     p11: P11,
@@ -2190,20 +1954,20 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable11(container.returnConverter, container.typeConverters.take(11).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container).unsafeBind(p11, p12, p13, p14) as LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 
   public fun bind(
     p12: P12,
     p13: P13,
     p14: P14,
   ) =
-      LambdaCallable12(container.returnConverter, container.typeConverters.take(12).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container).unsafeBind(p12, p13, p14) as LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
 
   public fun bind(p13: P13, p14: P14) =
-      LambdaCallable13(container.returnConverter, container.typeConverters.take(13).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container).unsafeBind(p13, p14) as LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
 
   public fun bind(p14: P14) =
-      LambdaCallable14(container.returnConverter, container.typeConverters.take(14).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+      LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container).unsafeBind(p14) as LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -2225,7 +1989,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
 ) -> R) =
-    LambdaCallable15(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, ), function)
+    LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
@@ -2249,32 +2013,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14,
     P15> @PublishedApi internal constructor(
-  returnConverter: VariantConverter,
-  typeConverters: Array<VariantConverter>,
-  function: (
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) -> R,
-) : LambdaCallable<R>() {
-  public override val container:
-      LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
-      LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(returnConverter,
-      typeConverters, function)
-
+  container: LambdaContainer<R>,
+) : LambdaCallable<R>(container) {
   public fun call(
     p0: P0,
     p1: P1,
@@ -2312,8 +2052,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
     p15: P15,
-  ): R =
-      unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as R
+  ) = unsafeCallDeferred(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
 
   public operator fun invoke(
     p0: P0,
@@ -2352,7 +2091,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable0(container.returnConverter, container.typeConverters.take(0).toTypedArray()) { -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable0<R>(container).unsafeBind(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable0<R>
 
   public fun bind(
     p1: P1,
@@ -2371,7 +2110,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable1(container.returnConverter, container.typeConverters.take(1).toTypedArray()) {p0: P0 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable1<R, P0>(container).unsafeBind(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable1<R, P0>
 
   public fun bind(
     p2: P2,
@@ -2389,7 +2128,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable2(container.returnConverter, container.typeConverters.take(2).toTypedArray()) {p0: P0, p1: P1 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable2<R, P0, P1>(container).unsafeBind(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable2<R, P0, P1>
 
   public fun bind(
     p3: P3,
@@ -2406,7 +2145,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable3(container.returnConverter, container.typeConverters.take(3).toTypedArray()) {p0: P0, p1: P1, p2: P2 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable3<R, P0, P1, P2>(container).unsafeBind(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable3<R, P0, P1, P2>
 
   public fun bind(
     p4: P4,
@@ -2422,7 +2161,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable4(container.returnConverter, container.typeConverters.take(4).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable4<R, P0, P1, P2, P3>(container).unsafeBind(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable4<R, P0, P1, P2, P3>
 
   public fun bind(
     p5: P5,
@@ -2437,7 +2176,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable5(container.returnConverter, container.typeConverters.take(5).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable5<R, P0, P1, P2, P3, P4>(container).unsafeBind(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable5<R, P0, P1, P2, P3, P4>
 
   public fun bind(
     p6: P6,
@@ -2451,7 +2190,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable6(container.returnConverter, container.typeConverters.take(6).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container).unsafeBind(p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable6<R, P0, P1, P2, P3, P4, P5>
 
   public fun bind(
     p7: P7,
@@ -2464,7 +2203,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable7(container.returnConverter, container.typeConverters.take(7).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container).unsafeBind(p7, p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>
 
   public fun bind(
     p8: P8,
@@ -2476,7 +2215,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable8(container.returnConverter, container.typeConverters.take(8).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container).unsafeBind(p8, p9, p10, p11, p12, p13, p14, p15) as LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
 
   public fun bind(
     p9: P9,
@@ -2487,7 +2226,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable9(container.returnConverter, container.typeConverters.take(9).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container).unsafeBind(p9, p10, p11, p12, p13, p14, p15) as LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
 
   public fun bind(
     p10: P10,
@@ -2497,7 +2236,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable10(container.returnConverter, container.typeConverters.take(10).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container).unsafeBind(p10, p11, p12, p13, p14, p15) as LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 
   public fun bind(
     p11: P11,
@@ -2506,7 +2245,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable11(container.returnConverter, container.typeConverters.take(11).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container).unsafeBind(p11, p12, p13, p14, p15) as LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 
   public fun bind(
     p12: P12,
@@ -2514,20 +2253,20 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable12(container.returnConverter, container.typeConverters.take(12).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container).unsafeBind(p12, p13, p14, p15) as LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
 
   public fun bind(
     p13: P13,
     p14: P14,
     p15: P15,
   ) =
-      LambdaCallable13(container.returnConverter, container.typeConverters.take(13).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container).unsafeBind(p13, p14, p15) as LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
 
   public fun bind(p14: P14, p15: P15) =
-      LambdaCallable14(container.returnConverter, container.typeConverters.take(14).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container).unsafeBind(p14, p15) as LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
 
   public fun bind(p15: P15) =
-      LambdaCallable15(container.returnConverter, container.typeConverters.take(15).toTypedArray()) {p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 -> container.unsafeInvoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+      LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(container).unsafeBind(p15) as LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -2550,7 +2289,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p14: P14,
   p15: P15,
 ) -> R) =
-    LambdaCallable16(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, variantMapper[P15::class]!!, ), function)
+    LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, variantMapper[P15::class]!!), function))
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
