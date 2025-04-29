@@ -28,7 +28,7 @@ open class Signal internal constructor(
     fun connectUnsafe(
         callable: Callable,
         flags: ConnectFlags = ConnectFlags.DEFAULT
-    ) = godotObject.connect(name, callable, flags.id)
+    ) = godotObject.connect(name, callable, flags)
 
     fun disconnectUnsafe(callable: Callable) = godotObject.disconnect(name, callable)
 

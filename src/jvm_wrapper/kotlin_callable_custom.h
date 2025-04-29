@@ -10,12 +10,12 @@ JVM_INSTANCE_WRAPPER(LambdaContainer, "godot.core.LambdaContainer") {
     // clang-format off
     JNI_VOID_METHOD(INVOKE_NO_RETURN)
     JNI_OBJECT_METHOD(INVOKE_WITH_RETURN)
-    JNI_VOID_METHOD(ON_CANCEL)
+    JNI_VOID_METHOD(CANCEL)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(INVOKE_NO_RETURN, "invoke", "()V")
         INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "()Ljava/lang/Object;")
-        INIT_JNI_METHOD(ON_CANCEL, "onCancel", "()V")
+        INIT_JNI_METHOD(CANCEL, "cancel", "()V")
     )
     // clang-format on
 

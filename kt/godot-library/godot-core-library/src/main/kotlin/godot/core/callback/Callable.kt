@@ -22,13 +22,13 @@ interface Callable: CoreType {
      *
      * Note: When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.
      */
-    fun unsafeBind(vararg args: Any?): Callable
+    fun bindUnsafe(vararg args: Any?): Callable
 
 
     /**
      * Calls the method represented by this Callable. Arguments can be passed and should match the method's signature.
      * */
-    fun unsafeCall(vararg args: Any?): Any?
+    fun callUnsafe(vararg args: Any?): Any?
 
     /**Calls the method represented by this Callable in deferred mode, i.e. at the end of the current frame.
      * Arguments can be passed and should match the method's signature.
@@ -38,7 +38,7 @@ interface Callable: CoreType {
      * In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle.
      * This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.
      */
-    fun unsafeCallDeferred(vararg args: Any?)
+    fun callDeferredUnsafe(vararg args: Any?)
 
     /**
      * Returns the array of arguments bound via successive bind or unbind calls. These arguments will be added after the arguments passed to the call, from which get_unbound_arguments_count arguments on the right have been previously excluded.
@@ -114,13 +114,19 @@ interface Callable: CoreType {
      * In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to argcount.
      * The remaining arguments are passed to the callable.
      * This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments.
-     * See also [unsafeBind].
+     * See also [bindUnsafe].
      *
      * Note: When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.
      * */
     fun unbind(argCount: Int): VariantCallable
 
+    fun toNativeCallable(): VariantCallable
+
     companion object {
+        @JvmStatic
+        @JvmName("create")
+        operator fun invoke() = VariantCallable()
+
         @JvmStatic
         @JvmName("create")
         operator fun invoke(target: Object, methodName: StringName) = VariantCallable(target, methodName)

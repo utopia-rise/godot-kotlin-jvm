@@ -26,10 +26,9 @@ import java.io.File
 
 private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
 private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val connectThreadSafe = MemberName(godotExtensionPackage, "connectThreadSafe")
+private val promise = MemberName(godotCorePackage, "promise")
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
 private const val cancel = "cancel"
-private val setCancel = "setAsCancellable"
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(output: File) {
@@ -138,16 +137,16 @@ object AwaitGenerationService : IAwaitGenerationService {
 
         return this
             .beginControlFlow("return·%M", suspendCancellableCoroutine)
-            .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
-            .beginControlFlow("%M(", connectThreadSafe)
-            .addStatement("$lambdaParametersWithType·->")
-            .addStatement("cont.%M($resumeParameters)", resume)
-            .endControlFlow()
-            .addStatement(".%M()", AS_CALLABLE_UTIL_FUNCTION)
-            .beginControlFlow(".$setCancel")
-            .addStatement("cont.%L()", cancel)
-            .endControlFlow()
-            .addCode(",·%T.ConnectFlags.ONE_SHOT.id.toInt())", GODOT_OBJECT)
+                .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
+                .addStatement("%M(", promise)
+                    .beginControlFlow("")
+                        .addStatement("$lambdaParametersWithType·->")
+                        .addStatement("cont.%M($resumeParameters)", resume)
+                    .endControlFlow()
+                    .beginControlFlow(",")
+                        .addStatement("cont.%L()", cancel)
+                    .endControlFlow()
+                .addStatement(")")
             .endControlFlow()
     }
 }

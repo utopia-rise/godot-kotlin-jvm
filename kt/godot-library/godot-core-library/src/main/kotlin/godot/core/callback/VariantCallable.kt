@@ -34,19 +34,19 @@ class VariantCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    override fun unsafeBind(vararg args: Any?): Callable {
+    override fun bindUnsafe(vararg args: Any?): Callable {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_bind(ptr)
         return TransferContext.readReturnValue(VariantParser.CALLABLE) as Callable
     }
 
-    override fun unsafeCall(vararg args: Any?): Any? {
+    override fun callUnsafe(vararg args: Any?): Any? {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_call(ptr)
         return TransferContext.readReturnValue(VariantCaster.ANY)
     }
 
-    override fun unsafeCallDeferred(vararg args: Any?) {
+    override fun callDeferredUnsafe(vararg args: Any?) {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_call_deferred(ptr)
     }
@@ -117,6 +117,8 @@ class VariantCallable : NativeCoreType, Callable {
         Bridge.engine_call_unbind(ptr)
         return TransferContext.readReturnValue(VariantParser.CALLABLE) as VariantCallable
     }
+
+    override fun toNativeCallable() = this
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

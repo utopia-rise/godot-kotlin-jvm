@@ -16,7 +16,7 @@ public class LambdaContainer0<R> @PublishedApi internal constructor(
   typeConverters: Array<VariantConverter>,
   function: () -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R =
+  public override fun invokeUnsafe(vararg args: Any?): R =
       (function as? () -> R)?.invoke()?: throw InvalidJvmLambdaException()
 }
 
@@ -25,7 +25,7 @@ public class LambdaContainer1<R, P0> @PublishedApi internal constructor(
   typeConverters: Array<VariantConverter>,
   function: (p0: P0) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R =
+  public override fun invokeUnsafe(vararg args: Any?): R =
       (function as? (p0: Any?) -> R)?.invoke(args[0])?: throw InvalidJvmLambdaException()
 }
 
@@ -34,7 +34,7 @@ public class LambdaContainer2<R, P0, P1> @PublishedApi internal constructor(
   typeConverters: Array<VariantConverter>,
   function: (p0: P0, p1: P1) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (p0: Any?,
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (p0: Any?,
       p1: Any?) -> R)?.invoke(args[0], args[1])?: throw InvalidJvmLambdaException()
 }
 
@@ -47,7 +47,7 @@ public class LambdaContainer3<R, P0, P1, P2> @PublishedApi internal constructor(
     p2: P2,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -64,7 +64,7 @@ public class LambdaContainer4<R, P0, P1, P2, P3> @PublishedApi internal construc
     p3: P3,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -83,7 +83,7 @@ public class LambdaContainer5<R, P0, P1, P2, P3, P4> @PublishedApi internal cons
     p4: P4,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -104,7 +104,7 @@ public class LambdaContainer6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal 
     p5: P5,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -127,7 +127,7 @@ public class LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi inter
     p6: P6,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -152,7 +152,7 @@ public class LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi i
     p7: P7,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -180,7 +180,7 @@ public class LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedA
     p8: P8,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -210,7 +210,7 @@ public class LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publi
     p9: P9,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -242,7 +242,7 @@ public class LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @
     p10: P10,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -276,7 +276,7 @@ public class LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
     p11: P11,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -312,7 +312,7 @@ public class LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
     p12: P12,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -350,7 +350,7 @@ public class LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
     p13: P13,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -390,7 +390,7 @@ public class LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
     p14: P14,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,
@@ -432,7 +432,7 @@ public class LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
     p15: P15,
   ) -> R,
 ) : LambdaContainer<R>(returnConverter, typeConverters, function) {
-  public override fun unsafeInvoke(vararg args: Any?): R = (function as? (
+  public override fun invokeUnsafe(vararg args: Any?): R = (function as? (
     p0: Any?,
     p1: Any?,
     p2: Any?,

@@ -4,11 +4,10 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
@@ -19,21 +18,25 @@ import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
 import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotCorePackage
 import java.io.File
 import kotlin.reflect.KCallable
 
 object ConnectorGenerationService : IConnectorGenerationService {
+    private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
     private const val UNSAFE_SUFFIX = "Unsafe"
     private const val SIGNAL_CLASS_NAME = "Signal"
     private const val CONNECT_METHOD_NAME = "connect"
+    private const val PROMISE_METHOD_NAME = "promise"
     private const val METHOD_PARAMETER_NAME = "method"
+    private const val CANCEL_PARAMETER_NAME = "cancel"
     private const val FLAGS_PARAMETER_NAME = "flags"
     private const val TARGET_PARAMETER_NAME = "target"
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
     private val connectFlagClassName = ClassName(godotCorePackage, "Object.ConnectFlags")
-
+    private val variantConverterClassName = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantParser)
 
     override fun generate(output: File) {
         val connectorFileSpec = FileSpec.builder(godotCorePackage, "SignalConnectors")
@@ -47,16 +50,6 @@ object ConnectorGenerationService : IConnectorGenerationService {
                 .defaultValue("%T.%L", connectFlagClassName, "DEFAULT")
                 .build()
 
-            val signalConnectExtensionGenericParameters = ParameterSpec
-                .builder(
-                    METHOD_PARAMETER_NAME,
-                    LambdaTypeName.get(
-                        parameters = genericClassNameInfo.toParameterSpecList(),
-                        returnType = UNIT
-                    )
-                )
-                .addModifiers(KModifier.NOINLINE)
-                .build()
 
             connectorFileSpec.addFunction(
                 genericClassNameInfo
@@ -64,7 +57,16 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .addParameters(
                         listOf(
                             flagsParameter,
-                            signalConnectExtensionGenericParameters
+                            ParameterSpec
+                                .builder(
+                                    METHOD_PARAMETER_NAME,
+                                    LambdaTypeName.get(
+                                        parameters = genericClassNameInfo.toParameterSpecList(),
+                                        returnType = UNIT
+                                    )
+                                )
+                                .addModifiers(KModifier.NOINLINE)
+                                .build()
                         )
                     )
                     .addCode(
@@ -107,6 +109,41 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .build()
             )
 
+            val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
+            val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
+            connectorFileSpec.addFunction(
+                genericClassNameInfo
+                    .toExtensionFunSpecBuilder(PROMISE_METHOD_NAME)
+                    .addParameters(
+                        listOf(
+                            ParameterSpec
+                                .builder(
+                                    METHOD_PARAMETER_NAME,
+                                    LambdaTypeName.get(
+                                        parameters = genericClassNameInfo.toParameterSpecList(),
+                                        returnType = UNIT
+                                    )
+                                )
+                                .build(),
+                            ParameterSpec
+                                .builder(
+                                    CANCEL_PARAMETER_NAME, LambdaTypeName.get(
+                                        returnType = UNIT
+                                    )
+                                )
+                                .build(),
+
+                            )
+                    )
+                    .addCode(
+                        CodeBlock.of(
+                            "%T(%T.NIL, emptyArray(), $METHOD_PARAMETER_NAME).setAsCancellable(this, $CANCEL_PARAMETER_NAME)",
+                            containerInfo.className.parameterizedBy(listOf(UNIT) + containerInfo.genericTypes),
+                            variantConverterClassName
+                        )
+                    )
+                    .build()
+            )
         }
 
         connectorFileSpec

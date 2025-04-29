@@ -95,7 +95,7 @@ object CallableGenerationService : ICallableGenerationService {
                 )
                 .addFunction(
                     FunSpec
-                        .builder("unsafeInvoke")
+                        .builder("invokeUnsafe")
                         .addModifiers(KModifier.OVERRIDE)
                         .addParameter(
                             ParameterSpec
@@ -147,7 +147,7 @@ object CallableGenerationService : ICallableGenerationService {
                         .addCode(
                             CodeBlock.of(
                                 buildString {
-                                    append("return·$CONTAINER_ARGUMENT_NAME.unsafeInvoke(")
+                                    append("return·$CONTAINER_ARGUMENT_NAME.invokeUnsafe(")
                                     append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
                                     append(')')
                                 }
@@ -161,7 +161,7 @@ object CallableGenerationService : ICallableGenerationService {
                         .addCode(
                             CodeBlock.of(
                                 buildString {
-                                    append("return·unsafeCallDeferred(")
+                                    append("return·callDeferredUnsafe(")
                                     append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
                                     append(")")
                                 }
@@ -204,7 +204,7 @@ object CallableGenerationService : ICallableGenerationService {
                         )
                         .addCode(
                             buildString {
-                                append("return·%T($CONTAINER_ARGUMENT_NAME).unsafeBind(")
+                                append("return·%T($CONTAINER_ARGUMENT_NAME).bindUnsafe(")
 
                                 for (index in (0..< typeVariables.size)) {
                                     if (index != 0) append(",·")

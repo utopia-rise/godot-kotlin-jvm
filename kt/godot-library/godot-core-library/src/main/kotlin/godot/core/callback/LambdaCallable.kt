@@ -25,13 +25,13 @@ abstract class LambdaCallable<R>(
     override fun isValid() = true
     override fun rpc(vararg args: Any?) = throw UnsupportedOperationException("Can't make a RPC call from a LambdaCallable")
     override fun rpcId(peerId: Long, vararg args: Any?) = throw UnsupportedOperationException("Can't make a RPC call from a LambdaCallable")
-    override fun unbind(argCount: Int) = toVariantCallable().unbind(argCount)
-    override fun unsafeBind(vararg args: Any?) = apply { boundArgs.addAll(args) }
-    override fun unsafeCall(vararg args: Any?) = container.unsafeInvoke(args.toList() + boundArgs)
-    override fun unsafeCallDeferred(vararg args: Any?) {
+    override fun unbind(argCount: Int) = toNativeCallable().unbind(argCount)
+    override fun bindUnsafe(vararg args: Any?) = apply { boundArgs.addAll(args) }
+    override fun callUnsafe(vararg args: Any?) = container.invokeUnsafe(args.toList() + boundArgs)
+    override fun callDeferredUnsafe(vararg args: Any?) {
         val ptr = Bridge.engine_call_constructor_lambda_callable(container, container.returnConverter.id, hashCode())
         // We could use the [toVariantCallable] function, but we want to avoid 1 additional JNI calls in case we have bound arguments.
-        VariantCallable(ptr).unsafeCallDeferred(args.toList() + boundArgs)
+        VariantCallable(ptr).callDeferredUnsafe(args.toList() + boundArgs)
     }
 
     /**
@@ -40,12 +40,12 @@ abstract class LambdaCallable<R>(
      * This method is a last resort that can allow you to break a cycle caused by the Callable keeping its captured instance alive when itself is kept alive by the C++ side.
      */
     fun invalidate() = container.invalidate()
-    fun toVariantCallable(): VariantCallable {
+    override fun toNativeCallable(): VariantCallable {
         // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
         val ptr = Bridge.engine_call_constructor_lambda_callable(container, container.returnConverter.id, hashCode())
         return VariantCallable(ptr).also {
             if (boundArgs.isNotEmpty()) {
-                it.unsafeBind(boundArgs)
+                it.bindUnsafe(boundArgs)
             }
         }
     }
@@ -65,11 +65,11 @@ abstract class LambdaContainer<R>(
         Bridge.engine_call_constructor_cancellable(this, this.returnConverter.id, hashCode())
     }
 
-    abstract fun unsafeInvoke(vararg args: Any?): R
+    abstract fun invokeUnsafe(vararg args: Any?): R
 
     fun invoke() = withParameters(typeConverters) {
         try {
-            unsafeInvoke(paramsArray)
+            invokeUnsafe(paramsArray)
         } catch (t: Throwable) {
             GodotLogging.error("Error calling a JVM custom Callable from Godot:\n" + t.stackTraceToString())
         }
@@ -78,7 +78,7 @@ abstract class LambdaContainer<R>(
     fun invokeWithReturn(): Any? = withParametersReturn(typeConverters) {
         val ret: Any? = null
         try {
-            val ret = unsafeInvoke(paramsArray)
+            val ret = invokeUnsafe(paramsArray)
             TransferContext.writeReturnValue(ret, returnConverter)
         } catch (t: Throwable) {
             GodotLogging.error("Error calling a JVM custom Callable from Godot:\n" + t.stackTraceToString())

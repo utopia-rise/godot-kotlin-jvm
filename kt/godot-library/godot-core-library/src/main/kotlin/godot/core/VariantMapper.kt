@@ -36,6 +36,7 @@ val variantMapper = mutableMapOf(
     Vector4i::class to VariantParser.VECTOR4I,
     Projection::class to VariantParser.PROJECTION,
     VariantCallable::class to VariantParser.CALLABLE,
+    MethodCallable::class to VariantParser.CALLABLE,
     LambdaCallable0::class to VariantParser.CALLABLE,
     LambdaCallable1::class to VariantParser.CALLABLE,
     LambdaCallable2::class to VariantParser.CALLABLE,

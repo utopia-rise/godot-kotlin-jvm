@@ -4,7 +4,8 @@
 #include "constraints.h"
 #include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/transfer_context.h"
-#include "variant_allocator.h"
+
+#include <scene/main/node.h>
 
 using namespace bridges;
 
@@ -35,7 +36,14 @@ void CallableBridge::engine_call_constructor_cancellable(JNIEnv* p_raw_env, jobj
     Callable callable {memnew(
       JvmCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code, true)
     )};
-    signal.connect(callable, Object::CONNECT_ONE_SHOT);
+
+    Object* object = signal.get_object();
+    if(Node* node = Object::cast_to<Node>(object)) {
+        // Nodes can only connect their signal in the main thread.
+        node->call_thread_safe(SNAME("connect"), callable, Object::CONNECT_ONE_SHOT);
+    } else {
+        signal.connect(callable, Object::CONNECT_ONE_SHOT);
+    }
 }
 
 uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {

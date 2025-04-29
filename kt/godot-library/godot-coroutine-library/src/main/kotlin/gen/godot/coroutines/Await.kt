@@ -2,7 +2,6 @@
 
 package godot.coroutines
 
-import godot.api.Object
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal10
@@ -20,8 +19,7 @@ import godot.core.Signal6
 import godot.core.Signal7
 import godot.core.Signal8
 import godot.core.Signal9
-import godot.core.asCallable
-import godot.extension.connectThreadSafe
+import godot.core.promise
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.coroutines.resume
@@ -30,27 +28,29 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 
 public suspend inline fun Signal0.await(): Unit = suspendCancellableCoroutine {
     cont: CancellableContinuation<Unit> ->
-    connectThreadSafe( {
+    promise(
+     {
          ->
         cont.resume(Unit)
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public suspend inline fun <reified P0> Signal1<P0>.await(): P0 = suspendCancellableCoroutine {
     cont: CancellableContinuation<P0> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0 ->
         cont.resume(p0)
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments2<P0, P1>(
     public val p0: P0,
@@ -60,15 +60,16 @@ public data class SignalArguments2<P0, P1>(
 public suspend inline fun <reified P0, reified P1> Signal2<P0, P1>.await(): SignalArguments2<P0, P1>
         = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments2<P0, P1>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1 ->
         cont.resume(SignalArguments2(p0, p1))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments3<P0, P1, P2>(
     public val p0: P0,
@@ -79,15 +80,16 @@ public data class SignalArguments3<P0, P1, P2>(
 public suspend inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.await():
         SignalArguments3<P0, P1, P2> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments3<P0, P1, P2>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2 ->
         cont.resume(SignalArguments3(p0, p1, p2))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments4<P0, P1, P2, P3>(
     public val p0: P0,
@@ -100,15 +102,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3>
         Signal4<P0, P1, P2, P3>.await(): SignalArguments4<P0, P1, P2, P3> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments4<P0, P1, P2, P3>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3 ->
         cont.resume(SignalArguments4(p0, p1, p2, p3))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments5<P0, P1, P2, P3, P4>(
     public val p0: P0,
@@ -122,15 +125,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal5<P0, P1, P2, P3, P4>.await(): SignalArguments5<P0, P1, P2, P3, P4> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments5<P0, P1, P2, P3, P4>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 ->
         cont.resume(SignalArguments5(p0, p1, p2, p3, p4))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments6<P0, P1, P2, P3, P4, P5>(
     public val p0: P0,
@@ -145,15 +149,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal6<P0, P1, P2, P3, P4, P5>.await(): SignalArguments6<P0, P1, P2, P3, P4, P5> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments6<P0, P1, P2, P3, P4, P5>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 ->
         cont.resume(SignalArguments6(p0, p1, p2, p3, p4, p5))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments7<P0, P1, P2, P3, P4, P5, P6>(
     public val p0: P0,
@@ -169,15 +174,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         reified P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.await():
         SignalArguments7<P0, P1, P2, P3, P4, P5, P6> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments7<P0, P1, P2, P3, P4, P5, P6>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 ->
         cont.resume(SignalArguments7(p0, p1, p2, p3, p4, p5, p6))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7>(
     public val p0: P0,
@@ -194,15 +200,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         reified P6, reified P7> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.await():
         SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 ->
         cont.resume(SignalArguments8(p0, p1, p2, p3, p4, p5, p6, p7))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
     public val p0: P0,
@@ -220,15 +227,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         reified P6, reified P7, reified P8> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.await():
         SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 ->
         cont.resume(SignalArguments9(p0, p1, p2, p3, p4, p5, p6, p7, p8))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
     public val p0: P0,
@@ -248,15 +256,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.await():
         SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 ->
         cont.resume(SignalArguments10(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
     public val p0: P0,
@@ -278,15 +287,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 ->
         cont.resume(SignalArguments11(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
     public val p0: P0,
@@ -309,15 +319,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 ->
         cont.resume(SignalArguments12(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
     public val p0: P0,
@@ -341,15 +352,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 ->
         cont.resume(SignalArguments13(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(
     public val p0: P0,
@@ -374,15 +386,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 ->
         cont.resume(SignalArguments14(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13,
         P14>(
@@ -410,15 +423,16 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 ->
         cont.resume(SignalArguments15(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}
 
 public data class SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14,
         P15>(
@@ -447,12 +461,13 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>> ->
-    connectThreadSafe( {
+    promise(
+     {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14, p15: P15 ->
         cont.resume(SignalArguments16(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
     }
-    .asCallable()
-    .setAsCancellable {
+    , {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    )
+}

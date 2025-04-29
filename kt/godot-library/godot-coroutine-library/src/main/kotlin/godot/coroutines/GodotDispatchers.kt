@@ -6,6 +6,7 @@ import godot.api.SceneTree
 import godot.api.WorkerThreadPool
 import godot.core.asCallable
 import godot.core.callable0
+import godot.core.connect
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Runnable
 import kotlinx.coroutines.cancel
@@ -32,18 +33,18 @@ object GodotDispatchers {
 
     private object GodotProcessFrameCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            sceneTree.processFrame.connect(
+            sceneTree.processFrame.connectUnsafe(
                 { block.run() }.asCallable(),
-                Object.ConnectFlags.ONE_SHOT.id.toInt()
+                Object.ConnectFlags.ONE_SHOT
             )
         }
     }
 
     private object GodotPhysicsFrameCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            sceneTree.physicsFrame.connect(
+            sceneTree.physicsFrame.connectUnsafe(
                 { block.run() }.asCallable(),
-                Object.ConnectFlags.ONE_SHOT.id.toInt()
+                Object.ConnectFlags.ONE_SHOT
             )
         }
     }
