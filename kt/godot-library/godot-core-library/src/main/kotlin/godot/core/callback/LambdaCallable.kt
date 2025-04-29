@@ -61,7 +61,8 @@ abstract class LambdaContainer<R>(
 
     fun setAsCancellable(signal: Signal, block: () -> Unit) {
         cancelFunction = block
-        Bridge.engine_call_constructor_lambda_callable(this, this.returnConverter.id, hashCode())
+        TransferContext.writeArguments(VariantParser.SIGNAL to signal)
+        Bridge.engine_call_constructor_cancellable(this, this.returnConverter.id, hashCode())
     }
 
     abstract fun unsafeInvoke(vararg args: Any?): R

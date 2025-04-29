@@ -8,7 +8,7 @@ class SignalConnector (
     private val signal: Signal,
     private val callable: Callable,
 ) {
-    fun connect(flags: ConnectFlags = ConnectFlags.PERSIST): Error = signal.connectUnsafe(callable, flags)
+    fun connect(flags: ConnectFlags = ConnectFlags.DEFAULT): Error = signal.connectUnsafe(callable, flags)
     fun disconnect(): Unit = signal.disconnectUnsafe(callable)
     fun isConnected(): Boolean = signal.isConnected(callable)
     fun isValid(): Boolean = signal.isValid() && callable.isValid()

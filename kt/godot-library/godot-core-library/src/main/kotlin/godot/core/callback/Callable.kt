@@ -139,8 +139,7 @@ interface Callable: CoreType {
             callable: LambdaContainer<*>,
             variantTypeOrdinal: Int,
             hashCode: Int,
-        ): VoidPtr
-
+        )
         external fun engine_call_copy_constructor(): VoidPtr
 
         external fun engine_call_bind(handle: VoidPtr)
