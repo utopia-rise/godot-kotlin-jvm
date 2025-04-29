@@ -6,6 +6,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeVariableName
@@ -35,6 +36,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
     private val connectFlagClassName = ClassName(godotCorePackage, "Object.ConnectFlags")
     private val variantConverterClassName = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantParser)
+    private val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
 
     override fun generate(output: File) {
         val connectorFileSpec = FileSpec.builder(godotCorePackage, "SignalConnectors")
@@ -42,7 +44,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
-
+            val genericParameters = genericClassNameInfo.genericTypes
 
             val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, connectFlagClassName)
                 .defaultValue("%T.%L", connectFlagClassName, "DEFAULT")
@@ -127,7 +129,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
             val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
             connectorFileSpec.addFunction(
                 genericClassNameInfo
-                    .toExtensionFunSpecBuilder(PROMISE_METHOD_NAME)
+                    .toReifiedExtensionFunSpecBuilder(PROMISE_METHOD_NAME)
                     .addParameters(
                         listOf(
                             ParameterSpec
@@ -138,6 +140,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                         returnType = UNIT
                                     )
                                 )
+                                .addModifiers(KModifier.NOINLINE)
                                 .build(),
                             ParameterSpec
                                 .builder(
@@ -145,15 +148,28 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                         returnType = UNIT
                                     )
                                 )
+                                .addModifiers(KModifier.NOINLINE)
                                 .build(),
 
                             )
                     )
                     .addCode(
                         CodeBlock.of(
-                            "%T(%T.NIL, emptyArray(), $METHOD_PARAMETER_NAME).setAsCancellable(this, $CANCEL_PARAMETER_NAME)",
+                            buildString {
+                                append("%T(%T.NIL,·arrayOf(")
+                                genericParameters.forEachIndexed { index, _ ->
+                                    if (index != 0) append(",·")
+                                    append("%M[%T::class]!!")
+                                }
+                                append("),·$METHOD_PARAMETER_NAME).setAsCancellable(this,·$CANCEL_PARAMETER_NAME)")
+                            },
                             containerInfo.className.parameterizedBy(listOf(UNIT) + containerInfo.genericTypes),
-                            variantConverterClassName
+                            variantConverterClassName,
+                            *genericParameters
+                                .flatMap {
+                                    listOf(variantMapperMember, it)
+                                }
+                                .toTypedArray()
                         )
                     )
                     .build()

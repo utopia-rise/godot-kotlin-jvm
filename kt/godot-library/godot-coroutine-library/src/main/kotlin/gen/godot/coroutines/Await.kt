@@ -29,26 +29,16 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 public suspend inline fun Signal0.await(): Unit = suspendCancellableCoroutine {
     cont: CancellableContinuation<Unit> ->
     promise(
-     {
-         ->
-        cont.resume(Unit)
-    }
-    , {
-        cont.cancel()
-    }
+    {  -> cont.resume(Unit) },
+    { cont.cancel() },
     )
 }
 
 public suspend inline fun <reified P0> Signal1<P0>.await(): P0 = suspendCancellableCoroutine {
     cont: CancellableContinuation<P0> ->
     promise(
-     {
-        p0: P0 ->
-        cont.resume(p0)
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0 -> cont.resume(p0) },
+    { cont.cancel() },
     )
 }
 
@@ -61,13 +51,8 @@ public suspend inline fun <reified P0, reified P1> Signal2<P0, P1>.await(): Sign
         = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments2<P0, P1>> ->
     promise(
-     {
-        p0: P0, p1: P1 ->
-        cont.resume(SignalArguments2(p0, p1))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1 -> cont.resume(SignalArguments2(p0, p1)) },
+    { cont.cancel() },
     )
 }
 
@@ -81,13 +66,8 @@ public suspend inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P
         SignalArguments3<P0, P1, P2> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments3<P0, P1, P2>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2 ->
-        cont.resume(SignalArguments3(p0, p1, p2))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2 -> cont.resume(SignalArguments3(p0, p1, p2)) },
+    { cont.cancel() },
     )
 }
 
@@ -103,13 +83,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3>
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments4<P0, P1, P2, P3>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3 ->
-        cont.resume(SignalArguments4(p0, p1, p2, p3))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3 -> cont.resume(SignalArguments4(p0, p1, p2, p3)) },
+    { cont.cancel() },
     )
 }
 
@@ -126,13 +101,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments5<P0, P1, P2, P3, P4>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 ->
-        cont.resume(SignalArguments5(p0, p1, p2, p3, p4))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> cont.resume(SignalArguments5(p0, p1, p2, p3, p4)) },
+    { cont.cancel() },
     )
 }
 
@@ -150,13 +120,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments6<P0, P1, P2, P3, P4, P5>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 ->
-        cont.resume(SignalArguments6(p0, p1, p2, p3, p4, p5))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> cont.resume(SignalArguments6(p0, p1, p2, p3, p4, p5)) },
+    { cont.cancel() },
     )
 }
 
@@ -175,13 +140,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments7<P0, P1, P2, P3, P4, P5, P6> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments7<P0, P1, P2, P3, P4, P5, P6>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 ->
-        cont.resume(SignalArguments7(p0, p1, p2, p3, p4, p5, p6))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> cont.resume(SignalArguments7(p0, p1, p2, p3, p4, p5, p6)) },
+    { cont.cancel() },
     )
 }
 
@@ -201,13 +161,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 ->
-        cont.resume(SignalArguments8(p0, p1, p2, p3, p4, p5, p6, p7))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> cont.resume(SignalArguments8(p0, p1, p2, p3, p4, p5, p6, p7)) },
+    { cont.cancel() },
     )
 }
 
@@ -228,13 +183,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 ->
-        cont.resume(SignalArguments9(p0, p1, p2, p3, p4, p5, p6, p7, p8))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> cont.resume(SignalArguments9(p0, p1, p2, p3, p4, p5, p6, p7, p8)) },
+    { cont.cancel() },
     )
 }
 
@@ -257,13 +207,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 ->
-        cont.resume(SignalArguments10(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> cont.resume(SignalArguments10(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) },
+    { cont.cancel() },
     )
 }
 
@@ -288,13 +233,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 ->
-        cont.resume(SignalArguments11(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> cont.resume(SignalArguments11(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)) },
+    { cont.cancel() },
     )
 }
 
@@ -320,13 +260,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 ->
-        cont.resume(SignalArguments12(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> cont.resume(SignalArguments12(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)) },
+    { cont.cancel() },
     )
 }
 
@@ -353,13 +288,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 ->
-        cont.resume(SignalArguments13(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> cont.resume(SignalArguments13(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)) },
+    { cont.cancel() },
     )
 }
 
@@ -387,13 +317,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 ->
-        cont.resume(SignalArguments14(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 -> cont.resume(SignalArguments14(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)) },
+    { cont.cancel() },
     )
 }
 
@@ -424,13 +349,8 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 ->
-        cont.resume(SignalArguments15(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 -> cont.resume(SignalArguments15(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)) },
+    { cont.cancel() },
     )
 }
 
@@ -462,12 +382,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>> ->
     promise(
-     {
-        p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14, p15: P15 ->
-        cont.resume(SignalArguments16(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
-    }
-    , {
-        cont.cancel()
-    }
+    { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14, p15: P15 -> cont.resume(SignalArguments16(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)) },
+    { cont.cancel() },
     )
 }

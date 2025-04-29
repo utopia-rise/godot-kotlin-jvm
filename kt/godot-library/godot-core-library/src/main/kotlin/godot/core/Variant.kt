@@ -377,7 +377,8 @@ enum class VariantParser(override val id: Int) : VariantConverter {
                 buffer.putLong(any.ptr)
             } else {
                 require(any is LambdaCallable<*> || any is MethodCallable)
-                buffer.putLong(any.toNativeCallable().ptr)
+                val ptr = any.toNativeCallable().ptr
+                buffer.putLong(ptr)
             }
         }
     },

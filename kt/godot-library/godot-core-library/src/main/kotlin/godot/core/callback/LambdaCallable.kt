@@ -8,12 +8,12 @@ import godot.core.Callable.Bridge
 import godot.internal.logging.GodotLogging
 import godot.internal.memory.TransferContext
 
-abstract class LambdaCallable<R>(
-    protected val container: LambdaContainer<R>
+open class LambdaCallable<R> internal constructor(
+    protected val container: LambdaContainer<R>,
+    private var boundArgs: Array<Any?> = emptyArray()
 ) : Callable {
-    protected val boundArgs = mutableListOf<Any?>()
 
-    override fun getBoundArguments() = boundArgs
+    override fun getBoundArguments() = boundArgs.toList()
     override fun getBoundArgumentCount() = boundArgs.size
     override fun getMethod() = StringName()
     override fun getObject() = null
@@ -25,12 +25,12 @@ abstract class LambdaCallable<R>(
     override fun rpc(vararg args: Any?) = throw UnsupportedOperationException("Can't make a RPC call from a LambdaCallable")
     override fun rpcId(peerId: Long, vararg args: Any?) = throw UnsupportedOperationException("Can't make a RPC call from a LambdaCallable")
     override fun unbind(argCount: Int) = toNativeCallable().unbind(argCount)
-    override fun bindUnsafe(vararg args: Any?) = apply { boundArgs.addAll(args) }
-    override fun callUnsafe(vararg args: Any?) = container.invokeUnsafe(args.toList() + boundArgs)
+    override fun bindUnsafe(vararg args: Any?) = LambdaCallable<R>(container, arrayOf<Any?>(*args, *boundArgs))
+    override fun callUnsafe(vararg args: Any?) = container.invokeUnsafe(*args, *boundArgs)
     override fun callDeferredUnsafe(vararg args: Any?) {
         val ptr = Bridge.engine_call_constructor_lambda_callable(container, container.returnConverter.id, hashCode())
         // We could use the [toVariantCallable] function, but we want to avoid 1 additional JNI calls in case we have bound arguments.
-        VariantCallable(ptr).callDeferredUnsafe(args.toList() + boundArgs)
+        VariantCallable(ptr).callDeferredUnsafe(*args, *boundArgs)
     }
 
     /**
@@ -42,11 +42,11 @@ abstract class LambdaCallable<R>(
     override fun toNativeCallable(): VariantCallable {
         // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
         val ptr = Bridge.engine_call_constructor_lambda_callable(container, container.returnConverter.id, hashCode())
-        return VariantCallable(ptr).also {
-            if (boundArgs.isNotEmpty()) {
-                it.bindUnsafe(boundArgs)
-            }
+        val unbound = VariantCallable(ptr)
+        if (boundArgs.isNotEmpty()) {
+            return unbound.bindUnsafe(*boundArgs)
         }
+        return unbound
     }
 }
 
@@ -56,7 +56,9 @@ abstract class LambdaContainer<R>(
     var function: Function<R>?
 ) {
     var cancelFunction: (() -> Unit)? = null
-    fun cancel() = cancelFunction?.invoke()
+    fun cancel() {
+        cancelFunction?.invoke()
+    }
 
     fun setAsCancellable(signal: Signal, block: () -> Unit) {
         cancelFunction = block
@@ -68,7 +70,7 @@ abstract class LambdaContainer<R>(
 
     fun invoke() = withParameters(typeConverters) {
         try {
-            invokeUnsafe(paramsArray)
+            invokeUnsafe(*paramsArray)
         } catch (t: Throwable) {
             GodotLogging.error("Error calling a JVM custom Callable from Godot:\n" + t.stackTraceToString())
         }
@@ -77,7 +79,7 @@ abstract class LambdaContainer<R>(
     fun invokeWithReturn(): Any? = withParametersReturn(typeConverters) {
         val ret: Any? = null
         try {
-            val ret = invokeUnsafe(paramsArray)
+            val ret = invokeUnsafe(*paramsArray)
             TransferContext.writeReturnValue(ret, returnConverter)
         } catch (t: Throwable) {
             GodotLogging.error("Error calling a JVM custom Callable from Godot:\n" + t.stackTraceToString())

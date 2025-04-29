@@ -34,10 +34,10 @@ class VariantCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    override fun bindUnsafe(vararg args: Any?): Callable {
+    override fun bindUnsafe(vararg args: Any?): VariantCallable {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_bind(ptr)
-        return TransferContext.readReturnValue(VariantParser.CALLABLE) as Callable
+        return TransferContext.readReturnValue(VariantParser.CALLABLE) as VariantCallable
     }
 
     override fun callUnsafe(vararg args: Any?): Any? {
@@ -125,63 +125,5 @@ class VariantCallable : NativeCoreType, Callable {
         if (other !is VariantCallable) return false
         if (getObject() != other.getObject() || getMethod() != other.getMethod()) return false
         return true
-    }
-
-
-    companion object {
-        operator fun <T : Object> invoke(
-            target: T,
-            callable: T.() -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P> invoke(
-            target: T,
-            callable: T.(P) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2> invoke(
-            target: T,
-            callable: T.(P1, P2) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3> invoke(
-            target: T,
-            callable: T.(P1, P2, P3) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4, P5> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4, P5) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4, P5, P6> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4, P5, P6) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4, P5, P6, P7) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
-
-        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> invoke(
-            target: T,
-            callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> Unit
-        ) = VariantCallable(target, (callable as KCallable<*>).name.toGodotName())
     }
 }

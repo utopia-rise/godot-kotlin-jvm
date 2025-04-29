@@ -29,6 +29,7 @@ object CallableGenerationService : ICallableGenerationService {
     private const val LAMBDA_CALLABLE_NAME = "LambdaCallable"
     private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
     private const val CONTAINER_ARGUMENT_NAME = "container"
+    private const val BOUND_ARGS_ARGUMENT_NAME = "boundArgs"
     private const val CALLABLE_FUNCTION_NAME = "callable"
     private const val VARIANT_TYPE_RETURN_NAME = "returnConverter"
     private const val VARIANT_TYPE_ARGUMENT_NAME = "typeConverters"
@@ -42,8 +43,6 @@ object CallableGenerationService : ICallableGenerationService {
         val containerFileSpec = FileSpec.builder(godotCorePackage, "LambdaContainers")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val argumentRange = 0..<argCount
-            val genericParameters = argumentRange.map { TypeVariableName("P$it") }
 
             val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
             val lambdaCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME$argCount")
@@ -51,6 +50,7 @@ object CallableGenerationService : ICallableGenerationService {
             val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
             val callableInfo = GenericClassNameInfo(lambdaCallableClassName, argCount)
 
+            val genericParameters = containerInfo.genericTypes
             val lambdaTypeName = callableInfo.toLambdaTypeName(returnType = returnTypeParameter)
 
 
@@ -135,10 +135,19 @@ object CallableGenerationService : ICallableGenerationService {
                                 )
                                 .build()
                         )
+                        .addParameter(
+                            ParameterSpec
+                                .builder(
+                                    BOUND_ARGS_ARGUMENT_NAME,
+                                    ARRAY.parameterizedBy(ANY.copy(nullable = true))
+                                )
+                                .defaultValue("emptyArray()")
+                                .build()
+                        )
                         .addAnnotation(PublishedApi::class)
                         .build()
                 )
-                .addSuperclassConstructorParameter(CONTAINER_ARGUMENT_NAME)
+                .addSuperclassConstructorParameter(CONTAINER_ARGUMENT_NAME, BOUND_ARGS_ARGUMENT_NAME)
                 .addFunction(
                     FunSpec
                         .builder("call")
@@ -204,16 +213,15 @@ object CallableGenerationService : ICallableGenerationService {
                         )
                         .addCode(
                             buildString {
-                                append("return·%T($CONTAINER_ARGUMENT_NAME).bindUnsafe(")
+                                append("return·%T($CONTAINER_ARGUMENT_NAME, arrayOf(")
 
                                 for (index in (0..<typeVariables.size)) {
                                     if (index != 0) append(",·")
                                     append("p${index + remainingParameters}")
                                 }
 
-                                append(")·as·%T")
+                                append("))")
                             },
-                            bindClassName.parameterizedBy(listOf(returnTypeParameter) + bindInfo.genericTypes),
                             bindClassName.parameterizedBy(listOf(returnTypeParameter) + bindInfo.genericTypes),
                         )
                         .build()

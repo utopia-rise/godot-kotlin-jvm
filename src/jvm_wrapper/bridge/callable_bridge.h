@@ -12,7 +12,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
             INIT_NATIVE_METHOD("engine_call_constructor_lambda_callable", "(Lgodot/core/LambdaContainer;II)J", CallableBridge::engine_call_constructor_lambda_callable)
-            INIT_NATIVE_METHOD("engine_call_constructor_cancellable", "(Lgodot/core/LambdaContainer;II)J", CallableBridge::engine_call_constructor_cancellable)
+            INIT_NATIVE_METHOD("engine_call_constructor_cancellable", "(Lgodot/core/LambdaContainer;II)V", CallableBridge::engine_call_constructor_cancellable)
             INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
             INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
             INIT_NATIVE_METHOD("engine_call_call", "(J)V", CallableBridge::engine_call_call)

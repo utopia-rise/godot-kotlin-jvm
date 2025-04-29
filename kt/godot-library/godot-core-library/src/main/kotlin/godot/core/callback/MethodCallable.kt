@@ -5,13 +5,13 @@ package godot.core
 import godot.api.Object
 import godot.internal.memory.MemoryManager
 
-class MethodCallable(
+class MethodCallable internal constructor(
     private val target: Object,
     private val methodName: StringName,
+    private var boundArgs: Array<Any?> = emptyArray()
 ) : Callable {
-    private val boundArgs = mutableListOf<Any?>()
 
-    override fun getBoundArguments() = boundArgs
+    override fun getBoundArguments() = boundArgs.toList()
     override fun getBoundArgumentCount() = boundArgs.size
     override fun getMethod() = methodName
     override fun getObject() = target
@@ -23,19 +23,18 @@ class MethodCallable(
     override fun rpc(vararg args: Any?) = toNativeCallable().rpc(args)
     override fun rpcId(peerId: Long, vararg args: Any?) = toNativeCallable().rpcId(peerId, args)
     override fun unbind(argCount: Int) = toNativeCallable().unbind(argCount)
-    override fun bindUnsafe(vararg args: Any?) = apply { boundArgs.addAll(args) }
-    override fun callUnsafe(vararg args: Any?) = target.call(methodName, args.toList() + boundArgs)
+    override fun bindUnsafe(vararg args: Any?) = MethodCallable(target, methodName, arrayOf<Any?>(*args, *boundArgs))
+    override fun callUnsafe(vararg args: Any?) = target.call(methodName, *args, *boundArgs)
     override fun callDeferredUnsafe(vararg args: Any?) {
-        target.callDeferred(methodName, args.toList() + boundArgs)
+        target.callDeferred(methodName, *args, *boundArgs)
     }
 
-
     override fun toNativeCallable(): VariantCallable {
-        return VariantCallable(target, methodName).also {
-            if (boundArgs.isNotEmpty()) {
-                it.bindUnsafe(boundArgs)
-            }
+        val unbound = VariantCallable(target, methodName)
+        if (boundArgs.isNotEmpty()) {
+            return unbound.bindUnsafe(*boundArgs)
         }
+        return unbound
     }
 
     companion object {

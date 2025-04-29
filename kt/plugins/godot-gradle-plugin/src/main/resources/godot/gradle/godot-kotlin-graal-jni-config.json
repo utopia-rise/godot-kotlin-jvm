@@ -194,7 +194,7 @@
     "methods":[
       {"name":"invoke","parameterTypes":[] },
       {"name":"invokeWithReturn","parameterTypes":[] },
-      {"name":"onCancel","parameterTypes":[] }
+      {"name":"cancel","parameterTypes":[] }
     ]
   },
   {
