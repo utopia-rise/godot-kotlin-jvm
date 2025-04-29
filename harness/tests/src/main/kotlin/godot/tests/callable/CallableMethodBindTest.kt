@@ -4,8 +4,9 @@ import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.core.NativeCallable
+import godot.core.MethodCallable
 import godot.core.VariantArray
+import godot.core.toGodotName
 import godot.core.variantArrayOf
 import godot.global.GD
 
@@ -16,22 +17,22 @@ class CallableMethodBindTest: Node() {
 
     @RegisterFunction
     fun callWithMethodWithAllBinds() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind(1, 2, 3).unsafeCall()
+        MethodCallable(this, CallableMethodBindTest::readySignalMethodBindTest.toGodotName()).bindUnsafe(1, 2, 3).callUnsafe()
     }
 
     @RegisterFunction
     fun callWithMethodWithTwoBinds() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind(2, 3).unsafeCall(0)
+        MethodCallable(this, CallableMethodBindTest::readySignalMethodBindTest.toGodotName()).bindUnsafe(2, 3).callUnsafe(0)
     }
 
     @RegisterFunction
     fun callWithMethodWithOneBind() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind(3).unsafeCall(0, 0)
+        MethodCallable(this, CallableMethodBindTest::readySignalMethodBindTest.toGodotName()).bindUnsafe(3).callUnsafe(0, 0)
     }
 
     @RegisterFunction
     fun callWithMethodWithNoBind() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).unsafeBind().unsafeCall(0, 0, 0)
+        MethodCallable(this, CallableMethodBindTest::readySignalMethodBindTest.toGodotName()).bindUnsafe().callUnsafe(0, 0, 0)
     }
 
     @RegisterFunction

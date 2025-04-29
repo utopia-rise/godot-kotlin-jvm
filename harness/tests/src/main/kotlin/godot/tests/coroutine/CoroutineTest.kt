@@ -124,9 +124,7 @@ class CoroutineTest : Object() {
     @RegisterFunction
     fun asyncLoadResource() {
         godotCoroutine {
-            val resource = ResourceLoader.awaitLoadAs<PackedScene>("res://Spatial.tscn") { progress ->
-                GD.print("Resource load progress: $progress")
-            }
+            val resource = ResourceLoader.awaitLoadAs<PackedScene>("res://Spatial.tscn")
 
             GD.print("Resource: $resource")
 
