@@ -14,12 +14,9 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
-import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
-import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.kotlinCoroutinePackage
 import godot.tools.common.constants.kotlinxCoroutinePackage
 import java.io.File
@@ -137,16 +134,16 @@ object AwaitGenerationService : IAwaitGenerationService {
 
         return this
             .beginControlFlow("return·%M", suspendCancellableCoroutine)
-                .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
-                .addStatement("%M(", promise)
-                    .beginControlFlow("")
-                        .addStatement("$lambdaParametersWithType·->")
-                        .addStatement("cont.%M($resumeParameters)", resume)
-                    .endControlFlow()
-                    .beginControlFlow(",")
-                        .addStatement("cont.%L()", cancel)
-                    .endControlFlow()
-                .addStatement(")")
+            .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
+            .addStatement("%M(", promise)
+            .beginControlFlow("")
+            .addStatement("$lambdaParametersWithType·->")
+            .addStatement("cont.%M($resumeParameters)", resume)
+            .endControlFlow()
+            .beginControlFlow(",")
+            .addStatement("cont.%L()", cancel)
+            .endControlFlow()
+            .addStatement(")")
             .endControlFlow()
     }
 }

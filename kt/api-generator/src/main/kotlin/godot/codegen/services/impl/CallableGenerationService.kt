@@ -206,7 +206,7 @@ object CallableGenerationService : ICallableGenerationService {
                             buildString {
                                 append("return·%T($CONTAINER_ARGUMENT_NAME).bindUnsafe(")
 
-                                for (index in (0..< typeVariables.size)) {
+                                for (index in (0..<typeVariables.size)) {
                                     if (index != 0) append(",·")
                                     append("p${index + remainingParameters}")
                                 }

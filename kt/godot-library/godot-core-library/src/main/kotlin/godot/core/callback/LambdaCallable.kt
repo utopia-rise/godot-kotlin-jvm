@@ -7,7 +7,6 @@ import godot.common.interop.VariantConverter
 import godot.core.Callable.Bridge
 import godot.internal.logging.GodotLogging
 import godot.internal.memory.TransferContext
-import kotlin.collections.addAll
 
 abstract class LambdaCallable<R>(
     protected val container: LambdaContainer<R>

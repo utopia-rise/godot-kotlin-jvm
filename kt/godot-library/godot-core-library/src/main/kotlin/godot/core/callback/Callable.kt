@@ -15,7 +15,7 @@ import godot.common.interop.VoidPtr
  *
  * This JVM version added an "unsafe" prefix to several methods. It's encouraged to use the typed version of those methods instead.
  */
-interface Callable: CoreType {
+interface Callable : CoreType {
     /**
      * Returns a copy of this Callable with one or more arguments bound.
      * When called, the bound arguments are passed after the arguments supplied by call. See also unbind.
@@ -141,11 +141,13 @@ interface Callable: CoreType {
             variantTypeOrdinal: Int,
             hashCode: Int,
         ): VoidPtr
+
         external fun engine_call_constructor_cancellable(
             callable: LambdaContainer<*>,
             variantTypeOrdinal: Int,
             hashCode: Int,
         )
+
         external fun engine_call_copy_constructor(): VoidPtr
 
         external fun engine_call_bind(handle: VoidPtr)

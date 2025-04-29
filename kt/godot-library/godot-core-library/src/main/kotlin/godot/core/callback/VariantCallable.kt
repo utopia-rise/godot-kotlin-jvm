@@ -4,10 +4,10 @@ package godot.core
 
 import godot.api.Object
 import godot.common.interop.ObjectID
-import godot.internal.memory.MemoryManager
-import godot.internal.memory.TransferContext
 import godot.common.interop.VoidPtr
 import godot.core.Callable.Bridge
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import kotlin.reflect.KCallable
 
 class VariantCallable : NativeCoreType, Callable {
@@ -29,7 +29,7 @@ class VariantCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(handle: VoidPtr){
+    internal constructor(handle: VoidPtr) {
         this.ptr = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
@@ -123,7 +123,7 @@ class VariantCallable : NativeCoreType, Callable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is VariantCallable) return false
-        if(getObject() != other.getObject() || getMethod() != other.getMethod()) return false
+        if (getObject() != other.getObject() || getMethod() != other.getMethod()) return false
         return true
     }
 

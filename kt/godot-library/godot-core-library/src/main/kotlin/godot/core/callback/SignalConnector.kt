@@ -4,7 +4,7 @@ package godot.core
 
 import godot.api.Object.ConnectFlags
 
-class SignalConnector (
+class SignalConnector(
     private val signal: Signal,
     private val callable: Callable,
 ) {

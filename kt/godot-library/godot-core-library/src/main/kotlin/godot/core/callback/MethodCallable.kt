@@ -4,7 +4,6 @@ package godot.core
 
 import godot.api.Object
 import godot.internal.memory.MemoryManager
-import kotlin.collections.addAll
 
 class MethodCallable(
     private val target: Object,

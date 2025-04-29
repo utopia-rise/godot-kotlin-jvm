@@ -6,7 +6,6 @@ import godot.codegen.generation.rule.BindingRule
 import godot.codegen.generation.rule.BitfieldExtensionRule
 import godot.codegen.generation.rule.ConstantRule
 import godot.codegen.generation.rule.CoreRule
-import godot.codegen.generation.rule.LocalCopyHelperRule
 import godot.codegen.generation.rule.DocumentationRule
 import godot.codegen.generation.rule.EnrichedClassRule
 import godot.codegen.generation.rule.EnrichedCoreRule
@@ -14,16 +13,17 @@ import godot.codegen.generation.rule.EnumRule
 import godot.codegen.generation.rule.FileRule
 import godot.codegen.generation.rule.HeaderCommentRule
 import godot.codegen.generation.rule.ImportRule
+import godot.codegen.generation.rule.LocalCopyHelperRule
 import godot.codegen.generation.rule.MemberRule
 import godot.codegen.generation.rule.MethodRule
 import godot.codegen.generation.rule.ObjectRule
 import godot.codegen.generation.rule.OverLoadRule
-import godot.codegen.generation.rule.UseConnectFlagRule
 import godot.codegen.generation.rule.PropertyRule
 import godot.codegen.generation.rule.RegistrationRule
 import godot.codegen.generation.rule.SignalRule
 import godot.codegen.generation.rule.StaticRule
 import godot.codegen.generation.rule.StringOnlyRule
+import godot.codegen.generation.rule.UseConnectFlagRule
 import godot.codegen.generation.rule.WarningRule
 import godot.codegen.generation.rule.compile
 import godot.codegen.generation.task.ApiTask

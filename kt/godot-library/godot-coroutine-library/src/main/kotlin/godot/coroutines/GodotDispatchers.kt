@@ -5,11 +5,8 @@ import godot.api.Object
 import godot.api.SceneTree
 import godot.api.WorkerThreadPool
 import godot.core.asCallable
-import godot.core.callable0
-import godot.core.connect
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Runnable
-import kotlinx.coroutines.cancel
 import kotlin.coroutines.CoroutineContext
 
 object GodotDispatchers {
