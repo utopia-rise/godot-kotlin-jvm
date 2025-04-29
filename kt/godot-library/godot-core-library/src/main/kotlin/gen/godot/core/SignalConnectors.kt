@@ -12,41 +12,81 @@ import kotlin.Unit
 import kotlin.reflect.KCallable
 
 public inline fun Signal0.connect(flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT, noinline
-    method: () -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+    method: () -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object> Signal0.connect(
   target: T,
   method: T.() -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun Signal0.promise(method: () -> Unit, cancel: () -> Unit): Unit {
   LambdaContainer0<Unit>(VariantParser.NIL, emptyArray(), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0> Signal1<P0>.connect(flags: Object.ConnectFlags =
-    Object.ConnectFlags.DEFAULT, noinline method: (p0: P0) -> Unit): Error =
-    connectUnsafe(method.asCallable(), flags)
+    Object.ConnectFlags.DEFAULT, noinline method: (p0: P0) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0> Signal1<P0>.connect(
   target: T,
   method: T.(p0: P0) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0> Signal1<P0>.promise(method: (p0: P0) -> Unit, cancel: () -> Unit): Unit {
   LambdaContainer1<Unit, P0>(VariantParser.NIL, emptyArray(), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connect(flags: Object.ConnectFlags =
-    Object.ConnectFlags.DEFAULT, noinline method: (p0: P0, p1: P1) -> Unit): Error =
-    connectUnsafe(method.asCallable(), flags)
+    Object.ConnectFlags.DEFAULT, noinline method: (p0: P0, p1: P1) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1> Signal2<P0, P1>.connect(
   target: T,
   method: T.(p0: P0, p1: P1) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1> Signal2<P0, P1>.promise(method: (p0: P0, p1: P1) -> Unit, cancel: () -> Unit):
     Unit {
@@ -60,7 +100,14 @@ public inline fun <reified P0, reified P1, reified P2>
   p0: P0,
   p1: P1,
   p2: P2,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2> Signal3<P0, P1, P2>.connect(
   target: T,
@@ -70,7 +117,14 @@ public fun <T : Object, P0, P1, P2> Signal3<P0, P1, P2>.connect(
     p2: P2,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2> Signal3<P0, P1, P2>.promise(method: (
   p0: P0,
@@ -88,7 +142,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3>
   p1: P1,
   p2: P2,
   p3: P3,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3> Signal4<P0, P1, P2, P3>.connect(
   target: T,
@@ -99,7 +160,14 @@ public fun <T : Object, P0, P1, P2, P3> Signal4<P0, P1, P2, P3>.connect(
     p3: P3,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3> Signal4<P0, P1, P2, P3>.promise(method: (
   p0: P0,
@@ -119,7 +187,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
   p2: P2,
   p3: P3,
   p4: P4,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4> Signal5<P0, P1, P2, P3, P4>.connect(
   target: T,
@@ -131,7 +206,14 @@ public fun <T : Object, P0, P1, P2, P3, P4> Signal5<P0, P1, P2, P3, P4>.connect(
     p4: P4,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4> Signal5<P0, P1, P2, P3, P4>.promise(method: (
   p0: P0,
@@ -153,7 +235,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
   p5: P5,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5> Signal6<P0, P1, P2, P3, P4, P5>.connect(
   target: T,
@@ -166,7 +255,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5> Signal6<P0, P1, P2, P3, P4, P5>.
     p5: P5,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5> Signal6<P0, P1, P2, P3, P4, P5>.promise(method: (
   p0: P0,
@@ -190,7 +286,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
   p6: P6,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.connect(
   target: T,
@@ -204,7 +307,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6> Signal7<P0, P1, P2, P3, P4, 
     p6: P6,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.promise(method: (
   p0: P0,
@@ -230,7 +340,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
   p7: P7,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7>
     Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.connect(
@@ -246,7 +363,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7>
     p7: P7,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7>
     Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.promise(method: (
@@ -276,7 +400,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
   p8: P8,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8>
     Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.connect(
@@ -293,7 +424,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8>
     p8: P8,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8>
     Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.promise(method: (
@@ -325,7 +463,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
   p9: P9,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
     Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.connect(
@@ -343,7 +488,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
     p9: P9,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
     Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.promise(method: (
@@ -377,7 +529,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
   p10: P10,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
     Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.connect(
@@ -396,7 +555,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
     p10: P10,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
     Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.promise(method: (
@@ -432,7 +598,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
   p11: P11,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
     Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.connect(
@@ -452,7 +625,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
     p11: P11,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
     Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.promise(method: (
@@ -490,7 +670,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
   p12: P12,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
     Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.connect(
@@ -511,7 +698,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
     p12: P12,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
     Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.promise(method: (
@@ -551,7 +745,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
   p13: P13,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
     Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.connect(
@@ -573,7 +774,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P
     p13: P13,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
     Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.promise(method: (
@@ -616,7 +824,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
   p14: P14,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
     Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.connect(
@@ -639,7 +854,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P
     p14: P14,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
     Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.promise(method: (
@@ -684,7 +906,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
   p15: P15,
-) -> Unit): Error = connectUnsafe(method.asCallable(), flags)
+) -> Unit): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      method.asCallable()
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
     Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.connect(
@@ -708,7 +937,14 @@ public fun <T : Object, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P
     p15: P15,
   ) -> Unit,
   flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT,
-): Error = connectUnsafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
+): SignalConnector {
+  val connector = SignalConnector(
+      this, 
+      MethodCallable(target, (method as KCallable<*>).name.toGodotName())
+  )
+  connector.connect(flags)
+  return connector
+}
 
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
     Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.promise(method: (

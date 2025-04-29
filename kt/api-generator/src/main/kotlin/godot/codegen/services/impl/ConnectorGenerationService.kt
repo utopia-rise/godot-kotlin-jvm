@@ -14,9 +14,8 @@ import com.squareup.kotlinpoet.asClassName
 import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.IConnectorGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
-import godot.tools.common.constants.GODOT_CALLABLE
-import godot.tools.common.constants.GODOT_ERROR
+import godot.tools.common.constants.GODOT_METHOD_CALLABLE
+import godot.tools.common.constants.GODOT_SIGNAL_CONNECTOR
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
@@ -26,7 +25,6 @@ import kotlin.reflect.KCallable
 
 object ConnectorGenerationService : IConnectorGenerationService {
     private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
-    private const val UNSAFE_SUFFIX = "Unsafe"
     private const val SIGNAL_CLASS_NAME = "Signal"
     private const val CONNECT_METHOD_NAME = "connect"
     private const val PROMISE_METHOD_NAME = "promise"
@@ -70,18 +68,26 @@ object ConnectorGenerationService : IConnectorGenerationService {
                         )
                     )
                     .addCode(
-                        "return·$CONNECT_METHOD_NAME$UNSAFE_SUFFIX($METHOD_PARAMETER_NAME.%M(),·${FLAGS_PARAMETER_NAME})",
-                        AS_CALLABLE_UTIL_FUNCTION
+                        CodeBlock.of(
+                            """ 
+                                val connector = %T(
+                                    this, 
+                                    $METHOD_PARAMETER_NAME.asCallable()
+                                )
+                                connector.connect($FLAGS_PARAMETER_NAME)
+                                return connector
+                            """.trimIndent(),
+                            GODOT_SIGNAL_CONNECTOR,
+                        )
                     )
                     .returns(
-                        GODOT_ERROR
+                        GODOT_SIGNAL_CONNECTOR
                     )
                     .build()
             )
 
 
             val lambdaTypeName = genericClassNameInfo.toLambdaTypeName(UNIT, godotObjectBoundTypeVariable)
-
 
             connectorFileSpec.addFunction(
                 genericClassNameInfo
@@ -97,11 +103,19 @@ object ConnectorGenerationService : IConnectorGenerationService {
                             flagsParameter
                         )
                     )
-                    .returns(GODOT_ERROR)
+                    .returns(GODOT_SIGNAL_CONNECTOR)
                     .addCode(
                         CodeBlock.of(
-                            "return·$CONNECT_METHOD_NAME$UNSAFE_SUFFIX(%T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M()),·$FLAGS_PARAMETER_NAME)",
-                            GODOT_CALLABLE,
+                            """ 
+                                val connector = %T(
+                                    this, 
+                                    %T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M())
+                                )
+                                connector.connect($FLAGS_PARAMETER_NAME)
+                                return connector
+                            """.trimIndent(),
+                            GODOT_SIGNAL_CONNECTOR,
+                            GODOT_METHOD_CALLABLE,
                             KCallable::class.asClassName(),
                             TO_GODOT_NAME_UTIL_FUNCTION,
                         )
