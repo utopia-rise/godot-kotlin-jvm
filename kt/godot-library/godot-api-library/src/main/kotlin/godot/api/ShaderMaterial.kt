@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.RID
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.NIL
@@ -18,6 +19,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -87,6 +89,20 @@ public open class ShaderMaterial : Material() {
     TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(ptr, MethodBindings.getShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getShaderRid(): RID {
+    throw NotImplementedError("ShaderMaterial::_getShaderRid can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getShaderMode(): Shader.Mode {
+    throw NotImplementedError("ShaderMaterial::_getShaderMode can't be called from the JVM.")
   }
 
   /**

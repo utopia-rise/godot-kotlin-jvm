@@ -27,7 +27,9 @@ import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 
 class EnrichedCoreRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
-        val coreTypes = context.api.builtinClasses.associate { it.name to (it.enums?.toEnriched(GenerationType(it.name)) ?: listOf()) }
+        val coreTypes = context.api.builtinClasses.associate {
+            it.name to (it.enums?.toEnriched(GenerationType(it.name)) ?: listOf())
+        }
         val globalEnumList = context.api.globalEnums.toEnriched()
         val globalEnumMap = globalEnumList.associateBy { it.identifier }
         val nativeStructureMap = mutableMapOf<String, EnrichedNativeStructure>()
@@ -53,8 +55,8 @@ class EnrichedCoreRule : GodotApiRule<ApiTask>() {
 class EnrichedClassRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
         val classes = context.api.classes
-        val classList = classes.toEnriched().filter { it.apiType == ApiType.CORE }
-        val classMap = classList.associateBy { it.identifier }
+        var classList = classes.toEnriched().filter { it.apiType == ApiType.CORE }
+        var classMap = classList.associateBy { it.identifier }
 
         classes.forEach {
             val enrichedChild = classMap[it.name]
@@ -68,6 +70,14 @@ class EnrichedClassRule : GodotApiRule<ApiTask>() {
         context.api.singletons.forEach {
             classMap[it.type]?.makeSingleton()
         }
+
+
+        classList = classList
+            .filter { clazz ->// Remove class extending singletons
+                val parent = clazz.parent
+                parent == null || !parent.isSingleton
+            }
+        classMap = classList.associateBy { it.identifier }
 
         context.classMap += classMap
         context.classList += classList

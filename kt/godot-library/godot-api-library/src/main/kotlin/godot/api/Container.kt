@@ -51,7 +51,7 @@ public open class Container : Control() {
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
-    throw NotImplementedError("_getAllowedSizeFlagsHorizontal is not implemented for Container")
+    throw NotImplementedError("Container::_getAllowedSizeFlagsHorizontal is not implemented.")
   }
 
   /**
@@ -63,7 +63,7 @@ public open class Container : Control() {
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
-    throw NotImplementedError("_getAllowedSizeFlagsVertical is not implemented for Container")
+    throw NotImplementedError("Container::_getAllowedSizeFlagsVertical is not implemented.")
   }
 
   /**

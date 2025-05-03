@@ -57,14 +57,14 @@ public open class Translation : Resource() {
     n: Int,
     context: StringName,
   ): StringName {
-    throw NotImplementedError("_getPluralMessage is not implemented for Translation")
+    throw NotImplementedError("Translation::_getPluralMessage is not implemented.")
   }
 
   /**
    * Virtual method to override [getMessage].
    */
   public open fun _getMessage(srcMessage: StringName, context: StringName): StringName {
-    throw NotImplementedError("_getMessage is not implemented for Translation")
+    throw NotImplementedError("Translation::_getMessage is not implemented.")
   }
 
   public final fun setLocale(locale: String): Unit {

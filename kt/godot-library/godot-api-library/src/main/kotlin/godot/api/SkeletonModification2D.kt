@@ -67,14 +67,14 @@ public open class SkeletonModification2D : Resource() {
    * is designed to do.
    */
   public open fun _execute(delta: Double): Unit {
-    throw NotImplementedError("_execute is not implemented for SkeletonModification2D")
+    throw NotImplementedError("SkeletonModification2D::_execute is not implemented.")
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
   public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
-    throw NotImplementedError("_setupModification is not implemented for SkeletonModification2D")
+    throw NotImplementedError("SkeletonModification2D::_setupModification is not implemented.")
   }
 
   /**
@@ -85,7 +85,7 @@ public open class SkeletonModification2D : Resource() {
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo(): Unit {
-    throw NotImplementedError("_drawEditorGizmo is not implemented for SkeletonModification2D")
+    throw NotImplementedError("SkeletonModification2D::_drawEditorGizmo is not implemented.")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {

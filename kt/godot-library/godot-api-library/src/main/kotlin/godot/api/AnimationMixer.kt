@@ -259,7 +259,7 @@ public open class AnimationMixer internal constructor() : Node() {
     objectId: Long,
     objectSubIdx: Int,
   ): Any? {
-    throw NotImplementedError("_postProcessKeyValue is not implemented for AnimationMixer")
+    throw NotImplementedError("AnimationMixer::_postProcessKeyValue is not implemented.")
   }
 
   /**

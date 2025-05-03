@@ -113,7 +113,7 @@ public open class AStar3D : RefCounted() {
    * Note that this function is hidden in the default [AStar3D] class.
    */
   public open fun _estimateCost(fromId: Long, endId: Long): Float {
-    throw NotImplementedError("_estimateCost is not implemented for AStar3D")
+    throw NotImplementedError("AStar3D::_estimateCost is not implemented.")
   }
 
   /**
@@ -122,7 +122,7 @@ public open class AStar3D : RefCounted() {
    * Note that this function is hidden in the default [AStar3D] class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Float {
-    throw NotImplementedError("_computeCost is not implemented for AStar3D")
+    throw NotImplementedError("AStar3D::_computeCost is not implemented.")
   }
 
   /**

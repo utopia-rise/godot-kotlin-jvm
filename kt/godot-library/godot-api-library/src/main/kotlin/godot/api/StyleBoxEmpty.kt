@@ -7,7 +7,10 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
+import godot.core.Rect2
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -19,6 +22,13 @@ import kotlin.Unit
 public open class StyleBoxEmpty : StyleBox() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(641, scriptIndex)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+    throw NotImplementedError("StyleBoxEmpty::_draw can't be called from the JVM.")
   }
 
   public companion object

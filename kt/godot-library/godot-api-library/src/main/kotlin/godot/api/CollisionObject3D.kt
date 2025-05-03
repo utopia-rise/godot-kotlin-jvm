@@ -176,7 +176,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     normal: Vector3,
     shapeIdx: Int,
   ): Unit {
-    throw NotImplementedError("_inputEvent is not implemented for CollisionObject3D")
+    throw NotImplementedError("CollisionObject3D::_inputEvent is not implemented.")
   }
 
   /**
@@ -185,7 +185,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * shapes within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseEnter(): Unit {
-    throw NotImplementedError("_mouseEnter is not implemented for CollisionObject3D")
+    throw NotImplementedError("CollisionObject3D::_mouseEnter is not implemented.")
   }
 
   /**
@@ -194,7 +194,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseExit(): Unit {
-    throw NotImplementedError("_mouseExit is not implemented for CollisionObject3D")
+    throw NotImplementedError("CollisionObject3D::_mouseExit is not implemented.")
   }
 
   public final fun setCollisionLayer(layer: Long): Unit {

@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -27,194 +26,102 @@ import kotlin.Unit
  * Intended for use with GDExtension to create custom implementations of [PhysicsDirectBodyState3D].
  */
 @GodotBaseType
-public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D() {
+public abstract class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(464, scriptIndex)
   }
 
-  public open fun _getTotalGravity(): Vector3 {
-    throw NotImplementedError("_getTotalGravity is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getTotalGravity(): Vector3
 
-  public open fun _getTotalLinearDamp(): Float {
-    throw NotImplementedError("_getTotalLinearDamp is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getTotalLinearDamp(): Float
 
-  public open fun _getTotalAngularDamp(): Float {
-    throw NotImplementedError("_getTotalAngularDamp is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getTotalAngularDamp(): Float
 
-  public open fun _getCenterOfMass(): Vector3 {
-    throw NotImplementedError("_getCenterOfMass is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getCenterOfMass(): Vector3
 
-  public open fun _getCenterOfMassLocal(): Vector3 {
-    throw NotImplementedError("_getCenterOfMassLocal is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getCenterOfMassLocal(): Vector3
 
-  public open fun _getPrincipalInertiaAxes(): Basis {
-    throw NotImplementedError("_getPrincipalInertiaAxes is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getPrincipalInertiaAxes(): Basis
 
-  public open fun _getInverseMass(): Float {
-    throw NotImplementedError("_getInverseMass is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getInverseMass(): Float
 
-  public open fun _getInverseInertia(): Vector3 {
-    throw NotImplementedError("_getInverseInertia is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getInverseInertia(): Vector3
 
-  public open fun _getInverseInertiaTensor(): Basis {
-    throw NotImplementedError("_getInverseInertiaTensor is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getInverseInertiaTensor(): Basis
 
-  public open fun _setLinearVelocity(velocity: Vector3): Unit {
-    throw NotImplementedError("_setLinearVelocity is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _setLinearVelocity(velocity: Vector3): Unit
 
-  public open fun _getLinearVelocity(): Vector3 {
-    throw NotImplementedError("_getLinearVelocity is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getLinearVelocity(): Vector3
 
-  public open fun _setAngularVelocity(velocity: Vector3): Unit {
-    throw NotImplementedError("_setAngularVelocity is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _setAngularVelocity(velocity: Vector3): Unit
 
-  public open fun _getAngularVelocity(): Vector3 {
-    throw NotImplementedError("_getAngularVelocity is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getAngularVelocity(): Vector3
 
-  public open fun _setTransform(transform: Transform3D): Unit {
-    throw NotImplementedError("_setTransform is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _setTransform(transform: Transform3D): Unit
 
-  public open fun _getTransform(): Transform3D {
-    throw NotImplementedError("_getTransform is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getTransform(): Transform3D
 
-  public open fun _getVelocityAtLocalPosition(localPosition: Vector3): Vector3 {
-    throw NotImplementedError("_getVelocityAtLocalPosition is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getVelocityAtLocalPosition(localPosition: Vector3): Vector3
 
-  public open fun _applyCentralImpulse(impulse: Vector3): Unit {
-    throw NotImplementedError("_applyCentralImpulse is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _applyCentralImpulse(impulse: Vector3): Unit
 
-  public open fun _applyImpulse(impulse: Vector3, position: Vector3): Unit {
-    throw NotImplementedError("_applyImpulse is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _applyImpulse(impulse: Vector3, position: Vector3): Unit
 
-  public open fun _applyTorqueImpulse(impulse: Vector3): Unit {
-    throw NotImplementedError("_applyTorqueImpulse is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _applyTorqueImpulse(impulse: Vector3): Unit
 
-  public open fun _applyCentralForce(force: Vector3): Unit {
-    throw NotImplementedError("_applyCentralForce is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _applyCentralForce(force: Vector3): Unit
 
-  public open fun _applyForce(force: Vector3, position: Vector3): Unit {
-    throw NotImplementedError("_applyForce is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _applyForce(force: Vector3, position: Vector3): Unit
 
-  public open fun _applyTorque(torque: Vector3): Unit {
-    throw NotImplementedError("_applyTorque is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _applyTorque(torque: Vector3): Unit
 
-  public open fun _addConstantCentralForce(force: Vector3): Unit {
-    throw NotImplementedError("_addConstantCentralForce is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _addConstantCentralForce(force: Vector3): Unit
 
-  public open fun _addConstantForce(force: Vector3, position: Vector3): Unit {
-    throw NotImplementedError("_addConstantForce is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _addConstantForce(force: Vector3, position: Vector3): Unit
 
-  public open fun _addConstantTorque(torque: Vector3): Unit {
-    throw NotImplementedError("_addConstantTorque is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _addConstantTorque(torque: Vector3): Unit
 
-  public open fun _setConstantForce(force: Vector3): Unit {
-    throw NotImplementedError("_setConstantForce is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _setConstantForce(force: Vector3): Unit
 
-  public open fun _getConstantForce(): Vector3 {
-    throw NotImplementedError("_getConstantForce is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getConstantForce(): Vector3
 
-  public open fun _setConstantTorque(torque: Vector3): Unit {
-    throw NotImplementedError("_setConstantTorque is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _setConstantTorque(torque: Vector3): Unit
 
-  public open fun _getConstantTorque(): Vector3 {
-    throw NotImplementedError("_getConstantTorque is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getConstantTorque(): Vector3
 
-  public open fun _setSleepState(enabled: Boolean): Unit {
-    throw NotImplementedError("_setSleepState is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _setSleepState(enabled: Boolean): Unit
 
-  public open fun _isSleeping(): Boolean {
-    throw NotImplementedError("_isSleeping is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _isSleeping(): Boolean
 
-  public open fun _getContactCount(): Int {
-    throw NotImplementedError("_getContactCount is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactCount(): Int
 
-  public open fun _getContactLocalPosition(contactIdx: Int): Vector3 {
-    throw NotImplementedError("_getContactLocalPosition is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactLocalPosition(contactIdx: Int): Vector3
 
-  public open fun _getContactLocalNormal(contactIdx: Int): Vector3 {
-    throw NotImplementedError("_getContactLocalNormal is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactLocalNormal(contactIdx: Int): Vector3
 
-  public open fun _getContactImpulse(contactIdx: Int): Vector3 {
-    throw NotImplementedError("_getContactImpulse is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactImpulse(contactIdx: Int): Vector3
 
-  public open fun _getContactLocalShape(contactIdx: Int): Int {
-    throw NotImplementedError("_getContactLocalShape is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactLocalShape(contactIdx: Int): Int
 
-  public open fun _getContactLocalVelocityAtPosition(contactIdx: Int): Vector3 {
-    throw NotImplementedError("_getContactLocalVelocityAtPosition is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactLocalVelocityAtPosition(contactIdx: Int): Vector3
 
-  public open fun _getContactCollider(contactIdx: Int): RID {
-    throw NotImplementedError("_getContactCollider is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactCollider(contactIdx: Int): RID
 
-  public open fun _getContactColliderPosition(contactIdx: Int): Vector3 {
-    throw NotImplementedError("_getContactColliderPosition is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactColliderPosition(contactIdx: Int): Vector3
 
-  public open fun _getContactColliderId(contactIdx: Int): Long {
-    throw NotImplementedError("_getContactColliderId is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactColliderId(contactIdx: Int): Long
 
-  public open fun _getContactColliderObject(contactIdx: Int): Object? {
-    throw NotImplementedError("_getContactColliderObject is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactColliderObject(contactIdx: Int): Object?
 
-  public open fun _getContactColliderShape(contactIdx: Int): Int {
-    throw NotImplementedError("_getContactColliderShape is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactColliderShape(contactIdx: Int): Int
 
-  public open fun _getContactColliderVelocityAtPosition(contactIdx: Int): Vector3 {
-    throw NotImplementedError("_getContactColliderVelocityAtPosition is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getContactColliderVelocityAtPosition(contactIdx: Int): Vector3
 
-  public open fun _getStep(): Float {
-    throw NotImplementedError("_getStep is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getStep(): Float
 
-  public open fun _integrateForces(): Unit {
-    throw NotImplementedError("_integrateForces is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _integrateForces(): Unit
 
-  public open fun _getSpaceState(): PhysicsDirectSpaceState3D? {
-    throw NotImplementedError("_getSpaceState is not implemented for PhysicsDirectBodyState3DExtension")
-  }
+  public abstract fun _getSpaceState(): PhysicsDirectSpaceState3D?
 
   public companion object
 
