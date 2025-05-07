@@ -1,5 +1,6 @@
 #include "jvm_script_manager.h"
 #include <classes/resource_loader.hpp>
+#include <classes/time.hpp>
 #include "paths.h"
 
 using namespace godot;
@@ -10,7 +11,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
 
 #ifdef TOOLS_ENABLED
-    last_reload = OS::get_singleton()->get_unix_time();
+    last_reload = Time::get_singleton()->get_unix_time_from_system();
 
     // Clear all containers and keeping a cache for comparison.
     HashMap<StringName, Ref<NamedScript>> named_script_cache = named_scripts_map;
@@ -40,7 +41,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             named_scripts_map[script_name] = named_script;
 
             named_script->export_dirty_flag = true;
-            named_script->set_path(script_path, true);
+            named_script->take_over_path(script_path);
 
             JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
         } else {
@@ -117,7 +118,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     fqdn_to_kt_class = new_fqdn_to_kt_class;
 
     // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
-    callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload).call_deferred()
+    callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload).call_deferred();
 #endif
 
     JVM_DEV_LOG("JVM scripts are now loaded.");
@@ -172,7 +173,7 @@ void JvmScriptManager::update_all_scripts(uint64_t update_time) {
 void JvmScriptManager::invalidate_source(const Ref<SourceScript>& source_script) {
     if (source_script.is_null()) { return; }
 
-    uint64_t last_modified = source_script->get_last_modified_time();
+    double last_modified = Time::get_singleton()->get_unix_time_from_system();
 
     // If the jvm_script is already in cache, it means the Godot editor has reloaded it because the sources have changed.
     source_script->set_last_time_source_modified(last_modified);
@@ -182,7 +183,7 @@ void JvmScriptManager::invalidate_source(const Ref<SourceScript>& source_script)
     if (named_script.is_valid()) { named_script->set_last_time_source_modified(last_modified); }
 }
 
-uint64_t JvmScriptManager::get_last_reload() const {
+double JvmScriptManager::get_last_reload() const {
     return last_reload;
 }
 #endif
