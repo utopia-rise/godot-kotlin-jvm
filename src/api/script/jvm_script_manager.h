@@ -23,7 +23,7 @@ namespace godot {
         HashMap<StringName, KtClass*> fqdn_to_kt_class;
 
 #ifdef TOOLS_ENABLED
-        uint64_t last_reload = 0;
+        double last_reload = 0;
         void update_all_scripts(uint64_t update_time);
 #endif
 
@@ -54,7 +54,7 @@ namespace godot {
         static void finalize();
 
 #ifdef TOOLS_ENABLED
-        uint64_t get_last_reload() const;
+        double get_last_reload() const;
 
         void invalidate_source(const Ref<SourceScript>& source_script);
 #endif
