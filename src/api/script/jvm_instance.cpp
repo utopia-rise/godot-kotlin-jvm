@@ -92,7 +92,7 @@ void JvmInstance::free_property_list(GDExtensionScriptInstanceDataPtr p_instance
 }
 
 GDExtensionBool JvmInstance::get_class_category(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionPropertyInfo* p_class_category) {
-    internal::convert_property_to_c(reinterpret_cast<JvmInstanceData*>(p_instance)->script->get_class_category(), p_class_category);
+    return false;
 }
 
 GDExtensionBool JvmInstance::property_can_revert(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name) {
@@ -138,7 +138,7 @@ GDExtensionObjectPtr JvmInstance::get_owner(GDExtensionScriptInstanceDataPtr p_i
     return reinterpret_cast<JvmInstanceData*>(p_instance)->owner;
 }
 
-//TODO: Copy of engine's ScriptInstance::get_property_state. Should fallback be handled by engine ?
+//TODO: Remove when https://github.com/godotengine/godot/pull/105896 is released
 void JvmInstance::get_property_state(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionScriptInstancePropertyStateAdd p_add_func, void* p_userdata) {
     uint32_t property_count;
     const GDExtensionPropertyInfo* property_infos = get_property_list(p_instance, &property_count);
@@ -372,3 +372,40 @@ void JvmInstance::demote_reference(JvmInstance::JvmInstanceData* instance_data) 
 
     instance_data->to_demote_flag.clear();
 }
+
+JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, const JvmScript* p_script) {
+    JvmInstanceData* instance_data = memnew(JvmInstanceData);
+    instance_data->owner = p_owner;
+    instance_data->kt_object = p_kt_object;
+    instance_data->kt_class = p_script->kotlin_class;
+    instance_data->script = Ref<JvmScript>(p_script);
+    instance_data->to_demote_flag.set_to(false);
+    instance_data->delete_flag = true;
+
+    auto* ref = Object::cast_to<RefCounted>(p_owner);
+
+    if (!ref) { return instance_data; }
+
+    int refcount = ref->get_reference_count();
+
+    if (refcount == 1 && !p_kt_object->is_ref_weak()) {
+        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
+        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
+        p_kt_object->swap_to_weak_unsafe(p_env);
+    }
+}
+
+#ifdef TOOLS_ENABLED
+bool JvmInstance::get_or_default(JvmInstance::JvmInstanceData* instance_data, const StringName& p_name, Variant& r_ret) {
+    jni::LocalFrame localFrame(1000);
+    jni::Env env {jni::Jvm::current_env()};
+
+    KtProperty* ktProperty {instance_data->kt_class->get_property(p_name)};
+    if (ktProperty) {
+        ktProperty->call_get(env, instance_data->kt_object, r_ret);
+        return true;
+    } else {
+        return false;
+    }
+}
+#endif

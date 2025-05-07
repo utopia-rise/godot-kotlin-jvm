@@ -3,7 +3,7 @@
 #include "names.h"
 #include "api/script/language/kotlin_script.h"
 
-#include <core/io/resource_loader.hpp>
+#include <classes/resource_loader.hpp>
 
 using namespace godot;
 
@@ -39,132 +39,146 @@ KotlinLanguage* KotlinLanguage::get_instance() {
     return instance;
 }
 
-String KotlinLanguage::get_name() const {
+String KotlinLanguage::_get_name() const {
     return GODOT_KOTLIN_LANGUAGE_NAME;
 }
 
-String KotlinLanguage::get_type() const {
+String KotlinLanguage::_get_type() const {
     return GODOT_KOTLIN_SCRIPT_NAME;
 }
 
-String KotlinLanguage::get_extension() const {
+String KotlinLanguage::_get_extension() const {
     return GODOT_KOTLIN_SCRIPT_EXTENSION;
 }
 
-void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
-}
-
-Vector<String> KotlinLanguage::get_reserved_words() const {
-    static const Vector<String> ret = {// RESERVED KEYWORDS
-        "as",
-        "as?",
-        "break",
-        "class",
-        "continue",
-        "do",
-        "else",
-        "false",
-        "for",
-        "fun",
-        "if",
-        "in",
-        "!in",
-        "interface",
-        "is",
-        "!is",
-        "null",
-        "object",
-        "package",
-        "return",
-        "super",
-        "this",
-        "throw",
-        "true",
-        "try",
-        "typealias",
-        "typeof",
-        "val",
-        "var",
-        "when",
-        "while",
-        // SOFT KEYWORDS
-        "by",
-        "catch",
-        "constructor",
-        "delegate",
-        "dynamic",
-        "field",
-        "file",
-        "finally",
-        "get",
-        "import",
-        "init",
-        "param",
-        "property",
-        "receiveris",
-        "set",
-        "setparam",
-        "where",
-        // MODIFIERS KEYWORDS
-        "actual",
-        "abstract",
-        "annotation",
-        "companion",
-        "const",
-        "crossinline",
-        "data",
-        "enum",
-        "expect",
-        "external",
-        "final",
-        "infix",
-        "inline",
-        "inner",
-        "internal",
-        "lateinit",
-        "noinline",
-        "open",
-        "operator",
-        "out",
-        "override",
-        "private",
-        "protected",
-        "public",
-        "reified",
-        "sealed",
-        "suspend",
-        "tailrec",
-        "vararg",
-        // SPECIAL IDENTIFIERS
-        "it",
+PackedStringArray KotlinLanguage::_get_recognized_extensions() const {
+    PackedStringArray extensions {
+      GODOT_KOTLIN_SCRIPT_EXTENSION
     };
-
-    return ret;
+    return extensions;
 }
 
-bool KotlinLanguage::is_control_flow_keyword(const String& p_keyword) const {
+PackedStringArray KotlinLanguage::_get_reserved_words() const {
+    static PackedStringArray reserved_words {
+      // RESERVED KEYWORDS
+      "as",
+      "as?",
+      "break",
+      "class",
+      "continue",
+      "do",
+      "else",
+      "false",
+      "for",
+      "fun",
+      "if",
+      "in",
+      "!in",
+      "interface",
+      "is",
+      "!is",
+      "null",
+      "object",
+      "package",
+      "return",
+      "super",
+      "this",
+      "throw",
+      "true",
+      "try",
+      "typealias",
+      "typeof",
+      "val",
+      "var",
+      "when",
+      "while",
+
+      // SOFT KEYWORDS
+      "by",
+      "catch",
+      "constructor",
+      "delegate",
+      "dynamic",
+      "field",
+      "file",
+      "finally",
+      "get",
+      "import",
+      "init",
+      "param",
+      "property",
+      "receiveris",
+      "set",
+      "setparam",
+      "where",
+
+      // MODIFIERS KEYWORDS
+      "actual",
+      "abstract",
+      "annotation",
+      "companion",
+      "const",
+      "crossinline",
+      "data",
+      "enum",
+      "expect",
+      "external",
+      "final",
+      "infix",
+      "inline",
+      "inner",
+      "internal",
+      "lateinit",
+      "noinline",
+      "open",
+      "operator",
+      "out",
+      "override",
+      "private",
+      "protected",
+      "public",
+      "reified",
+      "sealed",
+      "suspend",
+      "tailrec",
+      "vararg",
+
+      // SPECIAL IDENTIFIERS
+      "it",
+    };
+    return reserved_words;
+}
+
+bool KotlinLanguage::_is_control_flow_keyword(const String& p_keyword) const {
     return p_keyword == "break" || p_keyword == "catch" || p_keyword == "continue" || p_keyword == "do"
         || p_keyword == "else" || p_keyword == "finally" || p_keyword == "for" || p_keyword == "if" || p_keyword == "return"
         || p_keyword == "when" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while";
 }
 
-Vector<String> KotlinLanguage::get_comment_delimiters() const {
-    static const Vector<String> ret = {"//", "/* */"};
-    return ret;
+PackedStringArray KotlinLanguage::_get_comment_delimiters() const {
+    static PackedStringArray delimiters {
+      "//",
+      "/* */"
+    };
+    return delimiters;
 }
 
-Vector<String> KotlinLanguage::get_doc_comment_delimiters() const {
-    static const Vector<String> ret = {"/** */"};
-    return ret;
+PackedStringArray KotlinLanguage::_get_doc_comment_delimiters() const {
+    static PackedStringArray delimiters {
+      "/** */"
+    };
+    return delimiters;
 }
 
-Vector<String> KotlinLanguage::get_string_delimiters() const {
-    static const Vector<String> ret = {"' '", "\" \""};
-    return ret;
+PackedStringArray KotlinLanguage::_get_string_delimiters() const {
+    static PackedStringArray delimiters {
+      "' '",
+      "\" \""
+    };
+    return delimiters;
 }
 
-Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
+Ref<Script> KotlinLanguage::_make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<KotlinScript> kotlin_script;
     kotlin_script.instantiate();
     String processed_template {p_template.replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())};
@@ -173,40 +187,23 @@ Ref<Script> KotlinLanguage::make_template(const String& p_template, const String
     return kotlin_script;
 }
 
-Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(const StringName& p_object) {
-    Vector<ScriptLanguage::ScriptTemplate> templates;
+TypedArray<Dictionary> KotlinLanguage::_get_built_in_templates(const StringName& p_object) const {
+    TypedArray<Dictionary> templates;
     if (ClassDB::is_parent_class(p_object, "Node")) {
-        ScriptLanguage::ScriptTemplate script_template {
-          String(p_object),
-          String("Default"),
-          String("Base template for Node based scripts with default Godot cycle methods"),
-          String(KOTLIN_TEMPLATE).replace(BASE_TEMPLATE, p_object)
-        };
+        Dictionary script_template;
+        script_template["inherit"] = String(p_object);
+        script_template["name"] = "Default";
+        script_template["description"] = "Base template for Node based scripts with default Godot cycle methods";
+        script_template["content"] = String(KOTLIN_TEMPLATE).replace(BASE_TEMPLATE, p_object);
         templates.append(script_template);
     }
     return templates;
 }
 
-bool KotlinLanguage::is_using_templates() {
+bool KotlinLanguage::_is_using_templates() {
     return true;
 }
 
-Script* KotlinLanguage::create_script() const {
+Object* KotlinLanguage::_create_script() const {
     return memnew(KotlinScript);
-}
-
-bool KotlinLanguage::has_named_classes() const {
-    return false;
-}
-
-bool KotlinLanguage::supports_builtin_mode() const {
-    return false;
-}
-
-String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_too) const {
-    return {};
-}
-
-bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
-    return false;
 }

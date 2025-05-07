@@ -22,8 +22,6 @@ namespace godot {
         KtClass* kotlin_class;
         String source;
 
-        template<bool isCreator>
-        JvmInstance* _instance_create(Object* p_this);
         Object* _object_create();
 
     public:
@@ -63,24 +61,26 @@ namespace godot {
         // This concerns placeholders script instances only
 
     private:
-        HashSet<JvmPlaceHolderInstance*> placeholders;
+        mutable HashMap<GDExtensionScriptInstancePtr, JvmPlaceHolderInstance::JvmPlaceHolderInstanceData*> placeholders;
         HashMap<StringName, Variant> exported_members_default_value_cache;
-        uint64_t last_time_source_modified = 0;
+        double last_time_source_modified = 0;
         bool export_dirty_flag = true;
 
-        void _placeholder_erased(void* p_placeholder) override;
+        void _get_script_property_info_list(List<PropertyInfo>* p_list) const;
 
     public:
         void* _placeholder_instance_create(Object* p_this) const override;
-        uint64_t get_last_time_source_modified();
-        void set_last_time_source_modified(uint64_t p_time);
+        double get_last_time_source_modified() const;
+        void set_last_time_source_modified(double p_time);
 
         TypedArray<Dictionary> _get_documentation() const override;
-        PropertyInfo get_class_category() const override;
-        String get_class_icon_path() const override;
-        StringName get_doc_class_name() const override;
+        String _get_class_icon_path() const override;
+        StringName _get_doc_class_name() const override;
 
         void update_script_exports();
+
+        void _placeholder_erased(void* p_placeholder) override;
+        virtual void _format_template(const String& p_path);
 #endif
 
     protected:
@@ -88,13 +88,14 @@ namespace godot {
     };
 
     class SourceScript : public JvmScript {
+        GDCLASS(SourceScript, JvmScript)
         friend class JvmScriptManager;
 
     public:
         SourceScript() = default;
         ~SourceScript() override = default;
         StringName get_functional_name() const;
-        StringName get_global_name() const override;
+        StringName _get_global_name() const override;
         static StringName parse_source_to_fqdn(const String& p_path, String& r_source, Error* r_error);
 
     protected:
@@ -104,18 +105,19 @@ namespace godot {
         static bool is_whitespace_or_linebreak(char32_t character);
         static bool is_package_end(char32_t character);
         static bool is_class_name_end(char32_t character);
-        static bool skip_spaces_and_newlines(const String& source, int& start_index);
-        static bool skip_comments(const String& source, const String& p_path, int& start_index);
+        static bool skip_spaces_and_newlines(const String& source, int64_t& start_index);
+        static bool skip_comments(const String& source, const String& p_path, int64_t& start_index);
 
     private:
         StringName _functional_name;
     };
 
     class NamedScript : public JvmScript {
+        GDCLASS(NamedScript, JvmScript)
     public:
         NamedScript() = default;
         ~NamedScript() override;
-        StringName get_global_name() const override;
+        StringName _get_global_name() const override;
     };
 } // namespace godot
 #endif // GODOT_JVM_JVM_SCRIPT_H

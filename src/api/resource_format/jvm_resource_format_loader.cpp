@@ -7,10 +7,12 @@
 #include "api/script/language/java_script.h"
 #include "api/script/language/kotlin_script.h"
 #include "api/script/language/scala_script.h"
-#include <classes/file_access.hpp>
-#include <classes/resource_uid.hpp>
+#include "engine/ustring.h"
 #include "engine/utilities.h"
 #include "hash.h"
+
+#include <classes/file_access.hpp>
+#include <classes/resource_uid.hpp>
 
 using namespace godot;
 
@@ -65,17 +67,18 @@ Variant JvmResourceFormatLoader::_load(const String& p_path, const String& p_ori
     String extension = p_path.get_extension();
     bool script_is_new = true;
     bool is_source;
+    Error error;
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         jvm_script = JvmScriptManager::get_instance()->get_or_create_named_script<GdjScript>(p_path, &script_is_new);
         is_source = false;
     } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<KotlinScript>(p_path, &script_is_new, r_error);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<KotlinScript>(p_path, &script_is_new, &error);
         is_source = true;
     } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(p_path, &script_is_new, r_error);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(p_path, &script_is_new, &error);
         is_source = true;
     } else if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(p_path, &script_is_new, r_error);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(p_path, &script_is_new, &error);
     } else {
         return nullptr;
     }

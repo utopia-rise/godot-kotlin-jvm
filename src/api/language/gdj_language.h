@@ -12,32 +12,29 @@ namespace godot {
 
         static GdjLanguage* get_instance();
 
-        void init() override;
-        void frame() override;
-        void finish() override;
+        void _init() override;
+        void _frame() override;
+        void _finish() override;
 
-        void thread_enter() override;
-        void thread_exit() override;
+        void _thread_enter() override;
+        void _thread_exit() override;
 
-        String get_name() const override;
-        String get_type() const override;
-        String get_extension() const override;
-        void get_recognized_extensions(List<String>* p_extensions) const override;
+        String _get_name() const override;
+        String _get_type() const override;
+        String _get_extension() const override;
+        PackedStringArray _get_recognized_extensions() const override;
 
-        bool handles_global_class_type(const String& p_type) const override;
-        String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool* r_is_abstract = nullptr, bool* r_is_tool = nullptr) const override;
-        bool has_named_classes() const override;
-        bool supports_builtin_mode() const override;
-        Script* create_script() const override;
+        bool _handles_global_class_type(const String& p_type) const override;
+        Dictionary _get_global_class_name(const String& p_path) const override;
+        bool _has_named_classes() const override;
+        Object* _create_script() const override;
 
-    Vector<String> get_reserved_words() const override;
-    bool is_control_flow_keyword(const String& p_keyword) const override;
-    Vector<String> get_comment_delimiters() const override;
-    Vector<String> get_doc_comment_delimiters() const override;
-    Vector<String> get_string_delimiters() const override;
-    Ref<Script> make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const override;
-    Vector<ScriptTemplate> get_built_in_templates(const StringName& p_object) override;
-    bool is_using_templates() override;
-};
-
+        PackedStringArray _get_reserved_words() const override;
+        bool _is_control_flow_keyword(const String& p_keyword) const override;
+        PackedStringArray _get_comment_delimiters() const override;
+        void get_doc_comment_delimiters(List<String>* p_delimiters) const override;
+        void get_string_delimiters(List<String>* p_delimiters) const override;
+        Ref<Script> _make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const override;
+    };
+}
 #endif// GODOT_JVM_GDJ_LANGUAGE_H

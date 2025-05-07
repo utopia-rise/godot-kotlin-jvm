@@ -4,8 +4,8 @@
 #include "api/script/language/gdj_script.h"
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/memory_manager.h"
-#include "lifecycle/paths.h"
 #include "names.h"
+#include "paths.h"
 
 using namespace godot;
 
@@ -28,7 +28,7 @@ GdjLanguage* GdjLanguage::get_instance() {
     return instance;
 }
 
-void GdjLanguage::init() {
+void GdjLanguage::_init() {
     GodotJvm::get_instance().initialize_up_to(GodotJvm::State::JVM_SCRIPTS_INITIALIZED);
 
 #ifdef DEBUG_ENABLED
@@ -36,7 +36,7 @@ void GdjLanguage::init() {
 #endif
 }
 
-void GdjLanguage::frame() {
+void GdjLanguage::_frame() {
     if (unlikely(GodotJvm::get_instance().state < GodotJvm::State::CORE_LIBRARY_INITIALIZED)) { return; }
     if (unlikely(GodotJvm::get_instance().user_configuration.disable_gc)) { return; }
 
@@ -44,98 +44,92 @@ void GdjLanguage::frame() {
     MemoryManager::get_instance().sync_memory(env);
 }
 
-void GdjLanguage::finish() {
+void GdjLanguage::_finish() {
     GodotJvm::get_instance().finalize_down_to(GodotJvm::State::NOT_STARTED);
 }
 
-void GdjLanguage::thread_enter() {
+void GdjLanguage::_thread_enter() {
     jni::Jvm::attach();
 }
 
-void GdjLanguage::thread_exit() {
+void GdjLanguage::_thread_exit() {
     jni::Jvm::detach();
 }
 
-String GdjLanguage::get_name() const {
+String GdjLanguage::_get_name() const {
     return GODOT_JVM_LANGUAGE_NAME;
 }
 
-String GdjLanguage::get_type() const {
+String GdjLanguage::_get_type() const {
     return GODOT_JVM_SCRIPT_NAME;
 }
 
-String GdjLanguage::get_extension() const {
+String GdjLanguage::_get_extension() const {
     return GODOT_JVM_REGISTRATION_FILE_EXTENSION;
 }
 
-void GdjLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
+PackedStringArray GdjLanguage::_get_recognized_extensions() const {
+    PackedStringArray ret;
+    ret.append(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
+    return ret;
 }
 
-bool GdjLanguage::handles_global_class_type(const String& p_type) const {
+bool GdjLanguage::_handles_global_class_type(const String& p_type) const {
     return p_type == GODOT_JVM_SCRIPT_NAME;
 }
 
-bool GdjLanguage::has_named_classes() const {
+bool GdjLanguage::_has_named_classes() const {
     return true;
 }
 
-bool GdjLanguage::supports_builtin_mode() const {
-    return false;
-}
-
-Script* GdjLanguage::create_script() const {
+Object* GdjLanguage::_create_script() const {
     return memnew(GdjScript);
 }
 
-String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_tool) const {
-    if (p_path.begins_with(ENTRY_DIRECTORY) || !p_path.ends_with(GODOT_JVM_REGISTRATION_FILE_EXTENSION)) { return {}; }
+Dictionary GdjLanguage::_get_global_class_name(const String& p_path) const {
+    Dictionary ret;
+    if (p_path.begins_with(ENTRY_DIRECTORY) || !p_path.ends_with(GODOT_JVM_REGISTRATION_FILE_EXTENSION)) {
+        return ret;
+    }
 
-    if(r_is_abstract){
-        *r_is_abstract = false;
-    }
-    if(r_is_tool){
-        *r_is_tool = false;
-    }
+    ret["is_abstract"] = false;
+    ret["is_tool"] = false;
 
     String script_name = JvmScript::get_script_file_name(p_path);
     Ref<NamedScript> named_script = JvmScriptManager::get_instance()->get_script_from_name(script_name);
     if (!named_script.is_null() && named_script.is_valid()) {
-        if (r_base_type) {
-            if (named_script->get_base_script().is_null()) {
-                *r_base_type = named_script->get_instance_base_type();
-            } else {
-                *r_base_type = named_script->get_base_script()->get_global_name();
-            }
-        }
-        return named_script->get_global_name();
+        ret["base_type"] = named_script->get_base_script().is_null()
+                           ? named_script->get_instance_base_type()
+                           : named_script->get_base_script()->get_global_name();
+        ret["name"] = named_script->get_global_name();
     }
-
-    return {};
-}
-
-Vector<String> GdjLanguage::get_reserved_words() const {
-    static const Vector<String> ret = {
-        "registeredName",
-        "fqName",
-        "relativeSourcePath ",
-        "baseType ",
-        "supertypes",
-        "signals",
-        "properties",
-        "functions"
-    };
 
     return ret;
 }
 
-bool GdjLanguage::is_control_flow_keyword(const String& p_keyword) const {
+PackedStringArray GdjLanguage::_get_reserved_words() const {
+    static PackedStringArray reserved_words {
+      "registeredName",
+      "fqName",
+      "relativeSourcePath ",
+      "baseType ",
+      "supertypes",
+      "signals",
+      "properties",
+      "functions"
+    };
+    return reserved_words;
+}
+
+bool GdjLanguage::_is_control_flow_keyword(const String& p_keyword) const {
     return false;
 }
 
-Vector<String> GdjLanguage::get_comment_delimiters() const {
-    static const Vector<String> ret = {"//"};
-    return ret;
+PackedStringArray GdjLanguage::_get_comment_delimiters() const {
+    static PackedStringArray delimiters {
+      "//"
+    };
+    return delimiters;
 }
 
 Vector<String> GdjLanguage::get_doc_comment_delimiters() const {return {};}
@@ -151,12 +145,4 @@ Ref<Script> GdjLanguage::make_template(const String& p_template, const String& p
     gdj_script->set_source_code(processed_template);
     gdj_script->set_name(p_class_name);
     return gdj_script;
-}
-
-Vector<ScriptLanguage::ScriptTemplate> GdjLanguage::get_built_in_templates(const StringName& p_object) {
-    return {};
-}
-
-bool GdjLanguage::is_using_templates() {
-    return false;
 }

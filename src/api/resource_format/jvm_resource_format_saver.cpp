@@ -23,6 +23,10 @@ Error JvmResourceFormatSaver::_save(const Ref<Resource>& p_resource, const Strin
     Ref<JvmScript> jvm_script = p_resource;
     ERR_FAIL_COND_V(jvm_script.is_null(), ERR_INVALID_PARAMETER);
 
+#ifdef TOOLS_ENABLED
+    jvm_script->_format_template(p_path);
+#endif
+
     String extension = p_path.get_extension();
     if (!FileAccess::file_exists(p_path) && extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         JVM_LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from "

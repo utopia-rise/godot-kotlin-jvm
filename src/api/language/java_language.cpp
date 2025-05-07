@@ -3,7 +3,7 @@
 #include "names.h"
 #include "api/script/language/java_script.h"
 
-#include <core/io/resource_loader.hpp>
+#include <classes/resource_loader.hpp>
 
 using namespace godot;
 
@@ -41,24 +41,27 @@ JavaLanguage* JavaLanguage::get_instance() {
     return instance;
 }
 
-String JavaLanguage::get_name() const {
+String JavaLanguage::_get_name() const {
     return GODOT_JAVA_LANGUAGE_NAME;
 }
 
-String JavaLanguage::get_type() const {
+String JavaLanguage::_get_type() const {
     return GODOT_JAVA_SCRIPT_NAME;
 }
 
-String JavaLanguage::get_extension() const {
+String JavaLanguage::_get_extension() const {
     return GODOT_JAVA_SCRIPT_EXTENSION;
 }
 
-void JavaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
+PackedStringArray JavaLanguage::_get_recognized_extensions() const {
+    static PackedStringArray extensions {
+      GODOT_JAVA_SCRIPT_EXTENSION
+    };
+    return extensions;
 }
 
 Vector<String> JavaLanguage::get_reserved_words() const {
-    static const Vector<String> ret = {
+    return {
         "abstract",
         "assert",
         "boolean",
@@ -109,32 +112,39 @@ Vector<String> JavaLanguage::get_reserved_words() const {
         "volatile",
         "while"
     };
-
-    return ret;
+    return reserved_words;
 }
 
-bool JavaLanguage::is_control_flow_keyword(const String& p_keyword) const {
+bool JavaLanguage::_is_control_flow_keyword(const String& p_keyword) const {
     return p_keyword == "break" || p_keyword == "catch" || p_keyword == "continue" || p_keyword == "do"
         || p_keyword == "else" || p_keyword == "finally" || p_keyword == "for" || p_keyword == "if" || p_keyword == "return"
         || p_keyword == "when" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while";
 }
 
-Vector<String> JavaLanguage::get_comment_delimiters() const {
-    static const Vector<String> ret = {"//", "/* */"};
-    return ret;
+PackedStringArray JavaLanguage::_get_comment_delimiters() const {
+    static PackedStringArray delimiters {
+      "//",
+      "/* */"
+    };
+    return delimiters;
 }
 
-Vector<String> JavaLanguage::get_doc_comment_delimiters() const {
-    static const Vector<String> ret = {"/** */"};
-    return ret;
+PackedStringArray JavaLanguage::_get_doc_comment_delimiters() const {
+    PackedStringArray delimiters {
+      "/** */"
+    };
+    return delimiters;
 }
 
-Vector<String> JavaLanguage::get_string_delimiters() const {
-    static const Vector<String> ret = {"' '", "\" \""};
-    return ret;
+PackedStringArray JavaLanguage::_get_string_delimiters() const {
+    PackedStringArray delimiters {
+      "' '",
+      "\" \""
+    };
+    return delimiters;
 }
 
-Ref<Script> JavaLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
+Ref<Script> JavaLanguage::_make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<JavaScript> java_script;
     java_script.instantiate();
     String processed_template {p_template.replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())};
@@ -143,40 +153,23 @@ Ref<Script> JavaLanguage::make_template(const String& p_template, const String& 
     return java_script;
 }
 
-Vector<ScriptLanguage::ScriptTemplate> JavaLanguage::get_built_in_templates(const StringName& p_object) {
-    Vector<ScriptLanguage::ScriptTemplate> templates;
+TypedArray<Dictionary> JavaLanguage::_get_built_in_templates(const StringName& p_object) const {
+    TypedArray<Dictionary> templates;
     if (ClassDB::is_parent_class(p_object, "Node")) {
-        ScriptLanguage::ScriptTemplate script_template {
-          String(p_object),
-          String("Default"),
-          String("Base template for Node based scripts with default Godot cycle methods"),
-          String(JAVA_TEMPLATE).replace(BASE_TEMPLATE, p_object)
-        };
+        Dictionary script_template;
+        script_template["inherit"] = String(p_object);
+        script_template["name"] = "Default";
+        script_template["description"] = "Base template for Node based scripts with default Godot cycle methods";
+        script_template["content"] = String(JAVA_TEMPLATE).replace(BASE_TEMPLATE, p_object);
         templates.append(script_template);
     }
     return templates;
 }
 
-bool JavaLanguage::is_using_templates() {
+bool JavaLanguage::_is_using_templates() {
     return true;
 }
 
-Script* JavaLanguage::create_script() const {
+Object* JavaLanguage::_create_script() const {
     return memnew(JavaScript);
-}
-
-bool JavaLanguage::has_named_classes() const {
-    return false;
-}
-
-bool JavaLanguage::supports_builtin_mode() const {
-    return false;
-}
-
-String JavaLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_too) const {
-    return {};
-}
-
-bool JavaLanguage::handles_global_class_type(const String& p_type) const {
-    return false;
 }
