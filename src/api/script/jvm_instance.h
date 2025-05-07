@@ -24,6 +24,7 @@ namespace godot {
             bool delete_flag;
         };
 
+    private:
         static GDExtensionBool set(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value);
         static GDExtensionBool get(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionVariantPtr r_ret);
         static const GDExtensionPropertyInfo* get_property_list(GDExtensionScriptInstanceDataPtr p_instance, uint32_t* r_count);
@@ -57,6 +58,7 @@ namespace godot {
         static GDExtensionScriptLanguagePtr get_language(GDExtensionScriptInstanceDataPtr p_instance);
         static void free(GDExtensionScriptInstanceDataPtr p_instance);
 
+    public:
         static constexpr const GDExtensionScriptInstanceInfo3 jvm_script_instance_info = {
           .set_func = &JvmInstance::set,
           .get_func = &JvmInstance::get,
@@ -83,11 +85,17 @@ namespace godot {
           .set_fallback_func = &JvmInstance::set_fallback,
           .get_fallback_func = &JvmInstance::get_fallback,
           .get_language_func = &JvmInstance::get_language,
-          .free_func = &JvmInstance::free,
+          .free_func = &JvmInstance::free
         };
 
         static void promote_reference(JvmInstanceData* instance_data);
         static void demote_reference(JvmInstanceData* instance_data);
+
+        static JvmInstanceData* create_instance_data(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, const JvmScript* p_script);
+
+#ifdef TOOLS_ENABLED
+        static bool get_or_default(JvmInstanceData* instance_data, const StringName& p_name, Variant& r_ret);
+#endif
     };
 }
 #endif// GODOT_JVM_JVM_INSTANCE_H

@@ -4,23 +4,26 @@
 
 using namespace godot;
 
-ScriptLanguage* ScalaScript::get_language() const {
+ScriptLanguage* ScalaScript::_get_language() const {
     return ScalaLanguage::get_instance();
 }
 
-void ScalaScript::set_path(const String& p_path, bool p_take_over) {
-    if (source.contains(PACKAGE_TEMPLATE)) {
-        String package {p_path.replace("src/main/scala/", "")
-                                .trim_prefix("res://")
-                                .trim_suffix(get_name() + "." + ScalaLanguage::get_instance()->get_extension())
-                                .trim_suffix("/")
-                                .replace("/", ".")};
-
-        if (!package.is_empty()) { package = "package " + package + ";";}
-
-        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
+#ifdef TOOLS_ENABLED
+void ScalaScript::_format_template(const String& p_path) {
+    if (!source.contains(PACKAGE_TEMPLATE)) {
+        return;
     }
-    Resource::set_path(p_path, p_take_over);
+
+    String package {p_path.replace("src/main/scala/", "")
+                      .trim_prefix("res://")
+                      .trim_suffix(get_name() + "." + ScalaLanguage::get_instance()->get_extension())
+                      .trim_suffix("/")
+                      .replace("/", ".")};
+
+    if (!package.is_empty()) { package = "package " + package + ";";}
+
+    source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
 }
+#endif
 
 void ScalaScript::_bind_methods() {}
