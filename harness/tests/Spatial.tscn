@@ -19,13 +19,13 @@ resource_test = SubResource("NavigationMesh_1ex3u")
 jvm_id = 319061373
 nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_q3pqa")])
 nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_hn8kg"), null])
-nav_meshes_dictionary = {
+nav_meshes_dictionary = Dictionary[String, NavigationMesh]({
 "AwesomeNavmesh": SubResource("NavigationMesh_87cay")
-}
-nullable_dictionary = {
+})
+nullable_dictionary = Dictionary[String, NavigationMesh]({
 "notnull": SubResource("NavigationMesh_b12lh"),
 "null": null
-}
+})
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241)
