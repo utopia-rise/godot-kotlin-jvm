@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_JAVA_SCRIPT_H
 #define GODOT_JVM_JAVA_SCRIPT_H
 
-#include "script/jvm_script.h"
+#include "api/script/jvm_script.h"
 
 class JavaScript : public SourceScript {
     GDCLASS(JavaScript, SourceScript);
@@ -10,8 +10,11 @@ class JavaScript : public SourceScript {
         JavaScript() = default;
         ~JavaScript() override = default;
 
-        ScriptLanguage* get_language() const override;
-        void set_path(const String& p_path, bool p_take_over) override;
+        ScriptLanguage* _get_language() const override;
+
+#ifdef TOOLS_ENABLED
+        void _format_template(const String& p_path) override;
+#endif
 
     protected:
         static void _bind_methods();
