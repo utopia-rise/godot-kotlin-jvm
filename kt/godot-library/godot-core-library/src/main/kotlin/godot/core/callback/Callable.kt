@@ -129,13 +129,16 @@ interface Callable : CoreType {
 
         @JvmStatic
         @JvmName("create")
-        operator fun invoke(target: Object, methodName: StringName) = VariantCallable(target, methodName)
+        operator fun invoke(target: Object, methodName: StringName) = MethodCallable(target, methodName)
     }
 
     @Suppress("FunctionName")
     object Bridge {
         external fun engine_call_constructor(): VoidPtr
-        external fun engine_call_constructor_object_string_name(): VoidPtr
+        external fun engine_call_constructor_object_string_name(
+            objectPtr: VoidPtr,
+            methodNamePtr: VoidPtr
+        ): VoidPtr
         external fun engine_call_constructor_lambda_callable(
             callable: LambdaContainer<*>,
             variantTypeOrdinal: Int,

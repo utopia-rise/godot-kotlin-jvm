@@ -13,11 +13,10 @@ uintptr_t CallableBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_i
     return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Callable()));
 }
 
-uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance) {
-    jni::Env env {p_raw_env};
-    Variant args[2] = {};
-    TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Callable(args[0].operator Object*(), args[1].operator StringName())));
+uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv * p_raw_env, jobject p_instance, jlong object_ptr, jlong method_name_ptr) {
+    Object* obj = reinterpret_cast<Object*>(object_ptr);
+    StringName* name = reinterpret_cast<StringName*>(method_name_ptr);
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(Callable(obj, *name)));
 }
 
 uintptr_t CallableBridge::engine_call_constructor_lambda_callable(JNIEnv* p_raw_env, jobject, jobject p_lambda_container, jint p_variant_type_ordinal, jint p_hash_code) {

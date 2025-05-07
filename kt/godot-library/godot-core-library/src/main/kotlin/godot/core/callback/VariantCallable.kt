@@ -17,12 +17,6 @@ class VariantCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(target: Object, methodName: StringName) {
-        TransferContext.writeArguments(VariantParser.OBJECT to target, VariantParser.STRING_NAME to methodName)
-        ptr = Bridge.engine_call_constructor_object_string_name()
-        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
-    }
-
     internal constructor(callable: VariantCallable) {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
         ptr = Bridge.engine_call_copy_constructor()

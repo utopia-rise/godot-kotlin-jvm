@@ -285,14 +285,14 @@ enum class VariantParser(override val id: Int) : VariantConverter {
         }
     },
     AABB(16) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer): godot.core.AABB {
+        override fun toUnsafeKotlin(buffer: ByteBuffer): AABB {
             val position = buffer.vector3
             val size = buffer.vector3
             return AABB(position, size)
         }
 
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            require(any is godot.core.AABB)
+            require(any is AABB)
             buffer.vector3 = any._position
             buffer.vector3 = any._size
         }
@@ -377,6 +377,7 @@ enum class VariantParser(override val id: Int) : VariantConverter {
                 buffer.putLong(any.ptr)
             } else {
                 require(any is LambdaCallable<*> || any is MethodCallable)
+                // Be careful that ::toNativeCallable doesn't itself use the shared buffer.
                 val ptr = any.toNativeCallable().ptr
                 buffer.putLong(ptr)
             }

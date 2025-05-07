@@ -3,6 +3,7 @@
 package godot.core
 
 import godot.api.Object
+import godot.core.Callable.Bridge
 import godot.internal.memory.MemoryManager
 
 class MethodCallable internal constructor(
@@ -30,7 +31,9 @@ class MethodCallable internal constructor(
     }
 
     override fun toNativeCallable(): VariantCallable {
-        val unbound = VariantCallable(target, methodName)
+        // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
+        val ptr = Bridge.engine_call_constructor_object_string_name(target.ptr, methodName.ptr)
+        val unbound = VariantCallable(ptr)
         if (boundArgs.isNotEmpty()) {
             return unbound.bindUnsafe(*boundArgs)
         }
