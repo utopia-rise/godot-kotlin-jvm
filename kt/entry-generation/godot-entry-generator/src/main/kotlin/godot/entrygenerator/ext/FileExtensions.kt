@@ -5,7 +5,7 @@ import java.io.File
 
 fun File.provideExistingRegistrationFiles(): Map<String, File> {
     val excludedDirs = listOf(
-        "build", // needs to be excluded so the registration files generated from ksp are not counted as existing registration files
+        "build", // needs to be excluded so the registration files generated from the entry generator are not counted as existing registration files
         "android", // needs to be excluded as godot copies every godot asset to the embedded android gradle project located in this directory which includes our gdj files. Thus we would never update them.
     )
 
