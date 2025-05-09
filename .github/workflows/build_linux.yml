@@ -72,6 +72,9 @@ jobs:
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
 
+      - name: Install dependencies
+        uses: ./modules/kotlin_jvm/.github/actions/install-linux-deps
+
       - name: Compilation
         uses: ./.github/actions/godot-build
         with:
