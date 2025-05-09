@@ -13,8 +13,6 @@ shadowJar = "8.3.6" # https://github.com/johnrengelman/shadow/releases
 #kotlinPoet = "1.18.0" # https://github.com/square/kotlinpoet/releases
 kotlinPoet = "1.12.0" # https://github.com/square/kotlinpoet/releases
 
-ksp = "2.1.10-1.0.30" # https://github.com/google/ksp/releases
-
 jacksonDataBind = "2.18.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 jacksonDataFormatXml = "2.18.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
 
@@ -38,8 +36,6 @@ slf4j = "1.7.36"
 [libraries]
 shadowJar = { module = "com.gradleup.shadow:shadow-gradle-plugin", version.ref = "shadowJar" }
 kotlinPoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinPoet" }
-ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
-kspGradlePlugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 jacksonDataBind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jacksonDataBind" }
 jacksonDataFormatXml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jacksonDataFormatXml" }
 grgit = { module = "org.ajoberstar.grgit:grgit-gradle", version.ref = "grgit" }
