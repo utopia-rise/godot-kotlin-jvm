@@ -55,11 +55,11 @@ jobs:
           name: jvm_entry-generator
           path: kt/entry-generation/godot-entry-generator/build/libs/godot-entry-generator-*.jar
 
-      - name: Upload ksp-symbol-processor artifact
+      - name: Upload class-graph-symbol-processor artifact
         uses: actions/upload-artifact@v4
         with:
-          name: jvm_ksp-symbol-processor
-          path: kt/entry-generation/godot-kotlin-symbol-processor/build/libs/godot-kotlin-symbol-processor-*.jar
+          name: jvm_class-graph-symbol-processor
+          path: kt/entry-generation/godot-class-graph-symbol-processor/build/libs/godot-class-graph-symbol-processor-*.jar
 
       - name: Upload gradle-plugin artifact
         uses: actions/upload-artifact@v4

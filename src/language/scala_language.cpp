@@ -52,8 +52,8 @@ void ScalaLanguage::get_recognized_extensions(List<String>* p_extensions) const 
     p_extensions->push_back(GODOT_SCALA_SCRIPT_EXTENSION);
 }
 
-void ScalaLanguage::get_reserved_words(List<String>* p_words) const {
-    static const char* _reserved_words[] = {
+Vector<String>  ScalaLanguage::get_reserved_words() const {
+    return {
             "abstract",
             "case",
             "catch",
@@ -92,16 +92,8 @@ void ScalaLanguage::get_reserved_words(List<String>* p_words) const {
             "var",
             "while",
             "with",
-            "yield",
-            nullptr
+            "yield"
     };
-
-    const char** w = _reserved_words;
-
-    while (*w) {
-        p_words->push_back(*w);
-        w++;
-    }
 }
 
 bool ScalaLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -110,19 +102,16 @@ bool ScalaLanguage::is_control_flow_keyword(const String& p_keyword) const {
            || p_keyword == "match" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while" || p_keyword == "yield";
 }
 
-void ScalaLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("//");
-    p_delimiters->push_back("/* */");
+Vector<String>  ScalaLanguage::get_comment_delimiters() const {
+    return {"//", "/* */"};
 }
 
-void ScalaLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("/** */");
+Vector<String>  ScalaLanguage::get_doc_comment_delimiters() const {
+    return {"/** */"};
 }
 
-void ScalaLanguage::get_string_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("' '");
-    p_delimiters->push_back("\" \"");
-    p_delimiters->push_back("\"\"\" \"\"\"");
+Vector<String>  ScalaLanguage::get_string_delimiters() const {
+    return {"' '", "\" \"", "\"\"\" \"\"\""};
 }
 
 Ref<Script> ScalaLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
