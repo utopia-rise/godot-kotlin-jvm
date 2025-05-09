@@ -45,7 +45,7 @@ public open class ResourceFormatSaver : RefCounted() {
     path: String,
     flags: Long,
   ): Error {
-    throw NotImplementedError("_save is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("ResourceFormatSaver::_save is not implemented.")
   }
 
   /**
@@ -53,14 +53,14 @@ public open class ResourceFormatSaver : RefCounted() {
    * constant in case of failure.
    */
   public open fun _setUid(path: String, uid: Long): Error {
-    throw NotImplementedError("_setUid is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("ResourceFormatSaver::_setUid is not implemented.")
   }
 
   /**
    * Returns whether the given resource object can be saved by this saver.
    */
   public open fun _recognize(resource: Resource?): Boolean {
-    throw NotImplementedError("_recognize is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("ResourceFormatSaver::_recognize is not implemented.")
   }
 
   /**
@@ -68,7 +68,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * recognized (see [_recognize]).
    */
   public open fun _getRecognizedExtensions(resource: Resource?): PackedStringArray {
-    throw NotImplementedError("_getRecognizedExtensions is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("ResourceFormatSaver::_getRecognizedExtensions is not implemented.")
   }
 
   /**
@@ -78,7 +78,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * within the ones provided by [_getRecognizedExtensions].
    */
   public open fun _recognizePath(resource: Resource?, path: String): Boolean {
-    throw NotImplementedError("_recognizePath is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("ResourceFormatSaver::_recognizePath is not implemented.")
   }
 
   public companion object

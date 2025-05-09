@@ -31,7 +31,6 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -52,7 +51,7 @@ public infix fun Long.and(other: Mesh.ArrayFormat): Long = this.and(other.flag)
  * [RenderingServer.MAX_MESH_SURFACES].
  */
 @GodotBaseType
-public open class Mesh : Resource() {
+public abstract class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
    *
@@ -99,102 +98,74 @@ public open class Mesh : Resource() {
   /**
    * Virtual method to override the surface count for a custom class extending [Mesh].
    */
-  public open fun _getSurfaceCount(): Int {
-    throw NotImplementedError("_getSurfaceCount is not implemented for Mesh")
-  }
+  public abstract fun _getSurfaceCount(): Int
 
   /**
    * Virtual method to override the surface array length for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetArrayLen(index: Int): Int {
-    throw NotImplementedError("_surfaceGetArrayLen is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetArrayLen(index: Int): Int
 
   /**
    * Virtual method to override the surface array index length for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetArrayIndexLen(index: Int): Int {
-    throw NotImplementedError("_surfaceGetArrayIndexLen is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetArrayIndexLen(index: Int): Int
 
   /**
    * Virtual method to override the surface arrays for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
-    throw NotImplementedError("_surfaceGetArrays is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetArrays(index: Int): VariantArray<Any?>
 
   /**
    * Virtual method to override the blend shape arrays for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
-    throw NotImplementedError("_surfaceGetBlendShapeArrays is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>>
 
   /**
    * Virtual method to override the surface LODs for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_surfaceGetLods is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?>
 
   /**
    * Virtual method to override the surface format for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetFormat(index: Int): Long {
-    throw NotImplementedError("_surfaceGetFormat is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetFormat(index: Int): Long
 
   /**
    * Virtual method to override the surface primitive type for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetPrimitiveType(index: Int): Long {
-    throw NotImplementedError("_surfaceGetPrimitiveType is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetPrimitiveType(index: Int): Long
 
   /**
    * Virtual method to override the setting of a [material] at the given [index] for a custom class
    * extending [Mesh].
    */
-  public open fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
-    throw NotImplementedError("_surfaceSetMaterial is not implemented for Mesh")
-  }
+  public abstract fun _surfaceSetMaterial(index: Int, material: Material?): Unit
 
   /**
    * Virtual method to override the surface material for a custom class extending [Mesh].
    */
-  public open fun _surfaceGetMaterial(index: Int): Material? {
-    throw NotImplementedError("_surfaceGetMaterial is not implemented for Mesh")
-  }
+  public abstract fun _surfaceGetMaterial(index: Int): Material?
 
   /**
    * Virtual method to override the number of blend shapes for a custom class extending [Mesh].
    */
-  public open fun _getBlendShapeCount(): Int {
-    throw NotImplementedError("_getBlendShapeCount is not implemented for Mesh")
-  }
+  public abstract fun _getBlendShapeCount(): Int
 
   /**
    * Virtual method to override the retrieval of blend shape names for a custom class extending
    * [Mesh].
    */
-  public open fun _getBlendShapeName(index: Int): StringName {
-    throw NotImplementedError("_getBlendShapeName is not implemented for Mesh")
-  }
+  public abstract fun _getBlendShapeName(index: Int): StringName
 
   /**
    * Virtual method to override the names of blend shapes for a custom class extending [Mesh].
    */
-  public open fun _setBlendShapeName(index: Int, name: StringName): Unit {
-    throw NotImplementedError("_setBlendShapeName is not implemented for Mesh")
-  }
+  public abstract fun _setBlendShapeName(index: Int, name: StringName): Unit
 
   /**
    * Virtual method to override the [AABB] for a custom class extending [Mesh].
    */
-  public open fun _getAabb(): AABB {
-    throw NotImplementedError("_getAabb is not implemented for Mesh")
-  }
+  public abstract fun _getAabb(): AABB
 
   public final fun setLightmapSizeHint(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)

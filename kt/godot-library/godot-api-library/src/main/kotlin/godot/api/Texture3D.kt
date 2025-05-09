@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -33,7 +32,7 @@ import kotlin.Unit
  * presets.
  */
 @GodotBaseType
-public open class Texture3D : Texture() {
+public abstract class Texture3D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(669, scriptIndex)
   }
@@ -41,44 +40,32 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [Texture3D]'s format is queried.
    */
-  public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_getFormat is not implemented for Texture3D")
-  }
+  public abstract fun _getFormat(): Image.Format
 
   /**
    * Called when the [Texture3D]'s width is queried.
    */
-  public open fun _getWidth(): Int {
-    throw NotImplementedError("_getWidth is not implemented for Texture3D")
-  }
+  public abstract fun _getWidth(): Int
 
   /**
    * Called when the [Texture3D]'s height is queried.
    */
-  public open fun _getHeight(): Int {
-    throw NotImplementedError("_getHeight is not implemented for Texture3D")
-  }
+  public abstract fun _getHeight(): Int
 
   /**
    * Called when the [Texture3D]'s depth is queried.
    */
-  public open fun _getDepth(): Int {
-    throw NotImplementedError("_getDepth is not implemented for Texture3D")
-  }
+  public abstract fun _getDepth(): Int
 
   /**
    * Called when the presence of mipmaps in the [Texture3D] is queried.
    */
-  public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_hasMipmaps is not implemented for Texture3D")
-  }
+  public abstract fun _hasMipmaps(): Boolean
 
   /**
    * Called when the [Texture3D]'s data is queried.
    */
-  public open fun _getData(): VariantArray<Image> {
-    throw NotImplementedError("_getData is not implemented for Texture3D")
-  }
+  public abstract fun _getData(): VariantArray<Image>
 
   /**
    * Returns the current format being used by this texture. See [Image.Format] for details.

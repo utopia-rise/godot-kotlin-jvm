@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.Dictionary
+import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -24,6 +26,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -138,7 +141,7 @@ public open class PrimitiveMesh : Mesh() {
    * [Mesh.ArrayType] constants).
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
-    throw NotImplementedError("_createMeshArray is not implemented for PrimitiveMesh")
+    throw NotImplementedError("PrimitiveMesh::_createMeshArray is not implemented.")
   }
 
   public final fun setMaterial(material: Material?): Unit {
@@ -227,6 +230,104 @@ public open class PrimitiveMesh : Mesh() {
   public final fun requestUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestUpdatePtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getSurfaceCount(): Int {
+    throw NotImplementedError("PrimitiveMesh::_getSurfaceCount can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetArrayLen(index: Int): Int {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetArrayLen can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetArrayIndexLen(index: Int): Int {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetArrayIndexLen can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetArrays can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetBlendShapeArrays can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetLods can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetFormat(index: Int): Long {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetPrimitiveType(index: Int): Long {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetPrimitiveType can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+    throw NotImplementedError("PrimitiveMesh::_surfaceSetMaterial can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _surfaceGetMaterial(index: Int): Material? {
+    throw NotImplementedError("PrimitiveMesh::_surfaceGetMaterial can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getBlendShapeCount(): Int {
+    throw NotImplementedError("PrimitiveMesh::_getBlendShapeCount can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getBlendShapeName(index: Int): StringName {
+    throw NotImplementedError("PrimitiveMesh::_getBlendShapeName can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _setBlendShapeName(index: Int, name: StringName): Unit {
+    throw NotImplementedError("PrimitiveMesh::_setBlendShapeName can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getAabb(): AABB {
+    throw NotImplementedError("PrimitiveMesh::_getAabb can't be called from the JVM.")
   }
 
   public companion object

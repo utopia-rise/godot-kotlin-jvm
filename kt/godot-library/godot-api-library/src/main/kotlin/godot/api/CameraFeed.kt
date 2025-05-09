@@ -123,14 +123,14 @@ public open class CameraFeed : RefCounted() {
    * Called when the camera feed is activated.
    */
   public open fun _activateFeed(): Boolean {
-    throw NotImplementedError("_activateFeed is not implemented for CameraFeed")
+    throw NotImplementedError("CameraFeed::_activateFeed is not implemented.")
   }
 
   /**
    * Called when the camera feed is deactivated.
    */
   public open fun _deactivateFeed(): Unit {
-    throw NotImplementedError("_deactivateFeed is not implemented for CameraFeed")
+    throw NotImplementedError("CameraFeed::_deactivateFeed is not implemented.")
   }
 
   /**

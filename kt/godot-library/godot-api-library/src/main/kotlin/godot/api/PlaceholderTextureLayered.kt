@@ -16,7 +16,10 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
+import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -103,6 +106,55 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
   public final fun setLayers(layers: Int): Unit {
     TransferContext.writeArguments(LONG to layers.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLayersPtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("PlaceholderTextureLayered::_getFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayeredType(): Long {
+    throw NotImplementedError("PlaceholderTextureLayered::_getLayeredType can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("PlaceholderTextureLayered::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("PlaceholderTextureLayered::_getHeight can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayers(): Int {
+    throw NotImplementedError("PlaceholderTextureLayered::_getLayers can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("PlaceholderTextureLayered::_hasMipmaps can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayerData(layerIndex: Int): Image? {
+    throw NotImplementedError("PlaceholderTextureLayered::_getLayerData can't be called from the JVM.")
   }
 
   public companion object

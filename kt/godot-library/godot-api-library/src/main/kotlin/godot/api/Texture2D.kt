@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
  * Larger textures may fail to import.
  */
 @GodotBaseType
-public open class Texture2D : Texture() {
+public abstract class Texture2D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(665, scriptIndex)
   }
@@ -50,30 +50,26 @@ public open class Texture2D : Texture() {
   /**
    * Called when the [Texture2D]'s width is queried.
    */
-  public open fun _getWidth(): Int {
-    throw NotImplementedError("_getWidth is not implemented for Texture2D")
-  }
+  public abstract fun _getWidth(): Int
 
   /**
    * Called when the [Texture2D]'s height is queried.
    */
-  public open fun _getHeight(): Int {
-    throw NotImplementedError("_getHeight is not implemented for Texture2D")
-  }
+  public abstract fun _getHeight(): Int
 
   /**
    * Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)`
    * position.
    */
   public open fun _isPixelOpaque(x: Int, y: Int): Boolean {
-    throw NotImplementedError("_isPixelOpaque is not implemented for Texture2D")
+    throw NotImplementedError("Texture2D::_isPixelOpaque is not implemented.")
   }
 
   /**
    * Called when the presence of an alpha channel in the [Texture2D] is queried.
    */
   public open fun _hasAlpha(): Boolean {
-    throw NotImplementedError("_hasAlpha is not implemented for Texture2D")
+    throw NotImplementedError("Texture2D::_hasAlpha is not implemented.")
   }
 
   /**
@@ -90,7 +86,7 @@ public open class Texture2D : Texture() {
     modulate: Color,
     transpose: Boolean,
   ): Unit {
-    throw NotImplementedError("_draw is not implemented for Texture2D")
+    throw NotImplementedError("Texture2D::_draw is not implemented.")
   }
 
   /**
@@ -108,7 +104,7 @@ public open class Texture2D : Texture() {
     modulate: Color,
     transpose: Boolean,
   ): Unit {
-    throw NotImplementedError("_drawRect is not implemented for Texture2D")
+    throw NotImplementedError("Texture2D::_drawRect is not implemented.")
   }
 
   /**
@@ -127,7 +123,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean,
     clipUv: Boolean,
   ): Unit {
-    throw NotImplementedError("_drawRectRegion is not implemented for Texture2D")
+    throw NotImplementedError("Texture2D::_drawRectRegion is not implemented.")
   }
 
   /**

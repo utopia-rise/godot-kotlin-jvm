@@ -31,7 +31,7 @@ import kotlin.jvm.JvmName
  * in GDExtension.
  */
 @GodotBaseType
-public open class Material : Resource() {
+public abstract class Material : Resource() {
   /**
    * Sets the render priority for objects in 3D scenes. Higher priority objects will be sorted in
    * front of lower priority objects. In other words, all objects with [renderPriority] `1` will render
@@ -78,24 +78,20 @@ public open class Material : Resource() {
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally by various editor tools. Used to access the RID of the [Material]'s [Shader].
    */
-  public open fun _getShaderRid(): RID {
-    throw NotImplementedError("_getShaderRid is not implemented for Material")
-  }
+  public abstract fun _getShaderRid(): RID
 
   /**
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally by various editor tools.
    */
-  public open fun _getShaderMode(): Shader.Mode {
-    throw NotImplementedError("_getShaderMode is not implemented for Material")
-  }
+  public abstract fun _getShaderMode(): Shader.Mode
 
   /**
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally to determine if [nextPass] should be shown in the editor or not.
    */
   public open fun _canDoNextPass(): Boolean {
-    throw NotImplementedError("_canDoNextPass is not implemented for Material")
+    throw NotImplementedError("Material::_canDoNextPass is not implemented.")
   }
 
   /**
@@ -103,7 +99,7 @@ public open class Material : Resource() {
    * internally to determine if [renderPriority] should be shown in the editor or not.
    */
   public open fun _canUseRenderPriority(): Boolean {
-    throw NotImplementedError("_canUseRenderPriority is not implemented for Material")
+    throw NotImplementedError("Material::_canUseRenderPriority is not implemented.")
   }
 
   public final fun setNextPass(nextPass: Material?): Unit {

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.VariantArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -19,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -239,6 +241,48 @@ public open class NoiseTexture3D : Texture3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNoisePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Noise?)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("NoiseTexture3D::_getFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("NoiseTexture3D::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("NoiseTexture3D::_getHeight can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getDepth(): Int {
+    throw NotImplementedError("NoiseTexture3D::_getDepth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("NoiseTexture3D::_hasMipmaps can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getData(): VariantArray<Image> {
+    throw NotImplementedError("NoiseTexture3D::_getData can't be called from the JVM.")
   }
 
   public companion object

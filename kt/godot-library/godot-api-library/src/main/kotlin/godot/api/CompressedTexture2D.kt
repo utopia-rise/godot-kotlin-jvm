@@ -15,6 +15,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -70,6 +71,20 @@ public open class CompressedTexture2D : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("CompressedTexture2D::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("CompressedTexture2D::_getHeight can't be called from the JVM.")
   }
 
   public companion object

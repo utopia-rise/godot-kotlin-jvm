@@ -110,35 +110,35 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    * Callback for [MultiplayerAPI.poll].
    */
   public open fun _poll(): Error {
-    throw NotImplementedError("_poll is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_poll is not implemented.")
   }
 
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is set.
    */
   public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?): Unit {
-    throw NotImplementedError("_setMultiplayerPeer is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_setMultiplayerPeer is not implemented.")
   }
 
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is retrieved.
    */
   public open fun _getMultiplayerPeer(): MultiplayerPeer? {
-    throw NotImplementedError("_getMultiplayerPeer is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_getMultiplayerPeer is not implemented.")
   }
 
   /**
    * Callback for [MultiplayerAPI.getUniqueId].
    */
   public open fun _getUniqueId(): Int {
-    throw NotImplementedError("_getUniqueId is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_getUniqueId is not implemented.")
   }
 
   /**
    * Callback for [MultiplayerAPI.getPeers].
    */
   public open fun _getPeerIds(): PackedInt32Array {
-    throw NotImplementedError("_getPeerIds is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_getPeerIds is not implemented.")
   }
 
   /**
@@ -150,28 +150,28 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
     method: StringName,
     args: VariantArray<Any?>,
   ): Error {
-    throw NotImplementedError("_rpc is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_rpc is not implemented.")
   }
 
   /**
    * Callback for [MultiplayerAPI.getRemoteSenderId].
    */
   public open fun _getRemoteSenderId(): Int {
-    throw NotImplementedError("_getRemoteSenderId is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_getRemoteSenderId is not implemented.")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationAdd].
    */
   public open fun _objectConfigurationAdd(`object`: Object?, configuration: Any?): Error {
-    throw NotImplementedError("_objectConfigurationAdd is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_objectConfigurationAdd is not implemented.")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationRemove].
    */
   public open fun _objectConfigurationRemove(`object`: Object?, configuration: Any?): Error {
-    throw NotImplementedError("_objectConfigurationRemove is not implemented for MultiplayerAPIExtension")
+    throw NotImplementedError("MultiplayerAPIExtension::_objectConfigurationRemove is not implemented.")
   }
 
   public companion object

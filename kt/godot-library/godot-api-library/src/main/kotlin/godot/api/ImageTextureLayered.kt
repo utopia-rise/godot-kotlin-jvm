@@ -16,8 +16,10 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -92,6 +94,55 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   public final fun updateLayer(image: Image?, layer: Int): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.updateLayerPtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("ImageTextureLayered::_getFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayeredType(): Long {
+    throw NotImplementedError("ImageTextureLayered::_getLayeredType can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("ImageTextureLayered::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("ImageTextureLayered::_getHeight can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayers(): Int {
+    throw NotImplementedError("ImageTextureLayered::_getLayers can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("ImageTextureLayered::_hasMipmaps can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayerData(layerIndex: Int): Image? {
+    throw NotImplementedError("ImageTextureLayered::_getLayerData can't be called from the JVM.")
   }
 
   public companion object

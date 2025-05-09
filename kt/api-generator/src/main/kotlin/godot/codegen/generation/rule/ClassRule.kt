@@ -11,6 +11,7 @@ import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.EnrichedMethodTask
 import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.generation.task.SignalTask
+import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.traits.addKdoc
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.KT_OBJECT
@@ -31,19 +32,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         for (method in clazz.methods) {
-            if (context.isNativeStructure(method.type.identifier)) {
-                continue
-            }
-            var shouldGenerate = true
-            for (argument in method.arguments) {
-                if (context.isNativeStructure(argument.type.identifier)) {
-                    shouldGenerate = false
-                    break
-                }
-            }
-            if (!shouldGenerate) {
-                continue
-            }
+            if(!canGenerateMethod(context, method)) continue
 
             if (method.isStatic) {
                 task.enrichedStaticMethods.add(EnrichedMethodTask(method, clazz))
@@ -69,15 +58,42 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         if (task.clazz.isSingleton) {
             generateSingletonConstructor(context)
         } else {
-            addModifiers(KModifier.OPEN)
-            generateClassConstructor(task.clazz.isInstantiable, context)
+            if (clazz.isAbstract) {
+                addModifiers(KModifier.ABSTRACT)
+            } else {
+                addModifiers(KModifier.OPEN)
+            }
+            generateClassConstructor(clazz.isInstantiable,  context)
         }
 
         addKdoc(clazz)
         addAnnotation(GODOT_BASE_TYPE)
+
+        val parent = task.clazz.parent?: return@configure
+        for (method in parent.methods.filter { it.isAbstract }) {
+            if(!canGenerateMethod(context, method)) continue
+            val overrideMethod = method.override()
+            task.enrichedMethods.add(EnrichedMethodTask(overrideMethod, clazz))
+        }
     }
 
-    private fun TypeSpec.Builder.generateClassConstructor(isInstantiable: Boolean, context: GenerationContext): TypeSpec.Builder {
+    private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
+        if (context.isNativeStructure(method.type.identifier)) {
+            return false
+        }
+        for (argument in method.arguments) {
+            if (context.isNativeStructure(argument.type.identifier)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun TypeSpec.Builder.generateClassConstructor(
+        isInstantiable: Boolean,
+        context: GenerationContext
+    ): TypeSpec.Builder {
+
         if (!isInstantiable) {
             primaryConstructor(
                 FunSpec.constructorBuilder()
@@ -116,12 +132,12 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
 }
 
 class BindingRule : GodotApiRule<EnrichedClassTask>() {
-    override fun apply(classTask: EnrichedClassTask, context: GenerationContext) = configure(classTask.builder) {
-        val clazz = classTask.clazz
+    override fun apply(task: EnrichedClassTask, context: GenerationContext) = configure(task.builder) {
+        val clazz = task.clazz
         clazz.methods
             .filter { !it.isVirtual }
             .onEach {
-                classTask.bindings.addProperty(
+                task.bindings.addProperty(
                     PropertySpec
                         .builder(it.voidPtrVariableName, VOID_PTR)
                         .addModifiers(KModifier.INTERNAL)
@@ -129,7 +145,7 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
                             "%T.getMethodBindPtr(%S,·%S,·%L)",
                             TYPE_MANAGER,
                             clazz.identifier,
-                            it.godotName,
+                            it.originalName,
                             it.hash
                         )
                         .build()

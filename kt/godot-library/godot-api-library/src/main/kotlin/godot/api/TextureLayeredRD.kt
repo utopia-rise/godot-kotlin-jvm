@@ -13,7 +13,10 @@ import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
+import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -48,6 +51,55 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRdRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("TextureLayeredRD::_getFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayeredType(): Long {
+    throw NotImplementedError("TextureLayeredRD::_getLayeredType can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("TextureLayeredRD::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("TextureLayeredRD::_getHeight can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayers(): Int {
+    throw NotImplementedError("TextureLayeredRD::_getLayers can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("TextureLayeredRD::_hasMipmaps can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getLayerData(layerIndex: Int): Image? {
+    throw NotImplementedError("TextureLayeredRD::_getLayerData can't be called from the JVM.")
   }
 
   public companion object

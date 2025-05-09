@@ -12,7 +12,7 @@ object TypeManager {
     val engineTypeNames = LinkedHashSet<String>()
     val engineSingletonsNames = LinkedHashSet<String>()
 
-    val engineTypesConstructors = mutableListOf<() -> NativeWrapper>()
+    val engineTypesConstructors = mutableListOf<(() -> NativeWrapper)?>()
     val singletonsConstructors = mutableListOf<() -> NativeWrapper>()
 
     fun registerUserType(className: String, kClass: KClass<out NativeWrapper>) {
@@ -20,13 +20,13 @@ object TypeManager {
         userTypeToId[kClass] = userTypes.size - 1
     }
 
-    fun <T : NativeWrapper> registerEngineType(className: String, clazz: KClass<out NativeWrapper>, invocator: () -> T) {
-        engineTypesConstructors.add(invocator)
+    fun registerEngineType(className: String, clazz: KClass<out NativeWrapper>, invoke: (() -> NativeWrapper)?) {
+        engineTypesConstructors.add(invoke)
         engineTypeNames.add(className)
         engineTypeToId[clazz] = engineTypeNames.size - 1
     }
 
-    fun <T : NativeWrapper> registerSingleton(singletonName: String, invocator: () -> T) {
+    fun registerSingleton(singletonName: String, invocator: () -> NativeWrapper) {
         engineSingletonsNames.add(singletonName)
         singletonsConstructors.add(invocator)
     }

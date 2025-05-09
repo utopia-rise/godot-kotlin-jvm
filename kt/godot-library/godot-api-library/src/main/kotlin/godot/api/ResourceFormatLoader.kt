@@ -46,7 +46,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * Gets the list of extensions for files this loader is able to read.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw NotImplementedError("_getRecognizedExtensions is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_getRecognizedExtensions is not implemented.")
   }
 
   /**
@@ -58,7 +58,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * [_getResourceType].
    */
   public open fun _recognizePath(path: String, type: StringName): Boolean {
-    throw NotImplementedError("_recognizePath is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_recognizePath is not implemented.")
   }
 
   /**
@@ -68,7 +68,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * just handle `"Resource"` for them.
    */
   public open fun _handlesType(type: StringName): Boolean {
-    throw NotImplementedError("_handlesType is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_handlesType is not implemented.")
   }
 
   /**
@@ -79,7 +79,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * just return `"Resource"` for them.
    */
   public open fun _getResourceType(path: String): String {
-    throw NotImplementedError("_getResourceType is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_getResourceType is not implemented.")
   }
 
   /**
@@ -87,7 +87,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * resource has no script or the script isn't a named class, it should return `""`.
    */
   public open fun _getResourceScriptClass(path: String): String {
-    throw NotImplementedError("_getResourceScriptClass is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_getResourceScriptClass is not implemented.")
   }
 
   /**
@@ -95,7 +95,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * not overridden, a `.uid` file is generated along with the resource file, containing the unique ID.
    */
   public open fun _getResourceUid(path: String): Long {
-    throw NotImplementedError("_getResourceUid is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_getResourceUid is not implemented.")
   }
 
   /**
@@ -106,7 +106,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * just return `"Resource"` for them.
    */
   public open fun _getDependencies(path: String, addTypes: Boolean): PackedStringArray {
-    throw NotImplementedError("_getDependencies is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_getDependencies is not implemented.")
   }
 
   /**
@@ -116,15 +116,15 @@ public open class ResourceFormatLoader : RefCounted() {
    * Returns [OK] on success, or an [Error] constant in case of failure.
    */
   public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): Error {
-    throw NotImplementedError("_renameDependencies is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_renameDependencies is not implemented.")
   }
 
   public open fun _exists(path: String): Boolean {
-    throw NotImplementedError("_exists is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_exists is not implemented.")
   }
 
   public open fun _getClassesUsed(path: String): PackedStringArray {
-    throw NotImplementedError("_getClassesUsed is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_getClassesUsed is not implemented.")
   }
 
   /**
@@ -141,7 +141,7 @@ public open class ResourceFormatLoader : RefCounted() {
     useSubThreads: Boolean,
     cacheMode: Int,
   ): Any? {
-    throw NotImplementedError("_load is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("ResourceFormatLoader::_load is not implemented.")
   }
 
   public enum class CacheMode(

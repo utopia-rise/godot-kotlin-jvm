@@ -863,7 +863,7 @@ public open class Control : CanvasItem() {
    * `Rect2(Vector2.ZERO, size).has_point(point)`.
    */
   public open fun _hasPoint(point: Vector2): Boolean {
-    throw NotImplementedError("_hasPoint is not implemented for Control")
+    throw NotImplementedError("Control::_hasPoint is not implemented.")
   }
 
   /**
@@ -875,7 +875,7 @@ public open class Control : CanvasItem() {
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Vector3i> {
-    throw NotImplementedError("_structuredTextParser is not implemented for Control")
+    throw NotImplementedError("Control::_structuredTextParser is not implemented.")
   }
 
   /**
@@ -890,7 +890,7 @@ public open class Control : CanvasItem() {
    * used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_getMinimumSize is not implemented for Control")
+    throw NotImplementedError("Control::_getMinimumSize is not implemented.")
   }
 
   /**
@@ -902,7 +902,7 @@ public open class Control : CanvasItem() {
    * no tooltip is displayed.
    */
   public open fun _getTooltip(atPosition: Vector2): String {
-    throw NotImplementedError("_getTooltip is not implemented for Control")
+    throw NotImplementedError("Control::_getTooltip is not implemented.")
   }
 
   /**
@@ -935,7 +935,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _getDragData(atPosition: Vector2): Any? {
-    throw NotImplementedError("_getDragData is not implemented for Control")
+    throw NotImplementedError("Control::_getDragData is not implemented.")
   }
 
   /**
@@ -964,7 +964,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _canDropData(atPosition: Vector2, `data`: Any?): Boolean {
-    throw NotImplementedError("_canDropData is not implemented for Control")
+    throw NotImplementedError("Control::_canDropData is not implemented.")
   }
 
   /**
@@ -996,7 +996,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _dropData(atPosition: Vector2, `data`: Any?): Unit {
-    throw NotImplementedError("_dropData is not implemented for Control")
+    throw NotImplementedError("Control::_dropData is not implemented.")
   }
 
   /**
@@ -1066,7 +1066,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
-    throw NotImplementedError("_makeCustomTooltip is not implemented for Control")
+    throw NotImplementedError("Control::_makeCustomTooltip is not implemented.")
   }
 
   /**
@@ -1114,7 +1114,7 @@ public open class Control : CanvasItem() {
    * **Note:** The [event]'s position is relative to this control's origin.
    */
   public open fun _guiInput(event: InputEvent?): Unit {
-    throw NotImplementedError("_guiInput is not implemented for Control")
+    throw NotImplementedError("Control::_guiInput is not implemented.")
   }
 
   /**

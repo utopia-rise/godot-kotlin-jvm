@@ -106,7 +106,7 @@ public open class AnimationNode : Resource() {
    * animation nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_getChildNodes is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_getChildNodes is not implemented.")
   }
 
   /**
@@ -116,7 +116,7 @@ public open class AnimationNode : Resource() {
    * [Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
-    throw NotImplementedError("_getParameterList is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_getParameterList is not implemented.")
   }
 
   /**
@@ -124,7 +124,7 @@ public open class AnimationNode : Resource() {
    * animation node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
-    throw NotImplementedError("_getChildByName is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_getChildByName is not implemented.")
   }
 
   /**
@@ -133,7 +133,7 @@ public open class AnimationNode : Resource() {
    * resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
-    throw NotImplementedError("_getParameterDefaultValue is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_getParameterDefaultValue is not implemented.")
   }
 
   /**
@@ -142,7 +142,7 @@ public open class AnimationNode : Resource() {
    * a resource can be reused in multiple trees.
    */
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
-    throw NotImplementedError("_isParameterReadOnly is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_isParameterReadOnly is not implemented.")
   }
 
   /**
@@ -161,7 +161,7 @@ public open class AnimationNode : Resource() {
     isExternalSeeking: Boolean,
     testOnly: Boolean,
   ): Double {
-    throw NotImplementedError("_process is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_process is not implemented.")
   }
 
   /**
@@ -169,7 +169,7 @@ public open class AnimationNode : Resource() {
    * caption for this animation node.
    */
   public open fun _getCaption(): String {
-    throw NotImplementedError("_getCaption is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_getCaption is not implemented.")
   }
 
   /**
@@ -177,7 +177,7 @@ public open class AnimationNode : Resource() {
    * blend tree editor should display filter editing on this animation node.
    */
   public open fun _hasFilter(): Boolean {
-    throw NotImplementedError("_hasFilter is not implemented for AnimationNode")
+    throw NotImplementedError("AnimationNode::_hasFilter is not implemented.")
   }
 
   /**

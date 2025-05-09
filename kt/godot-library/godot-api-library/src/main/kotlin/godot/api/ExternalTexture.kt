@@ -18,6 +18,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -103,6 +104,20 @@ public open class ExternalTexture : Texture2D() {
   public final fun setExternalBufferId(externalBufferId: Long): Unit {
     TransferContext.writeArguments(LONG to externalBufferId)
     TransferContext.callMethod(ptr, MethodBindings.setExternalBufferIdPtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("ExternalTexture::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("ExternalTexture::_getHeight can't be called from the JVM.")
   }
 
   public companion object

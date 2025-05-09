@@ -347,7 +347,7 @@ public open class CodeEdit : TextEdit() {
    * `true`, any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
-    throw NotImplementedError("_confirmCodeCompletion is not implemented for CodeEdit")
+    throw NotImplementedError("CodeEdit::_confirmCodeCompletion is not implemented.")
   }
 
   /**
@@ -355,7 +355,7 @@ public open class CodeEdit : TextEdit() {
    * is `true`, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean): Unit {
-    throw NotImplementedError("_requestCodeCompletion is not implemented for CodeEdit")
+    throw NotImplementedError("CodeEdit::_requestCodeCompletion is not implemented.")
   }
 
   /**
@@ -366,7 +366,7 @@ public open class CodeEdit : TextEdit() {
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):
       VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_filterCodeCompletionCandidates is not implemented for CodeEdit")
+    throw NotImplementedError("CodeEdit::_filterCodeCompletionCandidates is not implemented.")
   }
 
   public final fun setIndentSize(size: Int): Unit {

@@ -16,7 +16,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -34,7 +33,7 @@ import kotlin.Unit
  * driver (Vulkan, OpenGL3).
  */
 @GodotBaseType
-public open class TextureLayered : Texture() {
+public abstract class TextureLayered : Texture() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(674, scriptIndex)
   }
@@ -42,51 +41,37 @@ public open class TextureLayered : Texture() {
   /**
    * Called when the [TextureLayered]'s format is queried.
    */
-  public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_getFormat is not implemented for TextureLayered")
-  }
+  public abstract fun _getFormat(): Image.Format
 
   /**
    * Called when the layers' type in the [TextureLayered] is queried.
    */
-  public open fun _getLayeredType(): Long {
-    throw NotImplementedError("_getLayeredType is not implemented for TextureLayered")
-  }
+  public abstract fun _getLayeredType(): Long
 
   /**
    * Called when the [TextureLayered]'s width queried.
    */
-  public open fun _getWidth(): Int {
-    throw NotImplementedError("_getWidth is not implemented for TextureLayered")
-  }
+  public abstract fun _getWidth(): Int
 
   /**
    * Called when the [TextureLayered]'s height is queried.
    */
-  public open fun _getHeight(): Int {
-    throw NotImplementedError("_getHeight is not implemented for TextureLayered")
-  }
+  public abstract fun _getHeight(): Int
 
   /**
    * Called when the number of layers in the [TextureLayered] is queried.
    */
-  public open fun _getLayers(): Int {
-    throw NotImplementedError("_getLayers is not implemented for TextureLayered")
-  }
+  public abstract fun _getLayers(): Int
 
   /**
    * Called when the presence of mipmaps in the [TextureLayered] is queried.
    */
-  public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_hasMipmaps is not implemented for TextureLayered")
-  }
+  public abstract fun _hasMipmaps(): Boolean
 
   /**
    * Called when the data for a layer in the [TextureLayered] is queried.
    */
-  public open fun _getLayerData(layerIndex: Int): Image? {
-    throw NotImplementedError("_getLayerData is not implemented for TextureLayered")
-  }
+  public abstract fun _getLayerData(layerIndex: Int): Image?
 
   /**
    * Returns the current format being used by this texture. See [Image.Format] for details.

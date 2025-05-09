@@ -27,7 +27,7 @@ import kotlin.Unit
  * [PhysicsDirectSpaceState2D].
  */
 @GodotBaseType
-public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
+public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(466, scriptIndex)
   }

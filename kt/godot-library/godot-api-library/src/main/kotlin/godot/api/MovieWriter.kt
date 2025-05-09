@@ -17,7 +17,6 @@ import godot.core.Vector2i
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -63,7 +62,7 @@ import kotlin.jvm.JvmStatic
  * [url=https://www.maartenbaert.be/simplescreenrecorder/]SimpleScreenRecorder[/url] instead.
  */
 @GodotBaseType
-public open class MovieWriter : Object() {
+public abstract class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(362, scriptIndex)
   }
@@ -73,18 +72,14 @@ public open class MovieWriter : Object() {
    * value returned must be specified in Hz. Defaults to 48000 Hz if [_getAudioMixRate] is not
    * overridden.
    */
-  public open fun _getAudioMixRate(): Long {
-    throw NotImplementedError("_getAudioMixRate is not implemented for MovieWriter")
-  }
+  public abstract fun _getAudioMixRate(): Long
 
   /**
    * Called when the audio speaker mode used for recording the audio is requested by the engine.
    * This can affect the number of output channels in the resulting audio file/stream. Defaults to
    * [AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
    */
-  public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
-    throw NotImplementedError("_getAudioSpeakerMode is not implemented for MovieWriter")
-  }
+  public abstract fun _getAudioSpeakerMode(): AudioServer.SpeakerMode
 
   /**
    * Called when the engine determines whether this [MovieWriter] is able to handle the file at
@@ -99,9 +94,7 @@ public open class MovieWriter : Object() {
    *     return path.get_extension().to_lower() == "mkv"
    * ```
    */
-  public open fun _handlesFile(path: String): Boolean {
-    throw NotImplementedError("_handlesFile is not implemented for MovieWriter")
-  }
+  public abstract fun _handlesFile(path: String): Boolean
 
   /**
    * Called once before the engine starts writing video and audio data. [movieSize] is the width and
@@ -109,13 +102,11 @@ public open class MovieWriter : Object() {
    * settings or using the `--fixed-fps <fps>`
    * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url].
    */
-  public open fun _writeBegin(
+  public abstract fun _writeBegin(
     movieSize: Vector2i,
     fps: Long,
     basePath: String,
-  ): Error {
-    throw NotImplementedError("_writeBegin is not implemented for MovieWriter")
-  }
+  ): Error
 
   /**
    * Called when the engine finishes writing. This occurs when the engine quits by pressing the
@@ -124,9 +115,7 @@ public open class MovieWriter : Object() {
    * **Note:** Pressing [kbd]Ctrl + C[/kbd] on the terminal running the editor/project does *not*
    * result in [_writeEnd] being called.
    */
-  public open fun _writeEnd(): Unit {
-    throw NotImplementedError("_writeEnd is not implemented for MovieWriter")
-  }
+  public abstract fun _writeEnd(): Unit
 
   public companion object {
     /**

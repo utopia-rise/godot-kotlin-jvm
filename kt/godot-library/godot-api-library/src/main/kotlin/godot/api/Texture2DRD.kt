@@ -14,6 +14,7 @@ import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -48,6 +49,20 @@ public open class Texture2DRD : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRdRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("Texture2DRD::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("Texture2DRD::_getHeight can't be called from the JVM.")
   }
 
   public companion object

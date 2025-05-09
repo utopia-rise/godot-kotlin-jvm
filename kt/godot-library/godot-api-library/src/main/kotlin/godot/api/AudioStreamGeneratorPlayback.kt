@@ -18,8 +18,10 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -92,6 +94,13 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   public final fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getStreamSamplingRate(): Float {
+    throw NotImplementedError("AudioStreamGeneratorPlayback::_getStreamSamplingRate can't be called from the JVM.")
   }
 
   public companion object

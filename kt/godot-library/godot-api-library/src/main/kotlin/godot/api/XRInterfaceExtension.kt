@@ -51,70 +51,70 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the name of this interface.
    */
   public open fun _getName(): StringName {
-    throw NotImplementedError("_getName is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getName is not implemented.")
   }
 
   /**
    * Returns the capabilities of this interface.
    */
   public open fun _getCapabilities(): Long {
-    throw NotImplementedError("_getCapabilities is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getCapabilities is not implemented.")
   }
 
   /**
    * Returns `true` if this interface has been initialized.
    */
   public open fun _isInitialized(): Boolean {
-    throw NotImplementedError("_isInitialized is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_isInitialized is not implemented.")
   }
 
   /**
    * Initializes the interface, returns `true` on success.
    */
   public open fun _initialize(): Boolean {
-    throw NotImplementedError("_initialize is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_initialize is not implemented.")
   }
 
   /**
    * Uninitialize the interface.
    */
   public open fun _uninitialize(): Unit {
-    throw NotImplementedError("_uninitialize is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_uninitialize is not implemented.")
   }
 
   /**
    * Returns a [Dictionary] with system information related to this interface.
    */
   public open fun _getSystemInfo(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_getSystemInfo is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getSystemInfo is not implemented.")
   }
 
   /**
    * Returns `true` if this interface supports this play area mode.
    */
   public open fun _supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
-    throw NotImplementedError("_supportsPlayAreaMode is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_supportsPlayAreaMode is not implemented.")
   }
 
   /**
    * Returns the play area mode that sets up our play area.
    */
   public open fun _getPlayAreaMode(): XRInterface.PlayAreaMode {
-    throw NotImplementedError("_getPlayAreaMode is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getPlayAreaMode is not implemented.")
   }
 
   /**
    * Set the play area mode for this interface.
    */
   public open fun _setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
-    throw NotImplementedError("_setPlayAreaMode is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_setPlayAreaMode is not implemented.")
   }
 
   /**
    * Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable).
    */
   public open fun _getPlayArea(): PackedVector3Array {
-    throw NotImplementedError("_getPlayArea is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getPlayArea is not implemented.")
   }
 
   /**
@@ -122,28 +122,28 @@ public open class XRInterfaceExtension : XRInterface() {
    * [Viewport] marked as the xr viewport.
    */
   public open fun _getRenderTargetSize(): Vector2 {
-    throw NotImplementedError("_getRenderTargetSize is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getRenderTargetSize is not implemented.")
   }
 
   /**
    * Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic.
    */
   public open fun _getViewCount(): Long {
-    throw NotImplementedError("_getViewCount is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getViewCount is not implemented.")
   }
 
   /**
    * Returns the [Transform3D] that positions the [XRCamera3D] in the world.
    */
   public open fun _getCameraTransform(): Transform3D {
-    throw NotImplementedError("_getCameraTransform is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getCameraTransform is not implemented.")
   }
 
   /**
    * Returns a [Transform3D] for a given view.
    */
   public open fun _getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
-    throw NotImplementedError("_getTransformForView is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getTransformForView is not implemented.")
   }
 
   /**
@@ -155,11 +155,11 @@ public open class XRInterfaceExtension : XRInterface() {
     zNear: Double,
     zFar: Double,
   ): PackedFloat64Array {
-    throw NotImplementedError("_getProjectionForView is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getProjectionForView is not implemented.")
   }
 
   public open fun _getVrsTexture(): RID {
-    throw NotImplementedError("_getVrsTexture is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getVrsTexture is not implemented.")
   }
 
   /**
@@ -167,7 +167,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
    */
   public open fun _process(): Unit {
-    throw NotImplementedError("_process is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_process is not implemented.")
   }
 
   /**
@@ -175,7 +175,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * will sync tracking at this point in time.
    */
   public open fun _preRender(): Unit {
-    throw NotImplementedError("_preRender is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_preRender is not implemented.")
   }
 
   /**
@@ -184,21 +184,21 @@ public open class XRInterfaceExtension : XRInterface() {
    * interface may return `false` if the user has taken off their headset and we can pause rendering.
    */
   public open fun _preDrawViewport(renderTarget: RID): Boolean {
-    throw NotImplementedError("_preDrawViewport is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_preDrawViewport is not implemented.")
   }
 
   /**
    * Called after the XR [Viewport] draw logic has completed.
    */
   public open fun _postDrawViewport(renderTarget: RID, screenRect: Rect2): Unit {
-    throw NotImplementedError("_postDrawViewport is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_postDrawViewport is not implemented.")
   }
 
   /**
    * Called if interface is active and queues have been submitted.
    */
   public open fun _endFrame(): Unit {
-    throw NotImplementedError("_endFrame is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_endFrame is not implemented.")
   }
 
   /**
@@ -206,7 +206,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * configuration can override this list.
    */
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
-    throw NotImplementedError("_getSuggestedTrackerNames is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getSuggestedTrackerNames is not implemented.")
   }
 
   /**
@@ -214,14 +214,14 @@ public open class XRInterfaceExtension : XRInterface() {
    * configuration can override this list.
    */
   public open fun _getSuggestedPoseNames(trackerName: StringName): PackedStringArray {
-    throw NotImplementedError("_getSuggestedPoseNames is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getSuggestedPoseNames is not implemented.")
   }
 
   /**
    * Returns a [XRInterface.TrackingStatus] specifying the current status of our tracking.
    */
   public open fun _getTrackingStatus(): XRInterface.TrackingStatus {
-    throw NotImplementedError("_getTrackingStatus is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getTrackingStatus is not implemented.")
   }
 
   /**
@@ -235,21 +235,21 @@ public open class XRInterfaceExtension : XRInterface() {
     durationSec: Double,
     delaySec: Double,
   ): Unit {
-    throw NotImplementedError("_triggerHapticPulse is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_triggerHapticPulse is not implemented.")
   }
 
   /**
    * Return `true` if anchor detection is enabled for this interface.
    */
   public open fun _getAnchorDetectionIsEnabled(): Boolean {
-    throw NotImplementedError("_getAnchorDetectionIsEnabled is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getAnchorDetectionIsEnabled is not implemented.")
   }
 
   /**
    * Enables anchor detection on this interface if supported.
    */
   public open fun _setAnchorDetectionIsEnabled(enabled: Boolean): Unit {
-    throw NotImplementedError("_setAnchorDetectionIsEnabled is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_setAnchorDetectionIsEnabled is not implemented.")
   }
 
   /**
@@ -257,28 +257,28 @@ public open class XRInterfaceExtension : XRInterface() {
    * be presented as the background on an AR capable device (if applicable).
    */
   public open fun _getCameraFeedId(): Int {
-    throw NotImplementedError("_getCameraFeedId is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getCameraFeedId is not implemented.")
   }
 
   /**
    * Return color texture into which to render (if applicable).
    */
   public open fun _getColorTexture(): RID {
-    throw NotImplementedError("_getColorTexture is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getColorTexture is not implemented.")
   }
 
   /**
    * Return depth texture into which to render (if applicable).
    */
   public open fun _getDepthTexture(): RID {
-    throw NotImplementedError("_getDepthTexture is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getDepthTexture is not implemented.")
   }
 
   /**
    * Return velocity texture into which to render (if applicable).
    */
   public open fun _getVelocityTexture(): RID {
-    throw NotImplementedError("_getVelocityTexture is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("XRInterfaceExtension::_getVelocityTexture is not implemented.")
   }
 
   public final fun getColorTexture(): RID {

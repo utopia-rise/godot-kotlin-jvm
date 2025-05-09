@@ -27,7 +27,7 @@ import kotlin.jvm.JvmOverloads
  * of [VideoStream].
  */
 @GodotBaseType
-public open class VideoStreamPlayback : Resource() {
+public abstract class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(716, scriptIndex)
   }
@@ -37,7 +37,7 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.stop]. [_isPlaying] should return `false` once stopped.
    */
   public open fun _stop(): Unit {
-    throw NotImplementedError("_stop is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_stop is not implemented.")
   }
 
   /**
@@ -46,14 +46,14 @@ public open class VideoStreamPlayback : Resource() {
    * should return `true` once playing.
    */
   public open fun _play(): Unit {
-    throw NotImplementedError("_play is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_play is not implemented.")
   }
 
   /**
    * Returns the playback state, as determined by calls to [_play] and [_stop].
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_isPlaying is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_isPlaying is not implemented.")
   }
 
   /**
@@ -61,21 +61,21 @@ public open class VideoStreamPlayback : Resource() {
    * to the [VideoStreamPlayer.paused] setter.
    */
   public open fun _setPaused(paused: Boolean): Unit {
-    throw NotImplementedError("_setPaused is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_setPaused is not implemented.")
   }
 
   /**
    * Returns the paused status, as set by [_setPaused].
    */
   public open fun _isPaused(): Boolean {
-    throw NotImplementedError("_isPaused is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_isPaused is not implemented.")
   }
 
   /**
    * Returns the video duration in seconds, if known, or 0 if unknown.
    */
   public open fun _getLength(): Double {
-    throw NotImplementedError("_getLength is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_getLength is not implemented.")
   }
 
   /**
@@ -83,14 +83,14 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.streamPosition] getter.
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_getPlaybackPosition is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_getPlaybackPosition is not implemented.")
   }
 
   /**
    * Seeks to [time] seconds. Called in response to the [VideoStreamPlayer.streamPosition] setter.
    */
   public open fun _seek(time: Double): Unit {
-    throw NotImplementedError("_seek is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_seek is not implemented.")
   }
 
   /**
@@ -98,36 +98,34 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.audioTrack] setter.
    */
   public open fun _setAudioTrack(idx: Int): Unit {
-    throw NotImplementedError("_setAudioTrack is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_setAudioTrack is not implemented.")
   }
 
   /**
    * Allocates a [Texture2D] in which decoded video frames will be drawn.
    */
   public open fun _getTexture(): Texture2D? {
-    throw NotImplementedError("_getTexture is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_getTexture is not implemented.")
   }
 
   /**
    * Ticks video playback for [delta] seconds. Called every frame as long as both [_isPaused] and
    * [_isPlaying] return `true`.
    */
-  public open fun _update(delta: Double): Unit {
-    throw NotImplementedError("_update is not implemented for VideoStreamPlayback")
-  }
+  public abstract fun _update(delta: Double): Unit
 
   /**
    * Returns the number of audio channels.
    */
   public open fun _getChannels(): Int {
-    throw NotImplementedError("_getChannels is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_getChannels is not implemented.")
   }
 
   /**
    * Returns the audio sample rate used for mixing.
    */
   public open fun _getMixRate(): Int {
-    throw NotImplementedError("_getMixRate is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("VideoStreamPlayback::_getMixRate is not implemented.")
   }
 
   /**

@@ -392,7 +392,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
-    throw NotImplementedError("_integrateForces is not implemented for PhysicalBone3D")
+    throw NotImplementedError("PhysicalBone3D::_integrateForces is not implemented.")
   }
 
   /**

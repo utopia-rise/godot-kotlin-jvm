@@ -91,7 +91,7 @@ public open class SubViewportContainer : Container() {
    * not implemented, all events are propagated to SubViewports.
    */
   public open fun _propagateInputEvent(event: InputEvent?): Boolean {
-    throw NotImplementedError("_propagateInputEvent is not implemented for SubViewportContainer")
+    throw NotImplementedError("SubViewportContainer::_propagateInputEvent is not implemented.")
   }
 
   public final fun setStretch(enable: Boolean): Unit {
