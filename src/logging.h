@@ -1,16 +1,17 @@
 #ifndef GODOT_JVM_LOGGING_H
 #define GODOT_JVM_LOGGING_H
 
-#include "core/os/os.h"
+#include <classes/os.hpp>
+#include <variant/string.hpp>
+#include <variant/variant.hpp>
 
-#include <core/string/print_string.h>
 
-inline String format_prefix{"Godot-JVM: "};
+inline godot::String format_prefix{"Godot-JVM: "};
 
-#define JVM_STRING_FORMAT(message, ...)  vformat(format_prefix + message,  ##__VA_ARGS__)
+#define JVM_STRING_FORMAT(message, ...)  godot::vformat(format_prefix + message,  ##__VA_ARGS__)
 
-#define JVM_LOG_INFO(message, ...) print_line(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
-#define JVM_LOG_VERBOSE(message, ...) print_verbose(JVM_STRING_FORMAT(message, ##__VA_ARGS__)) (void) 0
+#define JVM_LOG_INFO(message, ...) godot::print_line(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#define JVM_LOG_VERBOSE(message, ...) godot::print_verbose(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 #define JVM_LOG_WARNING(message, ...) WARN_PRINT(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 
 #ifdef TOOLS_ENABLED
@@ -36,8 +37,8 @@ inline String format_prefix{"Godot-JVM: "};
 #define JVM_DEV_VERBOSE(message, ...) JVM_LOG_VERBOSE(message, ##__VA_ARGS__)
 #define JVM_DEV_ASSERT(m_cond, message, ...)                                                                 \
     if (unlikely(!(m_cond))) {                                                                               \
-        _err_print_error(FUNCTION_STR, __FILE__, __LINE__, JVM_STRING_FORMAT(message, ##__VA_ARGS__)); \
-        _err_flush_stdout();                                                                                 \
+        godot::_err_print_error(FUNCTION_STR, __FILE__, __LINE__, JVM_STRING_FORMAT(message, ##__VA_ARGS__)); \
+        godot::_err_flush_stdout();                                                                                 \
         GENERATE_TRAP();                                                                                     \
     } else                                                                                                   \
         ((void) 0)
