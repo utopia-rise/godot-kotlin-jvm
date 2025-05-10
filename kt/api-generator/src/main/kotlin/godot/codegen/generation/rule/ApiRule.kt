@@ -14,6 +14,7 @@ import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.models.traits.GenerationType
 import godot.codegen.models.ApiType
+import godot.codegen.models.EnumValue
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedNativeStructure
@@ -24,6 +25,42 @@ import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
+
+class UseConnectFlagRule : GodotApiRule<ApiTask>() {
+    override fun apply(task: ApiTask, context: GenerationContext) {
+        val objectClassIndex = context.api.classes.indexOfFirst { it.name == GodotKotlinJvmTypes.obj }
+        val objectRawClass = context.api.classes[objectClassIndex]
+
+        val connectEnumIndex = objectRawClass.enums!!.indexOfFirst { it.name == "ConnectFlags" }
+        val connectRawEnum = objectRawClass.enums[connectEnumIndex]
+
+        val newValues = listOf(
+            EnumValue(
+                "DEFAULT",
+                0,
+                "Default connections that are immediately emitted"
+            )
+        ) + connectRawEnum.values
+        val newEnum = connectRawEnum.copy(values = newValues)
+
+        val enumList = objectRawClass.enums.toMutableList()
+        enumList[connectEnumIndex] = newEnum
+
+        val connectMethodIndex = objectRawClass.methods!!.indexOfFirst { it.name == "connect" }
+        val connectMethod = objectRawClass.methods[connectMethodIndex]
+
+        val flagArgumentIndex = connectMethod.arguments!!.indexOfFirst { it.name == "flags" }
+        val flagArgument = connectMethod.arguments[flagArgumentIndex]
+
+        val newArgument = flagArgument.copy(type="enum::Object.ConnectFlags", meta = null)
+        val newMethod = connectMethod.copy(arguments = connectMethod.arguments.dropLast(1) + newArgument)
+        val newMethodList = objectRawClass.methods.toMutableList()
+        newMethodList[connectMethodIndex] = newMethod
+
+        val newClass = objectRawClass.copy(enums = enumList, methods = newMethodList)
+        context.api.classes[objectClassIndex] = newClass
+    }
+}
 
 class EnrichedCoreRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {

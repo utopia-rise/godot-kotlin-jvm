@@ -336,6 +336,7 @@ void GDKotlin::finalize_core_library() {
 
     MemoryManager::get_instance().clean_up(env);
 
+    JvmScriptManager::finalize();
     JvmManager::finalize_jvm_wrappers(env, bootstrap_class_loader);
 
     memdelete(callable_middleman);

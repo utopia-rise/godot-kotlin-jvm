@@ -13,4 +13,5 @@ interface CoreType
 
 abstract class NativeCoreType : CoreType, NativePointer {
     override var ptr: VoidPtr = nullptr
+        protected set
 }
