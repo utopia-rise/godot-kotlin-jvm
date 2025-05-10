@@ -25,34 +25,93 @@ import java.io.File
 
 
 object CallableGenerationService : ICallableGenerationService {
-    private const val FUNCTION_PARAMETER_NAME = "function"
+    private const val CALLABLE_NAME = "Callable"
     private const val LAMBDA_CALLABLE_NAME = "LambdaCallable"
     private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
+
+    private const val FUNCTION_PARAMETER_NAME = "function"
     private const val CONTAINER_ARGUMENT_NAME = "container"
     private const val BOUND_ARGS_ARGUMENT_NAME = "boundArgs"
     private const val CALLABLE_FUNCTION_NAME = "callable"
     private const val VARIANT_TYPE_RETURN_NAME = "returnConverter"
     private const val VARIANT_TYPE_ARGUMENT_NAME = "typeConverters"
+
     private val LAMBDA_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CALLABLE_NAME)
     private val LAMBDA_CONTAINER_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CONTAINER_NAME)
+    private val CALLABLE_CLASS_NAME = ClassName(godotCorePackage, CALLABLE_NAME)
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
     private val variantConverterClassName = ClassName(godotInteropPackage, GodotKotlinJvmTypes.variantConverter)
 
     override fun generate(outputDir: File) {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
+        val lambdaFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
         val containerFileSpec = FileSpec.builder(godotCorePackage, "LambdaContainers")
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "Callables")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
 
             val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
             val lambdaCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME$argCount")
+            val callableClassName = ClassName(godotCorePackage, "$CALLABLE_NAME$argCount")
 
             val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
-            val callableInfo = GenericClassNameInfo(lambdaCallableClassName, argCount)
+            val lambdaInfo = GenericClassNameInfo(lambdaCallableClassName, argCount)
+            val callableInfo = GenericClassNameInfo(callableClassName, argCount)
 
             val genericParameters = containerInfo.genericTypes
-            val lambdaTypeName = callableInfo.toLambdaTypeName(returnType = returnTypeParameter)
+            val lambdaTypeName = lambdaInfo.toLambdaTypeName(returnType = returnTypeParameter)
 
+            val callableClassBuilder = TypeSpec
+                .interfaceBuilder(callableClassName)
+                .addSuperinterface(CALLABLE_CLASS_NAME)
+                .addTypeVariable(returnTypeParameter)
+                .addTypeVariables(genericParameters)
+                .addFunction(
+                    FunSpec
+                        .builder("call")
+                        .addParameters(callableInfo.toParameterSpecList())
+                        .returns(returnTypeParameter)
+                        .addCode(
+                            CodeBlock.of(
+                                buildString {
+                                    append("return·callUnsafe(")
+                                    append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
+                                    append(") as R")
+                                }
+                            )
+                        )
+                        .build()
+                )
+                .addFunction(
+                    FunSpec.builder("callDeferred")
+                        .addParameters(callableInfo.toParameterSpecList())
+                        .addCode(
+                            CodeBlock.of(
+                                buildString {
+                                    append("return·callDeferredUnsafe(")
+                                    append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
+                                    append(")")
+                                }
+                            )
+                        )
+                        .build()
+                )
+                .addFunction(
+                    FunSpec.builder("invoke")
+                        .addParameters(lambdaInfo.toParameterSpecList())
+                        .returns(returnTypeParameter)
+                        .addCode(
+                            CodeBlock.of(
+                                buildString {
+                                    append("return·call(")
+                                    append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
+                                    append(')')
+                                },
+                                *genericParameters.toTypedArray()
+                            )
+                        )
+                        .addModifiers(KModifier.OPERATOR)
+                        .build()
+                )
 
             val lambdaContainerClassBuilder = TypeSpec
                 .classBuilder(lambdaContainerClassName)
@@ -107,10 +166,10 @@ object CallableGenerationService : ICallableGenerationService {
                             CodeBlock.of(
                                 buildString {
                                     append("return·($FUNCTION_PARAMETER_NAME·as?·%T)?.invoke(")
-                                    append(callableInfo.toArgumentsString("args[INDEX]", "INDEX"))
+                                    append(lambdaInfo.toArgumentsString("args[INDEX]", "INDEX"))
                                     append(")?:·throw·%T()")
                                 },
-                                callableInfo.toErasedLambdaTypeName(returnType = returnTypeParameter),
+                                lambdaInfo.toErasedLambdaTypeName(returnType = returnTypeParameter),
                                 ClassName(godotCorePackage, "InvalidJvmLambdaException")
                             )
                         )
@@ -121,6 +180,7 @@ object CallableGenerationService : ICallableGenerationService {
             val lambdaCallableClassBuilder = TypeSpec
                 .classBuilder(lambdaCallableClassName)
                 .superclass(LAMBDA_CALLABLE_CLASS_NAME.parameterizedBy(returnTypeParameter))
+                .addSuperinterface(callableClassName.parameterizedBy(listOf(returnTypeParameter) + genericParameters))
                 .addTypeVariable(returnTypeParameter)
                 .addTypeVariables(genericParameters)
                 .primaryConstructor(
@@ -148,68 +208,36 @@ object CallableGenerationService : ICallableGenerationService {
                         .build()
                 )
                 .addSuperclassConstructorParameter(CONTAINER_ARGUMENT_NAME, BOUND_ARGS_ARGUMENT_NAME)
-                .addFunction(
-                    FunSpec
-                        .builder("call")
-                        .addParameters(callableInfo.toParameterSpecList())
-                        .returns(returnTypeParameter)
-                        .addCode(
-                            CodeBlock.of(
-                                buildString {
-                                    append("return·$CONTAINER_ARGUMENT_NAME.invokeUnsafe(")
-                                    append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
-                                    append(')')
-                                }
-                            )
-                        )
-                        .build()
-                )
-                .addFunction(
-                    FunSpec.builder("callDeferred")
-                        .addParameters(callableInfo.toParameterSpecList())
-                        .addCode(
-                            CodeBlock.of(
-                                buildString {
-                                    append("return·callDeferredUnsafe(")
-                                    append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
-                                    append(")")
-                                }
-                            )
-                        )
-                        .build()
-                )
-                .addFunction(
-                    FunSpec.builder("invoke")
-                        .addParameters(callableInfo.toParameterSpecList())
-                        .returns(returnTypeParameter)
-                        .addCode(
-                            CodeBlock.of(
-                                buildString {
-                                    append("return·call(")
-                                    append(callableInfo.toArgumentsString("pINDEX", "INDEX"))
-                                    append(')')
-                                },
-                                *genericParameters.toTypedArray()
-                            )
-                        )
-                        .addModifiers(KModifier.OPERATOR)
-                        .build()
-                )
+
 
             val typeVariables = genericParameters.toMutableList()
             var remainingParameters = 0
             while (typeVariables.isNotEmpty()) {
-                val bindClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${remainingParameters}")
-                val bindInfo = GenericClassNameInfo(bindClassName, remainingParameters)
+                val boundLambdaCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${remainingParameters}")
+                val boundCallableClassName = ClassName(godotCorePackage, "$CALLABLE_NAME${remainingParameters}")
+                val bindInfo = GenericClassNameInfo(boundLambdaCallableClassName, remainingParameters)
+
+                callableClassBuilder.addFunction(
+                    FunSpec.builder("bind")
+                        .addModifiers(KModifier.ABSTRACT)
+                        .addParameters(
+                            typeVariables.mapIndexed { index: Int, typeVariableName: TypeVariableName ->
+                                ParameterSpec.builder("p${index + remainingParameters}", typeVariableName)
+                                    .build()
+                            }
+                        )
+                        .returns(boundCallableClassName.parameterizedBy(listOf(returnTypeParameter) + bindInfo.genericTypes))
+                        .build()
+                )
 
                 lambdaCallableClassBuilder.addFunction(
                     FunSpec.builder("bind")
+                        .addModifiers(KModifier.OVERRIDE)
                         .addParameters(
-                            typeVariables
-                                .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
-                                    ParameterSpec.builder("p${index + remainingParameters}", typeVariableName)
-                                        .build()
-                                }
+                            typeVariables.mapIndexed { index: Int, typeVariableName: TypeVariableName ->
+                                ParameterSpec.builder("p${index + remainingParameters}", typeVariableName)
+                                    .build()
+                            }
                         )
                         .addCode(
                             buildString {
@@ -222,7 +250,7 @@ object CallableGenerationService : ICallableGenerationService {
 
                                 append("))")
                             },
-                            bindClassName.parameterizedBy(listOf(returnTypeParameter) + bindInfo.genericTypes),
+                            boundLambdaCallableClassName.parameterizedBy(listOf(returnTypeParameter) + bindInfo.genericTypes),
                         )
                         .build()
                 )
@@ -232,10 +260,11 @@ object CallableGenerationService : ICallableGenerationService {
             }
 
             containerFileSpec.addType(lambdaContainerClassBuilder.build())
-            callableFileSpec.addType(lambdaCallableClassBuilder.build())
+            lambdaFileSpec.addType(lambdaCallableClassBuilder.build())
+            callableFileSpec.addType(callableClassBuilder.build())
 
             val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
-            callableFileSpec.addFunction(
+            lambdaFileSpec.addFunction(
                 FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
                     .addTypeVariables(genericParameters.map { it.copy(reified = true) })
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
@@ -264,7 +293,7 @@ object CallableGenerationService : ICallableGenerationService {
                                 append(FUNCTION_PARAMETER_NAME)
                                 append("))")
                             },
-                            callableInfo.className.parameterizedBy(listOf(returnTypeParameter) + callableInfo.genericTypes),
+                            lambdaInfo.className.parameterizedBy(listOf(returnTypeParameter) + lambdaInfo.genericTypes),
                             containerInfo.className.parameterizedBy(listOf(returnTypeParameter) + containerInfo.genericTypes),
                             variantMapperMember,
                             returnTypeParameter,
@@ -279,7 +308,7 @@ object CallableGenerationService : ICallableGenerationService {
                     .build()
             )
 
-            callableFileSpec
+            lambdaFileSpec
                 .addFunction(
                     FunSpec
                         .builder(GodotFunctions.asCallable)
@@ -292,7 +321,7 @@ object CallableGenerationService : ICallableGenerationService {
                 )
         }
 
-        callableFileSpec
+        lambdaFileSpec
             .addAnnotation(
                 AnnotationSpec
                     .builder(ClassName("kotlin", "Suppress"))
@@ -304,6 +333,17 @@ object CallableGenerationService : ICallableGenerationService {
             .writeTo(outputDir)
 
         containerFileSpec
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(ClassName("kotlin", "Suppress"))
+                    .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
+                    .addMember("\"unused\"")
+                    .build()
+            )
+            .build()
+            .writeTo(outputDir)
+
+        callableFileSpec
             .addAnnotation(
                 AnnotationSpec
                     .builder(ClassName("kotlin", "Suppress"))

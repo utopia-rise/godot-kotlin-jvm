@@ -14,13 +14,7 @@ import kotlin.Suppress
 public class LambdaCallable0<R> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(): R = container.invokeUnsafe()
-
-  public fun callDeferred() = callDeferredUnsafe()
-
-  public operator fun invoke(): R = call()
-}
+) : LambdaCallable<R>(container), Callable0<R>
 
 public inline fun <reified R> callable0(noinline function: () -> R) =
     LambdaCallable0<R>(LambdaContainer0<R>(variantMapper.getOrDefault(R::class, NIL), arrayOf(), function))
@@ -30,14 +24,8 @@ public inline fun <reified R> (() -> R).asCallable() = callable0(this)
 public class LambdaCallable1<R, P0> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(p0: P0): R = container.invokeUnsafe(p0)
-
-  public fun callDeferred(p0: P0) = callDeferredUnsafe(p0)
-
-  public operator fun invoke(p0: P0): R = call(p0)
-
-  public fun bind(p0: P0) = LambdaCallable0<R>(container, arrayOf(p0))
+) : LambdaCallable<R>(container), Callable1<R, P0> {
+  public override fun bind(p0: P0) = LambdaCallable0<R>(container, arrayOf(p0))
 }
 
 public inline fun <reified P0, reified R> callable1(noinline function: (p0: P0) -> R) =
@@ -48,16 +36,10 @@ public inline fun <reified P0, reified R> ((p0: P0) -> R).asCallable() = callabl
 public class LambdaCallable2<R, P0, P1> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(p0: P0, p1: P1): R = container.invokeUnsafe(p0, p1)
+) : LambdaCallable<R>(container), Callable2<R, P0, P1> {
+  public override fun bind(p0: P0, p1: P1) = LambdaCallable0<R>(container, arrayOf(p0, p1))
 
-  public fun callDeferred(p0: P0, p1: P1) = callDeferredUnsafe(p0, p1)
-
-  public operator fun invoke(p0: P0, p1: P1): R = call(p0, p1)
-
-  public fun bind(p0: P0, p1: P1) = LambdaCallable0<R>(container, arrayOf(p0, p1))
-
-  public fun bind(p1: P1) = LambdaCallable1<R, P0>(container, arrayOf(p1))
+  public override fun bind(p1: P1) = LambdaCallable1<R, P0>(container, arrayOf(p1))
 }
 
 public inline fun <reified P0, reified P1, reified R> callable2(noinline function: (p0: P0,
@@ -70,34 +52,16 @@ public inline fun <reified P0, reified P1, reified R> ((p0: P0, p1: P1) -> R).as
 public class LambdaCallable3<R, P0, P1, P2> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-  ): R = container.invokeUnsafe(p0, p1, p2)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-  ) = callDeferredUnsafe(p0, p1, p2)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-  ): R = call(p0, p1, p2)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable3<R, P0, P1, P2> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2))
 
-  public fun bind(p1: P1, p2: P2) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2))
+  public override fun bind(p1: P1, p2: P2) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2))
 
-  public fun bind(p2: P2) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2))
+  public override fun bind(p2: P2) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified R> callable3(noinline function: (
@@ -116,44 +80,23 @@ public inline fun <reified P0, reified P1, reified P2, reified R> ((
 public class LambdaCallable4<R, P0, P1, P2, P3> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-  ) = callDeferredUnsafe(p0, p1, p2, p3)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-  ): R = call(p0, p1, p2, p3)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable4<R, P0, P1, P2, P3> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
     p3: P3,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3))
 
-  public fun bind(p2: P2, p3: P3) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3))
+  public override fun bind(p2: P2, p3: P3) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3))
 
-  public fun bind(p3: P3) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3))
+  public override fun bind(p3: P3) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> callable4(noinline
@@ -175,32 +118,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
 public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-  ): R = call(p0, p1, p2, p3, p4)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable5<R, P0, P1, P2, P3, P4> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -208,22 +127,23 @@ public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal const
     p4: P4,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4))
 
-  public fun bind(p3: P3, p4: P4) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4))
+  public override fun bind(p3: P3, p4: P4) = LambdaCallable3<R, P0, P1, P2>(container,
+      arrayOf(p3, p4))
 
-  public fun bind(p4: P4) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4))
+  public override fun bind(p4: P4) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R>
@@ -247,35 +167,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-  ): R = call(p0, p1, p2, p3, p4, p5)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable6<R, P0, P1, P2, P3, P4, P5> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -284,7 +177,7 @@ public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
     p5: P5,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -292,22 +185,23 @@ public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
     p5: P5,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5))
 
-  public fun bind(p4: P4, p5: P5) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5))
+  public override fun bind(p4: P4, p5: P5) = LambdaCallable4<R, P0, P1, P2, P3>(container,
+      arrayOf(p4, p5))
 
-  public fun bind(p5: P5) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5))
+  public override fun bind(p5: P5) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -334,38 +228,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable7<R, P0, P1, P2, P3, P4, P5, P6> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -375,7 +239,7 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p6: P6,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -384,7 +248,7 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p6: P6,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -392,23 +256,24 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
     p6: P6,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6))
 
-  public fun bind(p5: P5, p6: P6) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+  public override fun bind(p5: P5, p6: P6) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
       arrayOf(p5, p6))
 
-  public fun bind(p6: P6) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf(p6))
+  public override fun bind(p6: P6) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf(p6))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -437,41 +302,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -482,7 +314,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p7: P7,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6, p7))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -492,7 +324,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p7: P7,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6, p7))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -501,7 +333,7 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p7: P7,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6, p7))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -509,23 +341,24 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
     p7: P7,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6, p7))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
     p7: P7,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6, p7))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5, p6, p7))
 
-  public fun bind(p6: P6, p7: P7) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+  public override fun bind(p6: P6, p7: P7) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
       arrayOf(p6, p7))
 
-  public fun bind(p7: P7) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf(p7))
+  public override fun bind(p7: P7) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
+      arrayOf(p7))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -557,44 +390,8 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -606,7 +403,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p8: P8,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -617,7 +414,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p8: P8,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6, p7, p8))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -627,7 +424,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p8: P8,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6, p7, p8))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -636,7 +433,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p8: P8,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6, p7, p8))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -644,23 +441,23 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p8: P8,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6, p7, p8))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
     p8: P8,
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5, p6, p7, p8))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf(p6, p7, p8))
 
-  public fun bind(p7: P7, p8: P8) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
-      arrayOf(p7, p8))
+  public override fun bind(p7: P7, p8: P8) =
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf(p7, p8))
 
-  public fun bind(p8: P8) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
+  public override fun bind(p8: P8) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
       arrayOf(p8))
 }
 
@@ -695,47 +492,8 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -748,7 +506,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p9: P9,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -760,7 +518,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p9: P9,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -771,7 +529,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p9: P9,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -781,7 +539,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p9: P9,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -790,7 +548,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p9: P9,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -798,24 +556,24 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p9: P9,
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5, p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
     p9: P9,
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf(p6, p7, p8, p9))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf(p7, p8, p9))
 
-  public fun bind(p8: P8, p9: P9) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
-      arrayOf(p8, p9))
+  public override fun bind(p8: P8, p9: P9) =
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf(p8, p9))
 
-  public fun bind(p9: P9) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
-      arrayOf(p9))
+  public override fun bind(p9: P9) =
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf(p9))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -851,50 +609,8 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -908,7 +624,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -921,7 +637,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -933,7 +649,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -944,7 +660,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -954,7 +670,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -963,7 +679,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5, p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
@@ -971,24 +687,24 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p10: P10,
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf(p6, p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
     p10: P10,
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf(p7, p8, p9, p10))
 
-  public fun bind(
+  public override fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
   ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf(p8, p9, p10))
 
-  public fun bind(p9: P9, p10: P10) =
+  public override fun bind(p9: P9, p10: P10) =
       LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf(p9, p10))
 
-  public fun bind(p10: P10) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
-      arrayOf(p10))
+  public override fun bind(p10: P10) =
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf(p10))
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1026,53 +742,8 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
-
-  public fun bind(
+) : LambdaCallable<R>(container), Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -1087,7 +758,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -1101,7 +772,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1114,7 +785,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -1126,7 +797,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -1137,7 +808,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -1147,7 +818,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5, p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
@@ -1156,7 +827,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf(p6, p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
@@ -1164,23 +835,23 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf(p7, p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
     p11: P11,
   ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf(p8, p9, p10, p11))
 
-  public fun bind(
+  public override fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
   ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf(p9, p10, p11))
 
-  public fun bind(p10: P10, p11: P11) =
+  public override fun bind(p10: P10, p11: P11) =
       LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf(p10, p11))
 
-  public fun bind(p11: P11) =
+  public override fun bind(p11: P11) =
       LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container, arrayOf(p11))
 }
 
@@ -1222,56 +893,9 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
-
-  public fun bind(
+) : LambdaCallable<R>(container),
+    Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -1287,7 +911,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable0<R>(container, arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -1302,7 +926,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable1<R, P0>(container, arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1316,7 +940,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable2<R, P0, P1>(container, arrayOf(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -1329,7 +953,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -1341,7 +965,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf(p4, p5, p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -1352,7 +976,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf(p5, p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
@@ -1362,7 +986,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf(p6, p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
@@ -1371,7 +995,7 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf(p7, p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
@@ -1379,23 +1003,23 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
   ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf(p8, p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
     p12: P12,
   ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf(p9, p10, p11, p12))
 
-  public fun bind(
+  public override fun bind(
     p10: P10,
     p11: P11,
     p12: P12,
   ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf(p10, p11, p12))
 
-  public fun bind(p11: P11, p12: P12) =
+  public override fun bind(p11: P11, p12: P12) =
       LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container, arrayOf(p11, p12))
 
-  public fun bind(p12: P12) =
+  public override fun bind(p12: P12) =
       LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container, arrayOf(p12))
 }
 
@@ -1439,59 +1063,9 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
-
-  public fun bind(
+) : LambdaCallable<R>(container),
+    Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -1509,7 +1083,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable0<R>(container,
       arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -1526,7 +1100,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable1<R, P0>(container,
       arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1542,7 +1116,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable2<R, P0, P1>(container,
       arrayOf(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -1557,7 +1131,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable3<R, P0, P1, P2>(container,
       arrayOf(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -1571,7 +1145,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
       arrayOf(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -1584,7 +1158,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
       arrayOf(p5, p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
@@ -1596,7 +1170,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
       arrayOf(p6, p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
@@ -1607,7 +1181,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
       arrayOf(p7, p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
@@ -1617,7 +1191,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
       arrayOf(p8, p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
@@ -1626,7 +1200,7 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
       arrayOf(p9, p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p10: P10,
     p11: P11,
     p12: P12,
@@ -1634,18 +1208,18 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
       arrayOf(p10, p11, p12, p13))
 
-  public fun bind(
+  public override fun bind(
     p11: P11,
     p12: P12,
     p13: P13,
   ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
       arrayOf(p11, p12, p13))
 
-  public fun bind(p12: P12, p13: P13) =
+  public override fun bind(p12: P12, p13: P13) =
       LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
       arrayOf(p12, p13))
 
-  public fun bind(p13: P13) =
+  public override fun bind(p13: P13) =
       LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
       arrayOf(p13))
 }
@@ -1693,62 +1267,9 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): R = container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
-
-  public fun bind(
+) : LambdaCallable<R>(container),
+    Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -1767,7 +1288,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable0<R>(container,
       arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -1785,7 +1306,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable1<R, P0>(container,
       arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1802,7 +1323,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable2<R, P0, P1>(container,
       arrayOf(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -1818,7 +1339,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable3<R, P0, P1, P2>(container,
       arrayOf(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -1833,7 +1354,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
       arrayOf(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -1847,7 +1368,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
       arrayOf(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
@@ -1860,7 +1381,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
       arrayOf(p6, p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
@@ -1872,7 +1393,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
       arrayOf(p7, p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
@@ -1883,7 +1404,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
       arrayOf(p8, p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
@@ -1893,7 +1414,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
       arrayOf(p9, p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p10: P10,
     p11: P11,
     p12: P12,
@@ -1902,7 +1423,7 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
       arrayOf(p10, p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p11: P11,
     p12: P12,
     p13: P13,
@@ -1910,18 +1431,18 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
       arrayOf(p11, p12, p13, p14))
 
-  public fun bind(
+  public override fun bind(
     p12: P12,
     p13: P13,
     p14: P14,
   ) = LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
       arrayOf(p12, p13, p14))
 
-  public fun bind(p13: P13, p14: P14) =
+  public override fun bind(p13: P13, p14: P14) =
       LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
       arrayOf(p13, p14))
 
-  public fun bind(p14: P14) =
+  public override fun bind(p14: P14) =
       LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container,
       arrayOf(p14))
 }
@@ -1971,66 +1492,9 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     P15> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container) {
-  public fun call(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): R =
-      container.invokeUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
-
-  public fun callDeferred(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = callDeferredUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
-
-  public operator fun invoke(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
-
-  public fun bind(
+) : LambdaCallable<R>(container),
+    Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> {
+  public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
@@ -2050,7 +1514,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable0<R>(container,
       arrayOf(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
@@ -2069,7 +1533,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable1<R, P0>(container,
       arrayOf(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -2087,7 +1551,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable2<R, P0, P1>(container,
       arrayOf(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
@@ -2104,7 +1568,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable3<R, P0, P1, P2>(container,
       arrayOf(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
@@ -2120,7 +1584,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
       arrayOf(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
@@ -2135,7 +1599,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
       arrayOf(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
@@ -2149,7 +1613,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
       arrayOf(p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
@@ -2162,7 +1626,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
       arrayOf(p7, p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
@@ -2174,7 +1638,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
       arrayOf(p8, p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
@@ -2185,7 +1649,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
       arrayOf(p9, p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p10: P10,
     p11: P11,
     p12: P12,
@@ -2195,7 +1659,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
       arrayOf(p10, p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p11: P11,
     p12: P12,
     p13: P13,
@@ -2204,7 +1668,7 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
       arrayOf(p11, p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p12: P12,
     p13: P13,
     p14: P14,
@@ -2212,18 +1676,18 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   ) = LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
       arrayOf(p12, p13, p14, p15))
 
-  public fun bind(
+  public override fun bind(
     p13: P13,
     p14: P14,
     p15: P15,
   ) = LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
       arrayOf(p13, p14, p15))
 
-  public fun bind(p14: P14, p15: P15) =
+  public override fun bind(p14: P14, p15: P15) =
       LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container,
       arrayOf(p14, p15))
 
-  public fun bind(p15: P15) =
+  public override fun bind(p15: P15) =
       LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(container,
       arrayOf(p15))
 }
