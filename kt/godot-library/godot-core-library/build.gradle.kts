@@ -26,7 +26,6 @@ java {
 dependencies {
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-internal-library"))
-    implementation(project(":godot-build-props"))
 
     testImplementation("junit", "junit", "4.12")
     testImplementation("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
