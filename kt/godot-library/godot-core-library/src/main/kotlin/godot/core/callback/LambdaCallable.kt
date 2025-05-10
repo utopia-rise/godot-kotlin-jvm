@@ -10,7 +10,7 @@ import godot.internal.memory.TransferContext
 
 open class LambdaCallable<R> internal constructor(
     protected val container: LambdaContainer<R>,
-    private var boundArgs: Array<Any?> = emptyArray()
+    protected var boundArgs: Array<out Any?> = emptyArray()
 ) : Callable {
 
     override fun getBoundArguments() = boundArgs.toList()
