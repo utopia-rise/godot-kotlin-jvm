@@ -1,0 +1,14 @@
+name: Install Linux dependencies
+description: Ensures all dependencies are installed
+
+runs:
+  using: composite
+  steps:
+  - name: Update repository cache
+    shell: sh
+    run: sudo apt-get update
+    
+  - name: Install dependencies
+    shell: sh
+    run: sudo apt-get install -y libwayland-dev
+  
