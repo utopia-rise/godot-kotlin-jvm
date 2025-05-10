@@ -218,7 +218,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
     unlink(file_user_path_global.utf8().get_data()); // we do not really care about errors here
 #endif
         Ref<DirAccess> dir_access {DirAccess::open(USER_DIRECTORY)};
-        dir_access->make_dir(JVM_DIRECTORY);
+        dir_access->make_dir_recursive(JNI_LIBS_PATH);
         dir_access->copy(file_res_path, file_user_path);
 #ifndef __ANDROID__
     }
@@ -285,6 +285,35 @@ bool GDKotlin::initialize_core_library() {
     return true;
 }
 
+#ifdef __ANDROID__
+Vector<String> GDKotlin::get_res_files_recursively(const String &path) {
+    const Ref<DirAccess> dir_access = DirAccess::open(String{"res://"} + path);
+    if (!dir_access.is_valid()) return {};
+
+    dir_access->list_dir_begin();
+    Vector<String> files;
+
+    while (true) {
+        String file_name = dir_access->get_next();
+        if (file_name.is_empty()) break;
+
+        if (file_name == "." || file_name == "..") continue;
+
+        String full_path = path.path_join(file_name);
+
+        if (dir_access->current_is_dir()) {
+            files.append_array(get_res_files_recursively(full_path));
+        } else {
+            files.push_back(full_path);
+        }
+    }
+
+    dir_access->list_dir_end();
+    return files;
+}
+#endif
+
+
 bool GDKotlin::load_user_code() {
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
@@ -295,6 +324,13 @@ bool GDKotlin::load_user_code() {
         String user_code_path {String(RES_DIRECTORY).path_join(USER_CODE_FILE)};
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
+#endif
+
+#ifdef __ANDROID__
+        for (auto file : get_res_files_recursively(JNI_LIBS_PATH)) {
+            JVM_LOG_INFO("Copying file: %s", file);
+            copy_new_file_to_user_dir(file);
+        }
 #endif
 
         if (!FileAccess::exists(user_code_path)) {

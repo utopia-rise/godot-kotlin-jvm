@@ -130,6 +130,13 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         }
     } else if (is_android_export) {
+        const String jni_libs_dir {String(RES_DIRECTORY).path_join(JVM_DIRECTORY).path_join(JNI_LIBS_BASE_DIR)};
+
+        // add jniLibs dir with native libraries per platform
+        for (const auto file : _get_files_recursively(jni_libs_dir)) {
+            files_to_add.push_back(file);
+        }
+
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
         String base_ios_build_dir {String(RES_DIRECTORY).path_join(JVM_DIRECTORY).path_join("ios")};
@@ -183,16 +190,45 @@ void KotlinEditorExportPlugin::_add_exclude_filter_preset() {
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
     }
 
-    if (const String build_dir = String {BUILD_DIRECTORY}.path_join("*"); !get_export_preset()->get_exclude_filter().contains(build_dir)) {
+    if (const String build_dir = String {BUILD_DIRECTORY}.path_join("*");
+        !get_export_preset()->get_exclude_filter().contains(build_dir)) {
         // exclude build folder
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + build_dir);
     }
 
-    if (const String jre_jars = String {"res://"} + JVM_DIRECTORY + "jre-*/**/*.jar"; !get_export_preset()->get_exclude_filter().contains(jre_jars)) {
+    if (const String jre_jars = String {"res://"} + JVM_DIRECTORY + "jre-*/**/*.jar";
+        !get_export_preset()->get_exclude_filter().contains(jre_jars)) {
         // exclude any jars in the embedded jre
         get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + jre_jars);
     }
 }
+
+Vector<String> KotlinEditorExportPlugin::_get_files_recursively(const String &path) {
+    const Ref<DirAccess> dir_access = DirAccess::open(path);
+    if (!dir_access.is_valid()) return {};
+
+    dir_access->list_dir_begin();
+    Vector<String> files;
+
+    while (true) {
+        String file_name = dir_access->get_next();
+        if (file_name.is_empty()) break;
+
+        if (file_name == "." || file_name == "..") continue;
+
+        String full_path = path.path_join(file_name);
+
+        if (dir_access->current_is_dir()) {
+            files.append_array(_get_files_recursively(full_path));
+        } else {
+            files.push_back(full_path);
+        }
+    }
+
+    dir_access->list_dir_end();
+    return files;
+}
+
 
 String KotlinEditorExportPlugin::get_name() const {
     return "Godot Kotlin/Jvm";
@@ -206,5 +242,7 @@ void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& 
         add_file(p_path, Vector<uint8_t>(), true);
     }
 }
+
+
 
 #endif
