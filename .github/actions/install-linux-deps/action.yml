@@ -10,5 +10,5 @@ runs:
     
   - name: Install dependencies
     shell: sh
-    run: sudo apt-get install -y libasound2-dev libpulse-dev libudev-dev libwayland-dev g++
+    run: sudo apt-get install -y libwayland-dev
   
