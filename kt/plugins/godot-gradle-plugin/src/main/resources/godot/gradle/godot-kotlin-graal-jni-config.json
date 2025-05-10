@@ -683,7 +683,8 @@
       { "name" : "<init>", "parameterTypes" : [] },
       { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
-      { "name" : "init", "parameterTypes": ["java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
+      { "name" : "initJar", "parameterTypes": ["java.lang.ClassLoader"]},
+      { "name" : "initNativeImage", "parameterTypes": []},
       { "name" : "finish", "parameterTypes" : [] }
     ]
   },
