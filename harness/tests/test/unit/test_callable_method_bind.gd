@@ -26,17 +26,17 @@ func test_method_bind_passing_correct_binds_with_one_args_provided() -> void:
 	binds_test_script.call_with_method_with_two_binds()
 	assert_eq(
 		binds_test_script.method_binds[0],
-		0,
+		4,
 		"Incorrect bind value passed"
 	)
 	assert_eq(
 		binds_test_script.method_binds[1],
-		2,
+		5,
 		"Incorrect bind value passed"
 	)
 	assert_eq(
 		binds_test_script.method_binds[2],
-		3,
+		6,
 		"Incorrect bind value passed"
 	)
 	binds_test_script.free()
@@ -46,17 +46,17 @@ func test_method_bind_passing_correct_binds_with_two_args_provided() -> void:
 	binds_test_script.call_with_method_with_one_bind()
 	assert_eq(
 		binds_test_script.method_binds[0],
-		0,
+		7,
 		"Incorrect bind value passed"
 	)
 	assert_eq(
 		binds_test_script.method_binds[1],
-		0,
+		8,
 		"Incorrect bind value passed"
 	)
 	assert_eq(
 		binds_test_script.method_binds[2],
-		3,
+		9,
 		"Incorrect bind value passed"
 	)
 	binds_test_script.free()
@@ -66,17 +66,17 @@ func test_method_bind_passing_correct_binds_with_three_args_provided() -> void:
 	binds_test_script.call_with_method_with_no_bind()
 	assert_eq(
 		binds_test_script.method_binds[0],
-		0,
+		10,
 		"Incorrect bind value passed"
 	)
 	assert_eq(
 		binds_test_script.method_binds[1],
-		0,
+		11,
 		"Incorrect bind value passed"
 	)
 	assert_eq(
 		binds_test_script.method_binds[2],
-		0,
+		12,
 		"Incorrect bind value passed"
 	)
 	binds_test_script.free()

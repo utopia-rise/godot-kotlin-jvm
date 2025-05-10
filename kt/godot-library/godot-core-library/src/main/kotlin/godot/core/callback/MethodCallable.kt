@@ -6,11 +6,13 @@ import godot.api.Object
 import godot.core.Callable.Bridge
 import godot.internal.memory.MemoryManager
 
-class MethodCallable internal constructor(
-    private val target: Object,
-    private val methodName: StringName,
-    private var boundArgs: Array<Any?> = emptyArray()
+open class MethodCallable internal constructor(
+    protected val target: Object,
+    protected val methodName: StringName,
+    protected var boundArgs: Array<out Any?> = emptyArray()
 ) : Callable {
+
+    constructor(target: Object, methodName: StringName) : this(target, methodName, emptyArray())
 
     override fun getBoundArguments() = boundArgs.toList()
     override fun getBoundArgumentCount() = boundArgs.size
@@ -38,11 +40,5 @@ class MethodCallable internal constructor(
             return unbound.bindUnsafe(*boundArgs)
         }
         return unbound
-    }
-
-    companion object {
-        @JvmStatic
-        @JvmName("create")
-        operator fun invoke(target: Object, methodName: StringName) = MethodCallable(target, methodName)
     }
 }
