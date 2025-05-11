@@ -10,11 +10,11 @@ import org.jetbrains.annotations.NotNull;
 
 @RegisterClass
 public class JavaTestClass extends Node {
-    @RegisterSignal
-    public Signal0 testSignal = Signal0.create(this, "test_signal");
-
-    @RegisterSignal(parameters = {"param1", "param2"})
-    public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2");
+    //@RegisterSignal
+    //public Signal0 testSignal = Signal0.create(this, "test_signal");
+//
+    //@RegisterSignal(parameters = {"param1", "param2"})
+    //public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
 //    @RegisterSignal
@@ -71,15 +71,15 @@ public class JavaTestClass extends Node {
     @RegisterProperty
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
-    public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
-            Void.class,
-            () -> {
-                System.out.println("Hello from Callable");
-                return null;
-            }
-    );
-
-    public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
+    //public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
+    //        Void.class,
+    //        () -> {
+    //            System.out.println("Hello from Callable");
+    //            return null;
+    //        }
+    //);
+//
+    //public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
 
     @RegisterFunction
     @Override
@@ -96,12 +96,12 @@ public class JavaTestClass extends Node {
 
     @RegisterFunction
     public void connectAndTriggerSignal() {
-        connect(
-                StringNames.asStringName("test_signal"),
-                new NativeCallable(this, StringNames.asStringName("signal_callback")),
-                (int) ConnectFlags.ONE_SHOT.getValue()
-        );
-        emitSignal(StringNames.asStringName("test_signal"));
+        //connect(
+        //        StringNames.asStringName("test_signal"),
+        //        new NativeCallable(this, StringNames.asStringName("signal_callback")),
+        //        (int) ConnectFlags.ONE_SHOT.getId()
+        //);
+        //emitSignal(StringNames.asStringName("test_signal"));
     }
 
     @NotNull

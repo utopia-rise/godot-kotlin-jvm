@@ -5,6 +5,7 @@ import godot.common.interop.ObjectID
 import godot.common.interop.VariantConverter
 import godot.common.interop.nullptr
 import godot.common.util.toRealT
+import godot.core.Signal
 import godot.internal.memory.LongStringQueue
 import java.nio.ByteBuffer
 import kotlin.enums.EnumEntries
@@ -285,14 +286,14 @@ enum class VariantParser(override val id: Int) : VariantConverter {
         }
     },
     AABB(16) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer): godot.core.AABB {
+        override fun toUnsafeKotlin(buffer: ByteBuffer): AABB {
             val position = buffer.vector3
             val size = buffer.vector3
             return AABB(position, size)
         }
 
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            require(any is godot.core.AABB)
+            require(any is AABB)
             buffer.vector3 = any._position
             buffer.vector3 = any._size
         }
@@ -365,26 +366,21 @@ enum class VariantParser(override val id: Int) : VariantConverter {
     },
     OBJECT(24) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = buffer.obj
-
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
             require(any is KtObject?)
             buffer.obj = any
         }
     },
     CALLABLE(25) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer): Callable {
-            val ptr = buffer.long
-            return NativeCallable(ptr)
-        }
-
+        override fun toUnsafeKotlin(buffer: ByteBuffer) = VariantCallable(buffer.long)
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            if (any is NativeCallable) {
-                buffer.bool = false
+            if (any is VariantCallable) {
                 buffer.putLong(any.ptr)
             } else {
-                require(any is LambdaCallable<*>)
-                buffer.bool = true
-                buffer.putLong(any.wrapInCustomCallable())
+                require(any is LambdaCallable<*> || any is MethodCallable)
+                // Be careful that ::toNativeCallable doesn't itself use the shared buffer.
+                val ptr = any.toNativeCallable().ptr
+                buffer.putLong(ptr)
             }
         }
     },

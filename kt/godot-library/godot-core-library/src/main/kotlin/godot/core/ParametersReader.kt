@@ -12,14 +12,10 @@ internal open class ParametersReader {
         }
     }
 
-    private fun resetParamsArray() {
-        paramsArray.fill(null)
-    }
-
     internal inline fun withParameters(types: Array<VariantConverter>, code: () -> Unit) {
         TransferContext.readArguments(types, paramsArray)
         code()
-        resetParamsArray()
+        paramsArray.fill(null, 0, types.size)
     }
 
     internal inline fun <R> withParametersReturn(
@@ -28,7 +24,7 @@ internal open class ParametersReader {
     ): Any? {
         TransferContext.readArguments(types, paramsArray)
         val ret = code()
-        resetParamsArray()
+        paramsArray.fill(null, 0, types.size)
         return ret
     }
 }

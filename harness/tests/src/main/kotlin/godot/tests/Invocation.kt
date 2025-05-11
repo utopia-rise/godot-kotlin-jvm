@@ -42,6 +42,7 @@ import godot.extension.getNodeAs
 import godot.registration.Range
 import godot.tests.subpackage.OtherScript
 import godot.common.util.RealT
+import godot.core.connect
 import org.joda.time.DateTime
 
 enum class TestEnum {

@@ -14,19 +14,16 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
-import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
-import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.kotlinCoroutinePackage
 import godot.tools.common.constants.kotlinxCoroutinePackage
 import java.io.File
 
 private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
 private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val connectThreadSafe = MemberName(godotExtensionPackage, "connectThreadSafe")
+private val promise = MemberName(godotCorePackage, "promise")
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
 private const val cancel = "cancel"
 
@@ -138,14 +135,10 @@ object AwaitGenerationService : IAwaitGenerationService {
         return this
             .beginControlFlow("return·%M", suspendCancellableCoroutine)
             .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
-            .beginControlFlow("%M(", connectThreadSafe)
-            .addStatement("$lambdaParametersWithType·->")
-            .addStatement("cont.%M($resumeParameters)", resume)
-            .endControlFlow()
-            .beginControlFlow(".%M", AS_CALLABLE_UTIL_FUNCTION)
-            .addStatement("cont.%L()", cancel)
-            .endControlFlow()
-            .addCode(",·%T.ConnectFlags.ONE_SHOT.value.toInt())", GODOT_OBJECT)
+            .addStatement("%M(", promise)
+            .addStatement("{·$lambdaParametersWithType·->·cont.%M($resumeParameters)·},", resume)
+            .addStatement("{·cont.%L()·},", cancel)
+            .addStatement(")")
             .endControlFlow()
     }
 }
