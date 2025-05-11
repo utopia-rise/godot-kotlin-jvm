@@ -60,7 +60,6 @@ namespace jni {
         return obj == nullptr;
     }
 
-
     bool JObject::is_same_object(Env& env, const JObject& other) const {
         return env.is_same_object(obj, other.obj);
     }
@@ -142,27 +141,27 @@ namespace jni {
         return JObject(ret);
     }
 
-    JByteArray::JByteArray(Env& env, const jsize size) : JArray() {
+    JByteArray::JByteArray(Env& env, const jsize size) {
         // Allocate an Array with reserved size;
         obj = env.env->NewByteArray(size);
     }
 
-    JIntArray::JIntArray(Env& env, const jsize size) : JArray() {
+    JIntArray::JIntArray(Env& env, const jsize size) {
         // Allocate an Array with reserved size;
         obj = env.env->NewIntArray(size);
     }
 
-    JLongArray::JLongArray(Env& env, const jsize size) : JArray() {
+    JLongArray::JLongArray(Env& env, const jsize size) {
         // Allocate an Array with reserved size;
         obj = env.env->NewLongArray(size);
     }
 
-    JFloatArray::JFloatArray(Env& env, const jsize size) : JArray() {
+    JFloatArray::JFloatArray(Env& env, const jsize size) {
         // Allocate an Array with reserved size;
         obj = env.env->NewFloatArray(size);
     }
 
-    JDoubleArray::JDoubleArray(Env& env, const jsize size) : JArray() {
+    JDoubleArray::JDoubleArray(Env& env, const jsize size) {
         // Allocate an Array with reserved size;
         obj = env.env->NewDoubleArray(size);
     }
