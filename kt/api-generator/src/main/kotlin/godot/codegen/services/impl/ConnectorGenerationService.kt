@@ -20,26 +20,30 @@ import godot.tools.common.constants.GODOT_SIGNAL_CONNECTOR
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
+import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotExtensionPackage
 import java.io.File
 import kotlin.reflect.KCallable
 
 object ConnectorGenerationService : IConnectorGenerationService {
     private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
     private const val SIGNAL_CLASS_NAME = "Signal"
-    private const val CONNECT_METHOD_NAME = "connect"
+    private const val CONNECT_METHOD_METHOD_NAME = "connectMethod"
+    private const val CONNECT_LAMBDA_METHOD_NAME = "connectLambda"
     private const val PROMISE_METHOD_NAME = "promise"
     private const val METHOD_PARAMETER_NAME = "method"
     private const val CANCEL_PARAMETER_NAME = "cancel"
     private const val FLAGS_PARAMETER_NAME = "flags"
     private const val TARGET_PARAMETER_NAME = "target"
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
-    private val connectFlagClassName = ClassName(godotCorePackage, "Object.ConnectFlags")
+    private val connectFlagClassName = ClassName(godotApiPackage, "Object.ConnectFlags")
     private val variantConverterClassName = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantParser)
     private val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
+    private val asCallableMember= MemberName(godotCorePackage, "asCallable")
 
     override fun generate(output: File) {
-        val connectorFileSpec = FileSpec.builder(godotCorePackage, "SignalConnectors")
+        val connectorFileSpec = FileSpec.builder(godotExtensionPackage, "SignalConnectors")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
@@ -53,7 +57,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
 
             connectorFileSpec.addFunction(
                 genericClassNameInfo
-                    .toReifiedExtensionFunSpecBuilder(CONNECT_METHOD_NAME)
+                    .toReifiedExtensionFunSpecBuilder(CONNECT_LAMBDA_METHOD_NAME)
                     .addParameters(
                         listOf(
                             flagsParameter,
@@ -72,14 +76,15 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .addCode(
                         CodeBlock.of(
                             """ 
-                                val connector = %T(
+                                val connector = %T.createUnsafe(
                                     this, 
-                                    $METHOD_PARAMETER_NAME.asCallable()
+                                    $METHOD_PARAMETER_NAME.%M()
                                 )
                                 connector.connect($FLAGS_PARAMETER_NAME)
                                 return connector
                             """.trimIndent(),
                             GODOT_SIGNAL_CONNECTOR,
+                            asCallableMember
                         )
                     )
                     .returns(
@@ -93,7 +98,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
 
             connectorFileSpec.addFunction(
                 genericClassNameInfo
-                    .toExtensionFunSpecBuilder(CONNECT_METHOD_NAME, listOf(godotObjectBoundTypeVariable))
+                    .toExtensionFunSpecBuilder(CONNECT_METHOD_METHOD_NAME, listOf(godotObjectBoundTypeVariable))
                     .addParameters(
                         listOf(
                             ParameterSpec
@@ -109,7 +114,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .addCode(
                         CodeBlock.of(
                             """ 
-                                val connector = %T(
+                                val connector = %T.createUnsafe(
                                     this, 
                                     %T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M())
                                 )
@@ -122,6 +127,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                             TO_GODOT_NAME_UTIL_FUNCTION,
                         )
                     )
+                    .addAnnotation(JvmSynthetic::class)
                     .build()
             )
 

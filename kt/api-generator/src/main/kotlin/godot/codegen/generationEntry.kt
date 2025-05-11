@@ -11,14 +11,14 @@ import godot.codegen.services.impl.CallableGenerationService
 import godot.codegen.services.impl.SignalGenerationService
 import java.io.File
 
-fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
+fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File, extensionDir: File) {
     val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
     val generationService: IApiGenerationService = ApiGenerationService(apiDescription)
     generationService.generateApi(coreDir, apiDir)
 
     SignalGenerationService.generate(coreDir)
     CallableGenerationService.generate(coreDir)
-    ConnectorGenerationService.generate(coreDir)
+    ConnectorGenerationService.generate(extensionDir)
 }
 
 fun generateCoroutine(outputDir: File) {

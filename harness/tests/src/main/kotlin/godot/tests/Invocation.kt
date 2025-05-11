@@ -38,11 +38,11 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
-import godot.extension.getNodeAs
 import godot.registration.Range
 import godot.tests.subpackage.OtherScript
 import godot.common.util.RealT
-import godot.core.connect
+import godot.extension.api.getNodeAs
+import godot.extension.connectMethod
 import org.joda.time.DateTime
 
 enum class TestEnum {
@@ -371,7 +371,7 @@ class Invocation : Node3D() {
         val path = NodePath("CanvasLayer/Button")
         val getNode2 = getNodeAs<Button>(path)
 
-        (getNodeOrNull(path) as Button?)?.pressed?.connect(
+        (getNodeOrNull(path) as Button?)?.pressed?.connectMethod(
             invocation,
             OtherScript::hookNoParam
         )

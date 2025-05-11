@@ -42,10 +42,14 @@ open class GenerateAPI : DefaultTask() {
         val apiOutput = apiOutputDir.get().asFile
         apiOutput.deleteRecursively()
 
+        val extensionOutput = extensionOutputDir.get().asFile
+        extensionOutput.deleteRecursively()
+
         generateApiFrom(
             sourceJson.get().asFile,
             coreOutput,
             apiOutput,
+            extensionOutput
         )
 
         val coroutineOutput = coroutineOutputDir.get().asFile

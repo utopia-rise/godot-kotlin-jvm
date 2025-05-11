@@ -11,10 +11,11 @@ import godot.core.Signal2
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.asStringName
-import godot.core.connect
 import godot.core.signal0
 import godot.core.signal1
 import godot.core.signal2
+import godot.extension.connectLambda
+import godot.extension.connectMethod
 import godot.tests.subpackage.OtherScript
 
 @RegisterClass
@@ -44,34 +45,34 @@ class SignalTest : Node() {
     @RegisterFunction
     override fun _ready() {
 
-        noParamSignalDelegate.connect(otherScript, OtherScript::hookNoParam)
-        oneParamSignalDelegate.connect(otherScript, OtherScript::hookOneParam)
-        twoParamSignalDelegate.connect(otherScript, OtherScript::hookTwoParam)
+        noParamSignalDelegate.connectMethod(otherScript, OtherScript::hookNoParam)
+        oneParamSignalDelegate.connectMethod(otherScript, OtherScript::hookOneParam)
+        twoParamSignalDelegate.connectMethod(otherScript, OtherScript::hookTwoParam)
 
-        noParamSignalDelegate.connect { println("noParam signal emitted") }
-        oneParamSignalDelegate.connect { b -> println("oneParam signal emitted with $b") }
-        twoParamSignalDelegate.connect { p0, p1 -> println("twoParam signal emitted with $p0 and $p1") }
+        noParamSignalDelegate.connectLambda { println("noParam signal emitted") }
+        oneParamSignalDelegate.connectLambda { b -> println("oneParam signal emitted with $b") }
+        twoParamSignalDelegate.connectLambda { p0, p1 -> println("twoParam signal emitted with $p0 and $p1") }
 
         noParamSignalDelegate.emit()
         oneParamSignalDelegate.emit(false)
         twoParamSignalDelegate.emit("My Awesome param !", this)
 
 
-        noParamSignalField.connect(otherScript, OtherScript::hookNoParam)
-        oneParamSignalField.connect(otherScript, OtherScript::hookOneParam)
-        twoParamSignalField.connect(otherScript, OtherScript::hookTwoParam)
+        noParamSignalField.connectMethod(otherScript, OtherScript::hookNoParam)
+        oneParamSignalField.connectMethod(otherScript, OtherScript::hookOneParam)
+        twoParamSignalField.connectMethod(otherScript, OtherScript::hookTwoParam)
 
-        noParamSignalField.connect { println("noParam signal emitted") }
-        oneParamSignalField.connect { b -> println("oneParam signal emitted with $b") }
-        twoParamSignalField.connect { p0, p1 -> println("twoParam signal emitted with $p0 and $p1") }
+        noParamSignalField.connectLambda { println("noParam signal emitted") }
+        oneParamSignalField.connectLambda { b -> println("oneParam signal emitted with $b") }
+        twoParamSignalField.connectLambda { p0, p1 -> println("twoParam signal emitted with $p0 and $p1") }
 
         noParamSignalField.emit()
         oneParamSignalField.emit(false)
         twoParamSignalField.emit("My Awesome param !", this)
 
 
-        signalWithMultipleTargets.connect(this, SignalTest::targetFunctionOne)
-        signalWithMultipleTargets.connect(this, SignalTest::targetFunctionTwo)
+        signalWithMultipleTargets.connectMethod(this, SignalTest::targetFunctionOne)
+        signalWithMultipleTargets.connectMethod(this, SignalTest::targetFunctionTwo)
         signalWithMultipleTargets.emit(Vector2(0, 0))
     }
 

@@ -138,7 +138,6 @@ object CallableGenerationService : ICallableGenerationService {
                 .primaryConstructor(
                     FunSpec
                         .constructorBuilder()
-                        .addModifiers(KModifier.INTERNAL)
                         .addParameter(
                             ParameterSpec
                                 .builder(
@@ -163,7 +162,6 @@ object CallableGenerationService : ICallableGenerationService {
                                 )
                                 .build()
                         )
-                        .addAnnotation(PublishedApi::class)
                         .build()
                 )
                 .addFunction(

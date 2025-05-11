@@ -8,10 +8,9 @@ package godot.core
 import godot.common.interop.VariantConverter
 import kotlin.Any
 import kotlin.Array
-import kotlin.PublishedApi
 import kotlin.Suppress
 
-public class LambdaContainer0<R> @PublishedApi internal constructor(
+public class LambdaContainer0<R>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: () -> R,
@@ -20,7 +19,7 @@ public class LambdaContainer0<R> @PublishedApi internal constructor(
       (function as? () -> R)?.invoke()?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer1<R, P0> @PublishedApi internal constructor(
+public class LambdaContainer1<R, P0>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (p0: P0) -> R,
@@ -29,7 +28,7 @@ public class LambdaContainer1<R, P0> @PublishedApi internal constructor(
       (function as? (p0: Any?) -> R)?.invoke(args[0])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer2<R, P0, P1> @PublishedApi internal constructor(
+public class LambdaContainer2<R, P0, P1>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (p0: P0, p1: P1) -> R,
@@ -38,7 +37,7 @@ public class LambdaContainer2<R, P0, P1> @PublishedApi internal constructor(
       p1: Any?) -> R)?.invoke(args[0], args[1])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer3<R, P0, P1, P2> @PublishedApi internal constructor(
+public class LambdaContainer3<R, P0, P1, P2>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -54,7 +53,7 @@ public class LambdaContainer3<R, P0, P1, P2> @PublishedApi internal constructor(
   ) -> R)?.invoke(args[0], args[1], args[2])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer4<R, P0, P1, P2, P3> @PublishedApi internal constructor(
+public class LambdaContainer4<R, P0, P1, P2, P3>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -72,7 +71,7 @@ public class LambdaContainer4<R, P0, P1, P2, P3> @PublishedApi internal construc
   ) -> R)?.invoke(args[0], args[1], args[2], args[3])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer5<R, P0, P1, P2, P3, P4> @PublishedApi internal constructor(
+public class LambdaContainer5<R, P0, P1, P2, P3, P4>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -92,7 +91,7 @@ public class LambdaContainer5<R, P0, P1, P2, P3, P4> @PublishedApi internal cons
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
+public class LambdaContainer6<R, P0, P1, P2, P3, P4, P5>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -114,7 +113,7 @@ public class LambdaContainer6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal 
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal constructor(
+public class LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -138,7 +137,7 @@ public class LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi inter
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal constructor(
+public class LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -164,8 +163,7 @@ public class LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi i
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal
-    constructor(
+public class LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -193,8 +191,7 @@ public class LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedA
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi internal
-    constructor(
+public class LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -224,8 +221,7 @@ public class LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publi
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
-    internal constructor(
+public class LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -257,8 +253,7 @@ public class LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @PublishedApi
-    internal constructor(
+public class LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -292,8 +287,7 @@ public class LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-    @PublishedApi internal constructor(
+public class LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -329,8 +323,7 @@ public class LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-    @PublishedApi internal constructor(
+public class LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -368,8 +361,7 @@ public class LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
   ) -> R)?.invoke(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12], args[13])?: throw InvalidJvmLambdaException()
 }
 
-public class LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-    @PublishedApi internal constructor(
+public class LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (
@@ -410,7 +402,7 @@ public class LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P
 }
 
 public class LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14,
-    P15> @PublishedApi internal constructor(
+    P15>(
   returnConverter: VariantConverter,
   typeConverters: Array<VariantConverter>,
   function: (

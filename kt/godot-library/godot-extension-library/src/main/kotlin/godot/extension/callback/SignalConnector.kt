@@ -1,10 +1,13 @@
-@file:Suppress("PackageDirectoryMismatch")
+@file:Suppress("PackageDirectoryMismatch", "unused")
 
-package godot.core
+package godot.extension
 
 import godot.api.Object.ConnectFlags
+import godot.core.Callable
+import godot.core.Signal
+import godot.core.Error
 
-class SignalConnector(
+class SignalConnector internal constructor(
     private val signal: Signal,
     private val callable: Callable,
 ) {
@@ -12,4 +15,9 @@ class SignalConnector(
     fun disconnect(): Unit = signal.disconnectUnsafe(callable)
     fun isConnected(): Boolean = signal.isConnected(callable)
     fun isValid(): Boolean = signal.isValid() && callable.isValid()
+
+    companion object {
+        @JvmStatic
+        fun createUnsafe(signal: Signal, callable: Callable,) = SignalConnector(signal, callable)
+    }
 }

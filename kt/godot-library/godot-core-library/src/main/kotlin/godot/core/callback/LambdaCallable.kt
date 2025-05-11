@@ -6,6 +6,7 @@ import godot.common.interop.ObjectID
 import godot.common.interop.VariantConverter
 import godot.core.Callable.Bridge
 import godot.internal.logging.GodotLogging
+import godot.internal.memory.ParametersReader
 import godot.internal.memory.TransferContext
 
 open class LambdaCallable<R> internal constructor(
