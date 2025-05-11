@@ -17,7 +17,6 @@ import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
-import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.kotlinCoroutinePackage
 import godot.tools.common.constants.kotlinxCoroutinePackage
 import java.io.File
