@@ -41,10 +41,4 @@ open class MethodCallable internal constructor(
         }
         return unbound
     }
-
-    companion object {
-        @JvmStatic
-        @JvmName("create")
-        operator fun invoke(target: Object, methodName: StringName) = MethodCallable(target, methodName)
-    }
 }

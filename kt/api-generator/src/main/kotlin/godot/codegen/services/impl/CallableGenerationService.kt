@@ -292,11 +292,10 @@ object CallableGenerationService : ICallableGenerationService {
                     FunSpec.builder("bind")
                         .addModifiers(KModifier.OVERRIDE)
                         .addParameters(
-                            typeVariables
-                                .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
-                                    ParameterSpec.builder("p${index + remainingParameters}", typeVariableName)
-                                        .build()
-                                }
+                            typeVariables.mapIndexed { index: Int, typeVariableName: TypeVariableName ->
+                                ParameterSpec.builder("p${index + remainingParameters}", typeVariableName)
+                                    .build()
+                            }
                         )
                         .addCode(
                             buildString {
@@ -354,7 +353,6 @@ object CallableGenerationService : ICallableGenerationService {
                 FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
                     .addTypeVariables(genericParameters.map { it.copy(reified = true) })
-                    .addTypeVariable(returnTypeParameter.copy(reified = true))
                     .addModifiers(KModifier.INLINE)
                     .addParameters(
                         listOf(
@@ -401,7 +399,6 @@ object CallableGenerationService : ICallableGenerationService {
                         .builder(GodotFunctions.asCallable)
                         .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addTypeVariables(genericParameters.map { it.copy(reified = true) })
-                        .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addModifiers(KModifier.INLINE)
                         .receiver(lambdaTypeName)
                         .addCode("return·$CALLABLE_FUNCTION_NAME$argCount(this)")

@@ -5,7 +5,6 @@ import godot.common.interop.ObjectID
 import godot.common.interop.VariantConverter
 import godot.common.interop.nullptr
 import godot.common.util.toRealT
-import godot.core.Signal
 import godot.internal.memory.LongStringQueue
 import java.nio.ByteBuffer
 import kotlin.enums.EnumEntries
