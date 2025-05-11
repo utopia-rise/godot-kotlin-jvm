@@ -5,7 +5,6 @@ import godot.common.interop.ObjectID
 import godot.common.interop.VariantConverter
 import godot.common.interop.nullptr
 import godot.common.util.toRealT
-import godot.core.Signal
 import godot.internal.memory.LongStringQueue
 import java.nio.ByteBuffer
 import kotlin.enums.EnumEntries
@@ -374,14 +373,9 @@ enum class VariantParser(override val id: Int) : VariantConverter {
     CALLABLE(25) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = VariantCallable(buffer.long)
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            if (any is VariantCallable) {
-                buffer.putLong(any.ptr)
-            } else {
-                require(any is LambdaCallable<*> || any is MethodCallable)
-                // Be careful that ::toNativeCallable doesn't itself use the shared buffer.
-                val ptr = any.toNativeCallable().ptr
-                buffer.putLong(ptr)
-            }
+            require(any is Callable)
+            // Be careful that ::toNativeCallable doesn't itself use the shared buffer.
+            buffer.putLong(any.toNativeCallable().ptr)
         }
     },
     SIGNAL(26) {

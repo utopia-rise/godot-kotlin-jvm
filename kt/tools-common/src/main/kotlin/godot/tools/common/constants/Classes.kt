@@ -256,6 +256,7 @@ val GODOT_LAMBDA_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.lamb
 val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionary)
 val GODOT_OBJECT = ClassName(godotApiPackage, GodotKotlinJvmTypes.obj)
 val KT_OBJECT = ClassName(godotCorePackage, GodotKotlinJvmTypes.ktObject)
+val STRING_NAME = ClassName(godotCorePackage, GodotKotlinJvmTypes.stringName)
 
 val VARIANT_PARSER_NIL = ClassName(variantParserPackage, "NIL")
 val VARIANT_PARSER_BOOL = ClassName(variantParserPackage, "BOOL")

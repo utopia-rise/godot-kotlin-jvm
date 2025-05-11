@@ -12,11 +12,6 @@ open class Signal internal constructor(
     val name: StringName
 ) : CoreType {
 
-    internal constructor(instance: Object, jvmName: String) : this(
-        instance,
-        jvmName.convertToSnakeCase().asStringName()
-    )
-
     fun emitUnsafe(vararg args: Any?) {
         godotObject.emitSignal(name, *args)
     }
