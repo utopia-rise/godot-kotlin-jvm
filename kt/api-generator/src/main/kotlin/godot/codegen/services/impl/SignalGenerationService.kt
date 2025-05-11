@@ -17,24 +17,31 @@ import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.ISignalGenerationService
 import godot.common.constants.Constraints
 import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.STRING_NAME
+import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinReflectPackage
 import java.io.File
 
 object SignalGenerationService : ISignalGenerationService {
-
+    private const val CALLABLE_NAME = "Callable"
     private const val SIGNAL_CLASS_NAME = "Signal"
+
     private const val INSTANCE_PARAMETER = "instance"
     private const val NAME_PARAMETER = "name"
     private const val PROPERTY_PARAMETER = "property"
     private const val THIS_REF_PARAMETER_NAME = "thisRef"
+    private const val CONNECT_PARAMETER_NAME = "connect"
 
     private const val EMIT_METHOD_NAME = "emit"
+    private const val CONNECT_METHOD_NAME = "connect"
     private const val SIGNAL_METHOD_NAME = "signal"
+    private const val FLAGS_PARAMETER_NAME = "flags"
 
     private const val UNSAFE_SUFFIX = "Unsafe"
     private const val DELEGATE_PROPERTY_NAME = "delegate"
 
+    private val connectFlagClassName = ClassName(godotCorePackage, "Object.ConnectFlags")
     private val propertyClassname = ClassName(kotlinReflectPackage, "KProperty").parameterizedBy(STAR)
     private val readOnlyPropertyClassName = ClassName("kotlin.properties", "ReadOnlyProperty")
 
@@ -67,7 +74,7 @@ object SignalGenerationService : ISignalGenerationService {
     }
 
     private fun generateSignalClass(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
-
+        val callableClassName = ClassName(godotCorePackage, CALLABLE_NAME + argCount)
         return genericClassNameInfo
             .toTypeSpecBuilder()
             .superclass(ClassName(godotCorePackage, SIGNAL_CLASS_NAME))
@@ -77,7 +84,7 @@ object SignalGenerationService : ISignalGenerationService {
                     .addParameters(
                         listOf(
                             ParameterSpec.builder(INSTANCE_PARAMETER, GODOT_OBJECT).build(),
-                            ParameterSpec.builder(NAME_PARAMETER, STRING).build()
+                            ParameterSpec.builder(NAME_PARAMETER, STRING_NAME).build()
                         )
                     )
                     .addAnnotation(PublishedApi::class)
@@ -102,6 +109,25 @@ object SignalGenerationService : ISignalGenerationService {
                                     }
                                     append(')')
                                 }
+                            )
+                        )
+                        .build(),
+                    FunSpec.builder(CONNECT_METHOD_NAME)
+                        .returns(UNIT)
+                        .addParameters(
+                            listOf(
+                                ParameterSpec.builder(
+                                    CONNECT_PARAMETER_NAME,
+                                    callableClassName.parameterizedBy(listOf(STAR) + genericClassNameInfo.genericTypes)
+                                ).build(),
+                                ParameterSpec.builder(FLAGS_PARAMETER_NAME, connectFlagClassName)
+                                    .defaultValue("%T.%L", connectFlagClassName, "DEFAULT")
+                                    .build()
+                            )
+                        )
+                        .addCode(
+                            CodeBlock.of(
+                                "connectUnsafe($CONNECT_PARAMETER_NAME, $FLAGS_PARAMETER_NAME)"
                             )
                         )
                         .build(),
@@ -139,8 +165,9 @@ object SignalGenerationService : ISignalGenerationService {
                     .returns(genericClassNameInfo.genericClassName)
                     .addCode(
                         CodeBlock.of(
-                            "return·%T(thisRef,·property.name)",
+                            "return·%T(thisRef,·property.%M())",
                             genericClassNameInfo.className,
+                            TO_GODOT_NAME_UTIL_FUNCTION
                         )
                     )
                     .build()
@@ -157,8 +184,9 @@ object SignalGenerationService : ISignalGenerationService {
             .addParameter(ParameterSpec.builder("signalName", STRING).build())
             .addCode(
                 CodeBlock.of(
-                    "return·%T(this,·signalName)",
+                    "return·%T(this,·signalName.%M())",
                     genericClassNameInfo.genericClassName,
+                    TO_GODOT_NAME_UTIL_FUNCTION
                 )
             )
             .addAnnotation(
