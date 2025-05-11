@@ -246,7 +246,7 @@ object GodotTypes {
     )
 }
 
-val GODOT_SIGNAL_CONNECTOR = ClassName(godotCorePackage, GodotKotlinJvmTypes.connector)
+val GODOT_SIGNAL_CONNECTOR = ClassName(godotExtensionPackage, GodotKotlinJvmTypes.connector)
 val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)

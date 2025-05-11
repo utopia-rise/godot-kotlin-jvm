@@ -17,13 +17,14 @@ import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
+import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.kotlinCoroutinePackage
 import godot.tools.common.constants.kotlinxCoroutinePackage
 import java.io.File
 
 private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
 private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val promise = MemberName(godotCorePackage, "promise")
+private val promise = MemberName(godotExtensionPackage, "promise")
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
 private const val cancel = "cancel"
 

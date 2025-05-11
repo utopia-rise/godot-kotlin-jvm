@@ -123,13 +123,11 @@ interface Callable : CoreType {
     fun toNativeCallable(): VariantCallable
 
     companion object {
-        @JvmStatic
-        @JvmName("create")
+        @JvmSynthetic
         operator fun invoke() = VariantCallable()
 
         @JvmStatic
-        @JvmName("create")
-        operator fun invoke(target: Object, methodName: StringName) = MethodCallable(target, methodName)
+        fun createUnsafe(target: Object, methodName: StringName) = MethodCallable(target, methodName)
     }
 
     @Suppress("FunctionName")
@@ -140,13 +138,13 @@ interface Callable : CoreType {
             methodNamePtr: VoidPtr
         ): VoidPtr
         external fun engine_call_constructor_lambda_callable(
-            callable: LambdaContainer<*>,
+            container: LambdaContainer<*>,
             variantTypeOrdinal: Int,
             hashCode: Int,
         ): VoidPtr
 
         external fun engine_call_constructor_cancellable(
-            callable: LambdaContainer<*>,
+            container: LambdaContainer<*>,
             variantTypeOrdinal: Int,
             hashCode: Int,
         )
@@ -171,3 +169,5 @@ interface Callable : CoreType {
         external fun engine_call_unbind(handle: VoidPtr)
     }
 }
+
+fun unsafeCallable(target: Object, methodName: StringName) = MethodCallable(target, methodName)

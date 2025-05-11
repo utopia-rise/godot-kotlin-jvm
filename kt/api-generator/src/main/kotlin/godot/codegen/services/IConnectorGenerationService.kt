@@ -3,5 +3,5 @@ package godot.codegen.services
 import java.io.File
 
 interface IConnectorGenerationService {
-    fun generate(output: File)
+    fun generate(extensionDir: File)
 }

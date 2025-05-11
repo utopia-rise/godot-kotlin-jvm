@@ -8,8 +8,8 @@ import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.core.callable0
 import godot.core.callable1
-import godot.core.connect
 import godot.core.signal0
+import godot.extension.connectMethod
 
 @RegisterClass
 class FuncRefTest : Node() {
@@ -31,7 +31,7 @@ class FuncRefTest : Node() {
 
     @RegisterFunction
     override fun _ready() {
-        test.connect(this, FuncRefTest::testSignalCallback)
+        test.connectMethod(this, FuncRefTest::testSignalCallback)
     }
 
     @Rpc
