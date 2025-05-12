@@ -2,6 +2,6 @@ package godot.codegen.services
 
 import java.io.File
 
-interface ILambdaCallableGenerationService {
+interface ICallableGenerationService {
     fun generate(outputDir: File)
 }

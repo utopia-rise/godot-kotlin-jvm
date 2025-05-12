@@ -5,6 +5,7 @@ package godot.core
 import godot.common.extensions.convertToSnakeCase
 import godot.common.interop.VariantConverter
 import godot.internal.logging.GodotLogging
+import godot.internal.memory.ParametersReader
 import godot.internal.memory.TransferContext
 
 data class KtFunctionInfo(

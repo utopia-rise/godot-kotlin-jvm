@@ -10,7 +10,7 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.UNIT
 import godot.tools.common.constants.GODOT_ARRAY
-import godot.tools.common.constants.GODOT_CALLABLE_BASE
+import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_DICTIONARY
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.VARIANT_CASTER_ANY
@@ -113,7 +113,7 @@ fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     type.identifier == GodotTypes.float -> DOUBLE
     type.identifier == GodotTypes.string -> STRING
     type.identifier == GodotTypes.variant -> ANY
-    type.identifier == GodotTypes.callable -> GODOT_CALLABLE_BASE
+    type.identifier == GodotTypes.callable -> GODOT_CALLABLE
     type.identifier == GodotTypes.array || type.isTypedArray() -> GODOT_ARRAY
     type.identifier == GodotTypes.dictionary -> GODOT_DICTIONARY
     type.isCoreType() -> ClassName(godotCorePackage, type.identifier)

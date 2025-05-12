@@ -4,20 +4,19 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
-    JVM_SINGLETON_WRAPPER(CallableBridge, "godot.core.NativeCallable$Bridge") {
+    JVM_SINGLETON_WRAPPER(CallableBridge, "godot.core.Callable$Bridge") {
         SINGLETON_CLASS(CallableBridge)
 
         // clang-format off
         INIT_JNI_BINDINGS(
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
-            INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-            INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/LambdaCallable;IIZ)J", CallableBridge::engine_call_constructor_kt_custom_callable)
+            INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "(JJ)J", CallableBridge::engine_call_constructor_object_string_name)
+            INIT_NATIVE_METHOD("engine_call_constructor_lambda_callable", "(Lgodot/core/LambdaContainer;II)J", CallableBridge::engine_call_constructor_lambda_callable)
+            INIT_NATIVE_METHOD("engine_call_constructor_cancellable", "(Lgodot/core/LambdaContainer;II)V", CallableBridge::engine_call_constructor_cancellable)
             INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
             INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
-            INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
             INIT_NATIVE_METHOD("engine_call_call", "(J)V", CallableBridge::engine_call_call)
             INIT_NATIVE_METHOD("engine_call_call_deferred", "(J)V", CallableBridge::engine_call_call_deferred)
-            INIT_NATIVE_METHOD("engine_call_callv", "(J)V", CallableBridge::engine_call_callv)
             INIT_NATIVE_METHOD("engine_call_get_bound_arguments", "(J)V", CallableBridge::engine_call_get_bound_arguments)
             INIT_NATIVE_METHOD("engine_call_get_bound_arguments_count", "(J)V", CallableBridge::engine_call_get_bound_arguments_count)
             INIT_NATIVE_METHOD("engine_call_get_method", "(J)V", CallableBridge::engine_call_get_method)
@@ -35,36 +34,41 @@ namespace bridges {
         // clang-format on
 
     public:
-        static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_constructor(JNIEnv * p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_constructor_object_string_name(JNIEnv * p_raw_env, jobject p_instance, jlong object_ptr, jlong method_name_ptr);
+        static uintptr_t engine_call_constructor_lambda_callable(
+          JNIEnv * p_raw_env,
+          jobject p_instance,
+          jobject p_lambda_container,
+          jint p_variant_type_ordinal,
+          jint p_hash_code
+        );
+        static void engine_call_constructor_cancellable(
+          JNIEnv * p_raw_env,
+          jobject p_instance,
+          jobject p_kt_custom_callable_instance,
+          jint p_variant_type_ordinal,
+          jint p_hash_code
+        );
+        static uintptr_t engine_call_copy_constructor(JNIEnv * p_raw_env, jobject p_instance);
 
-        static uintptr_t engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance);
-
-        static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
-                                                                    jobject p_kt_custom_callable_instance,
-                                                                    jint p_variant_type_ordinal, jint p_hash_code,
-                                                                    jboolean p_has_on_destroy);
-
-        static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
-
-        static void engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_callv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_get_bound_arguments(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_get_bound_arguments_count(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_get_method(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_get_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_get_object_id(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_hash(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_is_custom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_is_null(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_is_standard(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_is_valid(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_rpc(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_rpc_id(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_unbind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_bind(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_call(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_call_deferred(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_bound_arguments(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_bound_arguments_count(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_method(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_object(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_object_id(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_hash(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_is_custom(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_is_null(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_is_standard(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_is_valid(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_rpc(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_rpc_id(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_unbind(JNIEnv * p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
-}// namespace bridge
+} // namespace bridges
 
-#endif// GODOT_JVM_CALLABLE_BRIDGE_H
+#endif // GODOT_JVM_CALLABLE_BRIDGE_H

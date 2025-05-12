@@ -237,14 +237,6 @@ class BufferToVariant {
         return Variant(Signal(object, name));
     }
 
-    static Variant read_callable(SharedBuffer* byte_buffer) {
-        bool is_custom {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(BOOL_SIZE);
-
-        if (is_custom) { return Callable(read_pointer<CallableCustom>(byte_buffer)); }
-
-        return *read_pointer<Callable>(byte_buffer);
-    }
 
 public:
 
@@ -281,7 +273,7 @@ public:
           &BufferToVariant::read_native_core_type<NodePath>,
           &BufferToVariant::read_core_type<RID>,
           &BufferToVariant::read_object,
-          &BufferToVariant::read_callable,
+          &BufferToVariant::read_native_core_type<Callable>,
           &BufferToVariant::read_signal,
           &BufferToVariant::read_native_core_type<Dictionary>,
           &BufferToVariant::read_native_core_type<Array>,

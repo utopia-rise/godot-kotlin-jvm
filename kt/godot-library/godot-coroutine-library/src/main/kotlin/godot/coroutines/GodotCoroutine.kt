@@ -8,7 +8,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 object GodotCoroutine : CoroutineScope {
-    override val coroutineContext  = GodotDispatchers.ThreadPool + SupervisorJob()
+    override val coroutineContext = GodotDispatchers.ThreadPool + SupervisorJob()
 }
 
 fun godotCoroutine(
