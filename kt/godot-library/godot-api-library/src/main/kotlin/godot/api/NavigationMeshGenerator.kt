@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.VariantCallable
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -99,7 +100,7 @@ public object NavigationMeshGenerator : Object() {
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     rootNode: Node?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.parseSourceGeometryDataPtr, NIL)
@@ -114,7 +115,7 @@ public object NavigationMeshGenerator : Object() {
   public final fun bakeFromSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)

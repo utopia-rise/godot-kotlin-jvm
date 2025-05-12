@@ -29,12 +29,13 @@ object SignalGenerationService : ISignalGenerationService {
 
     private const val INSTANCE_PARAMETER = "instance"
     private const val NAME_PARAMETER = "name"
+    private const val CALLABLE_PARAMETER = "callable"
     private const val PROPERTY_PARAMETER = "property"
     private const val THIS_REF_PARAMETER_NAME = "thisRef"
-    private const val CONNECT_PARAMETER_NAME = "connect"
 
-    private const val EMIT_METHOD_NAME = "emit"
     private const val CONNECT_METHOD_NAME = "connect"
+    private const val DISCONNECT_METHOD_NAME = "disconnect"
+    private const val EMIT_METHOD_NAME = "emit"
     private const val SIGNAL_METHOD_NAME = "signal"
     private const val FLAGS_PARAMETER_NAME = "flags"
 
@@ -117,7 +118,7 @@ object SignalGenerationService : ISignalGenerationService {
                         .addParameters(
                             listOf(
                                 ParameterSpec.builder(
-                                    CONNECT_PARAMETER_NAME,
+                                    CALLABLE_PARAMETER,
                                     callableClassName.parameterizedBy(listOf(STAR) + genericClassNameInfo.genericTypes)
                                 ).build(),
                                 ParameterSpec.builder(FLAGS_PARAMETER_NAME, connectFlagClassName)
@@ -127,7 +128,23 @@ object SignalGenerationService : ISignalGenerationService {
                         )
                         .addCode(
                             CodeBlock.of(
-                                "connectUnsafe($CONNECT_PARAMETER_NAME, $FLAGS_PARAMETER_NAME)"
+                                "connectUnsafe($CALLABLE_PARAMETER, $FLAGS_PARAMETER_NAME)"
+                            )
+                        )
+                        .build(),
+                    FunSpec.builder(DISCONNECT_METHOD_NAME)
+                        .returns(UNIT)
+                        .addParameters(
+                            listOf(
+                                ParameterSpec.builder(
+                                    CALLABLE_PARAMETER,
+                                    callableClassName.parameterizedBy(listOf(STAR) + genericClassNameInfo.genericTypes)
+                                ).build(),
+                            )
+                        )
+                        .addCode(
+                            CodeBlock.of(
+                                "disconnectUnsafe($CALLABLE_PARAMETER)"
                             )
                         )
                         .build(),

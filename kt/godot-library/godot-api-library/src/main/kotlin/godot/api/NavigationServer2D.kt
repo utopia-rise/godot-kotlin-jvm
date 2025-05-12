@@ -18,6 +18,7 @@ import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Transform2D
 import godot.core.VariantArray
+import godot.core.VariantCallable
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -390,7 +391,7 @@ public object NavigationServer2D : Object() {
   public final fun queryPath(
     parameters: NavigationPathQueryParameters2D?,
     result: NavigationPathQueryResult2D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to parameters, OBJECT to result, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.queryPathPtr, NIL)
@@ -1377,7 +1378,7 @@ public object NavigationServer2D : Object() {
     navigationPolygon: NavigationPolygon?,
     sourceGeometryData: NavigationMeshSourceGeometryData2D?,
     rootNode: Node?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.parseSourceGeometryDataPtr, NIL)
@@ -1392,7 +1393,7 @@ public object NavigationServer2D : Object() {
   public final fun bakeFromSourceGeometryData(
     navigationPolygon: NavigationPolygon?,
     sourceGeometryData: NavigationMeshSourceGeometryData2D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
@@ -1408,7 +1409,7 @@ public object NavigationServer2D : Object() {
   public final fun bakeFromSourceGeometryDataAsync(
     navigationPolygon: NavigationPolygon?,
     sourceGeometryData: NavigationMeshSourceGeometryData2D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)

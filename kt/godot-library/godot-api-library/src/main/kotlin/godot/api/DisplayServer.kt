@@ -23,6 +23,7 @@ import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
 import godot.core.VariantArray
+import godot.core.VariantCallable
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -252,8 +253,8 @@ public object DisplayServer : Object() {
   public final fun globalMenuAddItem(
     menuRoot: String,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -299,8 +300,8 @@ public object DisplayServer : Object() {
   public final fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -347,8 +348,8 @@ public object DisplayServer : Object() {
     menuRoot: String,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -396,8 +397,8 @@ public object DisplayServer : Object() {
     menuRoot: String,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -447,8 +448,8 @@ public object DisplayServer : Object() {
   public final fun globalMenuAddRadioCheckItem(
     menuRoot: String,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -500,8 +501,8 @@ public object DisplayServer : Object() {
     menuRoot: String,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -556,8 +557,8 @@ public object DisplayServer : Object() {
     label: String,
     maxStates: Int,
     defaultState: Int,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
