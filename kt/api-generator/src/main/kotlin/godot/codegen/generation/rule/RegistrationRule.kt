@@ -37,8 +37,8 @@ class RegistrationRule() : GodotApiRule<ApiTask>() {
 
     fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
         variantMapper.addStatement(
-            "%M[%T::class] = %T",
-            MemberName(godotCorePackage, "variantMapper"),
+            "%M(%T::class, %T)",
+            MemberName(godotCorePackage, "addVariantMapping"),
             enrichedClass.className,
             enrichedClass.getVariantConverter()
         )

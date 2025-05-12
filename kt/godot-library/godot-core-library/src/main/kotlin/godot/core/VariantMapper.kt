@@ -1,7 +1,14 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package godot.core
 
+import godot.common.interop.VariantConverter
+import godot.common.util.isNullable
+import kotlin.reflect.KClass
+import kotlin.jvm.`internal`.Reflection
 
-val variantMapper = mutableMapOf(
+@PublishedApi
+internal val variantMapper = mutableMapOf(
     Unit::class to VariantParser.NIL,
     Void::class to VariantParser.NIL,
     Any::class to VariantCaster.ANY,
@@ -36,6 +43,24 @@ val variantMapper = mutableMapOf(
     Projection::class to VariantParser.PROJECTION,
     VariantCallable::class to VariantParser.CALLABLE,
     MethodCallable::class to VariantParser.CALLABLE,
+    MethodCallable0::class to VariantParser.CALLABLE,
+    MethodCallable1::class to VariantParser.CALLABLE,
+    MethodCallable2::class to VariantParser.CALLABLE,
+    MethodCallable3::class to VariantParser.CALLABLE,
+    MethodCallable4::class to VariantParser.CALLABLE,
+    MethodCallable5::class to VariantParser.CALLABLE,
+    MethodCallable6::class to VariantParser.CALLABLE,
+    MethodCallable7::class to VariantParser.CALLABLE,
+    MethodCallable8::class to VariantParser.CALLABLE,
+    MethodCallable9::class to VariantParser.CALLABLE,
+    MethodCallable10::class to VariantParser.CALLABLE,
+    MethodCallable11::class to VariantParser.CALLABLE,
+    MethodCallable12::class to VariantParser.CALLABLE,
+    MethodCallable13::class to VariantParser.CALLABLE,
+    MethodCallable14::class to VariantParser.CALLABLE,
+    MethodCallable15::class to VariantParser.CALLABLE,
+    MethodCallable16::class to VariantParser.CALLABLE,
+    LambdaCallable::class to VariantParser.CALLABLE,
     LambdaCallable0::class to VariantParser.CALLABLE,
     LambdaCallable1::class to VariantParser.CALLABLE,
     LambdaCallable2::class to VariantParser.CALLABLE,
@@ -79,84 +104,18 @@ val variantMapper = mutableMapOf(
     PackedFloat64Array::class to VariantParser.PACKED_FLOAT_64_ARRAY,
     PackedStringArray::class to VariantParser.PACKED_STRING_ARRAY,
     PackedVector2Array::class to VariantParser.PACKED_VECTOR2_ARRAY,
-    PackedVector3Array::class to VariantParser.PACKED_VECTOR3_ARRAY
+    PackedVector3Array::class to VariantParser.PACKED_VECTOR3_ARRAY,
+    PackedVector4Array::class to VariantParser.PACKED_VECTOR4_ARRAY
 )
 
-val notNullableVariantSet = hashSetOf(
-    Boolean::class,
-    Int::class,
-    Long::class,
-    Float::class,
-    Byte::class,
-    Double::class,
-    String::class,
-    AABB::class,
-    Basis::class,
-    Color::class,
-    StringName::class,
-    Dictionary::class,
-    VariantArray::class,
-    Plane::class,
-    NodePath::class,
-    Quaternion::class,
-    Rect2::class,
-    Rect2i::class,
-    RID::class,
-    Transform3D::class,
-    Transform2D::class,
-    Vector2::class,
-    Vector2i::class,
-    Vector3::class,
-    Vector3i::class,
-    Vector4::class,
-    Vector4i::class,
-    Projection::class,
-    VariantCallable::class to VariantParser.CALLABLE,
-    MethodCallable::class to VariantParser.CALLABLE,
-    LambdaCallable0::class to VariantParser.CALLABLE,
-    LambdaCallable1::class to VariantParser.CALLABLE,
-    LambdaCallable2::class to VariantParser.CALLABLE,
-    LambdaCallable3::class to VariantParser.CALLABLE,
-    LambdaCallable4::class to VariantParser.CALLABLE,
-    LambdaCallable5::class to VariantParser.CALLABLE,
-    LambdaCallable6::class to VariantParser.CALLABLE,
-    LambdaCallable7::class to VariantParser.CALLABLE,
-    LambdaCallable8::class to VariantParser.CALLABLE,
-    LambdaCallable9::class to VariantParser.CALLABLE,
-    LambdaCallable10::class to VariantParser.CALLABLE,
-    LambdaCallable11::class to VariantParser.CALLABLE,
-    LambdaCallable12::class to VariantParser.CALLABLE,
-    LambdaCallable13::class to VariantParser.CALLABLE,
-    LambdaCallable14::class to VariantParser.CALLABLE,
-    LambdaCallable15::class to VariantParser.CALLABLE,
-    LambdaCallable16::class to VariantParser.CALLABLE,
-    Signal::class to VariantParser.SIGNAL,
-    Signal0::class to VariantParser.SIGNAL,
-    Signal1::class to VariantParser.SIGNAL,
-    Signal2::class to VariantParser.SIGNAL,
-    Signal3::class to VariantParser.SIGNAL,
-    Signal4::class to VariantParser.SIGNAL,
-    Signal5::class to VariantParser.SIGNAL,
-    Signal6::class to VariantParser.SIGNAL,
-    Signal7::class to VariantParser.SIGNAL,
-    Signal8::class to VariantParser.SIGNAL,
-    Signal9::class to VariantParser.SIGNAL,
-    Signal10::class to VariantParser.SIGNAL,
-    Signal11::class to VariantParser.SIGNAL,
-    Signal12::class to VariantParser.SIGNAL,
-    Signal13::class to VariantParser.SIGNAL,
-    Signal14::class to VariantParser.SIGNAL,
-    Signal15::class to VariantParser.SIGNAL,
-    Signal16::class to VariantParser.SIGNAL,
-    PackedByteArray::class,
-    PackedColorArray::class,
-    PackedInt32Array::class,
-    PackedInt64Array::class,
-    PackedFloat32Array::class,
-    PackedFloat64Array::class,
-    PackedStringArray::class,
-    PackedVector2Array::class,
-    PackedVector3Array::class
-)
+inline fun <reified T : Any> addVariantMapping(clazz: KClass<out T>, parser: VariantConverter) {
+    variantMapper[clazz] = parser
+}
 
+inline fun <reified T> getVariantConverter() = variantMapper[T::class]
+inline fun getVariantConverter(clazz: KClass<*>) = variantMapper[clazz]
+inline fun getVariantConverter(clazz: Class<*>) = variantMapper[Reflection.getOrCreateKotlinClass(clazz)]
 
+@PublishedApi
+internal val KtObjectClass = KtObject::class.java
+inline fun <reified T> cantBeNullable(): Boolean = isNullable<T>() && !KtObjectClass.isAssignableFrom(T::class.java)

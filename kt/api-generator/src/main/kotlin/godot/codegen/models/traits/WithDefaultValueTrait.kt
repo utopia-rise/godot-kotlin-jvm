@@ -2,6 +2,7 @@ package godot.codegen.models.traits
 
 import godot.codegen.constants.GodotMeta
 import godot.tools.common.constants.GODOT_CALLABLE
+import godot.tools.common.constants.GODOT_VARIANT_CALLABLE
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
@@ -40,7 +41,7 @@ interface WithDefaultValueTrait : MetaGenerationTrait {
                 .replace(",", ".0,")
                 .replace(")", ".0)") to arrayOf()
 
-            identifier == GodotTypes.callable -> "%T()" to arrayOf(GODOT_CALLABLE)
+            identifier == GodotTypes.callable -> "%T()" to arrayOf(GODOT_VARIANT_CALLABLE)
 
             identifier == GodotTypes.rid ||
                 identifier == GodotTypes.dictionary ||

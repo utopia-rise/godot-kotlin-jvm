@@ -2,7 +2,7 @@ package godot.runtime
 
 import godot.core.KtClass
 import godot.core.VariantParser
-import godot.core.variantMapper
+import godot.core.addVariantMapping
 import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
 import godot.registration.ClassRegistry
@@ -78,7 +78,7 @@ internal class Bootstrap {
                     )
                 }
                 for (clazz in context.getRegisteredClasses()) {
-                    variantMapper[clazz] = VariantParser.OBJECT
+                    addVariantMapping(clazz, VariantParser.OBJECT)
                 }
                 context.init()
             }

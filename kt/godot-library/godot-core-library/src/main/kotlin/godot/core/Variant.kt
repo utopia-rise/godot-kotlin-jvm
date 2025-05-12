@@ -532,7 +532,7 @@ sealed class VariantCaster(val coreVariant: VariantParser) : VariantConverter {
             if (any === null) {
                 VariantParser.NIL.toGodot(buffer, null)
             } else {
-                val type = variantMapper[any::class]
+                val type = getVariantConverter(any::class)
                     ?: throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
                 type.toGodot(buffer, any)
             }
