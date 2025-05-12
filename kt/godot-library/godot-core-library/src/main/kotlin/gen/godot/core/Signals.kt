@@ -24,9 +24,13 @@ public class Signal0 @PublishedApi internal constructor(
         emitUnsafe()
     }
 
-    public fun connect(connect: Callable0<*>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable0<*>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable0<*>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -52,9 +56,13 @@ public class Signal1<P0> @PublishedApi internal constructor(
         emitUnsafe(p0)
     }
 
-    public fun connect(connect: Callable1<*, P0>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable1<*, P0>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable1<*, P0>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -82,9 +90,13 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
         emitUnsafe(p0, p1)
     }
 
-    public fun connect(connect: Callable2<*, P0, P1>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable2<*, P0, P1>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable2<*, P0, P1>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -117,9 +129,13 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2)
     }
 
-    public fun connect(connect: Callable3<*, P0, P1, P2>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable3<*, P0, P1, P2>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable3<*, P0, P1, P2>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -153,9 +169,13 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3)
     }
 
-    public fun connect(connect: Callable4<*, P0, P1, P2, P3>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable4<*, P0, P1, P2, P3>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable4<*, P0, P1, P2, P3>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -191,9 +211,13 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3, p4)
     }
 
-    public fun connect(connect: Callable5<*, P0, P1, P2, P3, P4>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable5<*, P0, P1, P2, P3, P4>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable5<*, P0, P1, P2, P3, P4>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -230,9 +254,13 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3, p4, p5)
     }
 
-    public fun connect(connect: Callable6<*, P0, P1, P2, P3, P4, P5>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable6<*, P0, P1, P2, P3, P4, P5>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable6<*, P0, P1, P2, P3, P4, P5>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -270,9 +298,13 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6)
     }
 
-    public fun connect(connect: Callable7<*, P0, P1, P2, P3, P4, P5, P6>, flags: Object.ConnectFlags
-            = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+    public fun connect(callable: Callable7<*, P0, P1, P2, P3, P4, P5, P6>,
+            flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable7<*, P0, P1, P2, P3, P4, P5, P6>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -312,9 +344,13 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7)
     }
 
-    public fun connect(connect: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>,
+    public fun connect(callable: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -355,9 +391,13 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8)
     }
 
-    public fun connect(connect: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>,
+    public fun connect(callable: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -399,9 +439,13 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
     }
 
-    public fun connect(connect: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
+    public fun connect(callable: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -446,9 +490,14 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
     }
 
-    public fun connect(connect: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
+    public fun connect(callable: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -494,9 +543,15 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
     }
 
-    public fun connect(connect: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
+    public fun connect(callable: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -545,9 +600,15 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
     }
 
     public
-            fun connect(connect: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
+            fun connect(callable: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -597,9 +658,15 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     }
 
     public
-            fun connect(connect: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
+            fun connect(callable: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -650,9 +717,15 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     }
 
     public
-            fun connect(connect: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
+            fun connect(callable: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -705,9 +778,15 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     }
 
     public
-            fun connect(connect: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
+            fun connect(callable: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {

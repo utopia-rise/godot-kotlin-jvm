@@ -12,12 +12,12 @@ import kotlin.reflect.KCallable
 
 class VariantCallable : NativeCoreType, Callable {
 
-    internal constructor() {
+    constructor() {
         ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(callable: VariantCallable) {
+    constructor(callable: VariantCallable) {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
         ptr = Bridge.engine_call_copy_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)

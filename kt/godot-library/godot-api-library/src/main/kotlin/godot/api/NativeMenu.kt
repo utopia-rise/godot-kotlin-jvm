@@ -14,6 +14,7 @@ import godot.core.Callable
 import godot.core.GodotEnum
 import godot.core.Key
 import godot.core.RID
+import godot.core.VariantCallable
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -329,8 +330,8 @@ public object NativeMenu : Object() {
   public final fun addItem(
     rid: RID,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -362,8 +363,8 @@ public object NativeMenu : Object() {
   public final fun addCheckItem(
     rid: RID,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -396,8 +397,8 @@ public object NativeMenu : Object() {
     rid: RID,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -430,8 +431,8 @@ public object NativeMenu : Object() {
     rid: RID,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -467,8 +468,8 @@ public object NativeMenu : Object() {
   public final fun addRadioCheckItem(
     rid: RID,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -505,8 +506,8 @@ public object NativeMenu : Object() {
     rid: RID,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -547,8 +548,8 @@ public object NativeMenu : Object() {
     label: String,
     maxStates: Int,
     defaultState: Int,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
