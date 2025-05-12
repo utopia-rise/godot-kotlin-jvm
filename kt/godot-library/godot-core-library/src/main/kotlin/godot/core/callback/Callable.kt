@@ -122,14 +122,6 @@ interface Callable : CoreType {
 
     fun toNativeCallable(): VariantCallable
 
-    companion object {
-        @JvmSynthetic
-        operator fun invoke() = VariantCallable()
-
-        @JvmStatic
-        fun createUnsafe(target: Object, methodName: StringName) = MethodCallable(target, methodName)
-    }
-
     @Suppress("FunctionName")
     object Bridge {
         external fun engine_call_constructor(): VoidPtr

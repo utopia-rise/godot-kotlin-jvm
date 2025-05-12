@@ -41,8 +41,8 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     @PublishedApi
     internal constructor(keyClass: KClass<*>, valueClass: KClass<*>) {
-        val keyVariantConverter = variantMapper[keyClass]
-        val valueVariantConverter = variantMapper[valueClass]
+        val keyVariantConverter = getVariantConverter(keyClass)
+        val valueVariantConverter = getVariantConverter(valueClass)
 
         if (GodotJvmBuildConfig.DEBUG) {
             checkNotNull(keyVariantConverter) {
@@ -435,11 +435,11 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
             // The nullable check can't be inside the regular constructor because of Java
             if (GodotJvmBuildConfig.DEBUG) {
-                if (isNullable<K>() && K::class in notNullableVariantSet) {
+                if (cantBeNullable<K>()) {
                     error("Can't create a Dictionary with generic key ${K::class} as nullable.")
                 }
 
-                if (isNullable<V>() && V::class in notNullableVariantSet) {
+                if (cantBeNullable<V>()) {
                     error("Can't create a Dictionary with generic value ${V::class} as nullable.")
                 }
             }

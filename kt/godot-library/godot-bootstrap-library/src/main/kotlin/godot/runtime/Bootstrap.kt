@@ -3,7 +3,7 @@ package godot.runtime
 import godot.common.GODOT_KOTLIN_VERSION
 import godot.core.KtClass
 import godot.core.VariantParser
-import godot.core.variantMapper
+import godot.core.addVariantMapping
 import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
 import godot.registerEngineTypeMethods
@@ -82,7 +82,7 @@ internal class Bootstrap {
                     mainRegistry = registry
                 }
                 for (clazz in registry.getRegisteredClasses()) {
-                    variantMapper[clazz] = VariantParser.OBJECT
+                    addVariantMapping(clazz, VariantParser.OBJECT)
                 }
                 registry.init()
             }
@@ -96,7 +96,7 @@ internal class Bootstrap {
         loadClasses(classes)
 
         TypeManager.clearScriptClassCache()
-        
+
         forceJvmInitializationOfSingletons()
         // END: order matters!
 
