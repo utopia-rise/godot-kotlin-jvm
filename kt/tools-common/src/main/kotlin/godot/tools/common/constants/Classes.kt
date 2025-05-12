@@ -13,6 +13,7 @@ object GodotKotlinJvmTypes {
     const val stringName = "StringName"
     const val array = "VariantArray"
     const val callable = "Callable"
+    const val variantCallable = "VariantCallable"
     const val methodCallable = "MethodCallable"
     const val lambdaCallable = "LambdaCallable"
     const val dictionary = "Dictionary"
@@ -250,6 +251,7 @@ val GODOT_SIGNAL_CONNECTOR = ClassName(godotExtensionPackage, GodotKotlinJvmType
 val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
+val GODOT_VARIANT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantCallable)
 val GODOT_METHOD_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.methodCallable)
 val GODOT_LAMBDA_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.lambdaCallable)
 val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionary)
