@@ -6,6 +6,7 @@ import godot.codegen.models.Method
 import godot.codegen.models.traits.CallableGeneratorTrait
 import godot.codegen.models.traits.DocumentedGenerationTrait
 import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.Nature
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase

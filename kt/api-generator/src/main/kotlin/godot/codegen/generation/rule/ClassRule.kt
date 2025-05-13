@@ -160,17 +160,15 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
 
 
 class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
-
     override fun apply(classTask: EnrichedClassTask, context: GenerationContext) = configure(classTask.builder) {
         val clazz = classTask.clazz
         clazz.methods
             .filter { !it.isVirtual }
             .onEach {
                 if (it.isVararg) return@onEach
-
+                if(!it.canGenerate)  return@onEach
 
                 val argCount = it.arguments.size
-
                 val methodStringClassName = ClassName(
                     godotCorePackage,
                     "MethodStringName$argCount"
