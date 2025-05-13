@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantCaster.ANY
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A weakref can hold a [RefCounted] without contributing to the reference counter. A weakref can be
@@ -41,7 +43,11 @@ public open class WeakRef : RefCounted() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getRefName: MethodStringName0<WeakRef, Any?> =
+        MethodStringName0<WeakRef, Any?>("get_ref")
+  }
 
   public object MethodBindings {
     internal val getRefPtr: VoidPtr = TypeManager.getMethodBindPtr("WeakRef", "get_ref", 1214101251)

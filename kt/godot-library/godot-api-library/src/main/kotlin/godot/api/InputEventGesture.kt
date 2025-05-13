@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures
@@ -81,7 +84,15 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPositionName: MethodStringName1<InputEventGesture, Unit, Vector2> =
+        MethodStringName1<InputEventGesture, Unit, Vector2>("set_position")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName0<InputEventGesture, Vector2> =
+        MethodStringName0<InputEventGesture, Vector2>("get_position")
+  }
 
   public object MethodBindings {
     internal val setPositionPtr: VoidPtr =

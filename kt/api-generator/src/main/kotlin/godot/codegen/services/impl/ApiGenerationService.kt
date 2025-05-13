@@ -15,6 +15,7 @@ import godot.codegen.generation.rule.HeaderCommentRule
 import godot.codegen.generation.rule.ImportRule
 import godot.codegen.generation.rule.LocalCopyHelperRule
 import godot.codegen.generation.rule.MemberRule
+import godot.codegen.generation.rule.MethodNameRule
 import godot.codegen.generation.rule.MethodRule
 import godot.codegen.generation.rule.ObjectRule
 import godot.codegen.generation.rule.OverLoadRule
@@ -65,6 +66,7 @@ class ApiGenerationService(
                     subRule(EnrichedClassTask::enrichedMethods, ::OverLoadRule)
                     subRule(EnrichedClassTask::enrichedStaticMethods, ::OverLoadRule)
                     rule(::BindingRule)
+                    rule(::MethodNameRule)
                     rule(::LocalCopyHelperRule)
                 }
                 subRule(FileTask::enums, ::EnumRule)

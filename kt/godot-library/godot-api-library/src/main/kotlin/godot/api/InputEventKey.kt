@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Key
 import godot.core.KeyLocation
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An input event for keys on a keyboard. Supports key presses, key releases and [echo] events. It
@@ -329,7 +332,83 @@ public open class InputEventKey : InputEventWithModifiers() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPressedName: MethodStringName1<InputEventKey, Unit, Boolean> =
+        MethodStringName1<InputEventKey, Unit, Boolean>("set_pressed")
+
+    @JvmStatic
+    public val setKeycodeName: MethodStringName1<InputEventKey, Unit, Key> =
+        MethodStringName1<InputEventKey, Unit, Key>("set_keycode")
+
+    @JvmStatic
+    public val getKeycodeName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_keycode")
+
+    @JvmStatic
+    public val setPhysicalKeycodeName: MethodStringName1<InputEventKey, Unit, Key> =
+        MethodStringName1<InputEventKey, Unit, Key>("set_physical_keycode")
+
+    @JvmStatic
+    public val getPhysicalKeycodeName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_physical_keycode")
+
+    @JvmStatic
+    public val setKeyLabelName: MethodStringName1<InputEventKey, Unit, Key> =
+        MethodStringName1<InputEventKey, Unit, Key>("set_key_label")
+
+    @JvmStatic
+    public val getKeyLabelName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_key_label")
+
+    @JvmStatic
+    public val setUnicodeName: MethodStringName1<InputEventKey, Unit, Long> =
+        MethodStringName1<InputEventKey, Unit, Long>("set_unicode")
+
+    @JvmStatic
+    public val getUnicodeName: MethodStringName0<InputEventKey, Long> =
+        MethodStringName0<InputEventKey, Long>("get_unicode")
+
+    @JvmStatic
+    public val setLocationName: MethodStringName1<InputEventKey, Unit, KeyLocation> =
+        MethodStringName1<InputEventKey, Unit, KeyLocation>("set_location")
+
+    @JvmStatic
+    public val getLocationName: MethodStringName0<InputEventKey, KeyLocation> =
+        MethodStringName0<InputEventKey, KeyLocation>("get_location")
+
+    @JvmStatic
+    public val setEchoName: MethodStringName1<InputEventKey, Unit, Boolean> =
+        MethodStringName1<InputEventKey, Unit, Boolean>("set_echo")
+
+    @JvmStatic
+    public val getKeycodeWithModifiersName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_keycode_with_modifiers")
+
+    @JvmStatic
+    public val getPhysicalKeycodeWithModifiersName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_physical_keycode_with_modifiers")
+
+    @JvmStatic
+    public val getKeyLabelWithModifiersName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_key_label_with_modifiers")
+
+    @JvmStatic
+    public val asTextKeycodeName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_keycode")
+
+    @JvmStatic
+    public val asTextPhysicalKeycodeName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_physical_keycode")
+
+    @JvmStatic
+    public val asTextKeyLabelName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_key_label")
+
+    @JvmStatic
+    public val asTextLocationName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_location")
+  }
 
   public object MethodBindings {
     internal val setPressedPtr: VoidPtr =

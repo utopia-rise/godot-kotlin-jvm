@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A visual shader node for use of vector operators. Operates on vector `a` and vector `b`.
@@ -118,7 +121,15 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOperatorName: MethodStringName1<VisualShaderNodeVectorOp, Unit, Operator> =
+        MethodStringName1<VisualShaderNodeVectorOp, Unit, Operator>("set_operator")
+
+    @JvmStatic
+    public val getOperatorName: MethodStringName0<VisualShaderNodeVectorOp, Operator> =
+        MethodStringName0<VisualShaderNodeVectorOp, Operator>("get_operator")
+  }
 
   public object MethodBindings {
     internal val setOperatorPtr: VoidPtr =

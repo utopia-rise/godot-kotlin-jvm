@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.
@@ -97,7 +100,31 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPanPulloutName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
+        MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_pan_pullout")
+
+    @JvmStatic
+    public val getPanPulloutName: MethodStringName0<AudioEffectStereoEnhance, Float> =
+        MethodStringName0<AudioEffectStereoEnhance, Float>("get_pan_pullout")
+
+    @JvmStatic
+    public val setTimePulloutName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
+        MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_time_pullout")
+
+    @JvmStatic
+    public val getTimePulloutName: MethodStringName0<AudioEffectStereoEnhance, Float> =
+        MethodStringName0<AudioEffectStereoEnhance, Float>("get_time_pullout")
+
+    @JvmStatic
+    public val setSurroundName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
+        MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_surround")
+
+    @JvmStatic
+    public val getSurroundName: MethodStringName0<AudioEffectStereoEnhance, Float> =
+        MethodStringName0<AudioEffectStereoEnhance, Float>("get_surround")
+  }
 
   public object MethodBindings {
     internal val setPanPulloutPtr: VoidPtr =

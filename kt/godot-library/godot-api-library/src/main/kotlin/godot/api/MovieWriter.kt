@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.Vector2i
@@ -129,6 +130,10 @@ public open class MovieWriter : Object() {
   }
 
   public companion object {
+    @JvmStatic
+    public val addWriterName: MethodStringName1<MovieWriter, Unit, MovieWriter?> =
+        MethodStringName1<MovieWriter, Unit, MovieWriter?>("add_writer")
+
     /**
      * Adds a writer to be usable by the engine. The supported file extensions can be set by
      * overriding [_handlesFile].

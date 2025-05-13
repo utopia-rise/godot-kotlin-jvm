@@ -10,6 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName6
+import godot.core.MethodStringName7
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Signal1
@@ -35,6 +42,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * An animation player is used for general-purpose playback of animations. It contains a dictionary
@@ -964,7 +972,235 @@ public open class AnimationPlayer : AnimationMixer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val animationSetNextName:
+        MethodStringName2<AnimationPlayer, Unit, StringName, StringName> =
+        MethodStringName2<AnimationPlayer, Unit, StringName, StringName>("animation_set_next")
+
+    @JvmStatic
+    public val animationGetNextName: MethodStringName1<AnimationPlayer, StringName, StringName> =
+        MethodStringName1<AnimationPlayer, StringName, StringName>("animation_get_next")
+
+    @JvmStatic
+    public val setBlendTimeName:
+        MethodStringName3<AnimationPlayer, Unit, StringName, StringName, Double> =
+        MethodStringName3<AnimationPlayer, Unit, StringName, StringName, Double>("set_blend_time")
+
+    @JvmStatic
+    public val getBlendTimeName: MethodStringName2<AnimationPlayer, Double, StringName, StringName>
+        = MethodStringName2<AnimationPlayer, Double, StringName, StringName>("get_blend_time")
+
+    @JvmStatic
+    public val setDefaultBlendTimeName: MethodStringName1<AnimationPlayer, Unit, Double> =
+        MethodStringName1<AnimationPlayer, Unit, Double>("set_default_blend_time")
+
+    @JvmStatic
+    public val getDefaultBlendTimeName: MethodStringName0<AnimationPlayer, Double> =
+        MethodStringName0<AnimationPlayer, Double>("get_default_blend_time")
+
+    @JvmStatic
+    public val setAutoCaptureName: MethodStringName1<AnimationPlayer, Unit, Boolean> =
+        MethodStringName1<AnimationPlayer, Unit, Boolean>("set_auto_capture")
+
+    @JvmStatic
+    public val isAutoCaptureName: MethodStringName0<AnimationPlayer, Boolean> =
+        MethodStringName0<AnimationPlayer, Boolean>("is_auto_capture")
+
+    @JvmStatic
+    public val setAutoCaptureDurationName: MethodStringName1<AnimationPlayer, Unit, Double> =
+        MethodStringName1<AnimationPlayer, Unit, Double>("set_auto_capture_duration")
+
+    @JvmStatic
+    public val getAutoCaptureDurationName: MethodStringName0<AnimationPlayer, Double> =
+        MethodStringName0<AnimationPlayer, Double>("get_auto_capture_duration")
+
+    @JvmStatic
+    public val setAutoCaptureTransitionTypeName:
+        MethodStringName1<AnimationPlayer, Unit, Tween.TransitionType> =
+        MethodStringName1<AnimationPlayer, Unit, Tween.TransitionType>("set_auto_capture_transition_type")
+
+    @JvmStatic
+    public val getAutoCaptureTransitionTypeName:
+        MethodStringName0<AnimationPlayer, Tween.TransitionType> =
+        MethodStringName0<AnimationPlayer, Tween.TransitionType>("get_auto_capture_transition_type")
+
+    @JvmStatic
+    public val setAutoCaptureEaseTypeName: MethodStringName1<AnimationPlayer, Unit, Tween.EaseType>
+        = MethodStringName1<AnimationPlayer, Unit, Tween.EaseType>("set_auto_capture_ease_type")
+
+    @JvmStatic
+    public val getAutoCaptureEaseTypeName: MethodStringName0<AnimationPlayer, Tween.EaseType> =
+        MethodStringName0<AnimationPlayer, Tween.EaseType>("get_auto_capture_ease_type")
+
+    @JvmStatic
+    public val playName:
+        MethodStringName4<AnimationPlayer, Unit, StringName, Double, Float, Boolean> =
+        MethodStringName4<AnimationPlayer, Unit, StringName, Double, Float, Boolean>("play")
+
+    @JvmStatic
+    public val playSectionWithMarkersName:
+        MethodStringName6<AnimationPlayer, Unit, StringName, StringName, StringName, Double, Float, Boolean>
+        =
+        MethodStringName6<AnimationPlayer, Unit, StringName, StringName, StringName, Double, Float, Boolean>("play_section_with_markers")
+
+    @JvmStatic
+    public val playSectionName:
+        MethodStringName6<AnimationPlayer, Unit, StringName, Double, Double, Double, Float, Boolean>
+        =
+        MethodStringName6<AnimationPlayer, Unit, StringName, Double, Double, Double, Float, Boolean>("play_section")
+
+    @JvmStatic
+    public val playBackwardsName: MethodStringName2<AnimationPlayer, Unit, StringName, Double> =
+        MethodStringName2<AnimationPlayer, Unit, StringName, Double>("play_backwards")
+
+    @JvmStatic
+    public val playSectionWithMarkersBackwardsName:
+        MethodStringName4<AnimationPlayer, Unit, StringName, StringName, StringName, Double> =
+        MethodStringName4<AnimationPlayer, Unit, StringName, StringName, StringName, Double>("play_section_with_markers_backwards")
+
+    @JvmStatic
+    public val playSectionBackwardsName:
+        MethodStringName4<AnimationPlayer, Unit, StringName, Double, Double, Double> =
+        MethodStringName4<AnimationPlayer, Unit, StringName, Double, Double, Double>("play_section_backwards")
+
+    @JvmStatic
+    public val playWithCaptureName:
+        MethodStringName7<AnimationPlayer, Unit, StringName, Double, Double, Float, Boolean, Tween.TransitionType, Tween.EaseType>
+        =
+        MethodStringName7<AnimationPlayer, Unit, StringName, Double, Double, Float, Boolean, Tween.TransitionType, Tween.EaseType>("play_with_capture")
+
+    @JvmStatic
+    public val pauseName: MethodStringName0<AnimationPlayer, Unit> =
+        MethodStringName0<AnimationPlayer, Unit>("pause")
+
+    @JvmStatic
+    public val stopName: MethodStringName1<AnimationPlayer, Unit, Boolean> =
+        MethodStringName1<AnimationPlayer, Unit, Boolean>("stop")
+
+    @JvmStatic
+    public val isPlayingName: MethodStringName0<AnimationPlayer, Boolean> =
+        MethodStringName0<AnimationPlayer, Boolean>("is_playing")
+
+    @JvmStatic
+    public val setCurrentAnimationName: MethodStringName1<AnimationPlayer, Unit, String> =
+        MethodStringName1<AnimationPlayer, Unit, String>("set_current_animation")
+
+    @JvmStatic
+    public val getCurrentAnimationName: MethodStringName0<AnimationPlayer, String> =
+        MethodStringName0<AnimationPlayer, String>("get_current_animation")
+
+    @JvmStatic
+    public val setAssignedAnimationName: MethodStringName1<AnimationPlayer, Unit, String> =
+        MethodStringName1<AnimationPlayer, Unit, String>("set_assigned_animation")
+
+    @JvmStatic
+    public val getAssignedAnimationName: MethodStringName0<AnimationPlayer, String> =
+        MethodStringName0<AnimationPlayer, String>("get_assigned_animation")
+
+    @JvmStatic
+    public val queueName: MethodStringName1<AnimationPlayer, Unit, StringName> =
+        MethodStringName1<AnimationPlayer, Unit, StringName>("queue")
+
+    @JvmStatic
+    public val getQueueName: MethodStringName0<AnimationPlayer, PackedStringArray> =
+        MethodStringName0<AnimationPlayer, PackedStringArray>("get_queue")
+
+    @JvmStatic
+    public val clearQueueName: MethodStringName0<AnimationPlayer, Unit> =
+        MethodStringName0<AnimationPlayer, Unit>("clear_queue")
+
+    @JvmStatic
+    public val setSpeedScaleName: MethodStringName1<AnimationPlayer, Unit, Float> =
+        MethodStringName1<AnimationPlayer, Unit, Float>("set_speed_scale")
+
+    @JvmStatic
+    public val getSpeedScaleName: MethodStringName0<AnimationPlayer, Float> =
+        MethodStringName0<AnimationPlayer, Float>("get_speed_scale")
+
+    @JvmStatic
+    public val getPlayingSpeedName: MethodStringName0<AnimationPlayer, Float> =
+        MethodStringName0<AnimationPlayer, Float>("get_playing_speed")
+
+    @JvmStatic
+    public val setAutoplayName: MethodStringName1<AnimationPlayer, Unit, String> =
+        MethodStringName1<AnimationPlayer, Unit, String>("set_autoplay")
+
+    @JvmStatic
+    public val getAutoplayName: MethodStringName0<AnimationPlayer, String> =
+        MethodStringName0<AnimationPlayer, String>("get_autoplay")
+
+    @JvmStatic
+    public val setMovieQuitOnFinishEnabledName: MethodStringName1<AnimationPlayer, Unit, Boolean> =
+        MethodStringName1<AnimationPlayer, Unit, Boolean>("set_movie_quit_on_finish_enabled")
+
+    @JvmStatic
+    public val isMovieQuitOnFinishEnabledName: MethodStringName0<AnimationPlayer, Boolean> =
+        MethodStringName0<AnimationPlayer, Boolean>("is_movie_quit_on_finish_enabled")
+
+    @JvmStatic
+    public val getCurrentAnimationPositionName: MethodStringName0<AnimationPlayer, Double> =
+        MethodStringName0<AnimationPlayer, Double>("get_current_animation_position")
+
+    @JvmStatic
+    public val getCurrentAnimationLengthName: MethodStringName0<AnimationPlayer, Double> =
+        MethodStringName0<AnimationPlayer, Double>("get_current_animation_length")
+
+    @JvmStatic
+    public val setSectionWithMarkersName:
+        MethodStringName2<AnimationPlayer, Unit, StringName, StringName> =
+        MethodStringName2<AnimationPlayer, Unit, StringName, StringName>("set_section_with_markers")
+
+    @JvmStatic
+    public val setSectionName: MethodStringName2<AnimationPlayer, Unit, Double, Double> =
+        MethodStringName2<AnimationPlayer, Unit, Double, Double>("set_section")
+
+    @JvmStatic
+    public val resetSectionName: MethodStringName0<AnimationPlayer, Unit> =
+        MethodStringName0<AnimationPlayer, Unit>("reset_section")
+
+    @JvmStatic
+    public val getSectionStartTimeName: MethodStringName0<AnimationPlayer, Double> =
+        MethodStringName0<AnimationPlayer, Double>("get_section_start_time")
+
+    @JvmStatic
+    public val getSectionEndTimeName: MethodStringName0<AnimationPlayer, Double> =
+        MethodStringName0<AnimationPlayer, Double>("get_section_end_time")
+
+    @JvmStatic
+    public val hasSectionName: MethodStringName0<AnimationPlayer, Boolean> =
+        MethodStringName0<AnimationPlayer, Boolean>("has_section")
+
+    @JvmStatic
+    public val seekName: MethodStringName3<AnimationPlayer, Unit, Double, Boolean, Boolean> =
+        MethodStringName3<AnimationPlayer, Unit, Double, Boolean, Boolean>("seek")
+
+    @JvmStatic
+    public val setProcessCallbackName:
+        MethodStringName1<AnimationPlayer, Unit, AnimationProcessCallback> =
+        MethodStringName1<AnimationPlayer, Unit, AnimationProcessCallback>("set_process_callback")
+
+    @JvmStatic
+    public val getProcessCallbackName: MethodStringName0<AnimationPlayer, AnimationProcessCallback>
+        = MethodStringName0<AnimationPlayer, AnimationProcessCallback>("get_process_callback")
+
+    @JvmStatic
+    public val setMethodCallModeName:
+        MethodStringName1<AnimationPlayer, Unit, AnimationMethodCallMode> =
+        MethodStringName1<AnimationPlayer, Unit, AnimationMethodCallMode>("set_method_call_mode")
+
+    @JvmStatic
+    public val getMethodCallModeName: MethodStringName0<AnimationPlayer, AnimationMethodCallMode> =
+        MethodStringName0<AnimationPlayer, AnimationMethodCallMode>("get_method_call_mode")
+
+    @JvmStatic
+    public val setRootName: MethodStringName1<AnimationPlayer, Unit, NodePath> =
+        MethodStringName1<AnimationPlayer, Unit, NodePath>("set_root")
+
+    @JvmStatic
+    public val getRootName: MethodStringName0<AnimationPlayer, NodePath> =
+        MethodStringName0<AnimationPlayer, NodePath>("get_root")
+  }
 
   public object MethodBindings {
     internal val animationSetNextPtr: VoidPtr =

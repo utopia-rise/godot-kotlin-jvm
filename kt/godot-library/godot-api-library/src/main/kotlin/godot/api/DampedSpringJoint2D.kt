@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a
@@ -122,7 +125,39 @@ public open class DampedSpringJoint2D : Joint2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLengthName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
+        MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_length")
+
+    @JvmStatic
+    public val getLengthName: MethodStringName0<DampedSpringJoint2D, Float> =
+        MethodStringName0<DampedSpringJoint2D, Float>("get_length")
+
+    @JvmStatic
+    public val setRestLengthName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
+        MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_rest_length")
+
+    @JvmStatic
+    public val getRestLengthName: MethodStringName0<DampedSpringJoint2D, Float> =
+        MethodStringName0<DampedSpringJoint2D, Float>("get_rest_length")
+
+    @JvmStatic
+    public val setStiffnessName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
+        MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_stiffness")
+
+    @JvmStatic
+    public val getStiffnessName: MethodStringName0<DampedSpringJoint2D, Float> =
+        MethodStringName0<DampedSpringJoint2D, Float>("get_stiffness")
+
+    @JvmStatic
+    public val setDampingName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
+        MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_damping")
+
+    @JvmStatic
+    public val getDampingName: MethodStringName0<DampedSpringJoint2D, Float> =
+        MethodStringName0<DampedSpringJoint2D, Float>("get_damping")
+  }
 
   public object MethodBindings {
     internal val setLengthPtr: VoidPtr =

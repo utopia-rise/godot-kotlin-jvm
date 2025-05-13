@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * An optimized translation, used by default for CSV Translations. Uses real-time compressed
@@ -37,7 +39,11 @@ public open class OptimizedTranslation : Translation() {
     TransferContext.callMethod(ptr, MethodBindings.generatePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val generateName: MethodStringName1<OptimizedTranslation, Unit, Translation?> =
+        MethodStringName1<OptimizedTranslation, Unit, Translation?>("generate")
+  }
 
   public object MethodBindings {
     internal val generatePtr: VoidPtr =

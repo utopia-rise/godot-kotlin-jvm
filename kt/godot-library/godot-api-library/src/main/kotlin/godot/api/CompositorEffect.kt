@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This resource defines a custom rendering effect that can be applied to [Viewport]s through the
@@ -290,7 +293,64 @@ public open class CompositorEffect : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<CompositorEffect, Unit, Boolean> =
+        MethodStringName1<CompositorEffect, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val getEnabledName: MethodStringName0<CompositorEffect, Boolean> =
+        MethodStringName0<CompositorEffect, Boolean>("get_enabled")
+
+    @JvmStatic
+    public val setEffectCallbackTypeName:
+        MethodStringName1<CompositorEffect, Unit, EffectCallbackType> =
+        MethodStringName1<CompositorEffect, Unit, EffectCallbackType>("set_effect_callback_type")
+
+    @JvmStatic
+    public val getEffectCallbackTypeName: MethodStringName0<CompositorEffect, EffectCallbackType> =
+        MethodStringName0<CompositorEffect, EffectCallbackType>("get_effect_callback_type")
+
+    @JvmStatic
+    public val setAccessResolvedColorName: MethodStringName1<CompositorEffect, Unit, Boolean> =
+        MethodStringName1<CompositorEffect, Unit, Boolean>("set_access_resolved_color")
+
+    @JvmStatic
+    public val getAccessResolvedColorName: MethodStringName0<CompositorEffect, Boolean> =
+        MethodStringName0<CompositorEffect, Boolean>("get_access_resolved_color")
+
+    @JvmStatic
+    public val setAccessResolvedDepthName: MethodStringName1<CompositorEffect, Unit, Boolean> =
+        MethodStringName1<CompositorEffect, Unit, Boolean>("set_access_resolved_depth")
+
+    @JvmStatic
+    public val getAccessResolvedDepthName: MethodStringName0<CompositorEffect, Boolean> =
+        MethodStringName0<CompositorEffect, Boolean>("get_access_resolved_depth")
+
+    @JvmStatic
+    public val setNeedsMotionVectorsName: MethodStringName1<CompositorEffect, Unit, Boolean> =
+        MethodStringName1<CompositorEffect, Unit, Boolean>("set_needs_motion_vectors")
+
+    @JvmStatic
+    public val getNeedsMotionVectorsName: MethodStringName0<CompositorEffect, Boolean> =
+        MethodStringName0<CompositorEffect, Boolean>("get_needs_motion_vectors")
+
+    @JvmStatic
+    public val setNeedsNormalRoughnessName: MethodStringName1<CompositorEffect, Unit, Boolean> =
+        MethodStringName1<CompositorEffect, Unit, Boolean>("set_needs_normal_roughness")
+
+    @JvmStatic
+    public val getNeedsNormalRoughnessName: MethodStringName0<CompositorEffect, Boolean> =
+        MethodStringName0<CompositorEffect, Boolean>("get_needs_normal_roughness")
+
+    @JvmStatic
+    public val setNeedsSeparateSpecularName: MethodStringName1<CompositorEffect, Unit, Boolean> =
+        MethodStringName1<CompositorEffect, Unit, Boolean>("set_needs_separate_specular")
+
+    @JvmStatic
+    public val getNeedsSeparateSpecularName: MethodStringName0<CompositorEffect, Boolean> =
+        MethodStringName0<CompositorEffect, Boolean>("get_needs_separate_specular")
+  }
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =

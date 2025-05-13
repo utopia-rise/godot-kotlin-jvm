@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An animatable 2D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -57,7 +60,15 @@ public open class AnimatableBody2D : StaticBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSyncToPhysicsName: MethodStringName1<AnimatableBody2D, Unit, Boolean> =
+        MethodStringName1<AnimatableBody2D, Unit, Boolean>("set_sync_to_physics")
+
+    @JvmStatic
+    public val isSyncToPhysicsEnabledName: MethodStringName0<AnimatableBody2D, Boolean> =
+        MethodStringName0<AnimatableBody2D, Boolean>("is_sync_to_physics_enabled")
+  }
 
   public object MethodBindings {
     internal val setSyncToPhysicsPtr: VoidPtr =

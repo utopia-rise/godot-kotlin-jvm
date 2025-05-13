@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -47,6 +50,94 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object XRServer : Object() {
+  @JvmStatic
+  public val getWorldScaleName: MethodStringName0<XRServer, Double> =
+      MethodStringName0<XRServer, Double>("get_world_scale")
+
+  @JvmStatic
+  public val setWorldScaleName: MethodStringName1<XRServer, Unit, Double> =
+      MethodStringName1<XRServer, Unit, Double>("set_world_scale")
+
+  @JvmStatic
+  public val getWorldOriginName: MethodStringName0<XRServer, Transform3D> =
+      MethodStringName0<XRServer, Transform3D>("get_world_origin")
+
+  @JvmStatic
+  public val setWorldOriginName: MethodStringName1<XRServer, Unit, Transform3D> =
+      MethodStringName1<XRServer, Unit, Transform3D>("set_world_origin")
+
+  @JvmStatic
+  public val getReferenceFrameName: MethodStringName0<XRServer, Transform3D> =
+      MethodStringName0<XRServer, Transform3D>("get_reference_frame")
+
+  @JvmStatic
+  public val clearReferenceFrameName: MethodStringName0<XRServer, Unit> =
+      MethodStringName0<XRServer, Unit>("clear_reference_frame")
+
+  @JvmStatic
+  public val centerOnHmdName: MethodStringName2<XRServer, Unit, RotationMode, Boolean> =
+      MethodStringName2<XRServer, Unit, RotationMode, Boolean>("center_on_hmd")
+
+  @JvmStatic
+  public val getHmdTransformName: MethodStringName0<XRServer, Transform3D> =
+      MethodStringName0<XRServer, Transform3D>("get_hmd_transform")
+
+  @JvmStatic
+  public val setCameraLockedToOriginName: MethodStringName1<XRServer, Unit, Boolean> =
+      MethodStringName1<XRServer, Unit, Boolean>("set_camera_locked_to_origin")
+
+  @JvmStatic
+  public val isCameraLockedToOriginName: MethodStringName0<XRServer, Boolean> =
+      MethodStringName0<XRServer, Boolean>("is_camera_locked_to_origin")
+
+  @JvmStatic
+  public val addInterfaceName: MethodStringName1<XRServer, Unit, XRInterface?> =
+      MethodStringName1<XRServer, Unit, XRInterface?>("add_interface")
+
+  @JvmStatic
+  public val getInterfaceCountName: MethodStringName0<XRServer, Int> =
+      MethodStringName0<XRServer, Int>("get_interface_count")
+
+  @JvmStatic
+  public val removeInterfaceName: MethodStringName1<XRServer, Unit, XRInterface?> =
+      MethodStringName1<XRServer, Unit, XRInterface?>("remove_interface")
+
+  @JvmStatic
+  public val getInterfaceName: MethodStringName1<XRServer, XRInterface?, Int> =
+      MethodStringName1<XRServer, XRInterface?, Int>("get_interface")
+
+  @JvmStatic
+  public val getInterfacesName: MethodStringName0<XRServer, VariantArray<Dictionary<Any?, Any?>>> =
+      MethodStringName0<XRServer, VariantArray<Dictionary<Any?, Any?>>>("get_interfaces")
+
+  @JvmStatic
+  public val findInterfaceName: MethodStringName1<XRServer, XRInterface?, String> =
+      MethodStringName1<XRServer, XRInterface?, String>("find_interface")
+
+  @JvmStatic
+  public val addTrackerName: MethodStringName1<XRServer, Unit, XRTracker?> =
+      MethodStringName1<XRServer, Unit, XRTracker?>("add_tracker")
+
+  @JvmStatic
+  public val removeTrackerName: MethodStringName1<XRServer, Unit, XRTracker?> =
+      MethodStringName1<XRServer, Unit, XRTracker?>("remove_tracker")
+
+  @JvmStatic
+  public val getTrackersName: MethodStringName1<XRServer, Dictionary<Any?, Any?>, Int> =
+      MethodStringName1<XRServer, Dictionary<Any?, Any?>, Int>("get_trackers")
+
+  @JvmStatic
+  public val getTrackerName: MethodStringName1<XRServer, XRTracker?, StringName> =
+      MethodStringName1<XRServer, XRTracker?, StringName>("get_tracker")
+
+  @JvmStatic
+  public val getPrimaryInterfaceName: MethodStringName0<XRServer, XRInterface?> =
+      MethodStringName0<XRServer, XRInterface?>("get_primary_interface")
+
+  @JvmStatic
+  public val setPrimaryInterfaceName: MethodStringName1<XRServer, Unit, XRInterface?> =
+      MethodStringName1<XRServer, Unit, XRInterface?>("set_primary_interface")
+
   /**
    * Emitted when the reference frame transform changes.
    */

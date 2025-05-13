@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The FBXState handles the state data imported from FBX files.
@@ -50,7 +53,15 @@ public open class FBXState : GLTFState() {
     TransferContext.callMethod(ptr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getAllowGeometryHelperNodesName: MethodStringName0<FBXState, Boolean> =
+        MethodStringName0<FBXState, Boolean>("get_allow_geometry_helper_nodes")
+
+    @JvmStatic
+    public val setAllowGeometryHelperNodesName: MethodStringName1<FBXState, Unit, Boolean> =
+        MethodStringName1<FBXState, Unit, Boolean>("set_allow_geometry_helper_nodes")
+  }
 
   public object MethodBindings {
     internal val getAllowGeometryHelperNodesPtr: VoidPtr =

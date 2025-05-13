@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a
@@ -82,7 +85,15 @@ public open class RectangleShape2D : Shape2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<RectangleShape2D, Unit, Vector2> =
+        MethodStringName1<RectangleShape2D, Unit, Vector2>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<RectangleShape2D, Vector2> =
+        MethodStringName0<RectangleShape2D, Vector2>("get_size")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

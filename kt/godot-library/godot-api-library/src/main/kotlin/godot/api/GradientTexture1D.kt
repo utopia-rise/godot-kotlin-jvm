@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is
@@ -95,7 +98,27 @@ public open class GradientTexture1D : Texture2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setGradientName: MethodStringName1<GradientTexture1D, Unit, Gradient?> =
+        MethodStringName1<GradientTexture1D, Unit, Gradient?>("set_gradient")
+
+    @JvmStatic
+    public val getGradientName: MethodStringName0<GradientTexture1D, Gradient?> =
+        MethodStringName0<GradientTexture1D, Gradient?>("get_gradient")
+
+    @JvmStatic
+    public val setWidthName: MethodStringName1<GradientTexture1D, Unit, Int> =
+        MethodStringName1<GradientTexture1D, Unit, Int>("set_width")
+
+    @JvmStatic
+    public val setUseHdrName: MethodStringName1<GradientTexture1D, Unit, Boolean> =
+        MethodStringName1<GradientTexture1D, Unit, Boolean>("set_use_hdr")
+
+    @JvmStatic
+    public val isUsingHdrName: MethodStringName0<GradientTexture1D, Boolean> =
+        MethodStringName0<GradientTexture1D, Boolean>("is_using_hdr")
+  }
 
   public object MethodBindings {
     internal val setGradientPtr: VoidPtr =

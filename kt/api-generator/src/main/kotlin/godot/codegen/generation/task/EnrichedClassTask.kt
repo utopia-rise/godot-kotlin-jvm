@@ -12,6 +12,7 @@ class EnrichedClassTask(
 
     override val builder = if (clazz.isSingleton) TypeSpec.objectBuilder(clazz.className) else TypeSpec.classBuilder(clazz.className)
     override val companion = if (clazz.isSingleton) builder else TypeSpec.companionObjectBuilder()
+
     val bindings = TypeSpec.objectBuilder(clazz.className.nestedClass(methodBindingsInnerClassName))
 
     val enums by back<EnrichedEnumTask>(innerClasses)

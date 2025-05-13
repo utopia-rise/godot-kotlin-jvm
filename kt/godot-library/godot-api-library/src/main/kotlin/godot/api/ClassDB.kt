@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
@@ -39,6 +43,137 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ClassDB : Object() {
+  @JvmStatic
+  public val getClassListName: MethodStringName0<ClassDB, PackedStringArray> =
+      MethodStringName0<ClassDB, PackedStringArray>("get_class_list")
+
+  @JvmStatic
+  public val getInheritersFromClassName: MethodStringName1<ClassDB, PackedStringArray, StringName> =
+      MethodStringName1<ClassDB, PackedStringArray, StringName>("get_inheriters_from_class")
+
+  @JvmStatic
+  public val getParentClassName: MethodStringName1<ClassDB, StringName, StringName> =
+      MethodStringName1<ClassDB, StringName, StringName>("get_parent_class")
+
+  @JvmStatic
+  public val classExistsName: MethodStringName1<ClassDB, Boolean, StringName> =
+      MethodStringName1<ClassDB, Boolean, StringName>("class_exists")
+
+  @JvmStatic
+  public val isParentClassName: MethodStringName2<ClassDB, Boolean, StringName, StringName> =
+      MethodStringName2<ClassDB, Boolean, StringName, StringName>("is_parent_class")
+
+  @JvmStatic
+  public val canInstantiateName: MethodStringName1<ClassDB, Boolean, StringName> =
+      MethodStringName1<ClassDB, Boolean, StringName>("can_instantiate")
+
+  @JvmStatic
+  public val instantiateName: MethodStringName1<ClassDB, Any?, StringName> =
+      MethodStringName1<ClassDB, Any?, StringName>("instantiate")
+
+  @JvmStatic
+  public val classGetApiTypeName: MethodStringName1<ClassDB, APIType, StringName> =
+      MethodStringName1<ClassDB, APIType, StringName>("class_get_api_type")
+
+  @JvmStatic
+  public val classHasSignalName: MethodStringName2<ClassDB, Boolean, StringName, StringName> =
+      MethodStringName2<ClassDB, Boolean, StringName, StringName>("class_has_signal")
+
+  @JvmStatic
+  public val classGetSignalName:
+      MethodStringName2<ClassDB, Dictionary<Any?, Any?>, StringName, StringName> =
+      MethodStringName2<ClassDB, Dictionary<Any?, Any?>, StringName, StringName>("class_get_signal")
+
+  @JvmStatic
+  public val classGetSignalListName:
+      MethodStringName2<ClassDB, VariantArray<Dictionary<Any?, Any?>>, StringName, Boolean> =
+      MethodStringName2<ClassDB, VariantArray<Dictionary<Any?, Any?>>, StringName, Boolean>("class_get_signal_list")
+
+  @JvmStatic
+  public val classGetPropertyListName:
+      MethodStringName2<ClassDB, VariantArray<Dictionary<Any?, Any?>>, StringName, Boolean> =
+      MethodStringName2<ClassDB, VariantArray<Dictionary<Any?, Any?>>, StringName, Boolean>("class_get_property_list")
+
+  @JvmStatic
+  public val classGetPropertyGetterName:
+      MethodStringName2<ClassDB, StringName, StringName, StringName> =
+      MethodStringName2<ClassDB, StringName, StringName, StringName>("class_get_property_getter")
+
+  @JvmStatic
+  public val classGetPropertySetterName:
+      MethodStringName2<ClassDB, StringName, StringName, StringName> =
+      MethodStringName2<ClassDB, StringName, StringName, StringName>("class_get_property_setter")
+
+  @JvmStatic
+  public val classGetPropertyName: MethodStringName2<ClassDB, Any?, Object?, StringName> =
+      MethodStringName2<ClassDB, Any?, Object?, StringName>("class_get_property")
+
+  @JvmStatic
+  public val classSetPropertyName: MethodStringName3<ClassDB, Error, Object?, StringName, Any?> =
+      MethodStringName3<ClassDB, Error, Object?, StringName, Any?>("class_set_property")
+
+  @JvmStatic
+  public val classGetPropertyDefaultValueName:
+      MethodStringName2<ClassDB, Any?, StringName, StringName> =
+      MethodStringName2<ClassDB, Any?, StringName, StringName>("class_get_property_default_value")
+
+  @JvmStatic
+  public val classHasMethodName:
+      MethodStringName3<ClassDB, Boolean, StringName, StringName, Boolean> =
+      MethodStringName3<ClassDB, Boolean, StringName, StringName, Boolean>("class_has_method")
+
+  @JvmStatic
+  public val classGetMethodArgumentCountName:
+      MethodStringName3<ClassDB, Int, StringName, StringName, Boolean> =
+      MethodStringName3<ClassDB, Int, StringName, StringName, Boolean>("class_get_method_argument_count")
+
+  @JvmStatic
+  public val classGetMethodListName:
+      MethodStringName2<ClassDB, VariantArray<Dictionary<Any?, Any?>>, StringName, Boolean> =
+      MethodStringName2<ClassDB, VariantArray<Dictionary<Any?, Any?>>, StringName, Boolean>("class_get_method_list")
+
+  @JvmStatic
+  public val classGetIntegerConstantListName:
+      MethodStringName2<ClassDB, PackedStringArray, StringName, Boolean> =
+      MethodStringName2<ClassDB, PackedStringArray, StringName, Boolean>("class_get_integer_constant_list")
+
+  @JvmStatic
+  public val classHasIntegerConstantName:
+      MethodStringName2<ClassDB, Boolean, StringName, StringName> =
+      MethodStringName2<ClassDB, Boolean, StringName, StringName>("class_has_integer_constant")
+
+  @JvmStatic
+  public val classGetIntegerConstantName: MethodStringName2<ClassDB, Long, StringName, StringName> =
+      MethodStringName2<ClassDB, Long, StringName, StringName>("class_get_integer_constant")
+
+  @JvmStatic
+  public val classHasEnumName: MethodStringName3<ClassDB, Boolean, StringName, StringName, Boolean>
+      = MethodStringName3<ClassDB, Boolean, StringName, StringName, Boolean>("class_has_enum")
+
+  @JvmStatic
+  public val classGetEnumListName:
+      MethodStringName2<ClassDB, PackedStringArray, StringName, Boolean> =
+      MethodStringName2<ClassDB, PackedStringArray, StringName, Boolean>("class_get_enum_list")
+
+  @JvmStatic
+  public val classGetEnumConstantsName:
+      MethodStringName3<ClassDB, PackedStringArray, StringName, StringName, Boolean> =
+      MethodStringName3<ClassDB, PackedStringArray, StringName, StringName, Boolean>("class_get_enum_constants")
+
+  @JvmStatic
+  public val classGetIntegerConstantEnumName:
+      MethodStringName3<ClassDB, StringName, StringName, StringName, Boolean> =
+      MethodStringName3<ClassDB, StringName, StringName, StringName, Boolean>("class_get_integer_constant_enum")
+
+  @JvmStatic
+  public val isClassEnumBitfieldName:
+      MethodStringName3<ClassDB, Boolean, StringName, StringName, Boolean> =
+      MethodStringName3<ClassDB, Boolean, StringName, StringName, Boolean>("is_class_enum_bitfield")
+
+  @JvmStatic
+  public val isClassEnabledName: MethodStringName1<ClassDB, Boolean, StringName> =
+      MethodStringName1<ClassDB, Boolean, StringName>("is_class_enabled")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(2)
   }

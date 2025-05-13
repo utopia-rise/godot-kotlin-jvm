@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -18,6 +20,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 1D texture where pixel brightness corresponds to points on a unit [Curve] resource, either in
@@ -120,7 +123,27 @@ public open class CurveTexture : Texture2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setWidthName: MethodStringName1<CurveTexture, Unit, Int> =
+        MethodStringName1<CurveTexture, Unit, Int>("set_width")
+
+    @JvmStatic
+    public val setCurveName: MethodStringName1<CurveTexture, Unit, Curve?> =
+        MethodStringName1<CurveTexture, Unit, Curve?>("set_curve")
+
+    @JvmStatic
+    public val getCurveName: MethodStringName0<CurveTexture, Curve?> =
+        MethodStringName0<CurveTexture, Curve?>("get_curve")
+
+    @JvmStatic
+    public val setTextureModeName: MethodStringName1<CurveTexture, Unit, TextureMode> =
+        MethodStringName1<CurveTexture, Unit, TextureMode>("set_texture_mode")
+
+    @JvmStatic
+    public val getTextureModeName: MethodStringName0<CurveTexture, TextureMode> =
+        MethodStringName0<CurveTexture, TextureMode>("get_texture_mode")
+  }
 
   public object MethodBindings {
     internal val setWidthPtr: VoidPtr =

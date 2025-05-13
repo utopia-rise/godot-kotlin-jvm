@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -297,7 +301,62 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Vector3> =
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Vector3>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<GPUParticlesCollisionHeightField3D, Vector3> =
+        MethodStringName0<GPUParticlesCollisionHeightField3D, Vector3>("get_size")
+
+    @JvmStatic
+    public val setResolutionName:
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Resolution> =
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Resolution>("set_resolution")
+
+    @JvmStatic
+    public val getResolutionName: MethodStringName0<GPUParticlesCollisionHeightField3D, Resolution>
+        = MethodStringName0<GPUParticlesCollisionHeightField3D, Resolution>("get_resolution")
+
+    @JvmStatic
+    public val setUpdateModeName:
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, UpdateMode> =
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, UpdateMode>("set_update_mode")
+
+    @JvmStatic
+    public val getUpdateModeName: MethodStringName0<GPUParticlesCollisionHeightField3D, UpdateMode>
+        = MethodStringName0<GPUParticlesCollisionHeightField3D, UpdateMode>("get_update_mode")
+
+    @JvmStatic
+    public val setHeightfieldMaskName:
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Long> =
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Long>("set_heightfield_mask")
+
+    @JvmStatic
+    public val getHeightfieldMaskName: MethodStringName0<GPUParticlesCollisionHeightField3D, Long> =
+        MethodStringName0<GPUParticlesCollisionHeightField3D, Long>("get_heightfield_mask")
+
+    @JvmStatic
+    public val setHeightfieldMaskValueName:
+        MethodStringName2<GPUParticlesCollisionHeightField3D, Unit, Int, Boolean> =
+        MethodStringName2<GPUParticlesCollisionHeightField3D, Unit, Int, Boolean>("set_heightfield_mask_value")
+
+    @JvmStatic
+    public val getHeightfieldMaskValueName:
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Boolean, Int> =
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Boolean, Int>("get_heightfield_mask_value")
+
+    @JvmStatic
+    public val setFollowCameraEnabledName:
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Boolean> =
+        MethodStringName1<GPUParticlesCollisionHeightField3D, Unit, Boolean>("set_follow_camera_enabled")
+
+    @JvmStatic
+    public val isFollowCameraEnabledName:
+        MethodStringName0<GPUParticlesCollisionHeightField3D, Boolean> =
+        MethodStringName0<GPUParticlesCollisionHeightField3D, Boolean>("is_follow_camera_enabled")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

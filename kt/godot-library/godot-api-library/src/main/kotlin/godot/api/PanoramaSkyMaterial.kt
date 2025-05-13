@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
@@ -106,7 +109,31 @@ public open class PanoramaSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPanoramaName: MethodStringName1<PanoramaSkyMaterial, Unit, Texture2D?> =
+        MethodStringName1<PanoramaSkyMaterial, Unit, Texture2D?>("set_panorama")
+
+    @JvmStatic
+    public val getPanoramaName: MethodStringName0<PanoramaSkyMaterial, Texture2D?> =
+        MethodStringName0<PanoramaSkyMaterial, Texture2D?>("get_panorama")
+
+    @JvmStatic
+    public val setFilteringEnabledName: MethodStringName1<PanoramaSkyMaterial, Unit, Boolean> =
+        MethodStringName1<PanoramaSkyMaterial, Unit, Boolean>("set_filtering_enabled")
+
+    @JvmStatic
+    public val isFilteringEnabledName: MethodStringName0<PanoramaSkyMaterial, Boolean> =
+        MethodStringName0<PanoramaSkyMaterial, Boolean>("is_filtering_enabled")
+
+    @JvmStatic
+    public val setEnergyMultiplierName: MethodStringName1<PanoramaSkyMaterial, Unit, Float> =
+        MethodStringName1<PanoramaSkyMaterial, Unit, Float>("set_energy_multiplier")
+
+    @JvmStatic
+    public val getEnergyMultiplierName: MethodStringName0<PanoramaSkyMaterial, Float> =
+        MethodStringName0<PanoramaSkyMaterial, Float>("get_energy_multiplier")
+  }
 
   public object MethodBindings {
     internal val setPanoramaPtr: VoidPtr =

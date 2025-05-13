@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.VariantArray
@@ -28,6 +31,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is
@@ -226,7 +230,59 @@ public open class LightmapGIData : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLightmapTexturesName:
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>> =
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>>("set_lightmap_textures")
+
+    @JvmStatic
+    public val getLightmapTexturesName:
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>> =
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>>("get_lightmap_textures")
+
+    @JvmStatic
+    public val setShadowmaskTexturesName:
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>> =
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>>("set_shadowmask_textures")
+
+    @JvmStatic
+    public val getShadowmaskTexturesName:
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>> =
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>>("get_shadowmask_textures")
+
+    @JvmStatic
+    public val setUsesSphericalHarmonicsName: MethodStringName1<LightmapGIData, Unit, Boolean> =
+        MethodStringName1<LightmapGIData, Unit, Boolean>("set_uses_spherical_harmonics")
+
+    @JvmStatic
+    public val isUsingSphericalHarmonicsName: MethodStringName0<LightmapGIData, Boolean> =
+        MethodStringName0<LightmapGIData, Boolean>("is_using_spherical_harmonics")
+
+    @JvmStatic
+    public val addUserName: MethodStringName4<LightmapGIData, Unit, NodePath, Rect2, Int, Int> =
+        MethodStringName4<LightmapGIData, Unit, NodePath, Rect2, Int, Int>("add_user")
+
+    @JvmStatic
+    public val getUserCountName: MethodStringName0<LightmapGIData, Int> =
+        MethodStringName0<LightmapGIData, Int>("get_user_count")
+
+    @JvmStatic
+    public val getUserPathName: MethodStringName1<LightmapGIData, NodePath, Int> =
+        MethodStringName1<LightmapGIData, NodePath, Int>("get_user_path")
+
+    @JvmStatic
+    public val clearUsersName: MethodStringName0<LightmapGIData, Unit> =
+        MethodStringName0<LightmapGIData, Unit>("clear_users")
+
+    @JvmStatic
+    public val setLightTextureName: MethodStringName1<LightmapGIData, Unit, TextureLayered?> =
+        MethodStringName1<LightmapGIData, Unit, TextureLayered?>("set_light_texture")
+
+    @JvmStatic
+    public val getLightTextureName: MethodStringName0<LightmapGIData, TextureLayered?> =
+        MethodStringName0<LightmapGIData, TextureLayered?>("get_light_texture")
+  }
 
   public object MethodBindings {
     internal val setLightmapTexturesPtr: VoidPtr =

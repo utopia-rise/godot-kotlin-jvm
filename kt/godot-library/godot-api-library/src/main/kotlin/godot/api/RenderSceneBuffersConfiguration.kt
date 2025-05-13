@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This configuration object is created and populated by the render engine on a viewport change and
@@ -314,7 +317,101 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getRenderTargetName: MethodStringName0<RenderSceneBuffersConfiguration, RID> =
+        MethodStringName0<RenderSceneBuffersConfiguration, RID>("get_render_target")
+
+    @JvmStatic
+    public val setRenderTargetName: MethodStringName1<RenderSceneBuffersConfiguration, Unit, RID> =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RID>("set_render_target")
+
+    @JvmStatic
+    public val getInternalSizeName: MethodStringName0<RenderSceneBuffersConfiguration, Vector2i> =
+        MethodStringName0<RenderSceneBuffersConfiguration, Vector2i>("get_internal_size")
+
+    @JvmStatic
+    public val setInternalSizeName:
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, Vector2i> =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, Vector2i>("set_internal_size")
+
+    @JvmStatic
+    public val getTargetSizeName: MethodStringName0<RenderSceneBuffersConfiguration, Vector2i> =
+        MethodStringName0<RenderSceneBuffersConfiguration, Vector2i>("get_target_size")
+
+    @JvmStatic
+    public val setTargetSizeName: MethodStringName1<RenderSceneBuffersConfiguration, Unit, Vector2i>
+        = MethodStringName1<RenderSceneBuffersConfiguration, Unit, Vector2i>("set_target_size")
+
+    @JvmStatic
+    public val getViewCountName: MethodStringName0<RenderSceneBuffersConfiguration, Long> =
+        MethodStringName0<RenderSceneBuffersConfiguration, Long>("get_view_count")
+
+    @JvmStatic
+    public val setViewCountName: MethodStringName1<RenderSceneBuffersConfiguration, Unit, Long> =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, Long>("set_view_count")
+
+    @JvmStatic
+    public val getScaling3dModeName:
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportScaling3DMode> =
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportScaling3DMode>("get_scaling_3d_mode")
+
+    @JvmStatic
+    public val setScaling3dModeName:
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportScaling3DMode>
+        =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportScaling3DMode>("set_scaling_3d_mode")
+
+    @JvmStatic
+    public val getMsaa3dName:
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportMSAA> =
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportMSAA>("get_msaa_3d")
+
+    @JvmStatic
+    public val setMsaa3dName:
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportMSAA> =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportMSAA>("set_msaa_3d")
+
+    @JvmStatic
+    public val getScreenSpaceAaName:
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportScreenSpaceAA> =
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportScreenSpaceAA>("get_screen_space_aa")
+
+    @JvmStatic
+    public val setScreenSpaceAaName:
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportScreenSpaceAA>
+        =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportScreenSpaceAA>("set_screen_space_aa")
+
+    @JvmStatic
+    public val getFsrSharpnessName: MethodStringName0<RenderSceneBuffersConfiguration, Float> =
+        MethodStringName0<RenderSceneBuffersConfiguration, Float>("get_fsr_sharpness")
+
+    @JvmStatic
+    public val setFsrSharpnessName: MethodStringName1<RenderSceneBuffersConfiguration, Unit, Float>
+        = MethodStringName1<RenderSceneBuffersConfiguration, Unit, Float>("set_fsr_sharpness")
+
+    @JvmStatic
+    public val getTextureMipmapBiasName: MethodStringName0<RenderSceneBuffersConfiguration, Float> =
+        MethodStringName0<RenderSceneBuffersConfiguration, Float>("get_texture_mipmap_bias")
+
+    @JvmStatic
+    public val setTextureMipmapBiasName:
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, Float> =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, Float>("set_texture_mipmap_bias")
+
+    @JvmStatic
+    public val getAnisotropicFilteringLevelName:
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportAnisotropicFiltering>
+        =
+        MethodStringName0<RenderSceneBuffersConfiguration, RenderingServer.ViewportAnisotropicFiltering>("get_anisotropic_filtering_level")
+
+    @JvmStatic
+    public val setAnisotropicFilteringLevelName:
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportAnisotropicFiltering>
+        =
+        MethodStringName1<RenderSceneBuffersConfiguration, Unit, RenderingServer.ViewportAnisotropicFiltering>("set_anisotropic_filtering_level")
+  }
 
   public object MethodBindings {
     internal val getRenderTargetPtr: VoidPtr =

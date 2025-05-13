@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
@@ -97,7 +100,31 @@ public open class RenderSceneData internal constructor() : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getCamTransformName: MethodStringName0<RenderSceneData, Transform3D> =
+        MethodStringName0<RenderSceneData, Transform3D>("get_cam_transform")
+
+    @JvmStatic
+    public val getCamProjectionName: MethodStringName0<RenderSceneData, Projection> =
+        MethodStringName0<RenderSceneData, Projection>("get_cam_projection")
+
+    @JvmStatic
+    public val getViewCountName: MethodStringName0<RenderSceneData, Long> =
+        MethodStringName0<RenderSceneData, Long>("get_view_count")
+
+    @JvmStatic
+    public val getViewEyeOffsetName: MethodStringName1<RenderSceneData, Vector3, Long> =
+        MethodStringName1<RenderSceneData, Vector3, Long>("get_view_eye_offset")
+
+    @JvmStatic
+    public val getViewProjectionName: MethodStringName1<RenderSceneData, Projection, Long> =
+        MethodStringName1<RenderSceneData, Projection, Long>("get_view_projection")
+
+    @JvmStatic
+    public val getUniformBufferName: MethodStringName0<RenderSceneData, RID> =
+        MethodStringName0<RenderSceneData, RID>("get_uniform_buffer")
+  }
 
   public object MethodBindings {
     internal val getCamTransformPtr: VoidPtr =

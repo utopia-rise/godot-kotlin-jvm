@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -24,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them
@@ -348,7 +351,104 @@ public open class Button : BaseButton() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTextName: MethodStringName1<Button, Unit, String> =
+        MethodStringName1<Button, Unit, String>("set_text")
+
+    @JvmStatic
+    public val getTextName: MethodStringName0<Button, String> =
+        MethodStringName0<Button, String>("get_text")
+
+    @JvmStatic
+    public val setTextOverrunBehaviorName:
+        MethodStringName1<Button, Unit, TextServer.OverrunBehavior> =
+        MethodStringName1<Button, Unit, TextServer.OverrunBehavior>("set_text_overrun_behavior")
+
+    @JvmStatic
+    public val getTextOverrunBehaviorName: MethodStringName0<Button, TextServer.OverrunBehavior> =
+        MethodStringName0<Button, TextServer.OverrunBehavior>("get_text_overrun_behavior")
+
+    @JvmStatic
+    public val setAutowrapModeName: MethodStringName1<Button, Unit, TextServer.AutowrapMode> =
+        MethodStringName1<Button, Unit, TextServer.AutowrapMode>("set_autowrap_mode")
+
+    @JvmStatic
+    public val getAutowrapModeName: MethodStringName0<Button, TextServer.AutowrapMode> =
+        MethodStringName0<Button, TextServer.AutowrapMode>("get_autowrap_mode")
+
+    @JvmStatic
+    public val setTextDirectionName: MethodStringName1<Button, Unit, Control.TextDirection> =
+        MethodStringName1<Button, Unit, Control.TextDirection>("set_text_direction")
+
+    @JvmStatic
+    public val getTextDirectionName: MethodStringName0<Button, Control.TextDirection> =
+        MethodStringName0<Button, Control.TextDirection>("get_text_direction")
+
+    @JvmStatic
+    public val setLanguageName: MethodStringName1<Button, Unit, String> =
+        MethodStringName1<Button, Unit, String>("set_language")
+
+    @JvmStatic
+    public val getLanguageName: MethodStringName0<Button, String> =
+        MethodStringName0<Button, String>("get_language")
+
+    @JvmStatic
+    public val setButtonIconName: MethodStringName1<Button, Unit, Texture2D?> =
+        MethodStringName1<Button, Unit, Texture2D?>("set_button_icon")
+
+    @JvmStatic
+    public val getButtonIconName: MethodStringName0<Button, Texture2D?> =
+        MethodStringName0<Button, Texture2D?>("get_button_icon")
+
+    @JvmStatic
+    public val setFlatName: MethodStringName1<Button, Unit, Boolean> =
+        MethodStringName1<Button, Unit, Boolean>("set_flat")
+
+    @JvmStatic
+    public val isFlatName: MethodStringName0<Button, Boolean> =
+        MethodStringName0<Button, Boolean>("is_flat")
+
+    @JvmStatic
+    public val setClipTextName: MethodStringName1<Button, Unit, Boolean> =
+        MethodStringName1<Button, Unit, Boolean>("set_clip_text")
+
+    @JvmStatic
+    public val getClipTextName: MethodStringName0<Button, Boolean> =
+        MethodStringName0<Button, Boolean>("get_clip_text")
+
+    @JvmStatic
+    public val setTextAlignmentName: MethodStringName1<Button, Unit, HorizontalAlignment> =
+        MethodStringName1<Button, Unit, HorizontalAlignment>("set_text_alignment")
+
+    @JvmStatic
+    public val getTextAlignmentName: MethodStringName0<Button, HorizontalAlignment> =
+        MethodStringName0<Button, HorizontalAlignment>("get_text_alignment")
+
+    @JvmStatic
+    public val setIconAlignmentName: MethodStringName1<Button, Unit, HorizontalAlignment> =
+        MethodStringName1<Button, Unit, HorizontalAlignment>("set_icon_alignment")
+
+    @JvmStatic
+    public val getIconAlignmentName: MethodStringName0<Button, HorizontalAlignment> =
+        MethodStringName0<Button, HorizontalAlignment>("get_icon_alignment")
+
+    @JvmStatic
+    public val setVerticalIconAlignmentName: MethodStringName1<Button, Unit, VerticalAlignment> =
+        MethodStringName1<Button, Unit, VerticalAlignment>("set_vertical_icon_alignment")
+
+    @JvmStatic
+    public val getVerticalIconAlignmentName: MethodStringName0<Button, VerticalAlignment> =
+        MethodStringName0<Button, VerticalAlignment>("get_vertical_icon_alignment")
+
+    @JvmStatic
+    public val setExpandIconName: MethodStringName1<Button, Unit, Boolean> =
+        MethodStringName1<Button, Unit, Boolean>("set_expand_icon")
+
+    @JvmStatic
+    public val isExpandIconName: MethodStringName0<Button, Boolean> =
+        MethodStringName0<Button, Boolean>("is_expand_icon")
+  }
 
   public object MethodBindings {
     internal val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_text", 83702148)

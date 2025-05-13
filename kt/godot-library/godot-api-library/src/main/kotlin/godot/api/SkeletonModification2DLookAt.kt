@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +28,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for
@@ -203,7 +206,77 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   public final fun setTargetNode(targetNodepath: String) =
       setTargetNode(targetNodepath.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBone2dNodeName: MethodStringName1<SkeletonModification2DLookAt, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, NodePath>("set_bone2d_node")
+
+    @JvmStatic
+    public val getBone2dNodeName: MethodStringName0<SkeletonModification2DLookAt, NodePath> =
+        MethodStringName0<SkeletonModification2DLookAt, NodePath>("get_bone2d_node")
+
+    @JvmStatic
+    public val setBoneIndexName: MethodStringName1<SkeletonModification2DLookAt, Unit, Int> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Int>("set_bone_index")
+
+    @JvmStatic
+    public val getBoneIndexName: MethodStringName0<SkeletonModification2DLookAt, Int> =
+        MethodStringName0<SkeletonModification2DLookAt, Int>("get_bone_index")
+
+    @JvmStatic
+    public val setTargetNodeName: MethodStringName1<SkeletonModification2DLookAt, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, NodePath>("set_target_node")
+
+    @JvmStatic
+    public val getTargetNodeName: MethodStringName0<SkeletonModification2DLookAt, NodePath> =
+        MethodStringName0<SkeletonModification2DLookAt, NodePath>("get_target_node")
+
+    @JvmStatic
+    public val setAdditionalRotationName:
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Float> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Float>("set_additional_rotation")
+
+    @JvmStatic
+    public val getAdditionalRotationName: MethodStringName0<SkeletonModification2DLookAt, Float> =
+        MethodStringName0<SkeletonModification2DLookAt, Float>("get_additional_rotation")
+
+    @JvmStatic
+    public val setEnableConstraintName:
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Boolean> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Boolean>("set_enable_constraint")
+
+    @JvmStatic
+    public val getEnableConstraintName: MethodStringName0<SkeletonModification2DLookAt, Boolean> =
+        MethodStringName0<SkeletonModification2DLookAt, Boolean>("get_enable_constraint")
+
+    @JvmStatic
+    public val setConstraintAngleMinName:
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Float> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Float>("set_constraint_angle_min")
+
+    @JvmStatic
+    public val getConstraintAngleMinName: MethodStringName0<SkeletonModification2DLookAt, Float> =
+        MethodStringName0<SkeletonModification2DLookAt, Float>("get_constraint_angle_min")
+
+    @JvmStatic
+    public val setConstraintAngleMaxName:
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Float> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Float>("set_constraint_angle_max")
+
+    @JvmStatic
+    public val getConstraintAngleMaxName: MethodStringName0<SkeletonModification2DLookAt, Float> =
+        MethodStringName0<SkeletonModification2DLookAt, Float>("get_constraint_angle_max")
+
+    @JvmStatic
+    public val setConstraintAngleInvertName:
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Boolean> =
+        MethodStringName1<SkeletonModification2DLookAt, Unit, Boolean>("set_constraint_angle_invert")
+
+    @JvmStatic
+    public val getConstraintAngleInvertName:
+        MethodStringName0<SkeletonModification2DLookAt, Boolean> =
+        MethodStringName0<SkeletonModification2DLookAt, Boolean>("get_constraint_angle_invert")
+  }
 
   public object MethodBindings {
     internal val setBone2dNodePtr: VoidPtr =

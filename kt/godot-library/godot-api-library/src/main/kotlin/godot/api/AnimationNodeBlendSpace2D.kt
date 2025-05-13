@@ -12,6 +12,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -28,6 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A resource used by [AnimationNodeBlendTree].
@@ -450,7 +456,120 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addBlendPointName:
+        MethodStringName3<AnimationNodeBlendSpace2D, Unit, AnimationRootNode?, Vector2, Int> =
+        MethodStringName3<AnimationNodeBlendSpace2D, Unit, AnimationRootNode?, Vector2, Int>("add_blend_point")
+
+    @JvmStatic
+    public val setBlendPointPositionName:
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, Vector2> =
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, Vector2>("set_blend_point_position")
+
+    @JvmStatic
+    public val getBlendPointPositionName: MethodStringName1<AnimationNodeBlendSpace2D, Vector2, Int>
+        = MethodStringName1<AnimationNodeBlendSpace2D, Vector2, Int>("get_blend_point_position")
+
+    @JvmStatic
+    public val setBlendPointNodeName:
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, AnimationRootNode?> =
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, AnimationRootNode?>("set_blend_point_node")
+
+    @JvmStatic
+    public val getBlendPointNodeName:
+        MethodStringName1<AnimationNodeBlendSpace2D, AnimationRootNode?, Int> =
+        MethodStringName1<AnimationNodeBlendSpace2D, AnimationRootNode?, Int>("get_blend_point_node")
+
+    @JvmStatic
+    public val removeBlendPointName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Int> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Int>("remove_blend_point")
+
+    @JvmStatic
+    public val getBlendPointCountName: MethodStringName0<AnimationNodeBlendSpace2D, Int> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Int>("get_blend_point_count")
+
+    @JvmStatic
+    public val addTriangleName:
+        MethodStringName4<AnimationNodeBlendSpace2D, Unit, Int, Int, Int, Int> =
+        MethodStringName4<AnimationNodeBlendSpace2D, Unit, Int, Int, Int, Int>("add_triangle")
+
+    @JvmStatic
+    public val getTrianglePointName: MethodStringName2<AnimationNodeBlendSpace2D, Int, Int, Int> =
+        MethodStringName2<AnimationNodeBlendSpace2D, Int, Int, Int>("get_triangle_point")
+
+    @JvmStatic
+    public val removeTriangleName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Int> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Int>("remove_triangle")
+
+    @JvmStatic
+    public val getTriangleCountName: MethodStringName0<AnimationNodeBlendSpace2D, Int> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Int>("get_triangle_count")
+
+    @JvmStatic
+    public val setMinSpaceName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Vector2> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Vector2>("set_min_space")
+
+    @JvmStatic
+    public val getMinSpaceName: MethodStringName0<AnimationNodeBlendSpace2D, Vector2> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Vector2>("get_min_space")
+
+    @JvmStatic
+    public val setMaxSpaceName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Vector2> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Vector2>("set_max_space")
+
+    @JvmStatic
+    public val getMaxSpaceName: MethodStringName0<AnimationNodeBlendSpace2D, Vector2> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Vector2>("get_max_space")
+
+    @JvmStatic
+    public val setSnapName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Vector2> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Vector2>("set_snap")
+
+    @JvmStatic
+    public val getSnapName: MethodStringName0<AnimationNodeBlendSpace2D, Vector2> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Vector2>("get_snap")
+
+    @JvmStatic
+    public val setXLabelName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, String> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, String>("set_x_label")
+
+    @JvmStatic
+    public val getXLabelName: MethodStringName0<AnimationNodeBlendSpace2D, String> =
+        MethodStringName0<AnimationNodeBlendSpace2D, String>("get_x_label")
+
+    @JvmStatic
+    public val setYLabelName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, String> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, String>("set_y_label")
+
+    @JvmStatic
+    public val getYLabelName: MethodStringName0<AnimationNodeBlendSpace2D, String> =
+        MethodStringName0<AnimationNodeBlendSpace2D, String>("get_y_label")
+
+    @JvmStatic
+    public val setAutoTrianglesName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Boolean> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Boolean>("set_auto_triangles")
+
+    @JvmStatic
+    public val getAutoTrianglesName: MethodStringName0<AnimationNodeBlendSpace2D, Boolean> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Boolean>("get_auto_triangles")
+
+    @JvmStatic
+    public val setBlendModeName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, BlendMode> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, BlendMode>("set_blend_mode")
+
+    @JvmStatic
+    public val getBlendModeName: MethodStringName0<AnimationNodeBlendSpace2D, BlendMode> =
+        MethodStringName0<AnimationNodeBlendSpace2D, BlendMode>("get_blend_mode")
+
+    @JvmStatic
+    public val setUseSyncName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Boolean> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Boolean>("set_use_sync")
+
+    @JvmStatic
+    public val isUsingSyncName: MethodStringName0<AnimationNodeBlendSpace2D, Boolean> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Boolean>("is_using_sync")
+  }
 
   public object MethodBindings {
     internal val addBlendPointPtr: VoidPtr =

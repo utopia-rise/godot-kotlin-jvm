@@ -14,6 +14,12 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -36,6 +42,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s
@@ -467,6 +474,100 @@ public open class VisualShader : Shader() {
   }
 
   public companion object {
+    @JvmStatic
+    public val setModeName: MethodStringName1<VisualShader, Unit, Shader.Mode> =
+        MethodStringName1<VisualShader, Unit, Shader.Mode>("set_mode")
+
+    @JvmStatic
+    public val addNodeName:
+        MethodStringName4<VisualShader, Unit, Type, VisualShaderNode?, Vector2, Int> =
+        MethodStringName4<VisualShader, Unit, Type, VisualShaderNode?, Vector2, Int>("add_node")
+
+    @JvmStatic
+    public val getNodeName: MethodStringName2<VisualShader, VisualShaderNode?, Type, Int> =
+        MethodStringName2<VisualShader, VisualShaderNode?, Type, Int>("get_node")
+
+    @JvmStatic
+    public val setNodePositionName: MethodStringName3<VisualShader, Unit, Type, Int, Vector2> =
+        MethodStringName3<VisualShader, Unit, Type, Int, Vector2>("set_node_position")
+
+    @JvmStatic
+    public val getNodePositionName: MethodStringName2<VisualShader, Vector2, Type, Int> =
+        MethodStringName2<VisualShader, Vector2, Type, Int>("get_node_position")
+
+    @JvmStatic
+    public val getNodeListName: MethodStringName1<VisualShader, PackedInt32Array, Type> =
+        MethodStringName1<VisualShader, PackedInt32Array, Type>("get_node_list")
+
+    @JvmStatic
+    public val getValidNodeIdName: MethodStringName1<VisualShader, Int, Type> =
+        MethodStringName1<VisualShader, Int, Type>("get_valid_node_id")
+
+    @JvmStatic
+    public val removeNodeName: MethodStringName2<VisualShader, Unit, Type, Int> =
+        MethodStringName2<VisualShader, Unit, Type, Int>("remove_node")
+
+    @JvmStatic
+    public val replaceNodeName: MethodStringName3<VisualShader, Unit, Type, Int, StringName> =
+        MethodStringName3<VisualShader, Unit, Type, Int, StringName>("replace_node")
+
+    @JvmStatic
+    public val isNodeConnectionName:
+        MethodStringName5<VisualShader, Boolean, Type, Int, Int, Int, Int> =
+        MethodStringName5<VisualShader, Boolean, Type, Int, Int, Int, Int>("is_node_connection")
+
+    @JvmStatic
+    public val canConnectNodesName:
+        MethodStringName5<VisualShader, Boolean, Type, Int, Int, Int, Int> =
+        MethodStringName5<VisualShader, Boolean, Type, Int, Int, Int, Int>("can_connect_nodes")
+
+    @JvmStatic
+    public val connectNodesName: MethodStringName5<VisualShader, Error, Type, Int, Int, Int, Int> =
+        MethodStringName5<VisualShader, Error, Type, Int, Int, Int, Int>("connect_nodes")
+
+    @JvmStatic
+    public val disconnectNodesName: MethodStringName5<VisualShader, Unit, Type, Int, Int, Int, Int>
+        = MethodStringName5<VisualShader, Unit, Type, Int, Int, Int, Int>("disconnect_nodes")
+
+    @JvmStatic
+    public val connectNodesForcedName:
+        MethodStringName5<VisualShader, Unit, Type, Int, Int, Int, Int> =
+        MethodStringName5<VisualShader, Unit, Type, Int, Int, Int, Int>("connect_nodes_forced")
+
+    @JvmStatic
+    public val getNodeConnectionsName:
+        MethodStringName1<VisualShader, VariantArray<Dictionary<Any?, Any?>>, Type> =
+        MethodStringName1<VisualShader, VariantArray<Dictionary<Any?, Any?>>, Type>("get_node_connections")
+
+    @JvmStatic
+    public val setGraphOffsetName: MethodStringName1<VisualShader, Unit, Vector2> =
+        MethodStringName1<VisualShader, Unit, Vector2>("set_graph_offset")
+
+    @JvmStatic
+    public val getGraphOffsetName: MethodStringName0<VisualShader, Vector2> =
+        MethodStringName0<VisualShader, Vector2>("get_graph_offset")
+
+    @JvmStatic
+    public val attachNodeToFrameName: MethodStringName3<VisualShader, Unit, Type, Int, Int> =
+        MethodStringName3<VisualShader, Unit, Type, Int, Int>("attach_node_to_frame")
+
+    @JvmStatic
+    public val detachNodeFromFrameName: MethodStringName2<VisualShader, Unit, Type, Int> =
+        MethodStringName2<VisualShader, Unit, Type, Int>("detach_node_from_frame")
+
+    @JvmStatic
+    public val addVaryingName:
+        MethodStringName3<VisualShader, Unit, String, VaryingMode, VaryingType> =
+        MethodStringName3<VisualShader, Unit, String, VaryingMode, VaryingType>("add_varying")
+
+    @JvmStatic
+    public val removeVaryingName: MethodStringName1<VisualShader, Unit, String> =
+        MethodStringName1<VisualShader, Unit, String>("remove_varying")
+
+    @JvmStatic
+    public val hasVaryingName: MethodStringName1<VisualShader, Boolean, String> =
+        MethodStringName1<VisualShader, Boolean, String>("has_varying")
+
     /**
      * Indicates an invalid [VisualShader] node.
      */

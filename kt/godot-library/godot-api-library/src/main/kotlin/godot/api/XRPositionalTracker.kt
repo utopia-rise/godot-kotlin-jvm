@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName5
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -35,6 +39,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An instance of this object represents a device that is tracked, such as a controller or anchor
@@ -270,7 +275,49 @@ public open class XRPositionalTracker : XRTracker() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getTrackerProfileName: MethodStringName0<XRPositionalTracker, String> =
+        MethodStringName0<XRPositionalTracker, String>("get_tracker_profile")
+
+    @JvmStatic
+    public val setTrackerProfileName: MethodStringName1<XRPositionalTracker, Unit, String> =
+        MethodStringName1<XRPositionalTracker, Unit, String>("set_tracker_profile")
+
+    @JvmStatic
+    public val getTrackerHandName: MethodStringName0<XRPositionalTracker, TrackerHand> =
+        MethodStringName0<XRPositionalTracker, TrackerHand>("get_tracker_hand")
+
+    @JvmStatic
+    public val setTrackerHandName: MethodStringName1<XRPositionalTracker, Unit, TrackerHand> =
+        MethodStringName1<XRPositionalTracker, Unit, TrackerHand>("set_tracker_hand")
+
+    @JvmStatic
+    public val hasPoseName: MethodStringName1<XRPositionalTracker, Boolean, StringName> =
+        MethodStringName1<XRPositionalTracker, Boolean, StringName>("has_pose")
+
+    @JvmStatic
+    public val getPoseName: MethodStringName1<XRPositionalTracker, XRPose?, StringName> =
+        MethodStringName1<XRPositionalTracker, XRPose?, StringName>("get_pose")
+
+    @JvmStatic
+    public val invalidatePoseName: MethodStringName1<XRPositionalTracker, Unit, StringName> =
+        MethodStringName1<XRPositionalTracker, Unit, StringName>("invalidate_pose")
+
+    @JvmStatic
+    public val setPoseName:
+        MethodStringName5<XRPositionalTracker, Unit, StringName, Transform3D, Vector3, Vector3, XRPose.TrackingConfidence>
+        =
+        MethodStringName5<XRPositionalTracker, Unit, StringName, Transform3D, Vector3, Vector3, XRPose.TrackingConfidence>("set_pose")
+
+    @JvmStatic
+    public val getInputName: MethodStringName1<XRPositionalTracker, Any?, StringName> =
+        MethodStringName1<XRPositionalTracker, Any?, StringName>("get_input")
+
+    @JvmStatic
+    public val setInputName: MethodStringName2<XRPositionalTracker, Unit, StringName, Any?> =
+        MethodStringName2<XRPositionalTracker, Unit, StringName, Any?>("set_input")
+  }
 
   public object MethodBindings {
     internal val getTrackerProfilePtr: VoidPtr =

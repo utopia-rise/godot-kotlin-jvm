@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Increases or decreases the volume being routed through the audio bus.
@@ -77,7 +80,23 @@ public open class AudioEffectAmplify : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setVolumeDbName: MethodStringName1<AudioEffectAmplify, Unit, Float> =
+        MethodStringName1<AudioEffectAmplify, Unit, Float>("set_volume_db")
+
+    @JvmStatic
+    public val getVolumeDbName: MethodStringName0<AudioEffectAmplify, Float> =
+        MethodStringName0<AudioEffectAmplify, Float>("get_volume_db")
+
+    @JvmStatic
+    public val setVolumeLinearName: MethodStringName1<AudioEffectAmplify, Unit, Float> =
+        MethodStringName1<AudioEffectAmplify, Unit, Float>("set_volume_linear")
+
+    @JvmStatic
+    public val getVolumeLinearName: MethodStringName0<AudioEffectAmplify, Float> =
+        MethodStringName0<AudioEffectAmplify, Float>("get_volume_linear")
+  }
 
   public object MethodBindings {
     internal val setVolumeDbPtr: VoidPtr =

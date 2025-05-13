@@ -1,9 +1,13 @@
 package godot.codegen.generation.rule
 
+import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.TypeVariableName
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
@@ -16,6 +20,7 @@ import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VOID_PTR
+import godot.tools.common.constants.godotCorePackage
 
 
 class MemberRule : GodotApiRule<EnrichedClassTask>() {
@@ -123,7 +128,7 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
             .onEach {
                 classTask.bindings.addProperty(
                     PropertySpec
-                        .builder(it.voidPtrVariableName, VOID_PTR)
+                        .builder("${it.name}Ptr", VOID_PTR)
                         .addModifiers(KModifier.INTERNAL)
                         .initializer(
                             "%T.getMethodBindPtr(%S,·%S,·%L)",
@@ -132,6 +137,40 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
                             it.godotName,
                             it.hash
                         )
+                        .build()
+                )
+            }
+    }
+}
+
+
+class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
+
+    override fun apply(classTask: EnrichedClassTask, context: GenerationContext) = configure(classTask.builder) {
+        val clazz = classTask.clazz
+        clazz.methods
+            .filter { !it.isVirtual }
+            .onEach {
+                if (it.isVararg) return@onEach
+
+
+                val argCount = it.arguments.size
+
+                val methodStringClassName = ClassName(
+                    godotCorePackage,
+                    "MethodStringName$argCount"
+                ).parameterizedBy(
+                    listOf(classTask.clazz.className, it.getCastedType()) + it.arguments.map { it.getCastedType()}
+                )
+
+                classTask.companion.addProperty(
+                    PropertySpec
+                        .builder("${it.name}Name", methodStringClassName)
+                        .initializer(
+                            "%T(\"${it.godotName}\")",
+                            methodStringClassName
+                        )
+                        .addAnnotation(JvmStatic::class)
                         .build()
                 )
             }

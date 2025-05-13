@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
@@ -152,7 +155,31 @@ public open class ColorPickerButton : Button() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPickColorName: MethodStringName1<ColorPickerButton, Unit, Color> =
+        MethodStringName1<ColorPickerButton, Unit, Color>("set_pick_color")
+
+    @JvmStatic
+    public val getPickColorName: MethodStringName0<ColorPickerButton, Color> =
+        MethodStringName0<ColorPickerButton, Color>("get_pick_color")
+
+    @JvmStatic
+    public val getPickerName: MethodStringName0<ColorPickerButton, ColorPicker?> =
+        MethodStringName0<ColorPickerButton, ColorPicker?>("get_picker")
+
+    @JvmStatic
+    public val getPopupName: MethodStringName0<ColorPickerButton, PopupPanel?> =
+        MethodStringName0<ColorPickerButton, PopupPanel?>("get_popup")
+
+    @JvmStatic
+    public val setEditAlphaName: MethodStringName1<ColorPickerButton, Unit, Boolean> =
+        MethodStringName1<ColorPickerButton, Unit, Boolean>("set_edit_alpha")
+
+    @JvmStatic
+    public val isEditingAlphaName: MethodStringName0<ColorPickerButton, Boolean> =
+        MethodStringName0<ColorPickerButton, Boolean>("is_editing_alpha")
+  }
 
   public object MethodBindings {
     internal val setPickColorPtr: VoidPtr =

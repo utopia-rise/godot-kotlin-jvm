@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -28,6 +31,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
@@ -257,7 +261,68 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLayerViewportName: MethodStringName1<OpenXRCompositionLayer, Unit, SubViewport?> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, SubViewport?>("set_layer_viewport")
+
+    @JvmStatic
+    public val getLayerViewportName: MethodStringName0<OpenXRCompositionLayer, SubViewport?> =
+        MethodStringName0<OpenXRCompositionLayer, SubViewport?>("get_layer_viewport")
+
+    @JvmStatic
+    public val setUseAndroidSurfaceName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_use_android_surface")
+
+    @JvmStatic
+    public val getUseAndroidSurfaceName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("get_use_android_surface")
+
+    @JvmStatic
+    public val setAndroidSurfaceSizeName: MethodStringName1<OpenXRCompositionLayer, Unit, Vector2i>
+        = MethodStringName1<OpenXRCompositionLayer, Unit, Vector2i>("set_android_surface_size")
+
+    @JvmStatic
+    public val getAndroidSurfaceSizeName: MethodStringName0<OpenXRCompositionLayer, Vector2i> =
+        MethodStringName0<OpenXRCompositionLayer, Vector2i>("get_android_surface_size")
+
+    @JvmStatic
+    public val setEnableHolePunchName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_enable_hole_punch")
+
+    @JvmStatic
+    public val getEnableHolePunchName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("get_enable_hole_punch")
+
+    @JvmStatic
+    public val setSortOrderName: MethodStringName1<OpenXRCompositionLayer, Unit, Int> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Int>("set_sort_order")
+
+    @JvmStatic
+    public val getSortOrderName: MethodStringName0<OpenXRCompositionLayer, Int> =
+        MethodStringName0<OpenXRCompositionLayer, Int>("get_sort_order")
+
+    @JvmStatic
+    public val setAlphaBlendName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_alpha_blend")
+
+    @JvmStatic
+    public val getAlphaBlendName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("get_alpha_blend")
+
+    @JvmStatic
+    public val getAndroidSurfaceName: MethodStringName0<OpenXRCompositionLayer, JavaObject?> =
+        MethodStringName0<OpenXRCompositionLayer, JavaObject?>("get_android_surface")
+
+    @JvmStatic
+    public val isNativelySupportedName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("is_natively_supported")
+
+    @JvmStatic
+    public val intersectsRayName:
+        MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3> =
+        MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3>("intersects_ray")
+  }
 
   public object MethodBindings {
     internal val setLayerViewportPtr: VoidPtr =

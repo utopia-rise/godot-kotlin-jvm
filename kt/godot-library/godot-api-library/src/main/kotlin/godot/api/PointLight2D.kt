@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture.
@@ -138,7 +141,31 @@ public open class PointLight2D : Light2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTextureName: MethodStringName1<PointLight2D, Unit, Texture2D?> =
+        MethodStringName1<PointLight2D, Unit, Texture2D?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName0<PointLight2D, Texture2D?> =
+        MethodStringName0<PointLight2D, Texture2D?>("get_texture")
+
+    @JvmStatic
+    public val setTextureOffsetName: MethodStringName1<PointLight2D, Unit, Vector2> =
+        MethodStringName1<PointLight2D, Unit, Vector2>("set_texture_offset")
+
+    @JvmStatic
+    public val getTextureOffsetName: MethodStringName0<PointLight2D, Vector2> =
+        MethodStringName0<PointLight2D, Vector2>("get_texture_offset")
+
+    @JvmStatic
+    public val setTextureScaleName: MethodStringName1<PointLight2D, Unit, Float> =
+        MethodStringName1<PointLight2D, Unit, Float>("set_texture_scale")
+
+    @JvmStatic
+    public val getTextureScaleName: MethodStringName0<PointLight2D, Float> =
+        MethodStringName0<PointLight2D, Float>("get_texture_scale")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

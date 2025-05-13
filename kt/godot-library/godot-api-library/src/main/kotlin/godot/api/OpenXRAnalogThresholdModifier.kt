@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The analog threshold binding modifier can modify a float input to a boolean input with specified
@@ -123,7 +126,41 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOnThresholdName: MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float> =
+        MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float>("set_on_threshold")
+
+    @JvmStatic
+    public val getOnThresholdName: MethodStringName0<OpenXRAnalogThresholdModifier, Float> =
+        MethodStringName0<OpenXRAnalogThresholdModifier, Float>("get_on_threshold")
+
+    @JvmStatic
+    public val setOffThresholdName: MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float> =
+        MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float>("set_off_threshold")
+
+    @JvmStatic
+    public val getOffThresholdName: MethodStringName0<OpenXRAnalogThresholdModifier, Float> =
+        MethodStringName0<OpenXRAnalogThresholdModifier, Float>("get_off_threshold")
+
+    @JvmStatic
+    public val setOnHapticName:
+        MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?> =
+        MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?>("set_on_haptic")
+
+    @JvmStatic
+    public val getOnHapticName: MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>
+        = MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>("get_on_haptic")
+
+    @JvmStatic
+    public val setOffHapticName:
+        MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?> =
+        MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?>("set_off_haptic")
+
+    @JvmStatic
+    public val getOffHapticName: MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>
+        = MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>("get_off_haptic")
+  }
 
   public object MethodBindings {
     internal val setOnThresholdPtr: VoidPtr =

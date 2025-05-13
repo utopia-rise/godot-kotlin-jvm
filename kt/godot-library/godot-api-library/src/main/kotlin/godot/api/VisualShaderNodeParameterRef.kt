@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
@@ -50,7 +53,15 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setParameterNameName: MethodStringName1<VisualShaderNodeParameterRef, Unit, String> =
+        MethodStringName1<VisualShaderNodeParameterRef, Unit, String>("set_parameter_name")
+
+    @JvmStatic
+    public val getParameterNameName: MethodStringName0<VisualShaderNodeParameterRef, String> =
+        MethodStringName0<VisualShaderNodeParameterRef, String>("get_parameter_name")
+  }
 
   public object MethodBindings {
     internal val setParameterNamePtr: VoidPtr =

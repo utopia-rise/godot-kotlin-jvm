@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.OBJECT
@@ -22,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it
@@ -82,7 +86,21 @@ public open class InstancePlaceholder internal constructor() : Node() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getStoredValuesName:
+        MethodStringName1<InstancePlaceholder, Dictionary<Any?, Any?>, Boolean> =
+        MethodStringName1<InstancePlaceholder, Dictionary<Any?, Any?>, Boolean>("get_stored_values")
+
+    @JvmStatic
+    public val createInstanceName:
+        MethodStringName2<InstancePlaceholder, Node?, Boolean, PackedScene?> =
+        MethodStringName2<InstancePlaceholder, Node?, Boolean, PackedScene?>("create_instance")
+
+    @JvmStatic
+    public val getInstancePathName: MethodStringName0<InstancePlaceholder, String> =
+        MethodStringName0<InstancePlaceholder, String>("get_instance_path")
+  }
 
   public object MethodBindings {
     internal val getStoredValuesPtr: VoidPtr =

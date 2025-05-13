@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when
@@ -503,7 +506,195 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnableDepthTestName: MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean>
+        = MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean>("set_enable_depth_test")
+
+    @JvmStatic
+    public val getEnableDepthTestName: MethodStringName0<RDPipelineDepthStencilState, Boolean> =
+        MethodStringName0<RDPipelineDepthStencilState, Boolean>("get_enable_depth_test")
+
+    @JvmStatic
+    public val setEnableDepthWriteName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean>("set_enable_depth_write")
+
+    @JvmStatic
+    public val getEnableDepthWriteName: MethodStringName0<RDPipelineDepthStencilState, Boolean> =
+        MethodStringName0<RDPipelineDepthStencilState, Boolean>("get_enable_depth_write")
+
+    @JvmStatic
+    public val setDepthCompareOperatorName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.CompareOperator> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.CompareOperator>("set_depth_compare_operator")
+
+    @JvmStatic
+    public val getDepthCompareOperatorName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.CompareOperator> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.CompareOperator>("get_depth_compare_operator")
+
+    @JvmStatic
+    public val setEnableDepthRangeName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean>("set_enable_depth_range")
+
+    @JvmStatic
+    public val getEnableDepthRangeName: MethodStringName0<RDPipelineDepthStencilState, Boolean> =
+        MethodStringName0<RDPipelineDepthStencilState, Boolean>("get_enable_depth_range")
+
+    @JvmStatic
+    public val setDepthRangeMinName: MethodStringName1<RDPipelineDepthStencilState, Unit, Float> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Float>("set_depth_range_min")
+
+    @JvmStatic
+    public val getDepthRangeMinName: MethodStringName0<RDPipelineDepthStencilState, Float> =
+        MethodStringName0<RDPipelineDepthStencilState, Float>("get_depth_range_min")
+
+    @JvmStatic
+    public val setDepthRangeMaxName: MethodStringName1<RDPipelineDepthStencilState, Unit, Float> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Float>("set_depth_range_max")
+
+    @JvmStatic
+    public val getDepthRangeMaxName: MethodStringName0<RDPipelineDepthStencilState, Float> =
+        MethodStringName0<RDPipelineDepthStencilState, Float>("get_depth_range_max")
+
+    @JvmStatic
+    public val setEnableStencilName: MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Boolean>("set_enable_stencil")
+
+    @JvmStatic
+    public val getEnableStencilName: MethodStringName0<RDPipelineDepthStencilState, Boolean> =
+        MethodStringName0<RDPipelineDepthStencilState, Boolean>("get_enable_stencil")
+
+    @JvmStatic
+    public val setFrontOpFailName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation>("set_front_op_fail")
+
+    @JvmStatic
+    public val getFrontOpFailName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation>("get_front_op_fail")
+
+    @JvmStatic
+    public val setFrontOpPassName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation>("set_front_op_pass")
+
+    @JvmStatic
+    public val getFrontOpPassName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation>("get_front_op_pass")
+
+    @JvmStatic
+    public val setFrontOpDepthFailName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation>("set_front_op_depth_fail")
+
+    @JvmStatic
+    public val getFrontOpDepthFailName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation>("get_front_op_depth_fail")
+
+    @JvmStatic
+    public val setFrontOpCompareName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.CompareOperator> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.CompareOperator>("set_front_op_compare")
+
+    @JvmStatic
+    public val getFrontOpCompareName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.CompareOperator> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.CompareOperator>("get_front_op_compare")
+
+    @JvmStatic
+    public val setFrontOpCompareMaskName: MethodStringName1<RDPipelineDepthStencilState, Unit, Long>
+        = MethodStringName1<RDPipelineDepthStencilState, Unit, Long>("set_front_op_compare_mask")
+
+    @JvmStatic
+    public val getFrontOpCompareMaskName: MethodStringName0<RDPipelineDepthStencilState, Long> =
+        MethodStringName0<RDPipelineDepthStencilState, Long>("get_front_op_compare_mask")
+
+    @JvmStatic
+    public val setFrontOpWriteMaskName: MethodStringName1<RDPipelineDepthStencilState, Unit, Long> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Long>("set_front_op_write_mask")
+
+    @JvmStatic
+    public val getFrontOpWriteMaskName: MethodStringName0<RDPipelineDepthStencilState, Long> =
+        MethodStringName0<RDPipelineDepthStencilState, Long>("get_front_op_write_mask")
+
+    @JvmStatic
+    public val setFrontOpReferenceName: MethodStringName1<RDPipelineDepthStencilState, Unit, Long> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Long>("set_front_op_reference")
+
+    @JvmStatic
+    public val getFrontOpReferenceName: MethodStringName0<RDPipelineDepthStencilState, Long> =
+        MethodStringName0<RDPipelineDepthStencilState, Long>("get_front_op_reference")
+
+    @JvmStatic
+    public val setBackOpFailName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation>("set_back_op_fail")
+
+    @JvmStatic
+    public val getBackOpFailName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation>("get_back_op_fail")
+
+    @JvmStatic
+    public val setBackOpPassName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation>("set_back_op_pass")
+
+    @JvmStatic
+    public val getBackOpPassName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation>("get_back_op_pass")
+
+    @JvmStatic
+    public val setBackOpDepthFailName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.StencilOperation>("set_back_op_depth_fail")
+
+    @JvmStatic
+    public val getBackOpDepthFailName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.StencilOperation>("get_back_op_depth_fail")
+
+    @JvmStatic
+    public val setBackOpCompareName:
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.CompareOperator> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, RenderingDevice.CompareOperator>("set_back_op_compare")
+
+    @JvmStatic
+    public val getBackOpCompareName:
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.CompareOperator> =
+        MethodStringName0<RDPipelineDepthStencilState, RenderingDevice.CompareOperator>("get_back_op_compare")
+
+    @JvmStatic
+    public val setBackOpCompareMaskName: MethodStringName1<RDPipelineDepthStencilState, Unit, Long>
+        = MethodStringName1<RDPipelineDepthStencilState, Unit, Long>("set_back_op_compare_mask")
+
+    @JvmStatic
+    public val getBackOpCompareMaskName: MethodStringName0<RDPipelineDepthStencilState, Long> =
+        MethodStringName0<RDPipelineDepthStencilState, Long>("get_back_op_compare_mask")
+
+    @JvmStatic
+    public val setBackOpWriteMaskName: MethodStringName1<RDPipelineDepthStencilState, Unit, Long> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Long>("set_back_op_write_mask")
+
+    @JvmStatic
+    public val getBackOpWriteMaskName: MethodStringName0<RDPipelineDepthStencilState, Long> =
+        MethodStringName0<RDPipelineDepthStencilState, Long>("get_back_op_write_mask")
+
+    @JvmStatic
+    public val setBackOpReferenceName: MethodStringName1<RDPipelineDepthStencilState, Unit, Long> =
+        MethodStringName1<RDPipelineDepthStencilState, Unit, Long>("set_back_op_reference")
+
+    @JvmStatic
+    public val getBackOpReferenceName: MethodStringName0<RDPipelineDepthStencilState, Long> =
+        MethodStringName0<RDPipelineDepthStencilState, Long>("get_back_op_reference")
+  }
 
   public object MethodBindings {
     internal val setEnableDepthTestPtr: VoidPtr =

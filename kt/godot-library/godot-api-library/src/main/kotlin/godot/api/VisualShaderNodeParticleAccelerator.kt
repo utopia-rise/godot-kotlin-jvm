@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
@@ -82,7 +85,15 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setModeName: MethodStringName1<VisualShaderNodeParticleAccelerator, Unit, Mode> =
+        MethodStringName1<VisualShaderNodeParticleAccelerator, Unit, Mode>("set_mode")
+
+    @JvmStatic
+    public val getModeName: MethodStringName0<VisualShaderNodeParticleAccelerator, Mode> =
+        MethodStringName0<VisualShaderNodeParticleAccelerator, Mode>("get_mode")
+  }
 
   public object MethodBindings {
     internal val setModePtr: VoidPtr =

@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
@@ -347,6 +350,77 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public companion object {
+    @JvmStatic
+    public val loadFromBufferName:
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, PackedByteArray, Dictionary<Any?, Any?>>
+        =
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, PackedByteArray, Dictionary<Any?, Any?>>("load_from_buffer")
+
+    @JvmStatic
+    public val loadFromFileName:
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, String, Dictionary<Any?, Any?>> =
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, String, Dictionary<Any?, Any?>>("load_from_file")
+
+    @JvmStatic
+    public val setDataName: MethodStringName1<AudioStreamWAV, Unit, PackedByteArray> =
+        MethodStringName1<AudioStreamWAV, Unit, PackedByteArray>("set_data")
+
+    @JvmStatic
+    public val getDataName: MethodStringName0<AudioStreamWAV, PackedByteArray> =
+        MethodStringName0<AudioStreamWAV, PackedByteArray>("get_data")
+
+    @JvmStatic
+    public val setFormatName: MethodStringName1<AudioStreamWAV, Unit, Format> =
+        MethodStringName1<AudioStreamWAV, Unit, Format>("set_format")
+
+    @JvmStatic
+    public val getFormatName: MethodStringName0<AudioStreamWAV, Format> =
+        MethodStringName0<AudioStreamWAV, Format>("get_format")
+
+    @JvmStatic
+    public val setLoopModeName: MethodStringName1<AudioStreamWAV, Unit, LoopMode> =
+        MethodStringName1<AudioStreamWAV, Unit, LoopMode>("set_loop_mode")
+
+    @JvmStatic
+    public val getLoopModeName: MethodStringName0<AudioStreamWAV, LoopMode> =
+        MethodStringName0<AudioStreamWAV, LoopMode>("get_loop_mode")
+
+    @JvmStatic
+    public val setLoopBeginName: MethodStringName1<AudioStreamWAV, Unit, Int> =
+        MethodStringName1<AudioStreamWAV, Unit, Int>("set_loop_begin")
+
+    @JvmStatic
+    public val getLoopBeginName: MethodStringName0<AudioStreamWAV, Int> =
+        MethodStringName0<AudioStreamWAV, Int>("get_loop_begin")
+
+    @JvmStatic
+    public val setLoopEndName: MethodStringName1<AudioStreamWAV, Unit, Int> =
+        MethodStringName1<AudioStreamWAV, Unit, Int>("set_loop_end")
+
+    @JvmStatic
+    public val getLoopEndName: MethodStringName0<AudioStreamWAV, Int> =
+        MethodStringName0<AudioStreamWAV, Int>("get_loop_end")
+
+    @JvmStatic
+    public val setMixRateName: MethodStringName1<AudioStreamWAV, Unit, Int> =
+        MethodStringName1<AudioStreamWAV, Unit, Int>("set_mix_rate")
+
+    @JvmStatic
+    public val getMixRateName: MethodStringName0<AudioStreamWAV, Int> =
+        MethodStringName0<AudioStreamWAV, Int>("get_mix_rate")
+
+    @JvmStatic
+    public val setStereoName: MethodStringName1<AudioStreamWAV, Unit, Boolean> =
+        MethodStringName1<AudioStreamWAV, Unit, Boolean>("set_stereo")
+
+    @JvmStatic
+    public val isStereoName: MethodStringName0<AudioStreamWAV, Boolean> =
+        MethodStringName0<AudioStreamWAV, Boolean>("is_stereo")
+
+    @JvmStatic
+    public val saveToWavName: MethodStringName1<AudioStreamWAV, Error, String> =
+        MethodStringName1<AudioStreamWAV, Error, String>("save_to_wav")
+
     /**
      * Creates a new [AudioStreamWAV] instance from the given buffer. The buffer must contain WAV
      * data.

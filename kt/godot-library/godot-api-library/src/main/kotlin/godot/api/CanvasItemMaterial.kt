@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
@@ -241,7 +244,55 @@ public open class CanvasItemMaterial : Material() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBlendModeName: MethodStringName1<CanvasItemMaterial, Unit, BlendMode> =
+        MethodStringName1<CanvasItemMaterial, Unit, BlendMode>("set_blend_mode")
+
+    @JvmStatic
+    public val getBlendModeName: MethodStringName0<CanvasItemMaterial, BlendMode> =
+        MethodStringName0<CanvasItemMaterial, BlendMode>("get_blend_mode")
+
+    @JvmStatic
+    public val setLightModeName: MethodStringName1<CanvasItemMaterial, Unit, LightMode> =
+        MethodStringName1<CanvasItemMaterial, Unit, LightMode>("set_light_mode")
+
+    @JvmStatic
+    public val getLightModeName: MethodStringName0<CanvasItemMaterial, LightMode> =
+        MethodStringName0<CanvasItemMaterial, LightMode>("get_light_mode")
+
+    @JvmStatic
+    public val setParticlesAnimationName: MethodStringName1<CanvasItemMaterial, Unit, Boolean> =
+        MethodStringName1<CanvasItemMaterial, Unit, Boolean>("set_particles_animation")
+
+    @JvmStatic
+    public val getParticlesAnimationName: MethodStringName0<CanvasItemMaterial, Boolean> =
+        MethodStringName0<CanvasItemMaterial, Boolean>("get_particles_animation")
+
+    @JvmStatic
+    public val setParticlesAnimHFramesName: MethodStringName1<CanvasItemMaterial, Unit, Int> =
+        MethodStringName1<CanvasItemMaterial, Unit, Int>("set_particles_anim_h_frames")
+
+    @JvmStatic
+    public val getParticlesAnimHFramesName: MethodStringName0<CanvasItemMaterial, Int> =
+        MethodStringName0<CanvasItemMaterial, Int>("get_particles_anim_h_frames")
+
+    @JvmStatic
+    public val setParticlesAnimVFramesName: MethodStringName1<CanvasItemMaterial, Unit, Int> =
+        MethodStringName1<CanvasItemMaterial, Unit, Int>("set_particles_anim_v_frames")
+
+    @JvmStatic
+    public val getParticlesAnimVFramesName: MethodStringName0<CanvasItemMaterial, Int> =
+        MethodStringName0<CanvasItemMaterial, Int>("get_particles_anim_v_frames")
+
+    @JvmStatic
+    public val setParticlesAnimLoopName: MethodStringName1<CanvasItemMaterial, Unit, Boolean> =
+        MethodStringName1<CanvasItemMaterial, Unit, Boolean>("set_particles_anim_loop")
+
+    @JvmStatic
+    public val getParticlesAnimLoopName: MethodStringName0<CanvasItemMaterial, Boolean> =
+        MethodStringName0<CanvasItemMaterial, Boolean>("get_particles_anim_loop")
+  }
 
   public object MethodBindings {
     internal val setBlendModePtr: VoidPtr =

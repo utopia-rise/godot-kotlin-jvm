@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
@@ -160,7 +163,47 @@ public open class CameraAttributes : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setExposureMultiplierName: MethodStringName1<CameraAttributes, Unit, Float> =
+        MethodStringName1<CameraAttributes, Unit, Float>("set_exposure_multiplier")
+
+    @JvmStatic
+    public val getExposureMultiplierName: MethodStringName0<CameraAttributes, Float> =
+        MethodStringName0<CameraAttributes, Float>("get_exposure_multiplier")
+
+    @JvmStatic
+    public val setExposureSensitivityName: MethodStringName1<CameraAttributes, Unit, Float> =
+        MethodStringName1<CameraAttributes, Unit, Float>("set_exposure_sensitivity")
+
+    @JvmStatic
+    public val getExposureSensitivityName: MethodStringName0<CameraAttributes, Float> =
+        MethodStringName0<CameraAttributes, Float>("get_exposure_sensitivity")
+
+    @JvmStatic
+    public val setAutoExposureEnabledName: MethodStringName1<CameraAttributes, Unit, Boolean> =
+        MethodStringName1<CameraAttributes, Unit, Boolean>("set_auto_exposure_enabled")
+
+    @JvmStatic
+    public val isAutoExposureEnabledName: MethodStringName0<CameraAttributes, Boolean> =
+        MethodStringName0<CameraAttributes, Boolean>("is_auto_exposure_enabled")
+
+    @JvmStatic
+    public val setAutoExposureSpeedName: MethodStringName1<CameraAttributes, Unit, Float> =
+        MethodStringName1<CameraAttributes, Unit, Float>("set_auto_exposure_speed")
+
+    @JvmStatic
+    public val getAutoExposureSpeedName: MethodStringName0<CameraAttributes, Float> =
+        MethodStringName0<CameraAttributes, Float>("get_auto_exposure_speed")
+
+    @JvmStatic
+    public val setAutoExposureScaleName: MethodStringName1<CameraAttributes, Unit, Float> =
+        MethodStringName1<CameraAttributes, Unit, Float>("set_auto_exposure_scale")
+
+    @JvmStatic
+    public val getAutoExposureScaleName: MethodStringName0<CameraAttributes, Float> =
+        MethodStringName0<CameraAttributes, Float>("get_auto_exposure_scale")
+  }
 
   public object MethodBindings {
     internal val setExposureMultiplierPtr: VoidPtr =

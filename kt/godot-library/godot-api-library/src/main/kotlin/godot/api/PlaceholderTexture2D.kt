@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -19,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is used when loading a project that uses a [Texture2D] subclass in 2 conditions:
@@ -82,7 +84,11 @@ public open class PlaceholderTexture2D : Texture2D() {
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<PlaceholderTexture2D, Unit, Vector2> =
+        MethodStringName1<PlaceholderTexture2D, Unit, Vector2>("set_size")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

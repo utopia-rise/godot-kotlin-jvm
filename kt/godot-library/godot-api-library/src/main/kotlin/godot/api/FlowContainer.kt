@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A container that arranges its child controls horizontally or vertically and wraps them around at
@@ -201,7 +204,44 @@ public open class FlowContainer : Container() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getLineCountName: MethodStringName0<FlowContainer, Int> =
+        MethodStringName0<FlowContainer, Int>("get_line_count")
+
+    @JvmStatic
+    public val setAlignmentName: MethodStringName1<FlowContainer, Unit, AlignmentMode> =
+        MethodStringName1<FlowContainer, Unit, AlignmentMode>("set_alignment")
+
+    @JvmStatic
+    public val getAlignmentName: MethodStringName0<FlowContainer, AlignmentMode> =
+        MethodStringName0<FlowContainer, AlignmentMode>("get_alignment")
+
+    @JvmStatic
+    public val setLastWrapAlignmentName:
+        MethodStringName1<FlowContainer, Unit, LastWrapAlignmentMode> =
+        MethodStringName1<FlowContainer, Unit, LastWrapAlignmentMode>("set_last_wrap_alignment")
+
+    @JvmStatic
+    public val getLastWrapAlignmentName: MethodStringName0<FlowContainer, LastWrapAlignmentMode> =
+        MethodStringName0<FlowContainer, LastWrapAlignmentMode>("get_last_wrap_alignment")
+
+    @JvmStatic
+    public val setVerticalName: MethodStringName1<FlowContainer, Unit, Boolean> =
+        MethodStringName1<FlowContainer, Unit, Boolean>("set_vertical")
+
+    @JvmStatic
+    public val isVerticalName: MethodStringName0<FlowContainer, Boolean> =
+        MethodStringName0<FlowContainer, Boolean>("is_vertical")
+
+    @JvmStatic
+    public val setReverseFillName: MethodStringName1<FlowContainer, Unit, Boolean> =
+        MethodStringName1<FlowContainer, Unit, Boolean>("set_reverse_fill")
+
+    @JvmStatic
+    public val isReverseFillName: MethodStringName0<FlowContainer, Boolean> =
+        MethodStringName0<FlowContainer, Boolean>("is_reverse_fill")
+  }
 
   public object MethodBindings {
     internal val getLineCountPtr: VoidPtr =

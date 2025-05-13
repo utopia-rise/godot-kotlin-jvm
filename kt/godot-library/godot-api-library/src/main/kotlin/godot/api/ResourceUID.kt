@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -31,6 +34,38 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ResourceUID : Object() {
+  @JvmStatic
+  public val idToTextName: MethodStringName1<ResourceUID, String, Long> =
+      MethodStringName1<ResourceUID, String, Long>("id_to_text")
+
+  @JvmStatic
+  public val textToIdName: MethodStringName1<ResourceUID, Long, String> =
+      MethodStringName1<ResourceUID, Long, String>("text_to_id")
+
+  @JvmStatic
+  public val createIdName: MethodStringName0<ResourceUID, Long> =
+      MethodStringName0<ResourceUID, Long>("create_id")
+
+  @JvmStatic
+  public val hasIdName: MethodStringName1<ResourceUID, Boolean, Long> =
+      MethodStringName1<ResourceUID, Boolean, Long>("has_id")
+
+  @JvmStatic
+  public val addIdName: MethodStringName2<ResourceUID, Unit, Long, String> =
+      MethodStringName2<ResourceUID, Unit, Long, String>("add_id")
+
+  @JvmStatic
+  public val setIdName: MethodStringName2<ResourceUID, Unit, Long, String> =
+      MethodStringName2<ResourceUID, Unit, Long, String>("set_id")
+
+  @JvmStatic
+  public val getIdPathName: MethodStringName1<ResourceUID, String, Long> =
+      MethodStringName1<ResourceUID, String, Long>("get_id_path")
+
+  @JvmStatic
+  public val removeIdName: MethodStringName1<ResourceUID, Unit, Long> =
+      MethodStringName1<ResourceUID, Unit, Long>("remove_id")
+
   /**
    * The value to use for an invalid UID, for example if the resource could not be loaded.
    *

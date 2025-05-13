@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
@@ -17,6 +18,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
@@ -47,7 +49,15 @@ public open class Occluder3D internal constructor() : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getVerticesName: MethodStringName0<Occluder3D, PackedVector3Array> =
+        MethodStringName0<Occluder3D, PackedVector3Array>("get_vertices")
+
+    @JvmStatic
+    public val getIndicesName: MethodStringName0<Occluder3D, PackedInt32Array> =
+        MethodStringName0<Occluder3D, PackedInt32Array>("get_indices")
+  }
 
   public object MethodBindings {
     internal val getVerticesPtr: VoidPtr =

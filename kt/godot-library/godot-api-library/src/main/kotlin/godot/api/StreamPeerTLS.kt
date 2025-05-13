@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -21,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or
@@ -133,7 +137,32 @@ public open class StreamPeerTLS : StreamPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val pollName: MethodStringName0<StreamPeerTLS, Unit> =
+        MethodStringName0<StreamPeerTLS, Unit>("poll")
+
+    @JvmStatic
+    public val acceptStreamName: MethodStringName2<StreamPeerTLS, Error, StreamPeer?, TLSOptions?> =
+        MethodStringName2<StreamPeerTLS, Error, StreamPeer?, TLSOptions?>("accept_stream")
+
+    @JvmStatic
+    public val connectToStreamName:
+        MethodStringName3<StreamPeerTLS, Error, StreamPeer?, String, TLSOptions?> =
+        MethodStringName3<StreamPeerTLS, Error, StreamPeer?, String, TLSOptions?>("connect_to_stream")
+
+    @JvmStatic
+    public val getStatusName: MethodStringName0<StreamPeerTLS, Status> =
+        MethodStringName0<StreamPeerTLS, Status>("get_status")
+
+    @JvmStatic
+    public val getStreamName: MethodStringName0<StreamPeerTLS, StreamPeer?> =
+        MethodStringName0<StreamPeerTLS, StreamPeer?>("get_stream")
+
+    @JvmStatic
+    public val disconnectFromStreamName: MethodStringName0<StreamPeerTLS, Unit> =
+        MethodStringName0<StreamPeerTLS, Unit>("disconnect_from_stream")
+  }
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =

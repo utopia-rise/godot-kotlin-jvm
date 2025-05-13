@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -27,6 +29,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
@@ -369,7 +372,87 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLineSpacingName: MethodStringName1<LabelSettings, Unit, Float> =
+        MethodStringName1<LabelSettings, Unit, Float>("set_line_spacing")
+
+    @JvmStatic
+    public val getLineSpacingName: MethodStringName0<LabelSettings, Float> =
+        MethodStringName0<LabelSettings, Float>("get_line_spacing")
+
+    @JvmStatic
+    public val setParagraphSpacingName: MethodStringName1<LabelSettings, Unit, Float> =
+        MethodStringName1<LabelSettings, Unit, Float>("set_paragraph_spacing")
+
+    @JvmStatic
+    public val getParagraphSpacingName: MethodStringName0<LabelSettings, Float> =
+        MethodStringName0<LabelSettings, Float>("get_paragraph_spacing")
+
+    @JvmStatic
+    public val setFontName: MethodStringName1<LabelSettings, Unit, Font?> =
+        MethodStringName1<LabelSettings, Unit, Font?>("set_font")
+
+    @JvmStatic
+    public val getFontName: MethodStringName0<LabelSettings, Font?> =
+        MethodStringName0<LabelSettings, Font?>("get_font")
+
+    @JvmStatic
+    public val setFontSizeName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_font_size")
+
+    @JvmStatic
+    public val getFontSizeName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_font_size")
+
+    @JvmStatic
+    public val setFontColorName: MethodStringName1<LabelSettings, Unit, Color> =
+        MethodStringName1<LabelSettings, Unit, Color>("set_font_color")
+
+    @JvmStatic
+    public val getFontColorName: MethodStringName0<LabelSettings, Color> =
+        MethodStringName0<LabelSettings, Color>("get_font_color")
+
+    @JvmStatic
+    public val setOutlineSizeName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_outline_size")
+
+    @JvmStatic
+    public val getOutlineSizeName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_outline_size")
+
+    @JvmStatic
+    public val setOutlineColorName: MethodStringName1<LabelSettings, Unit, Color> =
+        MethodStringName1<LabelSettings, Unit, Color>("set_outline_color")
+
+    @JvmStatic
+    public val getOutlineColorName: MethodStringName0<LabelSettings, Color> =
+        MethodStringName0<LabelSettings, Color>("get_outline_color")
+
+    @JvmStatic
+    public val setShadowSizeName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_shadow_size")
+
+    @JvmStatic
+    public val getShadowSizeName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_shadow_size")
+
+    @JvmStatic
+    public val setShadowColorName: MethodStringName1<LabelSettings, Unit, Color> =
+        MethodStringName1<LabelSettings, Unit, Color>("set_shadow_color")
+
+    @JvmStatic
+    public val getShadowColorName: MethodStringName0<LabelSettings, Color> =
+        MethodStringName0<LabelSettings, Color>("get_shadow_color")
+
+    @JvmStatic
+    public val setShadowOffsetName: MethodStringName1<LabelSettings, Unit, Vector2> =
+        MethodStringName1<LabelSettings, Unit, Vector2>("set_shadow_offset")
+
+    @JvmStatic
+    public val getShadowOffsetName: MethodStringName0<LabelSettings, Vector2> =
+        MethodStringName0<LabelSettings, Vector2>("get_shadow_offset")
+  }
 
   public object MethodBindings {
     internal val setLineSpacingPtr: VoidPtr =

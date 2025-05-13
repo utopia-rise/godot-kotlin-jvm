@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -138,7 +141,49 @@ public open class RDVertexAttribute : RefCounted() {
     return RenderingDevice.VertexFrequency.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLocationName: MethodStringName1<RDVertexAttribute, Unit, Long> =
+        MethodStringName1<RDVertexAttribute, Unit, Long>("set_location")
+
+    @JvmStatic
+    public val getLocationName: MethodStringName0<RDVertexAttribute, Long> =
+        MethodStringName0<RDVertexAttribute, Long>("get_location")
+
+    @JvmStatic
+    public val setOffsetName: MethodStringName1<RDVertexAttribute, Unit, Long> =
+        MethodStringName1<RDVertexAttribute, Unit, Long>("set_offset")
+
+    @JvmStatic
+    public val getOffsetName: MethodStringName0<RDVertexAttribute, Long> =
+        MethodStringName0<RDVertexAttribute, Long>("get_offset")
+
+    @JvmStatic
+    public val setFormatName: MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.DataFormat>
+        = MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.DataFormat>("set_format")
+
+    @JvmStatic
+    public val getFormatName: MethodStringName0<RDVertexAttribute, RenderingDevice.DataFormat> =
+        MethodStringName0<RDVertexAttribute, RenderingDevice.DataFormat>("get_format")
+
+    @JvmStatic
+    public val setStrideName: MethodStringName1<RDVertexAttribute, Unit, Long> =
+        MethodStringName1<RDVertexAttribute, Unit, Long>("set_stride")
+
+    @JvmStatic
+    public val getStrideName: MethodStringName0<RDVertexAttribute, Long> =
+        MethodStringName0<RDVertexAttribute, Long>("get_stride")
+
+    @JvmStatic
+    public val setFrequencyName:
+        MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.VertexFrequency> =
+        MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.VertexFrequency>("set_frequency")
+
+    @JvmStatic
+    public val getFrequencyName:
+        MethodStringName0<RDVertexAttribute, RenderingDevice.VertexFrequency> =
+        MethodStringName0<RDVertexAttribute, RenderingDevice.VertexFrequency>("get_frequency")
+  }
 
   public object MethodBindings {
     internal val setLocationPtr: VoidPtr =

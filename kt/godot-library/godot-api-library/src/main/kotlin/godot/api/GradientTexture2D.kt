@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -24,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able
@@ -320,7 +323,63 @@ public open class GradientTexture2D : Texture2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setGradientName: MethodStringName1<GradientTexture2D, Unit, Gradient?> =
+        MethodStringName1<GradientTexture2D, Unit, Gradient?>("set_gradient")
+
+    @JvmStatic
+    public val getGradientName: MethodStringName0<GradientTexture2D, Gradient?> =
+        MethodStringName0<GradientTexture2D, Gradient?>("get_gradient")
+
+    @JvmStatic
+    public val setWidthName: MethodStringName1<GradientTexture2D, Unit, Int> =
+        MethodStringName1<GradientTexture2D, Unit, Int>("set_width")
+
+    @JvmStatic
+    public val setHeightName: MethodStringName1<GradientTexture2D, Unit, Int> =
+        MethodStringName1<GradientTexture2D, Unit, Int>("set_height")
+
+    @JvmStatic
+    public val setUseHdrName: MethodStringName1<GradientTexture2D, Unit, Boolean> =
+        MethodStringName1<GradientTexture2D, Unit, Boolean>("set_use_hdr")
+
+    @JvmStatic
+    public val isUsingHdrName: MethodStringName0<GradientTexture2D, Boolean> =
+        MethodStringName0<GradientTexture2D, Boolean>("is_using_hdr")
+
+    @JvmStatic
+    public val setFillName: MethodStringName1<GradientTexture2D, Unit, Fill> =
+        MethodStringName1<GradientTexture2D, Unit, Fill>("set_fill")
+
+    @JvmStatic
+    public val getFillName: MethodStringName0<GradientTexture2D, Fill> =
+        MethodStringName0<GradientTexture2D, Fill>("get_fill")
+
+    @JvmStatic
+    public val setFillFromName: MethodStringName1<GradientTexture2D, Unit, Vector2> =
+        MethodStringName1<GradientTexture2D, Unit, Vector2>("set_fill_from")
+
+    @JvmStatic
+    public val getFillFromName: MethodStringName0<GradientTexture2D, Vector2> =
+        MethodStringName0<GradientTexture2D, Vector2>("get_fill_from")
+
+    @JvmStatic
+    public val setFillToName: MethodStringName1<GradientTexture2D, Unit, Vector2> =
+        MethodStringName1<GradientTexture2D, Unit, Vector2>("set_fill_to")
+
+    @JvmStatic
+    public val getFillToName: MethodStringName0<GradientTexture2D, Vector2> =
+        MethodStringName0<GradientTexture2D, Vector2>("get_fill_to")
+
+    @JvmStatic
+    public val setRepeatName: MethodStringName1<GradientTexture2D, Unit, Repeat> =
+        MethodStringName1<GradientTexture2D, Unit, Repeat>("set_repeat")
+
+    @JvmStatic
+    public val getRepeatName: MethodStringName0<GradientTexture2D, Repeat> =
+        MethodStringName0<GradientTexture2D, Repeat>("get_repeat")
+  }
 
   public object MethodBindings {
     internal val setGradientPtr: VoidPtr =

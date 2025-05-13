@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -258,6 +261,73 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   }
 
   public companion object {
+    @JvmStatic
+    public val createName:
+        MethodStringName4<PhysicsRayQueryParameters2D, PhysicsRayQueryParameters2D?, Vector2, Vector2, Long, VariantArray<RID>>
+        =
+        MethodStringName4<PhysicsRayQueryParameters2D, PhysicsRayQueryParameters2D?, Vector2, Vector2, Long, VariantArray<RID>>("create")
+
+    @JvmStatic
+    public val setFromName: MethodStringName1<PhysicsRayQueryParameters2D, Unit, Vector2> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Vector2>("set_from")
+
+    @JvmStatic
+    public val getFromName: MethodStringName0<PhysicsRayQueryParameters2D, Vector2> =
+        MethodStringName0<PhysicsRayQueryParameters2D, Vector2>("get_from")
+
+    @JvmStatic
+    public val setToName: MethodStringName1<PhysicsRayQueryParameters2D, Unit, Vector2> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Vector2>("set_to")
+
+    @JvmStatic
+    public val getToName: MethodStringName0<PhysicsRayQueryParameters2D, Vector2> =
+        MethodStringName0<PhysicsRayQueryParameters2D, Vector2>("get_to")
+
+    @JvmStatic
+    public val setCollisionMaskName: MethodStringName1<PhysicsRayQueryParameters2D, Unit, Long> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Long>("set_collision_mask")
+
+    @JvmStatic
+    public val getCollisionMaskName: MethodStringName0<PhysicsRayQueryParameters2D, Long> =
+        MethodStringName0<PhysicsRayQueryParameters2D, Long>("get_collision_mask")
+
+    @JvmStatic
+    public val setExcludeName:
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, VariantArray<RID>> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, VariantArray<RID>>("set_exclude")
+
+    @JvmStatic
+    public val getExcludeName: MethodStringName0<PhysicsRayQueryParameters2D, VariantArray<RID>> =
+        MethodStringName0<PhysicsRayQueryParameters2D, VariantArray<RID>>("get_exclude")
+
+    @JvmStatic
+    public val setCollideWithBodiesName:
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Boolean> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Boolean>("set_collide_with_bodies")
+
+    @JvmStatic
+    public val isCollideWithBodiesEnabledName:
+        MethodStringName0<PhysicsRayQueryParameters2D, Boolean> =
+        MethodStringName0<PhysicsRayQueryParameters2D, Boolean>("is_collide_with_bodies_enabled")
+
+    @JvmStatic
+    public val setCollideWithAreasName:
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Boolean> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Boolean>("set_collide_with_areas")
+
+    @JvmStatic
+    public val isCollideWithAreasEnabledName:
+        MethodStringName0<PhysicsRayQueryParameters2D, Boolean> =
+        MethodStringName0<PhysicsRayQueryParameters2D, Boolean>("is_collide_with_areas_enabled")
+
+    @JvmStatic
+    public val setHitFromInsideName: MethodStringName1<PhysicsRayQueryParameters2D, Unit, Boolean> =
+        MethodStringName1<PhysicsRayQueryParameters2D, Unit, Boolean>("set_hit_from_inside")
+
+    @JvmStatic
+    public val isHitFromInsideEnabledName: MethodStringName0<PhysicsRayQueryParameters2D, Boolean> =
+        MethodStringName0<PhysicsRayQueryParameters2D, Boolean>("is_hit_from_inside_enabled")
+
     /**
      * Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create
      * query parameters using the most common options.

@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
@@ -25,6 +28,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class implements a reader that can extract the content of individual files inside a ZIP
@@ -129,7 +133,27 @@ public open class ZIPReader : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val openName: MethodStringName1<ZIPReader, Error, String> =
+        MethodStringName1<ZIPReader, Error, String>("open")
+
+    @JvmStatic
+    public val closeName: MethodStringName0<ZIPReader, Error> =
+        MethodStringName0<ZIPReader, Error>("close")
+
+    @JvmStatic
+    public val getFilesName: MethodStringName0<ZIPReader, PackedStringArray> =
+        MethodStringName0<ZIPReader, PackedStringArray>("get_files")
+
+    @JvmStatic
+    public val readFileName: MethodStringName2<ZIPReader, PackedByteArray, String, Boolean> =
+        MethodStringName2<ZIPReader, PackedByteArray, String, Boolean>("read_file")
+
+    @JvmStatic
+    public val fileExistsName: MethodStringName2<ZIPReader, Boolean, String, Boolean> =
+        MethodStringName2<ZIPReader, Boolean, String, Boolean>("file_exists")
+  }
 
   public object MethodBindings {
     internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "open", 166001499)

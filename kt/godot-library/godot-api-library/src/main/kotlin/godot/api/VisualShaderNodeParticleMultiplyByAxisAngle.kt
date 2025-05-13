@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node helps to multiply a position input vector by rotation using specific axis. Intended to
@@ -50,7 +53,17 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setDegreesModeName:
+        MethodStringName1<VisualShaderNodeParticleMultiplyByAxisAngle, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeParticleMultiplyByAxisAngle, Unit, Boolean>("set_degrees_mode")
+
+    @JvmStatic
+    public val isDegreesModeName:
+        MethodStringName0<VisualShaderNodeParticleMultiplyByAxisAngle, Boolean> =
+        MethodStringName0<VisualShaderNodeParticleMultiplyByAxisAngle, Boolean>("is_degrees_mode")
+  }
 
   public object MethodBindings {
     internal val setDegreesModePtr: VoidPtr =

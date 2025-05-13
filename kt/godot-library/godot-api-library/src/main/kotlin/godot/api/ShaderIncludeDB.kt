@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
@@ -33,6 +35,18 @@ public open class ShaderIncludeDB : Object() {
   }
 
   public companion object {
+    @JvmStatic
+    public val listBuiltInIncludeFilesName: MethodStringName0<ShaderIncludeDB, PackedStringArray> =
+        MethodStringName0<ShaderIncludeDB, PackedStringArray>("list_built_in_include_files")
+
+    @JvmStatic
+    public val hasBuiltInIncludeFileName: MethodStringName1<ShaderIncludeDB, Boolean, String> =
+        MethodStringName1<ShaderIncludeDB, Boolean, String>("has_built_in_include_file")
+
+    @JvmStatic
+    public val getBuiltInIncludeFileName: MethodStringName1<ShaderIncludeDB, String, String> =
+        MethodStringName1<ShaderIncludeDB, String, String>("get_built_in_include_file")
+
     /**
      * Returns a list of built-in include files that are currently registered.
      */

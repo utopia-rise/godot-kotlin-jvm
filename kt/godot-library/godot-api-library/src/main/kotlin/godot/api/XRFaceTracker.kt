@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,6 +27,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An instance of this object represents a tracked face and its corresponding blend shapes. The
@@ -718,7 +722,23 @@ public open class XRFaceTracker : XRTracker() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getBlendShapeName: MethodStringName1<XRFaceTracker, Float, BlendShapeEntry> =
+        MethodStringName1<XRFaceTracker, Float, BlendShapeEntry>("get_blend_shape")
+
+    @JvmStatic
+    public val setBlendShapeName: MethodStringName2<XRFaceTracker, Unit, BlendShapeEntry, Float> =
+        MethodStringName2<XRFaceTracker, Unit, BlendShapeEntry, Float>("set_blend_shape")
+
+    @JvmStatic
+    public val getBlendShapesName: MethodStringName0<XRFaceTracker, PackedFloat32Array> =
+        MethodStringName0<XRFaceTracker, PackedFloat32Array>("get_blend_shapes")
+
+    @JvmStatic
+    public val setBlendShapesName: MethodStringName1<XRFaceTracker, Unit, PackedFloat32Array> =
+        MethodStringName1<XRFaceTracker, Unit, PackedFloat32Array>("set_blend_shapes")
+  }
 
   public object MethodBindings {
     internal val getBlendShapePtr: VoidPtr =

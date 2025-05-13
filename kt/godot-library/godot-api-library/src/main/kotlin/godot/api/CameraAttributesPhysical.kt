@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's
@@ -257,7 +260,79 @@ public open class CameraAttributesPhysical : CameraAttributes() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setApertureName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_aperture")
+
+    @JvmStatic
+    public val getApertureName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_aperture")
+
+    @JvmStatic
+    public val setShutterSpeedName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_shutter_speed")
+
+    @JvmStatic
+    public val getShutterSpeedName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_shutter_speed")
+
+    @JvmStatic
+    public val setFocalLengthName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_focal_length")
+
+    @JvmStatic
+    public val getFocalLengthName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_focal_length")
+
+    @JvmStatic
+    public val setFocusDistanceName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_focus_distance")
+
+    @JvmStatic
+    public val getFocusDistanceName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_focus_distance")
+
+    @JvmStatic
+    public val setNearName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_near")
+
+    @JvmStatic
+    public val getNearName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_near")
+
+    @JvmStatic
+    public val setFarName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_far")
+
+    @JvmStatic
+    public val getFarName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_far")
+
+    @JvmStatic
+    public val getFovName: MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_fov")
+
+    @JvmStatic
+    public val setAutoExposureMaxExposureValueName:
+        MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_auto_exposure_max_exposure_value")
+
+    @JvmStatic
+    public val getAutoExposureMaxExposureValueName:
+        MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_auto_exposure_max_exposure_value")
+
+    @JvmStatic
+    public val setAutoExposureMinExposureValueName:
+        MethodStringName1<CameraAttributesPhysical, Unit, Float> =
+        MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_auto_exposure_min_exposure_value")
+
+    @JvmStatic
+    public val getAutoExposureMinExposureValueName:
+        MethodStringName0<CameraAttributesPhysical, Float> =
+        MethodStringName0<CameraAttributesPhysical, Float>("get_auto_exposure_min_exposure_value")
+  }
 
   public object MethodBindings {
     internal val setAperturePtr: VoidPtr =

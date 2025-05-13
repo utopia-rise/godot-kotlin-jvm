@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -31,6 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * UndoRedo works by registering methods and property changes inside "actions". You can create an
@@ -456,7 +460,99 @@ public open class UndoRedo : Object() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val createActionName: MethodStringName3<UndoRedo, Unit, String, MergeMode, Boolean> =
+        MethodStringName3<UndoRedo, Unit, String, MergeMode, Boolean>("create_action")
+
+    @JvmStatic
+    public val commitActionName: MethodStringName1<UndoRedo, Unit, Boolean> =
+        MethodStringName1<UndoRedo, Unit, Boolean>("commit_action")
+
+    @JvmStatic
+    public val isCommittingActionName: MethodStringName0<UndoRedo, Boolean> =
+        MethodStringName0<UndoRedo, Boolean>("is_committing_action")
+
+    @JvmStatic
+    public val addDoMethodName: MethodStringName1<UndoRedo, Unit, Callable> =
+        MethodStringName1<UndoRedo, Unit, Callable>("add_do_method")
+
+    @JvmStatic
+    public val addUndoMethodName: MethodStringName1<UndoRedo, Unit, Callable> =
+        MethodStringName1<UndoRedo, Unit, Callable>("add_undo_method")
+
+    @JvmStatic
+    public val addDoPropertyName: MethodStringName3<UndoRedo, Unit, Object?, StringName, Any?> =
+        MethodStringName3<UndoRedo, Unit, Object?, StringName, Any?>("add_do_property")
+
+    @JvmStatic
+    public val addUndoPropertyName: MethodStringName3<UndoRedo, Unit, Object?, StringName, Any?> =
+        MethodStringName3<UndoRedo, Unit, Object?, StringName, Any?>("add_undo_property")
+
+    @JvmStatic
+    public val addDoReferenceName: MethodStringName1<UndoRedo, Unit, Object?> =
+        MethodStringName1<UndoRedo, Unit, Object?>("add_do_reference")
+
+    @JvmStatic
+    public val addUndoReferenceName: MethodStringName1<UndoRedo, Unit, Object?> =
+        MethodStringName1<UndoRedo, Unit, Object?>("add_undo_reference")
+
+    @JvmStatic
+    public val startForceKeepInMergeEndsName: MethodStringName0<UndoRedo, Unit> =
+        MethodStringName0<UndoRedo, Unit>("start_force_keep_in_merge_ends")
+
+    @JvmStatic
+    public val endForceKeepInMergeEndsName: MethodStringName0<UndoRedo, Unit> =
+        MethodStringName0<UndoRedo, Unit>("end_force_keep_in_merge_ends")
+
+    @JvmStatic
+    public val getHistoryCountName: MethodStringName0<UndoRedo, Int> =
+        MethodStringName0<UndoRedo, Int>("get_history_count")
+
+    @JvmStatic
+    public val getCurrentActionName: MethodStringName0<UndoRedo, Int> =
+        MethodStringName0<UndoRedo, Int>("get_current_action")
+
+    @JvmStatic
+    public val getActionNameName: MethodStringName1<UndoRedo, String, Int> =
+        MethodStringName1<UndoRedo, String, Int>("get_action_name")
+
+    @JvmStatic
+    public val clearHistoryName: MethodStringName1<UndoRedo, Unit, Boolean> =
+        MethodStringName1<UndoRedo, Unit, Boolean>("clear_history")
+
+    @JvmStatic
+    public val getCurrentActionNameName: MethodStringName0<UndoRedo, String> =
+        MethodStringName0<UndoRedo, String>("get_current_action_name")
+
+    @JvmStatic
+    public val hasUndoName: MethodStringName0<UndoRedo, Boolean> =
+        MethodStringName0<UndoRedo, Boolean>("has_undo")
+
+    @JvmStatic
+    public val hasRedoName: MethodStringName0<UndoRedo, Boolean> =
+        MethodStringName0<UndoRedo, Boolean>("has_redo")
+
+    @JvmStatic
+    public val getVersionName: MethodStringName0<UndoRedo, Long> =
+        MethodStringName0<UndoRedo, Long>("get_version")
+
+    @JvmStatic
+    public val setMaxStepsName: MethodStringName1<UndoRedo, Unit, Int> =
+        MethodStringName1<UndoRedo, Unit, Int>("set_max_steps")
+
+    @JvmStatic
+    public val getMaxStepsName: MethodStringName0<UndoRedo, Int> =
+        MethodStringName0<UndoRedo, Int>("get_max_steps")
+
+    @JvmStatic
+    public val redoName: MethodStringName0<UndoRedo, Boolean> =
+        MethodStringName0<UndoRedo, Boolean>("redo")
+
+    @JvmStatic
+    public val undoName: MethodStringName0<UndoRedo, Boolean> =
+        MethodStringName0<UndoRedo, Boolean>("undo")
+  }
 
   public object MethodBindings {
     internal val createActionPtr: VoidPtr =

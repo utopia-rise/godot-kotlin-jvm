@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
@@ -210,7 +213,71 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPredelayMsecName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_predelay_msec")
+
+    @JvmStatic
+    public val getPredelayMsecName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_predelay_msec")
+
+    @JvmStatic
+    public val setPredelayFeedbackName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_predelay_feedback")
+
+    @JvmStatic
+    public val getPredelayFeedbackName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_predelay_feedback")
+
+    @JvmStatic
+    public val setRoomSizeName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_room_size")
+
+    @JvmStatic
+    public val getRoomSizeName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_room_size")
+
+    @JvmStatic
+    public val setDampingName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_damping")
+
+    @JvmStatic
+    public val getDampingName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_damping")
+
+    @JvmStatic
+    public val setSpreadName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_spread")
+
+    @JvmStatic
+    public val getSpreadName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_spread")
+
+    @JvmStatic
+    public val setDryName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_dry")
+
+    @JvmStatic
+    public val getDryName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_dry")
+
+    @JvmStatic
+    public val setWetName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_wet")
+
+    @JvmStatic
+    public val getWetName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_wet")
+
+    @JvmStatic
+    public val setHpfName: MethodStringName1<AudioEffectReverb, Unit, Float> =
+        MethodStringName1<AudioEffectReverb, Unit, Float>("set_hpf")
+
+    @JvmStatic
+    public val getHpfName: MethodStringName0<AudioEffectReverb, Float> =
+        MethodStringName0<AudioEffectReverb, Float>("get_hpf")
+  }
 
   public object MethodBindings {
     internal val setPredelayMsecPtr: VoidPtr =

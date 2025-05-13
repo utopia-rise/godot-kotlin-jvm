@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A rectangle box that displays only a colored border around its rectangle. It is used to visualize
@@ -130,7 +133,31 @@ public open class ReferenceRect : Control() {
     TransferContext.callMethod(ptr, MethodBindings.setEditorOnlyPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getBorderColorName: MethodStringName0<ReferenceRect, Color> =
+        MethodStringName0<ReferenceRect, Color>("get_border_color")
+
+    @JvmStatic
+    public val setBorderColorName: MethodStringName1<ReferenceRect, Unit, Color> =
+        MethodStringName1<ReferenceRect, Unit, Color>("set_border_color")
+
+    @JvmStatic
+    public val getBorderWidthName: MethodStringName0<ReferenceRect, Float> =
+        MethodStringName0<ReferenceRect, Float>("get_border_width")
+
+    @JvmStatic
+    public val setBorderWidthName: MethodStringName1<ReferenceRect, Unit, Float> =
+        MethodStringName1<ReferenceRect, Unit, Float>("set_border_width")
+
+    @JvmStatic
+    public val getEditorOnlyName: MethodStringName0<ReferenceRect, Boolean> =
+        MethodStringName0<ReferenceRect, Boolean>("get_editor_only")
+
+    @JvmStatic
+    public val setEditorOnlyName: MethodStringName1<ReferenceRect, Unit, Boolean> =
+        MethodStringName1<ReferenceRect, Unit, Boolean>("set_editor_only")
+  }
 
   public object MethodBindings {
     internal val getBorderColorPtr: VoidPtr =

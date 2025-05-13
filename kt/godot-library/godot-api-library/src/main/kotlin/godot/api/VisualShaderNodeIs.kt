@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
@@ -77,7 +80,15 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setFunctionName: MethodStringName1<VisualShaderNodeIs, Unit, Function> =
+        MethodStringName1<VisualShaderNodeIs, Unit, Function>("set_function")
+
+    @JvmStatic
+    public val getFunctionName: MethodStringName0<VisualShaderNodeIs, Function> =
+        MethodStringName0<VisualShaderNodeIs, Function>("get_function")
+  }
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =

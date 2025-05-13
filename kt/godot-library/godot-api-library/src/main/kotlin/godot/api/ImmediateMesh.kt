@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Plane
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -25,6 +28,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A mesh type optimized for creating geometry manually, similar to OpenGL 1.x immediate mode.
@@ -142,7 +146,48 @@ public open class ImmediateMesh : Mesh() {
     TransferContext.callMethod(ptr, MethodBindings.clearSurfacesPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val surfaceBeginName:
+        MethodStringName2<ImmediateMesh, Unit, Mesh.PrimitiveType, Material?> =
+        MethodStringName2<ImmediateMesh, Unit, Mesh.PrimitiveType, Material?>("surface_begin")
+
+    @JvmStatic
+    public val surfaceSetColorName: MethodStringName1<ImmediateMesh, Unit, Color> =
+        MethodStringName1<ImmediateMesh, Unit, Color>("surface_set_color")
+
+    @JvmStatic
+    public val surfaceSetNormalName: MethodStringName1<ImmediateMesh, Unit, Vector3> =
+        MethodStringName1<ImmediateMesh, Unit, Vector3>("surface_set_normal")
+
+    @JvmStatic
+    public val surfaceSetTangentName: MethodStringName1<ImmediateMesh, Unit, Plane> =
+        MethodStringName1<ImmediateMesh, Unit, Plane>("surface_set_tangent")
+
+    @JvmStatic
+    public val surfaceSetUvName: MethodStringName1<ImmediateMesh, Unit, Vector2> =
+        MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_set_uv")
+
+    @JvmStatic
+    public val surfaceSetUv2Name: MethodStringName1<ImmediateMesh, Unit, Vector2> =
+        MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_set_uv2")
+
+    @JvmStatic
+    public val surfaceAddVertexName: MethodStringName1<ImmediateMesh, Unit, Vector3> =
+        MethodStringName1<ImmediateMesh, Unit, Vector3>("surface_add_vertex")
+
+    @JvmStatic
+    public val surfaceAddVertex2dName: MethodStringName1<ImmediateMesh, Unit, Vector2> =
+        MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_add_vertex_2d")
+
+    @JvmStatic
+    public val surfaceEndName: MethodStringName0<ImmediateMesh, Unit> =
+        MethodStringName0<ImmediateMesh, Unit>("surface_end")
+
+    @JvmStatic
+    public val clearSurfacesName: MethodStringName0<ImmediateMesh, Unit> =
+        MethodStringName0<ImmediateMesh, Unit>("clear_surfaces")
+  }
 
   public object MethodBindings {
     internal val surfaceBeginPtr: VoidPtr =

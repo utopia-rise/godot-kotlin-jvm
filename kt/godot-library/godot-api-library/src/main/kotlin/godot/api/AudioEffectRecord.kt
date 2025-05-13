@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
@@ -90,7 +93,27 @@ public open class AudioEffectRecord : AudioEffect() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRecordingActiveName: MethodStringName1<AudioEffectRecord, Unit, Boolean> =
+        MethodStringName1<AudioEffectRecord, Unit, Boolean>("set_recording_active")
+
+    @JvmStatic
+    public val isRecordingActiveName: MethodStringName0<AudioEffectRecord, Boolean> =
+        MethodStringName0<AudioEffectRecord, Boolean>("is_recording_active")
+
+    @JvmStatic
+    public val setFormatName: MethodStringName1<AudioEffectRecord, Unit, AudioStreamWAV.Format> =
+        MethodStringName1<AudioEffectRecord, Unit, AudioStreamWAV.Format>("set_format")
+
+    @JvmStatic
+    public val getFormatName: MethodStringName0<AudioEffectRecord, AudioStreamWAV.Format> =
+        MethodStringName0<AudioEffectRecord, AudioStreamWAV.Format>("get_format")
+
+    @JvmStatic
+    public val getRecordingName: MethodStringName0<AudioEffectRecord, AudioStreamWAV?> =
+        MethodStringName0<AudioEffectRecord, AudioStreamWAV?>("get_recording")
+  }
 
   public object MethodBindings {
     internal val setRecordingActivePtr: VoidPtr =

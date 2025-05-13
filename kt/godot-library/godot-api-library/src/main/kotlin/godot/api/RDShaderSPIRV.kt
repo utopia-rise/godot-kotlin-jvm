@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
@@ -426,7 +429,27 @@ public open class RDShaderSPIRV : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setStageBytecodeName:
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, PackedByteArray> =
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, PackedByteArray>("set_stage_bytecode")
+
+    @JvmStatic
+    public val getStageBytecodeName:
+        MethodStringName1<RDShaderSPIRV, PackedByteArray, RenderingDevice.ShaderStage> =
+        MethodStringName1<RDShaderSPIRV, PackedByteArray, RenderingDevice.ShaderStage>("get_stage_bytecode")
+
+    @JvmStatic
+    public val setStageCompileErrorName:
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, String> =
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, String>("set_stage_compile_error")
+
+    @JvmStatic
+    public val getStageCompileErrorName:
+        MethodStringName1<RDShaderSPIRV, String, RenderingDevice.ShaderStage> =
+        MethodStringName1<RDShaderSPIRV, String, RenderingDevice.ShaderStage>("get_stage_compile_error")
+  }
 
   public object MethodBindings {
     internal val setStageBytecodePtr: VoidPtr =

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName2
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -30,6 +31,14 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object PhysicsServer3DManager : Object() {
+  @JvmStatic
+  public val registerServerName: MethodStringName2<PhysicsServer3DManager, Unit, String, Callable> =
+      MethodStringName2<PhysicsServer3DManager, Unit, String, Callable>("register_server")
+
+  @JvmStatic
+  public val setDefaultServerName: MethodStringName2<PhysicsServer3DManager, Unit, String, Int> =
+      MethodStringName2<PhysicsServer3DManager, Unit, String, Int>("set_default_server")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(24)
   }

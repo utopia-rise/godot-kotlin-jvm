@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
@@ -134,7 +137,39 @@ public open class Slider internal constructor() : Range() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTicksName: MethodStringName1<Slider, Unit, Int> =
+        MethodStringName1<Slider, Unit, Int>("set_ticks")
+
+    @JvmStatic
+    public val getTicksName: MethodStringName0<Slider, Int> =
+        MethodStringName0<Slider, Int>("get_ticks")
+
+    @JvmStatic
+    public val getTicksOnBordersName: MethodStringName0<Slider, Boolean> =
+        MethodStringName0<Slider, Boolean>("get_ticks_on_borders")
+
+    @JvmStatic
+    public val setTicksOnBordersName: MethodStringName1<Slider, Unit, Boolean> =
+        MethodStringName1<Slider, Unit, Boolean>("set_ticks_on_borders")
+
+    @JvmStatic
+    public val setEditableName: MethodStringName1<Slider, Unit, Boolean> =
+        MethodStringName1<Slider, Unit, Boolean>("set_editable")
+
+    @JvmStatic
+    public val isEditableName: MethodStringName0<Slider, Boolean> =
+        MethodStringName0<Slider, Boolean>("is_editable")
+
+    @JvmStatic
+    public val setScrollableName: MethodStringName1<Slider, Unit, Boolean> =
+        MethodStringName1<Slider, Unit, Boolean>("set_scrollable")
+
+    @JvmStatic
+    public val isScrollableName: MethodStringName0<Slider, Boolean> =
+        MethodStringName0<Slider, Boolean>("is_scrollable")
+  }
 
   public object MethodBindings {
     internal val setTicksPtr: VoidPtr =

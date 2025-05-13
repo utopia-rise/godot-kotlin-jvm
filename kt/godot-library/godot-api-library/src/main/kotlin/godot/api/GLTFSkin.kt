@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
 import godot.core.VariantArray
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class GLTFSkin : Resource() {
@@ -400,7 +403,87 @@ public open class GLTFSkin : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setGodotSkinPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getSkinRootName: MethodStringName0<GLTFSkin, Int> =
+        MethodStringName0<GLTFSkin, Int>("get_skin_root")
+
+    @JvmStatic
+    public val setSkinRootName: MethodStringName1<GLTFSkin, Unit, Int> =
+        MethodStringName1<GLTFSkin, Unit, Int>("set_skin_root")
+
+    @JvmStatic
+    public val getJointsOriginalName: MethodStringName0<GLTFSkin, PackedInt32Array> =
+        MethodStringName0<GLTFSkin, PackedInt32Array>("get_joints_original")
+
+    @JvmStatic
+    public val setJointsOriginalName: MethodStringName1<GLTFSkin, Unit, PackedInt32Array> =
+        MethodStringName1<GLTFSkin, Unit, PackedInt32Array>("set_joints_original")
+
+    @JvmStatic
+    public val getInverseBindsName: MethodStringName0<GLTFSkin, VariantArray<Transform3D>> =
+        MethodStringName0<GLTFSkin, VariantArray<Transform3D>>("get_inverse_binds")
+
+    @JvmStatic
+    public val setInverseBindsName: MethodStringName1<GLTFSkin, Unit, VariantArray<Transform3D>> =
+        MethodStringName1<GLTFSkin, Unit, VariantArray<Transform3D>>("set_inverse_binds")
+
+    @JvmStatic
+    public val getJointsName: MethodStringName0<GLTFSkin, PackedInt32Array> =
+        MethodStringName0<GLTFSkin, PackedInt32Array>("get_joints")
+
+    @JvmStatic
+    public val setJointsName: MethodStringName1<GLTFSkin, Unit, PackedInt32Array> =
+        MethodStringName1<GLTFSkin, Unit, PackedInt32Array>("set_joints")
+
+    @JvmStatic
+    public val getNonJointsName: MethodStringName0<GLTFSkin, PackedInt32Array> =
+        MethodStringName0<GLTFSkin, PackedInt32Array>("get_non_joints")
+
+    @JvmStatic
+    public val setNonJointsName: MethodStringName1<GLTFSkin, Unit, PackedInt32Array> =
+        MethodStringName1<GLTFSkin, Unit, PackedInt32Array>("set_non_joints")
+
+    @JvmStatic
+    public val getRootsName: MethodStringName0<GLTFSkin, PackedInt32Array> =
+        MethodStringName0<GLTFSkin, PackedInt32Array>("get_roots")
+
+    @JvmStatic
+    public val setRootsName: MethodStringName1<GLTFSkin, Unit, PackedInt32Array> =
+        MethodStringName1<GLTFSkin, Unit, PackedInt32Array>("set_roots")
+
+    @JvmStatic
+    public val getSkeletonName: MethodStringName0<GLTFSkin, Int> =
+        MethodStringName0<GLTFSkin, Int>("get_skeleton")
+
+    @JvmStatic
+    public val setSkeletonName: MethodStringName1<GLTFSkin, Unit, Int> =
+        MethodStringName1<GLTFSkin, Unit, Int>("set_skeleton")
+
+    @JvmStatic
+    public val getJointIToBoneIName: MethodStringName0<GLTFSkin, Dictionary<Any?, Any?>> =
+        MethodStringName0<GLTFSkin, Dictionary<Any?, Any?>>("get_joint_i_to_bone_i")
+
+    @JvmStatic
+    public val setJointIToBoneIName: MethodStringName1<GLTFSkin, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<GLTFSkin, Unit, Dictionary<Any?, Any?>>("set_joint_i_to_bone_i")
+
+    @JvmStatic
+    public val getJointIToNameName: MethodStringName0<GLTFSkin, Dictionary<Any?, Any?>> =
+        MethodStringName0<GLTFSkin, Dictionary<Any?, Any?>>("get_joint_i_to_name")
+
+    @JvmStatic
+    public val setJointIToNameName: MethodStringName1<GLTFSkin, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<GLTFSkin, Unit, Dictionary<Any?, Any?>>("set_joint_i_to_name")
+
+    @JvmStatic
+    public val getGodotSkinName: MethodStringName0<GLTFSkin, Skin?> =
+        MethodStringName0<GLTFSkin, Skin?>("get_godot_skin")
+
+    @JvmStatic
+    public val setGodotSkinName: MethodStringName1<GLTFSkin, Unit, Skin?> =
+        MethodStringName1<GLTFSkin, Unit, Skin?>("set_godot_skin")
+  }
 
   public object MethodBindings {
     internal val getSkinRootPtr: VoidPtr =

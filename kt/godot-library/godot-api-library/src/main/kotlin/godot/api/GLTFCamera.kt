@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -172,6 +174,63 @@ public open class GLTFCamera : Resource() {
   }
 
   public companion object {
+    @JvmStatic
+    public val fromNodeName: MethodStringName1<GLTFCamera, GLTFCamera?, Camera3D?> =
+        MethodStringName1<GLTFCamera, GLTFCamera?, Camera3D?>("from_node")
+
+    @JvmStatic
+    public val toNodeName: MethodStringName0<GLTFCamera, Camera3D?> =
+        MethodStringName0<GLTFCamera, Camera3D?>("to_node")
+
+    @JvmStatic
+    public val fromDictionaryName:
+        MethodStringName1<GLTFCamera, GLTFCamera?, Dictionary<Any?, Any?>> =
+        MethodStringName1<GLTFCamera, GLTFCamera?, Dictionary<Any?, Any?>>("from_dictionary")
+
+    @JvmStatic
+    public val toDictionaryName: MethodStringName0<GLTFCamera, Dictionary<Any?, Any?>> =
+        MethodStringName0<GLTFCamera, Dictionary<Any?, Any?>>("to_dictionary")
+
+    @JvmStatic
+    public val getPerspectiveName: MethodStringName0<GLTFCamera, Boolean> =
+        MethodStringName0<GLTFCamera, Boolean>("get_perspective")
+
+    @JvmStatic
+    public val setPerspectiveName: MethodStringName1<GLTFCamera, Unit, Boolean> =
+        MethodStringName1<GLTFCamera, Unit, Boolean>("set_perspective")
+
+    @JvmStatic
+    public val getFovName: MethodStringName0<GLTFCamera, Float> =
+        MethodStringName0<GLTFCamera, Float>("get_fov")
+
+    @JvmStatic
+    public val setFovName: MethodStringName1<GLTFCamera, Unit, Float> =
+        MethodStringName1<GLTFCamera, Unit, Float>("set_fov")
+
+    @JvmStatic
+    public val getSizeMagName: MethodStringName0<GLTFCamera, Float> =
+        MethodStringName0<GLTFCamera, Float>("get_size_mag")
+
+    @JvmStatic
+    public val setSizeMagName: MethodStringName1<GLTFCamera, Unit, Float> =
+        MethodStringName1<GLTFCamera, Unit, Float>("set_size_mag")
+
+    @JvmStatic
+    public val getDepthFarName: MethodStringName0<GLTFCamera, Float> =
+        MethodStringName0<GLTFCamera, Float>("get_depth_far")
+
+    @JvmStatic
+    public val setDepthFarName: MethodStringName1<GLTFCamera, Unit, Float> =
+        MethodStringName1<GLTFCamera, Unit, Float>("set_depth_far")
+
+    @JvmStatic
+    public val getDepthNearName: MethodStringName0<GLTFCamera, Float> =
+        MethodStringName0<GLTFCamera, Float>("get_depth_near")
+
+    @JvmStatic
+    public val setDepthNearName: MethodStringName1<GLTFCamera, Unit, Float> =
+        MethodStringName1<GLTFCamera, Unit, Float>("set_depth_near")
+
     /**
      * Create a new GLTFCamera instance from the given Godot [Camera3D] node.
      */

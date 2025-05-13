@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Float
@@ -18,6 +20,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An Omnidirectional light is a type of [Light3D] that emits light in all directions. The light is
@@ -125,7 +128,15 @@ public open class OmniLight3D : Light3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setShadowModeName: MethodStringName1<OmniLight3D, Unit, ShadowMode> =
+        MethodStringName1<OmniLight3D, Unit, ShadowMode>("set_shadow_mode")
+
+    @JvmStatic
+    public val getShadowModeName: MethodStringName0<OmniLight3D, ShadowMode> =
+        MethodStringName0<OmniLight3D, ShadowMode>("get_shadow_mode")
+  }
 
   public object MethodBindings {
     internal val setShadowModePtr: VoidPtr =

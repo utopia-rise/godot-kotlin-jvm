@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class AudioStreamPlaylist : AudioStream() {
@@ -659,6 +663,50 @@ public open class AudioStreamPlaylist : AudioStream() {
   }
 
   public companion object {
+    @JvmStatic
+    public val setStreamCountName: MethodStringName1<AudioStreamPlaylist, Unit, Int> =
+        MethodStringName1<AudioStreamPlaylist, Unit, Int>("set_stream_count")
+
+    @JvmStatic
+    public val getStreamCountName: MethodStringName0<AudioStreamPlaylist, Int> =
+        MethodStringName0<AudioStreamPlaylist, Int>("get_stream_count")
+
+    @JvmStatic
+    public val getBpmName: MethodStringName0<AudioStreamPlaylist, Double> =
+        MethodStringName0<AudioStreamPlaylist, Double>("get_bpm")
+
+    @JvmStatic
+    public val setListStreamName: MethodStringName2<AudioStreamPlaylist, Unit, Int, AudioStream?> =
+        MethodStringName2<AudioStreamPlaylist, Unit, Int, AudioStream?>("set_list_stream")
+
+    @JvmStatic
+    public val getListStreamName: MethodStringName1<AudioStreamPlaylist, AudioStream?, Int> =
+        MethodStringName1<AudioStreamPlaylist, AudioStream?, Int>("get_list_stream")
+
+    @JvmStatic
+    public val setShuffleName: MethodStringName1<AudioStreamPlaylist, Unit, Boolean> =
+        MethodStringName1<AudioStreamPlaylist, Unit, Boolean>("set_shuffle")
+
+    @JvmStatic
+    public val getShuffleName: MethodStringName0<AudioStreamPlaylist, Boolean> =
+        MethodStringName0<AudioStreamPlaylist, Boolean>("get_shuffle")
+
+    @JvmStatic
+    public val setFadeTimeName: MethodStringName1<AudioStreamPlaylist, Unit, Float> =
+        MethodStringName1<AudioStreamPlaylist, Unit, Float>("set_fade_time")
+
+    @JvmStatic
+    public val getFadeTimeName: MethodStringName0<AudioStreamPlaylist, Float> =
+        MethodStringName0<AudioStreamPlaylist, Float>("get_fade_time")
+
+    @JvmStatic
+    public val setLoopName: MethodStringName1<AudioStreamPlaylist, Unit, Boolean> =
+        MethodStringName1<AudioStreamPlaylist, Unit, Boolean>("set_loop")
+
+    @JvmStatic
+    public val hasLoopName: MethodStringName0<AudioStreamPlaylist, Boolean> =
+        MethodStringName0<AudioStreamPlaylist, Boolean>("has_loop")
+
     /**
      * Maximum amount of streams supported in the playlist.
      */

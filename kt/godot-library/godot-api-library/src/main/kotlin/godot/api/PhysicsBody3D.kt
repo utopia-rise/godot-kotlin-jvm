@@ -10,6 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -28,6 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics
@@ -225,7 +231,45 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     TransferContext.callMethod(ptr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val moveAndCollideName:
+        MethodStringName5<PhysicsBody3D, KinematicCollision3D?, Vector3, Boolean, Float, Boolean, Int>
+        =
+        MethodStringName5<PhysicsBody3D, KinematicCollision3D?, Vector3, Boolean, Float, Boolean, Int>("move_and_collide")
+
+    @JvmStatic
+    public val testMoveName:
+        MethodStringName6<PhysicsBody3D, Boolean, Transform3D, Vector3, KinematicCollision3D?, Float, Boolean, Int>
+        =
+        MethodStringName6<PhysicsBody3D, Boolean, Transform3D, Vector3, KinematicCollision3D?, Float, Boolean, Int>("test_move")
+
+    @JvmStatic
+    public val getGravityName: MethodStringName0<PhysicsBody3D, Vector3> =
+        MethodStringName0<PhysicsBody3D, Vector3>("get_gravity")
+
+    @JvmStatic
+    public val setAxisLockName:
+        MethodStringName2<PhysicsBody3D, Unit, PhysicsServer3D.BodyAxis, Boolean> =
+        MethodStringName2<PhysicsBody3D, Unit, PhysicsServer3D.BodyAxis, Boolean>("set_axis_lock")
+
+    @JvmStatic
+    public val getAxisLockName: MethodStringName1<PhysicsBody3D, Boolean, PhysicsServer3D.BodyAxis>
+        = MethodStringName1<PhysicsBody3D, Boolean, PhysicsServer3D.BodyAxis>("get_axis_lock")
+
+    @JvmStatic
+    public val getCollisionExceptionsName:
+        MethodStringName0<PhysicsBody3D, VariantArray<PhysicsBody3D>> =
+        MethodStringName0<PhysicsBody3D, VariantArray<PhysicsBody3D>>("get_collision_exceptions")
+
+    @JvmStatic
+    public val addCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node?> =
+        MethodStringName1<PhysicsBody3D, Unit, Node?>("add_collision_exception_with")
+
+    @JvmStatic
+    public val removeCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node?> =
+        MethodStringName1<PhysicsBody3D, Unit, Node?>("remove_collision_exception_with")
+  }
 
   public object MethodBindings {
     internal val moveAndCollidePtr: VoidPtr =

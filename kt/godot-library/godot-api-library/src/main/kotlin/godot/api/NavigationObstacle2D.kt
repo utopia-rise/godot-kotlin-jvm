@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.VariantParser.BOOL
@@ -30,6 +33,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
@@ -350,7 +354,84 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getRidName: MethodStringName0<NavigationObstacle2D, RID> =
+        MethodStringName0<NavigationObstacle2D, RID>("get_rid")
+
+    @JvmStatic
+    public val setAvoidanceEnabledName: MethodStringName1<NavigationObstacle2D, Unit, Boolean> =
+        MethodStringName1<NavigationObstacle2D, Unit, Boolean>("set_avoidance_enabled")
+
+    @JvmStatic
+    public val getAvoidanceEnabledName: MethodStringName0<NavigationObstacle2D, Boolean> =
+        MethodStringName0<NavigationObstacle2D, Boolean>("get_avoidance_enabled")
+
+    @JvmStatic
+    public val setNavigationMapName: MethodStringName1<NavigationObstacle2D, Unit, RID> =
+        MethodStringName1<NavigationObstacle2D, Unit, RID>("set_navigation_map")
+
+    @JvmStatic
+    public val getNavigationMapName: MethodStringName0<NavigationObstacle2D, RID> =
+        MethodStringName0<NavigationObstacle2D, RID>("get_navigation_map")
+
+    @JvmStatic
+    public val setRadiusName: MethodStringName1<NavigationObstacle2D, Unit, Float> =
+        MethodStringName1<NavigationObstacle2D, Unit, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName0<NavigationObstacle2D, Float> =
+        MethodStringName0<NavigationObstacle2D, Float>("get_radius")
+
+    @JvmStatic
+    public val setVelocityName: MethodStringName1<NavigationObstacle2D, Unit, Vector2> =
+        MethodStringName1<NavigationObstacle2D, Unit, Vector2>("set_velocity")
+
+    @JvmStatic
+    public val getVelocityName: MethodStringName0<NavigationObstacle2D, Vector2> =
+        MethodStringName0<NavigationObstacle2D, Vector2>("get_velocity")
+
+    @JvmStatic
+    public val setVerticesName: MethodStringName1<NavigationObstacle2D, Unit, PackedVector2Array> =
+        MethodStringName1<NavigationObstacle2D, Unit, PackedVector2Array>("set_vertices")
+
+    @JvmStatic
+    public val getVerticesName: MethodStringName0<NavigationObstacle2D, PackedVector2Array> =
+        MethodStringName0<NavigationObstacle2D, PackedVector2Array>("get_vertices")
+
+    @JvmStatic
+    public val setAvoidanceLayersName: MethodStringName1<NavigationObstacle2D, Unit, Long> =
+        MethodStringName1<NavigationObstacle2D, Unit, Long>("set_avoidance_layers")
+
+    @JvmStatic
+    public val getAvoidanceLayersName: MethodStringName0<NavigationObstacle2D, Long> =
+        MethodStringName0<NavigationObstacle2D, Long>("get_avoidance_layers")
+
+    @JvmStatic
+    public val setAvoidanceLayerValueName:
+        MethodStringName2<NavigationObstacle2D, Unit, Int, Boolean> =
+        MethodStringName2<NavigationObstacle2D, Unit, Int, Boolean>("set_avoidance_layer_value")
+
+    @JvmStatic
+    public val getAvoidanceLayerValueName: MethodStringName1<NavigationObstacle2D, Boolean, Int> =
+        MethodStringName1<NavigationObstacle2D, Boolean, Int>("get_avoidance_layer_value")
+
+    @JvmStatic
+    public val setAffectNavigationMeshName: MethodStringName1<NavigationObstacle2D, Unit, Boolean> =
+        MethodStringName1<NavigationObstacle2D, Unit, Boolean>("set_affect_navigation_mesh")
+
+    @JvmStatic
+    public val getAffectNavigationMeshName: MethodStringName0<NavigationObstacle2D, Boolean> =
+        MethodStringName0<NavigationObstacle2D, Boolean>("get_affect_navigation_mesh")
+
+    @JvmStatic
+    public val setCarveNavigationMeshName: MethodStringName1<NavigationObstacle2D, Unit, Boolean> =
+        MethodStringName1<NavigationObstacle2D, Unit, Boolean>("set_carve_navigation_mesh")
+
+    @JvmStatic
+    public val getCarveNavigationMeshName: MethodStringName0<NavigationObstacle2D, Boolean> =
+        MethodStringName0<NavigationObstacle2D, Boolean>("get_carve_navigation_mesh")
+  }
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =

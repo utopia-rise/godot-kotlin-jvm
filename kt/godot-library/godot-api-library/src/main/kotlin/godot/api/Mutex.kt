@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [Thread]s, and
@@ -78,7 +80,17 @@ public open class Mutex : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.unlockPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val lockName: MethodStringName0<Mutex, Unit> = MethodStringName0<Mutex, Unit>("lock")
+
+    @JvmStatic
+    public val tryLockName: MethodStringName0<Mutex, Boolean> =
+        MethodStringName0<Mutex, Boolean>("try_lock")
+
+    @JvmStatic
+    public val unlockName: MethodStringName0<Mutex, Unit> = MethodStringName0<Mutex, Unit>("unlock")
+  }
 
   public object MethodBindings {
     internal val lockPtr: VoidPtr = TypeManager.getMethodBindPtr("Mutex", "lock", 3218959716)

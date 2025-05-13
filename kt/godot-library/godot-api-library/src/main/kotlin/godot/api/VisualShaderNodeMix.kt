@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Translates to `mix(a, b, weight)` in the shader language.
@@ -96,7 +99,15 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOpTypeName: MethodStringName1<VisualShaderNodeMix, Unit, OpType> =
+        MethodStringName1<VisualShaderNodeMix, Unit, OpType>("set_op_type")
+
+    @JvmStatic
+    public val getOpTypeName: MethodStringName0<VisualShaderNodeMix, OpType> =
+        MethodStringName0<VisualShaderNodeMix, OpType>("get_op_type")
+  }
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =

@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.NIL
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
@@ -32,7 +34,11 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
     TransferContext.callMethod(ptr, MethodBindings.beginResamplePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val beginResampleName: MethodStringName0<AudioStreamPlaybackResampled, Unit> =
+        MethodStringName0<AudioStreamPlaybackResampled, Unit>("begin_resample")
+  }
 
   public object MethodBindings {
     internal val beginResamplePtr: VoidPtr =

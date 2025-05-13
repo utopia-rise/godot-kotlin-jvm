@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.Signal0
 import godot.core.VariantCaster.ANY
@@ -45,6 +49,44 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object JavaScriptBridge : Object() {
+  @JvmStatic
+  public val evalName: MethodStringName2<JavaScriptBridge, Any?, String, Boolean> =
+      MethodStringName2<JavaScriptBridge, Any?, String, Boolean>("eval")
+
+  @JvmStatic
+  public val getInterfaceName: MethodStringName1<JavaScriptBridge, JavaScriptObject?, String> =
+      MethodStringName1<JavaScriptBridge, JavaScriptObject?, String>("get_interface")
+
+  @JvmStatic
+  public val createCallbackName: MethodStringName1<JavaScriptBridge, JavaScriptObject?, Callable> =
+      MethodStringName1<JavaScriptBridge, JavaScriptObject?, Callable>("create_callback")
+
+  @JvmStatic
+  public val isJsBufferName: MethodStringName1<JavaScriptBridge, Boolean, JavaScriptObject?> =
+      MethodStringName1<JavaScriptBridge, Boolean, JavaScriptObject?>("is_js_buffer")
+
+  @JvmStatic
+  public val jsBufferToPackedByteArrayName:
+      MethodStringName1<JavaScriptBridge, PackedByteArray, JavaScriptObject?> =
+      MethodStringName1<JavaScriptBridge, PackedByteArray, JavaScriptObject?>("js_buffer_to_packed_byte_array")
+
+  @JvmStatic
+  public val downloadBufferName:
+      MethodStringName3<JavaScriptBridge, Unit, PackedByteArray, String, String> =
+      MethodStringName3<JavaScriptBridge, Unit, PackedByteArray, String, String>("download_buffer")
+
+  @JvmStatic
+  public val pwaNeedsUpdateName: MethodStringName0<JavaScriptBridge, Boolean> =
+      MethodStringName0<JavaScriptBridge, Boolean>("pwa_needs_update")
+
+  @JvmStatic
+  public val pwaUpdateName: MethodStringName0<JavaScriptBridge, Error> =
+      MethodStringName0<JavaScriptBridge, Error>("pwa_update")
+
+  @JvmStatic
+  public val forceFsSyncName: MethodStringName0<JavaScriptBridge, Unit> =
+      MethodStringName0<JavaScriptBridge, Unit>("force_fs_sync")
+
   /**
    * Emitted when an update for this progressive web app has been detected but is waiting to be
    * activated because a previous version is active. See [pwaUpdate] to force the update to take place

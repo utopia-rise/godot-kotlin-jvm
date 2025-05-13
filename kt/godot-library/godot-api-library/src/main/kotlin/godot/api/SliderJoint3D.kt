@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that restricts the movement of a 3D physics body along an axis relative to
@@ -175,7 +178,15 @@ public open class SliderJoint3D : Joint3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setParamName: MethodStringName2<SliderJoint3D, Unit, Param, Float> =
+        MethodStringName2<SliderJoint3D, Unit, Param, Float>("set_param")
+
+    @JvmStatic
+    public val getParamName: MethodStringName1<SliderJoint3D, Float, Param> =
+        MethodStringName1<SliderJoint3D, Float, Param>("get_param")
+  }
 
   public object MethodBindings {
     internal val setParamPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A virtual class, use the descendants instead.
@@ -76,7 +79,15 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSourceName: MethodStringName1<VisualShaderNodeSample3D, Unit, Source> =
+        MethodStringName1<VisualShaderNodeSample3D, Unit, Source>("set_source")
+
+    @JvmStatic
+    public val getSourceName: MethodStringName0<VisualShaderNodeSample3D, Source> =
+        MethodStringName0<VisualShaderNodeSample3D, Source>("get_source")
+  }
 
   public object MethodBindings {
     internal val setSourcePtr: VoidPtr =

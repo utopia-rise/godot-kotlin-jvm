@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or
@@ -158,7 +162,43 @@ public open class StreamPeerTCP : StreamPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val bindName: MethodStringName2<StreamPeerTCP, Error, Int, String> =
+        MethodStringName2<StreamPeerTCP, Error, Int, String>("bind")
+
+    @JvmStatic
+    public val connectToHostName: MethodStringName2<StreamPeerTCP, Error, String, Int> =
+        MethodStringName2<StreamPeerTCP, Error, String, Int>("connect_to_host")
+
+    @JvmStatic
+    public val pollName: MethodStringName0<StreamPeerTCP, Error> =
+        MethodStringName0<StreamPeerTCP, Error>("poll")
+
+    @JvmStatic
+    public val getStatusName: MethodStringName0<StreamPeerTCP, Status> =
+        MethodStringName0<StreamPeerTCP, Status>("get_status")
+
+    @JvmStatic
+    public val getConnectedHostName: MethodStringName0<StreamPeerTCP, String> =
+        MethodStringName0<StreamPeerTCP, String>("get_connected_host")
+
+    @JvmStatic
+    public val getConnectedPortName: MethodStringName0<StreamPeerTCP, Int> =
+        MethodStringName0<StreamPeerTCP, Int>("get_connected_port")
+
+    @JvmStatic
+    public val getLocalPortName: MethodStringName0<StreamPeerTCP, Int> =
+        MethodStringName0<StreamPeerTCP, Int>("get_local_port")
+
+    @JvmStatic
+    public val disconnectFromHostName: MethodStringName0<StreamPeerTCP, Unit> =
+        MethodStringName0<StreamPeerTCP, Unit>("disconnect_from_host")
+
+    @JvmStatic
+    public val setNoDelayName: MethodStringName1<StreamPeerTCP, Unit, Boolean> =
+        MethodStringName1<StreamPeerTCP, Unit, Boolean>("set_no_delay")
+  }
 
   public object MethodBindings {
     internal val bindPtr: VoidPtr =

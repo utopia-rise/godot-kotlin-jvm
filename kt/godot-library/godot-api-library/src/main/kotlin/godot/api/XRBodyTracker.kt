@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -22,6 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: XRBodyTracker.BodyFlags): Long = this.or(other.flag)
 
@@ -554,7 +558,39 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setHasTrackingDataName: MethodStringName1<XRBodyTracker, Unit, Boolean> =
+        MethodStringName1<XRBodyTracker, Unit, Boolean>("set_has_tracking_data")
+
+    @JvmStatic
+    public val getHasTrackingDataName: MethodStringName0<XRBodyTracker, Boolean> =
+        MethodStringName0<XRBodyTracker, Boolean>("get_has_tracking_data")
+
+    @JvmStatic
+    public val setBodyFlagsName: MethodStringName1<XRBodyTracker, Unit, BodyFlags> =
+        MethodStringName1<XRBodyTracker, Unit, BodyFlags>("set_body_flags")
+
+    @JvmStatic
+    public val getBodyFlagsName: MethodStringName0<XRBodyTracker, BodyFlags> =
+        MethodStringName0<XRBodyTracker, BodyFlags>("get_body_flags")
+
+    @JvmStatic
+    public val setJointFlagsName: MethodStringName2<XRBodyTracker, Unit, Joint, JointFlags> =
+        MethodStringName2<XRBodyTracker, Unit, Joint, JointFlags>("set_joint_flags")
+
+    @JvmStatic
+    public val getJointFlagsName: MethodStringName1<XRBodyTracker, JointFlags, Joint> =
+        MethodStringName1<XRBodyTracker, JointFlags, Joint>("get_joint_flags")
+
+    @JvmStatic
+    public val setJointTransformName: MethodStringName2<XRBodyTracker, Unit, Joint, Transform3D> =
+        MethodStringName2<XRBodyTracker, Unit, Joint, Transform3D>("set_joint_transform")
+
+    @JvmStatic
+    public val getJointTransformName: MethodStringName1<XRBodyTracker, Transform3D, Joint> =
+        MethodStringName1<XRBodyTracker, Transform3D, Joint>("get_joint_transform")
+  }
 
   public object MethodBindings {
     internal val setHasTrackingDataPtr: VoidPtr =

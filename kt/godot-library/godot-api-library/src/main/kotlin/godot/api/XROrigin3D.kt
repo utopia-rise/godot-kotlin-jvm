@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This is a special node within the AR/VR system that maps the physical location of the center of
@@ -90,7 +93,23 @@ public open class XROrigin3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setWorldScaleName: MethodStringName1<XROrigin3D, Unit, Float> =
+        MethodStringName1<XROrigin3D, Unit, Float>("set_world_scale")
+
+    @JvmStatic
+    public val getWorldScaleName: MethodStringName0<XROrigin3D, Float> =
+        MethodStringName0<XROrigin3D, Float>("get_world_scale")
+
+    @JvmStatic
+    public val setCurrentName: MethodStringName1<XROrigin3D, Unit, Boolean> =
+        MethodStringName1<XROrigin3D, Unit, Boolean>("set_current")
+
+    @JvmStatic
+    public val isCurrentName: MethodStringName0<XROrigin3D, Boolean> =
+        MethodStringName0<XROrigin3D, Boolean>("is_current")
+  }
 
   public object MethodBindings {
     internal val setWorldScalePtr: VoidPtr =

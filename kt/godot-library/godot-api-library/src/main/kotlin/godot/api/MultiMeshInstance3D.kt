@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
@@ -53,7 +56,15 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMultimeshName: MethodStringName1<MultiMeshInstance3D, Unit, MultiMesh?> =
+        MethodStringName1<MultiMeshInstance3D, Unit, MultiMesh?>("set_multimesh")
+
+    @JvmStatic
+    public val getMultimeshName: MethodStringName0<MultiMeshInstance3D, MultiMesh?> =
+        MethodStringName0<MultiMeshInstance3D, MultiMesh?>("get_multimesh")
+  }
 
   public object MethodBindings {
     internal val setMultimeshPtr: VoidPtr =

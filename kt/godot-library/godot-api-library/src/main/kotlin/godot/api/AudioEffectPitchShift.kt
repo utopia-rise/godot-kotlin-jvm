@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
@@ -147,7 +150,31 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPitchScaleName: MethodStringName1<AudioEffectPitchShift, Unit, Float> =
+        MethodStringName1<AudioEffectPitchShift, Unit, Float>("set_pitch_scale")
+
+    @JvmStatic
+    public val getPitchScaleName: MethodStringName0<AudioEffectPitchShift, Float> =
+        MethodStringName0<AudioEffectPitchShift, Float>("get_pitch_scale")
+
+    @JvmStatic
+    public val setOversamplingName: MethodStringName1<AudioEffectPitchShift, Unit, Int> =
+        MethodStringName1<AudioEffectPitchShift, Unit, Int>("set_oversampling")
+
+    @JvmStatic
+    public val getOversamplingName: MethodStringName0<AudioEffectPitchShift, Int> =
+        MethodStringName0<AudioEffectPitchShift, Int>("get_oversampling")
+
+    @JvmStatic
+    public val setFftSizeName: MethodStringName1<AudioEffectPitchShift, Unit, FFTSize> =
+        MethodStringName1<AudioEffectPitchShift, Unit, FFTSize>("set_fft_size")
+
+    @JvmStatic
+    public val getFftSizeName: MethodStringName0<AudioEffectPitchShift, FFTSize> =
+        MethodStringName0<AudioEffectPitchShift, FFTSize>("get_fft_size")
+  }
 
   public object MethodBindings {
     internal val setPitchScalePtr: VoidPtr =

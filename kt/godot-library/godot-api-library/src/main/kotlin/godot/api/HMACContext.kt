@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
@@ -18,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
@@ -104,7 +108,20 @@ public open class HMACContext : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val startName:
+        MethodStringName2<HMACContext, Error, HashingContext.HashType, PackedByteArray> =
+        MethodStringName2<HMACContext, Error, HashingContext.HashType, PackedByteArray>("start")
+
+    @JvmStatic
+    public val updateName: MethodStringName1<HMACContext, Error, PackedByteArray> =
+        MethodStringName1<HMACContext, Error, PackedByteArray>("update")
+
+    @JvmStatic
+    public val finishName: MethodStringName0<HMACContext, PackedByteArray> =
+        MethodStringName0<HMACContext, PackedByteArray>("finish")
+  }
 
   public object MethodBindings {
     internal val startPtr: VoidPtr =

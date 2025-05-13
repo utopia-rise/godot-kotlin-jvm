@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
@@ -76,7 +79,23 @@ public open class GrooveJoint2D : Joint2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLengthName: MethodStringName1<GrooveJoint2D, Unit, Float> =
+        MethodStringName1<GrooveJoint2D, Unit, Float>("set_length")
+
+    @JvmStatic
+    public val getLengthName: MethodStringName0<GrooveJoint2D, Float> =
+        MethodStringName0<GrooveJoint2D, Float>("get_length")
+
+    @JvmStatic
+    public val setInitialOffsetName: MethodStringName1<GrooveJoint2D, Unit, Float> =
+        MethodStringName1<GrooveJoint2D, Unit, Float>("set_initial_offset")
+
+    @JvmStatic
+    public val getInitialOffsetName: MethodStringName0<GrooveJoint2D, Float> =
+        MethodStringName0<GrooveJoint2D, Float>("get_initial_offset")
+  }
 
   public object MethodBindings {
     internal val setLengthPtr: VoidPtr =

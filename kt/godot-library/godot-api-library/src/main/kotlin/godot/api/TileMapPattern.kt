@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -23,6 +27,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].
@@ -129,7 +134,47 @@ public open class TileMapPattern : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCellName: MethodStringName4<TileMapPattern, Unit, Vector2i, Int, Vector2i, Int> =
+        MethodStringName4<TileMapPattern, Unit, Vector2i, Int, Vector2i, Int>("set_cell")
+
+    @JvmStatic
+    public val hasCellName: MethodStringName1<TileMapPattern, Boolean, Vector2i> =
+        MethodStringName1<TileMapPattern, Boolean, Vector2i>("has_cell")
+
+    @JvmStatic
+    public val removeCellName: MethodStringName2<TileMapPattern, Unit, Vector2i, Boolean> =
+        MethodStringName2<TileMapPattern, Unit, Vector2i, Boolean>("remove_cell")
+
+    @JvmStatic
+    public val getCellSourceIdName: MethodStringName1<TileMapPattern, Int, Vector2i> =
+        MethodStringName1<TileMapPattern, Int, Vector2i>("get_cell_source_id")
+
+    @JvmStatic
+    public val getCellAtlasCoordsName: MethodStringName1<TileMapPattern, Vector2i, Vector2i> =
+        MethodStringName1<TileMapPattern, Vector2i, Vector2i>("get_cell_atlas_coords")
+
+    @JvmStatic
+    public val getCellAlternativeTileName: MethodStringName1<TileMapPattern, Int, Vector2i> =
+        MethodStringName1<TileMapPattern, Int, Vector2i>("get_cell_alternative_tile")
+
+    @JvmStatic
+    public val getUsedCellsName: MethodStringName0<TileMapPattern, VariantArray<Vector2i>> =
+        MethodStringName0<TileMapPattern, VariantArray<Vector2i>>("get_used_cells")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<TileMapPattern, Vector2i> =
+        MethodStringName0<TileMapPattern, Vector2i>("get_size")
+
+    @JvmStatic
+    public val setSizeName: MethodStringName1<TileMapPattern, Unit, Vector2i> =
+        MethodStringName1<TileMapPattern, Unit, Vector2i>("set_size")
+
+    @JvmStatic
+    public val isEmptyName: MethodStringName0<TileMapPattern, Boolean> =
+        MethodStringName0<TileMapPattern, Boolean>("is_empty")
+  }
 
   public object MethodBindings {
     internal val setCellPtr: VoidPtr =

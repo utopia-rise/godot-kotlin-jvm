@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Currently, has no direct usage, use the derived classes instead.
@@ -221,7 +226,94 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setInputsName: MethodStringName1<VisualShaderNodeGroupBase, Unit, String> =
+        MethodStringName1<VisualShaderNodeGroupBase, Unit, String>("set_inputs")
+
+    @JvmStatic
+    public val getInputsName: MethodStringName0<VisualShaderNodeGroupBase, String> =
+        MethodStringName0<VisualShaderNodeGroupBase, String>("get_inputs")
+
+    @JvmStatic
+    public val setOutputsName: MethodStringName1<VisualShaderNodeGroupBase, Unit, String> =
+        MethodStringName1<VisualShaderNodeGroupBase, Unit, String>("set_outputs")
+
+    @JvmStatic
+    public val getOutputsName: MethodStringName0<VisualShaderNodeGroupBase, String> =
+        MethodStringName0<VisualShaderNodeGroupBase, String>("get_outputs")
+
+    @JvmStatic
+    public val isValidPortNameName: MethodStringName1<VisualShaderNodeGroupBase, Boolean, String> =
+        MethodStringName1<VisualShaderNodeGroupBase, Boolean, String>("is_valid_port_name")
+
+    @JvmStatic
+    public val addInputPortName:
+        MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String> =
+        MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String>("add_input_port")
+
+    @JvmStatic
+    public val removeInputPortName: MethodStringName1<VisualShaderNodeGroupBase, Unit, Int> =
+        MethodStringName1<VisualShaderNodeGroupBase, Unit, Int>("remove_input_port")
+
+    @JvmStatic
+    public val getInputPortCountName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
+        MethodStringName0<VisualShaderNodeGroupBase, Int>("get_input_port_count")
+
+    @JvmStatic
+    public val hasInputPortName: MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int> =
+        MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int>("has_input_port")
+
+    @JvmStatic
+    public val clearInputPortsName: MethodStringName0<VisualShaderNodeGroupBase, Unit> =
+        MethodStringName0<VisualShaderNodeGroupBase, Unit>("clear_input_ports")
+
+    @JvmStatic
+    public val addOutputPortName:
+        MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String> =
+        MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String>("add_output_port")
+
+    @JvmStatic
+    public val removeOutputPortName: MethodStringName1<VisualShaderNodeGroupBase, Unit, Int> =
+        MethodStringName1<VisualShaderNodeGroupBase, Unit, Int>("remove_output_port")
+
+    @JvmStatic
+    public val getOutputPortCountName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
+        MethodStringName0<VisualShaderNodeGroupBase, Int>("get_output_port_count")
+
+    @JvmStatic
+    public val hasOutputPortName: MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int> =
+        MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int>("has_output_port")
+
+    @JvmStatic
+    public val clearOutputPortsName: MethodStringName0<VisualShaderNodeGroupBase, Unit> =
+        MethodStringName0<VisualShaderNodeGroupBase, Unit>("clear_output_ports")
+
+    @JvmStatic
+    public val setInputPortNameName: MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String>
+        = MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String>("set_input_port_name")
+
+    @JvmStatic
+    public val setInputPortTypeName: MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int> =
+        MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int>("set_input_port_type")
+
+    @JvmStatic
+    public val setOutputPortNameName:
+        MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String> =
+        MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String>("set_output_port_name")
+
+    @JvmStatic
+    public val setOutputPortTypeName: MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int> =
+        MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int>("set_output_port_type")
+
+    @JvmStatic
+    public val getFreeInputPortIdName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
+        MethodStringName0<VisualShaderNodeGroupBase, Int>("get_free_input_port_id")
+
+    @JvmStatic
+    public val getFreeOutputPortIdName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
+        MethodStringName0<VisualShaderNodeGroupBase, Int>("get_free_output_port_id")
+  }
 
   public object MethodBindings {
     internal val setInputsPtr: VoidPtr =

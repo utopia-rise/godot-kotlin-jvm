@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -28,6 +31,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for
@@ -197,7 +201,44 @@ public open class AudioStreamPlayback : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSamplePlaybackName:
+        MethodStringName1<AudioStreamPlayback, Unit, AudioSamplePlayback?> =
+        MethodStringName1<AudioStreamPlayback, Unit, AudioSamplePlayback?>("set_sample_playback")
+
+    @JvmStatic
+    public val getSamplePlaybackName: MethodStringName0<AudioStreamPlayback, AudioSamplePlayback?> =
+        MethodStringName0<AudioStreamPlayback, AudioSamplePlayback?>("get_sample_playback")
+
+    @JvmStatic
+    public val mixAudioName: MethodStringName2<AudioStreamPlayback, PackedVector2Array, Float, Int>
+        = MethodStringName2<AudioStreamPlayback, PackedVector2Array, Float, Int>("mix_audio")
+
+    @JvmStatic
+    public val startName: MethodStringName1<AudioStreamPlayback, Unit, Double> =
+        MethodStringName1<AudioStreamPlayback, Unit, Double>("start")
+
+    @JvmStatic
+    public val seekName: MethodStringName1<AudioStreamPlayback, Unit, Double> =
+        MethodStringName1<AudioStreamPlayback, Unit, Double>("seek")
+
+    @JvmStatic
+    public val stopName: MethodStringName0<AudioStreamPlayback, Unit> =
+        MethodStringName0<AudioStreamPlayback, Unit>("stop")
+
+    @JvmStatic
+    public val getLoopCountName: MethodStringName0<AudioStreamPlayback, Int> =
+        MethodStringName0<AudioStreamPlayback, Int>("get_loop_count")
+
+    @JvmStatic
+    public val getPlaybackPositionName: MethodStringName0<AudioStreamPlayback, Double> =
+        MethodStringName0<AudioStreamPlayback, Double>("get_playback_position")
+
+    @JvmStatic
+    public val isPlayingName: MethodStringName0<AudioStreamPlayback, Boolean> =
+        MethodStringName0<AudioStreamPlayback, Boolean>("is_playing")
+  }
 
   public object MethodBindings {
     internal val setSamplePlaybackPtr: VoidPtr =

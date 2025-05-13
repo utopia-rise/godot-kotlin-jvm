@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Playback component of [AudioStreamInteractive]. Contains functions to change the currently played
@@ -70,7 +73,20 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   public final fun switchToClipByName(clipName: String) =
       switchToClipByName(clipName.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val switchToClipByNameName:
+        MethodStringName1<AudioStreamPlaybackInteractive, Unit, StringName> =
+        MethodStringName1<AudioStreamPlaybackInteractive, Unit, StringName>("switch_to_clip_by_name")
+
+    @JvmStatic
+    public val switchToClipName: MethodStringName1<AudioStreamPlaybackInteractive, Unit, Int> =
+        MethodStringName1<AudioStreamPlaybackInteractive, Unit, Int>("switch_to_clip")
+
+    @JvmStatic
+    public val getCurrentClipIndexName: MethodStringName0<AudioStreamPlaybackInteractive, Int> =
+        MethodStringName0<AudioStreamPlaybackInteractive, Int>("get_current_clip_index")
+  }
 
   public object MethodBindings {
     internal val switchToClipByNamePtr: VoidPtr =

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A constant [Vector2], which can be used as an input node.
@@ -78,7 +81,15 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setConstantName: MethodStringName1<VisualShaderNodeVec2Constant, Unit, Vector2> =
+        MethodStringName1<VisualShaderNodeVec2Constant, Unit, Vector2>("set_constant")
+
+    @JvmStatic
+    public val getConstantName: MethodStringName0<VisualShaderNodeVec2Constant, Vector2> =
+        MethodStringName0<VisualShaderNodeVec2Constant, Vector2>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

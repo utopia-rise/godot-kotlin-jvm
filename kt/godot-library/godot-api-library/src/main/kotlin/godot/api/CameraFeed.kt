@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal0
 import godot.core.Transform2D
 import godot.core.VariantArray
@@ -33,6 +36,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,
@@ -326,7 +330,71 @@ public open class CameraFeed : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getIdName: MethodStringName0<CameraFeed, Int> =
+        MethodStringName0<CameraFeed, Int>("get_id")
+
+    @JvmStatic
+    public val isActiveName: MethodStringName0<CameraFeed, Boolean> =
+        MethodStringName0<CameraFeed, Boolean>("is_active")
+
+    @JvmStatic
+    public val setActiveName: MethodStringName1<CameraFeed, Unit, Boolean> =
+        MethodStringName1<CameraFeed, Unit, Boolean>("set_active")
+
+    @JvmStatic
+    public val getNameName: MethodStringName0<CameraFeed, String> =
+        MethodStringName0<CameraFeed, String>("get_name")
+
+    @JvmStatic
+    public val setNameName: MethodStringName1<CameraFeed, Unit, String> =
+        MethodStringName1<CameraFeed, Unit, String>("set_name")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName0<CameraFeed, FeedPosition> =
+        MethodStringName0<CameraFeed, FeedPosition>("get_position")
+
+    @JvmStatic
+    public val setPositionName: MethodStringName1<CameraFeed, Unit, FeedPosition> =
+        MethodStringName1<CameraFeed, Unit, FeedPosition>("set_position")
+
+    @JvmStatic
+    public val getTransformName: MethodStringName0<CameraFeed, Transform2D> =
+        MethodStringName0<CameraFeed, Transform2D>("get_transform")
+
+    @JvmStatic
+    public val setTransformName: MethodStringName1<CameraFeed, Unit, Transform2D> =
+        MethodStringName1<CameraFeed, Unit, Transform2D>("set_transform")
+
+    @JvmStatic
+    public val setRgbImageName: MethodStringName1<CameraFeed, Unit, Image?> =
+        MethodStringName1<CameraFeed, Unit, Image?>("set_rgb_image")
+
+    @JvmStatic
+    public val setYcbcrImageName: MethodStringName1<CameraFeed, Unit, Image?> =
+        MethodStringName1<CameraFeed, Unit, Image?>("set_ycbcr_image")
+
+    @JvmStatic
+    public val setExternalName: MethodStringName2<CameraFeed, Unit, Int, Int> =
+        MethodStringName2<CameraFeed, Unit, Int, Int>("set_external")
+
+    @JvmStatic
+    public val getTextureTexIdName: MethodStringName1<CameraFeed, Long, CameraServer.FeedImage> =
+        MethodStringName1<CameraFeed, Long, CameraServer.FeedImage>("get_texture_tex_id")
+
+    @JvmStatic
+    public val getDatatypeName: MethodStringName0<CameraFeed, FeedDataType> =
+        MethodStringName0<CameraFeed, FeedDataType>("get_datatype")
+
+    @JvmStatic
+    public val getFormatsName: MethodStringName0<CameraFeed, VariantArray<Any?>> =
+        MethodStringName0<CameraFeed, VariantArray<Any?>>("get_formats")
+
+    @JvmStatic
+    public val setFormatName: MethodStringName2<CameraFeed, Boolean, Int, Dictionary<Any?, Any?>> =
+        MethodStringName2<CameraFeed, Boolean, Int, Dictionary<Any?, Any?>>("set_format")
+  }
 
   public object MethodBindings {
     internal val getIdPtr: VoidPtr =

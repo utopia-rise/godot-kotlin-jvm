@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Quaternion
 import godot.core.Signal0
 import godot.core.Signal1
@@ -34,6 +37,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: OpenXRInterface.HandJointFlags): Long = this.or(other.flag)
 
@@ -708,7 +712,130 @@ public open class OpenXRInterface : XRInterface() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getDisplayRefreshRateName: MethodStringName0<OpenXRInterface, Float> =
+        MethodStringName0<OpenXRInterface, Float>("get_display_refresh_rate")
+
+    @JvmStatic
+    public val setDisplayRefreshRateName: MethodStringName1<OpenXRInterface, Unit, Float> =
+        MethodStringName1<OpenXRInterface, Unit, Float>("set_display_refresh_rate")
+
+    @JvmStatic
+    public val getRenderTargetSizeMultiplierName: MethodStringName0<OpenXRInterface, Double> =
+        MethodStringName0<OpenXRInterface, Double>("get_render_target_size_multiplier")
+
+    @JvmStatic
+    public val setRenderTargetSizeMultiplierName: MethodStringName1<OpenXRInterface, Unit, Double> =
+        MethodStringName1<OpenXRInterface, Unit, Double>("set_render_target_size_multiplier")
+
+    @JvmStatic
+    public val isFoveationSupportedName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("is_foveation_supported")
+
+    @JvmStatic
+    public val getFoveationLevelName: MethodStringName0<OpenXRInterface, Int> =
+        MethodStringName0<OpenXRInterface, Int>("get_foveation_level")
+
+    @JvmStatic
+    public val setFoveationLevelName: MethodStringName1<OpenXRInterface, Unit, Int> =
+        MethodStringName1<OpenXRInterface, Unit, Int>("set_foveation_level")
+
+    @JvmStatic
+    public val getFoveationDynamicName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("get_foveation_dynamic")
+
+    @JvmStatic
+    public val setFoveationDynamicName: MethodStringName1<OpenXRInterface, Unit, Boolean> =
+        MethodStringName1<OpenXRInterface, Unit, Boolean>("set_foveation_dynamic")
+
+    @JvmStatic
+    public val isActionSetActiveName: MethodStringName1<OpenXRInterface, Boolean, String> =
+        MethodStringName1<OpenXRInterface, Boolean, String>("is_action_set_active")
+
+    @JvmStatic
+    public val setActionSetActiveName: MethodStringName2<OpenXRInterface, Unit, String, Boolean> =
+        MethodStringName2<OpenXRInterface, Unit, String, Boolean>("set_action_set_active")
+
+    @JvmStatic
+    public val getActionSetsName: MethodStringName0<OpenXRInterface, VariantArray<Any?>> =
+        MethodStringName0<OpenXRInterface, VariantArray<Any?>>("get_action_sets")
+
+    @JvmStatic
+    public val getAvailableDisplayRefreshRatesName:
+        MethodStringName0<OpenXRInterface, VariantArray<Any?>> =
+        MethodStringName0<OpenXRInterface, VariantArray<Any?>>("get_available_display_refresh_rates")
+
+    @JvmStatic
+    public val setMotionRangeName: MethodStringName2<OpenXRInterface, Unit, Hand, HandMotionRange> =
+        MethodStringName2<OpenXRInterface, Unit, Hand, HandMotionRange>("set_motion_range")
+
+    @JvmStatic
+    public val getMotionRangeName: MethodStringName1<OpenXRInterface, HandMotionRange, Hand> =
+        MethodStringName1<OpenXRInterface, HandMotionRange, Hand>("get_motion_range")
+
+    @JvmStatic
+    public val getHandTrackingSourceName:
+        MethodStringName1<OpenXRInterface, HandTrackedSource, Hand> =
+        MethodStringName1<OpenXRInterface, HandTrackedSource, Hand>("get_hand_tracking_source")
+
+    @JvmStatic
+    public val getHandJointFlagsName:
+        MethodStringName2<OpenXRInterface, HandJointFlags, Hand, HandJoints> =
+        MethodStringName2<OpenXRInterface, HandJointFlags, Hand, HandJoints>("get_hand_joint_flags")
+
+    @JvmStatic
+    public val getHandJointRotationName:
+        MethodStringName2<OpenXRInterface, Quaternion, Hand, HandJoints> =
+        MethodStringName2<OpenXRInterface, Quaternion, Hand, HandJoints>("get_hand_joint_rotation")
+
+    @JvmStatic
+    public val getHandJointPositionName:
+        MethodStringName2<OpenXRInterface, Vector3, Hand, HandJoints> =
+        MethodStringName2<OpenXRInterface, Vector3, Hand, HandJoints>("get_hand_joint_position")
+
+    @JvmStatic
+    public val getHandJointRadiusName: MethodStringName2<OpenXRInterface, Float, Hand, HandJoints> =
+        MethodStringName2<OpenXRInterface, Float, Hand, HandJoints>("get_hand_joint_radius")
+
+    @JvmStatic
+    public val getHandJointLinearVelocityName:
+        MethodStringName2<OpenXRInterface, Vector3, Hand, HandJoints> =
+        MethodStringName2<OpenXRInterface, Vector3, Hand, HandJoints>("get_hand_joint_linear_velocity")
+
+    @JvmStatic
+    public val getHandJointAngularVelocityName:
+        MethodStringName2<OpenXRInterface, Vector3, Hand, HandJoints> =
+        MethodStringName2<OpenXRInterface, Vector3, Hand, HandJoints>("get_hand_joint_angular_velocity")
+
+    @JvmStatic
+    public val isHandTrackingSupportedName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("is_hand_tracking_supported")
+
+    @JvmStatic
+    public val isHandInteractionSupportedName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("is_hand_interaction_supported")
+
+    @JvmStatic
+    public val isEyeGazeInteractionSupportedName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("is_eye_gaze_interaction_supported")
+
+    @JvmStatic
+    public val getVrsMinRadiusName: MethodStringName0<OpenXRInterface, Float> =
+        MethodStringName0<OpenXRInterface, Float>("get_vrs_min_radius")
+
+    @JvmStatic
+    public val setVrsMinRadiusName: MethodStringName1<OpenXRInterface, Unit, Float> =
+        MethodStringName1<OpenXRInterface, Unit, Float>("set_vrs_min_radius")
+
+    @JvmStatic
+    public val getVrsStrengthName: MethodStringName0<OpenXRInterface, Float> =
+        MethodStringName0<OpenXRInterface, Float>("get_vrs_strength")
+
+    @JvmStatic
+    public val setVrsStrengthName: MethodStringName1<OpenXRInterface, Unit, Float> =
+        MethodStringName1<OpenXRInterface, Unit, Float>("set_vrs_strength")
+  }
 
   public object MethodBindings {
     internal val getDisplayRefreshRatePtr: VoidPtr =

@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -27,6 +30,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -269,7 +273,56 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Vector3> =
+        MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Vector3>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<GPUParticlesCollisionSDF3D, Vector3> =
+        MethodStringName0<GPUParticlesCollisionSDF3D, Vector3>("get_size")
+
+    @JvmStatic
+    public val setResolutionName: MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Resolution> =
+        MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Resolution>("set_resolution")
+
+    @JvmStatic
+    public val getResolutionName: MethodStringName0<GPUParticlesCollisionSDF3D, Resolution> =
+        MethodStringName0<GPUParticlesCollisionSDF3D, Resolution>("get_resolution")
+
+    @JvmStatic
+    public val setTextureName: MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Texture3D?> =
+        MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Texture3D?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName0<GPUParticlesCollisionSDF3D, Texture3D?> =
+        MethodStringName0<GPUParticlesCollisionSDF3D, Texture3D?>("get_texture")
+
+    @JvmStatic
+    public val setThicknessName: MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Float> =
+        MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Float>("set_thickness")
+
+    @JvmStatic
+    public val getThicknessName: MethodStringName0<GPUParticlesCollisionSDF3D, Float> =
+        MethodStringName0<GPUParticlesCollisionSDF3D, Float>("get_thickness")
+
+    @JvmStatic
+    public val setBakeMaskName: MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Long> =
+        MethodStringName1<GPUParticlesCollisionSDF3D, Unit, Long>("set_bake_mask")
+
+    @JvmStatic
+    public val getBakeMaskName: MethodStringName0<GPUParticlesCollisionSDF3D, Long> =
+        MethodStringName0<GPUParticlesCollisionSDF3D, Long>("get_bake_mask")
+
+    @JvmStatic
+    public val setBakeMaskValueName:
+        MethodStringName2<GPUParticlesCollisionSDF3D, Unit, Int, Boolean> =
+        MethodStringName2<GPUParticlesCollisionSDF3D, Unit, Int, Boolean>("set_bake_mask_value")
+
+    @JvmStatic
+    public val getBakeMaskValueName: MethodStringName1<GPUParticlesCollisionSDF3D, Boolean, Int> =
+        MethodStringName1<GPUParticlesCollisionSDF3D, Boolean, Int>("get_bake_mask_value")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

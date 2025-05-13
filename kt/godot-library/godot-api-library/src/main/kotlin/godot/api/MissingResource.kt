@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -19,6 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This is an internal editor class intended for keeping data of resources of unknown type (most
@@ -79,7 +82,23 @@ public open class MissingResource : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOriginalClassName: MethodStringName1<MissingResource, Unit, String> =
+        MethodStringName1<MissingResource, Unit, String>("set_original_class")
+
+    @JvmStatic
+    public val getOriginalClassName: MethodStringName0<MissingResource, String> =
+        MethodStringName0<MissingResource, String>("get_original_class")
+
+    @JvmStatic
+    public val setRecordingPropertiesName: MethodStringName1<MissingResource, Unit, Boolean> =
+        MethodStringName1<MissingResource, Unit, Boolean>("set_recording_properties")
+
+    @JvmStatic
+    public val isRecordingPropertiesName: MethodStringName0<MissingResource, Boolean> =
+        MethodStringName0<MissingResource, Boolean>("is_recording_properties")
+  }
 
   public object MethodBindings {
     internal val setOriginalClassPtr: VoidPtr =

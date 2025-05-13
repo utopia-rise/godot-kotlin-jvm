@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
@@ -32,6 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class represents WebSocket connection, and can be used as a WebSocket client (RFC
@@ -556,7 +560,119 @@ public open class WebSocketPeer : PacketPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val connectToUrlName: MethodStringName2<WebSocketPeer, Error, String, TLSOptions?> =
+        MethodStringName2<WebSocketPeer, Error, String, TLSOptions?>("connect_to_url")
+
+    @JvmStatic
+    public val acceptStreamName: MethodStringName1<WebSocketPeer, Error, StreamPeer?> =
+        MethodStringName1<WebSocketPeer, Error, StreamPeer?>("accept_stream")
+
+    @JvmStatic
+    public val sendName: MethodStringName2<WebSocketPeer, Error, PackedByteArray, WriteMode> =
+        MethodStringName2<WebSocketPeer, Error, PackedByteArray, WriteMode>("send")
+
+    @JvmStatic
+    public val sendTextName: MethodStringName1<WebSocketPeer, Error, String> =
+        MethodStringName1<WebSocketPeer, Error, String>("send_text")
+
+    @JvmStatic
+    public val wasStringPacketName: MethodStringName0<WebSocketPeer, Boolean> =
+        MethodStringName0<WebSocketPeer, Boolean>("was_string_packet")
+
+    @JvmStatic
+    public val pollName: MethodStringName0<WebSocketPeer, Unit> =
+        MethodStringName0<WebSocketPeer, Unit>("poll")
+
+    @JvmStatic
+    public val closeName: MethodStringName2<WebSocketPeer, Unit, Int, String> =
+        MethodStringName2<WebSocketPeer, Unit, Int, String>("close")
+
+    @JvmStatic
+    public val getConnectedHostName: MethodStringName0<WebSocketPeer, String> =
+        MethodStringName0<WebSocketPeer, String>("get_connected_host")
+
+    @JvmStatic
+    public val getConnectedPortName: MethodStringName0<WebSocketPeer, Int> =
+        MethodStringName0<WebSocketPeer, Int>("get_connected_port")
+
+    @JvmStatic
+    public val getSelectedProtocolName: MethodStringName0<WebSocketPeer, String> =
+        MethodStringName0<WebSocketPeer, String>("get_selected_protocol")
+
+    @JvmStatic
+    public val getRequestedUrlName: MethodStringName0<WebSocketPeer, String> =
+        MethodStringName0<WebSocketPeer, String>("get_requested_url")
+
+    @JvmStatic
+    public val setNoDelayName: MethodStringName1<WebSocketPeer, Unit, Boolean> =
+        MethodStringName1<WebSocketPeer, Unit, Boolean>("set_no_delay")
+
+    @JvmStatic
+    public val getCurrentOutboundBufferedAmountName: MethodStringName0<WebSocketPeer, Int> =
+        MethodStringName0<WebSocketPeer, Int>("get_current_outbound_buffered_amount")
+
+    @JvmStatic
+    public val getReadyStateName: MethodStringName0<WebSocketPeer, State> =
+        MethodStringName0<WebSocketPeer, State>("get_ready_state")
+
+    @JvmStatic
+    public val getCloseCodeName: MethodStringName0<WebSocketPeer, Int> =
+        MethodStringName0<WebSocketPeer, Int>("get_close_code")
+
+    @JvmStatic
+    public val getCloseReasonName: MethodStringName0<WebSocketPeer, String> =
+        MethodStringName0<WebSocketPeer, String>("get_close_reason")
+
+    @JvmStatic
+    public val getSupportedProtocolsName: MethodStringName0<WebSocketPeer, PackedStringArray> =
+        MethodStringName0<WebSocketPeer, PackedStringArray>("get_supported_protocols")
+
+    @JvmStatic
+    public val setSupportedProtocolsName: MethodStringName1<WebSocketPeer, Unit, PackedStringArray>
+        = MethodStringName1<WebSocketPeer, Unit, PackedStringArray>("set_supported_protocols")
+
+    @JvmStatic
+    public val getHandshakeHeadersName: MethodStringName0<WebSocketPeer, PackedStringArray> =
+        MethodStringName0<WebSocketPeer, PackedStringArray>("get_handshake_headers")
+
+    @JvmStatic
+    public val setHandshakeHeadersName: MethodStringName1<WebSocketPeer, Unit, PackedStringArray> =
+        MethodStringName1<WebSocketPeer, Unit, PackedStringArray>("set_handshake_headers")
+
+    @JvmStatic
+    public val getInboundBufferSizeName: MethodStringName0<WebSocketPeer, Int> =
+        MethodStringName0<WebSocketPeer, Int>("get_inbound_buffer_size")
+
+    @JvmStatic
+    public val setInboundBufferSizeName: MethodStringName1<WebSocketPeer, Unit, Int> =
+        MethodStringName1<WebSocketPeer, Unit, Int>("set_inbound_buffer_size")
+
+    @JvmStatic
+    public val getOutboundBufferSizeName: MethodStringName0<WebSocketPeer, Int> =
+        MethodStringName0<WebSocketPeer, Int>("get_outbound_buffer_size")
+
+    @JvmStatic
+    public val setOutboundBufferSizeName: MethodStringName1<WebSocketPeer, Unit, Int> =
+        MethodStringName1<WebSocketPeer, Unit, Int>("set_outbound_buffer_size")
+
+    @JvmStatic
+    public val setMaxQueuedPacketsName: MethodStringName1<WebSocketPeer, Unit, Int> =
+        MethodStringName1<WebSocketPeer, Unit, Int>("set_max_queued_packets")
+
+    @JvmStatic
+    public val getMaxQueuedPacketsName: MethodStringName0<WebSocketPeer, Int> =
+        MethodStringName0<WebSocketPeer, Int>("get_max_queued_packets")
+
+    @JvmStatic
+    public val setHeartbeatIntervalName: MethodStringName1<WebSocketPeer, Unit, Double> =
+        MethodStringName1<WebSocketPeer, Unit, Double>("set_heartbeat_interval")
+
+    @JvmStatic
+    public val getHeartbeatIntervalName: MethodStringName0<WebSocketPeer, Double> =
+        MethodStringName0<WebSocketPeer, Double>("get_heartbeat_interval")
+  }
 
   public object MethodBindings {
     internal val connectToUrlPtr: VoidPtr =

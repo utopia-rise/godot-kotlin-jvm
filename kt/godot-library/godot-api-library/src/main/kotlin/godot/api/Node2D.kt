@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -28,6 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including
@@ -589,7 +593,139 @@ public open class Node2D : CanvasItem() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPositionName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("set_position")
+
+    @JvmStatic
+    public val setRotationName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("set_rotation")
+
+    @JvmStatic
+    public val setRotationDegreesName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("set_rotation_degrees")
+
+    @JvmStatic
+    public val setSkewName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("set_skew")
+
+    @JvmStatic
+    public val setScaleName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("set_scale")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName0<Node2D, Vector2> =
+        MethodStringName0<Node2D, Vector2>("get_position")
+
+    @JvmStatic
+    public val getRotationName: MethodStringName0<Node2D, Float> =
+        MethodStringName0<Node2D, Float>("get_rotation")
+
+    @JvmStatic
+    public val getRotationDegreesName: MethodStringName0<Node2D, Float> =
+        MethodStringName0<Node2D, Float>("get_rotation_degrees")
+
+    @JvmStatic
+    public val getSkewName: MethodStringName0<Node2D, Float> =
+        MethodStringName0<Node2D, Float>("get_skew")
+
+    @JvmStatic
+    public val getScaleName: MethodStringName0<Node2D, Vector2> =
+        MethodStringName0<Node2D, Vector2>("get_scale")
+
+    @JvmStatic
+    public val rotateName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("rotate")
+
+    @JvmStatic
+    public val moveLocalXName: MethodStringName2<Node2D, Unit, Float, Boolean> =
+        MethodStringName2<Node2D, Unit, Float, Boolean>("move_local_x")
+
+    @JvmStatic
+    public val moveLocalYName: MethodStringName2<Node2D, Unit, Float, Boolean> =
+        MethodStringName2<Node2D, Unit, Float, Boolean>("move_local_y")
+
+    @JvmStatic
+    public val translateName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("translate")
+
+    @JvmStatic
+    public val globalTranslateName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("global_translate")
+
+    @JvmStatic
+    public val applyScaleName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("apply_scale")
+
+    @JvmStatic
+    public val setGlobalPositionName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("set_global_position")
+
+    @JvmStatic
+    public val getGlobalPositionName: MethodStringName0<Node2D, Vector2> =
+        MethodStringName0<Node2D, Vector2>("get_global_position")
+
+    @JvmStatic
+    public val setGlobalRotationName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("set_global_rotation")
+
+    @JvmStatic
+    public val setGlobalRotationDegreesName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("set_global_rotation_degrees")
+
+    @JvmStatic
+    public val getGlobalRotationName: MethodStringName0<Node2D, Float> =
+        MethodStringName0<Node2D, Float>("get_global_rotation")
+
+    @JvmStatic
+    public val getGlobalRotationDegreesName: MethodStringName0<Node2D, Float> =
+        MethodStringName0<Node2D, Float>("get_global_rotation_degrees")
+
+    @JvmStatic
+    public val setGlobalSkewName: MethodStringName1<Node2D, Unit, Float> =
+        MethodStringName1<Node2D, Unit, Float>("set_global_skew")
+
+    @JvmStatic
+    public val getGlobalSkewName: MethodStringName0<Node2D, Float> =
+        MethodStringName0<Node2D, Float>("get_global_skew")
+
+    @JvmStatic
+    public val setGlobalScaleName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("set_global_scale")
+
+    @JvmStatic
+    public val getGlobalScaleName: MethodStringName0<Node2D, Vector2> =
+        MethodStringName0<Node2D, Vector2>("get_global_scale")
+
+    @JvmStatic
+    public val setTransformName: MethodStringName1<Node2D, Unit, Transform2D> =
+        MethodStringName1<Node2D, Unit, Transform2D>("set_transform")
+
+    @JvmStatic
+    public val setGlobalTransformName: MethodStringName1<Node2D, Unit, Transform2D> =
+        MethodStringName1<Node2D, Unit, Transform2D>("set_global_transform")
+
+    @JvmStatic
+    public val lookAtName: MethodStringName1<Node2D, Unit, Vector2> =
+        MethodStringName1<Node2D, Unit, Vector2>("look_at")
+
+    @JvmStatic
+    public val getAngleToName: MethodStringName1<Node2D, Float, Vector2> =
+        MethodStringName1<Node2D, Float, Vector2>("get_angle_to")
+
+    @JvmStatic
+    public val toLocalName: MethodStringName1<Node2D, Vector2, Vector2> =
+        MethodStringName1<Node2D, Vector2, Vector2>("to_local")
+
+    @JvmStatic
+    public val toGlobalName: MethodStringName1<Node2D, Vector2, Vector2> =
+        MethodStringName1<Node2D, Vector2, Vector2>("to_global")
+
+    @JvmStatic
+    public val getRelativeTransformToParentName: MethodStringName1<Node2D, Transform2D, Node?> =
+        MethodStringName1<Node2D, Transform2D, Node?>("get_relative_transform_to_parent")
+  }
 
   public object MethodBindings {
     internal val setPositionPtr: VoidPtr =

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -18,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
@@ -67,7 +69,23 @@ public open class AudioListener3D : Node3D() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val makeCurrentName: MethodStringName0<AudioListener3D, Unit> =
+        MethodStringName0<AudioListener3D, Unit>("make_current")
+
+    @JvmStatic
+    public val clearCurrentName: MethodStringName0<AudioListener3D, Unit> =
+        MethodStringName0<AudioListener3D, Unit>("clear_current")
+
+    @JvmStatic
+    public val isCurrentName: MethodStringName0<AudioListener3D, Boolean> =
+        MethodStringName0<AudioListener3D, Boolean>("is_current")
+
+    @JvmStatic
+    public val getListenerTransformName: MethodStringName0<AudioListener3D, Transform3D> =
+        MethodStringName0<AudioListener3D, Transform3D>("get_listener_transform")
+  }
 
   public object MethodBindings {
     internal val makeCurrentPtr: VoidPtr =

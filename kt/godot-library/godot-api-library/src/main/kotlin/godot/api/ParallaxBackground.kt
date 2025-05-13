@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect.
@@ -315,7 +318,55 @@ public open class ParallaxBackground : CanvasLayer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setScrollOffsetName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
+        MethodStringName1<ParallaxBackground, Unit, Vector2>("set_scroll_offset")
+
+    @JvmStatic
+    public val getScrollOffsetName: MethodStringName0<ParallaxBackground, Vector2> =
+        MethodStringName0<ParallaxBackground, Vector2>("get_scroll_offset")
+
+    @JvmStatic
+    public val setScrollBaseOffsetName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
+        MethodStringName1<ParallaxBackground, Unit, Vector2>("set_scroll_base_offset")
+
+    @JvmStatic
+    public val getScrollBaseOffsetName: MethodStringName0<ParallaxBackground, Vector2> =
+        MethodStringName0<ParallaxBackground, Vector2>("get_scroll_base_offset")
+
+    @JvmStatic
+    public val setScrollBaseScaleName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
+        MethodStringName1<ParallaxBackground, Unit, Vector2>("set_scroll_base_scale")
+
+    @JvmStatic
+    public val getScrollBaseScaleName: MethodStringName0<ParallaxBackground, Vector2> =
+        MethodStringName0<ParallaxBackground, Vector2>("get_scroll_base_scale")
+
+    @JvmStatic
+    public val setLimitBeginName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
+        MethodStringName1<ParallaxBackground, Unit, Vector2>("set_limit_begin")
+
+    @JvmStatic
+    public val getLimitBeginName: MethodStringName0<ParallaxBackground, Vector2> =
+        MethodStringName0<ParallaxBackground, Vector2>("get_limit_begin")
+
+    @JvmStatic
+    public val setLimitEndName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
+        MethodStringName1<ParallaxBackground, Unit, Vector2>("set_limit_end")
+
+    @JvmStatic
+    public val getLimitEndName: MethodStringName0<ParallaxBackground, Vector2> =
+        MethodStringName0<ParallaxBackground, Vector2>("get_limit_end")
+
+    @JvmStatic
+    public val setIgnoreCameraZoomName: MethodStringName1<ParallaxBackground, Unit, Boolean> =
+        MethodStringName1<ParallaxBackground, Unit, Boolean>("set_ignore_camera_zoom")
+
+    @JvmStatic
+    public val isIgnoreCameraZoomName: MethodStringName0<ParallaxBackground, Boolean> =
+        MethodStringName0<ParallaxBackground, Boolean>("is_ignore_camera_zoom")
+  }
 
   public object MethodBindings {
     internal val setScrollOffsetPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain
@@ -207,7 +210,63 @@ public open class AudioEffectCompressor : AudioEffect() {
 
   public final fun setSidechain(sidechain: String) = setSidechain(sidechain.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setThresholdName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_threshold")
+
+    @JvmStatic
+    public val getThresholdName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_threshold")
+
+    @JvmStatic
+    public val setRatioName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_ratio")
+
+    @JvmStatic
+    public val getRatioName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_ratio")
+
+    @JvmStatic
+    public val setGainName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_gain")
+
+    @JvmStatic
+    public val getGainName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_gain")
+
+    @JvmStatic
+    public val setAttackUsName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_attack_us")
+
+    @JvmStatic
+    public val getAttackUsName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_attack_us")
+
+    @JvmStatic
+    public val setReleaseMsName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_release_ms")
+
+    @JvmStatic
+    public val getReleaseMsName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_release_ms")
+
+    @JvmStatic
+    public val setMixName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_mix")
+
+    @JvmStatic
+    public val getMixName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_mix")
+
+    @JvmStatic
+    public val setSidechainName: MethodStringName1<AudioEffectCompressor, Unit, StringName> =
+        MethodStringName1<AudioEffectCompressor, Unit, StringName>("set_sidechain")
+
+    @JvmStatic
+    public val getSidechainName: MethodStringName0<AudioEffectCompressor, StringName> =
+        MethodStringName0<AudioEffectCompressor, StringName>("get_sidechain")
+  }
 
   public object MethodBindings {
     internal val setThresholdPtr: VoidPtr =

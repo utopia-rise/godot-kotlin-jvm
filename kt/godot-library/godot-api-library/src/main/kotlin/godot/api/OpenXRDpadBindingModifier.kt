@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The DPad binding modifier converts an axis input to a dpad output, emulating a DPad. New input
@@ -247,7 +250,82 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setActionSetName:
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, OpenXRActionSet?> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, OpenXRActionSet?>("set_action_set")
+
+    @JvmStatic
+    public val getActionSetName: MethodStringName0<OpenXRDpadBindingModifier, OpenXRActionSet?> =
+        MethodStringName0<OpenXRDpadBindingModifier, OpenXRActionSet?>("get_action_set")
+
+    @JvmStatic
+    public val setInputPathName: MethodStringName1<OpenXRDpadBindingModifier, Unit, String> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, String>("set_input_path")
+
+    @JvmStatic
+    public val getInputPathName: MethodStringName0<OpenXRDpadBindingModifier, String> =
+        MethodStringName0<OpenXRDpadBindingModifier, String>("get_input_path")
+
+    @JvmStatic
+    public val setThresholdName: MethodStringName1<OpenXRDpadBindingModifier, Unit, Float> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, Float>("set_threshold")
+
+    @JvmStatic
+    public val getThresholdName: MethodStringName0<OpenXRDpadBindingModifier, Float> =
+        MethodStringName0<OpenXRDpadBindingModifier, Float>("get_threshold")
+
+    @JvmStatic
+    public val setThresholdReleasedName: MethodStringName1<OpenXRDpadBindingModifier, Unit, Float> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, Float>("set_threshold_released")
+
+    @JvmStatic
+    public val getThresholdReleasedName: MethodStringName0<OpenXRDpadBindingModifier, Float> =
+        MethodStringName0<OpenXRDpadBindingModifier, Float>("get_threshold_released")
+
+    @JvmStatic
+    public val setCenterRegionName: MethodStringName1<OpenXRDpadBindingModifier, Unit, Float> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, Float>("set_center_region")
+
+    @JvmStatic
+    public val getCenterRegionName: MethodStringName0<OpenXRDpadBindingModifier, Float> =
+        MethodStringName0<OpenXRDpadBindingModifier, Float>("get_center_region")
+
+    @JvmStatic
+    public val setWedgeAngleName: MethodStringName1<OpenXRDpadBindingModifier, Unit, Float> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, Float>("set_wedge_angle")
+
+    @JvmStatic
+    public val getWedgeAngleName: MethodStringName0<OpenXRDpadBindingModifier, Float> =
+        MethodStringName0<OpenXRDpadBindingModifier, Float>("get_wedge_angle")
+
+    @JvmStatic
+    public val setIsStickyName: MethodStringName1<OpenXRDpadBindingModifier, Unit, Boolean> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, Boolean>("set_is_sticky")
+
+    @JvmStatic
+    public val getIsStickyName: MethodStringName0<OpenXRDpadBindingModifier, Boolean> =
+        MethodStringName0<OpenXRDpadBindingModifier, Boolean>("get_is_sticky")
+
+    @JvmStatic
+    public val setOnHapticName:
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, OpenXRHapticBase?> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, OpenXRHapticBase?>("set_on_haptic")
+
+    @JvmStatic
+    public val getOnHapticName: MethodStringName0<OpenXRDpadBindingModifier, OpenXRHapticBase?> =
+        MethodStringName0<OpenXRDpadBindingModifier, OpenXRHapticBase?>("get_on_haptic")
+
+    @JvmStatic
+    public val setOffHapticName:
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, OpenXRHapticBase?> =
+        MethodStringName1<OpenXRDpadBindingModifier, Unit, OpenXRHapticBase?>("set_off_haptic")
+
+    @JvmStatic
+    public val getOffHapticName: MethodStringName0<OpenXRDpadBindingModifier, OpenXRHapticBase?> =
+        MethodStringName0<OpenXRDpadBindingModifier, OpenXRHapticBase?>("get_off_haptic")
+  }
 
   public object MethodBindings {
     internal val setActionSetPtr: VoidPtr =

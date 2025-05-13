@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -46,6 +50,67 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
+  @JvmStatic
+  public val loadThreadedRequestName:
+      MethodStringName4<ResourceLoader, Error, String, String, Boolean, CacheMode> =
+      MethodStringName4<ResourceLoader, Error, String, String, Boolean, CacheMode>("load_threaded_request")
+
+  @JvmStatic
+  public val loadThreadedGetStatusName:
+      MethodStringName2<ResourceLoader, ThreadLoadStatus, String, VariantArray<Any?>> =
+      MethodStringName2<ResourceLoader, ThreadLoadStatus, String, VariantArray<Any?>>("load_threaded_get_status")
+
+  @JvmStatic
+  public val loadThreadedGetName: MethodStringName1<ResourceLoader, Resource?, String> =
+      MethodStringName1<ResourceLoader, Resource?, String>("load_threaded_get")
+
+  @JvmStatic
+  public val loadName: MethodStringName3<ResourceLoader, Resource?, String, String, CacheMode> =
+      MethodStringName3<ResourceLoader, Resource?, String, String, CacheMode>("load")
+
+  @JvmStatic
+  public val getRecognizedExtensionsForTypeName:
+      MethodStringName1<ResourceLoader, PackedStringArray, String> =
+      MethodStringName1<ResourceLoader, PackedStringArray, String>("get_recognized_extensions_for_type")
+
+  @JvmStatic
+  public val addResourceFormatLoaderName:
+      MethodStringName2<ResourceLoader, Unit, ResourceFormatLoader?, Boolean> =
+      MethodStringName2<ResourceLoader, Unit, ResourceFormatLoader?, Boolean>("add_resource_format_loader")
+
+  @JvmStatic
+  public val removeResourceFormatLoaderName:
+      MethodStringName1<ResourceLoader, Unit, ResourceFormatLoader?> =
+      MethodStringName1<ResourceLoader, Unit, ResourceFormatLoader?>("remove_resource_format_loader")
+
+  @JvmStatic
+  public val setAbortOnMissingResourcesName: MethodStringName1<ResourceLoader, Unit, Boolean> =
+      MethodStringName1<ResourceLoader, Unit, Boolean>("set_abort_on_missing_resources")
+
+  @JvmStatic
+  public val getDependenciesName: MethodStringName1<ResourceLoader, PackedStringArray, String> =
+      MethodStringName1<ResourceLoader, PackedStringArray, String>("get_dependencies")
+
+  @JvmStatic
+  public val hasCachedName: MethodStringName1<ResourceLoader, Boolean, String> =
+      MethodStringName1<ResourceLoader, Boolean, String>("has_cached")
+
+  @JvmStatic
+  public val getCachedRefName: MethodStringName1<ResourceLoader, Resource?, String> =
+      MethodStringName1<ResourceLoader, Resource?, String>("get_cached_ref")
+
+  @JvmStatic
+  public val existsName: MethodStringName2<ResourceLoader, Boolean, String, String> =
+      MethodStringName2<ResourceLoader, Boolean, String, String>("exists")
+
+  @JvmStatic
+  public val getResourceUidName: MethodStringName1<ResourceLoader, Long, String> =
+      MethodStringName1<ResourceLoader, Long, String>("get_resource_uid")
+
+  @JvmStatic
+  public val listDirectoryName: MethodStringName1<ResourceLoader, PackedStringArray, String> =
+      MethodStringName1<ResourceLoader, PackedStringArray, String>("list_directory")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(27)
   }

@@ -11,6 +11,11 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
@@ -38,6 +43,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene,
@@ -914,7 +920,176 @@ public open class SceneTree : MainLoop() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getRootName: MethodStringName0<SceneTree, Window?> =
+        MethodStringName0<SceneTree, Window?>("get_root")
+
+    @JvmStatic
+    public val hasGroupName: MethodStringName1<SceneTree, Boolean, StringName> =
+        MethodStringName1<SceneTree, Boolean, StringName>("has_group")
+
+    @JvmStatic
+    public val isAutoAcceptQuitName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_auto_accept_quit")
+
+    @JvmStatic
+    public val setAutoAcceptQuitName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_auto_accept_quit")
+
+    @JvmStatic
+    public val isQuitOnGoBackName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_quit_on_go_back")
+
+    @JvmStatic
+    public val setQuitOnGoBackName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_quit_on_go_back")
+
+    @JvmStatic
+    public val setDebugCollisionsHintName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_debug_collisions_hint")
+
+    @JvmStatic
+    public val isDebuggingCollisionsHintName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_debugging_collisions_hint")
+
+    @JvmStatic
+    public val setDebugPathsHintName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_debug_paths_hint")
+
+    @JvmStatic
+    public val isDebuggingPathsHintName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_debugging_paths_hint")
+
+    @JvmStatic
+    public val setDebugNavigationHintName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_debug_navigation_hint")
+
+    @JvmStatic
+    public val isDebuggingNavigationHintName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_debugging_navigation_hint")
+
+    @JvmStatic
+    public val setEditedSceneRootName: MethodStringName1<SceneTree, Unit, Node?> =
+        MethodStringName1<SceneTree, Unit, Node?>("set_edited_scene_root")
+
+    @JvmStatic
+    public val getEditedSceneRootName: MethodStringName0<SceneTree, Node?> =
+        MethodStringName0<SceneTree, Node?>("get_edited_scene_root")
+
+    @JvmStatic
+    public val setPauseName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_pause")
+
+    @JvmStatic
+    public val isPausedName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_paused")
+
+    @JvmStatic
+    public val createTimerName:
+        MethodStringName4<SceneTree, SceneTreeTimer?, Double, Boolean, Boolean, Boolean> =
+        MethodStringName4<SceneTree, SceneTreeTimer?, Double, Boolean, Boolean, Boolean>("create_timer")
+
+    @JvmStatic
+    public val createTweenName: MethodStringName0<SceneTree, Tween?> =
+        MethodStringName0<SceneTree, Tween?>("create_tween")
+
+    @JvmStatic
+    public val getProcessedTweensName: MethodStringName0<SceneTree, VariantArray<Tween>> =
+        MethodStringName0<SceneTree, VariantArray<Tween>>("get_processed_tweens")
+
+    @JvmStatic
+    public val getNodeCountName: MethodStringName0<SceneTree, Int> =
+        MethodStringName0<SceneTree, Int>("get_node_count")
+
+    @JvmStatic
+    public val getFrameName: MethodStringName0<SceneTree, Long> =
+        MethodStringName0<SceneTree, Long>("get_frame")
+
+    @JvmStatic
+    public val quitName: MethodStringName1<SceneTree, Unit, Int> =
+        MethodStringName1<SceneTree, Unit, Int>("quit")
+
+    @JvmStatic
+    public val setPhysicsInterpolationEnabledName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_physics_interpolation_enabled")
+
+    @JvmStatic
+    public val isPhysicsInterpolationEnabledName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_physics_interpolation_enabled")
+
+    @JvmStatic
+    public val queueDeleteName: MethodStringName1<SceneTree, Unit, Object?> =
+        MethodStringName1<SceneTree, Unit, Object?>("queue_delete")
+
+    @JvmStatic
+    public val notifyGroupFlagsName: MethodStringName3<SceneTree, Unit, Long, StringName, Int> =
+        MethodStringName3<SceneTree, Unit, Long, StringName, Int>("notify_group_flags")
+
+    @JvmStatic
+    public val setGroupFlagsName: MethodStringName4<SceneTree, Unit, Long, StringName, String, Any?>
+        = MethodStringName4<SceneTree, Unit, Long, StringName, String, Any?>("set_group_flags")
+
+    @JvmStatic
+    public val notifyGroupName: MethodStringName2<SceneTree, Unit, StringName, Int> =
+        MethodStringName2<SceneTree, Unit, StringName, Int>("notify_group")
+
+    @JvmStatic
+    public val setGroupName: MethodStringName3<SceneTree, Unit, StringName, String, Any?> =
+        MethodStringName3<SceneTree, Unit, StringName, String, Any?>("set_group")
+
+    @JvmStatic
+    public val getNodesInGroupName: MethodStringName1<SceneTree, VariantArray<Node>, StringName> =
+        MethodStringName1<SceneTree, VariantArray<Node>, StringName>("get_nodes_in_group")
+
+    @JvmStatic
+    public val getFirstNodeInGroupName: MethodStringName1<SceneTree, Node?, StringName> =
+        MethodStringName1<SceneTree, Node?, StringName>("get_first_node_in_group")
+
+    @JvmStatic
+    public val getNodeCountInGroupName: MethodStringName1<SceneTree, Int, StringName> =
+        MethodStringName1<SceneTree, Int, StringName>("get_node_count_in_group")
+
+    @JvmStatic
+    public val setCurrentSceneName: MethodStringName1<SceneTree, Unit, Node?> =
+        MethodStringName1<SceneTree, Unit, Node?>("set_current_scene")
+
+    @JvmStatic
+    public val getCurrentSceneName: MethodStringName0<SceneTree, Node?> =
+        MethodStringName0<SceneTree, Node?>("get_current_scene")
+
+    @JvmStatic
+    public val changeSceneToFileName: MethodStringName1<SceneTree, Error, String> =
+        MethodStringName1<SceneTree, Error, String>("change_scene_to_file")
+
+    @JvmStatic
+    public val changeSceneToPackedName: MethodStringName1<SceneTree, Error, PackedScene?> =
+        MethodStringName1<SceneTree, Error, PackedScene?>("change_scene_to_packed")
+
+    @JvmStatic
+    public val reloadCurrentSceneName: MethodStringName0<SceneTree, Error> =
+        MethodStringName0<SceneTree, Error>("reload_current_scene")
+
+    @JvmStatic
+    public val unloadCurrentSceneName: MethodStringName0<SceneTree, Unit> =
+        MethodStringName0<SceneTree, Unit>("unload_current_scene")
+
+    @JvmStatic
+    public val setMultiplayerName: MethodStringName2<SceneTree, Unit, MultiplayerAPI?, NodePath> =
+        MethodStringName2<SceneTree, Unit, MultiplayerAPI?, NodePath>("set_multiplayer")
+
+    @JvmStatic
+    public val getMultiplayerName: MethodStringName1<SceneTree, MultiplayerAPI?, NodePath> =
+        MethodStringName1<SceneTree, MultiplayerAPI?, NodePath>("get_multiplayer")
+
+    @JvmStatic
+    public val setMultiplayerPollEnabledName: MethodStringName1<SceneTree, Unit, Boolean> =
+        MethodStringName1<SceneTree, Unit, Boolean>("set_multiplayer_poll_enabled")
+
+    @JvmStatic
+    public val isMultiplayerPollEnabledName: MethodStringName0<SceneTree, Boolean> =
+        MethodStringName0<SceneTree, Boolean>("is_multiplayer_poll_enabled")
+  }
 
   public object MethodBindings {
     internal val getRootPtr: VoidPtr =

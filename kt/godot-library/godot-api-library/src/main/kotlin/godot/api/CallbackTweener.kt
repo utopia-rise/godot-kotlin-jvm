@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for
@@ -48,7 +50,11 @@ public open class CallbackTweener : Tweener() {
     return (TransferContext.readReturnValue(OBJECT) as CallbackTweener?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setDelayName: MethodStringName1<CallbackTweener, CallbackTweener?, Double> =
+        MethodStringName1<CallbackTweener, CallbackTweener?, Double>("set_delay")
+  }
 
   public object MethodBindings {
     internal val setDelayPtr: VoidPtr =

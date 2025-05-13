@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract render data object, exists for the duration of rendering a single viewport.
@@ -66,7 +68,23 @@ public open class RenderData internal constructor() : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getRenderSceneBuffersName: MethodStringName0<RenderData, RenderSceneBuffers?> =
+        MethodStringName0<RenderData, RenderSceneBuffers?>("get_render_scene_buffers")
+
+    @JvmStatic
+    public val getRenderSceneDataName: MethodStringName0<RenderData, RenderSceneData?> =
+        MethodStringName0<RenderData, RenderSceneData?>("get_render_scene_data")
+
+    @JvmStatic
+    public val getEnvironmentName: MethodStringName0<RenderData, RID> =
+        MethodStringName0<RenderData, RID>("get_environment")
+
+    @JvmStatic
+    public val getCameraAttributesName: MethodStringName0<RenderData, RID> =
+        MethodStringName0<RenderData, RID>("get_camera_attributes")
+  }
 
   public object MethodBindings {
     internal val getRenderSceneBuffersPtr: VoidPtr =

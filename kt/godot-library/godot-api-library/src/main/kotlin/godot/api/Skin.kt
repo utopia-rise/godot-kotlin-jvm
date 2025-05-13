@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantParser.LONG
@@ -23,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class Skin : Resource() {
@@ -92,7 +96,51 @@ public open class Skin : Resource() {
   public final fun setBindName(bindIndex: Int, name: String) =
       setBindName(bindIndex, name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBindCountName: MethodStringName1<Skin, Unit, Int> =
+        MethodStringName1<Skin, Unit, Int>("set_bind_count")
+
+    @JvmStatic
+    public val getBindCountName: MethodStringName0<Skin, Int> =
+        MethodStringName0<Skin, Int>("get_bind_count")
+
+    @JvmStatic
+    public val addBindName: MethodStringName2<Skin, Unit, Int, Transform3D> =
+        MethodStringName2<Skin, Unit, Int, Transform3D>("add_bind")
+
+    @JvmStatic
+    public val addNamedBindName: MethodStringName2<Skin, Unit, String, Transform3D> =
+        MethodStringName2<Skin, Unit, String, Transform3D>("add_named_bind")
+
+    @JvmStatic
+    public val setBindPoseName: MethodStringName2<Skin, Unit, Int, Transform3D> =
+        MethodStringName2<Skin, Unit, Int, Transform3D>("set_bind_pose")
+
+    @JvmStatic
+    public val getBindPoseName: MethodStringName1<Skin, Transform3D, Int> =
+        MethodStringName1<Skin, Transform3D, Int>("get_bind_pose")
+
+    @JvmStatic
+    public val setBindNameName: MethodStringName2<Skin, Unit, Int, StringName> =
+        MethodStringName2<Skin, Unit, Int, StringName>("set_bind_name")
+
+    @JvmStatic
+    public val getBindNameName: MethodStringName1<Skin, StringName, Int> =
+        MethodStringName1<Skin, StringName, Int>("get_bind_name")
+
+    @JvmStatic
+    public val setBindBoneName: MethodStringName2<Skin, Unit, Int, Int> =
+        MethodStringName2<Skin, Unit, Int, Int>("set_bind_bone")
+
+    @JvmStatic
+    public val getBindBoneName: MethodStringName1<Skin, Int, Int> =
+        MethodStringName1<Skin, Int, Int>("get_bind_bone")
+
+    @JvmStatic
+    public val clearBindsName: MethodStringName0<Skin, Unit> =
+        MethodStringName0<Skin, Unit>("clear_binds")
+  }
 
   public object MethodBindings {
     internal val setBindCountPtr: VoidPtr =

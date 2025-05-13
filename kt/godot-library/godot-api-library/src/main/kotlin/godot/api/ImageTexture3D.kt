@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName1
+import godot.core.MethodStringName6
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
@@ -63,7 +66,17 @@ public open class ImageTexture3D : Texture3D() {
     TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val createName:
+        MethodStringName6<ImageTexture3D, Error, Image.Format, Int, Int, Int, Boolean, VariantArray<Image>>
+        =
+        MethodStringName6<ImageTexture3D, Error, Image.Format, Int, Int, Int, Boolean, VariantArray<Image>>("create")
+
+    @JvmStatic
+    public val updateName: MethodStringName1<ImageTexture3D, Unit, VariantArray<Image>> =
+        MethodStringName1<ImageTexture3D, Unit, VariantArray<Image>>("update")
+  }
 
   public object MethodBindings {
     internal val createPtr: VoidPtr =

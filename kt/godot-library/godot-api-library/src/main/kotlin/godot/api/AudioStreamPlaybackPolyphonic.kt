@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName6
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Playback instance for [AudioStreamPolyphonic]. After setting the `stream` property of
@@ -129,6 +133,30 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
       playStream(stream, fromOffset, volumeDb, pitchScale, playbackType, bus.asCachedStringName())
 
   public companion object {
+    @JvmStatic
+    public val playStreamName:
+        MethodStringName6<AudioStreamPlaybackPolyphonic, Long, AudioStream?, Float, Float, Float, AudioServer.PlaybackType, StringName>
+        =
+        MethodStringName6<AudioStreamPlaybackPolyphonic, Long, AudioStream?, Float, Float, Float, AudioServer.PlaybackType, StringName>("play_stream")
+
+    @JvmStatic
+    public val setStreamVolumeName:
+        MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float> =
+        MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float>("set_stream_volume")
+
+    @JvmStatic
+    public val setStreamPitchScaleName:
+        MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float> =
+        MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float>("set_stream_pitch_scale")
+
+    @JvmStatic
+    public val isStreamPlayingName: MethodStringName1<AudioStreamPlaybackPolyphonic, Boolean, Long>
+        = MethodStringName1<AudioStreamPlaybackPolyphonic, Boolean, Long>("is_stream_playing")
+
+    @JvmStatic
+    public val stopStreamName: MethodStringName1<AudioStreamPlaybackPolyphonic, Unit, Long> =
+        MethodStringName1<AudioStreamPlaybackPolyphonic, Unit, Long>("stop_stream")
+
     /**
      * Returned by [playStream] in case it could not allocate a stream for playback.
      */

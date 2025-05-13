@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically
@@ -168,7 +172,56 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getSceneTilesCountName: MethodStringName0<TileSetScenesCollectionSource, Int> =
+        MethodStringName0<TileSetScenesCollectionSource, Int>("get_scene_tiles_count")
+
+    @JvmStatic
+    public val getSceneTileIdName: MethodStringName1<TileSetScenesCollectionSource, Int, Int> =
+        MethodStringName1<TileSetScenesCollectionSource, Int, Int>("get_scene_tile_id")
+
+    @JvmStatic
+    public val hasSceneTileIdName: MethodStringName1<TileSetScenesCollectionSource, Boolean, Int> =
+        MethodStringName1<TileSetScenesCollectionSource, Boolean, Int>("has_scene_tile_id")
+
+    @JvmStatic
+    public val createSceneTileName:
+        MethodStringName2<TileSetScenesCollectionSource, Int, PackedScene?, Int> =
+        MethodStringName2<TileSetScenesCollectionSource, Int, PackedScene?, Int>("create_scene_tile")
+
+    @JvmStatic
+    public val setSceneTileIdName: MethodStringName2<TileSetScenesCollectionSource, Unit, Int, Int>
+        = MethodStringName2<TileSetScenesCollectionSource, Unit, Int, Int>("set_scene_tile_id")
+
+    @JvmStatic
+    public val setSceneTileSceneName:
+        MethodStringName2<TileSetScenesCollectionSource, Unit, Int, PackedScene?> =
+        MethodStringName2<TileSetScenesCollectionSource, Unit, Int, PackedScene?>("set_scene_tile_scene")
+
+    @JvmStatic
+    public val getSceneTileSceneName:
+        MethodStringName1<TileSetScenesCollectionSource, PackedScene?, Int> =
+        MethodStringName1<TileSetScenesCollectionSource, PackedScene?, Int>("get_scene_tile_scene")
+
+    @JvmStatic
+    public val setSceneTileDisplayPlaceholderName:
+        MethodStringName2<TileSetScenesCollectionSource, Unit, Int, Boolean> =
+        MethodStringName2<TileSetScenesCollectionSource, Unit, Int, Boolean>("set_scene_tile_display_placeholder")
+
+    @JvmStatic
+    public val getSceneTileDisplayPlaceholderName:
+        MethodStringName1<TileSetScenesCollectionSource, Boolean, Int> =
+        MethodStringName1<TileSetScenesCollectionSource, Boolean, Int>("get_scene_tile_display_placeholder")
+
+    @JvmStatic
+    public val removeSceneTileName: MethodStringName1<TileSetScenesCollectionSource, Unit, Int> =
+        MethodStringName1<TileSetScenesCollectionSource, Unit, Int>("remove_scene_tile")
+
+    @JvmStatic
+    public val getNextSceneTileIdName: MethodStringName0<TileSetScenesCollectionSource, Int> =
+        MethodStringName0<TileSetScenesCollectionSource, Int>("get_next_scene_tile_id")
+  }
 
   public object MethodBindings {
     internal val getSceneTilesCountPtr: VoidPtr =

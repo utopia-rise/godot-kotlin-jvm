@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source
@@ -163,7 +167,79 @@ public open class AudioEffectChorus : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setVoiceCountName: MethodStringName1<AudioEffectChorus, Unit, Int> =
+        MethodStringName1<AudioEffectChorus, Unit, Int>("set_voice_count")
+
+    @JvmStatic
+    public val getVoiceCountName: MethodStringName0<AudioEffectChorus, Int> =
+        MethodStringName0<AudioEffectChorus, Int>("get_voice_count")
+
+    @JvmStatic
+    public val setVoiceDelayMsName: MethodStringName2<AudioEffectChorus, Unit, Int, Float> =
+        MethodStringName2<AudioEffectChorus, Unit, Int, Float>("set_voice_delay_ms")
+
+    @JvmStatic
+    public val getVoiceDelayMsName: MethodStringName1<AudioEffectChorus, Float, Int> =
+        MethodStringName1<AudioEffectChorus, Float, Int>("get_voice_delay_ms")
+
+    @JvmStatic
+    public val setVoiceRateHzName: MethodStringName2<AudioEffectChorus, Unit, Int, Float> =
+        MethodStringName2<AudioEffectChorus, Unit, Int, Float>("set_voice_rate_hz")
+
+    @JvmStatic
+    public val getVoiceRateHzName: MethodStringName1<AudioEffectChorus, Float, Int> =
+        MethodStringName1<AudioEffectChorus, Float, Int>("get_voice_rate_hz")
+
+    @JvmStatic
+    public val setVoiceDepthMsName: MethodStringName2<AudioEffectChorus, Unit, Int, Float> =
+        MethodStringName2<AudioEffectChorus, Unit, Int, Float>("set_voice_depth_ms")
+
+    @JvmStatic
+    public val getVoiceDepthMsName: MethodStringName1<AudioEffectChorus, Float, Int> =
+        MethodStringName1<AudioEffectChorus, Float, Int>("get_voice_depth_ms")
+
+    @JvmStatic
+    public val setVoiceLevelDbName: MethodStringName2<AudioEffectChorus, Unit, Int, Float> =
+        MethodStringName2<AudioEffectChorus, Unit, Int, Float>("set_voice_level_db")
+
+    @JvmStatic
+    public val getVoiceLevelDbName: MethodStringName1<AudioEffectChorus, Float, Int> =
+        MethodStringName1<AudioEffectChorus, Float, Int>("get_voice_level_db")
+
+    @JvmStatic
+    public val setVoiceCutoffHzName: MethodStringName2<AudioEffectChorus, Unit, Int, Float> =
+        MethodStringName2<AudioEffectChorus, Unit, Int, Float>("set_voice_cutoff_hz")
+
+    @JvmStatic
+    public val getVoiceCutoffHzName: MethodStringName1<AudioEffectChorus, Float, Int> =
+        MethodStringName1<AudioEffectChorus, Float, Int>("get_voice_cutoff_hz")
+
+    @JvmStatic
+    public val setVoicePanName: MethodStringName2<AudioEffectChorus, Unit, Int, Float> =
+        MethodStringName2<AudioEffectChorus, Unit, Int, Float>("set_voice_pan")
+
+    @JvmStatic
+    public val getVoicePanName: MethodStringName1<AudioEffectChorus, Float, Int> =
+        MethodStringName1<AudioEffectChorus, Float, Int>("get_voice_pan")
+
+    @JvmStatic
+    public val setWetName: MethodStringName1<AudioEffectChorus, Unit, Float> =
+        MethodStringName1<AudioEffectChorus, Unit, Float>("set_wet")
+
+    @JvmStatic
+    public val getWetName: MethodStringName0<AudioEffectChorus, Float> =
+        MethodStringName0<AudioEffectChorus, Float>("get_wet")
+
+    @JvmStatic
+    public val setDryName: MethodStringName1<AudioEffectChorus, Unit, Float> =
+        MethodStringName1<AudioEffectChorus, Unit, Float>("set_dry")
+
+    @JvmStatic
+    public val getDryName: MethodStringName0<AudioEffectChorus, Float> =
+        MethodStringName0<AudioEffectChorus, Float>("get_dry")
+  }
 
   public object MethodBindings {
     internal val setVoiceCountPtr: VoidPtr =

@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -25,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
@@ -204,7 +208,44 @@ public open class HeightMapShape3D : Shape3D() {
     TransferContext.callMethod(ptr, MethodBindings.updateMapDataFromImagePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMapWidthName: MethodStringName1<HeightMapShape3D, Unit, Int> =
+        MethodStringName1<HeightMapShape3D, Unit, Int>("set_map_width")
+
+    @JvmStatic
+    public val getMapWidthName: MethodStringName0<HeightMapShape3D, Int> =
+        MethodStringName0<HeightMapShape3D, Int>("get_map_width")
+
+    @JvmStatic
+    public val setMapDepthName: MethodStringName1<HeightMapShape3D, Unit, Int> =
+        MethodStringName1<HeightMapShape3D, Unit, Int>("set_map_depth")
+
+    @JvmStatic
+    public val getMapDepthName: MethodStringName0<HeightMapShape3D, Int> =
+        MethodStringName0<HeightMapShape3D, Int>("get_map_depth")
+
+    @JvmStatic
+    public val setMapDataName: MethodStringName1<HeightMapShape3D, Unit, PackedFloat32Array> =
+        MethodStringName1<HeightMapShape3D, Unit, PackedFloat32Array>("set_map_data")
+
+    @JvmStatic
+    public val getMapDataName: MethodStringName0<HeightMapShape3D, PackedFloat32Array> =
+        MethodStringName0<HeightMapShape3D, PackedFloat32Array>("get_map_data")
+
+    @JvmStatic
+    public val getMinHeightName: MethodStringName0<HeightMapShape3D, Float> =
+        MethodStringName0<HeightMapShape3D, Float>("get_min_height")
+
+    @JvmStatic
+    public val getMaxHeightName: MethodStringName0<HeightMapShape3D, Float> =
+        MethodStringName0<HeightMapShape3D, Float>("get_max_height")
+
+    @JvmStatic
+    public val updateMapDataFromImageName:
+        MethodStringName3<HeightMapShape3D, Unit, Image?, Float, Float> =
+        MethodStringName3<HeightMapShape3D, Unit, Image?, Float, Float>("update_map_data_from_image")
+  }
 
   public object MethodBindings {
     internal val setMapWidthPtr: VoidPtr =

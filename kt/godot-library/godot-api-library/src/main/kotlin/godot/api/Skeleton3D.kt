@@ -10,6 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.RID
@@ -45,6 +50,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and
@@ -711,6 +717,230 @@ public open class Skeleton3D : Node3D() {
   }
 
   public companion object {
+    @JvmStatic
+    public val addBoneName: MethodStringName1<Skeleton3D, Int, String> =
+        MethodStringName1<Skeleton3D, Int, String>("add_bone")
+
+    @JvmStatic
+    public val findBoneName: MethodStringName1<Skeleton3D, Int, String> =
+        MethodStringName1<Skeleton3D, Int, String>("find_bone")
+
+    @JvmStatic
+    public val getBoneNameName: MethodStringName1<Skeleton3D, String, Int> =
+        MethodStringName1<Skeleton3D, String, Int>("get_bone_name")
+
+    @JvmStatic
+    public val setBoneNameName: MethodStringName2<Skeleton3D, Unit, Int, String> =
+        MethodStringName2<Skeleton3D, Unit, Int, String>("set_bone_name")
+
+    @JvmStatic
+    public val getBoneMetaName: MethodStringName2<Skeleton3D, Any?, Int, StringName> =
+        MethodStringName2<Skeleton3D, Any?, Int, StringName>("get_bone_meta")
+
+    @JvmStatic
+    public val getBoneMetaListName: MethodStringName1<Skeleton3D, VariantArray<StringName>, Int> =
+        MethodStringName1<Skeleton3D, VariantArray<StringName>, Int>("get_bone_meta_list")
+
+    @JvmStatic
+    public val hasBoneMetaName: MethodStringName2<Skeleton3D, Boolean, Int, StringName> =
+        MethodStringName2<Skeleton3D, Boolean, Int, StringName>("has_bone_meta")
+
+    @JvmStatic
+    public val setBoneMetaName: MethodStringName3<Skeleton3D, Unit, Int, StringName, Any?> =
+        MethodStringName3<Skeleton3D, Unit, Int, StringName, Any?>("set_bone_meta")
+
+    @JvmStatic
+    public val getConcatenatedBoneNamesName: MethodStringName0<Skeleton3D, StringName> =
+        MethodStringName0<Skeleton3D, StringName>("get_concatenated_bone_names")
+
+    @JvmStatic
+    public val getBoneParentName: MethodStringName1<Skeleton3D, Int, Int> =
+        MethodStringName1<Skeleton3D, Int, Int>("get_bone_parent")
+
+    @JvmStatic
+    public val setBoneParentName: MethodStringName2<Skeleton3D, Unit, Int, Int> =
+        MethodStringName2<Skeleton3D, Unit, Int, Int>("set_bone_parent")
+
+    @JvmStatic
+    public val getBoneCountName: MethodStringName0<Skeleton3D, Int> =
+        MethodStringName0<Skeleton3D, Int>("get_bone_count")
+
+    @JvmStatic
+    public val getVersionName: MethodStringName0<Skeleton3D, Long> =
+        MethodStringName0<Skeleton3D, Long>("get_version")
+
+    @JvmStatic
+    public val unparentBoneAndRestName: MethodStringName1<Skeleton3D, Unit, Int> =
+        MethodStringName1<Skeleton3D, Unit, Int>("unparent_bone_and_rest")
+
+    @JvmStatic
+    public val getBoneChildrenName: MethodStringName1<Skeleton3D, PackedInt32Array, Int> =
+        MethodStringName1<Skeleton3D, PackedInt32Array, Int>("get_bone_children")
+
+    @JvmStatic
+    public val getParentlessBonesName: MethodStringName0<Skeleton3D, PackedInt32Array> =
+        MethodStringName0<Skeleton3D, PackedInt32Array>("get_parentless_bones")
+
+    @JvmStatic
+    public val getBoneRestName: MethodStringName1<Skeleton3D, Transform3D, Int> =
+        MethodStringName1<Skeleton3D, Transform3D, Int>("get_bone_rest")
+
+    @JvmStatic
+    public val setBoneRestName: MethodStringName2<Skeleton3D, Unit, Int, Transform3D> =
+        MethodStringName2<Skeleton3D, Unit, Int, Transform3D>("set_bone_rest")
+
+    @JvmStatic
+    public val getBoneGlobalRestName: MethodStringName1<Skeleton3D, Transform3D, Int> =
+        MethodStringName1<Skeleton3D, Transform3D, Int>("get_bone_global_rest")
+
+    @JvmStatic
+    public val createSkinFromRestTransformsName: MethodStringName0<Skeleton3D, Skin?> =
+        MethodStringName0<Skeleton3D, Skin?>("create_skin_from_rest_transforms")
+
+    @JvmStatic
+    public val registerSkinName: MethodStringName1<Skeleton3D, SkinReference?, Skin?> =
+        MethodStringName1<Skeleton3D, SkinReference?, Skin?>("register_skin")
+
+    @JvmStatic
+    public val localizeRestsName: MethodStringName0<Skeleton3D, Unit> =
+        MethodStringName0<Skeleton3D, Unit>("localize_rests")
+
+    @JvmStatic
+    public val clearBonesName: MethodStringName0<Skeleton3D, Unit> =
+        MethodStringName0<Skeleton3D, Unit>("clear_bones")
+
+    @JvmStatic
+    public val getBonePoseName: MethodStringName1<Skeleton3D, Transform3D, Int> =
+        MethodStringName1<Skeleton3D, Transform3D, Int>("get_bone_pose")
+
+    @JvmStatic
+    public val setBonePoseName: MethodStringName2<Skeleton3D, Unit, Int, Transform3D> =
+        MethodStringName2<Skeleton3D, Unit, Int, Transform3D>("set_bone_pose")
+
+    @JvmStatic
+    public val setBonePosePositionName: MethodStringName2<Skeleton3D, Unit, Int, Vector3> =
+        MethodStringName2<Skeleton3D, Unit, Int, Vector3>("set_bone_pose_position")
+
+    @JvmStatic
+    public val setBonePoseRotationName: MethodStringName2<Skeleton3D, Unit, Int, Quaternion> =
+        MethodStringName2<Skeleton3D, Unit, Int, Quaternion>("set_bone_pose_rotation")
+
+    @JvmStatic
+    public val setBonePoseScaleName: MethodStringName2<Skeleton3D, Unit, Int, Vector3> =
+        MethodStringName2<Skeleton3D, Unit, Int, Vector3>("set_bone_pose_scale")
+
+    @JvmStatic
+    public val getBonePosePositionName: MethodStringName1<Skeleton3D, Vector3, Int> =
+        MethodStringName1<Skeleton3D, Vector3, Int>("get_bone_pose_position")
+
+    @JvmStatic
+    public val getBonePoseRotationName: MethodStringName1<Skeleton3D, Quaternion, Int> =
+        MethodStringName1<Skeleton3D, Quaternion, Int>("get_bone_pose_rotation")
+
+    @JvmStatic
+    public val getBonePoseScaleName: MethodStringName1<Skeleton3D, Vector3, Int> =
+        MethodStringName1<Skeleton3D, Vector3, Int>("get_bone_pose_scale")
+
+    @JvmStatic
+    public val resetBonePoseName: MethodStringName1<Skeleton3D, Unit, Int> =
+        MethodStringName1<Skeleton3D, Unit, Int>("reset_bone_pose")
+
+    @JvmStatic
+    public val resetBonePosesName: MethodStringName0<Skeleton3D, Unit> =
+        MethodStringName0<Skeleton3D, Unit>("reset_bone_poses")
+
+    @JvmStatic
+    public val isBoneEnabledName: MethodStringName1<Skeleton3D, Boolean, Int> =
+        MethodStringName1<Skeleton3D, Boolean, Int>("is_bone_enabled")
+
+    @JvmStatic
+    public val setBoneEnabledName: MethodStringName2<Skeleton3D, Unit, Int, Boolean> =
+        MethodStringName2<Skeleton3D, Unit, Int, Boolean>("set_bone_enabled")
+
+    @JvmStatic
+    public val getBoneGlobalPoseName: MethodStringName1<Skeleton3D, Transform3D, Int> =
+        MethodStringName1<Skeleton3D, Transform3D, Int>("get_bone_global_pose")
+
+    @JvmStatic
+    public val setBoneGlobalPoseName: MethodStringName2<Skeleton3D, Unit, Int, Transform3D> =
+        MethodStringName2<Skeleton3D, Unit, Int, Transform3D>("set_bone_global_pose")
+
+    @JvmStatic
+    public val forceUpdateAllBoneTransformsName: MethodStringName0<Skeleton3D, Unit> =
+        MethodStringName0<Skeleton3D, Unit>("force_update_all_bone_transforms")
+
+    @JvmStatic
+    public val forceUpdateBoneChildTransformName: MethodStringName1<Skeleton3D, Unit, Int> =
+        MethodStringName1<Skeleton3D, Unit, Int>("force_update_bone_child_transform")
+
+    @JvmStatic
+    public val setMotionScaleName: MethodStringName1<Skeleton3D, Unit, Float> =
+        MethodStringName1<Skeleton3D, Unit, Float>("set_motion_scale")
+
+    @JvmStatic
+    public val getMotionScaleName: MethodStringName0<Skeleton3D, Float> =
+        MethodStringName0<Skeleton3D, Float>("get_motion_scale")
+
+    @JvmStatic
+    public val setShowRestOnlyName: MethodStringName1<Skeleton3D, Unit, Boolean> =
+        MethodStringName1<Skeleton3D, Unit, Boolean>("set_show_rest_only")
+
+    @JvmStatic
+    public val isShowRestOnlyName: MethodStringName0<Skeleton3D, Boolean> =
+        MethodStringName0<Skeleton3D, Boolean>("is_show_rest_only")
+
+    @JvmStatic
+    public val setModifierCallbackModeProcessName:
+        MethodStringName1<Skeleton3D, Unit, ModifierCallbackModeProcess> =
+        MethodStringName1<Skeleton3D, Unit, ModifierCallbackModeProcess>("set_modifier_callback_mode_process")
+
+    @JvmStatic
+    public val getModifierCallbackModeProcessName:
+        MethodStringName0<Skeleton3D, ModifierCallbackModeProcess> =
+        MethodStringName0<Skeleton3D, ModifierCallbackModeProcess>("get_modifier_callback_mode_process")
+
+    @JvmStatic
+    public val clearBonesGlobalPoseOverrideName: MethodStringName0<Skeleton3D, Unit> =
+        MethodStringName0<Skeleton3D, Unit>("clear_bones_global_pose_override")
+
+    @JvmStatic
+    public val setBoneGlobalPoseOverrideName:
+        MethodStringName4<Skeleton3D, Unit, Int, Transform3D, Float, Boolean> =
+        MethodStringName4<Skeleton3D, Unit, Int, Transform3D, Float, Boolean>("set_bone_global_pose_override")
+
+    @JvmStatic
+    public val getBoneGlobalPoseOverrideName: MethodStringName1<Skeleton3D, Transform3D, Int> =
+        MethodStringName1<Skeleton3D, Transform3D, Int>("get_bone_global_pose_override")
+
+    @JvmStatic
+    public val getBoneGlobalPoseNoOverrideName: MethodStringName1<Skeleton3D, Transform3D, Int> =
+        MethodStringName1<Skeleton3D, Transform3D, Int>("get_bone_global_pose_no_override")
+
+    @JvmStatic
+    public val setAnimatePhysicalBonesName: MethodStringName1<Skeleton3D, Unit, Boolean> =
+        MethodStringName1<Skeleton3D, Unit, Boolean>("set_animate_physical_bones")
+
+    @JvmStatic
+    public val getAnimatePhysicalBonesName: MethodStringName0<Skeleton3D, Boolean> =
+        MethodStringName0<Skeleton3D, Boolean>("get_animate_physical_bones")
+
+    @JvmStatic
+    public val physicalBonesStopSimulationName: MethodStringName0<Skeleton3D, Unit> =
+        MethodStringName0<Skeleton3D, Unit>("physical_bones_stop_simulation")
+
+    @JvmStatic
+    public val physicalBonesStartSimulationName:
+        MethodStringName1<Skeleton3D, Unit, VariantArray<StringName>> =
+        MethodStringName1<Skeleton3D, Unit, VariantArray<StringName>>("physical_bones_start_simulation")
+
+    @JvmStatic
+    public val physicalBonesAddCollisionExceptionName: MethodStringName1<Skeleton3D, Unit, RID> =
+        MethodStringName1<Skeleton3D, Unit, RID>("physical_bones_add_collision_exception")
+
+    @JvmStatic
+    public val physicalBonesRemoveCollisionExceptionName: MethodStringName1<Skeleton3D, Unit, RID> =
+        MethodStringName1<Skeleton3D, Unit, RID>("physical_bones_remove_collision_exception")
+
     /**
      * Notification received when this skeleton's pose needs to be updated. In that case, this is
      * called only once per frame in a deferred process.

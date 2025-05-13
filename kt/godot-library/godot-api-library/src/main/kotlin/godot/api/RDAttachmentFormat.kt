@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -93,7 +96,33 @@ public open class RDAttachmentFormat : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setFormatName:
+        MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.DataFormat> =
+        MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.DataFormat>("set_format")
+
+    @JvmStatic
+    public val getFormatName: MethodStringName0<RDAttachmentFormat, RenderingDevice.DataFormat> =
+        MethodStringName0<RDAttachmentFormat, RenderingDevice.DataFormat>("get_format")
+
+    @JvmStatic
+    public val setSamplesName:
+        MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.TextureSamples> =
+        MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.TextureSamples>("set_samples")
+
+    @JvmStatic
+    public val getSamplesName: MethodStringName0<RDAttachmentFormat, RenderingDevice.TextureSamples>
+        = MethodStringName0<RDAttachmentFormat, RenderingDevice.TextureSamples>("get_samples")
+
+    @JvmStatic
+    public val setUsageFlagsName: MethodStringName1<RDAttachmentFormat, Unit, Long> =
+        MethodStringName1<RDAttachmentFormat, Unit, Long>("set_usage_flags")
+
+    @JvmStatic
+    public val getUsageFlagsName: MethodStringName0<RDAttachmentFormat, Long> =
+        MethodStringName0<RDAttachmentFormat, Long>("get_usage_flags")
+  }
 
   public object MethodBindings {
     internal val setFormatPtr: VoidPtr =

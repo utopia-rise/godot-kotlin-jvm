@@ -13,12 +13,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Has two output ports representing RGB and alpha channels of [Color].
@@ -80,7 +83,15 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setConstantName: MethodStringName1<VisualShaderNodeColorConstant, Unit, Color> =
+        MethodStringName1<VisualShaderNodeColorConstant, Unit, Color>("set_constant")
+
+    @JvmStatic
+    public val getConstantName: MethodStringName0<VisualShaderNodeColorConstant, Color> =
+        MethodStringName0<VisualShaderNodeColorConstant, Color>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

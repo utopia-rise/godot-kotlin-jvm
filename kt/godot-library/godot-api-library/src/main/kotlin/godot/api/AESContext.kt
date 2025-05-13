@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class holds the context information required for encryption and decryption operations with
@@ -189,7 +193,24 @@ public open class AESContext : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val startName:
+        MethodStringName3<AESContext, Error, Mode, PackedByteArray, PackedByteArray> =
+        MethodStringName3<AESContext, Error, Mode, PackedByteArray, PackedByteArray>("start")
+
+    @JvmStatic
+    public val updateName: MethodStringName1<AESContext, PackedByteArray, PackedByteArray> =
+        MethodStringName1<AESContext, PackedByteArray, PackedByteArray>("update")
+
+    @JvmStatic
+    public val getIvStateName: MethodStringName0<AESContext, PackedByteArray> =
+        MethodStringName0<AESContext, PackedByteArray>("get_iv_state")
+
+    @JvmStatic
+    public val finishName: MethodStringName0<AESContext, Unit> =
+        MethodStringName0<AESContext, Unit>("finish")
+  }
 
   public object MethodBindings {
     internal val startPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "start", 3122411423)

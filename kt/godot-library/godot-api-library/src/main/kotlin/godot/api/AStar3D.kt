@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedInt64Array
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.BOOL
@@ -29,6 +33,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of
@@ -504,7 +509,99 @@ public open class AStar3D : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getAvailablePointIdName: MethodStringName0<AStar3D, Long> =
+        MethodStringName0<AStar3D, Long>("get_available_point_id")
+
+    @JvmStatic
+    public val addPointName: MethodStringName3<AStar3D, Unit, Long, Vector3, Float> =
+        MethodStringName3<AStar3D, Unit, Long, Vector3, Float>("add_point")
+
+    @JvmStatic
+    public val getPointPositionName: MethodStringName1<AStar3D, Vector3, Long> =
+        MethodStringName1<AStar3D, Vector3, Long>("get_point_position")
+
+    @JvmStatic
+    public val setPointPositionName: MethodStringName2<AStar3D, Unit, Long, Vector3> =
+        MethodStringName2<AStar3D, Unit, Long, Vector3>("set_point_position")
+
+    @JvmStatic
+    public val getPointWeightScaleName: MethodStringName1<AStar3D, Float, Long> =
+        MethodStringName1<AStar3D, Float, Long>("get_point_weight_scale")
+
+    @JvmStatic
+    public val setPointWeightScaleName: MethodStringName2<AStar3D, Unit, Long, Float> =
+        MethodStringName2<AStar3D, Unit, Long, Float>("set_point_weight_scale")
+
+    @JvmStatic
+    public val removePointName: MethodStringName1<AStar3D, Unit, Long> =
+        MethodStringName1<AStar3D, Unit, Long>("remove_point")
+
+    @JvmStatic
+    public val hasPointName: MethodStringName1<AStar3D, Boolean, Long> =
+        MethodStringName1<AStar3D, Boolean, Long>("has_point")
+
+    @JvmStatic
+    public val getPointConnectionsName: MethodStringName1<AStar3D, PackedInt64Array, Long> =
+        MethodStringName1<AStar3D, PackedInt64Array, Long>("get_point_connections")
+
+    @JvmStatic
+    public val getPointIdsName: MethodStringName0<AStar3D, PackedInt64Array> =
+        MethodStringName0<AStar3D, PackedInt64Array>("get_point_ids")
+
+    @JvmStatic
+    public val setPointDisabledName: MethodStringName2<AStar3D, Unit, Long, Boolean> =
+        MethodStringName2<AStar3D, Unit, Long, Boolean>("set_point_disabled")
+
+    @JvmStatic
+    public val isPointDisabledName: MethodStringName1<AStar3D, Boolean, Long> =
+        MethodStringName1<AStar3D, Boolean, Long>("is_point_disabled")
+
+    @JvmStatic
+    public val connectPointsName: MethodStringName3<AStar3D, Unit, Long, Long, Boolean> =
+        MethodStringName3<AStar3D, Unit, Long, Long, Boolean>("connect_points")
+
+    @JvmStatic
+    public val disconnectPointsName: MethodStringName3<AStar3D, Unit, Long, Long, Boolean> =
+        MethodStringName3<AStar3D, Unit, Long, Long, Boolean>("disconnect_points")
+
+    @JvmStatic
+    public val arePointsConnectedName: MethodStringName3<AStar3D, Boolean, Long, Long, Boolean> =
+        MethodStringName3<AStar3D, Boolean, Long, Long, Boolean>("are_points_connected")
+
+    @JvmStatic
+    public val getPointCountName: MethodStringName0<AStar3D, Long> =
+        MethodStringName0<AStar3D, Long>("get_point_count")
+
+    @JvmStatic
+    public val getPointCapacityName: MethodStringName0<AStar3D, Long> =
+        MethodStringName0<AStar3D, Long>("get_point_capacity")
+
+    @JvmStatic
+    public val reserveSpaceName: MethodStringName1<AStar3D, Unit, Long> =
+        MethodStringName1<AStar3D, Unit, Long>("reserve_space")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<AStar3D, Unit> =
+        MethodStringName0<AStar3D, Unit>("clear")
+
+    @JvmStatic
+    public val getClosestPointName: MethodStringName2<AStar3D, Long, Vector3, Boolean> =
+        MethodStringName2<AStar3D, Long, Vector3, Boolean>("get_closest_point")
+
+    @JvmStatic
+    public val getClosestPositionInSegmentName: MethodStringName1<AStar3D, Vector3, Vector3> =
+        MethodStringName1<AStar3D, Vector3, Vector3>("get_closest_position_in_segment")
+
+    @JvmStatic
+    public val getPointPathName: MethodStringName3<AStar3D, PackedVector3Array, Long, Long, Boolean>
+        = MethodStringName3<AStar3D, PackedVector3Array, Long, Long, Boolean>("get_point_path")
+
+    @JvmStatic
+    public val getIdPathName: MethodStringName3<AStar3D, PackedInt64Array, Long, Long, Boolean> =
+        MethodStringName3<AStar3D, PackedInt64Array, Long, Long, Boolean>("get_id_path")
+  }
 
   public object MethodBindings {
     internal val getAvailablePointIdPtr: VoidPtr =

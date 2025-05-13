@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -21,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
@@ -145,7 +147,35 @@ public open class Texture3D : Texture() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getFormatName: MethodStringName0<Texture3D, Image.Format> =
+        MethodStringName0<Texture3D, Image.Format>("get_format")
+
+    @JvmStatic
+    public val getWidthName: MethodStringName0<Texture3D, Int> =
+        MethodStringName0<Texture3D, Int>("get_width")
+
+    @JvmStatic
+    public val getHeightName: MethodStringName0<Texture3D, Int> =
+        MethodStringName0<Texture3D, Int>("get_height")
+
+    @JvmStatic
+    public val getDepthName: MethodStringName0<Texture3D, Int> =
+        MethodStringName0<Texture3D, Int>("get_depth")
+
+    @JvmStatic
+    public val hasMipmapsName: MethodStringName0<Texture3D, Boolean> =
+        MethodStringName0<Texture3D, Boolean>("has_mipmaps")
+
+    @JvmStatic
+    public val getDataName: MethodStringName0<Texture3D, VariantArray<Image>> =
+        MethodStringName0<Texture3D, VariantArray<Image>>("get_data")
+
+    @JvmStatic
+    public val createPlaceholderName: MethodStringName0<Texture3D, Resource?> =
+        MethodStringName0<Texture3D, Resource?>("create_placeholder")
+  }
 
   public object MethodBindings {
     internal val getFormatPtr: VoidPtr =

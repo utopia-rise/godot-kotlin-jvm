@@ -15,6 +15,20 @@ import godot.core.Basis
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName10
+import godot.core.MethodStringName11
+import godot.core.MethodStringName13
+import godot.core.MethodStringName14
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
+import godot.core.MethodStringName7
+import godot.core.MethodStringName8
+import godot.core.MethodStringName9
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
@@ -125,6 +139,2319 @@ public infix fun Long.and(other: RenderingServer.ArrayFormat): Long = this.and(o
  */
 @GodotBaseType
 public object RenderingServer : Object() {
+  @JvmStatic
+  public val texture2dCreateName: MethodStringName1<RenderingServer, RID, Image?> =
+      MethodStringName1<RenderingServer, RID, Image?>("texture_2d_create")
+
+  @JvmStatic
+  public val texture2dLayeredCreateName:
+      MethodStringName2<RenderingServer, RID, VariantArray<Image>, TextureLayeredType> =
+      MethodStringName2<RenderingServer, RID, VariantArray<Image>, TextureLayeredType>("texture_2d_layered_create")
+
+  @JvmStatic
+  public val texture3dCreateName:
+      MethodStringName6<RenderingServer, RID, Image.Format, Int, Int, Int, Boolean, VariantArray<Image>>
+      =
+      MethodStringName6<RenderingServer, RID, Image.Format, Int, Int, Int, Boolean, VariantArray<Image>>("texture_3d_create")
+
+  @JvmStatic
+  public val textureProxyCreateName: MethodStringName1<RenderingServer, RID, RID> =
+      MethodStringName1<RenderingServer, RID, RID>("texture_proxy_create")
+
+  @JvmStatic
+  public val textureCreateFromNativeHandleName:
+      MethodStringName8<RenderingServer, RID, TextureType, Image.Format, Long, Int, Int, Int, Int, TextureLayeredType>
+      =
+      MethodStringName8<RenderingServer, RID, TextureType, Image.Format, Long, Int, Int, Int, Int, TextureLayeredType>("texture_create_from_native_handle")
+
+  @JvmStatic
+  public val texture2dUpdateName: MethodStringName3<RenderingServer, Unit, RID, Image?, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Image?, Int>("texture_2d_update")
+
+  @JvmStatic
+  public val texture3dUpdateName: MethodStringName2<RenderingServer, Unit, RID, VariantArray<Image>>
+      = MethodStringName2<RenderingServer, Unit, RID, VariantArray<Image>>("texture_3d_update")
+
+  @JvmStatic
+  public val textureProxyUpdateName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("texture_proxy_update")
+
+  @JvmStatic
+  public val texture2dPlaceholderCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("texture_2d_placeholder_create")
+
+  @JvmStatic
+  public val texture2dLayeredPlaceholderCreateName:
+      MethodStringName1<RenderingServer, RID, TextureLayeredType> =
+      MethodStringName1<RenderingServer, RID, TextureLayeredType>("texture_2d_layered_placeholder_create")
+
+  @JvmStatic
+  public val texture3dPlaceholderCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("texture_3d_placeholder_create")
+
+  @JvmStatic
+  public val texture2dGetName: MethodStringName1<RenderingServer, Image?, RID> =
+      MethodStringName1<RenderingServer, Image?, RID>("texture_2d_get")
+
+  @JvmStatic
+  public val texture2dLayerGetName: MethodStringName2<RenderingServer, Image?, RID, Int> =
+      MethodStringName2<RenderingServer, Image?, RID, Int>("texture_2d_layer_get")
+
+  @JvmStatic
+  public val texture3dGetName: MethodStringName1<RenderingServer, VariantArray<Image>, RID> =
+      MethodStringName1<RenderingServer, VariantArray<Image>, RID>("texture_3d_get")
+
+  @JvmStatic
+  public val textureReplaceName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("texture_replace")
+
+  @JvmStatic
+  public val textureSetSizeOverrideName: MethodStringName3<RenderingServer, Unit, RID, Int, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Int>("texture_set_size_override")
+
+  @JvmStatic
+  public val textureSetPathName: MethodStringName2<RenderingServer, Unit, RID, String> =
+      MethodStringName2<RenderingServer, Unit, RID, String>("texture_set_path")
+
+  @JvmStatic
+  public val textureGetPathName: MethodStringName1<RenderingServer, String, RID> =
+      MethodStringName1<RenderingServer, String, RID>("texture_get_path")
+
+  @JvmStatic
+  public val textureGetFormatName: MethodStringName1<RenderingServer, Image.Format, RID> =
+      MethodStringName1<RenderingServer, Image.Format, RID>("texture_get_format")
+
+  @JvmStatic
+  public val textureSetForceRedrawIfVisibleName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("texture_set_force_redraw_if_visible")
+
+  @JvmStatic
+  public val textureRdCreateName: MethodStringName2<RenderingServer, RID, RID, TextureLayeredType> =
+      MethodStringName2<RenderingServer, RID, RID, TextureLayeredType>("texture_rd_create")
+
+  @JvmStatic
+  public val textureGetRdTextureName: MethodStringName2<RenderingServer, RID, RID, Boolean> =
+      MethodStringName2<RenderingServer, RID, RID, Boolean>("texture_get_rd_texture")
+
+  @JvmStatic
+  public val textureGetNativeHandleName: MethodStringName2<RenderingServer, Long, RID, Boolean> =
+      MethodStringName2<RenderingServer, Long, RID, Boolean>("texture_get_native_handle")
+
+  @JvmStatic
+  public val shaderCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("shader_create")
+
+  @JvmStatic
+  public val shaderSetCodeName: MethodStringName2<RenderingServer, Unit, RID, String> =
+      MethodStringName2<RenderingServer, Unit, RID, String>("shader_set_code")
+
+  @JvmStatic
+  public val shaderSetPathHintName: MethodStringName2<RenderingServer, Unit, RID, String> =
+      MethodStringName2<RenderingServer, Unit, RID, String>("shader_set_path_hint")
+
+  @JvmStatic
+  public val shaderGetCodeName: MethodStringName1<RenderingServer, String, RID> =
+      MethodStringName1<RenderingServer, String, RID>("shader_get_code")
+
+  @JvmStatic
+  public val getShaderParameterListName:
+      MethodStringName1<RenderingServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+      MethodStringName1<RenderingServer, VariantArray<Dictionary<Any?, Any?>>, RID>("get_shader_parameter_list")
+
+  @JvmStatic
+  public val shaderGetParameterDefaultName:
+      MethodStringName2<RenderingServer, Any?, RID, StringName> =
+      MethodStringName2<RenderingServer, Any?, RID, StringName>("shader_get_parameter_default")
+
+  @JvmStatic
+  public val shaderSetDefaultTextureParameterName:
+      MethodStringName4<RenderingServer, Unit, RID, StringName, RID, Int> =
+      MethodStringName4<RenderingServer, Unit, RID, StringName, RID, Int>("shader_set_default_texture_parameter")
+
+  @JvmStatic
+  public val shaderGetDefaultTextureParameterName:
+      MethodStringName3<RenderingServer, RID, RID, StringName, Int> =
+      MethodStringName3<RenderingServer, RID, RID, StringName, Int>("shader_get_default_texture_parameter")
+
+  @JvmStatic
+  public val materialCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("material_create")
+
+  @JvmStatic
+  public val materialSetShaderName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("material_set_shader")
+
+  @JvmStatic
+  public val materialSetParamName: MethodStringName3<RenderingServer, Unit, RID, StringName, Any?> =
+      MethodStringName3<RenderingServer, Unit, RID, StringName, Any?>("material_set_param")
+
+  @JvmStatic
+  public val materialGetParamName: MethodStringName2<RenderingServer, Any?, RID, StringName> =
+      MethodStringName2<RenderingServer, Any?, RID, StringName>("material_get_param")
+
+  @JvmStatic
+  public val materialSetRenderPriorityName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("material_set_render_priority")
+
+  @JvmStatic
+  public val materialSetNextPassName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("material_set_next_pass")
+
+  @JvmStatic
+  public val meshCreateFromSurfacesName:
+      MethodStringName2<RenderingServer, RID, VariantArray<Dictionary<Any?, Any?>>, Int> =
+      MethodStringName2<RenderingServer, RID, VariantArray<Dictionary<Any?, Any?>>, Int>("mesh_create_from_surfaces")
+
+  @JvmStatic
+  public val meshCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("mesh_create")
+
+  @JvmStatic
+  public val meshSurfaceGetFormatOffsetName:
+      MethodStringName3<RenderingServer, Long, ArrayFormat, Int, Int> =
+      MethodStringName3<RenderingServer, Long, ArrayFormat, Int, Int>("mesh_surface_get_format_offset")
+
+  @JvmStatic
+  public val meshSurfaceGetFormatVertexStrideName:
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int> =
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int>("mesh_surface_get_format_vertex_stride")
+
+  @JvmStatic
+  public val meshSurfaceGetFormatNormalTangentStrideName:
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int> =
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int>("mesh_surface_get_format_normal_tangent_stride")
+
+  @JvmStatic
+  public val meshSurfaceGetFormatAttributeStrideName:
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int> =
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int>("mesh_surface_get_format_attribute_stride")
+
+  @JvmStatic
+  public val meshSurfaceGetFormatSkinStrideName:
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int> =
+      MethodStringName2<RenderingServer, Long, ArrayFormat, Int>("mesh_surface_get_format_skin_stride")
+
+  @JvmStatic
+  public val meshAddSurfaceName:
+      MethodStringName2<RenderingServer, Unit, RID, Dictionary<Any?, Any?>> =
+      MethodStringName2<RenderingServer, Unit, RID, Dictionary<Any?, Any?>>("mesh_add_surface")
+
+  @JvmStatic
+  public val meshAddSurfaceFromArraysName:
+      MethodStringName6<RenderingServer, Unit, RID, PrimitiveType, VariantArray<Any?>, VariantArray<Any?>, Dictionary<Any?, Any?>, ArrayFormat>
+      =
+      MethodStringName6<RenderingServer, Unit, RID, PrimitiveType, VariantArray<Any?>, VariantArray<Any?>, Dictionary<Any?, Any?>, ArrayFormat>("mesh_add_surface_from_arrays")
+
+  @JvmStatic
+  public val meshGetBlendShapeCountName: MethodStringName1<RenderingServer, Int, RID> =
+      MethodStringName1<RenderingServer, Int, RID>("mesh_get_blend_shape_count")
+
+  @JvmStatic
+  public val meshSetBlendShapeModeName:
+      MethodStringName2<RenderingServer, Unit, RID, BlendShapeMode> =
+      MethodStringName2<RenderingServer, Unit, RID, BlendShapeMode>("mesh_set_blend_shape_mode")
+
+  @JvmStatic
+  public val meshGetBlendShapeModeName: MethodStringName1<RenderingServer, BlendShapeMode, RID> =
+      MethodStringName1<RenderingServer, BlendShapeMode, RID>("mesh_get_blend_shape_mode")
+
+  @JvmStatic
+  public val meshSurfaceSetMaterialName: MethodStringName3<RenderingServer, Unit, RID, Int, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, RID>("mesh_surface_set_material")
+
+  @JvmStatic
+  public val meshSurfaceGetMaterialName: MethodStringName2<RenderingServer, RID, RID, Int> =
+      MethodStringName2<RenderingServer, RID, RID, Int>("mesh_surface_get_material")
+
+  @JvmStatic
+  public val meshGetSurfaceName:
+      MethodStringName2<RenderingServer, Dictionary<Any?, Any?>, RID, Int> =
+      MethodStringName2<RenderingServer, Dictionary<Any?, Any?>, RID, Int>("mesh_get_surface")
+
+  @JvmStatic
+  public val meshSurfaceGetArraysName:
+      MethodStringName2<RenderingServer, VariantArray<Any?>, RID, Int> =
+      MethodStringName2<RenderingServer, VariantArray<Any?>, RID, Int>("mesh_surface_get_arrays")
+
+  @JvmStatic
+  public val meshSurfaceGetBlendShapeArraysName:
+      MethodStringName2<RenderingServer, VariantArray<VariantArray<Any?>>, RID, Int> =
+      MethodStringName2<RenderingServer, VariantArray<VariantArray<Any?>>, RID, Int>("mesh_surface_get_blend_shape_arrays")
+
+  @JvmStatic
+  public val meshGetSurfaceCountName: MethodStringName1<RenderingServer, Int, RID> =
+      MethodStringName1<RenderingServer, Int, RID>("mesh_get_surface_count")
+
+  @JvmStatic
+  public val meshSetCustomAabbName: MethodStringName2<RenderingServer, Unit, RID, AABB> =
+      MethodStringName2<RenderingServer, Unit, RID, AABB>("mesh_set_custom_aabb")
+
+  @JvmStatic
+  public val meshGetCustomAabbName: MethodStringName1<RenderingServer, AABB, RID> =
+      MethodStringName1<RenderingServer, AABB, RID>("mesh_get_custom_aabb")
+
+  @JvmStatic
+  public val meshSurfaceRemoveName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("mesh_surface_remove")
+
+  @JvmStatic
+  public val meshClearName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("mesh_clear")
+
+  @JvmStatic
+  public val meshSurfaceUpdateVertexRegionName:
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, PackedByteArray> =
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, PackedByteArray>("mesh_surface_update_vertex_region")
+
+  @JvmStatic
+  public val meshSurfaceUpdateAttributeRegionName:
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, PackedByteArray> =
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, PackedByteArray>("mesh_surface_update_attribute_region")
+
+  @JvmStatic
+  public val meshSurfaceUpdateSkinRegionName:
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, PackedByteArray> =
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, PackedByteArray>("mesh_surface_update_skin_region")
+
+  @JvmStatic
+  public val meshSetShadowMeshName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("mesh_set_shadow_mesh")
+
+  @JvmStatic
+  public val multimeshCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("multimesh_create")
+
+  @JvmStatic
+  public val multimeshAllocateDataName:
+      MethodStringName6<RenderingServer, Unit, RID, Int, MultimeshTransformFormat, Boolean, Boolean, Boolean>
+      =
+      MethodStringName6<RenderingServer, Unit, RID, Int, MultimeshTransformFormat, Boolean, Boolean, Boolean>("multimesh_allocate_data")
+
+  @JvmStatic
+  public val multimeshGetInstanceCountName: MethodStringName1<RenderingServer, Int, RID> =
+      MethodStringName1<RenderingServer, Int, RID>("multimesh_get_instance_count")
+
+  @JvmStatic
+  public val multimeshSetMeshName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("multimesh_set_mesh")
+
+  @JvmStatic
+  public val multimeshInstanceSetTransformName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform3D> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform3D>("multimesh_instance_set_transform")
+
+  @JvmStatic
+  public val multimeshInstanceSetTransform2dName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform2D> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform2D>("multimesh_instance_set_transform_2d")
+
+  @JvmStatic
+  public val multimeshInstanceSetColorName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Color> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Color>("multimesh_instance_set_color")
+
+  @JvmStatic
+  public val multimeshInstanceSetCustomDataName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Color> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Color>("multimesh_instance_set_custom_data")
+
+  @JvmStatic
+  public val multimeshGetMeshName: MethodStringName1<RenderingServer, RID, RID> =
+      MethodStringName1<RenderingServer, RID, RID>("multimesh_get_mesh")
+
+  @JvmStatic
+  public val multimeshGetAabbName: MethodStringName1<RenderingServer, AABB, RID> =
+      MethodStringName1<RenderingServer, AABB, RID>("multimesh_get_aabb")
+
+  @JvmStatic
+  public val multimeshSetCustomAabbName: MethodStringName2<RenderingServer, Unit, RID, AABB> =
+      MethodStringName2<RenderingServer, Unit, RID, AABB>("multimesh_set_custom_aabb")
+
+  @JvmStatic
+  public val multimeshGetCustomAabbName: MethodStringName1<RenderingServer, AABB, RID> =
+      MethodStringName1<RenderingServer, AABB, RID>("multimesh_get_custom_aabb")
+
+  @JvmStatic
+  public val multimeshInstanceGetTransformName:
+      MethodStringName2<RenderingServer, Transform3D, RID, Int> =
+      MethodStringName2<RenderingServer, Transform3D, RID, Int>("multimesh_instance_get_transform")
+
+  @JvmStatic
+  public val multimeshInstanceGetTransform2dName:
+      MethodStringName2<RenderingServer, Transform2D, RID, Int> =
+      MethodStringName2<RenderingServer, Transform2D, RID, Int>("multimesh_instance_get_transform_2d")
+
+  @JvmStatic
+  public val multimeshInstanceGetColorName: MethodStringName2<RenderingServer, Color, RID, Int> =
+      MethodStringName2<RenderingServer, Color, RID, Int>("multimesh_instance_get_color")
+
+  @JvmStatic
+  public val multimeshInstanceGetCustomDataName: MethodStringName2<RenderingServer, Color, RID, Int>
+      = MethodStringName2<RenderingServer, Color, RID, Int>("multimesh_instance_get_custom_data")
+
+  @JvmStatic
+  public val multimeshSetVisibleInstancesName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("multimesh_set_visible_instances")
+
+  @JvmStatic
+  public val multimeshGetVisibleInstancesName: MethodStringName1<RenderingServer, Int, RID> =
+      MethodStringName1<RenderingServer, Int, RID>("multimesh_get_visible_instances")
+
+  @JvmStatic
+  public val multimeshSetBufferName:
+      MethodStringName2<RenderingServer, Unit, RID, PackedFloat32Array> =
+      MethodStringName2<RenderingServer, Unit, RID, PackedFloat32Array>("multimesh_set_buffer")
+
+  @JvmStatic
+  public val multimeshGetCommandBufferRdRidName: MethodStringName1<RenderingServer, RID, RID> =
+      MethodStringName1<RenderingServer, RID, RID>("multimesh_get_command_buffer_rd_rid")
+
+  @JvmStatic
+  public val multimeshGetBufferRdRidName: MethodStringName1<RenderingServer, RID, RID> =
+      MethodStringName1<RenderingServer, RID, RID>("multimesh_get_buffer_rd_rid")
+
+  @JvmStatic
+  public val multimeshGetBufferName: MethodStringName1<RenderingServer, PackedFloat32Array, RID> =
+      MethodStringName1<RenderingServer, PackedFloat32Array, RID>("multimesh_get_buffer")
+
+  @JvmStatic
+  public val multimeshSetBufferInterpolatedName:
+      MethodStringName3<RenderingServer, Unit, RID, PackedFloat32Array, PackedFloat32Array> =
+      MethodStringName3<RenderingServer, Unit, RID, PackedFloat32Array, PackedFloat32Array>("multimesh_set_buffer_interpolated")
+
+  @JvmStatic
+  public val multimeshSetPhysicsInterpolatedName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("multimesh_set_physics_interpolated")
+
+  @JvmStatic
+  public val multimeshSetPhysicsInterpolationQualityName:
+      MethodStringName2<RenderingServer, Unit, RID, MultimeshPhysicsInterpolationQuality> =
+      MethodStringName2<RenderingServer, Unit, RID, MultimeshPhysicsInterpolationQuality>("multimesh_set_physics_interpolation_quality")
+
+  @JvmStatic
+  public val multimeshInstanceResetPhysicsInterpolationName:
+      MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("multimesh_instance_reset_physics_interpolation")
+
+  @JvmStatic
+  public val skeletonCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("skeleton_create")
+
+  @JvmStatic
+  public val skeletonAllocateDataName: MethodStringName3<RenderingServer, Unit, RID, Int, Boolean> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Boolean>("skeleton_allocate_data")
+
+  @JvmStatic
+  public val skeletonGetBoneCountName: MethodStringName1<RenderingServer, Int, RID> =
+      MethodStringName1<RenderingServer, Int, RID>("skeleton_get_bone_count")
+
+  @JvmStatic
+  public val skeletonBoneSetTransformName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform3D> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform3D>("skeleton_bone_set_transform")
+
+  @JvmStatic
+  public val skeletonBoneGetTransformName: MethodStringName2<RenderingServer, Transform3D, RID, Int>
+      = MethodStringName2<RenderingServer, Transform3D, RID, Int>("skeleton_bone_get_transform")
+
+  @JvmStatic
+  public val skeletonBoneSetTransform2dName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform2D> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Transform2D>("skeleton_bone_set_transform_2d")
+
+  @JvmStatic
+  public val skeletonBoneGetTransform2dName:
+      MethodStringName2<RenderingServer, Transform2D, RID, Int> =
+      MethodStringName2<RenderingServer, Transform2D, RID, Int>("skeleton_bone_get_transform_2d")
+
+  @JvmStatic
+  public val skeletonSetBaseTransform2dName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("skeleton_set_base_transform_2d")
+
+  @JvmStatic
+  public val directionalLightCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("directional_light_create")
+
+  @JvmStatic
+  public val omniLightCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("omni_light_create")
+
+  @JvmStatic
+  public val spotLightCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("spot_light_create")
+
+  @JvmStatic
+  public val lightSetColorName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("light_set_color")
+
+  @JvmStatic
+  public val lightSetParamName: MethodStringName3<RenderingServer, Unit, RID, LightParam, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, LightParam, Float>("light_set_param")
+
+  @JvmStatic
+  public val lightSetShadowName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("light_set_shadow")
+
+  @JvmStatic
+  public val lightSetProjectorName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("light_set_projector")
+
+  @JvmStatic
+  public val lightSetNegativeName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("light_set_negative")
+
+  @JvmStatic
+  public val lightSetCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("light_set_cull_mask")
+
+  @JvmStatic
+  public val lightSetDistanceFadeName:
+      MethodStringName5<RenderingServer, Unit, RID, Boolean, Float, Float, Float> =
+      MethodStringName5<RenderingServer, Unit, RID, Boolean, Float, Float, Float>("light_set_distance_fade")
+
+  @JvmStatic
+  public val lightSetReverseCullFaceModeName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("light_set_reverse_cull_face_mode")
+
+  @JvmStatic
+  public val lightSetShadowCasterMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("light_set_shadow_caster_mask")
+
+  @JvmStatic
+  public val lightSetBakeModeName: MethodStringName2<RenderingServer, Unit, RID, LightBakeMode> =
+      MethodStringName2<RenderingServer, Unit, RID, LightBakeMode>("light_set_bake_mode")
+
+  @JvmStatic
+  public val lightSetMaxSdfgiCascadeName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("light_set_max_sdfgi_cascade")
+
+  @JvmStatic
+  public val lightOmniSetShadowModeName:
+      MethodStringName2<RenderingServer, Unit, RID, LightOmniShadowMode> =
+      MethodStringName2<RenderingServer, Unit, RID, LightOmniShadowMode>("light_omni_set_shadow_mode")
+
+  @JvmStatic
+  public val lightDirectionalSetShadowModeName:
+      MethodStringName2<RenderingServer, Unit, RID, LightDirectionalShadowMode> =
+      MethodStringName2<RenderingServer, Unit, RID, LightDirectionalShadowMode>("light_directional_set_shadow_mode")
+
+  @JvmStatic
+  public val lightDirectionalSetBlendSplitsName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("light_directional_set_blend_splits")
+
+  @JvmStatic
+  public val lightDirectionalSetSkyModeName:
+      MethodStringName2<RenderingServer, Unit, RID, LightDirectionalSkyMode> =
+      MethodStringName2<RenderingServer, Unit, RID, LightDirectionalSkyMode>("light_directional_set_sky_mode")
+
+  @JvmStatic
+  public val lightProjectorsSetFilterName:
+      MethodStringName1<RenderingServer, Unit, LightProjectorFilter> =
+      MethodStringName1<RenderingServer, Unit, LightProjectorFilter>("light_projectors_set_filter")
+
+  @JvmStatic
+  public val lightmapsSetBicubicFilterName: MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("lightmaps_set_bicubic_filter")
+
+  @JvmStatic
+  public val positionalSoftShadowFilterSetQualityName:
+      MethodStringName1<RenderingServer, Unit, ShadowQuality> =
+      MethodStringName1<RenderingServer, Unit, ShadowQuality>("positional_soft_shadow_filter_set_quality")
+
+  @JvmStatic
+  public val directionalSoftShadowFilterSetQualityName:
+      MethodStringName1<RenderingServer, Unit, ShadowQuality> =
+      MethodStringName1<RenderingServer, Unit, ShadowQuality>("directional_soft_shadow_filter_set_quality")
+
+  @JvmStatic
+  public val directionalShadowAtlasSetSizeName:
+      MethodStringName2<RenderingServer, Unit, Int, Boolean> =
+      MethodStringName2<RenderingServer, Unit, Int, Boolean>("directional_shadow_atlas_set_size")
+
+  @JvmStatic
+  public val reflectionProbeCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("reflection_probe_create")
+
+  @JvmStatic
+  public val reflectionProbeSetUpdateModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ReflectionProbeUpdateMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ReflectionProbeUpdateMode>("reflection_probe_set_update_mode")
+
+  @JvmStatic
+  public val reflectionProbeSetIntensityName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("reflection_probe_set_intensity")
+
+  @JvmStatic
+  public val reflectionProbeSetBlendDistanceName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("reflection_probe_set_blend_distance")
+
+  @JvmStatic
+  public val reflectionProbeSetAmbientModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ReflectionProbeAmbientMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ReflectionProbeAmbientMode>("reflection_probe_set_ambient_mode")
+
+  @JvmStatic
+  public val reflectionProbeSetAmbientColorName:
+      MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("reflection_probe_set_ambient_color")
+
+  @JvmStatic
+  public val reflectionProbeSetAmbientEnergyName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("reflection_probe_set_ambient_energy")
+
+  @JvmStatic
+  public val reflectionProbeSetMaxDistanceName: MethodStringName2<RenderingServer, Unit, RID, Float>
+      = MethodStringName2<RenderingServer, Unit, RID, Float>("reflection_probe_set_max_distance")
+
+  @JvmStatic
+  public val reflectionProbeSetSizeName: MethodStringName2<RenderingServer, Unit, RID, Vector3> =
+      MethodStringName2<RenderingServer, Unit, RID, Vector3>("reflection_probe_set_size")
+
+  @JvmStatic
+  public val reflectionProbeSetOriginOffsetName:
+      MethodStringName2<RenderingServer, Unit, RID, Vector3> =
+      MethodStringName2<RenderingServer, Unit, RID, Vector3>("reflection_probe_set_origin_offset")
+
+  @JvmStatic
+  public val reflectionProbeSetAsInteriorName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("reflection_probe_set_as_interior")
+
+  @JvmStatic
+  public val reflectionProbeSetEnableBoxProjectionName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("reflection_probe_set_enable_box_projection")
+
+  @JvmStatic
+  public val reflectionProbeSetEnableShadowsName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("reflection_probe_set_enable_shadows")
+
+  @JvmStatic
+  public val reflectionProbeSetCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("reflection_probe_set_cull_mask")
+
+  @JvmStatic
+  public val reflectionProbeSetReflectionMaskName:
+      MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("reflection_probe_set_reflection_mask")
+
+  @JvmStatic
+  public val reflectionProbeSetResolutionName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("reflection_probe_set_resolution")
+
+  @JvmStatic
+  public val reflectionProbeSetMeshLodThresholdName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("reflection_probe_set_mesh_lod_threshold")
+
+  @JvmStatic
+  public val decalCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("decal_create")
+
+  @JvmStatic
+  public val decalSetSizeName: MethodStringName2<RenderingServer, Unit, RID, Vector3> =
+      MethodStringName2<RenderingServer, Unit, RID, Vector3>("decal_set_size")
+
+  @JvmStatic
+  public val decalSetTextureName: MethodStringName3<RenderingServer, Unit, RID, DecalTexture, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, DecalTexture, RID>("decal_set_texture")
+
+  @JvmStatic
+  public val decalSetEmissionEnergyName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("decal_set_emission_energy")
+
+  @JvmStatic
+  public val decalSetAlbedoMixName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("decal_set_albedo_mix")
+
+  @JvmStatic
+  public val decalSetModulateName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("decal_set_modulate")
+
+  @JvmStatic
+  public val decalSetCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("decal_set_cull_mask")
+
+  @JvmStatic
+  public val decalSetDistanceFadeName:
+      MethodStringName4<RenderingServer, Unit, RID, Boolean, Float, Float> =
+      MethodStringName4<RenderingServer, Unit, RID, Boolean, Float, Float>("decal_set_distance_fade")
+
+  @JvmStatic
+  public val decalSetFadeName: MethodStringName3<RenderingServer, Unit, RID, Float, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, Float, Float>("decal_set_fade")
+
+  @JvmStatic
+  public val decalSetNormalFadeName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("decal_set_normal_fade")
+
+  @JvmStatic
+  public val decalsSetFilterName: MethodStringName1<RenderingServer, Unit, DecalFilter> =
+      MethodStringName1<RenderingServer, Unit, DecalFilter>("decals_set_filter")
+
+  @JvmStatic
+  public val giSetUseHalfResolutionName: MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("gi_set_use_half_resolution")
+
+  @JvmStatic
+  public val voxelGiCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("voxel_gi_create")
+
+  @JvmStatic
+  public val voxelGiAllocateDataName:
+      MethodStringName8<RenderingServer, Unit, RID, Transform3D, AABB, Vector3i, PackedByteArray, PackedByteArray, PackedByteArray, PackedInt32Array>
+      =
+      MethodStringName8<RenderingServer, Unit, RID, Transform3D, AABB, Vector3i, PackedByteArray, PackedByteArray, PackedByteArray, PackedInt32Array>("voxel_gi_allocate_data")
+
+  @JvmStatic
+  public val voxelGiGetOctreeSizeName: MethodStringName1<RenderingServer, Vector3i, RID> =
+      MethodStringName1<RenderingServer, Vector3i, RID>("voxel_gi_get_octree_size")
+
+  @JvmStatic
+  public val voxelGiGetOctreeCellsName: MethodStringName1<RenderingServer, PackedByteArray, RID> =
+      MethodStringName1<RenderingServer, PackedByteArray, RID>("voxel_gi_get_octree_cells")
+
+  @JvmStatic
+  public val voxelGiGetDataCellsName: MethodStringName1<RenderingServer, PackedByteArray, RID> =
+      MethodStringName1<RenderingServer, PackedByteArray, RID>("voxel_gi_get_data_cells")
+
+  @JvmStatic
+  public val voxelGiGetDistanceFieldName: MethodStringName1<RenderingServer, PackedByteArray, RID> =
+      MethodStringName1<RenderingServer, PackedByteArray, RID>("voxel_gi_get_distance_field")
+
+  @JvmStatic
+  public val voxelGiGetLevelCountsName: MethodStringName1<RenderingServer, PackedInt32Array, RID> =
+      MethodStringName1<RenderingServer, PackedInt32Array, RID>("voxel_gi_get_level_counts")
+
+  @JvmStatic
+  public val voxelGiGetToCellXformName: MethodStringName1<RenderingServer, Transform3D, RID> =
+      MethodStringName1<RenderingServer, Transform3D, RID>("voxel_gi_get_to_cell_xform")
+
+  @JvmStatic
+  public val voxelGiSetDynamicRangeName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("voxel_gi_set_dynamic_range")
+
+  @JvmStatic
+  public val voxelGiSetPropagationName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("voxel_gi_set_propagation")
+
+  @JvmStatic
+  public val voxelGiSetEnergyName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("voxel_gi_set_energy")
+
+  @JvmStatic
+  public val voxelGiSetBakedExposureNormalizationName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("voxel_gi_set_baked_exposure_normalization")
+
+  @JvmStatic
+  public val voxelGiSetBiasName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("voxel_gi_set_bias")
+
+  @JvmStatic
+  public val voxelGiSetNormalBiasName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("voxel_gi_set_normal_bias")
+
+  @JvmStatic
+  public val voxelGiSetInteriorName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("voxel_gi_set_interior")
+
+  @JvmStatic
+  public val voxelGiSetUseTwoBouncesName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("voxel_gi_set_use_two_bounces")
+
+  @JvmStatic
+  public val voxelGiSetQualityName: MethodStringName1<RenderingServer, Unit, VoxelGIQuality> =
+      MethodStringName1<RenderingServer, Unit, VoxelGIQuality>("voxel_gi_set_quality")
+
+  @JvmStatic
+  public val lightmapCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("lightmap_create")
+
+  @JvmStatic
+  public val lightmapSetTexturesName: MethodStringName3<RenderingServer, Unit, RID, RID, Boolean> =
+      MethodStringName3<RenderingServer, Unit, RID, RID, Boolean>("lightmap_set_textures")
+
+  @JvmStatic
+  public val lightmapSetProbeBoundsName: MethodStringName2<RenderingServer, Unit, RID, AABB> =
+      MethodStringName2<RenderingServer, Unit, RID, AABB>("lightmap_set_probe_bounds")
+
+  @JvmStatic
+  public val lightmapSetProbeInteriorName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("lightmap_set_probe_interior")
+
+  @JvmStatic
+  public val lightmapSetProbeCaptureDataName:
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector3Array, PackedColorArray, PackedInt32Array, PackedInt32Array>
+      =
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector3Array, PackedColorArray, PackedInt32Array, PackedInt32Array>("lightmap_set_probe_capture_data")
+
+  @JvmStatic
+  public val lightmapGetProbeCapturePointsName:
+      MethodStringName1<RenderingServer, PackedVector3Array, RID> =
+      MethodStringName1<RenderingServer, PackedVector3Array, RID>("lightmap_get_probe_capture_points")
+
+  @JvmStatic
+  public val lightmapGetProbeCaptureShName:
+      MethodStringName1<RenderingServer, PackedColorArray, RID> =
+      MethodStringName1<RenderingServer, PackedColorArray, RID>("lightmap_get_probe_capture_sh")
+
+  @JvmStatic
+  public val lightmapGetProbeCaptureTetrahedraName:
+      MethodStringName1<RenderingServer, PackedInt32Array, RID> =
+      MethodStringName1<RenderingServer, PackedInt32Array, RID>("lightmap_get_probe_capture_tetrahedra")
+
+  @JvmStatic
+  public val lightmapGetProbeCaptureBspTreeName:
+      MethodStringName1<RenderingServer, PackedInt32Array, RID> =
+      MethodStringName1<RenderingServer, PackedInt32Array, RID>("lightmap_get_probe_capture_bsp_tree")
+
+  @JvmStatic
+  public val lightmapSetBakedExposureNormalizationName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("lightmap_set_baked_exposure_normalization")
+
+  @JvmStatic
+  public val lightmapSetProbeCaptureUpdateSpeedName: MethodStringName1<RenderingServer, Unit, Float>
+      = MethodStringName1<RenderingServer, Unit, Float>("lightmap_set_probe_capture_update_speed")
+
+  @JvmStatic
+  public val particlesCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("particles_create")
+
+  @JvmStatic
+  public val particlesSetModeName: MethodStringName2<RenderingServer, Unit, RID, ParticlesMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesMode>("particles_set_mode")
+
+  @JvmStatic
+  public val particlesSetEmittingName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("particles_set_emitting")
+
+  @JvmStatic
+  public val particlesGetEmittingName: MethodStringName1<RenderingServer, Boolean, RID> =
+      MethodStringName1<RenderingServer, Boolean, RID>("particles_get_emitting")
+
+  @JvmStatic
+  public val particlesSetAmountName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("particles_set_amount")
+
+  @JvmStatic
+  public val particlesSetAmountRatioName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_set_amount_ratio")
+
+  @JvmStatic
+  public val particlesSetLifetimeName: MethodStringName2<RenderingServer, Unit, RID, Double> =
+      MethodStringName2<RenderingServer, Unit, RID, Double>("particles_set_lifetime")
+
+  @JvmStatic
+  public val particlesSetOneShotName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("particles_set_one_shot")
+
+  @JvmStatic
+  public val particlesSetPreProcessTimeName: MethodStringName2<RenderingServer, Unit, RID, Double> =
+      MethodStringName2<RenderingServer, Unit, RID, Double>("particles_set_pre_process_time")
+
+  @JvmStatic
+  public val particlesRequestProcessTimeName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_request_process_time")
+
+  @JvmStatic
+  public val particlesSetExplosivenessRatioName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_set_explosiveness_ratio")
+
+  @JvmStatic
+  public val particlesSetRandomnessRatioName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_set_randomness_ratio")
+
+  @JvmStatic
+  public val particlesSetInterpToEndName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_set_interp_to_end")
+
+  @JvmStatic
+  public val particlesSetEmitterVelocityName: MethodStringName2<RenderingServer, Unit, RID, Vector3>
+      = MethodStringName2<RenderingServer, Unit, RID, Vector3>("particles_set_emitter_velocity")
+
+  @JvmStatic
+  public val particlesSetCustomAabbName: MethodStringName2<RenderingServer, Unit, RID, AABB> =
+      MethodStringName2<RenderingServer, Unit, RID, AABB>("particles_set_custom_aabb")
+
+  @JvmStatic
+  public val particlesSetSpeedScaleName: MethodStringName2<RenderingServer, Unit, RID, Double> =
+      MethodStringName2<RenderingServer, Unit, RID, Double>("particles_set_speed_scale")
+
+  @JvmStatic
+  public val particlesSetUseLocalCoordinatesName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("particles_set_use_local_coordinates")
+
+  @JvmStatic
+  public val particlesSetProcessMaterialName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("particles_set_process_material")
+
+  @JvmStatic
+  public val particlesSetFixedFpsName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("particles_set_fixed_fps")
+
+  @JvmStatic
+  public val particlesSetInterpolateName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("particles_set_interpolate")
+
+  @JvmStatic
+  public val particlesSetFractionalDeltaName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("particles_set_fractional_delta")
+
+  @JvmStatic
+  public val particlesSetCollisionBaseSizeName: MethodStringName2<RenderingServer, Unit, RID, Float>
+      = MethodStringName2<RenderingServer, Unit, RID, Float>("particles_set_collision_base_size")
+
+  @JvmStatic
+  public val particlesSetTransformAlignName:
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlign> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlign>("particles_set_transform_align")
+
+  @JvmStatic
+  public val particlesSetTrailsName: MethodStringName3<RenderingServer, Unit, RID, Boolean, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, Boolean, Float>("particles_set_trails")
+
+  @JvmStatic
+  public val particlesSetTrailBindPosesName:
+      MethodStringName2<RenderingServer, Unit, RID, VariantArray<Transform3D>> =
+      MethodStringName2<RenderingServer, Unit, RID, VariantArray<Transform3D>>("particles_set_trail_bind_poses")
+
+  @JvmStatic
+  public val particlesIsInactiveName: MethodStringName1<RenderingServer, Boolean, RID> =
+      MethodStringName1<RenderingServer, Boolean, RID>("particles_is_inactive")
+
+  @JvmStatic
+  public val particlesRequestProcessName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("particles_request_process")
+
+  @JvmStatic
+  public val particlesRestartName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("particles_restart")
+
+  @JvmStatic
+  public val particlesSetSubemitterName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("particles_set_subemitter")
+
+  @JvmStatic
+  public val particlesEmitName:
+      MethodStringName6<RenderingServer, Unit, RID, Transform3D, Vector3, Color, Color, Long> =
+      MethodStringName6<RenderingServer, Unit, RID, Transform3D, Vector3, Color, Color, Long>("particles_emit")
+
+  @JvmStatic
+  public val particlesSetDrawOrderName:
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesDrawOrder> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesDrawOrder>("particles_set_draw_order")
+
+  @JvmStatic
+  public val particlesSetDrawPassesName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("particles_set_draw_passes")
+
+  @JvmStatic
+  public val particlesSetDrawPassMeshName: MethodStringName3<RenderingServer, Unit, RID, Int, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, RID>("particles_set_draw_pass_mesh")
+
+  @JvmStatic
+  public val particlesGetCurrentAabbName: MethodStringName1<RenderingServer, AABB, RID> =
+      MethodStringName1<RenderingServer, AABB, RID>("particles_get_current_aabb")
+
+  @JvmStatic
+  public val particlesSetEmissionTransformName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform3D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform3D>("particles_set_emission_transform")
+
+  @JvmStatic
+  public val particlesCollisionCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("particles_collision_create")
+
+  @JvmStatic
+  public val particlesCollisionSetCollisionTypeName:
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesCollisionType> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesCollisionType>("particles_collision_set_collision_type")
+
+  @JvmStatic
+  public val particlesCollisionSetCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Long>
+      = MethodStringName2<RenderingServer, Unit, RID, Long>("particles_collision_set_cull_mask")
+
+  @JvmStatic
+  public val particlesCollisionSetSphereRadiusName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_collision_set_sphere_radius")
+
+  @JvmStatic
+  public val particlesCollisionSetBoxExtentsName:
+      MethodStringName2<RenderingServer, Unit, RID, Vector3> =
+      MethodStringName2<RenderingServer, Unit, RID, Vector3>("particles_collision_set_box_extents")
+
+  @JvmStatic
+  public val particlesCollisionSetAttractorStrengthName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_collision_set_attractor_strength")
+
+  @JvmStatic
+  public val particlesCollisionSetAttractorDirectionalityName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_collision_set_attractor_directionality")
+
+  @JvmStatic
+  public val particlesCollisionSetAttractorAttenuationName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_collision_set_attractor_attenuation")
+
+  @JvmStatic
+  public val particlesCollisionSetFieldTextureName:
+      MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("particles_collision_set_field_texture")
+
+  @JvmStatic
+  public val particlesCollisionHeightFieldUpdateName: MethodStringName1<RenderingServer, Unit, RID>
+      = MethodStringName1<RenderingServer, Unit, RID>("particles_collision_height_field_update")
+
+  @JvmStatic
+  public val particlesCollisionSetHeightFieldResolutionName:
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesCollisionHeightfieldResolution> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesCollisionHeightfieldResolution>("particles_collision_set_height_field_resolution")
+
+  @JvmStatic
+  public val particlesCollisionSetHeightFieldMaskName:
+      MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("particles_collision_set_height_field_mask")
+
+  @JvmStatic
+  public val fogVolumeCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("fog_volume_create")
+
+  @JvmStatic
+  public val fogVolumeSetShapeName: MethodStringName2<RenderingServer, Unit, RID, FogVolumeShape> =
+      MethodStringName2<RenderingServer, Unit, RID, FogVolumeShape>("fog_volume_set_shape")
+
+  @JvmStatic
+  public val fogVolumeSetSizeName: MethodStringName2<RenderingServer, Unit, RID, Vector3> =
+      MethodStringName2<RenderingServer, Unit, RID, Vector3>("fog_volume_set_size")
+
+  @JvmStatic
+  public val fogVolumeSetMaterialName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("fog_volume_set_material")
+
+  @JvmStatic
+  public val visibilityNotifierCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("visibility_notifier_create")
+
+  @JvmStatic
+  public val visibilityNotifierSetAabbName: MethodStringName2<RenderingServer, Unit, RID, AABB> =
+      MethodStringName2<RenderingServer, Unit, RID, AABB>("visibility_notifier_set_aabb")
+
+  @JvmStatic
+  public val visibilityNotifierSetCallbacksName:
+      MethodStringName3<RenderingServer, Unit, RID, Callable, Callable> =
+      MethodStringName3<RenderingServer, Unit, RID, Callable, Callable>("visibility_notifier_set_callbacks")
+
+  @JvmStatic
+  public val occluderCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("occluder_create")
+
+  @JvmStatic
+  public val occluderSetMeshName:
+      MethodStringName3<RenderingServer, Unit, RID, PackedVector3Array, PackedInt32Array> =
+      MethodStringName3<RenderingServer, Unit, RID, PackedVector3Array, PackedInt32Array>("occluder_set_mesh")
+
+  @JvmStatic
+  public val cameraCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("camera_create")
+
+  @JvmStatic
+  public val cameraSetPerspectiveName:
+      MethodStringName4<RenderingServer, Unit, RID, Float, Float, Float> =
+      MethodStringName4<RenderingServer, Unit, RID, Float, Float, Float>("camera_set_perspective")
+
+  @JvmStatic
+  public val cameraSetOrthogonalName:
+      MethodStringName4<RenderingServer, Unit, RID, Float, Float, Float> =
+      MethodStringName4<RenderingServer, Unit, RID, Float, Float, Float>("camera_set_orthogonal")
+
+  @JvmStatic
+  public val cameraSetFrustumName:
+      MethodStringName5<RenderingServer, Unit, RID, Float, Vector2, Float, Float> =
+      MethodStringName5<RenderingServer, Unit, RID, Float, Vector2, Float, Float>("camera_set_frustum")
+
+  @JvmStatic
+  public val cameraSetTransformName: MethodStringName2<RenderingServer, Unit, RID, Transform3D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform3D>("camera_set_transform")
+
+  @JvmStatic
+  public val cameraSetCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("camera_set_cull_mask")
+
+  @JvmStatic
+  public val cameraSetEnvironmentName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("camera_set_environment")
+
+  @JvmStatic
+  public val cameraSetCameraAttributesName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("camera_set_camera_attributes")
+
+  @JvmStatic
+  public val cameraSetCompositorName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("camera_set_compositor")
+
+  @JvmStatic
+  public val cameraSetUseVerticalAspectName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("camera_set_use_vertical_aspect")
+
+  @JvmStatic
+  public val viewportCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("viewport_create")
+
+  @JvmStatic
+  public val viewportSetUseXrName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_use_xr")
+
+  @JvmStatic
+  public val viewportSetSizeName: MethodStringName3<RenderingServer, Unit, RID, Int, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Int>("viewport_set_size")
+
+  @JvmStatic
+  public val viewportSetActiveName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_active")
+
+  @JvmStatic
+  public val viewportSetParentViewportName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("viewport_set_parent_viewport")
+
+  @JvmStatic
+  public val viewportAttachToScreenName: MethodStringName3<RenderingServer, Unit, RID, Rect2, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Rect2, Int>("viewport_attach_to_screen")
+
+  @JvmStatic
+  public val viewportSetRenderDirectToScreenName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_render_direct_to_screen")
+
+  @JvmStatic
+  public val viewportSetCanvasCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("viewport_set_canvas_cull_mask")
+
+  @JvmStatic
+  public val viewportSetScaling3dModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportScaling3DMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportScaling3DMode>("viewport_set_scaling_3d_mode")
+
+  @JvmStatic
+  public val viewportSetScaling3dScaleName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("viewport_set_scaling_3d_scale")
+
+  @JvmStatic
+  public val viewportSetFsrSharpnessName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("viewport_set_fsr_sharpness")
+
+  @JvmStatic
+  public val viewportSetTextureMipmapBiasName: MethodStringName2<RenderingServer, Unit, RID, Float>
+      = MethodStringName2<RenderingServer, Unit, RID, Float>("viewport_set_texture_mipmap_bias")
+
+  @JvmStatic
+  public val viewportSetAnisotropicFilteringLevelName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportAnisotropicFiltering> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportAnisotropicFiltering>("viewport_set_anisotropic_filtering_level")
+
+  @JvmStatic
+  public val viewportSetUpdateModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportUpdateMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportUpdateMode>("viewport_set_update_mode")
+
+  @JvmStatic
+  public val viewportGetUpdateModeName: MethodStringName1<RenderingServer, ViewportUpdateMode, RID>
+      = MethodStringName1<RenderingServer, ViewportUpdateMode, RID>("viewport_get_update_mode")
+
+  @JvmStatic
+  public val viewportSetClearModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportClearMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportClearMode>("viewport_set_clear_mode")
+
+  @JvmStatic
+  public val viewportGetRenderTargetName: MethodStringName1<RenderingServer, RID, RID> =
+      MethodStringName1<RenderingServer, RID, RID>("viewport_get_render_target")
+
+  @JvmStatic
+  public val viewportGetTextureName: MethodStringName1<RenderingServer, RID, RID> =
+      MethodStringName1<RenderingServer, RID, RID>("viewport_get_texture")
+
+  @JvmStatic
+  public val viewportSetDisable3dName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_disable_3d")
+
+  @JvmStatic
+  public val viewportSetDisable2dName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_disable_2d")
+
+  @JvmStatic
+  public val viewportSetEnvironmentModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportEnvironmentMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportEnvironmentMode>("viewport_set_environment_mode")
+
+  @JvmStatic
+  public val viewportAttachCameraName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("viewport_attach_camera")
+
+  @JvmStatic
+  public val viewportSetScenarioName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("viewport_set_scenario")
+
+  @JvmStatic
+  public val viewportAttachCanvasName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("viewport_attach_canvas")
+
+  @JvmStatic
+  public val viewportRemoveCanvasName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("viewport_remove_canvas")
+
+  @JvmStatic
+  public val viewportSetSnap2dTransformsToPixelName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_snap_2d_transforms_to_pixel")
+
+  @JvmStatic
+  public val viewportSetSnap2dVerticesToPixelName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_snap_2d_vertices_to_pixel")
+
+  @JvmStatic
+  public val viewportSetDefaultCanvasItemTextureFilterName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureFilter> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureFilter>("viewport_set_default_canvas_item_texture_filter")
+
+  @JvmStatic
+  public val viewportSetDefaultCanvasItemTextureRepeatName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureRepeat> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureRepeat>("viewport_set_default_canvas_item_texture_repeat")
+
+  @JvmStatic
+  public val viewportSetCanvasTransformName:
+      MethodStringName3<RenderingServer, Unit, RID, RID, Transform2D> =
+      MethodStringName3<RenderingServer, Unit, RID, RID, Transform2D>("viewport_set_canvas_transform")
+
+  @JvmStatic
+  public val viewportSetCanvasStackingName:
+      MethodStringName4<RenderingServer, Unit, RID, RID, Int, Int> =
+      MethodStringName4<RenderingServer, Unit, RID, RID, Int, Int>("viewport_set_canvas_stacking")
+
+  @JvmStatic
+  public val viewportSetTransparentBackgroundName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_transparent_background")
+
+  @JvmStatic
+  public val viewportSetGlobalCanvasTransformName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("viewport_set_global_canvas_transform")
+
+  @JvmStatic
+  public val viewportSetSdfOversizeAndScaleName:
+      MethodStringName3<RenderingServer, Unit, RID, ViewportSDFOversize, ViewportSDFScale> =
+      MethodStringName3<RenderingServer, Unit, RID, ViewportSDFOversize, ViewportSDFScale>("viewport_set_sdf_oversize_and_scale")
+
+  @JvmStatic
+  public val viewportSetPositionalShadowAtlasSizeName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Boolean> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Boolean>("viewport_set_positional_shadow_atlas_size")
+
+  @JvmStatic
+  public val viewportSetPositionalShadowAtlasQuadrantSubdivisionName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Int>("viewport_set_positional_shadow_atlas_quadrant_subdivision")
+
+  @JvmStatic
+  public val viewportSetMsaa3dName: MethodStringName2<RenderingServer, Unit, RID, ViewportMSAA> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportMSAA>("viewport_set_msaa_3d")
+
+  @JvmStatic
+  public val viewportSetMsaa2dName: MethodStringName2<RenderingServer, Unit, RID, ViewportMSAA> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportMSAA>("viewport_set_msaa_2d")
+
+  @JvmStatic
+  public val viewportSetUseHdr2dName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_use_hdr_2d")
+
+  @JvmStatic
+  public val viewportSetScreenSpaceAaName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportScreenSpaceAA> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportScreenSpaceAA>("viewport_set_screen_space_aa")
+
+  @JvmStatic
+  public val viewportSetUseTaaName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_use_taa")
+
+  @JvmStatic
+  public val viewportSetUseDebandingName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_use_debanding")
+
+  @JvmStatic
+  public val viewportSetUseOcclusionCullingName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_use_occlusion_culling")
+
+  @JvmStatic
+  public val viewportSetOcclusionRaysPerThreadName: MethodStringName1<RenderingServer, Unit, Int> =
+      MethodStringName1<RenderingServer, Unit, Int>("viewport_set_occlusion_rays_per_thread")
+
+  @JvmStatic
+  public val viewportSetOcclusionCullingBuildQualityName:
+      MethodStringName1<RenderingServer, Unit, ViewportOcclusionCullingBuildQuality> =
+      MethodStringName1<RenderingServer, Unit, ViewportOcclusionCullingBuildQuality>("viewport_set_occlusion_culling_build_quality")
+
+  @JvmStatic
+  public val viewportGetRenderInfoName:
+      MethodStringName3<RenderingServer, Int, RID, ViewportRenderInfoType, ViewportRenderInfo> =
+      MethodStringName3<RenderingServer, Int, RID, ViewportRenderInfoType, ViewportRenderInfo>("viewport_get_render_info")
+
+  @JvmStatic
+  public val viewportSetDebugDrawName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportDebugDraw> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportDebugDraw>("viewport_set_debug_draw")
+
+  @JvmStatic
+  public val viewportSetMeasureRenderTimeName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_measure_render_time")
+
+  @JvmStatic
+  public val viewportGetMeasuredRenderTimeCpuName: MethodStringName1<RenderingServer, Double, RID> =
+      MethodStringName1<RenderingServer, Double, RID>("viewport_get_measured_render_time_cpu")
+
+  @JvmStatic
+  public val viewportGetMeasuredRenderTimeGpuName: MethodStringName1<RenderingServer, Double, RID> =
+      MethodStringName1<RenderingServer, Double, RID>("viewport_get_measured_render_time_gpu")
+
+  @JvmStatic
+  public val viewportSetVrsModeName: MethodStringName2<RenderingServer, Unit, RID, ViewportVRSMode>
+      = MethodStringName2<RenderingServer, Unit, RID, ViewportVRSMode>("viewport_set_vrs_mode")
+
+  @JvmStatic
+  public val viewportSetVrsUpdateModeName:
+      MethodStringName2<RenderingServer, Unit, RID, ViewportVRSUpdateMode> =
+      MethodStringName2<RenderingServer, Unit, RID, ViewportVRSUpdateMode>("viewport_set_vrs_update_mode")
+
+  @JvmStatic
+  public val viewportSetVrsTextureName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("viewport_set_vrs_texture")
+
+  @JvmStatic
+  public val skyCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("sky_create")
+
+  @JvmStatic
+  public val skySetRadianceSizeName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("sky_set_radiance_size")
+
+  @JvmStatic
+  public val skySetModeName: MethodStringName2<RenderingServer, Unit, RID, SkyMode> =
+      MethodStringName2<RenderingServer, Unit, RID, SkyMode>("sky_set_mode")
+
+  @JvmStatic
+  public val skySetMaterialName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("sky_set_material")
+
+  @JvmStatic
+  public val skyBakePanoramaName:
+      MethodStringName4<RenderingServer, Image?, RID, Float, Boolean, Vector2i> =
+      MethodStringName4<RenderingServer, Image?, RID, Float, Boolean, Vector2i>("sky_bake_panorama")
+
+  @JvmStatic
+  public val compositorEffectCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("compositor_effect_create")
+
+  @JvmStatic
+  public val compositorEffectSetEnabledName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("compositor_effect_set_enabled")
+
+  @JvmStatic
+  public val compositorEffectSetCallbackName:
+      MethodStringName3<RenderingServer, Unit, RID, CompositorEffectCallbackType, Callable> =
+      MethodStringName3<RenderingServer, Unit, RID, CompositorEffectCallbackType, Callable>("compositor_effect_set_callback")
+
+  @JvmStatic
+  public val compositorEffectSetFlagName:
+      MethodStringName3<RenderingServer, Unit, RID, CompositorEffectFlags, Boolean> =
+      MethodStringName3<RenderingServer, Unit, RID, CompositorEffectFlags, Boolean>("compositor_effect_set_flag")
+
+  @JvmStatic
+  public val compositorCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("compositor_create")
+
+  @JvmStatic
+  public val compositorSetCompositorEffectsName:
+      MethodStringName2<RenderingServer, Unit, RID, VariantArray<RID>> =
+      MethodStringName2<RenderingServer, Unit, RID, VariantArray<RID>>("compositor_set_compositor_effects")
+
+  @JvmStatic
+  public val environmentCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("environment_create")
+
+  @JvmStatic
+  public val environmentSetBackgroundName:
+      MethodStringName2<RenderingServer, Unit, RID, EnvironmentBG> =
+      MethodStringName2<RenderingServer, Unit, RID, EnvironmentBG>("environment_set_background")
+
+  @JvmStatic
+  public val environmentSetCameraIdName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("environment_set_camera_id")
+
+  @JvmStatic
+  public val environmentSetSkyName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("environment_set_sky")
+
+  @JvmStatic
+  public val environmentSetSkyCustomFovName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("environment_set_sky_custom_fov")
+
+  @JvmStatic
+  public val environmentSetSkyOrientationName: MethodStringName2<RenderingServer, Unit, RID, Basis>
+      = MethodStringName2<RenderingServer, Unit, RID, Basis>("environment_set_sky_orientation")
+
+  @JvmStatic
+  public val environmentSetBgColorName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("environment_set_bg_color")
+
+  @JvmStatic
+  public val environmentSetBgEnergyName: MethodStringName3<RenderingServer, Unit, RID, Float, Float>
+      = MethodStringName3<RenderingServer, Unit, RID, Float, Float>("environment_set_bg_energy")
+
+  @JvmStatic
+  public val environmentSetCanvasMaxLayerName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("environment_set_canvas_max_layer")
+
+  @JvmStatic
+  public val environmentSetAmbientLightName:
+      MethodStringName6<RenderingServer, Unit, RID, Color, EnvironmentAmbientSource, Float, Float, EnvironmentReflectionSource>
+      =
+      MethodStringName6<RenderingServer, Unit, RID, Color, EnvironmentAmbientSource, Float, Float, EnvironmentReflectionSource>("environment_set_ambient_light")
+
+  @JvmStatic
+  public val environmentSetGlowName:
+      MethodStringName13<RenderingServer, Unit, RID, Boolean, PackedFloat32Array, Float, Float, Float, Float, EnvironmentGlowBlendMode, Float, Float, Float, Float, RID>
+      =
+      MethodStringName13<RenderingServer, Unit, RID, Boolean, PackedFloat32Array, Float, Float, Float, Float, EnvironmentGlowBlendMode, Float, Float, Float, Float, RID>("environment_set_glow")
+
+  @JvmStatic
+  public val environmentSetTonemapName:
+      MethodStringName4<RenderingServer, Unit, RID, EnvironmentToneMapper, Float, Float> =
+      MethodStringName4<RenderingServer, Unit, RID, EnvironmentToneMapper, Float, Float>("environment_set_tonemap")
+
+  @JvmStatic
+  public val environmentSetAdjustmentName:
+      MethodStringName7<RenderingServer, Unit, RID, Boolean, Float, Float, Float, Boolean, RID> =
+      MethodStringName7<RenderingServer, Unit, RID, Boolean, Float, Float, Float, Boolean, RID>("environment_set_adjustment")
+
+  @JvmStatic
+  public val environmentSetSsrName:
+      MethodStringName6<RenderingServer, Unit, RID, Boolean, Int, Float, Float, Float> =
+      MethodStringName6<RenderingServer, Unit, RID, Boolean, Int, Float, Float, Float>("environment_set_ssr")
+
+  @JvmStatic
+  public val environmentSetSsaoName:
+      MethodStringName10<RenderingServer, Unit, RID, Boolean, Float, Float, Float, Float, Float, Float, Float, Float>
+      =
+      MethodStringName10<RenderingServer, Unit, RID, Boolean, Float, Float, Float, Float, Float, Float, Float, Float>("environment_set_ssao")
+
+  @JvmStatic
+  public val environmentSetFogName:
+      MethodStringName11<RenderingServer, Unit, RID, Boolean, Color, Float, Float, Float, Float, Float, Float, Float, EnvironmentFogMode>
+      =
+      MethodStringName11<RenderingServer, Unit, RID, Boolean, Color, Float, Float, Float, Float, Float, Float, Float, EnvironmentFogMode>("environment_set_fog")
+
+  @JvmStatic
+  public val environmentSetSdfgiName:
+      MethodStringName11<RenderingServer, Unit, RID, Boolean, Int, Float, EnvironmentSDFGIYScale, Boolean, Float, Boolean, Float, Float, Float>
+      =
+      MethodStringName11<RenderingServer, Unit, RID, Boolean, Int, Float, EnvironmentSDFGIYScale, Boolean, Float, Boolean, Float, Float, Float>("environment_set_sdfgi")
+
+  @JvmStatic
+  public val environmentSetVolumetricFogName:
+      MethodStringName14<RenderingServer, Unit, RID, Boolean, Float, Color, Color, Float, Float, Float, Float, Float, Boolean, Float, Float, Float>
+      =
+      MethodStringName14<RenderingServer, Unit, RID, Boolean, Float, Color, Color, Float, Float, Float, Float, Float, Boolean, Float, Float, Float>("environment_set_volumetric_fog")
+
+  @JvmStatic
+  public val environmentGlowSetUseBicubicUpscaleName:
+      MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("environment_glow_set_use_bicubic_upscale")
+
+  @JvmStatic
+  public val environmentSetSsrRoughnessQualityName:
+      MethodStringName1<RenderingServer, Unit, EnvironmentSSRRoughnessQuality> =
+      MethodStringName1<RenderingServer, Unit, EnvironmentSSRRoughnessQuality>("environment_set_ssr_roughness_quality")
+
+  @JvmStatic
+  public val environmentSetSsaoQualityName:
+      MethodStringName6<RenderingServer, Unit, EnvironmentSSAOQuality, Boolean, Float, Int, Float, Float>
+      =
+      MethodStringName6<RenderingServer, Unit, EnvironmentSSAOQuality, Boolean, Float, Int, Float, Float>("environment_set_ssao_quality")
+
+  @JvmStatic
+  public val environmentSetSsilQualityName:
+      MethodStringName6<RenderingServer, Unit, EnvironmentSSILQuality, Boolean, Float, Int, Float, Float>
+      =
+      MethodStringName6<RenderingServer, Unit, EnvironmentSSILQuality, Boolean, Float, Int, Float, Float>("environment_set_ssil_quality")
+
+  @JvmStatic
+  public val environmentSetSdfgiRayCountName:
+      MethodStringName1<RenderingServer, Unit, EnvironmentSDFGIRayCount> =
+      MethodStringName1<RenderingServer, Unit, EnvironmentSDFGIRayCount>("environment_set_sdfgi_ray_count")
+
+  @JvmStatic
+  public val environmentSetSdfgiFramesToConvergeName:
+      MethodStringName1<RenderingServer, Unit, EnvironmentSDFGIFramesToConverge> =
+      MethodStringName1<RenderingServer, Unit, EnvironmentSDFGIFramesToConverge>("environment_set_sdfgi_frames_to_converge")
+
+  @JvmStatic
+  public val environmentSetSdfgiFramesToUpdateLightName:
+      MethodStringName1<RenderingServer, Unit, EnvironmentSDFGIFramesToUpdateLight> =
+      MethodStringName1<RenderingServer, Unit, EnvironmentSDFGIFramesToUpdateLight>("environment_set_sdfgi_frames_to_update_light")
+
+  @JvmStatic
+  public val environmentSetVolumetricFogVolumeSizeName:
+      MethodStringName2<RenderingServer, Unit, Int, Int> =
+      MethodStringName2<RenderingServer, Unit, Int, Int>("environment_set_volumetric_fog_volume_size")
+
+  @JvmStatic
+  public val environmentSetVolumetricFogFilterActiveName:
+      MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("environment_set_volumetric_fog_filter_active")
+
+  @JvmStatic
+  public val environmentBakePanoramaName:
+      MethodStringName3<RenderingServer, Image?, RID, Boolean, Vector2i> =
+      MethodStringName3<RenderingServer, Image?, RID, Boolean, Vector2i>("environment_bake_panorama")
+
+  @JvmStatic
+  public val screenSpaceRoughnessLimiterSetActiveName:
+      MethodStringName3<RenderingServer, Unit, Boolean, Float, Float> =
+      MethodStringName3<RenderingServer, Unit, Boolean, Float, Float>("screen_space_roughness_limiter_set_active")
+
+  @JvmStatic
+  public val subSurfaceScatteringSetQualityName:
+      MethodStringName1<RenderingServer, Unit, SubSurfaceScatteringQuality> =
+      MethodStringName1<RenderingServer, Unit, SubSurfaceScatteringQuality>("sub_surface_scattering_set_quality")
+
+  @JvmStatic
+  public val subSurfaceScatteringSetScaleName:
+      MethodStringName2<RenderingServer, Unit, Float, Float> =
+      MethodStringName2<RenderingServer, Unit, Float, Float>("sub_surface_scattering_set_scale")
+
+  @JvmStatic
+  public val cameraAttributesCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("camera_attributes_create")
+
+  @JvmStatic
+  public val cameraAttributesSetDofBlurQualityName:
+      MethodStringName2<RenderingServer, Unit, DOFBlurQuality, Boolean> =
+      MethodStringName2<RenderingServer, Unit, DOFBlurQuality, Boolean>("camera_attributes_set_dof_blur_quality")
+
+  @JvmStatic
+  public val cameraAttributesSetDofBlurBokehShapeName:
+      MethodStringName1<RenderingServer, Unit, DOFBokehShape> =
+      MethodStringName1<RenderingServer, Unit, DOFBokehShape>("camera_attributes_set_dof_blur_bokeh_shape")
+
+  @JvmStatic
+  public val cameraAttributesSetDofBlurName:
+      MethodStringName8<RenderingServer, Unit, RID, Boolean, Float, Float, Boolean, Float, Float, Float>
+      =
+      MethodStringName8<RenderingServer, Unit, RID, Boolean, Float, Float, Boolean, Float, Float, Float>("camera_attributes_set_dof_blur")
+
+  @JvmStatic
+  public val cameraAttributesSetExposureName:
+      MethodStringName3<RenderingServer, Unit, RID, Float, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, Float, Float>("camera_attributes_set_exposure")
+
+  @JvmStatic
+  public val cameraAttributesSetAutoExposureName:
+      MethodStringName6<RenderingServer, Unit, RID, Boolean, Float, Float, Float, Float> =
+      MethodStringName6<RenderingServer, Unit, RID, Boolean, Float, Float, Float, Float>("camera_attributes_set_auto_exposure")
+
+  @JvmStatic
+  public val scenarioCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("scenario_create")
+
+  @JvmStatic
+  public val scenarioSetEnvironmentName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("scenario_set_environment")
+
+  @JvmStatic
+  public val scenarioSetFallbackEnvironmentName: MethodStringName2<RenderingServer, Unit, RID, RID>
+      = MethodStringName2<RenderingServer, Unit, RID, RID>("scenario_set_fallback_environment")
+
+  @JvmStatic
+  public val scenarioSetCameraAttributesName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("scenario_set_camera_attributes")
+
+  @JvmStatic
+  public val scenarioSetCompositorName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("scenario_set_compositor")
+
+  @JvmStatic
+  public val instanceCreate2Name: MethodStringName2<RenderingServer, RID, RID, RID> =
+      MethodStringName2<RenderingServer, RID, RID, RID>("instance_create2")
+
+  @JvmStatic
+  public val instanceCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("instance_create")
+
+  @JvmStatic
+  public val instanceSetBaseName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("instance_set_base")
+
+  @JvmStatic
+  public val instanceSetScenarioName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("instance_set_scenario")
+
+  @JvmStatic
+  public val instanceSetLayerMaskName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("instance_set_layer_mask")
+
+  @JvmStatic
+  public val instanceSetPivotDataName: MethodStringName3<RenderingServer, Unit, RID, Float, Boolean>
+      = MethodStringName3<RenderingServer, Unit, RID, Float, Boolean>("instance_set_pivot_data")
+
+  @JvmStatic
+  public val instanceSetTransformName: MethodStringName2<RenderingServer, Unit, RID, Transform3D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform3D>("instance_set_transform")
+
+  @JvmStatic
+  public val instanceSetInterpolatedName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("instance_set_interpolated")
+
+  @JvmStatic
+  public val instanceResetPhysicsInterpolationName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("instance_reset_physics_interpolation")
+
+  @JvmStatic
+  public val instanceAttachObjectInstanceIdName: MethodStringName2<RenderingServer, Unit, RID, Long>
+      = MethodStringName2<RenderingServer, Unit, RID, Long>("instance_attach_object_instance_id")
+
+  @JvmStatic
+  public val instanceSetBlendShapeWeightName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Float>("instance_set_blend_shape_weight")
+
+  @JvmStatic
+  public val instanceSetSurfaceOverrideMaterialName:
+      MethodStringName3<RenderingServer, Unit, RID, Int, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, RID>("instance_set_surface_override_material")
+
+  @JvmStatic
+  public val instanceSetVisibleName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("instance_set_visible")
+
+  @JvmStatic
+  public val instanceGeometrySetTransparencyName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("instance_geometry_set_transparency")
+
+  @JvmStatic
+  public val instanceSetCustomAabbName: MethodStringName2<RenderingServer, Unit, RID, AABB> =
+      MethodStringName2<RenderingServer, Unit, RID, AABB>("instance_set_custom_aabb")
+
+  @JvmStatic
+  public val instanceAttachSkeletonName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("instance_attach_skeleton")
+
+  @JvmStatic
+  public val instanceSetExtraVisibilityMarginName:
+      MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("instance_set_extra_visibility_margin")
+
+  @JvmStatic
+  public val instanceSetVisibilityParentName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("instance_set_visibility_parent")
+
+  @JvmStatic
+  public val instanceSetIgnoreCullingName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("instance_set_ignore_culling")
+
+  @JvmStatic
+  public val instanceGeometrySetFlagName:
+      MethodStringName3<RenderingServer, Unit, RID, InstanceFlags, Boolean> =
+      MethodStringName3<RenderingServer, Unit, RID, InstanceFlags, Boolean>("instance_geometry_set_flag")
+
+  @JvmStatic
+  public val instanceGeometrySetCastShadowsSettingName:
+      MethodStringName2<RenderingServer, Unit, RID, ShadowCastingSetting> =
+      MethodStringName2<RenderingServer, Unit, RID, ShadowCastingSetting>("instance_geometry_set_cast_shadows_setting")
+
+  @JvmStatic
+  public val instanceGeometrySetMaterialOverrideName:
+      MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("instance_geometry_set_material_override")
+
+  @JvmStatic
+  public val instanceGeometrySetMaterialOverlayName:
+      MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("instance_geometry_set_material_overlay")
+
+  @JvmStatic
+  public val instanceGeometrySetVisibilityRangeName:
+      MethodStringName6<RenderingServer, Unit, RID, Float, Float, Float, Float, VisibilityRangeFadeMode>
+      =
+      MethodStringName6<RenderingServer, Unit, RID, Float, Float, Float, Float, VisibilityRangeFadeMode>("instance_geometry_set_visibility_range")
+
+  @JvmStatic
+  public val instanceGeometrySetLightmapName:
+      MethodStringName4<RenderingServer, Unit, RID, RID, Rect2, Int> =
+      MethodStringName4<RenderingServer, Unit, RID, RID, Rect2, Int>("instance_geometry_set_lightmap")
+
+  @JvmStatic
+  public val instanceGeometrySetLodBiasName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("instance_geometry_set_lod_bias")
+
+  @JvmStatic
+  public val instanceGeometrySetShaderParameterName:
+      MethodStringName3<RenderingServer, Unit, RID, StringName, Any?> =
+      MethodStringName3<RenderingServer, Unit, RID, StringName, Any?>("instance_geometry_set_shader_parameter")
+
+  @JvmStatic
+  public val instanceGeometryGetShaderParameterName:
+      MethodStringName2<RenderingServer, Any?, RID, StringName> =
+      MethodStringName2<RenderingServer, Any?, RID, StringName>("instance_geometry_get_shader_parameter")
+
+  @JvmStatic
+  public val instanceGeometryGetShaderParameterDefaultValueName:
+      MethodStringName2<RenderingServer, Any?, RID, StringName> =
+      MethodStringName2<RenderingServer, Any?, RID, StringName>("instance_geometry_get_shader_parameter_default_value")
+
+  @JvmStatic
+  public val instanceGeometryGetShaderParameterListName:
+      MethodStringName1<RenderingServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+      MethodStringName1<RenderingServer, VariantArray<Dictionary<Any?, Any?>>, RID>("instance_geometry_get_shader_parameter_list")
+
+  @JvmStatic
+  public val instancesCullAabbName: MethodStringName2<RenderingServer, PackedInt64Array, AABB, RID>
+      = MethodStringName2<RenderingServer, PackedInt64Array, AABB, RID>("instances_cull_aabb")
+
+  @JvmStatic
+  public val instancesCullRayName:
+      MethodStringName3<RenderingServer, PackedInt64Array, Vector3, Vector3, RID> =
+      MethodStringName3<RenderingServer, PackedInt64Array, Vector3, Vector3, RID>("instances_cull_ray")
+
+  @JvmStatic
+  public val instancesCullConvexName:
+      MethodStringName2<RenderingServer, PackedInt64Array, VariantArray<Plane>, RID> =
+      MethodStringName2<RenderingServer, PackedInt64Array, VariantArray<Plane>, RID>("instances_cull_convex")
+
+  @JvmStatic
+  public val bakeRenderUv2Name:
+      MethodStringName3<RenderingServer, VariantArray<Image>, RID, VariantArray<RID>, Vector2i> =
+      MethodStringName3<RenderingServer, VariantArray<Image>, RID, VariantArray<RID>, Vector2i>("bake_render_uv2")
+
+  @JvmStatic
+  public val canvasCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("canvas_create")
+
+  @JvmStatic
+  public val canvasSetItemMirroringName: MethodStringName3<RenderingServer, Unit, RID, RID, Vector2>
+      = MethodStringName3<RenderingServer, Unit, RID, RID, Vector2>("canvas_set_item_mirroring")
+
+  @JvmStatic
+  public val canvasSetItemRepeatName: MethodStringName3<RenderingServer, Unit, RID, Vector2, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Vector2, Int>("canvas_set_item_repeat")
+
+  @JvmStatic
+  public val canvasSetModulateName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("canvas_set_modulate")
+
+  @JvmStatic
+  public val canvasSetDisableScaleName: MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("canvas_set_disable_scale")
+
+  @JvmStatic
+  public val canvasTextureCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("canvas_texture_create")
+
+  @JvmStatic
+  public val canvasTextureSetChannelName:
+      MethodStringName3<RenderingServer, Unit, RID, CanvasTextureChannel, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, CanvasTextureChannel, RID>("canvas_texture_set_channel")
+
+  @JvmStatic
+  public val canvasTextureSetShadingParametersName:
+      MethodStringName3<RenderingServer, Unit, RID, Color, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, Color, Float>("canvas_texture_set_shading_parameters")
+
+  @JvmStatic
+  public val canvasTextureSetTextureFilterName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureFilter> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureFilter>("canvas_texture_set_texture_filter")
+
+  @JvmStatic
+  public val canvasTextureSetTextureRepeatName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureRepeat> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureRepeat>("canvas_texture_set_texture_repeat")
+
+  @JvmStatic
+  public val canvasItemCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("canvas_item_create")
+
+  @JvmStatic
+  public val canvasItemSetParentName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_item_set_parent")
+
+  @JvmStatic
+  public val canvasItemSetDefaultTextureFilterName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureFilter> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureFilter>("canvas_item_set_default_texture_filter")
+
+  @JvmStatic
+  public val canvasItemSetDefaultTextureRepeatName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureRepeat> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasItemTextureRepeat>("canvas_item_set_default_texture_repeat")
+
+  @JvmStatic
+  public val canvasItemSetVisibleName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_visible")
+
+  @JvmStatic
+  public val canvasItemSetLightMaskName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("canvas_item_set_light_mask")
+
+  @JvmStatic
+  public val canvasItemSetVisibilityLayerName: MethodStringName2<RenderingServer, Unit, RID, Long> =
+      MethodStringName2<RenderingServer, Unit, RID, Long>("canvas_item_set_visibility_layer")
+
+  @JvmStatic
+  public val canvasItemSetTransformName: MethodStringName2<RenderingServer, Unit, RID, Transform2D>
+      = MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_item_set_transform")
+
+  @JvmStatic
+  public val canvasItemSetClipName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_clip")
+
+  @JvmStatic
+  public val canvasItemSetDistanceFieldModeName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_distance_field_mode")
+
+  @JvmStatic
+  public val canvasItemSetCustomRectName:
+      MethodStringName3<RenderingServer, Unit, RID, Boolean, Rect2> =
+      MethodStringName3<RenderingServer, Unit, RID, Boolean, Rect2>("canvas_item_set_custom_rect")
+
+  @JvmStatic
+  public val canvasItemSetModulateName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("canvas_item_set_modulate")
+
+  @JvmStatic
+  public val canvasItemSetSelfModulateName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("canvas_item_set_self_modulate")
+
+  @JvmStatic
+  public val canvasItemSetDrawBehindParentName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_draw_behind_parent")
+
+  @JvmStatic
+  public val canvasItemSetInterpolatedName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_interpolated")
+
+  @JvmStatic
+  public val canvasItemResetPhysicsInterpolationName: MethodStringName1<RenderingServer, Unit, RID>
+      = MethodStringName1<RenderingServer, Unit, RID>("canvas_item_reset_physics_interpolation")
+
+  @JvmStatic
+  public val canvasItemTransformPhysicsInterpolationName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_item_transform_physics_interpolation")
+
+  @JvmStatic
+  public val canvasItemAddLineName:
+      MethodStringName6<RenderingServer, Unit, RID, Vector2, Vector2, Color, Float, Boolean> =
+      MethodStringName6<RenderingServer, Unit, RID, Vector2, Vector2, Color, Float, Boolean>("canvas_item_add_line")
+
+  @JvmStatic
+  public val canvasItemAddPolylineName:
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, Float, Boolean>
+      =
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, Float, Boolean>("canvas_item_add_polyline")
+
+  @JvmStatic
+  public val canvasItemAddMultilineName:
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, Float, Boolean>
+      =
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, Float, Boolean>("canvas_item_add_multiline")
+
+  @JvmStatic
+  public val canvasItemAddRectName:
+      MethodStringName4<RenderingServer, Unit, RID, Rect2, Color, Boolean> =
+      MethodStringName4<RenderingServer, Unit, RID, Rect2, Color, Boolean>("canvas_item_add_rect")
+
+  @JvmStatic
+  public val canvasItemAddCircleName:
+      MethodStringName5<RenderingServer, Unit, RID, Vector2, Float, Color, Boolean> =
+      MethodStringName5<RenderingServer, Unit, RID, Vector2, Float, Color, Boolean>("canvas_item_add_circle")
+
+  @JvmStatic
+  public val canvasItemAddTextureRectName:
+      MethodStringName6<RenderingServer, Unit, RID, Rect2, RID, Boolean, Color, Boolean> =
+      MethodStringName6<RenderingServer, Unit, RID, Rect2, RID, Boolean, Color, Boolean>("canvas_item_add_texture_rect")
+
+  @JvmStatic
+  public val canvasItemAddMsdfTextureRectRegionName:
+      MethodStringName8<RenderingServer, Unit, RID, Rect2, RID, Rect2, Color, Int, Float, Float> =
+      MethodStringName8<RenderingServer, Unit, RID, Rect2, RID, Rect2, Color, Int, Float, Float>("canvas_item_add_msdf_texture_rect_region")
+
+  @JvmStatic
+  public val canvasItemAddLcdTextureRectRegionName:
+      MethodStringName5<RenderingServer, Unit, RID, Rect2, RID, Rect2, Color> =
+      MethodStringName5<RenderingServer, Unit, RID, Rect2, RID, Rect2, Color>("canvas_item_add_lcd_texture_rect_region")
+
+  @JvmStatic
+  public val canvasItemAddTextureRectRegionName:
+      MethodStringName7<RenderingServer, Unit, RID, Rect2, RID, Rect2, Color, Boolean, Boolean> =
+      MethodStringName7<RenderingServer, Unit, RID, Rect2, RID, Rect2, Color, Boolean, Boolean>("canvas_item_add_texture_rect_region")
+
+  @JvmStatic
+  public val canvasItemAddNinePatchName:
+      MethodStringName10<RenderingServer, Unit, RID, Rect2, Rect2, RID, Vector2, Vector2, NinePatchAxisMode, NinePatchAxisMode, Boolean, Color>
+      =
+      MethodStringName10<RenderingServer, Unit, RID, Rect2, Rect2, RID, Vector2, Vector2, NinePatchAxisMode, NinePatchAxisMode, Boolean, Color>("canvas_item_add_nine_patch")
+
+  @JvmStatic
+  public val canvasItemAddPrimitiveName:
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, PackedVector2Array, RID>
+      =
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, PackedVector2Array, RID>("canvas_item_add_primitive")
+
+  @JvmStatic
+  public val canvasItemAddPolygonName:
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, PackedVector2Array, RID>
+      =
+      MethodStringName5<RenderingServer, Unit, RID, PackedVector2Array, PackedColorArray, PackedVector2Array, RID>("canvas_item_add_polygon")
+
+  @JvmStatic
+  public val canvasItemAddTriangleArrayName:
+      MethodStringName9<RenderingServer, Unit, RID, PackedInt32Array, PackedVector2Array, PackedColorArray, PackedVector2Array, PackedInt32Array, PackedFloat32Array, RID, Int>
+      =
+      MethodStringName9<RenderingServer, Unit, RID, PackedInt32Array, PackedVector2Array, PackedColorArray, PackedVector2Array, PackedInt32Array, PackedFloat32Array, RID, Int>("canvas_item_add_triangle_array")
+
+  @JvmStatic
+  public val canvasItemAddMeshName:
+      MethodStringName5<RenderingServer, Unit, RID, RID, Transform2D, Color, RID> =
+      MethodStringName5<RenderingServer, Unit, RID, RID, Transform2D, Color, RID>("canvas_item_add_mesh")
+
+  @JvmStatic
+  public val canvasItemAddMultimeshName: MethodStringName3<RenderingServer, Unit, RID, RID, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, RID, RID>("canvas_item_add_multimesh")
+
+  @JvmStatic
+  public val canvasItemAddParticlesName: MethodStringName3<RenderingServer, Unit, RID, RID, RID> =
+      MethodStringName3<RenderingServer, Unit, RID, RID, RID>("canvas_item_add_particles")
+
+  @JvmStatic
+  public val canvasItemAddSetTransformName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_item_add_set_transform")
+
+  @JvmStatic
+  public val canvasItemAddClipIgnoreName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_add_clip_ignore")
+
+  @JvmStatic
+  public val canvasItemAddAnimationSliceName:
+      MethodStringName5<RenderingServer, Unit, RID, Double, Double, Double, Double> =
+      MethodStringName5<RenderingServer, Unit, RID, Double, Double, Double, Double>("canvas_item_add_animation_slice")
+
+  @JvmStatic
+  public val canvasItemSetSortChildrenByYName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_sort_children_by_y")
+
+  @JvmStatic
+  public val canvasItemSetZIndexName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("canvas_item_set_z_index")
+
+  @JvmStatic
+  public val canvasItemSetZAsRelativeToParentName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_z_as_relative_to_parent")
+
+  @JvmStatic
+  public val canvasItemSetCopyToBackbufferName:
+      MethodStringName3<RenderingServer, Unit, RID, Boolean, Rect2> =
+      MethodStringName3<RenderingServer, Unit, RID, Boolean, Rect2>("canvas_item_set_copy_to_backbuffer")
+
+  @JvmStatic
+  public val canvasItemAttachSkeletonName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_item_attach_skeleton")
+
+  @JvmStatic
+  public val canvasItemClearName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("canvas_item_clear")
+
+  @JvmStatic
+  public val canvasItemSetDrawIndexName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("canvas_item_set_draw_index")
+
+  @JvmStatic
+  public val canvasItemSetMaterialName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_item_set_material")
+
+  @JvmStatic
+  public val canvasItemSetUseParentMaterialName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_item_set_use_parent_material")
+
+  @JvmStatic
+  public val canvasItemSetInstanceShaderParameterName:
+      MethodStringName3<RenderingServer, Unit, RID, StringName, Any?> =
+      MethodStringName3<RenderingServer, Unit, RID, StringName, Any?>("canvas_item_set_instance_shader_parameter")
+
+  @JvmStatic
+  public val canvasItemGetInstanceShaderParameterName:
+      MethodStringName2<RenderingServer, Any?, RID, StringName> =
+      MethodStringName2<RenderingServer, Any?, RID, StringName>("canvas_item_get_instance_shader_parameter")
+
+  @JvmStatic
+  public val canvasItemGetInstanceShaderParameterDefaultValueName:
+      MethodStringName2<RenderingServer, Any?, RID, StringName> =
+      MethodStringName2<RenderingServer, Any?, RID, StringName>("canvas_item_get_instance_shader_parameter_default_value")
+
+  @JvmStatic
+  public val canvasItemGetInstanceShaderParameterListName:
+      MethodStringName1<RenderingServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+      MethodStringName1<RenderingServer, VariantArray<Dictionary<Any?, Any?>>, RID>("canvas_item_get_instance_shader_parameter_list")
+
+  @JvmStatic
+  public val canvasItemSetVisibilityNotifierName:
+      MethodStringName5<RenderingServer, Unit, RID, Boolean, Rect2, Callable, Callable> =
+      MethodStringName5<RenderingServer, Unit, RID, Boolean, Rect2, Callable, Callable>("canvas_item_set_visibility_notifier")
+
+  @JvmStatic
+  public val canvasItemSetCanvasGroupModeName:
+      MethodStringName6<RenderingServer, Unit, RID, CanvasGroupMode, Float, Boolean, Float, Boolean>
+      =
+      MethodStringName6<RenderingServer, Unit, RID, CanvasGroupMode, Float, Boolean, Float, Boolean>("canvas_item_set_canvas_group_mode")
+
+  @JvmStatic
+  public val debugCanvasItemGetRectName: MethodStringName1<RenderingServer, Rect2, RID> =
+      MethodStringName1<RenderingServer, Rect2, RID>("debug_canvas_item_get_rect")
+
+  @JvmStatic
+  public val canvasLightCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("canvas_light_create")
+
+  @JvmStatic
+  public val canvasLightAttachToCanvasName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_light_attach_to_canvas")
+
+  @JvmStatic
+  public val canvasLightSetEnabledName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_light_set_enabled")
+
+  @JvmStatic
+  public val canvasLightSetTextureScaleName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("canvas_light_set_texture_scale")
+
+  @JvmStatic
+  public val canvasLightSetTransformName: MethodStringName2<RenderingServer, Unit, RID, Transform2D>
+      = MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_light_set_transform")
+
+  @JvmStatic
+  public val canvasLightSetTextureName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_light_set_texture")
+
+  @JvmStatic
+  public val canvasLightSetTextureOffsetName: MethodStringName2<RenderingServer, Unit, RID, Vector2>
+      = MethodStringName2<RenderingServer, Unit, RID, Vector2>("canvas_light_set_texture_offset")
+
+  @JvmStatic
+  public val canvasLightSetColorName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("canvas_light_set_color")
+
+  @JvmStatic
+  public val canvasLightSetHeightName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("canvas_light_set_height")
+
+  @JvmStatic
+  public val canvasLightSetEnergyName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("canvas_light_set_energy")
+
+  @JvmStatic
+  public val canvasLightSetZRangeName: MethodStringName3<RenderingServer, Unit, RID, Int, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Int>("canvas_light_set_z_range")
+
+  @JvmStatic
+  public val canvasLightSetLayerRangeName: MethodStringName3<RenderingServer, Unit, RID, Int, Int> =
+      MethodStringName3<RenderingServer, Unit, RID, Int, Int>("canvas_light_set_layer_range")
+
+  @JvmStatic
+  public val canvasLightSetItemCullMaskName: MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("canvas_light_set_item_cull_mask")
+
+  @JvmStatic
+  public val canvasLightSetItemShadowCullMaskName:
+      MethodStringName2<RenderingServer, Unit, RID, Int> =
+      MethodStringName2<RenderingServer, Unit, RID, Int>("canvas_light_set_item_shadow_cull_mask")
+
+  @JvmStatic
+  public val canvasLightSetModeName: MethodStringName2<RenderingServer, Unit, RID, CanvasLightMode>
+      = MethodStringName2<RenderingServer, Unit, RID, CanvasLightMode>("canvas_light_set_mode")
+
+  @JvmStatic
+  public val canvasLightSetShadowEnabledName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_light_set_shadow_enabled")
+
+  @JvmStatic
+  public val canvasLightSetShadowFilterName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasLightShadowFilter> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasLightShadowFilter>("canvas_light_set_shadow_filter")
+
+  @JvmStatic
+  public val canvasLightSetShadowColorName: MethodStringName2<RenderingServer, Unit, RID, Color> =
+      MethodStringName2<RenderingServer, Unit, RID, Color>("canvas_light_set_shadow_color")
+
+  @JvmStatic
+  public val canvasLightSetShadowSmoothName: MethodStringName2<RenderingServer, Unit, RID, Float> =
+      MethodStringName2<RenderingServer, Unit, RID, Float>("canvas_light_set_shadow_smooth")
+
+  @JvmStatic
+  public val canvasLightSetBlendModeName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasLightBlendMode> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasLightBlendMode>("canvas_light_set_blend_mode")
+
+  @JvmStatic
+  public val canvasLightSetInterpolatedName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_light_set_interpolated")
+
+  @JvmStatic
+  public val canvasLightResetPhysicsInterpolationName: MethodStringName1<RenderingServer, Unit, RID>
+      = MethodStringName1<RenderingServer, Unit, RID>("canvas_light_reset_physics_interpolation")
+
+  @JvmStatic
+  public val canvasLightTransformPhysicsInterpolationName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_light_transform_physics_interpolation")
+
+  @JvmStatic
+  public val canvasLightOccluderCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("canvas_light_occluder_create")
+
+  @JvmStatic
+  public val canvasLightOccluderAttachToCanvasName:
+      MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_light_occluder_attach_to_canvas")
+
+  @JvmStatic
+  public val canvasLightOccluderSetEnabledName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_light_occluder_set_enabled")
+
+  @JvmStatic
+  public val canvasLightOccluderSetPolygonName: MethodStringName2<RenderingServer, Unit, RID, RID> =
+      MethodStringName2<RenderingServer, Unit, RID, RID>("canvas_light_occluder_set_polygon")
+
+  @JvmStatic
+  public val canvasLightOccluderSetAsSdfCollisionName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_light_occluder_set_as_sdf_collision")
+
+  @JvmStatic
+  public val canvasLightOccluderSetTransformName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_light_occluder_set_transform")
+
+  @JvmStatic
+  public val canvasLightOccluderSetLightMaskName: MethodStringName2<RenderingServer, Unit, RID, Int>
+      = MethodStringName2<RenderingServer, Unit, RID, Int>("canvas_light_occluder_set_light_mask")
+
+  @JvmStatic
+  public val canvasLightOccluderSetInterpolatedName:
+      MethodStringName2<RenderingServer, Unit, RID, Boolean> =
+      MethodStringName2<RenderingServer, Unit, RID, Boolean>("canvas_light_occluder_set_interpolated")
+
+  @JvmStatic
+  public val canvasLightOccluderResetPhysicsInterpolationName:
+      MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("canvas_light_occluder_reset_physics_interpolation")
+
+  @JvmStatic
+  public val canvasLightOccluderTransformPhysicsInterpolationName:
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D> =
+      MethodStringName2<RenderingServer, Unit, RID, Transform2D>("canvas_light_occluder_transform_physics_interpolation")
+
+  @JvmStatic
+  public val canvasOccluderPolygonCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("canvas_occluder_polygon_create")
+
+  @JvmStatic
+  public val canvasOccluderPolygonSetShapeName:
+      MethodStringName3<RenderingServer, Unit, RID, PackedVector2Array, Boolean> =
+      MethodStringName3<RenderingServer, Unit, RID, PackedVector2Array, Boolean>("canvas_occluder_polygon_set_shape")
+
+  @JvmStatic
+  public val canvasOccluderPolygonSetCullModeName:
+      MethodStringName2<RenderingServer, Unit, RID, CanvasOccluderPolygonCullMode> =
+      MethodStringName2<RenderingServer, Unit, RID, CanvasOccluderPolygonCullMode>("canvas_occluder_polygon_set_cull_mode")
+
+  @JvmStatic
+  public val canvasSetShadowTextureSizeName: MethodStringName1<RenderingServer, Unit, Int> =
+      MethodStringName1<RenderingServer, Unit, Int>("canvas_set_shadow_texture_size")
+
+  @JvmStatic
+  public val globalShaderParameterAddName:
+      MethodStringName3<RenderingServer, Unit, StringName, GlobalShaderParameterType, Any?> =
+      MethodStringName3<RenderingServer, Unit, StringName, GlobalShaderParameterType, Any?>("global_shader_parameter_add")
+
+  @JvmStatic
+  public val globalShaderParameterRemoveName: MethodStringName1<RenderingServer, Unit, StringName> =
+      MethodStringName1<RenderingServer, Unit, StringName>("global_shader_parameter_remove")
+
+  @JvmStatic
+  public val globalShaderParameterGetListName:
+      MethodStringName0<RenderingServer, VariantArray<StringName>> =
+      MethodStringName0<RenderingServer, VariantArray<StringName>>("global_shader_parameter_get_list")
+
+  @JvmStatic
+  public val globalShaderParameterSetName:
+      MethodStringName2<RenderingServer, Unit, StringName, Any?> =
+      MethodStringName2<RenderingServer, Unit, StringName, Any?>("global_shader_parameter_set")
+
+  @JvmStatic
+  public val globalShaderParameterSetOverrideName:
+      MethodStringName2<RenderingServer, Unit, StringName, Any?> =
+      MethodStringName2<RenderingServer, Unit, StringName, Any?>("global_shader_parameter_set_override")
+
+  @JvmStatic
+  public val globalShaderParameterGetName: MethodStringName1<RenderingServer, Any?, StringName> =
+      MethodStringName1<RenderingServer, Any?, StringName>("global_shader_parameter_get")
+
+  @JvmStatic
+  public val globalShaderParameterGetTypeName:
+      MethodStringName1<RenderingServer, GlobalShaderParameterType, StringName> =
+      MethodStringName1<RenderingServer, GlobalShaderParameterType, StringName>("global_shader_parameter_get_type")
+
+  @JvmStatic
+  public val freeRidName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("free_rid")
+
+  @JvmStatic
+  public val requestFrameDrawnCallbackName: MethodStringName1<RenderingServer, Unit, Callable> =
+      MethodStringName1<RenderingServer, Unit, Callable>("request_frame_drawn_callback")
+
+  @JvmStatic
+  public val hasChangedName: MethodStringName0<RenderingServer, Boolean> =
+      MethodStringName0<RenderingServer, Boolean>("has_changed")
+
+  @JvmStatic
+  public val getRenderingInfoName: MethodStringName1<RenderingServer, Long, RenderingInfo> =
+      MethodStringName1<RenderingServer, Long, RenderingInfo>("get_rendering_info")
+
+  @JvmStatic
+  public val getVideoAdapterNameName: MethodStringName0<RenderingServer, String> =
+      MethodStringName0<RenderingServer, String>("get_video_adapter_name")
+
+  @JvmStatic
+  public val getVideoAdapterVendorName: MethodStringName0<RenderingServer, String> =
+      MethodStringName0<RenderingServer, String>("get_video_adapter_vendor")
+
+  @JvmStatic
+  public val getVideoAdapterTypeName: MethodStringName0<RenderingServer, RenderingDevice.DeviceType>
+      = MethodStringName0<RenderingServer, RenderingDevice.DeviceType>("get_video_adapter_type")
+
+  @JvmStatic
+  public val getVideoAdapterApiVersionName: MethodStringName0<RenderingServer, String> =
+      MethodStringName0<RenderingServer, String>("get_video_adapter_api_version")
+
+  @JvmStatic
+  public val getCurrentRenderingDriverNameName: MethodStringName0<RenderingServer, String> =
+      MethodStringName0<RenderingServer, String>("get_current_rendering_driver_name")
+
+  @JvmStatic
+  public val getCurrentRenderingMethodName: MethodStringName0<RenderingServer, String> =
+      MethodStringName0<RenderingServer, String>("get_current_rendering_method")
+
+  @JvmStatic
+  public val makeSphereMeshName: MethodStringName3<RenderingServer, RID, Int, Int, Float> =
+      MethodStringName3<RenderingServer, RID, Int, Int, Float>("make_sphere_mesh")
+
+  @JvmStatic
+  public val getTestCubeName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("get_test_cube")
+
+  @JvmStatic
+  public val getTestTextureName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("get_test_texture")
+
+  @JvmStatic
+  public val getWhiteTextureName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("get_white_texture")
+
+  @JvmStatic
+  public val setBootImageName:
+      MethodStringName4<RenderingServer, Unit, Image?, Color, Boolean, Boolean> =
+      MethodStringName4<RenderingServer, Unit, Image?, Color, Boolean, Boolean>("set_boot_image")
+
+  @JvmStatic
+  public val getDefaultClearColorName: MethodStringName0<RenderingServer, Color> =
+      MethodStringName0<RenderingServer, Color>("get_default_clear_color")
+
+  @JvmStatic
+  public val setDefaultClearColorName: MethodStringName1<RenderingServer, Unit, Color> =
+      MethodStringName1<RenderingServer, Unit, Color>("set_default_clear_color")
+
+  @JvmStatic
+  public val hasOsFeatureName: MethodStringName1<RenderingServer, Boolean, String> =
+      MethodStringName1<RenderingServer, Boolean, String>("has_os_feature")
+
+  @JvmStatic
+  public val setDebugGenerateWireframesName: MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("set_debug_generate_wireframes")
+
+  @JvmStatic
+  public val isRenderLoopEnabledName: MethodStringName0<RenderingServer, Boolean> =
+      MethodStringName0<RenderingServer, Boolean>("is_render_loop_enabled")
+
+  @JvmStatic
+  public val setRenderLoopEnabledName: MethodStringName1<RenderingServer, Unit, Boolean> =
+      MethodStringName1<RenderingServer, Unit, Boolean>("set_render_loop_enabled")
+
+  @JvmStatic
+  public val getFrameSetupTimeCpuName: MethodStringName0<RenderingServer, Double> =
+      MethodStringName0<RenderingServer, Double>("get_frame_setup_time_cpu")
+
+  @JvmStatic
+  public val forceSyncName: MethodStringName0<RenderingServer, Unit> =
+      MethodStringName0<RenderingServer, Unit>("force_sync")
+
+  @JvmStatic
+  public val forceDrawName: MethodStringName2<RenderingServer, Unit, Boolean, Double> =
+      MethodStringName2<RenderingServer, Unit, Boolean, Double>("force_draw")
+
+  @JvmStatic
+  public val getRenderingDeviceName: MethodStringName0<RenderingServer, RenderingDevice?> =
+      MethodStringName0<RenderingServer, RenderingDevice?>("get_rendering_device")
+
+  @JvmStatic
+  public val createLocalRenderingDeviceName: MethodStringName0<RenderingServer, RenderingDevice?> =
+      MethodStringName0<RenderingServer, RenderingDevice?>("create_local_rendering_device")
+
+  @JvmStatic
+  public val isOnRenderThreadName: MethodStringName0<RenderingServer, Boolean> =
+      MethodStringName0<RenderingServer, Boolean>("is_on_render_thread")
+
+  @JvmStatic
+  public val callOnRenderThreadName: MethodStringName1<RenderingServer, Unit, Callable> =
+      MethodStringName1<RenderingServer, Unit, Callable>("call_on_render_thread")
+
+  @JvmStatic
+  public val hasFeatureName: MethodStringName1<RenderingServer, Boolean, Features> =
+      MethodStringName1<RenderingServer, Boolean, Features>("has_feature")
+
   /**
    * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
    */

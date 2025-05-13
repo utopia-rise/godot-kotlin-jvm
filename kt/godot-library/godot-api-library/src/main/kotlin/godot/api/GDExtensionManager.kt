@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.Signal0
 import godot.core.Signal1
@@ -34,6 +36,30 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object GDExtensionManager : Object() {
+  @JvmStatic
+  public val loadExtensionName: MethodStringName1<GDExtensionManager, LoadStatus, String> =
+      MethodStringName1<GDExtensionManager, LoadStatus, String>("load_extension")
+
+  @JvmStatic
+  public val reloadExtensionName: MethodStringName1<GDExtensionManager, LoadStatus, String> =
+      MethodStringName1<GDExtensionManager, LoadStatus, String>("reload_extension")
+
+  @JvmStatic
+  public val unloadExtensionName: MethodStringName1<GDExtensionManager, LoadStatus, String> =
+      MethodStringName1<GDExtensionManager, LoadStatus, String>("unload_extension")
+
+  @JvmStatic
+  public val isExtensionLoadedName: MethodStringName1<GDExtensionManager, Boolean, String> =
+      MethodStringName1<GDExtensionManager, Boolean, String>("is_extension_loaded")
+
+  @JvmStatic
+  public val getLoadedExtensionsName: MethodStringName0<GDExtensionManager, PackedStringArray> =
+      MethodStringName0<GDExtensionManager, PackedStringArray>("get_loaded_extensions")
+
+  @JvmStatic
+  public val getExtensionName: MethodStringName1<GDExtensionManager, GDExtension?, String> =
+      MethodStringName1<GDExtensionManager, GDExtension?, String>("get_extension")
+
   /**
    * Emitted after the editor has finished reloading one or more extensions.
    */

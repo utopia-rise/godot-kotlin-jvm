@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
@@ -21,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class implements a writer that allows storing the multiple blobs in a ZIP archive. See also
@@ -129,7 +133,27 @@ public open class ZIPPacker : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val openName: MethodStringName2<ZIPPacker, Error, String, ZipAppend> =
+        MethodStringName2<ZIPPacker, Error, String, ZipAppend>("open")
+
+    @JvmStatic
+    public val startFileName: MethodStringName1<ZIPPacker, Error, String> =
+        MethodStringName1<ZIPPacker, Error, String>("start_file")
+
+    @JvmStatic
+    public val writeFileName: MethodStringName1<ZIPPacker, Error, PackedByteArray> =
+        MethodStringName1<ZIPPacker, Error, PackedByteArray>("write_file")
+
+    @JvmStatic
+    public val closeFileName: MethodStringName0<ZIPPacker, Error> =
+        MethodStringName0<ZIPPacker, Error>("close_file")
+
+    @JvmStatic
+    public val closeName: MethodStringName0<ZIPPacker, Error> =
+        MethodStringName0<ZIPPacker, Error>("close")
+  }
 
   public object MethodBindings {
     internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "open", 1936816515)

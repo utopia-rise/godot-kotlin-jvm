@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -279,6 +283,64 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   public companion object {
+    @JvmStatic
+    public val hasMultiplayerPeerName: MethodStringName0<MultiplayerAPI, Boolean> =
+        MethodStringName0<MultiplayerAPI, Boolean>("has_multiplayer_peer")
+
+    @JvmStatic
+    public val getMultiplayerPeerName: MethodStringName0<MultiplayerAPI, MultiplayerPeer?> =
+        MethodStringName0<MultiplayerAPI, MultiplayerPeer?>("get_multiplayer_peer")
+
+    @JvmStatic
+    public val setMultiplayerPeerName: MethodStringName1<MultiplayerAPI, Unit, MultiplayerPeer?> =
+        MethodStringName1<MultiplayerAPI, Unit, MultiplayerPeer?>("set_multiplayer_peer")
+
+    @JvmStatic
+    public val getUniqueIdName: MethodStringName0<MultiplayerAPI, Int> =
+        MethodStringName0<MultiplayerAPI, Int>("get_unique_id")
+
+    @JvmStatic
+    public val isServerName: MethodStringName0<MultiplayerAPI, Boolean> =
+        MethodStringName0<MultiplayerAPI, Boolean>("is_server")
+
+    @JvmStatic
+    public val getRemoteSenderIdName: MethodStringName0<MultiplayerAPI, Int> =
+        MethodStringName0<MultiplayerAPI, Int>("get_remote_sender_id")
+
+    @JvmStatic
+    public val pollName: MethodStringName0<MultiplayerAPI, Error> =
+        MethodStringName0<MultiplayerAPI, Error>("poll")
+
+    @JvmStatic
+    public val rpcName:
+        MethodStringName4<MultiplayerAPI, Error, Int, Object?, StringName, VariantArray<Any?>> =
+        MethodStringName4<MultiplayerAPI, Error, Int, Object?, StringName, VariantArray<Any?>>("rpc")
+
+    @JvmStatic
+    public val objectConfigurationAddName: MethodStringName2<MultiplayerAPI, Error, Object?, Any?> =
+        MethodStringName2<MultiplayerAPI, Error, Object?, Any?>("object_configuration_add")
+
+    @JvmStatic
+    public val objectConfigurationRemoveName:
+        MethodStringName2<MultiplayerAPI, Error, Object?, Any?> =
+        MethodStringName2<MultiplayerAPI, Error, Object?, Any?>("object_configuration_remove")
+
+    @JvmStatic
+    public val getPeersName: MethodStringName0<MultiplayerAPI, PackedInt32Array> =
+        MethodStringName0<MultiplayerAPI, PackedInt32Array>("get_peers")
+
+    @JvmStatic
+    public val setDefaultInterfaceName: MethodStringName1<MultiplayerAPI, Unit, StringName> =
+        MethodStringName1<MultiplayerAPI, Unit, StringName>("set_default_interface")
+
+    @JvmStatic
+    public val getDefaultInterfaceName: MethodStringName0<MultiplayerAPI, StringName> =
+        MethodStringName0<MultiplayerAPI, StringName>("get_default_interface")
+
+    @JvmStatic
+    public val createDefaultInterfaceName: MethodStringName0<MultiplayerAPI, MultiplayerAPI?> =
+        MethodStringName0<MultiplayerAPI, MultiplayerAPI?>("create_default_interface")
+
     /**
      * Sets the default MultiplayerAPI implementation class. This method can be used by modules and
      * extensions to configure which implementation will be used by [SceneTree] when the engine starts.

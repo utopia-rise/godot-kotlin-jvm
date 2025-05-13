@@ -11,6 +11,11 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
@@ -33,6 +38,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
@@ -180,7 +186,43 @@ public open class Shape2D internal constructor() : Resource() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCustomSolverBiasName: MethodStringName1<Shape2D, Unit, Float> =
+        MethodStringName1<Shape2D, Unit, Float>("set_custom_solver_bias")
+
+    @JvmStatic
+    public val getCustomSolverBiasName: MethodStringName0<Shape2D, Float> =
+        MethodStringName0<Shape2D, Float>("get_custom_solver_bias")
+
+    @JvmStatic
+    public val collideName: MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D?, Transform2D>
+        = MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D?, Transform2D>("collide")
+
+    @JvmStatic
+    public val collideWithMotionName:
+        MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D?, Transform2D, Vector2> =
+        MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>("collide_with_motion")
+
+    @JvmStatic
+    public val collideAndGetContactsName:
+        MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D?, Transform2D> =
+        MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D?, Transform2D>("collide_and_get_contacts")
+
+    @JvmStatic
+    public val collideWithMotionAndGetContactsName:
+        MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>
+        =
+        MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>("collide_with_motion_and_get_contacts")
+
+    @JvmStatic
+    public val drawName: MethodStringName2<Shape2D, Unit, RID, Color> =
+        MethodStringName2<Shape2D, Unit, RID, Color>("draw")
+
+    @JvmStatic
+    public val getRectName: MethodStringName0<Shape2D, Rect2> =
+        MethodStringName0<Shape2D, Rect2>("get_rect")
+  }
 
   public object MethodBindings {
     internal val setCustomSolverBiasPtr: VoidPtr =

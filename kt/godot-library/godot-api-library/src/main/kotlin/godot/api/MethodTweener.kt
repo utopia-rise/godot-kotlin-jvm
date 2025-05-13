@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
@@ -17,6 +18,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls
@@ -64,7 +66,19 @@ public open class MethodTweener : Tweener() {
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setDelayName: MethodStringName1<MethodTweener, MethodTweener?, Double> =
+        MethodStringName1<MethodTweener, MethodTweener?, Double>("set_delay")
+
+    @JvmStatic
+    public val setTransName: MethodStringName1<MethodTweener, MethodTweener?, Tween.TransitionType>
+        = MethodStringName1<MethodTweener, MethodTweener?, Tween.TransitionType>("set_trans")
+
+    @JvmStatic
+    public val setEaseName: MethodStringName1<MethodTweener, MethodTweener?, Tween.EaseType> =
+        MethodStringName1<MethodTweener, MethodTweener?, Tween.EaseType>("set_ease")
+  }
 
   public object MethodBindings {
     internal val setDelayPtr: VoidPtr =

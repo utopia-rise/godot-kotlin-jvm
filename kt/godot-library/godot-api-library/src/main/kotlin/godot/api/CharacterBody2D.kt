@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -28,6 +30,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [CharacterBody2D] is a specialized class for physics bodies that are meant to be user-controlled.
@@ -756,7 +759,199 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val moveAndSlideName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("move_and_slide")
+
+    @JvmStatic
+    public val applyFloorSnapName: MethodStringName0<CharacterBody2D, Unit> =
+        MethodStringName0<CharacterBody2D, Unit>("apply_floor_snap")
+
+    @JvmStatic
+    public val setVelocityName: MethodStringName1<CharacterBody2D, Unit, Vector2> =
+        MethodStringName1<CharacterBody2D, Unit, Vector2>("set_velocity")
+
+    @JvmStatic
+    public val getVelocityName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_velocity")
+
+    @JvmStatic
+    public val setSafeMarginName: MethodStringName1<CharacterBody2D, Unit, Float> =
+        MethodStringName1<CharacterBody2D, Unit, Float>("set_safe_margin")
+
+    @JvmStatic
+    public val getSafeMarginName: MethodStringName0<CharacterBody2D, Float> =
+        MethodStringName0<CharacterBody2D, Float>("get_safe_margin")
+
+    @JvmStatic
+    public val isFloorStopOnSlopeEnabledName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_floor_stop_on_slope_enabled")
+
+    @JvmStatic
+    public val setFloorStopOnSlopeEnabledName: MethodStringName1<CharacterBody2D, Unit, Boolean> =
+        MethodStringName1<CharacterBody2D, Unit, Boolean>("set_floor_stop_on_slope_enabled")
+
+    @JvmStatic
+    public val setFloorConstantSpeedEnabledName: MethodStringName1<CharacterBody2D, Unit, Boolean> =
+        MethodStringName1<CharacterBody2D, Unit, Boolean>("set_floor_constant_speed_enabled")
+
+    @JvmStatic
+    public val isFloorConstantSpeedEnabledName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_floor_constant_speed_enabled")
+
+    @JvmStatic
+    public val setFloorBlockOnWallEnabledName: MethodStringName1<CharacterBody2D, Unit, Boolean> =
+        MethodStringName1<CharacterBody2D, Unit, Boolean>("set_floor_block_on_wall_enabled")
+
+    @JvmStatic
+    public val isFloorBlockOnWallEnabledName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_floor_block_on_wall_enabled")
+
+    @JvmStatic
+    public val setSlideOnCeilingEnabledName: MethodStringName1<CharacterBody2D, Unit, Boolean> =
+        MethodStringName1<CharacterBody2D, Unit, Boolean>("set_slide_on_ceiling_enabled")
+
+    @JvmStatic
+    public val isSlideOnCeilingEnabledName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_slide_on_ceiling_enabled")
+
+    @JvmStatic
+    public val setPlatformFloorLayersName: MethodStringName1<CharacterBody2D, Unit, Long> =
+        MethodStringName1<CharacterBody2D, Unit, Long>("set_platform_floor_layers")
+
+    @JvmStatic
+    public val getPlatformFloorLayersName: MethodStringName0<CharacterBody2D, Long> =
+        MethodStringName0<CharacterBody2D, Long>("get_platform_floor_layers")
+
+    @JvmStatic
+    public val setPlatformWallLayersName: MethodStringName1<CharacterBody2D, Unit, Long> =
+        MethodStringName1<CharacterBody2D, Unit, Long>("set_platform_wall_layers")
+
+    @JvmStatic
+    public val getPlatformWallLayersName: MethodStringName0<CharacterBody2D, Long> =
+        MethodStringName0<CharacterBody2D, Long>("get_platform_wall_layers")
+
+    @JvmStatic
+    public val getMaxSlidesName: MethodStringName0<CharacterBody2D, Int> =
+        MethodStringName0<CharacterBody2D, Int>("get_max_slides")
+
+    @JvmStatic
+    public val setMaxSlidesName: MethodStringName1<CharacterBody2D, Unit, Int> =
+        MethodStringName1<CharacterBody2D, Unit, Int>("set_max_slides")
+
+    @JvmStatic
+    public val getFloorMaxAngleName: MethodStringName0<CharacterBody2D, Float> =
+        MethodStringName0<CharacterBody2D, Float>("get_floor_max_angle")
+
+    @JvmStatic
+    public val setFloorMaxAngleName: MethodStringName1<CharacterBody2D, Unit, Float> =
+        MethodStringName1<CharacterBody2D, Unit, Float>("set_floor_max_angle")
+
+    @JvmStatic
+    public val getFloorSnapLengthName: MethodStringName0<CharacterBody2D, Float> =
+        MethodStringName0<CharacterBody2D, Float>("get_floor_snap_length")
+
+    @JvmStatic
+    public val setFloorSnapLengthName: MethodStringName1<CharacterBody2D, Unit, Float> =
+        MethodStringName1<CharacterBody2D, Unit, Float>("set_floor_snap_length")
+
+    @JvmStatic
+    public val getWallMinSlideAngleName: MethodStringName0<CharacterBody2D, Float> =
+        MethodStringName0<CharacterBody2D, Float>("get_wall_min_slide_angle")
+
+    @JvmStatic
+    public val setWallMinSlideAngleName: MethodStringName1<CharacterBody2D, Unit, Float> =
+        MethodStringName1<CharacterBody2D, Unit, Float>("set_wall_min_slide_angle")
+
+    @JvmStatic
+    public val getUpDirectionName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_up_direction")
+
+    @JvmStatic
+    public val setUpDirectionName: MethodStringName1<CharacterBody2D, Unit, Vector2> =
+        MethodStringName1<CharacterBody2D, Unit, Vector2>("set_up_direction")
+
+    @JvmStatic
+    public val setMotionModeName: MethodStringName1<CharacterBody2D, Unit, MotionMode> =
+        MethodStringName1<CharacterBody2D, Unit, MotionMode>("set_motion_mode")
+
+    @JvmStatic
+    public val getMotionModeName: MethodStringName0<CharacterBody2D, MotionMode> =
+        MethodStringName0<CharacterBody2D, MotionMode>("get_motion_mode")
+
+    @JvmStatic
+    public val setPlatformOnLeaveName: MethodStringName1<CharacterBody2D, Unit, PlatformOnLeave> =
+        MethodStringName1<CharacterBody2D, Unit, PlatformOnLeave>("set_platform_on_leave")
+
+    @JvmStatic
+    public val getPlatformOnLeaveName: MethodStringName0<CharacterBody2D, PlatformOnLeave> =
+        MethodStringName0<CharacterBody2D, PlatformOnLeave>("get_platform_on_leave")
+
+    @JvmStatic
+    public val isOnFloorName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_on_floor")
+
+    @JvmStatic
+    public val isOnFloorOnlyName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_on_floor_only")
+
+    @JvmStatic
+    public val isOnCeilingName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_on_ceiling")
+
+    @JvmStatic
+    public val isOnCeilingOnlyName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_on_ceiling_only")
+
+    @JvmStatic
+    public val isOnWallName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_on_wall")
+
+    @JvmStatic
+    public val isOnWallOnlyName: MethodStringName0<CharacterBody2D, Boolean> =
+        MethodStringName0<CharacterBody2D, Boolean>("is_on_wall_only")
+
+    @JvmStatic
+    public val getFloorNormalName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_floor_normal")
+
+    @JvmStatic
+    public val getWallNormalName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_wall_normal")
+
+    @JvmStatic
+    public val getLastMotionName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_last_motion")
+
+    @JvmStatic
+    public val getPositionDeltaName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_position_delta")
+
+    @JvmStatic
+    public val getRealVelocityName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_real_velocity")
+
+    @JvmStatic
+    public val getFloorAngleName: MethodStringName1<CharacterBody2D, Float, Vector2> =
+        MethodStringName1<CharacterBody2D, Float, Vector2>("get_floor_angle")
+
+    @JvmStatic
+    public val getPlatformVelocityName: MethodStringName0<CharacterBody2D, Vector2> =
+        MethodStringName0<CharacterBody2D, Vector2>("get_platform_velocity")
+
+    @JvmStatic
+    public val getSlideCollisionCountName: MethodStringName0<CharacterBody2D, Int> =
+        MethodStringName0<CharacterBody2D, Int>("get_slide_collision_count")
+
+    @JvmStatic
+    public val getSlideCollisionName: MethodStringName1<CharacterBody2D, KinematicCollision2D?, Int>
+        = MethodStringName1<CharacterBody2D, KinematicCollision2D?, Int>("get_slide_collision")
+
+    @JvmStatic
+    public val getLastSlideCollisionName: MethodStringName0<CharacterBody2D, KinematicCollision2D?>
+        = MethodStringName0<CharacterBody2D, KinematicCollision2D?>("get_last_slide_collision")
+  }
 
   public object MethodBindings {
     internal val moveAndSlidePtr: VoidPtr =

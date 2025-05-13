@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -165,6 +167,65 @@ public open class AudioStreamOggVorbis : AudioStream() {
   }
 
   public companion object {
+    @JvmStatic
+    public val loadFromBufferName:
+        MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, PackedByteArray> =
+        MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, PackedByteArray>("load_from_buffer")
+
+    @JvmStatic
+    public val loadFromFileName:
+        MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, String> =
+        MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, String>("load_from_file")
+
+    @JvmStatic
+    public val setPacketSequenceName:
+        MethodStringName1<AudioStreamOggVorbis, Unit, OggPacketSequence?> =
+        MethodStringName1<AudioStreamOggVorbis, Unit, OggPacketSequence?>("set_packet_sequence")
+
+    @JvmStatic
+    public val getPacketSequenceName: MethodStringName0<AudioStreamOggVorbis, OggPacketSequence?> =
+        MethodStringName0<AudioStreamOggVorbis, OggPacketSequence?>("get_packet_sequence")
+
+    @JvmStatic
+    public val setLoopName: MethodStringName1<AudioStreamOggVorbis, Unit, Boolean> =
+        MethodStringName1<AudioStreamOggVorbis, Unit, Boolean>("set_loop")
+
+    @JvmStatic
+    public val hasLoopName: MethodStringName0<AudioStreamOggVorbis, Boolean> =
+        MethodStringName0<AudioStreamOggVorbis, Boolean>("has_loop")
+
+    @JvmStatic
+    public val setLoopOffsetName: MethodStringName1<AudioStreamOggVorbis, Unit, Double> =
+        MethodStringName1<AudioStreamOggVorbis, Unit, Double>("set_loop_offset")
+
+    @JvmStatic
+    public val getLoopOffsetName: MethodStringName0<AudioStreamOggVorbis, Double> =
+        MethodStringName0<AudioStreamOggVorbis, Double>("get_loop_offset")
+
+    @JvmStatic
+    public val setBpmName: MethodStringName1<AudioStreamOggVorbis, Unit, Double> =
+        MethodStringName1<AudioStreamOggVorbis, Unit, Double>("set_bpm")
+
+    @JvmStatic
+    public val getBpmName: MethodStringName0<AudioStreamOggVorbis, Double> =
+        MethodStringName0<AudioStreamOggVorbis, Double>("get_bpm")
+
+    @JvmStatic
+    public val setBeatCountName: MethodStringName1<AudioStreamOggVorbis, Unit, Int> =
+        MethodStringName1<AudioStreamOggVorbis, Unit, Int>("set_beat_count")
+
+    @JvmStatic
+    public val getBeatCountName: MethodStringName0<AudioStreamOggVorbis, Int> =
+        MethodStringName0<AudioStreamOggVorbis, Int>("get_beat_count")
+
+    @JvmStatic
+    public val setBarBeatsName: MethodStringName1<AudioStreamOggVorbis, Unit, Int> =
+        MethodStringName1<AudioStreamOggVorbis, Unit, Int>("set_bar_beats")
+
+    @JvmStatic
+    public val getBarBeatsName: MethodStringName0<AudioStreamOggVorbis, Int> =
+        MethodStringName0<AudioStreamOggVorbis, Int>("get_bar_beats")
+
     /**
      * Creates a new [AudioStreamOggVorbis] instance from the given buffer. The buffer must contain
      * Ogg Vorbis data.

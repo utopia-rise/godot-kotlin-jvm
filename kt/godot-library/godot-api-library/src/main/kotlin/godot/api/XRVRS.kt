@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2i
@@ -28,6 +31,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is used by various XR interfaces to generate VRS textures that can be used to speed up
@@ -147,7 +151,35 @@ public open class XRVRS : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getVrsMinRadiusName: MethodStringName0<XRVRS, Float> =
+        MethodStringName0<XRVRS, Float>("get_vrs_min_radius")
+
+    @JvmStatic
+    public val setVrsMinRadiusName: MethodStringName1<XRVRS, Unit, Float> =
+        MethodStringName1<XRVRS, Unit, Float>("set_vrs_min_radius")
+
+    @JvmStatic
+    public val getVrsStrengthName: MethodStringName0<XRVRS, Float> =
+        MethodStringName0<XRVRS, Float>("get_vrs_strength")
+
+    @JvmStatic
+    public val setVrsStrengthName: MethodStringName1<XRVRS, Unit, Float> =
+        MethodStringName1<XRVRS, Unit, Float>("set_vrs_strength")
+
+    @JvmStatic
+    public val getVrsRenderRegionName: MethodStringName0<XRVRS, Rect2i> =
+        MethodStringName0<XRVRS, Rect2i>("get_vrs_render_region")
+
+    @JvmStatic
+    public val setVrsRenderRegionName: MethodStringName1<XRVRS, Unit, Rect2i> =
+        MethodStringName1<XRVRS, Unit, Rect2i>("set_vrs_render_region")
+
+    @JvmStatic
+    public val makeVrsTextureName: MethodStringName2<XRVRS, RID, Vector2, PackedVector2Array> =
+        MethodStringName2<XRVRS, RID, Vector2, PackedVector2Array>("make_vrs_texture")
+  }
 
   public object MethodBindings {
     internal val getVrsMinRadiusPtr: VoidPtr =

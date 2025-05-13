@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A PacketPeer implementation representing a peer of an [ENetConnection].
@@ -371,6 +375,70 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public companion object {
+    @JvmStatic
+    public val peerDisconnectName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect")
+
+    @JvmStatic
+    public val peerDisconnectLaterName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect_later")
+
+    @JvmStatic
+    public val peerDisconnectNowName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect_now")
+
+    @JvmStatic
+    public val pingName: MethodStringName0<ENetPacketPeer, Unit> =
+        MethodStringName0<ENetPacketPeer, Unit>("ping")
+
+    @JvmStatic
+    public val pingIntervalName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("ping_interval")
+
+    @JvmStatic
+    public val resetName: MethodStringName0<ENetPacketPeer, Unit> =
+        MethodStringName0<ENetPacketPeer, Unit>("reset")
+
+    @JvmStatic
+    public val sendName: MethodStringName3<ENetPacketPeer, Error, Int, PackedByteArray, Int> =
+        MethodStringName3<ENetPacketPeer, Error, Int, PackedByteArray, Int>("send")
+
+    @JvmStatic
+    public val throttleConfigureName: MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int> =
+        MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int>("throttle_configure")
+
+    @JvmStatic
+    public val setTimeoutName: MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int> =
+        MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int>("set_timeout")
+
+    @JvmStatic
+    public val getPacketFlagsName: MethodStringName0<ENetPacketPeer, Int> =
+        MethodStringName0<ENetPacketPeer, Int>("get_packet_flags")
+
+    @JvmStatic
+    public val getRemoteAddressName: MethodStringName0<ENetPacketPeer, String> =
+        MethodStringName0<ENetPacketPeer, String>("get_remote_address")
+
+    @JvmStatic
+    public val getRemotePortName: MethodStringName0<ENetPacketPeer, Int> =
+        MethodStringName0<ENetPacketPeer, Int>("get_remote_port")
+
+    @JvmStatic
+    public val getStatisticName: MethodStringName1<ENetPacketPeer, Double, PeerStatistic> =
+        MethodStringName1<ENetPacketPeer, Double, PeerStatistic>("get_statistic")
+
+    @JvmStatic
+    public val getStateName: MethodStringName0<ENetPacketPeer, PeerState> =
+        MethodStringName0<ENetPacketPeer, PeerState>("get_state")
+
+    @JvmStatic
+    public val getChannelsName: MethodStringName0<ENetPacketPeer, Int> =
+        MethodStringName0<ENetPacketPeer, Int>("get_channels")
+
+    @JvmStatic
+    public val isActiveName: MethodStringName0<ENetPacketPeer, Boolean> =
+        MethodStringName0<ENetPacketPeer, Boolean>("is_active")
+
     /**
      * The reference scale for packet loss. See [getStatistic] and [PEER_PACKET_LOSS].
      */

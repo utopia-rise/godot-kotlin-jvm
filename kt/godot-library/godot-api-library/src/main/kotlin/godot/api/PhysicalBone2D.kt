@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -24,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
@@ -184,7 +187,55 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun setBone2dNodepath(nodepath: String) =
       setBone2dNodepath(nodepath.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getJointName: MethodStringName0<PhysicalBone2D, Joint2D?> =
+        MethodStringName0<PhysicalBone2D, Joint2D?>("get_joint")
+
+    @JvmStatic
+    public val getAutoConfigureJointName: MethodStringName0<PhysicalBone2D, Boolean> =
+        MethodStringName0<PhysicalBone2D, Boolean>("get_auto_configure_joint")
+
+    @JvmStatic
+    public val setAutoConfigureJointName: MethodStringName1<PhysicalBone2D, Unit, Boolean> =
+        MethodStringName1<PhysicalBone2D, Unit, Boolean>("set_auto_configure_joint")
+
+    @JvmStatic
+    public val setSimulatePhysicsName: MethodStringName1<PhysicalBone2D, Unit, Boolean> =
+        MethodStringName1<PhysicalBone2D, Unit, Boolean>("set_simulate_physics")
+
+    @JvmStatic
+    public val getSimulatePhysicsName: MethodStringName0<PhysicalBone2D, Boolean> =
+        MethodStringName0<PhysicalBone2D, Boolean>("get_simulate_physics")
+
+    @JvmStatic
+    public val isSimulatingPhysicsName: MethodStringName0<PhysicalBone2D, Boolean> =
+        MethodStringName0<PhysicalBone2D, Boolean>("is_simulating_physics")
+
+    @JvmStatic
+    public val setBone2dNodepathName: MethodStringName1<PhysicalBone2D, Unit, NodePath> =
+        MethodStringName1<PhysicalBone2D, Unit, NodePath>("set_bone2d_nodepath")
+
+    @JvmStatic
+    public val getBone2dNodepathName: MethodStringName0<PhysicalBone2D, NodePath> =
+        MethodStringName0<PhysicalBone2D, NodePath>("get_bone2d_nodepath")
+
+    @JvmStatic
+    public val setBone2dIndexName: MethodStringName1<PhysicalBone2D, Unit, Int> =
+        MethodStringName1<PhysicalBone2D, Unit, Int>("set_bone2d_index")
+
+    @JvmStatic
+    public val getBone2dIndexName: MethodStringName0<PhysicalBone2D, Int> =
+        MethodStringName0<PhysicalBone2D, Int>("get_bone2d_index")
+
+    @JvmStatic
+    public val setFollowBoneWhenSimulatingName: MethodStringName1<PhysicalBone2D, Unit, Boolean> =
+        MethodStringName1<PhysicalBone2D, Unit, Boolean>("set_follow_bone_when_simulating")
+
+    @JvmStatic
+    public val getFollowBoneWhenSimulatingName: MethodStringName0<PhysicalBone2D, Boolean> =
+        MethodStringName0<PhysicalBone2D, Boolean>("get_follow_bone_when_simulating")
+  }
 
   public object MethodBindings {
     internal val getJointPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A container type that arranges its child controls in a way that preserves their proportions
@@ -185,7 +188,41 @@ public open class AspectRatioContainer : Container() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRatioName: MethodStringName1<AspectRatioContainer, Unit, Float> =
+        MethodStringName1<AspectRatioContainer, Unit, Float>("set_ratio")
+
+    @JvmStatic
+    public val getRatioName: MethodStringName0<AspectRatioContainer, Float> =
+        MethodStringName0<AspectRatioContainer, Float>("get_ratio")
+
+    @JvmStatic
+    public val setStretchModeName: MethodStringName1<AspectRatioContainer, Unit, StretchMode> =
+        MethodStringName1<AspectRatioContainer, Unit, StretchMode>("set_stretch_mode")
+
+    @JvmStatic
+    public val getStretchModeName: MethodStringName0<AspectRatioContainer, StretchMode> =
+        MethodStringName0<AspectRatioContainer, StretchMode>("get_stretch_mode")
+
+    @JvmStatic
+    public val setAlignmentHorizontalName:
+        MethodStringName1<AspectRatioContainer, Unit, AlignmentMode> =
+        MethodStringName1<AspectRatioContainer, Unit, AlignmentMode>("set_alignment_horizontal")
+
+    @JvmStatic
+    public val getAlignmentHorizontalName: MethodStringName0<AspectRatioContainer, AlignmentMode> =
+        MethodStringName0<AspectRatioContainer, AlignmentMode>("get_alignment_horizontal")
+
+    @JvmStatic
+    public val setAlignmentVerticalName:
+        MethodStringName1<AspectRatioContainer, Unit, AlignmentMode> =
+        MethodStringName1<AspectRatioContainer, Unit, AlignmentMode>("set_alignment_vertical")
+
+    @JvmStatic
+    public val getAlignmentVerticalName: MethodStringName0<AspectRatioContainer, AlignmentMode> =
+        MethodStringName0<AspectRatioContainer, AlignmentMode>("get_alignment_vertical")
+  }
 
   public object MethodBindings {
     internal val setRatioPtr: VoidPtr =

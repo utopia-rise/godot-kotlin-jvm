@@ -10,9 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName7
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2i
+import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -477,6 +483,184 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   public companion object {
+    @JvmStatic
+    public val getInstanceName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_instance")
+
+    @JvmStatic
+    public val getSystemIdName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_system_id")
+
+    @JvmStatic
+    public val getSessionName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_session")
+
+    @JvmStatic
+    public val transformFromPoseName:
+        MethodStringName1<OpenXRAPIExtension, Transform3D, `const void*`?> =
+        MethodStringName1<OpenXRAPIExtension, Transform3D, `const void*`?>("transform_from_pose")
+
+    @JvmStatic
+    public val xrResultName:
+        MethodStringName3<OpenXRAPIExtension, Boolean, Long, String, VariantArray<Any?>> =
+        MethodStringName3<OpenXRAPIExtension, Boolean, Long, String, VariantArray<Any?>>("xr_result")
+
+    @JvmStatic
+    public val openxrIsEnabledName: MethodStringName1<OpenXRAPIExtension, Boolean, Boolean> =
+        MethodStringName1<OpenXRAPIExtension, Boolean, Boolean>("openxr_is_enabled")
+
+    @JvmStatic
+    public val getInstanceProcAddrName: MethodStringName1<OpenXRAPIExtension, Long, String> =
+        MethodStringName1<OpenXRAPIExtension, Long, String>("get_instance_proc_addr")
+
+    @JvmStatic
+    public val getErrorStringName: MethodStringName1<OpenXRAPIExtension, String, Long> =
+        MethodStringName1<OpenXRAPIExtension, String, Long>("get_error_string")
+
+    @JvmStatic
+    public val getSwapchainFormatNameName: MethodStringName1<OpenXRAPIExtension, String, Long> =
+        MethodStringName1<OpenXRAPIExtension, String, Long>("get_swapchain_format_name")
+
+    @JvmStatic
+    public val setObjectNameName: MethodStringName3<OpenXRAPIExtension, Unit, Long, Long, String> =
+        MethodStringName3<OpenXRAPIExtension, Unit, Long, Long, String>("set_object_name")
+
+    @JvmStatic
+    public val beginDebugLabelRegionName: MethodStringName1<OpenXRAPIExtension, Unit, String> =
+        MethodStringName1<OpenXRAPIExtension, Unit, String>("begin_debug_label_region")
+
+    @JvmStatic
+    public val endDebugLabelRegionName: MethodStringName0<OpenXRAPIExtension, Unit> =
+        MethodStringName0<OpenXRAPIExtension, Unit>("end_debug_label_region")
+
+    @JvmStatic
+    public val insertDebugLabelName: MethodStringName1<OpenXRAPIExtension, Unit, String> =
+        MethodStringName1<OpenXRAPIExtension, Unit, String>("insert_debug_label")
+
+    @JvmStatic
+    public val isInitializedName: MethodStringName0<OpenXRAPIExtension, Boolean> =
+        MethodStringName0<OpenXRAPIExtension, Boolean>("is_initialized")
+
+    @JvmStatic
+    public val isRunningName: MethodStringName0<OpenXRAPIExtension, Boolean> =
+        MethodStringName0<OpenXRAPIExtension, Boolean>("is_running")
+
+    @JvmStatic
+    public val getPlaySpaceName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_play_space")
+
+    @JvmStatic
+    public val getPredictedDisplayTimeName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_predicted_display_time")
+
+    @JvmStatic
+    public val getNextFrameTimeName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_next_frame_time")
+
+    @JvmStatic
+    public val canRenderName: MethodStringName0<OpenXRAPIExtension, Boolean> =
+        MethodStringName0<OpenXRAPIExtension, Boolean>("can_render")
+
+    @JvmStatic
+    public val findActionName: MethodStringName2<OpenXRAPIExtension, RID, String, RID> =
+        MethodStringName2<OpenXRAPIExtension, RID, String, RID>("find_action")
+
+    @JvmStatic
+    public val actionGetHandleName: MethodStringName1<OpenXRAPIExtension, Long, RID> =
+        MethodStringName1<OpenXRAPIExtension, Long, RID>("action_get_handle")
+
+    @JvmStatic
+    public val getHandTrackerName: MethodStringName1<OpenXRAPIExtension, Long, Int> =
+        MethodStringName1<OpenXRAPIExtension, Long, Int>("get_hand_tracker")
+
+    @JvmStatic
+    public val registerCompositionLayerProviderName:
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("register_composition_layer_provider")
+
+    @JvmStatic
+    public val unregisterCompositionLayerProviderName:
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("unregister_composition_layer_provider")
+
+    @JvmStatic
+    public val registerProjectionViewsExtensionName:
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("register_projection_views_extension")
+
+    @JvmStatic
+    public val unregisterProjectionViewsExtensionName:
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("unregister_projection_views_extension")
+
+    @JvmStatic
+    public val getRenderStateZNearName: MethodStringName0<OpenXRAPIExtension, Double> =
+        MethodStringName0<OpenXRAPIExtension, Double>("get_render_state_z_near")
+
+    @JvmStatic
+    public val getRenderStateZFarName: MethodStringName0<OpenXRAPIExtension, Double> =
+        MethodStringName0<OpenXRAPIExtension, Double>("get_render_state_z_far")
+
+    @JvmStatic
+    public val setVelocityTextureName: MethodStringName1<OpenXRAPIExtension, Unit, RID> =
+        MethodStringName1<OpenXRAPIExtension, Unit, RID>("set_velocity_texture")
+
+    @JvmStatic
+    public val setVelocityDepthTextureName: MethodStringName1<OpenXRAPIExtension, Unit, RID> =
+        MethodStringName1<OpenXRAPIExtension, Unit, RID>("set_velocity_depth_texture")
+
+    @JvmStatic
+    public val setVelocityTargetSizeName: MethodStringName1<OpenXRAPIExtension, Unit, Vector2i> =
+        MethodStringName1<OpenXRAPIExtension, Unit, Vector2i>("set_velocity_target_size")
+
+    @JvmStatic
+    public val getSupportedSwapchainFormatsName:
+        MethodStringName0<OpenXRAPIExtension, PackedInt64Array> =
+        MethodStringName0<OpenXRAPIExtension, PackedInt64Array>("get_supported_swapchain_formats")
+
+    @JvmStatic
+    public val openxrSwapchainCreateName:
+        MethodStringName7<OpenXRAPIExtension, Long, Long, Long, Long, Long, Long, Long, Long> =
+        MethodStringName7<OpenXRAPIExtension, Long, Long, Long, Long, Long, Long, Long, Long>("openxr_swapchain_create")
+
+    @JvmStatic
+    public val openxrSwapchainFreeName: MethodStringName1<OpenXRAPIExtension, Unit, Long> =
+        MethodStringName1<OpenXRAPIExtension, Unit, Long>("openxr_swapchain_free")
+
+    @JvmStatic
+    public val openxrSwapchainGetSwapchainName: MethodStringName1<OpenXRAPIExtension, Long, Long> =
+        MethodStringName1<OpenXRAPIExtension, Long, Long>("openxr_swapchain_get_swapchain")
+
+    @JvmStatic
+    public val openxrSwapchainAcquireName: MethodStringName1<OpenXRAPIExtension, Unit, Long> =
+        MethodStringName1<OpenXRAPIExtension, Unit, Long>("openxr_swapchain_acquire")
+
+    @JvmStatic
+    public val openxrSwapchainGetImageName: MethodStringName1<OpenXRAPIExtension, RID, Long> =
+        MethodStringName1<OpenXRAPIExtension, RID, Long>("openxr_swapchain_get_image")
+
+    @JvmStatic
+    public val openxrSwapchainReleaseName: MethodStringName1<OpenXRAPIExtension, Unit, Long> =
+        MethodStringName1<OpenXRAPIExtension, Unit, Long>("openxr_swapchain_release")
+
+    @JvmStatic
+    public val getProjectionLayerName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_projection_layer")
+
+    @JvmStatic
+    public val setRenderRegionName: MethodStringName1<OpenXRAPIExtension, Unit, Rect2i> =
+        MethodStringName1<OpenXRAPIExtension, Unit, Rect2i>("set_render_region")
+
+    @JvmStatic
+    public val setEmulateEnvironmentBlendModeAlphaBlendName:
+        MethodStringName1<OpenXRAPIExtension, Unit, Boolean> =
+        MethodStringName1<OpenXRAPIExtension, Unit, Boolean>("set_emulate_environment_blend_mode_alpha_blend")
+
+    @JvmStatic
+    public val isEnvironmentBlendModeAlphaSupportedName:
+        MethodStringName0<OpenXRAPIExtension, OpenXRAlphaBlendModeSupport> =
+        MethodStringName0<OpenXRAPIExtension, OpenXRAlphaBlendModeSupport>("is_environment_blend_mode_alpha_supported")
+
     /**
      * Returns `true` if OpenXR is enabled.
      */

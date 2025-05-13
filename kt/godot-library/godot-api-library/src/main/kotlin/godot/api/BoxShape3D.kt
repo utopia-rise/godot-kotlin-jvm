@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 3D box shape, intended for use in physics. Usually used to provide a shape for a
@@ -82,7 +85,15 @@ public open class BoxShape3D : Shape3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<BoxShape3D, Unit, Vector3> =
+        MethodStringName1<BoxShape3D, Unit, Vector3>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<BoxShape3D, Vector3> =
+        MethodStringName0<BoxShape3D, Vector3>("get_size")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

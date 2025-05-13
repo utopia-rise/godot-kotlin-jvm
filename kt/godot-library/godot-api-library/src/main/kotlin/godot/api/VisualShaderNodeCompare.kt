@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
@@ -219,7 +222,32 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setComparisonTypeName:
+        MethodStringName1<VisualShaderNodeCompare, Unit, ComparisonType> =
+        MethodStringName1<VisualShaderNodeCompare, Unit, ComparisonType>("set_comparison_type")
+
+    @JvmStatic
+    public val getComparisonTypeName: MethodStringName0<VisualShaderNodeCompare, ComparisonType> =
+        MethodStringName0<VisualShaderNodeCompare, ComparisonType>("get_comparison_type")
+
+    @JvmStatic
+    public val setFunctionName: MethodStringName1<VisualShaderNodeCompare, Unit, Function> =
+        MethodStringName1<VisualShaderNodeCompare, Unit, Function>("set_function")
+
+    @JvmStatic
+    public val getFunctionName: MethodStringName0<VisualShaderNodeCompare, Function> =
+        MethodStringName0<VisualShaderNodeCompare, Function>("get_function")
+
+    @JvmStatic
+    public val setConditionName: MethodStringName1<VisualShaderNodeCompare, Unit, Condition> =
+        MethodStringName1<VisualShaderNodeCompare, Unit, Condition>("set_condition")
+
+    @JvmStatic
+    public val getConditionName: MethodStringName0<VisualShaderNodeCompare, Condition> =
+        MethodStringName0<VisualShaderNodeCompare, Condition>("get_condition")
+  }
 
   public object MethodBindings {
     internal val setComparisonTypePtr: VoidPtr =

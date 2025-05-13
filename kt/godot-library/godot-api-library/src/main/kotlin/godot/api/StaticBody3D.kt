@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -170,7 +173,32 @@ public open class StaticBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setConstantLinearVelocityName: MethodStringName1<StaticBody3D, Unit, Vector3> =
+        MethodStringName1<StaticBody3D, Unit, Vector3>("set_constant_linear_velocity")
+
+    @JvmStatic
+    public val setConstantAngularVelocityName: MethodStringName1<StaticBody3D, Unit, Vector3> =
+        MethodStringName1<StaticBody3D, Unit, Vector3>("set_constant_angular_velocity")
+
+    @JvmStatic
+    public val getConstantLinearVelocityName: MethodStringName0<StaticBody3D, Vector3> =
+        MethodStringName0<StaticBody3D, Vector3>("get_constant_linear_velocity")
+
+    @JvmStatic
+    public val getConstantAngularVelocityName: MethodStringName0<StaticBody3D, Vector3> =
+        MethodStringName0<StaticBody3D, Vector3>("get_constant_angular_velocity")
+
+    @JvmStatic
+    public val setPhysicsMaterialOverrideName:
+        MethodStringName1<StaticBody3D, Unit, PhysicsMaterial?> =
+        MethodStringName1<StaticBody3D, Unit, PhysicsMaterial?>("set_physics_material_override")
+
+    @JvmStatic
+    public val getPhysicsMaterialOverrideName: MethodStringName0<StaticBody3D, PhysicsMaterial?> =
+        MethodStringName0<StaticBody3D, PhysicsMaterial?>("get_physics_material_override")
+  }
 
   public object MethodBindings {
     internal val setConstantLinearVelocityPtr: VoidPtr =

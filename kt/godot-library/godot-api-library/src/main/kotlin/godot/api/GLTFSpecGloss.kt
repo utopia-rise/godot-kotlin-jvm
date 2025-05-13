@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * KHR_materials_pbrSpecularGlossiness is an archived glTF extension. This means that it is
@@ -198,7 +201,47 @@ public open class GLTFSpecGloss : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setSpecGlossImgPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getDiffuseImgName: MethodStringName0<GLTFSpecGloss, Image?> =
+        MethodStringName0<GLTFSpecGloss, Image?>("get_diffuse_img")
+
+    @JvmStatic
+    public val setDiffuseImgName: MethodStringName1<GLTFSpecGloss, Unit, Image?> =
+        MethodStringName1<GLTFSpecGloss, Unit, Image?>("set_diffuse_img")
+
+    @JvmStatic
+    public val getDiffuseFactorName: MethodStringName0<GLTFSpecGloss, Color> =
+        MethodStringName0<GLTFSpecGloss, Color>("get_diffuse_factor")
+
+    @JvmStatic
+    public val setDiffuseFactorName: MethodStringName1<GLTFSpecGloss, Unit, Color> =
+        MethodStringName1<GLTFSpecGloss, Unit, Color>("set_diffuse_factor")
+
+    @JvmStatic
+    public val getGlossFactorName: MethodStringName0<GLTFSpecGloss, Float> =
+        MethodStringName0<GLTFSpecGloss, Float>("get_gloss_factor")
+
+    @JvmStatic
+    public val setGlossFactorName: MethodStringName1<GLTFSpecGloss, Unit, Float> =
+        MethodStringName1<GLTFSpecGloss, Unit, Float>("set_gloss_factor")
+
+    @JvmStatic
+    public val getSpecularFactorName: MethodStringName0<GLTFSpecGloss, Color> =
+        MethodStringName0<GLTFSpecGloss, Color>("get_specular_factor")
+
+    @JvmStatic
+    public val setSpecularFactorName: MethodStringName1<GLTFSpecGloss, Unit, Color> =
+        MethodStringName1<GLTFSpecGloss, Unit, Color>("set_specular_factor")
+
+    @JvmStatic
+    public val getSpecGlossImgName: MethodStringName0<GLTFSpecGloss, Image?> =
+        MethodStringName0<GLTFSpecGloss, Image?>("get_spec_gloss_img")
+
+    @JvmStatic
+    public val setSpecGlossImgName: MethodStringName1<GLTFSpecGloss, Unit, Image?> =
+        MethodStringName1<GLTFSpecGloss, Unit, Image?>("set_spec_gloss_img")
+  }
 
   public object MethodBindings {
     internal val getDiffuseImgPtr: VoidPtr =

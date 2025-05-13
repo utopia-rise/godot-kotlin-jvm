@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely
@@ -165,7 +168,55 @@ public open class PinJoint2D : Joint2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSoftnessName: MethodStringName1<PinJoint2D, Unit, Float> =
+        MethodStringName1<PinJoint2D, Unit, Float>("set_softness")
+
+    @JvmStatic
+    public val getSoftnessName: MethodStringName0<PinJoint2D, Float> =
+        MethodStringName0<PinJoint2D, Float>("get_softness")
+
+    @JvmStatic
+    public val setAngularLimitLowerName: MethodStringName1<PinJoint2D, Unit, Float> =
+        MethodStringName1<PinJoint2D, Unit, Float>("set_angular_limit_lower")
+
+    @JvmStatic
+    public val getAngularLimitLowerName: MethodStringName0<PinJoint2D, Float> =
+        MethodStringName0<PinJoint2D, Float>("get_angular_limit_lower")
+
+    @JvmStatic
+    public val setAngularLimitUpperName: MethodStringName1<PinJoint2D, Unit, Float> =
+        MethodStringName1<PinJoint2D, Unit, Float>("set_angular_limit_upper")
+
+    @JvmStatic
+    public val getAngularLimitUpperName: MethodStringName0<PinJoint2D, Float> =
+        MethodStringName0<PinJoint2D, Float>("get_angular_limit_upper")
+
+    @JvmStatic
+    public val setMotorTargetVelocityName: MethodStringName1<PinJoint2D, Unit, Float> =
+        MethodStringName1<PinJoint2D, Unit, Float>("set_motor_target_velocity")
+
+    @JvmStatic
+    public val getMotorTargetVelocityName: MethodStringName0<PinJoint2D, Float> =
+        MethodStringName0<PinJoint2D, Float>("get_motor_target_velocity")
+
+    @JvmStatic
+    public val setMotorEnabledName: MethodStringName1<PinJoint2D, Unit, Boolean> =
+        MethodStringName1<PinJoint2D, Unit, Boolean>("set_motor_enabled")
+
+    @JvmStatic
+    public val isMotorEnabledName: MethodStringName0<PinJoint2D, Boolean> =
+        MethodStringName0<PinJoint2D, Boolean>("is_motor_enabled")
+
+    @JvmStatic
+    public val setAngularLimitEnabledName: MethodStringName1<PinJoint2D, Unit, Boolean> =
+        MethodStringName1<PinJoint2D, Unit, Boolean>("set_angular_limit_enabled")
+
+    @JvmStatic
+    public val isAngularLimitEnabledName: MethodStringName0<PinJoint2D, Boolean> =
+        MethodStringName0<PinJoint2D, Boolean>("is_angular_limit_enabled")
+  }
 
   public object MethodBindings {
     internal val setSoftnessPtr: VoidPtr =

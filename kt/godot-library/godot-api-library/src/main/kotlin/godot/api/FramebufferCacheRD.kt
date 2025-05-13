@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName3
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -33,6 +34,12 @@ public open class FramebufferCacheRD : Object() {
   }
 
   public companion object {
+    @JvmStatic
+    public val getCacheMultipassName:
+        MethodStringName3<FramebufferCacheRD, RID, VariantArray<RID>, VariantArray<RDFramebufferPass>, Long>
+        =
+        MethodStringName3<FramebufferCacheRD, RID, VariantArray<RID>, VariantArray<RDFramebufferPass>, Long>("get_cache_multipass")
+
     /**
      * Creates, or obtains a cached, framebuffer. [textures] lists textures accessed. [passes]
      * defines the subpasses and texture allocation, if left empty a single pass is created and

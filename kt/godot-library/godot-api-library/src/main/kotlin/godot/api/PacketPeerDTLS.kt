@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName3
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -21,6 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is
@@ -120,7 +123,24 @@ public open class PacketPeerDTLS : PacketPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val pollName: MethodStringName0<PacketPeerDTLS, Unit> =
+        MethodStringName0<PacketPeerDTLS, Unit>("poll")
+
+    @JvmStatic
+    public val connectToPeerName:
+        MethodStringName3<PacketPeerDTLS, Error, PacketPeerUDP?, String, TLSOptions?> =
+        MethodStringName3<PacketPeerDTLS, Error, PacketPeerUDP?, String, TLSOptions?>("connect_to_peer")
+
+    @JvmStatic
+    public val getStatusName: MethodStringName0<PacketPeerDTLS, Status> =
+        MethodStringName0<PacketPeerDTLS, Status>("get_status")
+
+    @JvmStatic
+    public val disconnectFromPeerName: MethodStringName0<PacketPeerDTLS, Unit> =
+        MethodStringName0<PacketPeerDTLS, Unit>("disconnect_from_peer")
+  }
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =

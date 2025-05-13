@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -24,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
@@ -138,7 +141,43 @@ public open class AudioEffectCapture : AudioEffect() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val canGetBufferName: MethodStringName1<AudioEffectCapture, Boolean, Int> =
+        MethodStringName1<AudioEffectCapture, Boolean, Int>("can_get_buffer")
+
+    @JvmStatic
+    public val getBufferName: MethodStringName1<AudioEffectCapture, PackedVector2Array, Int> =
+        MethodStringName1<AudioEffectCapture, PackedVector2Array, Int>("get_buffer")
+
+    @JvmStatic
+    public val clearBufferName: MethodStringName0<AudioEffectCapture, Unit> =
+        MethodStringName0<AudioEffectCapture, Unit>("clear_buffer")
+
+    @JvmStatic
+    public val setBufferLengthName: MethodStringName1<AudioEffectCapture, Unit, Float> =
+        MethodStringName1<AudioEffectCapture, Unit, Float>("set_buffer_length")
+
+    @JvmStatic
+    public val getBufferLengthName: MethodStringName0<AudioEffectCapture, Float> =
+        MethodStringName0<AudioEffectCapture, Float>("get_buffer_length")
+
+    @JvmStatic
+    public val getFramesAvailableName: MethodStringName0<AudioEffectCapture, Int> =
+        MethodStringName0<AudioEffectCapture, Int>("get_frames_available")
+
+    @JvmStatic
+    public val getDiscardedFramesName: MethodStringName0<AudioEffectCapture, Long> =
+        MethodStringName0<AudioEffectCapture, Long>("get_discarded_frames")
+
+    @JvmStatic
+    public val getBufferLengthFramesName: MethodStringName0<AudioEffectCapture, Int> =
+        MethodStringName0<AudioEffectCapture, Int>("get_buffer_length_frames")
+
+    @JvmStatic
+    public val getPushedFramesName: MethodStringName0<AudioEffectCapture, Long> =
+        MethodStringName0<AudioEffectCapture, Long>("get_pushed_frames")
+  }
 
   public object MethodBindings {
     internal val canGetBufferPtr: VoidPtr =

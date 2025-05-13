@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
 import godot.core.VariantArray
@@ -26,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A library of meshes. Contains a list of [Mesh] resources, each with a name and ID. Each item can
@@ -257,7 +261,106 @@ public open class MeshLibrary : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val createItemName: MethodStringName1<MeshLibrary, Unit, Int> =
+        MethodStringName1<MeshLibrary, Unit, Int>("create_item")
+
+    @JvmStatic
+    public val setItemNameName: MethodStringName2<MeshLibrary, Unit, Int, String> =
+        MethodStringName2<MeshLibrary, Unit, Int, String>("set_item_name")
+
+    @JvmStatic
+    public val setItemMeshName: MethodStringName2<MeshLibrary, Unit, Int, Mesh?> =
+        MethodStringName2<MeshLibrary, Unit, Int, Mesh?>("set_item_mesh")
+
+    @JvmStatic
+    public val setItemMeshTransformName: MethodStringName2<MeshLibrary, Unit, Int, Transform3D> =
+        MethodStringName2<MeshLibrary, Unit, Int, Transform3D>("set_item_mesh_transform")
+
+    @JvmStatic
+    public val setItemMeshCastShadowName:
+        MethodStringName2<MeshLibrary, Unit, Int, RenderingServer.ShadowCastingSetting> =
+        MethodStringName2<MeshLibrary, Unit, Int, RenderingServer.ShadowCastingSetting>("set_item_mesh_cast_shadow")
+
+    @JvmStatic
+    public val setItemNavigationMeshName: MethodStringName2<MeshLibrary, Unit, Int, NavigationMesh?>
+        = MethodStringName2<MeshLibrary, Unit, Int, NavigationMesh?>("set_item_navigation_mesh")
+
+    @JvmStatic
+    public val setItemNavigationMeshTransformName:
+        MethodStringName2<MeshLibrary, Unit, Int, Transform3D> =
+        MethodStringName2<MeshLibrary, Unit, Int, Transform3D>("set_item_navigation_mesh_transform")
+
+    @JvmStatic
+    public val setItemNavigationLayersName: MethodStringName2<MeshLibrary, Unit, Int, Long> =
+        MethodStringName2<MeshLibrary, Unit, Int, Long>("set_item_navigation_layers")
+
+    @JvmStatic
+    public val setItemShapesName: MethodStringName2<MeshLibrary, Unit, Int, VariantArray<Any?>> =
+        MethodStringName2<MeshLibrary, Unit, Int, VariantArray<Any?>>("set_item_shapes")
+
+    @JvmStatic
+    public val setItemPreviewName: MethodStringName2<MeshLibrary, Unit, Int, Texture2D?> =
+        MethodStringName2<MeshLibrary, Unit, Int, Texture2D?>("set_item_preview")
+
+    @JvmStatic
+    public val getItemNameName: MethodStringName1<MeshLibrary, String, Int> =
+        MethodStringName1<MeshLibrary, String, Int>("get_item_name")
+
+    @JvmStatic
+    public val getItemMeshName: MethodStringName1<MeshLibrary, Mesh?, Int> =
+        MethodStringName1<MeshLibrary, Mesh?, Int>("get_item_mesh")
+
+    @JvmStatic
+    public val getItemMeshTransformName: MethodStringName1<MeshLibrary, Transform3D, Int> =
+        MethodStringName1<MeshLibrary, Transform3D, Int>("get_item_mesh_transform")
+
+    @JvmStatic
+    public val getItemMeshCastShadowName:
+        MethodStringName1<MeshLibrary, RenderingServer.ShadowCastingSetting, Int> =
+        MethodStringName1<MeshLibrary, RenderingServer.ShadowCastingSetting, Int>("get_item_mesh_cast_shadow")
+
+    @JvmStatic
+    public val getItemNavigationMeshName: MethodStringName1<MeshLibrary, NavigationMesh?, Int> =
+        MethodStringName1<MeshLibrary, NavigationMesh?, Int>("get_item_navigation_mesh")
+
+    @JvmStatic
+    public val getItemNavigationMeshTransformName: MethodStringName1<MeshLibrary, Transform3D, Int>
+        = MethodStringName1<MeshLibrary, Transform3D, Int>("get_item_navigation_mesh_transform")
+
+    @JvmStatic
+    public val getItemNavigationLayersName: MethodStringName1<MeshLibrary, Long, Int> =
+        MethodStringName1<MeshLibrary, Long, Int>("get_item_navigation_layers")
+
+    @JvmStatic
+    public val getItemShapesName: MethodStringName1<MeshLibrary, VariantArray<Any?>, Int> =
+        MethodStringName1<MeshLibrary, VariantArray<Any?>, Int>("get_item_shapes")
+
+    @JvmStatic
+    public val getItemPreviewName: MethodStringName1<MeshLibrary, Texture2D?, Int> =
+        MethodStringName1<MeshLibrary, Texture2D?, Int>("get_item_preview")
+
+    @JvmStatic
+    public val removeItemName: MethodStringName1<MeshLibrary, Unit, Int> =
+        MethodStringName1<MeshLibrary, Unit, Int>("remove_item")
+
+    @JvmStatic
+    public val findItemByNameName: MethodStringName1<MeshLibrary, Int, String> =
+        MethodStringName1<MeshLibrary, Int, String>("find_item_by_name")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<MeshLibrary, Unit> =
+        MethodStringName0<MeshLibrary, Unit>("clear")
+
+    @JvmStatic
+    public val getItemListName: MethodStringName0<MeshLibrary, PackedInt32Array> =
+        MethodStringName0<MeshLibrary, PackedInt32Array>("get_item_list")
+
+    @JvmStatic
+    public val getLastUnusedItemIdName: MethodStringName0<MeshLibrary, Int> =
+        MethodStringName0<MeshLibrary, Int>("get_last_unused_item_id")
+  }
 
   public object MethodBindings {
     internal val createItemPtr: VoidPtr =

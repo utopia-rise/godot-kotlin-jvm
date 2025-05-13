@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -36,6 +40,59 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object InputMap : Object() {
+  @JvmStatic
+  public val hasActionName: MethodStringName1<InputMap, Boolean, StringName> =
+      MethodStringName1<InputMap, Boolean, StringName>("has_action")
+
+  @JvmStatic
+  public val getActionsName: MethodStringName0<InputMap, VariantArray<StringName>> =
+      MethodStringName0<InputMap, VariantArray<StringName>>("get_actions")
+
+  @JvmStatic
+  public val addActionName: MethodStringName2<InputMap, Unit, StringName, Float> =
+      MethodStringName2<InputMap, Unit, StringName, Float>("add_action")
+
+  @JvmStatic
+  public val eraseActionName: MethodStringName1<InputMap, Unit, StringName> =
+      MethodStringName1<InputMap, Unit, StringName>("erase_action")
+
+  @JvmStatic
+  public val actionSetDeadzoneName: MethodStringName2<InputMap, Unit, StringName, Float> =
+      MethodStringName2<InputMap, Unit, StringName, Float>("action_set_deadzone")
+
+  @JvmStatic
+  public val actionGetDeadzoneName: MethodStringName1<InputMap, Float, StringName> =
+      MethodStringName1<InputMap, Float, StringName>("action_get_deadzone")
+
+  @JvmStatic
+  public val actionAddEventName: MethodStringName2<InputMap, Unit, StringName, InputEvent?> =
+      MethodStringName2<InputMap, Unit, StringName, InputEvent?>("action_add_event")
+
+  @JvmStatic
+  public val actionHasEventName: MethodStringName2<InputMap, Boolean, StringName, InputEvent?> =
+      MethodStringName2<InputMap, Boolean, StringName, InputEvent?>("action_has_event")
+
+  @JvmStatic
+  public val actionEraseEventName: MethodStringName2<InputMap, Unit, StringName, InputEvent?> =
+      MethodStringName2<InputMap, Unit, StringName, InputEvent?>("action_erase_event")
+
+  @JvmStatic
+  public val actionEraseEventsName: MethodStringName1<InputMap, Unit, StringName> =
+      MethodStringName1<InputMap, Unit, StringName>("action_erase_events")
+
+  @JvmStatic
+  public val actionGetEventsName: MethodStringName1<InputMap, VariantArray<InputEvent>, StringName>
+      = MethodStringName1<InputMap, VariantArray<InputEvent>, StringName>("action_get_events")
+
+  @JvmStatic
+  public val eventIsActionName:
+      MethodStringName3<InputMap, Boolean, InputEvent?, StringName, Boolean> =
+      MethodStringName3<InputMap, Boolean, InputEvent?, StringName, Boolean>("event_is_action")
+
+  @JvmStatic
+  public val loadFromProjectSettingsName: MethodStringName0<InputMap, Unit> =
+      MethodStringName0<InputMap, Unit>("load_from_project_settings")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(11)
   }

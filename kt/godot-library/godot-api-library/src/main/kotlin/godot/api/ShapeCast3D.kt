@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -34,6 +37,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction
@@ -531,7 +535,163 @@ public open class ShapeCast3D : Node3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val resourceChangedName: MethodStringName1<ShapeCast3D, Unit, Resource?> =
+        MethodStringName1<ShapeCast3D, Unit, Resource?>("resource_changed")
+
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<ShapeCast3D, Unit, Boolean> =
+        MethodStringName1<ShapeCast3D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val isEnabledName: MethodStringName0<ShapeCast3D, Boolean> =
+        MethodStringName0<ShapeCast3D, Boolean>("is_enabled")
+
+    @JvmStatic
+    public val setShapeName: MethodStringName1<ShapeCast3D, Unit, Shape3D?> =
+        MethodStringName1<ShapeCast3D, Unit, Shape3D?>("set_shape")
+
+    @JvmStatic
+    public val getShapeName: MethodStringName0<ShapeCast3D, Shape3D?> =
+        MethodStringName0<ShapeCast3D, Shape3D?>("get_shape")
+
+    @JvmStatic
+    public val setTargetPositionName: MethodStringName1<ShapeCast3D, Unit, Vector3> =
+        MethodStringName1<ShapeCast3D, Unit, Vector3>("set_target_position")
+
+    @JvmStatic
+    public val getTargetPositionName: MethodStringName0<ShapeCast3D, Vector3> =
+        MethodStringName0<ShapeCast3D, Vector3>("get_target_position")
+
+    @JvmStatic
+    public val setMarginName: MethodStringName1<ShapeCast3D, Unit, Float> =
+        MethodStringName1<ShapeCast3D, Unit, Float>("set_margin")
+
+    @JvmStatic
+    public val getMarginName: MethodStringName0<ShapeCast3D, Float> =
+        MethodStringName0<ShapeCast3D, Float>("get_margin")
+
+    @JvmStatic
+    public val setMaxResultsName: MethodStringName1<ShapeCast3D, Unit, Int> =
+        MethodStringName1<ShapeCast3D, Unit, Int>("set_max_results")
+
+    @JvmStatic
+    public val getMaxResultsName: MethodStringName0<ShapeCast3D, Int> =
+        MethodStringName0<ShapeCast3D, Int>("get_max_results")
+
+    @JvmStatic
+    public val isCollidingName: MethodStringName0<ShapeCast3D, Boolean> =
+        MethodStringName0<ShapeCast3D, Boolean>("is_colliding")
+
+    @JvmStatic
+    public val getCollisionCountName: MethodStringName0<ShapeCast3D, Int> =
+        MethodStringName0<ShapeCast3D, Int>("get_collision_count")
+
+    @JvmStatic
+    public val forceShapecastUpdateName: MethodStringName0<ShapeCast3D, Unit> =
+        MethodStringName0<ShapeCast3D, Unit>("force_shapecast_update")
+
+    @JvmStatic
+    public val getColliderName: MethodStringName1<ShapeCast3D, Object?, Int> =
+        MethodStringName1<ShapeCast3D, Object?, Int>("get_collider")
+
+    @JvmStatic
+    public val getColliderRidName: MethodStringName1<ShapeCast3D, RID, Int> =
+        MethodStringName1<ShapeCast3D, RID, Int>("get_collider_rid")
+
+    @JvmStatic
+    public val getColliderShapeName: MethodStringName1<ShapeCast3D, Int, Int> =
+        MethodStringName1<ShapeCast3D, Int, Int>("get_collider_shape")
+
+    @JvmStatic
+    public val getCollisionPointName: MethodStringName1<ShapeCast3D, Vector3, Int> =
+        MethodStringName1<ShapeCast3D, Vector3, Int>("get_collision_point")
+
+    @JvmStatic
+    public val getCollisionNormalName: MethodStringName1<ShapeCast3D, Vector3, Int> =
+        MethodStringName1<ShapeCast3D, Vector3, Int>("get_collision_normal")
+
+    @JvmStatic
+    public val getClosestCollisionSafeFractionName: MethodStringName0<ShapeCast3D, Float> =
+        MethodStringName0<ShapeCast3D, Float>("get_closest_collision_safe_fraction")
+
+    @JvmStatic
+    public val getClosestCollisionUnsafeFractionName: MethodStringName0<ShapeCast3D, Float> =
+        MethodStringName0<ShapeCast3D, Float>("get_closest_collision_unsafe_fraction")
+
+    @JvmStatic
+    public val addExceptionRidName: MethodStringName1<ShapeCast3D, Unit, RID> =
+        MethodStringName1<ShapeCast3D, Unit, RID>("add_exception_rid")
+
+    @JvmStatic
+    public val addExceptionName: MethodStringName1<ShapeCast3D, Unit, CollisionObject3D?> =
+        MethodStringName1<ShapeCast3D, Unit, CollisionObject3D?>("add_exception")
+
+    @JvmStatic
+    public val removeExceptionRidName: MethodStringName1<ShapeCast3D, Unit, RID> =
+        MethodStringName1<ShapeCast3D, Unit, RID>("remove_exception_rid")
+
+    @JvmStatic
+    public val removeExceptionName: MethodStringName1<ShapeCast3D, Unit, CollisionObject3D?> =
+        MethodStringName1<ShapeCast3D, Unit, CollisionObject3D?>("remove_exception")
+
+    @JvmStatic
+    public val clearExceptionsName: MethodStringName0<ShapeCast3D, Unit> =
+        MethodStringName0<ShapeCast3D, Unit>("clear_exceptions")
+
+    @JvmStatic
+    public val setCollisionMaskName: MethodStringName1<ShapeCast3D, Unit, Long> =
+        MethodStringName1<ShapeCast3D, Unit, Long>("set_collision_mask")
+
+    @JvmStatic
+    public val getCollisionMaskName: MethodStringName0<ShapeCast3D, Long> =
+        MethodStringName0<ShapeCast3D, Long>("get_collision_mask")
+
+    @JvmStatic
+    public val setCollisionMaskValueName: MethodStringName2<ShapeCast3D, Unit, Int, Boolean> =
+        MethodStringName2<ShapeCast3D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmStatic
+    public val getCollisionMaskValueName: MethodStringName1<ShapeCast3D, Boolean, Int> =
+        MethodStringName1<ShapeCast3D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmStatic
+    public val setExcludeParentBodyName: MethodStringName1<ShapeCast3D, Unit, Boolean> =
+        MethodStringName1<ShapeCast3D, Unit, Boolean>("set_exclude_parent_body")
+
+    @JvmStatic
+    public val getExcludeParentBodyName: MethodStringName0<ShapeCast3D, Boolean> =
+        MethodStringName0<ShapeCast3D, Boolean>("get_exclude_parent_body")
+
+    @JvmStatic
+    public val setCollideWithAreasName: MethodStringName1<ShapeCast3D, Unit, Boolean> =
+        MethodStringName1<ShapeCast3D, Unit, Boolean>("set_collide_with_areas")
+
+    @JvmStatic
+    public val isCollideWithAreasEnabledName: MethodStringName0<ShapeCast3D, Boolean> =
+        MethodStringName0<ShapeCast3D, Boolean>("is_collide_with_areas_enabled")
+
+    @JvmStatic
+    public val setCollideWithBodiesName: MethodStringName1<ShapeCast3D, Unit, Boolean> =
+        MethodStringName1<ShapeCast3D, Unit, Boolean>("set_collide_with_bodies")
+
+    @JvmStatic
+    public val isCollideWithBodiesEnabledName: MethodStringName0<ShapeCast3D, Boolean> =
+        MethodStringName0<ShapeCast3D, Boolean>("is_collide_with_bodies_enabled")
+
+    @JvmStatic
+    public val getCollisionResultName: MethodStringName0<ShapeCast3D, VariantArray<Any?>> =
+        MethodStringName0<ShapeCast3D, VariantArray<Any?>>("get_collision_result")
+
+    @JvmStatic
+    public val setDebugShapeCustomColorName: MethodStringName1<ShapeCast3D, Unit, Color> =
+        MethodStringName1<ShapeCast3D, Unit, Color>("set_debug_shape_custom_color")
+
+    @JvmStatic
+    public val getDebugShapeCustomColorName: MethodStringName0<ShapeCast3D, Color> =
+        MethodStringName0<ShapeCast3D, Color>("get_debug_shape_custom_color")
+  }
 
   public object MethodBindings {
     internal val resourceChangedPtr: VoidPtr =

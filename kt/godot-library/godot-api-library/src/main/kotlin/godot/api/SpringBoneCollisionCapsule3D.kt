@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A capsule shape collision that interacts with [SpringBoneSimulator3D].
@@ -96,7 +99,31 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRadiusName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_radius")
+
+    @JvmStatic
+    public val setHeightName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_height")
+
+    @JvmStatic
+    public val getHeightName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_height")
+
+    @JvmStatic
+    public val setInsideName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Boolean> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Boolean>("set_inside")
+
+    @JvmStatic
+    public val isInsideName: MethodStringName0<SpringBoneCollisionCapsule3D, Boolean> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Boolean>("is_inside")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

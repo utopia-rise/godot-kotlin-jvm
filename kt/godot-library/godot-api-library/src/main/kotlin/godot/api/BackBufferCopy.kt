@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Node for back-buffering the currently-displayed screen. The region defined in the
@@ -138,7 +141,23 @@ public open class BackBufferCopy : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRectName: MethodStringName1<BackBufferCopy, Unit, Rect2> =
+        MethodStringName1<BackBufferCopy, Unit, Rect2>("set_rect")
+
+    @JvmStatic
+    public val getRectName: MethodStringName0<BackBufferCopy, Rect2> =
+        MethodStringName0<BackBufferCopy, Rect2>("get_rect")
+
+    @JvmStatic
+    public val setCopyModeName: MethodStringName1<BackBufferCopy, Unit, CopyMode> =
+        MethodStringName1<BackBufferCopy, Unit, CopyMode>("set_copy_mode")
+
+    @JvmStatic
+    public val getCopyModeName: MethodStringName0<BackBufferCopy, CopyMode> =
+        MethodStringName0<BackBufferCopy, CopyMode>("get_copy_mode")
+  }
 
   public object MethodBindings {
     internal val setRectPtr: VoidPtr =

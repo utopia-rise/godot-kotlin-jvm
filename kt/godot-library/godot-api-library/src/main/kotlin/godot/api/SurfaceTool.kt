@@ -12,6 +12,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName6
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
@@ -48,6 +53,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It
@@ -532,7 +538,142 @@ public open class SurfaceTool : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSkinWeightCountName: MethodStringName1<SurfaceTool, Unit, SkinWeightCount> =
+        MethodStringName1<SurfaceTool, Unit, SkinWeightCount>("set_skin_weight_count")
+
+    @JvmStatic
+    public val getSkinWeightCountName: MethodStringName0<SurfaceTool, SkinWeightCount> =
+        MethodStringName0<SurfaceTool, SkinWeightCount>("get_skin_weight_count")
+
+    @JvmStatic
+    public val setCustomFormatName: MethodStringName2<SurfaceTool, Unit, Int, CustomFormat> =
+        MethodStringName2<SurfaceTool, Unit, Int, CustomFormat>("set_custom_format")
+
+    @JvmStatic
+    public val getCustomFormatName: MethodStringName1<SurfaceTool, CustomFormat, Int> =
+        MethodStringName1<SurfaceTool, CustomFormat, Int>("get_custom_format")
+
+    @JvmStatic
+    public val beginName: MethodStringName1<SurfaceTool, Unit, Mesh.PrimitiveType> =
+        MethodStringName1<SurfaceTool, Unit, Mesh.PrimitiveType>("begin")
+
+    @JvmStatic
+    public val addVertexName: MethodStringName1<SurfaceTool, Unit, Vector3> =
+        MethodStringName1<SurfaceTool, Unit, Vector3>("add_vertex")
+
+    @JvmStatic
+    public val setColorName: MethodStringName1<SurfaceTool, Unit, Color> =
+        MethodStringName1<SurfaceTool, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val setNormalName: MethodStringName1<SurfaceTool, Unit, Vector3> =
+        MethodStringName1<SurfaceTool, Unit, Vector3>("set_normal")
+
+    @JvmStatic
+    public val setTangentName: MethodStringName1<SurfaceTool, Unit, Plane> =
+        MethodStringName1<SurfaceTool, Unit, Plane>("set_tangent")
+
+    @JvmStatic
+    public val setUvName: MethodStringName1<SurfaceTool, Unit, Vector2> =
+        MethodStringName1<SurfaceTool, Unit, Vector2>("set_uv")
+
+    @JvmStatic
+    public val setUv2Name: MethodStringName1<SurfaceTool, Unit, Vector2> =
+        MethodStringName1<SurfaceTool, Unit, Vector2>("set_uv2")
+
+    @JvmStatic
+    public val setBonesName: MethodStringName1<SurfaceTool, Unit, PackedInt32Array> =
+        MethodStringName1<SurfaceTool, Unit, PackedInt32Array>("set_bones")
+
+    @JvmStatic
+    public val setWeightsName: MethodStringName1<SurfaceTool, Unit, PackedFloat32Array> =
+        MethodStringName1<SurfaceTool, Unit, PackedFloat32Array>("set_weights")
+
+    @JvmStatic
+    public val setCustomName: MethodStringName2<SurfaceTool, Unit, Int, Color> =
+        MethodStringName2<SurfaceTool, Unit, Int, Color>("set_custom")
+
+    @JvmStatic
+    public val setSmoothGroupName: MethodStringName1<SurfaceTool, Unit, Long> =
+        MethodStringName1<SurfaceTool, Unit, Long>("set_smooth_group")
+
+    @JvmStatic
+    public val addTriangleFanName:
+        MethodStringName6<SurfaceTool, Unit, PackedVector3Array, PackedVector2Array, PackedColorArray, PackedVector2Array, PackedVector3Array, VariantArray<Plane>>
+        =
+        MethodStringName6<SurfaceTool, Unit, PackedVector3Array, PackedVector2Array, PackedColorArray, PackedVector2Array, PackedVector3Array, VariantArray<Plane>>("add_triangle_fan")
+
+    @JvmStatic
+    public val addIndexName: MethodStringName1<SurfaceTool, Unit, Int> =
+        MethodStringName1<SurfaceTool, Unit, Int>("add_index")
+
+    @JvmStatic
+    public val indexName: MethodStringName0<SurfaceTool, Unit> =
+        MethodStringName0<SurfaceTool, Unit>("index")
+
+    @JvmStatic
+    public val deindexName: MethodStringName0<SurfaceTool, Unit> =
+        MethodStringName0<SurfaceTool, Unit>("deindex")
+
+    @JvmStatic
+    public val generateNormalsName: MethodStringName1<SurfaceTool, Unit, Boolean> =
+        MethodStringName1<SurfaceTool, Unit, Boolean>("generate_normals")
+
+    @JvmStatic
+    public val generateTangentsName: MethodStringName0<SurfaceTool, Unit> =
+        MethodStringName0<SurfaceTool, Unit>("generate_tangents")
+
+    @JvmStatic
+    public val optimizeIndicesForCacheName: MethodStringName0<SurfaceTool, Unit> =
+        MethodStringName0<SurfaceTool, Unit>("optimize_indices_for_cache")
+
+    @JvmStatic
+    public val getAabbName: MethodStringName0<SurfaceTool, AABB> =
+        MethodStringName0<SurfaceTool, AABB>("get_aabb")
+
+    @JvmStatic
+    public val generateLodName: MethodStringName2<SurfaceTool, PackedInt32Array, Float, Int> =
+        MethodStringName2<SurfaceTool, PackedInt32Array, Float, Int>("generate_lod")
+
+    @JvmStatic
+    public val setMaterialName: MethodStringName1<SurfaceTool, Unit, Material?> =
+        MethodStringName1<SurfaceTool, Unit, Material?>("set_material")
+
+    @JvmStatic
+    public val getPrimitiveTypeName: MethodStringName0<SurfaceTool, Mesh.PrimitiveType> =
+        MethodStringName0<SurfaceTool, Mesh.PrimitiveType>("get_primitive_type")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<SurfaceTool, Unit> =
+        MethodStringName0<SurfaceTool, Unit>("clear")
+
+    @JvmStatic
+    public val createFromName: MethodStringName2<SurfaceTool, Unit, Mesh?, Int> =
+        MethodStringName2<SurfaceTool, Unit, Mesh?, Int>("create_from")
+
+    @JvmStatic
+    public val createFromArraysName:
+        MethodStringName2<SurfaceTool, Unit, VariantArray<Any?>, Mesh.PrimitiveType> =
+        MethodStringName2<SurfaceTool, Unit, VariantArray<Any?>, Mesh.PrimitiveType>("create_from_arrays")
+
+    @JvmStatic
+    public val createFromBlendShapeName: MethodStringName3<SurfaceTool, Unit, Mesh?, Int, String> =
+        MethodStringName3<SurfaceTool, Unit, Mesh?, Int, String>("create_from_blend_shape")
+
+    @JvmStatic
+    public val appendFromName: MethodStringName3<SurfaceTool, Unit, Mesh?, Int, Transform3D> =
+        MethodStringName3<SurfaceTool, Unit, Mesh?, Int, Transform3D>("append_from")
+
+    @JvmStatic
+    public val commitName: MethodStringName2<SurfaceTool, ArrayMesh?, ArrayMesh?, Long> =
+        MethodStringName2<SurfaceTool, ArrayMesh?, ArrayMesh?, Long>("commit")
+
+    @JvmStatic
+    public val commitToArraysName: MethodStringName0<SurfaceTool, VariantArray<Any?>> =
+        MethodStringName0<SurfaceTool, VariantArray<Any?>>("commit_to_arrays")
+  }
 
   public object MethodBindings {
     internal val setSkinWeightCountPtr: VoidPtr =

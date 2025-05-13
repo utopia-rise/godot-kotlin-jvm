@@ -11,6 +11,11 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -34,6 +39,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A resource used for styling/skinning [Control] and [Window] nodes. While individual controls can
@@ -1355,7 +1361,283 @@ public open class Theme : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setIconName: MethodStringName3<Theme, Unit, StringName, StringName, Texture2D?> =
+        MethodStringName3<Theme, Unit, StringName, StringName, Texture2D?>("set_icon")
+
+    @JvmStatic
+    public val getIconName: MethodStringName2<Theme, Texture2D?, StringName, StringName> =
+        MethodStringName2<Theme, Texture2D?, StringName, StringName>("get_icon")
+
+    @JvmStatic
+    public val hasIconName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("has_icon")
+
+    @JvmStatic
+    public val renameIconName: MethodStringName3<Theme, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName>("rename_icon")
+
+    @JvmStatic
+    public val clearIconName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("clear_icon")
+
+    @JvmStatic
+    public val getIconListName: MethodStringName1<Theme, PackedStringArray, String> =
+        MethodStringName1<Theme, PackedStringArray, String>("get_icon_list")
+
+    @JvmStatic
+    public val getIconTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_icon_type_list")
+
+    @JvmStatic
+    public val setStyleboxName: MethodStringName3<Theme, Unit, StringName, StringName, StyleBox?> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StyleBox?>("set_stylebox")
+
+    @JvmStatic
+    public val getStyleboxName: MethodStringName2<Theme, StyleBox?, StringName, StringName> =
+        MethodStringName2<Theme, StyleBox?, StringName, StringName>("get_stylebox")
+
+    @JvmStatic
+    public val hasStyleboxName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("has_stylebox")
+
+    @JvmStatic
+    public val renameStyleboxName:
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName>("rename_stylebox")
+
+    @JvmStatic
+    public val clearStyleboxName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("clear_stylebox")
+
+    @JvmStatic
+    public val getStyleboxListName: MethodStringName1<Theme, PackedStringArray, String> =
+        MethodStringName1<Theme, PackedStringArray, String>("get_stylebox_list")
+
+    @JvmStatic
+    public val getStyleboxTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_stylebox_type_list")
+
+    @JvmStatic
+    public val setFontName: MethodStringName3<Theme, Unit, StringName, StringName, Font?> =
+        MethodStringName3<Theme, Unit, StringName, StringName, Font?>("set_font")
+
+    @JvmStatic
+    public val getFontName: MethodStringName2<Theme, Font?, StringName, StringName> =
+        MethodStringName2<Theme, Font?, StringName, StringName>("get_font")
+
+    @JvmStatic
+    public val hasFontName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("has_font")
+
+    @JvmStatic
+    public val renameFontName: MethodStringName3<Theme, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName>("rename_font")
+
+    @JvmStatic
+    public val clearFontName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("clear_font")
+
+    @JvmStatic
+    public val getFontListName: MethodStringName1<Theme, PackedStringArray, String> =
+        MethodStringName1<Theme, PackedStringArray, String>("get_font_list")
+
+    @JvmStatic
+    public val getFontTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_font_type_list")
+
+    @JvmStatic
+    public val setFontSizeName: MethodStringName3<Theme, Unit, StringName, StringName, Int> =
+        MethodStringName3<Theme, Unit, StringName, StringName, Int>("set_font_size")
+
+    @JvmStatic
+    public val getFontSizeName: MethodStringName2<Theme, Int, StringName, StringName> =
+        MethodStringName2<Theme, Int, StringName, StringName>("get_font_size")
+
+    @JvmStatic
+    public val hasFontSizeName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("has_font_size")
+
+    @JvmStatic
+    public val renameFontSizeName:
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName>("rename_font_size")
+
+    @JvmStatic
+    public val clearFontSizeName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("clear_font_size")
+
+    @JvmStatic
+    public val getFontSizeListName: MethodStringName1<Theme, PackedStringArray, String> =
+        MethodStringName1<Theme, PackedStringArray, String>("get_font_size_list")
+
+    @JvmStatic
+    public val getFontSizeTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_font_size_type_list")
+
+    @JvmStatic
+    public val setColorName: MethodStringName3<Theme, Unit, StringName, StringName, Color> =
+        MethodStringName3<Theme, Unit, StringName, StringName, Color>("set_color")
+
+    @JvmStatic
+    public val getColorName: MethodStringName2<Theme, Color, StringName, StringName> =
+        MethodStringName2<Theme, Color, StringName, StringName>("get_color")
+
+    @JvmStatic
+    public val hasColorName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("has_color")
+
+    @JvmStatic
+    public val renameColorName: MethodStringName3<Theme, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName>("rename_color")
+
+    @JvmStatic
+    public val clearColorName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("clear_color")
+
+    @JvmStatic
+    public val getColorListName: MethodStringName1<Theme, PackedStringArray, String> =
+        MethodStringName1<Theme, PackedStringArray, String>("get_color_list")
+
+    @JvmStatic
+    public val getColorTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_color_type_list")
+
+    @JvmStatic
+    public val setConstantName: MethodStringName3<Theme, Unit, StringName, StringName, Int> =
+        MethodStringName3<Theme, Unit, StringName, StringName, Int>("set_constant")
+
+    @JvmStatic
+    public val getConstantName: MethodStringName2<Theme, Int, StringName, StringName> =
+        MethodStringName2<Theme, Int, StringName, StringName>("get_constant")
+
+    @JvmStatic
+    public val hasConstantName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("has_constant")
+
+    @JvmStatic
+    public val renameConstantName:
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Theme, Unit, StringName, StringName, StringName>("rename_constant")
+
+    @JvmStatic
+    public val clearConstantName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("clear_constant")
+
+    @JvmStatic
+    public val getConstantListName: MethodStringName1<Theme, PackedStringArray, String> =
+        MethodStringName1<Theme, PackedStringArray, String>("get_constant_list")
+
+    @JvmStatic
+    public val getConstantTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_constant_type_list")
+
+    @JvmStatic
+    public val setDefaultBaseScaleName: MethodStringName1<Theme, Unit, Float> =
+        MethodStringName1<Theme, Unit, Float>("set_default_base_scale")
+
+    @JvmStatic
+    public val getDefaultBaseScaleName: MethodStringName0<Theme, Float> =
+        MethodStringName0<Theme, Float>("get_default_base_scale")
+
+    @JvmStatic
+    public val hasDefaultBaseScaleName: MethodStringName0<Theme, Boolean> =
+        MethodStringName0<Theme, Boolean>("has_default_base_scale")
+
+    @JvmStatic
+    public val setDefaultFontName: MethodStringName1<Theme, Unit, Font?> =
+        MethodStringName1<Theme, Unit, Font?>("set_default_font")
+
+    @JvmStatic
+    public val getDefaultFontName: MethodStringName0<Theme, Font?> =
+        MethodStringName0<Theme, Font?>("get_default_font")
+
+    @JvmStatic
+    public val hasDefaultFontName: MethodStringName0<Theme, Boolean> =
+        MethodStringName0<Theme, Boolean>("has_default_font")
+
+    @JvmStatic
+    public val setDefaultFontSizeName: MethodStringName1<Theme, Unit, Int> =
+        MethodStringName1<Theme, Unit, Int>("set_default_font_size")
+
+    @JvmStatic
+    public val getDefaultFontSizeName: MethodStringName0<Theme, Int> =
+        MethodStringName0<Theme, Int>("get_default_font_size")
+
+    @JvmStatic
+    public val hasDefaultFontSizeName: MethodStringName0<Theme, Boolean> =
+        MethodStringName0<Theme, Boolean>("has_default_font_size")
+
+    @JvmStatic
+    public val setThemeItemName:
+        MethodStringName4<Theme, Unit, DataType, StringName, StringName, Any?> =
+        MethodStringName4<Theme, Unit, DataType, StringName, StringName, Any?>("set_theme_item")
+
+    @JvmStatic
+    public val getThemeItemName: MethodStringName3<Theme, Any?, DataType, StringName, StringName> =
+        MethodStringName3<Theme, Any?, DataType, StringName, StringName>("get_theme_item")
+
+    @JvmStatic
+    public val hasThemeItemName: MethodStringName3<Theme, Boolean, DataType, StringName, StringName>
+        = MethodStringName3<Theme, Boolean, DataType, StringName, StringName>("has_theme_item")
+
+    @JvmStatic
+    public val renameThemeItemName:
+        MethodStringName4<Theme, Unit, DataType, StringName, StringName, StringName> =
+        MethodStringName4<Theme, Unit, DataType, StringName, StringName, StringName>("rename_theme_item")
+
+    @JvmStatic
+    public val clearThemeItemName: MethodStringName3<Theme, Unit, DataType, StringName, StringName>
+        = MethodStringName3<Theme, Unit, DataType, StringName, StringName>("clear_theme_item")
+
+    @JvmStatic
+    public val getThemeItemListName: MethodStringName2<Theme, PackedStringArray, DataType, String> =
+        MethodStringName2<Theme, PackedStringArray, DataType, String>("get_theme_item_list")
+
+    @JvmStatic
+    public val getThemeItemTypeListName: MethodStringName1<Theme, PackedStringArray, DataType> =
+        MethodStringName1<Theme, PackedStringArray, DataType>("get_theme_item_type_list")
+
+    @JvmStatic
+    public val setTypeVariationName: MethodStringName2<Theme, Unit, StringName, StringName> =
+        MethodStringName2<Theme, Unit, StringName, StringName>("set_type_variation")
+
+    @JvmStatic
+    public val isTypeVariationName: MethodStringName2<Theme, Boolean, StringName, StringName> =
+        MethodStringName2<Theme, Boolean, StringName, StringName>("is_type_variation")
+
+    @JvmStatic
+    public val clearTypeVariationName: MethodStringName1<Theme, Unit, StringName> =
+        MethodStringName1<Theme, Unit, StringName>("clear_type_variation")
+
+    @JvmStatic
+    public val getTypeVariationBaseName: MethodStringName1<Theme, StringName, StringName> =
+        MethodStringName1<Theme, StringName, StringName>("get_type_variation_base")
+
+    @JvmStatic
+    public val getTypeVariationListName: MethodStringName1<Theme, PackedStringArray, StringName> =
+        MethodStringName1<Theme, PackedStringArray, StringName>("get_type_variation_list")
+
+    @JvmStatic
+    public val addTypeName: MethodStringName1<Theme, Unit, StringName> =
+        MethodStringName1<Theme, Unit, StringName>("add_type")
+
+    @JvmStatic
+    public val removeTypeName: MethodStringName1<Theme, Unit, StringName> =
+        MethodStringName1<Theme, Unit, StringName>("remove_type")
+
+    @JvmStatic
+    public val getTypeListName: MethodStringName0<Theme, PackedStringArray> =
+        MethodStringName0<Theme, PackedStringArray>("get_type_list")
+
+    @JvmStatic
+    public val mergeWithName: MethodStringName1<Theme, Unit, Theme?> =
+        MethodStringName1<Theme, Unit, Theme?>("merge_with")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<Theme, Unit> = MethodStringName0<Theme, Unit>("clear")
+  }
 
   public object MethodBindings {
     internal val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_icon", 2188371082)

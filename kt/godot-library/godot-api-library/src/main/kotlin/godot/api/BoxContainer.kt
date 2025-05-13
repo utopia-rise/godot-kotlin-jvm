@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A container that arranges its child controls horizontally or vertically, rearranging them
@@ -117,7 +120,27 @@ public open class BoxContainer : Container() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addSpacerName: MethodStringName1<BoxContainer, Control?, Boolean> =
+        MethodStringName1<BoxContainer, Control?, Boolean>("add_spacer")
+
+    @JvmStatic
+    public val setAlignmentName: MethodStringName1<BoxContainer, Unit, AlignmentMode> =
+        MethodStringName1<BoxContainer, Unit, AlignmentMode>("set_alignment")
+
+    @JvmStatic
+    public val getAlignmentName: MethodStringName0<BoxContainer, AlignmentMode> =
+        MethodStringName0<BoxContainer, AlignmentMode>("get_alignment")
+
+    @JvmStatic
+    public val setVerticalName: MethodStringName1<BoxContainer, Unit, Boolean> =
+        MethodStringName1<BoxContainer, Unit, Boolean>("set_vertical")
+
+    @JvmStatic
+    public val isVerticalName: MethodStringName0<BoxContainer, Boolean> =
+        MethodStringName0<BoxContainer, Boolean>("is_vertical")
+  }
 
   public object MethodBindings {
     internal val addSpacerPtr: VoidPtr =

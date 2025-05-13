@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An
@@ -189,7 +192,39 @@ public open class AtlasTexture : Texture2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setAtlasName: MethodStringName1<AtlasTexture, Unit, Texture2D?> =
+        MethodStringName1<AtlasTexture, Unit, Texture2D?>("set_atlas")
+
+    @JvmStatic
+    public val getAtlasName: MethodStringName0<AtlasTexture, Texture2D?> =
+        MethodStringName0<AtlasTexture, Texture2D?>("get_atlas")
+
+    @JvmStatic
+    public val setRegionName: MethodStringName1<AtlasTexture, Unit, Rect2> =
+        MethodStringName1<AtlasTexture, Unit, Rect2>("set_region")
+
+    @JvmStatic
+    public val getRegionName: MethodStringName0<AtlasTexture, Rect2> =
+        MethodStringName0<AtlasTexture, Rect2>("get_region")
+
+    @JvmStatic
+    public val setMarginName: MethodStringName1<AtlasTexture, Unit, Rect2> =
+        MethodStringName1<AtlasTexture, Unit, Rect2>("set_margin")
+
+    @JvmStatic
+    public val getMarginName: MethodStringName0<AtlasTexture, Rect2> =
+        MethodStringName0<AtlasTexture, Rect2>("get_margin")
+
+    @JvmStatic
+    public val setFilterClipName: MethodStringName1<AtlasTexture, Unit, Boolean> =
+        MethodStringName1<AtlasTexture, Unit, Boolean>("set_filter_clip")
+
+    @JvmStatic
+    public val hasFilterClipName: MethodStringName0<AtlasTexture, Boolean> =
+        MethodStringName0<AtlasTexture, Boolean>("has_filter_clip")
+  }
 
   public object MethodBindings {
     internal val setAtlasPtr: VoidPtr =

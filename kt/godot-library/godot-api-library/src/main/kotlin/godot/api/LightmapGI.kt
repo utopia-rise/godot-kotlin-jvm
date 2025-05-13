@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -27,6 +29,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The [LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide
@@ -843,7 +846,184 @@ public open class LightmapGI : VisualInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLightDataName: MethodStringName1<LightmapGI, Unit, LightmapGIData?> =
+        MethodStringName1<LightmapGI, Unit, LightmapGIData?>("set_light_data")
+
+    @JvmStatic
+    public val getLightDataName: MethodStringName0<LightmapGI, LightmapGIData?> =
+        MethodStringName0<LightmapGI, LightmapGIData?>("get_light_data")
+
+    @JvmStatic
+    public val setBakeQualityName: MethodStringName1<LightmapGI, Unit, BakeQuality> =
+        MethodStringName1<LightmapGI, Unit, BakeQuality>("set_bake_quality")
+
+    @JvmStatic
+    public val getBakeQualityName: MethodStringName0<LightmapGI, BakeQuality> =
+        MethodStringName0<LightmapGI, BakeQuality>("get_bake_quality")
+
+    @JvmStatic
+    public val setBouncesName: MethodStringName1<LightmapGI, Unit, Int> =
+        MethodStringName1<LightmapGI, Unit, Int>("set_bounces")
+
+    @JvmStatic
+    public val getBouncesName: MethodStringName0<LightmapGI, Int> =
+        MethodStringName0<LightmapGI, Int>("get_bounces")
+
+    @JvmStatic
+    public val setBounceIndirectEnergyName: MethodStringName1<LightmapGI, Unit, Float> =
+        MethodStringName1<LightmapGI, Unit, Float>("set_bounce_indirect_energy")
+
+    @JvmStatic
+    public val getBounceIndirectEnergyName: MethodStringName0<LightmapGI, Float> =
+        MethodStringName0<LightmapGI, Float>("get_bounce_indirect_energy")
+
+    @JvmStatic
+    public val setGenerateProbesName: MethodStringName1<LightmapGI, Unit, GenerateProbes> =
+        MethodStringName1<LightmapGI, Unit, GenerateProbes>("set_generate_probes")
+
+    @JvmStatic
+    public val getGenerateProbesName: MethodStringName0<LightmapGI, GenerateProbes> =
+        MethodStringName0<LightmapGI, GenerateProbes>("get_generate_probes")
+
+    @JvmStatic
+    public val setBiasName: MethodStringName1<LightmapGI, Unit, Float> =
+        MethodStringName1<LightmapGI, Unit, Float>("set_bias")
+
+    @JvmStatic
+    public val getBiasName: MethodStringName0<LightmapGI, Float> =
+        MethodStringName0<LightmapGI, Float>("get_bias")
+
+    @JvmStatic
+    public val setEnvironmentModeName: MethodStringName1<LightmapGI, Unit, EnvironmentMode> =
+        MethodStringName1<LightmapGI, Unit, EnvironmentMode>("set_environment_mode")
+
+    @JvmStatic
+    public val getEnvironmentModeName: MethodStringName0<LightmapGI, EnvironmentMode> =
+        MethodStringName0<LightmapGI, EnvironmentMode>("get_environment_mode")
+
+    @JvmStatic
+    public val setEnvironmentCustomSkyName: MethodStringName1<LightmapGI, Unit, Sky?> =
+        MethodStringName1<LightmapGI, Unit, Sky?>("set_environment_custom_sky")
+
+    @JvmStatic
+    public val getEnvironmentCustomSkyName: MethodStringName0<LightmapGI, Sky?> =
+        MethodStringName0<LightmapGI, Sky?>("get_environment_custom_sky")
+
+    @JvmStatic
+    public val setEnvironmentCustomColorName: MethodStringName1<LightmapGI, Unit, Color> =
+        MethodStringName1<LightmapGI, Unit, Color>("set_environment_custom_color")
+
+    @JvmStatic
+    public val getEnvironmentCustomColorName: MethodStringName0<LightmapGI, Color> =
+        MethodStringName0<LightmapGI, Color>("get_environment_custom_color")
+
+    @JvmStatic
+    public val setEnvironmentCustomEnergyName: MethodStringName1<LightmapGI, Unit, Float> =
+        MethodStringName1<LightmapGI, Unit, Float>("set_environment_custom_energy")
+
+    @JvmStatic
+    public val getEnvironmentCustomEnergyName: MethodStringName0<LightmapGI, Float> =
+        MethodStringName0<LightmapGI, Float>("get_environment_custom_energy")
+
+    @JvmStatic
+    public val setTexelScaleName: MethodStringName1<LightmapGI, Unit, Float> =
+        MethodStringName1<LightmapGI, Unit, Float>("set_texel_scale")
+
+    @JvmStatic
+    public val getTexelScaleName: MethodStringName0<LightmapGI, Float> =
+        MethodStringName0<LightmapGI, Float>("get_texel_scale")
+
+    @JvmStatic
+    public val setMaxTextureSizeName: MethodStringName1<LightmapGI, Unit, Int> =
+        MethodStringName1<LightmapGI, Unit, Int>("set_max_texture_size")
+
+    @JvmStatic
+    public val getMaxTextureSizeName: MethodStringName0<LightmapGI, Int> =
+        MethodStringName0<LightmapGI, Int>("get_max_texture_size")
+
+    @JvmStatic
+    public val setSupersamplingEnabledName: MethodStringName1<LightmapGI, Unit, Boolean> =
+        MethodStringName1<LightmapGI, Unit, Boolean>("set_supersampling_enabled")
+
+    @JvmStatic
+    public val isSupersamplingEnabledName: MethodStringName0<LightmapGI, Boolean> =
+        MethodStringName0<LightmapGI, Boolean>("is_supersampling_enabled")
+
+    @JvmStatic
+    public val setSupersamplingFactorName: MethodStringName1<LightmapGI, Unit, Float> =
+        MethodStringName1<LightmapGI, Unit, Float>("set_supersampling_factor")
+
+    @JvmStatic
+    public val getSupersamplingFactorName: MethodStringName0<LightmapGI, Float> =
+        MethodStringName0<LightmapGI, Float>("get_supersampling_factor")
+
+    @JvmStatic
+    public val setUseDenoiserName: MethodStringName1<LightmapGI, Unit, Boolean> =
+        MethodStringName1<LightmapGI, Unit, Boolean>("set_use_denoiser")
+
+    @JvmStatic
+    public val isUsingDenoiserName: MethodStringName0<LightmapGI, Boolean> =
+        MethodStringName0<LightmapGI, Boolean>("is_using_denoiser")
+
+    @JvmStatic
+    public val setDenoiserStrengthName: MethodStringName1<LightmapGI, Unit, Float> =
+        MethodStringName1<LightmapGI, Unit, Float>("set_denoiser_strength")
+
+    @JvmStatic
+    public val getDenoiserStrengthName: MethodStringName0<LightmapGI, Float> =
+        MethodStringName0<LightmapGI, Float>("get_denoiser_strength")
+
+    @JvmStatic
+    public val setDenoiserRangeName: MethodStringName1<LightmapGI, Unit, Int> =
+        MethodStringName1<LightmapGI, Unit, Int>("set_denoiser_range")
+
+    @JvmStatic
+    public val getDenoiserRangeName: MethodStringName0<LightmapGI, Int> =
+        MethodStringName0<LightmapGI, Int>("get_denoiser_range")
+
+    @JvmStatic
+    public val setInteriorName: MethodStringName1<LightmapGI, Unit, Boolean> =
+        MethodStringName1<LightmapGI, Unit, Boolean>("set_interior")
+
+    @JvmStatic
+    public val isInteriorName: MethodStringName0<LightmapGI, Boolean> =
+        MethodStringName0<LightmapGI, Boolean>("is_interior")
+
+    @JvmStatic
+    public val setDirectionalName: MethodStringName1<LightmapGI, Unit, Boolean> =
+        MethodStringName1<LightmapGI, Unit, Boolean>("set_directional")
+
+    @JvmStatic
+    public val isDirectionalName: MethodStringName0<LightmapGI, Boolean> =
+        MethodStringName0<LightmapGI, Boolean>("is_directional")
+
+    @JvmStatic
+    public val setShadowmaskModeName:
+        MethodStringName1<LightmapGI, Unit, LightmapGIData.ShadowmaskMode> =
+        MethodStringName1<LightmapGI, Unit, LightmapGIData.ShadowmaskMode>("set_shadowmask_mode")
+
+    @JvmStatic
+    public val getShadowmaskModeName: MethodStringName0<LightmapGI, LightmapGIData.ShadowmaskMode> =
+        MethodStringName0<LightmapGI, LightmapGIData.ShadowmaskMode>("get_shadowmask_mode")
+
+    @JvmStatic
+    public val setUseTextureForBouncesName: MethodStringName1<LightmapGI, Unit, Boolean> =
+        MethodStringName1<LightmapGI, Unit, Boolean>("set_use_texture_for_bounces")
+
+    @JvmStatic
+    public val isUsingTextureForBouncesName: MethodStringName0<LightmapGI, Boolean> =
+        MethodStringName0<LightmapGI, Boolean>("is_using_texture_for_bounces")
+
+    @JvmStatic
+    public val setCameraAttributesName: MethodStringName1<LightmapGI, Unit, CameraAttributes?> =
+        MethodStringName1<LightmapGI, Unit, CameraAttributes?>("set_camera_attributes")
+
+    @JvmStatic
+    public val getCameraAttributesName: MethodStringName0<LightmapGI, CameraAttributes?> =
+        MethodStringName0<LightmapGI, CameraAttributes?>("get_camera_attributes")
+  }
 
   public object MethodBindings {
     internal val setLightDataPtr: VoidPtr =
