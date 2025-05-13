@@ -1,6 +1,7 @@
 @file:Suppress(
   "PackageDirectoryMismatch", "UNCHECKED_CAST",
   "unused",
+  "RedundantVisibilityModifier",
 )
 
 package godot.core
@@ -32,9 +33,9 @@ public interface Callable2<R, P0, P1> : Callable {
 
   public operator fun invoke(p0: P0, p1: P1): R = call(p0, p1)
 
-  public fun bind(p0: P0, p1: P1): Callable0<R>
-
   public fun bind(p1: P1): Callable1<R, P0>
+
+  public fun bind(p0: P0, p1: P1): Callable0<R>
 }
 
 public interface Callable3<R, P0, P1, P2> : Callable {
@@ -56,15 +57,15 @@ public interface Callable3<R, P0, P1, P2> : Callable {
     p2: P2,
   ): R = call(p0, p1, p2)
 
+  public fun bind(p2: P2): Callable2<R, P0, P1>
+
+  public fun bind(p1: P1, p2: P2): Callable1<R, P0>
+
   public fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
   ): Callable0<R>
-
-  public fun bind(p1: P1, p2: P2): Callable1<R, P0>
-
-  public fun bind(p2: P2): Callable2<R, P0, P1>
 }
 
 public interface Callable4<R, P0, P1, P2, P3> : Callable {
@@ -89,12 +90,9 @@ public interface Callable4<R, P0, P1, P2, P3> : Callable {
     p3: P3,
   ): R = call(p0, p1, p2, p3)
 
-  public fun bind(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-  ): Callable0<R>
+  public fun bind(p3: P3): Callable3<R, P0, P1, P2>
+
+  public fun bind(p2: P2, p3: P3): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -102,9 +100,12 @@ public interface Callable4<R, P0, P1, P2, P3> : Callable {
     p3: P3,
   ): Callable1<R, P0>
 
-  public fun bind(p2: P2, p3: P3): Callable2<R, P0, P1>
-
-  public fun bind(p3: P3): Callable3<R, P0, P1, P2>
+  public fun bind(
+    p0: P0,
+    p1: P1,
+    p2: P2,
+    p3: P3,
+  ): Callable0<R>
 }
 
 public interface Callable5<R, P0, P1, P2, P3, P4> : Callable {
@@ -132,13 +133,15 @@ public interface Callable5<R, P0, P1, P2, P3, P4> : Callable {
     p4: P4,
   ): R = call(p0, p1, p2, p3, p4)
 
+  public fun bind(p4: P4): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(p3: P3, p4: P4): Callable3<R, P0, P1, P2>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -148,14 +151,12 @@ public interface Callable5<R, P0, P1, P2, P3, P4> : Callable {
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(p3: P3, p4: P4): Callable3<R, P0, P1, P2>
-
-  public fun bind(p4: P4): Callable4<R, P0, P1, P2, P3>
+  ): Callable0<R>
 }
 
 public interface Callable6<R, P0, P1, P2, P3, P4, P5> : Callable {
@@ -186,14 +187,22 @@ public interface Callable6<R, P0, P1, P2, P3, P4, P5> : Callable {
     p5: P5,
   ): R = call(p0, p1, p2, p3, p4, p5)
 
+  public fun bind(p5: P5): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(p4: P4, p5: P5): Callable4<R, P0, P1, P2, P3>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p3: P3,
+    p4: P4,
+    p5: P5,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -204,21 +213,13 @@ public interface Callable6<R, P0, P1, P2, P3, P4, P5> : Callable {
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(p4: P4, p5: P5): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(p5: P5): Callable5<R, P0, P1, P2, P3, P4>
+  ): Callable0<R>
 }
 
 public interface Callable7<R, P0, P1, P2, P3, P4, P5, P6> : Callable {
@@ -252,15 +253,30 @@ public interface Callable7<R, P0, P1, P2, P3, P4, P5, P6> : Callable {
     p6: P6,
   ): R = call(p0, p1, p2, p3, p4, p5, p6)
 
+  public fun bind(p6: P6): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(p5: P5, p6: P6): Callable5<R, P0, P1, P2, P3, P4>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -272,29 +288,14 @@ public interface Callable7<R, P0, P1, P2, P3, P4, P5, P6> : Callable {
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(p5: P5, p6: P6): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(p6: P6): Callable6<R, P0, P1, P2, P3, P4, P5>
+  ): Callable0<R>
 }
 
 public interface Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7> : Callable {
@@ -331,16 +332,39 @@ public interface Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7> : Callable {
     p7: P7,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7)
 
+  public fun bind(p7: P7): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(p6: P6, p7: P7): Callable6<R, P0, P1, P2, P3, P4, P5>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
     p7: P7,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -353,38 +377,15 @@ public interface Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7> : Callable {
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
     p7: P7,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(p6: P6, p7: P7): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(p7: P7): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+  ): Callable0<R>
 }
 
 public interface Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> : Callable {
@@ -424,9 +425,41 @@ public interface Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> : Callable {
     p8: P8,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8)
 
+  public fun bind(p8: P8): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(p7: P7, p8: P8): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -434,7 +467,7 @@ public interface Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> : Callable {
     p6: P6,
     p7: P7,
     p8: P8,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -448,6 +481,8 @@ public interface Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> : Callable {
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -455,41 +490,7 @@ public interface Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> : Callable {
     p6: P6,
     p7: P7,
     p8: P8,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(p7: P7, p8: P8): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(p8: P8): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+  ): Callable0<R>
 }
 
 public interface Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> : Callable {
@@ -532,9 +533,51 @@ public interface Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> : Callabl
     p9: P9,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 
+  public fun bind(p9: P9): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
+  public fun bind(p8: P8, p9: P9): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -543,7 +586,7 @@ public interface Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> : Callabl
     p7: P7,
     p8: P8,
     p9: P9,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -558,6 +601,8 @@ public interface Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> : Callabl
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -566,51 +611,7 @@ public interface Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> : Callabl
     p7: P7,
     p8: P8,
     p9: P9,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(p8: P8, p9: P9): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(p9: P9): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+  ): Callable0<R>
 }
 
 public interface Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> : Callable {
@@ -656,9 +657,62 @@ public interface Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> : Ca
     p10: P10,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
 
+  public fun bind(p10: P10): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+
+  public fun bind(p9: P9, p10: P10): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -668,7 +722,7 @@ public interface Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> : Ca
     p8: P8,
     p9: P9,
     p10: P10,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -684,6 +738,8 @@ public interface Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> : Ca
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -693,62 +749,7 @@ public interface Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> : Ca
     p8: P8,
     p9: P9,
     p10: P10,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(p9: P9, p10: P10): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
-
-  public fun bind(p10: P10): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+  ): Callable0<R>
 }
 
 public interface Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> : Callable {
@@ -797,9 +798,74 @@ public interface Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
     p11: P11,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
 
+  public fun bind(p11: P11): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+
+  public fun bind(p10: P10, p11: P11): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
+  public fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -810,7 +876,7 @@ public interface Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
     p9: P9,
     p10: P10,
     p11: P11,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -827,6 +893,8 @@ public interface Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -837,74 +905,7 @@ public interface Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
     p9: P9,
     p10: P10,
     p11: P11,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
-
-  public fun bind(p10: P10, p11: P11): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
-
-  public fun bind(p11: P11): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+  ): Callable0<R>
 }
 
 public interface Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> : Callable {
@@ -956,9 +957,87 @@ public interface Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p12: P12,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
 
+  public fun bind(p12: P12): Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+
+  public fun bind(p11: P11, p12: P12): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+
+  public fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
+  public fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -970,7 +1049,7 @@ public interface Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p10: P10,
     p11: P11,
     p12: P12,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -988,6 +1067,8 @@ public interface Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -999,87 +1080,7 @@ public interface Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p10: P10,
     p11: P11,
     p12: P12,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
-
-  public fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
-
-  public fun bind(p11: P11, p12: P12): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
-
-  public fun bind(p12: P12): Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+  ): Callable0<R>
 }
 
 public interface Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> :
@@ -1135,9 +1136,102 @@ public interface Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p13: P13,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
 
+  public fun bind(p13: P13): Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+
+  public fun bind(p12: P12, p13: P13):
+      Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+
+  public fun bind(
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+
+  public fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
+  public fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1150,7 +1244,7 @@ public interface Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p11: P11,
     p12: P12,
     p13: P13,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -1169,6 +1263,8 @@ public interface Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1181,102 +1277,7 @@ public interface Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p11: P11,
     p12: P12,
     p13: P13,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
-
-  public fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
-
-  public fun bind(
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
-
-  public fun bind(p12: P12, p13: P13):
-      Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
-
-  public fun bind(p13: P13): Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+  ): Callable0<R>
 }
 
 public interface Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> :
@@ -1335,9 +1336,118 @@ public interface Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p14: P14,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
 
+  public fun bind(p14: P14):
+      Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+
+  public fun bind(p13: P13, p14: P14):
+      Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+
+  public fun bind(
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+
+  public fun bind(
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+
+  public fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
+  public fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1351,7 +1461,7 @@ public interface Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p12: P12,
     p13: P13,
     p14: P14,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -1371,6 +1481,8 @@ public interface Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1384,118 +1496,7 @@ public interface Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p12: P12,
     p13: P13,
     p14: P14,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
-
-  public fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
-
-  public fun bind(
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
-
-  public fun bind(
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ): Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
-
-  public fun bind(p13: P13, p14: P14):
-      Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-
-  public fun bind(p14: P14):
-      Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+  ): Callable0<R>
 }
 
 public interface Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
@@ -1557,9 +1558,134 @@ public interface Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p15: P15,
   ): R = call(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
 
+  public fun bind(p15: P15):
+      Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+
+  public fun bind(p14: P14, p15: P15):
+      Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+
   public fun bind(
-    p0: P0,
-    p1: P1,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+
+  public fun bind(
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+
+  public fun bind(
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+
+  public fun bind(
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
+
+  public fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
+
+  public fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
+
+  public fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
+
+  public fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable6<R, P0, P1, P2, P3, P4, P5>
+
+  public fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable5<R, P0, P1, P2, P3, P4>
+
+  public fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable4<R, P0, P1, P2, P3>
+
+  public fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ): Callable3<R, P0, P1, P2>
+
+  public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1574,7 +1700,7 @@ public interface Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p13: P13,
     p14: P14,
     p15: P15,
-  ): Callable0<R>
+  ): Callable2<R, P0, P1>
 
   public fun bind(
     p1: P1,
@@ -1595,6 +1721,8 @@ public interface Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
   ): Callable1<R, P0>
 
   public fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1609,132 +1737,5 @@ public interface Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11,
     p13: P13,
     p14: P14,
     p15: P15,
-  ): Callable2<R, P0, P1>
-
-  public fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable3<R, P0, P1, P2>
-
-  public fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable4<R, P0, P1, P2, P3>
-
-  public fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable5<R, P0, P1, P2, P3, P4>
-
-  public fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable6<R, P0, P1, P2, P3, P4, P5>
-
-  public fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable7<R, P0, P1, P2, P3, P4, P5, P6>
-
-  public fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7>
-
-  public fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>
-
-  public fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
-
-  public fun bind(
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
-
-  public fun bind(
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
-
-  public fun bind(
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ): Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-
-  public fun bind(p14: P14, p15: P15):
-      Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-
-  public fun bind(p15: P15):
-      Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+  ): Callable0<R>
 }
