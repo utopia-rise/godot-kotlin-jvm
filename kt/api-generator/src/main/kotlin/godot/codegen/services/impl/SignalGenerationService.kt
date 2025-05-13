@@ -189,6 +189,20 @@ object SignalGenerationService : ISignalGenerationService {
                     )
                     .build()
             )
+            .addFunction(
+                genericClassNameInfo
+                    .toFunSpecBuilder("create")
+                    .addParameter(ParameterSpec.builder("godotObject", GODOT_OBJECT).build())
+                    .addParameter(ParameterSpec.builder("signalName", STRING).build())
+                    .returns(genericClassNameInfo.genericClassName)
+                    .addCode(
+                        "return·%T(godotObject,·signalName.%M())",
+                        genericClassNameInfo.className,
+                        TO_GODOT_NAME_UTIL_FUNCTION
+                    )
+                    .addAnnotation(JvmStatic::class)
+                    .build()
+            )
             .build()
     }
 
