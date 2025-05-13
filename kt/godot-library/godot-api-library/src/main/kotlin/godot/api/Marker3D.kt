@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Generic 3D position hint for editing. It's just like a plain [Node3D], but it displays as a cross
@@ -50,7 +53,15 @@ public open class Marker3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setGizmoExtentsName: MethodStringName1<Marker3D, Unit, Float> =
+        MethodStringName1<Marker3D, Unit, Float>("set_gizmo_extents")
+
+    @JvmStatic
+    public val getGizmoExtentsName: MethodStringName0<Marker3D, Float> =
+        MethodStringName0<Marker3D, Float>("get_gizmo_extents")
+  }
 
   public object MethodBindings {
     internal val setGizmoExtentsPtr: VoidPtr =

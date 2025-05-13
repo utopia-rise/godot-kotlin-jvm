@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -32,6 +35,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction
@@ -461,7 +465,151 @@ public open class ShapeCast2D : Node2D() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<ShapeCast2D, Unit, Boolean> =
+        MethodStringName1<ShapeCast2D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val isEnabledName: MethodStringName0<ShapeCast2D, Boolean> =
+        MethodStringName0<ShapeCast2D, Boolean>("is_enabled")
+
+    @JvmStatic
+    public val setShapeName: MethodStringName1<ShapeCast2D, Unit, Shape2D?> =
+        MethodStringName1<ShapeCast2D, Unit, Shape2D?>("set_shape")
+
+    @JvmStatic
+    public val getShapeName: MethodStringName0<ShapeCast2D, Shape2D?> =
+        MethodStringName0<ShapeCast2D, Shape2D?>("get_shape")
+
+    @JvmStatic
+    public val setTargetPositionName: MethodStringName1<ShapeCast2D, Unit, Vector2> =
+        MethodStringName1<ShapeCast2D, Unit, Vector2>("set_target_position")
+
+    @JvmStatic
+    public val getTargetPositionName: MethodStringName0<ShapeCast2D, Vector2> =
+        MethodStringName0<ShapeCast2D, Vector2>("get_target_position")
+
+    @JvmStatic
+    public val setMarginName: MethodStringName1<ShapeCast2D, Unit, Float> =
+        MethodStringName1<ShapeCast2D, Unit, Float>("set_margin")
+
+    @JvmStatic
+    public val getMarginName: MethodStringName0<ShapeCast2D, Float> =
+        MethodStringName0<ShapeCast2D, Float>("get_margin")
+
+    @JvmStatic
+    public val setMaxResultsName: MethodStringName1<ShapeCast2D, Unit, Int> =
+        MethodStringName1<ShapeCast2D, Unit, Int>("set_max_results")
+
+    @JvmStatic
+    public val getMaxResultsName: MethodStringName0<ShapeCast2D, Int> =
+        MethodStringName0<ShapeCast2D, Int>("get_max_results")
+
+    @JvmStatic
+    public val isCollidingName: MethodStringName0<ShapeCast2D, Boolean> =
+        MethodStringName0<ShapeCast2D, Boolean>("is_colliding")
+
+    @JvmStatic
+    public val getCollisionCountName: MethodStringName0<ShapeCast2D, Int> =
+        MethodStringName0<ShapeCast2D, Int>("get_collision_count")
+
+    @JvmStatic
+    public val forceShapecastUpdateName: MethodStringName0<ShapeCast2D, Unit> =
+        MethodStringName0<ShapeCast2D, Unit>("force_shapecast_update")
+
+    @JvmStatic
+    public val getColliderName: MethodStringName1<ShapeCast2D, Object?, Int> =
+        MethodStringName1<ShapeCast2D, Object?, Int>("get_collider")
+
+    @JvmStatic
+    public val getColliderRidName: MethodStringName1<ShapeCast2D, RID, Int> =
+        MethodStringName1<ShapeCast2D, RID, Int>("get_collider_rid")
+
+    @JvmStatic
+    public val getColliderShapeName: MethodStringName1<ShapeCast2D, Int, Int> =
+        MethodStringName1<ShapeCast2D, Int, Int>("get_collider_shape")
+
+    @JvmStatic
+    public val getCollisionPointName: MethodStringName1<ShapeCast2D, Vector2, Int> =
+        MethodStringName1<ShapeCast2D, Vector2, Int>("get_collision_point")
+
+    @JvmStatic
+    public val getCollisionNormalName: MethodStringName1<ShapeCast2D, Vector2, Int> =
+        MethodStringName1<ShapeCast2D, Vector2, Int>("get_collision_normal")
+
+    @JvmStatic
+    public val getClosestCollisionSafeFractionName: MethodStringName0<ShapeCast2D, Float> =
+        MethodStringName0<ShapeCast2D, Float>("get_closest_collision_safe_fraction")
+
+    @JvmStatic
+    public val getClosestCollisionUnsafeFractionName: MethodStringName0<ShapeCast2D, Float> =
+        MethodStringName0<ShapeCast2D, Float>("get_closest_collision_unsafe_fraction")
+
+    @JvmStatic
+    public val addExceptionRidName: MethodStringName1<ShapeCast2D, Unit, RID> =
+        MethodStringName1<ShapeCast2D, Unit, RID>("add_exception_rid")
+
+    @JvmStatic
+    public val addExceptionName: MethodStringName1<ShapeCast2D, Unit, CollisionObject2D?> =
+        MethodStringName1<ShapeCast2D, Unit, CollisionObject2D?>("add_exception")
+
+    @JvmStatic
+    public val removeExceptionRidName: MethodStringName1<ShapeCast2D, Unit, RID> =
+        MethodStringName1<ShapeCast2D, Unit, RID>("remove_exception_rid")
+
+    @JvmStatic
+    public val removeExceptionName: MethodStringName1<ShapeCast2D, Unit, CollisionObject2D?> =
+        MethodStringName1<ShapeCast2D, Unit, CollisionObject2D?>("remove_exception")
+
+    @JvmStatic
+    public val clearExceptionsName: MethodStringName0<ShapeCast2D, Unit> =
+        MethodStringName0<ShapeCast2D, Unit>("clear_exceptions")
+
+    @JvmStatic
+    public val setCollisionMaskName: MethodStringName1<ShapeCast2D, Unit, Long> =
+        MethodStringName1<ShapeCast2D, Unit, Long>("set_collision_mask")
+
+    @JvmStatic
+    public val getCollisionMaskName: MethodStringName0<ShapeCast2D, Long> =
+        MethodStringName0<ShapeCast2D, Long>("get_collision_mask")
+
+    @JvmStatic
+    public val setCollisionMaskValueName: MethodStringName2<ShapeCast2D, Unit, Int, Boolean> =
+        MethodStringName2<ShapeCast2D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmStatic
+    public val getCollisionMaskValueName: MethodStringName1<ShapeCast2D, Boolean, Int> =
+        MethodStringName1<ShapeCast2D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmStatic
+    public val setExcludeParentBodyName: MethodStringName1<ShapeCast2D, Unit, Boolean> =
+        MethodStringName1<ShapeCast2D, Unit, Boolean>("set_exclude_parent_body")
+
+    @JvmStatic
+    public val getExcludeParentBodyName: MethodStringName0<ShapeCast2D, Boolean> =
+        MethodStringName0<ShapeCast2D, Boolean>("get_exclude_parent_body")
+
+    @JvmStatic
+    public val setCollideWithAreasName: MethodStringName1<ShapeCast2D, Unit, Boolean> =
+        MethodStringName1<ShapeCast2D, Unit, Boolean>("set_collide_with_areas")
+
+    @JvmStatic
+    public val isCollideWithAreasEnabledName: MethodStringName0<ShapeCast2D, Boolean> =
+        MethodStringName0<ShapeCast2D, Boolean>("is_collide_with_areas_enabled")
+
+    @JvmStatic
+    public val setCollideWithBodiesName: MethodStringName1<ShapeCast2D, Unit, Boolean> =
+        MethodStringName1<ShapeCast2D, Unit, Boolean>("set_collide_with_bodies")
+
+    @JvmStatic
+    public val isCollideWithBodiesEnabledName: MethodStringName0<ShapeCast2D, Boolean> =
+        MethodStringName0<ShapeCast2D, Boolean>("is_collide_with_bodies_enabled")
+
+    @JvmStatic
+    public val getCollisionResultName: MethodStringName0<ShapeCast2D, VariantArray<Any?>> =
+        MethodStringName0<ShapeCast2D, VariantArray<Any?>>("get_collision_result")
+  }
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =

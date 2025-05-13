@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.LONG
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Automatically adapts its port type to the type of the incoming connection and ensures valid
@@ -39,7 +41,12 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
     return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getPortTypeName:
+        MethodStringName0<VisualShaderNodeReroute, VisualShaderNode.PortType> =
+        MethodStringName0<VisualShaderNodeReroute, VisualShaderNode.PortType>("get_port_type")
+  }
 
   public object MethodBindings {
     internal val getPortTypePtr: VoidPtr =

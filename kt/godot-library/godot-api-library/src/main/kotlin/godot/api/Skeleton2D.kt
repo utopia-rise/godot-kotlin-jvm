@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Transform2D
@@ -26,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest
@@ -130,7 +135,41 @@ public open class Skeleton2D : Node2D() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getBoneCountName: MethodStringName0<Skeleton2D, Int> =
+        MethodStringName0<Skeleton2D, Int>("get_bone_count")
+
+    @JvmStatic
+    public val getBoneName: MethodStringName1<Skeleton2D, Bone2D?, Int> =
+        MethodStringName1<Skeleton2D, Bone2D?, Int>("get_bone")
+
+    @JvmStatic
+    public val getSkeletonName: MethodStringName0<Skeleton2D, RID> =
+        MethodStringName0<Skeleton2D, RID>("get_skeleton")
+
+    @JvmStatic
+    public val setModificationStackName:
+        MethodStringName1<Skeleton2D, Unit, SkeletonModificationStack2D?> =
+        MethodStringName1<Skeleton2D, Unit, SkeletonModificationStack2D?>("set_modification_stack")
+
+    @JvmStatic
+    public val getModificationStackName: MethodStringName0<Skeleton2D, SkeletonModificationStack2D?>
+        = MethodStringName0<Skeleton2D, SkeletonModificationStack2D?>("get_modification_stack")
+
+    @JvmStatic
+    public val executeModificationsName: MethodStringName2<Skeleton2D, Unit, Float, Int> =
+        MethodStringName2<Skeleton2D, Unit, Float, Int>("execute_modifications")
+
+    @JvmStatic
+    public val setBoneLocalPoseOverrideName:
+        MethodStringName4<Skeleton2D, Unit, Int, Transform2D, Float, Boolean> =
+        MethodStringName4<Skeleton2D, Unit, Int, Transform2D, Float, Boolean>("set_bone_local_pose_override")
+
+    @JvmStatic
+    public val getBoneLocalPoseOverrideName: MethodStringName1<Skeleton2D, Transform2D, Int> =
+        MethodStringName1<Skeleton2D, Transform2D, Int>("get_bone_local_pose_override")
+  }
 
   public object MethodBindings {
     internal val getBoneCountPtr: VoidPtr =

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.LONG
@@ -21,6 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * By inheriting this class you can create a custom [VisualShader] script addon which will be
@@ -296,7 +298,11 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getOptionIndexName: MethodStringName1<VisualShaderNodeCustom, Int, Int> =
+        MethodStringName1<VisualShaderNodeCustom, Int, Int>("get_option_index")
+  }
 
   public object MethodBindings {
     internal val getOptionIndexPtr: VoidPtr =

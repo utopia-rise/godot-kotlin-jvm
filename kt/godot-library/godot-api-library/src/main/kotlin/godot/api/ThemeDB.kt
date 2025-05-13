@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -33,6 +35,54 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ThemeDB : Object() {
+  @JvmStatic
+  public val getDefaultThemeName: MethodStringName0<ThemeDB, Theme?> =
+      MethodStringName0<ThemeDB, Theme?>("get_default_theme")
+
+  @JvmStatic
+  public val getProjectThemeName: MethodStringName0<ThemeDB, Theme?> =
+      MethodStringName0<ThemeDB, Theme?>("get_project_theme")
+
+  @JvmStatic
+  public val setFallbackBaseScaleName: MethodStringName1<ThemeDB, Unit, Float> =
+      MethodStringName1<ThemeDB, Unit, Float>("set_fallback_base_scale")
+
+  @JvmStatic
+  public val getFallbackBaseScaleName: MethodStringName0<ThemeDB, Float> =
+      MethodStringName0<ThemeDB, Float>("get_fallback_base_scale")
+
+  @JvmStatic
+  public val setFallbackFontName: MethodStringName1<ThemeDB, Unit, Font?> =
+      MethodStringName1<ThemeDB, Unit, Font?>("set_fallback_font")
+
+  @JvmStatic
+  public val getFallbackFontName: MethodStringName0<ThemeDB, Font?> =
+      MethodStringName0<ThemeDB, Font?>("get_fallback_font")
+
+  @JvmStatic
+  public val setFallbackFontSizeName: MethodStringName1<ThemeDB, Unit, Int> =
+      MethodStringName1<ThemeDB, Unit, Int>("set_fallback_font_size")
+
+  @JvmStatic
+  public val getFallbackFontSizeName: MethodStringName0<ThemeDB, Int> =
+      MethodStringName0<ThemeDB, Int>("get_fallback_font_size")
+
+  @JvmStatic
+  public val setFallbackIconName: MethodStringName1<ThemeDB, Unit, Texture2D?> =
+      MethodStringName1<ThemeDB, Unit, Texture2D?>("set_fallback_icon")
+
+  @JvmStatic
+  public val getFallbackIconName: MethodStringName0<ThemeDB, Texture2D?> =
+      MethodStringName0<ThemeDB, Texture2D?>("get_fallback_icon")
+
+  @JvmStatic
+  public val setFallbackStyleboxName: MethodStringName1<ThemeDB, Unit, StyleBox?> =
+      MethodStringName1<ThemeDB, Unit, StyleBox?>("set_fallback_stylebox")
+
+  @JvmStatic
+  public val getFallbackStyleboxName: MethodStringName0<ThemeDB, StyleBox?> =
+      MethodStringName0<ThemeDB, StyleBox?>("get_fallback_stylebox")
+
   /**
    * Emitted when one of the fallback values had been changed. Use it to refresh the look of
    * controls that may rely on the fallback theme items.

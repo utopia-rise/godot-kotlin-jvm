@@ -12,6 +12,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -34,6 +38,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [AnimatedSprite2D] is similar to the [Sprite2D] node, except it carries multiple textures as
@@ -450,7 +455,115 @@ public open class AnimatedSprite2D : Node2D() {
    */
   public final fun playBackwards(name: String) = playBackwards(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSpriteFramesName: MethodStringName1<AnimatedSprite2D, Unit, SpriteFrames?> =
+        MethodStringName1<AnimatedSprite2D, Unit, SpriteFrames?>("set_sprite_frames")
+
+    @JvmStatic
+    public val getSpriteFramesName: MethodStringName0<AnimatedSprite2D, SpriteFrames?> =
+        MethodStringName0<AnimatedSprite2D, SpriteFrames?>("get_sprite_frames")
+
+    @JvmStatic
+    public val setAnimationName: MethodStringName1<AnimatedSprite2D, Unit, StringName> =
+        MethodStringName1<AnimatedSprite2D, Unit, StringName>("set_animation")
+
+    @JvmStatic
+    public val getAnimationName: MethodStringName0<AnimatedSprite2D, StringName> =
+        MethodStringName0<AnimatedSprite2D, StringName>("get_animation")
+
+    @JvmStatic
+    public val setAutoplayName: MethodStringName1<AnimatedSprite2D, Unit, String> =
+        MethodStringName1<AnimatedSprite2D, Unit, String>("set_autoplay")
+
+    @JvmStatic
+    public val getAutoplayName: MethodStringName0<AnimatedSprite2D, String> =
+        MethodStringName0<AnimatedSprite2D, String>("get_autoplay")
+
+    @JvmStatic
+    public val isPlayingName: MethodStringName0<AnimatedSprite2D, Boolean> =
+        MethodStringName0<AnimatedSprite2D, Boolean>("is_playing")
+
+    @JvmStatic
+    public val playName: MethodStringName3<AnimatedSprite2D, Unit, StringName, Float, Boolean> =
+        MethodStringName3<AnimatedSprite2D, Unit, StringName, Float, Boolean>("play")
+
+    @JvmStatic
+    public val playBackwardsName: MethodStringName1<AnimatedSprite2D, Unit, StringName> =
+        MethodStringName1<AnimatedSprite2D, Unit, StringName>("play_backwards")
+
+    @JvmStatic
+    public val pauseName: MethodStringName0<AnimatedSprite2D, Unit> =
+        MethodStringName0<AnimatedSprite2D, Unit>("pause")
+
+    @JvmStatic
+    public val stopName: MethodStringName0<AnimatedSprite2D, Unit> =
+        MethodStringName0<AnimatedSprite2D, Unit>("stop")
+
+    @JvmStatic
+    public val setCenteredName: MethodStringName1<AnimatedSprite2D, Unit, Boolean> =
+        MethodStringName1<AnimatedSprite2D, Unit, Boolean>("set_centered")
+
+    @JvmStatic
+    public val isCenteredName: MethodStringName0<AnimatedSprite2D, Boolean> =
+        MethodStringName0<AnimatedSprite2D, Boolean>("is_centered")
+
+    @JvmStatic
+    public val setOffsetName: MethodStringName1<AnimatedSprite2D, Unit, Vector2> =
+        MethodStringName1<AnimatedSprite2D, Unit, Vector2>("set_offset")
+
+    @JvmStatic
+    public val getOffsetName: MethodStringName0<AnimatedSprite2D, Vector2> =
+        MethodStringName0<AnimatedSprite2D, Vector2>("get_offset")
+
+    @JvmStatic
+    public val setFlipHName: MethodStringName1<AnimatedSprite2D, Unit, Boolean> =
+        MethodStringName1<AnimatedSprite2D, Unit, Boolean>("set_flip_h")
+
+    @JvmStatic
+    public val isFlippedHName: MethodStringName0<AnimatedSprite2D, Boolean> =
+        MethodStringName0<AnimatedSprite2D, Boolean>("is_flipped_h")
+
+    @JvmStatic
+    public val setFlipVName: MethodStringName1<AnimatedSprite2D, Unit, Boolean> =
+        MethodStringName1<AnimatedSprite2D, Unit, Boolean>("set_flip_v")
+
+    @JvmStatic
+    public val isFlippedVName: MethodStringName0<AnimatedSprite2D, Boolean> =
+        MethodStringName0<AnimatedSprite2D, Boolean>("is_flipped_v")
+
+    @JvmStatic
+    public val setFrameName: MethodStringName1<AnimatedSprite2D, Unit, Int> =
+        MethodStringName1<AnimatedSprite2D, Unit, Int>("set_frame")
+
+    @JvmStatic
+    public val getFrameName: MethodStringName0<AnimatedSprite2D, Int> =
+        MethodStringName0<AnimatedSprite2D, Int>("get_frame")
+
+    @JvmStatic
+    public val setFrameProgressName: MethodStringName1<AnimatedSprite2D, Unit, Float> =
+        MethodStringName1<AnimatedSprite2D, Unit, Float>("set_frame_progress")
+
+    @JvmStatic
+    public val getFrameProgressName: MethodStringName0<AnimatedSprite2D, Float> =
+        MethodStringName0<AnimatedSprite2D, Float>("get_frame_progress")
+
+    @JvmStatic
+    public val setFrameAndProgressName: MethodStringName2<AnimatedSprite2D, Unit, Int, Float> =
+        MethodStringName2<AnimatedSprite2D, Unit, Int, Float>("set_frame_and_progress")
+
+    @JvmStatic
+    public val setSpeedScaleName: MethodStringName1<AnimatedSprite2D, Unit, Float> =
+        MethodStringName1<AnimatedSprite2D, Unit, Float>("set_speed_scale")
+
+    @JvmStatic
+    public val getSpeedScaleName: MethodStringName0<AnimatedSprite2D, Float> =
+        MethodStringName0<AnimatedSprite2D, Float>("get_speed_scale")
+
+    @JvmStatic
+    public val getPlayingSpeedName: MethodStringName0<AnimatedSprite2D, Float> =
+        MethodStringName0<AnimatedSprite2D, Float>("get_playing_speed")
+  }
 
   public object MethodBindings {
     internal val setSpriteFramesPtr: VoidPtr =

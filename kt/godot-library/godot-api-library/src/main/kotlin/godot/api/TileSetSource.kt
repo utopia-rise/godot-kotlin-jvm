@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2I
@@ -19,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Exposes a set of tiles for a [TileSet] resource.
@@ -102,7 +106,31 @@ public open class TileSetSource internal constructor() : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getTilesCountName: MethodStringName0<TileSetSource, Int> =
+        MethodStringName0<TileSetSource, Int>("get_tiles_count")
+
+    @JvmStatic
+    public val getTileIdName: MethodStringName1<TileSetSource, Vector2i, Int> =
+        MethodStringName1<TileSetSource, Vector2i, Int>("get_tile_id")
+
+    @JvmStatic
+    public val hasTileName: MethodStringName1<TileSetSource, Boolean, Vector2i> =
+        MethodStringName1<TileSetSource, Boolean, Vector2i>("has_tile")
+
+    @JvmStatic
+    public val getAlternativeTilesCountName: MethodStringName1<TileSetSource, Int, Vector2i> =
+        MethodStringName1<TileSetSource, Int, Vector2i>("get_alternative_tiles_count")
+
+    @JvmStatic
+    public val getAlternativeTileIdName: MethodStringName2<TileSetSource, Int, Vector2i, Int> =
+        MethodStringName2<TileSetSource, Int, Vector2i, Int>("get_alternative_tile_id")
+
+    @JvmStatic
+    public val hasAlternativeTileName: MethodStringName2<TileSetSource, Boolean, Vector2i, Int> =
+        MethodStringName2<TileSetSource, Boolean, Vector2i, Int>("has_alternative_tile")
+  }
 
   public object MethodBindings {
     internal val getTilesCountPtr: VoidPtr =

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about screen drag events. See [Node.Input].
@@ -430,7 +433,79 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setIndexName: MethodStringName1<InputEventScreenDrag, Unit, Int> =
+        MethodStringName1<InputEventScreenDrag, Unit, Int>("set_index")
+
+    @JvmStatic
+    public val getIndexName: MethodStringName0<InputEventScreenDrag, Int> =
+        MethodStringName0<InputEventScreenDrag, Int>("get_index")
+
+    @JvmStatic
+    public val setTiltName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_tilt")
+
+    @JvmStatic
+    public val getTiltName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_tilt")
+
+    @JvmStatic
+    public val setPressureName: MethodStringName1<InputEventScreenDrag, Unit, Float> =
+        MethodStringName1<InputEventScreenDrag, Unit, Float>("set_pressure")
+
+    @JvmStatic
+    public val getPressureName: MethodStringName0<InputEventScreenDrag, Float> =
+        MethodStringName0<InputEventScreenDrag, Float>("get_pressure")
+
+    @JvmStatic
+    public val setPenInvertedName: MethodStringName1<InputEventScreenDrag, Unit, Boolean> =
+        MethodStringName1<InputEventScreenDrag, Unit, Boolean>("set_pen_inverted")
+
+    @JvmStatic
+    public val getPenInvertedName: MethodStringName0<InputEventScreenDrag, Boolean> =
+        MethodStringName0<InputEventScreenDrag, Boolean>("get_pen_inverted")
+
+    @JvmStatic
+    public val setPositionName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_position")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_position")
+
+    @JvmStatic
+    public val setRelativeName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_relative")
+
+    @JvmStatic
+    public val getRelativeName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_relative")
+
+    @JvmStatic
+    public val setScreenRelativeName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_screen_relative")
+
+    @JvmStatic
+    public val getScreenRelativeName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_screen_relative")
+
+    @JvmStatic
+    public val setVelocityName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_velocity")
+
+    @JvmStatic
+    public val getVelocityName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_velocity")
+
+    @JvmStatic
+    public val setScreenVelocityName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_screen_velocity")
+
+    @JvmStatic
+    public val getScreenVelocityName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_screen_velocity")
+  }
 
   public object MethodBindings {
     internal val setIndexPtr: VoidPtr =

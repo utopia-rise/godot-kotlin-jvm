@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
@@ -18,6 +19,7 @@ import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This class extends [PhysicsDirectSpaceState3D] by providing additional virtual methods that can
@@ -41,7 +43,12 @@ public abstract class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceSta
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val isBodyExcludedFromQueryName:
+        MethodStringName1<PhysicsDirectSpaceState3DExtension, Boolean, RID> =
+        MethodStringName1<PhysicsDirectSpaceState3DExtension, Boolean, RID>("is_body_excluded_from_query")
+  }
 
   public object MethodBindings {
     internal val isBodyExcludedFromQueryPtr: VoidPtr =

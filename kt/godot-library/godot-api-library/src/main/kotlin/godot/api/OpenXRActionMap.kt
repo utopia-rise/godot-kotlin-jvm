@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * OpenXR uses an action system similar to Godots Input map system to bind inputs and outputs on
@@ -180,7 +183,72 @@ public open class OpenXRActionMap : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.createDefaultActionSetsPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setActionSetsName: MethodStringName1<OpenXRActionMap, Unit, VariantArray<Any?>> =
+        MethodStringName1<OpenXRActionMap, Unit, VariantArray<Any?>>("set_action_sets")
+
+    @JvmStatic
+    public val getActionSetsName: MethodStringName0<OpenXRActionMap, VariantArray<Any?>> =
+        MethodStringName0<OpenXRActionMap, VariantArray<Any?>>("get_action_sets")
+
+    @JvmStatic
+    public val getActionSetCountName: MethodStringName0<OpenXRActionMap, Int> =
+        MethodStringName0<OpenXRActionMap, Int>("get_action_set_count")
+
+    @JvmStatic
+    public val findActionSetName: MethodStringName1<OpenXRActionMap, OpenXRActionSet?, String> =
+        MethodStringName1<OpenXRActionMap, OpenXRActionSet?, String>("find_action_set")
+
+    @JvmStatic
+    public val getActionSetName: MethodStringName1<OpenXRActionMap, OpenXRActionSet?, Int> =
+        MethodStringName1<OpenXRActionMap, OpenXRActionSet?, Int>("get_action_set")
+
+    @JvmStatic
+    public val addActionSetName: MethodStringName1<OpenXRActionMap, Unit, OpenXRActionSet?> =
+        MethodStringName1<OpenXRActionMap, Unit, OpenXRActionSet?>("add_action_set")
+
+    @JvmStatic
+    public val removeActionSetName: MethodStringName1<OpenXRActionMap, Unit, OpenXRActionSet?> =
+        MethodStringName1<OpenXRActionMap, Unit, OpenXRActionSet?>("remove_action_set")
+
+    @JvmStatic
+    public val setInteractionProfilesName:
+        MethodStringName1<OpenXRActionMap, Unit, VariantArray<Any?>> =
+        MethodStringName1<OpenXRActionMap, Unit, VariantArray<Any?>>("set_interaction_profiles")
+
+    @JvmStatic
+    public val getInteractionProfilesName: MethodStringName0<OpenXRActionMap, VariantArray<Any?>> =
+        MethodStringName0<OpenXRActionMap, VariantArray<Any?>>("get_interaction_profiles")
+
+    @JvmStatic
+    public val getInteractionProfileCountName: MethodStringName0<OpenXRActionMap, Int> =
+        MethodStringName0<OpenXRActionMap, Int>("get_interaction_profile_count")
+
+    @JvmStatic
+    public val findInteractionProfileName:
+        MethodStringName1<OpenXRActionMap, OpenXRInteractionProfile?, String> =
+        MethodStringName1<OpenXRActionMap, OpenXRInteractionProfile?, String>("find_interaction_profile")
+
+    @JvmStatic
+    public val getInteractionProfileName:
+        MethodStringName1<OpenXRActionMap, OpenXRInteractionProfile?, Int> =
+        MethodStringName1<OpenXRActionMap, OpenXRInteractionProfile?, Int>("get_interaction_profile")
+
+    @JvmStatic
+    public val addInteractionProfileName:
+        MethodStringName1<OpenXRActionMap, Unit, OpenXRInteractionProfile?> =
+        MethodStringName1<OpenXRActionMap, Unit, OpenXRInteractionProfile?>("add_interaction_profile")
+
+    @JvmStatic
+    public val removeInteractionProfileName:
+        MethodStringName1<OpenXRActionMap, Unit, OpenXRInteractionProfile?> =
+        MethodStringName1<OpenXRActionMap, Unit, OpenXRInteractionProfile?>("remove_interaction_profile")
+
+    @JvmStatic
+    public val createDefaultActionSetsName: MethodStringName0<OpenXRActionMap, Unit> =
+        MethodStringName0<OpenXRActionMap, Unit>("create_default_action_sets")
+  }
 
   public object MethodBindings {
     internal val setActionSetsPtr: VoidPtr =

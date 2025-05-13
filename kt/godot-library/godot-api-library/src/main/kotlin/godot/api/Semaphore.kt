@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to
@@ -67,7 +70,19 @@ public open class Semaphore : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.postPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val waitName: MethodStringName0<Semaphore, Unit> =
+        MethodStringName0<Semaphore, Unit>("wait")
+
+    @JvmStatic
+    public val tryWaitName: MethodStringName0<Semaphore, Boolean> =
+        MethodStringName0<Semaphore, Boolean>("try_wait")
+
+    @JvmStatic
+    public val postName: MethodStringName1<Semaphore, Unit, Int> =
+        MethodStringName1<Semaphore, Unit, Int>("post")
+  }
 
   public object MethodBindings {
     internal val waitPtr: VoidPtr = TypeManager.getMethodBindPtr("Semaphore", "wait", 3218959716)

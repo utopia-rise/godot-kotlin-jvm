@@ -10,8 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -39,7 +42,15 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
-  public override fun new(scriptPtr: VoidPtr): Unit {
+  @JvmStatic
+  public val wrapName: MethodStringName1<JavaClassWrapper, JavaClass?, String> =
+      MethodStringName1<JavaClassWrapper, JavaClass?, String>("wrap")
+
+  @JvmStatic
+  public val getExceptionName: MethodStringName0<JavaClassWrapper, JavaObject?> =
+      MethodStringName0<JavaClassWrapper, JavaObject?>("get_exception")
+
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(12)
   }
 

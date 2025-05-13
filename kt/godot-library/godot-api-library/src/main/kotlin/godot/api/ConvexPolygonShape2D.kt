@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 2D convex polygon shape, intended for use in physics. Used internally in [CollisionPolygon2D]
@@ -135,7 +138,19 @@ public open class ConvexPolygonShape2D : Shape2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPointCloudName: MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array>
+        = MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array>("set_point_cloud")
+
+    @JvmStatic
+    public val setPointsName: MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array> =
+        MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array>("set_points")
+
+    @JvmStatic
+    public val getPointsName: MethodStringName0<ConvexPolygonShape2D, PackedVector2Array> =
+        MethodStringName0<ConvexPolygonShape2D, PackedVector2Array>("get_points")
+  }
 
   public object MethodBindings {
     internal val setPointCloudPtr: VoidPtr =

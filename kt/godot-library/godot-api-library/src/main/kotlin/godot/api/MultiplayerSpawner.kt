@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -29,6 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Spawnable scenes can be configured in the editor or through code (see [addSpawnableScene]).
@@ -182,7 +185,51 @@ public open class MultiplayerSpawner : Node() {
 
   public final fun setSpawnPath(path: String) = setSpawnPath(path.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addSpawnableSceneName: MethodStringName1<MultiplayerSpawner, Unit, String> =
+        MethodStringName1<MultiplayerSpawner, Unit, String>("add_spawnable_scene")
+
+    @JvmStatic
+    public val getSpawnableSceneCountName: MethodStringName0<MultiplayerSpawner, Int> =
+        MethodStringName0<MultiplayerSpawner, Int>("get_spawnable_scene_count")
+
+    @JvmStatic
+    public val getSpawnableSceneName: MethodStringName1<MultiplayerSpawner, String, Int> =
+        MethodStringName1<MultiplayerSpawner, String, Int>("get_spawnable_scene")
+
+    @JvmStatic
+    public val clearSpawnableScenesName: MethodStringName0<MultiplayerSpawner, Unit> =
+        MethodStringName0<MultiplayerSpawner, Unit>("clear_spawnable_scenes")
+
+    @JvmStatic
+    public val spawnName: MethodStringName1<MultiplayerSpawner, Node?, Any?> =
+        MethodStringName1<MultiplayerSpawner, Node?, Any?>("spawn")
+
+    @JvmStatic
+    public val getSpawnPathName: MethodStringName0<MultiplayerSpawner, NodePath> =
+        MethodStringName0<MultiplayerSpawner, NodePath>("get_spawn_path")
+
+    @JvmStatic
+    public val setSpawnPathName: MethodStringName1<MultiplayerSpawner, Unit, NodePath> =
+        MethodStringName1<MultiplayerSpawner, Unit, NodePath>("set_spawn_path")
+
+    @JvmStatic
+    public val getSpawnLimitName: MethodStringName0<MultiplayerSpawner, Long> =
+        MethodStringName0<MultiplayerSpawner, Long>("get_spawn_limit")
+
+    @JvmStatic
+    public val setSpawnLimitName: MethodStringName1<MultiplayerSpawner, Unit, Long> =
+        MethodStringName1<MultiplayerSpawner, Unit, Long>("set_spawn_limit")
+
+    @JvmStatic
+    public val getSpawnFunctionName: MethodStringName0<MultiplayerSpawner, Callable> =
+        MethodStringName0<MultiplayerSpawner, Callable>("get_spawn_function")
+
+    @JvmStatic
+    public val setSpawnFunctionName: MethodStringName1<MultiplayerSpawner, Unit, Callable> =
+        MethodStringName1<MultiplayerSpawner, Unit, Callable>("set_spawn_function")
+  }
 
   public object MethodBindings {
     internal val addSpawnableScenePtr: VoidPtr =

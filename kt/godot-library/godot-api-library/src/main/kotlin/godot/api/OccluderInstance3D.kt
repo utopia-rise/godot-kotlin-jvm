@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Occlusion culling can improve rendering performance in closed/semi-open areas by hiding geometry
@@ -178,7 +182,39 @@ public open class OccluderInstance3D : VisualInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as Occluder3D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBakeMaskName: MethodStringName1<OccluderInstance3D, Unit, Long> =
+        MethodStringName1<OccluderInstance3D, Unit, Long>("set_bake_mask")
+
+    @JvmStatic
+    public val getBakeMaskName: MethodStringName0<OccluderInstance3D, Long> =
+        MethodStringName0<OccluderInstance3D, Long>("get_bake_mask")
+
+    @JvmStatic
+    public val setBakeMaskValueName: MethodStringName2<OccluderInstance3D, Unit, Int, Boolean> =
+        MethodStringName2<OccluderInstance3D, Unit, Int, Boolean>("set_bake_mask_value")
+
+    @JvmStatic
+    public val getBakeMaskValueName: MethodStringName1<OccluderInstance3D, Boolean, Int> =
+        MethodStringName1<OccluderInstance3D, Boolean, Int>("get_bake_mask_value")
+
+    @JvmStatic
+    public val setBakeSimplificationDistanceName: MethodStringName1<OccluderInstance3D, Unit, Float>
+        = MethodStringName1<OccluderInstance3D, Unit, Float>("set_bake_simplification_distance")
+
+    @JvmStatic
+    public val getBakeSimplificationDistanceName: MethodStringName0<OccluderInstance3D, Float> =
+        MethodStringName0<OccluderInstance3D, Float>("get_bake_simplification_distance")
+
+    @JvmStatic
+    public val setOccluderName: MethodStringName1<OccluderInstance3D, Unit, Occluder3D?> =
+        MethodStringName1<OccluderInstance3D, Unit, Occluder3D?>("set_occluder")
+
+    @JvmStatic
+    public val getOccluderName: MethodStringName0<OccluderInstance3D, Occluder3D?> =
+        MethodStringName0<OccluderInstance3D, Occluder3D?>("get_occluder")
+  }
 
   public object MethodBindings {
     internal val setBakeMaskPtr: VoidPtr =

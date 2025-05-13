@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.LONG
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * When packing nested containers using [PackedDataContainer], they are recursively packed into
@@ -70,7 +72,11 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val sizeName: MethodStringName0<PackedDataContainerRef, Int> =
+        MethodStringName0<PackedDataContainerRef, Int>("size")
+  }
 
   public object MethodBindings {
     internal val sizePtr: VoidPtr =

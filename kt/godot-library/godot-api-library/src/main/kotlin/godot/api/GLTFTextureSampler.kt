@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a texture sampler as defined by the base glTF spec. Texture samplers in glTF specify
@@ -118,7 +121,39 @@ public open class GLTFTextureSampler : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setWrapTPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getMagFilterName: MethodStringName0<GLTFTextureSampler, Int> =
+        MethodStringName0<GLTFTextureSampler, Int>("get_mag_filter")
+
+    @JvmStatic
+    public val setMagFilterName: MethodStringName1<GLTFTextureSampler, Unit, Int> =
+        MethodStringName1<GLTFTextureSampler, Unit, Int>("set_mag_filter")
+
+    @JvmStatic
+    public val getMinFilterName: MethodStringName0<GLTFTextureSampler, Int> =
+        MethodStringName0<GLTFTextureSampler, Int>("get_min_filter")
+
+    @JvmStatic
+    public val setMinFilterName: MethodStringName1<GLTFTextureSampler, Unit, Int> =
+        MethodStringName1<GLTFTextureSampler, Unit, Int>("set_min_filter")
+
+    @JvmStatic
+    public val getWrapSName: MethodStringName0<GLTFTextureSampler, Int> =
+        MethodStringName0<GLTFTextureSampler, Int>("get_wrap_s")
+
+    @JvmStatic
+    public val setWrapSName: MethodStringName1<GLTFTextureSampler, Unit, Int> =
+        MethodStringName1<GLTFTextureSampler, Unit, Int>("set_wrap_s")
+
+    @JvmStatic
+    public val getWrapTName: MethodStringName0<GLTFTextureSampler, Int> =
+        MethodStringName0<GLTFTextureSampler, Int>("get_wrap_t")
+
+    @JvmStatic
+    public val setWrapTName: MethodStringName1<GLTFTextureSampler, Unit, Int> =
+        MethodStringName1<GLTFTextureSampler, Unit, Int>("set_wrap_t")
+  }
 
   public object MethodBindings {
     internal val getMagFilterPtr: VoidPtr =
