@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantArray
@@ -35,6 +37,39 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object TextServerManager : Object() {
+  @JvmStatic
+  public val addInterfaceName: MethodStringName1<TextServerManager, Unit, TextServer?> =
+      MethodStringName1<TextServerManager, Unit, TextServer?>("add_interface")
+
+  @JvmStatic
+  public val getInterfaceCountName: MethodStringName0<TextServerManager, Int> =
+      MethodStringName0<TextServerManager, Int>("get_interface_count")
+
+  @JvmStatic
+  public val removeInterfaceName: MethodStringName1<TextServerManager, Unit, TextServer?> =
+      MethodStringName1<TextServerManager, Unit, TextServer?>("remove_interface")
+
+  @JvmStatic
+  public val getInterfaceName: MethodStringName1<TextServerManager, TextServer?, Int> =
+      MethodStringName1<TextServerManager, TextServer?, Int>("get_interface")
+
+  @JvmStatic
+  public val getInterfacesName:
+      MethodStringName0<TextServerManager, VariantArray<Dictionary<Any?, Any?>>> =
+      MethodStringName0<TextServerManager, VariantArray<Dictionary<Any?, Any?>>>("get_interfaces")
+
+  @JvmStatic
+  public val findInterfaceName: MethodStringName1<TextServerManager, TextServer?, String> =
+      MethodStringName1<TextServerManager, TextServer?, String>("find_interface")
+
+  @JvmStatic
+  public val setPrimaryInterfaceName: MethodStringName1<TextServerManager, Unit, TextServer?> =
+      MethodStringName1<TextServerManager, Unit, TextServer?>("set_primary_interface")
+
+  @JvmStatic
+  public val getPrimaryInterfaceName: MethodStringName0<TextServerManager, TextServer?> =
+      MethodStringName0<TextServerManager, TextServer?>("get_primary_interface")
+
   /**
    * Emitted when a new interface has been added.
    */

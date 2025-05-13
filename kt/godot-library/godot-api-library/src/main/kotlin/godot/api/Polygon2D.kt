@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
@@ -42,6 +45,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final
@@ -678,7 +682,159 @@ public open class Polygon2D : Node2D() {
 
   public final fun setSkeleton(skeleton: String) = setSkeleton(skeleton.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPolygonName: MethodStringName1<Polygon2D, Unit, PackedVector2Array> =
+        MethodStringName1<Polygon2D, Unit, PackedVector2Array>("set_polygon")
+
+    @JvmStatic
+    public val getPolygonName: MethodStringName0<Polygon2D, PackedVector2Array> =
+        MethodStringName0<Polygon2D, PackedVector2Array>("get_polygon")
+
+    @JvmStatic
+    public val setUvName: MethodStringName1<Polygon2D, Unit, PackedVector2Array> =
+        MethodStringName1<Polygon2D, Unit, PackedVector2Array>("set_uv")
+
+    @JvmStatic
+    public val getUvName: MethodStringName0<Polygon2D, PackedVector2Array> =
+        MethodStringName0<Polygon2D, PackedVector2Array>("get_uv")
+
+    @JvmStatic
+    public val setColorName: MethodStringName1<Polygon2D, Unit, Color> =
+        MethodStringName1<Polygon2D, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val getColorName: MethodStringName0<Polygon2D, Color> =
+        MethodStringName0<Polygon2D, Color>("get_color")
+
+    @JvmStatic
+    public val setPolygonsName: MethodStringName1<Polygon2D, Unit, VariantArray<Any?>> =
+        MethodStringName1<Polygon2D, Unit, VariantArray<Any?>>("set_polygons")
+
+    @JvmStatic
+    public val getPolygonsName: MethodStringName0<Polygon2D, VariantArray<Any?>> =
+        MethodStringName0<Polygon2D, VariantArray<Any?>>("get_polygons")
+
+    @JvmStatic
+    public val setVertexColorsName: MethodStringName1<Polygon2D, Unit, PackedColorArray> =
+        MethodStringName1<Polygon2D, Unit, PackedColorArray>("set_vertex_colors")
+
+    @JvmStatic
+    public val getVertexColorsName: MethodStringName0<Polygon2D, PackedColorArray> =
+        MethodStringName0<Polygon2D, PackedColorArray>("get_vertex_colors")
+
+    @JvmStatic
+    public val setTextureName: MethodStringName1<Polygon2D, Unit, Texture2D?> =
+        MethodStringName1<Polygon2D, Unit, Texture2D?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName0<Polygon2D, Texture2D?> =
+        MethodStringName0<Polygon2D, Texture2D?>("get_texture")
+
+    @JvmStatic
+    public val setTextureOffsetName: MethodStringName1<Polygon2D, Unit, Vector2> =
+        MethodStringName1<Polygon2D, Unit, Vector2>("set_texture_offset")
+
+    @JvmStatic
+    public val getTextureOffsetName: MethodStringName0<Polygon2D, Vector2> =
+        MethodStringName0<Polygon2D, Vector2>("get_texture_offset")
+
+    @JvmStatic
+    public val setTextureRotationName: MethodStringName1<Polygon2D, Unit, Float> =
+        MethodStringName1<Polygon2D, Unit, Float>("set_texture_rotation")
+
+    @JvmStatic
+    public val getTextureRotationName: MethodStringName0<Polygon2D, Float> =
+        MethodStringName0<Polygon2D, Float>("get_texture_rotation")
+
+    @JvmStatic
+    public val setTextureScaleName: MethodStringName1<Polygon2D, Unit, Vector2> =
+        MethodStringName1<Polygon2D, Unit, Vector2>("set_texture_scale")
+
+    @JvmStatic
+    public val getTextureScaleName: MethodStringName0<Polygon2D, Vector2> =
+        MethodStringName0<Polygon2D, Vector2>("get_texture_scale")
+
+    @JvmStatic
+    public val setInvertEnabledName: MethodStringName1<Polygon2D, Unit, Boolean> =
+        MethodStringName1<Polygon2D, Unit, Boolean>("set_invert_enabled")
+
+    @JvmStatic
+    public val getInvertEnabledName: MethodStringName0<Polygon2D, Boolean> =
+        MethodStringName0<Polygon2D, Boolean>("get_invert_enabled")
+
+    @JvmStatic
+    public val setAntialiasedName: MethodStringName1<Polygon2D, Unit, Boolean> =
+        MethodStringName1<Polygon2D, Unit, Boolean>("set_antialiased")
+
+    @JvmStatic
+    public val getAntialiasedName: MethodStringName0<Polygon2D, Boolean> =
+        MethodStringName0<Polygon2D, Boolean>("get_antialiased")
+
+    @JvmStatic
+    public val setInvertBorderName: MethodStringName1<Polygon2D, Unit, Float> =
+        MethodStringName1<Polygon2D, Unit, Float>("set_invert_border")
+
+    @JvmStatic
+    public val getInvertBorderName: MethodStringName0<Polygon2D, Float> =
+        MethodStringName0<Polygon2D, Float>("get_invert_border")
+
+    @JvmStatic
+    public val setOffsetName: MethodStringName1<Polygon2D, Unit, Vector2> =
+        MethodStringName1<Polygon2D, Unit, Vector2>("set_offset")
+
+    @JvmStatic
+    public val getOffsetName: MethodStringName0<Polygon2D, Vector2> =
+        MethodStringName0<Polygon2D, Vector2>("get_offset")
+
+    @JvmStatic
+    public val addBoneName: MethodStringName2<Polygon2D, Unit, NodePath, PackedFloat32Array> =
+        MethodStringName2<Polygon2D, Unit, NodePath, PackedFloat32Array>("add_bone")
+
+    @JvmStatic
+    public val getBoneCountName: MethodStringName0<Polygon2D, Int> =
+        MethodStringName0<Polygon2D, Int>("get_bone_count")
+
+    @JvmStatic
+    public val getBonePathName: MethodStringName1<Polygon2D, NodePath, Int> =
+        MethodStringName1<Polygon2D, NodePath, Int>("get_bone_path")
+
+    @JvmStatic
+    public val getBoneWeightsName: MethodStringName1<Polygon2D, PackedFloat32Array, Int> =
+        MethodStringName1<Polygon2D, PackedFloat32Array, Int>("get_bone_weights")
+
+    @JvmStatic
+    public val eraseBoneName: MethodStringName1<Polygon2D, Unit, Int> =
+        MethodStringName1<Polygon2D, Unit, Int>("erase_bone")
+
+    @JvmStatic
+    public val clearBonesName: MethodStringName0<Polygon2D, Unit> =
+        MethodStringName0<Polygon2D, Unit>("clear_bones")
+
+    @JvmStatic
+    public val setBonePathName: MethodStringName2<Polygon2D, Unit, Int, NodePath> =
+        MethodStringName2<Polygon2D, Unit, Int, NodePath>("set_bone_path")
+
+    @JvmStatic
+    public val setBoneWeightsName: MethodStringName2<Polygon2D, Unit, Int, PackedFloat32Array> =
+        MethodStringName2<Polygon2D, Unit, Int, PackedFloat32Array>("set_bone_weights")
+
+    @JvmStatic
+    public val setSkeletonName: MethodStringName1<Polygon2D, Unit, NodePath> =
+        MethodStringName1<Polygon2D, Unit, NodePath>("set_skeleton")
+
+    @JvmStatic
+    public val getSkeletonName: MethodStringName0<Polygon2D, NodePath> =
+        MethodStringName0<Polygon2D, NodePath>("get_skeleton")
+
+    @JvmStatic
+    public val setInternalVertexCountName: MethodStringName1<Polygon2D, Unit, Int> =
+        MethodStringName1<Polygon2D, Unit, Int>("set_internal_vertex_count")
+
+    @JvmStatic
+    public val getInternalVertexCountName: MethodStringName0<Polygon2D, Int> =
+        MethodStringName0<Polygon2D, Int>("get_internal_vertex_count")
+  }
 
   public object MethodBindings {
     internal val setPolygonPtr: VoidPtr =

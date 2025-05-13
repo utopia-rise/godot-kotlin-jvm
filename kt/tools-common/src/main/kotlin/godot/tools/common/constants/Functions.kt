@@ -10,10 +10,11 @@ object KotlinFunctions {
 object GodotFunctions {
     const val notification = "_notification"
     const val toGodotName = "toGodotName"
-    const val asCachedStringName = "asCachedStringName"
+    const val asStringName = "asStringName"
     const val asCallable = "asCallable"
 }
 
 val KOTLIN_LIST_OF = MemberName(kotlinCollectionsPackage, KotlinFunctions.listOf)
 val TO_GODOT_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.toGodotName)
+val AS_STRING_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asStringName)
 val AS_CALLABLE_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asCallable)

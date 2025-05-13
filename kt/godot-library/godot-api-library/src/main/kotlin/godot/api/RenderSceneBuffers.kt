@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract scene buffers object, created for each viewport for which 3D rendering is done. It
@@ -37,7 +39,12 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.configurePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val configureName:
+        MethodStringName1<RenderSceneBuffers, Unit, RenderSceneBuffersConfiguration?> =
+        MethodStringName1<RenderSceneBuffers, Unit, RenderSceneBuffersConfiguration?>("configure")
+  }
 
   public object MethodBindings {
     internal val configurePtr: VoidPtr =

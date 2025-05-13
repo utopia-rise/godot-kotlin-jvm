@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -31,6 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by
@@ -297,7 +301,95 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun findBlendShapeByName(name: String): Int =
       findBlendShapeByName(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMeshName: MethodStringName1<MeshInstance3D, Unit, Mesh?> =
+        MethodStringName1<MeshInstance3D, Unit, Mesh?>("set_mesh")
+
+    @JvmStatic
+    public val getMeshName: MethodStringName0<MeshInstance3D, Mesh?> =
+        MethodStringName0<MeshInstance3D, Mesh?>("get_mesh")
+
+    @JvmStatic
+    public val setSkeletonPathName: MethodStringName1<MeshInstance3D, Unit, NodePath> =
+        MethodStringName1<MeshInstance3D, Unit, NodePath>("set_skeleton_path")
+
+    @JvmStatic
+    public val getSkeletonPathName: MethodStringName0<MeshInstance3D, NodePath> =
+        MethodStringName0<MeshInstance3D, NodePath>("get_skeleton_path")
+
+    @JvmStatic
+    public val setSkinName: MethodStringName1<MeshInstance3D, Unit, Skin?> =
+        MethodStringName1<MeshInstance3D, Unit, Skin?>("set_skin")
+
+    @JvmStatic
+    public val getSkinName: MethodStringName0<MeshInstance3D, Skin?> =
+        MethodStringName0<MeshInstance3D, Skin?>("get_skin")
+
+    @JvmStatic
+    public val getSkinReferenceName: MethodStringName0<MeshInstance3D, SkinReference?> =
+        MethodStringName0<MeshInstance3D, SkinReference?>("get_skin_reference")
+
+    @JvmStatic
+    public val getSurfaceOverrideMaterialCountName: MethodStringName0<MeshInstance3D, Int> =
+        MethodStringName0<MeshInstance3D, Int>("get_surface_override_material_count")
+
+    @JvmStatic
+    public val setSurfaceOverrideMaterialName:
+        MethodStringName2<MeshInstance3D, Unit, Int, Material?> =
+        MethodStringName2<MeshInstance3D, Unit, Int, Material?>("set_surface_override_material")
+
+    @JvmStatic
+    public val getSurfaceOverrideMaterialName: MethodStringName1<MeshInstance3D, Material?, Int> =
+        MethodStringName1<MeshInstance3D, Material?, Int>("get_surface_override_material")
+
+    @JvmStatic
+    public val getActiveMaterialName: MethodStringName1<MeshInstance3D, Material?, Int> =
+        MethodStringName1<MeshInstance3D, Material?, Int>("get_active_material")
+
+    @JvmStatic
+    public val createTrimeshCollisionName: MethodStringName0<MeshInstance3D, Unit> =
+        MethodStringName0<MeshInstance3D, Unit>("create_trimesh_collision")
+
+    @JvmStatic
+    public val createConvexCollisionName: MethodStringName2<MeshInstance3D, Unit, Boolean, Boolean>
+        = MethodStringName2<MeshInstance3D, Unit, Boolean, Boolean>("create_convex_collision")
+
+    @JvmStatic
+    public val createMultipleConvexCollisionsName:
+        MethodStringName1<MeshInstance3D, Unit, MeshConvexDecompositionSettings?> =
+        MethodStringName1<MeshInstance3D, Unit, MeshConvexDecompositionSettings?>("create_multiple_convex_collisions")
+
+    @JvmStatic
+    public val getBlendShapeCountName: MethodStringName0<MeshInstance3D, Int> =
+        MethodStringName0<MeshInstance3D, Int>("get_blend_shape_count")
+
+    @JvmStatic
+    public val findBlendShapeByNameName: MethodStringName1<MeshInstance3D, Int, StringName> =
+        MethodStringName1<MeshInstance3D, Int, StringName>("find_blend_shape_by_name")
+
+    @JvmStatic
+    public val getBlendShapeValueName: MethodStringName1<MeshInstance3D, Float, Int> =
+        MethodStringName1<MeshInstance3D, Float, Int>("get_blend_shape_value")
+
+    @JvmStatic
+    public val setBlendShapeValueName: MethodStringName2<MeshInstance3D, Unit, Int, Float> =
+        MethodStringName2<MeshInstance3D, Unit, Int, Float>("set_blend_shape_value")
+
+    @JvmStatic
+    public val createDebugTangentsName: MethodStringName0<MeshInstance3D, Unit> =
+        MethodStringName0<MeshInstance3D, Unit>("create_debug_tangents")
+
+    @JvmStatic
+    public val bakeMeshFromCurrentBlendShapeMixName:
+        MethodStringName1<MeshInstance3D, ArrayMesh?, ArrayMesh?> =
+        MethodStringName1<MeshInstance3D, ArrayMesh?, ArrayMesh?>("bake_mesh_from_current_blend_shape_mix")
+
+    @JvmStatic
+    public val bakeMeshFromCurrentSkeletonPoseName:
+        MethodStringName1<MeshInstance3D, ArrayMesh?, ArrayMesh?> =
+        MethodStringName1<MeshInstance3D, ArrayMesh?, ArrayMesh?>("bake_mesh_from_current_skeleton_pose")
+  }
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =

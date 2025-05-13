@@ -11,12 +11,14 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
 import godot.core.PackedStringArray
 import godot.core.VariantParser.NIL
 import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
@@ -68,7 +70,15 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
     TransferContext.callMethod(ptr, MethodBindings.removeFormatLoaderPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addFormatLoaderName: MethodStringName0<ImageFormatLoaderExtension, Unit> =
+        MethodStringName0<ImageFormatLoaderExtension, Unit>("add_format_loader")
+
+    @JvmStatic
+    public val removeFormatLoaderName: MethodStringName0<ImageFormatLoaderExtension, Unit> =
+        MethodStringName0<ImageFormatLoaderExtension, Unit>("remove_format_loader")
+  }
 
   public object MethodBindings {
     internal val addFormatLoaderPtr: VoidPtr =

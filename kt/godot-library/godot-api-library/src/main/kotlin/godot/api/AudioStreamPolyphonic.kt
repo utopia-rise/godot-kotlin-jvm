@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
@@ -56,7 +59,15 @@ public open class AudioStreamPolyphonic : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPolyphonyName: MethodStringName1<AudioStreamPolyphonic, Unit, Int> =
+        MethodStringName1<AudioStreamPolyphonic, Unit, Int>("set_polyphony")
+
+    @JvmStatic
+    public val getPolyphonyName: MethodStringName0<AudioStreamPolyphonic, Int> =
+        MethodStringName0<AudioStreamPolyphonic, Int>("get_polyphony")
+  }
 
   public object MethodBindings {
     internal val setPolyphonyPtr: VoidPtr =

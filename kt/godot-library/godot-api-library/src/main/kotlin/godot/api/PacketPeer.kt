@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -25,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides
@@ -134,7 +138,39 @@ public open class PacketPeer internal constructor() : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getVarName: MethodStringName1<PacketPeer, Any?, Boolean> =
+        MethodStringName1<PacketPeer, Any?, Boolean>("get_var")
+
+    @JvmStatic
+    public val putVarName: MethodStringName2<PacketPeer, Error, Any?, Boolean> =
+        MethodStringName2<PacketPeer, Error, Any?, Boolean>("put_var")
+
+    @JvmStatic
+    public val getPacketName: MethodStringName0<PacketPeer, PackedByteArray> =
+        MethodStringName0<PacketPeer, PackedByteArray>("get_packet")
+
+    @JvmStatic
+    public val putPacketName: MethodStringName1<PacketPeer, Error, PackedByteArray> =
+        MethodStringName1<PacketPeer, Error, PackedByteArray>("put_packet")
+
+    @JvmStatic
+    public val getPacketErrorName: MethodStringName0<PacketPeer, Error> =
+        MethodStringName0<PacketPeer, Error>("get_packet_error")
+
+    @JvmStatic
+    public val getAvailablePacketCountName: MethodStringName0<PacketPeer, Int> =
+        MethodStringName0<PacketPeer, Int>("get_available_packet_count")
+
+    @JvmStatic
+    public val getEncodeBufferMaxSizeName: MethodStringName0<PacketPeer, Int> =
+        MethodStringName0<PacketPeer, Int>("get_encode_buffer_max_size")
+
+    @JvmStatic
+    public val setEncodeBufferMaxSizeName: MethodStringName1<PacketPeer, Unit, Int> =
+        MethodStringName1<PacketPeer, Unit, Int>("set_encode_buffer_max_size")
+  }
 
   public object MethodBindings {
     internal val getVarPtr: VoidPtr =

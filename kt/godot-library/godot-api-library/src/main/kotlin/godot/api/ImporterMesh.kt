@@ -11,6 +11,11 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName7
 import godot.core.PackedInt32Array
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -32,6 +37,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based
@@ -314,7 +320,103 @@ public open class ImporterMesh : Resource() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addBlendShapeName: MethodStringName1<ImporterMesh, Unit, String> =
+        MethodStringName1<ImporterMesh, Unit, String>("add_blend_shape")
+
+    @JvmStatic
+    public val getBlendShapeCountName: MethodStringName0<ImporterMesh, Int> =
+        MethodStringName0<ImporterMesh, Int>("get_blend_shape_count")
+
+    @JvmStatic
+    public val getBlendShapeNameName: MethodStringName1<ImporterMesh, String, Int> =
+        MethodStringName1<ImporterMesh, String, Int>("get_blend_shape_name")
+
+    @JvmStatic
+    public val setBlendShapeModeName: MethodStringName1<ImporterMesh, Unit, Mesh.BlendShapeMode> =
+        MethodStringName1<ImporterMesh, Unit, Mesh.BlendShapeMode>("set_blend_shape_mode")
+
+    @JvmStatic
+    public val getBlendShapeModeName: MethodStringName0<ImporterMesh, Mesh.BlendShapeMode> =
+        MethodStringName0<ImporterMesh, Mesh.BlendShapeMode>("get_blend_shape_mode")
+
+    @JvmStatic
+    public val addSurfaceName:
+        MethodStringName7<ImporterMesh, Unit, Mesh.PrimitiveType, VariantArray<Any?>, VariantArray<VariantArray<Any?>>, Dictionary<Any?, Any?>, Material?, String, Long>
+        =
+        MethodStringName7<ImporterMesh, Unit, Mesh.PrimitiveType, VariantArray<Any?>, VariantArray<VariantArray<Any?>>, Dictionary<Any?, Any?>, Material?, String, Long>("add_surface")
+
+    @JvmStatic
+    public val getSurfaceCountName: MethodStringName0<ImporterMesh, Int> =
+        MethodStringName0<ImporterMesh, Int>("get_surface_count")
+
+    @JvmStatic
+    public val getSurfacePrimitiveTypeName: MethodStringName1<ImporterMesh, Mesh.PrimitiveType, Int>
+        = MethodStringName1<ImporterMesh, Mesh.PrimitiveType, Int>("get_surface_primitive_type")
+
+    @JvmStatic
+    public val getSurfaceNameName: MethodStringName1<ImporterMesh, String, Int> =
+        MethodStringName1<ImporterMesh, String, Int>("get_surface_name")
+
+    @JvmStatic
+    public val getSurfaceArraysName: MethodStringName1<ImporterMesh, VariantArray<Any?>, Int> =
+        MethodStringName1<ImporterMesh, VariantArray<Any?>, Int>("get_surface_arrays")
+
+    @JvmStatic
+    public val getSurfaceBlendShapeArraysName:
+        MethodStringName2<ImporterMesh, VariantArray<Any?>, Int, Int> =
+        MethodStringName2<ImporterMesh, VariantArray<Any?>, Int, Int>("get_surface_blend_shape_arrays")
+
+    @JvmStatic
+    public val getSurfaceLodCountName: MethodStringName1<ImporterMesh, Int, Int> =
+        MethodStringName1<ImporterMesh, Int, Int>("get_surface_lod_count")
+
+    @JvmStatic
+    public val getSurfaceLodSizeName: MethodStringName2<ImporterMesh, Float, Int, Int> =
+        MethodStringName2<ImporterMesh, Float, Int, Int>("get_surface_lod_size")
+
+    @JvmStatic
+    public val getSurfaceLodIndicesName: MethodStringName2<ImporterMesh, PackedInt32Array, Int, Int>
+        = MethodStringName2<ImporterMesh, PackedInt32Array, Int, Int>("get_surface_lod_indices")
+
+    @JvmStatic
+    public val getSurfaceMaterialName: MethodStringName1<ImporterMesh, Material?, Int> =
+        MethodStringName1<ImporterMesh, Material?, Int>("get_surface_material")
+
+    @JvmStatic
+    public val getSurfaceFormatName: MethodStringName1<ImporterMesh, Long, Int> =
+        MethodStringName1<ImporterMesh, Long, Int>("get_surface_format")
+
+    @JvmStatic
+    public val setSurfaceNameName: MethodStringName2<ImporterMesh, Unit, Int, String> =
+        MethodStringName2<ImporterMesh, Unit, Int, String>("set_surface_name")
+
+    @JvmStatic
+    public val setSurfaceMaterialName: MethodStringName2<ImporterMesh, Unit, Int, Material?> =
+        MethodStringName2<ImporterMesh, Unit, Int, Material?>("set_surface_material")
+
+    @JvmStatic
+    public val generateLodsName:
+        MethodStringName3<ImporterMesh, Unit, Float, Float, VariantArray<Any?>> =
+        MethodStringName3<ImporterMesh, Unit, Float, Float, VariantArray<Any?>>("generate_lods")
+
+    @JvmStatic
+    public val getMeshName: MethodStringName1<ImporterMesh, ArrayMesh?, ArrayMesh?> =
+        MethodStringName1<ImporterMesh, ArrayMesh?, ArrayMesh?>("get_mesh")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<ImporterMesh, Unit> =
+        MethodStringName0<ImporterMesh, Unit>("clear")
+
+    @JvmStatic
+    public val setLightmapSizeHintName: MethodStringName1<ImporterMesh, Unit, Vector2i> =
+        MethodStringName1<ImporterMesh, Unit, Vector2i>("set_lightmap_size_hint")
+
+    @JvmStatic
+    public val getLightmapSizeHintName: MethodStringName0<ImporterMesh, Vector2i> =
+        MethodStringName0<ImporterMesh, Vector2i>("get_lightmap_size_hint")
+  }
 
   public object MethodBindings {
     internal val addBlendShapePtr: VoidPtr =

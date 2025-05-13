@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,6 +27,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Holds collision data from the movement of a [PhysicsBody3D], usually from
@@ -185,7 +189,63 @@ public open class KinematicCollision3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getTravelName: MethodStringName0<KinematicCollision3D, Vector3> =
+        MethodStringName0<KinematicCollision3D, Vector3>("get_travel")
+
+    @JvmStatic
+    public val getRemainderName: MethodStringName0<KinematicCollision3D, Vector3> =
+        MethodStringName0<KinematicCollision3D, Vector3>("get_remainder")
+
+    @JvmStatic
+    public val getDepthName: MethodStringName0<KinematicCollision3D, Float> =
+        MethodStringName0<KinematicCollision3D, Float>("get_depth")
+
+    @JvmStatic
+    public val getCollisionCountName: MethodStringName0<KinematicCollision3D, Int> =
+        MethodStringName0<KinematicCollision3D, Int>("get_collision_count")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName1<KinematicCollision3D, Vector3, Int> =
+        MethodStringName1<KinematicCollision3D, Vector3, Int>("get_position")
+
+    @JvmStatic
+    public val getNormalName: MethodStringName1<KinematicCollision3D, Vector3, Int> =
+        MethodStringName1<KinematicCollision3D, Vector3, Int>("get_normal")
+
+    @JvmStatic
+    public val getAngleName: MethodStringName2<KinematicCollision3D, Float, Int, Vector3> =
+        MethodStringName2<KinematicCollision3D, Float, Int, Vector3>("get_angle")
+
+    @JvmStatic
+    public val getLocalShapeName: MethodStringName1<KinematicCollision3D, Object?, Int> =
+        MethodStringName1<KinematicCollision3D, Object?, Int>("get_local_shape")
+
+    @JvmStatic
+    public val getColliderName: MethodStringName1<KinematicCollision3D, Object?, Int> =
+        MethodStringName1<KinematicCollision3D, Object?, Int>("get_collider")
+
+    @JvmStatic
+    public val getColliderIdName: MethodStringName1<KinematicCollision3D, Long, Int> =
+        MethodStringName1<KinematicCollision3D, Long, Int>("get_collider_id")
+
+    @JvmStatic
+    public val getColliderRidName: MethodStringName1<KinematicCollision3D, RID, Int> =
+        MethodStringName1<KinematicCollision3D, RID, Int>("get_collider_rid")
+
+    @JvmStatic
+    public val getColliderShapeName: MethodStringName1<KinematicCollision3D, Object?, Int> =
+        MethodStringName1<KinematicCollision3D, Object?, Int>("get_collider_shape")
+
+    @JvmStatic
+    public val getColliderShapeIndexName: MethodStringName1<KinematicCollision3D, Int, Int> =
+        MethodStringName1<KinematicCollision3D, Int, Int>("get_collider_shape_index")
+
+    @JvmStatic
+    public val getColliderVelocityName: MethodStringName1<KinematicCollision3D, Vector3, Int> =
+        MethodStringName1<KinematicCollision3D, Vector3, Int>("get_collider_velocity")
+  }
 
   public object MethodBindings {
     internal val getTravelPtr: VoidPtr =

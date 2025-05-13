@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -26,6 +30,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that
@@ -155,7 +160,42 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val createServerName: MethodStringName1<WebRTCMultiplayerPeer, Error, VariantArray<Any?>>
+        = MethodStringName1<WebRTCMultiplayerPeer, Error, VariantArray<Any?>>("create_server")
+
+    @JvmStatic
+    public val createClientName:
+        MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>> =
+        MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>>("create_client")
+
+    @JvmStatic
+    public val createMeshName:
+        MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>> =
+        MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>>("create_mesh")
+
+    @JvmStatic
+    public val addPeerName:
+        MethodStringName3<WebRTCMultiplayerPeer, Error, WebRTCPeerConnection?, Int, Int> =
+        MethodStringName3<WebRTCMultiplayerPeer, Error, WebRTCPeerConnection?, Int, Int>("add_peer")
+
+    @JvmStatic
+    public val removePeerName: MethodStringName1<WebRTCMultiplayerPeer, Unit, Int> =
+        MethodStringName1<WebRTCMultiplayerPeer, Unit, Int>("remove_peer")
+
+    @JvmStatic
+    public val hasPeerName: MethodStringName1<WebRTCMultiplayerPeer, Boolean, Int> =
+        MethodStringName1<WebRTCMultiplayerPeer, Boolean, Int>("has_peer")
+
+    @JvmStatic
+    public val getPeerName: MethodStringName1<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>, Int> =
+        MethodStringName1<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>, Int>("get_peer")
+
+    @JvmStatic
+    public val getPeersName: MethodStringName0<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>> =
+        MethodStringName0<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>>("get_peers")
+  }
 
   public object MethodBindings {
     internal val createServerPtr: VoidPtr =

@@ -30,7 +30,6 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
             it
         }
     }
-    override val voidPtrVariableName = "${name}Ptr"
     override val arguments = model.arguments?.toEnriched() ?: listOf()
     override val isVararg = model.isVararg
     override var description = model.description

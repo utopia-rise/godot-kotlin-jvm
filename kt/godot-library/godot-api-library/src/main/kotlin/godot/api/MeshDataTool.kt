@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
@@ -33,6 +36,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit
@@ -452,7 +456,159 @@ public open class MeshDataTool : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val clearName: MethodStringName0<MeshDataTool, Unit> =
+        MethodStringName0<MeshDataTool, Unit>("clear")
+
+    @JvmStatic
+    public val createFromSurfaceName: MethodStringName2<MeshDataTool, Error, ArrayMesh?, Int> =
+        MethodStringName2<MeshDataTool, Error, ArrayMesh?, Int>("create_from_surface")
+
+    @JvmStatic
+    public val commitToSurfaceName: MethodStringName2<MeshDataTool, Error, ArrayMesh?, Long> =
+        MethodStringName2<MeshDataTool, Error, ArrayMesh?, Long>("commit_to_surface")
+
+    @JvmStatic
+    public val getFormatName: MethodStringName0<MeshDataTool, Long> =
+        MethodStringName0<MeshDataTool, Long>("get_format")
+
+    @JvmStatic
+    public val getVertexCountName: MethodStringName0<MeshDataTool, Int> =
+        MethodStringName0<MeshDataTool, Int>("get_vertex_count")
+
+    @JvmStatic
+    public val getEdgeCountName: MethodStringName0<MeshDataTool, Int> =
+        MethodStringName0<MeshDataTool, Int>("get_edge_count")
+
+    @JvmStatic
+    public val getFaceCountName: MethodStringName0<MeshDataTool, Int> =
+        MethodStringName0<MeshDataTool, Int>("get_face_count")
+
+    @JvmStatic
+    public val setVertexName: MethodStringName2<MeshDataTool, Unit, Int, Vector3> =
+        MethodStringName2<MeshDataTool, Unit, Int, Vector3>("set_vertex")
+
+    @JvmStatic
+    public val getVertexName: MethodStringName1<MeshDataTool, Vector3, Int> =
+        MethodStringName1<MeshDataTool, Vector3, Int>("get_vertex")
+
+    @JvmStatic
+    public val setVertexNormalName: MethodStringName2<MeshDataTool, Unit, Int, Vector3> =
+        MethodStringName2<MeshDataTool, Unit, Int, Vector3>("set_vertex_normal")
+
+    @JvmStatic
+    public val getVertexNormalName: MethodStringName1<MeshDataTool, Vector3, Int> =
+        MethodStringName1<MeshDataTool, Vector3, Int>("get_vertex_normal")
+
+    @JvmStatic
+    public val setVertexTangentName: MethodStringName2<MeshDataTool, Unit, Int, Plane> =
+        MethodStringName2<MeshDataTool, Unit, Int, Plane>("set_vertex_tangent")
+
+    @JvmStatic
+    public val getVertexTangentName: MethodStringName1<MeshDataTool, Plane, Int> =
+        MethodStringName1<MeshDataTool, Plane, Int>("get_vertex_tangent")
+
+    @JvmStatic
+    public val setVertexUvName: MethodStringName2<MeshDataTool, Unit, Int, Vector2> =
+        MethodStringName2<MeshDataTool, Unit, Int, Vector2>("set_vertex_uv")
+
+    @JvmStatic
+    public val getVertexUvName: MethodStringName1<MeshDataTool, Vector2, Int> =
+        MethodStringName1<MeshDataTool, Vector2, Int>("get_vertex_uv")
+
+    @JvmStatic
+    public val setVertexUv2Name: MethodStringName2<MeshDataTool, Unit, Int, Vector2> =
+        MethodStringName2<MeshDataTool, Unit, Int, Vector2>("set_vertex_uv2")
+
+    @JvmStatic
+    public val getVertexUv2Name: MethodStringName1<MeshDataTool, Vector2, Int> =
+        MethodStringName1<MeshDataTool, Vector2, Int>("get_vertex_uv2")
+
+    @JvmStatic
+    public val setVertexColorName: MethodStringName2<MeshDataTool, Unit, Int, Color> =
+        MethodStringName2<MeshDataTool, Unit, Int, Color>("set_vertex_color")
+
+    @JvmStatic
+    public val getVertexColorName: MethodStringName1<MeshDataTool, Color, Int> =
+        MethodStringName1<MeshDataTool, Color, Int>("get_vertex_color")
+
+    @JvmStatic
+    public val setVertexBonesName: MethodStringName2<MeshDataTool, Unit, Int, PackedInt32Array> =
+        MethodStringName2<MeshDataTool, Unit, Int, PackedInt32Array>("set_vertex_bones")
+
+    @JvmStatic
+    public val getVertexBonesName: MethodStringName1<MeshDataTool, PackedInt32Array, Int> =
+        MethodStringName1<MeshDataTool, PackedInt32Array, Int>("get_vertex_bones")
+
+    @JvmStatic
+    public val setVertexWeightsName: MethodStringName2<MeshDataTool, Unit, Int, PackedFloat32Array>
+        = MethodStringName2<MeshDataTool, Unit, Int, PackedFloat32Array>("set_vertex_weights")
+
+    @JvmStatic
+    public val getVertexWeightsName: MethodStringName1<MeshDataTool, PackedFloat32Array, Int> =
+        MethodStringName1<MeshDataTool, PackedFloat32Array, Int>("get_vertex_weights")
+
+    @JvmStatic
+    public val setVertexMetaName: MethodStringName2<MeshDataTool, Unit, Int, Any?> =
+        MethodStringName2<MeshDataTool, Unit, Int, Any?>("set_vertex_meta")
+
+    @JvmStatic
+    public val getVertexMetaName: MethodStringName1<MeshDataTool, Any?, Int> =
+        MethodStringName1<MeshDataTool, Any?, Int>("get_vertex_meta")
+
+    @JvmStatic
+    public val getVertexEdgesName: MethodStringName1<MeshDataTool, PackedInt32Array, Int> =
+        MethodStringName1<MeshDataTool, PackedInt32Array, Int>("get_vertex_edges")
+
+    @JvmStatic
+    public val getVertexFacesName: MethodStringName1<MeshDataTool, PackedInt32Array, Int> =
+        MethodStringName1<MeshDataTool, PackedInt32Array, Int>("get_vertex_faces")
+
+    @JvmStatic
+    public val getEdgeVertexName: MethodStringName2<MeshDataTool, Int, Int, Int> =
+        MethodStringName2<MeshDataTool, Int, Int, Int>("get_edge_vertex")
+
+    @JvmStatic
+    public val getEdgeFacesName: MethodStringName1<MeshDataTool, PackedInt32Array, Int> =
+        MethodStringName1<MeshDataTool, PackedInt32Array, Int>("get_edge_faces")
+
+    @JvmStatic
+    public val setEdgeMetaName: MethodStringName2<MeshDataTool, Unit, Int, Any?> =
+        MethodStringName2<MeshDataTool, Unit, Int, Any?>("set_edge_meta")
+
+    @JvmStatic
+    public val getEdgeMetaName: MethodStringName1<MeshDataTool, Any?, Int> =
+        MethodStringName1<MeshDataTool, Any?, Int>("get_edge_meta")
+
+    @JvmStatic
+    public val getFaceVertexName: MethodStringName2<MeshDataTool, Int, Int, Int> =
+        MethodStringName2<MeshDataTool, Int, Int, Int>("get_face_vertex")
+
+    @JvmStatic
+    public val getFaceEdgeName: MethodStringName2<MeshDataTool, Int, Int, Int> =
+        MethodStringName2<MeshDataTool, Int, Int, Int>("get_face_edge")
+
+    @JvmStatic
+    public val setFaceMetaName: MethodStringName2<MeshDataTool, Unit, Int, Any?> =
+        MethodStringName2<MeshDataTool, Unit, Int, Any?>("set_face_meta")
+
+    @JvmStatic
+    public val getFaceMetaName: MethodStringName1<MeshDataTool, Any?, Int> =
+        MethodStringName1<MeshDataTool, Any?, Int>("get_face_meta")
+
+    @JvmStatic
+    public val getFaceNormalName: MethodStringName1<MeshDataTool, Vector3, Int> =
+        MethodStringName1<MeshDataTool, Vector3, Int>("get_face_normal")
+
+    @JvmStatic
+    public val setMaterialName: MethodStringName1<MeshDataTool, Unit, Material?> =
+        MethodStringName1<MeshDataTool, Unit, Material?>("set_material")
+
+    @JvmStatic
+    public val getMaterialName: MethodStringName0<MeshDataTool, Material?> =
+        MethodStringName0<MeshDataTool, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val clearPtr: VoidPtr =

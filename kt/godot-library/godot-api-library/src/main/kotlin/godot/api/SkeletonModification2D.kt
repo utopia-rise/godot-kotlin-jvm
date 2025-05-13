@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,6 +27,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
@@ -173,7 +177,49 @@ public open class SkeletonModification2D : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<SkeletonModification2D, Unit, Boolean> =
+        MethodStringName1<SkeletonModification2D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val getEnabledName: MethodStringName0<SkeletonModification2D, Boolean> =
+        MethodStringName0<SkeletonModification2D, Boolean>("get_enabled")
+
+    @JvmStatic
+    public val getModificationStackName:
+        MethodStringName0<SkeletonModification2D, SkeletonModificationStack2D?> =
+        MethodStringName0<SkeletonModification2D, SkeletonModificationStack2D?>("get_modification_stack")
+
+    @JvmStatic
+    public val setIsSetupName: MethodStringName1<SkeletonModification2D, Unit, Boolean> =
+        MethodStringName1<SkeletonModification2D, Unit, Boolean>("set_is_setup")
+
+    @JvmStatic
+    public val getIsSetupName: MethodStringName0<SkeletonModification2D, Boolean> =
+        MethodStringName0<SkeletonModification2D, Boolean>("get_is_setup")
+
+    @JvmStatic
+    public val setExecutionModeName: MethodStringName1<SkeletonModification2D, Unit, Int> =
+        MethodStringName1<SkeletonModification2D, Unit, Int>("set_execution_mode")
+
+    @JvmStatic
+    public val getExecutionModeName: MethodStringName0<SkeletonModification2D, Int> =
+        MethodStringName0<SkeletonModification2D, Int>("get_execution_mode")
+
+    @JvmStatic
+    public val clampAngleName:
+        MethodStringName4<SkeletonModification2D, Float, Float, Float, Float, Boolean> =
+        MethodStringName4<SkeletonModification2D, Float, Float, Float, Float, Boolean>("clamp_angle")
+
+    @JvmStatic
+    public val setEditorDrawGizmoName: MethodStringName1<SkeletonModification2D, Unit, Boolean> =
+        MethodStringName1<SkeletonModification2D, Unit, Boolean>("set_editor_draw_gizmo")
+
+    @JvmStatic
+    public val getEditorDrawGizmoName: MethodStringName0<SkeletonModification2D, Boolean> =
+        MethodStringName0<SkeletonModification2D, Boolean>("get_editor_draw_gizmo")
+  }
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Holds collision data from the movement of a [PhysicsBody2D], usually from
@@ -159,7 +162,59 @@ public open class KinematicCollision2D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getPositionName: MethodStringName0<KinematicCollision2D, Vector2> =
+        MethodStringName0<KinematicCollision2D, Vector2>("get_position")
+
+    @JvmStatic
+    public val getNormalName: MethodStringName0<KinematicCollision2D, Vector2> =
+        MethodStringName0<KinematicCollision2D, Vector2>("get_normal")
+
+    @JvmStatic
+    public val getTravelName: MethodStringName0<KinematicCollision2D, Vector2> =
+        MethodStringName0<KinematicCollision2D, Vector2>("get_travel")
+
+    @JvmStatic
+    public val getRemainderName: MethodStringName0<KinematicCollision2D, Vector2> =
+        MethodStringName0<KinematicCollision2D, Vector2>("get_remainder")
+
+    @JvmStatic
+    public val getAngleName: MethodStringName1<KinematicCollision2D, Float, Vector2> =
+        MethodStringName1<KinematicCollision2D, Float, Vector2>("get_angle")
+
+    @JvmStatic
+    public val getDepthName: MethodStringName0<KinematicCollision2D, Float> =
+        MethodStringName0<KinematicCollision2D, Float>("get_depth")
+
+    @JvmStatic
+    public val getLocalShapeName: MethodStringName0<KinematicCollision2D, Object?> =
+        MethodStringName0<KinematicCollision2D, Object?>("get_local_shape")
+
+    @JvmStatic
+    public val getColliderName: MethodStringName0<KinematicCollision2D, Object?> =
+        MethodStringName0<KinematicCollision2D, Object?>("get_collider")
+
+    @JvmStatic
+    public val getColliderIdName: MethodStringName0<KinematicCollision2D, Long> =
+        MethodStringName0<KinematicCollision2D, Long>("get_collider_id")
+
+    @JvmStatic
+    public val getColliderRidName: MethodStringName0<KinematicCollision2D, RID> =
+        MethodStringName0<KinematicCollision2D, RID>("get_collider_rid")
+
+    @JvmStatic
+    public val getColliderShapeName: MethodStringName0<KinematicCollision2D, Object?> =
+        MethodStringName0<KinematicCollision2D, Object?>("get_collider_shape")
+
+    @JvmStatic
+    public val getColliderShapeIndexName: MethodStringName0<KinematicCollision2D, Int> =
+        MethodStringName0<KinematicCollision2D, Int>("get_collider_shape_index")
+
+    @JvmStatic
+    public val getColliderVelocityName: MethodStringName0<KinematicCollision2D, Vector2> =
+        MethodStringName0<KinematicCollision2D, Vector2>("get_collider_velocity")
+  }
 
   public object MethodBindings {
     internal val getPositionPtr: VoidPtr =

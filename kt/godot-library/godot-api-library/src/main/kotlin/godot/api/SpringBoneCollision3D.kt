@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Quaternion
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -26,6 +28,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A collision can be a child of [SpringBoneSimulator3D]. If it is not a child of
@@ -199,7 +202,43 @@ public open class SpringBoneCollision3D : Node3D() {
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getSkeletonName: MethodStringName0<SpringBoneCollision3D, Skeleton3D?> =
+        MethodStringName0<SpringBoneCollision3D, Skeleton3D?>("get_skeleton")
+
+    @JvmStatic
+    public val setBoneNameName: MethodStringName1<SpringBoneCollision3D, Unit, String> =
+        MethodStringName1<SpringBoneCollision3D, Unit, String>("set_bone_name")
+
+    @JvmStatic
+    public val getBoneNameName: MethodStringName0<SpringBoneCollision3D, String> =
+        MethodStringName0<SpringBoneCollision3D, String>("get_bone_name")
+
+    @JvmStatic
+    public val setBoneName: MethodStringName1<SpringBoneCollision3D, Unit, Int> =
+        MethodStringName1<SpringBoneCollision3D, Unit, Int>("set_bone")
+
+    @JvmStatic
+    public val getBoneName: MethodStringName0<SpringBoneCollision3D, Int> =
+        MethodStringName0<SpringBoneCollision3D, Int>("get_bone")
+
+    @JvmStatic
+    public val setPositionOffsetName: MethodStringName1<SpringBoneCollision3D, Unit, Vector3> =
+        MethodStringName1<SpringBoneCollision3D, Unit, Vector3>("set_position_offset")
+
+    @JvmStatic
+    public val getPositionOffsetName: MethodStringName0<SpringBoneCollision3D, Vector3> =
+        MethodStringName0<SpringBoneCollision3D, Vector3>("get_position_offset")
+
+    @JvmStatic
+    public val setRotationOffsetName: MethodStringName1<SpringBoneCollision3D, Unit, Quaternion> =
+        MethodStringName1<SpringBoneCollision3D, Unit, Quaternion>("set_rotation_offset")
+
+    @JvmStatic
+    public val getRotationOffsetName: MethodStringName0<SpringBoneCollision3D, Quaternion> =
+        MethodStringName0<SpringBoneCollision3D, Quaternion>("get_rotation_offset")
+  }
 
   public object MethodBindings {
     internal val getSkeletonPtr: VoidPtr =

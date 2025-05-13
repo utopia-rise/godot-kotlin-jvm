@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The
@@ -115,7 +118,24 @@ public open class SyntaxHighlighter : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getLineSyntaxHighlightingName:
+        MethodStringName1<SyntaxHighlighter, Dictionary<Any?, Any?>, Int> =
+        MethodStringName1<SyntaxHighlighter, Dictionary<Any?, Any?>, Int>("get_line_syntax_highlighting")
+
+    @JvmStatic
+    public val updateCacheName: MethodStringName0<SyntaxHighlighter, Unit> =
+        MethodStringName0<SyntaxHighlighter, Unit>("update_cache")
+
+    @JvmStatic
+    public val clearHighlightingCacheName: MethodStringName0<SyntaxHighlighter, Unit> =
+        MethodStringName0<SyntaxHighlighter, Unit>("clear_highlighting_cache")
+
+    @JvmStatic
+    public val getTextEditName: MethodStringName0<SyntaxHighlighter, TextEdit?> =
+        MethodStringName0<SyntaxHighlighter, TextEdit?>("get_text_edit")
+  }
 
   public object MethodBindings {
     internal val getLineSyntaxHighlightingPtr: VoidPtr =

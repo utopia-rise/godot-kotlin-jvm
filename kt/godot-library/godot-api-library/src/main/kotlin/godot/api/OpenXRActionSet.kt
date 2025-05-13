@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows
@@ -131,7 +134,43 @@ public open class OpenXRActionSet : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.removeActionPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLocalizedNameName: MethodStringName1<OpenXRActionSet, Unit, String> =
+        MethodStringName1<OpenXRActionSet, Unit, String>("set_localized_name")
+
+    @JvmStatic
+    public val getLocalizedNameName: MethodStringName0<OpenXRActionSet, String> =
+        MethodStringName0<OpenXRActionSet, String>("get_localized_name")
+
+    @JvmStatic
+    public val setPriorityName: MethodStringName1<OpenXRActionSet, Unit, Int> =
+        MethodStringName1<OpenXRActionSet, Unit, Int>("set_priority")
+
+    @JvmStatic
+    public val getPriorityName: MethodStringName0<OpenXRActionSet, Int> =
+        MethodStringName0<OpenXRActionSet, Int>("get_priority")
+
+    @JvmStatic
+    public val getActionCountName: MethodStringName0<OpenXRActionSet, Int> =
+        MethodStringName0<OpenXRActionSet, Int>("get_action_count")
+
+    @JvmStatic
+    public val setActionsName: MethodStringName1<OpenXRActionSet, Unit, VariantArray<Any?>> =
+        MethodStringName1<OpenXRActionSet, Unit, VariantArray<Any?>>("set_actions")
+
+    @JvmStatic
+    public val getActionsName: MethodStringName0<OpenXRActionSet, VariantArray<Any?>> =
+        MethodStringName0<OpenXRActionSet, VariantArray<Any?>>("get_actions")
+
+    @JvmStatic
+    public val addActionName: MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?> =
+        MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?>("add_action")
+
+    @JvmStatic
+    public val removeActionName: MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?> =
+        MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?>("remove_action")
+  }
 
   public object MethodBindings {
     internal val setLocalizedNamePtr: VoidPtr =

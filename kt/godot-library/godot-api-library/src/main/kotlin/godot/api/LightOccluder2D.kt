@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an
@@ -99,7 +102,31 @@ public open class LightOccluder2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOccluderPolygonName: MethodStringName1<LightOccluder2D, Unit, OccluderPolygon2D?>
+        = MethodStringName1<LightOccluder2D, Unit, OccluderPolygon2D?>("set_occluder_polygon")
+
+    @JvmStatic
+    public val getOccluderPolygonName: MethodStringName0<LightOccluder2D, OccluderPolygon2D?> =
+        MethodStringName0<LightOccluder2D, OccluderPolygon2D?>("get_occluder_polygon")
+
+    @JvmStatic
+    public val setOccluderLightMaskName: MethodStringName1<LightOccluder2D, Unit, Int> =
+        MethodStringName1<LightOccluder2D, Unit, Int>("set_occluder_light_mask")
+
+    @JvmStatic
+    public val getOccluderLightMaskName: MethodStringName0<LightOccluder2D, Int> =
+        MethodStringName0<LightOccluder2D, Int>("get_occluder_light_mask")
+
+    @JvmStatic
+    public val setAsSdfCollisionName: MethodStringName1<LightOccluder2D, Unit, Boolean> =
+        MethodStringName1<LightOccluder2D, Unit, Boolean>("set_as_sdf_collision")
+
+    @JvmStatic
+    public val isSetAsSdfCollisionName: MethodStringName0<LightOccluder2D, Boolean> =
+        MethodStringName0<LightOccluder2D, Boolean>("is_set_as_sdf_collision")
+  }
 
   public object MethodBindings {
     internal val setOccluderPolygonPtr: VoidPtr =

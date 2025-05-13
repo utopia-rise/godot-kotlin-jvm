@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -28,6 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A traversable 3D region based on a [NavigationMesh] that [NavigationAgent3D]s can use for
@@ -295,7 +299,92 @@ public open class NavigationRegion3D : Node3D() {
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getRidName: MethodStringName0<NavigationRegion3D, RID> =
+        MethodStringName0<NavigationRegion3D, RID>("get_rid")
+
+    @JvmStatic
+    public val setNavigationMeshName: MethodStringName1<NavigationRegion3D, Unit, NavigationMesh?> =
+        MethodStringName1<NavigationRegion3D, Unit, NavigationMesh?>("set_navigation_mesh")
+
+    @JvmStatic
+    public val getNavigationMeshName: MethodStringName0<NavigationRegion3D, NavigationMesh?> =
+        MethodStringName0<NavigationRegion3D, NavigationMesh?>("get_navigation_mesh")
+
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<NavigationRegion3D, Unit, Boolean> =
+        MethodStringName1<NavigationRegion3D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val isEnabledName: MethodStringName0<NavigationRegion3D, Boolean> =
+        MethodStringName0<NavigationRegion3D, Boolean>("is_enabled")
+
+    @JvmStatic
+    public val setNavigationMapName: MethodStringName1<NavigationRegion3D, Unit, RID> =
+        MethodStringName1<NavigationRegion3D, Unit, RID>("set_navigation_map")
+
+    @JvmStatic
+    public val getNavigationMapName: MethodStringName0<NavigationRegion3D, RID> =
+        MethodStringName0<NavigationRegion3D, RID>("get_navigation_map")
+
+    @JvmStatic
+    public val setUseEdgeConnectionsName: MethodStringName1<NavigationRegion3D, Unit, Boolean> =
+        MethodStringName1<NavigationRegion3D, Unit, Boolean>("set_use_edge_connections")
+
+    @JvmStatic
+    public val getUseEdgeConnectionsName: MethodStringName0<NavigationRegion3D, Boolean> =
+        MethodStringName0<NavigationRegion3D, Boolean>("get_use_edge_connections")
+
+    @JvmStatic
+    public val setNavigationLayersName: MethodStringName1<NavigationRegion3D, Unit, Long> =
+        MethodStringName1<NavigationRegion3D, Unit, Long>("set_navigation_layers")
+
+    @JvmStatic
+    public val getNavigationLayersName: MethodStringName0<NavigationRegion3D, Long> =
+        MethodStringName0<NavigationRegion3D, Long>("get_navigation_layers")
+
+    @JvmStatic
+    public val setNavigationLayerValueName:
+        MethodStringName2<NavigationRegion3D, Unit, Int, Boolean> =
+        MethodStringName2<NavigationRegion3D, Unit, Int, Boolean>("set_navigation_layer_value")
+
+    @JvmStatic
+    public val getNavigationLayerValueName: MethodStringName1<NavigationRegion3D, Boolean, Int> =
+        MethodStringName1<NavigationRegion3D, Boolean, Int>("get_navigation_layer_value")
+
+    @JvmStatic
+    public val getRegionRidName: MethodStringName0<NavigationRegion3D, RID> =
+        MethodStringName0<NavigationRegion3D, RID>("get_region_rid")
+
+    @JvmStatic
+    public val setEnterCostName: MethodStringName1<NavigationRegion3D, Unit, Float> =
+        MethodStringName1<NavigationRegion3D, Unit, Float>("set_enter_cost")
+
+    @JvmStatic
+    public val getEnterCostName: MethodStringName0<NavigationRegion3D, Float> =
+        MethodStringName0<NavigationRegion3D, Float>("get_enter_cost")
+
+    @JvmStatic
+    public val setTravelCostName: MethodStringName1<NavigationRegion3D, Unit, Float> =
+        MethodStringName1<NavigationRegion3D, Unit, Float>("set_travel_cost")
+
+    @JvmStatic
+    public val getTravelCostName: MethodStringName0<NavigationRegion3D, Float> =
+        MethodStringName0<NavigationRegion3D, Float>("get_travel_cost")
+
+    @JvmStatic
+    public val bakeNavigationMeshName: MethodStringName1<NavigationRegion3D, Unit, Boolean> =
+        MethodStringName1<NavigationRegion3D, Unit, Boolean>("bake_navigation_mesh")
+
+    @JvmStatic
+    public val isBakingName: MethodStringName0<NavigationRegion3D, Boolean> =
+        MethodStringName0<NavigationRegion3D, Boolean>("is_baking")
+
+    @JvmStatic
+    public val getBoundsName: MethodStringName0<NavigationRegion3D, AABB> =
+        MethodStringName0<NavigationRegion3D, AABB>("get_bounds")
+  }
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =

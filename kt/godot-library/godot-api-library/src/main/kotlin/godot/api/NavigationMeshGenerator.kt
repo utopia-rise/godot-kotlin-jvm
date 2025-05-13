@@ -11,10 +11,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.VariantCallable
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -57,7 +62,27 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
-  public override fun new(scriptPtr: VoidPtr): Unit {
+  @JvmStatic
+  public val bakeName: MethodStringName2<NavigationMeshGenerator, Unit, NavigationMesh?, Node?> =
+      MethodStringName2<NavigationMeshGenerator, Unit, NavigationMesh?, Node?>("bake")
+
+  @JvmStatic
+  public val clearName: MethodStringName1<NavigationMeshGenerator, Unit, NavigationMesh?> =
+      MethodStringName1<NavigationMeshGenerator, Unit, NavigationMesh?>("clear")
+
+  @JvmStatic
+  public val parseSourceGeometryDataName:
+      MethodStringName4<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>
+      =
+      MethodStringName4<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>("parse_source_geometry_data")
+
+  @JvmStatic
+  public val bakeFromSourceGeometryDataName:
+      MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>
+      =
+      MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>("bake_from_source_geometry_data")
+
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(16)
   }
 

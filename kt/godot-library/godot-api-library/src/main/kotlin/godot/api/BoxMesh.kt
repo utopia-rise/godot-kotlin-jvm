@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Generate an axis-aligned box [PrimitiveMesh].
@@ -154,7 +157,39 @@ public open class BoxMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<BoxMesh, Unit, Vector3> =
+        MethodStringName1<BoxMesh, Unit, Vector3>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<BoxMesh, Vector3> =
+        MethodStringName0<BoxMesh, Vector3>("get_size")
+
+    @JvmStatic
+    public val setSubdivideWidthName: MethodStringName1<BoxMesh, Unit, Int> =
+        MethodStringName1<BoxMesh, Unit, Int>("set_subdivide_width")
+
+    @JvmStatic
+    public val getSubdivideWidthName: MethodStringName0<BoxMesh, Int> =
+        MethodStringName0<BoxMesh, Int>("get_subdivide_width")
+
+    @JvmStatic
+    public val setSubdivideHeightName: MethodStringName1<BoxMesh, Unit, Int> =
+        MethodStringName1<BoxMesh, Unit, Int>("set_subdivide_height")
+
+    @JvmStatic
+    public val getSubdivideHeightName: MethodStringName0<BoxMesh, Int> =
+        MethodStringName0<BoxMesh, Int>("get_subdivide_height")
+
+    @JvmStatic
+    public val setSubdivideDepthName: MethodStringName1<BoxMesh, Unit, Int> =
+        MethodStringName1<BoxMesh, Unit, Int>("set_subdivide_depth")
+
+    @JvmStatic
+    public val getSubdivideDepthName: MethodStringName0<BoxMesh, Int> =
+        MethodStringName0<BoxMesh, Int>("get_subdivide_depth")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import kotlin.Boolean
@@ -17,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for any object that keeps a reference count. [Resource] and many other helper objects
@@ -94,7 +96,23 @@ public open class RefCounted : Object() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val initRefName: MethodStringName0<RefCounted, Boolean> =
+        MethodStringName0<RefCounted, Boolean>("init_ref")
+
+    @JvmStatic
+    public val referenceName: MethodStringName0<RefCounted, Boolean> =
+        MethodStringName0<RefCounted, Boolean>("reference")
+
+    @JvmStatic
+    public val unreferenceName: MethodStringName0<RefCounted, Boolean> =
+        MethodStringName0<RefCounted, Boolean>("unreference")
+
+    @JvmStatic
+    public val getReferenceCountName: MethodStringName0<RefCounted, Int> =
+        MethodStringName0<RefCounted, Int>("get_reference_count")
+  }
 
   public object MethodBindings {
     internal val initRefPtr: VoidPtr =

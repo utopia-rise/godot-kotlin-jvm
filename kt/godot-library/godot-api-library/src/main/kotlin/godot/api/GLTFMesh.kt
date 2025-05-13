@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -30,6 +33,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * GLTFMesh handles 3D mesh data imported from glTF files. It includes properties for blend
@@ -221,7 +225,47 @@ public open class GLTFMesh : Resource() {
   public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getOriginalNameName: MethodStringName0<GLTFMesh, String> =
+        MethodStringName0<GLTFMesh, String>("get_original_name")
+
+    @JvmStatic
+    public val setOriginalNameName: MethodStringName1<GLTFMesh, Unit, String> =
+        MethodStringName1<GLTFMesh, Unit, String>("set_original_name")
+
+    @JvmStatic
+    public val getMeshName: MethodStringName0<GLTFMesh, ImporterMesh?> =
+        MethodStringName0<GLTFMesh, ImporterMesh?>("get_mesh")
+
+    @JvmStatic
+    public val setMeshName: MethodStringName1<GLTFMesh, Unit, ImporterMesh?> =
+        MethodStringName1<GLTFMesh, Unit, ImporterMesh?>("set_mesh")
+
+    @JvmStatic
+    public val getBlendWeightsName: MethodStringName0<GLTFMesh, PackedFloat32Array> =
+        MethodStringName0<GLTFMesh, PackedFloat32Array>("get_blend_weights")
+
+    @JvmStatic
+    public val setBlendWeightsName: MethodStringName1<GLTFMesh, Unit, PackedFloat32Array> =
+        MethodStringName1<GLTFMesh, Unit, PackedFloat32Array>("set_blend_weights")
+
+    @JvmStatic
+    public val getInstanceMaterialsName: MethodStringName0<GLTFMesh, VariantArray<Material>> =
+        MethodStringName0<GLTFMesh, VariantArray<Material>>("get_instance_materials")
+
+    @JvmStatic
+    public val setInstanceMaterialsName: MethodStringName1<GLTFMesh, Unit, VariantArray<Material>> =
+        MethodStringName1<GLTFMesh, Unit, VariantArray<Material>>("set_instance_materials")
+
+    @JvmStatic
+    public val getAdditionalDataName: MethodStringName1<GLTFMesh, Any?, StringName> =
+        MethodStringName1<GLTFMesh, Any?, StringName>("get_additional_data")
+
+    @JvmStatic
+    public val setAdditionalDataName: MethodStringName2<GLTFMesh, Unit, StringName, Any?> =
+        MethodStringName2<GLTFMesh, Unit, StringName, Any?>("set_additional_data")
+  }
 
   public object MethodBindings {
     internal val getOriginalNamePtr: VoidPtr =

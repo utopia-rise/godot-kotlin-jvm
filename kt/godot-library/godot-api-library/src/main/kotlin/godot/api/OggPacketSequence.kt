@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt64Array
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A sequence of Ogg packets.
@@ -158,7 +161,38 @@ public open class OggPacketSequence : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPacketDataName:
+        MethodStringName1<OggPacketSequence, Unit, VariantArray<VariantArray<Any?>>> =
+        MethodStringName1<OggPacketSequence, Unit, VariantArray<VariantArray<Any?>>>("set_packet_data")
+
+    @JvmStatic
+    public val getPacketDataName:
+        MethodStringName0<OggPacketSequence, VariantArray<VariantArray<Any?>>> =
+        MethodStringName0<OggPacketSequence, VariantArray<VariantArray<Any?>>>("get_packet_data")
+
+    @JvmStatic
+    public val setPacketGranulePositionsName:
+        MethodStringName1<OggPacketSequence, Unit, PackedInt64Array> =
+        MethodStringName1<OggPacketSequence, Unit, PackedInt64Array>("set_packet_granule_positions")
+
+    @JvmStatic
+    public val getPacketGranulePositionsName: MethodStringName0<OggPacketSequence, PackedInt64Array>
+        = MethodStringName0<OggPacketSequence, PackedInt64Array>("get_packet_granule_positions")
+
+    @JvmStatic
+    public val setSamplingRateName: MethodStringName1<OggPacketSequence, Unit, Float> =
+        MethodStringName1<OggPacketSequence, Unit, Float>("set_sampling_rate")
+
+    @JvmStatic
+    public val getSamplingRateName: MethodStringName0<OggPacketSequence, Float> =
+        MethodStringName0<OggPacketSequence, Float>("get_sampling_rate")
+
+    @JvmStatic
+    public val getLengthName: MethodStringName0<OggPacketSequence, Float> =
+        MethodStringName0<OggPacketSequence, Float>("get_length")
+  }
 
   public object MethodBindings {
     internal val setPacketDataPtr: VoidPtr =

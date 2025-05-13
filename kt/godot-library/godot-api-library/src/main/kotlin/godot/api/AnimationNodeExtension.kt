@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.PackedFloat64Array
 import godot.core.VariantParser.BOOL
@@ -52,6 +54,15 @@ public abstract class AnimationNodeExtension : AnimationNode() {
       PackedFloat32Array
 
   public companion object {
+    @JvmStatic
+    public val isLoopingName: MethodStringName1<AnimationNodeExtension, Boolean, PackedFloat32Array>
+        = MethodStringName1<AnimationNodeExtension, Boolean, PackedFloat32Array>("is_looping")
+
+    @JvmStatic
+    public val getRemainingTimeName:
+        MethodStringName2<AnimationNodeExtension, Double, PackedFloat32Array, Boolean> =
+        MethodStringName2<AnimationNodeExtension, Double, PackedFloat32Array, Boolean>("get_remaining_time")
+
     /**
      * Returns `true` if the animation for the given [nodeInfo] is looping.
      */

@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
@@ -18,6 +20,7 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public abstract class PhysicsServer3DRenderingServerHandler : Object() {
@@ -70,7 +73,21 @@ public abstract class PhysicsServer3DRenderingServerHandler : Object() {
     TransferContext.callMethod(ptr, MethodBindings.setAabbPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setVertexName:
+        MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3> =
+        MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3>("set_vertex")
+
+    @JvmStatic
+    public val setNormalName:
+        MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3> =
+        MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3>("set_normal")
+
+    @JvmStatic
+    public val setAabbName: MethodStringName1<PhysicsServer3DRenderingServerHandler, Unit, AABB> =
+        MethodStringName1<PhysicsServer3DRenderingServerHandler, Unit, AABB>("set_aabb")
+  }
 
   public object MethodBindings {
     internal val setVertexPtr: VoidPtr =

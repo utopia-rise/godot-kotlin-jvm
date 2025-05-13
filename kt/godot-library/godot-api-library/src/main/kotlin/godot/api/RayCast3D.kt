@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -28,6 +31,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A raycast represents a ray from its origin to its [targetPosition] that finds the closest object
@@ -515,7 +519,147 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<RayCast3D, Unit, Boolean> =
+        MethodStringName1<RayCast3D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val isEnabledName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("is_enabled")
+
+    @JvmStatic
+    public val setTargetPositionName: MethodStringName1<RayCast3D, Unit, Vector3> =
+        MethodStringName1<RayCast3D, Unit, Vector3>("set_target_position")
+
+    @JvmStatic
+    public val getTargetPositionName: MethodStringName0<RayCast3D, Vector3> =
+        MethodStringName0<RayCast3D, Vector3>("get_target_position")
+
+    @JvmStatic
+    public val isCollidingName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("is_colliding")
+
+    @JvmStatic
+    public val forceRaycastUpdateName: MethodStringName0<RayCast3D, Unit> =
+        MethodStringName0<RayCast3D, Unit>("force_raycast_update")
+
+    @JvmStatic
+    public val getColliderName: MethodStringName0<RayCast3D, Object?> =
+        MethodStringName0<RayCast3D, Object?>("get_collider")
+
+    @JvmStatic
+    public val getColliderRidName: MethodStringName0<RayCast3D, RID> =
+        MethodStringName0<RayCast3D, RID>("get_collider_rid")
+
+    @JvmStatic
+    public val getColliderShapeName: MethodStringName0<RayCast3D, Int> =
+        MethodStringName0<RayCast3D, Int>("get_collider_shape")
+
+    @JvmStatic
+    public val getCollisionPointName: MethodStringName0<RayCast3D, Vector3> =
+        MethodStringName0<RayCast3D, Vector3>("get_collision_point")
+
+    @JvmStatic
+    public val getCollisionNormalName: MethodStringName0<RayCast3D, Vector3> =
+        MethodStringName0<RayCast3D, Vector3>("get_collision_normal")
+
+    @JvmStatic
+    public val getCollisionFaceIndexName: MethodStringName0<RayCast3D, Int> =
+        MethodStringName0<RayCast3D, Int>("get_collision_face_index")
+
+    @JvmStatic
+    public val addExceptionRidName: MethodStringName1<RayCast3D, Unit, RID> =
+        MethodStringName1<RayCast3D, Unit, RID>("add_exception_rid")
+
+    @JvmStatic
+    public val addExceptionName: MethodStringName1<RayCast3D, Unit, CollisionObject3D?> =
+        MethodStringName1<RayCast3D, Unit, CollisionObject3D?>("add_exception")
+
+    @JvmStatic
+    public val removeExceptionRidName: MethodStringName1<RayCast3D, Unit, RID> =
+        MethodStringName1<RayCast3D, Unit, RID>("remove_exception_rid")
+
+    @JvmStatic
+    public val removeExceptionName: MethodStringName1<RayCast3D, Unit, CollisionObject3D?> =
+        MethodStringName1<RayCast3D, Unit, CollisionObject3D?>("remove_exception")
+
+    @JvmStatic
+    public val clearExceptionsName: MethodStringName0<RayCast3D, Unit> =
+        MethodStringName0<RayCast3D, Unit>("clear_exceptions")
+
+    @JvmStatic
+    public val setCollisionMaskName: MethodStringName1<RayCast3D, Unit, Long> =
+        MethodStringName1<RayCast3D, Unit, Long>("set_collision_mask")
+
+    @JvmStatic
+    public val getCollisionMaskName: MethodStringName0<RayCast3D, Long> =
+        MethodStringName0<RayCast3D, Long>("get_collision_mask")
+
+    @JvmStatic
+    public val setCollisionMaskValueName: MethodStringName2<RayCast3D, Unit, Int, Boolean> =
+        MethodStringName2<RayCast3D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmStatic
+    public val getCollisionMaskValueName: MethodStringName1<RayCast3D, Boolean, Int> =
+        MethodStringName1<RayCast3D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmStatic
+    public val setExcludeParentBodyName: MethodStringName1<RayCast3D, Unit, Boolean> =
+        MethodStringName1<RayCast3D, Unit, Boolean>("set_exclude_parent_body")
+
+    @JvmStatic
+    public val getExcludeParentBodyName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("get_exclude_parent_body")
+
+    @JvmStatic
+    public val setCollideWithAreasName: MethodStringName1<RayCast3D, Unit, Boolean> =
+        MethodStringName1<RayCast3D, Unit, Boolean>("set_collide_with_areas")
+
+    @JvmStatic
+    public val isCollideWithAreasEnabledName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("is_collide_with_areas_enabled")
+
+    @JvmStatic
+    public val setCollideWithBodiesName: MethodStringName1<RayCast3D, Unit, Boolean> =
+        MethodStringName1<RayCast3D, Unit, Boolean>("set_collide_with_bodies")
+
+    @JvmStatic
+    public val isCollideWithBodiesEnabledName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("is_collide_with_bodies_enabled")
+
+    @JvmStatic
+    public val setHitFromInsideName: MethodStringName1<RayCast3D, Unit, Boolean> =
+        MethodStringName1<RayCast3D, Unit, Boolean>("set_hit_from_inside")
+
+    @JvmStatic
+    public val isHitFromInsideEnabledName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("is_hit_from_inside_enabled")
+
+    @JvmStatic
+    public val setHitBackFacesName: MethodStringName1<RayCast3D, Unit, Boolean> =
+        MethodStringName1<RayCast3D, Unit, Boolean>("set_hit_back_faces")
+
+    @JvmStatic
+    public val isHitBackFacesEnabledName: MethodStringName0<RayCast3D, Boolean> =
+        MethodStringName0<RayCast3D, Boolean>("is_hit_back_faces_enabled")
+
+    @JvmStatic
+    public val setDebugShapeCustomColorName: MethodStringName1<RayCast3D, Unit, Color> =
+        MethodStringName1<RayCast3D, Unit, Color>("set_debug_shape_custom_color")
+
+    @JvmStatic
+    public val getDebugShapeCustomColorName: MethodStringName0<RayCast3D, Color> =
+        MethodStringName0<RayCast3D, Color>("get_debug_shape_custom_color")
+
+    @JvmStatic
+    public val setDebugShapeThicknessName: MethodStringName1<RayCast3D, Unit, Int> =
+        MethodStringName1<RayCast3D, Unit, Int>("set_debug_shape_thickness")
+
+    @JvmStatic
+    public val getDebugShapeThicknessName: MethodStringName0<RayCast3D, Int> =
+        MethodStringName0<RayCast3D, Int>("get_debug_shape_thickness")
+  }
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =

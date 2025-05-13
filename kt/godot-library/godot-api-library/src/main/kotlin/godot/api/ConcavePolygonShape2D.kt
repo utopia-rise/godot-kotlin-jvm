@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
@@ -124,7 +127,15 @@ public open class ConcavePolygonShape2D : Shape2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSegmentsName: MethodStringName1<ConcavePolygonShape2D, Unit, PackedVector2Array> =
+        MethodStringName1<ConcavePolygonShape2D, Unit, PackedVector2Array>("set_segments")
+
+    @JvmStatic
+    public val getSegmentsName: MethodStringName0<ConcavePolygonShape2D, PackedVector2Array> =
+        MethodStringName0<ConcavePolygonShape2D, PackedVector2Array>("get_segments")
+  }
 
   public object MethodBindings {
     internal val setSegmentsPtr: VoidPtr =

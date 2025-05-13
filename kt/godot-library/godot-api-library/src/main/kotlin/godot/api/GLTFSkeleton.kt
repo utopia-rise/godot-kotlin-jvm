@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt32Array
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -28,6 +30,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
@@ -226,7 +229,51 @@ public open class GLTFSkeleton : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as BoneAttachment3D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getJointsName: MethodStringName0<GLTFSkeleton, PackedInt32Array> =
+        MethodStringName0<GLTFSkeleton, PackedInt32Array>("get_joints")
+
+    @JvmStatic
+    public val setJointsName: MethodStringName1<GLTFSkeleton, Unit, PackedInt32Array> =
+        MethodStringName1<GLTFSkeleton, Unit, PackedInt32Array>("set_joints")
+
+    @JvmStatic
+    public val getRootsName: MethodStringName0<GLTFSkeleton, PackedInt32Array> =
+        MethodStringName0<GLTFSkeleton, PackedInt32Array>("get_roots")
+
+    @JvmStatic
+    public val setRootsName: MethodStringName1<GLTFSkeleton, Unit, PackedInt32Array> =
+        MethodStringName1<GLTFSkeleton, Unit, PackedInt32Array>("set_roots")
+
+    @JvmStatic
+    public val getGodotSkeletonName: MethodStringName0<GLTFSkeleton, Skeleton3D?> =
+        MethodStringName0<GLTFSkeleton, Skeleton3D?>("get_godot_skeleton")
+
+    @JvmStatic
+    public val getUniqueNamesName: MethodStringName0<GLTFSkeleton, VariantArray<String>> =
+        MethodStringName0<GLTFSkeleton, VariantArray<String>>("get_unique_names")
+
+    @JvmStatic
+    public val setUniqueNamesName: MethodStringName1<GLTFSkeleton, Unit, VariantArray<String>> =
+        MethodStringName1<GLTFSkeleton, Unit, VariantArray<String>>("set_unique_names")
+
+    @JvmStatic
+    public val getGodotBoneNodeName: MethodStringName0<GLTFSkeleton, Dictionary<Any?, Any?>> =
+        MethodStringName0<GLTFSkeleton, Dictionary<Any?, Any?>>("get_godot_bone_node")
+
+    @JvmStatic
+    public val setGodotBoneNodeName: MethodStringName1<GLTFSkeleton, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<GLTFSkeleton, Unit, Dictionary<Any?, Any?>>("set_godot_bone_node")
+
+    @JvmStatic
+    public val getBoneAttachmentCountName: MethodStringName0<GLTFSkeleton, Int> =
+        MethodStringName0<GLTFSkeleton, Int>("get_bone_attachment_count")
+
+    @JvmStatic
+    public val getBoneAttachmentName: MethodStringName1<GLTFSkeleton, BoneAttachment3D?, Int> =
+        MethodStringName1<GLTFSkeleton, BoneAttachment3D?, Int>("get_bone_attachment")
+  }
 
   public object MethodBindings {
     internal val getJointsPtr: VoidPtr =

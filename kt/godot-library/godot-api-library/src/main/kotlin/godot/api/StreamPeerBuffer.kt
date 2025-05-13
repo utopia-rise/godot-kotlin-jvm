@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle
@@ -157,7 +160,39 @@ public open class StreamPeerBuffer : StreamPeer() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerBuffer?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val seekName: MethodStringName1<StreamPeerBuffer, Unit, Int> =
+        MethodStringName1<StreamPeerBuffer, Unit, Int>("seek")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<StreamPeerBuffer, Int> =
+        MethodStringName0<StreamPeerBuffer, Int>("get_size")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName0<StreamPeerBuffer, Int> =
+        MethodStringName0<StreamPeerBuffer, Int>("get_position")
+
+    @JvmStatic
+    public val resizeName: MethodStringName1<StreamPeerBuffer, Unit, Int> =
+        MethodStringName1<StreamPeerBuffer, Unit, Int>("resize")
+
+    @JvmStatic
+    public val setDataArrayName: MethodStringName1<StreamPeerBuffer, Unit, PackedByteArray> =
+        MethodStringName1<StreamPeerBuffer, Unit, PackedByteArray>("set_data_array")
+
+    @JvmStatic
+    public val getDataArrayName: MethodStringName0<StreamPeerBuffer, PackedByteArray> =
+        MethodStringName0<StreamPeerBuffer, PackedByteArray>("get_data_array")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<StreamPeerBuffer, Unit> =
+        MethodStringName0<StreamPeerBuffer, Unit>("clear")
+
+    @JvmStatic
+    public val duplicateName: MethodStringName0<StreamPeerBuffer, StreamPeerBuffer?> =
+        MethodStringName0<StreamPeerBuffer, StreamPeerBuffer?>("duplicate")
+  }
 
   public object MethodBindings {
     internal val seekPtr: VoidPtr =
