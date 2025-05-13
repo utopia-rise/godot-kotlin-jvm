@@ -115,6 +115,7 @@ object SignalGenerationService : ISignalGenerationService {
                         .build(),
                     FunSpec.builder(CONNECT_METHOD_NAME)
                         .returns(UNIT)
+                        .addAnnotation(JvmOverloads::class)
                         .addParameters(
                             listOf(
                                 ParameterSpec.builder(

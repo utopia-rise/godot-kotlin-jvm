@@ -183,7 +183,7 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
                             "%T(\"${it.godotName}\")",
                             methodStringClassName
                         )
-                        .addAnnotation(JvmStatic::class)
+                        .addAnnotation(JvmField::class)
                         .build()
                 )
             }
