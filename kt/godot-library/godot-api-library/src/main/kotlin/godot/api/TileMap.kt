@@ -11,6 +11,12 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.RID
 import godot.core.Rect2i
 import godot.core.Signal0
@@ -37,6 +43,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Node for 2D tile-based maps. Tilemaps use a [TileSet] which contain a list of tiles which are
@@ -942,7 +949,257 @@ public open class TileMap : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setNavigationMapName: MethodStringName2<TileMap, Unit, Int, RID> =
+        MethodStringName2<TileMap, Unit, Int, RID>("set_navigation_map")
+
+    @JvmStatic
+    public val getNavigationMapName: MethodStringName1<TileMap, RID, Int> =
+        MethodStringName1<TileMap, RID, Int>("get_navigation_map")
+
+    @JvmStatic
+    public val forceUpdateName: MethodStringName1<TileMap, Unit, Int> =
+        MethodStringName1<TileMap, Unit, Int>("force_update")
+
+    @JvmStatic
+    public val setTilesetName: MethodStringName1<TileMap, Unit, TileSet?> =
+        MethodStringName1<TileMap, Unit, TileSet?>("set_tileset")
+
+    @JvmStatic
+    public val getTilesetName: MethodStringName0<TileMap, TileSet?> =
+        MethodStringName0<TileMap, TileSet?>("get_tileset")
+
+    @JvmStatic
+    public val setRenderingQuadrantSizeName: MethodStringName1<TileMap, Unit, Int> =
+        MethodStringName1<TileMap, Unit, Int>("set_rendering_quadrant_size")
+
+    @JvmStatic
+    public val getRenderingQuadrantSizeName: MethodStringName0<TileMap, Int> =
+        MethodStringName0<TileMap, Int>("get_rendering_quadrant_size")
+
+    @JvmStatic
+    public val getLayersCountName: MethodStringName0<TileMap, Int> =
+        MethodStringName0<TileMap, Int>("get_layers_count")
+
+    @JvmStatic
+    public val addLayerName: MethodStringName1<TileMap, Unit, Int> =
+        MethodStringName1<TileMap, Unit, Int>("add_layer")
+
+    @JvmStatic
+    public val moveLayerName: MethodStringName2<TileMap, Unit, Int, Int> =
+        MethodStringName2<TileMap, Unit, Int, Int>("move_layer")
+
+    @JvmStatic
+    public val removeLayerName: MethodStringName1<TileMap, Unit, Int> =
+        MethodStringName1<TileMap, Unit, Int>("remove_layer")
+
+    @JvmStatic
+    public val setLayerNameName: MethodStringName2<TileMap, Unit, Int, String> =
+        MethodStringName2<TileMap, Unit, Int, String>("set_layer_name")
+
+    @JvmStatic
+    public val getLayerNameName: MethodStringName1<TileMap, String, Int> =
+        MethodStringName1<TileMap, String, Int>("get_layer_name")
+
+    @JvmStatic
+    public val setLayerEnabledName: MethodStringName2<TileMap, Unit, Int, Boolean> =
+        MethodStringName2<TileMap, Unit, Int, Boolean>("set_layer_enabled")
+
+    @JvmStatic
+    public val isLayerEnabledName: MethodStringName1<TileMap, Boolean, Int> =
+        MethodStringName1<TileMap, Boolean, Int>("is_layer_enabled")
+
+    @JvmStatic
+    public val setLayerModulateName: MethodStringName2<TileMap, Unit, Int, Color> =
+        MethodStringName2<TileMap, Unit, Int, Color>("set_layer_modulate")
+
+    @JvmStatic
+    public val getLayerModulateName: MethodStringName1<TileMap, Color, Int> =
+        MethodStringName1<TileMap, Color, Int>("get_layer_modulate")
+
+    @JvmStatic
+    public val setLayerYSortEnabledName: MethodStringName2<TileMap, Unit, Int, Boolean> =
+        MethodStringName2<TileMap, Unit, Int, Boolean>("set_layer_y_sort_enabled")
+
+    @JvmStatic
+    public val isLayerYSortEnabledName: MethodStringName1<TileMap, Boolean, Int> =
+        MethodStringName1<TileMap, Boolean, Int>("is_layer_y_sort_enabled")
+
+    @JvmStatic
+    public val setLayerYSortOriginName: MethodStringName2<TileMap, Unit, Int, Int> =
+        MethodStringName2<TileMap, Unit, Int, Int>("set_layer_y_sort_origin")
+
+    @JvmStatic
+    public val getLayerYSortOriginName: MethodStringName1<TileMap, Int, Int> =
+        MethodStringName1<TileMap, Int, Int>("get_layer_y_sort_origin")
+
+    @JvmStatic
+    public val setLayerZIndexName: MethodStringName2<TileMap, Unit, Int, Int> =
+        MethodStringName2<TileMap, Unit, Int, Int>("set_layer_z_index")
+
+    @JvmStatic
+    public val getLayerZIndexName: MethodStringName1<TileMap, Int, Int> =
+        MethodStringName1<TileMap, Int, Int>("get_layer_z_index")
+
+    @JvmStatic
+    public val setLayerNavigationEnabledName: MethodStringName2<TileMap, Unit, Int, Boolean> =
+        MethodStringName2<TileMap, Unit, Int, Boolean>("set_layer_navigation_enabled")
+
+    @JvmStatic
+    public val isLayerNavigationEnabledName: MethodStringName1<TileMap, Boolean, Int> =
+        MethodStringName1<TileMap, Boolean, Int>("is_layer_navigation_enabled")
+
+    @JvmStatic
+    public val setLayerNavigationMapName: MethodStringName2<TileMap, Unit, Int, RID> =
+        MethodStringName2<TileMap, Unit, Int, RID>("set_layer_navigation_map")
+
+    @JvmStatic
+    public val getLayerNavigationMapName: MethodStringName1<TileMap, RID, Int> =
+        MethodStringName1<TileMap, RID, Int>("get_layer_navigation_map")
+
+    @JvmStatic
+    public val setCollisionAnimatableName: MethodStringName1<TileMap, Unit, Boolean> =
+        MethodStringName1<TileMap, Unit, Boolean>("set_collision_animatable")
+
+    @JvmStatic
+    public val isCollisionAnimatableName: MethodStringName0<TileMap, Boolean> =
+        MethodStringName0<TileMap, Boolean>("is_collision_animatable")
+
+    @JvmStatic
+    public val setCollisionVisibilityModeName: MethodStringName1<TileMap, Unit, VisibilityMode> =
+        MethodStringName1<TileMap, Unit, VisibilityMode>("set_collision_visibility_mode")
+
+    @JvmStatic
+    public val getCollisionVisibilityModeName: MethodStringName0<TileMap, VisibilityMode> =
+        MethodStringName0<TileMap, VisibilityMode>("get_collision_visibility_mode")
+
+    @JvmStatic
+    public val setNavigationVisibilityModeName: MethodStringName1<TileMap, Unit, VisibilityMode> =
+        MethodStringName1<TileMap, Unit, VisibilityMode>("set_navigation_visibility_mode")
+
+    @JvmStatic
+    public val getNavigationVisibilityModeName: MethodStringName0<TileMap, VisibilityMode> =
+        MethodStringName0<TileMap, VisibilityMode>("get_navigation_visibility_mode")
+
+    @JvmStatic
+    public val setCellName: MethodStringName5<TileMap, Unit, Int, Vector2i, Int, Vector2i, Int> =
+        MethodStringName5<TileMap, Unit, Int, Vector2i, Int, Vector2i, Int>("set_cell")
+
+    @JvmStatic
+    public val eraseCellName: MethodStringName2<TileMap, Unit, Int, Vector2i> =
+        MethodStringName2<TileMap, Unit, Int, Vector2i>("erase_cell")
+
+    @JvmStatic
+    public val getCellSourceIdName: MethodStringName3<TileMap, Int, Int, Vector2i, Boolean> =
+        MethodStringName3<TileMap, Int, Int, Vector2i, Boolean>("get_cell_source_id")
+
+    @JvmStatic
+    public val getCellAtlasCoordsName: MethodStringName3<TileMap, Vector2i, Int, Vector2i, Boolean>
+        = MethodStringName3<TileMap, Vector2i, Int, Vector2i, Boolean>("get_cell_atlas_coords")
+
+    @JvmStatic
+    public val getCellAlternativeTileName: MethodStringName3<TileMap, Int, Int, Vector2i, Boolean> =
+        MethodStringName3<TileMap, Int, Int, Vector2i, Boolean>("get_cell_alternative_tile")
+
+    @JvmStatic
+    public val getCellTileDataName: MethodStringName3<TileMap, TileData?, Int, Vector2i, Boolean> =
+        MethodStringName3<TileMap, TileData?, Int, Vector2i, Boolean>("get_cell_tile_data")
+
+    @JvmStatic
+    public val isCellFlippedHName: MethodStringName3<TileMap, Boolean, Int, Vector2i, Boolean> =
+        MethodStringName3<TileMap, Boolean, Int, Vector2i, Boolean>("is_cell_flipped_h")
+
+    @JvmStatic
+    public val isCellFlippedVName: MethodStringName3<TileMap, Boolean, Int, Vector2i, Boolean> =
+        MethodStringName3<TileMap, Boolean, Int, Vector2i, Boolean>("is_cell_flipped_v")
+
+    @JvmStatic
+    public val isCellTransposedName: MethodStringName3<TileMap, Boolean, Int, Vector2i, Boolean> =
+        MethodStringName3<TileMap, Boolean, Int, Vector2i, Boolean>("is_cell_transposed")
+
+    @JvmStatic
+    public val getCoordsForBodyRidName: MethodStringName1<TileMap, Vector2i, RID> =
+        MethodStringName1<TileMap, Vector2i, RID>("get_coords_for_body_rid")
+
+    @JvmStatic
+    public val getLayerForBodyRidName: MethodStringName1<TileMap, Int, RID> =
+        MethodStringName1<TileMap, Int, RID>("get_layer_for_body_rid")
+
+    @JvmStatic
+    public val getPatternName:
+        MethodStringName2<TileMap, TileMapPattern?, Int, VariantArray<Vector2i>> =
+        MethodStringName2<TileMap, TileMapPattern?, Int, VariantArray<Vector2i>>("get_pattern")
+
+    @JvmStatic
+    public val mapPatternName:
+        MethodStringName3<TileMap, Vector2i, Vector2i, Vector2i, TileMapPattern?> =
+        MethodStringName3<TileMap, Vector2i, Vector2i, Vector2i, TileMapPattern?>("map_pattern")
+
+    @JvmStatic
+    public val setPatternName: MethodStringName3<TileMap, Unit, Int, Vector2i, TileMapPattern?> =
+        MethodStringName3<TileMap, Unit, Int, Vector2i, TileMapPattern?>("set_pattern")
+
+    @JvmStatic
+    public val setCellsTerrainConnectName:
+        MethodStringName5<TileMap, Unit, Int, VariantArray<Vector2i>, Int, Int, Boolean> =
+        MethodStringName5<TileMap, Unit, Int, VariantArray<Vector2i>, Int, Int, Boolean>("set_cells_terrain_connect")
+
+    @JvmStatic
+    public val setCellsTerrainPathName:
+        MethodStringName5<TileMap, Unit, Int, VariantArray<Vector2i>, Int, Int, Boolean> =
+        MethodStringName5<TileMap, Unit, Int, VariantArray<Vector2i>, Int, Int, Boolean>("set_cells_terrain_path")
+
+    @JvmStatic
+    public val fixInvalidTilesName: MethodStringName0<TileMap, Unit> =
+        MethodStringName0<TileMap, Unit>("fix_invalid_tiles")
+
+    @JvmStatic
+    public val clearLayerName: MethodStringName1<TileMap, Unit, Int> =
+        MethodStringName1<TileMap, Unit, Int>("clear_layer")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<TileMap, Unit> =
+        MethodStringName0<TileMap, Unit>("clear")
+
+    @JvmStatic
+    public val updateInternalsName: MethodStringName0<TileMap, Unit> =
+        MethodStringName0<TileMap, Unit>("update_internals")
+
+    @JvmStatic
+    public val notifyRuntimeTileDataUpdateName: MethodStringName1<TileMap, Unit, Int> =
+        MethodStringName1<TileMap, Unit, Int>("notify_runtime_tile_data_update")
+
+    @JvmStatic
+    public val getSurroundingCellsName: MethodStringName1<TileMap, VariantArray<Vector2i>, Vector2i>
+        = MethodStringName1<TileMap, VariantArray<Vector2i>, Vector2i>("get_surrounding_cells")
+
+    @JvmStatic
+    public val getUsedCellsName: MethodStringName1<TileMap, VariantArray<Vector2i>, Int> =
+        MethodStringName1<TileMap, VariantArray<Vector2i>, Int>("get_used_cells")
+
+    @JvmStatic
+    public val getUsedCellsByIdName:
+        MethodStringName4<TileMap, VariantArray<Vector2i>, Int, Int, Vector2i, Int> =
+        MethodStringName4<TileMap, VariantArray<Vector2i>, Int, Int, Vector2i, Int>("get_used_cells_by_id")
+
+    @JvmStatic
+    public val getUsedRectName: MethodStringName0<TileMap, Rect2i> =
+        MethodStringName0<TileMap, Rect2i>("get_used_rect")
+
+    @JvmStatic
+    public val mapToLocalName: MethodStringName1<TileMap, Vector2, Vector2i> =
+        MethodStringName1<TileMap, Vector2, Vector2i>("map_to_local")
+
+    @JvmStatic
+    public val localToMapName: MethodStringName1<TileMap, Vector2i, Vector2> =
+        MethodStringName1<TileMap, Vector2i, Vector2>("local_to_map")
+
+    @JvmStatic
+    public val getNeighborCellName:
+        MethodStringName2<TileMap, Vector2i, Vector2i, TileSet.CellNeighbor> =
+        MethodStringName2<TileMap, Vector2i, Vector2i, TileSet.CellNeighbor>("get_neighbor_cell")
+  }
 
   public object MethodBindings {
     internal val setNavigationMapPtr: VoidPtr =

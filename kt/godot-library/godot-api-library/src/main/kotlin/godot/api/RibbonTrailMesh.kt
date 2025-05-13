@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
@@ -195,7 +198,55 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<RibbonTrailMesh, Unit, Float> =
+        MethodStringName1<RibbonTrailMesh, Unit, Float>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<RibbonTrailMesh, Float> =
+        MethodStringName0<RibbonTrailMesh, Float>("get_size")
+
+    @JvmStatic
+    public val setSectionsName: MethodStringName1<RibbonTrailMesh, Unit, Int> =
+        MethodStringName1<RibbonTrailMesh, Unit, Int>("set_sections")
+
+    @JvmStatic
+    public val getSectionsName: MethodStringName0<RibbonTrailMesh, Int> =
+        MethodStringName0<RibbonTrailMesh, Int>("get_sections")
+
+    @JvmStatic
+    public val setSectionLengthName: MethodStringName1<RibbonTrailMesh, Unit, Float> =
+        MethodStringName1<RibbonTrailMesh, Unit, Float>("set_section_length")
+
+    @JvmStatic
+    public val getSectionLengthName: MethodStringName0<RibbonTrailMesh, Float> =
+        MethodStringName0<RibbonTrailMesh, Float>("get_section_length")
+
+    @JvmStatic
+    public val setSectionSegmentsName: MethodStringName1<RibbonTrailMesh, Unit, Int> =
+        MethodStringName1<RibbonTrailMesh, Unit, Int>("set_section_segments")
+
+    @JvmStatic
+    public val getSectionSegmentsName: MethodStringName0<RibbonTrailMesh, Int> =
+        MethodStringName0<RibbonTrailMesh, Int>("get_section_segments")
+
+    @JvmStatic
+    public val setCurveName: MethodStringName1<RibbonTrailMesh, Unit, Curve?> =
+        MethodStringName1<RibbonTrailMesh, Unit, Curve?>("set_curve")
+
+    @JvmStatic
+    public val getCurveName: MethodStringName0<RibbonTrailMesh, Curve?> =
+        MethodStringName0<RibbonTrailMesh, Curve?>("get_curve")
+
+    @JvmStatic
+    public val setShapeName: MethodStringName1<RibbonTrailMesh, Unit, Shape> =
+        MethodStringName1<RibbonTrailMesh, Unit, Shape>("set_shape")
+
+    @JvmStatic
+    public val getShapeName: MethodStringName0<RibbonTrailMesh, Shape> =
+        MethodStringName0<RibbonTrailMesh, Shape>("get_shape")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Rect2
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -30,6 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A control that provides a horizontal bar with tabs. Similar to [TabContainer] but is only in
@@ -717,7 +721,232 @@ public open class TabBar : Control() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTabCountName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_tab_count")
+
+    @JvmStatic
+    public val getTabCountName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_tab_count")
+
+    @JvmStatic
+    public val setCurrentTabName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_current_tab")
+
+    @JvmStatic
+    public val getCurrentTabName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_current_tab")
+
+    @JvmStatic
+    public val getPreviousTabName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_previous_tab")
+
+    @JvmStatic
+    public val selectPreviousAvailableName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("select_previous_available")
+
+    @JvmStatic
+    public val selectNextAvailableName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("select_next_available")
+
+    @JvmStatic
+    public val setTabTitleName: MethodStringName2<TabBar, Unit, Int, String> =
+        MethodStringName2<TabBar, Unit, Int, String>("set_tab_title")
+
+    @JvmStatic
+    public val getTabTitleName: MethodStringName1<TabBar, String, Int> =
+        MethodStringName1<TabBar, String, Int>("get_tab_title")
+
+    @JvmStatic
+    public val setTabTooltipName: MethodStringName2<TabBar, Unit, Int, String> =
+        MethodStringName2<TabBar, Unit, Int, String>("set_tab_tooltip")
+
+    @JvmStatic
+    public val getTabTooltipName: MethodStringName1<TabBar, String, Int> =
+        MethodStringName1<TabBar, String, Int>("get_tab_tooltip")
+
+    @JvmStatic
+    public val setTabTextDirectionName: MethodStringName2<TabBar, Unit, Int, Control.TextDirection>
+        = MethodStringName2<TabBar, Unit, Int, Control.TextDirection>("set_tab_text_direction")
+
+    @JvmStatic
+    public val getTabTextDirectionName: MethodStringName1<TabBar, Control.TextDirection, Int> =
+        MethodStringName1<TabBar, Control.TextDirection, Int>("get_tab_text_direction")
+
+    @JvmStatic
+    public val setTabLanguageName: MethodStringName2<TabBar, Unit, Int, String> =
+        MethodStringName2<TabBar, Unit, Int, String>("set_tab_language")
+
+    @JvmStatic
+    public val getTabLanguageName: MethodStringName1<TabBar, String, Int> =
+        MethodStringName1<TabBar, String, Int>("get_tab_language")
+
+    @JvmStatic
+    public val setTabIconName: MethodStringName2<TabBar, Unit, Int, Texture2D?> =
+        MethodStringName2<TabBar, Unit, Int, Texture2D?>("set_tab_icon")
+
+    @JvmStatic
+    public val getTabIconName: MethodStringName1<TabBar, Texture2D?, Int> =
+        MethodStringName1<TabBar, Texture2D?, Int>("get_tab_icon")
+
+    @JvmStatic
+    public val setTabIconMaxWidthName: MethodStringName2<TabBar, Unit, Int, Int> =
+        MethodStringName2<TabBar, Unit, Int, Int>("set_tab_icon_max_width")
+
+    @JvmStatic
+    public val getTabIconMaxWidthName: MethodStringName1<TabBar, Int, Int> =
+        MethodStringName1<TabBar, Int, Int>("get_tab_icon_max_width")
+
+    @JvmStatic
+    public val setTabButtonIconName: MethodStringName2<TabBar, Unit, Int, Texture2D?> =
+        MethodStringName2<TabBar, Unit, Int, Texture2D?>("set_tab_button_icon")
+
+    @JvmStatic
+    public val getTabButtonIconName: MethodStringName1<TabBar, Texture2D?, Int> =
+        MethodStringName1<TabBar, Texture2D?, Int>("get_tab_button_icon")
+
+    @JvmStatic
+    public val setTabDisabledName: MethodStringName2<TabBar, Unit, Int, Boolean> =
+        MethodStringName2<TabBar, Unit, Int, Boolean>("set_tab_disabled")
+
+    @JvmStatic
+    public val isTabDisabledName: MethodStringName1<TabBar, Boolean, Int> =
+        MethodStringName1<TabBar, Boolean, Int>("is_tab_disabled")
+
+    @JvmStatic
+    public val setTabHiddenName: MethodStringName2<TabBar, Unit, Int, Boolean> =
+        MethodStringName2<TabBar, Unit, Int, Boolean>("set_tab_hidden")
+
+    @JvmStatic
+    public val isTabHiddenName: MethodStringName1<TabBar, Boolean, Int> =
+        MethodStringName1<TabBar, Boolean, Int>("is_tab_hidden")
+
+    @JvmStatic
+    public val setTabMetadataName: MethodStringName2<TabBar, Unit, Int, Any?> =
+        MethodStringName2<TabBar, Unit, Int, Any?>("set_tab_metadata")
+
+    @JvmStatic
+    public val getTabMetadataName: MethodStringName1<TabBar, Any?, Int> =
+        MethodStringName1<TabBar, Any?, Int>("get_tab_metadata")
+
+    @JvmStatic
+    public val removeTabName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("remove_tab")
+
+    @JvmStatic
+    public val addTabName: MethodStringName2<TabBar, Unit, String, Texture2D?> =
+        MethodStringName2<TabBar, Unit, String, Texture2D?>("add_tab")
+
+    @JvmStatic
+    public val getTabIdxAtPointName: MethodStringName1<TabBar, Int, Vector2> =
+        MethodStringName1<TabBar, Int, Vector2>("get_tab_idx_at_point")
+
+    @JvmStatic
+    public val setTabAlignmentName: MethodStringName1<TabBar, Unit, AlignmentMode> =
+        MethodStringName1<TabBar, Unit, AlignmentMode>("set_tab_alignment")
+
+    @JvmStatic
+    public val getTabAlignmentName: MethodStringName0<TabBar, AlignmentMode> =
+        MethodStringName0<TabBar, AlignmentMode>("get_tab_alignment")
+
+    @JvmStatic
+    public val setClipTabsName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_clip_tabs")
+
+    @JvmStatic
+    public val getClipTabsName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_clip_tabs")
+
+    @JvmStatic
+    public val getTabOffsetName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_tab_offset")
+
+    @JvmStatic
+    public val getOffsetButtonsVisibleName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_offset_buttons_visible")
+
+    @JvmStatic
+    public val ensureTabVisibleName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("ensure_tab_visible")
+
+    @JvmStatic
+    public val getTabRectName: MethodStringName1<TabBar, Rect2, Int> =
+        MethodStringName1<TabBar, Rect2, Int>("get_tab_rect")
+
+    @JvmStatic
+    public val moveTabName: MethodStringName2<TabBar, Unit, Int, Int> =
+        MethodStringName2<TabBar, Unit, Int, Int>("move_tab")
+
+    @JvmStatic
+    public val setTabCloseDisplayPolicyName:
+        MethodStringName1<TabBar, Unit, CloseButtonDisplayPolicy> =
+        MethodStringName1<TabBar, Unit, CloseButtonDisplayPolicy>("set_tab_close_display_policy")
+
+    @JvmStatic
+    public val getTabCloseDisplayPolicyName: MethodStringName0<TabBar, CloseButtonDisplayPolicy> =
+        MethodStringName0<TabBar, CloseButtonDisplayPolicy>("get_tab_close_display_policy")
+
+    @JvmStatic
+    public val setMaxTabWidthName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_max_tab_width")
+
+    @JvmStatic
+    public val getMaxTabWidthName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_max_tab_width")
+
+    @JvmStatic
+    public val setScrollingEnabledName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_scrolling_enabled")
+
+    @JvmStatic
+    public val getScrollingEnabledName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_scrolling_enabled")
+
+    @JvmStatic
+    public val setDragToRearrangeEnabledName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_drag_to_rearrange_enabled")
+
+    @JvmStatic
+    public val getDragToRearrangeEnabledName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_drag_to_rearrange_enabled")
+
+    @JvmStatic
+    public val setTabsRearrangeGroupName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_tabs_rearrange_group")
+
+    @JvmStatic
+    public val getTabsRearrangeGroupName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_tabs_rearrange_group")
+
+    @JvmStatic
+    public val setScrollToSelectedName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_scroll_to_selected")
+
+    @JvmStatic
+    public val getScrollToSelectedName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_scroll_to_selected")
+
+    @JvmStatic
+    public val setSelectWithRmbName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_select_with_rmb")
+
+    @JvmStatic
+    public val getSelectWithRmbName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_select_with_rmb")
+
+    @JvmStatic
+    public val setDeselectEnabledName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_deselect_enabled")
+
+    @JvmStatic
+    public val getDeselectEnabledName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_deselect_enabled")
+
+    @JvmStatic
+    public val clearTabsName: MethodStringName0<TabBar, Unit> =
+        MethodStringName0<TabBar, Unit>("clear_tabs")
+  }
 
   public object MethodBindings {
     internal val setTabCountPtr: VoidPtr =

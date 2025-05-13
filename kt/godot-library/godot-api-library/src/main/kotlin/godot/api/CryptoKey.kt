@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
@@ -21,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
@@ -91,7 +95,27 @@ public open class CryptoKey : Resource() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val saveName: MethodStringName2<CryptoKey, Error, String, Boolean> =
+        MethodStringName2<CryptoKey, Error, String, Boolean>("save")
+
+    @JvmStatic
+    public val loadName: MethodStringName2<CryptoKey, Error, String, Boolean> =
+        MethodStringName2<CryptoKey, Error, String, Boolean>("load")
+
+    @JvmStatic
+    public val isPublicOnlyName: MethodStringName0<CryptoKey, Boolean> =
+        MethodStringName0<CryptoKey, Boolean>("is_public_only")
+
+    @JvmStatic
+    public val saveToStringName: MethodStringName1<CryptoKey, String, Boolean> =
+        MethodStringName1<CryptoKey, String, Boolean>("save_to_string")
+
+    @JvmStatic
+    public val loadFromStringName: MethodStringName2<CryptoKey, Error, String, Boolean> =
+        MethodStringName2<CryptoKey, Error, String, Boolean>("load_from_string")
+  }
 
   public object MethodBindings {
     internal val savePtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "save", 885841341)

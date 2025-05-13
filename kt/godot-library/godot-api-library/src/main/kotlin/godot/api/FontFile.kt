@@ -14,6 +14,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
@@ -48,6 +53,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as
@@ -1330,7 +1336,431 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val loadBitmapFontName: MethodStringName1<FontFile, Error, String> =
+        MethodStringName1<FontFile, Error, String>("load_bitmap_font")
+
+    @JvmStatic
+    public val loadDynamicFontName: MethodStringName1<FontFile, Error, String> =
+        MethodStringName1<FontFile, Error, String>("load_dynamic_font")
+
+    @JvmStatic
+    public val setDataName: MethodStringName1<FontFile, Unit, PackedByteArray> =
+        MethodStringName1<FontFile, Unit, PackedByteArray>("set_data")
+
+    @JvmStatic
+    public val getDataName: MethodStringName0<FontFile, PackedByteArray> =
+        MethodStringName0<FontFile, PackedByteArray>("get_data")
+
+    @JvmStatic
+    public val setFontNameName: MethodStringName1<FontFile, Unit, String> =
+        MethodStringName1<FontFile, Unit, String>("set_font_name")
+
+    @JvmStatic
+    public val setFontStyleNameName: MethodStringName1<FontFile, Unit, String> =
+        MethodStringName1<FontFile, Unit, String>("set_font_style_name")
+
+    @JvmStatic
+    public val setFontStyleName: MethodStringName1<FontFile, Unit, TextServer.FontStyle> =
+        MethodStringName1<FontFile, Unit, TextServer.FontStyle>("set_font_style")
+
+    @JvmStatic
+    public val setFontWeightName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("set_font_weight")
+
+    @JvmStatic
+    public val setFontStretchName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("set_font_stretch")
+
+    @JvmStatic
+    public val setAntialiasingName: MethodStringName1<FontFile, Unit, TextServer.FontAntialiasing> =
+        MethodStringName1<FontFile, Unit, TextServer.FontAntialiasing>("set_antialiasing")
+
+    @JvmStatic
+    public val getAntialiasingName: MethodStringName0<FontFile, TextServer.FontAntialiasing> =
+        MethodStringName0<FontFile, TextServer.FontAntialiasing>("get_antialiasing")
+
+    @JvmStatic
+    public val setDisableEmbeddedBitmapsName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_disable_embedded_bitmaps")
+
+    @JvmStatic
+    public val getDisableEmbeddedBitmapsName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("get_disable_embedded_bitmaps")
+
+    @JvmStatic
+    public val setGenerateMipmapsName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_generate_mipmaps")
+
+    @JvmStatic
+    public val getGenerateMipmapsName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("get_generate_mipmaps")
+
+    @JvmStatic
+    public val setMultichannelSignedDistanceFieldName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_multichannel_signed_distance_field")
+
+    @JvmStatic
+    public val isMultichannelSignedDistanceFieldName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("is_multichannel_signed_distance_field")
+
+    @JvmStatic
+    public val setMsdfPixelRangeName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("set_msdf_pixel_range")
+
+    @JvmStatic
+    public val getMsdfPixelRangeName: MethodStringName0<FontFile, Int> =
+        MethodStringName0<FontFile, Int>("get_msdf_pixel_range")
+
+    @JvmStatic
+    public val setMsdfSizeName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("set_msdf_size")
+
+    @JvmStatic
+    public val getMsdfSizeName: MethodStringName0<FontFile, Int> =
+        MethodStringName0<FontFile, Int>("get_msdf_size")
+
+    @JvmStatic
+    public val setFixedSizeName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("set_fixed_size")
+
+    @JvmStatic
+    public val getFixedSizeName: MethodStringName0<FontFile, Int> =
+        MethodStringName0<FontFile, Int>("get_fixed_size")
+
+    @JvmStatic
+    public val setFixedSizeScaleModeName:
+        MethodStringName1<FontFile, Unit, TextServer.FixedSizeScaleMode> =
+        MethodStringName1<FontFile, Unit, TextServer.FixedSizeScaleMode>("set_fixed_size_scale_mode")
+
+    @JvmStatic
+    public val getFixedSizeScaleModeName: MethodStringName0<FontFile, TextServer.FixedSizeScaleMode>
+        = MethodStringName0<FontFile, TextServer.FixedSizeScaleMode>("get_fixed_size_scale_mode")
+
+    @JvmStatic
+    public val setAllowSystemFallbackName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_allow_system_fallback")
+
+    @JvmStatic
+    public val isAllowSystemFallbackName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("is_allow_system_fallback")
+
+    @JvmStatic
+    public val setForceAutohinterName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_force_autohinter")
+
+    @JvmStatic
+    public val isForceAutohinterName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("is_force_autohinter")
+
+    @JvmStatic
+    public val setHintingName: MethodStringName1<FontFile, Unit, TextServer.Hinting> =
+        MethodStringName1<FontFile, Unit, TextServer.Hinting>("set_hinting")
+
+    @JvmStatic
+    public val getHintingName: MethodStringName0<FontFile, TextServer.Hinting> =
+        MethodStringName0<FontFile, TextServer.Hinting>("get_hinting")
+
+    @JvmStatic
+    public val setSubpixelPositioningName:
+        MethodStringName1<FontFile, Unit, TextServer.SubpixelPositioning> =
+        MethodStringName1<FontFile, Unit, TextServer.SubpixelPositioning>("set_subpixel_positioning")
+
+    @JvmStatic
+    public val getSubpixelPositioningName:
+        MethodStringName0<FontFile, TextServer.SubpixelPositioning> =
+        MethodStringName0<FontFile, TextServer.SubpixelPositioning>("get_subpixel_positioning")
+
+    @JvmStatic
+    public val setKeepRoundingRemaindersName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_keep_rounding_remainders")
+
+    @JvmStatic
+    public val getKeepRoundingRemaindersName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("get_keep_rounding_remainders")
+
+    @JvmStatic
+    public val setOversamplingName: MethodStringName1<FontFile, Unit, Float> =
+        MethodStringName1<FontFile, Unit, Float>("set_oversampling")
+
+    @JvmStatic
+    public val getOversamplingName: MethodStringName0<FontFile, Float> =
+        MethodStringName0<FontFile, Float>("get_oversampling")
+
+    @JvmStatic
+    public val getCacheCountName: MethodStringName0<FontFile, Int> =
+        MethodStringName0<FontFile, Int>("get_cache_count")
+
+    @JvmStatic
+    public val clearCacheName: MethodStringName0<FontFile, Unit> =
+        MethodStringName0<FontFile, Unit>("clear_cache")
+
+    @JvmStatic
+    public val removeCacheName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("remove_cache")
+
+    @JvmStatic
+    public val getSizeCacheListName: MethodStringName1<FontFile, VariantArray<Vector2i>, Int> =
+        MethodStringName1<FontFile, VariantArray<Vector2i>, Int>("get_size_cache_list")
+
+    @JvmStatic
+    public val clearSizeCacheName: MethodStringName1<FontFile, Unit, Int> =
+        MethodStringName1<FontFile, Unit, Int>("clear_size_cache")
+
+    @JvmStatic
+    public val removeSizeCacheName: MethodStringName2<FontFile, Unit, Int, Vector2i> =
+        MethodStringName2<FontFile, Unit, Int, Vector2i>("remove_size_cache")
+
+    @JvmStatic
+    public val setVariationCoordinatesName:
+        MethodStringName2<FontFile, Unit, Int, Dictionary<Any?, Any?>> =
+        MethodStringName2<FontFile, Unit, Int, Dictionary<Any?, Any?>>("set_variation_coordinates")
+
+    @JvmStatic
+    public val getVariationCoordinatesName: MethodStringName1<FontFile, Dictionary<Any?, Any?>, Int>
+        = MethodStringName1<FontFile, Dictionary<Any?, Any?>, Int>("get_variation_coordinates")
+
+    @JvmStatic
+    public val setEmboldenName: MethodStringName2<FontFile, Unit, Int, Float> =
+        MethodStringName2<FontFile, Unit, Int, Float>("set_embolden")
+
+    @JvmStatic
+    public val getEmboldenName: MethodStringName1<FontFile, Float, Int> =
+        MethodStringName1<FontFile, Float, Int>("get_embolden")
+
+    @JvmStatic
+    public val setTransformName: MethodStringName2<FontFile, Unit, Int, Transform2D> =
+        MethodStringName2<FontFile, Unit, Int, Transform2D>("set_transform")
+
+    @JvmStatic
+    public val getTransformName: MethodStringName1<FontFile, Transform2D, Int> =
+        MethodStringName1<FontFile, Transform2D, Int>("get_transform")
+
+    @JvmStatic
+    public val setExtraSpacingName:
+        MethodStringName3<FontFile, Unit, Int, TextServer.SpacingType, Long> =
+        MethodStringName3<FontFile, Unit, Int, TextServer.SpacingType, Long>("set_extra_spacing")
+
+    @JvmStatic
+    public val getExtraSpacingName: MethodStringName2<FontFile, Long, Int, TextServer.SpacingType> =
+        MethodStringName2<FontFile, Long, Int, TextServer.SpacingType>("get_extra_spacing")
+
+    @JvmStatic
+    public val setExtraBaselineOffsetName: MethodStringName2<FontFile, Unit, Int, Float> =
+        MethodStringName2<FontFile, Unit, Int, Float>("set_extra_baseline_offset")
+
+    @JvmStatic
+    public val getExtraBaselineOffsetName: MethodStringName1<FontFile, Float, Int> =
+        MethodStringName1<FontFile, Float, Int>("get_extra_baseline_offset")
+
+    @JvmStatic
+    public val setFaceIndexName: MethodStringName2<FontFile, Unit, Int, Long> =
+        MethodStringName2<FontFile, Unit, Int, Long>("set_face_index")
+
+    @JvmStatic
+    public val getFaceIndexName: MethodStringName1<FontFile, Long, Int> =
+        MethodStringName1<FontFile, Long, Int>("get_face_index")
+
+    @JvmStatic
+    public val setCacheAscentName: MethodStringName3<FontFile, Unit, Int, Int, Float> =
+        MethodStringName3<FontFile, Unit, Int, Int, Float>("set_cache_ascent")
+
+    @JvmStatic
+    public val getCacheAscentName: MethodStringName2<FontFile, Float, Int, Int> =
+        MethodStringName2<FontFile, Float, Int, Int>("get_cache_ascent")
+
+    @JvmStatic
+    public val setCacheDescentName: MethodStringName3<FontFile, Unit, Int, Int, Float> =
+        MethodStringName3<FontFile, Unit, Int, Int, Float>("set_cache_descent")
+
+    @JvmStatic
+    public val getCacheDescentName: MethodStringName2<FontFile, Float, Int, Int> =
+        MethodStringName2<FontFile, Float, Int, Int>("get_cache_descent")
+
+    @JvmStatic
+    public val setCacheUnderlinePositionName: MethodStringName3<FontFile, Unit, Int, Int, Float> =
+        MethodStringName3<FontFile, Unit, Int, Int, Float>("set_cache_underline_position")
+
+    @JvmStatic
+    public val getCacheUnderlinePositionName: MethodStringName2<FontFile, Float, Int, Int> =
+        MethodStringName2<FontFile, Float, Int, Int>("get_cache_underline_position")
+
+    @JvmStatic
+    public val setCacheUnderlineThicknessName: MethodStringName3<FontFile, Unit, Int, Int, Float> =
+        MethodStringName3<FontFile, Unit, Int, Int, Float>("set_cache_underline_thickness")
+
+    @JvmStatic
+    public val getCacheUnderlineThicknessName: MethodStringName2<FontFile, Float, Int, Int> =
+        MethodStringName2<FontFile, Float, Int, Int>("get_cache_underline_thickness")
+
+    @JvmStatic
+    public val setCacheScaleName: MethodStringName3<FontFile, Unit, Int, Int, Float> =
+        MethodStringName3<FontFile, Unit, Int, Int, Float>("set_cache_scale")
+
+    @JvmStatic
+    public val getCacheScaleName: MethodStringName2<FontFile, Float, Int, Int> =
+        MethodStringName2<FontFile, Float, Int, Int>("get_cache_scale")
+
+    @JvmStatic
+    public val getTextureCountName: MethodStringName2<FontFile, Int, Int, Vector2i> =
+        MethodStringName2<FontFile, Int, Int, Vector2i>("get_texture_count")
+
+    @JvmStatic
+    public val clearTexturesName: MethodStringName2<FontFile, Unit, Int, Vector2i> =
+        MethodStringName2<FontFile, Unit, Int, Vector2i>("clear_textures")
+
+    @JvmStatic
+    public val removeTextureName: MethodStringName3<FontFile, Unit, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Unit, Int, Vector2i, Int>("remove_texture")
+
+    @JvmStatic
+    public val setTextureImageName: MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Image?> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Image?>("set_texture_image")
+
+    @JvmStatic
+    public val getTextureImageName: MethodStringName3<FontFile, Image?, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Image?, Int, Vector2i, Int>("get_texture_image")
+
+    @JvmStatic
+    public val setTextureOffsetsName:
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, PackedInt32Array> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, PackedInt32Array>("set_texture_offsets")
+
+    @JvmStatic
+    public val getTextureOffsetsName:
+        MethodStringName3<FontFile, PackedInt32Array, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, PackedInt32Array, Int, Vector2i, Int>("get_texture_offsets")
+
+    @JvmStatic
+    public val getGlyphListName: MethodStringName2<FontFile, PackedInt32Array, Int, Vector2i> =
+        MethodStringName2<FontFile, PackedInt32Array, Int, Vector2i>("get_glyph_list")
+
+    @JvmStatic
+    public val clearGlyphsName: MethodStringName2<FontFile, Unit, Int, Vector2i> =
+        MethodStringName2<FontFile, Unit, Int, Vector2i>("clear_glyphs")
+
+    @JvmStatic
+    public val removeGlyphName: MethodStringName3<FontFile, Unit, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Unit, Int, Vector2i, Int>("remove_glyph")
+
+    @JvmStatic
+    public val setGlyphAdvanceName: MethodStringName4<FontFile, Unit, Int, Int, Int, Vector2> =
+        MethodStringName4<FontFile, Unit, Int, Int, Int, Vector2>("set_glyph_advance")
+
+    @JvmStatic
+    public val getGlyphAdvanceName: MethodStringName3<FontFile, Vector2, Int, Int, Int> =
+        MethodStringName3<FontFile, Vector2, Int, Int, Int>("get_glyph_advance")
+
+    @JvmStatic
+    public val setGlyphOffsetName: MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Vector2> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Vector2>("set_glyph_offset")
+
+    @JvmStatic
+    public val getGlyphOffsetName: MethodStringName3<FontFile, Vector2, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Vector2, Int, Vector2i, Int>("get_glyph_offset")
+
+    @JvmStatic
+    public val setGlyphSizeName: MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Vector2> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Vector2>("set_glyph_size")
+
+    @JvmStatic
+    public val getGlyphSizeName: MethodStringName3<FontFile, Vector2, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Vector2, Int, Vector2i, Int>("get_glyph_size")
+
+    @JvmStatic
+    public val setGlyphUvRectName: MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Rect2> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Rect2>("set_glyph_uv_rect")
+
+    @JvmStatic
+    public val getGlyphUvRectName: MethodStringName3<FontFile, Rect2, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Rect2, Int, Vector2i, Int>("get_glyph_uv_rect")
+
+    @JvmStatic
+    public val setGlyphTextureIdxName: MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Int> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Int, Int>("set_glyph_texture_idx")
+
+    @JvmStatic
+    public val getGlyphTextureIdxName: MethodStringName3<FontFile, Int, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Int, Int, Vector2i, Int>("get_glyph_texture_idx")
+
+    @JvmStatic
+    public val getKerningListName: MethodStringName2<FontFile, VariantArray<Vector2i>, Int, Int> =
+        MethodStringName2<FontFile, VariantArray<Vector2i>, Int, Int>("get_kerning_list")
+
+    @JvmStatic
+    public val clearKerningMapName: MethodStringName2<FontFile, Unit, Int, Int> =
+        MethodStringName2<FontFile, Unit, Int, Int>("clear_kerning_map")
+
+    @JvmStatic
+    public val removeKerningName: MethodStringName3<FontFile, Unit, Int, Int, Vector2i> =
+        MethodStringName3<FontFile, Unit, Int, Int, Vector2i>("remove_kerning")
+
+    @JvmStatic
+    public val setKerningName: MethodStringName4<FontFile, Unit, Int, Int, Vector2i, Vector2> =
+        MethodStringName4<FontFile, Unit, Int, Int, Vector2i, Vector2>("set_kerning")
+
+    @JvmStatic
+    public val getKerningName: MethodStringName3<FontFile, Vector2, Int, Int, Vector2i> =
+        MethodStringName3<FontFile, Vector2, Int, Int, Vector2i>("get_kerning")
+
+    @JvmStatic
+    public val renderRangeName: MethodStringName4<FontFile, Unit, Int, Vector2i, Long, Long> =
+        MethodStringName4<FontFile, Unit, Int, Vector2i, Long, Long>("render_range")
+
+    @JvmStatic
+    public val renderGlyphName: MethodStringName3<FontFile, Unit, Int, Vector2i, Int> =
+        MethodStringName3<FontFile, Unit, Int, Vector2i, Int>("render_glyph")
+
+    @JvmStatic
+    public val setLanguageSupportOverrideName: MethodStringName2<FontFile, Unit, String, Boolean> =
+        MethodStringName2<FontFile, Unit, String, Boolean>("set_language_support_override")
+
+    @JvmStatic
+    public val getLanguageSupportOverrideName: MethodStringName1<FontFile, Boolean, String> =
+        MethodStringName1<FontFile, Boolean, String>("get_language_support_override")
+
+    @JvmStatic
+    public val removeLanguageSupportOverrideName: MethodStringName1<FontFile, Unit, String> =
+        MethodStringName1<FontFile, Unit, String>("remove_language_support_override")
+
+    @JvmStatic
+    public val getLanguageSupportOverridesName: MethodStringName0<FontFile, PackedStringArray> =
+        MethodStringName0<FontFile, PackedStringArray>("get_language_support_overrides")
+
+    @JvmStatic
+    public val setScriptSupportOverrideName: MethodStringName2<FontFile, Unit, String, Boolean> =
+        MethodStringName2<FontFile, Unit, String, Boolean>("set_script_support_override")
+
+    @JvmStatic
+    public val getScriptSupportOverrideName: MethodStringName1<FontFile, Boolean, String> =
+        MethodStringName1<FontFile, Boolean, String>("get_script_support_override")
+
+    @JvmStatic
+    public val removeScriptSupportOverrideName: MethodStringName1<FontFile, Unit, String> =
+        MethodStringName1<FontFile, Unit, String>("remove_script_support_override")
+
+    @JvmStatic
+    public val getScriptSupportOverridesName: MethodStringName0<FontFile, PackedStringArray> =
+        MethodStringName0<FontFile, PackedStringArray>("get_script_support_overrides")
+
+    @JvmStatic
+    public val setOpentypeFeatureOverridesName:
+        MethodStringName1<FontFile, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<FontFile, Unit, Dictionary<Any?, Any?>>("set_opentype_feature_overrides")
+
+    @JvmStatic
+    public val getOpentypeFeatureOverridesName: MethodStringName0<FontFile, Dictionary<Any?, Any?>>
+        = MethodStringName0<FontFile, Dictionary<Any?, Any?>>("get_opentype_feature_overrides")
+
+    @JvmStatic
+    public val getGlyphIndexName: MethodStringName3<FontFile, Int, Int, Long, Long> =
+        MethodStringName3<FontFile, Int, Int, Long, Long>("get_glyph_index")
+
+    @JvmStatic
+    public val getCharFromGlyphIndexName: MethodStringName2<FontFile, Long, Int, Int> =
+        MethodStringName2<FontFile, Long, Int, Int>("get_char_from_glyph_index")
+  }
 
   public object MethodBindings {
     internal val loadBitmapFontPtr: VoidPtr =

@@ -11,6 +11,11 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.VariantCallable
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -57,6 +62,26 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
+  @JvmStatic
+  public val bakeName: MethodStringName2<NavigationMeshGenerator, Unit, NavigationMesh?, Node?> =
+      MethodStringName2<NavigationMeshGenerator, Unit, NavigationMesh?, Node?>("bake")
+
+  @JvmStatic
+  public val clearName: MethodStringName1<NavigationMeshGenerator, Unit, NavigationMesh?> =
+      MethodStringName1<NavigationMeshGenerator, Unit, NavigationMesh?>("clear")
+
+  @JvmStatic
+  public val parseSourceGeometryDataName:
+      MethodStringName4<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>
+      =
+      MethodStringName4<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>("parse_source_geometry_data")
+
+  @JvmStatic
+  public val bakeFromSourceGeometryDataName:
+      MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>
+      =
+      MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>("bake_from_source_geometry_data")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(16)
   }
@@ -99,7 +124,7 @@ public object NavigationMeshGenerator : Object() {
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     rootNode: Node?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.parseSourceGeometryDataPtr, NIL)
@@ -114,7 +139,7 @@ public object NavigationMeshGenerator : Object() {
   public final fun bakeFromSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)

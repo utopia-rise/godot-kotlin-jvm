@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an
@@ -102,7 +105,31 @@ public open class TCPServer : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val listenName: MethodStringName2<TCPServer, Error, Int, String> =
+        MethodStringName2<TCPServer, Error, Int, String>("listen")
+
+    @JvmStatic
+    public val isConnectionAvailableName: MethodStringName0<TCPServer, Boolean> =
+        MethodStringName0<TCPServer, Boolean>("is_connection_available")
+
+    @JvmStatic
+    public val isListeningName: MethodStringName0<TCPServer, Boolean> =
+        MethodStringName0<TCPServer, Boolean>("is_listening")
+
+    @JvmStatic
+    public val getLocalPortName: MethodStringName0<TCPServer, Int> =
+        MethodStringName0<TCPServer, Int>("get_local_port")
+
+    @JvmStatic
+    public val takeConnectionName: MethodStringName0<TCPServer, StreamPeerTCP?> =
+        MethodStringName0<TCPServer, StreamPeerTCP?>("take_connection")
+
+    @JvmStatic
+    public val stopName: MethodStringName0<TCPServer, Unit> =
+        MethodStringName0<TCPServer, Unit>("stop")
+  }
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr =

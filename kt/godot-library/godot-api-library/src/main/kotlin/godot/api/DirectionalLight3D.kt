@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A directional light is a type of [Light3D] node that models an infinite number of parallel rays
@@ -244,7 +247,31 @@ public open class DirectionalLight3D : Light3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setShadowModeName: MethodStringName1<DirectionalLight3D, Unit, ShadowMode> =
+        MethodStringName1<DirectionalLight3D, Unit, ShadowMode>("set_shadow_mode")
+
+    @JvmStatic
+    public val getShadowModeName: MethodStringName0<DirectionalLight3D, ShadowMode> =
+        MethodStringName0<DirectionalLight3D, ShadowMode>("get_shadow_mode")
+
+    @JvmStatic
+    public val setBlendSplitsName: MethodStringName1<DirectionalLight3D, Unit, Boolean> =
+        MethodStringName1<DirectionalLight3D, Unit, Boolean>("set_blend_splits")
+
+    @JvmStatic
+    public val isBlendSplitsEnabledName: MethodStringName0<DirectionalLight3D, Boolean> =
+        MethodStringName0<DirectionalLight3D, Boolean>("is_blend_splits_enabled")
+
+    @JvmStatic
+    public val setSkyModeName: MethodStringName1<DirectionalLight3D, Unit, SkyMode> =
+        MethodStringName1<DirectionalLight3D, Unit, SkyMode>("set_sky_mode")
+
+    @JvmStatic
+    public val getSkyModeName: MethodStringName0<DirectionalLight3D, SkyMode> =
+        MethodStringName0<DirectionalLight3D, SkyMode>("get_sky_mode")
+  }
 
   public object MethodBindings {
     internal val setShadowModePtr: VoidPtr =

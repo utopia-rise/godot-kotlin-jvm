@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedFloat32Array
 import godot.core.Rect2
 import godot.core.VariantArray
@@ -37,6 +39,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A control for displaying plain text. It gives you control over the horizontal and vertical
@@ -629,7 +632,203 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setHorizontalAlignmentName: MethodStringName1<Label, Unit, HorizontalAlignment> =
+        MethodStringName1<Label, Unit, HorizontalAlignment>("set_horizontal_alignment")
+
+    @JvmStatic
+    public val getHorizontalAlignmentName: MethodStringName0<Label, HorizontalAlignment> =
+        MethodStringName0<Label, HorizontalAlignment>("get_horizontal_alignment")
+
+    @JvmStatic
+    public val setVerticalAlignmentName: MethodStringName1<Label, Unit, VerticalAlignment> =
+        MethodStringName1<Label, Unit, VerticalAlignment>("set_vertical_alignment")
+
+    @JvmStatic
+    public val getVerticalAlignmentName: MethodStringName0<Label, VerticalAlignment> =
+        MethodStringName0<Label, VerticalAlignment>("get_vertical_alignment")
+
+    @JvmStatic
+    public val setTextName: MethodStringName1<Label, Unit, String> =
+        MethodStringName1<Label, Unit, String>("set_text")
+
+    @JvmStatic
+    public val getTextName: MethodStringName0<Label, String> =
+        MethodStringName0<Label, String>("get_text")
+
+    @JvmStatic
+    public val setLabelSettingsName: MethodStringName1<Label, Unit, LabelSettings?> =
+        MethodStringName1<Label, Unit, LabelSettings?>("set_label_settings")
+
+    @JvmStatic
+    public val getLabelSettingsName: MethodStringName0<Label, LabelSettings?> =
+        MethodStringName0<Label, LabelSettings?>("get_label_settings")
+
+    @JvmStatic
+    public val setTextDirectionName: MethodStringName1<Label, Unit, Control.TextDirection> =
+        MethodStringName1<Label, Unit, Control.TextDirection>("set_text_direction")
+
+    @JvmStatic
+    public val getTextDirectionName: MethodStringName0<Label, Control.TextDirection> =
+        MethodStringName0<Label, Control.TextDirection>("get_text_direction")
+
+    @JvmStatic
+    public val setLanguageName: MethodStringName1<Label, Unit, String> =
+        MethodStringName1<Label, Unit, String>("set_language")
+
+    @JvmStatic
+    public val getLanguageName: MethodStringName0<Label, String> =
+        MethodStringName0<Label, String>("get_language")
+
+    @JvmStatic
+    public val setParagraphSeparatorName: MethodStringName1<Label, Unit, String> =
+        MethodStringName1<Label, Unit, String>("set_paragraph_separator")
+
+    @JvmStatic
+    public val getParagraphSeparatorName: MethodStringName0<Label, String> =
+        MethodStringName0<Label, String>("get_paragraph_separator")
+
+    @JvmStatic
+    public val setAutowrapModeName: MethodStringName1<Label, Unit, TextServer.AutowrapMode> =
+        MethodStringName1<Label, Unit, TextServer.AutowrapMode>("set_autowrap_mode")
+
+    @JvmStatic
+    public val getAutowrapModeName: MethodStringName0<Label, TextServer.AutowrapMode> =
+        MethodStringName0<Label, TextServer.AutowrapMode>("get_autowrap_mode")
+
+    @JvmStatic
+    public val setJustificationFlagsName:
+        MethodStringName1<Label, Unit, TextServer.JustificationFlag> =
+        MethodStringName1<Label, Unit, TextServer.JustificationFlag>("set_justification_flags")
+
+    @JvmStatic
+    public val getJustificationFlagsName: MethodStringName0<Label, TextServer.JustificationFlag> =
+        MethodStringName0<Label, TextServer.JustificationFlag>("get_justification_flags")
+
+    @JvmStatic
+    public val setClipTextName: MethodStringName1<Label, Unit, Boolean> =
+        MethodStringName1<Label, Unit, Boolean>("set_clip_text")
+
+    @JvmStatic
+    public val isClippingTextName: MethodStringName0<Label, Boolean> =
+        MethodStringName0<Label, Boolean>("is_clipping_text")
+
+    @JvmStatic
+    public val setTabStopsName: MethodStringName1<Label, Unit, PackedFloat32Array> =
+        MethodStringName1<Label, Unit, PackedFloat32Array>("set_tab_stops")
+
+    @JvmStatic
+    public val getTabStopsName: MethodStringName0<Label, PackedFloat32Array> =
+        MethodStringName0<Label, PackedFloat32Array>("get_tab_stops")
+
+    @JvmStatic
+    public val setTextOverrunBehaviorName:
+        MethodStringName1<Label, Unit, TextServer.OverrunBehavior> =
+        MethodStringName1<Label, Unit, TextServer.OverrunBehavior>("set_text_overrun_behavior")
+
+    @JvmStatic
+    public val getTextOverrunBehaviorName: MethodStringName0<Label, TextServer.OverrunBehavior> =
+        MethodStringName0<Label, TextServer.OverrunBehavior>("get_text_overrun_behavior")
+
+    @JvmStatic
+    public val setEllipsisCharName: MethodStringName1<Label, Unit, String> =
+        MethodStringName1<Label, Unit, String>("set_ellipsis_char")
+
+    @JvmStatic
+    public val getEllipsisCharName: MethodStringName0<Label, String> =
+        MethodStringName0<Label, String>("get_ellipsis_char")
+
+    @JvmStatic
+    public val setUppercaseName: MethodStringName1<Label, Unit, Boolean> =
+        MethodStringName1<Label, Unit, Boolean>("set_uppercase")
+
+    @JvmStatic
+    public val isUppercaseName: MethodStringName0<Label, Boolean> =
+        MethodStringName0<Label, Boolean>("is_uppercase")
+
+    @JvmStatic
+    public val getLineHeightName: MethodStringName1<Label, Int, Int> =
+        MethodStringName1<Label, Int, Int>("get_line_height")
+
+    @JvmStatic
+    public val getLineCountName: MethodStringName0<Label, Int> =
+        MethodStringName0<Label, Int>("get_line_count")
+
+    @JvmStatic
+    public val getVisibleLineCountName: MethodStringName0<Label, Int> =
+        MethodStringName0<Label, Int>("get_visible_line_count")
+
+    @JvmStatic
+    public val getTotalCharacterCountName: MethodStringName0<Label, Int> =
+        MethodStringName0<Label, Int>("get_total_character_count")
+
+    @JvmStatic
+    public val setVisibleCharactersName: MethodStringName1<Label, Unit, Int> =
+        MethodStringName1<Label, Unit, Int>("set_visible_characters")
+
+    @JvmStatic
+    public val getVisibleCharactersName: MethodStringName0<Label, Int> =
+        MethodStringName0<Label, Int>("get_visible_characters")
+
+    @JvmStatic
+    public val getVisibleCharactersBehaviorName:
+        MethodStringName0<Label, TextServer.VisibleCharactersBehavior> =
+        MethodStringName0<Label, TextServer.VisibleCharactersBehavior>("get_visible_characters_behavior")
+
+    @JvmStatic
+    public val setVisibleCharactersBehaviorName:
+        MethodStringName1<Label, Unit, TextServer.VisibleCharactersBehavior> =
+        MethodStringName1<Label, Unit, TextServer.VisibleCharactersBehavior>("set_visible_characters_behavior")
+
+    @JvmStatic
+    public val setVisibleRatioName: MethodStringName1<Label, Unit, Float> =
+        MethodStringName1<Label, Unit, Float>("set_visible_ratio")
+
+    @JvmStatic
+    public val getVisibleRatioName: MethodStringName0<Label, Float> =
+        MethodStringName0<Label, Float>("get_visible_ratio")
+
+    @JvmStatic
+    public val setLinesSkippedName: MethodStringName1<Label, Unit, Int> =
+        MethodStringName1<Label, Unit, Int>("set_lines_skipped")
+
+    @JvmStatic
+    public val getLinesSkippedName: MethodStringName0<Label, Int> =
+        MethodStringName0<Label, Int>("get_lines_skipped")
+
+    @JvmStatic
+    public val setMaxLinesVisibleName: MethodStringName1<Label, Unit, Int> =
+        MethodStringName1<Label, Unit, Int>("set_max_lines_visible")
+
+    @JvmStatic
+    public val getMaxLinesVisibleName: MethodStringName0<Label, Int> =
+        MethodStringName0<Label, Int>("get_max_lines_visible")
+
+    @JvmStatic
+    public val setStructuredTextBidiOverrideName:
+        MethodStringName1<Label, Unit, TextServer.StructuredTextParser> =
+        MethodStringName1<Label, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
+
+    @JvmStatic
+    public val getStructuredTextBidiOverrideName:
+        MethodStringName0<Label, TextServer.StructuredTextParser> =
+        MethodStringName0<Label, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
+
+    @JvmStatic
+    public val setStructuredTextBidiOverrideOptionsName:
+        MethodStringName1<Label, Unit, VariantArray<Any?>> =
+        MethodStringName1<Label, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
+
+    @JvmStatic
+    public val getStructuredTextBidiOverrideOptionsName:
+        MethodStringName0<Label, VariantArray<Any?>> =
+        MethodStringName0<Label, VariantArray<Any?>>("get_structured_text_bidi_override_options")
+
+    @JvmStatic
+    public val getCharacterBoundsName: MethodStringName1<Label, Rect2, Int> =
+        MethodStringName1<Label, Rect2, Int>("get_character_bounds")
+  }
 
   public object MethodBindings {
     internal val setHorizontalAlignmentPtr: VoidPtr =

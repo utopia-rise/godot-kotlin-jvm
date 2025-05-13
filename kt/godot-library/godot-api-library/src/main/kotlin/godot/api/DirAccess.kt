@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -451,6 +455,162 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   public companion object {
+    @JvmStatic
+    public val openName: MethodStringName1<DirAccess, DirAccess?, String> =
+        MethodStringName1<DirAccess, DirAccess?, String>("open")
+
+    @JvmStatic
+    public val getOpenErrorName: MethodStringName0<DirAccess, Error> =
+        MethodStringName0<DirAccess, Error>("get_open_error")
+
+    @JvmStatic
+    public val createTempName: MethodStringName2<DirAccess, DirAccess?, String, Boolean> =
+        MethodStringName2<DirAccess, DirAccess?, String, Boolean>("create_temp")
+
+    @JvmStatic
+    public val listDirBeginName: MethodStringName0<DirAccess, Error> =
+        MethodStringName0<DirAccess, Error>("list_dir_begin")
+
+    @JvmStatic
+    public val getNextName: MethodStringName0<DirAccess, String> =
+        MethodStringName0<DirAccess, String>("get_next")
+
+    @JvmStatic
+    public val currentIsDirName: MethodStringName0<DirAccess, Boolean> =
+        MethodStringName0<DirAccess, Boolean>("current_is_dir")
+
+    @JvmStatic
+    public val listDirEndName: MethodStringName0<DirAccess, Unit> =
+        MethodStringName0<DirAccess, Unit>("list_dir_end")
+
+    @JvmStatic
+    public val getFilesName: MethodStringName0<DirAccess, PackedStringArray> =
+        MethodStringName0<DirAccess, PackedStringArray>("get_files")
+
+    @JvmStatic
+    public val getFilesAtName: MethodStringName1<DirAccess, PackedStringArray, String> =
+        MethodStringName1<DirAccess, PackedStringArray, String>("get_files_at")
+
+    @JvmStatic
+    public val getDirectoriesName: MethodStringName0<DirAccess, PackedStringArray> =
+        MethodStringName0<DirAccess, PackedStringArray>("get_directories")
+
+    @JvmStatic
+    public val getDirectoriesAtName: MethodStringName1<DirAccess, PackedStringArray, String> =
+        MethodStringName1<DirAccess, PackedStringArray, String>("get_directories_at")
+
+    @JvmStatic
+    public val getDriveCountName: MethodStringName0<DirAccess, Int> =
+        MethodStringName0<DirAccess, Int>("get_drive_count")
+
+    @JvmStatic
+    public val getDriveNameName: MethodStringName1<DirAccess, String, Int> =
+        MethodStringName1<DirAccess, String, Int>("get_drive_name")
+
+    @JvmStatic
+    public val getCurrentDriveName: MethodStringName0<DirAccess, Int> =
+        MethodStringName0<DirAccess, Int>("get_current_drive")
+
+    @JvmStatic
+    public val changeDirName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("change_dir")
+
+    @JvmStatic
+    public val getCurrentDirName: MethodStringName1<DirAccess, String, Boolean> =
+        MethodStringName1<DirAccess, String, Boolean>("get_current_dir")
+
+    @JvmStatic
+    public val makeDirName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("make_dir")
+
+    @JvmStatic
+    public val makeDirAbsoluteName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("make_dir_absolute")
+
+    @JvmStatic
+    public val makeDirRecursiveName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("make_dir_recursive")
+
+    @JvmStatic
+    public val makeDirRecursiveAbsoluteName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("make_dir_recursive_absolute")
+
+    @JvmStatic
+    public val fileExistsName: MethodStringName1<DirAccess, Boolean, String> =
+        MethodStringName1<DirAccess, Boolean, String>("file_exists")
+
+    @JvmStatic
+    public val dirExistsName: MethodStringName1<DirAccess, Boolean, String> =
+        MethodStringName1<DirAccess, Boolean, String>("dir_exists")
+
+    @JvmStatic
+    public val dirExistsAbsoluteName: MethodStringName1<DirAccess, Boolean, String> =
+        MethodStringName1<DirAccess, Boolean, String>("dir_exists_absolute")
+
+    @JvmStatic
+    public val getSpaceLeftName: MethodStringName0<DirAccess, Long> =
+        MethodStringName0<DirAccess, Long>("get_space_left")
+
+    @JvmStatic
+    public val copyName: MethodStringName3<DirAccess, Error, String, String, Int> =
+        MethodStringName3<DirAccess, Error, String, String, Int>("copy")
+
+    @JvmStatic
+    public val copyAbsoluteName: MethodStringName3<DirAccess, Error, String, String, Int> =
+        MethodStringName3<DirAccess, Error, String, String, Int>("copy_absolute")
+
+    @JvmStatic
+    public val renameName: MethodStringName2<DirAccess, Error, String, String> =
+        MethodStringName2<DirAccess, Error, String, String>("rename")
+
+    @JvmStatic
+    public val renameAbsoluteName: MethodStringName2<DirAccess, Error, String, String> =
+        MethodStringName2<DirAccess, Error, String, String>("rename_absolute")
+
+    @JvmStatic
+    public val removeName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("remove")
+
+    @JvmStatic
+    public val removeAbsoluteName: MethodStringName1<DirAccess, Error, String> =
+        MethodStringName1<DirAccess, Error, String>("remove_absolute")
+
+    @JvmStatic
+    public val isLinkName: MethodStringName1<DirAccess, Boolean, String> =
+        MethodStringName1<DirAccess, Boolean, String>("is_link")
+
+    @JvmStatic
+    public val readLinkName: MethodStringName1<DirAccess, String, String> =
+        MethodStringName1<DirAccess, String, String>("read_link")
+
+    @JvmStatic
+    public val createLinkName: MethodStringName2<DirAccess, Error, String, String> =
+        MethodStringName2<DirAccess, Error, String, String>("create_link")
+
+    @JvmStatic
+    public val isBundleName: MethodStringName1<DirAccess, Boolean, String> =
+        MethodStringName1<DirAccess, Boolean, String>("is_bundle")
+
+    @JvmStatic
+    public val setIncludeNavigationalName: MethodStringName1<DirAccess, Unit, Boolean> =
+        MethodStringName1<DirAccess, Unit, Boolean>("set_include_navigational")
+
+    @JvmStatic
+    public val getIncludeNavigationalName: MethodStringName0<DirAccess, Boolean> =
+        MethodStringName0<DirAccess, Boolean>("get_include_navigational")
+
+    @JvmStatic
+    public val setIncludeHiddenName: MethodStringName1<DirAccess, Unit, Boolean> =
+        MethodStringName1<DirAccess, Unit, Boolean>("set_include_hidden")
+
+    @JvmStatic
+    public val getIncludeHiddenName: MethodStringName0<DirAccess, Boolean> =
+        MethodStringName0<DirAccess, Boolean>("get_include_hidden")
+
+    @JvmStatic
+    public val isCaseSensitiveName: MethodStringName1<DirAccess, Boolean, String> =
+        MethodStringName1<DirAccess, Boolean, String>("is_case_sensitive")
+
     /**
      * Creates a new [DirAccess] object and opens an existing directory of the filesystem. The
      * [path] argument can be within the project tree (`res://folder`), the user directory

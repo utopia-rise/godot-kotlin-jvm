@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3I
 import godot.core.Vector3i
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is used when loading a project that uses a [Texture3D] subclass in 2 conditions:
@@ -88,7 +91,15 @@ public open class PlaceholderTexture3D : Texture3D() {
     return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<PlaceholderTexture3D, Unit, Vector3i> =
+        MethodStringName1<PlaceholderTexture3D, Unit, Vector3i>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<PlaceholderTexture3D, Vector3i> =
+        MethodStringName0<PlaceholderTexture3D, Vector3i>("get_size")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

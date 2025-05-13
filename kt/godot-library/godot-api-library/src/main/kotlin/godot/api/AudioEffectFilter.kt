@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Allows frequencies other than the [cutoffHz] to pass.
@@ -150,7 +153,39 @@ public open class AudioEffectFilter : AudioEffect() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCutoffName: MethodStringName1<AudioEffectFilter, Unit, Float> =
+        MethodStringName1<AudioEffectFilter, Unit, Float>("set_cutoff")
+
+    @JvmStatic
+    public val getCutoffName: MethodStringName0<AudioEffectFilter, Float> =
+        MethodStringName0<AudioEffectFilter, Float>("get_cutoff")
+
+    @JvmStatic
+    public val setResonanceName: MethodStringName1<AudioEffectFilter, Unit, Float> =
+        MethodStringName1<AudioEffectFilter, Unit, Float>("set_resonance")
+
+    @JvmStatic
+    public val getResonanceName: MethodStringName0<AudioEffectFilter, Float> =
+        MethodStringName0<AudioEffectFilter, Float>("get_resonance")
+
+    @JvmStatic
+    public val setGainName: MethodStringName1<AudioEffectFilter, Unit, Float> =
+        MethodStringName1<AudioEffectFilter, Unit, Float>("set_gain")
+
+    @JvmStatic
+    public val getGainName: MethodStringName0<AudioEffectFilter, Float> =
+        MethodStringName0<AudioEffectFilter, Float>("get_gain")
+
+    @JvmStatic
+    public val setDbName: MethodStringName1<AudioEffectFilter, Unit, FilterDB> =
+        MethodStringName1<AudioEffectFilter, Unit, FilterDB>("set_db")
+
+    @JvmStatic
+    public val getDbName: MethodStringName0<AudioEffectFilter, FilterDB> =
+        MethodStringName0<AudioEffectFilter, FilterDB>("get_db")
+  }
 
   public object MethodBindings {
     internal val setCutoffPtr: VoidPtr =

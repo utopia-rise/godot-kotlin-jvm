@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class generates noise using the FastNoiseLite library, which is a collection of several
@@ -754,7 +757,178 @@ public open class FastNoiseLite : Noise() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setNoiseTypeName: MethodStringName1<FastNoiseLite, Unit, NoiseType> =
+        MethodStringName1<FastNoiseLite, Unit, NoiseType>("set_noise_type")
+
+    @JvmStatic
+    public val getNoiseTypeName: MethodStringName0<FastNoiseLite, NoiseType> =
+        MethodStringName0<FastNoiseLite, NoiseType>("get_noise_type")
+
+    @JvmStatic
+    public val setSeedName: MethodStringName1<FastNoiseLite, Unit, Int> =
+        MethodStringName1<FastNoiseLite, Unit, Int>("set_seed")
+
+    @JvmStatic
+    public val getSeedName: MethodStringName0<FastNoiseLite, Int> =
+        MethodStringName0<FastNoiseLite, Int>("get_seed")
+
+    @JvmStatic
+    public val setFrequencyName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_frequency")
+
+    @JvmStatic
+    public val getFrequencyName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_frequency")
+
+    @JvmStatic
+    public val setOffsetName: MethodStringName1<FastNoiseLite, Unit, Vector3> =
+        MethodStringName1<FastNoiseLite, Unit, Vector3>("set_offset")
+
+    @JvmStatic
+    public val getOffsetName: MethodStringName0<FastNoiseLite, Vector3> =
+        MethodStringName0<FastNoiseLite, Vector3>("get_offset")
+
+    @JvmStatic
+    public val setFractalTypeName: MethodStringName1<FastNoiseLite, Unit, FractalType> =
+        MethodStringName1<FastNoiseLite, Unit, FractalType>("set_fractal_type")
+
+    @JvmStatic
+    public val getFractalTypeName: MethodStringName0<FastNoiseLite, FractalType> =
+        MethodStringName0<FastNoiseLite, FractalType>("get_fractal_type")
+
+    @JvmStatic
+    public val setFractalOctavesName: MethodStringName1<FastNoiseLite, Unit, Int> =
+        MethodStringName1<FastNoiseLite, Unit, Int>("set_fractal_octaves")
+
+    @JvmStatic
+    public val getFractalOctavesName: MethodStringName0<FastNoiseLite, Int> =
+        MethodStringName0<FastNoiseLite, Int>("get_fractal_octaves")
+
+    @JvmStatic
+    public val setFractalLacunarityName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_fractal_lacunarity")
+
+    @JvmStatic
+    public val getFractalLacunarityName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_fractal_lacunarity")
+
+    @JvmStatic
+    public val setFractalGainName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_fractal_gain")
+
+    @JvmStatic
+    public val getFractalGainName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_fractal_gain")
+
+    @JvmStatic
+    public val setFractalWeightedStrengthName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_fractal_weighted_strength")
+
+    @JvmStatic
+    public val getFractalWeightedStrengthName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_fractal_weighted_strength")
+
+    @JvmStatic
+    public val setFractalPingPongStrengthName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_fractal_ping_pong_strength")
+
+    @JvmStatic
+    public val getFractalPingPongStrengthName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_fractal_ping_pong_strength")
+
+    @JvmStatic
+    public val setCellularDistanceFunctionName:
+        MethodStringName1<FastNoiseLite, Unit, CellularDistanceFunction> =
+        MethodStringName1<FastNoiseLite, Unit, CellularDistanceFunction>("set_cellular_distance_function")
+
+    @JvmStatic
+    public val getCellularDistanceFunctionName:
+        MethodStringName0<FastNoiseLite, CellularDistanceFunction> =
+        MethodStringName0<FastNoiseLite, CellularDistanceFunction>("get_cellular_distance_function")
+
+    @JvmStatic
+    public val setCellularJitterName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_cellular_jitter")
+
+    @JvmStatic
+    public val getCellularJitterName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_cellular_jitter")
+
+    @JvmStatic
+    public val setCellularReturnTypeName: MethodStringName1<FastNoiseLite, Unit, CellularReturnType>
+        = MethodStringName1<FastNoiseLite, Unit, CellularReturnType>("set_cellular_return_type")
+
+    @JvmStatic
+    public val getCellularReturnTypeName: MethodStringName0<FastNoiseLite, CellularReturnType> =
+        MethodStringName0<FastNoiseLite, CellularReturnType>("get_cellular_return_type")
+
+    @JvmStatic
+    public val setDomainWarpEnabledName: MethodStringName1<FastNoiseLite, Unit, Boolean> =
+        MethodStringName1<FastNoiseLite, Unit, Boolean>("set_domain_warp_enabled")
+
+    @JvmStatic
+    public val isDomainWarpEnabledName: MethodStringName0<FastNoiseLite, Boolean> =
+        MethodStringName0<FastNoiseLite, Boolean>("is_domain_warp_enabled")
+
+    @JvmStatic
+    public val setDomainWarpTypeName: MethodStringName1<FastNoiseLite, Unit, DomainWarpType> =
+        MethodStringName1<FastNoiseLite, Unit, DomainWarpType>("set_domain_warp_type")
+
+    @JvmStatic
+    public val getDomainWarpTypeName: MethodStringName0<FastNoiseLite, DomainWarpType> =
+        MethodStringName0<FastNoiseLite, DomainWarpType>("get_domain_warp_type")
+
+    @JvmStatic
+    public val setDomainWarpAmplitudeName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_domain_warp_amplitude")
+
+    @JvmStatic
+    public val getDomainWarpAmplitudeName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_domain_warp_amplitude")
+
+    @JvmStatic
+    public val setDomainWarpFrequencyName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_domain_warp_frequency")
+
+    @JvmStatic
+    public val getDomainWarpFrequencyName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_domain_warp_frequency")
+
+    @JvmStatic
+    public val setDomainWarpFractalTypeName:
+        MethodStringName1<FastNoiseLite, Unit, DomainWarpFractalType> =
+        MethodStringName1<FastNoiseLite, Unit, DomainWarpFractalType>("set_domain_warp_fractal_type")
+
+    @JvmStatic
+    public val getDomainWarpFractalTypeName: MethodStringName0<FastNoiseLite, DomainWarpFractalType>
+        = MethodStringName0<FastNoiseLite, DomainWarpFractalType>("get_domain_warp_fractal_type")
+
+    @JvmStatic
+    public val setDomainWarpFractalOctavesName: MethodStringName1<FastNoiseLite, Unit, Int> =
+        MethodStringName1<FastNoiseLite, Unit, Int>("set_domain_warp_fractal_octaves")
+
+    @JvmStatic
+    public val getDomainWarpFractalOctavesName: MethodStringName0<FastNoiseLite, Int> =
+        MethodStringName0<FastNoiseLite, Int>("get_domain_warp_fractal_octaves")
+
+    @JvmStatic
+    public val setDomainWarpFractalLacunarityName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_domain_warp_fractal_lacunarity")
+
+    @JvmStatic
+    public val getDomainWarpFractalLacunarityName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_domain_warp_fractal_lacunarity")
+
+    @JvmStatic
+    public val setDomainWarpFractalGainName: MethodStringName1<FastNoiseLite, Unit, Float> =
+        MethodStringName1<FastNoiseLite, Unit, Float>("set_domain_warp_fractal_gain")
+
+    @JvmStatic
+    public val getDomainWarpFractalGainName: MethodStringName0<FastNoiseLite, Float> =
+        MethodStringName0<FastNoiseLite, Float>("get_domain_warp_fractal_gain")
+  }
 
   public object MethodBindings {
     internal val setNoiseTypePtr: VoidPtr =

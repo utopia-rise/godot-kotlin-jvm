@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -29,6 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user
@@ -405,7 +408,120 @@ public open class AudioStreamPlayer : Node() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setStreamName: MethodStringName1<AudioStreamPlayer, Unit, AudioStream?> =
+        MethodStringName1<AudioStreamPlayer, Unit, AudioStream?>("set_stream")
+
+    @JvmStatic
+    public val getStreamName: MethodStringName0<AudioStreamPlayer, AudioStream?> =
+        MethodStringName0<AudioStreamPlayer, AudioStream?>("get_stream")
+
+    @JvmStatic
+    public val setVolumeDbName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
+        MethodStringName1<AudioStreamPlayer, Unit, Float>("set_volume_db")
+
+    @JvmStatic
+    public val getVolumeDbName: MethodStringName0<AudioStreamPlayer, Float> =
+        MethodStringName0<AudioStreamPlayer, Float>("get_volume_db")
+
+    @JvmStatic
+    public val setVolumeLinearName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
+        MethodStringName1<AudioStreamPlayer, Unit, Float>("set_volume_linear")
+
+    @JvmStatic
+    public val getVolumeLinearName: MethodStringName0<AudioStreamPlayer, Float> =
+        MethodStringName0<AudioStreamPlayer, Float>("get_volume_linear")
+
+    @JvmStatic
+    public val setPitchScaleName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
+        MethodStringName1<AudioStreamPlayer, Unit, Float>("set_pitch_scale")
+
+    @JvmStatic
+    public val getPitchScaleName: MethodStringName0<AudioStreamPlayer, Float> =
+        MethodStringName0<AudioStreamPlayer, Float>("get_pitch_scale")
+
+    @JvmStatic
+    public val playName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
+        MethodStringName1<AudioStreamPlayer, Unit, Float>("play")
+
+    @JvmStatic
+    public val seekName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
+        MethodStringName1<AudioStreamPlayer, Unit, Float>("seek")
+
+    @JvmStatic
+    public val stopName: MethodStringName0<AudioStreamPlayer, Unit> =
+        MethodStringName0<AudioStreamPlayer, Unit>("stop")
+
+    @JvmStatic
+    public val isPlayingName: MethodStringName0<AudioStreamPlayer, Boolean> =
+        MethodStringName0<AudioStreamPlayer, Boolean>("is_playing")
+
+    @JvmStatic
+    public val getPlaybackPositionName: MethodStringName0<AudioStreamPlayer, Float> =
+        MethodStringName0<AudioStreamPlayer, Float>("get_playback_position")
+
+    @JvmStatic
+    public val setBusName: MethodStringName1<AudioStreamPlayer, Unit, StringName> =
+        MethodStringName1<AudioStreamPlayer, Unit, StringName>("set_bus")
+
+    @JvmStatic
+    public val getBusName: MethodStringName0<AudioStreamPlayer, StringName> =
+        MethodStringName0<AudioStreamPlayer, StringName>("get_bus")
+
+    @JvmStatic
+    public val setAutoplayName: MethodStringName1<AudioStreamPlayer, Unit, Boolean> =
+        MethodStringName1<AudioStreamPlayer, Unit, Boolean>("set_autoplay")
+
+    @JvmStatic
+    public val isAutoplayEnabledName: MethodStringName0<AudioStreamPlayer, Boolean> =
+        MethodStringName0<AudioStreamPlayer, Boolean>("is_autoplay_enabled")
+
+    @JvmStatic
+    public val setMixTargetName: MethodStringName1<AudioStreamPlayer, Unit, MixTarget> =
+        MethodStringName1<AudioStreamPlayer, Unit, MixTarget>("set_mix_target")
+
+    @JvmStatic
+    public val getMixTargetName: MethodStringName0<AudioStreamPlayer, MixTarget> =
+        MethodStringName0<AudioStreamPlayer, MixTarget>("get_mix_target")
+
+    @JvmStatic
+    public val setPlayingName: MethodStringName1<AudioStreamPlayer, Unit, Boolean> =
+        MethodStringName1<AudioStreamPlayer, Unit, Boolean>("set_playing")
+
+    @JvmStatic
+    public val setStreamPausedName: MethodStringName1<AudioStreamPlayer, Unit, Boolean> =
+        MethodStringName1<AudioStreamPlayer, Unit, Boolean>("set_stream_paused")
+
+    @JvmStatic
+    public val getStreamPausedName: MethodStringName0<AudioStreamPlayer, Boolean> =
+        MethodStringName0<AudioStreamPlayer, Boolean>("get_stream_paused")
+
+    @JvmStatic
+    public val setMaxPolyphonyName: MethodStringName1<AudioStreamPlayer, Unit, Int> =
+        MethodStringName1<AudioStreamPlayer, Unit, Int>("set_max_polyphony")
+
+    @JvmStatic
+    public val getMaxPolyphonyName: MethodStringName0<AudioStreamPlayer, Int> =
+        MethodStringName0<AudioStreamPlayer, Int>("get_max_polyphony")
+
+    @JvmStatic
+    public val hasStreamPlaybackName: MethodStringName0<AudioStreamPlayer, Boolean> =
+        MethodStringName0<AudioStreamPlayer, Boolean>("has_stream_playback")
+
+    @JvmStatic
+    public val getStreamPlaybackName: MethodStringName0<AudioStreamPlayer, AudioStreamPlayback?> =
+        MethodStringName0<AudioStreamPlayer, AudioStreamPlayback?>("get_stream_playback")
+
+    @JvmStatic
+    public val setPlaybackTypeName:
+        MethodStringName1<AudioStreamPlayer, Unit, AudioServer.PlaybackType> =
+        MethodStringName1<AudioStreamPlayer, Unit, AudioServer.PlaybackType>("set_playback_type")
+
+    @JvmStatic
+    public val getPlaybackTypeName: MethodStringName0<AudioStreamPlayer, AudioServer.PlaybackType> =
+        MethodStringName0<AudioStreamPlayer, AudioServer.PlaybackType>("get_playback_type")
+  }
 
   public object MethodBindings {
     internal val setStreamPtr: VoidPtr =

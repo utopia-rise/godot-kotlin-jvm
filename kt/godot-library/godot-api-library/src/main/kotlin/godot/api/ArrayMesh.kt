@@ -15,6 +15,11 @@ import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
 import godot.core.PackedByteArray
 import godot.core.StringName
 import godot.core.Transform3D
@@ -39,6 +44,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [ArrayMesh] is used to construct a [Mesh] by specifying the attributes as arrays.
@@ -426,7 +432,116 @@ public open class ArrayMesh : Mesh() {
   public final fun setBlendShapeName(index: Int, name: String) =
       setBlendShapeName(index, name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addBlendShapeName: MethodStringName1<ArrayMesh, Unit, StringName> =
+        MethodStringName1<ArrayMesh, Unit, StringName>("add_blend_shape")
+
+    @JvmStatic
+    public val getBlendShapeCountName: MethodStringName0<ArrayMesh, Int> =
+        MethodStringName0<ArrayMesh, Int>("get_blend_shape_count")
+
+    @JvmStatic
+    public val getBlendShapeNameName: MethodStringName1<ArrayMesh, StringName, Int> =
+        MethodStringName1<ArrayMesh, StringName, Int>("get_blend_shape_name")
+
+    @JvmStatic
+    public val setBlendShapeNameName: MethodStringName2<ArrayMesh, Unit, Int, StringName> =
+        MethodStringName2<ArrayMesh, Unit, Int, StringName>("set_blend_shape_name")
+
+    @JvmStatic
+    public val clearBlendShapesName: MethodStringName0<ArrayMesh, Unit> =
+        MethodStringName0<ArrayMesh, Unit>("clear_blend_shapes")
+
+    @JvmStatic
+    public val setBlendShapeModeName: MethodStringName1<ArrayMesh, Unit, Mesh.BlendShapeMode> =
+        MethodStringName1<ArrayMesh, Unit, Mesh.BlendShapeMode>("set_blend_shape_mode")
+
+    @JvmStatic
+    public val getBlendShapeModeName: MethodStringName0<ArrayMesh, Mesh.BlendShapeMode> =
+        MethodStringName0<ArrayMesh, Mesh.BlendShapeMode>("get_blend_shape_mode")
+
+    @JvmStatic
+    public val addSurfaceFromArraysName:
+        MethodStringName5<ArrayMesh, Unit, Mesh.PrimitiveType, VariantArray<Any?>, VariantArray<VariantArray<Any?>>, Dictionary<Any?, Any?>, Mesh.ArrayFormat>
+        =
+        MethodStringName5<ArrayMesh, Unit, Mesh.PrimitiveType, VariantArray<Any?>, VariantArray<VariantArray<Any?>>, Dictionary<Any?, Any?>, Mesh.ArrayFormat>("add_surface_from_arrays")
+
+    @JvmStatic
+    public val clearSurfacesName: MethodStringName0<ArrayMesh, Unit> =
+        MethodStringName0<ArrayMesh, Unit>("clear_surfaces")
+
+    @JvmStatic
+    public val surfaceRemoveName: MethodStringName1<ArrayMesh, Unit, Int> =
+        MethodStringName1<ArrayMesh, Unit, Int>("surface_remove")
+
+    @JvmStatic
+    public val surfaceUpdateVertexRegionName:
+        MethodStringName3<ArrayMesh, Unit, Int, Int, PackedByteArray> =
+        MethodStringName3<ArrayMesh, Unit, Int, Int, PackedByteArray>("surface_update_vertex_region")
+
+    @JvmStatic
+    public val surfaceUpdateAttributeRegionName:
+        MethodStringName3<ArrayMesh, Unit, Int, Int, PackedByteArray> =
+        MethodStringName3<ArrayMesh, Unit, Int, Int, PackedByteArray>("surface_update_attribute_region")
+
+    @JvmStatic
+    public val surfaceUpdateSkinRegionName:
+        MethodStringName3<ArrayMesh, Unit, Int, Int, PackedByteArray> =
+        MethodStringName3<ArrayMesh, Unit, Int, Int, PackedByteArray>("surface_update_skin_region")
+
+    @JvmStatic
+    public val surfaceGetArrayLenName: MethodStringName1<ArrayMesh, Int, Int> =
+        MethodStringName1<ArrayMesh, Int, Int>("surface_get_array_len")
+
+    @JvmStatic
+    public val surfaceGetArrayIndexLenName: MethodStringName1<ArrayMesh, Int, Int> =
+        MethodStringName1<ArrayMesh, Int, Int>("surface_get_array_index_len")
+
+    @JvmStatic
+    public val surfaceGetFormatName: MethodStringName1<ArrayMesh, Mesh.ArrayFormat, Int> =
+        MethodStringName1<ArrayMesh, Mesh.ArrayFormat, Int>("surface_get_format")
+
+    @JvmStatic
+    public val surfaceGetPrimitiveTypeName: MethodStringName1<ArrayMesh, Mesh.PrimitiveType, Int> =
+        MethodStringName1<ArrayMesh, Mesh.PrimitiveType, Int>("surface_get_primitive_type")
+
+    @JvmStatic
+    public val surfaceFindByNameName: MethodStringName1<ArrayMesh, Int, String> =
+        MethodStringName1<ArrayMesh, Int, String>("surface_find_by_name")
+
+    @JvmStatic
+    public val surfaceSetNameName: MethodStringName2<ArrayMesh, Unit, Int, String> =
+        MethodStringName2<ArrayMesh, Unit, Int, String>("surface_set_name")
+
+    @JvmStatic
+    public val surfaceGetNameName: MethodStringName1<ArrayMesh, String, Int> =
+        MethodStringName1<ArrayMesh, String, Int>("surface_get_name")
+
+    @JvmStatic
+    public val regenNormalMapsName: MethodStringName0<ArrayMesh, Unit> =
+        MethodStringName0<ArrayMesh, Unit>("regen_normal_maps")
+
+    @JvmStatic
+    public val lightmapUnwrapName: MethodStringName2<ArrayMesh, Error, Transform3D, Float> =
+        MethodStringName2<ArrayMesh, Error, Transform3D, Float>("lightmap_unwrap")
+
+    @JvmStatic
+    public val setCustomAabbName: MethodStringName1<ArrayMesh, Unit, AABB> =
+        MethodStringName1<ArrayMesh, Unit, AABB>("set_custom_aabb")
+
+    @JvmStatic
+    public val getCustomAabbName: MethodStringName0<ArrayMesh, AABB> =
+        MethodStringName0<ArrayMesh, AABB>("get_custom_aabb")
+
+    @JvmStatic
+    public val setShadowMeshName: MethodStringName1<ArrayMesh, Unit, ArrayMesh?> =
+        MethodStringName1<ArrayMesh, Unit, ArrayMesh?>("set_shadow_mesh")
+
+    @JvmStatic
+    public val getShadowMeshName: MethodStringName0<ArrayMesh, ArrayMesh?> =
+        MethodStringName0<ArrayMesh, ArrayMesh?>("get_shadow_mesh")
+  }
 
   public object MethodBindings {
     internal val addBlendShapePtr: VoidPtr =

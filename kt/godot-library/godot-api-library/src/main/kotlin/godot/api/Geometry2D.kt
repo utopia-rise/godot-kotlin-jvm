@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.VariantArray
@@ -43,6 +47,131 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Geometry2D : Object() {
+  @JvmStatic
+  public val isPointInCircleName: MethodStringName3<Geometry2D, Boolean, Vector2, Vector2, Float> =
+      MethodStringName3<Geometry2D, Boolean, Vector2, Vector2, Float>("is_point_in_circle")
+
+  @JvmStatic
+  public val segmentIntersectsCircleName:
+      MethodStringName4<Geometry2D, Float, Vector2, Vector2, Vector2, Float> =
+      MethodStringName4<Geometry2D, Float, Vector2, Vector2, Vector2, Float>("segment_intersects_circle")
+
+  @JvmStatic
+  public val segmentIntersectsSegmentName:
+      MethodStringName4<Geometry2D, Any?, Vector2, Vector2, Vector2, Vector2> =
+      MethodStringName4<Geometry2D, Any?, Vector2, Vector2, Vector2, Vector2>("segment_intersects_segment")
+
+  @JvmStatic
+  public val lineIntersectsLineName:
+      MethodStringName4<Geometry2D, Any?, Vector2, Vector2, Vector2, Vector2> =
+      MethodStringName4<Geometry2D, Any?, Vector2, Vector2, Vector2, Vector2>("line_intersects_line")
+
+  @JvmStatic
+  public val getClosestPointsBetweenSegmentsName:
+      MethodStringName4<Geometry2D, PackedVector2Array, Vector2, Vector2, Vector2, Vector2> =
+      MethodStringName4<Geometry2D, PackedVector2Array, Vector2, Vector2, Vector2, Vector2>("get_closest_points_between_segments")
+
+  @JvmStatic
+  public val getClosestPointToSegmentName:
+      MethodStringName3<Geometry2D, Vector2, Vector2, Vector2, Vector2> =
+      MethodStringName3<Geometry2D, Vector2, Vector2, Vector2, Vector2>("get_closest_point_to_segment")
+
+  @JvmStatic
+  public val getClosestPointToSegmentUncappedName:
+      MethodStringName3<Geometry2D, Vector2, Vector2, Vector2, Vector2> =
+      MethodStringName3<Geometry2D, Vector2, Vector2, Vector2, Vector2>("get_closest_point_to_segment_uncapped")
+
+  @JvmStatic
+  public val pointIsInsideTriangleName:
+      MethodStringName4<Geometry2D, Boolean, Vector2, Vector2, Vector2, Vector2> =
+      MethodStringName4<Geometry2D, Boolean, Vector2, Vector2, Vector2, Vector2>("point_is_inside_triangle")
+
+  @JvmStatic
+  public val isPolygonClockwiseName: MethodStringName1<Geometry2D, Boolean, PackedVector2Array> =
+      MethodStringName1<Geometry2D, Boolean, PackedVector2Array>("is_polygon_clockwise")
+
+  @JvmStatic
+  public val isPointInPolygonName:
+      MethodStringName2<Geometry2D, Boolean, Vector2, PackedVector2Array> =
+      MethodStringName2<Geometry2D, Boolean, Vector2, PackedVector2Array>("is_point_in_polygon")
+
+  @JvmStatic
+  public val triangulatePolygonName:
+      MethodStringName1<Geometry2D, PackedInt32Array, PackedVector2Array> =
+      MethodStringName1<Geometry2D, PackedInt32Array, PackedVector2Array>("triangulate_polygon")
+
+  @JvmStatic
+  public val triangulateDelaunayName:
+      MethodStringName1<Geometry2D, PackedInt32Array, PackedVector2Array> =
+      MethodStringName1<Geometry2D, PackedInt32Array, PackedVector2Array>("triangulate_delaunay")
+
+  @JvmStatic
+  public val convexHullName: MethodStringName1<Geometry2D, PackedVector2Array, PackedVector2Array> =
+      MethodStringName1<Geometry2D, PackedVector2Array, PackedVector2Array>("convex_hull")
+
+  @JvmStatic
+  public val decomposePolygonInConvexName:
+      MethodStringName1<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array> =
+      MethodStringName1<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array>("decompose_polygon_in_convex")
+
+  @JvmStatic
+  public val mergePolygonsName:
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>
+      =
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>("merge_polygons")
+
+  @JvmStatic
+  public val clipPolygonsName:
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>
+      =
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>("clip_polygons")
+
+  @JvmStatic
+  public val intersectPolygonsName:
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>
+      =
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>("intersect_polygons")
+
+  @JvmStatic
+  public val excludePolygonsName:
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>
+      =
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>("exclude_polygons")
+
+  @JvmStatic
+  public val clipPolylineWithPolygonName:
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>
+      =
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>("clip_polyline_with_polygon")
+
+  @JvmStatic
+  public val intersectPolylineWithPolygonName:
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>
+      =
+      MethodStringName2<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, PackedVector2Array>("intersect_polyline_with_polygon")
+
+  @JvmStatic
+  public val offsetPolygonName:
+      MethodStringName3<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, Float, PolyJoinType>
+      =
+      MethodStringName3<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, Float, PolyJoinType>("offset_polygon")
+
+  @JvmStatic
+  public val offsetPolylineName:
+      MethodStringName4<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, Float, PolyJoinType, PolyEndType>
+      =
+      MethodStringName4<Geometry2D, VariantArray<PackedVector2Array>, PackedVector2Array, Float, PolyJoinType, PolyEndType>("offset_polyline")
+
+  @JvmStatic
+  public val makeAtlasName:
+      MethodStringName1<Geometry2D, Dictionary<Any?, Any?>, PackedVector2Array> =
+      MethodStringName1<Geometry2D, Dictionary<Any?, Any?>, PackedVector2Array>("make_atlas")
+
+  @JvmStatic
+  public val bresenhamLineName:
+      MethodStringName2<Geometry2D, VariantArray<Vector2i>, Vector2i, Vector2i> =
+      MethodStringName2<Geometry2D, VariantArray<Vector2i>, Vector2i, Vector2i>("bresenham_line")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(7)
   }

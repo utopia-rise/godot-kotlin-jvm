@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.Signal4
@@ -31,6 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A node with the ability to send HTTP requests. Uses [HTTPClient] internally.
@@ -581,7 +586,103 @@ public open class HTTPRequest : Node() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val requestName:
+        MethodStringName4<HTTPRequest, Error, String, PackedStringArray, HTTPClient.Method, String>
+        =
+        MethodStringName4<HTTPRequest, Error, String, PackedStringArray, HTTPClient.Method, String>("request")
+
+    @JvmStatic
+    public val requestRawName:
+        MethodStringName4<HTTPRequest, Error, String, PackedStringArray, HTTPClient.Method, PackedByteArray>
+        =
+        MethodStringName4<HTTPRequest, Error, String, PackedStringArray, HTTPClient.Method, PackedByteArray>("request_raw")
+
+    @JvmStatic
+    public val cancelRequestName: MethodStringName0<HTTPRequest, Unit> =
+        MethodStringName0<HTTPRequest, Unit>("cancel_request")
+
+    @JvmStatic
+    public val setTlsOptionsName: MethodStringName1<HTTPRequest, Unit, TLSOptions?> =
+        MethodStringName1<HTTPRequest, Unit, TLSOptions?>("set_tls_options")
+
+    @JvmStatic
+    public val getHttpClientStatusName: MethodStringName0<HTTPRequest, HTTPClient.Status> =
+        MethodStringName0<HTTPRequest, HTTPClient.Status>("get_http_client_status")
+
+    @JvmStatic
+    public val setUseThreadsName: MethodStringName1<HTTPRequest, Unit, Boolean> =
+        MethodStringName1<HTTPRequest, Unit, Boolean>("set_use_threads")
+
+    @JvmStatic
+    public val isUsingThreadsName: MethodStringName0<HTTPRequest, Boolean> =
+        MethodStringName0<HTTPRequest, Boolean>("is_using_threads")
+
+    @JvmStatic
+    public val setAcceptGzipName: MethodStringName1<HTTPRequest, Unit, Boolean> =
+        MethodStringName1<HTTPRequest, Unit, Boolean>("set_accept_gzip")
+
+    @JvmStatic
+    public val isAcceptingGzipName: MethodStringName0<HTTPRequest, Boolean> =
+        MethodStringName0<HTTPRequest, Boolean>("is_accepting_gzip")
+
+    @JvmStatic
+    public val setBodySizeLimitName: MethodStringName1<HTTPRequest, Unit, Int> =
+        MethodStringName1<HTTPRequest, Unit, Int>("set_body_size_limit")
+
+    @JvmStatic
+    public val getBodySizeLimitName: MethodStringName0<HTTPRequest, Int> =
+        MethodStringName0<HTTPRequest, Int>("get_body_size_limit")
+
+    @JvmStatic
+    public val setMaxRedirectsName: MethodStringName1<HTTPRequest, Unit, Int> =
+        MethodStringName1<HTTPRequest, Unit, Int>("set_max_redirects")
+
+    @JvmStatic
+    public val getMaxRedirectsName: MethodStringName0<HTTPRequest, Int> =
+        MethodStringName0<HTTPRequest, Int>("get_max_redirects")
+
+    @JvmStatic
+    public val setDownloadFileName: MethodStringName1<HTTPRequest, Unit, String> =
+        MethodStringName1<HTTPRequest, Unit, String>("set_download_file")
+
+    @JvmStatic
+    public val getDownloadFileName: MethodStringName0<HTTPRequest, String> =
+        MethodStringName0<HTTPRequest, String>("get_download_file")
+
+    @JvmStatic
+    public val getDownloadedBytesName: MethodStringName0<HTTPRequest, Int> =
+        MethodStringName0<HTTPRequest, Int>("get_downloaded_bytes")
+
+    @JvmStatic
+    public val getBodySizeName: MethodStringName0<HTTPRequest, Int> =
+        MethodStringName0<HTTPRequest, Int>("get_body_size")
+
+    @JvmStatic
+    public val setTimeoutName: MethodStringName1<HTTPRequest, Unit, Double> =
+        MethodStringName1<HTTPRequest, Unit, Double>("set_timeout")
+
+    @JvmStatic
+    public val getTimeoutName: MethodStringName0<HTTPRequest, Double> =
+        MethodStringName0<HTTPRequest, Double>("get_timeout")
+
+    @JvmStatic
+    public val setDownloadChunkSizeName: MethodStringName1<HTTPRequest, Unit, Int> =
+        MethodStringName1<HTTPRequest, Unit, Int>("set_download_chunk_size")
+
+    @JvmStatic
+    public val getDownloadChunkSizeName: MethodStringName0<HTTPRequest, Int> =
+        MethodStringName0<HTTPRequest, Int>("get_download_chunk_size")
+
+    @JvmStatic
+    public val setHttpProxyName: MethodStringName2<HTTPRequest, Unit, String, Int> =
+        MethodStringName2<HTTPRequest, Unit, String, Int>("set_http_proxy")
+
+    @JvmStatic
+    public val setHttpsProxyName: MethodStringName2<HTTPRequest, Unit, String, Int> =
+        MethodStringName2<HTTPRequest, Unit, String, Int>("set_https_proxy")
+  }
 
   public object MethodBindings {
     internal val requestPtr: VoidPtr =

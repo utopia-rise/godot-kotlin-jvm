@@ -8,7 +8,6 @@ import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
-import godot.common.util.isNullable
 import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
@@ -34,7 +33,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     @PublishedApi
     internal constructor(parameterClazz: KClass<*>) {
-        val variantConverter = variantMapper[parameterClazz]
+        val variantConverter = getVariantConverter(parameterClazz)
 
         if (GodotJvmBuildConfig.DEBUG) {
             checkNotNull(variantConverter) {
@@ -659,7 +658,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         inline operator fun <reified T> invoke(): VariantArray<T> {
             // The nullable check can't be inside the regular constructor because of Java
             if (GodotJvmBuildConfig.DEBUG) {
-                if (isNullable<T>() && T::class in notNullableVariantSet) {
+                if (cantBeNullable<T>()) {
                     error("Can't create a VariantArray with generic ${T::class} as nullable.")
                 }
             }

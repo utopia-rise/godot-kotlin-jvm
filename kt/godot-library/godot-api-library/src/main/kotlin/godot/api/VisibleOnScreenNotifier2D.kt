@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
@@ -112,7 +115,19 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRectName: MethodStringName1<VisibleOnScreenNotifier2D, Unit, Rect2> =
+        MethodStringName1<VisibleOnScreenNotifier2D, Unit, Rect2>("set_rect")
+
+    @JvmStatic
+    public val getRectName: MethodStringName0<VisibleOnScreenNotifier2D, Rect2> =
+        MethodStringName0<VisibleOnScreenNotifier2D, Rect2>("get_rect")
+
+    @JvmStatic
+    public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier2D, Boolean> =
+        MethodStringName0<VisibleOnScreenNotifier2D, Boolean>("is_on_screen")
+  }
 
   public object MethodBindings {
     internal val setRectPtr: VoidPtr =

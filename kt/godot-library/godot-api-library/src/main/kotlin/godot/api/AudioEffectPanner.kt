@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Determines how much of an audio signal is sent to the left and right buses.
@@ -50,7 +53,15 @@ public open class AudioEffectPanner : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPanName: MethodStringName1<AudioEffectPanner, Unit, Float> =
+        MethodStringName1<AudioEffectPanner, Unit, Float>("set_pan")
+
+    @JvmStatic
+    public val getPanName: MethodStringName0<AudioEffectPanner, Float> =
+        MethodStringName0<AudioEffectPanner, Float>("get_pan")
+  }
 
   public object MethodBindings {
     internal val setPanPtr: VoidPtr =

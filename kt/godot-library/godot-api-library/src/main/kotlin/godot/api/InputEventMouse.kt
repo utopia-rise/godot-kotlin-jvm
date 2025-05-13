@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.MouseButtonMask
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Stores general information about mouse events.
@@ -169,7 +172,31 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setButtonMaskName: MethodStringName1<InputEventMouse, Unit, MouseButtonMask> =
+        MethodStringName1<InputEventMouse, Unit, MouseButtonMask>("set_button_mask")
+
+    @JvmStatic
+    public val getButtonMaskName: MethodStringName0<InputEventMouse, MouseButtonMask> =
+        MethodStringName0<InputEventMouse, MouseButtonMask>("get_button_mask")
+
+    @JvmStatic
+    public val setPositionName: MethodStringName1<InputEventMouse, Unit, Vector2> =
+        MethodStringName1<InputEventMouse, Unit, Vector2>("set_position")
+
+    @JvmStatic
+    public val getPositionName: MethodStringName0<InputEventMouse, Vector2> =
+        MethodStringName0<InputEventMouse, Vector2>("get_position")
+
+    @JvmStatic
+    public val setGlobalPositionName: MethodStringName1<InputEventMouse, Unit, Vector2> =
+        MethodStringName1<InputEventMouse, Unit, Vector2>("set_global_position")
+
+    @JvmStatic
+    public val getGlobalPositionName: MethodStringName0<InputEventMouse, Vector2> =
+        MethodStringName0<InputEventMouse, Vector2>("get_global_position")
+  }
 
   public object MethodBindings {
     internal val setButtonMaskPtr: VoidPtr =

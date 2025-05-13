@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],
@@ -51,7 +54,15 @@ public open class InputEventShortcut : InputEvent() {
     return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setShortcutName: MethodStringName1<InputEventShortcut, Unit, Shortcut?> =
+        MethodStringName1<InputEventShortcut, Unit, Shortcut?>("set_shortcut")
+
+    @JvmStatic
+    public val getShortcutName: MethodStringName0<InputEventShortcut, Shortcut?> =
+        MethodStringName0<InputEventShortcut, Shortcut?>("get_shortcut")
+  }
 
   public object MethodBindings {
     internal val setShortcutPtr: VoidPtr =

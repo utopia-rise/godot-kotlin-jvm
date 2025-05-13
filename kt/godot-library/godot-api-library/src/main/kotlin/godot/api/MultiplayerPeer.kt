@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -21,6 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Manages the connection with one or more remote peers acting as server or client and assigning
@@ -298,6 +302,74 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public companion object {
+    @JvmStatic
+    public val setTransferChannelName: MethodStringName1<MultiplayerPeer, Unit, Int> =
+        MethodStringName1<MultiplayerPeer, Unit, Int>("set_transfer_channel")
+
+    @JvmStatic
+    public val getTransferChannelName: MethodStringName0<MultiplayerPeer, Int> =
+        MethodStringName0<MultiplayerPeer, Int>("get_transfer_channel")
+
+    @JvmStatic
+    public val setTransferModeName: MethodStringName1<MultiplayerPeer, Unit, TransferMode> =
+        MethodStringName1<MultiplayerPeer, Unit, TransferMode>("set_transfer_mode")
+
+    @JvmStatic
+    public val getTransferModeName: MethodStringName0<MultiplayerPeer, TransferMode> =
+        MethodStringName0<MultiplayerPeer, TransferMode>("get_transfer_mode")
+
+    @JvmStatic
+    public val setTargetPeerName: MethodStringName1<MultiplayerPeer, Unit, Int> =
+        MethodStringName1<MultiplayerPeer, Unit, Int>("set_target_peer")
+
+    @JvmStatic
+    public val getPacketPeerName: MethodStringName0<MultiplayerPeer, Int> =
+        MethodStringName0<MultiplayerPeer, Int>("get_packet_peer")
+
+    @JvmStatic
+    public val getPacketChannelName: MethodStringName0<MultiplayerPeer, Int> =
+        MethodStringName0<MultiplayerPeer, Int>("get_packet_channel")
+
+    @JvmStatic
+    public val getPacketModeName: MethodStringName0<MultiplayerPeer, TransferMode> =
+        MethodStringName0<MultiplayerPeer, TransferMode>("get_packet_mode")
+
+    @JvmStatic
+    public val pollName: MethodStringName0<MultiplayerPeer, Unit> =
+        MethodStringName0<MultiplayerPeer, Unit>("poll")
+
+    @JvmStatic
+    public val closeName: MethodStringName0<MultiplayerPeer, Unit> =
+        MethodStringName0<MultiplayerPeer, Unit>("close")
+
+    @JvmStatic
+    public val disconnectPeerName: MethodStringName2<MultiplayerPeer, Unit, Int, Boolean> =
+        MethodStringName2<MultiplayerPeer, Unit, Int, Boolean>("disconnect_peer")
+
+    @JvmStatic
+    public val getConnectionStatusName: MethodStringName0<MultiplayerPeer, ConnectionStatus> =
+        MethodStringName0<MultiplayerPeer, ConnectionStatus>("get_connection_status")
+
+    @JvmStatic
+    public val getUniqueIdName: MethodStringName0<MultiplayerPeer, Int> =
+        MethodStringName0<MultiplayerPeer, Int>("get_unique_id")
+
+    @JvmStatic
+    public val generateUniqueIdName: MethodStringName0<MultiplayerPeer, Long> =
+        MethodStringName0<MultiplayerPeer, Long>("generate_unique_id")
+
+    @JvmStatic
+    public val setRefuseNewConnectionsName: MethodStringName1<MultiplayerPeer, Unit, Boolean> =
+        MethodStringName1<MultiplayerPeer, Unit, Boolean>("set_refuse_new_connections")
+
+    @JvmStatic
+    public val isRefusingNewConnectionsName: MethodStringName0<MultiplayerPeer, Boolean> =
+        MethodStringName0<MultiplayerPeer, Boolean>("is_refusing_new_connections")
+
+    @JvmStatic
+    public val isServerRelaySupportedName: MethodStringName0<MultiplayerPeer, Boolean> =
+        MethodStringName0<MultiplayerPeer, Boolean>("is_server_relay_supported")
+
     /**
      * Packets are sent to all connected peers.
      */

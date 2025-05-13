@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.COLOR
@@ -253,6 +256,78 @@ public open class GLTFLight : Resource() {
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
+    @JvmStatic
+    public val fromNodeName: MethodStringName1<GLTFLight, GLTFLight?, Light3D?> =
+        MethodStringName1<GLTFLight, GLTFLight?, Light3D?>("from_node")
+
+    @JvmStatic
+    public val toNodeName: MethodStringName0<GLTFLight, Light3D?> =
+        MethodStringName0<GLTFLight, Light3D?>("to_node")
+
+    @JvmStatic
+    public val fromDictionaryName: MethodStringName1<GLTFLight, GLTFLight?, Dictionary<Any?, Any?>>
+        = MethodStringName1<GLTFLight, GLTFLight?, Dictionary<Any?, Any?>>("from_dictionary")
+
+    @JvmStatic
+    public val toDictionaryName: MethodStringName0<GLTFLight, Dictionary<Any?, Any?>> =
+        MethodStringName0<GLTFLight, Dictionary<Any?, Any?>>("to_dictionary")
+
+    @JvmStatic
+    public val getColorName: MethodStringName0<GLTFLight, Color> =
+        MethodStringName0<GLTFLight, Color>("get_color")
+
+    @JvmStatic
+    public val setColorName: MethodStringName1<GLTFLight, Unit, Color> =
+        MethodStringName1<GLTFLight, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val getIntensityName: MethodStringName0<GLTFLight, Float> =
+        MethodStringName0<GLTFLight, Float>("get_intensity")
+
+    @JvmStatic
+    public val setIntensityName: MethodStringName1<GLTFLight, Unit, Float> =
+        MethodStringName1<GLTFLight, Unit, Float>("set_intensity")
+
+    @JvmStatic
+    public val getLightTypeName: MethodStringName0<GLTFLight, String> =
+        MethodStringName0<GLTFLight, String>("get_light_type")
+
+    @JvmStatic
+    public val setLightTypeName: MethodStringName1<GLTFLight, Unit, String> =
+        MethodStringName1<GLTFLight, Unit, String>("set_light_type")
+
+    @JvmStatic
+    public val getRangeName: MethodStringName0<GLTFLight, Float> =
+        MethodStringName0<GLTFLight, Float>("get_range")
+
+    @JvmStatic
+    public val setRangeName: MethodStringName1<GLTFLight, Unit, Float> =
+        MethodStringName1<GLTFLight, Unit, Float>("set_range")
+
+    @JvmStatic
+    public val getInnerConeAngleName: MethodStringName0<GLTFLight, Float> =
+        MethodStringName0<GLTFLight, Float>("get_inner_cone_angle")
+
+    @JvmStatic
+    public val setInnerConeAngleName: MethodStringName1<GLTFLight, Unit, Float> =
+        MethodStringName1<GLTFLight, Unit, Float>("set_inner_cone_angle")
+
+    @JvmStatic
+    public val getOuterConeAngleName: MethodStringName0<GLTFLight, Float> =
+        MethodStringName0<GLTFLight, Float>("get_outer_cone_angle")
+
+    @JvmStatic
+    public val setOuterConeAngleName: MethodStringName1<GLTFLight, Unit, Float> =
+        MethodStringName1<GLTFLight, Unit, Float>("set_outer_cone_angle")
+
+    @JvmStatic
+    public val getAdditionalDataName: MethodStringName1<GLTFLight, Any?, StringName> =
+        MethodStringName1<GLTFLight, Any?, StringName>("get_additional_data")
+
+    @JvmStatic
+    public val setAdditionalDataName: MethodStringName2<GLTFLight, Unit, StringName, Any?> =
+        MethodStringName2<GLTFLight, Unit, StringName, Any?>("set_additional_data")
+
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
      */

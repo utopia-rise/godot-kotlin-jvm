@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a
@@ -53,7 +56,15 @@ public open class ShaderInclude : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCodeName: MethodStringName1<ShaderInclude, Unit, String> =
+        MethodStringName1<ShaderInclude, Unit, String>("set_code")
+
+    @JvmStatic
+    public val getCodeName: MethodStringName0<ShaderInclude, String> =
+        MethodStringName0<ShaderInclude, String>("get_code")
+  }
 
   public object MethodBindings {
     internal val setCodePtr: VoidPtr =

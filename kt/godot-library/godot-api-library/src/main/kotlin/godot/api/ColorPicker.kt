@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedColorArray
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A widget that provides an interface for selecting or modifying a color. It can optionally provide
@@ -457,7 +460,119 @@ public open class ColorPicker : VBoxContainer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPickColorName: MethodStringName1<ColorPicker, Unit, Color> =
+        MethodStringName1<ColorPicker, Unit, Color>("set_pick_color")
+
+    @JvmStatic
+    public val getPickColorName: MethodStringName0<ColorPicker, Color> =
+        MethodStringName0<ColorPicker, Color>("get_pick_color")
+
+    @JvmStatic
+    public val setDeferredModeName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_deferred_mode")
+
+    @JvmStatic
+    public val isDeferredModeName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("is_deferred_mode")
+
+    @JvmStatic
+    public val setColorModeName: MethodStringName1<ColorPicker, Unit, ColorModeType> =
+        MethodStringName1<ColorPicker, Unit, ColorModeType>("set_color_mode")
+
+    @JvmStatic
+    public val getColorModeName: MethodStringName0<ColorPicker, ColorModeType> =
+        MethodStringName0<ColorPicker, ColorModeType>("get_color_mode")
+
+    @JvmStatic
+    public val setEditAlphaName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_edit_alpha")
+
+    @JvmStatic
+    public val isEditingAlphaName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("is_editing_alpha")
+
+    @JvmStatic
+    public val setCanAddSwatchesName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_can_add_swatches")
+
+    @JvmStatic
+    public val areSwatchesEnabledName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("are_swatches_enabled")
+
+    @JvmStatic
+    public val setPresetsVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_presets_visible")
+
+    @JvmStatic
+    public val arePresetsVisibleName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("are_presets_visible")
+
+    @JvmStatic
+    public val setModesVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_modes_visible")
+
+    @JvmStatic
+    public val areModesVisibleName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("are_modes_visible")
+
+    @JvmStatic
+    public val setSamplerVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_sampler_visible")
+
+    @JvmStatic
+    public val isSamplerVisibleName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("is_sampler_visible")
+
+    @JvmStatic
+    public val setSlidersVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_sliders_visible")
+
+    @JvmStatic
+    public val areSlidersVisibleName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("are_sliders_visible")
+
+    @JvmStatic
+    public val setHexVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
+        MethodStringName1<ColorPicker, Unit, Boolean>("set_hex_visible")
+
+    @JvmStatic
+    public val isHexVisibleName: MethodStringName0<ColorPicker, Boolean> =
+        MethodStringName0<ColorPicker, Boolean>("is_hex_visible")
+
+    @JvmStatic
+    public val addPresetName: MethodStringName1<ColorPicker, Unit, Color> =
+        MethodStringName1<ColorPicker, Unit, Color>("add_preset")
+
+    @JvmStatic
+    public val erasePresetName: MethodStringName1<ColorPicker, Unit, Color> =
+        MethodStringName1<ColorPicker, Unit, Color>("erase_preset")
+
+    @JvmStatic
+    public val getPresetsName: MethodStringName0<ColorPicker, PackedColorArray> =
+        MethodStringName0<ColorPicker, PackedColorArray>("get_presets")
+
+    @JvmStatic
+    public val addRecentPresetName: MethodStringName1<ColorPicker, Unit, Color> =
+        MethodStringName1<ColorPicker, Unit, Color>("add_recent_preset")
+
+    @JvmStatic
+    public val eraseRecentPresetName: MethodStringName1<ColorPicker, Unit, Color> =
+        MethodStringName1<ColorPicker, Unit, Color>("erase_recent_preset")
+
+    @JvmStatic
+    public val getRecentPresetsName: MethodStringName0<ColorPicker, PackedColorArray> =
+        MethodStringName0<ColorPicker, PackedColorArray>("get_recent_presets")
+
+    @JvmStatic
+    public val setPickerShapeName: MethodStringName1<ColorPicker, Unit, PickerShapeType> =
+        MethodStringName1<ColorPicker, Unit, PickerShapeType>("set_picker_shape")
+
+    @JvmStatic
+    public val getPickerShapeName: MethodStringName0<ColorPicker, PickerShapeType> =
+        MethodStringName0<ColorPicker, PickerShapeType>("get_picker_shape")
+  }
 
   public object MethodBindings {
     internal val setPickColorPtr: VoidPtr =

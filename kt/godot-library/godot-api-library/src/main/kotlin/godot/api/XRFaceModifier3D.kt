@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.StringName
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
@@ -90,7 +93,23 @@ public open class XRFaceModifier3D : Node3D() {
 
   public final fun setTarget(target: String) = setTarget(target.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setFaceTrackerName: MethodStringName1<XRFaceModifier3D, Unit, StringName> =
+        MethodStringName1<XRFaceModifier3D, Unit, StringName>("set_face_tracker")
+
+    @JvmStatic
+    public val getFaceTrackerName: MethodStringName0<XRFaceModifier3D, StringName> =
+        MethodStringName0<XRFaceModifier3D, StringName>("get_face_tracker")
+
+    @JvmStatic
+    public val setTargetName: MethodStringName1<XRFaceModifier3D, Unit, NodePath> =
+        MethodStringName1<XRFaceModifier3D, Unit, NodePath>("set_target")
+
+    @JvmStatic
+    public val getTargetName: MethodStringName0<XRFaceModifier3D, NodePath> =
+        MethodStringName0<XRFaceModifier3D, NodePath>("get_target")
+  }
 
   public object MethodBindings {
     internal val setFaceTrackerPtr: VoidPtr =

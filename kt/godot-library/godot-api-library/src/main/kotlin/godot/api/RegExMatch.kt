@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.DICTIONARY
@@ -25,6 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Contains the results of a single [RegEx] match returned by [RegEx.search] and [RegEx.searchAll].
@@ -129,7 +132,35 @@ public open class RegExMatch : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getSubjectName: MethodStringName0<RegExMatch, String> =
+        MethodStringName0<RegExMatch, String>("get_subject")
+
+    @JvmStatic
+    public val getGroupCountName: MethodStringName0<RegExMatch, Int> =
+        MethodStringName0<RegExMatch, Int>("get_group_count")
+
+    @JvmStatic
+    public val getNamesName: MethodStringName0<RegExMatch, Dictionary<Any?, Any?>> =
+        MethodStringName0<RegExMatch, Dictionary<Any?, Any?>>("get_names")
+
+    @JvmStatic
+    public val getStringsName: MethodStringName0<RegExMatch, PackedStringArray> =
+        MethodStringName0<RegExMatch, PackedStringArray>("get_strings")
+
+    @JvmStatic
+    public val getStringName: MethodStringName1<RegExMatch, String, Any?> =
+        MethodStringName1<RegExMatch, String, Any?>("get_string")
+
+    @JvmStatic
+    public val getStartName: MethodStringName1<RegExMatch, Int, Any?> =
+        MethodStringName1<RegExMatch, Int, Any?>("get_start")
+
+    @JvmStatic
+    public val getEndName: MethodStringName1<RegExMatch, Int, Any?> =
+        MethodStringName1<RegExMatch, Int, Any?>("get_end")
+  }
 
   public object MethodBindings {
     internal val getSubjectPtr: VoidPtr =

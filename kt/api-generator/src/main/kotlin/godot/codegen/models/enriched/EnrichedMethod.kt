@@ -6,6 +6,7 @@ import godot.codegen.models.Method
 import godot.codegen.models.traits.CallableGeneratorTrait
 import godot.codegen.models.traits.DocumentedGenerationTrait
 import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.Nature
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase
@@ -23,7 +24,6 @@ class EnrichedMethod(model: Method) : CallableGeneratorTrait, DocumentedGenerati
             it
         }
     }
-    override val voidPtrVariableName = "${name}Ptr"
     override val arguments = model.arguments?.toEnriched() ?: listOf()
     override val isVararg = model.isVararg
     override var description = model.description
@@ -32,6 +32,18 @@ class EnrichedMethod(model: Method) : CallableGeneratorTrait, DocumentedGenerati
     val isVirtual = model.isVirtual
     val isStatic = model.isStatic
     val godotName = model.name
+
+    val canGenerate: Boolean  = run{
+        if (type.isNativeType()) {
+            return@run false
+        }
+        for (argument in arguments) {
+            if (argument.type.isNativeType()) {
+                return@run false
+            }
+        }
+        return@run true
+    }
 
     init {
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {

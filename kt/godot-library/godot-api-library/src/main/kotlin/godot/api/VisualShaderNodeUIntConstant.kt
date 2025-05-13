@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uint` in the shader language.
@@ -49,7 +52,15 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setConstantName: MethodStringName1<VisualShaderNodeUIntConstant, Unit, Int> =
+        MethodStringName1<VisualShaderNodeUIntConstant, Unit, Int>("set_constant")
+
+    @JvmStatic
+    public val getConstantName: MethodStringName0<VisualShaderNodeUIntConstant, Int> =
+        MethodStringName0<VisualShaderNodeUIntConstant, Int>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

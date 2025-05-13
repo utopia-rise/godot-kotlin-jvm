@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.OBJECT
@@ -20,6 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents a class from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
@@ -62,7 +64,20 @@ public open class JavaClass : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getJavaClassNameName: MethodStringName0<JavaClass, String> =
+        MethodStringName0<JavaClass, String>("get_java_class_name")
+
+    @JvmStatic
+    public val getJavaMethodListName:
+        MethodStringName0<JavaClass, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<JavaClass, VariantArray<Dictionary<Any?, Any?>>>("get_java_method_list")
+
+    @JvmStatic
+    public val getJavaParentClassName: MethodStringName0<JavaClass, JavaClass?> =
+        MethodStringName0<JavaClass, JavaClass?>("get_java_parent_class")
+  }
 
   public object MethodBindings {
     internal val getJavaClassNamePtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A 1D texture where the red, green, and blue color channels correspond to points on 3 unit [Curve]
@@ -116,7 +119,35 @@ public open class CurveXYZTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setWidthName: MethodStringName1<CurveXYZTexture, Unit, Int> =
+        MethodStringName1<CurveXYZTexture, Unit, Int>("set_width")
+
+    @JvmStatic
+    public val setCurveXName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
+        MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_x")
+
+    @JvmStatic
+    public val getCurveXName: MethodStringName0<CurveXYZTexture, Curve?> =
+        MethodStringName0<CurveXYZTexture, Curve?>("get_curve_x")
+
+    @JvmStatic
+    public val setCurveYName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
+        MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_y")
+
+    @JvmStatic
+    public val getCurveYName: MethodStringName0<CurveXYZTexture, Curve?> =
+        MethodStringName0<CurveXYZTexture, Curve?>("get_curve_y")
+
+    @JvmStatic
+    public val setCurveZName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
+        MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_z")
+
+    @JvmStatic
+    public val getCurveZName: MethodStringName0<CurveXYZTexture, Curve?> =
+        MethodStringName0<CurveXYZTexture, Curve?>("get_curve_z")
+  }
 
   public object MethodBindings {
     internal val setWidthPtr: VoidPtr =

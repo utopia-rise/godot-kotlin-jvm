@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is meant to be used with [AudioStreamGenerator] to play back the generated audio in
@@ -94,7 +97,32 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
     TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val pushFrameName: MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Vector2> =
+        MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Vector2>("push_frame")
+
+    @JvmStatic
+    public val canPushBufferName: MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Int> =
+        MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Int>("can_push_buffer")
+
+    @JvmStatic
+    public val pushBufferName:
+        MethodStringName1<AudioStreamGeneratorPlayback, Boolean, PackedVector2Array> =
+        MethodStringName1<AudioStreamGeneratorPlayback, Boolean, PackedVector2Array>("push_buffer")
+
+    @JvmStatic
+    public val getFramesAvailableName: MethodStringName0<AudioStreamGeneratorPlayback, Int> =
+        MethodStringName0<AudioStreamGeneratorPlayback, Int>("get_frames_available")
+
+    @JvmStatic
+    public val getSkipsName: MethodStringName0<AudioStreamGeneratorPlayback, Int> =
+        MethodStringName0<AudioStreamGeneratorPlayback, Int>("get_skips")
+
+    @JvmStatic
+    public val clearBufferName: MethodStringName0<AudioStreamGeneratorPlayback, Unit> =
+        MethodStringName0<AudioStreamGeneratorPlayback, Unit>("clear_buffer")
+  }
 
   public object MethodBindings {
     internal val pushFramePtr: VoidPtr =

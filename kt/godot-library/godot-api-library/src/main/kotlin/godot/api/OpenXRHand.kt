@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
@@ -266,7 +269,47 @@ public open class OpenXRHand : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setHandName: MethodStringName1<OpenXRHand, Unit, Hands> =
+        MethodStringName1<OpenXRHand, Unit, Hands>("set_hand")
+
+    @JvmStatic
+    public val getHandName: MethodStringName0<OpenXRHand, Hands> =
+        MethodStringName0<OpenXRHand, Hands>("get_hand")
+
+    @JvmStatic
+    public val setHandSkeletonName: MethodStringName1<OpenXRHand, Unit, NodePath> =
+        MethodStringName1<OpenXRHand, Unit, NodePath>("set_hand_skeleton")
+
+    @JvmStatic
+    public val getHandSkeletonName: MethodStringName0<OpenXRHand, NodePath> =
+        MethodStringName0<OpenXRHand, NodePath>("get_hand_skeleton")
+
+    @JvmStatic
+    public val setMotionRangeName: MethodStringName1<OpenXRHand, Unit, MotionRange> =
+        MethodStringName1<OpenXRHand, Unit, MotionRange>("set_motion_range")
+
+    @JvmStatic
+    public val getMotionRangeName: MethodStringName0<OpenXRHand, MotionRange> =
+        MethodStringName0<OpenXRHand, MotionRange>("get_motion_range")
+
+    @JvmStatic
+    public val setSkeletonRigName: MethodStringName1<OpenXRHand, Unit, SkeletonRig> =
+        MethodStringName1<OpenXRHand, Unit, SkeletonRig>("set_skeleton_rig")
+
+    @JvmStatic
+    public val getSkeletonRigName: MethodStringName0<OpenXRHand, SkeletonRig> =
+        MethodStringName0<OpenXRHand, SkeletonRig>("get_skeleton_rig")
+
+    @JvmStatic
+    public val setBoneUpdateName: MethodStringName1<OpenXRHand, Unit, BoneUpdate> =
+        MethodStringName1<OpenXRHand, Unit, BoneUpdate>("set_bone_update")
+
+    @JvmStatic
+    public val getBoneUpdateName: MethodStringName0<OpenXRHand, BoneUpdate> =
+        MethodStringName0<OpenXRHand, BoneUpdate>("get_bone_update")
+  }
 
   public object MethodBindings {
     internal val setHandPtr: VoidPtr =

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName5
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -26,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have
@@ -175,7 +179,48 @@ public open class XRNode3D : Node3D() {
 
   public final fun setPoseName(pose: String) = setPoseName(pose.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTrackerName: MethodStringName1<XRNode3D, Unit, StringName> =
+        MethodStringName1<XRNode3D, Unit, StringName>("set_tracker")
+
+    @JvmStatic
+    public val getTrackerName: MethodStringName0<XRNode3D, StringName> =
+        MethodStringName0<XRNode3D, StringName>("get_tracker")
+
+    @JvmStatic
+    public val setPoseNameName: MethodStringName1<XRNode3D, Unit, StringName> =
+        MethodStringName1<XRNode3D, Unit, StringName>("set_pose_name")
+
+    @JvmStatic
+    public val getPoseNameName: MethodStringName0<XRNode3D, StringName> =
+        MethodStringName0<XRNode3D, StringName>("get_pose_name")
+
+    @JvmStatic
+    public val setShowWhenTrackedName: MethodStringName1<XRNode3D, Unit, Boolean> =
+        MethodStringName1<XRNode3D, Unit, Boolean>("set_show_when_tracked")
+
+    @JvmStatic
+    public val getShowWhenTrackedName: MethodStringName0<XRNode3D, Boolean> =
+        MethodStringName0<XRNode3D, Boolean>("get_show_when_tracked")
+
+    @JvmStatic
+    public val getIsActiveName: MethodStringName0<XRNode3D, Boolean> =
+        MethodStringName0<XRNode3D, Boolean>("get_is_active")
+
+    @JvmStatic
+    public val getHasTrackingDataName: MethodStringName0<XRNode3D, Boolean> =
+        MethodStringName0<XRNode3D, Boolean>("get_has_tracking_data")
+
+    @JvmStatic
+    public val getPoseName: MethodStringName0<XRNode3D, XRPose?> =
+        MethodStringName0<XRNode3D, XRPose?>("get_pose")
+
+    @JvmStatic
+    public val triggerHapticPulseName:
+        MethodStringName5<XRNode3D, Unit, String, Double, Double, Double, Double> =
+        MethodStringName5<XRNode3D, Unit, String, Double, Double, Double, Double>("trigger_haptic_pulse")
+  }
 
   public object MethodBindings {
     internal val setTrackerPtr: VoidPtr =

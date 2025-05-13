@@ -14,6 +14,19 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName10
+import godot.core.MethodStringName11
+import godot.core.MethodStringName12
+import godot.core.MethodStringName13
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
+import godot.core.MethodStringName7
+import godot.core.MethodStringName8
 import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
 import godot.core.RID
@@ -50,6 +63,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children
@@ -1648,6 +1662,395 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public companion object {
+    @JvmStatic
+    public val getCanvasItemName: MethodStringName0<CanvasItem, RID> =
+        MethodStringName0<CanvasItem, RID>("get_canvas_item")
+
+    @JvmStatic
+    public val setVisibleName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_visible")
+
+    @JvmStatic
+    public val isVisibleName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_visible")
+
+    @JvmStatic
+    public val isVisibleInTreeName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_visible_in_tree")
+
+    @JvmStatic
+    public val showName: MethodStringName0<CanvasItem, Unit> =
+        MethodStringName0<CanvasItem, Unit>("show")
+
+    @JvmStatic
+    public val hideName: MethodStringName0<CanvasItem, Unit> =
+        MethodStringName0<CanvasItem, Unit>("hide")
+
+    @JvmStatic
+    public val queueRedrawName: MethodStringName0<CanvasItem, Unit> =
+        MethodStringName0<CanvasItem, Unit>("queue_redraw")
+
+    @JvmStatic
+    public val moveToFrontName: MethodStringName0<CanvasItem, Unit> =
+        MethodStringName0<CanvasItem, Unit>("move_to_front")
+
+    @JvmStatic
+    public val setAsTopLevelName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_as_top_level")
+
+    @JvmStatic
+    public val isSetAsTopLevelName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_set_as_top_level")
+
+    @JvmStatic
+    public val setLightMaskName: MethodStringName1<CanvasItem, Unit, Int> =
+        MethodStringName1<CanvasItem, Unit, Int>("set_light_mask")
+
+    @JvmStatic
+    public val getLightMaskName: MethodStringName0<CanvasItem, Int> =
+        MethodStringName0<CanvasItem, Int>("get_light_mask")
+
+    @JvmStatic
+    public val setModulateName: MethodStringName1<CanvasItem, Unit, Color> =
+        MethodStringName1<CanvasItem, Unit, Color>("set_modulate")
+
+    @JvmStatic
+    public val getModulateName: MethodStringName0<CanvasItem, Color> =
+        MethodStringName0<CanvasItem, Color>("get_modulate")
+
+    @JvmStatic
+    public val setSelfModulateName: MethodStringName1<CanvasItem, Unit, Color> =
+        MethodStringName1<CanvasItem, Unit, Color>("set_self_modulate")
+
+    @JvmStatic
+    public val getSelfModulateName: MethodStringName0<CanvasItem, Color> =
+        MethodStringName0<CanvasItem, Color>("get_self_modulate")
+
+    @JvmStatic
+    public val setZIndexName: MethodStringName1<CanvasItem, Unit, Int> =
+        MethodStringName1<CanvasItem, Unit, Int>("set_z_index")
+
+    @JvmStatic
+    public val getZIndexName: MethodStringName0<CanvasItem, Int> =
+        MethodStringName0<CanvasItem, Int>("get_z_index")
+
+    @JvmStatic
+    public val setZAsRelativeName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_z_as_relative")
+
+    @JvmStatic
+    public val isZRelativeName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_z_relative")
+
+    @JvmStatic
+    public val setYSortEnabledName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_y_sort_enabled")
+
+    @JvmStatic
+    public val isYSortEnabledName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_y_sort_enabled")
+
+    @JvmStatic
+    public val setDrawBehindParentName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_draw_behind_parent")
+
+    @JvmStatic
+    public val isDrawBehindParentEnabledName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_draw_behind_parent_enabled")
+
+    @JvmStatic
+    public val drawLineName:
+        MethodStringName5<CanvasItem, Unit, Vector2, Vector2, Color, Float, Boolean> =
+        MethodStringName5<CanvasItem, Unit, Vector2, Vector2, Color, Float, Boolean>("draw_line")
+
+    @JvmStatic
+    public val drawDashedLineName:
+        MethodStringName7<CanvasItem, Unit, Vector2, Vector2, Color, Float, Float, Boolean, Boolean>
+        =
+        MethodStringName7<CanvasItem, Unit, Vector2, Vector2, Color, Float, Float, Boolean, Boolean>("draw_dashed_line")
+
+    @JvmStatic
+    public val drawPolylineName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, Color, Float, Boolean> =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, Color, Float, Boolean>("draw_polyline")
+
+    @JvmStatic
+    public val drawPolylineColorsName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, Float, Boolean> =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, Float, Boolean>("draw_polyline_colors")
+
+    @JvmStatic
+    public val drawArcName:
+        MethodStringName8<CanvasItem, Unit, Vector2, Float, Float, Float, Int, Color, Float, Boolean>
+        =
+        MethodStringName8<CanvasItem, Unit, Vector2, Float, Float, Float, Int, Color, Float, Boolean>("draw_arc")
+
+    @JvmStatic
+    public val drawMultilineName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, Color, Float, Boolean> =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, Color, Float, Boolean>("draw_multiline")
+
+    @JvmStatic
+    public val drawMultilineColorsName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, Float, Boolean> =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, Float, Boolean>("draw_multiline_colors")
+
+    @JvmStatic
+    public val drawRectName:
+        MethodStringName5<CanvasItem, Unit, Rect2, Color, Boolean, Float, Boolean> =
+        MethodStringName5<CanvasItem, Unit, Rect2, Color, Boolean, Float, Boolean>("draw_rect")
+
+    @JvmStatic
+    public val drawCircleName:
+        MethodStringName6<CanvasItem, Unit, Vector2, Float, Color, Boolean, Float, Boolean> =
+        MethodStringName6<CanvasItem, Unit, Vector2, Float, Color, Boolean, Float, Boolean>("draw_circle")
+
+    @JvmStatic
+    public val drawTextureName: MethodStringName3<CanvasItem, Unit, Texture2D?, Vector2, Color> =
+        MethodStringName3<CanvasItem, Unit, Texture2D?, Vector2, Color>("draw_texture")
+
+    @JvmStatic
+    public val drawTextureRectName:
+        MethodStringName5<CanvasItem, Unit, Texture2D?, Rect2, Boolean, Color, Boolean> =
+        MethodStringName5<CanvasItem, Unit, Texture2D?, Rect2, Boolean, Color, Boolean>("draw_texture_rect")
+
+    @JvmStatic
+    public val drawTextureRectRegionName:
+        MethodStringName6<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Boolean, Boolean> =
+        MethodStringName6<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Boolean, Boolean>("draw_texture_rect_region")
+
+    @JvmStatic
+    public val drawMsdfTextureRectRegionName:
+        MethodStringName7<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Double, Double, Double>
+        =
+        MethodStringName7<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Double, Double, Double>("draw_msdf_texture_rect_region")
+
+    @JvmStatic
+    public val drawLcdTextureRectRegionName:
+        MethodStringName4<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color> =
+        MethodStringName4<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color>("draw_lcd_texture_rect_region")
+
+    @JvmStatic
+    public val drawStyleBoxName: MethodStringName2<CanvasItem, Unit, StyleBox?, Rect2> =
+        MethodStringName2<CanvasItem, Unit, StyleBox?, Rect2>("draw_style_box")
+
+    @JvmStatic
+    public val drawPrimitiveName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, PackedVector2Array, Texture2D?>
+        =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, PackedVector2Array, Texture2D?>("draw_primitive")
+
+    @JvmStatic
+    public val drawPolygonName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, PackedVector2Array, Texture2D?>
+        =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, PackedVector2Array, Texture2D?>("draw_polygon")
+
+    @JvmStatic
+    public val drawColoredPolygonName:
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, Color, PackedVector2Array, Texture2D?>
+        =
+        MethodStringName4<CanvasItem, Unit, PackedVector2Array, Color, PackedVector2Array, Texture2D?>("draw_colored_polygon")
+
+    @JvmStatic
+    public val drawStringName:
+        MethodStringName10<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        =
+        MethodStringName10<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_string")
+
+    @JvmStatic
+    public val drawMultilineStringName:
+        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        =
+        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_multiline_string")
+
+    @JvmStatic
+    public val drawStringOutlineName:
+        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        =
+        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_string_outline")
+
+    @JvmStatic
+    public val drawMultilineStringOutlineName:
+        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        =
+        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_multiline_string_outline")
+
+    @JvmStatic
+    public val drawCharName: MethodStringName5<CanvasItem, Unit, Font?, Vector2, String, Int, Color>
+        = MethodStringName5<CanvasItem, Unit, Font?, Vector2, String, Int, Color>("draw_char")
+
+    @JvmStatic
+    public val drawCharOutlineName:
+        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color> =
+        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color>("draw_char_outline")
+
+    @JvmStatic
+    public val drawMeshName:
+        MethodStringName4<CanvasItem, Unit, Mesh?, Texture2D?, Transform2D, Color> =
+        MethodStringName4<CanvasItem, Unit, Mesh?, Texture2D?, Transform2D, Color>("draw_mesh")
+
+    @JvmStatic
+    public val drawMultimeshName: MethodStringName2<CanvasItem, Unit, MultiMesh?, Texture2D?> =
+        MethodStringName2<CanvasItem, Unit, MultiMesh?, Texture2D?>("draw_multimesh")
+
+    @JvmStatic
+    public val drawSetTransformName: MethodStringName3<CanvasItem, Unit, Vector2, Float, Vector2> =
+        MethodStringName3<CanvasItem, Unit, Vector2, Float, Vector2>("draw_set_transform")
+
+    @JvmStatic
+    public val drawSetTransformMatrixName: MethodStringName1<CanvasItem, Unit, Transform2D> =
+        MethodStringName1<CanvasItem, Unit, Transform2D>("draw_set_transform_matrix")
+
+    @JvmStatic
+    public val drawAnimationSliceName:
+        MethodStringName4<CanvasItem, Unit, Double, Double, Double, Double> =
+        MethodStringName4<CanvasItem, Unit, Double, Double, Double, Double>("draw_animation_slice")
+
+    @JvmStatic
+    public val drawEndAnimationName: MethodStringName0<CanvasItem, Unit> =
+        MethodStringName0<CanvasItem, Unit>("draw_end_animation")
+
+    @JvmStatic
+    public val getTransformName: MethodStringName0<CanvasItem, Transform2D> =
+        MethodStringName0<CanvasItem, Transform2D>("get_transform")
+
+    @JvmStatic
+    public val getGlobalTransformName: MethodStringName0<CanvasItem, Transform2D> =
+        MethodStringName0<CanvasItem, Transform2D>("get_global_transform")
+
+    @JvmStatic
+    public val getGlobalTransformWithCanvasName: MethodStringName0<CanvasItem, Transform2D> =
+        MethodStringName0<CanvasItem, Transform2D>("get_global_transform_with_canvas")
+
+    @JvmStatic
+    public val getViewportTransformName: MethodStringName0<CanvasItem, Transform2D> =
+        MethodStringName0<CanvasItem, Transform2D>("get_viewport_transform")
+
+    @JvmStatic
+    public val getViewportRectName: MethodStringName0<CanvasItem, Rect2> =
+        MethodStringName0<CanvasItem, Rect2>("get_viewport_rect")
+
+    @JvmStatic
+    public val getCanvasTransformName: MethodStringName0<CanvasItem, Transform2D> =
+        MethodStringName0<CanvasItem, Transform2D>("get_canvas_transform")
+
+    @JvmStatic
+    public val getScreenTransformName: MethodStringName0<CanvasItem, Transform2D> =
+        MethodStringName0<CanvasItem, Transform2D>("get_screen_transform")
+
+    @JvmStatic
+    public val getLocalMousePositionName: MethodStringName0<CanvasItem, Vector2> =
+        MethodStringName0<CanvasItem, Vector2>("get_local_mouse_position")
+
+    @JvmStatic
+    public val getGlobalMousePositionName: MethodStringName0<CanvasItem, Vector2> =
+        MethodStringName0<CanvasItem, Vector2>("get_global_mouse_position")
+
+    @JvmStatic
+    public val getCanvasName: MethodStringName0<CanvasItem, RID> =
+        MethodStringName0<CanvasItem, RID>("get_canvas")
+
+    @JvmStatic
+    public val getCanvasLayerNodeName: MethodStringName0<CanvasItem, CanvasLayer?> =
+        MethodStringName0<CanvasItem, CanvasLayer?>("get_canvas_layer_node")
+
+    @JvmStatic
+    public val getWorld2dName: MethodStringName0<CanvasItem, World2D?> =
+        MethodStringName0<CanvasItem, World2D?>("get_world_2d")
+
+    @JvmStatic
+    public val setMaterialName: MethodStringName1<CanvasItem, Unit, Material?> =
+        MethodStringName1<CanvasItem, Unit, Material?>("set_material")
+
+    @JvmStatic
+    public val getMaterialName: MethodStringName0<CanvasItem, Material?> =
+        MethodStringName0<CanvasItem, Material?>("get_material")
+
+    @JvmStatic
+    public val setInstanceShaderParameterName: MethodStringName2<CanvasItem, Unit, StringName, Any?>
+        = MethodStringName2<CanvasItem, Unit, StringName, Any?>("set_instance_shader_parameter")
+
+    @JvmStatic
+    public val getInstanceShaderParameterName: MethodStringName1<CanvasItem, Any?, StringName> =
+        MethodStringName1<CanvasItem, Any?, StringName>("get_instance_shader_parameter")
+
+    @JvmStatic
+    public val setUseParentMaterialName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_use_parent_material")
+
+    @JvmStatic
+    public val getUseParentMaterialName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("get_use_parent_material")
+
+    @JvmStatic
+    public val setNotifyLocalTransformName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_notify_local_transform")
+
+    @JvmStatic
+    public val isLocalTransformNotificationEnabledName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_local_transform_notification_enabled")
+
+    @JvmStatic
+    public val setNotifyTransformName: MethodStringName1<CanvasItem, Unit, Boolean> =
+        MethodStringName1<CanvasItem, Unit, Boolean>("set_notify_transform")
+
+    @JvmStatic
+    public val isTransformNotificationEnabledName: MethodStringName0<CanvasItem, Boolean> =
+        MethodStringName0<CanvasItem, Boolean>("is_transform_notification_enabled")
+
+    @JvmStatic
+    public val forceUpdateTransformName: MethodStringName0<CanvasItem, Unit> =
+        MethodStringName0<CanvasItem, Unit>("force_update_transform")
+
+    @JvmStatic
+    public val makeCanvasPositionLocalName: MethodStringName1<CanvasItem, Vector2, Vector2> =
+        MethodStringName1<CanvasItem, Vector2, Vector2>("make_canvas_position_local")
+
+    @JvmStatic
+    public val makeInputLocalName: MethodStringName1<CanvasItem, InputEvent?, InputEvent?> =
+        MethodStringName1<CanvasItem, InputEvent?, InputEvent?>("make_input_local")
+
+    @JvmStatic
+    public val setVisibilityLayerName: MethodStringName1<CanvasItem, Unit, Long> =
+        MethodStringName1<CanvasItem, Unit, Long>("set_visibility_layer")
+
+    @JvmStatic
+    public val getVisibilityLayerName: MethodStringName0<CanvasItem, Long> =
+        MethodStringName0<CanvasItem, Long>("get_visibility_layer")
+
+    @JvmStatic
+    public val setVisibilityLayerBitName: MethodStringName2<CanvasItem, Unit, Long, Boolean> =
+        MethodStringName2<CanvasItem, Unit, Long, Boolean>("set_visibility_layer_bit")
+
+    @JvmStatic
+    public val getVisibilityLayerBitName: MethodStringName1<CanvasItem, Boolean, Long> =
+        MethodStringName1<CanvasItem, Boolean, Long>("get_visibility_layer_bit")
+
+    @JvmStatic
+    public val setTextureFilterName: MethodStringName1<CanvasItem, Unit, TextureFilter> =
+        MethodStringName1<CanvasItem, Unit, TextureFilter>("set_texture_filter")
+
+    @JvmStatic
+    public val getTextureFilterName: MethodStringName0<CanvasItem, TextureFilter> =
+        MethodStringName0<CanvasItem, TextureFilter>("get_texture_filter")
+
+    @JvmStatic
+    public val setTextureRepeatName: MethodStringName1<CanvasItem, Unit, TextureRepeat> =
+        MethodStringName1<CanvasItem, Unit, TextureRepeat>("set_texture_repeat")
+
+    @JvmStatic
+    public val getTextureRepeatName: MethodStringName0<CanvasItem, TextureRepeat> =
+        MethodStringName0<CanvasItem, TextureRepeat>("get_texture_repeat")
+
+    @JvmStatic
+    public val setClipChildrenModeName: MethodStringName1<CanvasItem, Unit, ClipChildrenMode> =
+        MethodStringName1<CanvasItem, Unit, ClipChildrenMode>("set_clip_children_mode")
+
+    @JvmStatic
+    public val getClipChildrenModeName: MethodStringName0<CanvasItem, ClipChildrenMode> =
+        MethodStringName0<CanvasItem, ClipChildrenMode>("get_clip_children_mode")
+
     /**
      * The [CanvasItem]'s global transform has changed. This notification is only received if
      * enabled by [setNotifyTransform].

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a torus [PrimitiveMesh].
@@ -118,7 +121,39 @@ public open class TorusMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setInnerRadiusName: MethodStringName1<TorusMesh, Unit, Float> =
+        MethodStringName1<TorusMesh, Unit, Float>("set_inner_radius")
+
+    @JvmStatic
+    public val getInnerRadiusName: MethodStringName0<TorusMesh, Float> =
+        MethodStringName0<TorusMesh, Float>("get_inner_radius")
+
+    @JvmStatic
+    public val setOuterRadiusName: MethodStringName1<TorusMesh, Unit, Float> =
+        MethodStringName1<TorusMesh, Unit, Float>("set_outer_radius")
+
+    @JvmStatic
+    public val getOuterRadiusName: MethodStringName0<TorusMesh, Float> =
+        MethodStringName0<TorusMesh, Float>("get_outer_radius")
+
+    @JvmStatic
+    public val setRingsName: MethodStringName1<TorusMesh, Unit, Int> =
+        MethodStringName1<TorusMesh, Unit, Int>("set_rings")
+
+    @JvmStatic
+    public val getRingsName: MethodStringName0<TorusMesh, Int> =
+        MethodStringName0<TorusMesh, Int>("get_rings")
+
+    @JvmStatic
+    public val setRingSegmentsName: MethodStringName1<TorusMesh, Unit, Int> =
+        MethodStringName1<TorusMesh, Unit, Int>("set_ring_segments")
+
+    @JvmStatic
+    public val getRingSegmentsName: MethodStringName0<TorusMesh, Int> =
+        MethodStringName0<TorusMesh, Int>("get_ring_segments")
+  }
 
   public object MethodBindings {
     internal val setInnerRadiusPtr: VoidPtr =

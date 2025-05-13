@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -27,6 +30,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Light3D is the *abstract* base class for light nodes. As it can't be instantiated, it shouldn't
@@ -788,7 +792,131 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEditorOnlyName: MethodStringName1<Light3D, Unit, Boolean> =
+        MethodStringName1<Light3D, Unit, Boolean>("set_editor_only")
+
+    @JvmStatic
+    public val isEditorOnlyName: MethodStringName0<Light3D, Boolean> =
+        MethodStringName0<Light3D, Boolean>("is_editor_only")
+
+    @JvmStatic
+    public val setParamName: MethodStringName2<Light3D, Unit, Param, Float> =
+        MethodStringName2<Light3D, Unit, Param, Float>("set_param")
+
+    @JvmStatic
+    public val getParamName: MethodStringName1<Light3D, Float, Param> =
+        MethodStringName1<Light3D, Float, Param>("get_param")
+
+    @JvmStatic
+    public val setShadowName: MethodStringName1<Light3D, Unit, Boolean> =
+        MethodStringName1<Light3D, Unit, Boolean>("set_shadow")
+
+    @JvmStatic
+    public val hasShadowName: MethodStringName0<Light3D, Boolean> =
+        MethodStringName0<Light3D, Boolean>("has_shadow")
+
+    @JvmStatic
+    public val setNegativeName: MethodStringName1<Light3D, Unit, Boolean> =
+        MethodStringName1<Light3D, Unit, Boolean>("set_negative")
+
+    @JvmStatic
+    public val isNegativeName: MethodStringName0<Light3D, Boolean> =
+        MethodStringName0<Light3D, Boolean>("is_negative")
+
+    @JvmStatic
+    public val setCullMaskName: MethodStringName1<Light3D, Unit, Long> =
+        MethodStringName1<Light3D, Unit, Long>("set_cull_mask")
+
+    @JvmStatic
+    public val getCullMaskName: MethodStringName0<Light3D, Long> =
+        MethodStringName0<Light3D, Long>("get_cull_mask")
+
+    @JvmStatic
+    public val setEnableDistanceFadeName: MethodStringName1<Light3D, Unit, Boolean> =
+        MethodStringName1<Light3D, Unit, Boolean>("set_enable_distance_fade")
+
+    @JvmStatic
+    public val isDistanceFadeEnabledName: MethodStringName0<Light3D, Boolean> =
+        MethodStringName0<Light3D, Boolean>("is_distance_fade_enabled")
+
+    @JvmStatic
+    public val setDistanceFadeBeginName: MethodStringName1<Light3D, Unit, Float> =
+        MethodStringName1<Light3D, Unit, Float>("set_distance_fade_begin")
+
+    @JvmStatic
+    public val getDistanceFadeBeginName: MethodStringName0<Light3D, Float> =
+        MethodStringName0<Light3D, Float>("get_distance_fade_begin")
+
+    @JvmStatic
+    public val setDistanceFadeShadowName: MethodStringName1<Light3D, Unit, Float> =
+        MethodStringName1<Light3D, Unit, Float>("set_distance_fade_shadow")
+
+    @JvmStatic
+    public val getDistanceFadeShadowName: MethodStringName0<Light3D, Float> =
+        MethodStringName0<Light3D, Float>("get_distance_fade_shadow")
+
+    @JvmStatic
+    public val setDistanceFadeLengthName: MethodStringName1<Light3D, Unit, Float> =
+        MethodStringName1<Light3D, Unit, Float>("set_distance_fade_length")
+
+    @JvmStatic
+    public val getDistanceFadeLengthName: MethodStringName0<Light3D, Float> =
+        MethodStringName0<Light3D, Float>("get_distance_fade_length")
+
+    @JvmStatic
+    public val setColorName: MethodStringName1<Light3D, Unit, Color> =
+        MethodStringName1<Light3D, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val getColorName: MethodStringName0<Light3D, Color> =
+        MethodStringName0<Light3D, Color>("get_color")
+
+    @JvmStatic
+    public val setShadowReverseCullFaceName: MethodStringName1<Light3D, Unit, Boolean> =
+        MethodStringName1<Light3D, Unit, Boolean>("set_shadow_reverse_cull_face")
+
+    @JvmStatic
+    public val getShadowReverseCullFaceName: MethodStringName0<Light3D, Boolean> =
+        MethodStringName0<Light3D, Boolean>("get_shadow_reverse_cull_face")
+
+    @JvmStatic
+    public val setShadowCasterMaskName: MethodStringName1<Light3D, Unit, Long> =
+        MethodStringName1<Light3D, Unit, Long>("set_shadow_caster_mask")
+
+    @JvmStatic
+    public val getShadowCasterMaskName: MethodStringName0<Light3D, Long> =
+        MethodStringName0<Light3D, Long>("get_shadow_caster_mask")
+
+    @JvmStatic
+    public val setBakeModeName: MethodStringName1<Light3D, Unit, BakeMode> =
+        MethodStringName1<Light3D, Unit, BakeMode>("set_bake_mode")
+
+    @JvmStatic
+    public val getBakeModeName: MethodStringName0<Light3D, BakeMode> =
+        MethodStringName0<Light3D, BakeMode>("get_bake_mode")
+
+    @JvmStatic
+    public val setProjectorName: MethodStringName1<Light3D, Unit, Texture2D?> =
+        MethodStringName1<Light3D, Unit, Texture2D?>("set_projector")
+
+    @JvmStatic
+    public val getProjectorName: MethodStringName0<Light3D, Texture2D?> =
+        MethodStringName0<Light3D, Texture2D?>("get_projector")
+
+    @JvmStatic
+    public val setTemperatureName: MethodStringName1<Light3D, Unit, Float> =
+        MethodStringName1<Light3D, Unit, Float>("set_temperature")
+
+    @JvmStatic
+    public val getTemperatureName: MethodStringName0<Light3D, Float> =
+        MethodStringName0<Light3D, Float>("get_temperature")
+
+    @JvmStatic
+    public val getCorrelatedColorName: MethodStringName0<Light3D, Color> =
+        MethodStringName0<Light3D, Color>("get_correlated_color")
+  }
 
   public object MethodBindings {
     internal val setEditorOnlyPtr: VoidPtr =

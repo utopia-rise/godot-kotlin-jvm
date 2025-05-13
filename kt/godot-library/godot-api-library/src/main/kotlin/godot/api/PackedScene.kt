@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A simplified interface to a scene file. Provides access to operations and checks that can be
@@ -187,7 +190,23 @@ public open class PackedScene : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val packName: MethodStringName1<PackedScene, Error, Node?> =
+        MethodStringName1<PackedScene, Error, Node?>("pack")
+
+    @JvmStatic
+    public val instantiateName: MethodStringName1<PackedScene, Node?, GenEditState> =
+        MethodStringName1<PackedScene, Node?, GenEditState>("instantiate")
+
+    @JvmStatic
+    public val canInstantiateName: MethodStringName0<PackedScene, Boolean> =
+        MethodStringName0<PackedScene, Boolean>("can_instantiate")
+
+    @JvmStatic
+    public val getStateName: MethodStringName0<PackedScene, SceneState?> =
+        MethodStringName0<PackedScene, SceneState?>("get_state")
+  }
 
   public object MethodBindings {
     internal val packPtr: VoidPtr = TypeManager.getMethodBindPtr("PackedScene", "pack", 2584678054)

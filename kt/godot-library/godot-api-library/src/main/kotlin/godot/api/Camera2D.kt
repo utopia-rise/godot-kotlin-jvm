@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -28,6 +31,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node.
@@ -826,7 +830,203 @@ public open class Camera2D : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOffsetName: MethodStringName1<Camera2D, Unit, Vector2> =
+        MethodStringName1<Camera2D, Unit, Vector2>("set_offset")
+
+    @JvmStatic
+    public val getOffsetName: MethodStringName0<Camera2D, Vector2> =
+        MethodStringName0<Camera2D, Vector2>("get_offset")
+
+    @JvmStatic
+    public val setAnchorModeName: MethodStringName1<Camera2D, Unit, AnchorMode> =
+        MethodStringName1<Camera2D, Unit, AnchorMode>("set_anchor_mode")
+
+    @JvmStatic
+    public val getAnchorModeName: MethodStringName0<Camera2D, AnchorMode> =
+        MethodStringName0<Camera2D, AnchorMode>("get_anchor_mode")
+
+    @JvmStatic
+    public val setIgnoreRotationName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_ignore_rotation")
+
+    @JvmStatic
+    public val isIgnoringRotationName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_ignoring_rotation")
+
+    @JvmStatic
+    public val setProcessCallbackName: MethodStringName1<Camera2D, Unit, Camera2DProcessCallback> =
+        MethodStringName1<Camera2D, Unit, Camera2DProcessCallback>("set_process_callback")
+
+    @JvmStatic
+    public val getProcessCallbackName: MethodStringName0<Camera2D, Camera2DProcessCallback> =
+        MethodStringName0<Camera2D, Camera2DProcessCallback>("get_process_callback")
+
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val isEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_enabled")
+
+    @JvmStatic
+    public val makeCurrentName: MethodStringName0<Camera2D, Unit> =
+        MethodStringName0<Camera2D, Unit>("make_current")
+
+    @JvmStatic
+    public val isCurrentName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_current")
+
+    @JvmStatic
+    public val setLimitName: MethodStringName2<Camera2D, Unit, Side, Int> =
+        MethodStringName2<Camera2D, Unit, Side, Int>("set_limit")
+
+    @JvmStatic
+    public val getLimitName: MethodStringName1<Camera2D, Int, Side> =
+        MethodStringName1<Camera2D, Int, Side>("get_limit")
+
+    @JvmStatic
+    public val setLimitSmoothingEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_limit_smoothing_enabled")
+
+    @JvmStatic
+    public val isLimitSmoothingEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_limit_smoothing_enabled")
+
+    @JvmStatic
+    public val setDragVerticalEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_drag_vertical_enabled")
+
+    @JvmStatic
+    public val isDragVerticalEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_drag_vertical_enabled")
+
+    @JvmStatic
+    public val setDragHorizontalEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_drag_horizontal_enabled")
+
+    @JvmStatic
+    public val isDragHorizontalEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_drag_horizontal_enabled")
+
+    @JvmStatic
+    public val setDragVerticalOffsetName: MethodStringName1<Camera2D, Unit, Float> =
+        MethodStringName1<Camera2D, Unit, Float>("set_drag_vertical_offset")
+
+    @JvmStatic
+    public val getDragVerticalOffsetName: MethodStringName0<Camera2D, Float> =
+        MethodStringName0<Camera2D, Float>("get_drag_vertical_offset")
+
+    @JvmStatic
+    public val setDragHorizontalOffsetName: MethodStringName1<Camera2D, Unit, Float> =
+        MethodStringName1<Camera2D, Unit, Float>("set_drag_horizontal_offset")
+
+    @JvmStatic
+    public val getDragHorizontalOffsetName: MethodStringName0<Camera2D, Float> =
+        MethodStringName0<Camera2D, Float>("get_drag_horizontal_offset")
+
+    @JvmStatic
+    public val setDragMarginName: MethodStringName2<Camera2D, Unit, Side, Float> =
+        MethodStringName2<Camera2D, Unit, Side, Float>("set_drag_margin")
+
+    @JvmStatic
+    public val getDragMarginName: MethodStringName1<Camera2D, Float, Side> =
+        MethodStringName1<Camera2D, Float, Side>("get_drag_margin")
+
+    @JvmStatic
+    public val getTargetPositionName: MethodStringName0<Camera2D, Vector2> =
+        MethodStringName0<Camera2D, Vector2>("get_target_position")
+
+    @JvmStatic
+    public val getScreenCenterPositionName: MethodStringName0<Camera2D, Vector2> =
+        MethodStringName0<Camera2D, Vector2>("get_screen_center_position")
+
+    @JvmStatic
+    public val setZoomName: MethodStringName1<Camera2D, Unit, Vector2> =
+        MethodStringName1<Camera2D, Unit, Vector2>("set_zoom")
+
+    @JvmStatic
+    public val getZoomName: MethodStringName0<Camera2D, Vector2> =
+        MethodStringName0<Camera2D, Vector2>("get_zoom")
+
+    @JvmStatic
+    public val setCustomViewportName: MethodStringName1<Camera2D, Unit, Node?> =
+        MethodStringName1<Camera2D, Unit, Node?>("set_custom_viewport")
+
+    @JvmStatic
+    public val getCustomViewportName: MethodStringName0<Camera2D, Node?> =
+        MethodStringName0<Camera2D, Node?>("get_custom_viewport")
+
+    @JvmStatic
+    public val setPositionSmoothingSpeedName: MethodStringName1<Camera2D, Unit, Float> =
+        MethodStringName1<Camera2D, Unit, Float>("set_position_smoothing_speed")
+
+    @JvmStatic
+    public val getPositionSmoothingSpeedName: MethodStringName0<Camera2D, Float> =
+        MethodStringName0<Camera2D, Float>("get_position_smoothing_speed")
+
+    @JvmStatic
+    public val setPositionSmoothingEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_position_smoothing_enabled")
+
+    @JvmStatic
+    public val isPositionSmoothingEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_position_smoothing_enabled")
+
+    @JvmStatic
+    public val setRotationSmoothingEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_rotation_smoothing_enabled")
+
+    @JvmStatic
+    public val isRotationSmoothingEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_rotation_smoothing_enabled")
+
+    @JvmStatic
+    public val setRotationSmoothingSpeedName: MethodStringName1<Camera2D, Unit, Float> =
+        MethodStringName1<Camera2D, Unit, Float>("set_rotation_smoothing_speed")
+
+    @JvmStatic
+    public val getRotationSmoothingSpeedName: MethodStringName0<Camera2D, Float> =
+        MethodStringName0<Camera2D, Float>("get_rotation_smoothing_speed")
+
+    @JvmStatic
+    public val forceUpdateScrollName: MethodStringName0<Camera2D, Unit> =
+        MethodStringName0<Camera2D, Unit>("force_update_scroll")
+
+    @JvmStatic
+    public val resetSmoothingName: MethodStringName0<Camera2D, Unit> =
+        MethodStringName0<Camera2D, Unit>("reset_smoothing")
+
+    @JvmStatic
+    public val alignName: MethodStringName0<Camera2D, Unit> =
+        MethodStringName0<Camera2D, Unit>("align")
+
+    @JvmStatic
+    public val setScreenDrawingEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_screen_drawing_enabled")
+
+    @JvmStatic
+    public val isScreenDrawingEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_screen_drawing_enabled")
+
+    @JvmStatic
+    public val setLimitDrawingEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_limit_drawing_enabled")
+
+    @JvmStatic
+    public val isLimitDrawingEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_limit_drawing_enabled")
+
+    @JvmStatic
+    public val setMarginDrawingEnabledName: MethodStringName1<Camera2D, Unit, Boolean> =
+        MethodStringName1<Camera2D, Unit, Boolean>("set_margin_drawing_enabled")
+
+    @JvmStatic
+    public val isMarginDrawingEnabledName: MethodStringName0<Camera2D, Boolean> =
+        MethodStringName0<Camera2D, Boolean>("is_margin_drawing_enabled")
+  }
 
   public object MethodBindings {
     internal val setOffsetPtr: VoidPtr =

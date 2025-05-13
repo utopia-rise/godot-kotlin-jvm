@@ -14,6 +14,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DICTIONARY
@@ -27,6 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * By adjusting various properties of this resource, you can change the colors of strings, comments,
@@ -439,7 +444,123 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addKeywordColorName: MethodStringName2<CodeHighlighter, Unit, String, Color> =
+        MethodStringName2<CodeHighlighter, Unit, String, Color>("add_keyword_color")
+
+    @JvmStatic
+    public val removeKeywordColorName: MethodStringName1<CodeHighlighter, Unit, String> =
+        MethodStringName1<CodeHighlighter, Unit, String>("remove_keyword_color")
+
+    @JvmStatic
+    public val hasKeywordColorName: MethodStringName1<CodeHighlighter, Boolean, String> =
+        MethodStringName1<CodeHighlighter, Boolean, String>("has_keyword_color")
+
+    @JvmStatic
+    public val getKeywordColorName: MethodStringName1<CodeHighlighter, Color, String> =
+        MethodStringName1<CodeHighlighter, Color, String>("get_keyword_color")
+
+    @JvmStatic
+    public val setKeywordColorsName:
+        MethodStringName1<CodeHighlighter, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<CodeHighlighter, Unit, Dictionary<Any?, Any?>>("set_keyword_colors")
+
+    @JvmStatic
+    public val clearKeywordColorsName: MethodStringName0<CodeHighlighter, Unit> =
+        MethodStringName0<CodeHighlighter, Unit>("clear_keyword_colors")
+
+    @JvmStatic
+    public val getKeywordColorsName: MethodStringName0<CodeHighlighter, Dictionary<Any?, Any?>> =
+        MethodStringName0<CodeHighlighter, Dictionary<Any?, Any?>>("get_keyword_colors")
+
+    @JvmStatic
+    public val addMemberKeywordColorName: MethodStringName2<CodeHighlighter, Unit, String, Color> =
+        MethodStringName2<CodeHighlighter, Unit, String, Color>("add_member_keyword_color")
+
+    @JvmStatic
+    public val removeMemberKeywordColorName: MethodStringName1<CodeHighlighter, Unit, String> =
+        MethodStringName1<CodeHighlighter, Unit, String>("remove_member_keyword_color")
+
+    @JvmStatic
+    public val hasMemberKeywordColorName: MethodStringName1<CodeHighlighter, Boolean, String> =
+        MethodStringName1<CodeHighlighter, Boolean, String>("has_member_keyword_color")
+
+    @JvmStatic
+    public val getMemberKeywordColorName: MethodStringName1<CodeHighlighter, Color, String> =
+        MethodStringName1<CodeHighlighter, Color, String>("get_member_keyword_color")
+
+    @JvmStatic
+    public val setMemberKeywordColorsName:
+        MethodStringName1<CodeHighlighter, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<CodeHighlighter, Unit, Dictionary<Any?, Any?>>("set_member_keyword_colors")
+
+    @JvmStatic
+    public val clearMemberKeywordColorsName: MethodStringName0<CodeHighlighter, Unit> =
+        MethodStringName0<CodeHighlighter, Unit>("clear_member_keyword_colors")
+
+    @JvmStatic
+    public val getMemberKeywordColorsName:
+        MethodStringName0<CodeHighlighter, Dictionary<Any?, Any?>> =
+        MethodStringName0<CodeHighlighter, Dictionary<Any?, Any?>>("get_member_keyword_colors")
+
+    @JvmStatic
+    public val addColorRegionName:
+        MethodStringName4<CodeHighlighter, Unit, String, String, Color, Boolean> =
+        MethodStringName4<CodeHighlighter, Unit, String, String, Color, Boolean>("add_color_region")
+
+    @JvmStatic
+    public val removeColorRegionName: MethodStringName1<CodeHighlighter, Unit, String> =
+        MethodStringName1<CodeHighlighter, Unit, String>("remove_color_region")
+
+    @JvmStatic
+    public val hasColorRegionName: MethodStringName1<CodeHighlighter, Boolean, String> =
+        MethodStringName1<CodeHighlighter, Boolean, String>("has_color_region")
+
+    @JvmStatic
+    public val setColorRegionsName: MethodStringName1<CodeHighlighter, Unit, Dictionary<Any?, Any?>>
+        = MethodStringName1<CodeHighlighter, Unit, Dictionary<Any?, Any?>>("set_color_regions")
+
+    @JvmStatic
+    public val clearColorRegionsName: MethodStringName0<CodeHighlighter, Unit> =
+        MethodStringName0<CodeHighlighter, Unit>("clear_color_regions")
+
+    @JvmStatic
+    public val getColorRegionsName: MethodStringName0<CodeHighlighter, Dictionary<Any?, Any?>> =
+        MethodStringName0<CodeHighlighter, Dictionary<Any?, Any?>>("get_color_regions")
+
+    @JvmStatic
+    public val setFunctionColorName: MethodStringName1<CodeHighlighter, Unit, Color> =
+        MethodStringName1<CodeHighlighter, Unit, Color>("set_function_color")
+
+    @JvmStatic
+    public val getFunctionColorName: MethodStringName0<CodeHighlighter, Color> =
+        MethodStringName0<CodeHighlighter, Color>("get_function_color")
+
+    @JvmStatic
+    public val setNumberColorName: MethodStringName1<CodeHighlighter, Unit, Color> =
+        MethodStringName1<CodeHighlighter, Unit, Color>("set_number_color")
+
+    @JvmStatic
+    public val getNumberColorName: MethodStringName0<CodeHighlighter, Color> =
+        MethodStringName0<CodeHighlighter, Color>("get_number_color")
+
+    @JvmStatic
+    public val setSymbolColorName: MethodStringName1<CodeHighlighter, Unit, Color> =
+        MethodStringName1<CodeHighlighter, Unit, Color>("set_symbol_color")
+
+    @JvmStatic
+    public val getSymbolColorName: MethodStringName0<CodeHighlighter, Color> =
+        MethodStringName0<CodeHighlighter, Color>("get_symbol_color")
+
+    @JvmStatic
+    public val setMemberVariableColorName: MethodStringName1<CodeHighlighter, Unit, Color> =
+        MethodStringName1<CodeHighlighter, Unit, Color>("set_member_variable_color")
+
+    @JvmStatic
+    public val getMemberVariableColorName: MethodStringName0<CodeHighlighter, Color> =
+        MethodStringName0<CodeHighlighter, Color>("get_member_variable_color")
+  }
 
   public object MethodBindings {
     internal val addKeywordColorPtr: VoidPtr =

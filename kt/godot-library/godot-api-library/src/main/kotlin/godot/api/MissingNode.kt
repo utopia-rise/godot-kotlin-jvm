@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -19,6 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This is an internal editor class intended for keeping data of nodes of unknown type (most likely
@@ -101,7 +104,31 @@ public open class MissingNode : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOriginalClassName: MethodStringName1<MissingNode, Unit, String> =
+        MethodStringName1<MissingNode, Unit, String>("set_original_class")
+
+    @JvmStatic
+    public val getOriginalClassName: MethodStringName0<MissingNode, String> =
+        MethodStringName0<MissingNode, String>("get_original_class")
+
+    @JvmStatic
+    public val setOriginalSceneName: MethodStringName1<MissingNode, Unit, String> =
+        MethodStringName1<MissingNode, Unit, String>("set_original_scene")
+
+    @JvmStatic
+    public val getOriginalSceneName: MethodStringName0<MissingNode, String> =
+        MethodStringName0<MissingNode, String>("get_original_scene")
+
+    @JvmStatic
+    public val setRecordingPropertiesName: MethodStringName1<MissingNode, Unit, Boolean> =
+        MethodStringName1<MissingNode, Unit, Boolean>("set_recording_properties")
+
+    @JvmStatic
+    public val isRecordingPropertiesName: MethodStringName0<MissingNode, Boolean> =
+        MethodStringName0<MissingNode, Boolean>("is_recording_properties")
+  }
 
   public object MethodBindings {
     internal val setOriginalClassPtr: VoidPtr =

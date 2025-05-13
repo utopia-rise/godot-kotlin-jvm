@@ -30,8 +30,6 @@ class GenerationContext(
         return nextSingletonIndex++
     }
 
-    fun isNativeStructure(name: String) = name in nativeStructureMap
-
     fun generateEnumDefaultValue(type: GenerationType, value: Long): String {
         val simpleNames = type.className.simpleNames
         val className: String

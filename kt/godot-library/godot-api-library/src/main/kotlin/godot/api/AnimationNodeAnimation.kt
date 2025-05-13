@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -25,6 +27,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Only has one output port using the [animation]
@@ -254,7 +257,71 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setAnimationName: MethodStringName1<AnimationNodeAnimation, Unit, StringName> =
+        MethodStringName1<AnimationNodeAnimation, Unit, StringName>("set_animation")
+
+    @JvmStatic
+    public val getAnimationName: MethodStringName0<AnimationNodeAnimation, StringName> =
+        MethodStringName0<AnimationNodeAnimation, StringName>("get_animation")
+
+    @JvmStatic
+    public val setPlayModeName: MethodStringName1<AnimationNodeAnimation, Unit, PlayMode> =
+        MethodStringName1<AnimationNodeAnimation, Unit, PlayMode>("set_play_mode")
+
+    @JvmStatic
+    public val getPlayModeName: MethodStringName0<AnimationNodeAnimation, PlayMode> =
+        MethodStringName0<AnimationNodeAnimation, PlayMode>("get_play_mode")
+
+    @JvmStatic
+    public val setAdvanceOnStartName: MethodStringName1<AnimationNodeAnimation, Unit, Boolean> =
+        MethodStringName1<AnimationNodeAnimation, Unit, Boolean>("set_advance_on_start")
+
+    @JvmStatic
+    public val isAdvanceOnStartName: MethodStringName0<AnimationNodeAnimation, Boolean> =
+        MethodStringName0<AnimationNodeAnimation, Boolean>("is_advance_on_start")
+
+    @JvmStatic
+    public val setUseCustomTimelineName: MethodStringName1<AnimationNodeAnimation, Unit, Boolean> =
+        MethodStringName1<AnimationNodeAnimation, Unit, Boolean>("set_use_custom_timeline")
+
+    @JvmStatic
+    public val isUsingCustomTimelineName: MethodStringName0<AnimationNodeAnimation, Boolean> =
+        MethodStringName0<AnimationNodeAnimation, Boolean>("is_using_custom_timeline")
+
+    @JvmStatic
+    public val setTimelineLengthName: MethodStringName1<AnimationNodeAnimation, Unit, Double> =
+        MethodStringName1<AnimationNodeAnimation, Unit, Double>("set_timeline_length")
+
+    @JvmStatic
+    public val getTimelineLengthName: MethodStringName0<AnimationNodeAnimation, Double> =
+        MethodStringName0<AnimationNodeAnimation, Double>("get_timeline_length")
+
+    @JvmStatic
+    public val setStretchTimeScaleName: MethodStringName1<AnimationNodeAnimation, Unit, Boolean> =
+        MethodStringName1<AnimationNodeAnimation, Unit, Boolean>("set_stretch_time_scale")
+
+    @JvmStatic
+    public val isStretchingTimeScaleName: MethodStringName0<AnimationNodeAnimation, Boolean> =
+        MethodStringName0<AnimationNodeAnimation, Boolean>("is_stretching_time_scale")
+
+    @JvmStatic
+    public val setStartOffsetName: MethodStringName1<AnimationNodeAnimation, Unit, Double> =
+        MethodStringName1<AnimationNodeAnimation, Unit, Double>("set_start_offset")
+
+    @JvmStatic
+    public val getStartOffsetName: MethodStringName0<AnimationNodeAnimation, Double> =
+        MethodStringName0<AnimationNodeAnimation, Double>("get_start_offset")
+
+    @JvmStatic
+    public val setLoopModeName: MethodStringName1<AnimationNodeAnimation, Unit, Animation.LoopMode>
+        = MethodStringName1<AnimationNodeAnimation, Unit, Animation.LoopMode>("set_loop_mode")
+
+    @JvmStatic
+    public val getLoopModeName: MethodStringName0<AnimationNodeAnimation, Animation.LoopMode> =
+        MethodStringName0<AnimationNodeAnimation, Animation.LoopMode>("get_loop_mode")
+  }
 
   public object MethodBindings {
     internal val setAnimationPtr: VoidPtr =

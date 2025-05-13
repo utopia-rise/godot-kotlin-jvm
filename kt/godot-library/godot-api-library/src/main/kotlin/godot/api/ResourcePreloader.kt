@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -23,6 +26,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the
@@ -120,7 +124,32 @@ public open class ResourcePreloader : Node() {
    */
   public final fun getResource(name: String): Resource? = getResource(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addResourceName: MethodStringName2<ResourcePreloader, Unit, StringName, Resource?> =
+        MethodStringName2<ResourcePreloader, Unit, StringName, Resource?>("add_resource")
+
+    @JvmStatic
+    public val removeResourceName: MethodStringName1<ResourcePreloader, Unit, StringName> =
+        MethodStringName1<ResourcePreloader, Unit, StringName>("remove_resource")
+
+    @JvmStatic
+    public val renameResourceName:
+        MethodStringName2<ResourcePreloader, Unit, StringName, StringName> =
+        MethodStringName2<ResourcePreloader, Unit, StringName, StringName>("rename_resource")
+
+    @JvmStatic
+    public val hasResourceName: MethodStringName1<ResourcePreloader, Boolean, StringName> =
+        MethodStringName1<ResourcePreloader, Boolean, StringName>("has_resource")
+
+    @JvmStatic
+    public val getResourceName: MethodStringName1<ResourcePreloader, Resource?, StringName> =
+        MethodStringName1<ResourcePreloader, Resource?, StringName>("get_resource")
+
+    @JvmStatic
+    public val getResourceListName: MethodStringName0<ResourcePreloader, PackedStringArray> =
+        MethodStringName0<ResourcePreloader, PackedStringArray>("get_resource_list")
+  }
 
   public object MethodBindings {
     internal val addResourcePtr: VoidPtr =

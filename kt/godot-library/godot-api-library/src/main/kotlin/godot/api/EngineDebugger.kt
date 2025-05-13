@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -38,6 +42,103 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object EngineDebugger : Object() {
+  @JvmStatic
+  public val isActiveName: MethodStringName0<EngineDebugger, Boolean> =
+      MethodStringName0<EngineDebugger, Boolean>("is_active")
+
+  @JvmStatic
+  public val registerProfilerName:
+      MethodStringName2<EngineDebugger, Unit, StringName, EngineProfiler?> =
+      MethodStringName2<EngineDebugger, Unit, StringName, EngineProfiler?>("register_profiler")
+
+  @JvmStatic
+  public val unregisterProfilerName: MethodStringName1<EngineDebugger, Unit, StringName> =
+      MethodStringName1<EngineDebugger, Unit, StringName>("unregister_profiler")
+
+  @JvmStatic
+  public val isProfilingName: MethodStringName1<EngineDebugger, Boolean, StringName> =
+      MethodStringName1<EngineDebugger, Boolean, StringName>("is_profiling")
+
+  @JvmStatic
+  public val hasProfilerName: MethodStringName1<EngineDebugger, Boolean, StringName> =
+      MethodStringName1<EngineDebugger, Boolean, StringName>("has_profiler")
+
+  @JvmStatic
+  public val profilerAddFrameDataName:
+      MethodStringName2<EngineDebugger, Unit, StringName, VariantArray<Any?>> =
+      MethodStringName2<EngineDebugger, Unit, StringName, VariantArray<Any?>>("profiler_add_frame_data")
+
+  @JvmStatic
+  public val profilerEnableName:
+      MethodStringName3<EngineDebugger, Unit, StringName, Boolean, VariantArray<Any?>> =
+      MethodStringName3<EngineDebugger, Unit, StringName, Boolean, VariantArray<Any?>>("profiler_enable")
+
+  @JvmStatic
+  public val registerMessageCaptureName:
+      MethodStringName2<EngineDebugger, Unit, StringName, Callable> =
+      MethodStringName2<EngineDebugger, Unit, StringName, Callable>("register_message_capture")
+
+  @JvmStatic
+  public val unregisterMessageCaptureName: MethodStringName1<EngineDebugger, Unit, StringName> =
+      MethodStringName1<EngineDebugger, Unit, StringName>("unregister_message_capture")
+
+  @JvmStatic
+  public val hasCaptureName: MethodStringName1<EngineDebugger, Boolean, StringName> =
+      MethodStringName1<EngineDebugger, Boolean, StringName>("has_capture")
+
+  @JvmStatic
+  public val linePollName: MethodStringName0<EngineDebugger, Unit> =
+      MethodStringName0<EngineDebugger, Unit>("line_poll")
+
+  @JvmStatic
+  public val sendMessageName: MethodStringName2<EngineDebugger, Unit, String, VariantArray<Any?>> =
+      MethodStringName2<EngineDebugger, Unit, String, VariantArray<Any?>>("send_message")
+
+  @JvmStatic
+  public val debugName: MethodStringName2<EngineDebugger, Unit, Boolean, Boolean> =
+      MethodStringName2<EngineDebugger, Unit, Boolean, Boolean>("debug")
+
+  @JvmStatic
+  public val scriptDebugName:
+      MethodStringName3<EngineDebugger, Unit, ScriptLanguage?, Boolean, Boolean> =
+      MethodStringName3<EngineDebugger, Unit, ScriptLanguage?, Boolean, Boolean>("script_debug")
+
+  @JvmStatic
+  public val setLinesLeftName: MethodStringName1<EngineDebugger, Unit, Int> =
+      MethodStringName1<EngineDebugger, Unit, Int>("set_lines_left")
+
+  @JvmStatic
+  public val getLinesLeftName: MethodStringName0<EngineDebugger, Int> =
+      MethodStringName0<EngineDebugger, Int>("get_lines_left")
+
+  @JvmStatic
+  public val setDepthName: MethodStringName1<EngineDebugger, Unit, Int> =
+      MethodStringName1<EngineDebugger, Unit, Int>("set_depth")
+
+  @JvmStatic
+  public val getDepthName: MethodStringName0<EngineDebugger, Int> =
+      MethodStringName0<EngineDebugger, Int>("get_depth")
+
+  @JvmStatic
+  public val isBreakpointName: MethodStringName2<EngineDebugger, Boolean, Int, StringName> =
+      MethodStringName2<EngineDebugger, Boolean, Int, StringName>("is_breakpoint")
+
+  @JvmStatic
+  public val isSkippingBreakpointsName: MethodStringName0<EngineDebugger, Boolean> =
+      MethodStringName0<EngineDebugger, Boolean>("is_skipping_breakpoints")
+
+  @JvmStatic
+  public val insertBreakpointName: MethodStringName2<EngineDebugger, Unit, Int, StringName> =
+      MethodStringName2<EngineDebugger, Unit, Int, StringName>("insert_breakpoint")
+
+  @JvmStatic
+  public val removeBreakpointName: MethodStringName2<EngineDebugger, Unit, Int, StringName> =
+      MethodStringName2<EngineDebugger, Unit, Int, StringName>("remove_breakpoint")
+
+  @JvmStatic
+  public val clearBreakpointsName: MethodStringName0<EngineDebugger, Unit> =
+      MethodStringName0<EngineDebugger, Unit>("clear_breakpoints")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(5)
   }

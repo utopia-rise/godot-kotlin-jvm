@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
@@ -90,7 +93,27 @@ public open class Shortcut : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEventsName: MethodStringName1<Shortcut, Unit, VariantArray<Any?>> =
+        MethodStringName1<Shortcut, Unit, VariantArray<Any?>>("set_events")
+
+    @JvmStatic
+    public val getEventsName: MethodStringName0<Shortcut, VariantArray<Any?>> =
+        MethodStringName0<Shortcut, VariantArray<Any?>>("get_events")
+
+    @JvmStatic
+    public val hasValidEventName: MethodStringName0<Shortcut, Boolean> =
+        MethodStringName0<Shortcut, Boolean>("has_valid_event")
+
+    @JvmStatic
+    public val matchesEventName: MethodStringName1<Shortcut, Boolean, InputEvent?> =
+        MethodStringName1<Shortcut, Boolean, InputEvent?>("matches_event")
+
+    @JvmStatic
+    public val getAsTextName: MethodStringName0<Shortcut, String> =
+        MethodStringName0<Shortcut, String>("get_as_text")
+  }
 
   public object MethodBindings {
     internal val setEventsPtr: VoidPtr =

@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Comes with a built-in editor for texture's curves.
@@ -48,7 +51,16 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
     return (TransferContext.readReturnValue(OBJECT) as CurveXYZTexture?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTextureName:
+        MethodStringName1<VisualShaderNodeCurveXYZTexture, Unit, CurveXYZTexture?> =
+        MethodStringName1<VisualShaderNodeCurveXYZTexture, Unit, CurveXYZTexture?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName0<VisualShaderNodeCurveXYZTexture, CurveXYZTexture?>
+        = MethodStringName0<VisualShaderNodeCurveXYZTexture, CurveXYZTexture?>("get_texture")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

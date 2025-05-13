@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies
@@ -58,7 +62,19 @@ public open class AudioEffectEQ : AudioEffect() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBandGainDbName: MethodStringName2<AudioEffectEQ, Unit, Int, Float> =
+        MethodStringName2<AudioEffectEQ, Unit, Int, Float>("set_band_gain_db")
+
+    @JvmStatic
+    public val getBandGainDbName: MethodStringName1<AudioEffectEQ, Float, Int> =
+        MethodStringName1<AudioEffectEQ, Float, Int>("get_band_gain_db")
+
+    @JvmStatic
+    public val getBandCountName: MethodStringName0<AudioEffectEQ, Int> =
+        MethodStringName0<AudioEffectEQ, Int>("get_band_count")
+  }
 
   public object MethodBindings {
     internal val setBandGainDbPtr: VoidPtr =

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName6
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -17,6 +20,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This class allows OpenXR core and extensions to register metadata relating to supported
@@ -102,7 +106,28 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     TransferContext.callMethod(ptr, MethodBindings.registerIoPathPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val registerProfileRenameName:
+        MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String> =
+        MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String>("register_profile_rename")
+
+    @JvmStatic
+    public val registerTopLevelPathName:
+        MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String> =
+        MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String>("register_top_level_path")
+
+    @JvmStatic
+    public val registerInteractionProfileName:
+        MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String> =
+        MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String>("register_interaction_profile")
+
+    @JvmStatic
+    public val registerIoPathName:
+        MethodStringName6<OpenXRInteractionProfileMetadata, Unit, String, String, String, String, String, OpenXRAction.ActionType>
+        =
+        MethodStringName6<OpenXRInteractionProfileMetadata, Unit, String, String, String, String, String, OpenXRAction.ActionType>("register_io_path")
+  }
 
   public object MethodBindings {
     internal val registerProfileRenamePtr: VoidPtr =

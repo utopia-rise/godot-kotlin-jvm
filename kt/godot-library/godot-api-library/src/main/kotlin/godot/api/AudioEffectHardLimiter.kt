@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard
@@ -101,7 +104,31 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCeilingDbName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_ceiling_db")
+
+    @JvmStatic
+    public val getCeilingDbName: MethodStringName0<AudioEffectHardLimiter, Float> =
+        MethodStringName0<AudioEffectHardLimiter, Float>("get_ceiling_db")
+
+    @JvmStatic
+    public val setPreGainDbName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_pre_gain_db")
+
+    @JvmStatic
+    public val getPreGainDbName: MethodStringName0<AudioEffectHardLimiter, Float> =
+        MethodStringName0<AudioEffectHardLimiter, Float>("get_pre_gain_db")
+
+    @JvmStatic
+    public val setReleaseName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_release")
+
+    @JvmStatic
+    public val getReleaseName: MethodStringName0<AudioEffectHardLimiter, Float> =
+        MethodStringName0<AudioEffectHardLimiter, Float>("get_release")
+  }
 
   public object MethodBindings {
     internal val setCeilingDbPtr: VoidPtr =

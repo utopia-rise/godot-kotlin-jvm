@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -25,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [VoxelGI]s are used to provide high-quality real-time indirect light and reflections to scenes.
@@ -254,7 +258,47 @@ public open class VoxelGI : VisualInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setProbeDataName: MethodStringName1<VoxelGI, Unit, VoxelGIData?> =
+        MethodStringName1<VoxelGI, Unit, VoxelGIData?>("set_probe_data")
+
+    @JvmStatic
+    public val getProbeDataName: MethodStringName0<VoxelGI, VoxelGIData?> =
+        MethodStringName0<VoxelGI, VoxelGIData?>("get_probe_data")
+
+    @JvmStatic
+    public val setSubdivName: MethodStringName1<VoxelGI, Unit, Subdiv> =
+        MethodStringName1<VoxelGI, Unit, Subdiv>("set_subdiv")
+
+    @JvmStatic
+    public val getSubdivName: MethodStringName0<VoxelGI, Subdiv> =
+        MethodStringName0<VoxelGI, Subdiv>("get_subdiv")
+
+    @JvmStatic
+    public val setSizeName: MethodStringName1<VoxelGI, Unit, Vector3> =
+        MethodStringName1<VoxelGI, Unit, Vector3>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<VoxelGI, Vector3> =
+        MethodStringName0<VoxelGI, Vector3>("get_size")
+
+    @JvmStatic
+    public val setCameraAttributesName: MethodStringName1<VoxelGI, Unit, CameraAttributes?> =
+        MethodStringName1<VoxelGI, Unit, CameraAttributes?>("set_camera_attributes")
+
+    @JvmStatic
+    public val getCameraAttributesName: MethodStringName0<VoxelGI, CameraAttributes?> =
+        MethodStringName0<VoxelGI, CameraAttributes?>("get_camera_attributes")
+
+    @JvmStatic
+    public val bakeName: MethodStringName2<VoxelGI, Unit, Node?, Boolean> =
+        MethodStringName2<VoxelGI, Unit, Node?, Boolean>("bake")
+
+    @JvmStatic
+    public val debugBakeName: MethodStringName0<VoxelGI, Unit> =
+        MethodStringName0<VoxelGI, Unit>("debug_bake")
+  }
 
   public object MethodBindings {
     internal val setProbeDataPtr: VoidPtr =

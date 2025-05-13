@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -18,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
@@ -70,7 +73,23 @@ public open class X509Certificate : Resource() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val saveName: MethodStringName1<X509Certificate, Error, String> =
+        MethodStringName1<X509Certificate, Error, String>("save")
+
+    @JvmStatic
+    public val loadName: MethodStringName1<X509Certificate, Error, String> =
+        MethodStringName1<X509Certificate, Error, String>("load")
+
+    @JvmStatic
+    public val saveToStringName: MethodStringName0<X509Certificate, String> =
+        MethodStringName0<X509Certificate, String>("save_to_string")
+
+    @JvmStatic
+    public val loadFromStringName: MethodStringName1<X509Certificate, Error, String> =
+        MethodStringName1<X509Certificate, Error, String>("load_from_string")
+  }
 
   public object MethodBindings {
     internal val savePtr: VoidPtr =

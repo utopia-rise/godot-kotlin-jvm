@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [CubemapArray]s are made of an array of [Cubemap]s. Like [Cubemap]s, they are made of multiple
@@ -72,7 +74,11 @@ public open class CubemapArray : ImageTextureLayered() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val createPlaceholderName: MethodStringName0<CubemapArray, Resource?> =
+        MethodStringName0<CubemapArray, Resource?>("create_placeholder")
+  }
 
   public object MethodBindings {
     internal val createPlaceholderPtr: VoidPtr =

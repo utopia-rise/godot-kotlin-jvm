@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -22,6 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and
@@ -214,7 +218,53 @@ public open class VisualShaderNode internal constructor() : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getDefaultInputPortName: MethodStringName1<VisualShaderNode, Int, PortType> =
+        MethodStringName1<VisualShaderNode, Int, PortType>("get_default_input_port")
+
+    @JvmStatic
+    public val setOutputPortForPreviewName: MethodStringName1<VisualShaderNode, Unit, Int> =
+        MethodStringName1<VisualShaderNode, Unit, Int>("set_output_port_for_preview")
+
+    @JvmStatic
+    public val getOutputPortForPreviewName: MethodStringName0<VisualShaderNode, Int> =
+        MethodStringName0<VisualShaderNode, Int>("get_output_port_for_preview")
+
+    @JvmStatic
+    public val setInputPortDefaultValueName:
+        MethodStringName3<VisualShaderNode, Unit, Int, Any?, Any?> =
+        MethodStringName3<VisualShaderNode, Unit, Int, Any?, Any?>("set_input_port_default_value")
+
+    @JvmStatic
+    public val getInputPortDefaultValueName: MethodStringName1<VisualShaderNode, Any?, Int> =
+        MethodStringName1<VisualShaderNode, Any?, Int>("get_input_port_default_value")
+
+    @JvmStatic
+    public val removeInputPortDefaultValueName: MethodStringName1<VisualShaderNode, Unit, Int> =
+        MethodStringName1<VisualShaderNode, Unit, Int>("remove_input_port_default_value")
+
+    @JvmStatic
+    public val clearDefaultInputValuesName: MethodStringName0<VisualShaderNode, Unit> =
+        MethodStringName0<VisualShaderNode, Unit>("clear_default_input_values")
+
+    @JvmStatic
+    public val setDefaultInputValuesName:
+        MethodStringName1<VisualShaderNode, Unit, VariantArray<Any?>> =
+        MethodStringName1<VisualShaderNode, Unit, VariantArray<Any?>>("set_default_input_values")
+
+    @JvmStatic
+    public val getDefaultInputValuesName: MethodStringName0<VisualShaderNode, VariantArray<Any?>> =
+        MethodStringName0<VisualShaderNode, VariantArray<Any?>>("get_default_input_values")
+
+    @JvmStatic
+    public val setFrameName: MethodStringName1<VisualShaderNode, Unit, Int> =
+        MethodStringName1<VisualShaderNode, Unit, Int>("set_frame")
+
+    @JvmStatic
+    public val getFrameName: MethodStringName0<VisualShaderNode, Int> =
+        MethodStringName0<VisualShaderNode, Int>("get_frame")
+  }
 
   public object MethodBindings {
     internal val getDefaultInputPortPtr: VoidPtr =

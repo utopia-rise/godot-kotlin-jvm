@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node allows you to create a sphere for use with the CSG system.
@@ -149,7 +152,47 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRadiusName: MethodStringName1<CSGSphere3D, Unit, Float> =
+        MethodStringName1<CSGSphere3D, Unit, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName0<CSGSphere3D, Float> =
+        MethodStringName0<CSGSphere3D, Float>("get_radius")
+
+    @JvmStatic
+    public val setRadialSegmentsName: MethodStringName1<CSGSphere3D, Unit, Int> =
+        MethodStringName1<CSGSphere3D, Unit, Int>("set_radial_segments")
+
+    @JvmStatic
+    public val getRadialSegmentsName: MethodStringName0<CSGSphere3D, Int> =
+        MethodStringName0<CSGSphere3D, Int>("get_radial_segments")
+
+    @JvmStatic
+    public val setRingsName: MethodStringName1<CSGSphere3D, Unit, Int> =
+        MethodStringName1<CSGSphere3D, Unit, Int>("set_rings")
+
+    @JvmStatic
+    public val getRingsName: MethodStringName0<CSGSphere3D, Int> =
+        MethodStringName0<CSGSphere3D, Int>("get_rings")
+
+    @JvmStatic
+    public val setSmoothFacesName: MethodStringName1<CSGSphere3D, Unit, Boolean> =
+        MethodStringName1<CSGSphere3D, Unit, Boolean>("set_smooth_faces")
+
+    @JvmStatic
+    public val getSmoothFacesName: MethodStringName0<CSGSphere3D, Boolean> =
+        MethodStringName0<CSGSphere3D, Boolean>("get_smooth_faces")
+
+    @JvmStatic
+    public val setMaterialName: MethodStringName1<CSGSphere3D, Unit, Material?> =
+        MethodStringName1<CSGSphere3D, Unit, Material?>("set_material")
+
+    @JvmStatic
+    public val getMaterialName: MethodStringName0<CSGSphere3D, Material?> =
+        MethodStringName0<CSGSphere3D, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

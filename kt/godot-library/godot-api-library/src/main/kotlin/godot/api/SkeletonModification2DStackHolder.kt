@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This [SkeletonModification2D] holds a reference to a [SkeletonModificationStack2D], allowing you
@@ -48,7 +51,17 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setHeldModificationStackName:
+        MethodStringName1<SkeletonModification2DStackHolder, Unit, SkeletonModificationStack2D?> =
+        MethodStringName1<SkeletonModification2DStackHolder, Unit, SkeletonModificationStack2D?>("set_held_modification_stack")
+
+    @JvmStatic
+    public val getHeldModificationStackName:
+        MethodStringName0<SkeletonModification2DStackHolder, SkeletonModificationStack2D?> =
+        MethodStringName0<SkeletonModification2DStackHolder, SkeletonModificationStack2D?>("get_held_modification_stack")
+  }
 
   public object MethodBindings {
     internal val setHeldModificationStackPtr: VoidPtr =

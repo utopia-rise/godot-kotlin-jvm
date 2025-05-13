@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName5
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.Signal0
@@ -39,6 +42,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
@@ -881,7 +885,236 @@ public open class GPUParticles2D : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEmittingName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_emitting")
+
+    @JvmStatic
+    public val setAmountName: MethodStringName1<GPUParticles2D, Unit, Int> =
+        MethodStringName1<GPUParticles2D, Unit, Int>("set_amount")
+
+    @JvmStatic
+    public val setLifetimeName: MethodStringName1<GPUParticles2D, Unit, Double> =
+        MethodStringName1<GPUParticles2D, Unit, Double>("set_lifetime")
+
+    @JvmStatic
+    public val setOneShotName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_one_shot")
+
+    @JvmStatic
+    public val setPreProcessTimeName: MethodStringName1<GPUParticles2D, Unit, Double> =
+        MethodStringName1<GPUParticles2D, Unit, Double>("set_pre_process_time")
+
+    @JvmStatic
+    public val setExplosivenessRatioName: MethodStringName1<GPUParticles2D, Unit, Float> =
+        MethodStringName1<GPUParticles2D, Unit, Float>("set_explosiveness_ratio")
+
+    @JvmStatic
+    public val setRandomnessRatioName: MethodStringName1<GPUParticles2D, Unit, Float> =
+        MethodStringName1<GPUParticles2D, Unit, Float>("set_randomness_ratio")
+
+    @JvmStatic
+    public val setVisibilityRectName: MethodStringName1<GPUParticles2D, Unit, Rect2> =
+        MethodStringName1<GPUParticles2D, Unit, Rect2>("set_visibility_rect")
+
+    @JvmStatic
+    public val setUseLocalCoordinatesName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_use_local_coordinates")
+
+    @JvmStatic
+    public val setFixedFpsName: MethodStringName1<GPUParticles2D, Unit, Int> =
+        MethodStringName1<GPUParticles2D, Unit, Int>("set_fixed_fps")
+
+    @JvmStatic
+    public val setFractionalDeltaName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_fractional_delta")
+
+    @JvmStatic
+    public val setInterpolateName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_interpolate")
+
+    @JvmStatic
+    public val setProcessMaterialName: MethodStringName1<GPUParticles2D, Unit, Material?> =
+        MethodStringName1<GPUParticles2D, Unit, Material?>("set_process_material")
+
+    @JvmStatic
+    public val setSpeedScaleName: MethodStringName1<GPUParticles2D, Unit, Double> =
+        MethodStringName1<GPUParticles2D, Unit, Double>("set_speed_scale")
+
+    @JvmStatic
+    public val setCollisionBaseSizeName: MethodStringName1<GPUParticles2D, Unit, Float> =
+        MethodStringName1<GPUParticles2D, Unit, Float>("set_collision_base_size")
+
+    @JvmStatic
+    public val setInterpToEndName: MethodStringName1<GPUParticles2D, Unit, Float> =
+        MethodStringName1<GPUParticles2D, Unit, Float>("set_interp_to_end")
+
+    @JvmStatic
+    public val requestParticlesProcessName: MethodStringName1<GPUParticles2D, Unit, Float> =
+        MethodStringName1<GPUParticles2D, Unit, Float>("request_particles_process")
+
+    @JvmStatic
+    public val isEmittingName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("is_emitting")
+
+    @JvmStatic
+    public val getAmountName: MethodStringName0<GPUParticles2D, Int> =
+        MethodStringName0<GPUParticles2D, Int>("get_amount")
+
+    @JvmStatic
+    public val getLifetimeName: MethodStringName0<GPUParticles2D, Double> =
+        MethodStringName0<GPUParticles2D, Double>("get_lifetime")
+
+    @JvmStatic
+    public val getOneShotName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("get_one_shot")
+
+    @JvmStatic
+    public val getPreProcessTimeName: MethodStringName0<GPUParticles2D, Double> =
+        MethodStringName0<GPUParticles2D, Double>("get_pre_process_time")
+
+    @JvmStatic
+    public val getExplosivenessRatioName: MethodStringName0<GPUParticles2D, Float> =
+        MethodStringName0<GPUParticles2D, Float>("get_explosiveness_ratio")
+
+    @JvmStatic
+    public val getRandomnessRatioName: MethodStringName0<GPUParticles2D, Float> =
+        MethodStringName0<GPUParticles2D, Float>("get_randomness_ratio")
+
+    @JvmStatic
+    public val getVisibilityRectName: MethodStringName0<GPUParticles2D, Rect2> =
+        MethodStringName0<GPUParticles2D, Rect2>("get_visibility_rect")
+
+    @JvmStatic
+    public val getUseLocalCoordinatesName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("get_use_local_coordinates")
+
+    @JvmStatic
+    public val getFixedFpsName: MethodStringName0<GPUParticles2D, Int> =
+        MethodStringName0<GPUParticles2D, Int>("get_fixed_fps")
+
+    @JvmStatic
+    public val getFractionalDeltaName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("get_fractional_delta")
+
+    @JvmStatic
+    public val getInterpolateName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("get_interpolate")
+
+    @JvmStatic
+    public val getProcessMaterialName: MethodStringName0<GPUParticles2D, Material?> =
+        MethodStringName0<GPUParticles2D, Material?>("get_process_material")
+
+    @JvmStatic
+    public val getSpeedScaleName: MethodStringName0<GPUParticles2D, Double> =
+        MethodStringName0<GPUParticles2D, Double>("get_speed_scale")
+
+    @JvmStatic
+    public val getCollisionBaseSizeName: MethodStringName0<GPUParticles2D, Float> =
+        MethodStringName0<GPUParticles2D, Float>("get_collision_base_size")
+
+    @JvmStatic
+    public val getInterpToEndName: MethodStringName0<GPUParticles2D, Float> =
+        MethodStringName0<GPUParticles2D, Float>("get_interp_to_end")
+
+    @JvmStatic
+    public val setDrawOrderName: MethodStringName1<GPUParticles2D, Unit, DrawOrder> =
+        MethodStringName1<GPUParticles2D, Unit, DrawOrder>("set_draw_order")
+
+    @JvmStatic
+    public val getDrawOrderName: MethodStringName0<GPUParticles2D, DrawOrder> =
+        MethodStringName0<GPUParticles2D, DrawOrder>("get_draw_order")
+
+    @JvmStatic
+    public val setTextureName: MethodStringName1<GPUParticles2D, Unit, Texture2D?> =
+        MethodStringName1<GPUParticles2D, Unit, Texture2D?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName0<GPUParticles2D, Texture2D?> =
+        MethodStringName0<GPUParticles2D, Texture2D?>("get_texture")
+
+    @JvmStatic
+    public val captureRectName: MethodStringName0<GPUParticles2D, Rect2> =
+        MethodStringName0<GPUParticles2D, Rect2>("capture_rect")
+
+    @JvmStatic
+    public val restartName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("restart")
+
+    @JvmStatic
+    public val setSubEmitterName: MethodStringName1<GPUParticles2D, Unit, NodePath> =
+        MethodStringName1<GPUParticles2D, Unit, NodePath>("set_sub_emitter")
+
+    @JvmStatic
+    public val getSubEmitterName: MethodStringName0<GPUParticles2D, NodePath> =
+        MethodStringName0<GPUParticles2D, NodePath>("get_sub_emitter")
+
+    @JvmStatic
+    public val emitParticleName:
+        MethodStringName5<GPUParticles2D, Unit, Transform2D, Vector2, Color, Color, Long> =
+        MethodStringName5<GPUParticles2D, Unit, Transform2D, Vector2, Color, Color, Long>("emit_particle")
+
+    @JvmStatic
+    public val setTrailEnabledName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_trail_enabled")
+
+    @JvmStatic
+    public val setTrailLifetimeName: MethodStringName1<GPUParticles2D, Unit, Double> =
+        MethodStringName1<GPUParticles2D, Unit, Double>("set_trail_lifetime")
+
+    @JvmStatic
+    public val isTrailEnabledName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("is_trail_enabled")
+
+    @JvmStatic
+    public val getTrailLifetimeName: MethodStringName0<GPUParticles2D, Double> =
+        MethodStringName0<GPUParticles2D, Double>("get_trail_lifetime")
+
+    @JvmStatic
+    public val setTrailSectionsName: MethodStringName1<GPUParticles2D, Unit, Int> =
+        MethodStringName1<GPUParticles2D, Unit, Int>("set_trail_sections")
+
+    @JvmStatic
+    public val getTrailSectionsName: MethodStringName0<GPUParticles2D, Int> =
+        MethodStringName0<GPUParticles2D, Int>("get_trail_sections")
+
+    @JvmStatic
+    public val setTrailSectionSubdivisionsName: MethodStringName1<GPUParticles2D, Unit, Int> =
+        MethodStringName1<GPUParticles2D, Unit, Int>("set_trail_section_subdivisions")
+
+    @JvmStatic
+    public val getTrailSectionSubdivisionsName: MethodStringName0<GPUParticles2D, Int> =
+        MethodStringName0<GPUParticles2D, Int>("get_trail_section_subdivisions")
+
+    @JvmStatic
+    public val convertFromParticlesName: MethodStringName1<GPUParticles2D, Unit, Node?> =
+        MethodStringName1<GPUParticles2D, Unit, Node?>("convert_from_particles")
+
+    @JvmStatic
+    public val setAmountRatioName: MethodStringName1<GPUParticles2D, Unit, Float> =
+        MethodStringName1<GPUParticles2D, Unit, Float>("set_amount_ratio")
+
+    @JvmStatic
+    public val getAmountRatioName: MethodStringName0<GPUParticles2D, Float> =
+        MethodStringName0<GPUParticles2D, Float>("get_amount_ratio")
+
+    @JvmStatic
+    public val setUseFixedSeedName: MethodStringName1<GPUParticles2D, Unit, Boolean> =
+        MethodStringName1<GPUParticles2D, Unit, Boolean>("set_use_fixed_seed")
+
+    @JvmStatic
+    public val getUseFixedSeedName: MethodStringName0<GPUParticles2D, Boolean> =
+        MethodStringName0<GPUParticles2D, Boolean>("get_use_fixed_seed")
+
+    @JvmStatic
+    public val setSeedName: MethodStringName1<GPUParticles2D, Unit, Long> =
+        MethodStringName1<GPUParticles2D, Unit, Long>("set_seed")
+
+    @JvmStatic
+    public val getSeedName: MethodStringName0<GPUParticles2D, Long> =
+        MethodStringName0<GPUParticles2D, Long>("get_seed")
+  }
 
   public object MethodBindings {
     internal val setEmittingPtr: VoidPtr =

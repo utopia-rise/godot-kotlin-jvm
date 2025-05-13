@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node allows you to create a cylinder (or cone) for use with the CSG system.
@@ -172,7 +175,55 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRadiusName: MethodStringName1<CSGCylinder3D, Unit, Float> =
+        MethodStringName1<CSGCylinder3D, Unit, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName0<CSGCylinder3D, Float> =
+        MethodStringName0<CSGCylinder3D, Float>("get_radius")
+
+    @JvmStatic
+    public val setHeightName: MethodStringName1<CSGCylinder3D, Unit, Float> =
+        MethodStringName1<CSGCylinder3D, Unit, Float>("set_height")
+
+    @JvmStatic
+    public val getHeightName: MethodStringName0<CSGCylinder3D, Float> =
+        MethodStringName0<CSGCylinder3D, Float>("get_height")
+
+    @JvmStatic
+    public val setSidesName: MethodStringName1<CSGCylinder3D, Unit, Int> =
+        MethodStringName1<CSGCylinder3D, Unit, Int>("set_sides")
+
+    @JvmStatic
+    public val getSidesName: MethodStringName0<CSGCylinder3D, Int> =
+        MethodStringName0<CSGCylinder3D, Int>("get_sides")
+
+    @JvmStatic
+    public val setConeName: MethodStringName1<CSGCylinder3D, Unit, Boolean> =
+        MethodStringName1<CSGCylinder3D, Unit, Boolean>("set_cone")
+
+    @JvmStatic
+    public val isConeName: MethodStringName0<CSGCylinder3D, Boolean> =
+        MethodStringName0<CSGCylinder3D, Boolean>("is_cone")
+
+    @JvmStatic
+    public val setMaterialName: MethodStringName1<CSGCylinder3D, Unit, Material?> =
+        MethodStringName1<CSGCylinder3D, Unit, Material?>("set_material")
+
+    @JvmStatic
+    public val getMaterialName: MethodStringName0<CSGCylinder3D, Material?> =
+        MethodStringName0<CSGCylinder3D, Material?>("get_material")
+
+    @JvmStatic
+    public val setSmoothFacesName: MethodStringName1<CSGCylinder3D, Unit, Boolean> =
+        MethodStringName1<CSGCylinder3D, Unit, Boolean>("set_smooth_faces")
+
+    @JvmStatic
+    public val getSmoothFacesName: MethodStringName0<CSGCylinder3D, Boolean> =
+        MethodStringName0<CSGCylinder3D, Boolean>("get_smooth_faces")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

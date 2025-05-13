@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -29,6 +31,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas
@@ -459,7 +462,111 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTextureName: MethodStringName1<Sprite2D, Unit, Texture2D?> =
+        MethodStringName1<Sprite2D, Unit, Texture2D?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName0<Sprite2D, Texture2D?> =
+        MethodStringName0<Sprite2D, Texture2D?>("get_texture")
+
+    @JvmStatic
+    public val setCenteredName: MethodStringName1<Sprite2D, Unit, Boolean> =
+        MethodStringName1<Sprite2D, Unit, Boolean>("set_centered")
+
+    @JvmStatic
+    public val isCenteredName: MethodStringName0<Sprite2D, Boolean> =
+        MethodStringName0<Sprite2D, Boolean>("is_centered")
+
+    @JvmStatic
+    public val setOffsetName: MethodStringName1<Sprite2D, Unit, Vector2> =
+        MethodStringName1<Sprite2D, Unit, Vector2>("set_offset")
+
+    @JvmStatic
+    public val getOffsetName: MethodStringName0<Sprite2D, Vector2> =
+        MethodStringName0<Sprite2D, Vector2>("get_offset")
+
+    @JvmStatic
+    public val setFlipHName: MethodStringName1<Sprite2D, Unit, Boolean> =
+        MethodStringName1<Sprite2D, Unit, Boolean>("set_flip_h")
+
+    @JvmStatic
+    public val isFlippedHName: MethodStringName0<Sprite2D, Boolean> =
+        MethodStringName0<Sprite2D, Boolean>("is_flipped_h")
+
+    @JvmStatic
+    public val setFlipVName: MethodStringName1<Sprite2D, Unit, Boolean> =
+        MethodStringName1<Sprite2D, Unit, Boolean>("set_flip_v")
+
+    @JvmStatic
+    public val isFlippedVName: MethodStringName0<Sprite2D, Boolean> =
+        MethodStringName0<Sprite2D, Boolean>("is_flipped_v")
+
+    @JvmStatic
+    public val setRegionEnabledName: MethodStringName1<Sprite2D, Unit, Boolean> =
+        MethodStringName1<Sprite2D, Unit, Boolean>("set_region_enabled")
+
+    @JvmStatic
+    public val isRegionEnabledName: MethodStringName0<Sprite2D, Boolean> =
+        MethodStringName0<Sprite2D, Boolean>("is_region_enabled")
+
+    @JvmStatic
+    public val isPixelOpaqueName: MethodStringName1<Sprite2D, Boolean, Vector2> =
+        MethodStringName1<Sprite2D, Boolean, Vector2>("is_pixel_opaque")
+
+    @JvmStatic
+    public val setRegionRectName: MethodStringName1<Sprite2D, Unit, Rect2> =
+        MethodStringName1<Sprite2D, Unit, Rect2>("set_region_rect")
+
+    @JvmStatic
+    public val getRegionRectName: MethodStringName0<Sprite2D, Rect2> =
+        MethodStringName0<Sprite2D, Rect2>("get_region_rect")
+
+    @JvmStatic
+    public val setRegionFilterClipEnabledName: MethodStringName1<Sprite2D, Unit, Boolean> =
+        MethodStringName1<Sprite2D, Unit, Boolean>("set_region_filter_clip_enabled")
+
+    @JvmStatic
+    public val isRegionFilterClipEnabledName: MethodStringName0<Sprite2D, Boolean> =
+        MethodStringName0<Sprite2D, Boolean>("is_region_filter_clip_enabled")
+
+    @JvmStatic
+    public val setFrameName: MethodStringName1<Sprite2D, Unit, Int> =
+        MethodStringName1<Sprite2D, Unit, Int>("set_frame")
+
+    @JvmStatic
+    public val getFrameName: MethodStringName0<Sprite2D, Int> =
+        MethodStringName0<Sprite2D, Int>("get_frame")
+
+    @JvmStatic
+    public val setFrameCoordsName: MethodStringName1<Sprite2D, Unit, Vector2i> =
+        MethodStringName1<Sprite2D, Unit, Vector2i>("set_frame_coords")
+
+    @JvmStatic
+    public val getFrameCoordsName: MethodStringName0<Sprite2D, Vector2i> =
+        MethodStringName0<Sprite2D, Vector2i>("get_frame_coords")
+
+    @JvmStatic
+    public val setVframesName: MethodStringName1<Sprite2D, Unit, Int> =
+        MethodStringName1<Sprite2D, Unit, Int>("set_vframes")
+
+    @JvmStatic
+    public val getVframesName: MethodStringName0<Sprite2D, Int> =
+        MethodStringName0<Sprite2D, Int>("get_vframes")
+
+    @JvmStatic
+    public val setHframesName: MethodStringName1<Sprite2D, Unit, Int> =
+        MethodStringName1<Sprite2D, Unit, Int>("set_hframes")
+
+    @JvmStatic
+    public val getHframesName: MethodStringName0<Sprite2D, Int> =
+        MethodStringName0<Sprite2D, Int>("get_hframes")
+
+    @JvmStatic
+    public val getRectName: MethodStringName0<Sprite2D, Rect2> =
+        MethodStringName0<Sprite2D, Rect2>("get_rect")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

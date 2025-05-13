@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as
@@ -55,7 +58,15 @@ public open class EncodedObjectAsID : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setObjectIdName: MethodStringName1<EncodedObjectAsID, Unit, Long> =
+        MethodStringName1<EncodedObjectAsID, Unit, Long>("set_object_id")
+
+    @JvmStatic
+    public val getObjectIdName: MethodStringName0<EncodedObjectAsID, Long> =
+        MethodStringName0<EncodedObjectAsID, Long>("get_object_id")
+  }
 
   public object MethodBindings {
     internal val setObjectIdPtr: VoidPtr =

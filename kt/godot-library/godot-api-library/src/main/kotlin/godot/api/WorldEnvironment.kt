@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
@@ -101,7 +104,31 @@ public open class WorldEnvironment : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Compositor?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnvironmentName: MethodStringName1<WorldEnvironment, Unit, Environment?> =
+        MethodStringName1<WorldEnvironment, Unit, Environment?>("set_environment")
+
+    @JvmStatic
+    public val getEnvironmentName: MethodStringName0<WorldEnvironment, Environment?> =
+        MethodStringName0<WorldEnvironment, Environment?>("get_environment")
+
+    @JvmStatic
+    public val setCameraAttributesName: MethodStringName1<WorldEnvironment, Unit, CameraAttributes?>
+        = MethodStringName1<WorldEnvironment, Unit, CameraAttributes?>("set_camera_attributes")
+
+    @JvmStatic
+    public val getCameraAttributesName: MethodStringName0<WorldEnvironment, CameraAttributes?> =
+        MethodStringName0<WorldEnvironment, CameraAttributes?>("get_camera_attributes")
+
+    @JvmStatic
+    public val setCompositorName: MethodStringName1<WorldEnvironment, Unit, Compositor?> =
+        MethodStringName1<WorldEnvironment, Unit, Compositor?>("set_compositor")
+
+    @JvmStatic
+    public val getCompositorName: MethodStringName0<WorldEnvironment, Compositor?> =
+        MethodStringName0<WorldEnvironment, Compositor?>("get_compositor")
+  }
 
   public object MethodBindings {
     internal val setEnvironmentPtr: VoidPtr =

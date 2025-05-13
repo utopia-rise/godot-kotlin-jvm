@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Controls how blending between source and destination fragments is performed when using
@@ -359,7 +362,114 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setAsMixName: MethodStringName0<RDPipelineColorBlendStateAttachment, Unit> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, Unit>("set_as_mix")
+
+    @JvmStatic
+    public val setEnableBlendName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean> =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>("set_enable_blend")
+
+    @JvmStatic
+    public val getEnableBlendName: MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean>("get_enable_blend")
+
+    @JvmStatic
+    public val setSrcColorBlendFactorName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor> =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor>("set_src_color_blend_factor")
+
+    @JvmStatic
+    public val getSrcColorBlendFactorName:
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor>("get_src_color_blend_factor")
+
+    @JvmStatic
+    public val setDstColorBlendFactorName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor> =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor>("set_dst_color_blend_factor")
+
+    @JvmStatic
+    public val getDstColorBlendFactorName:
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor>("get_dst_color_blend_factor")
+
+    @JvmStatic
+    public val setColorBlendOpName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendOperation>
+        =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendOperation>("set_color_blend_op")
+
+    @JvmStatic
+    public val getColorBlendOpName:
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendOperation> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendOperation>("get_color_blend_op")
+
+    @JvmStatic
+    public val setSrcAlphaBlendFactorName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor> =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor>("set_src_alpha_blend_factor")
+
+    @JvmStatic
+    public val getSrcAlphaBlendFactorName:
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor>("get_src_alpha_blend_factor")
+
+    @JvmStatic
+    public val setDstAlphaBlendFactorName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor> =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendFactor>("set_dst_alpha_blend_factor")
+
+    @JvmStatic
+    public val getDstAlphaBlendFactorName:
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendFactor>("get_dst_alpha_blend_factor")
+
+    @JvmStatic
+    public val setAlphaBlendOpName:
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendOperation>
+        =
+        MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, RenderingDevice.BlendOperation>("set_alpha_blend_op")
+
+    @JvmStatic
+    public val getAlphaBlendOpName:
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendOperation> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, RenderingDevice.BlendOperation>("get_alpha_blend_op")
+
+    @JvmStatic
+    public val setWriteRName: MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>
+        = MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>("set_write_r")
+
+    @JvmStatic
+    public val getWriteRName: MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean>("get_write_r")
+
+    @JvmStatic
+    public val setWriteGName: MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>
+        = MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>("set_write_g")
+
+    @JvmStatic
+    public val getWriteGName: MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean>("get_write_g")
+
+    @JvmStatic
+    public val setWriteBName: MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>
+        = MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>("set_write_b")
+
+    @JvmStatic
+    public val getWriteBName: MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean>("get_write_b")
+
+    @JvmStatic
+    public val setWriteAName: MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>
+        = MethodStringName1<RDPipelineColorBlendStateAttachment, Unit, Boolean>("set_write_a")
+
+    @JvmStatic
+    public val getWriteAName: MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean> =
+        MethodStringName0<RDPipelineColorBlendStateAttachment, Boolean>("get_write_a")
+  }
 
   public object MethodBindings {
     internal val setAsMixPtr: VoidPtr =

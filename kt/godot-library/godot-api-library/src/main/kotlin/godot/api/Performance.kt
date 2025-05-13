@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -52,6 +55,35 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Performance : Object() {
+  @JvmStatic
+  public val getMonitorName: MethodStringName1<Performance, Double, Monitor> =
+      MethodStringName1<Performance, Double, Monitor>("get_monitor")
+
+  @JvmStatic
+  public val addCustomMonitorName:
+      MethodStringName3<Performance, Unit, StringName, Callable, VariantArray<Any?>> =
+      MethodStringName3<Performance, Unit, StringName, Callable, VariantArray<Any?>>("add_custom_monitor")
+
+  @JvmStatic
+  public val removeCustomMonitorName: MethodStringName1<Performance, Unit, StringName> =
+      MethodStringName1<Performance, Unit, StringName>("remove_custom_monitor")
+
+  @JvmStatic
+  public val hasCustomMonitorName: MethodStringName1<Performance, Boolean, StringName> =
+      MethodStringName1<Performance, Boolean, StringName>("has_custom_monitor")
+
+  @JvmStatic
+  public val getCustomMonitorName: MethodStringName1<Performance, Any?, StringName> =
+      MethodStringName1<Performance, Any?, StringName>("get_custom_monitor")
+
+  @JvmStatic
+  public val getMonitorModificationTimeName: MethodStringName0<Performance, Long> =
+      MethodStringName0<Performance, Long>("get_monitor_modification_time")
+
+  @JvmStatic
+  public val getCustomMonitorNamesName: MethodStringName0<Performance, VariantArray<StringName>> =
+      MethodStringName0<Performance, VariantArray<StringName>>("get_custom_monitor_names")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(20)
   }

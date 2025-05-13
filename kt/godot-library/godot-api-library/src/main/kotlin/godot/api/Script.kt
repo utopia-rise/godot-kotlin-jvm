@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -33,6 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A class stored as a resource. A script extends the functionality of all objects that instantiate
@@ -256,7 +259,82 @@ public open class Script internal constructor() : Resource() {
   public final fun getPropertyDefaultValue(`property`: String): Any? =
       getPropertyDefaultValue(property.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val canInstantiateName: MethodStringName0<Script, Boolean> =
+        MethodStringName0<Script, Boolean>("can_instantiate")
+
+    @JvmStatic
+    public val instanceHasName: MethodStringName1<Script, Boolean, Object?> =
+        MethodStringName1<Script, Boolean, Object?>("instance_has")
+
+    @JvmStatic
+    public val hasSourceCodeName: MethodStringName0<Script, Boolean> =
+        MethodStringName0<Script, Boolean>("has_source_code")
+
+    @JvmStatic
+    public val getSourceCodeName: MethodStringName0<Script, String> =
+        MethodStringName0<Script, String>("get_source_code")
+
+    @JvmStatic
+    public val setSourceCodeName: MethodStringName1<Script, Unit, String> =
+        MethodStringName1<Script, Unit, String>("set_source_code")
+
+    @JvmStatic
+    public val reloadName: MethodStringName1<Script, Error, Boolean> =
+        MethodStringName1<Script, Error, Boolean>("reload")
+
+    @JvmStatic
+    public val getBaseScriptName: MethodStringName0<Script, Script?> =
+        MethodStringName0<Script, Script?>("get_base_script")
+
+    @JvmStatic
+    public val getInstanceBaseTypeName: MethodStringName0<Script, StringName> =
+        MethodStringName0<Script, StringName>("get_instance_base_type")
+
+    @JvmStatic
+    public val getGlobalNameName: MethodStringName0<Script, StringName> =
+        MethodStringName0<Script, StringName>("get_global_name")
+
+    @JvmStatic
+    public val hasScriptSignalName: MethodStringName1<Script, Boolean, StringName> =
+        MethodStringName1<Script, Boolean, StringName>("has_script_signal")
+
+    @JvmStatic
+    public val getScriptPropertyListName:
+        MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>>("get_script_property_list")
+
+    @JvmStatic
+    public val getScriptMethodListName:
+        MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>>("get_script_method_list")
+
+    @JvmStatic
+    public val getScriptSignalListName:
+        MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>>("get_script_signal_list")
+
+    @JvmStatic
+    public val getScriptConstantMapName: MethodStringName0<Script, Dictionary<Any?, Any?>> =
+        MethodStringName0<Script, Dictionary<Any?, Any?>>("get_script_constant_map")
+
+    @JvmStatic
+    public val getPropertyDefaultValueName: MethodStringName1<Script, Any?, StringName> =
+        MethodStringName1<Script, Any?, StringName>("get_property_default_value")
+
+    @JvmStatic
+    public val isToolName: MethodStringName0<Script, Boolean> =
+        MethodStringName0<Script, Boolean>("is_tool")
+
+    @JvmStatic
+    public val isAbstractName: MethodStringName0<Script, Boolean> =
+        MethodStringName0<Script, Boolean>("is_abstract")
+
+    @JvmStatic
+    public val getRpcConfigName: MethodStringName0<Script, Any?> =
+        MethodStringName0<Script, Any?>("get_rpc_config")
+  }
 
   public object MethodBindings {
     internal val canInstantiatePtr: VoidPtr =

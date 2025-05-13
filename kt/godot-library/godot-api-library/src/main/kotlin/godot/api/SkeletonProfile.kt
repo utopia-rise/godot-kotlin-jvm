@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform3D
@@ -29,6 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in
@@ -422,7 +426,123 @@ public open class SkeletonProfile : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRootBoneName: MethodStringName1<SkeletonProfile, Unit, StringName> =
+        MethodStringName1<SkeletonProfile, Unit, StringName>("set_root_bone")
+
+    @JvmStatic
+    public val getRootBoneName: MethodStringName0<SkeletonProfile, StringName> =
+        MethodStringName0<SkeletonProfile, StringName>("get_root_bone")
+
+    @JvmStatic
+    public val setScaleBaseBoneName: MethodStringName1<SkeletonProfile, Unit, StringName> =
+        MethodStringName1<SkeletonProfile, Unit, StringName>("set_scale_base_bone")
+
+    @JvmStatic
+    public val getScaleBaseBoneName: MethodStringName0<SkeletonProfile, StringName> =
+        MethodStringName0<SkeletonProfile, StringName>("get_scale_base_bone")
+
+    @JvmStatic
+    public val setGroupSizeName: MethodStringName1<SkeletonProfile, Unit, Int> =
+        MethodStringName1<SkeletonProfile, Unit, Int>("set_group_size")
+
+    @JvmStatic
+    public val getGroupSizeName: MethodStringName0<SkeletonProfile, Int> =
+        MethodStringName0<SkeletonProfile, Int>("get_group_size")
+
+    @JvmStatic
+    public val getGroupNameName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_group_name")
+
+    @JvmStatic
+    public val setGroupNameName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_group_name")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName1<SkeletonProfile, Texture2D?, Int> =
+        MethodStringName1<SkeletonProfile, Texture2D?, Int>("get_texture")
+
+    @JvmStatic
+    public val setTextureName: MethodStringName2<SkeletonProfile, Unit, Int, Texture2D?> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Texture2D?>("set_texture")
+
+    @JvmStatic
+    public val setBoneSizeName: MethodStringName1<SkeletonProfile, Unit, Int> =
+        MethodStringName1<SkeletonProfile, Unit, Int>("set_bone_size")
+
+    @JvmStatic
+    public val getBoneSizeName: MethodStringName0<SkeletonProfile, Int> =
+        MethodStringName0<SkeletonProfile, Int>("get_bone_size")
+
+    @JvmStatic
+    public val findBoneName: MethodStringName1<SkeletonProfile, Int, StringName> =
+        MethodStringName1<SkeletonProfile, Int, StringName>("find_bone")
+
+    @JvmStatic
+    public val getBoneNameName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_bone_name")
+
+    @JvmStatic
+    public val setBoneNameName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_bone_name")
+
+    @JvmStatic
+    public val getBoneParentName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_bone_parent")
+
+    @JvmStatic
+    public val setBoneParentName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_bone_parent")
+
+    @JvmStatic
+    public val getTailDirectionName: MethodStringName1<SkeletonProfile, TailDirection, Int> =
+        MethodStringName1<SkeletonProfile, TailDirection, Int>("get_tail_direction")
+
+    @JvmStatic
+    public val setTailDirectionName: MethodStringName2<SkeletonProfile, Unit, Int, TailDirection> =
+        MethodStringName2<SkeletonProfile, Unit, Int, TailDirection>("set_tail_direction")
+
+    @JvmStatic
+    public val getBoneTailName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_bone_tail")
+
+    @JvmStatic
+    public val setBoneTailName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_bone_tail")
+
+    @JvmStatic
+    public val getReferencePoseName: MethodStringName1<SkeletonProfile, Transform3D, Int> =
+        MethodStringName1<SkeletonProfile, Transform3D, Int>("get_reference_pose")
+
+    @JvmStatic
+    public val setReferencePoseName: MethodStringName2<SkeletonProfile, Unit, Int, Transform3D> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Transform3D>("set_reference_pose")
+
+    @JvmStatic
+    public val getHandleOffsetName: MethodStringName1<SkeletonProfile, Vector2, Int> =
+        MethodStringName1<SkeletonProfile, Vector2, Int>("get_handle_offset")
+
+    @JvmStatic
+    public val setHandleOffsetName: MethodStringName2<SkeletonProfile, Unit, Int, Vector2> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Vector2>("set_handle_offset")
+
+    @JvmStatic
+    public val getGroupName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_group")
+
+    @JvmStatic
+    public val setGroupName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_group")
+
+    @JvmStatic
+    public val isRequiredName: MethodStringName1<SkeletonProfile, Boolean, Int> =
+        MethodStringName1<SkeletonProfile, Boolean, Int>("is_required")
+
+    @JvmStatic
+    public val setRequiredName: MethodStringName2<SkeletonProfile, Unit, Int, Boolean> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Boolean>("set_required")
+  }
 
   public object MethodBindings {
     internal val setRootBonePtr: VoidPtr =

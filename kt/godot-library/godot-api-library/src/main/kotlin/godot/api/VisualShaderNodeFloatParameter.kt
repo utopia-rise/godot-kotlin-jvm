@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform float` in the shader language.
@@ -200,7 +203,56 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setHintName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Hint> =
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Hint>("set_hint")
+
+    @JvmStatic
+    public val getHintName: MethodStringName0<VisualShaderNodeFloatParameter, Hint> =
+        MethodStringName0<VisualShaderNodeFloatParameter, Hint>("get_hint")
+
+    @JvmStatic
+    public val setMinName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_min")
+
+    @JvmStatic
+    public val getMinName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
+        MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_min")
+
+    @JvmStatic
+    public val setMaxName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_max")
+
+    @JvmStatic
+    public val getMaxName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
+        MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_max")
+
+    @JvmStatic
+    public val setStepName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_step")
+
+    @JvmStatic
+    public val getStepName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
+        MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_step")
+
+    @JvmStatic
+    public val setDefaultValueEnabledName:
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Boolean>("set_default_value_enabled")
+
+    @JvmStatic
+    public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeFloatParameter, Boolean>
+        = MethodStringName0<VisualShaderNodeFloatParameter, Boolean>("is_default_value_enabled")
+
+    @JvmStatic
+    public val setDefaultValueName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
+        MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_default_value")
+
+    @JvmStatic
+    public val getDefaultValueName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
+        MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_default_value")
+  }
 
   public object MethodBindings {
     internal val setHintPtr: VoidPtr =

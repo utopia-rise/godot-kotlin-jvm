@@ -10,6 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -27,6 +32,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class defines the interface for noise generation libraries to inherit from.
@@ -172,7 +178,46 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Image>)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getNoise1dName: MethodStringName1<Noise, Float, Float> =
+        MethodStringName1<Noise, Float, Float>("get_noise_1d")
+
+    @JvmStatic
+    public val getNoise2dName: MethodStringName2<Noise, Float, Float, Float> =
+        MethodStringName2<Noise, Float, Float, Float>("get_noise_2d")
+
+    @JvmStatic
+    public val getNoise2dvName: MethodStringName1<Noise, Float, Vector2> =
+        MethodStringName1<Noise, Float, Vector2>("get_noise_2dv")
+
+    @JvmStatic
+    public val getNoise3dName: MethodStringName3<Noise, Float, Float, Float, Float> =
+        MethodStringName3<Noise, Float, Float, Float, Float>("get_noise_3d")
+
+    @JvmStatic
+    public val getNoise3dvName: MethodStringName1<Noise, Float, Vector3> =
+        MethodStringName1<Noise, Float, Vector3>("get_noise_3dv")
+
+    @JvmStatic
+    public val getImageName: MethodStringName5<Noise, Image?, Int, Int, Boolean, Boolean, Boolean> =
+        MethodStringName5<Noise, Image?, Int, Int, Boolean, Boolean, Boolean>("get_image")
+
+    @JvmStatic
+    public val getSeamlessImageName:
+        MethodStringName6<Noise, Image?, Int, Int, Boolean, Boolean, Float, Boolean> =
+        MethodStringName6<Noise, Image?, Int, Int, Boolean, Boolean, Float, Boolean>("get_seamless_image")
+
+    @JvmStatic
+    public val getImage3dName:
+        MethodStringName5<Noise, VariantArray<Image>, Int, Int, Int, Boolean, Boolean> =
+        MethodStringName5<Noise, VariantArray<Image>, Int, Int, Int, Boolean, Boolean>("get_image_3d")
+
+    @JvmStatic
+    public val getSeamlessImage3dName:
+        MethodStringName6<Noise, VariantArray<Image>, Int, Int, Int, Boolean, Float, Boolean> =
+        MethodStringName6<Noise, VariantArray<Image>, Int, Int, Int, Boolean, Float, Boolean>("get_seamless_image_3d")
+  }
 
   public object MethodBindings {
     internal val getNoise1dPtr: VoidPtr =

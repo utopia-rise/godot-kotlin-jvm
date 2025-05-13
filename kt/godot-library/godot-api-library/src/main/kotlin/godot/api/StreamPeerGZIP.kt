@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This
@@ -79,7 +82,23 @@ public open class StreamPeerGZIP : StreamPeer() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val startCompressionName: MethodStringName2<StreamPeerGZIP, Error, Boolean, Int> =
+        MethodStringName2<StreamPeerGZIP, Error, Boolean, Int>("start_compression")
+
+    @JvmStatic
+    public val startDecompressionName: MethodStringName2<StreamPeerGZIP, Error, Boolean, Int> =
+        MethodStringName2<StreamPeerGZIP, Error, Boolean, Int>("start_decompression")
+
+    @JvmStatic
+    public val finishName: MethodStringName0<StreamPeerGZIP, Error> =
+        MethodStringName0<StreamPeerGZIP, Error>("finish")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<StreamPeerGZIP, Unit> =
+        MethodStringName0<StreamPeerGZIP, Unit>("clear")
+  }
 
   public object MethodBindings {
     internal val startCompressionPtr: VoidPtr =

@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantCaster.ANY
@@ -28,6 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This helper class can be used to store [Variant] values on the filesystem using INI-style
@@ -380,7 +385,75 @@ public open class ConfigFile : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setValueName: MethodStringName3<ConfigFile, Unit, String, String, Any?> =
+        MethodStringName3<ConfigFile, Unit, String, String, Any?>("set_value")
+
+    @JvmStatic
+    public val getValueName: MethodStringName3<ConfigFile, Any?, String, String, Any?> =
+        MethodStringName3<ConfigFile, Any?, String, String, Any?>("get_value")
+
+    @JvmStatic
+    public val hasSectionName: MethodStringName1<ConfigFile, Boolean, String> =
+        MethodStringName1<ConfigFile, Boolean, String>("has_section")
+
+    @JvmStatic
+    public val hasSectionKeyName: MethodStringName2<ConfigFile, Boolean, String, String> =
+        MethodStringName2<ConfigFile, Boolean, String, String>("has_section_key")
+
+    @JvmStatic
+    public val getSectionsName: MethodStringName0<ConfigFile, PackedStringArray> =
+        MethodStringName0<ConfigFile, PackedStringArray>("get_sections")
+
+    @JvmStatic
+    public val getSectionKeysName: MethodStringName1<ConfigFile, PackedStringArray, String> =
+        MethodStringName1<ConfigFile, PackedStringArray, String>("get_section_keys")
+
+    @JvmStatic
+    public val eraseSectionName: MethodStringName1<ConfigFile, Unit, String> =
+        MethodStringName1<ConfigFile, Unit, String>("erase_section")
+
+    @JvmStatic
+    public val eraseSectionKeyName: MethodStringName2<ConfigFile, Unit, String, String> =
+        MethodStringName2<ConfigFile, Unit, String, String>("erase_section_key")
+
+    @JvmStatic
+    public val loadName: MethodStringName1<ConfigFile, Error, String> =
+        MethodStringName1<ConfigFile, Error, String>("load")
+
+    @JvmStatic
+    public val parseName: MethodStringName1<ConfigFile, Error, String> =
+        MethodStringName1<ConfigFile, Error, String>("parse")
+
+    @JvmStatic
+    public val saveName: MethodStringName1<ConfigFile, Error, String> =
+        MethodStringName1<ConfigFile, Error, String>("save")
+
+    @JvmStatic
+    public val encodeToTextName: MethodStringName0<ConfigFile, String> =
+        MethodStringName0<ConfigFile, String>("encode_to_text")
+
+    @JvmStatic
+    public val loadEncryptedName: MethodStringName2<ConfigFile, Error, String, PackedByteArray> =
+        MethodStringName2<ConfigFile, Error, String, PackedByteArray>("load_encrypted")
+
+    @JvmStatic
+    public val loadEncryptedPassName: MethodStringName2<ConfigFile, Error, String, String> =
+        MethodStringName2<ConfigFile, Error, String, String>("load_encrypted_pass")
+
+    @JvmStatic
+    public val saveEncryptedName: MethodStringName2<ConfigFile, Error, String, PackedByteArray> =
+        MethodStringName2<ConfigFile, Error, String, PackedByteArray>("save_encrypted")
+
+    @JvmStatic
+    public val saveEncryptedPassName: MethodStringName2<ConfigFile, Error, String, String> =
+        MethodStringName2<ConfigFile, Error, String, String>("save_encrypted_pass")
+
+    @JvmStatic
+    public val clearName: MethodStringName0<ConfigFile, Unit> =
+        MethodStringName0<ConfigFile, Unit>("clear")
+  }
 
   public object MethodBindings {
     internal val setValuePtr: VoidPtr =

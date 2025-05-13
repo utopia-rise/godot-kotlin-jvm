@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -29,6 +32,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [Decal]s are used to project a texture onto a [Mesh] in the scene. Use Decals to add detail to a
@@ -572,7 +576,103 @@ public open class Decal : VisualInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<Decal, Unit, Vector3> =
+        MethodStringName1<Decal, Unit, Vector3>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<Decal, Vector3> =
+        MethodStringName0<Decal, Vector3>("get_size")
+
+    @JvmStatic
+    public val setTextureName: MethodStringName2<Decal, Unit, DecalTexture, Texture2D?> =
+        MethodStringName2<Decal, Unit, DecalTexture, Texture2D?>("set_texture")
+
+    @JvmStatic
+    public val getTextureName: MethodStringName1<Decal, Texture2D?, DecalTexture> =
+        MethodStringName1<Decal, Texture2D?, DecalTexture>("get_texture")
+
+    @JvmStatic
+    public val setEmissionEnergyName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_emission_energy")
+
+    @JvmStatic
+    public val getEmissionEnergyName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_emission_energy")
+
+    @JvmStatic
+    public val setAlbedoMixName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_albedo_mix")
+
+    @JvmStatic
+    public val getAlbedoMixName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_albedo_mix")
+
+    @JvmStatic
+    public val setModulateName: MethodStringName1<Decal, Unit, Color> =
+        MethodStringName1<Decal, Unit, Color>("set_modulate")
+
+    @JvmStatic
+    public val getModulateName: MethodStringName0<Decal, Color> =
+        MethodStringName0<Decal, Color>("get_modulate")
+
+    @JvmStatic
+    public val setUpperFadeName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_upper_fade")
+
+    @JvmStatic
+    public val getUpperFadeName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_upper_fade")
+
+    @JvmStatic
+    public val setLowerFadeName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_lower_fade")
+
+    @JvmStatic
+    public val getLowerFadeName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_lower_fade")
+
+    @JvmStatic
+    public val setNormalFadeName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_normal_fade")
+
+    @JvmStatic
+    public val getNormalFadeName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_normal_fade")
+
+    @JvmStatic
+    public val setEnableDistanceFadeName: MethodStringName1<Decal, Unit, Boolean> =
+        MethodStringName1<Decal, Unit, Boolean>("set_enable_distance_fade")
+
+    @JvmStatic
+    public val isDistanceFadeEnabledName: MethodStringName0<Decal, Boolean> =
+        MethodStringName0<Decal, Boolean>("is_distance_fade_enabled")
+
+    @JvmStatic
+    public val setDistanceFadeBeginName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_distance_fade_begin")
+
+    @JvmStatic
+    public val getDistanceFadeBeginName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_distance_fade_begin")
+
+    @JvmStatic
+    public val setDistanceFadeLengthName: MethodStringName1<Decal, Unit, Float> =
+        MethodStringName1<Decal, Unit, Float>("set_distance_fade_length")
+
+    @JvmStatic
+    public val getDistanceFadeLengthName: MethodStringName0<Decal, Float> =
+        MethodStringName0<Decal, Float>("get_distance_fade_length")
+
+    @JvmStatic
+    public val setCullMaskName: MethodStringName1<Decal, Unit, Long> =
+        MethodStringName1<Decal, Unit, Long>("set_cull_mask")
+
+    @JvmStatic
+    public val getCullMaskName: MethodStringName0<Decal, Long> =
+        MethodStringName0<Decal, Long>("get_cull_mask")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_size", 3460891852)

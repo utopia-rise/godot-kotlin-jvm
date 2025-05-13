@@ -881,889 +881,889 @@ import godot.api.XRVRS
 import godot.api.ZIPPacker
 import godot.api.ZIPReader
 import godot.core.VariantParser.OBJECT
-import godot.core.variantMapper
+import godot.core.addVariantMapping
 import kotlin.Unit
 
 public fun registerVariantMapping(): Unit {
-  variantMapper[Object::class] = OBJECT
-  variantMapper[RefCounted::class] = OBJECT
-  variantMapper[AESContext::class] = OBJECT
-  variantMapper[AStar2D::class] = OBJECT
-  variantMapper[AStar3D::class] = OBJECT
-  variantMapper[AStarGrid2D::class] = OBJECT
-  variantMapper[AcceptDialog::class] = OBJECT
-  variantMapper[AnimatableBody2D::class] = OBJECT
-  variantMapper[AnimatableBody3D::class] = OBJECT
-  variantMapper[AnimatedSprite2D::class] = OBJECT
-  variantMapper[AnimatedSprite3D::class] = OBJECT
-  variantMapper[AnimatedTexture::class] = OBJECT
-  variantMapper[Animation::class] = OBJECT
-  variantMapper[AnimationLibrary::class] = OBJECT
-  variantMapper[AnimationMixer::class] = OBJECT
-  variantMapper[AnimationNode::class] = OBJECT
-  variantMapper[AnimationNodeAdd2::class] = OBJECT
-  variantMapper[AnimationNodeAdd3::class] = OBJECT
-  variantMapper[AnimationNodeAnimation::class] = OBJECT
-  variantMapper[AnimationNodeBlend2::class] = OBJECT
-  variantMapper[AnimationNodeBlend3::class] = OBJECT
-  variantMapper[AnimationNodeBlendSpace1D::class] = OBJECT
-  variantMapper[AnimationNodeBlendSpace2D::class] = OBJECT
-  variantMapper[AnimationNodeBlendTree::class] = OBJECT
-  variantMapper[AnimationNodeExtension::class] = OBJECT
-  variantMapper[AnimationNodeOneShot::class] = OBJECT
-  variantMapper[AnimationNodeOutput::class] = OBJECT
-  variantMapper[AnimationNodeStateMachine::class] = OBJECT
-  variantMapper[AnimationNodeStateMachinePlayback::class] = OBJECT
-  variantMapper[AnimationNodeStateMachineTransition::class] = OBJECT
-  variantMapper[AnimationNodeSub2::class] = OBJECT
-  variantMapper[AnimationNodeSync::class] = OBJECT
-  variantMapper[AnimationNodeTimeScale::class] = OBJECT
-  variantMapper[AnimationNodeTimeSeek::class] = OBJECT
-  variantMapper[AnimationNodeTransition::class] = OBJECT
-  variantMapper[AnimationPlayer::class] = OBJECT
-  variantMapper[AnimationRootNode::class] = OBJECT
-  variantMapper[AnimationTree::class] = OBJECT
-  variantMapper[Area2D::class] = OBJECT
-  variantMapper[Area3D::class] = OBJECT
-  variantMapper[ArrayMesh::class] = OBJECT
-  variantMapper[ArrayOccluder3D::class] = OBJECT
-  variantMapper[AspectRatioContainer::class] = OBJECT
-  variantMapper[AtlasTexture::class] = OBJECT
-  variantMapper[AudioBusLayout::class] = OBJECT
-  variantMapper[AudioEffect::class] = OBJECT
-  variantMapper[AudioEffectAmplify::class] = OBJECT
-  variantMapper[AudioEffectBandLimitFilter::class] = OBJECT
-  variantMapper[AudioEffectBandPassFilter::class] = OBJECT
-  variantMapper[AudioEffectCapture::class] = OBJECT
-  variantMapper[AudioEffectChorus::class] = OBJECT
-  variantMapper[AudioEffectCompressor::class] = OBJECT
-  variantMapper[AudioEffectDelay::class] = OBJECT
-  variantMapper[AudioEffectDistortion::class] = OBJECT
-  variantMapper[AudioEffectEQ::class] = OBJECT
-  variantMapper[AudioEffectEQ10::class] = OBJECT
-  variantMapper[AudioEffectEQ21::class] = OBJECT
-  variantMapper[AudioEffectEQ6::class] = OBJECT
-  variantMapper[AudioEffectFilter::class] = OBJECT
-  variantMapper[AudioEffectHardLimiter::class] = OBJECT
-  variantMapper[AudioEffectHighPassFilter::class] = OBJECT
-  variantMapper[AudioEffectHighShelfFilter::class] = OBJECT
-  variantMapper[AudioEffectInstance::class] = OBJECT
-  variantMapper[AudioEffectLimiter::class] = OBJECT
-  variantMapper[AudioEffectLowPassFilter::class] = OBJECT
-  variantMapper[AudioEffectLowShelfFilter::class] = OBJECT
-  variantMapper[AudioEffectNotchFilter::class] = OBJECT
-  variantMapper[AudioEffectPanner::class] = OBJECT
-  variantMapper[AudioEffectPhaser::class] = OBJECT
-  variantMapper[AudioEffectPitchShift::class] = OBJECT
-  variantMapper[AudioEffectRecord::class] = OBJECT
-  variantMapper[AudioEffectReverb::class] = OBJECT
-  variantMapper[AudioEffectSpectrumAnalyzer::class] = OBJECT
-  variantMapper[AudioEffectSpectrumAnalyzerInstance::class] = OBJECT
-  variantMapper[AudioEffectStereoEnhance::class] = OBJECT
-  variantMapper[AudioListener2D::class] = OBJECT
-  variantMapper[AudioListener3D::class] = OBJECT
-  variantMapper[AudioSample::class] = OBJECT
-  variantMapper[AudioSamplePlayback::class] = OBJECT
-  variantMapper[AudioServer::class] = OBJECT
-  variantMapper[AudioStream::class] = OBJECT
-  variantMapper[AudioStreamGenerator::class] = OBJECT
-  variantMapper[AudioStreamGeneratorPlayback::class] = OBJECT
-  variantMapper[AudioStreamInteractive::class] = OBJECT
-  variantMapper[AudioStreamMP3::class] = OBJECT
-  variantMapper[AudioStreamMicrophone::class] = OBJECT
-  variantMapper[AudioStreamOggVorbis::class] = OBJECT
-  variantMapper[AudioStreamPlayback::class] = OBJECT
-  variantMapper[AudioStreamPlaybackInteractive::class] = OBJECT
-  variantMapper[AudioStreamPlaybackOggVorbis::class] = OBJECT
-  variantMapper[AudioStreamPlaybackPlaylist::class] = OBJECT
-  variantMapper[AudioStreamPlaybackPolyphonic::class] = OBJECT
-  variantMapper[AudioStreamPlaybackResampled::class] = OBJECT
-  variantMapper[AudioStreamPlaybackSynchronized::class] = OBJECT
-  variantMapper[AudioStreamPlayer::class] = OBJECT
-  variantMapper[AudioStreamPlayer2D::class] = OBJECT
-  variantMapper[AudioStreamPlayer3D::class] = OBJECT
-  variantMapper[AudioStreamPlaylist::class] = OBJECT
-  variantMapper[AudioStreamPolyphonic::class] = OBJECT
-  variantMapper[AudioStreamRandomizer::class] = OBJECT
-  variantMapper[AudioStreamSynchronized::class] = OBJECT
-  variantMapper[AudioStreamWAV::class] = OBJECT
-  variantMapper[BackBufferCopy::class] = OBJECT
-  variantMapper[BaseButton::class] = OBJECT
-  variantMapper[BaseMaterial3D::class] = OBJECT
-  variantMapper[BitMap::class] = OBJECT
-  variantMapper[Bone2D::class] = OBJECT
-  variantMapper[BoneAttachment3D::class] = OBJECT
-  variantMapper[BoneMap::class] = OBJECT
-  variantMapper[BoxContainer::class] = OBJECT
-  variantMapper[BoxMesh::class] = OBJECT
-  variantMapper[BoxOccluder3D::class] = OBJECT
-  variantMapper[BoxShape3D::class] = OBJECT
-  variantMapper[Button::class] = OBJECT
-  variantMapper[ButtonGroup::class] = OBJECT
-  variantMapper[CPUParticles2D::class] = OBJECT
-  variantMapper[CPUParticles3D::class] = OBJECT
-  variantMapper[CSGBox3D::class] = OBJECT
-  variantMapper[CSGCombiner3D::class] = OBJECT
-  variantMapper[CSGCylinder3D::class] = OBJECT
-  variantMapper[CSGMesh3D::class] = OBJECT
-  variantMapper[CSGPolygon3D::class] = OBJECT
-  variantMapper[CSGPrimitive3D::class] = OBJECT
-  variantMapper[CSGShape3D::class] = OBJECT
-  variantMapper[CSGSphere3D::class] = OBJECT
-  variantMapper[CSGTorus3D::class] = OBJECT
-  variantMapper[CallbackTweener::class] = OBJECT
-  variantMapper[Camera2D::class] = OBJECT
-  variantMapper[Camera3D::class] = OBJECT
-  variantMapper[CameraAttributes::class] = OBJECT
-  variantMapper[CameraAttributesPhysical::class] = OBJECT
-  variantMapper[CameraAttributesPractical::class] = OBJECT
-  variantMapper[CameraFeed::class] = OBJECT
-  variantMapper[CameraServer::class] = OBJECT
-  variantMapper[CameraTexture::class] = OBJECT
-  variantMapper[CanvasGroup::class] = OBJECT
-  variantMapper[CanvasItem::class] = OBJECT
-  variantMapper[CanvasItemMaterial::class] = OBJECT
-  variantMapper[CanvasLayer::class] = OBJECT
-  variantMapper[CanvasModulate::class] = OBJECT
-  variantMapper[CanvasTexture::class] = OBJECT
-  variantMapper[CapsuleMesh::class] = OBJECT
-  variantMapper[CapsuleShape2D::class] = OBJECT
-  variantMapper[CapsuleShape3D::class] = OBJECT
-  variantMapper[CenterContainer::class] = OBJECT
-  variantMapper[CharFXTransform::class] = OBJECT
-  variantMapper[CharacterBody2D::class] = OBJECT
-  variantMapper[CharacterBody3D::class] = OBJECT
-  variantMapper[CheckBox::class] = OBJECT
-  variantMapper[CheckButton::class] = OBJECT
-  variantMapper[CircleShape2D::class] = OBJECT
-  variantMapper[ClassDB::class] = OBJECT
-  variantMapper[CodeEdit::class] = OBJECT
-  variantMapper[CodeHighlighter::class] = OBJECT
-  variantMapper[CollisionObject2D::class] = OBJECT
-  variantMapper[CollisionObject3D::class] = OBJECT
-  variantMapper[CollisionPolygon2D::class] = OBJECT
-  variantMapper[CollisionPolygon3D::class] = OBJECT
-  variantMapper[CollisionShape2D::class] = OBJECT
-  variantMapper[CollisionShape3D::class] = OBJECT
-  variantMapper[ColorPalette::class] = OBJECT
-  variantMapper[ColorPicker::class] = OBJECT
-  variantMapper[ColorPickerButton::class] = OBJECT
-  variantMapper[ColorRect::class] = OBJECT
-  variantMapper[Compositor::class] = OBJECT
-  variantMapper[CompositorEffect::class] = OBJECT
-  variantMapper[CompressedCubemap::class] = OBJECT
-  variantMapper[CompressedCubemapArray::class] = OBJECT
-  variantMapper[CompressedTexture2D::class] = OBJECT
-  variantMapper[CompressedTexture2DArray::class] = OBJECT
-  variantMapper[CompressedTexture3D::class] = OBJECT
-  variantMapper[CompressedTextureLayered::class] = OBJECT
-  variantMapper[ConcavePolygonShape2D::class] = OBJECT
-  variantMapper[ConcavePolygonShape3D::class] = OBJECT
-  variantMapper[ConeTwistJoint3D::class] = OBJECT
-  variantMapper[ConfigFile::class] = OBJECT
-  variantMapper[ConfirmationDialog::class] = OBJECT
-  variantMapper[Container::class] = OBJECT
-  variantMapper[Control::class] = OBJECT
-  variantMapper[ConvexPolygonShape2D::class] = OBJECT
-  variantMapper[ConvexPolygonShape3D::class] = OBJECT
-  variantMapper[Crypto::class] = OBJECT
-  variantMapper[CryptoKey::class] = OBJECT
-  variantMapper[Cubemap::class] = OBJECT
-  variantMapper[CubemapArray::class] = OBJECT
-  variantMapper[Curve::class] = OBJECT
-  variantMapper[Curve2D::class] = OBJECT
-  variantMapper[Curve3D::class] = OBJECT
-  variantMapper[CurveTexture::class] = OBJECT
-  variantMapper[CurveXYZTexture::class] = OBJECT
-  variantMapper[CylinderMesh::class] = OBJECT
-  variantMapper[CylinderShape3D::class] = OBJECT
-  variantMapper[DTLSServer::class] = OBJECT
-  variantMapper[DampedSpringJoint2D::class] = OBJECT
-  variantMapper[Decal::class] = OBJECT
-  variantMapper[DirAccess::class] = OBJECT
-  variantMapper[DirectionalLight2D::class] = OBJECT
-  variantMapper[DirectionalLight3D::class] = OBJECT
-  variantMapper[DisplayServer::class] = OBJECT
-  variantMapper[ENetConnection::class] = OBJECT
-  variantMapper[ENetMultiplayerPeer::class] = OBJECT
-  variantMapper[ENetPacketPeer::class] = OBJECT
-  variantMapper[EncodedObjectAsID::class] = OBJECT
-  variantMapper[Engine::class] = OBJECT
-  variantMapper[EngineDebugger::class] = OBJECT
-  variantMapper[EngineProfiler::class] = OBJECT
-  variantMapper[Environment::class] = OBJECT
-  variantMapper[Expression::class] = OBJECT
-  variantMapper[ExternalTexture::class] = OBJECT
-  variantMapper[FBXDocument::class] = OBJECT
-  variantMapper[FBXState::class] = OBJECT
-  variantMapper[FastNoiseLite::class] = OBJECT
-  variantMapper[FileAccess::class] = OBJECT
-  variantMapper[FileDialog::class] = OBJECT
-  variantMapper[FlowContainer::class] = OBJECT
-  variantMapper[FogMaterial::class] = OBJECT
-  variantMapper[FogVolume::class] = OBJECT
-  variantMapper[Font::class] = OBJECT
-  variantMapper[FontFile::class] = OBJECT
-  variantMapper[FontVariation::class] = OBJECT
-  variantMapper[FramebufferCacheRD::class] = OBJECT
-  variantMapper[GDExtension::class] = OBJECT
-  variantMapper[GDExtensionManager::class] = OBJECT
-  variantMapper[GDScript::class] = OBJECT
-  variantMapper[GLTFAccessor::class] = OBJECT
-  variantMapper[GLTFAnimation::class] = OBJECT
-  variantMapper[GLTFBufferView::class] = OBJECT
-  variantMapper[GLTFCamera::class] = OBJECT
-  variantMapper[GLTFDocument::class] = OBJECT
-  variantMapper[GLTFDocumentExtension::class] = OBJECT
-  variantMapper[GLTFDocumentExtensionConvertImporterMesh::class] = OBJECT
-  variantMapper[GLTFLight::class] = OBJECT
-  variantMapper[GLTFMesh::class] = OBJECT
-  variantMapper[GLTFNode::class] = OBJECT
-  variantMapper[GLTFObjectModelProperty::class] = OBJECT
-  variantMapper[GLTFPhysicsBody::class] = OBJECT
-  variantMapper[GLTFPhysicsShape::class] = OBJECT
-  variantMapper[GLTFSkeleton::class] = OBJECT
-  variantMapper[GLTFSkin::class] = OBJECT
-  variantMapper[GLTFSpecGloss::class] = OBJECT
-  variantMapper[GLTFState::class] = OBJECT
-  variantMapper[GLTFTexture::class] = OBJECT
-  variantMapper[GLTFTextureSampler::class] = OBJECT
-  variantMapper[GPUParticles2D::class] = OBJECT
-  variantMapper[GPUParticles3D::class] = OBJECT
-  variantMapper[GPUParticlesAttractor3D::class] = OBJECT
-  variantMapper[GPUParticlesAttractorBox3D::class] = OBJECT
-  variantMapper[GPUParticlesAttractorSphere3D::class] = OBJECT
-  variantMapper[GPUParticlesAttractorVectorField3D::class] = OBJECT
-  variantMapper[GPUParticlesCollision3D::class] = OBJECT
-  variantMapper[GPUParticlesCollisionBox3D::class] = OBJECT
-  variantMapper[GPUParticlesCollisionHeightField3D::class] = OBJECT
-  variantMapper[GPUParticlesCollisionSDF3D::class] = OBJECT
-  variantMapper[GPUParticlesCollisionSphere3D::class] = OBJECT
-  variantMapper[GdjScript::class] = OBJECT
-  variantMapper[Generic6DOFJoint3D::class] = OBJECT
-  variantMapper[Geometry2D::class] = OBJECT
-  variantMapper[Geometry3D::class] = OBJECT
-  variantMapper[GeometryInstance3D::class] = OBJECT
-  variantMapper[Gradient::class] = OBJECT
-  variantMapper[GradientTexture1D::class] = OBJECT
-  variantMapper[GradientTexture2D::class] = OBJECT
-  variantMapper[GraphEdit::class] = OBJECT
-  variantMapper[GraphElement::class] = OBJECT
-  variantMapper[GraphFrame::class] = OBJECT
-  variantMapper[GraphNode::class] = OBJECT
-  variantMapper[GridContainer::class] = OBJECT
-  variantMapper[GridMap::class] = OBJECT
-  variantMapper[GrooveJoint2D::class] = OBJECT
-  variantMapper[HBoxContainer::class] = OBJECT
-  variantMapper[HFlowContainer::class] = OBJECT
-  variantMapper[HMACContext::class] = OBJECT
-  variantMapper[HScrollBar::class] = OBJECT
-  variantMapper[HSeparator::class] = OBJECT
-  variantMapper[HSlider::class] = OBJECT
-  variantMapper[HSplitContainer::class] = OBJECT
-  variantMapper[HTTPClient::class] = OBJECT
-  variantMapper[HTTPRequest::class] = OBJECT
-  variantMapper[HashingContext::class] = OBJECT
-  variantMapper[HeightMapShape3D::class] = OBJECT
-  variantMapper[HingeJoint3D::class] = OBJECT
-  variantMapper[IP::class] = OBJECT
-  variantMapper[Image::class] = OBJECT
-  variantMapper[ImageFormatLoader::class] = OBJECT
-  variantMapper[ImageFormatLoaderExtension::class] = OBJECT
-  variantMapper[ImageTexture::class] = OBJECT
-  variantMapper[ImageTexture3D::class] = OBJECT
-  variantMapper[ImageTextureLayered::class] = OBJECT
-  variantMapper[ImmediateMesh::class] = OBJECT
-  variantMapper[ImporterMesh::class] = OBJECT
-  variantMapper[ImporterMeshInstance3D::class] = OBJECT
-  variantMapper[Input::class] = OBJECT
-  variantMapper[InputEvent::class] = OBJECT
-  variantMapper[InputEventAction::class] = OBJECT
-  variantMapper[InputEventFromWindow::class] = OBJECT
-  variantMapper[InputEventGesture::class] = OBJECT
-  variantMapper[InputEventJoypadButton::class] = OBJECT
-  variantMapper[InputEventJoypadMotion::class] = OBJECT
-  variantMapper[InputEventKey::class] = OBJECT
-  variantMapper[InputEventMIDI::class] = OBJECT
-  variantMapper[InputEventMagnifyGesture::class] = OBJECT
-  variantMapper[InputEventMouse::class] = OBJECT
-  variantMapper[InputEventMouseButton::class] = OBJECT
-  variantMapper[InputEventMouseMotion::class] = OBJECT
-  variantMapper[InputEventPanGesture::class] = OBJECT
-  variantMapper[InputEventScreenDrag::class] = OBJECT
-  variantMapper[InputEventScreenTouch::class] = OBJECT
-  variantMapper[InputEventShortcut::class] = OBJECT
-  variantMapper[InputEventWithModifiers::class] = OBJECT
-  variantMapper[InputMap::class] = OBJECT
-  variantMapper[InstancePlaceholder::class] = OBJECT
-  variantMapper[IntervalTweener::class] = OBJECT
-  variantMapper[ItemList::class] = OBJECT
-  variantMapper[JNISingleton::class] = OBJECT
-  variantMapper[JSON::class] = OBJECT
-  variantMapper[JSONRPC::class] = OBJECT
-  variantMapper[JavaClass::class] = OBJECT
-  variantMapper[JavaClassWrapper::class] = OBJECT
-  variantMapper[JavaObject::class] = OBJECT
-  variantMapper[JavaScript::class] = OBJECT
-  variantMapper[JavaScriptBridge::class] = OBJECT
-  variantMapper[JavaScriptObject::class] = OBJECT
-  variantMapper[Joint2D::class] = OBJECT
-  variantMapper[Joint3D::class] = OBJECT
-  variantMapper[JvmScript::class] = OBJECT
-  variantMapper[KinematicCollision2D::class] = OBJECT
-  variantMapper[KinematicCollision3D::class] = OBJECT
-  variantMapper[KotlinScript::class] = OBJECT
-  variantMapper[Label::class] = OBJECT
-  variantMapper[Label3D::class] = OBJECT
-  variantMapper[LabelSettings::class] = OBJECT
-  variantMapper[Light2D::class] = OBJECT
-  variantMapper[Light3D::class] = OBJECT
-  variantMapper[LightOccluder2D::class] = OBJECT
-  variantMapper[LightmapGI::class] = OBJECT
-  variantMapper[LightmapGIData::class] = OBJECT
-  variantMapper[LightmapProbe::class] = OBJECT
-  variantMapper[Lightmapper::class] = OBJECT
-  variantMapper[LightmapperRD::class] = OBJECT
-  variantMapper[Line2D::class] = OBJECT
-  variantMapper[LineEdit::class] = OBJECT
-  variantMapper[LinkButton::class] = OBJECT
-  variantMapper[LookAtModifier3D::class] = OBJECT
-  variantMapper[MainLoop::class] = OBJECT
-  variantMapper[MarginContainer::class] = OBJECT
-  variantMapper[Marker2D::class] = OBJECT
-  variantMapper[Marker3D::class] = OBJECT
-  variantMapper[Marshalls::class] = OBJECT
-  variantMapper[Material::class] = OBJECT
-  variantMapper[MenuBar::class] = OBJECT
-  variantMapper[MenuButton::class] = OBJECT
-  variantMapper[Mesh::class] = OBJECT
-  variantMapper[MeshConvexDecompositionSettings::class] = OBJECT
-  variantMapper[MeshDataTool::class] = OBJECT
-  variantMapper[MeshInstance2D::class] = OBJECT
-  variantMapper[MeshInstance3D::class] = OBJECT
-  variantMapper[MeshLibrary::class] = OBJECT
-  variantMapper[MeshTexture::class] = OBJECT
-  variantMapper[MethodTweener::class] = OBJECT
-  variantMapper[MissingNode::class] = OBJECT
-  variantMapper[MissingResource::class] = OBJECT
-  variantMapper[MobileVRInterface::class] = OBJECT
-  variantMapper[MovieWriter::class] = OBJECT
-  variantMapper[MultiMesh::class] = OBJECT
-  variantMapper[MultiMeshInstance2D::class] = OBJECT
-  variantMapper[MultiMeshInstance3D::class] = OBJECT
-  variantMapper[MultiplayerAPI::class] = OBJECT
-  variantMapper[MultiplayerAPIExtension::class] = OBJECT
-  variantMapper[MultiplayerPeer::class] = OBJECT
-  variantMapper[MultiplayerPeerExtension::class] = OBJECT
-  variantMapper[MultiplayerSpawner::class] = OBJECT
-  variantMapper[MultiplayerSynchronizer::class] = OBJECT
-  variantMapper[Mutex::class] = OBJECT
-  variantMapper[NativeMenu::class] = OBJECT
-  variantMapper[NavigationAgent2D::class] = OBJECT
-  variantMapper[NavigationAgent3D::class] = OBJECT
-  variantMapper[NavigationLink2D::class] = OBJECT
-  variantMapper[NavigationLink3D::class] = OBJECT
-  variantMapper[NavigationMesh::class] = OBJECT
-  variantMapper[NavigationMeshGenerator::class] = OBJECT
-  variantMapper[NavigationMeshSourceGeometryData2D::class] = OBJECT
-  variantMapper[NavigationMeshSourceGeometryData3D::class] = OBJECT
-  variantMapper[NavigationObstacle2D::class] = OBJECT
-  variantMapper[NavigationObstacle3D::class] = OBJECT
-  variantMapper[NavigationPathQueryParameters2D::class] = OBJECT
-  variantMapper[NavigationPathQueryParameters3D::class] = OBJECT
-  variantMapper[NavigationPathQueryResult2D::class] = OBJECT
-  variantMapper[NavigationPathQueryResult3D::class] = OBJECT
-  variantMapper[NavigationPolygon::class] = OBJECT
-  variantMapper[NavigationRegion2D::class] = OBJECT
-  variantMapper[NavigationRegion3D::class] = OBJECT
-  variantMapper[NavigationServer2D::class] = OBJECT
-  variantMapper[NavigationServer3D::class] = OBJECT
-  variantMapper[NinePatchRect::class] = OBJECT
-  variantMapper[Node::class] = OBJECT
-  variantMapper[Node2D::class] = OBJECT
-  variantMapper[Node3D::class] = OBJECT
-  variantMapper[Node3DGizmo::class] = OBJECT
-  variantMapper[Noise::class] = OBJECT
-  variantMapper[NoiseTexture2D::class] = OBJECT
-  variantMapper[NoiseTexture3D::class] = OBJECT
-  variantMapper[ORMMaterial3D::class] = OBJECT
-  variantMapper[OS::class] = OBJECT
-  variantMapper[Occluder3D::class] = OBJECT
-  variantMapper[OccluderInstance3D::class] = OBJECT
-  variantMapper[OccluderPolygon2D::class] = OBJECT
-  variantMapper[OfflineMultiplayerPeer::class] = OBJECT
-  variantMapper[OggPacketSequence::class] = OBJECT
-  variantMapper[OggPacketSequencePlayback::class] = OBJECT
-  variantMapper[OmniLight3D::class] = OBJECT
-  variantMapper[OpenXRAPIExtension::class] = OBJECT
-  variantMapper[OpenXRAction::class] = OBJECT
-  variantMapper[OpenXRActionBindingModifier::class] = OBJECT
-  variantMapper[OpenXRActionMap::class] = OBJECT
-  variantMapper[OpenXRActionSet::class] = OBJECT
-  variantMapper[OpenXRAnalogThresholdModifier::class] = OBJECT
-  variantMapper[OpenXRBindingModifier::class] = OBJECT
-  variantMapper[OpenXRCompositionLayer::class] = OBJECT
-  variantMapper[OpenXRCompositionLayerCylinder::class] = OBJECT
-  variantMapper[OpenXRCompositionLayerEquirect::class] = OBJECT
-  variantMapper[OpenXRCompositionLayerQuad::class] = OBJECT
-  variantMapper[OpenXRDpadBindingModifier::class] = OBJECT
-  variantMapper[OpenXRExtensionWrapperExtension::class] = OBJECT
-  variantMapper[OpenXRHand::class] = OBJECT
-  variantMapper[OpenXRHapticBase::class] = OBJECT
-  variantMapper[OpenXRHapticVibration::class] = OBJECT
-  variantMapper[OpenXRIPBinding::class] = OBJECT
-  variantMapper[OpenXRIPBindingModifier::class] = OBJECT
-  variantMapper[OpenXRInteractionProfile::class] = OBJECT
-  variantMapper[OpenXRInteractionProfileMetadata::class] = OBJECT
-  variantMapper[OpenXRInterface::class] = OBJECT
-  variantMapper[OpenXRVisibilityMask::class] = OBJECT
-  variantMapper[OptimizedTranslation::class] = OBJECT
-  variantMapper[OptionButton::class] = OBJECT
-  variantMapper[PCKPacker::class] = OBJECT
-  variantMapper[PackedDataContainer::class] = OBJECT
-  variantMapper[PackedDataContainerRef::class] = OBJECT
-  variantMapper[PackedScene::class] = OBJECT
-  variantMapper[PacketPeer::class] = OBJECT
-  variantMapper[PacketPeerDTLS::class] = OBJECT
-  variantMapper[PacketPeerExtension::class] = OBJECT
-  variantMapper[PacketPeerStream::class] = OBJECT
-  variantMapper[PacketPeerUDP::class] = OBJECT
-  variantMapper[Panel::class] = OBJECT
-  variantMapper[PanelContainer::class] = OBJECT
-  variantMapper[PanoramaSkyMaterial::class] = OBJECT
-  variantMapper[Parallax2D::class] = OBJECT
-  variantMapper[ParallaxBackground::class] = OBJECT
-  variantMapper[ParallaxLayer::class] = OBJECT
-  variantMapper[ParticleProcessMaterial::class] = OBJECT
-  variantMapper[Path2D::class] = OBJECT
-  variantMapper[Path3D::class] = OBJECT
-  variantMapper[PathFollow2D::class] = OBJECT
-  variantMapper[PathFollow3D::class] = OBJECT
-  variantMapper[Performance::class] = OBJECT
-  variantMapper[PhysicalBone2D::class] = OBJECT
-  variantMapper[PhysicalBone3D::class] = OBJECT
-  variantMapper[PhysicalBoneSimulator3D::class] = OBJECT
-  variantMapper[PhysicalSkyMaterial::class] = OBJECT
-  variantMapper[PhysicsBody2D::class] = OBJECT
-  variantMapper[PhysicsBody3D::class] = OBJECT
-  variantMapper[PhysicsDirectBodyState2D::class] = OBJECT
-  variantMapper[PhysicsDirectBodyState2DExtension::class] = OBJECT
-  variantMapper[PhysicsDirectBodyState3D::class] = OBJECT
-  variantMapper[PhysicsDirectBodyState3DExtension::class] = OBJECT
-  variantMapper[PhysicsDirectSpaceState2D::class] = OBJECT
-  variantMapper[PhysicsDirectSpaceState2DExtension::class] = OBJECT
-  variantMapper[PhysicsDirectSpaceState3D::class] = OBJECT
-  variantMapper[PhysicsDirectSpaceState3DExtension::class] = OBJECT
-  variantMapper[PhysicsMaterial::class] = OBJECT
-  variantMapper[PhysicsPointQueryParameters2D::class] = OBJECT
-  variantMapper[PhysicsPointQueryParameters3D::class] = OBJECT
-  variantMapper[PhysicsRayQueryParameters2D::class] = OBJECT
-  variantMapper[PhysicsRayQueryParameters3D::class] = OBJECT
-  variantMapper[PhysicsServer2D::class] = OBJECT
-  variantMapper[PhysicsServer2DManager::class] = OBJECT
-  variantMapper[PhysicsServer3D::class] = OBJECT
-  variantMapper[PhysicsServer3DManager::class] = OBJECT
-  variantMapper[PhysicsServer3DRenderingServerHandler::class] = OBJECT
-  variantMapper[PhysicsShapeQueryParameters2D::class] = OBJECT
-  variantMapper[PhysicsShapeQueryParameters3D::class] = OBJECT
-  variantMapper[PhysicsTestMotionParameters2D::class] = OBJECT
-  variantMapper[PhysicsTestMotionParameters3D::class] = OBJECT
-  variantMapper[PhysicsTestMotionResult2D::class] = OBJECT
-  variantMapper[PhysicsTestMotionResult3D::class] = OBJECT
-  variantMapper[PinJoint2D::class] = OBJECT
-  variantMapper[PinJoint3D::class] = OBJECT
-  variantMapper[PlaceholderCubemap::class] = OBJECT
-  variantMapper[PlaceholderCubemapArray::class] = OBJECT
-  variantMapper[PlaceholderMaterial::class] = OBJECT
-  variantMapper[PlaceholderMesh::class] = OBJECT
-  variantMapper[PlaceholderTexture2D::class] = OBJECT
-  variantMapper[PlaceholderTexture2DArray::class] = OBJECT
-  variantMapper[PlaceholderTexture3D::class] = OBJECT
-  variantMapper[PlaceholderTextureLayered::class] = OBJECT
-  variantMapper[PlaneMesh::class] = OBJECT
-  variantMapper[PointLight2D::class] = OBJECT
-  variantMapper[PointMesh::class] = OBJECT
-  variantMapper[Polygon2D::class] = OBJECT
-  variantMapper[PolygonOccluder3D::class] = OBJECT
-  variantMapper[PolygonPathFinder::class] = OBJECT
-  variantMapper[Popup::class] = OBJECT
-  variantMapper[PopupMenu::class] = OBJECT
-  variantMapper[PopupPanel::class] = OBJECT
-  variantMapper[PortableCompressedTexture2D::class] = OBJECT
-  variantMapper[PrimitiveMesh::class] = OBJECT
-  variantMapper[PrismMesh::class] = OBJECT
-  variantMapper[ProceduralSkyMaterial::class] = OBJECT
-  variantMapper[ProgressBar::class] = OBJECT
-  variantMapper[ProjectSettings::class] = OBJECT
-  variantMapper[PropertyTweener::class] = OBJECT
-  variantMapper[QuadMesh::class] = OBJECT
-  variantMapper[QuadOccluder3D::class] = OBJECT
-  variantMapper[RDAttachmentFormat::class] = OBJECT
-  variantMapper[RDFramebufferPass::class] = OBJECT
-  variantMapper[RDPipelineColorBlendState::class] = OBJECT
-  variantMapper[RDPipelineColorBlendStateAttachment::class] = OBJECT
-  variantMapper[RDPipelineDepthStencilState::class] = OBJECT
-  variantMapper[RDPipelineMultisampleState::class] = OBJECT
-  variantMapper[RDPipelineRasterizationState::class] = OBJECT
-  variantMapper[RDPipelineSpecializationConstant::class] = OBJECT
-  variantMapper[RDSamplerState::class] = OBJECT
-  variantMapper[RDShaderFile::class] = OBJECT
-  variantMapper[RDShaderSPIRV::class] = OBJECT
-  variantMapper[RDShaderSource::class] = OBJECT
-  variantMapper[RDTextureFormat::class] = OBJECT
-  variantMapper[RDTextureView::class] = OBJECT
-  variantMapper[RDUniform::class] = OBJECT
-  variantMapper[RDVertexAttribute::class] = OBJECT
-  variantMapper[RandomNumberGenerator::class] = OBJECT
-  variantMapper[Range::class] = OBJECT
-  variantMapper[RayCast2D::class] = OBJECT
-  variantMapper[RayCast3D::class] = OBJECT
-  variantMapper[RectangleShape2D::class] = OBJECT
-  variantMapper[ReferenceRect::class] = OBJECT
-  variantMapper[ReflectionProbe::class] = OBJECT
-  variantMapper[RegEx::class] = OBJECT
-  variantMapper[RegExMatch::class] = OBJECT
-  variantMapper[RemoteTransform2D::class] = OBJECT
-  variantMapper[RemoteTransform3D::class] = OBJECT
-  variantMapper[RenderData::class] = OBJECT
-  variantMapper[RenderDataExtension::class] = OBJECT
-  variantMapper[RenderDataRD::class] = OBJECT
-  variantMapper[RenderSceneBuffers::class] = OBJECT
-  variantMapper[RenderSceneBuffersConfiguration::class] = OBJECT
-  variantMapper[RenderSceneBuffersExtension::class] = OBJECT
-  variantMapper[RenderSceneBuffersRD::class] = OBJECT
-  variantMapper[RenderSceneData::class] = OBJECT
-  variantMapper[RenderSceneDataExtension::class] = OBJECT
-  variantMapper[RenderSceneDataRD::class] = OBJECT
-  variantMapper[RenderingDevice::class] = OBJECT
-  variantMapper[RenderingServer::class] = OBJECT
-  variantMapper[Resource::class] = OBJECT
-  variantMapper[ResourceFormatLoader::class] = OBJECT
-  variantMapper[ResourceFormatSaver::class] = OBJECT
-  variantMapper[ResourceImporter::class] = OBJECT
-  variantMapper[ResourceLoader::class] = OBJECT
-  variantMapper[ResourcePreloader::class] = OBJECT
-  variantMapper[ResourceSaver::class] = OBJECT
-  variantMapper[ResourceUID::class] = OBJECT
-  variantMapper[RetargetModifier3D::class] = OBJECT
-  variantMapper[RibbonTrailMesh::class] = OBJECT
-  variantMapper[RichTextEffect::class] = OBJECT
-  variantMapper[RichTextLabel::class] = OBJECT
-  variantMapper[RigidBody2D::class] = OBJECT
-  variantMapper[RigidBody3D::class] = OBJECT
-  variantMapper[RootMotionView::class] = OBJECT
-  variantMapper[SceneMultiplayer::class] = OBJECT
-  variantMapper[SceneReplicationConfig::class] = OBJECT
-  variantMapper[SceneState::class] = OBJECT
-  variantMapper[SceneTree::class] = OBJECT
-  variantMapper[SceneTreeTimer::class] = OBJECT
-  variantMapper[Script::class] = OBJECT
-  variantMapper[ScriptExtension::class] = OBJECT
-  variantMapper[ScriptLanguage::class] = OBJECT
-  variantMapper[ScriptLanguageExtension::class] = OBJECT
-  variantMapper[ScrollBar::class] = OBJECT
-  variantMapper[ScrollContainer::class] = OBJECT
-  variantMapper[SegmentShape2D::class] = OBJECT
-  variantMapper[Semaphore::class] = OBJECT
-  variantMapper[SeparationRayShape2D::class] = OBJECT
-  variantMapper[SeparationRayShape3D::class] = OBJECT
-  variantMapper[Separator::class] = OBJECT
-  variantMapper[Shader::class] = OBJECT
-  variantMapper[ShaderGlobalsOverride::class] = OBJECT
-  variantMapper[ShaderInclude::class] = OBJECT
-  variantMapper[ShaderIncludeDB::class] = OBJECT
-  variantMapper[ShaderMaterial::class] = OBJECT
-  variantMapper[Shape2D::class] = OBJECT
-  variantMapper[Shape3D::class] = OBJECT
-  variantMapper[ShapeCast2D::class] = OBJECT
-  variantMapper[ShapeCast3D::class] = OBJECT
-  variantMapper[Shortcut::class] = OBJECT
-  variantMapper[Skeleton2D::class] = OBJECT
-  variantMapper[Skeleton3D::class] = OBJECT
-  variantMapper[SkeletonIK3D::class] = OBJECT
-  variantMapper[SkeletonModification2D::class] = OBJECT
-  variantMapper[SkeletonModification2DCCDIK::class] = OBJECT
-  variantMapper[SkeletonModification2DFABRIK::class] = OBJECT
-  variantMapper[SkeletonModification2DJiggle::class] = OBJECT
-  variantMapper[SkeletonModification2DLookAt::class] = OBJECT
-  variantMapper[SkeletonModification2DPhysicalBones::class] = OBJECT
-  variantMapper[SkeletonModification2DStackHolder::class] = OBJECT
-  variantMapper[SkeletonModification2DTwoBoneIK::class] = OBJECT
-  variantMapper[SkeletonModificationStack2D::class] = OBJECT
-  variantMapper[SkeletonModifier3D::class] = OBJECT
-  variantMapper[SkeletonProfile::class] = OBJECT
-  variantMapper[SkeletonProfileHumanoid::class] = OBJECT
-  variantMapper[Skin::class] = OBJECT
-  variantMapper[SkinReference::class] = OBJECT
-  variantMapper[Sky::class] = OBJECT
-  variantMapper[Slider::class] = OBJECT
-  variantMapper[SliderJoint3D::class] = OBJECT
-  variantMapper[SoftBody3D::class] = OBJECT
-  variantMapper[SphereMesh::class] = OBJECT
-  variantMapper[SphereOccluder3D::class] = OBJECT
-  variantMapper[SphereShape3D::class] = OBJECT
-  variantMapper[SpinBox::class] = OBJECT
-  variantMapper[SplitContainer::class] = OBJECT
-  variantMapper[SpotLight3D::class] = OBJECT
-  variantMapper[SpringArm3D::class] = OBJECT
-  variantMapper[SpringBoneCollision3D::class] = OBJECT
-  variantMapper[SpringBoneCollisionCapsule3D::class] = OBJECT
-  variantMapper[SpringBoneCollisionPlane3D::class] = OBJECT
-  variantMapper[SpringBoneCollisionSphere3D::class] = OBJECT
-  variantMapper[SpringBoneSimulator3D::class] = OBJECT
-  variantMapper[Sprite2D::class] = OBJECT
-  variantMapper[Sprite3D::class] = OBJECT
-  variantMapper[SpriteBase3D::class] = OBJECT
-  variantMapper[SpriteFrames::class] = OBJECT
-  variantMapper[StandardMaterial3D::class] = OBJECT
-  variantMapper[StaticBody2D::class] = OBJECT
-  variantMapper[StaticBody3D::class] = OBJECT
-  variantMapper[StatusIndicator::class] = OBJECT
-  variantMapper[StreamPeer::class] = OBJECT
-  variantMapper[StreamPeerBuffer::class] = OBJECT
-  variantMapper[StreamPeerExtension::class] = OBJECT
-  variantMapper[StreamPeerGZIP::class] = OBJECT
-  variantMapper[StreamPeerTCP::class] = OBJECT
-  variantMapper[StreamPeerTLS::class] = OBJECT
-  variantMapper[StyleBox::class] = OBJECT
-  variantMapper[StyleBoxEmpty::class] = OBJECT
-  variantMapper[StyleBoxFlat::class] = OBJECT
-  variantMapper[StyleBoxLine::class] = OBJECT
-  variantMapper[StyleBoxTexture::class] = OBJECT
-  variantMapper[SubViewport::class] = OBJECT
-  variantMapper[SubViewportContainer::class] = OBJECT
-  variantMapper[SubtweenTweener::class] = OBJECT
-  variantMapper[SurfaceTool::class] = OBJECT
-  variantMapper[SyntaxHighlighter::class] = OBJECT
-  variantMapper[SystemFont::class] = OBJECT
-  variantMapper[TCPServer::class] = OBJECT
-  variantMapper[TLSOptions::class] = OBJECT
-  variantMapper[TabBar::class] = OBJECT
-  variantMapper[TabContainer::class] = OBJECT
-  variantMapper[TextEdit::class] = OBJECT
-  variantMapper[TextLine::class] = OBJECT
-  variantMapper[TextMesh::class] = OBJECT
-  variantMapper[TextParagraph::class] = OBJECT
-  variantMapper[TextServer::class] = OBJECT
-  variantMapper[TextServerAdvanced::class] = OBJECT
-  variantMapper[TextServerDummy::class] = OBJECT
-  variantMapper[TextServerExtension::class] = OBJECT
-  variantMapper[TextServerManager::class] = OBJECT
-  variantMapper[Texture::class] = OBJECT
-  variantMapper[Texture2D::class] = OBJECT
-  variantMapper[Texture2DArray::class] = OBJECT
-  variantMapper[Texture2DArrayRD::class] = OBJECT
-  variantMapper[Texture2DRD::class] = OBJECT
-  variantMapper[Texture3D::class] = OBJECT
-  variantMapper[Texture3DRD::class] = OBJECT
-  variantMapper[TextureButton::class] = OBJECT
-  variantMapper[TextureCubemapArrayRD::class] = OBJECT
-  variantMapper[TextureCubemapRD::class] = OBJECT
-  variantMapper[TextureLayered::class] = OBJECT
-  variantMapper[TextureLayeredRD::class] = OBJECT
-  variantMapper[TextureProgressBar::class] = OBJECT
-  variantMapper[TextureRect::class] = OBJECT
-  variantMapper[Theme::class] = OBJECT
-  variantMapper[ThemeDB::class] = OBJECT
-  variantMapper[Thread::class] = OBJECT
-  variantMapper[TileData::class] = OBJECT
-  variantMapper[TileMap::class] = OBJECT
-  variantMapper[TileMapLayer::class] = OBJECT
-  variantMapper[TileMapPattern::class] = OBJECT
-  variantMapper[TileSet::class] = OBJECT
-  variantMapper[TileSetAtlasSource::class] = OBJECT
-  variantMapper[TileSetScenesCollectionSource::class] = OBJECT
-  variantMapper[TileSetSource::class] = OBJECT
-  variantMapper[Time::class] = OBJECT
-  variantMapper[Timer::class] = OBJECT
-  variantMapper[TorusMesh::class] = OBJECT
-  variantMapper[TouchScreenButton::class] = OBJECT
-  variantMapper[Translation::class] = OBJECT
-  variantMapper[TranslationDomain::class] = OBJECT
-  variantMapper[TranslationServer::class] = OBJECT
-  variantMapper[Tree::class] = OBJECT
-  variantMapper[TreeItem::class] = OBJECT
-  variantMapper[TriangleMesh::class] = OBJECT
-  variantMapper[TubeTrailMesh::class] = OBJECT
-  variantMapper[Tween::class] = OBJECT
-  variantMapper[Tweener::class] = OBJECT
-  variantMapper[UDPServer::class] = OBJECT
-  variantMapper[UPNP::class] = OBJECT
-  variantMapper[UPNPDevice::class] = OBJECT
-  variantMapper[UndoRedo::class] = OBJECT
-  variantMapper[UniformSetCacheRD::class] = OBJECT
-  variantMapper[VBoxContainer::class] = OBJECT
-  variantMapper[VFlowContainer::class] = OBJECT
-  variantMapper[VScrollBar::class] = OBJECT
-  variantMapper[VSeparator::class] = OBJECT
-  variantMapper[VSlider::class] = OBJECT
-  variantMapper[VSplitContainer::class] = OBJECT
-  variantMapper[VehicleBody3D::class] = OBJECT
-  variantMapper[VehicleWheel3D::class] = OBJECT
-  variantMapper[VideoStream::class] = OBJECT
-  variantMapper[VideoStreamPlayback::class] = OBJECT
-  variantMapper[VideoStreamPlayer::class] = OBJECT
-  variantMapper[VideoStreamTheora::class] = OBJECT
-  variantMapper[Viewport::class] = OBJECT
-  variantMapper[ViewportTexture::class] = OBJECT
-  variantMapper[VisibleOnScreenEnabler2D::class] = OBJECT
-  variantMapper[VisibleOnScreenEnabler3D::class] = OBJECT
-  variantMapper[VisibleOnScreenNotifier2D::class] = OBJECT
-  variantMapper[VisibleOnScreenNotifier3D::class] = OBJECT
-  variantMapper[VisualInstance3D::class] = OBJECT
-  variantMapper[VisualShader::class] = OBJECT
-  variantMapper[VisualShaderNode::class] = OBJECT
-  variantMapper[VisualShaderNodeBillboard::class] = OBJECT
-  variantMapper[VisualShaderNodeBooleanConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeBooleanParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeClamp::class] = OBJECT
-  variantMapper[VisualShaderNodeColorConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeColorFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeColorOp::class] = OBJECT
-  variantMapper[VisualShaderNodeColorParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeComment::class] = OBJECT
-  variantMapper[VisualShaderNodeCompare::class] = OBJECT
-  variantMapper[VisualShaderNodeConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeCubemap::class] = OBJECT
-  variantMapper[VisualShaderNodeCubemapParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeCurveTexture::class] = OBJECT
-  variantMapper[VisualShaderNodeCurveXYZTexture::class] = OBJECT
-  variantMapper[VisualShaderNodeCustom::class] = OBJECT
-  variantMapper[VisualShaderNodeDerivativeFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeDeterminant::class] = OBJECT
-  variantMapper[VisualShaderNodeDistanceFade::class] = OBJECT
-  variantMapper[VisualShaderNodeDotProduct::class] = OBJECT
-  variantMapper[VisualShaderNodeExpression::class] = OBJECT
-  variantMapper[VisualShaderNodeFaceForward::class] = OBJECT
-  variantMapper[VisualShaderNodeFloatConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeFloatFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeFloatOp::class] = OBJECT
-  variantMapper[VisualShaderNodeFloatParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeFrame::class] = OBJECT
-  variantMapper[VisualShaderNodeFresnel::class] = OBJECT
-  variantMapper[VisualShaderNodeGlobalExpression::class] = OBJECT
-  variantMapper[VisualShaderNodeGroupBase::class] = OBJECT
-  variantMapper[VisualShaderNodeIf::class] = OBJECT
-  variantMapper[VisualShaderNodeInput::class] = OBJECT
-  variantMapper[VisualShaderNodeIntConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeIntFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeIntOp::class] = OBJECT
-  variantMapper[VisualShaderNodeIntParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeIs::class] = OBJECT
-  variantMapper[VisualShaderNodeLinearSceneDepth::class] = OBJECT
-  variantMapper[VisualShaderNodeMix::class] = OBJECT
-  variantMapper[VisualShaderNodeMultiplyAdd::class] = OBJECT
-  variantMapper[VisualShaderNodeOuterProduct::class] = OBJECT
-  variantMapper[VisualShaderNodeOutput::class] = OBJECT
-  variantMapper[VisualShaderNodeParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeParameterRef::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleAccelerator::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleBoxEmitter::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleConeVelocity::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleEmit::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleEmitter::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleMeshEmitter::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleMultiplyByAxisAngle::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleOutput::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleRandomness::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleRingEmitter::class] = OBJECT
-  variantMapper[VisualShaderNodeParticleSphereEmitter::class] = OBJECT
-  variantMapper[VisualShaderNodeProximityFade::class] = OBJECT
-  variantMapper[VisualShaderNodeRandomRange::class] = OBJECT
-  variantMapper[VisualShaderNodeRemap::class] = OBJECT
-  variantMapper[VisualShaderNodeReroute::class] = OBJECT
-  variantMapper[VisualShaderNodeResizableBase::class] = OBJECT
-  variantMapper[VisualShaderNodeRotationByAxis::class] = OBJECT
-  variantMapper[VisualShaderNodeSDFRaymarch::class] = OBJECT
-  variantMapper[VisualShaderNodeSDFToScreenUV::class] = OBJECT
-  variantMapper[VisualShaderNodeSample3D::class] = OBJECT
-  variantMapper[VisualShaderNodeScreenNormalWorldSpace::class] = OBJECT
-  variantMapper[VisualShaderNodeScreenUVToSDF::class] = OBJECT
-  variantMapper[VisualShaderNodeSmoothStep::class] = OBJECT
-  variantMapper[VisualShaderNodeStep::class] = OBJECT
-  variantMapper[VisualShaderNodeSwitch::class] = OBJECT
-  variantMapper[VisualShaderNodeTexture::class] = OBJECT
-  variantMapper[VisualShaderNodeTexture2DArray::class] = OBJECT
-  variantMapper[VisualShaderNodeTexture2DArrayParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeTexture2DParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeTexture3D::class] = OBJECT
-  variantMapper[VisualShaderNodeTexture3DParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeTextureParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeTextureParameterTriplanar::class] = OBJECT
-  variantMapper[VisualShaderNodeTextureSDF::class] = OBJECT
-  variantMapper[VisualShaderNodeTextureSDFNormal::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformCompose::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformDecompose::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformOp::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeTransformVecMult::class] = OBJECT
-  variantMapper[VisualShaderNodeUIntConstant::class] = OBJECT
-  variantMapper[VisualShaderNodeUIntFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeUIntOp::class] = OBJECT
-  variantMapper[VisualShaderNodeUIntParameter::class] = OBJECT
-  variantMapper[VisualShaderNodeUVFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeUVPolarCoord::class] = OBJECT
-  variantMapper[VisualShaderNodeVarying::class] = OBJECT
-  variantMapper[VisualShaderNodeVaryingGetter::class] = OBJECT
-  variantMapper[VisualShaderNodeVaryingSetter::class] = OBJECT
-  variantMapper[VisualShaderNodeVec2Constant::class] = OBJECT
-  variantMapper[VisualShaderNodeVec2Parameter::class] = OBJECT
-  variantMapper[VisualShaderNodeVec3Constant::class] = OBJECT
-  variantMapper[VisualShaderNodeVec3Parameter::class] = OBJECT
-  variantMapper[VisualShaderNodeVec4Constant::class] = OBJECT
-  variantMapper[VisualShaderNodeVec4Parameter::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorBase::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorCompose::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorDecompose::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorDistance::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorFunc::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorLen::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorOp::class] = OBJECT
-  variantMapper[VisualShaderNodeVectorRefract::class] = OBJECT
-  variantMapper[VisualShaderNodeWorldPositionFromDepth::class] = OBJECT
-  variantMapper[VoxelGI::class] = OBJECT
-  variantMapper[VoxelGIData::class] = OBJECT
-  variantMapper[WeakRef::class] = OBJECT
-  variantMapper[WebRTCDataChannel::class] = OBJECT
-  variantMapper[WebRTCDataChannelExtension::class] = OBJECT
-  variantMapper[WebRTCMultiplayerPeer::class] = OBJECT
-  variantMapper[WebRTCPeerConnection::class] = OBJECT
-  variantMapper[WebRTCPeerConnectionExtension::class] = OBJECT
-  variantMapper[WebSocketMultiplayerPeer::class] = OBJECT
-  variantMapper[WebSocketPeer::class] = OBJECT
-  variantMapper[WebXRInterface::class] = OBJECT
-  variantMapper[Window::class] = OBJECT
-  variantMapper[WorkerThreadPool::class] = OBJECT
-  variantMapper[World2D::class] = OBJECT
-  variantMapper[World3D::class] = OBJECT
-  variantMapper[WorldBoundaryShape2D::class] = OBJECT
-  variantMapper[WorldBoundaryShape3D::class] = OBJECT
-  variantMapper[WorldEnvironment::class] = OBJECT
-  variantMapper[X509Certificate::class] = OBJECT
-  variantMapper[XMLParser::class] = OBJECT
-  variantMapper[XRAnchor3D::class] = OBJECT
-  variantMapper[XRBodyModifier3D::class] = OBJECT
-  variantMapper[XRBodyTracker::class] = OBJECT
-  variantMapper[XRCamera3D::class] = OBJECT
-  variantMapper[XRController3D::class] = OBJECT
-  variantMapper[XRControllerTracker::class] = OBJECT
-  variantMapper[XRFaceModifier3D::class] = OBJECT
-  variantMapper[XRFaceTracker::class] = OBJECT
-  variantMapper[XRHandModifier3D::class] = OBJECT
-  variantMapper[XRHandTracker::class] = OBJECT
-  variantMapper[XRInterface::class] = OBJECT
-  variantMapper[XRInterfaceExtension::class] = OBJECT
-  variantMapper[XRNode3D::class] = OBJECT
-  variantMapper[XROrigin3D::class] = OBJECT
-  variantMapper[XRPose::class] = OBJECT
-  variantMapper[XRPositionalTracker::class] = OBJECT
-  variantMapper[XRServer::class] = OBJECT
-  variantMapper[XRTracker::class] = OBJECT
-  variantMapper[XRVRS::class] = OBJECT
-  variantMapper[ZIPPacker::class] = OBJECT
-  variantMapper[ZIPReader::class] = OBJECT
+  addVariantMapping(Object::class, OBJECT)
+  addVariantMapping(RefCounted::class, OBJECT)
+  addVariantMapping(AESContext::class, OBJECT)
+  addVariantMapping(AStar2D::class, OBJECT)
+  addVariantMapping(AStar3D::class, OBJECT)
+  addVariantMapping(AStarGrid2D::class, OBJECT)
+  addVariantMapping(AcceptDialog::class, OBJECT)
+  addVariantMapping(AnimatableBody2D::class, OBJECT)
+  addVariantMapping(AnimatableBody3D::class, OBJECT)
+  addVariantMapping(AnimatedSprite2D::class, OBJECT)
+  addVariantMapping(AnimatedSprite3D::class, OBJECT)
+  addVariantMapping(AnimatedTexture::class, OBJECT)
+  addVariantMapping(Animation::class, OBJECT)
+  addVariantMapping(AnimationLibrary::class, OBJECT)
+  addVariantMapping(AnimationMixer::class, OBJECT)
+  addVariantMapping(AnimationNode::class, OBJECT)
+  addVariantMapping(AnimationNodeAdd2::class, OBJECT)
+  addVariantMapping(AnimationNodeAdd3::class, OBJECT)
+  addVariantMapping(AnimationNodeAnimation::class, OBJECT)
+  addVariantMapping(AnimationNodeBlend2::class, OBJECT)
+  addVariantMapping(AnimationNodeBlend3::class, OBJECT)
+  addVariantMapping(AnimationNodeBlendSpace1D::class, OBJECT)
+  addVariantMapping(AnimationNodeBlendSpace2D::class, OBJECT)
+  addVariantMapping(AnimationNodeBlendTree::class, OBJECT)
+  addVariantMapping(AnimationNodeExtension::class, OBJECT)
+  addVariantMapping(AnimationNodeOneShot::class, OBJECT)
+  addVariantMapping(AnimationNodeOutput::class, OBJECT)
+  addVariantMapping(AnimationNodeStateMachine::class, OBJECT)
+  addVariantMapping(AnimationNodeStateMachinePlayback::class, OBJECT)
+  addVariantMapping(AnimationNodeStateMachineTransition::class, OBJECT)
+  addVariantMapping(AnimationNodeSub2::class, OBJECT)
+  addVariantMapping(AnimationNodeSync::class, OBJECT)
+  addVariantMapping(AnimationNodeTimeScale::class, OBJECT)
+  addVariantMapping(AnimationNodeTimeSeek::class, OBJECT)
+  addVariantMapping(AnimationNodeTransition::class, OBJECT)
+  addVariantMapping(AnimationPlayer::class, OBJECT)
+  addVariantMapping(AnimationRootNode::class, OBJECT)
+  addVariantMapping(AnimationTree::class, OBJECT)
+  addVariantMapping(Area2D::class, OBJECT)
+  addVariantMapping(Area3D::class, OBJECT)
+  addVariantMapping(ArrayMesh::class, OBJECT)
+  addVariantMapping(ArrayOccluder3D::class, OBJECT)
+  addVariantMapping(AspectRatioContainer::class, OBJECT)
+  addVariantMapping(AtlasTexture::class, OBJECT)
+  addVariantMapping(AudioBusLayout::class, OBJECT)
+  addVariantMapping(AudioEffect::class, OBJECT)
+  addVariantMapping(AudioEffectAmplify::class, OBJECT)
+  addVariantMapping(AudioEffectBandLimitFilter::class, OBJECT)
+  addVariantMapping(AudioEffectBandPassFilter::class, OBJECT)
+  addVariantMapping(AudioEffectCapture::class, OBJECT)
+  addVariantMapping(AudioEffectChorus::class, OBJECT)
+  addVariantMapping(AudioEffectCompressor::class, OBJECT)
+  addVariantMapping(AudioEffectDelay::class, OBJECT)
+  addVariantMapping(AudioEffectDistortion::class, OBJECT)
+  addVariantMapping(AudioEffectEQ::class, OBJECT)
+  addVariantMapping(AudioEffectEQ10::class, OBJECT)
+  addVariantMapping(AudioEffectEQ21::class, OBJECT)
+  addVariantMapping(AudioEffectEQ6::class, OBJECT)
+  addVariantMapping(AudioEffectFilter::class, OBJECT)
+  addVariantMapping(AudioEffectHardLimiter::class, OBJECT)
+  addVariantMapping(AudioEffectHighPassFilter::class, OBJECT)
+  addVariantMapping(AudioEffectHighShelfFilter::class, OBJECT)
+  addVariantMapping(AudioEffectInstance::class, OBJECT)
+  addVariantMapping(AudioEffectLimiter::class, OBJECT)
+  addVariantMapping(AudioEffectLowPassFilter::class, OBJECT)
+  addVariantMapping(AudioEffectLowShelfFilter::class, OBJECT)
+  addVariantMapping(AudioEffectNotchFilter::class, OBJECT)
+  addVariantMapping(AudioEffectPanner::class, OBJECT)
+  addVariantMapping(AudioEffectPhaser::class, OBJECT)
+  addVariantMapping(AudioEffectPitchShift::class, OBJECT)
+  addVariantMapping(AudioEffectRecord::class, OBJECT)
+  addVariantMapping(AudioEffectReverb::class, OBJECT)
+  addVariantMapping(AudioEffectSpectrumAnalyzer::class, OBJECT)
+  addVariantMapping(AudioEffectSpectrumAnalyzerInstance::class, OBJECT)
+  addVariantMapping(AudioEffectStereoEnhance::class, OBJECT)
+  addVariantMapping(AudioListener2D::class, OBJECT)
+  addVariantMapping(AudioListener3D::class, OBJECT)
+  addVariantMapping(AudioSample::class, OBJECT)
+  addVariantMapping(AudioSamplePlayback::class, OBJECT)
+  addVariantMapping(AudioServer::class, OBJECT)
+  addVariantMapping(AudioStream::class, OBJECT)
+  addVariantMapping(AudioStreamGenerator::class, OBJECT)
+  addVariantMapping(AudioStreamGeneratorPlayback::class, OBJECT)
+  addVariantMapping(AudioStreamInteractive::class, OBJECT)
+  addVariantMapping(AudioStreamMP3::class, OBJECT)
+  addVariantMapping(AudioStreamMicrophone::class, OBJECT)
+  addVariantMapping(AudioStreamOggVorbis::class, OBJECT)
+  addVariantMapping(AudioStreamPlayback::class, OBJECT)
+  addVariantMapping(AudioStreamPlaybackInteractive::class, OBJECT)
+  addVariantMapping(AudioStreamPlaybackOggVorbis::class, OBJECT)
+  addVariantMapping(AudioStreamPlaybackPlaylist::class, OBJECT)
+  addVariantMapping(AudioStreamPlaybackPolyphonic::class, OBJECT)
+  addVariantMapping(AudioStreamPlaybackResampled::class, OBJECT)
+  addVariantMapping(AudioStreamPlaybackSynchronized::class, OBJECT)
+  addVariantMapping(AudioStreamPlayer::class, OBJECT)
+  addVariantMapping(AudioStreamPlayer2D::class, OBJECT)
+  addVariantMapping(AudioStreamPlayer3D::class, OBJECT)
+  addVariantMapping(AudioStreamPlaylist::class, OBJECT)
+  addVariantMapping(AudioStreamPolyphonic::class, OBJECT)
+  addVariantMapping(AudioStreamRandomizer::class, OBJECT)
+  addVariantMapping(AudioStreamSynchronized::class, OBJECT)
+  addVariantMapping(AudioStreamWAV::class, OBJECT)
+  addVariantMapping(BackBufferCopy::class, OBJECT)
+  addVariantMapping(BaseButton::class, OBJECT)
+  addVariantMapping(BaseMaterial3D::class, OBJECT)
+  addVariantMapping(BitMap::class, OBJECT)
+  addVariantMapping(Bone2D::class, OBJECT)
+  addVariantMapping(BoneAttachment3D::class, OBJECT)
+  addVariantMapping(BoneMap::class, OBJECT)
+  addVariantMapping(BoxContainer::class, OBJECT)
+  addVariantMapping(BoxMesh::class, OBJECT)
+  addVariantMapping(BoxOccluder3D::class, OBJECT)
+  addVariantMapping(BoxShape3D::class, OBJECT)
+  addVariantMapping(Button::class, OBJECT)
+  addVariantMapping(ButtonGroup::class, OBJECT)
+  addVariantMapping(CPUParticles2D::class, OBJECT)
+  addVariantMapping(CPUParticles3D::class, OBJECT)
+  addVariantMapping(CSGBox3D::class, OBJECT)
+  addVariantMapping(CSGCombiner3D::class, OBJECT)
+  addVariantMapping(CSGCylinder3D::class, OBJECT)
+  addVariantMapping(CSGMesh3D::class, OBJECT)
+  addVariantMapping(CSGPolygon3D::class, OBJECT)
+  addVariantMapping(CSGPrimitive3D::class, OBJECT)
+  addVariantMapping(CSGShape3D::class, OBJECT)
+  addVariantMapping(CSGSphere3D::class, OBJECT)
+  addVariantMapping(CSGTorus3D::class, OBJECT)
+  addVariantMapping(CallbackTweener::class, OBJECT)
+  addVariantMapping(Camera2D::class, OBJECT)
+  addVariantMapping(Camera3D::class, OBJECT)
+  addVariantMapping(CameraAttributes::class, OBJECT)
+  addVariantMapping(CameraAttributesPhysical::class, OBJECT)
+  addVariantMapping(CameraAttributesPractical::class, OBJECT)
+  addVariantMapping(CameraFeed::class, OBJECT)
+  addVariantMapping(CameraServer::class, OBJECT)
+  addVariantMapping(CameraTexture::class, OBJECT)
+  addVariantMapping(CanvasGroup::class, OBJECT)
+  addVariantMapping(CanvasItem::class, OBJECT)
+  addVariantMapping(CanvasItemMaterial::class, OBJECT)
+  addVariantMapping(CanvasLayer::class, OBJECT)
+  addVariantMapping(CanvasModulate::class, OBJECT)
+  addVariantMapping(CanvasTexture::class, OBJECT)
+  addVariantMapping(CapsuleMesh::class, OBJECT)
+  addVariantMapping(CapsuleShape2D::class, OBJECT)
+  addVariantMapping(CapsuleShape3D::class, OBJECT)
+  addVariantMapping(CenterContainer::class, OBJECT)
+  addVariantMapping(CharFXTransform::class, OBJECT)
+  addVariantMapping(CharacterBody2D::class, OBJECT)
+  addVariantMapping(CharacterBody3D::class, OBJECT)
+  addVariantMapping(CheckBox::class, OBJECT)
+  addVariantMapping(CheckButton::class, OBJECT)
+  addVariantMapping(CircleShape2D::class, OBJECT)
+  addVariantMapping(ClassDB::class, OBJECT)
+  addVariantMapping(CodeEdit::class, OBJECT)
+  addVariantMapping(CodeHighlighter::class, OBJECT)
+  addVariantMapping(CollisionObject2D::class, OBJECT)
+  addVariantMapping(CollisionObject3D::class, OBJECT)
+  addVariantMapping(CollisionPolygon2D::class, OBJECT)
+  addVariantMapping(CollisionPolygon3D::class, OBJECT)
+  addVariantMapping(CollisionShape2D::class, OBJECT)
+  addVariantMapping(CollisionShape3D::class, OBJECT)
+  addVariantMapping(ColorPalette::class, OBJECT)
+  addVariantMapping(ColorPicker::class, OBJECT)
+  addVariantMapping(ColorPickerButton::class, OBJECT)
+  addVariantMapping(ColorRect::class, OBJECT)
+  addVariantMapping(Compositor::class, OBJECT)
+  addVariantMapping(CompositorEffect::class, OBJECT)
+  addVariantMapping(CompressedCubemap::class, OBJECT)
+  addVariantMapping(CompressedCubemapArray::class, OBJECT)
+  addVariantMapping(CompressedTexture2D::class, OBJECT)
+  addVariantMapping(CompressedTexture2DArray::class, OBJECT)
+  addVariantMapping(CompressedTexture3D::class, OBJECT)
+  addVariantMapping(CompressedTextureLayered::class, OBJECT)
+  addVariantMapping(ConcavePolygonShape2D::class, OBJECT)
+  addVariantMapping(ConcavePolygonShape3D::class, OBJECT)
+  addVariantMapping(ConeTwistJoint3D::class, OBJECT)
+  addVariantMapping(ConfigFile::class, OBJECT)
+  addVariantMapping(ConfirmationDialog::class, OBJECT)
+  addVariantMapping(Container::class, OBJECT)
+  addVariantMapping(Control::class, OBJECT)
+  addVariantMapping(ConvexPolygonShape2D::class, OBJECT)
+  addVariantMapping(ConvexPolygonShape3D::class, OBJECT)
+  addVariantMapping(Crypto::class, OBJECT)
+  addVariantMapping(CryptoKey::class, OBJECT)
+  addVariantMapping(Cubemap::class, OBJECT)
+  addVariantMapping(CubemapArray::class, OBJECT)
+  addVariantMapping(Curve::class, OBJECT)
+  addVariantMapping(Curve2D::class, OBJECT)
+  addVariantMapping(Curve3D::class, OBJECT)
+  addVariantMapping(CurveTexture::class, OBJECT)
+  addVariantMapping(CurveXYZTexture::class, OBJECT)
+  addVariantMapping(CylinderMesh::class, OBJECT)
+  addVariantMapping(CylinderShape3D::class, OBJECT)
+  addVariantMapping(DTLSServer::class, OBJECT)
+  addVariantMapping(DampedSpringJoint2D::class, OBJECT)
+  addVariantMapping(Decal::class, OBJECT)
+  addVariantMapping(DirAccess::class, OBJECT)
+  addVariantMapping(DirectionalLight2D::class, OBJECT)
+  addVariantMapping(DirectionalLight3D::class, OBJECT)
+  addVariantMapping(DisplayServer::class, OBJECT)
+  addVariantMapping(ENetConnection::class, OBJECT)
+  addVariantMapping(ENetMultiplayerPeer::class, OBJECT)
+  addVariantMapping(ENetPacketPeer::class, OBJECT)
+  addVariantMapping(EncodedObjectAsID::class, OBJECT)
+  addVariantMapping(Engine::class, OBJECT)
+  addVariantMapping(EngineDebugger::class, OBJECT)
+  addVariantMapping(EngineProfiler::class, OBJECT)
+  addVariantMapping(Environment::class, OBJECT)
+  addVariantMapping(Expression::class, OBJECT)
+  addVariantMapping(ExternalTexture::class, OBJECT)
+  addVariantMapping(FBXDocument::class, OBJECT)
+  addVariantMapping(FBXState::class, OBJECT)
+  addVariantMapping(FastNoiseLite::class, OBJECT)
+  addVariantMapping(FileAccess::class, OBJECT)
+  addVariantMapping(FileDialog::class, OBJECT)
+  addVariantMapping(FlowContainer::class, OBJECT)
+  addVariantMapping(FogMaterial::class, OBJECT)
+  addVariantMapping(FogVolume::class, OBJECT)
+  addVariantMapping(Font::class, OBJECT)
+  addVariantMapping(FontFile::class, OBJECT)
+  addVariantMapping(FontVariation::class, OBJECT)
+  addVariantMapping(FramebufferCacheRD::class, OBJECT)
+  addVariantMapping(GDExtension::class, OBJECT)
+  addVariantMapping(GDExtensionManager::class, OBJECT)
+  addVariantMapping(GDScript::class, OBJECT)
+  addVariantMapping(GLTFAccessor::class, OBJECT)
+  addVariantMapping(GLTFAnimation::class, OBJECT)
+  addVariantMapping(GLTFBufferView::class, OBJECT)
+  addVariantMapping(GLTFCamera::class, OBJECT)
+  addVariantMapping(GLTFDocument::class, OBJECT)
+  addVariantMapping(GLTFDocumentExtension::class, OBJECT)
+  addVariantMapping(GLTFDocumentExtensionConvertImporterMesh::class, OBJECT)
+  addVariantMapping(GLTFLight::class, OBJECT)
+  addVariantMapping(GLTFMesh::class, OBJECT)
+  addVariantMapping(GLTFNode::class, OBJECT)
+  addVariantMapping(GLTFObjectModelProperty::class, OBJECT)
+  addVariantMapping(GLTFPhysicsBody::class, OBJECT)
+  addVariantMapping(GLTFPhysicsShape::class, OBJECT)
+  addVariantMapping(GLTFSkeleton::class, OBJECT)
+  addVariantMapping(GLTFSkin::class, OBJECT)
+  addVariantMapping(GLTFSpecGloss::class, OBJECT)
+  addVariantMapping(GLTFState::class, OBJECT)
+  addVariantMapping(GLTFTexture::class, OBJECT)
+  addVariantMapping(GLTFTextureSampler::class, OBJECT)
+  addVariantMapping(GPUParticles2D::class, OBJECT)
+  addVariantMapping(GPUParticles3D::class, OBJECT)
+  addVariantMapping(GPUParticlesAttractor3D::class, OBJECT)
+  addVariantMapping(GPUParticlesAttractorBox3D::class, OBJECT)
+  addVariantMapping(GPUParticlesAttractorSphere3D::class, OBJECT)
+  addVariantMapping(GPUParticlesAttractorVectorField3D::class, OBJECT)
+  addVariantMapping(GPUParticlesCollision3D::class, OBJECT)
+  addVariantMapping(GPUParticlesCollisionBox3D::class, OBJECT)
+  addVariantMapping(GPUParticlesCollisionHeightField3D::class, OBJECT)
+  addVariantMapping(GPUParticlesCollisionSDF3D::class, OBJECT)
+  addVariantMapping(GPUParticlesCollisionSphere3D::class, OBJECT)
+  addVariantMapping(GdjScript::class, OBJECT)
+  addVariantMapping(Generic6DOFJoint3D::class, OBJECT)
+  addVariantMapping(Geometry2D::class, OBJECT)
+  addVariantMapping(Geometry3D::class, OBJECT)
+  addVariantMapping(GeometryInstance3D::class, OBJECT)
+  addVariantMapping(Gradient::class, OBJECT)
+  addVariantMapping(GradientTexture1D::class, OBJECT)
+  addVariantMapping(GradientTexture2D::class, OBJECT)
+  addVariantMapping(GraphEdit::class, OBJECT)
+  addVariantMapping(GraphElement::class, OBJECT)
+  addVariantMapping(GraphFrame::class, OBJECT)
+  addVariantMapping(GraphNode::class, OBJECT)
+  addVariantMapping(GridContainer::class, OBJECT)
+  addVariantMapping(GridMap::class, OBJECT)
+  addVariantMapping(GrooveJoint2D::class, OBJECT)
+  addVariantMapping(HBoxContainer::class, OBJECT)
+  addVariantMapping(HFlowContainer::class, OBJECT)
+  addVariantMapping(HMACContext::class, OBJECT)
+  addVariantMapping(HScrollBar::class, OBJECT)
+  addVariantMapping(HSeparator::class, OBJECT)
+  addVariantMapping(HSlider::class, OBJECT)
+  addVariantMapping(HSplitContainer::class, OBJECT)
+  addVariantMapping(HTTPClient::class, OBJECT)
+  addVariantMapping(HTTPRequest::class, OBJECT)
+  addVariantMapping(HashingContext::class, OBJECT)
+  addVariantMapping(HeightMapShape3D::class, OBJECT)
+  addVariantMapping(HingeJoint3D::class, OBJECT)
+  addVariantMapping(IP::class, OBJECT)
+  addVariantMapping(Image::class, OBJECT)
+  addVariantMapping(ImageFormatLoader::class, OBJECT)
+  addVariantMapping(ImageFormatLoaderExtension::class, OBJECT)
+  addVariantMapping(ImageTexture::class, OBJECT)
+  addVariantMapping(ImageTexture3D::class, OBJECT)
+  addVariantMapping(ImageTextureLayered::class, OBJECT)
+  addVariantMapping(ImmediateMesh::class, OBJECT)
+  addVariantMapping(ImporterMesh::class, OBJECT)
+  addVariantMapping(ImporterMeshInstance3D::class, OBJECT)
+  addVariantMapping(Input::class, OBJECT)
+  addVariantMapping(InputEvent::class, OBJECT)
+  addVariantMapping(InputEventAction::class, OBJECT)
+  addVariantMapping(InputEventFromWindow::class, OBJECT)
+  addVariantMapping(InputEventGesture::class, OBJECT)
+  addVariantMapping(InputEventJoypadButton::class, OBJECT)
+  addVariantMapping(InputEventJoypadMotion::class, OBJECT)
+  addVariantMapping(InputEventKey::class, OBJECT)
+  addVariantMapping(InputEventMIDI::class, OBJECT)
+  addVariantMapping(InputEventMagnifyGesture::class, OBJECT)
+  addVariantMapping(InputEventMouse::class, OBJECT)
+  addVariantMapping(InputEventMouseButton::class, OBJECT)
+  addVariantMapping(InputEventMouseMotion::class, OBJECT)
+  addVariantMapping(InputEventPanGesture::class, OBJECT)
+  addVariantMapping(InputEventScreenDrag::class, OBJECT)
+  addVariantMapping(InputEventScreenTouch::class, OBJECT)
+  addVariantMapping(InputEventShortcut::class, OBJECT)
+  addVariantMapping(InputEventWithModifiers::class, OBJECT)
+  addVariantMapping(InputMap::class, OBJECT)
+  addVariantMapping(InstancePlaceholder::class, OBJECT)
+  addVariantMapping(IntervalTweener::class, OBJECT)
+  addVariantMapping(ItemList::class, OBJECT)
+  addVariantMapping(JNISingleton::class, OBJECT)
+  addVariantMapping(JSON::class, OBJECT)
+  addVariantMapping(JSONRPC::class, OBJECT)
+  addVariantMapping(JavaClass::class, OBJECT)
+  addVariantMapping(JavaClassWrapper::class, OBJECT)
+  addVariantMapping(JavaObject::class, OBJECT)
+  addVariantMapping(JavaScript::class, OBJECT)
+  addVariantMapping(JavaScriptBridge::class, OBJECT)
+  addVariantMapping(JavaScriptObject::class, OBJECT)
+  addVariantMapping(Joint2D::class, OBJECT)
+  addVariantMapping(Joint3D::class, OBJECT)
+  addVariantMapping(JvmScript::class, OBJECT)
+  addVariantMapping(KinematicCollision2D::class, OBJECT)
+  addVariantMapping(KinematicCollision3D::class, OBJECT)
+  addVariantMapping(KotlinScript::class, OBJECT)
+  addVariantMapping(Label::class, OBJECT)
+  addVariantMapping(Label3D::class, OBJECT)
+  addVariantMapping(LabelSettings::class, OBJECT)
+  addVariantMapping(Light2D::class, OBJECT)
+  addVariantMapping(Light3D::class, OBJECT)
+  addVariantMapping(LightOccluder2D::class, OBJECT)
+  addVariantMapping(LightmapGI::class, OBJECT)
+  addVariantMapping(LightmapGIData::class, OBJECT)
+  addVariantMapping(LightmapProbe::class, OBJECT)
+  addVariantMapping(Lightmapper::class, OBJECT)
+  addVariantMapping(LightmapperRD::class, OBJECT)
+  addVariantMapping(Line2D::class, OBJECT)
+  addVariantMapping(LineEdit::class, OBJECT)
+  addVariantMapping(LinkButton::class, OBJECT)
+  addVariantMapping(LookAtModifier3D::class, OBJECT)
+  addVariantMapping(MainLoop::class, OBJECT)
+  addVariantMapping(MarginContainer::class, OBJECT)
+  addVariantMapping(Marker2D::class, OBJECT)
+  addVariantMapping(Marker3D::class, OBJECT)
+  addVariantMapping(Marshalls::class, OBJECT)
+  addVariantMapping(Material::class, OBJECT)
+  addVariantMapping(MenuBar::class, OBJECT)
+  addVariantMapping(MenuButton::class, OBJECT)
+  addVariantMapping(Mesh::class, OBJECT)
+  addVariantMapping(MeshConvexDecompositionSettings::class, OBJECT)
+  addVariantMapping(MeshDataTool::class, OBJECT)
+  addVariantMapping(MeshInstance2D::class, OBJECT)
+  addVariantMapping(MeshInstance3D::class, OBJECT)
+  addVariantMapping(MeshLibrary::class, OBJECT)
+  addVariantMapping(MeshTexture::class, OBJECT)
+  addVariantMapping(MethodTweener::class, OBJECT)
+  addVariantMapping(MissingNode::class, OBJECT)
+  addVariantMapping(MissingResource::class, OBJECT)
+  addVariantMapping(MobileVRInterface::class, OBJECT)
+  addVariantMapping(MovieWriter::class, OBJECT)
+  addVariantMapping(MultiMesh::class, OBJECT)
+  addVariantMapping(MultiMeshInstance2D::class, OBJECT)
+  addVariantMapping(MultiMeshInstance3D::class, OBJECT)
+  addVariantMapping(MultiplayerAPI::class, OBJECT)
+  addVariantMapping(MultiplayerAPIExtension::class, OBJECT)
+  addVariantMapping(MultiplayerPeer::class, OBJECT)
+  addVariantMapping(MultiplayerPeerExtension::class, OBJECT)
+  addVariantMapping(MultiplayerSpawner::class, OBJECT)
+  addVariantMapping(MultiplayerSynchronizer::class, OBJECT)
+  addVariantMapping(Mutex::class, OBJECT)
+  addVariantMapping(NativeMenu::class, OBJECT)
+  addVariantMapping(NavigationAgent2D::class, OBJECT)
+  addVariantMapping(NavigationAgent3D::class, OBJECT)
+  addVariantMapping(NavigationLink2D::class, OBJECT)
+  addVariantMapping(NavigationLink3D::class, OBJECT)
+  addVariantMapping(NavigationMesh::class, OBJECT)
+  addVariantMapping(NavigationMeshGenerator::class, OBJECT)
+  addVariantMapping(NavigationMeshSourceGeometryData2D::class, OBJECT)
+  addVariantMapping(NavigationMeshSourceGeometryData3D::class, OBJECT)
+  addVariantMapping(NavigationObstacle2D::class, OBJECT)
+  addVariantMapping(NavigationObstacle3D::class, OBJECT)
+  addVariantMapping(NavigationPathQueryParameters2D::class, OBJECT)
+  addVariantMapping(NavigationPathQueryParameters3D::class, OBJECT)
+  addVariantMapping(NavigationPathQueryResult2D::class, OBJECT)
+  addVariantMapping(NavigationPathQueryResult3D::class, OBJECT)
+  addVariantMapping(NavigationPolygon::class, OBJECT)
+  addVariantMapping(NavigationRegion2D::class, OBJECT)
+  addVariantMapping(NavigationRegion3D::class, OBJECT)
+  addVariantMapping(NavigationServer2D::class, OBJECT)
+  addVariantMapping(NavigationServer3D::class, OBJECT)
+  addVariantMapping(NinePatchRect::class, OBJECT)
+  addVariantMapping(Node::class, OBJECT)
+  addVariantMapping(Node2D::class, OBJECT)
+  addVariantMapping(Node3D::class, OBJECT)
+  addVariantMapping(Node3DGizmo::class, OBJECT)
+  addVariantMapping(Noise::class, OBJECT)
+  addVariantMapping(NoiseTexture2D::class, OBJECT)
+  addVariantMapping(NoiseTexture3D::class, OBJECT)
+  addVariantMapping(ORMMaterial3D::class, OBJECT)
+  addVariantMapping(OS::class, OBJECT)
+  addVariantMapping(Occluder3D::class, OBJECT)
+  addVariantMapping(OccluderInstance3D::class, OBJECT)
+  addVariantMapping(OccluderPolygon2D::class, OBJECT)
+  addVariantMapping(OfflineMultiplayerPeer::class, OBJECT)
+  addVariantMapping(OggPacketSequence::class, OBJECT)
+  addVariantMapping(OggPacketSequencePlayback::class, OBJECT)
+  addVariantMapping(OmniLight3D::class, OBJECT)
+  addVariantMapping(OpenXRAPIExtension::class, OBJECT)
+  addVariantMapping(OpenXRAction::class, OBJECT)
+  addVariantMapping(OpenXRActionBindingModifier::class, OBJECT)
+  addVariantMapping(OpenXRActionMap::class, OBJECT)
+  addVariantMapping(OpenXRActionSet::class, OBJECT)
+  addVariantMapping(OpenXRAnalogThresholdModifier::class, OBJECT)
+  addVariantMapping(OpenXRBindingModifier::class, OBJECT)
+  addVariantMapping(OpenXRCompositionLayer::class, OBJECT)
+  addVariantMapping(OpenXRCompositionLayerCylinder::class, OBJECT)
+  addVariantMapping(OpenXRCompositionLayerEquirect::class, OBJECT)
+  addVariantMapping(OpenXRCompositionLayerQuad::class, OBJECT)
+  addVariantMapping(OpenXRDpadBindingModifier::class, OBJECT)
+  addVariantMapping(OpenXRExtensionWrapperExtension::class, OBJECT)
+  addVariantMapping(OpenXRHand::class, OBJECT)
+  addVariantMapping(OpenXRHapticBase::class, OBJECT)
+  addVariantMapping(OpenXRHapticVibration::class, OBJECT)
+  addVariantMapping(OpenXRIPBinding::class, OBJECT)
+  addVariantMapping(OpenXRIPBindingModifier::class, OBJECT)
+  addVariantMapping(OpenXRInteractionProfile::class, OBJECT)
+  addVariantMapping(OpenXRInteractionProfileMetadata::class, OBJECT)
+  addVariantMapping(OpenXRInterface::class, OBJECT)
+  addVariantMapping(OpenXRVisibilityMask::class, OBJECT)
+  addVariantMapping(OptimizedTranslation::class, OBJECT)
+  addVariantMapping(OptionButton::class, OBJECT)
+  addVariantMapping(PCKPacker::class, OBJECT)
+  addVariantMapping(PackedDataContainer::class, OBJECT)
+  addVariantMapping(PackedDataContainerRef::class, OBJECT)
+  addVariantMapping(PackedScene::class, OBJECT)
+  addVariantMapping(PacketPeer::class, OBJECT)
+  addVariantMapping(PacketPeerDTLS::class, OBJECT)
+  addVariantMapping(PacketPeerExtension::class, OBJECT)
+  addVariantMapping(PacketPeerStream::class, OBJECT)
+  addVariantMapping(PacketPeerUDP::class, OBJECT)
+  addVariantMapping(Panel::class, OBJECT)
+  addVariantMapping(PanelContainer::class, OBJECT)
+  addVariantMapping(PanoramaSkyMaterial::class, OBJECT)
+  addVariantMapping(Parallax2D::class, OBJECT)
+  addVariantMapping(ParallaxBackground::class, OBJECT)
+  addVariantMapping(ParallaxLayer::class, OBJECT)
+  addVariantMapping(ParticleProcessMaterial::class, OBJECT)
+  addVariantMapping(Path2D::class, OBJECT)
+  addVariantMapping(Path3D::class, OBJECT)
+  addVariantMapping(PathFollow2D::class, OBJECT)
+  addVariantMapping(PathFollow3D::class, OBJECT)
+  addVariantMapping(Performance::class, OBJECT)
+  addVariantMapping(PhysicalBone2D::class, OBJECT)
+  addVariantMapping(PhysicalBone3D::class, OBJECT)
+  addVariantMapping(PhysicalBoneSimulator3D::class, OBJECT)
+  addVariantMapping(PhysicalSkyMaterial::class, OBJECT)
+  addVariantMapping(PhysicsBody2D::class, OBJECT)
+  addVariantMapping(PhysicsBody3D::class, OBJECT)
+  addVariantMapping(PhysicsDirectBodyState2D::class, OBJECT)
+  addVariantMapping(PhysicsDirectBodyState2DExtension::class, OBJECT)
+  addVariantMapping(PhysicsDirectBodyState3D::class, OBJECT)
+  addVariantMapping(PhysicsDirectBodyState3DExtension::class, OBJECT)
+  addVariantMapping(PhysicsDirectSpaceState2D::class, OBJECT)
+  addVariantMapping(PhysicsDirectSpaceState2DExtension::class, OBJECT)
+  addVariantMapping(PhysicsDirectSpaceState3D::class, OBJECT)
+  addVariantMapping(PhysicsDirectSpaceState3DExtension::class, OBJECT)
+  addVariantMapping(PhysicsMaterial::class, OBJECT)
+  addVariantMapping(PhysicsPointQueryParameters2D::class, OBJECT)
+  addVariantMapping(PhysicsPointQueryParameters3D::class, OBJECT)
+  addVariantMapping(PhysicsRayQueryParameters2D::class, OBJECT)
+  addVariantMapping(PhysicsRayQueryParameters3D::class, OBJECT)
+  addVariantMapping(PhysicsServer2D::class, OBJECT)
+  addVariantMapping(PhysicsServer2DManager::class, OBJECT)
+  addVariantMapping(PhysicsServer3D::class, OBJECT)
+  addVariantMapping(PhysicsServer3DManager::class, OBJECT)
+  addVariantMapping(PhysicsServer3DRenderingServerHandler::class, OBJECT)
+  addVariantMapping(PhysicsShapeQueryParameters2D::class, OBJECT)
+  addVariantMapping(PhysicsShapeQueryParameters3D::class, OBJECT)
+  addVariantMapping(PhysicsTestMotionParameters2D::class, OBJECT)
+  addVariantMapping(PhysicsTestMotionParameters3D::class, OBJECT)
+  addVariantMapping(PhysicsTestMotionResult2D::class, OBJECT)
+  addVariantMapping(PhysicsTestMotionResult3D::class, OBJECT)
+  addVariantMapping(PinJoint2D::class, OBJECT)
+  addVariantMapping(PinJoint3D::class, OBJECT)
+  addVariantMapping(PlaceholderCubemap::class, OBJECT)
+  addVariantMapping(PlaceholderCubemapArray::class, OBJECT)
+  addVariantMapping(PlaceholderMaterial::class, OBJECT)
+  addVariantMapping(PlaceholderMesh::class, OBJECT)
+  addVariantMapping(PlaceholderTexture2D::class, OBJECT)
+  addVariantMapping(PlaceholderTexture2DArray::class, OBJECT)
+  addVariantMapping(PlaceholderTexture3D::class, OBJECT)
+  addVariantMapping(PlaceholderTextureLayered::class, OBJECT)
+  addVariantMapping(PlaneMesh::class, OBJECT)
+  addVariantMapping(PointLight2D::class, OBJECT)
+  addVariantMapping(PointMesh::class, OBJECT)
+  addVariantMapping(Polygon2D::class, OBJECT)
+  addVariantMapping(PolygonOccluder3D::class, OBJECT)
+  addVariantMapping(PolygonPathFinder::class, OBJECT)
+  addVariantMapping(Popup::class, OBJECT)
+  addVariantMapping(PopupMenu::class, OBJECT)
+  addVariantMapping(PopupPanel::class, OBJECT)
+  addVariantMapping(PortableCompressedTexture2D::class, OBJECT)
+  addVariantMapping(PrimitiveMesh::class, OBJECT)
+  addVariantMapping(PrismMesh::class, OBJECT)
+  addVariantMapping(ProceduralSkyMaterial::class, OBJECT)
+  addVariantMapping(ProgressBar::class, OBJECT)
+  addVariantMapping(ProjectSettings::class, OBJECT)
+  addVariantMapping(PropertyTweener::class, OBJECT)
+  addVariantMapping(QuadMesh::class, OBJECT)
+  addVariantMapping(QuadOccluder3D::class, OBJECT)
+  addVariantMapping(RDAttachmentFormat::class, OBJECT)
+  addVariantMapping(RDFramebufferPass::class, OBJECT)
+  addVariantMapping(RDPipelineColorBlendState::class, OBJECT)
+  addVariantMapping(RDPipelineColorBlendStateAttachment::class, OBJECT)
+  addVariantMapping(RDPipelineDepthStencilState::class, OBJECT)
+  addVariantMapping(RDPipelineMultisampleState::class, OBJECT)
+  addVariantMapping(RDPipelineRasterizationState::class, OBJECT)
+  addVariantMapping(RDPipelineSpecializationConstant::class, OBJECT)
+  addVariantMapping(RDSamplerState::class, OBJECT)
+  addVariantMapping(RDShaderFile::class, OBJECT)
+  addVariantMapping(RDShaderSPIRV::class, OBJECT)
+  addVariantMapping(RDShaderSource::class, OBJECT)
+  addVariantMapping(RDTextureFormat::class, OBJECT)
+  addVariantMapping(RDTextureView::class, OBJECT)
+  addVariantMapping(RDUniform::class, OBJECT)
+  addVariantMapping(RDVertexAttribute::class, OBJECT)
+  addVariantMapping(RandomNumberGenerator::class, OBJECT)
+  addVariantMapping(Range::class, OBJECT)
+  addVariantMapping(RayCast2D::class, OBJECT)
+  addVariantMapping(RayCast3D::class, OBJECT)
+  addVariantMapping(RectangleShape2D::class, OBJECT)
+  addVariantMapping(ReferenceRect::class, OBJECT)
+  addVariantMapping(ReflectionProbe::class, OBJECT)
+  addVariantMapping(RegEx::class, OBJECT)
+  addVariantMapping(RegExMatch::class, OBJECT)
+  addVariantMapping(RemoteTransform2D::class, OBJECT)
+  addVariantMapping(RemoteTransform3D::class, OBJECT)
+  addVariantMapping(RenderData::class, OBJECT)
+  addVariantMapping(RenderDataExtension::class, OBJECT)
+  addVariantMapping(RenderDataRD::class, OBJECT)
+  addVariantMapping(RenderSceneBuffers::class, OBJECT)
+  addVariantMapping(RenderSceneBuffersConfiguration::class, OBJECT)
+  addVariantMapping(RenderSceneBuffersExtension::class, OBJECT)
+  addVariantMapping(RenderSceneBuffersRD::class, OBJECT)
+  addVariantMapping(RenderSceneData::class, OBJECT)
+  addVariantMapping(RenderSceneDataExtension::class, OBJECT)
+  addVariantMapping(RenderSceneDataRD::class, OBJECT)
+  addVariantMapping(RenderingDevice::class, OBJECT)
+  addVariantMapping(RenderingServer::class, OBJECT)
+  addVariantMapping(Resource::class, OBJECT)
+  addVariantMapping(ResourceFormatLoader::class, OBJECT)
+  addVariantMapping(ResourceFormatSaver::class, OBJECT)
+  addVariantMapping(ResourceImporter::class, OBJECT)
+  addVariantMapping(ResourceLoader::class, OBJECT)
+  addVariantMapping(ResourcePreloader::class, OBJECT)
+  addVariantMapping(ResourceSaver::class, OBJECT)
+  addVariantMapping(ResourceUID::class, OBJECT)
+  addVariantMapping(RetargetModifier3D::class, OBJECT)
+  addVariantMapping(RibbonTrailMesh::class, OBJECT)
+  addVariantMapping(RichTextEffect::class, OBJECT)
+  addVariantMapping(RichTextLabel::class, OBJECT)
+  addVariantMapping(RigidBody2D::class, OBJECT)
+  addVariantMapping(RigidBody3D::class, OBJECT)
+  addVariantMapping(RootMotionView::class, OBJECT)
+  addVariantMapping(SceneMultiplayer::class, OBJECT)
+  addVariantMapping(SceneReplicationConfig::class, OBJECT)
+  addVariantMapping(SceneState::class, OBJECT)
+  addVariantMapping(SceneTree::class, OBJECT)
+  addVariantMapping(SceneTreeTimer::class, OBJECT)
+  addVariantMapping(Script::class, OBJECT)
+  addVariantMapping(ScriptExtension::class, OBJECT)
+  addVariantMapping(ScriptLanguage::class, OBJECT)
+  addVariantMapping(ScriptLanguageExtension::class, OBJECT)
+  addVariantMapping(ScrollBar::class, OBJECT)
+  addVariantMapping(ScrollContainer::class, OBJECT)
+  addVariantMapping(SegmentShape2D::class, OBJECT)
+  addVariantMapping(Semaphore::class, OBJECT)
+  addVariantMapping(SeparationRayShape2D::class, OBJECT)
+  addVariantMapping(SeparationRayShape3D::class, OBJECT)
+  addVariantMapping(Separator::class, OBJECT)
+  addVariantMapping(Shader::class, OBJECT)
+  addVariantMapping(ShaderGlobalsOverride::class, OBJECT)
+  addVariantMapping(ShaderInclude::class, OBJECT)
+  addVariantMapping(ShaderIncludeDB::class, OBJECT)
+  addVariantMapping(ShaderMaterial::class, OBJECT)
+  addVariantMapping(Shape2D::class, OBJECT)
+  addVariantMapping(Shape3D::class, OBJECT)
+  addVariantMapping(ShapeCast2D::class, OBJECT)
+  addVariantMapping(ShapeCast3D::class, OBJECT)
+  addVariantMapping(Shortcut::class, OBJECT)
+  addVariantMapping(Skeleton2D::class, OBJECT)
+  addVariantMapping(Skeleton3D::class, OBJECT)
+  addVariantMapping(SkeletonIK3D::class, OBJECT)
+  addVariantMapping(SkeletonModification2D::class, OBJECT)
+  addVariantMapping(SkeletonModification2DCCDIK::class, OBJECT)
+  addVariantMapping(SkeletonModification2DFABRIK::class, OBJECT)
+  addVariantMapping(SkeletonModification2DJiggle::class, OBJECT)
+  addVariantMapping(SkeletonModification2DLookAt::class, OBJECT)
+  addVariantMapping(SkeletonModification2DPhysicalBones::class, OBJECT)
+  addVariantMapping(SkeletonModification2DStackHolder::class, OBJECT)
+  addVariantMapping(SkeletonModification2DTwoBoneIK::class, OBJECT)
+  addVariantMapping(SkeletonModificationStack2D::class, OBJECT)
+  addVariantMapping(SkeletonModifier3D::class, OBJECT)
+  addVariantMapping(SkeletonProfile::class, OBJECT)
+  addVariantMapping(SkeletonProfileHumanoid::class, OBJECT)
+  addVariantMapping(Skin::class, OBJECT)
+  addVariantMapping(SkinReference::class, OBJECT)
+  addVariantMapping(Sky::class, OBJECT)
+  addVariantMapping(Slider::class, OBJECT)
+  addVariantMapping(SliderJoint3D::class, OBJECT)
+  addVariantMapping(SoftBody3D::class, OBJECT)
+  addVariantMapping(SphereMesh::class, OBJECT)
+  addVariantMapping(SphereOccluder3D::class, OBJECT)
+  addVariantMapping(SphereShape3D::class, OBJECT)
+  addVariantMapping(SpinBox::class, OBJECT)
+  addVariantMapping(SplitContainer::class, OBJECT)
+  addVariantMapping(SpotLight3D::class, OBJECT)
+  addVariantMapping(SpringArm3D::class, OBJECT)
+  addVariantMapping(SpringBoneCollision3D::class, OBJECT)
+  addVariantMapping(SpringBoneCollisionCapsule3D::class, OBJECT)
+  addVariantMapping(SpringBoneCollisionPlane3D::class, OBJECT)
+  addVariantMapping(SpringBoneCollisionSphere3D::class, OBJECT)
+  addVariantMapping(SpringBoneSimulator3D::class, OBJECT)
+  addVariantMapping(Sprite2D::class, OBJECT)
+  addVariantMapping(Sprite3D::class, OBJECT)
+  addVariantMapping(SpriteBase3D::class, OBJECT)
+  addVariantMapping(SpriteFrames::class, OBJECT)
+  addVariantMapping(StandardMaterial3D::class, OBJECT)
+  addVariantMapping(StaticBody2D::class, OBJECT)
+  addVariantMapping(StaticBody3D::class, OBJECT)
+  addVariantMapping(StatusIndicator::class, OBJECT)
+  addVariantMapping(StreamPeer::class, OBJECT)
+  addVariantMapping(StreamPeerBuffer::class, OBJECT)
+  addVariantMapping(StreamPeerExtension::class, OBJECT)
+  addVariantMapping(StreamPeerGZIP::class, OBJECT)
+  addVariantMapping(StreamPeerTCP::class, OBJECT)
+  addVariantMapping(StreamPeerTLS::class, OBJECT)
+  addVariantMapping(StyleBox::class, OBJECT)
+  addVariantMapping(StyleBoxEmpty::class, OBJECT)
+  addVariantMapping(StyleBoxFlat::class, OBJECT)
+  addVariantMapping(StyleBoxLine::class, OBJECT)
+  addVariantMapping(StyleBoxTexture::class, OBJECT)
+  addVariantMapping(SubViewport::class, OBJECT)
+  addVariantMapping(SubViewportContainer::class, OBJECT)
+  addVariantMapping(SubtweenTweener::class, OBJECT)
+  addVariantMapping(SurfaceTool::class, OBJECT)
+  addVariantMapping(SyntaxHighlighter::class, OBJECT)
+  addVariantMapping(SystemFont::class, OBJECT)
+  addVariantMapping(TCPServer::class, OBJECT)
+  addVariantMapping(TLSOptions::class, OBJECT)
+  addVariantMapping(TabBar::class, OBJECT)
+  addVariantMapping(TabContainer::class, OBJECT)
+  addVariantMapping(TextEdit::class, OBJECT)
+  addVariantMapping(TextLine::class, OBJECT)
+  addVariantMapping(TextMesh::class, OBJECT)
+  addVariantMapping(TextParagraph::class, OBJECT)
+  addVariantMapping(TextServer::class, OBJECT)
+  addVariantMapping(TextServerAdvanced::class, OBJECT)
+  addVariantMapping(TextServerDummy::class, OBJECT)
+  addVariantMapping(TextServerExtension::class, OBJECT)
+  addVariantMapping(TextServerManager::class, OBJECT)
+  addVariantMapping(Texture::class, OBJECT)
+  addVariantMapping(Texture2D::class, OBJECT)
+  addVariantMapping(Texture2DArray::class, OBJECT)
+  addVariantMapping(Texture2DArrayRD::class, OBJECT)
+  addVariantMapping(Texture2DRD::class, OBJECT)
+  addVariantMapping(Texture3D::class, OBJECT)
+  addVariantMapping(Texture3DRD::class, OBJECT)
+  addVariantMapping(TextureButton::class, OBJECT)
+  addVariantMapping(TextureCubemapArrayRD::class, OBJECT)
+  addVariantMapping(TextureCubemapRD::class, OBJECT)
+  addVariantMapping(TextureLayered::class, OBJECT)
+  addVariantMapping(TextureLayeredRD::class, OBJECT)
+  addVariantMapping(TextureProgressBar::class, OBJECT)
+  addVariantMapping(TextureRect::class, OBJECT)
+  addVariantMapping(Theme::class, OBJECT)
+  addVariantMapping(ThemeDB::class, OBJECT)
+  addVariantMapping(Thread::class, OBJECT)
+  addVariantMapping(TileData::class, OBJECT)
+  addVariantMapping(TileMap::class, OBJECT)
+  addVariantMapping(TileMapLayer::class, OBJECT)
+  addVariantMapping(TileMapPattern::class, OBJECT)
+  addVariantMapping(TileSet::class, OBJECT)
+  addVariantMapping(TileSetAtlasSource::class, OBJECT)
+  addVariantMapping(TileSetScenesCollectionSource::class, OBJECT)
+  addVariantMapping(TileSetSource::class, OBJECT)
+  addVariantMapping(Time::class, OBJECT)
+  addVariantMapping(Timer::class, OBJECT)
+  addVariantMapping(TorusMesh::class, OBJECT)
+  addVariantMapping(TouchScreenButton::class, OBJECT)
+  addVariantMapping(Translation::class, OBJECT)
+  addVariantMapping(TranslationDomain::class, OBJECT)
+  addVariantMapping(TranslationServer::class, OBJECT)
+  addVariantMapping(Tree::class, OBJECT)
+  addVariantMapping(TreeItem::class, OBJECT)
+  addVariantMapping(TriangleMesh::class, OBJECT)
+  addVariantMapping(TubeTrailMesh::class, OBJECT)
+  addVariantMapping(Tween::class, OBJECT)
+  addVariantMapping(Tweener::class, OBJECT)
+  addVariantMapping(UDPServer::class, OBJECT)
+  addVariantMapping(UPNP::class, OBJECT)
+  addVariantMapping(UPNPDevice::class, OBJECT)
+  addVariantMapping(UndoRedo::class, OBJECT)
+  addVariantMapping(UniformSetCacheRD::class, OBJECT)
+  addVariantMapping(VBoxContainer::class, OBJECT)
+  addVariantMapping(VFlowContainer::class, OBJECT)
+  addVariantMapping(VScrollBar::class, OBJECT)
+  addVariantMapping(VSeparator::class, OBJECT)
+  addVariantMapping(VSlider::class, OBJECT)
+  addVariantMapping(VSplitContainer::class, OBJECT)
+  addVariantMapping(VehicleBody3D::class, OBJECT)
+  addVariantMapping(VehicleWheel3D::class, OBJECT)
+  addVariantMapping(VideoStream::class, OBJECT)
+  addVariantMapping(VideoStreamPlayback::class, OBJECT)
+  addVariantMapping(VideoStreamPlayer::class, OBJECT)
+  addVariantMapping(VideoStreamTheora::class, OBJECT)
+  addVariantMapping(Viewport::class, OBJECT)
+  addVariantMapping(ViewportTexture::class, OBJECT)
+  addVariantMapping(VisibleOnScreenEnabler2D::class, OBJECT)
+  addVariantMapping(VisibleOnScreenEnabler3D::class, OBJECT)
+  addVariantMapping(VisibleOnScreenNotifier2D::class, OBJECT)
+  addVariantMapping(VisibleOnScreenNotifier3D::class, OBJECT)
+  addVariantMapping(VisualInstance3D::class, OBJECT)
+  addVariantMapping(VisualShader::class, OBJECT)
+  addVariantMapping(VisualShaderNode::class, OBJECT)
+  addVariantMapping(VisualShaderNodeBillboard::class, OBJECT)
+  addVariantMapping(VisualShaderNodeBooleanConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeBooleanParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeClamp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeColorConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeColorFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeColorOp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeColorParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeComment::class, OBJECT)
+  addVariantMapping(VisualShaderNodeCompare::class, OBJECT)
+  addVariantMapping(VisualShaderNodeConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeCubemap::class, OBJECT)
+  addVariantMapping(VisualShaderNodeCubemapParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeCurveTexture::class, OBJECT)
+  addVariantMapping(VisualShaderNodeCurveXYZTexture::class, OBJECT)
+  addVariantMapping(VisualShaderNodeCustom::class, OBJECT)
+  addVariantMapping(VisualShaderNodeDerivativeFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeDeterminant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeDistanceFade::class, OBJECT)
+  addVariantMapping(VisualShaderNodeDotProduct::class, OBJECT)
+  addVariantMapping(VisualShaderNodeExpression::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFaceForward::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFloatConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFloatFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFloatOp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFloatParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFrame::class, OBJECT)
+  addVariantMapping(VisualShaderNodeFresnel::class, OBJECT)
+  addVariantMapping(VisualShaderNodeGlobalExpression::class, OBJECT)
+  addVariantMapping(VisualShaderNodeGroupBase::class, OBJECT)
+  addVariantMapping(VisualShaderNodeIf::class, OBJECT)
+  addVariantMapping(VisualShaderNodeInput::class, OBJECT)
+  addVariantMapping(VisualShaderNodeIntConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeIntFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeIntOp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeIntParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeIs::class, OBJECT)
+  addVariantMapping(VisualShaderNodeLinearSceneDepth::class, OBJECT)
+  addVariantMapping(VisualShaderNodeMix::class, OBJECT)
+  addVariantMapping(VisualShaderNodeMultiplyAdd::class, OBJECT)
+  addVariantMapping(VisualShaderNodeOuterProduct::class, OBJECT)
+  addVariantMapping(VisualShaderNodeOutput::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParameterRef::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleAccelerator::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleBoxEmitter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleConeVelocity::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleEmit::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleEmitter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleMeshEmitter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleMultiplyByAxisAngle::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleOutput::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleRandomness::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleRingEmitter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeParticleSphereEmitter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeProximityFade::class, OBJECT)
+  addVariantMapping(VisualShaderNodeRandomRange::class, OBJECT)
+  addVariantMapping(VisualShaderNodeRemap::class, OBJECT)
+  addVariantMapping(VisualShaderNodeReroute::class, OBJECT)
+  addVariantMapping(VisualShaderNodeResizableBase::class, OBJECT)
+  addVariantMapping(VisualShaderNodeRotationByAxis::class, OBJECT)
+  addVariantMapping(VisualShaderNodeSDFRaymarch::class, OBJECT)
+  addVariantMapping(VisualShaderNodeSDFToScreenUV::class, OBJECT)
+  addVariantMapping(VisualShaderNodeSample3D::class, OBJECT)
+  addVariantMapping(VisualShaderNodeScreenNormalWorldSpace::class, OBJECT)
+  addVariantMapping(VisualShaderNodeScreenUVToSDF::class, OBJECT)
+  addVariantMapping(VisualShaderNodeSmoothStep::class, OBJECT)
+  addVariantMapping(VisualShaderNodeStep::class, OBJECT)
+  addVariantMapping(VisualShaderNodeSwitch::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTexture::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTexture2DArray::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTexture2DArrayParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTexture2DParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTexture3D::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTexture3DParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTextureParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTextureParameterTriplanar::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTextureSDF::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTextureSDFNormal::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformCompose::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformDecompose::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformOp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeTransformVecMult::class, OBJECT)
+  addVariantMapping(VisualShaderNodeUIntConstant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeUIntFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeUIntOp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeUIntParameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeUVFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeUVPolarCoord::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVarying::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVaryingGetter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVaryingSetter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVec2Constant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVec2Parameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVec3Constant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVec3Parameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVec4Constant::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVec4Parameter::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorBase::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorCompose::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorDecompose::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorDistance::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorFunc::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorLen::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorOp::class, OBJECT)
+  addVariantMapping(VisualShaderNodeVectorRefract::class, OBJECT)
+  addVariantMapping(VisualShaderNodeWorldPositionFromDepth::class, OBJECT)
+  addVariantMapping(VoxelGI::class, OBJECT)
+  addVariantMapping(VoxelGIData::class, OBJECT)
+  addVariantMapping(WeakRef::class, OBJECT)
+  addVariantMapping(WebRTCDataChannel::class, OBJECT)
+  addVariantMapping(WebRTCDataChannelExtension::class, OBJECT)
+  addVariantMapping(WebRTCMultiplayerPeer::class, OBJECT)
+  addVariantMapping(WebRTCPeerConnection::class, OBJECT)
+  addVariantMapping(WebRTCPeerConnectionExtension::class, OBJECT)
+  addVariantMapping(WebSocketMultiplayerPeer::class, OBJECT)
+  addVariantMapping(WebSocketPeer::class, OBJECT)
+  addVariantMapping(WebXRInterface::class, OBJECT)
+  addVariantMapping(Window::class, OBJECT)
+  addVariantMapping(WorkerThreadPool::class, OBJECT)
+  addVariantMapping(World2D::class, OBJECT)
+  addVariantMapping(World3D::class, OBJECT)
+  addVariantMapping(WorldBoundaryShape2D::class, OBJECT)
+  addVariantMapping(WorldBoundaryShape3D::class, OBJECT)
+  addVariantMapping(WorldEnvironment::class, OBJECT)
+  addVariantMapping(X509Certificate::class, OBJECT)
+  addVariantMapping(XMLParser::class, OBJECT)
+  addVariantMapping(XRAnchor3D::class, OBJECT)
+  addVariantMapping(XRBodyModifier3D::class, OBJECT)
+  addVariantMapping(XRBodyTracker::class, OBJECT)
+  addVariantMapping(XRCamera3D::class, OBJECT)
+  addVariantMapping(XRController3D::class, OBJECT)
+  addVariantMapping(XRControllerTracker::class, OBJECT)
+  addVariantMapping(XRFaceModifier3D::class, OBJECT)
+  addVariantMapping(XRFaceTracker::class, OBJECT)
+  addVariantMapping(XRHandModifier3D::class, OBJECT)
+  addVariantMapping(XRHandTracker::class, OBJECT)
+  addVariantMapping(XRInterface::class, OBJECT)
+  addVariantMapping(XRInterfaceExtension::class, OBJECT)
+  addVariantMapping(XRNode3D::class, OBJECT)
+  addVariantMapping(XROrigin3D::class, OBJECT)
+  addVariantMapping(XRPose::class, OBJECT)
+  addVariantMapping(XRPositionalTracker::class, OBJECT)
+  addVariantMapping(XRServer::class, OBJECT)
+  addVariantMapping(XRTracker::class, OBJECT)
+  addVariantMapping(XRVRS::class, OBJECT)
+  addVariantMapping(ZIPPacker::class, OBJECT)
+  addVariantMapping(ZIPReader::class, OBJECT)
 }
 
 public fun registerEngineTypeMethods(): Unit {

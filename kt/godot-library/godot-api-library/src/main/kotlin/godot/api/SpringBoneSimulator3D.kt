@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -30,6 +34,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This [SkeletonModifier3D] can be used to wiggle hair, cloth, and tails. This modifier behaves
@@ -935,7 +940,323 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRootBoneNameName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, String> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, String>("set_root_bone_name")
+
+    @JvmStatic
+    public val getRootBoneNameName: MethodStringName1<SpringBoneSimulator3D, String, Int> =
+        MethodStringName1<SpringBoneSimulator3D, String, Int>("get_root_bone_name")
+
+    @JvmStatic
+    public val setRootBoneName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int>("set_root_bone")
+
+    @JvmStatic
+    public val getRootBoneName: MethodStringName1<SpringBoneSimulator3D, Int, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Int, Int>("get_root_bone")
+
+    @JvmStatic
+    public val setEndBoneNameName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, String> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, String>("set_end_bone_name")
+
+    @JvmStatic
+    public val getEndBoneNameName: MethodStringName1<SpringBoneSimulator3D, String, Int> =
+        MethodStringName1<SpringBoneSimulator3D, String, Int>("get_end_bone_name")
+
+    @JvmStatic
+    public val setEndBoneName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int>("set_end_bone")
+
+    @JvmStatic
+    public val getEndBoneName: MethodStringName1<SpringBoneSimulator3D, Int, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Int, Int>("get_end_bone")
+
+    @JvmStatic
+    public val setExtendEndBoneName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Boolean> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Boolean>("set_extend_end_bone")
+
+    @JvmStatic
+    public val isEndBoneExtendedName: MethodStringName1<SpringBoneSimulator3D, Boolean, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Boolean, Int>("is_end_bone_extended")
+
+    @JvmStatic
+    public val setEndBoneDirectionName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, BoneDirection> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, BoneDirection>("set_end_bone_direction")
+
+    @JvmStatic
+    public val getEndBoneDirectionName: MethodStringName1<SpringBoneSimulator3D, BoneDirection, Int>
+        = MethodStringName1<SpringBoneSimulator3D, BoneDirection, Int>("get_end_bone_direction")
+
+    @JvmStatic
+    public val setEndBoneLengthName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float>("set_end_bone_length")
+
+    @JvmStatic
+    public val getEndBoneLengthName: MethodStringName1<SpringBoneSimulator3D, Float, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Float, Int>("get_end_bone_length")
+
+    @JvmStatic
+    public val setCenterFromName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, CenterFrom> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, CenterFrom>("set_center_from")
+
+    @JvmStatic
+    public val getCenterFromName: MethodStringName1<SpringBoneSimulator3D, CenterFrom, Int> =
+        MethodStringName1<SpringBoneSimulator3D, CenterFrom, Int>("get_center_from")
+
+    @JvmStatic
+    public val setCenterNodeName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, NodePath> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, NodePath>("set_center_node")
+
+    @JvmStatic
+    public val getCenterNodeName: MethodStringName1<SpringBoneSimulator3D, NodePath, Int> =
+        MethodStringName1<SpringBoneSimulator3D, NodePath, Int>("get_center_node")
+
+    @JvmStatic
+    public val setCenterBoneNameName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, String> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, String>("set_center_bone_name")
+
+    @JvmStatic
+    public val getCenterBoneNameName: MethodStringName1<SpringBoneSimulator3D, String, Int> =
+        MethodStringName1<SpringBoneSimulator3D, String, Int>("get_center_bone_name")
+
+    @JvmStatic
+    public val setCenterBoneName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int>("set_center_bone")
+
+    @JvmStatic
+    public val getCenterBoneName: MethodStringName1<SpringBoneSimulator3D, Int, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Int, Int>("get_center_bone")
+
+    @JvmStatic
+    public val setRadiusName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName1<SpringBoneSimulator3D, Float, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Float, Int>("get_radius")
+
+    @JvmStatic
+    public val setRotationAxisName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, RotationAxis> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, RotationAxis>("set_rotation_axis")
+
+    @JvmStatic
+    public val getRotationAxisName: MethodStringName1<SpringBoneSimulator3D, RotationAxis, Int> =
+        MethodStringName1<SpringBoneSimulator3D, RotationAxis, Int>("get_rotation_axis")
+
+    @JvmStatic
+    public val setRadiusDampingCurveName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?>("set_radius_damping_curve")
+
+    @JvmStatic
+    public val getRadiusDampingCurveName: MethodStringName1<SpringBoneSimulator3D, Curve?, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Curve?, Int>("get_radius_damping_curve")
+
+    @JvmStatic
+    public val setStiffnessName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float>("set_stiffness")
+
+    @JvmStatic
+    public val getStiffnessName: MethodStringName1<SpringBoneSimulator3D, Float, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Float, Int>("get_stiffness")
+
+    @JvmStatic
+    public val setStiffnessDampingCurveName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?>("set_stiffness_damping_curve")
+
+    @JvmStatic
+    public val getStiffnessDampingCurveName: MethodStringName1<SpringBoneSimulator3D, Curve?, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Curve?, Int>("get_stiffness_damping_curve")
+
+    @JvmStatic
+    public val setDragName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float>("set_drag")
+
+    @JvmStatic
+    public val getDragName: MethodStringName1<SpringBoneSimulator3D, Float, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Float, Int>("get_drag")
+
+    @JvmStatic
+    public val setDragDampingCurveName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?>
+        = MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?>("set_drag_damping_curve")
+
+    @JvmStatic
+    public val getDragDampingCurveName: MethodStringName1<SpringBoneSimulator3D, Curve?, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Curve?, Int>("get_drag_damping_curve")
+
+    @JvmStatic
+    public val setGravityName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Float>("set_gravity")
+
+    @JvmStatic
+    public val getGravityName: MethodStringName1<SpringBoneSimulator3D, Float, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Float, Int>("get_gravity")
+
+    @JvmStatic
+    public val setGravityDampingCurveName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Curve?>("set_gravity_damping_curve")
+
+    @JvmStatic
+    public val getGravityDampingCurveName: MethodStringName1<SpringBoneSimulator3D, Curve?, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Curve?, Int>("get_gravity_damping_curve")
+
+    @JvmStatic
+    public val setGravityDirectionName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Vector3>
+        = MethodStringName2<SpringBoneSimulator3D, Unit, Int, Vector3>("set_gravity_direction")
+
+    @JvmStatic
+    public val getGravityDirectionName: MethodStringName1<SpringBoneSimulator3D, Vector3, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Vector3, Int>("get_gravity_direction")
+
+    @JvmStatic
+    public val setSettingCountName: MethodStringName1<SpringBoneSimulator3D, Unit, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Unit, Int>("set_setting_count")
+
+    @JvmStatic
+    public val getSettingCountName: MethodStringName0<SpringBoneSimulator3D, Int> =
+        MethodStringName0<SpringBoneSimulator3D, Int>("get_setting_count")
+
+    @JvmStatic
+    public val clearSettingsName: MethodStringName0<SpringBoneSimulator3D, Unit> =
+        MethodStringName0<SpringBoneSimulator3D, Unit>("clear_settings")
+
+    @JvmStatic
+    public val setIndividualConfigName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Boolean>
+        = MethodStringName2<SpringBoneSimulator3D, Unit, Int, Boolean>("set_individual_config")
+
+    @JvmStatic
+    public val isConfigIndividualName: MethodStringName1<SpringBoneSimulator3D, Boolean, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Boolean, Int>("is_config_individual")
+
+    @JvmStatic
+    public val getJointBoneNameName: MethodStringName2<SpringBoneSimulator3D, String, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, String, Int, Int>("get_joint_bone_name")
+
+    @JvmStatic
+    public val getJointBoneName: MethodStringName2<SpringBoneSimulator3D, Int, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Int, Int, Int>("get_joint_bone")
+
+    @JvmStatic
+    public val setJointRotationAxisName:
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, RotationAxis> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, RotationAxis>("set_joint_rotation_axis")
+
+    @JvmStatic
+    public val getJointRotationAxisName:
+        MethodStringName2<SpringBoneSimulator3D, RotationAxis, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, RotationAxis, Int, Int>("get_joint_rotation_axis")
+
+    @JvmStatic
+    public val setJointRadiusName: MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float>("set_joint_radius")
+
+    @JvmStatic
+    public val getJointRadiusName: MethodStringName2<SpringBoneSimulator3D, Float, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Float, Int, Int>("get_joint_radius")
+
+    @JvmStatic
+    public val setJointStiffnessName:
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float>("set_joint_stiffness")
+
+    @JvmStatic
+    public val getJointStiffnessName: MethodStringName2<SpringBoneSimulator3D, Float, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Float, Int, Int>("get_joint_stiffness")
+
+    @JvmStatic
+    public val setJointDragName: MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float>("set_joint_drag")
+
+    @JvmStatic
+    public val getJointDragName: MethodStringName2<SpringBoneSimulator3D, Float, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Float, Int, Int>("get_joint_drag")
+
+    @JvmStatic
+    public val setJointGravityName: MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float>
+        = MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Float>("set_joint_gravity")
+
+    @JvmStatic
+    public val getJointGravityName: MethodStringName2<SpringBoneSimulator3D, Float, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Float, Int, Int>("get_joint_gravity")
+
+    @JvmStatic
+    public val setJointGravityDirectionName:
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Vector3> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, Vector3>("set_joint_gravity_direction")
+
+    @JvmStatic
+    public val getJointGravityDirectionName:
+        MethodStringName2<SpringBoneSimulator3D, Vector3, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Vector3, Int, Int>("get_joint_gravity_direction")
+
+    @JvmStatic
+    public val getJointCountName: MethodStringName1<SpringBoneSimulator3D, Int, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Int, Int>("get_joint_count")
+
+    @JvmStatic
+    public val setEnableAllChildCollisionsName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Boolean> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Boolean>("set_enable_all_child_collisions")
+
+    @JvmStatic
+    public val areAllChildCollisionsEnabledName:
+        MethodStringName1<SpringBoneSimulator3D, Boolean, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Boolean, Int>("are_all_child_collisions_enabled")
+
+    @JvmStatic
+    public val setExcludeCollisionPathName:
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, NodePath> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, NodePath>("set_exclude_collision_path")
+
+    @JvmStatic
+    public val getExcludeCollisionPathName:
+        MethodStringName2<SpringBoneSimulator3D, NodePath, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, NodePath, Int, Int>("get_exclude_collision_path")
+
+    @JvmStatic
+    public val setExcludeCollisionCountName:
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int>("set_exclude_collision_count")
+
+    @JvmStatic
+    public val getExcludeCollisionCountName: MethodStringName1<SpringBoneSimulator3D, Int, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Int, Int>("get_exclude_collision_count")
+
+    @JvmStatic
+    public val clearExcludeCollisionsName: MethodStringName1<SpringBoneSimulator3D, Unit, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Unit, Int>("clear_exclude_collisions")
+
+    @JvmStatic
+    public val setCollisionPathName:
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, NodePath> =
+        MethodStringName3<SpringBoneSimulator3D, Unit, Int, Int, NodePath>("set_collision_path")
+
+    @JvmStatic
+    public val getCollisionPathName: MethodStringName2<SpringBoneSimulator3D, NodePath, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, NodePath, Int, Int>("get_collision_path")
+
+    @JvmStatic
+    public val setCollisionCountName: MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int> =
+        MethodStringName2<SpringBoneSimulator3D, Unit, Int, Int>("set_collision_count")
+
+    @JvmStatic
+    public val getCollisionCountName: MethodStringName1<SpringBoneSimulator3D, Int, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Int, Int>("get_collision_count")
+
+    @JvmStatic
+    public val clearCollisionsName: MethodStringName1<SpringBoneSimulator3D, Unit, Int> =
+        MethodStringName1<SpringBoneSimulator3D, Unit, Int>("clear_collisions")
+
+    @JvmStatic
+    public val resetName: MethodStringName0<SpringBoneSimulator3D, Unit> =
+        MethodStringName0<SpringBoneSimulator3D, Unit>("reset")
+  }
 
   public object MethodBindings {
     internal val setRootBoneNamePtr: VoidPtr =

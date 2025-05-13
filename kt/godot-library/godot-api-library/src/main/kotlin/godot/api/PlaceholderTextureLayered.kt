@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is used when loading a project that uses a [TextureLayered] subclass in 2 conditions:
@@ -105,7 +108,19 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     TransferContext.callMethod(ptr, MethodBindings.setLayersPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<PlaceholderTextureLayered, Unit, Vector2i> =
+        MethodStringName1<PlaceholderTextureLayered, Unit, Vector2i>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<PlaceholderTextureLayered, Vector2i> =
+        MethodStringName0<PlaceholderTextureLayered, Vector2i>("get_size")
+
+    @JvmStatic
+    public val setLayersName: MethodStringName1<PlaceholderTextureLayered, Unit, Int> =
+        MethodStringName1<PlaceholderTextureLayered, Unit, Int>("set_layers")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

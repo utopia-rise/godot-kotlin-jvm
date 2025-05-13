@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -139,7 +142,52 @@ public open class RDTextureView : RefCounted() {
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setFormatOverrideName:
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.DataFormat> =
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.DataFormat>("set_format_override")
+
+    @JvmStatic
+    public val getFormatOverrideName: MethodStringName0<RDTextureView, RenderingDevice.DataFormat> =
+        MethodStringName0<RDTextureView, RenderingDevice.DataFormat>("get_format_override")
+
+    @JvmStatic
+    public val setSwizzleRName:
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_r")
+
+    @JvmStatic
+    public val getSwizzleRName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
+        MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_r")
+
+    @JvmStatic
+    public val setSwizzleGName:
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_g")
+
+    @JvmStatic
+    public val getSwizzleGName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
+        MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_g")
+
+    @JvmStatic
+    public val setSwizzleBName:
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_b")
+
+    @JvmStatic
+    public val getSwizzleBName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
+        MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_b")
+
+    @JvmStatic
+    public val setSwizzleAName:
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
+        MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_a")
+
+    @JvmStatic
+    public val getSwizzleAName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
+        MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_a")
+  }
 
   public object MethodBindings {
     internal val setFormatOverridePtr: VoidPtr =

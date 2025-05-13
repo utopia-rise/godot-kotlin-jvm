@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.StringName
 import godot.core.VariantArray
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Node that can be the parent of [PhysicalBone3D] and can apply the simulation results to
@@ -85,7 +88,30 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val isSimulatingPhysicsName: MethodStringName0<PhysicalBoneSimulator3D, Boolean> =
+        MethodStringName0<PhysicalBoneSimulator3D, Boolean>("is_simulating_physics")
+
+    @JvmStatic
+    public val physicalBonesStopSimulationName: MethodStringName0<PhysicalBoneSimulator3D, Unit> =
+        MethodStringName0<PhysicalBoneSimulator3D, Unit>("physical_bones_stop_simulation")
+
+    @JvmStatic
+    public val physicalBonesStartSimulationName:
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, VariantArray<StringName>> =
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, VariantArray<StringName>>("physical_bones_start_simulation")
+
+    @JvmStatic
+    public val physicalBonesAddCollisionExceptionName:
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID> =
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID>("physical_bones_add_collision_exception")
+
+    @JvmStatic
+    public val physicalBonesRemoveCollisionExceptionName:
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID> =
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID>("physical_bones_remove_collision_exception")
+  }
 
   public object MethodBindings {
     internal val isSimulatingPhysicsPtr: VoidPtr =

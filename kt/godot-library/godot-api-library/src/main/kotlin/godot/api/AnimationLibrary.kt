@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -28,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * An animation library stores a set of animations accessible through [StringName] keys, for use
@@ -152,7 +156,36 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addAnimationName: MethodStringName2<AnimationLibrary, Error, StringName, Animation?>
+        = MethodStringName2<AnimationLibrary, Error, StringName, Animation?>("add_animation")
+
+    @JvmStatic
+    public val removeAnimationName: MethodStringName1<AnimationLibrary, Unit, StringName> =
+        MethodStringName1<AnimationLibrary, Unit, StringName>("remove_animation")
+
+    @JvmStatic
+    public val renameAnimationName:
+        MethodStringName2<AnimationLibrary, Unit, StringName, StringName> =
+        MethodStringName2<AnimationLibrary, Unit, StringName, StringName>("rename_animation")
+
+    @JvmStatic
+    public val hasAnimationName: MethodStringName1<AnimationLibrary, Boolean, StringName> =
+        MethodStringName1<AnimationLibrary, Boolean, StringName>("has_animation")
+
+    @JvmStatic
+    public val getAnimationName: MethodStringName1<AnimationLibrary, Animation?, StringName> =
+        MethodStringName1<AnimationLibrary, Animation?, StringName>("get_animation")
+
+    @JvmStatic
+    public val getAnimationListName: MethodStringName0<AnimationLibrary, VariantArray<StringName>> =
+        MethodStringName0<AnimationLibrary, VariantArray<StringName>>("get_animation_list")
+
+    @JvmStatic
+    public val getAnimationListSizeName: MethodStringName0<AnimationLibrary, Int> =
+        MethodStringName0<AnimationLibrary, Int>("get_animation_list_size")
+  }
 
   public object MethodBindings {
     internal val addAnimationPtr: VoidPtr =

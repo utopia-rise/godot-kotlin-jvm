@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -31,6 +33,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * WebXR is an open standard that allows creating VR and AR applications that run in the web
@@ -559,7 +562,82 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val isSessionSupportedName: MethodStringName1<WebXRInterface, Unit, String> =
+        MethodStringName1<WebXRInterface, Unit, String>("is_session_supported")
+
+    @JvmStatic
+    public val setSessionModeName: MethodStringName1<WebXRInterface, Unit, String> =
+        MethodStringName1<WebXRInterface, Unit, String>("set_session_mode")
+
+    @JvmStatic
+    public val getSessionModeName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_session_mode")
+
+    @JvmStatic
+    public val setRequiredFeaturesName: MethodStringName1<WebXRInterface, Unit, String> =
+        MethodStringName1<WebXRInterface, Unit, String>("set_required_features")
+
+    @JvmStatic
+    public val getRequiredFeaturesName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_required_features")
+
+    @JvmStatic
+    public val setOptionalFeaturesName: MethodStringName1<WebXRInterface, Unit, String> =
+        MethodStringName1<WebXRInterface, Unit, String>("set_optional_features")
+
+    @JvmStatic
+    public val getOptionalFeaturesName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_optional_features")
+
+    @JvmStatic
+    public val getReferenceSpaceTypeName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_reference_space_type")
+
+    @JvmStatic
+    public val getEnabledFeaturesName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_enabled_features")
+
+    @JvmStatic
+    public val setRequestedReferenceSpaceTypesName: MethodStringName1<WebXRInterface, Unit, String>
+        = MethodStringName1<WebXRInterface, Unit, String>("set_requested_reference_space_types")
+
+    @JvmStatic
+    public val getRequestedReferenceSpaceTypesName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_requested_reference_space_types")
+
+    @JvmStatic
+    public val isInputSourceActiveName: MethodStringName1<WebXRInterface, Boolean, Int> =
+        MethodStringName1<WebXRInterface, Boolean, Int>("is_input_source_active")
+
+    @JvmStatic
+    public val getInputSourceTrackerName:
+        MethodStringName1<WebXRInterface, XRControllerTracker?, Int> =
+        MethodStringName1<WebXRInterface, XRControllerTracker?, Int>("get_input_source_tracker")
+
+    @JvmStatic
+    public val getInputSourceTargetRayModeName:
+        MethodStringName1<WebXRInterface, TargetRayMode, Int> =
+        MethodStringName1<WebXRInterface, TargetRayMode, Int>("get_input_source_target_ray_mode")
+
+    @JvmStatic
+    public val getVisibilityStateName: MethodStringName0<WebXRInterface, String> =
+        MethodStringName0<WebXRInterface, String>("get_visibility_state")
+
+    @JvmStatic
+    public val getDisplayRefreshRateName: MethodStringName0<WebXRInterface, Float> =
+        MethodStringName0<WebXRInterface, Float>("get_display_refresh_rate")
+
+    @JvmStatic
+    public val setDisplayRefreshRateName: MethodStringName1<WebXRInterface, Unit, Float> =
+        MethodStringName1<WebXRInterface, Unit, Float>("set_display_refresh_rate")
+
+    @JvmStatic
+    public val getAvailableDisplayRefreshRatesName:
+        MethodStringName0<WebXRInterface, VariantArray<Any?>> =
+        MethodStringName0<WebXRInterface, VariantArray<Any?>>("get_available_display_refresh_rates")
+  }
 
   public object MethodBindings {
     internal val isSessionSupportedPtr: VoidPtr =

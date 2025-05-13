@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
@@ -215,7 +218,33 @@ public open class AudioStreamGenerator : AudioStream() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMixRateName: MethodStringName1<AudioStreamGenerator, Unit, Float> =
+        MethodStringName1<AudioStreamGenerator, Unit, Float>("set_mix_rate")
+
+    @JvmStatic
+    public val getMixRateName: MethodStringName0<AudioStreamGenerator, Float> =
+        MethodStringName0<AudioStreamGenerator, Float>("get_mix_rate")
+
+    @JvmStatic
+    public val setMixRateModeName:
+        MethodStringName1<AudioStreamGenerator, Unit, AudioStreamGeneratorMixRate> =
+        MethodStringName1<AudioStreamGenerator, Unit, AudioStreamGeneratorMixRate>("set_mix_rate_mode")
+
+    @JvmStatic
+    public val getMixRateModeName:
+        MethodStringName0<AudioStreamGenerator, AudioStreamGeneratorMixRate> =
+        MethodStringName0<AudioStreamGenerator, AudioStreamGeneratorMixRate>("get_mix_rate_mode")
+
+    @JvmStatic
+    public val setBufferLengthName: MethodStringName1<AudioStreamGenerator, Unit, Float> =
+        MethodStringName1<AudioStreamGenerator, Unit, Float>("set_buffer_length")
+
+    @JvmStatic
+    public val getBufferLengthName: MethodStringName0<AudioStreamGenerator, Float> =
+        MethodStringName0<AudioStreamGenerator, Float>("get_buffer_length")
+  }
 
   public object MethodBindings {
     internal val setMixRatePtr: VoidPtr =

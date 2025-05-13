@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
@@ -188,7 +191,31 @@ public open class OpenXRAction : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setLocalizedNameName: MethodStringName1<OpenXRAction, Unit, String> =
+        MethodStringName1<OpenXRAction, Unit, String>("set_localized_name")
+
+    @JvmStatic
+    public val getLocalizedNameName: MethodStringName0<OpenXRAction, String> =
+        MethodStringName0<OpenXRAction, String>("get_localized_name")
+
+    @JvmStatic
+    public val setActionTypeName: MethodStringName1<OpenXRAction, Unit, ActionType> =
+        MethodStringName1<OpenXRAction, Unit, ActionType>("set_action_type")
+
+    @JvmStatic
+    public val getActionTypeName: MethodStringName0<OpenXRAction, ActionType> =
+        MethodStringName0<OpenXRAction, ActionType>("get_action_type")
+
+    @JvmStatic
+    public val setToplevelPathsName: MethodStringName1<OpenXRAction, Unit, PackedStringArray> =
+        MethodStringName1<OpenXRAction, Unit, PackedStringArray>("set_toplevel_paths")
+
+    @JvmStatic
+    public val getToplevelPathsName: MethodStringName0<OpenXRAction, PackedStringArray> =
+        MethodStringName0<OpenXRAction, PackedStringArray>("get_toplevel_paths")
+  }
 
   public object MethodBindings {
     internal val setLocalizedNamePtr: VoidPtr =

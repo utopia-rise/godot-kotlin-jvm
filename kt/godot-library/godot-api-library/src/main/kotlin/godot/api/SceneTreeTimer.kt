@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
@@ -84,7 +87,15 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTimeLeftName: MethodStringName1<SceneTreeTimer, Unit, Double> =
+        MethodStringName1<SceneTreeTimer, Unit, Double>("set_time_left")
+
+    @JvmStatic
+    public val getTimeLeftName: MethodStringName0<SceneTreeTimer, Double> =
+        MethodStringName0<SceneTreeTimer, Double>("get_time_left")
+  }
 
   public object MethodBindings {
     internal val setTimeLeftPtr: VoidPtr =

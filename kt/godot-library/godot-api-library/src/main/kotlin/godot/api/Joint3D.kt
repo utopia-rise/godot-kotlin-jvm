@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.VariantParser.BOOL
@@ -25,6 +27,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
@@ -145,7 +148,43 @@ public open class Joint3D internal constructor() : Node3D() {
 
   public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setNodeAName: MethodStringName1<Joint3D, Unit, NodePath> =
+        MethodStringName1<Joint3D, Unit, NodePath>("set_node_a")
+
+    @JvmStatic
+    public val getNodeAName: MethodStringName0<Joint3D, NodePath> =
+        MethodStringName0<Joint3D, NodePath>("get_node_a")
+
+    @JvmStatic
+    public val setNodeBName: MethodStringName1<Joint3D, Unit, NodePath> =
+        MethodStringName1<Joint3D, Unit, NodePath>("set_node_b")
+
+    @JvmStatic
+    public val getNodeBName: MethodStringName0<Joint3D, NodePath> =
+        MethodStringName0<Joint3D, NodePath>("get_node_b")
+
+    @JvmStatic
+    public val setSolverPriorityName: MethodStringName1<Joint3D, Unit, Int> =
+        MethodStringName1<Joint3D, Unit, Int>("set_solver_priority")
+
+    @JvmStatic
+    public val getSolverPriorityName: MethodStringName0<Joint3D, Int> =
+        MethodStringName0<Joint3D, Int>("get_solver_priority")
+
+    @JvmStatic
+    public val setExcludeNodesFromCollisionName: MethodStringName1<Joint3D, Unit, Boolean> =
+        MethodStringName1<Joint3D, Unit, Boolean>("set_exclude_nodes_from_collision")
+
+    @JvmStatic
+    public val getExcludeNodesFromCollisionName: MethodStringName0<Joint3D, Boolean> =
+        MethodStringName0<Joint3D, Boolean>("get_exclude_nodes_from_collision")
+
+    @JvmStatic
+    public val getRidName: MethodStringName0<Joint3D, RID> =
+        MethodStringName0<Joint3D, RID>("get_rid")
+  }
 
   public object MethodBindings {
     internal val setNodeAPtr: VoidPtr =

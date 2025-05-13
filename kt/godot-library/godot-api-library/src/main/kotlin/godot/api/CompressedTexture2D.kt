@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -19,6 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is
@@ -72,7 +75,15 @@ public open class CompressedTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val loadName: MethodStringName1<CompressedTexture2D, Error, String> =
+        MethodStringName1<CompressedTexture2D, Error, String>("load")
+
+    @JvmStatic
+    public val getLoadPathName: MethodStringName0<CompressedTexture2D, String> =
+        MethodStringName0<CompressedTexture2D, String>("get_load_path")
+  }
 
   public object MethodBindings {
     internal val loadPtr: VoidPtr =

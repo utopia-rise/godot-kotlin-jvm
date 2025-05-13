@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be
@@ -204,6 +208,62 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public companion object {
+    @JvmStatic
+    public val setFramesName: MethodStringName1<AnimatedTexture, Unit, Int> =
+        MethodStringName1<AnimatedTexture, Unit, Int>("set_frames")
+
+    @JvmStatic
+    public val getFramesName: MethodStringName0<AnimatedTexture, Int> =
+        MethodStringName0<AnimatedTexture, Int>("get_frames")
+
+    @JvmStatic
+    public val setCurrentFrameName: MethodStringName1<AnimatedTexture, Unit, Int> =
+        MethodStringName1<AnimatedTexture, Unit, Int>("set_current_frame")
+
+    @JvmStatic
+    public val getCurrentFrameName: MethodStringName0<AnimatedTexture, Int> =
+        MethodStringName0<AnimatedTexture, Int>("get_current_frame")
+
+    @JvmStatic
+    public val setPauseName: MethodStringName1<AnimatedTexture, Unit, Boolean> =
+        MethodStringName1<AnimatedTexture, Unit, Boolean>("set_pause")
+
+    @JvmStatic
+    public val getPauseName: MethodStringName0<AnimatedTexture, Boolean> =
+        MethodStringName0<AnimatedTexture, Boolean>("get_pause")
+
+    @JvmStatic
+    public val setOneShotName: MethodStringName1<AnimatedTexture, Unit, Boolean> =
+        MethodStringName1<AnimatedTexture, Unit, Boolean>("set_one_shot")
+
+    @JvmStatic
+    public val getOneShotName: MethodStringName0<AnimatedTexture, Boolean> =
+        MethodStringName0<AnimatedTexture, Boolean>("get_one_shot")
+
+    @JvmStatic
+    public val setSpeedScaleName: MethodStringName1<AnimatedTexture, Unit, Float> =
+        MethodStringName1<AnimatedTexture, Unit, Float>("set_speed_scale")
+
+    @JvmStatic
+    public val getSpeedScaleName: MethodStringName0<AnimatedTexture, Float> =
+        MethodStringName0<AnimatedTexture, Float>("get_speed_scale")
+
+    @JvmStatic
+    public val setFrameTextureName: MethodStringName2<AnimatedTexture, Unit, Int, Texture2D?> =
+        MethodStringName2<AnimatedTexture, Unit, Int, Texture2D?>("set_frame_texture")
+
+    @JvmStatic
+    public val getFrameTextureName: MethodStringName1<AnimatedTexture, Texture2D?, Int> =
+        MethodStringName1<AnimatedTexture, Texture2D?, Int>("get_frame_texture")
+
+    @JvmStatic
+    public val setFrameDurationName: MethodStringName2<AnimatedTexture, Unit, Int, Float> =
+        MethodStringName2<AnimatedTexture, Unit, Int, Float>("set_frame_duration")
+
+    @JvmStatic
+    public val getFrameDurationName: MethodStringName1<AnimatedTexture, Float, Int> =
+        MethodStringName1<AnimatedTexture, Float, Int>("get_frame_duration")
+
     /**
      * The maximum number of frames supported by [AnimatedTexture]. If you need more frames in your
      * animation, use [AnimationPlayer] or [AnimatedSprite2D].

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector3Array
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This class stores the result of a 3D navigation path query from the [NavigationServer3D].
@@ -302,7 +305,46 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setPathName: MethodStringName1<NavigationPathQueryResult3D, Unit, PackedVector3Array>
+        = MethodStringName1<NavigationPathQueryResult3D, Unit, PackedVector3Array>("set_path")
+
+    @JvmStatic
+    public val getPathName: MethodStringName0<NavigationPathQueryResult3D, PackedVector3Array> =
+        MethodStringName0<NavigationPathQueryResult3D, PackedVector3Array>("get_path")
+
+    @JvmStatic
+    public val setPathTypesName:
+        MethodStringName1<NavigationPathQueryResult3D, Unit, PackedInt32Array> =
+        MethodStringName1<NavigationPathQueryResult3D, Unit, PackedInt32Array>("set_path_types")
+
+    @JvmStatic
+    public val getPathTypesName: MethodStringName0<NavigationPathQueryResult3D, PackedInt32Array> =
+        MethodStringName0<NavigationPathQueryResult3D, PackedInt32Array>("get_path_types")
+
+    @JvmStatic
+    public val setPathRidsName:
+        MethodStringName1<NavigationPathQueryResult3D, Unit, VariantArray<RID>> =
+        MethodStringName1<NavigationPathQueryResult3D, Unit, VariantArray<RID>>("set_path_rids")
+
+    @JvmStatic
+    public val getPathRidsName: MethodStringName0<NavigationPathQueryResult3D, VariantArray<RID>> =
+        MethodStringName0<NavigationPathQueryResult3D, VariantArray<RID>>("get_path_rids")
+
+    @JvmStatic
+    public val setPathOwnerIdsName:
+        MethodStringName1<NavigationPathQueryResult3D, Unit, PackedInt64Array> =
+        MethodStringName1<NavigationPathQueryResult3D, Unit, PackedInt64Array>("set_path_owner_ids")
+
+    @JvmStatic
+    public val getPathOwnerIdsName: MethodStringName0<NavigationPathQueryResult3D, PackedInt64Array>
+        = MethodStringName0<NavigationPathQueryResult3D, PackedInt64Array>("get_path_owner_ids")
+
+    @JvmStatic
+    public val resetName: MethodStringName0<NavigationPathQueryResult3D, Unit> =
+        MethodStringName0<NavigationPathQueryResult3D, Unit>("reset")
+  }
 
   public object MethodBindings {
     internal val setPathPtr: VoidPtr =

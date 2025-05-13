@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenNotifier3D] represents a box-shaped region of 3D space. When any part of this
@@ -107,7 +110,15 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setAabbName: MethodStringName1<VisibleOnScreenNotifier3D, Unit, AABB> =
+        MethodStringName1<VisibleOnScreenNotifier3D, Unit, AABB>("set_aabb")
+
+    @JvmStatic
+    public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier3D, Boolean> =
+        MethodStringName0<VisibleOnScreenNotifier3D, Boolean>("is_on_screen")
+  }
 
   public object MethodBindings {
     internal val setAabbPtr: VoidPtr =

@@ -12,12 +12,19 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Transform3D
 import godot.core.VariantArray
+import godot.core.VariantCallable
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -71,6 +78,636 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationServer3D : Object() {
+  @JvmStatic
+  public val getMapsName: MethodStringName0<NavigationServer3D, VariantArray<RID>> =
+      MethodStringName0<NavigationServer3D, VariantArray<RID>>("get_maps")
+
+  @JvmStatic
+  public val mapCreateName: MethodStringName0<NavigationServer3D, RID> =
+      MethodStringName0<NavigationServer3D, RID>("map_create")
+
+  @JvmStatic
+  public val mapSetActiveName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("map_set_active")
+
+  @JvmStatic
+  public val mapIsActiveName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("map_is_active")
+
+  @JvmStatic
+  public val mapSetUpName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("map_set_up")
+
+  @JvmStatic
+  public val mapGetUpName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("map_get_up")
+
+  @JvmStatic
+  public val mapSetCellSizeName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("map_set_cell_size")
+
+  @JvmStatic
+  public val mapGetCellSizeName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("map_get_cell_size")
+
+  @JvmStatic
+  public val mapSetCellHeightName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("map_set_cell_height")
+
+  @JvmStatic
+  public val mapGetCellHeightName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("map_get_cell_height")
+
+  @JvmStatic
+  public val mapSetMergeRasterizerCellScaleName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("map_set_merge_rasterizer_cell_scale")
+
+  @JvmStatic
+  public val mapGetMergeRasterizerCellScaleName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("map_get_merge_rasterizer_cell_scale")
+
+  @JvmStatic
+  public val mapSetUseEdgeConnectionsName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("map_set_use_edge_connections")
+
+  @JvmStatic
+  public val mapGetUseEdgeConnectionsName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("map_get_use_edge_connections")
+
+  @JvmStatic
+  public val mapSetEdgeConnectionMarginName: MethodStringName2<NavigationServer3D, Unit, RID, Float>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Float>("map_set_edge_connection_margin")
+
+  @JvmStatic
+  public val mapGetEdgeConnectionMarginName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("map_get_edge_connection_margin")
+
+  @JvmStatic
+  public val mapSetLinkConnectionRadiusName: MethodStringName2<NavigationServer3D, Unit, RID, Float>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Float>("map_set_link_connection_radius")
+
+  @JvmStatic
+  public val mapGetLinkConnectionRadiusName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("map_get_link_connection_radius")
+
+  @JvmStatic
+  public val mapGetPathName:
+      MethodStringName5<NavigationServer3D, PackedVector3Array, RID, Vector3, Vector3, Boolean, Long>
+      =
+      MethodStringName5<NavigationServer3D, PackedVector3Array, RID, Vector3, Vector3, Boolean, Long>("map_get_path")
+
+  @JvmStatic
+  public val mapGetClosestPointToSegmentName:
+      MethodStringName4<NavigationServer3D, Vector3, RID, Vector3, Vector3, Boolean> =
+      MethodStringName4<NavigationServer3D, Vector3, RID, Vector3, Vector3, Boolean>("map_get_closest_point_to_segment")
+
+  @JvmStatic
+  public val mapGetClosestPointName: MethodStringName2<NavigationServer3D, Vector3, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Vector3, RID, Vector3>("map_get_closest_point")
+
+  @JvmStatic
+  public val mapGetClosestPointNormalName:
+      MethodStringName2<NavigationServer3D, Vector3, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Vector3, RID, Vector3>("map_get_closest_point_normal")
+
+  @JvmStatic
+  public val mapGetClosestPointOwnerName: MethodStringName2<NavigationServer3D, RID, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, RID, RID, Vector3>("map_get_closest_point_owner")
+
+  @JvmStatic
+  public val mapGetLinksName: MethodStringName1<NavigationServer3D, VariantArray<RID>, RID> =
+      MethodStringName1<NavigationServer3D, VariantArray<RID>, RID>("map_get_links")
+
+  @JvmStatic
+  public val mapGetRegionsName: MethodStringName1<NavigationServer3D, VariantArray<RID>, RID> =
+      MethodStringName1<NavigationServer3D, VariantArray<RID>, RID>("map_get_regions")
+
+  @JvmStatic
+  public val mapGetAgentsName: MethodStringName1<NavigationServer3D, VariantArray<RID>, RID> =
+      MethodStringName1<NavigationServer3D, VariantArray<RID>, RID>("map_get_agents")
+
+  @JvmStatic
+  public val mapGetObstaclesName: MethodStringName1<NavigationServer3D, VariantArray<RID>, RID> =
+      MethodStringName1<NavigationServer3D, VariantArray<RID>, RID>("map_get_obstacles")
+
+  @JvmStatic
+  public val mapForceUpdateName: MethodStringName1<NavigationServer3D, Unit, RID> =
+      MethodStringName1<NavigationServer3D, Unit, RID>("map_force_update")
+
+  @JvmStatic
+  public val mapGetIterationIdName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("map_get_iteration_id")
+
+  @JvmStatic
+  public val mapSetUseAsyncIterationsName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("map_set_use_async_iterations")
+
+  @JvmStatic
+  public val mapGetUseAsyncIterationsName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("map_get_use_async_iterations")
+
+  @JvmStatic
+  public val mapGetRandomPointName:
+      MethodStringName3<NavigationServer3D, Vector3, RID, Long, Boolean> =
+      MethodStringName3<NavigationServer3D, Vector3, RID, Long, Boolean>("map_get_random_point")
+
+  @JvmStatic
+  public val queryPathName:
+      MethodStringName3<NavigationServer3D, Unit, NavigationPathQueryParameters3D?, NavigationPathQueryResult3D?, Callable>
+      =
+      MethodStringName3<NavigationServer3D, Unit, NavigationPathQueryParameters3D?, NavigationPathQueryResult3D?, Callable>("query_path")
+
+  @JvmStatic
+  public val regionCreateName: MethodStringName0<NavigationServer3D, RID> =
+      MethodStringName0<NavigationServer3D, RID>("region_create")
+
+  @JvmStatic
+  public val regionSetEnabledName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("region_set_enabled")
+
+  @JvmStatic
+  public val regionGetEnabledName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("region_get_enabled")
+
+  @JvmStatic
+  public val regionSetUseEdgeConnectionsName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("region_set_use_edge_connections")
+
+  @JvmStatic
+  public val regionGetUseEdgeConnectionsName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("region_get_use_edge_connections")
+
+  @JvmStatic
+  public val regionSetEnterCostName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("region_set_enter_cost")
+
+  @JvmStatic
+  public val regionGetEnterCostName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("region_get_enter_cost")
+
+  @JvmStatic
+  public val regionSetTravelCostName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("region_set_travel_cost")
+
+  @JvmStatic
+  public val regionGetTravelCostName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("region_get_travel_cost")
+
+  @JvmStatic
+  public val regionSetOwnerIdName: MethodStringName2<NavigationServer3D, Unit, RID, Long> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Long>("region_set_owner_id")
+
+  @JvmStatic
+  public val regionGetOwnerIdName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("region_get_owner_id")
+
+  @JvmStatic
+  public val regionOwnsPointName: MethodStringName2<NavigationServer3D, Boolean, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Boolean, RID, Vector3>("region_owns_point")
+
+  @JvmStatic
+  public val regionSetMapName: MethodStringName2<NavigationServer3D, Unit, RID, RID> =
+      MethodStringName2<NavigationServer3D, Unit, RID, RID>("region_set_map")
+
+  @JvmStatic
+  public val regionGetMapName: MethodStringName1<NavigationServer3D, RID, RID> =
+      MethodStringName1<NavigationServer3D, RID, RID>("region_get_map")
+
+  @JvmStatic
+  public val regionSetNavigationLayersName: MethodStringName2<NavigationServer3D, Unit, RID, Long> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Long>("region_set_navigation_layers")
+
+  @JvmStatic
+  public val regionGetNavigationLayersName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("region_get_navigation_layers")
+
+  @JvmStatic
+  public val regionSetTransformName: MethodStringName2<NavigationServer3D, Unit, RID, Transform3D> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Transform3D>("region_set_transform")
+
+  @JvmStatic
+  public val regionGetTransformName: MethodStringName1<NavigationServer3D, Transform3D, RID> =
+      MethodStringName1<NavigationServer3D, Transform3D, RID>("region_get_transform")
+
+  @JvmStatic
+  public val regionSetNavigationMeshName:
+      MethodStringName2<NavigationServer3D, Unit, RID, NavigationMesh?> =
+      MethodStringName2<NavigationServer3D, Unit, RID, NavigationMesh?>("region_set_navigation_mesh")
+
+  @JvmStatic
+  public val regionBakeNavigationMeshName:
+      MethodStringName2<NavigationServer3D, Unit, NavigationMesh?, Node?> =
+      MethodStringName2<NavigationServer3D, Unit, NavigationMesh?, Node?>("region_bake_navigation_mesh")
+
+  @JvmStatic
+  public val regionGetConnectionsCountName: MethodStringName1<NavigationServer3D, Int, RID> =
+      MethodStringName1<NavigationServer3D, Int, RID>("region_get_connections_count")
+
+  @JvmStatic
+  public val regionGetConnectionPathwayStartName:
+      MethodStringName2<NavigationServer3D, Vector3, RID, Int> =
+      MethodStringName2<NavigationServer3D, Vector3, RID, Int>("region_get_connection_pathway_start")
+
+  @JvmStatic
+  public val regionGetConnectionPathwayEndName:
+      MethodStringName2<NavigationServer3D, Vector3, RID, Int> =
+      MethodStringName2<NavigationServer3D, Vector3, RID, Int>("region_get_connection_pathway_end")
+
+  @JvmStatic
+  public val regionGetClosestPointToSegmentName:
+      MethodStringName4<NavigationServer3D, Vector3, RID, Vector3, Vector3, Boolean> =
+      MethodStringName4<NavigationServer3D, Vector3, RID, Vector3, Vector3, Boolean>("region_get_closest_point_to_segment")
+
+  @JvmStatic
+  public val regionGetClosestPointName: MethodStringName2<NavigationServer3D, Vector3, RID, Vector3>
+      = MethodStringName2<NavigationServer3D, Vector3, RID, Vector3>("region_get_closest_point")
+
+  @JvmStatic
+  public val regionGetClosestPointNormalName:
+      MethodStringName2<NavigationServer3D, Vector3, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Vector3, RID, Vector3>("region_get_closest_point_normal")
+
+  @JvmStatic
+  public val regionGetRandomPointName:
+      MethodStringName3<NavigationServer3D, Vector3, RID, Long, Boolean> =
+      MethodStringName3<NavigationServer3D, Vector3, RID, Long, Boolean>("region_get_random_point")
+
+  @JvmStatic
+  public val regionGetBoundsName: MethodStringName1<NavigationServer3D, AABB, RID> =
+      MethodStringName1<NavigationServer3D, AABB, RID>("region_get_bounds")
+
+  @JvmStatic
+  public val linkCreateName: MethodStringName0<NavigationServer3D, RID> =
+      MethodStringName0<NavigationServer3D, RID>("link_create")
+
+  @JvmStatic
+  public val linkSetMapName: MethodStringName2<NavigationServer3D, Unit, RID, RID> =
+      MethodStringName2<NavigationServer3D, Unit, RID, RID>("link_set_map")
+
+  @JvmStatic
+  public val linkGetMapName: MethodStringName1<NavigationServer3D, RID, RID> =
+      MethodStringName1<NavigationServer3D, RID, RID>("link_get_map")
+
+  @JvmStatic
+  public val linkSetEnabledName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("link_set_enabled")
+
+  @JvmStatic
+  public val linkGetEnabledName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("link_get_enabled")
+
+  @JvmStatic
+  public val linkSetBidirectionalName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("link_set_bidirectional")
+
+  @JvmStatic
+  public val linkIsBidirectionalName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("link_is_bidirectional")
+
+  @JvmStatic
+  public val linkSetNavigationLayersName: MethodStringName2<NavigationServer3D, Unit, RID, Long> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Long>("link_set_navigation_layers")
+
+  @JvmStatic
+  public val linkGetNavigationLayersName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("link_get_navigation_layers")
+
+  @JvmStatic
+  public val linkSetStartPositionName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("link_set_start_position")
+
+  @JvmStatic
+  public val linkGetStartPositionName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("link_get_start_position")
+
+  @JvmStatic
+  public val linkSetEndPositionName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("link_set_end_position")
+
+  @JvmStatic
+  public val linkGetEndPositionName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("link_get_end_position")
+
+  @JvmStatic
+  public val linkSetEnterCostName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("link_set_enter_cost")
+
+  @JvmStatic
+  public val linkGetEnterCostName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("link_get_enter_cost")
+
+  @JvmStatic
+  public val linkSetTravelCostName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("link_set_travel_cost")
+
+  @JvmStatic
+  public val linkGetTravelCostName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("link_get_travel_cost")
+
+  @JvmStatic
+  public val linkSetOwnerIdName: MethodStringName2<NavigationServer3D, Unit, RID, Long> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Long>("link_set_owner_id")
+
+  @JvmStatic
+  public val linkGetOwnerIdName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("link_get_owner_id")
+
+  @JvmStatic
+  public val agentCreateName: MethodStringName0<NavigationServer3D, RID> =
+      MethodStringName0<NavigationServer3D, RID>("agent_create")
+
+  @JvmStatic
+  public val agentSetAvoidanceEnabledName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("agent_set_avoidance_enabled")
+
+  @JvmStatic
+  public val agentGetAvoidanceEnabledName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("agent_get_avoidance_enabled")
+
+  @JvmStatic
+  public val agentSetUse3dAvoidanceName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("agent_set_use_3d_avoidance")
+
+  @JvmStatic
+  public val agentGetUse3dAvoidanceName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("agent_get_use_3d_avoidance")
+
+  @JvmStatic
+  public val agentSetMapName: MethodStringName2<NavigationServer3D, Unit, RID, RID> =
+      MethodStringName2<NavigationServer3D, Unit, RID, RID>("agent_set_map")
+
+  @JvmStatic
+  public val agentGetMapName: MethodStringName1<NavigationServer3D, RID, RID> =
+      MethodStringName1<NavigationServer3D, RID, RID>("agent_get_map")
+
+  @JvmStatic
+  public val agentSetPausedName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("agent_set_paused")
+
+  @JvmStatic
+  public val agentGetPausedName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("agent_get_paused")
+
+  @JvmStatic
+  public val agentSetNeighborDistanceName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_neighbor_distance")
+
+  @JvmStatic
+  public val agentGetNeighborDistanceName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_neighbor_distance")
+
+  @JvmStatic
+  public val agentSetMaxNeighborsName: MethodStringName2<NavigationServer3D, Unit, RID, Int> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Int>("agent_set_max_neighbors")
+
+  @JvmStatic
+  public val agentGetMaxNeighborsName: MethodStringName1<NavigationServer3D, Int, RID> =
+      MethodStringName1<NavigationServer3D, Int, RID>("agent_get_max_neighbors")
+
+  @JvmStatic
+  public val agentSetTimeHorizonAgentsName: MethodStringName2<NavigationServer3D, Unit, RID, Float>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_time_horizon_agents")
+
+  @JvmStatic
+  public val agentGetTimeHorizonAgentsName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_time_horizon_agents")
+
+  @JvmStatic
+  public val agentSetTimeHorizonObstaclesName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_time_horizon_obstacles")
+
+  @JvmStatic
+  public val agentGetTimeHorizonObstaclesName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_time_horizon_obstacles")
+
+  @JvmStatic
+  public val agentSetRadiusName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_radius")
+
+  @JvmStatic
+  public val agentGetRadiusName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_radius")
+
+  @JvmStatic
+  public val agentSetHeightName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_height")
+
+  @JvmStatic
+  public val agentGetHeightName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_height")
+
+  @JvmStatic
+  public val agentSetMaxSpeedName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_max_speed")
+
+  @JvmStatic
+  public val agentGetMaxSpeedName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_max_speed")
+
+  @JvmStatic
+  public val agentSetVelocityForcedName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("agent_set_velocity_forced")
+
+  @JvmStatic
+  public val agentSetVelocityName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("agent_set_velocity")
+
+  @JvmStatic
+  public val agentGetVelocityName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("agent_get_velocity")
+
+  @JvmStatic
+  public val agentSetPositionName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("agent_set_position")
+
+  @JvmStatic
+  public val agentGetPositionName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("agent_get_position")
+
+  @JvmStatic
+  public val agentIsMapChangedName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("agent_is_map_changed")
+
+  @JvmStatic
+  public val agentSetAvoidanceCallbackName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Callable> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Callable>("agent_set_avoidance_callback")
+
+  @JvmStatic
+  public val agentHasAvoidanceCallbackName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("agent_has_avoidance_callback")
+
+  @JvmStatic
+  public val agentSetAvoidanceLayersName: MethodStringName2<NavigationServer3D, Unit, RID, Long> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Long>("agent_set_avoidance_layers")
+
+  @JvmStatic
+  public val agentGetAvoidanceLayersName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("agent_get_avoidance_layers")
+
+  @JvmStatic
+  public val agentSetAvoidanceMaskName: MethodStringName2<NavigationServer3D, Unit, RID, Long> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Long>("agent_set_avoidance_mask")
+
+  @JvmStatic
+  public val agentGetAvoidanceMaskName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("agent_get_avoidance_mask")
+
+  @JvmStatic
+  public val agentSetAvoidancePriorityName: MethodStringName2<NavigationServer3D, Unit, RID, Float>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Float>("agent_set_avoidance_priority")
+
+  @JvmStatic
+  public val agentGetAvoidancePriorityName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("agent_get_avoidance_priority")
+
+  @JvmStatic
+  public val obstacleCreateName: MethodStringName0<NavigationServer3D, RID> =
+      MethodStringName0<NavigationServer3D, RID>("obstacle_create")
+
+  @JvmStatic
+  public val obstacleSetAvoidanceEnabledName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("obstacle_set_avoidance_enabled")
+
+  @JvmStatic
+  public val obstacleGetAvoidanceEnabledName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("obstacle_get_avoidance_enabled")
+
+  @JvmStatic
+  public val obstacleSetUse3dAvoidanceName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("obstacle_set_use_3d_avoidance")
+
+  @JvmStatic
+  public val obstacleGetUse3dAvoidanceName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("obstacle_get_use_3d_avoidance")
+
+  @JvmStatic
+  public val obstacleSetMapName: MethodStringName2<NavigationServer3D, Unit, RID, RID> =
+      MethodStringName2<NavigationServer3D, Unit, RID, RID>("obstacle_set_map")
+
+  @JvmStatic
+  public val obstacleGetMapName: MethodStringName1<NavigationServer3D, RID, RID> =
+      MethodStringName1<NavigationServer3D, RID, RID>("obstacle_get_map")
+
+  @JvmStatic
+  public val obstacleSetPausedName: MethodStringName2<NavigationServer3D, Unit, RID, Boolean> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Boolean>("obstacle_set_paused")
+
+  @JvmStatic
+  public val obstacleGetPausedName: MethodStringName1<NavigationServer3D, Boolean, RID> =
+      MethodStringName1<NavigationServer3D, Boolean, RID>("obstacle_get_paused")
+
+  @JvmStatic
+  public val obstacleSetRadiusName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("obstacle_set_radius")
+
+  @JvmStatic
+  public val obstacleGetRadiusName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("obstacle_get_radius")
+
+  @JvmStatic
+  public val obstacleSetHeightName: MethodStringName2<NavigationServer3D, Unit, RID, Float> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Float>("obstacle_set_height")
+
+  @JvmStatic
+  public val obstacleGetHeightName: MethodStringName1<NavigationServer3D, Float, RID> =
+      MethodStringName1<NavigationServer3D, Float, RID>("obstacle_get_height")
+
+  @JvmStatic
+  public val obstacleSetVelocityName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("obstacle_set_velocity")
+
+  @JvmStatic
+  public val obstacleGetVelocityName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("obstacle_get_velocity")
+
+  @JvmStatic
+  public val obstacleSetPositionName: MethodStringName2<NavigationServer3D, Unit, RID, Vector3> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Vector3>("obstacle_set_position")
+
+  @JvmStatic
+  public val obstacleGetPositionName: MethodStringName1<NavigationServer3D, Vector3, RID> =
+      MethodStringName1<NavigationServer3D, Vector3, RID>("obstacle_get_position")
+
+  @JvmStatic
+  public val obstacleSetVerticesName:
+      MethodStringName2<NavigationServer3D, Unit, RID, PackedVector3Array> =
+      MethodStringName2<NavigationServer3D, Unit, RID, PackedVector3Array>("obstacle_set_vertices")
+
+  @JvmStatic
+  public val obstacleGetVerticesName: MethodStringName1<NavigationServer3D, PackedVector3Array, RID>
+      = MethodStringName1<NavigationServer3D, PackedVector3Array, RID>("obstacle_get_vertices")
+
+  @JvmStatic
+  public val obstacleSetAvoidanceLayersName: MethodStringName2<NavigationServer3D, Unit, RID, Long>
+      = MethodStringName2<NavigationServer3D, Unit, RID, Long>("obstacle_set_avoidance_layers")
+
+  @JvmStatic
+  public val obstacleGetAvoidanceLayersName: MethodStringName1<NavigationServer3D, Long, RID> =
+      MethodStringName1<NavigationServer3D, Long, RID>("obstacle_get_avoidance_layers")
+
+  @JvmStatic
+  public val parseSourceGeometryDataName:
+      MethodStringName4<NavigationServer3D, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>
+      =
+      MethodStringName4<NavigationServer3D, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>("parse_source_geometry_data")
+
+  @JvmStatic
+  public val bakeFromSourceGeometryDataName:
+      MethodStringName3<NavigationServer3D, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>
+      =
+      MethodStringName3<NavigationServer3D, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>("bake_from_source_geometry_data")
+
+  @JvmStatic
+  public val bakeFromSourceGeometryDataAsyncName:
+      MethodStringName3<NavigationServer3D, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>
+      =
+      MethodStringName3<NavigationServer3D, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>("bake_from_source_geometry_data_async")
+
+  @JvmStatic
+  public val isBakingNavigationMeshName:
+      MethodStringName1<NavigationServer3D, Boolean, NavigationMesh?> =
+      MethodStringName1<NavigationServer3D, Boolean, NavigationMesh?>("is_baking_navigation_mesh")
+
+  @JvmStatic
+  public val sourceGeometryParserCreateName: MethodStringName0<NavigationServer3D, RID> =
+      MethodStringName0<NavigationServer3D, RID>("source_geometry_parser_create")
+
+  @JvmStatic
+  public val sourceGeometryParserSetCallbackName:
+      MethodStringName2<NavigationServer3D, Unit, RID, Callable> =
+      MethodStringName2<NavigationServer3D, Unit, RID, Callable>("source_geometry_parser_set_callback")
+
+  @JvmStatic
+  public val simplifyPathName:
+      MethodStringName2<NavigationServer3D, PackedVector3Array, PackedVector3Array, Float> =
+      MethodStringName2<NavigationServer3D, PackedVector3Array, PackedVector3Array, Float>("simplify_path")
+
+  @JvmStatic
+  public val freeRidName: MethodStringName1<NavigationServer3D, Unit, RID> =
+      MethodStringName1<NavigationServer3D, Unit, RID>("free_rid")
+
+  @JvmStatic
+  public val setActiveName: MethodStringName1<NavigationServer3D, Unit, Boolean> =
+      MethodStringName1<NavigationServer3D, Unit, Boolean>("set_active")
+
+  @JvmStatic
+  public val setDebugEnabledName: MethodStringName1<NavigationServer3D, Unit, Boolean> =
+      MethodStringName1<NavigationServer3D, Unit, Boolean>("set_debug_enabled")
+
+  @JvmStatic
+  public val getDebugEnabledName: MethodStringName0<NavigationServer3D, Boolean> =
+      MethodStringName0<NavigationServer3D, Boolean>("get_debug_enabled")
+
+  @JvmStatic
+  public val getProcessInfoName: MethodStringName1<NavigationServer3D, Int, ProcessInfo> =
+      MethodStringName1<NavigationServer3D, Int, ProcessInfo>("get_process_info")
+
   /**
    * Emitted when a navigation map is updated, when a region moves or is modified.
    */
@@ -484,7 +1121,7 @@ public object NavigationServer3D : Object() {
   public final fun queryPath(
     parameters: NavigationPathQueryParameters3D?,
     result: NavigationPathQueryResult3D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to parameters, OBJECT to result, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.queryPathPtr, NIL)
@@ -1603,7 +2240,7 @@ public object NavigationServer3D : Object() {
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     rootNode: Node?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.parseSourceGeometryDataPtr, NIL)
@@ -1618,7 +2255,7 @@ public object NavigationServer3D : Object() {
   public final fun bakeFromSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
@@ -1634,7 +2271,7 @@ public object NavigationServer3D : Object() {
   public final fun bakeFromSourceGeometryDataAsync(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
-    callback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)

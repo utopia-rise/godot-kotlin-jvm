@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Transform2D
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -28,6 +31,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType
@@ -321,7 +325,65 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBaseFontName: MethodStringName1<FontVariation, Unit, Font?> =
+        MethodStringName1<FontVariation, Unit, Font?>("set_base_font")
+
+    @JvmStatic
+    public val getBaseFontName: MethodStringName0<FontVariation, Font?> =
+        MethodStringName0<FontVariation, Font?>("get_base_font")
+
+    @JvmStatic
+    public val setVariationOpentypeName:
+        MethodStringName1<FontVariation, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<FontVariation, Unit, Dictionary<Any?, Any?>>("set_variation_opentype")
+
+    @JvmStatic
+    public val getVariationOpentypeName: MethodStringName0<FontVariation, Dictionary<Any?, Any?>> =
+        MethodStringName0<FontVariation, Dictionary<Any?, Any?>>("get_variation_opentype")
+
+    @JvmStatic
+    public val setVariationEmboldenName: MethodStringName1<FontVariation, Unit, Float> =
+        MethodStringName1<FontVariation, Unit, Float>("set_variation_embolden")
+
+    @JvmStatic
+    public val getVariationEmboldenName: MethodStringName0<FontVariation, Float> =
+        MethodStringName0<FontVariation, Float>("get_variation_embolden")
+
+    @JvmStatic
+    public val setVariationFaceIndexName: MethodStringName1<FontVariation, Unit, Int> =
+        MethodStringName1<FontVariation, Unit, Int>("set_variation_face_index")
+
+    @JvmStatic
+    public val getVariationFaceIndexName: MethodStringName0<FontVariation, Int> =
+        MethodStringName0<FontVariation, Int>("get_variation_face_index")
+
+    @JvmStatic
+    public val setVariationTransformName: MethodStringName1<FontVariation, Unit, Transform2D> =
+        MethodStringName1<FontVariation, Unit, Transform2D>("set_variation_transform")
+
+    @JvmStatic
+    public val getVariationTransformName: MethodStringName0<FontVariation, Transform2D> =
+        MethodStringName0<FontVariation, Transform2D>("get_variation_transform")
+
+    @JvmStatic
+    public val setOpentypeFeaturesName:
+        MethodStringName1<FontVariation, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<FontVariation, Unit, Dictionary<Any?, Any?>>("set_opentype_features")
+
+    @JvmStatic
+    public val setSpacingName: MethodStringName2<FontVariation, Unit, TextServer.SpacingType, Int> =
+        MethodStringName2<FontVariation, Unit, TextServer.SpacingType, Int>("set_spacing")
+
+    @JvmStatic
+    public val setBaselineOffsetName: MethodStringName1<FontVariation, Unit, Float> =
+        MethodStringName1<FontVariation, Unit, Float>("set_baseline_offset")
+
+    @JvmStatic
+    public val getBaselineOffsetName: MethodStringName0<FontVariation, Float> =
+        MethodStringName0<FontVariation, Float>("get_baseline_offset")
+  }
 
   public object MethodBindings {
     internal val setBaseFontPtr: VoidPtr =

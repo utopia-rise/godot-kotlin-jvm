@@ -13,6 +13,7 @@ import kotlin.PublishedApi
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -24,9 +25,13 @@ public class Signal0 @PublishedApi internal constructor(
         emitUnsafe()
     }
 
-    public fun connect(connect: Callable0<*>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable0<*>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable0<*>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -36,6 +41,10 @@ public class Signal0 @PublishedApi internal constructor(
 
         public inline operator fun getValue(thisRef: Object, `property`: KProperty<*>): Signal0 =
                 Signal0(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun create(godotObject: Object, signalName: String): Signal0 =
+                Signal0(godotObject, signalName.toGodotName())
     }
 }
 
@@ -52,9 +61,13 @@ public class Signal1<P0> @PublishedApi internal constructor(
         emitUnsafe(p0)
     }
 
-    public fun connect(connect: Callable1<*, P0>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable1<*, P0>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable1<*, P0>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -64,6 +77,10 @@ public class Signal1<P0> @PublishedApi internal constructor(
 
         public inline operator fun <P0> getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal1<P0> = Signal1(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0> create(godotObject: Object, signalName: String): Signal1<P0> =
+                Signal1(godotObject, signalName.toGodotName())
     }
 }
 
@@ -82,9 +99,13 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
         emitUnsafe(p0, p1)
     }
 
-    public fun connect(connect: Callable2<*, P0, P1>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable2<*, P0, P1>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable2<*, P0, P1>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -94,6 +115,10 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
 
         public inline operator fun <P0, P1> getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal2<P0, P1> = Signal2(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1> create(godotObject: Object, signalName: String): Signal2<P0, P1> =
+                Signal2(godotObject, signalName.toGodotName())
     }
 }
 
@@ -117,9 +142,13 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2)
     }
 
-    public fun connect(connect: Callable3<*, P0, P1, P2>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable3<*, P0, P1, P2>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable3<*, P0, P1, P2>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -129,6 +158,10 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
 
         public inline operator fun <P0, P1, P2> getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal3<P0, P1, P2> = Signal3(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2> create(godotObject: Object, signalName: String): Signal3<P0, P1, P2>
+                = Signal3(godotObject, signalName.toGodotName())
     }
 }
 
@@ -153,9 +186,13 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3)
     }
 
-    public fun connect(connect: Callable4<*, P0, P1, P2, P3>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable4<*, P0, P1, P2, P3>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable4<*, P0, P1, P2, P3>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -166,6 +203,10 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
         public inline operator fun <P0, P1, P2, P3> getValue(thisRef: Object,
                 `property`: KProperty<*>): Signal4<P0, P1, P2, P3> =
                 Signal4(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3> create(godotObject: Object, signalName: String):
+                Signal4<P0, P1, P2, P3> = Signal4(godotObject, signalName.toGodotName())
     }
 }
 
@@ -191,9 +232,13 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3, p4)
     }
 
-    public fun connect(connect: Callable5<*, P0, P1, P2, P3, P4>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable5<*, P0, P1, P2, P3, P4>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable5<*, P0, P1, P2, P3, P4>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -204,6 +249,10 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
         public inline operator fun <P0, P1, P2, P3, P4> getValue(thisRef: Object,
                 `property`: KProperty<*>): Signal5<P0, P1, P2, P3, P4> =
                 Signal5(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4> create(godotObject: Object, signalName: String):
+                Signal5<P0, P1, P2, P3, P4> = Signal5(godotObject, signalName.toGodotName())
     }
 }
 
@@ -230,9 +279,13 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3, p4, p5)
     }
 
-    public fun connect(connect: Callable6<*, P0, P1, P2, P3, P4, P5>, flags: Object.ConnectFlags =
+    public fun connect(callable: Callable6<*, P0, P1, P2, P3, P4, P5>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable6<*, P0, P1, P2, P3, P4, P5>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -243,6 +296,10 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
         public inline operator fun <P0, P1, P2, P3, P4, P5> getValue(thisRef: Object,
                 `property`: KProperty<*>): Signal6<P0, P1, P2, P3, P4, P5> =
                 Signal6(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5> create(godotObject: Object, signalName: String):
+                Signal6<P0, P1, P2, P3, P4, P5> = Signal6(godotObject, signalName.toGodotName())
     }
 }
 
@@ -270,9 +327,13 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6)
     }
 
-    public fun connect(connect: Callable7<*, P0, P1, P2, P3, P4, P5, P6>, flags: Object.ConnectFlags
-            = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+    public fun connect(callable: Callable7<*, P0, P1, P2, P3, P4, P5, P6>,
+            flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable7<*, P0, P1, P2, P3, P4, P5, P6>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -284,6 +345,10 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
         public inline operator fun <P0, P1, P2, P3, P4, P5, P6> getValue(thisRef: Object,
                 `property`: KProperty<*>): Signal7<P0, P1, P2, P3, P4, P5, P6> =
                 Signal7(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6> create(godotObject: Object, signalName: String):
+                Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7(godotObject, signalName.toGodotName())
     }
 }
 
@@ -312,9 +377,13 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7)
     }
 
-    public fun connect(connect: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>,
+    public fun connect(callable: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -326,6 +395,11 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
         public inline operator fun <P0, P1, P2, P3, P4, P5, P6, P7> getValue(thisRef: Object,
                 `property`: KProperty<*>): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
                 Signal8(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7> create(godotObject: Object, signalName: String):
+                Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
+                Signal8(godotObject, signalName.toGodotName())
     }
 }
 
@@ -355,9 +429,13 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8)
     }
 
-    public fun connect(connect: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>,
+    public fun connect(callable: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -369,6 +447,11 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
         public inline operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> getValue(thisRef: Object,
                 `property`: KProperty<*>): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
                 Signal9(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> create(godotObject: Object,
+                signalName: String): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
+                Signal9(godotObject, signalName.toGodotName())
     }
 }
 
@@ -399,9 +482,13 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
     }
 
-    public fun connect(connect: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
+    public fun connect(callable: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>): Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -414,6 +501,11 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
                 getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
                 Signal10(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> create(godotObject: Object,
+                signalName: String): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
+                Signal10(godotObject, signalName.toGodotName())
     }
 }
 
@@ -446,9 +538,14 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
     }
 
-    public fun connect(connect: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
+    public fun connect(callable: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public fun disconnect(callable: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -461,6 +558,11 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
                 getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
                 Signal11(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> create(godotObject: Object,
+                signalName: String): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+                Signal11(godotObject, signalName.toGodotName())
     }
 }
 
@@ -494,9 +596,15 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
     }
 
-    public fun connect(connect: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
+    public fun connect(callable: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -509,6 +617,11 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
                 getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
                 Signal12(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> create(godotObject: Object,
+                signalName: String): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
+                Signal12(godotObject, signalName.toGodotName())
     }
 }
 
@@ -545,9 +658,15 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
     }
 
     public
-            fun connect(connect: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
+            fun connect(callable: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -560,6 +679,12 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
                 getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
                 Signal13(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+                create(godotObject: Object, signalName: String):
+                Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
+                Signal13(godotObject, signalName.toGodotName())
     }
 }
 
@@ -597,9 +722,15 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     }
 
     public
-            fun connect(connect: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
+            fun connect(callable: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -612,6 +743,12 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
                 getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
                 Signal14(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+                create(godotObject: Object, signalName: String):
+                Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
+                Signal14(godotObject, signalName.toGodotName())
     }
 }
 
@@ -650,9 +787,15 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     }
 
     public
-            fun connect(connect: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
+            fun connect(callable: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -665,6 +808,12 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
                 getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
                 Signal15(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+                create(godotObject: Object, signalName: String):
+                Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
+                Signal15(godotObject, signalName.toGodotName())
     }
 }
 
@@ -705,9 +854,15 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     }
 
     public
-            fun connect(connect: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
+            fun connect(callable: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
-        connectUnsafe(connect, flags)
+        connectUnsafe(callable, flags)
+    }
+
+    public
+            fun disconnect(callable: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>):
+            Unit {
+        disconnectUnsafe(callable)
     }
 
     public companion object {
@@ -720,6 +875,12 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
                 P15> getValue(thisRef: Object, `property`: KProperty<*>):
                 Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
                 Signal16(thisRef, property.toGodotName())
+
+        @JvmStatic
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
+                create(godotObject: Object, signalName: String):
+                Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
+                Signal16(godotObject, signalName.toGodotName())
     }
 }
 

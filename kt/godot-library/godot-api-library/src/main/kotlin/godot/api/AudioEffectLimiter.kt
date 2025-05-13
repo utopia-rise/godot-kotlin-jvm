@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
@@ -119,7 +122,39 @@ public open class AudioEffectLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCeilingDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_ceiling_db")
+
+    @JvmStatic
+    public val getCeilingDbName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_ceiling_db")
+
+    @JvmStatic
+    public val setThresholdDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_threshold_db")
+
+    @JvmStatic
+    public val getThresholdDbName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_threshold_db")
+
+    @JvmStatic
+    public val setSoftClipDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_soft_clip_db")
+
+    @JvmStatic
+    public val getSoftClipDbName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_soft_clip_db")
+
+    @JvmStatic
+    public val setSoftClipRatioName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_soft_clip_ratio")
+
+    @JvmStatic
+    public val getSoftClipRatioName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_soft_clip_ratio")
+  }
 
   public object MethodBindings {
     internal val setCeilingDbPtr: VoidPtr =

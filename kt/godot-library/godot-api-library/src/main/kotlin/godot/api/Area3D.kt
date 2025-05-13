@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.Signal1
@@ -39,6 +41,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [Area3D] is a region of 3D space defined by one or multiple [CollisionShape3D] or
@@ -855,7 +858,207 @@ public open class Area3D : CollisionObject3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setGravitySpaceOverrideModeName: MethodStringName1<Area3D, Unit, SpaceOverride> =
+        MethodStringName1<Area3D, Unit, SpaceOverride>("set_gravity_space_override_mode")
+
+    @JvmStatic
+    public val getGravitySpaceOverrideModeName: MethodStringName0<Area3D, SpaceOverride> =
+        MethodStringName0<Area3D, SpaceOverride>("get_gravity_space_override_mode")
+
+    @JvmStatic
+    public val setGravityIsPointName: MethodStringName1<Area3D, Unit, Boolean> =
+        MethodStringName1<Area3D, Unit, Boolean>("set_gravity_is_point")
+
+    @JvmStatic
+    public val isGravityAPointName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("is_gravity_a_point")
+
+    @JvmStatic
+    public val setGravityPointUnitDistanceName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_gravity_point_unit_distance")
+
+    @JvmStatic
+    public val getGravityPointUnitDistanceName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_gravity_point_unit_distance")
+
+    @JvmStatic
+    public val setGravityPointCenterName: MethodStringName1<Area3D, Unit, Vector3> =
+        MethodStringName1<Area3D, Unit, Vector3>("set_gravity_point_center")
+
+    @JvmStatic
+    public val getGravityPointCenterName: MethodStringName0<Area3D, Vector3> =
+        MethodStringName0<Area3D, Vector3>("get_gravity_point_center")
+
+    @JvmStatic
+    public val setGravityDirectionName: MethodStringName1<Area3D, Unit, Vector3> =
+        MethodStringName1<Area3D, Unit, Vector3>("set_gravity_direction")
+
+    @JvmStatic
+    public val getGravityDirectionName: MethodStringName0<Area3D, Vector3> =
+        MethodStringName0<Area3D, Vector3>("get_gravity_direction")
+
+    @JvmStatic
+    public val setGravityName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_gravity")
+
+    @JvmStatic
+    public val getGravityName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_gravity")
+
+    @JvmStatic
+    public val setLinearDampSpaceOverrideModeName: MethodStringName1<Area3D, Unit, SpaceOverride> =
+        MethodStringName1<Area3D, Unit, SpaceOverride>("set_linear_damp_space_override_mode")
+
+    @JvmStatic
+    public val getLinearDampSpaceOverrideModeName: MethodStringName0<Area3D, SpaceOverride> =
+        MethodStringName0<Area3D, SpaceOverride>("get_linear_damp_space_override_mode")
+
+    @JvmStatic
+    public val setAngularDampSpaceOverrideModeName: MethodStringName1<Area3D, Unit, SpaceOverride> =
+        MethodStringName1<Area3D, Unit, SpaceOverride>("set_angular_damp_space_override_mode")
+
+    @JvmStatic
+    public val getAngularDampSpaceOverrideModeName: MethodStringName0<Area3D, SpaceOverride> =
+        MethodStringName0<Area3D, SpaceOverride>("get_angular_damp_space_override_mode")
+
+    @JvmStatic
+    public val setAngularDampName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_angular_damp")
+
+    @JvmStatic
+    public val getAngularDampName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_angular_damp")
+
+    @JvmStatic
+    public val setLinearDampName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_linear_damp")
+
+    @JvmStatic
+    public val getLinearDampName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_linear_damp")
+
+    @JvmStatic
+    public val setPriorityName: MethodStringName1<Area3D, Unit, Int> =
+        MethodStringName1<Area3D, Unit, Int>("set_priority")
+
+    @JvmStatic
+    public val getPriorityName: MethodStringName0<Area3D, Int> =
+        MethodStringName0<Area3D, Int>("get_priority")
+
+    @JvmStatic
+    public val setWindForceMagnitudeName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_wind_force_magnitude")
+
+    @JvmStatic
+    public val getWindForceMagnitudeName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_wind_force_magnitude")
+
+    @JvmStatic
+    public val setWindAttenuationFactorName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_wind_attenuation_factor")
+
+    @JvmStatic
+    public val getWindAttenuationFactorName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_wind_attenuation_factor")
+
+    @JvmStatic
+    public val setWindSourcePathName: MethodStringName1<Area3D, Unit, NodePath> =
+        MethodStringName1<Area3D, Unit, NodePath>("set_wind_source_path")
+
+    @JvmStatic
+    public val getWindSourcePathName: MethodStringName0<Area3D, NodePath> =
+        MethodStringName0<Area3D, NodePath>("get_wind_source_path")
+
+    @JvmStatic
+    public val setMonitorableName: MethodStringName1<Area3D, Unit, Boolean> =
+        MethodStringName1<Area3D, Unit, Boolean>("set_monitorable")
+
+    @JvmStatic
+    public val isMonitorableName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("is_monitorable")
+
+    @JvmStatic
+    public val setMonitoringName: MethodStringName1<Area3D, Unit, Boolean> =
+        MethodStringName1<Area3D, Unit, Boolean>("set_monitoring")
+
+    @JvmStatic
+    public val isMonitoringName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("is_monitoring")
+
+    @JvmStatic
+    public val getOverlappingBodiesName: MethodStringName0<Area3D, VariantArray<Node3D>> =
+        MethodStringName0<Area3D, VariantArray<Node3D>>("get_overlapping_bodies")
+
+    @JvmStatic
+    public val getOverlappingAreasName: MethodStringName0<Area3D, VariantArray<Area3D>> =
+        MethodStringName0<Area3D, VariantArray<Area3D>>("get_overlapping_areas")
+
+    @JvmStatic
+    public val hasOverlappingBodiesName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("has_overlapping_bodies")
+
+    @JvmStatic
+    public val hasOverlappingAreasName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("has_overlapping_areas")
+
+    @JvmStatic
+    public val overlapsBodyName: MethodStringName1<Area3D, Boolean, Node?> =
+        MethodStringName1<Area3D, Boolean, Node?>("overlaps_body")
+
+    @JvmStatic
+    public val overlapsAreaName: MethodStringName1<Area3D, Boolean, Node?> =
+        MethodStringName1<Area3D, Boolean, Node?>("overlaps_area")
+
+    @JvmStatic
+    public val setAudioBusOverrideName: MethodStringName1<Area3D, Unit, Boolean> =
+        MethodStringName1<Area3D, Unit, Boolean>("set_audio_bus_override")
+
+    @JvmStatic
+    public val isOverridingAudioBusName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("is_overriding_audio_bus")
+
+    @JvmStatic
+    public val setAudioBusNameName: MethodStringName1<Area3D, Unit, StringName> =
+        MethodStringName1<Area3D, Unit, StringName>("set_audio_bus_name")
+
+    @JvmStatic
+    public val getAudioBusNameName: MethodStringName0<Area3D, StringName> =
+        MethodStringName0<Area3D, StringName>("get_audio_bus_name")
+
+    @JvmStatic
+    public val setUseReverbBusName: MethodStringName1<Area3D, Unit, Boolean> =
+        MethodStringName1<Area3D, Unit, Boolean>("set_use_reverb_bus")
+
+    @JvmStatic
+    public val isUsingReverbBusName: MethodStringName0<Area3D, Boolean> =
+        MethodStringName0<Area3D, Boolean>("is_using_reverb_bus")
+
+    @JvmStatic
+    public val setReverbBusNameName: MethodStringName1<Area3D, Unit, StringName> =
+        MethodStringName1<Area3D, Unit, StringName>("set_reverb_bus_name")
+
+    @JvmStatic
+    public val getReverbBusNameName: MethodStringName0<Area3D, StringName> =
+        MethodStringName0<Area3D, StringName>("get_reverb_bus_name")
+
+    @JvmStatic
+    public val setReverbAmountName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_reverb_amount")
+
+    @JvmStatic
+    public val getReverbAmountName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_reverb_amount")
+
+    @JvmStatic
+    public val setReverbUniformityName: MethodStringName1<Area3D, Unit, Float> =
+        MethodStringName1<Area3D, Unit, Float>("set_reverb_uniformity")
+
+    @JvmStatic
+    public val getReverbUniformityName: MethodStringName0<Area3D, Float> =
+        MethodStringName0<Area3D, Float>("get_reverb_uniformity")
+  }
 
   public object MethodBindings {
     internal val setGravitySpaceOverrideModePtr: VoidPtr =

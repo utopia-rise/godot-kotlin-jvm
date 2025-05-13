@@ -13,6 +13,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -31,6 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It
@@ -635,7 +640,163 @@ public open class FileDialog : ConfirmationDialog() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val clearFiltersName: MethodStringName0<FileDialog, Unit> =
+        MethodStringName0<FileDialog, Unit>("clear_filters")
+
+    @JvmStatic
+    public val addFilterName: MethodStringName2<FileDialog, Unit, String, String> =
+        MethodStringName2<FileDialog, Unit, String, String>("add_filter")
+
+    @JvmStatic
+    public val setFiltersName: MethodStringName1<FileDialog, Unit, PackedStringArray> =
+        MethodStringName1<FileDialog, Unit, PackedStringArray>("set_filters")
+
+    @JvmStatic
+    public val getFiltersName: MethodStringName0<FileDialog, PackedStringArray> =
+        MethodStringName0<FileDialog, PackedStringArray>("get_filters")
+
+    @JvmStatic
+    public val clearFilenameFilterName: MethodStringName0<FileDialog, Unit> =
+        MethodStringName0<FileDialog, Unit>("clear_filename_filter")
+
+    @JvmStatic
+    public val setFilenameFilterName: MethodStringName1<FileDialog, Unit, String> =
+        MethodStringName1<FileDialog, Unit, String>("set_filename_filter")
+
+    @JvmStatic
+    public val getFilenameFilterName: MethodStringName0<FileDialog, String> =
+        MethodStringName0<FileDialog, String>("get_filename_filter")
+
+    @JvmStatic
+    public val getOptionNameName: MethodStringName1<FileDialog, String, Int> =
+        MethodStringName1<FileDialog, String, Int>("get_option_name")
+
+    @JvmStatic
+    public val getOptionValuesName: MethodStringName1<FileDialog, PackedStringArray, Int> =
+        MethodStringName1<FileDialog, PackedStringArray, Int>("get_option_values")
+
+    @JvmStatic
+    public val getOptionDefaultName: MethodStringName1<FileDialog, Int, Int> =
+        MethodStringName1<FileDialog, Int, Int>("get_option_default")
+
+    @JvmStatic
+    public val setOptionNameName: MethodStringName2<FileDialog, Unit, Int, String> =
+        MethodStringName2<FileDialog, Unit, Int, String>("set_option_name")
+
+    @JvmStatic
+    public val setOptionValuesName: MethodStringName2<FileDialog, Unit, Int, PackedStringArray> =
+        MethodStringName2<FileDialog, Unit, Int, PackedStringArray>("set_option_values")
+
+    @JvmStatic
+    public val setOptionDefaultName: MethodStringName2<FileDialog, Unit, Int, Int> =
+        MethodStringName2<FileDialog, Unit, Int, Int>("set_option_default")
+
+    @JvmStatic
+    public val setOptionCountName: MethodStringName1<FileDialog, Unit, Int> =
+        MethodStringName1<FileDialog, Unit, Int>("set_option_count")
+
+    @JvmStatic
+    public val getOptionCountName: MethodStringName0<FileDialog, Int> =
+        MethodStringName0<FileDialog, Int>("get_option_count")
+
+    @JvmStatic
+    public val addOptionName: MethodStringName3<FileDialog, Unit, String, PackedStringArray, Int> =
+        MethodStringName3<FileDialog, Unit, String, PackedStringArray, Int>("add_option")
+
+    @JvmStatic
+    public val getSelectedOptionsName: MethodStringName0<FileDialog, Dictionary<Any?, Any?>> =
+        MethodStringName0<FileDialog, Dictionary<Any?, Any?>>("get_selected_options")
+
+    @JvmStatic
+    public val getCurrentDirName: MethodStringName0<FileDialog, String> =
+        MethodStringName0<FileDialog, String>("get_current_dir")
+
+    @JvmStatic
+    public val getCurrentFileName: MethodStringName0<FileDialog, String> =
+        MethodStringName0<FileDialog, String>("get_current_file")
+
+    @JvmStatic
+    public val getCurrentPathName: MethodStringName0<FileDialog, String> =
+        MethodStringName0<FileDialog, String>("get_current_path")
+
+    @JvmStatic
+    public val setCurrentDirName: MethodStringName1<FileDialog, Unit, String> =
+        MethodStringName1<FileDialog, Unit, String>("set_current_dir")
+
+    @JvmStatic
+    public val setCurrentFileName: MethodStringName1<FileDialog, Unit, String> =
+        MethodStringName1<FileDialog, Unit, String>("set_current_file")
+
+    @JvmStatic
+    public val setCurrentPathName: MethodStringName1<FileDialog, Unit, String> =
+        MethodStringName1<FileDialog, Unit, String>("set_current_path")
+
+    @JvmStatic
+    public val setModeOverridesTitleName: MethodStringName1<FileDialog, Unit, Boolean> =
+        MethodStringName1<FileDialog, Unit, Boolean>("set_mode_overrides_title")
+
+    @JvmStatic
+    public val isModeOverridingTitleName: MethodStringName0<FileDialog, Boolean> =
+        MethodStringName0<FileDialog, Boolean>("is_mode_overriding_title")
+
+    @JvmStatic
+    public val setFileModeName: MethodStringName1<FileDialog, Unit, FileMode> =
+        MethodStringName1<FileDialog, Unit, FileMode>("set_file_mode")
+
+    @JvmStatic
+    public val getFileModeName: MethodStringName0<FileDialog, FileMode> =
+        MethodStringName0<FileDialog, FileMode>("get_file_mode")
+
+    @JvmStatic
+    public val getVboxName: MethodStringName0<FileDialog, VBoxContainer?> =
+        MethodStringName0<FileDialog, VBoxContainer?>("get_vbox")
+
+    @JvmStatic
+    public val getLineEditName: MethodStringName0<FileDialog, LineEdit?> =
+        MethodStringName0<FileDialog, LineEdit?>("get_line_edit")
+
+    @JvmStatic
+    public val setAccessName: MethodStringName1<FileDialog, Unit, Access> =
+        MethodStringName1<FileDialog, Unit, Access>("set_access")
+
+    @JvmStatic
+    public val getAccessName: MethodStringName0<FileDialog, Access> =
+        MethodStringName0<FileDialog, Access>("get_access")
+
+    @JvmStatic
+    public val setRootSubfolderName: MethodStringName1<FileDialog, Unit, String> =
+        MethodStringName1<FileDialog, Unit, String>("set_root_subfolder")
+
+    @JvmStatic
+    public val getRootSubfolderName: MethodStringName0<FileDialog, String> =
+        MethodStringName0<FileDialog, String>("get_root_subfolder")
+
+    @JvmStatic
+    public val setShowHiddenFilesName: MethodStringName1<FileDialog, Unit, Boolean> =
+        MethodStringName1<FileDialog, Unit, Boolean>("set_show_hidden_files")
+
+    @JvmStatic
+    public val isShowingHiddenFilesName: MethodStringName0<FileDialog, Boolean> =
+        MethodStringName0<FileDialog, Boolean>("is_showing_hidden_files")
+
+    @JvmStatic
+    public val setUseNativeDialogName: MethodStringName1<FileDialog, Unit, Boolean> =
+        MethodStringName1<FileDialog, Unit, Boolean>("set_use_native_dialog")
+
+    @JvmStatic
+    public val getUseNativeDialogName: MethodStringName0<FileDialog, Boolean> =
+        MethodStringName0<FileDialog, Boolean>("get_use_native_dialog")
+
+    @JvmStatic
+    public val deselectAllName: MethodStringName0<FileDialog, Unit> =
+        MethodStringName0<FileDialog, Unit>("deselect_all")
+
+    @JvmStatic
+    public val invalidateName: MethodStringName0<FileDialog, Unit> =
+        MethodStringName0<FileDialog, Unit>("invalidate")
+  }
 
   public object MethodBindings {
     internal val clearFiltersPtr: VoidPtr =

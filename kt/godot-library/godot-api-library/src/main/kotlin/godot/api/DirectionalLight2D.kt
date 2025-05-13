@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A directional light is a type of [Light2D] node that models an infinite number of parallel rays
@@ -71,7 +74,15 @@ public open class DirectionalLight2D : Light2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMaxDistanceName: MethodStringName1<DirectionalLight2D, Unit, Float> =
+        MethodStringName1<DirectionalLight2D, Unit, Float>("set_max_distance")
+
+    @JvmStatic
+    public val getMaxDistanceName: MethodStringName0<DirectionalLight2D, Float> =
+        MethodStringName0<DirectionalLight2D, Float>("get_max_distance")
+  }
 
   public object MethodBindings {
     internal val setMaxDistancePtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The [Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of
@@ -228,7 +231,55 @@ public open class Generic6DOFJoint3D : Joint3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setParamXName: MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float> =
+        MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float>("set_param_x")
+
+    @JvmStatic
+    public val getParamXName: MethodStringName1<Generic6DOFJoint3D, Float, Param> =
+        MethodStringName1<Generic6DOFJoint3D, Float, Param>("get_param_x")
+
+    @JvmStatic
+    public val setParamYName: MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float> =
+        MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float>("set_param_y")
+
+    @JvmStatic
+    public val getParamYName: MethodStringName1<Generic6DOFJoint3D, Float, Param> =
+        MethodStringName1<Generic6DOFJoint3D, Float, Param>("get_param_y")
+
+    @JvmStatic
+    public val setParamZName: MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float> =
+        MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float>("set_param_z")
+
+    @JvmStatic
+    public val getParamZName: MethodStringName1<Generic6DOFJoint3D, Float, Param> =
+        MethodStringName1<Generic6DOFJoint3D, Float, Param>("get_param_z")
+
+    @JvmStatic
+    public val setFlagXName: MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean> =
+        MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean>("set_flag_x")
+
+    @JvmStatic
+    public val getFlagXName: MethodStringName1<Generic6DOFJoint3D, Boolean, Flag> =
+        MethodStringName1<Generic6DOFJoint3D, Boolean, Flag>("get_flag_x")
+
+    @JvmStatic
+    public val setFlagYName: MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean> =
+        MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean>("set_flag_y")
+
+    @JvmStatic
+    public val getFlagYName: MethodStringName1<Generic6DOFJoint3D, Boolean, Flag> =
+        MethodStringName1<Generic6DOFJoint3D, Boolean, Flag>("get_flag_y")
+
+    @JvmStatic
+    public val setFlagZName: MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean> =
+        MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean>("set_flag_z")
+
+    @JvmStatic
+    public val getFlagZName: MethodStringName1<Generic6DOFJoint3D, Boolean, Flag> =
+        MethodStringName1<Generic6DOFJoint3D, Boolean, Flag>("get_flag_z")
+  }
 
   public object MethodBindings {
     internal val setParamXPtr: VoidPtr =

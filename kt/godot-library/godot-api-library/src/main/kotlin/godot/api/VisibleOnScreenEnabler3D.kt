@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenEnabler3D] contains a box-shaped region of 3D space and a target node. The target
@@ -118,7 +121,23 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnableModeName: MethodStringName1<VisibleOnScreenEnabler3D, Unit, EnableMode> =
+        MethodStringName1<VisibleOnScreenEnabler3D, Unit, EnableMode>("set_enable_mode")
+
+    @JvmStatic
+    public val getEnableModeName: MethodStringName0<VisibleOnScreenEnabler3D, EnableMode> =
+        MethodStringName0<VisibleOnScreenEnabler3D, EnableMode>("get_enable_mode")
+
+    @JvmStatic
+    public val setEnableNodePathName: MethodStringName1<VisibleOnScreenEnabler3D, Unit, NodePath> =
+        MethodStringName1<VisibleOnScreenEnabler3D, Unit, NodePath>("set_enable_node_path")
+
+    @JvmStatic
+    public val getEnableNodePathName: MethodStringName0<VisibleOnScreenEnabler3D, NodePath> =
+        MethodStringName0<VisibleOnScreenEnabler3D, NodePath>("get_enable_node_path")
+  }
 
   public object MethodBindings {
     internal val setEnableModePtr: VoidPtr =

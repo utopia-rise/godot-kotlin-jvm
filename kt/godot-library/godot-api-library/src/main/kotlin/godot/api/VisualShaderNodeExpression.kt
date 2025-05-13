@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Custom Godot Shading Language expression, with a custom number of input and output ports.
@@ -55,7 +58,15 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setExpressionName: MethodStringName1<VisualShaderNodeExpression, Unit, String> =
+        MethodStringName1<VisualShaderNodeExpression, Unit, String>("set_expression")
+
+    @JvmStatic
+    public val getExpressionName: MethodStringName0<VisualShaderNodeExpression, String> =
+        MethodStringName0<VisualShaderNodeExpression, String>("get_expression")
+  }
 
   public object MethodBindings {
     internal val setExpressionPtr: VoidPtr =

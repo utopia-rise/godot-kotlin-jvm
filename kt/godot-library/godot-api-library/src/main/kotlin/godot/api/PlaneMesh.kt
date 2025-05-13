@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
@@ -232,7 +235,47 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSizeName: MethodStringName1<PlaneMesh, Unit, Vector2> =
+        MethodStringName1<PlaneMesh, Unit, Vector2>("set_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<PlaneMesh, Vector2> =
+        MethodStringName0<PlaneMesh, Vector2>("get_size")
+
+    @JvmStatic
+    public val setSubdivideWidthName: MethodStringName1<PlaneMesh, Unit, Int> =
+        MethodStringName1<PlaneMesh, Unit, Int>("set_subdivide_width")
+
+    @JvmStatic
+    public val getSubdivideWidthName: MethodStringName0<PlaneMesh, Int> =
+        MethodStringName0<PlaneMesh, Int>("get_subdivide_width")
+
+    @JvmStatic
+    public val setSubdivideDepthName: MethodStringName1<PlaneMesh, Unit, Int> =
+        MethodStringName1<PlaneMesh, Unit, Int>("set_subdivide_depth")
+
+    @JvmStatic
+    public val getSubdivideDepthName: MethodStringName0<PlaneMesh, Int> =
+        MethodStringName0<PlaneMesh, Int>("get_subdivide_depth")
+
+    @JvmStatic
+    public val setCenterOffsetName: MethodStringName1<PlaneMesh, Unit, Vector3> =
+        MethodStringName1<PlaneMesh, Unit, Vector3>("set_center_offset")
+
+    @JvmStatic
+    public val getCenterOffsetName: MethodStringName0<PlaneMesh, Vector3> =
+        MethodStringName0<PlaneMesh, Vector3>("get_center_offset")
+
+    @JvmStatic
+    public val setOrientationName: MethodStringName1<PlaneMesh, Unit, Orientation> =
+        MethodStringName1<PlaneMesh, Unit, Orientation>("set_orientation")
+
+    @JvmStatic
+    public val getOrientationName: MethodStringName0<PlaneMesh, Orientation> =
+        MethodStringName0<PlaneMesh, Orientation>("get_orientation")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

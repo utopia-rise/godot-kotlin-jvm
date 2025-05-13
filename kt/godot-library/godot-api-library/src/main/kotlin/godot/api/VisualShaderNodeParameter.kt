@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -19,6 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A parameter represents a variable in the shader which is set externally, i.e. from the
@@ -106,7 +109,23 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setParameterNameName: MethodStringName1<VisualShaderNodeParameter, Unit, String> =
+        MethodStringName1<VisualShaderNodeParameter, Unit, String>("set_parameter_name")
+
+    @JvmStatic
+    public val getParameterNameName: MethodStringName0<VisualShaderNodeParameter, String> =
+        MethodStringName0<VisualShaderNodeParameter, String>("get_parameter_name")
+
+    @JvmStatic
+    public val setQualifierName: MethodStringName1<VisualShaderNodeParameter, Unit, Qualifier> =
+        MethodStringName1<VisualShaderNodeParameter, Unit, Qualifier>("set_qualifier")
+
+    @JvmStatic
+    public val getQualifierName: MethodStringName0<VisualShaderNodeParameter, Qualifier> =
+        MethodStringName0<VisualShaderNodeParameter, Qualifier>("get_qualifier")
+  }
 
   public object MethodBindings {
     internal val setParameterNamePtr: VoidPtr =

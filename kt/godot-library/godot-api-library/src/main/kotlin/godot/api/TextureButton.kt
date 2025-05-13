@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
@@ -318,7 +321,87 @@ public open class TextureButton : BaseButton() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTextureNormalName: MethodStringName1<TextureButton, Unit, Texture2D?> =
+        MethodStringName1<TextureButton, Unit, Texture2D?>("set_texture_normal")
+
+    @JvmStatic
+    public val setTexturePressedName: MethodStringName1<TextureButton, Unit, Texture2D?> =
+        MethodStringName1<TextureButton, Unit, Texture2D?>("set_texture_pressed")
+
+    @JvmStatic
+    public val setTextureHoverName: MethodStringName1<TextureButton, Unit, Texture2D?> =
+        MethodStringName1<TextureButton, Unit, Texture2D?>("set_texture_hover")
+
+    @JvmStatic
+    public val setTextureDisabledName: MethodStringName1<TextureButton, Unit, Texture2D?> =
+        MethodStringName1<TextureButton, Unit, Texture2D?>("set_texture_disabled")
+
+    @JvmStatic
+    public val setTextureFocusedName: MethodStringName1<TextureButton, Unit, Texture2D?> =
+        MethodStringName1<TextureButton, Unit, Texture2D?>("set_texture_focused")
+
+    @JvmStatic
+    public val setClickMaskName: MethodStringName1<TextureButton, Unit, BitMap?> =
+        MethodStringName1<TextureButton, Unit, BitMap?>("set_click_mask")
+
+    @JvmStatic
+    public val setIgnoreTextureSizeName: MethodStringName1<TextureButton, Unit, Boolean> =
+        MethodStringName1<TextureButton, Unit, Boolean>("set_ignore_texture_size")
+
+    @JvmStatic
+    public val setStretchModeName: MethodStringName1<TextureButton, Unit, StretchMode> =
+        MethodStringName1<TextureButton, Unit, StretchMode>("set_stretch_mode")
+
+    @JvmStatic
+    public val setFlipHName: MethodStringName1<TextureButton, Unit, Boolean> =
+        MethodStringName1<TextureButton, Unit, Boolean>("set_flip_h")
+
+    @JvmStatic
+    public val isFlippedHName: MethodStringName0<TextureButton, Boolean> =
+        MethodStringName0<TextureButton, Boolean>("is_flipped_h")
+
+    @JvmStatic
+    public val setFlipVName: MethodStringName1<TextureButton, Unit, Boolean> =
+        MethodStringName1<TextureButton, Unit, Boolean>("set_flip_v")
+
+    @JvmStatic
+    public val isFlippedVName: MethodStringName0<TextureButton, Boolean> =
+        MethodStringName0<TextureButton, Boolean>("is_flipped_v")
+
+    @JvmStatic
+    public val getTextureNormalName: MethodStringName0<TextureButton, Texture2D?> =
+        MethodStringName0<TextureButton, Texture2D?>("get_texture_normal")
+
+    @JvmStatic
+    public val getTexturePressedName: MethodStringName0<TextureButton, Texture2D?> =
+        MethodStringName0<TextureButton, Texture2D?>("get_texture_pressed")
+
+    @JvmStatic
+    public val getTextureHoverName: MethodStringName0<TextureButton, Texture2D?> =
+        MethodStringName0<TextureButton, Texture2D?>("get_texture_hover")
+
+    @JvmStatic
+    public val getTextureDisabledName: MethodStringName0<TextureButton, Texture2D?> =
+        MethodStringName0<TextureButton, Texture2D?>("get_texture_disabled")
+
+    @JvmStatic
+    public val getTextureFocusedName: MethodStringName0<TextureButton, Texture2D?> =
+        MethodStringName0<TextureButton, Texture2D?>("get_texture_focused")
+
+    @JvmStatic
+    public val getClickMaskName: MethodStringName0<TextureButton, BitMap?> =
+        MethodStringName0<TextureButton, BitMap?>("get_click_mask")
+
+    @JvmStatic
+    public val getIgnoreTextureSizeName: MethodStringName0<TextureButton, Boolean> =
+        MethodStringName0<TextureButton, Boolean>("get_ignore_texture_size")
+
+    @JvmStatic
+    public val getStretchModeName: MethodStringName0<TextureButton, StretchMode> =
+        MethodStringName0<TextureButton, StretchMode>("get_stretch_mode")
+  }
 
   public object MethodBindings {
     internal val setTextureNormalPtr: VoidPtr =

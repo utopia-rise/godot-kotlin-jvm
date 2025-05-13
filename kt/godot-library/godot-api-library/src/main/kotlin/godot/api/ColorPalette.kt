@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedColorArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * The [ColorPalette] resource is designed to store and manage a collection of colors. This resource
@@ -52,7 +55,15 @@ public open class ColorPalette : Resource() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setColorsName: MethodStringName1<ColorPalette, Unit, PackedColorArray> =
+        MethodStringName1<ColorPalette, Unit, PackedColorArray>("set_colors")
+
+    @JvmStatic
+    public val getColorsName: MethodStringName0<ColorPalette, PackedColorArray> =
+        MethodStringName0<ColorPalette, PackedColorArray>("get_colors")
+  }
 
   public object MethodBindings {
     internal val setColorsPtr: VoidPtr =

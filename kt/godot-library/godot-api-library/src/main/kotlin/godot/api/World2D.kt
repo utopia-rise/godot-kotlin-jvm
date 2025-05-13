@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
@@ -17,6 +18,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space.
@@ -83,7 +85,23 @@ public open class World2D : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState2D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getCanvasName: MethodStringName0<World2D, RID> =
+        MethodStringName0<World2D, RID>("get_canvas")
+
+    @JvmStatic
+    public val getSpaceName: MethodStringName0<World2D, RID> =
+        MethodStringName0<World2D, RID>("get_space")
+
+    @JvmStatic
+    public val getNavigationMapName: MethodStringName0<World2D, RID> =
+        MethodStringName0<World2D, RID>("get_navigation_map")
+
+    @JvmStatic
+    public val getDirectSpaceStateName: MethodStringName0<World2D, PhysicsDirectSpaceState2D?> =
+        MethodStringName0<World2D, PhysicsDirectSpaceState2D?>("get_direct_space_state")
+  }
 
   public object MethodBindings {
     internal val getCanvasPtr: VoidPtr =

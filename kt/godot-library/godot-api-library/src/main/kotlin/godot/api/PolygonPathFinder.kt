@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
@@ -28,6 +31,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
@@ -136,7 +140,42 @@ public open class PolygonPathFinder : Resource() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setupName:
+        MethodStringName2<PolygonPathFinder, Unit, PackedVector2Array, PackedInt32Array> =
+        MethodStringName2<PolygonPathFinder, Unit, PackedVector2Array, PackedInt32Array>("setup")
+
+    @JvmStatic
+    public val findPathName:
+        MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2> =
+        MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2>("find_path")
+
+    @JvmStatic
+    public val getIntersectionsName:
+        MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2> =
+        MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2>("get_intersections")
+
+    @JvmStatic
+    public val getClosestPointName: MethodStringName1<PolygonPathFinder, Vector2, Vector2> =
+        MethodStringName1<PolygonPathFinder, Vector2, Vector2>("get_closest_point")
+
+    @JvmStatic
+    public val isPointInsideName: MethodStringName1<PolygonPathFinder, Boolean, Vector2> =
+        MethodStringName1<PolygonPathFinder, Boolean, Vector2>("is_point_inside")
+
+    @JvmStatic
+    public val setPointPenaltyName: MethodStringName2<PolygonPathFinder, Unit, Int, Float> =
+        MethodStringName2<PolygonPathFinder, Unit, Int, Float>("set_point_penalty")
+
+    @JvmStatic
+    public val getPointPenaltyName: MethodStringName1<PolygonPathFinder, Float, Int> =
+        MethodStringName1<PolygonPathFinder, Float, Int>("get_point_penalty")
+
+    @JvmStatic
+    public val getBoundsName: MethodStringName0<PolygonPathFinder, Rect2> =
+        MethodStringName0<PolygonPathFinder, Rect2>("get_bounds")
+  }
 
   public object MethodBindings {
     internal val setupPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * GLTFBufferView is a data structure representing a glTF `bufferView` that would be found in the
@@ -190,7 +193,60 @@ public open class GLTFBufferView : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setVertexAttributesPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val loadBufferViewDataName:
+        MethodStringName1<GLTFBufferView, PackedByteArray, GLTFState?> =
+        MethodStringName1<GLTFBufferView, PackedByteArray, GLTFState?>("load_buffer_view_data")
+
+    @JvmStatic
+    public val getBufferName: MethodStringName0<GLTFBufferView, Int> =
+        MethodStringName0<GLTFBufferView, Int>("get_buffer")
+
+    @JvmStatic
+    public val setBufferName: MethodStringName1<GLTFBufferView, Unit, Int> =
+        MethodStringName1<GLTFBufferView, Unit, Int>("set_buffer")
+
+    @JvmStatic
+    public val getByteOffsetName: MethodStringName0<GLTFBufferView, Int> =
+        MethodStringName0<GLTFBufferView, Int>("get_byte_offset")
+
+    @JvmStatic
+    public val setByteOffsetName: MethodStringName1<GLTFBufferView, Unit, Int> =
+        MethodStringName1<GLTFBufferView, Unit, Int>("set_byte_offset")
+
+    @JvmStatic
+    public val getByteLengthName: MethodStringName0<GLTFBufferView, Int> =
+        MethodStringName0<GLTFBufferView, Int>("get_byte_length")
+
+    @JvmStatic
+    public val setByteLengthName: MethodStringName1<GLTFBufferView, Unit, Int> =
+        MethodStringName1<GLTFBufferView, Unit, Int>("set_byte_length")
+
+    @JvmStatic
+    public val getByteStrideName: MethodStringName0<GLTFBufferView, Int> =
+        MethodStringName0<GLTFBufferView, Int>("get_byte_stride")
+
+    @JvmStatic
+    public val setByteStrideName: MethodStringName1<GLTFBufferView, Unit, Int> =
+        MethodStringName1<GLTFBufferView, Unit, Int>("set_byte_stride")
+
+    @JvmStatic
+    public val getIndicesName: MethodStringName0<GLTFBufferView, Boolean> =
+        MethodStringName0<GLTFBufferView, Boolean>("get_indices")
+
+    @JvmStatic
+    public val setIndicesName: MethodStringName1<GLTFBufferView, Unit, Boolean> =
+        MethodStringName1<GLTFBufferView, Unit, Boolean>("set_indices")
+
+    @JvmStatic
+    public val getVertexAttributesName: MethodStringName0<GLTFBufferView, Boolean> =
+        MethodStringName0<GLTFBufferView, Boolean>("get_vertex_attributes")
+
+    @JvmStatic
+    public val setVertexAttributesName: MethodStringName1<GLTFBufferView, Unit, Boolean> =
+        MethodStringName1<GLTFBufferView, Unit, Boolean>("set_vertex_attributes")
+  }
 
   public object MethodBindings {
     internal val loadBufferViewDataPtr: VoidPtr =

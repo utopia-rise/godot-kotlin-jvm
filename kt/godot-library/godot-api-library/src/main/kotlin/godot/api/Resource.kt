@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -363,6 +366,86 @@ public open class Resource : RefCounted() {
   }
 
   public companion object {
+    @JvmStatic
+    public val setPathName: MethodStringName1<Resource, Unit, String> =
+        MethodStringName1<Resource, Unit, String>("set_path")
+
+    @JvmStatic
+    public val takeOverPathName: MethodStringName1<Resource, Unit, String> =
+        MethodStringName1<Resource, Unit, String>("take_over_path")
+
+    @JvmStatic
+    public val getPathName: MethodStringName0<Resource, String> =
+        MethodStringName0<Resource, String>("get_path")
+
+    @JvmStatic
+    public val setPathCacheName: MethodStringName1<Resource, Unit, String> =
+        MethodStringName1<Resource, Unit, String>("set_path_cache")
+
+    @JvmStatic
+    public val setNameName: MethodStringName1<Resource, Unit, String> =
+        MethodStringName1<Resource, Unit, String>("set_name")
+
+    @JvmStatic
+    public val getNameName: MethodStringName0<Resource, String> =
+        MethodStringName0<Resource, String>("get_name")
+
+    @JvmStatic
+    public val getRidName: MethodStringName0<Resource, RID> =
+        MethodStringName0<Resource, RID>("get_rid")
+
+    @JvmStatic
+    public val setLocalToSceneName: MethodStringName1<Resource, Unit, Boolean> =
+        MethodStringName1<Resource, Unit, Boolean>("set_local_to_scene")
+
+    @JvmStatic
+    public val isLocalToSceneName: MethodStringName0<Resource, Boolean> =
+        MethodStringName0<Resource, Boolean>("is_local_to_scene")
+
+    @JvmStatic
+    public val getLocalSceneName: MethodStringName0<Resource, Node?> =
+        MethodStringName0<Resource, Node?>("get_local_scene")
+
+    @JvmStatic
+    public val setupLocalToSceneName: MethodStringName0<Resource, Unit> =
+        MethodStringName0<Resource, Unit>("setup_local_to_scene")
+
+    @JvmStatic
+    public val resetStateName: MethodStringName0<Resource, Unit> =
+        MethodStringName0<Resource, Unit>("reset_state")
+
+    @JvmStatic
+    public val setIdForPathName: MethodStringName2<Resource, Unit, String, String> =
+        MethodStringName2<Resource, Unit, String, String>("set_id_for_path")
+
+    @JvmStatic
+    public val getIdForPathName: MethodStringName1<Resource, String, String> =
+        MethodStringName1<Resource, String, String>("get_id_for_path")
+
+    @JvmStatic
+    public val isBuiltInName: MethodStringName0<Resource, Boolean> =
+        MethodStringName0<Resource, Boolean>("is_built_in")
+
+    @JvmStatic
+    public val generateSceneUniqueIdName: MethodStringName0<Resource, String> =
+        MethodStringName0<Resource, String>("generate_scene_unique_id")
+
+    @JvmStatic
+    public val setSceneUniqueIdName: MethodStringName1<Resource, Unit, String> =
+        MethodStringName1<Resource, Unit, String>("set_scene_unique_id")
+
+    @JvmStatic
+    public val getSceneUniqueIdName: MethodStringName0<Resource, String> =
+        MethodStringName0<Resource, String>("get_scene_unique_id")
+
+    @JvmStatic
+    public val emitChangedName: MethodStringName0<Resource, Unit> =
+        MethodStringName0<Resource, Unit>("emit_changed")
+
+    @JvmStatic
+    public val duplicateName: MethodStringName1<Resource, Resource?, Boolean> =
+        MethodStringName1<Resource, Resource?, Boolean>("duplicate")
+
     /**
      * Generates a unique identifier for a resource to be contained inside a [PackedScene], based on
      * the current date, time, and a random value. The returned string is only composed of letters (`a`

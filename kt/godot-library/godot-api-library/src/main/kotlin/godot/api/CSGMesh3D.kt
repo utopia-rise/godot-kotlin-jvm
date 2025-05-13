@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This CSG node allows you to use any mesh resource as a CSG shape, provided it is *manifold*. A
@@ -91,7 +94,23 @@ public open class CSGMesh3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMeshName: MethodStringName1<CSGMesh3D, Unit, Mesh?> =
+        MethodStringName1<CSGMesh3D, Unit, Mesh?>("set_mesh")
+
+    @JvmStatic
+    public val getMeshName: MethodStringName0<CSGMesh3D, Mesh?> =
+        MethodStringName0<CSGMesh3D, Mesh?>("get_mesh")
+
+    @JvmStatic
+    public val setMaterialName: MethodStringName1<CSGMesh3D, Unit, Material?> =
+        MethodStringName1<CSGMesh3D, Unit, Material?>("set_material")
+
+    @JvmStatic
+    public val getMaterialName: MethodStringName0<CSGMesh3D, Material?> =
+        MethodStringName0<CSGMesh3D, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =

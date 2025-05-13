@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -23,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Compiled shader file in SPIR-V form.
@@ -100,7 +104,27 @@ public open class RDShaderFile : Resource() {
   public final fun getSpirv(version: String): RDShaderSPIRV? =
       getSpirv(version.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setBytecodeName: MethodStringName2<RDShaderFile, Unit, RDShaderSPIRV?, StringName> =
+        MethodStringName2<RDShaderFile, Unit, RDShaderSPIRV?, StringName>("set_bytecode")
+
+    @JvmStatic
+    public val getSpirvName: MethodStringName1<RDShaderFile, RDShaderSPIRV?, StringName> =
+        MethodStringName1<RDShaderFile, RDShaderSPIRV?, StringName>("get_spirv")
+
+    @JvmStatic
+    public val getVersionListName: MethodStringName0<RDShaderFile, VariantArray<StringName>> =
+        MethodStringName0<RDShaderFile, VariantArray<StringName>>("get_version_list")
+
+    @JvmStatic
+    public val setBaseErrorName: MethodStringName1<RDShaderFile, Unit, String> =
+        MethodStringName1<RDShaderFile, Unit, String>("set_base_error")
+
+    @JvmStatic
+    public val getBaseErrorName: MethodStringName0<RDShaderFile, String> =
+        MethodStringName0<RDShaderFile, String>("get_base_error")
+  }
 
   public object MethodBindings {
     internal val setBytecodePtr: VoidPtr =

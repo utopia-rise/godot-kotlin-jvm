@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
@@ -43,6 +47,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for [AnimationPlayer] and [AnimationTree] to manage animation lists. It also has
@@ -941,7 +946,179 @@ public open class AnimationMixer internal constructor() : Node() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addAnimationLibraryName:
+        MethodStringName2<AnimationMixer, Error, StringName, AnimationLibrary?> =
+        MethodStringName2<AnimationMixer, Error, StringName, AnimationLibrary?>("add_animation_library")
+
+    @JvmStatic
+    public val removeAnimationLibraryName: MethodStringName1<AnimationMixer, Unit, StringName> =
+        MethodStringName1<AnimationMixer, Unit, StringName>("remove_animation_library")
+
+    @JvmStatic
+    public val renameAnimationLibraryName:
+        MethodStringName2<AnimationMixer, Unit, StringName, StringName> =
+        MethodStringName2<AnimationMixer, Unit, StringName, StringName>("rename_animation_library")
+
+    @JvmStatic
+    public val hasAnimationLibraryName: MethodStringName1<AnimationMixer, Boolean, StringName> =
+        MethodStringName1<AnimationMixer, Boolean, StringName>("has_animation_library")
+
+    @JvmStatic
+    public val getAnimationLibraryName:
+        MethodStringName1<AnimationMixer, AnimationLibrary?, StringName> =
+        MethodStringName1<AnimationMixer, AnimationLibrary?, StringName>("get_animation_library")
+
+    @JvmStatic
+    public val getAnimationLibraryListName:
+        MethodStringName0<AnimationMixer, VariantArray<StringName>> =
+        MethodStringName0<AnimationMixer, VariantArray<StringName>>("get_animation_library_list")
+
+    @JvmStatic
+    public val hasAnimationName: MethodStringName1<AnimationMixer, Boolean, StringName> =
+        MethodStringName1<AnimationMixer, Boolean, StringName>("has_animation")
+
+    @JvmStatic
+    public val getAnimationName: MethodStringName1<AnimationMixer, Animation?, StringName> =
+        MethodStringName1<AnimationMixer, Animation?, StringName>("get_animation")
+
+    @JvmStatic
+    public val getAnimationListName: MethodStringName0<AnimationMixer, PackedStringArray> =
+        MethodStringName0<AnimationMixer, PackedStringArray>("get_animation_list")
+
+    @JvmStatic
+    public val setActiveName: MethodStringName1<AnimationMixer, Unit, Boolean> =
+        MethodStringName1<AnimationMixer, Unit, Boolean>("set_active")
+
+    @JvmStatic
+    public val isActiveName: MethodStringName0<AnimationMixer, Boolean> =
+        MethodStringName0<AnimationMixer, Boolean>("is_active")
+
+    @JvmStatic
+    public val setDeterministicName: MethodStringName1<AnimationMixer, Unit, Boolean> =
+        MethodStringName1<AnimationMixer, Unit, Boolean>("set_deterministic")
+
+    @JvmStatic
+    public val isDeterministicName: MethodStringName0<AnimationMixer, Boolean> =
+        MethodStringName0<AnimationMixer, Boolean>("is_deterministic")
+
+    @JvmStatic
+    public val setRootNodeName: MethodStringName1<AnimationMixer, Unit, NodePath> =
+        MethodStringName1<AnimationMixer, Unit, NodePath>("set_root_node")
+
+    @JvmStatic
+    public val getRootNodeName: MethodStringName0<AnimationMixer, NodePath> =
+        MethodStringName0<AnimationMixer, NodePath>("get_root_node")
+
+    @JvmStatic
+    public val setCallbackModeProcessName:
+        MethodStringName1<AnimationMixer, Unit, AnimationCallbackModeProcess> =
+        MethodStringName1<AnimationMixer, Unit, AnimationCallbackModeProcess>("set_callback_mode_process")
+
+    @JvmStatic
+    public val getCallbackModeProcessName:
+        MethodStringName0<AnimationMixer, AnimationCallbackModeProcess> =
+        MethodStringName0<AnimationMixer, AnimationCallbackModeProcess>("get_callback_mode_process")
+
+    @JvmStatic
+    public val setCallbackModeMethodName:
+        MethodStringName1<AnimationMixer, Unit, AnimationCallbackModeMethod> =
+        MethodStringName1<AnimationMixer, Unit, AnimationCallbackModeMethod>("set_callback_mode_method")
+
+    @JvmStatic
+    public val getCallbackModeMethodName:
+        MethodStringName0<AnimationMixer, AnimationCallbackModeMethod> =
+        MethodStringName0<AnimationMixer, AnimationCallbackModeMethod>("get_callback_mode_method")
+
+    @JvmStatic
+    public val setCallbackModeDiscreteName:
+        MethodStringName1<AnimationMixer, Unit, AnimationCallbackModeDiscrete> =
+        MethodStringName1<AnimationMixer, Unit, AnimationCallbackModeDiscrete>("set_callback_mode_discrete")
+
+    @JvmStatic
+    public val getCallbackModeDiscreteName:
+        MethodStringName0<AnimationMixer, AnimationCallbackModeDiscrete> =
+        MethodStringName0<AnimationMixer, AnimationCallbackModeDiscrete>("get_callback_mode_discrete")
+
+    @JvmStatic
+    public val setAudioMaxPolyphonyName: MethodStringName1<AnimationMixer, Unit, Int> =
+        MethodStringName1<AnimationMixer, Unit, Int>("set_audio_max_polyphony")
+
+    @JvmStatic
+    public val getAudioMaxPolyphonyName: MethodStringName0<AnimationMixer, Int> =
+        MethodStringName0<AnimationMixer, Int>("get_audio_max_polyphony")
+
+    @JvmStatic
+    public val setRootMotionTrackName: MethodStringName1<AnimationMixer, Unit, NodePath> =
+        MethodStringName1<AnimationMixer, Unit, NodePath>("set_root_motion_track")
+
+    @JvmStatic
+    public val getRootMotionTrackName: MethodStringName0<AnimationMixer, NodePath> =
+        MethodStringName0<AnimationMixer, NodePath>("get_root_motion_track")
+
+    @JvmStatic
+    public val setRootMotionLocalName: MethodStringName1<AnimationMixer, Unit, Boolean> =
+        MethodStringName1<AnimationMixer, Unit, Boolean>("set_root_motion_local")
+
+    @JvmStatic
+    public val isRootMotionLocalName: MethodStringName0<AnimationMixer, Boolean> =
+        MethodStringName0<AnimationMixer, Boolean>("is_root_motion_local")
+
+    @JvmStatic
+    public val getRootMotionPositionName: MethodStringName0<AnimationMixer, Vector3> =
+        MethodStringName0<AnimationMixer, Vector3>("get_root_motion_position")
+
+    @JvmStatic
+    public val getRootMotionRotationName: MethodStringName0<AnimationMixer, Quaternion> =
+        MethodStringName0<AnimationMixer, Quaternion>("get_root_motion_rotation")
+
+    @JvmStatic
+    public val getRootMotionScaleName: MethodStringName0<AnimationMixer, Vector3> =
+        MethodStringName0<AnimationMixer, Vector3>("get_root_motion_scale")
+
+    @JvmStatic
+    public val getRootMotionPositionAccumulatorName: MethodStringName0<AnimationMixer, Vector3> =
+        MethodStringName0<AnimationMixer, Vector3>("get_root_motion_position_accumulator")
+
+    @JvmStatic
+    public val getRootMotionRotationAccumulatorName: MethodStringName0<AnimationMixer, Quaternion> =
+        MethodStringName0<AnimationMixer, Quaternion>("get_root_motion_rotation_accumulator")
+
+    @JvmStatic
+    public val getRootMotionScaleAccumulatorName: MethodStringName0<AnimationMixer, Vector3> =
+        MethodStringName0<AnimationMixer, Vector3>("get_root_motion_scale_accumulator")
+
+    @JvmStatic
+    public val clearCachesName: MethodStringName0<AnimationMixer, Unit> =
+        MethodStringName0<AnimationMixer, Unit>("clear_caches")
+
+    @JvmStatic
+    public val advanceName: MethodStringName1<AnimationMixer, Unit, Double> =
+        MethodStringName1<AnimationMixer, Unit, Double>("advance")
+
+    @JvmStatic
+    public val captureName:
+        MethodStringName4<AnimationMixer, Unit, StringName, Double, Tween.TransitionType, Tween.EaseType>
+        =
+        MethodStringName4<AnimationMixer, Unit, StringName, Double, Tween.TransitionType, Tween.EaseType>("capture")
+
+    @JvmStatic
+    public val setResetOnSaveEnabledName: MethodStringName1<AnimationMixer, Unit, Boolean> =
+        MethodStringName1<AnimationMixer, Unit, Boolean>("set_reset_on_save_enabled")
+
+    @JvmStatic
+    public val isResetOnSaveEnabledName: MethodStringName0<AnimationMixer, Boolean> =
+        MethodStringName0<AnimationMixer, Boolean>("is_reset_on_save_enabled")
+
+    @JvmStatic
+    public val findAnimationName: MethodStringName1<AnimationMixer, StringName, Animation?> =
+        MethodStringName1<AnimationMixer, StringName, Animation?>("find_animation")
+
+    @JvmStatic
+    public val findAnimationLibraryName: MethodStringName1<AnimationMixer, StringName, Animation?> =
+        MethodStringName1<AnimationMixer, StringName, Animation?>("find_animation_library")
+  }
 
   public object MethodBindings {
     internal val addAnimationLibraryPtr: VoidPtr =

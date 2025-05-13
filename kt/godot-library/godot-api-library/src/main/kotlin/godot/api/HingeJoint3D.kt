@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that restricts the rotation of a 3D physics body around an axis relative to
@@ -144,7 +147,23 @@ public open class HingeJoint3D : Joint3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setParamName: MethodStringName2<HingeJoint3D, Unit, Param, Float> =
+        MethodStringName2<HingeJoint3D, Unit, Param, Float>("set_param")
+
+    @JvmStatic
+    public val getParamName: MethodStringName1<HingeJoint3D, Float, Param> =
+        MethodStringName1<HingeJoint3D, Float, Param>("get_param")
+
+    @JvmStatic
+    public val setFlagName: MethodStringName2<HingeJoint3D, Unit, Flag, Boolean> =
+        MethodStringName2<HingeJoint3D, Unit, Flag, Boolean>("set_flag")
+
+    @JvmStatic
+    public val getFlagName: MethodStringName1<HingeJoint3D, Boolean, Flag> =
+        MethodStringName1<HingeJoint3D, Boolean, Flag>("get_flag")
+  }
 
   public object MethodBindings {
     internal val setParamPtr: VoidPtr =

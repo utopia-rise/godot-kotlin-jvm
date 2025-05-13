@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -25,6 +27,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -151,7 +154,45 @@ public open class RDPipelineColorBlendState : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RDPipelineColorBlendStateAttachment>)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnableLogicOpName: MethodStringName1<RDPipelineColorBlendState, Unit, Boolean> =
+        MethodStringName1<RDPipelineColorBlendState, Unit, Boolean>("set_enable_logic_op")
+
+    @JvmStatic
+    public val getEnableLogicOpName: MethodStringName0<RDPipelineColorBlendState, Boolean> =
+        MethodStringName0<RDPipelineColorBlendState, Boolean>("get_enable_logic_op")
+
+    @JvmStatic
+    public val setLogicOpName:
+        MethodStringName1<RDPipelineColorBlendState, Unit, RenderingDevice.LogicOperation> =
+        MethodStringName1<RDPipelineColorBlendState, Unit, RenderingDevice.LogicOperation>("set_logic_op")
+
+    @JvmStatic
+    public val getLogicOpName:
+        MethodStringName0<RDPipelineColorBlendState, RenderingDevice.LogicOperation> =
+        MethodStringName0<RDPipelineColorBlendState, RenderingDevice.LogicOperation>("get_logic_op")
+
+    @JvmStatic
+    public val setBlendConstantName: MethodStringName1<RDPipelineColorBlendState, Unit, Color> =
+        MethodStringName1<RDPipelineColorBlendState, Unit, Color>("set_blend_constant")
+
+    @JvmStatic
+    public val getBlendConstantName: MethodStringName0<RDPipelineColorBlendState, Color> =
+        MethodStringName0<RDPipelineColorBlendState, Color>("get_blend_constant")
+
+    @JvmStatic
+    public val setAttachmentsName:
+        MethodStringName1<RDPipelineColorBlendState, Unit, VariantArray<RDPipelineColorBlendStateAttachment>>
+        =
+        MethodStringName1<RDPipelineColorBlendState, Unit, VariantArray<RDPipelineColorBlendStateAttachment>>("set_attachments")
+
+    @JvmStatic
+    public val getAttachmentsName:
+        MethodStringName0<RDPipelineColorBlendState, VariantArray<RDPipelineColorBlendStateAttachment>>
+        =
+        MethodStringName0<RDPipelineColorBlendState, VariantArray<RDPipelineColorBlendStateAttachment>>("get_attachments")
+  }
 
   public object MethodBindings {
     internal val setEnableLogicOpPtr: VoidPtr =

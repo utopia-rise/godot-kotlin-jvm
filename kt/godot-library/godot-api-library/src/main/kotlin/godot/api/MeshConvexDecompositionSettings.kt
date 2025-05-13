@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Parameters to be used with a [Mesh] convex decomposition operation.
@@ -343,7 +346,127 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setMaxConcavityName: MethodStringName1<MeshConvexDecompositionSettings, Unit, Float>
+        = MethodStringName1<MeshConvexDecompositionSettings, Unit, Float>("set_max_concavity")
+
+    @JvmStatic
+    public val getMaxConcavityName: MethodStringName0<MeshConvexDecompositionSettings, Float> =
+        MethodStringName0<MeshConvexDecompositionSettings, Float>("get_max_concavity")
+
+    @JvmStatic
+    public val setSymmetryPlanesClippingBiasName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Float> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Float>("set_symmetry_planes_clipping_bias")
+
+    @JvmStatic
+    public val getSymmetryPlanesClippingBiasName:
+        MethodStringName0<MeshConvexDecompositionSettings, Float> =
+        MethodStringName0<MeshConvexDecompositionSettings, Float>("get_symmetry_planes_clipping_bias")
+
+    @JvmStatic
+    public val setRevolutionAxesClippingBiasName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Float> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Float>("set_revolution_axes_clipping_bias")
+
+    @JvmStatic
+    public val getRevolutionAxesClippingBiasName:
+        MethodStringName0<MeshConvexDecompositionSettings, Float> =
+        MethodStringName0<MeshConvexDecompositionSettings, Float>("get_revolution_axes_clipping_bias")
+
+    @JvmStatic
+    public val setMinVolumePerConvexHullName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Float> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Float>("set_min_volume_per_convex_hull")
+
+    @JvmStatic
+    public val getMinVolumePerConvexHullName:
+        MethodStringName0<MeshConvexDecompositionSettings, Float> =
+        MethodStringName0<MeshConvexDecompositionSettings, Float>("get_min_volume_per_convex_hull")
+
+    @JvmStatic
+    public val setResolutionName: MethodStringName1<MeshConvexDecompositionSettings, Unit, Long> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long>("set_resolution")
+
+    @JvmStatic
+    public val getResolutionName: MethodStringName0<MeshConvexDecompositionSettings, Long> =
+        MethodStringName0<MeshConvexDecompositionSettings, Long>("get_resolution")
+
+    @JvmStatic
+    public val setMaxNumVerticesPerConvexHullName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long>("set_max_num_vertices_per_convex_hull")
+
+    @JvmStatic
+    public val getMaxNumVerticesPerConvexHullName:
+        MethodStringName0<MeshConvexDecompositionSettings, Long> =
+        MethodStringName0<MeshConvexDecompositionSettings, Long>("get_max_num_vertices_per_convex_hull")
+
+    @JvmStatic
+    public val setPlaneDownsamplingName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long>("set_plane_downsampling")
+
+    @JvmStatic
+    public val getPlaneDownsamplingName: MethodStringName0<MeshConvexDecompositionSettings, Long> =
+        MethodStringName0<MeshConvexDecompositionSettings, Long>("get_plane_downsampling")
+
+    @JvmStatic
+    public val setConvexHullDownsamplingName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Long>("set_convex_hull_downsampling")
+
+    @JvmStatic
+    public val getConvexHullDownsamplingName:
+        MethodStringName0<MeshConvexDecompositionSettings, Long> =
+        MethodStringName0<MeshConvexDecompositionSettings, Long>("get_convex_hull_downsampling")
+
+    @JvmStatic
+    public val setNormalizeMeshName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Boolean> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Boolean>("set_normalize_mesh")
+
+    @JvmStatic
+    public val getNormalizeMeshName: MethodStringName0<MeshConvexDecompositionSettings, Boolean> =
+        MethodStringName0<MeshConvexDecompositionSettings, Boolean>("get_normalize_mesh")
+
+    @JvmStatic
+    public val setModeName: MethodStringName1<MeshConvexDecompositionSettings, Unit, Mode> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Mode>("set_mode")
+
+    @JvmStatic
+    public val getModeName: MethodStringName0<MeshConvexDecompositionSettings, Mode> =
+        MethodStringName0<MeshConvexDecompositionSettings, Mode>("get_mode")
+
+    @JvmStatic
+    public val setConvexHullApproximationName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Boolean> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Boolean>("set_convex_hull_approximation")
+
+    @JvmStatic
+    public val getConvexHullApproximationName:
+        MethodStringName0<MeshConvexDecompositionSettings, Boolean> =
+        MethodStringName0<MeshConvexDecompositionSettings, Boolean>("get_convex_hull_approximation")
+
+    @JvmStatic
+    public val setMaxConvexHullsName: MethodStringName1<MeshConvexDecompositionSettings, Unit, Long>
+        = MethodStringName1<MeshConvexDecompositionSettings, Unit, Long>("set_max_convex_hulls")
+
+    @JvmStatic
+    public val getMaxConvexHullsName: MethodStringName0<MeshConvexDecompositionSettings, Long> =
+        MethodStringName0<MeshConvexDecompositionSettings, Long>("get_max_convex_hulls")
+
+    @JvmStatic
+    public val setProjectHullVerticesName:
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Boolean> =
+        MethodStringName1<MeshConvexDecompositionSettings, Unit, Boolean>("set_project_hull_vertices")
+
+    @JvmStatic
+    public val getProjectHullVerticesName:
+        MethodStringName0<MeshConvexDecompositionSettings, Boolean> =
+        MethodStringName0<MeshConvexDecompositionSettings, Boolean>("get_project_hull_vertices")
+  }
 
   public object MethodBindings {
     internal val setMaxConcavityPtr: VoidPtr =

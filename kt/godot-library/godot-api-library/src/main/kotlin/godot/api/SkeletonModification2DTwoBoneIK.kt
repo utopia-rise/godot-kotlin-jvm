@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +28,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This [SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works
@@ -225,7 +228,80 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun setJointTwoBone2dNode(bone2dNode: String) =
       setJointTwoBone2dNode(bone2dNode.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTargetNodeName: MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, NodePath>
+        = MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, NodePath>("set_target_node")
+
+    @JvmStatic
+    public val getTargetNodeName: MethodStringName0<SkeletonModification2DTwoBoneIK, NodePath> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, NodePath>("get_target_node")
+
+    @JvmStatic
+    public val setTargetMinimumDistanceName:
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Float> =
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Float>("set_target_minimum_distance")
+
+    @JvmStatic
+    public val getTargetMinimumDistanceName:
+        MethodStringName0<SkeletonModification2DTwoBoneIK, Float> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, Float>("get_target_minimum_distance")
+
+    @JvmStatic
+    public val setTargetMaximumDistanceName:
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Float> =
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Float>("set_target_maximum_distance")
+
+    @JvmStatic
+    public val getTargetMaximumDistanceName:
+        MethodStringName0<SkeletonModification2DTwoBoneIK, Float> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, Float>("get_target_maximum_distance")
+
+    @JvmStatic
+    public val setFlipBendDirectionName:
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Boolean> =
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Boolean>("set_flip_bend_direction")
+
+    @JvmStatic
+    public val getFlipBendDirectionName: MethodStringName0<SkeletonModification2DTwoBoneIK, Boolean>
+        = MethodStringName0<SkeletonModification2DTwoBoneIK, Boolean>("get_flip_bend_direction")
+
+    @JvmStatic
+    public val setJointOneBone2dNodeName:
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, NodePath>("set_joint_one_bone2d_node")
+
+    @JvmStatic
+    public val getJointOneBone2dNodeName:
+        MethodStringName0<SkeletonModification2DTwoBoneIK, NodePath> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, NodePath>("get_joint_one_bone2d_node")
+
+    @JvmStatic
+    public val setJointOneBoneIdxName: MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Int>
+        = MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Int>("set_joint_one_bone_idx")
+
+    @JvmStatic
+    public val getJointOneBoneIdxName: MethodStringName0<SkeletonModification2DTwoBoneIK, Int> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, Int>("get_joint_one_bone_idx")
+
+    @JvmStatic
+    public val setJointTwoBone2dNodeName:
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, NodePath>("set_joint_two_bone2d_node")
+
+    @JvmStatic
+    public val getJointTwoBone2dNodeName:
+        MethodStringName0<SkeletonModification2DTwoBoneIK, NodePath> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, NodePath>("get_joint_two_bone2d_node")
+
+    @JvmStatic
+    public val setJointTwoBoneIdxName: MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Int>
+        = MethodStringName1<SkeletonModification2DTwoBoneIK, Unit, Int>("set_joint_two_bone_idx")
+
+    @JvmStatic
+    public val getJointTwoBoneIdxName: MethodStringName0<SkeletonModification2DTwoBoneIK, Int> =
+        MethodStringName0<SkeletonModification2DTwoBoneIK, Int>("get_joint_two_bone_idx")
+  }
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =

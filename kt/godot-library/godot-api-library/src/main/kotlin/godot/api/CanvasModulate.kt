@@ -13,12 +13,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a
@@ -79,7 +82,15 @@ public open class CanvasModulate : Node2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setColorName: MethodStringName1<CanvasModulate, Unit, Color> =
+        MethodStringName1<CanvasModulate, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val getColorName: MethodStringName0<CanvasModulate, Color> =
+        MethodStringName0<CanvasModulate, Color>("get_color")
+  }
 
   public object MethodBindings {
     internal val setColorPtr: VoidPtr =

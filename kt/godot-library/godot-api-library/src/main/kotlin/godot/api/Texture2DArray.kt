@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A Texture2DArray is different from a Texture3D: The Texture2DArray does not support trilinear
@@ -45,7 +47,11 @@ public open class Texture2DArray : ImageTextureLayered() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val createPlaceholderName: MethodStringName0<Texture2DArray, Resource?> =
+        MethodStringName0<Texture2DArray, Resource?>("create_placeholder")
+  }
 
   public object MethodBindings {
     internal val createPlaceholderPtr: VoidPtr =

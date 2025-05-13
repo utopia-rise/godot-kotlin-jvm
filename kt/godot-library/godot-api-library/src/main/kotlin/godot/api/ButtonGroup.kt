@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
@@ -81,7 +84,23 @@ public open class ButtonGroup : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getPressedButtonName: MethodStringName0<ButtonGroup, BaseButton?> =
+        MethodStringName0<ButtonGroup, BaseButton?>("get_pressed_button")
+
+    @JvmStatic
+    public val getButtonsName: MethodStringName0<ButtonGroup, VariantArray<BaseButton>> =
+        MethodStringName0<ButtonGroup, VariantArray<BaseButton>>("get_buttons")
+
+    @JvmStatic
+    public val setAllowUnpressName: MethodStringName1<ButtonGroup, Unit, Boolean> =
+        MethodStringName1<ButtonGroup, Unit, Boolean>("set_allow_unpress")
+
+    @JvmStatic
+    public val isAllowUnpressName: MethodStringName0<ButtonGroup, Boolean> =
+        MethodStringName0<ButtonGroup, Boolean>("is_allow_unpress")
+  }
 
   public object MethodBindings {
     internal val getPressedButtonPtr: VoidPtr =

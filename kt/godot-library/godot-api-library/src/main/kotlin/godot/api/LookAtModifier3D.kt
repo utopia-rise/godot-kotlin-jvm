@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -31,6 +33,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This [SkeletonModifier3D] rotates a bone to look at a target. This is helpful for moving a
@@ -828,7 +831,255 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTargetNodeName: MethodStringName1<LookAtModifier3D, Unit, NodePath> =
+        MethodStringName1<LookAtModifier3D, Unit, NodePath>("set_target_node")
+
+    @JvmStatic
+    public val getTargetNodeName: MethodStringName0<LookAtModifier3D, NodePath> =
+        MethodStringName0<LookAtModifier3D, NodePath>("get_target_node")
+
+    @JvmStatic
+    public val setBoneNameName: MethodStringName1<LookAtModifier3D, Unit, String> =
+        MethodStringName1<LookAtModifier3D, Unit, String>("set_bone_name")
+
+    @JvmStatic
+    public val getBoneNameName: MethodStringName0<LookAtModifier3D, String> =
+        MethodStringName0<LookAtModifier3D, String>("get_bone_name")
+
+    @JvmStatic
+    public val setBoneName: MethodStringName1<LookAtModifier3D, Unit, Int> =
+        MethodStringName1<LookAtModifier3D, Unit, Int>("set_bone")
+
+    @JvmStatic
+    public val getBoneName: MethodStringName0<LookAtModifier3D, Int> =
+        MethodStringName0<LookAtModifier3D, Int>("get_bone")
+
+    @JvmStatic
+    public val setForwardAxisName:
+        MethodStringName1<LookAtModifier3D, Unit, SkeletonModifier3D.BoneAxis> =
+        MethodStringName1<LookAtModifier3D, Unit, SkeletonModifier3D.BoneAxis>("set_forward_axis")
+
+    @JvmStatic
+    public val getForwardAxisName: MethodStringName0<LookAtModifier3D, SkeletonModifier3D.BoneAxis>
+        = MethodStringName0<LookAtModifier3D, SkeletonModifier3D.BoneAxis>("get_forward_axis")
+
+    @JvmStatic
+    public val setPrimaryRotationAxisName: MethodStringName1<LookAtModifier3D, Unit, Vector3.Axis> =
+        MethodStringName1<LookAtModifier3D, Unit, Vector3.Axis>("set_primary_rotation_axis")
+
+    @JvmStatic
+    public val getPrimaryRotationAxisName: MethodStringName0<LookAtModifier3D, Vector3.Axis> =
+        MethodStringName0<LookAtModifier3D, Vector3.Axis>("get_primary_rotation_axis")
+
+    @JvmStatic
+    public val setUseSecondaryRotationName: MethodStringName1<LookAtModifier3D, Unit, Boolean> =
+        MethodStringName1<LookAtModifier3D, Unit, Boolean>("set_use_secondary_rotation")
+
+    @JvmStatic
+    public val isUsingSecondaryRotationName: MethodStringName0<LookAtModifier3D, Boolean> =
+        MethodStringName0<LookAtModifier3D, Boolean>("is_using_secondary_rotation")
+
+    @JvmStatic
+    public val setOriginSafeMarginName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_origin_safe_margin")
+
+    @JvmStatic
+    public val getOriginSafeMarginName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_origin_safe_margin")
+
+    @JvmStatic
+    public val setOriginFromName: MethodStringName1<LookAtModifier3D, Unit, OriginFrom> =
+        MethodStringName1<LookAtModifier3D, Unit, OriginFrom>("set_origin_from")
+
+    @JvmStatic
+    public val getOriginFromName: MethodStringName0<LookAtModifier3D, OriginFrom> =
+        MethodStringName0<LookAtModifier3D, OriginFrom>("get_origin_from")
+
+    @JvmStatic
+    public val setOriginBoneNameName: MethodStringName1<LookAtModifier3D, Unit, String> =
+        MethodStringName1<LookAtModifier3D, Unit, String>("set_origin_bone_name")
+
+    @JvmStatic
+    public val getOriginBoneNameName: MethodStringName0<LookAtModifier3D, String> =
+        MethodStringName0<LookAtModifier3D, String>("get_origin_bone_name")
+
+    @JvmStatic
+    public val setOriginBoneName: MethodStringName1<LookAtModifier3D, Unit, Int> =
+        MethodStringName1<LookAtModifier3D, Unit, Int>("set_origin_bone")
+
+    @JvmStatic
+    public val getOriginBoneName: MethodStringName0<LookAtModifier3D, Int> =
+        MethodStringName0<LookAtModifier3D, Int>("get_origin_bone")
+
+    @JvmStatic
+    public val setOriginExternalNodeName: MethodStringName1<LookAtModifier3D, Unit, NodePath> =
+        MethodStringName1<LookAtModifier3D, Unit, NodePath>("set_origin_external_node")
+
+    @JvmStatic
+    public val getOriginExternalNodeName: MethodStringName0<LookAtModifier3D, NodePath> =
+        MethodStringName0<LookAtModifier3D, NodePath>("get_origin_external_node")
+
+    @JvmStatic
+    public val setOriginOffsetName: MethodStringName1<LookAtModifier3D, Unit, Vector3> =
+        MethodStringName1<LookAtModifier3D, Unit, Vector3>("set_origin_offset")
+
+    @JvmStatic
+    public val getOriginOffsetName: MethodStringName0<LookAtModifier3D, Vector3> =
+        MethodStringName0<LookAtModifier3D, Vector3>("get_origin_offset")
+
+    @JvmStatic
+    public val setDurationName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_duration")
+
+    @JvmStatic
+    public val getDurationName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_duration")
+
+    @JvmStatic
+    public val setTransitionTypeName:
+        MethodStringName1<LookAtModifier3D, Unit, Tween.TransitionType> =
+        MethodStringName1<LookAtModifier3D, Unit, Tween.TransitionType>("set_transition_type")
+
+    @JvmStatic
+    public val getTransitionTypeName: MethodStringName0<LookAtModifier3D, Tween.TransitionType> =
+        MethodStringName0<LookAtModifier3D, Tween.TransitionType>("get_transition_type")
+
+    @JvmStatic
+    public val setEaseTypeName: MethodStringName1<LookAtModifier3D, Unit, Tween.EaseType> =
+        MethodStringName1<LookAtModifier3D, Unit, Tween.EaseType>("set_ease_type")
+
+    @JvmStatic
+    public val getEaseTypeName: MethodStringName0<LookAtModifier3D, Tween.EaseType> =
+        MethodStringName0<LookAtModifier3D, Tween.EaseType>("get_ease_type")
+
+    @JvmStatic
+    public val setUseAngleLimitationName: MethodStringName1<LookAtModifier3D, Unit, Boolean> =
+        MethodStringName1<LookAtModifier3D, Unit, Boolean>("set_use_angle_limitation")
+
+    @JvmStatic
+    public val isUsingAngleLimitationName: MethodStringName0<LookAtModifier3D, Boolean> =
+        MethodStringName0<LookAtModifier3D, Boolean>("is_using_angle_limitation")
+
+    @JvmStatic
+    public val setSymmetryLimitationName: MethodStringName1<LookAtModifier3D, Unit, Boolean> =
+        MethodStringName1<LookAtModifier3D, Unit, Boolean>("set_symmetry_limitation")
+
+    @JvmStatic
+    public val isLimitationSymmetryName: MethodStringName0<LookAtModifier3D, Boolean> =
+        MethodStringName0<LookAtModifier3D, Boolean>("is_limitation_symmetry")
+
+    @JvmStatic
+    public val setPrimaryLimitAngleName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_primary_limit_angle")
+
+    @JvmStatic
+    public val getPrimaryLimitAngleName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_primary_limit_angle")
+
+    @JvmStatic
+    public val setPrimaryDampThresholdName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_primary_damp_threshold")
+
+    @JvmStatic
+    public val getPrimaryDampThresholdName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_primary_damp_threshold")
+
+    @JvmStatic
+    public val setPrimaryPositiveLimitAngleName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_primary_positive_limit_angle")
+
+    @JvmStatic
+    public val getPrimaryPositiveLimitAngleName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_primary_positive_limit_angle")
+
+    @JvmStatic
+    public val setPrimaryPositiveDampThresholdName: MethodStringName1<LookAtModifier3D, Unit, Float>
+        = MethodStringName1<LookAtModifier3D, Unit, Float>("set_primary_positive_damp_threshold")
+
+    @JvmStatic
+    public val getPrimaryPositiveDampThresholdName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_primary_positive_damp_threshold")
+
+    @JvmStatic
+    public val setPrimaryNegativeLimitAngleName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_primary_negative_limit_angle")
+
+    @JvmStatic
+    public val getPrimaryNegativeLimitAngleName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_primary_negative_limit_angle")
+
+    @JvmStatic
+    public val setPrimaryNegativeDampThresholdName: MethodStringName1<LookAtModifier3D, Unit, Float>
+        = MethodStringName1<LookAtModifier3D, Unit, Float>("set_primary_negative_damp_threshold")
+
+    @JvmStatic
+    public val getPrimaryNegativeDampThresholdName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_primary_negative_damp_threshold")
+
+    @JvmStatic
+    public val setSecondaryLimitAngleName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_secondary_limit_angle")
+
+    @JvmStatic
+    public val getSecondaryLimitAngleName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_secondary_limit_angle")
+
+    @JvmStatic
+    public val setSecondaryDampThresholdName: MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_secondary_damp_threshold")
+
+    @JvmStatic
+    public val getSecondaryDampThresholdName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_secondary_damp_threshold")
+
+    @JvmStatic
+    public val setSecondaryPositiveLimitAngleName: MethodStringName1<LookAtModifier3D, Unit, Float>
+        = MethodStringName1<LookAtModifier3D, Unit, Float>("set_secondary_positive_limit_angle")
+
+    @JvmStatic
+    public val getSecondaryPositiveLimitAngleName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_secondary_positive_limit_angle")
+
+    @JvmStatic
+    public val setSecondaryPositiveDampThresholdName:
+        MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_secondary_positive_damp_threshold")
+
+    @JvmStatic
+    public val getSecondaryPositiveDampThresholdName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_secondary_positive_damp_threshold")
+
+    @JvmStatic
+    public val setSecondaryNegativeLimitAngleName: MethodStringName1<LookAtModifier3D, Unit, Float>
+        = MethodStringName1<LookAtModifier3D, Unit, Float>("set_secondary_negative_limit_angle")
+
+    @JvmStatic
+    public val getSecondaryNegativeLimitAngleName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_secondary_negative_limit_angle")
+
+    @JvmStatic
+    public val setSecondaryNegativeDampThresholdName:
+        MethodStringName1<LookAtModifier3D, Unit, Float> =
+        MethodStringName1<LookAtModifier3D, Unit, Float>("set_secondary_negative_damp_threshold")
+
+    @JvmStatic
+    public val getSecondaryNegativeDampThresholdName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_secondary_negative_damp_threshold")
+
+    @JvmStatic
+    public val getInterpolationRemainingName: MethodStringName0<LookAtModifier3D, Float> =
+        MethodStringName0<LookAtModifier3D, Float>("get_interpolation_remaining")
+
+    @JvmStatic
+    public val isInterpolatingName: MethodStringName0<LookAtModifier3D, Boolean> =
+        MethodStringName0<LookAtModifier3D, Boolean>("is_interpolating")
+
+    @JvmStatic
+    public val isTargetWithinLimitationName: MethodStringName0<LookAtModifier3D, Boolean> =
+        MethodStringName0<LookAtModifier3D, Boolean>("is_target_within_limitation")
+  }
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =

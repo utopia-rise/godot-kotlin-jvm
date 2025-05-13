@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -28,6 +30,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * *Root motion* refers to an animation technique where a mesh's skeleton is used to give impulse to
@@ -186,7 +189,47 @@ public open class RootMotionView : VisualInstance3D() {
 
   public final fun setAnimationPath(path: String) = setAnimationPath(path.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setAnimationPathName: MethodStringName1<RootMotionView, Unit, NodePath> =
+        MethodStringName1<RootMotionView, Unit, NodePath>("set_animation_path")
+
+    @JvmStatic
+    public val getAnimationPathName: MethodStringName0<RootMotionView, NodePath> =
+        MethodStringName0<RootMotionView, NodePath>("get_animation_path")
+
+    @JvmStatic
+    public val setColorName: MethodStringName1<RootMotionView, Unit, Color> =
+        MethodStringName1<RootMotionView, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val getColorName: MethodStringName0<RootMotionView, Color> =
+        MethodStringName0<RootMotionView, Color>("get_color")
+
+    @JvmStatic
+    public val setCellSizeName: MethodStringName1<RootMotionView, Unit, Float> =
+        MethodStringName1<RootMotionView, Unit, Float>("set_cell_size")
+
+    @JvmStatic
+    public val getCellSizeName: MethodStringName0<RootMotionView, Float> =
+        MethodStringName0<RootMotionView, Float>("get_cell_size")
+
+    @JvmStatic
+    public val setRadiusName: MethodStringName1<RootMotionView, Unit, Float> =
+        MethodStringName1<RootMotionView, Unit, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName0<RootMotionView, Float> =
+        MethodStringName0<RootMotionView, Float>("get_radius")
+
+    @JvmStatic
+    public val setZeroYName: MethodStringName1<RootMotionView, Unit, Boolean> =
+        MethodStringName1<RootMotionView, Unit, Boolean>("set_zero_y")
+
+    @JvmStatic
+    public val getZeroYName: MethodStringName0<RootMotionView, Boolean> =
+        MethodStringName0<RootMotionView, Boolean>("get_zero_y")
+  }
 
   public object MethodBindings {
     internal val setAnimationPathPtr: VoidPtr =

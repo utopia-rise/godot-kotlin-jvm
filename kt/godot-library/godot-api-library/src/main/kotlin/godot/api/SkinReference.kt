@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * An internal object containing a mapping from a [Skin] used within the context of a particular
@@ -62,7 +64,15 @@ public open class SkinReference internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getSkeletonName: MethodStringName0<SkinReference, RID> =
+        MethodStringName0<SkinReference, RID>("get_skeleton")
+
+    @JvmStatic
+    public val getSkinName: MethodStringName0<SkinReference, Skin?> =
+        MethodStringName0<SkinReference, Skin?>("get_skin")
+  }
 
   public object MethodBindings {
     internal val getSkeletonPtr: VoidPtr =

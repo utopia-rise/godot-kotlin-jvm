@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -25,6 +27,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * [SpringArm3D] casts a ray or a shape along its Z axis and moves all its direct children to the
@@ -178,7 +181,55 @@ public open class SpringArm3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getHitLengthName: MethodStringName0<SpringArm3D, Float> =
+        MethodStringName0<SpringArm3D, Float>("get_hit_length")
+
+    @JvmStatic
+    public val setLengthName: MethodStringName1<SpringArm3D, Unit, Float> =
+        MethodStringName1<SpringArm3D, Unit, Float>("set_length")
+
+    @JvmStatic
+    public val getLengthName: MethodStringName0<SpringArm3D, Float> =
+        MethodStringName0<SpringArm3D, Float>("get_length")
+
+    @JvmStatic
+    public val setShapeName: MethodStringName1<SpringArm3D, Unit, Shape3D?> =
+        MethodStringName1<SpringArm3D, Unit, Shape3D?>("set_shape")
+
+    @JvmStatic
+    public val getShapeName: MethodStringName0<SpringArm3D, Shape3D?> =
+        MethodStringName0<SpringArm3D, Shape3D?>("get_shape")
+
+    @JvmStatic
+    public val addExcludedObjectName: MethodStringName1<SpringArm3D, Unit, RID> =
+        MethodStringName1<SpringArm3D, Unit, RID>("add_excluded_object")
+
+    @JvmStatic
+    public val removeExcludedObjectName: MethodStringName1<SpringArm3D, Boolean, RID> =
+        MethodStringName1<SpringArm3D, Boolean, RID>("remove_excluded_object")
+
+    @JvmStatic
+    public val clearExcludedObjectsName: MethodStringName0<SpringArm3D, Unit> =
+        MethodStringName0<SpringArm3D, Unit>("clear_excluded_objects")
+
+    @JvmStatic
+    public val setCollisionMaskName: MethodStringName1<SpringArm3D, Unit, Long> =
+        MethodStringName1<SpringArm3D, Unit, Long>("set_collision_mask")
+
+    @JvmStatic
+    public val getCollisionMaskName: MethodStringName0<SpringArm3D, Long> =
+        MethodStringName0<SpringArm3D, Long>("get_collision_mask")
+
+    @JvmStatic
+    public val setMarginName: MethodStringName1<SpringArm3D, Unit, Float> =
+        MethodStringName1<SpringArm3D, Unit, Float>("set_margin")
+
+    @JvmStatic
+    public val getMarginName: MethodStringName0<SpringArm3D, Float> =
+        MethodStringName0<SpringArm3D, Float>("get_margin")
+  }
 
   public object MethodBindings {
     internal val getHitLengthPtr: VoidPtr =

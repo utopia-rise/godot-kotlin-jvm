@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
@@ -50,7 +53,15 @@ public open class Texture3DRD : Texture3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTextureRdRidName: MethodStringName1<Texture3DRD, Unit, RID> =
+        MethodStringName1<Texture3DRD, Unit, RID>("set_texture_rd_rid")
+
+    @JvmStatic
+    public val getTextureRdRidName: MethodStringName0<Texture3DRD, RID> =
+        MethodStringName0<Texture3DRD, RID>("get_texture_rd_rid")
+  }
 
   public object MethodBindings {
     internal val setTextureRdRidPtr: VoidPtr =

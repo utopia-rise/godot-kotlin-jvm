@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A constant [Transform3D], which can be used as an input node.
@@ -78,7 +81,16 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setConstantName:
+        MethodStringName1<VisualShaderNodeTransformConstant, Unit, Transform3D> =
+        MethodStringName1<VisualShaderNodeTransformConstant, Unit, Transform3D>("set_constant")
+
+    @JvmStatic
+    public val getConstantName: MethodStringName0<VisualShaderNodeTransformConstant, Transform3D> =
+        MethodStringName0<VisualShaderNodeTransformConstant, Transform3D>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.Signal2
@@ -28,6 +30,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class StatusIndicator : Node() {
@@ -143,7 +146,43 @@ public open class StatusIndicator : Node() {
 
   public final fun setMenu(menu: String) = setMenu(menu.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTooltipName: MethodStringName1<StatusIndicator, Unit, String> =
+        MethodStringName1<StatusIndicator, Unit, String>("set_tooltip")
+
+    @JvmStatic
+    public val getTooltipName: MethodStringName0<StatusIndicator, String> =
+        MethodStringName0<StatusIndicator, String>("get_tooltip")
+
+    @JvmStatic
+    public val setIconName: MethodStringName1<StatusIndicator, Unit, Texture2D?> =
+        MethodStringName1<StatusIndicator, Unit, Texture2D?>("set_icon")
+
+    @JvmStatic
+    public val getIconName: MethodStringName0<StatusIndicator, Texture2D?> =
+        MethodStringName0<StatusIndicator, Texture2D?>("get_icon")
+
+    @JvmStatic
+    public val setVisibleName: MethodStringName1<StatusIndicator, Unit, Boolean> =
+        MethodStringName1<StatusIndicator, Unit, Boolean>("set_visible")
+
+    @JvmStatic
+    public val isVisibleName: MethodStringName0<StatusIndicator, Boolean> =
+        MethodStringName0<StatusIndicator, Boolean>("is_visible")
+
+    @JvmStatic
+    public val setMenuName: MethodStringName1<StatusIndicator, Unit, NodePath> =
+        MethodStringName1<StatusIndicator, Unit, NodePath>("set_menu")
+
+    @JvmStatic
+    public val getMenuName: MethodStringName0<StatusIndicator, NodePath> =
+        MethodStringName0<StatusIndicator, NodePath>("get_menu")
+
+    @JvmStatic
+    public val getRectName: MethodStringName0<StatusIndicator, Rect2> =
+        MethodStringName0<StatusIndicator, Rect2>("get_rect")
+  }
 
   public object MethodBindings {
     internal val setTooltipPtr: VoidPtr =

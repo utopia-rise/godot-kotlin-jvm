@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Can have [PathFollow3D] child nodes moving along the [Curve3D]. See [PathFollow3D] for more
@@ -58,7 +61,15 @@ public open class Path3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as Curve3D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCurveName: MethodStringName1<Path3D, Unit, Curve3D?> =
+        MethodStringName1<Path3D, Unit, Curve3D?>("set_curve")
+
+    @JvmStatic
+    public val getCurveName: MethodStringName0<Path3D, Curve3D?> =
+        MethodStringName0<Path3D, Curve3D?>("get_curve")
+  }
 
   public object MethodBindings {
     internal val setCurvePtr: VoidPtr =

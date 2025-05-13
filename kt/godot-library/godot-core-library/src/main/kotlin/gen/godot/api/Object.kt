@@ -14,6 +14,11 @@ import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.Error
 import godot.core.KtObject
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.StringName
@@ -37,6 +42,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * An advanced [Variant] type. All classes in the engine inherit from Object. Each class may define
@@ -1864,6 +1870,192 @@ public open class Object : KtObject() {
   }
 
   public companion object {
+    @JvmStatic
+    public val getClassName: MethodStringName0<Object, String> =
+        MethodStringName0<Object, String>("get_class")
+
+    @JvmStatic
+    public val isClassName: MethodStringName1<Object, Boolean, String> =
+        MethodStringName1<Object, Boolean, String>("is_class")
+
+    @JvmStatic
+    public val setName: MethodStringName2<Object, Unit, StringName, Any?> =
+        MethodStringName2<Object, Unit, StringName, Any?>("set")
+
+    @JvmStatic
+    public val getName: MethodStringName1<Object, Any?, StringName> =
+        MethodStringName1<Object, Any?, StringName>("get")
+
+    @JvmStatic
+    public val setIndexedName: MethodStringName2<Object, Unit, NodePath, Any?> =
+        MethodStringName2<Object, Unit, NodePath, Any?>("set_indexed")
+
+    @JvmStatic
+    public val getIndexedName: MethodStringName1<Object, Any?, NodePath> =
+        MethodStringName1<Object, Any?, NodePath>("get_indexed")
+
+    @JvmStatic
+    public val getPropertyListName: MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>
+        = MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_property_list")
+
+    @JvmStatic
+    public val getMethodListName: MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_method_list")
+
+    @JvmStatic
+    public val propertyCanRevertName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("property_can_revert")
+
+    @JvmStatic
+    public val propertyGetRevertName: MethodStringName1<Object, Any?, StringName> =
+        MethodStringName1<Object, Any?, StringName>("property_get_revert")
+
+    @JvmStatic
+    public val notificationName: MethodStringName2<Object, Unit, Int, Boolean> =
+        MethodStringName2<Object, Unit, Int, Boolean>("notification")
+
+    @JvmStatic
+    public val toStringName: MethodStringName0<Object, String> =
+        MethodStringName0<Object, String>("to_string")
+
+    @JvmStatic
+    public val getInstanceIdName: MethodStringName0<Object, Long> =
+        MethodStringName0<Object, Long>("get_instance_id")
+
+    @JvmStatic
+    public val setScriptName: MethodStringName1<Object, Unit, Any?> =
+        MethodStringName1<Object, Unit, Any?>("set_script")
+
+    @JvmStatic
+    public val getScriptName: MethodStringName0<Object, Any?> =
+        MethodStringName0<Object, Any?>("get_script")
+
+    @JvmStatic
+    public val setMetaName: MethodStringName2<Object, Unit, StringName, Any?> =
+        MethodStringName2<Object, Unit, StringName, Any?>("set_meta")
+
+    @JvmStatic
+    public val removeMetaName: MethodStringName1<Object, Unit, StringName> =
+        MethodStringName1<Object, Unit, StringName>("remove_meta")
+
+    @JvmStatic
+    public val getMetaName: MethodStringName2<Object, Any?, StringName, Any?> =
+        MethodStringName2<Object, Any?, StringName, Any?>("get_meta")
+
+    @JvmStatic
+    public val hasMetaName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_meta")
+
+    @JvmStatic
+    public val getMetaListName: MethodStringName0<Object, VariantArray<StringName>> =
+        MethodStringName0<Object, VariantArray<StringName>>("get_meta_list")
+
+    @JvmStatic
+    public val addUserSignalName: MethodStringName2<Object, Unit, String, VariantArray<Any?>> =
+        MethodStringName2<Object, Unit, String, VariantArray<Any?>>("add_user_signal")
+
+    @JvmStatic
+    public val hasUserSignalName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_user_signal")
+
+    @JvmStatic
+    public val removeUserSignalName: MethodStringName1<Object, Unit, StringName> =
+        MethodStringName1<Object, Unit, StringName>("remove_user_signal")
+
+    @JvmStatic
+    public val setDeferredName: MethodStringName2<Object, Unit, StringName, Any?> =
+        MethodStringName2<Object, Unit, StringName, Any?>("set_deferred")
+
+    @JvmStatic
+    public val callvName: MethodStringName2<Object, Any?, StringName, VariantArray<Any?>> =
+        MethodStringName2<Object, Any?, StringName, VariantArray<Any?>>("callv")
+
+    @JvmStatic
+    public val hasMethodName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_method")
+
+    @JvmStatic
+    public val getMethodArgumentCountName: MethodStringName1<Object, Int, StringName> =
+        MethodStringName1<Object, Int, StringName>("get_method_argument_count")
+
+    @JvmStatic
+    public val hasSignalName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_signal")
+
+    @JvmStatic
+    public val getSignalListName: MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_signal_list")
+
+    @JvmStatic
+    public val getSignalConnectionListName:
+        MethodStringName1<Object, VariantArray<Dictionary<Any?, Any?>>, StringName> =
+        MethodStringName1<Object, VariantArray<Dictionary<Any?, Any?>>, StringName>("get_signal_connection_list")
+
+    @JvmStatic
+    public val getIncomingConnectionsName:
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_incoming_connections")
+
+    @JvmStatic
+    public val connectName: MethodStringName3<Object, Error, StringName, Callable, ConnectFlags> =
+        MethodStringName3<Object, Error, StringName, Callable, ConnectFlags>("connect")
+
+    @JvmStatic
+    public val disconnectName: MethodStringName2<Object, Unit, StringName, Callable> =
+        MethodStringName2<Object, Unit, StringName, Callable>("disconnect")
+
+    @JvmStatic
+    public val isConnectedName: MethodStringName2<Object, Boolean, StringName, Callable> =
+        MethodStringName2<Object, Boolean, StringName, Callable>("is_connected")
+
+    @JvmStatic
+    public val hasConnectionsName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_connections")
+
+    @JvmStatic
+    public val setBlockSignalsName: MethodStringName1<Object, Unit, Boolean> =
+        MethodStringName1<Object, Unit, Boolean>("set_block_signals")
+
+    @JvmStatic
+    public val isBlockingSignalsName: MethodStringName0<Object, Boolean> =
+        MethodStringName0<Object, Boolean>("is_blocking_signals")
+
+    @JvmStatic
+    public val notifyPropertyListChangedName: MethodStringName0<Object, Unit> =
+        MethodStringName0<Object, Unit>("notify_property_list_changed")
+
+    @JvmStatic
+    public val setMessageTranslationName: MethodStringName1<Object, Unit, Boolean> =
+        MethodStringName1<Object, Unit, Boolean>("set_message_translation")
+
+    @JvmStatic
+    public val canTranslateMessagesName: MethodStringName0<Object, Boolean> =
+        MethodStringName0<Object, Boolean>("can_translate_messages")
+
+    @JvmStatic
+    public val trName: MethodStringName2<Object, String, StringName, StringName> =
+        MethodStringName2<Object, String, StringName, StringName>("tr")
+
+    @JvmStatic
+    public val trNName: MethodStringName4<Object, String, StringName, StringName, Int, StringName> =
+        MethodStringName4<Object, String, StringName, StringName, Int, StringName>("tr_n")
+
+    @JvmStatic
+    public val getTranslationDomainName: MethodStringName0<Object, StringName> =
+        MethodStringName0<Object, StringName>("get_translation_domain")
+
+    @JvmStatic
+    public val setTranslationDomainName: MethodStringName1<Object, Unit, StringName> =
+        MethodStringName1<Object, Unit, StringName>("set_translation_domain")
+
+    @JvmStatic
+    public val isQueuedForDeletionName: MethodStringName0<Object, Boolean> =
+        MethodStringName0<Object, Boolean>("is_queued_for_deletion")
+
+    @JvmStatic
+    public val cancelFreeName: MethodStringName0<Object, Unit> =
+        MethodStringName0<Object, Unit>("cancel_free")
+
     /**
      * Notification received when the object is initialized, before its script is attached. Used
      * internally.

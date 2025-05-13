@@ -13,6 +13,12 @@ import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.HorizontalAlignment
 import godot.core.InlineAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2
@@ -44,6 +50,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstraction over [TextServer] for handling a single paragraph of text.
@@ -699,7 +706,250 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val clearName: MethodStringName0<TextParagraph, Unit> =
+        MethodStringName0<TextParagraph, Unit>("clear")
+
+    @JvmStatic
+    public val setDirectionName: MethodStringName1<TextParagraph, Unit, TextServer.Direction> =
+        MethodStringName1<TextParagraph, Unit, TextServer.Direction>("set_direction")
+
+    @JvmStatic
+    public val getDirectionName: MethodStringName0<TextParagraph, TextServer.Direction> =
+        MethodStringName0<TextParagraph, TextServer.Direction>("get_direction")
+
+    @JvmStatic
+    public val setCustomPunctuationName: MethodStringName1<TextParagraph, Unit, String> =
+        MethodStringName1<TextParagraph, Unit, String>("set_custom_punctuation")
+
+    @JvmStatic
+    public val getCustomPunctuationName: MethodStringName0<TextParagraph, String> =
+        MethodStringName0<TextParagraph, String>("get_custom_punctuation")
+
+    @JvmStatic
+    public val setOrientationName: MethodStringName1<TextParagraph, Unit, TextServer.Orientation> =
+        MethodStringName1<TextParagraph, Unit, TextServer.Orientation>("set_orientation")
+
+    @JvmStatic
+    public val getOrientationName: MethodStringName0<TextParagraph, TextServer.Orientation> =
+        MethodStringName0<TextParagraph, TextServer.Orientation>("get_orientation")
+
+    @JvmStatic
+    public val setPreserveInvalidName: MethodStringName1<TextParagraph, Unit, Boolean> =
+        MethodStringName1<TextParagraph, Unit, Boolean>("set_preserve_invalid")
+
+    @JvmStatic
+    public val getPreserveInvalidName: MethodStringName0<TextParagraph, Boolean> =
+        MethodStringName0<TextParagraph, Boolean>("get_preserve_invalid")
+
+    @JvmStatic
+    public val setPreserveControlName: MethodStringName1<TextParagraph, Unit, Boolean> =
+        MethodStringName1<TextParagraph, Unit, Boolean>("set_preserve_control")
+
+    @JvmStatic
+    public val getPreserveControlName: MethodStringName0<TextParagraph, Boolean> =
+        MethodStringName0<TextParagraph, Boolean>("get_preserve_control")
+
+    @JvmStatic
+    public val setBidiOverrideName: MethodStringName1<TextParagraph, Unit, VariantArray<Any?>> =
+        MethodStringName1<TextParagraph, Unit, VariantArray<Any?>>("set_bidi_override")
+
+    @JvmStatic
+    public val setDropcapName:
+        MethodStringName5<TextParagraph, Boolean, String, Font?, Int, Rect2, String> =
+        MethodStringName5<TextParagraph, Boolean, String, Font?, Int, Rect2, String>("set_dropcap")
+
+    @JvmStatic
+    public val clearDropcapName: MethodStringName0<TextParagraph, Unit> =
+        MethodStringName0<TextParagraph, Unit>("clear_dropcap")
+
+    @JvmStatic
+    public val addStringName:
+        MethodStringName5<TextParagraph, Boolean, String, Font?, Int, String, Any?> =
+        MethodStringName5<TextParagraph, Boolean, String, Font?, Int, String, Any?>("add_string")
+
+    @JvmStatic
+    public val addObjectName:
+        MethodStringName5<TextParagraph, Boolean, Any?, Vector2, InlineAlignment, Int, Float> =
+        MethodStringName5<TextParagraph, Boolean, Any?, Vector2, InlineAlignment, Int, Float>("add_object")
+
+    @JvmStatic
+    public val resizeObjectName:
+        MethodStringName4<TextParagraph, Boolean, Any?, Vector2, InlineAlignment, Float> =
+        MethodStringName4<TextParagraph, Boolean, Any?, Vector2, InlineAlignment, Float>("resize_object")
+
+    @JvmStatic
+    public val setAlignmentName: MethodStringName1<TextParagraph, Unit, HorizontalAlignment> =
+        MethodStringName1<TextParagraph, Unit, HorizontalAlignment>("set_alignment")
+
+    @JvmStatic
+    public val getAlignmentName: MethodStringName0<TextParagraph, HorizontalAlignment> =
+        MethodStringName0<TextParagraph, HorizontalAlignment>("get_alignment")
+
+    @JvmStatic
+    public val tabAlignName: MethodStringName1<TextParagraph, Unit, PackedFloat32Array> =
+        MethodStringName1<TextParagraph, Unit, PackedFloat32Array>("tab_align")
+
+    @JvmStatic
+    public val setBreakFlagsName: MethodStringName1<TextParagraph, Unit, TextServer.LineBreakFlag> =
+        MethodStringName1<TextParagraph, Unit, TextServer.LineBreakFlag>("set_break_flags")
+
+    @JvmStatic
+    public val getBreakFlagsName: MethodStringName0<TextParagraph, TextServer.LineBreakFlag> =
+        MethodStringName0<TextParagraph, TextServer.LineBreakFlag>("get_break_flags")
+
+    @JvmStatic
+    public val setJustificationFlagsName:
+        MethodStringName1<TextParagraph, Unit, TextServer.JustificationFlag> =
+        MethodStringName1<TextParagraph, Unit, TextServer.JustificationFlag>("set_justification_flags")
+
+    @JvmStatic
+    public val getJustificationFlagsName:
+        MethodStringName0<TextParagraph, TextServer.JustificationFlag> =
+        MethodStringName0<TextParagraph, TextServer.JustificationFlag>("get_justification_flags")
+
+    @JvmStatic
+    public val setTextOverrunBehaviorName:
+        MethodStringName1<TextParagraph, Unit, TextServer.OverrunBehavior> =
+        MethodStringName1<TextParagraph, Unit, TextServer.OverrunBehavior>("set_text_overrun_behavior")
+
+    @JvmStatic
+    public val getTextOverrunBehaviorName:
+        MethodStringName0<TextParagraph, TextServer.OverrunBehavior> =
+        MethodStringName0<TextParagraph, TextServer.OverrunBehavior>("get_text_overrun_behavior")
+
+    @JvmStatic
+    public val setEllipsisCharName: MethodStringName1<TextParagraph, Unit, String> =
+        MethodStringName1<TextParagraph, Unit, String>("set_ellipsis_char")
+
+    @JvmStatic
+    public val getEllipsisCharName: MethodStringName0<TextParagraph, String> =
+        MethodStringName0<TextParagraph, String>("get_ellipsis_char")
+
+    @JvmStatic
+    public val setWidthName: MethodStringName1<TextParagraph, Unit, Float> =
+        MethodStringName1<TextParagraph, Unit, Float>("set_width")
+
+    @JvmStatic
+    public val getWidthName: MethodStringName0<TextParagraph, Float> =
+        MethodStringName0<TextParagraph, Float>("get_width")
+
+    @JvmStatic
+    public val getNonWrappedSizeName: MethodStringName0<TextParagraph, Vector2> =
+        MethodStringName0<TextParagraph, Vector2>("get_non_wrapped_size")
+
+    @JvmStatic
+    public val getSizeName: MethodStringName0<TextParagraph, Vector2> =
+        MethodStringName0<TextParagraph, Vector2>("get_size")
+
+    @JvmStatic
+    public val getRidName: MethodStringName0<TextParagraph, RID> =
+        MethodStringName0<TextParagraph, RID>("get_rid")
+
+    @JvmStatic
+    public val getLineRidName: MethodStringName1<TextParagraph, RID, Int> =
+        MethodStringName1<TextParagraph, RID, Int>("get_line_rid")
+
+    @JvmStatic
+    public val getDropcapRidName: MethodStringName0<TextParagraph, RID> =
+        MethodStringName0<TextParagraph, RID>("get_dropcap_rid")
+
+    @JvmStatic
+    public val getLineCountName: MethodStringName0<TextParagraph, Int> =
+        MethodStringName0<TextParagraph, Int>("get_line_count")
+
+    @JvmStatic
+    public val setMaxLinesVisibleName: MethodStringName1<TextParagraph, Unit, Int> =
+        MethodStringName1<TextParagraph, Unit, Int>("set_max_lines_visible")
+
+    @JvmStatic
+    public val getMaxLinesVisibleName: MethodStringName0<TextParagraph, Int> =
+        MethodStringName0<TextParagraph, Int>("get_max_lines_visible")
+
+    @JvmStatic
+    public val setLineSpacingName: MethodStringName1<TextParagraph, Unit, Float> =
+        MethodStringName1<TextParagraph, Unit, Float>("set_line_spacing")
+
+    @JvmStatic
+    public val getLineSpacingName: MethodStringName0<TextParagraph, Float> =
+        MethodStringName0<TextParagraph, Float>("get_line_spacing")
+
+    @JvmStatic
+    public val getLineObjectsName: MethodStringName1<TextParagraph, VariantArray<Any?>, Int> =
+        MethodStringName1<TextParagraph, VariantArray<Any?>, Int>("get_line_objects")
+
+    @JvmStatic
+    public val getLineObjectRectName: MethodStringName2<TextParagraph, Rect2, Int, Any?> =
+        MethodStringName2<TextParagraph, Rect2, Int, Any?>("get_line_object_rect")
+
+    @JvmStatic
+    public val getLineSizeName: MethodStringName1<TextParagraph, Vector2, Int> =
+        MethodStringName1<TextParagraph, Vector2, Int>("get_line_size")
+
+    @JvmStatic
+    public val getLineRangeName: MethodStringName1<TextParagraph, Vector2i, Int> =
+        MethodStringName1<TextParagraph, Vector2i, Int>("get_line_range")
+
+    @JvmStatic
+    public val getLineAscentName: MethodStringName1<TextParagraph, Float, Int> =
+        MethodStringName1<TextParagraph, Float, Int>("get_line_ascent")
+
+    @JvmStatic
+    public val getLineDescentName: MethodStringName1<TextParagraph, Float, Int> =
+        MethodStringName1<TextParagraph, Float, Int>("get_line_descent")
+
+    @JvmStatic
+    public val getLineWidthName: MethodStringName1<TextParagraph, Float, Int> =
+        MethodStringName1<TextParagraph, Float, Int>("get_line_width")
+
+    @JvmStatic
+    public val getLineUnderlinePositionName: MethodStringName1<TextParagraph, Float, Int> =
+        MethodStringName1<TextParagraph, Float, Int>("get_line_underline_position")
+
+    @JvmStatic
+    public val getLineUnderlineThicknessName: MethodStringName1<TextParagraph, Float, Int> =
+        MethodStringName1<TextParagraph, Float, Int>("get_line_underline_thickness")
+
+    @JvmStatic
+    public val getDropcapSizeName: MethodStringName0<TextParagraph, Vector2> =
+        MethodStringName0<TextParagraph, Vector2>("get_dropcap_size")
+
+    @JvmStatic
+    public val getDropcapLinesName: MethodStringName0<TextParagraph, Int> =
+        MethodStringName0<TextParagraph, Int>("get_dropcap_lines")
+
+    @JvmStatic
+    public val drawName: MethodStringName4<TextParagraph, Unit, RID, Vector2, Color, Color> =
+        MethodStringName4<TextParagraph, Unit, RID, Vector2, Color, Color>("draw")
+
+    @JvmStatic
+    public val drawOutlineName:
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Color> =
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Color>("draw_outline")
+
+    @JvmStatic
+    public val drawLineName: MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color> =
+        MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color>("draw_line")
+
+    @JvmStatic
+    public val drawLineOutlineName:
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Int, Color> =
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Int, Color>("draw_line_outline")
+
+    @JvmStatic
+    public val drawDropcapName: MethodStringName3<TextParagraph, Unit, RID, Vector2, Color> =
+        MethodStringName3<TextParagraph, Unit, RID, Vector2, Color>("draw_dropcap")
+
+    @JvmStatic
+    public val drawDropcapOutlineName:
+        MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color> =
+        MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color>("draw_dropcap_outline")
+
+    @JvmStatic
+    public val hitTestName: MethodStringName1<TextParagraph, Int, Vector2> =
+        MethodStringName1<TextParagraph, Int, Vector2>("hit_test")
+  }
 
   public object MethodBindings {
     internal val clearPtr: VoidPtr =

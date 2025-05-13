@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
 import godot.core.Signal0
 import godot.core.VariantArray
 import godot.core.VariantParser.BOOL
@@ -24,6 +25,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and
@@ -175,7 +177,31 @@ public open class AudioStream : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getLengthName: MethodStringName0<AudioStream, Double> =
+        MethodStringName0<AudioStream, Double>("get_length")
+
+    @JvmStatic
+    public val isMonophonicName: MethodStringName0<AudioStream, Boolean> =
+        MethodStringName0<AudioStream, Boolean>("is_monophonic")
+
+    @JvmStatic
+    public val instantiatePlaybackName: MethodStringName0<AudioStream, AudioStreamPlayback?> =
+        MethodStringName0<AudioStream, AudioStreamPlayback?>("instantiate_playback")
+
+    @JvmStatic
+    public val canBeSampledName: MethodStringName0<AudioStream, Boolean> =
+        MethodStringName0<AudioStream, Boolean>("can_be_sampled")
+
+    @JvmStatic
+    public val generateSampleName: MethodStringName0<AudioStream, AudioSample?> =
+        MethodStringName0<AudioStream, AudioSample?>("generate_sample")
+
+    @JvmStatic
+    public val isMetaStreamName: MethodStringName0<AudioStream, Boolean> =
+        MethodStringName0<AudioStream, Boolean>("is_meta_stream")
+  }
 
   public object MethodBindings {
     internal val getLengthPtr: VoidPtr =

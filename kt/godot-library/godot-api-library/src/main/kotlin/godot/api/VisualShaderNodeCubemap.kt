@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -18,6 +20,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha
@@ -156,7 +159,31 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setSourceName: MethodStringName1<VisualShaderNodeCubemap, Unit, Source> =
+        MethodStringName1<VisualShaderNodeCubemap, Unit, Source>("set_source")
+
+    @JvmStatic
+    public val getSourceName: MethodStringName0<VisualShaderNodeCubemap, Source> =
+        MethodStringName0<VisualShaderNodeCubemap, Source>("get_source")
+
+    @JvmStatic
+    public val setCubeMapName: MethodStringName1<VisualShaderNodeCubemap, Unit, TextureLayered?> =
+        MethodStringName1<VisualShaderNodeCubemap, Unit, TextureLayered?>("set_cube_map")
+
+    @JvmStatic
+    public val getCubeMapName: MethodStringName0<VisualShaderNodeCubemap, TextureLayered?> =
+        MethodStringName0<VisualShaderNodeCubemap, TextureLayered?>("get_cube_map")
+
+    @JvmStatic
+    public val setTextureTypeName: MethodStringName1<VisualShaderNodeCubemap, Unit, TextureType> =
+        MethodStringName1<VisualShaderNodeCubemap, Unit, TextureType>("set_texture_type")
+
+    @JvmStatic
+    public val getTextureTypeName: MethodStringName0<VisualShaderNodeCubemap, TextureType> =
+        MethodStringName0<VisualShaderNodeCubemap, TextureType>("get_texture_type")
+  }
 
   public object MethodBindings {
     internal val setSourcePtr: VoidPtr =

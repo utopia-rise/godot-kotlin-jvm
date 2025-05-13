@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the
@@ -268,7 +271,70 @@ public open class Timer : Node() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setWaitTimeName: MethodStringName1<Timer, Unit, Double> =
+        MethodStringName1<Timer, Unit, Double>("set_wait_time")
+
+    @JvmStatic
+    public val getWaitTimeName: MethodStringName0<Timer, Double> =
+        MethodStringName0<Timer, Double>("get_wait_time")
+
+    @JvmStatic
+    public val setOneShotName: MethodStringName1<Timer, Unit, Boolean> =
+        MethodStringName1<Timer, Unit, Boolean>("set_one_shot")
+
+    @JvmStatic
+    public val isOneShotName: MethodStringName0<Timer, Boolean> =
+        MethodStringName0<Timer, Boolean>("is_one_shot")
+
+    @JvmStatic
+    public val setAutostartName: MethodStringName1<Timer, Unit, Boolean> =
+        MethodStringName1<Timer, Unit, Boolean>("set_autostart")
+
+    @JvmStatic
+    public val hasAutostartName: MethodStringName0<Timer, Boolean> =
+        MethodStringName0<Timer, Boolean>("has_autostart")
+
+    @JvmStatic
+    public val startName: MethodStringName1<Timer, Unit, Double> =
+        MethodStringName1<Timer, Unit, Double>("start")
+
+    @JvmStatic
+    public val stopName: MethodStringName0<Timer, Unit> = MethodStringName0<Timer, Unit>("stop")
+
+    @JvmStatic
+    public val setPausedName: MethodStringName1<Timer, Unit, Boolean> =
+        MethodStringName1<Timer, Unit, Boolean>("set_paused")
+
+    @JvmStatic
+    public val isPausedName: MethodStringName0<Timer, Boolean> =
+        MethodStringName0<Timer, Boolean>("is_paused")
+
+    @JvmStatic
+    public val setIgnoreTimeScaleName: MethodStringName1<Timer, Unit, Boolean> =
+        MethodStringName1<Timer, Unit, Boolean>("set_ignore_time_scale")
+
+    @JvmStatic
+    public val isIgnoringTimeScaleName: MethodStringName0<Timer, Boolean> =
+        MethodStringName0<Timer, Boolean>("is_ignoring_time_scale")
+
+    @JvmStatic
+    public val isStoppedName: MethodStringName0<Timer, Boolean> =
+        MethodStringName0<Timer, Boolean>("is_stopped")
+
+    @JvmStatic
+    public val getTimeLeftName: MethodStringName0<Timer, Double> =
+        MethodStringName0<Timer, Double>("get_time_left")
+
+    @JvmStatic
+    public val setTimerProcessCallbackName: MethodStringName1<Timer, Unit, TimerProcessCallback> =
+        MethodStringName1<Timer, Unit, TimerProcessCallback>("set_timer_process_callback")
+
+    @JvmStatic
+    public val getTimerProcessCallbackName: MethodStringName0<Timer, TimerProcessCallback> =
+        MethodStringName0<Timer, TimerProcessCallback>("get_timer_process_callback")
+  }
 
   public object MethodBindings {
     internal val setWaitTimePtr: VoidPtr =

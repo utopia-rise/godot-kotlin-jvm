@@ -13,6 +13,16 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName11
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
+import godot.core.MethodStringName7
+import godot.core.MethodStringName9
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedInt64Array
@@ -46,6 +56,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: RenderingDevice.BarrierMask): Long = this.or(other.flag)
 
@@ -5120,6 +5131,530 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public companion object {
+    @JvmStatic
+    public val textureCreateName:
+        MethodStringName3<RenderingDevice, RID, RDTextureFormat?, RDTextureView?, VariantArray<PackedByteArray>>
+        =
+        MethodStringName3<RenderingDevice, RID, RDTextureFormat?, RDTextureView?, VariantArray<PackedByteArray>>("texture_create")
+
+    @JvmStatic
+    public val textureCreateSharedName: MethodStringName2<RenderingDevice, RID, RDTextureView?, RID>
+        = MethodStringName2<RenderingDevice, RID, RDTextureView?, RID>("texture_create_shared")
+
+    @JvmStatic
+    public val textureCreateSharedFromSliceName:
+        MethodStringName6<RenderingDevice, RID, RDTextureView?, RID, Long, Long, Long, TextureSliceType>
+        =
+        MethodStringName6<RenderingDevice, RID, RDTextureView?, RID, Long, Long, Long, TextureSliceType>("texture_create_shared_from_slice")
+
+    @JvmStatic
+    public val textureCreateFromExtensionName:
+        MethodStringName9<RenderingDevice, RID, TextureType, DataFormat, TextureSamples, TextureUsageBits, Long, Long, Long, Long, Long>
+        =
+        MethodStringName9<RenderingDevice, RID, TextureType, DataFormat, TextureSamples, TextureUsageBits, Long, Long, Long, Long, Long>("texture_create_from_extension")
+
+    @JvmStatic
+    public val textureUpdateName:
+        MethodStringName3<RenderingDevice, Error, RID, Long, PackedByteArray> =
+        MethodStringName3<RenderingDevice, Error, RID, Long, PackedByteArray>("texture_update")
+
+    @JvmStatic
+    public val textureGetDataName: MethodStringName2<RenderingDevice, PackedByteArray, RID, Long> =
+        MethodStringName2<RenderingDevice, PackedByteArray, RID, Long>("texture_get_data")
+
+    @JvmStatic
+    public val textureGetDataAsyncName:
+        MethodStringName3<RenderingDevice, Error, RID, Long, Callable> =
+        MethodStringName3<RenderingDevice, Error, RID, Long, Callable>("texture_get_data_async")
+
+    @JvmStatic
+    public val textureIsFormatSupportedForUsageName:
+        MethodStringName2<RenderingDevice, Boolean, DataFormat, TextureUsageBits> =
+        MethodStringName2<RenderingDevice, Boolean, DataFormat, TextureUsageBits>("texture_is_format_supported_for_usage")
+
+    @JvmStatic
+    public val textureIsSharedName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("texture_is_shared")
+
+    @JvmStatic
+    public val textureIsValidName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("texture_is_valid")
+
+    @JvmStatic
+    public val textureSetDiscardableName: MethodStringName2<RenderingDevice, Unit, RID, Boolean> =
+        MethodStringName2<RenderingDevice, Unit, RID, Boolean>("texture_set_discardable")
+
+    @JvmStatic
+    public val textureIsDiscardableName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("texture_is_discardable")
+
+    @JvmStatic
+    public val textureCopyName:
+        MethodStringName9<RenderingDevice, Error, RID, RID, Vector3, Vector3, Vector3, Long, Long, Long, Long>
+        =
+        MethodStringName9<RenderingDevice, Error, RID, RID, Vector3, Vector3, Vector3, Long, Long, Long, Long>("texture_copy")
+
+    @JvmStatic
+    public val textureClearName:
+        MethodStringName6<RenderingDevice, Error, RID, Color, Long, Long, Long, Long> =
+        MethodStringName6<RenderingDevice, Error, RID, Color, Long, Long, Long, Long>("texture_clear")
+
+    @JvmStatic
+    public val textureResolveMultisampleName: MethodStringName2<RenderingDevice, Error, RID, RID> =
+        MethodStringName2<RenderingDevice, Error, RID, RID>("texture_resolve_multisample")
+
+    @JvmStatic
+    public val textureGetFormatName: MethodStringName1<RenderingDevice, RDTextureFormat?, RID> =
+        MethodStringName1<RenderingDevice, RDTextureFormat?, RID>("texture_get_format")
+
+    @JvmStatic
+    public val textureGetNativeHandleName: MethodStringName1<RenderingDevice, Long, RID> =
+        MethodStringName1<RenderingDevice, Long, RID>("texture_get_native_handle")
+
+    @JvmStatic
+    public val framebufferFormatCreateName:
+        MethodStringName2<RenderingDevice, Long, VariantArray<RDAttachmentFormat>, Long> =
+        MethodStringName2<RenderingDevice, Long, VariantArray<RDAttachmentFormat>, Long>("framebuffer_format_create")
+
+    @JvmStatic
+    public val framebufferFormatCreateMultipassName:
+        MethodStringName3<RenderingDevice, Long, VariantArray<RDAttachmentFormat>, VariantArray<RDFramebufferPass>, Long>
+        =
+        MethodStringName3<RenderingDevice, Long, VariantArray<RDAttachmentFormat>, VariantArray<RDFramebufferPass>, Long>("framebuffer_format_create_multipass")
+
+    @JvmStatic
+    public val framebufferFormatCreateEmptyName:
+        MethodStringName1<RenderingDevice, Long, TextureSamples> =
+        MethodStringName1<RenderingDevice, Long, TextureSamples>("framebuffer_format_create_empty")
+
+    @JvmStatic
+    public val framebufferFormatGetTextureSamplesName:
+        MethodStringName2<RenderingDevice, TextureSamples, Long, Long> =
+        MethodStringName2<RenderingDevice, TextureSamples, Long, Long>("framebuffer_format_get_texture_samples")
+
+    @JvmStatic
+    public val framebufferCreateName:
+        MethodStringName3<RenderingDevice, RID, VariantArray<RID>, Long, Long> =
+        MethodStringName3<RenderingDevice, RID, VariantArray<RID>, Long, Long>("framebuffer_create")
+
+    @JvmStatic
+    public val framebufferCreateMultipassName:
+        MethodStringName4<RenderingDevice, RID, VariantArray<RID>, VariantArray<RDFramebufferPass>, Long, Long>
+        =
+        MethodStringName4<RenderingDevice, RID, VariantArray<RID>, VariantArray<RDFramebufferPass>, Long, Long>("framebuffer_create_multipass")
+
+    @JvmStatic
+    public val framebufferCreateEmptyName:
+        MethodStringName3<RenderingDevice, RID, Vector2i, TextureSamples, Long> =
+        MethodStringName3<RenderingDevice, RID, Vector2i, TextureSamples, Long>("framebuffer_create_empty")
+
+    @JvmStatic
+    public val framebufferGetFormatName: MethodStringName1<RenderingDevice, Long, RID> =
+        MethodStringName1<RenderingDevice, Long, RID>("framebuffer_get_format")
+
+    @JvmStatic
+    public val framebufferIsValidName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("framebuffer_is_valid")
+
+    @JvmStatic
+    public val samplerCreateName: MethodStringName1<RenderingDevice, RID, RDSamplerState?> =
+        MethodStringName1<RenderingDevice, RID, RDSamplerState?>("sampler_create")
+
+    @JvmStatic
+    public val samplerIsFormatSupportedForFilterName:
+        MethodStringName2<RenderingDevice, Boolean, DataFormat, SamplerFilter> =
+        MethodStringName2<RenderingDevice, Boolean, DataFormat, SamplerFilter>("sampler_is_format_supported_for_filter")
+
+    @JvmStatic
+    public val vertexBufferCreateName:
+        MethodStringName3<RenderingDevice, RID, Long, PackedByteArray, BufferCreationBits> =
+        MethodStringName3<RenderingDevice, RID, Long, PackedByteArray, BufferCreationBits>("vertex_buffer_create")
+
+    @JvmStatic
+    public val vertexFormatCreateName:
+        MethodStringName1<RenderingDevice, Long, VariantArray<RDVertexAttribute>> =
+        MethodStringName1<RenderingDevice, Long, VariantArray<RDVertexAttribute>>("vertex_format_create")
+
+    @JvmStatic
+    public val vertexArrayCreateName:
+        MethodStringName4<RenderingDevice, RID, Long, Long, VariantArray<RID>, PackedInt64Array> =
+        MethodStringName4<RenderingDevice, RID, Long, Long, VariantArray<RID>, PackedInt64Array>("vertex_array_create")
+
+    @JvmStatic
+    public val indexBufferCreateName:
+        MethodStringName5<RenderingDevice, RID, Long, IndexBufferFormat, PackedByteArray, Boolean, BufferCreationBits>
+        =
+        MethodStringName5<RenderingDevice, RID, Long, IndexBufferFormat, PackedByteArray, Boolean, BufferCreationBits>("index_buffer_create")
+
+    @JvmStatic
+    public val indexArrayCreateName: MethodStringName3<RenderingDevice, RID, RID, Long, Long> =
+        MethodStringName3<RenderingDevice, RID, RID, Long, Long>("index_array_create")
+
+    @JvmStatic
+    public val shaderCompileSpirvFromSourceName:
+        MethodStringName2<RenderingDevice, RDShaderSPIRV?, RDShaderSource?, Boolean> =
+        MethodStringName2<RenderingDevice, RDShaderSPIRV?, RDShaderSource?, Boolean>("shader_compile_spirv_from_source")
+
+    @JvmStatic
+    public val shaderCompileBinaryFromSpirvName:
+        MethodStringName2<RenderingDevice, PackedByteArray, RDShaderSPIRV?, String> =
+        MethodStringName2<RenderingDevice, PackedByteArray, RDShaderSPIRV?, String>("shader_compile_binary_from_spirv")
+
+    @JvmStatic
+    public val shaderCreateFromSpirvName:
+        MethodStringName2<RenderingDevice, RID, RDShaderSPIRV?, String> =
+        MethodStringName2<RenderingDevice, RID, RDShaderSPIRV?, String>("shader_create_from_spirv")
+
+    @JvmStatic
+    public val shaderCreateFromBytecodeName:
+        MethodStringName2<RenderingDevice, RID, PackedByteArray, RID> =
+        MethodStringName2<RenderingDevice, RID, PackedByteArray, RID>("shader_create_from_bytecode")
+
+    @JvmStatic
+    public val shaderCreatePlaceholderName: MethodStringName0<RenderingDevice, RID> =
+        MethodStringName0<RenderingDevice, RID>("shader_create_placeholder")
+
+    @JvmStatic
+    public val shaderGetVertexInputAttributeMaskName: MethodStringName1<RenderingDevice, Long, RID>
+        = MethodStringName1<RenderingDevice, Long, RID>("shader_get_vertex_input_attribute_mask")
+
+    @JvmStatic
+    public val uniformBufferCreateName:
+        MethodStringName3<RenderingDevice, RID, Long, PackedByteArray, BufferCreationBits> =
+        MethodStringName3<RenderingDevice, RID, Long, PackedByteArray, BufferCreationBits>("uniform_buffer_create")
+
+    @JvmStatic
+    public val storageBufferCreateName:
+        MethodStringName4<RenderingDevice, RID, Long, PackedByteArray, StorageBufferUsage, BufferCreationBits>
+        =
+        MethodStringName4<RenderingDevice, RID, Long, PackedByteArray, StorageBufferUsage, BufferCreationBits>("storage_buffer_create")
+
+    @JvmStatic
+    public val textureBufferCreateName:
+        MethodStringName3<RenderingDevice, RID, Long, DataFormat, PackedByteArray> =
+        MethodStringName3<RenderingDevice, RID, Long, DataFormat, PackedByteArray>("texture_buffer_create")
+
+    @JvmStatic
+    public val uniformSetCreateName:
+        MethodStringName3<RenderingDevice, RID, VariantArray<RDUniform>, RID, Long> =
+        MethodStringName3<RenderingDevice, RID, VariantArray<RDUniform>, RID, Long>("uniform_set_create")
+
+    @JvmStatic
+    public val uniformSetIsValidName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("uniform_set_is_valid")
+
+    @JvmStatic
+    public val bufferCopyName: MethodStringName5<RenderingDevice, Error, RID, RID, Long, Long, Long>
+        = MethodStringName5<RenderingDevice, Error, RID, RID, Long, Long, Long>("buffer_copy")
+
+    @JvmStatic
+    public val bufferUpdateName:
+        MethodStringName4<RenderingDevice, Error, RID, Long, Long, PackedByteArray> =
+        MethodStringName4<RenderingDevice, Error, RID, Long, Long, PackedByteArray>("buffer_update")
+
+    @JvmStatic
+    public val bufferClearName: MethodStringName3<RenderingDevice, Error, RID, Long, Long> =
+        MethodStringName3<RenderingDevice, Error, RID, Long, Long>("buffer_clear")
+
+    @JvmStatic
+    public val bufferGetDataName:
+        MethodStringName3<RenderingDevice, PackedByteArray, RID, Long, Long> =
+        MethodStringName3<RenderingDevice, PackedByteArray, RID, Long, Long>("buffer_get_data")
+
+    @JvmStatic
+    public val bufferGetDataAsyncName:
+        MethodStringName4<RenderingDevice, Error, RID, Callable, Long, Long> =
+        MethodStringName4<RenderingDevice, Error, RID, Callable, Long, Long>("buffer_get_data_async")
+
+    @JvmStatic
+    public val bufferGetDeviceAddressName: MethodStringName1<RenderingDevice, Long, RID> =
+        MethodStringName1<RenderingDevice, Long, RID>("buffer_get_device_address")
+
+    @JvmStatic
+    public val renderPipelineCreateName:
+        MethodStringName11<RenderingDevice, RID, RID, Long, Long, RenderPrimitive, RDPipelineRasterizationState?, RDPipelineMultisampleState?, RDPipelineDepthStencilState?, RDPipelineColorBlendState?, PipelineDynamicStateFlags, Long, VariantArray<RDPipelineSpecializationConstant>>
+        =
+        MethodStringName11<RenderingDevice, RID, RID, Long, Long, RenderPrimitive, RDPipelineRasterizationState?, RDPipelineMultisampleState?, RDPipelineDepthStencilState?, RDPipelineColorBlendState?, PipelineDynamicStateFlags, Long, VariantArray<RDPipelineSpecializationConstant>>("render_pipeline_create")
+
+    @JvmStatic
+    public val renderPipelineIsValidName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("render_pipeline_is_valid")
+
+    @JvmStatic
+    public val computePipelineCreateName:
+        MethodStringName2<RenderingDevice, RID, RID, VariantArray<RDPipelineSpecializationConstant>>
+        =
+        MethodStringName2<RenderingDevice, RID, RID, VariantArray<RDPipelineSpecializationConstant>>("compute_pipeline_create")
+
+    @JvmStatic
+    public val computePipelineIsValidName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("compute_pipeline_is_valid")
+
+    @JvmStatic
+    public val screenGetWidthName: MethodStringName1<RenderingDevice, Int, Int> =
+        MethodStringName1<RenderingDevice, Int, Int>("screen_get_width")
+
+    @JvmStatic
+    public val screenGetHeightName: MethodStringName1<RenderingDevice, Int, Int> =
+        MethodStringName1<RenderingDevice, Int, Int>("screen_get_height")
+
+    @JvmStatic
+    public val screenGetFramebufferFormatName: MethodStringName1<RenderingDevice, Long, Int> =
+        MethodStringName1<RenderingDevice, Long, Int>("screen_get_framebuffer_format")
+
+    @JvmStatic
+    public val drawListBeginForScreenName: MethodStringName2<RenderingDevice, Long, Int, Color> =
+        MethodStringName2<RenderingDevice, Long, Int, Color>("draw_list_begin_for_screen")
+
+    @JvmStatic
+    public val drawListBeginName:
+        MethodStringName7<RenderingDevice, Long, RID, DrawFlags, PackedColorArray, Float, Long, Rect2, Long>
+        =
+        MethodStringName7<RenderingDevice, Long, RID, DrawFlags, PackedColorArray, Float, Long, Rect2, Long>("draw_list_begin")
+
+    @JvmStatic
+    public val drawListBeginSplitName:
+        MethodStringName11<RenderingDevice, PackedInt64Array, RID, Long, InitialAction, FinalAction, InitialAction, FinalAction, PackedColorArray, Float, Long, Rect2, VariantArray<RID>>
+        =
+        MethodStringName11<RenderingDevice, PackedInt64Array, RID, Long, InitialAction, FinalAction, InitialAction, FinalAction, PackedColorArray, Float, Long, Rect2, VariantArray<RID>>("draw_list_begin_split")
+
+    @JvmStatic
+    public val drawListSetBlendConstantsName: MethodStringName2<RenderingDevice, Unit, Long, Color>
+        = MethodStringName2<RenderingDevice, Unit, Long, Color>("draw_list_set_blend_constants")
+
+    @JvmStatic
+    public val drawListBindRenderPipelineName: MethodStringName2<RenderingDevice, Unit, Long, RID> =
+        MethodStringName2<RenderingDevice, Unit, Long, RID>("draw_list_bind_render_pipeline")
+
+    @JvmStatic
+    public val drawListBindUniformSetName: MethodStringName3<RenderingDevice, Unit, Long, RID, Long>
+        = MethodStringName3<RenderingDevice, Unit, Long, RID, Long>("draw_list_bind_uniform_set")
+
+    @JvmStatic
+    public val drawListBindVertexArrayName: MethodStringName2<RenderingDevice, Unit, Long, RID> =
+        MethodStringName2<RenderingDevice, Unit, Long, RID>("draw_list_bind_vertex_array")
+
+    @JvmStatic
+    public val drawListBindIndexArrayName: MethodStringName2<RenderingDevice, Unit, Long, RID> =
+        MethodStringName2<RenderingDevice, Unit, Long, RID>("draw_list_bind_index_array")
+
+    @JvmStatic
+    public val drawListSetPushConstantName:
+        MethodStringName3<RenderingDevice, Unit, Long, PackedByteArray, Long> =
+        MethodStringName3<RenderingDevice, Unit, Long, PackedByteArray, Long>("draw_list_set_push_constant")
+
+    @JvmStatic
+    public val drawListDrawName: MethodStringName4<RenderingDevice, Unit, Long, Boolean, Long, Long>
+        = MethodStringName4<RenderingDevice, Unit, Long, Boolean, Long, Long>("draw_list_draw")
+
+    @JvmStatic
+    public val drawListDrawIndirectName:
+        MethodStringName6<RenderingDevice, Unit, Long, Boolean, RID, Long, Long, Long> =
+        MethodStringName6<RenderingDevice, Unit, Long, Boolean, RID, Long, Long, Long>("draw_list_draw_indirect")
+
+    @JvmStatic
+    public val drawListEnableScissorName: MethodStringName2<RenderingDevice, Unit, Long, Rect2> =
+        MethodStringName2<RenderingDevice, Unit, Long, Rect2>("draw_list_enable_scissor")
+
+    @JvmStatic
+    public val drawListDisableScissorName: MethodStringName1<RenderingDevice, Unit, Long> =
+        MethodStringName1<RenderingDevice, Unit, Long>("draw_list_disable_scissor")
+
+    @JvmStatic
+    public val drawListSwitchToNextPassName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("draw_list_switch_to_next_pass")
+
+    @JvmStatic
+    public val drawListSwitchToNextPassSplitName:
+        MethodStringName1<RenderingDevice, PackedInt64Array, Long> =
+        MethodStringName1<RenderingDevice, PackedInt64Array, Long>("draw_list_switch_to_next_pass_split")
+
+    @JvmStatic
+    public val drawListEndName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("draw_list_end")
+
+    @JvmStatic
+    public val computeListBeginName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("compute_list_begin")
+
+    @JvmStatic
+    public val computeListBindComputePipelineName:
+        MethodStringName2<RenderingDevice, Unit, Long, RID> =
+        MethodStringName2<RenderingDevice, Unit, Long, RID>("compute_list_bind_compute_pipeline")
+
+    @JvmStatic
+    public val computeListSetPushConstantName:
+        MethodStringName3<RenderingDevice, Unit, Long, PackedByteArray, Long> =
+        MethodStringName3<RenderingDevice, Unit, Long, PackedByteArray, Long>("compute_list_set_push_constant")
+
+    @JvmStatic
+    public val computeListBindUniformSetName:
+        MethodStringName3<RenderingDevice, Unit, Long, RID, Long> =
+        MethodStringName3<RenderingDevice, Unit, Long, RID, Long>("compute_list_bind_uniform_set")
+
+    @JvmStatic
+    public val computeListDispatchName:
+        MethodStringName4<RenderingDevice, Unit, Long, Long, Long, Long> =
+        MethodStringName4<RenderingDevice, Unit, Long, Long, Long, Long>("compute_list_dispatch")
+
+    @JvmStatic
+    public val computeListDispatchIndirectName:
+        MethodStringName3<RenderingDevice, Unit, Long, RID, Long> =
+        MethodStringName3<RenderingDevice, Unit, Long, RID, Long>("compute_list_dispatch_indirect")
+
+    @JvmStatic
+    public val computeListAddBarrierName: MethodStringName1<RenderingDevice, Unit, Long> =
+        MethodStringName1<RenderingDevice, Unit, Long>("compute_list_add_barrier")
+
+    @JvmStatic
+    public val computeListEndName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("compute_list_end")
+
+    @JvmStatic
+    public val freeRidName: MethodStringName1<RenderingDevice, Unit, RID> =
+        MethodStringName1<RenderingDevice, Unit, RID>("free_rid")
+
+    @JvmStatic
+    public val captureTimestampName: MethodStringName1<RenderingDevice, Unit, String> =
+        MethodStringName1<RenderingDevice, Unit, String>("capture_timestamp")
+
+    @JvmStatic
+    public val getCapturedTimestampsCountName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_captured_timestamps_count")
+
+    @JvmStatic
+    public val getCapturedTimestampsFrameName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_captured_timestamps_frame")
+
+    @JvmStatic
+    public val getCapturedTimestampGpuTimeName: MethodStringName1<RenderingDevice, Long, Long> =
+        MethodStringName1<RenderingDevice, Long, Long>("get_captured_timestamp_gpu_time")
+
+    @JvmStatic
+    public val getCapturedTimestampCpuTimeName: MethodStringName1<RenderingDevice, Long, Long> =
+        MethodStringName1<RenderingDevice, Long, Long>("get_captured_timestamp_cpu_time")
+
+    @JvmStatic
+    public val getCapturedTimestampNameName: MethodStringName1<RenderingDevice, String, Long> =
+        MethodStringName1<RenderingDevice, String, Long>("get_captured_timestamp_name")
+
+    @JvmStatic
+    public val hasFeatureName: MethodStringName1<RenderingDevice, Boolean, Features> =
+        MethodStringName1<RenderingDevice, Boolean, Features>("has_feature")
+
+    @JvmStatic
+    public val limitGetName: MethodStringName1<RenderingDevice, Long, Limit> =
+        MethodStringName1<RenderingDevice, Long, Limit>("limit_get")
+
+    @JvmStatic
+    public val getFrameDelayName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_frame_delay")
+
+    @JvmStatic
+    public val submitName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("submit")
+
+    @JvmStatic
+    public val syncName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("sync")
+
+    @JvmStatic
+    public val barrierName: MethodStringName2<RenderingDevice, Unit, BarrierMask, BarrierMask> =
+        MethodStringName2<RenderingDevice, Unit, BarrierMask, BarrierMask>("barrier")
+
+    @JvmStatic
+    public val fullBarrierName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("full_barrier")
+
+    @JvmStatic
+    public val createLocalDeviceName: MethodStringName0<RenderingDevice, RenderingDevice?> =
+        MethodStringName0<RenderingDevice, RenderingDevice?>("create_local_device")
+
+    @JvmStatic
+    public val setResourceNameName: MethodStringName2<RenderingDevice, Unit, RID, String> =
+        MethodStringName2<RenderingDevice, Unit, RID, String>("set_resource_name")
+
+    @JvmStatic
+    public val drawCommandBeginLabelName: MethodStringName2<RenderingDevice, Unit, String, Color> =
+        MethodStringName2<RenderingDevice, Unit, String, Color>("draw_command_begin_label")
+
+    @JvmStatic
+    public val drawCommandInsertLabelName: MethodStringName2<RenderingDevice, Unit, String, Color> =
+        MethodStringName2<RenderingDevice, Unit, String, Color>("draw_command_insert_label")
+
+    @JvmStatic
+    public val drawCommandEndLabelName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("draw_command_end_label")
+
+    @JvmStatic
+    public val getDeviceVendorNameName: MethodStringName0<RenderingDevice, String> =
+        MethodStringName0<RenderingDevice, String>("get_device_vendor_name")
+
+    @JvmStatic
+    public val getDeviceNameName: MethodStringName0<RenderingDevice, String> =
+        MethodStringName0<RenderingDevice, String>("get_device_name")
+
+    @JvmStatic
+    public val getDevicePipelineCacheUuidName: MethodStringName0<RenderingDevice, String> =
+        MethodStringName0<RenderingDevice, String>("get_device_pipeline_cache_uuid")
+
+    @JvmStatic
+    public val getMemoryUsageName: MethodStringName1<RenderingDevice, Long, MemoryType> =
+        MethodStringName1<RenderingDevice, Long, MemoryType>("get_memory_usage")
+
+    @JvmStatic
+    public val getDriverResourceName:
+        MethodStringName3<RenderingDevice, Long, DriverResource, RID, Long> =
+        MethodStringName3<RenderingDevice, Long, DriverResource, RID, Long>("get_driver_resource")
+
+    @JvmStatic
+    public val getPerfReportName: MethodStringName0<RenderingDevice, String> =
+        MethodStringName0<RenderingDevice, String>("get_perf_report")
+
+    @JvmStatic
+    public val getDriverAndDeviceMemoryReportName: MethodStringName0<RenderingDevice, String> =
+        MethodStringName0<RenderingDevice, String>("get_driver_and_device_memory_report")
+
+    @JvmStatic
+    public val getTrackedObjectNameName: MethodStringName1<RenderingDevice, String, Long> =
+        MethodStringName1<RenderingDevice, String, Long>("get_tracked_object_name")
+
+    @JvmStatic
+    public val getTrackedObjectTypeCountName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_tracked_object_type_count")
+
+    @JvmStatic
+    public val getDriverTotalMemoryName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_driver_total_memory")
+
+    @JvmStatic
+    public val getDriverAllocationCountName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_driver_allocation_count")
+
+    @JvmStatic
+    public val getDriverMemoryByObjectTypeName: MethodStringName1<RenderingDevice, Long, Long> =
+        MethodStringName1<RenderingDevice, Long, Long>("get_driver_memory_by_object_type")
+
+    @JvmStatic
+    public val getDriverAllocsByObjectTypeName: MethodStringName1<RenderingDevice, Long, Long> =
+        MethodStringName1<RenderingDevice, Long, Long>("get_driver_allocs_by_object_type")
+
+    @JvmStatic
+    public val getDeviceTotalMemoryName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_device_total_memory")
+
+    @JvmStatic
+    public val getDeviceAllocationCountName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("get_device_allocation_count")
+
+    @JvmStatic
+    public val getDeviceMemoryByObjectTypeName: MethodStringName1<RenderingDevice, Long, Long> =
+        MethodStringName1<RenderingDevice, Long, Long>("get_device_memory_by_object_type")
+
+    @JvmStatic
+    public val getDeviceAllocsByObjectTypeName: MethodStringName1<RenderingDevice, Long, Long> =
+        MethodStringName1<RenderingDevice, Long, Long>("get_device_allocs_by_object_type")
+
     /**
      * Returned by functions that return an ID if a value is invalid.
      */

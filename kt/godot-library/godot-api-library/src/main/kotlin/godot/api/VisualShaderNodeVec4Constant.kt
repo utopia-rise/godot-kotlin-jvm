@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Quaternion
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.QUATERNION
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A constant 4D vector, which can be used as an input node.
@@ -78,7 +81,15 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setConstantName: MethodStringName1<VisualShaderNodeVec4Constant, Unit, Quaternion> =
+        MethodStringName1<VisualShaderNodeVec4Constant, Unit, Quaternion>("set_constant")
+
+    @JvmStatic
+    public val getConstantName: MethodStringName0<VisualShaderNodeVec4Constant, Quaternion> =
+        MethodStringName0<VisualShaderNodeVec4Constant, Quaternion>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

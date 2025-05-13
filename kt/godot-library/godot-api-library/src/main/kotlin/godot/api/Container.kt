@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal0
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for all GUI containers. A [Container] automatically arranges its child controls in a
@@ -85,6 +88,14 @@ public open class Container : Control() {
   }
 
   public companion object {
+    @JvmStatic
+    public val queueSortName: MethodStringName0<Container, Unit> =
+        MethodStringName0<Container, Unit>("queue_sort")
+
+    @JvmStatic
+    public val fitChildInRectName: MethodStringName2<Container, Unit, Control?, Rect2> =
+        MethodStringName2<Container, Unit, Control?, Rect2>("fit_child_in_rect")
+
     /**
      * Notification just before children are going to be sorted, in case there's something to
      * process beforehand.

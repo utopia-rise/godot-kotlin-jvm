@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
@@ -143,7 +146,52 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setRadiusName: MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_radius")
+
+    @JvmStatic
+    public val getRadiusName: MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
+        MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_radius")
+
+    @JvmStatic
+    public val setCentralHorizontalAngleName:
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_central_horizontal_angle")
+
+    @JvmStatic
+    public val getCentralHorizontalAngleName:
+        MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
+        MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_central_horizontal_angle")
+
+    @JvmStatic
+    public val setUpperVerticalAngleName:
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_upper_vertical_angle")
+
+    @JvmStatic
+    public val getUpperVerticalAngleName: MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
+        MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_upper_vertical_angle")
+
+    @JvmStatic
+    public val setLowerVerticalAngleName:
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_lower_vertical_angle")
+
+    @JvmStatic
+    public val getLowerVerticalAngleName: MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
+        MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_lower_vertical_angle")
+
+    @JvmStatic
+    public val setFallbackSegmentsName:
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Long> =
+        MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Long>("set_fallback_segments")
+
+    @JvmStatic
+    public val getFallbackSegmentsName: MethodStringName0<OpenXRCompositionLayerEquirect, Long> =
+        MethodStringName0<OpenXRCompositionLayerEquirect, Long>("get_fallback_segments")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

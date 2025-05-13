@@ -12,6 +12,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName7
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -39,6 +44,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * CodeEdit is a specialized [TextEdit] designed for editing plain text code files. It has many
@@ -1365,7 +1371,456 @@ public open class CodeEdit : TextEdit() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setIndentSizeName: MethodStringName1<CodeEdit, Unit, Int> =
+        MethodStringName1<CodeEdit, Unit, Int>("set_indent_size")
+
+    @JvmStatic
+    public val getIndentSizeName: MethodStringName0<CodeEdit, Int> =
+        MethodStringName0<CodeEdit, Int>("get_indent_size")
+
+    @JvmStatic
+    public val setIndentUsingSpacesName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_indent_using_spaces")
+
+    @JvmStatic
+    public val isIndentUsingSpacesName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_indent_using_spaces")
+
+    @JvmStatic
+    public val setAutoIndentEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_auto_indent_enabled")
+
+    @JvmStatic
+    public val isAutoIndentEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_auto_indent_enabled")
+
+    @JvmStatic
+    public val setAutoIndentPrefixesName: MethodStringName1<CodeEdit, Unit, VariantArray<String>> =
+        MethodStringName1<CodeEdit, Unit, VariantArray<String>>("set_auto_indent_prefixes")
+
+    @JvmStatic
+    public val getAutoIndentPrefixesName: MethodStringName0<CodeEdit, VariantArray<String>> =
+        MethodStringName0<CodeEdit, VariantArray<String>>("get_auto_indent_prefixes")
+
+    @JvmStatic
+    public val doIndentName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("do_indent")
+
+    @JvmStatic
+    public val indentLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("indent_lines")
+
+    @JvmStatic
+    public val unindentLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("unindent_lines")
+
+    @JvmStatic
+    public val convertIndentName: MethodStringName2<CodeEdit, Unit, Int, Int> =
+        MethodStringName2<CodeEdit, Unit, Int, Int>("convert_indent")
+
+    @JvmStatic
+    public val setAutoBraceCompletionEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_auto_brace_completion_enabled")
+
+    @JvmStatic
+    public val isAutoBraceCompletionEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_auto_brace_completion_enabled")
+
+    @JvmStatic
+    public val setHighlightMatchingBracesEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_highlight_matching_braces_enabled")
+
+    @JvmStatic
+    public val isHighlightMatchingBracesEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_highlight_matching_braces_enabled")
+
+    @JvmStatic
+    public val addAutoBraceCompletionPairName: MethodStringName2<CodeEdit, Unit, String, String> =
+        MethodStringName2<CodeEdit, Unit, String, String>("add_auto_brace_completion_pair")
+
+    @JvmStatic
+    public val setAutoBraceCompletionPairsName:
+        MethodStringName1<CodeEdit, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<CodeEdit, Unit, Dictionary<Any?, Any?>>("set_auto_brace_completion_pairs")
+
+    @JvmStatic
+    public val getAutoBraceCompletionPairsName: MethodStringName0<CodeEdit, Dictionary<Any?, Any?>>
+        = MethodStringName0<CodeEdit, Dictionary<Any?, Any?>>("get_auto_brace_completion_pairs")
+
+    @JvmStatic
+    public val hasAutoBraceCompletionOpenKeyName: MethodStringName1<CodeEdit, Boolean, String> =
+        MethodStringName1<CodeEdit, Boolean, String>("has_auto_brace_completion_open_key")
+
+    @JvmStatic
+    public val hasAutoBraceCompletionCloseKeyName: MethodStringName1<CodeEdit, Boolean, String> =
+        MethodStringName1<CodeEdit, Boolean, String>("has_auto_brace_completion_close_key")
+
+    @JvmStatic
+    public val getAutoBraceCompletionCloseKeyName: MethodStringName1<CodeEdit, String, String> =
+        MethodStringName1<CodeEdit, String, String>("get_auto_brace_completion_close_key")
+
+    @JvmStatic
+    public val setDrawBreakpointsGutterName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_draw_breakpoints_gutter")
+
+    @JvmStatic
+    public val isDrawingBreakpointsGutterName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_drawing_breakpoints_gutter")
+
+    @JvmStatic
+    public val setDrawBookmarksGutterName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_draw_bookmarks_gutter")
+
+    @JvmStatic
+    public val isDrawingBookmarksGutterName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_drawing_bookmarks_gutter")
+
+    @JvmStatic
+    public val setDrawExecutingLinesGutterName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_draw_executing_lines_gutter")
+
+    @JvmStatic
+    public val isDrawingExecutingLinesGutterName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_drawing_executing_lines_gutter")
+
+    @JvmStatic
+    public val setLineAsBreakpointName: MethodStringName2<CodeEdit, Unit, Int, Boolean> =
+        MethodStringName2<CodeEdit, Unit, Int, Boolean>("set_line_as_breakpoint")
+
+    @JvmStatic
+    public val isLineBreakpointedName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("is_line_breakpointed")
+
+    @JvmStatic
+    public val clearBreakpointedLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("clear_breakpointed_lines")
+
+    @JvmStatic
+    public val getBreakpointedLinesName: MethodStringName0<CodeEdit, PackedInt32Array> =
+        MethodStringName0<CodeEdit, PackedInt32Array>("get_breakpointed_lines")
+
+    @JvmStatic
+    public val setLineAsBookmarkedName: MethodStringName2<CodeEdit, Unit, Int, Boolean> =
+        MethodStringName2<CodeEdit, Unit, Int, Boolean>("set_line_as_bookmarked")
+
+    @JvmStatic
+    public val isLineBookmarkedName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("is_line_bookmarked")
+
+    @JvmStatic
+    public val clearBookmarkedLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("clear_bookmarked_lines")
+
+    @JvmStatic
+    public val getBookmarkedLinesName: MethodStringName0<CodeEdit, PackedInt32Array> =
+        MethodStringName0<CodeEdit, PackedInt32Array>("get_bookmarked_lines")
+
+    @JvmStatic
+    public val setLineAsExecutingName: MethodStringName2<CodeEdit, Unit, Int, Boolean> =
+        MethodStringName2<CodeEdit, Unit, Int, Boolean>("set_line_as_executing")
+
+    @JvmStatic
+    public val isLineExecutingName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("is_line_executing")
+
+    @JvmStatic
+    public val clearExecutingLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("clear_executing_lines")
+
+    @JvmStatic
+    public val getExecutingLinesName: MethodStringName0<CodeEdit, PackedInt32Array> =
+        MethodStringName0<CodeEdit, PackedInt32Array>("get_executing_lines")
+
+    @JvmStatic
+    public val setDrawLineNumbersName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_draw_line_numbers")
+
+    @JvmStatic
+    public val isDrawLineNumbersEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_draw_line_numbers_enabled")
+
+    @JvmStatic
+    public val setLineNumbersZeroPaddedName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_line_numbers_zero_padded")
+
+    @JvmStatic
+    public val isLineNumbersZeroPaddedName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_line_numbers_zero_padded")
+
+    @JvmStatic
+    public val setDrawFoldGutterName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_draw_fold_gutter")
+
+    @JvmStatic
+    public val isDrawingFoldGutterName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_drawing_fold_gutter")
+
+    @JvmStatic
+    public val setLineFoldingEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_line_folding_enabled")
+
+    @JvmStatic
+    public val isLineFoldingEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_line_folding_enabled")
+
+    @JvmStatic
+    public val canFoldLineName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("can_fold_line")
+
+    @JvmStatic
+    public val foldLineName: MethodStringName1<CodeEdit, Unit, Int> =
+        MethodStringName1<CodeEdit, Unit, Int>("fold_line")
+
+    @JvmStatic
+    public val unfoldLineName: MethodStringName1<CodeEdit, Unit, Int> =
+        MethodStringName1<CodeEdit, Unit, Int>("unfold_line")
+
+    @JvmStatic
+    public val foldAllLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("fold_all_lines")
+
+    @JvmStatic
+    public val unfoldAllLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("unfold_all_lines")
+
+    @JvmStatic
+    public val toggleFoldableLineName: MethodStringName1<CodeEdit, Unit, Int> =
+        MethodStringName1<CodeEdit, Unit, Int>("toggle_foldable_line")
+
+    @JvmStatic
+    public val toggleFoldableLinesAtCaretsName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("toggle_foldable_lines_at_carets")
+
+    @JvmStatic
+    public val isLineFoldedName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("is_line_folded")
+
+    @JvmStatic
+    public val getFoldedLinesName: MethodStringName0<CodeEdit, VariantArray<Long>> =
+        MethodStringName0<CodeEdit, VariantArray<Long>>("get_folded_lines")
+
+    @JvmStatic
+    public val createCodeRegionName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("create_code_region")
+
+    @JvmStatic
+    public val getCodeRegionStartTagName: MethodStringName0<CodeEdit, String> =
+        MethodStringName0<CodeEdit, String>("get_code_region_start_tag")
+
+    @JvmStatic
+    public val getCodeRegionEndTagName: MethodStringName0<CodeEdit, String> =
+        MethodStringName0<CodeEdit, String>("get_code_region_end_tag")
+
+    @JvmStatic
+    public val setCodeRegionTagsName: MethodStringName2<CodeEdit, Unit, String, String> =
+        MethodStringName2<CodeEdit, Unit, String, String>("set_code_region_tags")
+
+    @JvmStatic
+    public val isLineCodeRegionStartName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("is_line_code_region_start")
+
+    @JvmStatic
+    public val isLineCodeRegionEndName: MethodStringName1<CodeEdit, Boolean, Int> =
+        MethodStringName1<CodeEdit, Boolean, Int>("is_line_code_region_end")
+
+    @JvmStatic
+    public val addStringDelimiterName: MethodStringName3<CodeEdit, Unit, String, String, Boolean> =
+        MethodStringName3<CodeEdit, Unit, String, String, Boolean>("add_string_delimiter")
+
+    @JvmStatic
+    public val removeStringDelimiterName: MethodStringName1<CodeEdit, Unit, String> =
+        MethodStringName1<CodeEdit, Unit, String>("remove_string_delimiter")
+
+    @JvmStatic
+    public val hasStringDelimiterName: MethodStringName1<CodeEdit, Boolean, String> =
+        MethodStringName1<CodeEdit, Boolean, String>("has_string_delimiter")
+
+    @JvmStatic
+    public val setStringDelimitersName: MethodStringName1<CodeEdit, Unit, VariantArray<String>> =
+        MethodStringName1<CodeEdit, Unit, VariantArray<String>>("set_string_delimiters")
+
+    @JvmStatic
+    public val clearStringDelimitersName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("clear_string_delimiters")
+
+    @JvmStatic
+    public val getStringDelimitersName: MethodStringName0<CodeEdit, VariantArray<String>> =
+        MethodStringName0<CodeEdit, VariantArray<String>>("get_string_delimiters")
+
+    @JvmStatic
+    public val isInStringName: MethodStringName2<CodeEdit, Int, Int, Int> =
+        MethodStringName2<CodeEdit, Int, Int, Int>("is_in_string")
+
+    @JvmStatic
+    public val addCommentDelimiterName: MethodStringName3<CodeEdit, Unit, String, String, Boolean> =
+        MethodStringName3<CodeEdit, Unit, String, String, Boolean>("add_comment_delimiter")
+
+    @JvmStatic
+    public val removeCommentDelimiterName: MethodStringName1<CodeEdit, Unit, String> =
+        MethodStringName1<CodeEdit, Unit, String>("remove_comment_delimiter")
+
+    @JvmStatic
+    public val hasCommentDelimiterName: MethodStringName1<CodeEdit, Boolean, String> =
+        MethodStringName1<CodeEdit, Boolean, String>("has_comment_delimiter")
+
+    @JvmStatic
+    public val setCommentDelimitersName: MethodStringName1<CodeEdit, Unit, VariantArray<String>> =
+        MethodStringName1<CodeEdit, Unit, VariantArray<String>>("set_comment_delimiters")
+
+    @JvmStatic
+    public val clearCommentDelimitersName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("clear_comment_delimiters")
+
+    @JvmStatic
+    public val getCommentDelimitersName: MethodStringName0<CodeEdit, VariantArray<String>> =
+        MethodStringName0<CodeEdit, VariantArray<String>>("get_comment_delimiters")
+
+    @JvmStatic
+    public val isInCommentName: MethodStringName2<CodeEdit, Int, Int, Int> =
+        MethodStringName2<CodeEdit, Int, Int, Int>("is_in_comment")
+
+    @JvmStatic
+    public val getDelimiterStartKeyName: MethodStringName1<CodeEdit, String, Int> =
+        MethodStringName1<CodeEdit, String, Int>("get_delimiter_start_key")
+
+    @JvmStatic
+    public val getDelimiterEndKeyName: MethodStringName1<CodeEdit, String, Int> =
+        MethodStringName1<CodeEdit, String, Int>("get_delimiter_end_key")
+
+    @JvmStatic
+    public val getDelimiterStartPositionName: MethodStringName2<CodeEdit, Vector2, Int, Int> =
+        MethodStringName2<CodeEdit, Vector2, Int, Int>("get_delimiter_start_position")
+
+    @JvmStatic
+    public val getDelimiterEndPositionName: MethodStringName2<CodeEdit, Vector2, Int, Int> =
+        MethodStringName2<CodeEdit, Vector2, Int, Int>("get_delimiter_end_position")
+
+    @JvmStatic
+    public val setCodeHintName: MethodStringName1<CodeEdit, Unit, String> =
+        MethodStringName1<CodeEdit, Unit, String>("set_code_hint")
+
+    @JvmStatic
+    public val setCodeHintDrawBelowName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_code_hint_draw_below")
+
+    @JvmStatic
+    public val getTextForCodeCompletionName: MethodStringName0<CodeEdit, String> =
+        MethodStringName0<CodeEdit, String>("get_text_for_code_completion")
+
+    @JvmStatic
+    public val requestCodeCompletionName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("request_code_completion")
+
+    @JvmStatic
+    public val addCodeCompletionOptionName:
+        MethodStringName7<CodeEdit, Unit, CodeCompletionKind, String, String, Color, Resource?, Any?, Int>
+        =
+        MethodStringName7<CodeEdit, Unit, CodeCompletionKind, String, String, Color, Resource?, Any?, Int>("add_code_completion_option")
+
+    @JvmStatic
+    public val updateCodeCompletionOptionsName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("update_code_completion_options")
+
+    @JvmStatic
+    public val getCodeCompletionOptionsName:
+        MethodStringName0<CodeEdit, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<CodeEdit, VariantArray<Dictionary<Any?, Any?>>>("get_code_completion_options")
+
+    @JvmStatic
+    public val getCodeCompletionOptionName: MethodStringName1<CodeEdit, Dictionary<Any?, Any?>, Int>
+        = MethodStringName1<CodeEdit, Dictionary<Any?, Any?>, Int>("get_code_completion_option")
+
+    @JvmStatic
+    public val getCodeCompletionSelectedIndexName: MethodStringName0<CodeEdit, Int> =
+        MethodStringName0<CodeEdit, Int>("get_code_completion_selected_index")
+
+    @JvmStatic
+    public val setCodeCompletionSelectedIndexName: MethodStringName1<CodeEdit, Unit, Int> =
+        MethodStringName1<CodeEdit, Unit, Int>("set_code_completion_selected_index")
+
+    @JvmStatic
+    public val confirmCodeCompletionName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("confirm_code_completion")
+
+    @JvmStatic
+    public val cancelCodeCompletionName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("cancel_code_completion")
+
+    @JvmStatic
+    public val setCodeCompletionEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_code_completion_enabled")
+
+    @JvmStatic
+    public val isCodeCompletionEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_code_completion_enabled")
+
+    @JvmStatic
+    public val setCodeCompletionPrefixesName:
+        MethodStringName1<CodeEdit, Unit, VariantArray<String>> =
+        MethodStringName1<CodeEdit, Unit, VariantArray<String>>("set_code_completion_prefixes")
+
+    @JvmStatic
+    public val getCodeCompletionPrefixesName: MethodStringName0<CodeEdit, VariantArray<String>> =
+        MethodStringName0<CodeEdit, VariantArray<String>>("get_code_completion_prefixes")
+
+    @JvmStatic
+    public val setLineLengthGuidelinesName: MethodStringName1<CodeEdit, Unit, VariantArray<Long>> =
+        MethodStringName1<CodeEdit, Unit, VariantArray<Long>>("set_line_length_guidelines")
+
+    @JvmStatic
+    public val getLineLengthGuidelinesName: MethodStringName0<CodeEdit, VariantArray<Long>> =
+        MethodStringName0<CodeEdit, VariantArray<Long>>("get_line_length_guidelines")
+
+    @JvmStatic
+    public val setSymbolLookupOnClickEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_symbol_lookup_on_click_enabled")
+
+    @JvmStatic
+    public val isSymbolLookupOnClickEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_symbol_lookup_on_click_enabled")
+
+    @JvmStatic
+    public val getTextForSymbolLookupName: MethodStringName0<CodeEdit, String> =
+        MethodStringName0<CodeEdit, String>("get_text_for_symbol_lookup")
+
+    @JvmStatic
+    public val getTextWithCursorCharName: MethodStringName2<CodeEdit, String, Int, Int> =
+        MethodStringName2<CodeEdit, String, Int, Int>("get_text_with_cursor_char")
+
+    @JvmStatic
+    public val setSymbolLookupWordAsValidName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_symbol_lookup_word_as_valid")
+
+    @JvmStatic
+    public val setSymbolTooltipOnHoverEnabledName: MethodStringName1<CodeEdit, Unit, Boolean> =
+        MethodStringName1<CodeEdit, Unit, Boolean>("set_symbol_tooltip_on_hover_enabled")
+
+    @JvmStatic
+    public val isSymbolTooltipOnHoverEnabledName: MethodStringName0<CodeEdit, Boolean> =
+        MethodStringName0<CodeEdit, Boolean>("is_symbol_tooltip_on_hover_enabled")
+
+    @JvmStatic
+    public val moveLinesUpName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("move_lines_up")
+
+    @JvmStatic
+    public val moveLinesDownName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("move_lines_down")
+
+    @JvmStatic
+    public val deleteLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("delete_lines")
+
+    @JvmStatic
+    public val duplicateSelectionName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("duplicate_selection")
+
+    @JvmStatic
+    public val duplicateLinesName: MethodStringName0<CodeEdit, Unit> =
+        MethodStringName0<CodeEdit, Unit>("duplicate_lines")
+  }
 
   public object MethodBindings {
     internal val setIndentSizePtr: VoidPtr =

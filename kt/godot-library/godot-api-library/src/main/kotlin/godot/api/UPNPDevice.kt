@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName5
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions.
@@ -269,7 +274,71 @@ public open class UPNPDevice : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val isValidGatewayName: MethodStringName0<UPNPDevice, Boolean> =
+        MethodStringName0<UPNPDevice, Boolean>("is_valid_gateway")
+
+    @JvmStatic
+    public val queryExternalAddressName: MethodStringName0<UPNPDevice, String> =
+        MethodStringName0<UPNPDevice, String>("query_external_address")
+
+    @JvmStatic
+    public val addPortMappingName: MethodStringName5<UPNPDevice, Int, Int, Int, String, String, Int>
+        = MethodStringName5<UPNPDevice, Int, Int, Int, String, String, Int>("add_port_mapping")
+
+    @JvmStatic
+    public val deletePortMappingName: MethodStringName2<UPNPDevice, Int, Int, String> =
+        MethodStringName2<UPNPDevice, Int, Int, String>("delete_port_mapping")
+
+    @JvmStatic
+    public val setDescriptionUrlName: MethodStringName1<UPNPDevice, Unit, String> =
+        MethodStringName1<UPNPDevice, Unit, String>("set_description_url")
+
+    @JvmStatic
+    public val getDescriptionUrlName: MethodStringName0<UPNPDevice, String> =
+        MethodStringName0<UPNPDevice, String>("get_description_url")
+
+    @JvmStatic
+    public val setServiceTypeName: MethodStringName1<UPNPDevice, Unit, String> =
+        MethodStringName1<UPNPDevice, Unit, String>("set_service_type")
+
+    @JvmStatic
+    public val getServiceTypeName: MethodStringName0<UPNPDevice, String> =
+        MethodStringName0<UPNPDevice, String>("get_service_type")
+
+    @JvmStatic
+    public val setIgdControlUrlName: MethodStringName1<UPNPDevice, Unit, String> =
+        MethodStringName1<UPNPDevice, Unit, String>("set_igd_control_url")
+
+    @JvmStatic
+    public val getIgdControlUrlName: MethodStringName0<UPNPDevice, String> =
+        MethodStringName0<UPNPDevice, String>("get_igd_control_url")
+
+    @JvmStatic
+    public val setIgdServiceTypeName: MethodStringName1<UPNPDevice, Unit, String> =
+        MethodStringName1<UPNPDevice, Unit, String>("set_igd_service_type")
+
+    @JvmStatic
+    public val getIgdServiceTypeName: MethodStringName0<UPNPDevice, String> =
+        MethodStringName0<UPNPDevice, String>("get_igd_service_type")
+
+    @JvmStatic
+    public val setIgdOurAddrName: MethodStringName1<UPNPDevice, Unit, String> =
+        MethodStringName1<UPNPDevice, Unit, String>("set_igd_our_addr")
+
+    @JvmStatic
+    public val getIgdOurAddrName: MethodStringName0<UPNPDevice, String> =
+        MethodStringName0<UPNPDevice, String>("get_igd_our_addr")
+
+    @JvmStatic
+    public val setIgdStatusName: MethodStringName1<UPNPDevice, Unit, IGDStatus> =
+        MethodStringName1<UPNPDevice, Unit, IGDStatus>("set_igd_status")
+
+    @JvmStatic
+    public val getIgdStatusName: MethodStringName0<UPNPDevice, IGDStatus> =
+        MethodStringName0<UPNPDevice, IGDStatus>("get_igd_status")
+  }
 
   public object MethodBindings {
     internal val isValidGatewayPtr: VoidPtr =

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import kotlin.Boolean
@@ -17,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The [GDExtension] resource type represents a
@@ -85,7 +87,16 @@ public open class GDExtension : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val isLibraryOpenName: MethodStringName0<GDExtension, Boolean> =
+        MethodStringName0<GDExtension, Boolean>("is_library_open")
+
+    @JvmStatic
+    public val getMinimumLibraryInitializationLevelName:
+        MethodStringName0<GDExtension, InitializationLevel> =
+        MethodStringName0<GDExtension, InitializationLevel>("get_minimum_library_initialization_level")
+  }
 
   public object MethodBindings {
     internal val isLibraryOpenPtr: VoidPtr =

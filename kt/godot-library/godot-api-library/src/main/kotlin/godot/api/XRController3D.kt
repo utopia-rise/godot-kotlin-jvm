@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -30,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This is a helper 3D node that is linked to the tracking of controllers. It also offers several
@@ -149,7 +152,28 @@ public open class XRController3D : XRNode3D() {
    */
   public final fun getVector2(name: String): Vector2 = getVector2(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val isButtonPressedName: MethodStringName1<XRController3D, Boolean, StringName> =
+        MethodStringName1<XRController3D, Boolean, StringName>("is_button_pressed")
+
+    @JvmStatic
+    public val getInputName: MethodStringName1<XRController3D, Any?, StringName> =
+        MethodStringName1<XRController3D, Any?, StringName>("get_input")
+
+    @JvmStatic
+    public val getFloatName: MethodStringName1<XRController3D, Float, StringName> =
+        MethodStringName1<XRController3D, Float, StringName>("get_float")
+
+    @JvmStatic
+    public val getVector2Name: MethodStringName1<XRController3D, Vector2, StringName> =
+        MethodStringName1<XRController3D, Vector2, StringName>("get_vector2")
+
+    @JvmStatic
+    public val getTrackerHandName:
+        MethodStringName0<XRController3D, XRPositionalTracker.TrackerHand> =
+        MethodStringName0<XRController3D, XRPositionalTracker.TrackerHand>("get_tracker_hand")
+  }
 
   public object MethodBindings {
     internal val isButtonPressedPtr: VoidPtr =

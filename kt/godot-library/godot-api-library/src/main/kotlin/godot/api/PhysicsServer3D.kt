@@ -12,6 +12,12 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantCaster.ANY
@@ -74,6 +80,716 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object PhysicsServer3D : Object() {
+  @JvmStatic
+  public val worldBoundaryShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("world_boundary_shape_create")
+
+  @JvmStatic
+  public val separationRayShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("separation_ray_shape_create")
+
+  @JvmStatic
+  public val sphereShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("sphere_shape_create")
+
+  @JvmStatic
+  public val boxShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("box_shape_create")
+
+  @JvmStatic
+  public val capsuleShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("capsule_shape_create")
+
+  @JvmStatic
+  public val cylinderShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("cylinder_shape_create")
+
+  @JvmStatic
+  public val convexPolygonShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("convex_polygon_shape_create")
+
+  @JvmStatic
+  public val concavePolygonShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("concave_polygon_shape_create")
+
+  @JvmStatic
+  public val heightmapShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("heightmap_shape_create")
+
+  @JvmStatic
+  public val customShapeCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("custom_shape_create")
+
+  @JvmStatic
+  public val shapeSetDataName: MethodStringName2<PhysicsServer3D, Unit, RID, Any?> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Any?>("shape_set_data")
+
+  @JvmStatic
+  public val shapeSetMarginName: MethodStringName2<PhysicsServer3D, Unit, RID, Float> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float>("shape_set_margin")
+
+  @JvmStatic
+  public val shapeGetTypeName: MethodStringName1<PhysicsServer3D, ShapeType, RID> =
+      MethodStringName1<PhysicsServer3D, ShapeType, RID>("shape_get_type")
+
+  @JvmStatic
+  public val shapeGetDataName: MethodStringName1<PhysicsServer3D, Any?, RID> =
+      MethodStringName1<PhysicsServer3D, Any?, RID>("shape_get_data")
+
+  @JvmStatic
+  public val shapeGetMarginName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("shape_get_margin")
+
+  @JvmStatic
+  public val spaceCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("space_create")
+
+  @JvmStatic
+  public val spaceSetActiveName: MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("space_set_active")
+
+  @JvmStatic
+  public val spaceIsActiveName: MethodStringName1<PhysicsServer3D, Boolean, RID> =
+      MethodStringName1<PhysicsServer3D, Boolean, RID>("space_is_active")
+
+  @JvmStatic
+  public val spaceSetParamName: MethodStringName3<PhysicsServer3D, Unit, RID, SpaceParameter, Float>
+      = MethodStringName3<PhysicsServer3D, Unit, RID, SpaceParameter, Float>("space_set_param")
+
+  @JvmStatic
+  public val spaceGetParamName: MethodStringName2<PhysicsServer3D, Float, RID, SpaceParameter> =
+      MethodStringName2<PhysicsServer3D, Float, RID, SpaceParameter>("space_get_param")
+
+  @JvmStatic
+  public val spaceGetDirectStateName:
+      MethodStringName1<PhysicsServer3D, PhysicsDirectSpaceState3D?, RID> =
+      MethodStringName1<PhysicsServer3D, PhysicsDirectSpaceState3D?, RID>("space_get_direct_state")
+
+  @JvmStatic
+  public val areaCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("area_create")
+
+  @JvmStatic
+  public val areaSetSpaceName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("area_set_space")
+
+  @JvmStatic
+  public val areaGetSpaceName: MethodStringName1<PhysicsServer3D, RID, RID> =
+      MethodStringName1<PhysicsServer3D, RID, RID>("area_get_space")
+
+  @JvmStatic
+  public val areaAddShapeName:
+      MethodStringName4<PhysicsServer3D, Unit, RID, RID, Transform3D, Boolean> =
+      MethodStringName4<PhysicsServer3D, Unit, RID, RID, Transform3D, Boolean>("area_add_shape")
+
+  @JvmStatic
+  public val areaSetShapeName: MethodStringName3<PhysicsServer3D, Unit, RID, Int, RID> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, RID>("area_set_shape")
+
+  @JvmStatic
+  public val areaSetShapeTransformName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Transform3D> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Transform3D>("area_set_shape_transform")
+
+  @JvmStatic
+  public val areaSetShapeDisabledName: MethodStringName3<PhysicsServer3D, Unit, RID, Int, Boolean> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Boolean>("area_set_shape_disabled")
+
+  @JvmStatic
+  public val areaGetShapeCountName: MethodStringName1<PhysicsServer3D, Int, RID> =
+      MethodStringName1<PhysicsServer3D, Int, RID>("area_get_shape_count")
+
+  @JvmStatic
+  public val areaGetShapeName: MethodStringName2<PhysicsServer3D, RID, RID, Int> =
+      MethodStringName2<PhysicsServer3D, RID, RID, Int>("area_get_shape")
+
+  @JvmStatic
+  public val areaGetShapeTransformName: MethodStringName2<PhysicsServer3D, Transform3D, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Transform3D, RID, Int>("area_get_shape_transform")
+
+  @JvmStatic
+  public val areaRemoveShapeName: MethodStringName2<PhysicsServer3D, Unit, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Int>("area_remove_shape")
+
+  @JvmStatic
+  public val areaClearShapesName: MethodStringName1<PhysicsServer3D, Unit, RID> =
+      MethodStringName1<PhysicsServer3D, Unit, RID>("area_clear_shapes")
+
+  @JvmStatic
+  public val areaSetCollisionLayerName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("area_set_collision_layer")
+
+  @JvmStatic
+  public val areaGetCollisionLayerName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("area_get_collision_layer")
+
+  @JvmStatic
+  public val areaSetCollisionMaskName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("area_set_collision_mask")
+
+  @JvmStatic
+  public val areaGetCollisionMaskName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("area_get_collision_mask")
+
+  @JvmStatic
+  public val areaSetParamName: MethodStringName3<PhysicsServer3D, Unit, RID, AreaParameter, Any?> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, AreaParameter, Any?>("area_set_param")
+
+  @JvmStatic
+  public val areaSetTransformName: MethodStringName2<PhysicsServer3D, Unit, RID, Transform3D> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Transform3D>("area_set_transform")
+
+  @JvmStatic
+  public val areaGetParamName: MethodStringName2<PhysicsServer3D, Any?, RID, AreaParameter> =
+      MethodStringName2<PhysicsServer3D, Any?, RID, AreaParameter>("area_get_param")
+
+  @JvmStatic
+  public val areaGetTransformName: MethodStringName1<PhysicsServer3D, Transform3D, RID> =
+      MethodStringName1<PhysicsServer3D, Transform3D, RID>("area_get_transform")
+
+  @JvmStatic
+  public val areaAttachObjectInstanceIdName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("area_attach_object_instance_id")
+
+  @JvmStatic
+  public val areaGetObjectInstanceIdName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("area_get_object_instance_id")
+
+  @JvmStatic
+  public val areaSetMonitorCallbackName: MethodStringName2<PhysicsServer3D, Unit, RID, Callable> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Callable>("area_set_monitor_callback")
+
+  @JvmStatic
+  public val areaSetAreaMonitorCallbackName: MethodStringName2<PhysicsServer3D, Unit, RID, Callable>
+      = MethodStringName2<PhysicsServer3D, Unit, RID, Callable>("area_set_area_monitor_callback")
+
+  @JvmStatic
+  public val areaSetMonitorableName: MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("area_set_monitorable")
+
+  @JvmStatic
+  public val areaSetRayPickableName: MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("area_set_ray_pickable")
+
+  @JvmStatic
+  public val bodyCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("body_create")
+
+  @JvmStatic
+  public val bodySetSpaceName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("body_set_space")
+
+  @JvmStatic
+  public val bodyGetSpaceName: MethodStringName1<PhysicsServer3D, RID, RID> =
+      MethodStringName1<PhysicsServer3D, RID, RID>("body_get_space")
+
+  @JvmStatic
+  public val bodySetModeName: MethodStringName2<PhysicsServer3D, Unit, RID, BodyMode> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, BodyMode>("body_set_mode")
+
+  @JvmStatic
+  public val bodyGetModeName: MethodStringName1<PhysicsServer3D, BodyMode, RID> =
+      MethodStringName1<PhysicsServer3D, BodyMode, RID>("body_get_mode")
+
+  @JvmStatic
+  public val bodySetCollisionLayerName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("body_set_collision_layer")
+
+  @JvmStatic
+  public val bodyGetCollisionLayerName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("body_get_collision_layer")
+
+  @JvmStatic
+  public val bodySetCollisionMaskName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("body_set_collision_mask")
+
+  @JvmStatic
+  public val bodyGetCollisionMaskName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("body_get_collision_mask")
+
+  @JvmStatic
+  public val bodySetCollisionPriorityName: MethodStringName2<PhysicsServer3D, Unit, RID, Float> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float>("body_set_collision_priority")
+
+  @JvmStatic
+  public val bodyGetCollisionPriorityName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("body_get_collision_priority")
+
+  @JvmStatic
+  public val bodyAddShapeName:
+      MethodStringName4<PhysicsServer3D, Unit, RID, RID, Transform3D, Boolean> =
+      MethodStringName4<PhysicsServer3D, Unit, RID, RID, Transform3D, Boolean>("body_add_shape")
+
+  @JvmStatic
+  public val bodySetShapeName: MethodStringName3<PhysicsServer3D, Unit, RID, Int, RID> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, RID>("body_set_shape")
+
+  @JvmStatic
+  public val bodySetShapeTransformName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Transform3D> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Transform3D>("body_set_shape_transform")
+
+  @JvmStatic
+  public val bodySetShapeDisabledName: MethodStringName3<PhysicsServer3D, Unit, RID, Int, Boolean> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Boolean>("body_set_shape_disabled")
+
+  @JvmStatic
+  public val bodyGetShapeCountName: MethodStringName1<PhysicsServer3D, Int, RID> =
+      MethodStringName1<PhysicsServer3D, Int, RID>("body_get_shape_count")
+
+  @JvmStatic
+  public val bodyGetShapeName: MethodStringName2<PhysicsServer3D, RID, RID, Int> =
+      MethodStringName2<PhysicsServer3D, RID, RID, Int>("body_get_shape")
+
+  @JvmStatic
+  public val bodyGetShapeTransformName: MethodStringName2<PhysicsServer3D, Transform3D, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Transform3D, RID, Int>("body_get_shape_transform")
+
+  @JvmStatic
+  public val bodyRemoveShapeName: MethodStringName2<PhysicsServer3D, Unit, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Int>("body_remove_shape")
+
+  @JvmStatic
+  public val bodyClearShapesName: MethodStringName1<PhysicsServer3D, Unit, RID> =
+      MethodStringName1<PhysicsServer3D, Unit, RID>("body_clear_shapes")
+
+  @JvmStatic
+  public val bodyAttachObjectInstanceIdName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("body_attach_object_instance_id")
+
+  @JvmStatic
+  public val bodyGetObjectInstanceIdName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("body_get_object_instance_id")
+
+  @JvmStatic
+  public val bodySetEnableContinuousCollisionDetectionName:
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("body_set_enable_continuous_collision_detection")
+
+  @JvmStatic
+  public val bodyIsContinuousCollisionDetectionEnabledName:
+      MethodStringName1<PhysicsServer3D, Boolean, RID> =
+      MethodStringName1<PhysicsServer3D, Boolean, RID>("body_is_continuous_collision_detection_enabled")
+
+  @JvmStatic
+  public val bodySetParamName: MethodStringName3<PhysicsServer3D, Unit, RID, BodyParameter, Any?> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, BodyParameter, Any?>("body_set_param")
+
+  @JvmStatic
+  public val bodyGetParamName: MethodStringName2<PhysicsServer3D, Any?, RID, BodyParameter> =
+      MethodStringName2<PhysicsServer3D, Any?, RID, BodyParameter>("body_get_param")
+
+  @JvmStatic
+  public val bodyResetMassPropertiesName: MethodStringName1<PhysicsServer3D, Unit, RID> =
+      MethodStringName1<PhysicsServer3D, Unit, RID>("body_reset_mass_properties")
+
+  @JvmStatic
+  public val bodySetStateName: MethodStringName3<PhysicsServer3D, Unit, RID, BodyState, Any?> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, BodyState, Any?>("body_set_state")
+
+  @JvmStatic
+  public val bodyGetStateName: MethodStringName2<PhysicsServer3D, Any?, RID, BodyState> =
+      MethodStringName2<PhysicsServer3D, Any?, RID, BodyState>("body_get_state")
+
+  @JvmStatic
+  public val bodyApplyCentralImpulseName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_apply_central_impulse")
+
+  @JvmStatic
+  public val bodyApplyImpulseName: MethodStringName3<PhysicsServer3D, Unit, RID, Vector3, Vector3> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Vector3, Vector3>("body_apply_impulse")
+
+  @JvmStatic
+  public val bodyApplyTorqueImpulseName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_apply_torque_impulse")
+
+  @JvmStatic
+  public val bodyApplyCentralForceName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_apply_central_force")
+
+  @JvmStatic
+  public val bodyApplyForceName: MethodStringName3<PhysicsServer3D, Unit, RID, Vector3, Vector3> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Vector3, Vector3>("body_apply_force")
+
+  @JvmStatic
+  public val bodyApplyTorqueName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_apply_torque")
+
+  @JvmStatic
+  public val bodyAddConstantCentralForceName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>
+      = MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_add_constant_central_force")
+
+  @JvmStatic
+  public val bodyAddConstantForceName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, Vector3, Vector3> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Vector3, Vector3>("body_add_constant_force")
+
+  @JvmStatic
+  public val bodyAddConstantTorqueName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_add_constant_torque")
+
+  @JvmStatic
+  public val bodySetConstantForceName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_set_constant_force")
+
+  @JvmStatic
+  public val bodyGetConstantForceName: MethodStringName1<PhysicsServer3D, Vector3, RID> =
+      MethodStringName1<PhysicsServer3D, Vector3, RID>("body_get_constant_force")
+
+  @JvmStatic
+  public val bodySetConstantTorqueName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_set_constant_torque")
+
+  @JvmStatic
+  public val bodyGetConstantTorqueName: MethodStringName1<PhysicsServer3D, Vector3, RID> =
+      MethodStringName1<PhysicsServer3D, Vector3, RID>("body_get_constant_torque")
+
+  @JvmStatic
+  public val bodySetAxisVelocityName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("body_set_axis_velocity")
+
+  @JvmStatic
+  public val bodySetAxisLockName: MethodStringName3<PhysicsServer3D, Unit, RID, BodyAxis, Boolean> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, BodyAxis, Boolean>("body_set_axis_lock")
+
+  @JvmStatic
+  public val bodyIsAxisLockedName: MethodStringName2<PhysicsServer3D, Boolean, RID, BodyAxis> =
+      MethodStringName2<PhysicsServer3D, Boolean, RID, BodyAxis>("body_is_axis_locked")
+
+  @JvmStatic
+  public val bodyAddCollisionExceptionName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("body_add_collision_exception")
+
+  @JvmStatic
+  public val bodyRemoveCollisionExceptionName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("body_remove_collision_exception")
+
+  @JvmStatic
+  public val bodySetMaxContactsReportedName: MethodStringName2<PhysicsServer3D, Unit, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Int>("body_set_max_contacts_reported")
+
+  @JvmStatic
+  public val bodyGetMaxContactsReportedName: MethodStringName1<PhysicsServer3D, Int, RID> =
+      MethodStringName1<PhysicsServer3D, Int, RID>("body_get_max_contacts_reported")
+
+  @JvmStatic
+  public val bodySetOmitForceIntegrationName: MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>
+      = MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("body_set_omit_force_integration")
+
+  @JvmStatic
+  public val bodyIsOmittingForceIntegrationName: MethodStringName1<PhysicsServer3D, Boolean, RID> =
+      MethodStringName1<PhysicsServer3D, Boolean, RID>("body_is_omitting_force_integration")
+
+  @JvmStatic
+  public val bodySetStateSyncCallbackName: MethodStringName2<PhysicsServer3D, Unit, RID, Callable> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Callable>("body_set_state_sync_callback")
+
+  @JvmStatic
+  public val bodySetForceIntegrationCallbackName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, Callable, Any?> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Callable, Any?>("body_set_force_integration_callback")
+
+  @JvmStatic
+  public val bodySetRayPickableName: MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("body_set_ray_pickable")
+
+  @JvmStatic
+  public val bodyTestMotionName:
+      MethodStringName3<PhysicsServer3D, Boolean, RID, PhysicsTestMotionParameters3D?, PhysicsTestMotionResult3D?>
+      =
+      MethodStringName3<PhysicsServer3D, Boolean, RID, PhysicsTestMotionParameters3D?, PhysicsTestMotionResult3D?>("body_test_motion")
+
+  @JvmStatic
+  public val bodyGetDirectStateName:
+      MethodStringName1<PhysicsServer3D, PhysicsDirectBodyState3D?, RID> =
+      MethodStringName1<PhysicsServer3D, PhysicsDirectBodyState3D?, RID>("body_get_direct_state")
+
+  @JvmStatic
+  public val softBodyCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("soft_body_create")
+
+  @JvmStatic
+  public val softBodyUpdateRenderingServerName:
+      MethodStringName2<PhysicsServer3D, Unit, RID, PhysicsServer3DRenderingServerHandler?> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, PhysicsServer3DRenderingServerHandler?>("soft_body_update_rendering_server")
+
+  @JvmStatic
+  public val softBodySetSpaceName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("soft_body_set_space")
+
+  @JvmStatic
+  public val softBodyGetSpaceName: MethodStringName1<PhysicsServer3D, RID, RID> =
+      MethodStringName1<PhysicsServer3D, RID, RID>("soft_body_get_space")
+
+  @JvmStatic
+  public val softBodySetMeshName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("soft_body_set_mesh")
+
+  @JvmStatic
+  public val softBodyGetBoundsName: MethodStringName1<PhysicsServer3D, AABB, RID> =
+      MethodStringName1<PhysicsServer3D, AABB, RID>("soft_body_get_bounds")
+
+  @JvmStatic
+  public val softBodySetCollisionLayerName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("soft_body_set_collision_layer")
+
+  @JvmStatic
+  public val softBodyGetCollisionLayerName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("soft_body_get_collision_layer")
+
+  @JvmStatic
+  public val softBodySetCollisionMaskName: MethodStringName2<PhysicsServer3D, Unit, RID, Long> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Long>("soft_body_set_collision_mask")
+
+  @JvmStatic
+  public val softBodyGetCollisionMaskName: MethodStringName1<PhysicsServer3D, Long, RID> =
+      MethodStringName1<PhysicsServer3D, Long, RID>("soft_body_get_collision_mask")
+
+  @JvmStatic
+  public val softBodyAddCollisionExceptionName: MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("soft_body_add_collision_exception")
+
+  @JvmStatic
+  public val softBodyRemoveCollisionExceptionName:
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, RID>("soft_body_remove_collision_exception")
+
+  @JvmStatic
+  public val softBodySetStateName: MethodStringName3<PhysicsServer3D, Unit, RID, BodyState, Any?> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, BodyState, Any?>("soft_body_set_state")
+
+  @JvmStatic
+  public val softBodyGetStateName: MethodStringName2<PhysicsServer3D, Any?, RID, BodyState> =
+      MethodStringName2<PhysicsServer3D, Any?, RID, BodyState>("soft_body_get_state")
+
+  @JvmStatic
+  public val softBodySetTransformName: MethodStringName2<PhysicsServer3D, Unit, RID, Transform3D> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Transform3D>("soft_body_set_transform")
+
+  @JvmStatic
+  public val softBodySetRayPickableName: MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("soft_body_set_ray_pickable")
+
+  @JvmStatic
+  public val softBodySetSimulationPrecisionName: MethodStringName2<PhysicsServer3D, Unit, RID, Int>
+      = MethodStringName2<PhysicsServer3D, Unit, RID, Int>("soft_body_set_simulation_precision")
+
+  @JvmStatic
+  public val softBodyGetSimulationPrecisionName: MethodStringName1<PhysicsServer3D, Int, RID> =
+      MethodStringName1<PhysicsServer3D, Int, RID>("soft_body_get_simulation_precision")
+
+  @JvmStatic
+  public val softBodySetTotalMassName: MethodStringName2<PhysicsServer3D, Unit, RID, Float> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float>("soft_body_set_total_mass")
+
+  @JvmStatic
+  public val softBodyGetTotalMassName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("soft_body_get_total_mass")
+
+  @JvmStatic
+  public val softBodySetLinearStiffnessName: MethodStringName2<PhysicsServer3D, Unit, RID, Float> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float>("soft_body_set_linear_stiffness")
+
+  @JvmStatic
+  public val softBodyGetLinearStiffnessName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("soft_body_get_linear_stiffness")
+
+  @JvmStatic
+  public val softBodySetPressureCoefficientName:
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float>("soft_body_set_pressure_coefficient")
+
+  @JvmStatic
+  public val softBodyGetPressureCoefficientName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("soft_body_get_pressure_coefficient")
+
+  @JvmStatic
+  public val softBodySetDampingCoefficientName: MethodStringName2<PhysicsServer3D, Unit, RID, Float>
+      = MethodStringName2<PhysicsServer3D, Unit, RID, Float>("soft_body_set_damping_coefficient")
+
+  @JvmStatic
+  public val softBodyGetDampingCoefficientName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("soft_body_get_damping_coefficient")
+
+  @JvmStatic
+  public val softBodySetDragCoefficientName: MethodStringName2<PhysicsServer3D, Unit, RID, Float> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Float>("soft_body_set_drag_coefficient")
+
+  @JvmStatic
+  public val softBodyGetDragCoefficientName: MethodStringName1<PhysicsServer3D, Float, RID> =
+      MethodStringName1<PhysicsServer3D, Float, RID>("soft_body_get_drag_coefficient")
+
+  @JvmStatic
+  public val softBodyMovePointName: MethodStringName3<PhysicsServer3D, Unit, RID, Int, Vector3> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Vector3>("soft_body_move_point")
+
+  @JvmStatic
+  public val softBodyGetPointGlobalPositionName:
+      MethodStringName2<PhysicsServer3D, Vector3, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Vector3, RID, Int>("soft_body_get_point_global_position")
+
+  @JvmStatic
+  public val softBodyRemoveAllPinnedPointsName: MethodStringName1<PhysicsServer3D, Unit, RID> =
+      MethodStringName1<PhysicsServer3D, Unit, RID>("soft_body_remove_all_pinned_points")
+
+  @JvmStatic
+  public val softBodyPinPointName: MethodStringName3<PhysicsServer3D, Unit, RID, Int, Boolean> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, Int, Boolean>("soft_body_pin_point")
+
+  @JvmStatic
+  public val softBodyIsPointPinnedName: MethodStringName2<PhysicsServer3D, Boolean, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Boolean, RID, Int>("soft_body_is_point_pinned")
+
+  @JvmStatic
+  public val jointCreateName: MethodStringName0<PhysicsServer3D, RID> =
+      MethodStringName0<PhysicsServer3D, RID>("joint_create")
+
+  @JvmStatic
+  public val jointClearName: MethodStringName1<PhysicsServer3D, Unit, RID> =
+      MethodStringName1<PhysicsServer3D, Unit, RID>("joint_clear")
+
+  @JvmStatic
+  public val jointMakePinName:
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Vector3, RID, Vector3> =
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Vector3, RID, Vector3>("joint_make_pin")
+
+  @JvmStatic
+  public val pinJointSetParamName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, PinJointParam, Float> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, PinJointParam, Float>("pin_joint_set_param")
+
+  @JvmStatic
+  public val pinJointGetParamName: MethodStringName2<PhysicsServer3D, Float, RID, PinJointParam> =
+      MethodStringName2<PhysicsServer3D, Float, RID, PinJointParam>("pin_joint_get_param")
+
+  @JvmStatic
+  public val pinJointSetLocalAName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("pin_joint_set_local_a")
+
+  @JvmStatic
+  public val pinJointGetLocalAName: MethodStringName1<PhysicsServer3D, Vector3, RID> =
+      MethodStringName1<PhysicsServer3D, Vector3, RID>("pin_joint_get_local_a")
+
+  @JvmStatic
+  public val pinJointSetLocalBName: MethodStringName2<PhysicsServer3D, Unit, RID, Vector3> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Vector3>("pin_joint_set_local_b")
+
+  @JvmStatic
+  public val pinJointGetLocalBName: MethodStringName1<PhysicsServer3D, Vector3, RID> =
+      MethodStringName1<PhysicsServer3D, Vector3, RID>("pin_joint_get_local_b")
+
+  @JvmStatic
+  public val jointMakeHingeName:
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D> =
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D>("joint_make_hinge")
+
+  @JvmStatic
+  public val hingeJointSetParamName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, HingeJointParam, Float> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, HingeJointParam, Float>("hinge_joint_set_param")
+
+  @JvmStatic
+  public val hingeJointGetParamName: MethodStringName2<PhysicsServer3D, Float, RID, HingeJointParam>
+      = MethodStringName2<PhysicsServer3D, Float, RID, HingeJointParam>("hinge_joint_get_param")
+
+  @JvmStatic
+  public val hingeJointSetFlagName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, HingeJointFlag, Boolean> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, HingeJointFlag, Boolean>("hinge_joint_set_flag")
+
+  @JvmStatic
+  public val hingeJointGetFlagName: MethodStringName2<PhysicsServer3D, Boolean, RID, HingeJointFlag>
+      = MethodStringName2<PhysicsServer3D, Boolean, RID, HingeJointFlag>("hinge_joint_get_flag")
+
+  @JvmStatic
+  public val jointMakeSliderName:
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D> =
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D>("joint_make_slider")
+
+  @JvmStatic
+  public val sliderJointSetParamName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, SliderJointParam, Float> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, SliderJointParam, Float>("slider_joint_set_param")
+
+  @JvmStatic
+  public val sliderJointGetParamName:
+      MethodStringName2<PhysicsServer3D, Float, RID, SliderJointParam> =
+      MethodStringName2<PhysicsServer3D, Float, RID, SliderJointParam>("slider_joint_get_param")
+
+  @JvmStatic
+  public val jointMakeConeTwistName:
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D> =
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D>("joint_make_cone_twist")
+
+  @JvmStatic
+  public val coneTwistJointSetParamName:
+      MethodStringName3<PhysicsServer3D, Unit, RID, ConeTwistJointParam, Float> =
+      MethodStringName3<PhysicsServer3D, Unit, RID, ConeTwistJointParam, Float>("cone_twist_joint_set_param")
+
+  @JvmStatic
+  public val coneTwistJointGetParamName:
+      MethodStringName2<PhysicsServer3D, Float, RID, ConeTwistJointParam> =
+      MethodStringName2<PhysicsServer3D, Float, RID, ConeTwistJointParam>("cone_twist_joint_get_param")
+
+  @JvmStatic
+  public val jointGetTypeName: MethodStringName1<PhysicsServer3D, JointType, RID> =
+      MethodStringName1<PhysicsServer3D, JointType, RID>("joint_get_type")
+
+  @JvmStatic
+  public val jointSetSolverPriorityName: MethodStringName2<PhysicsServer3D, Unit, RID, Int> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Int>("joint_set_solver_priority")
+
+  @JvmStatic
+  public val jointGetSolverPriorityName: MethodStringName1<PhysicsServer3D, Int, RID> =
+      MethodStringName1<PhysicsServer3D, Int, RID>("joint_get_solver_priority")
+
+  @JvmStatic
+  public val jointDisableCollisionsBetweenBodiesName:
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean> =
+      MethodStringName2<PhysicsServer3D, Unit, RID, Boolean>("joint_disable_collisions_between_bodies")
+
+  @JvmStatic
+  public val jointIsDisabledCollisionsBetweenBodiesName:
+      MethodStringName1<PhysicsServer3D, Boolean, RID> =
+      MethodStringName1<PhysicsServer3D, Boolean, RID>("joint_is_disabled_collisions_between_bodies")
+
+  @JvmStatic
+  public val jointMakeGeneric6dofName:
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D> =
+      MethodStringName5<PhysicsServer3D, Unit, RID, RID, Transform3D, RID, Transform3D>("joint_make_generic_6dof")
+
+  @JvmStatic
+  public val generic6dofJointSetParamName:
+      MethodStringName4<PhysicsServer3D, Unit, RID, Vector3.Axis, G6DOFJointAxisParam, Float> =
+      MethodStringName4<PhysicsServer3D, Unit, RID, Vector3.Axis, G6DOFJointAxisParam, Float>("generic_6dof_joint_set_param")
+
+  @JvmStatic
+  public val generic6dofJointGetParamName:
+      MethodStringName3<PhysicsServer3D, Float, RID, Vector3.Axis, G6DOFJointAxisParam> =
+      MethodStringName3<PhysicsServer3D, Float, RID, Vector3.Axis, G6DOFJointAxisParam>("generic_6dof_joint_get_param")
+
+  @JvmStatic
+  public val generic6dofJointSetFlagName:
+      MethodStringName4<PhysicsServer3D, Unit, RID, Vector3.Axis, G6DOFJointAxisFlag, Boolean> =
+      MethodStringName4<PhysicsServer3D, Unit, RID, Vector3.Axis, G6DOFJointAxisFlag, Boolean>("generic_6dof_joint_set_flag")
+
+  @JvmStatic
+  public val generic6dofJointGetFlagName:
+      MethodStringName3<PhysicsServer3D, Boolean, RID, Vector3.Axis, G6DOFJointAxisFlag> =
+      MethodStringName3<PhysicsServer3D, Boolean, RID, Vector3.Axis, G6DOFJointAxisFlag>("generic_6dof_joint_get_flag")
+
+  @JvmStatic
+  public val freeRidName: MethodStringName1<PhysicsServer3D, Unit, RID> =
+      MethodStringName1<PhysicsServer3D, Unit, RID>("free_rid")
+
+  @JvmStatic
+  public val setActiveName: MethodStringName1<PhysicsServer3D, Unit, Boolean> =
+      MethodStringName1<PhysicsServer3D, Unit, Boolean>("set_active")
+
+  @JvmStatic
+  public val getProcessInfoName: MethodStringName1<PhysicsServer3D, Int, ProcessInfo> =
+      MethodStringName1<PhysicsServer3D, Int, ProcessInfo>("get_process_info")
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(23)
   }

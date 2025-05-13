@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about a mouse or a pen motion. This includes relative position, absolute
@@ -392,7 +395,63 @@ public open class InputEventMouseMotion : InputEventMouse() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTiltName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
+        MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_tilt")
+
+    @JvmStatic
+    public val getTiltName: MethodStringName0<InputEventMouseMotion, Vector2> =
+        MethodStringName0<InputEventMouseMotion, Vector2>("get_tilt")
+
+    @JvmStatic
+    public val setPressureName: MethodStringName1<InputEventMouseMotion, Unit, Float> =
+        MethodStringName1<InputEventMouseMotion, Unit, Float>("set_pressure")
+
+    @JvmStatic
+    public val getPressureName: MethodStringName0<InputEventMouseMotion, Float> =
+        MethodStringName0<InputEventMouseMotion, Float>("get_pressure")
+
+    @JvmStatic
+    public val setPenInvertedName: MethodStringName1<InputEventMouseMotion, Unit, Boolean> =
+        MethodStringName1<InputEventMouseMotion, Unit, Boolean>("set_pen_inverted")
+
+    @JvmStatic
+    public val getPenInvertedName: MethodStringName0<InputEventMouseMotion, Boolean> =
+        MethodStringName0<InputEventMouseMotion, Boolean>("get_pen_inverted")
+
+    @JvmStatic
+    public val setRelativeName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
+        MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_relative")
+
+    @JvmStatic
+    public val getRelativeName: MethodStringName0<InputEventMouseMotion, Vector2> =
+        MethodStringName0<InputEventMouseMotion, Vector2>("get_relative")
+
+    @JvmStatic
+    public val setScreenRelativeName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
+        MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_screen_relative")
+
+    @JvmStatic
+    public val getScreenRelativeName: MethodStringName0<InputEventMouseMotion, Vector2> =
+        MethodStringName0<InputEventMouseMotion, Vector2>("get_screen_relative")
+
+    @JvmStatic
+    public val setVelocityName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
+        MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_velocity")
+
+    @JvmStatic
+    public val getVelocityName: MethodStringName0<InputEventMouseMotion, Vector2> =
+        MethodStringName0<InputEventMouseMotion, Vector2>("get_velocity")
+
+    @JvmStatic
+    public val setScreenVelocityName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
+        MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_screen_velocity")
+
+    @JvmStatic
+    public val getScreenVelocityName: MethodStringName0<InputEventMouseMotion, Vector2> =
+        MethodStringName0<InputEventMouseMotion, Vector2>("get_screen_velocity")
+  }
 
   public object MethodBindings {
     internal val setTiltPtr: VoidPtr =

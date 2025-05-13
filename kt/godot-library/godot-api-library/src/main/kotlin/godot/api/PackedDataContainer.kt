@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import kotlin.Any
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is
@@ -83,7 +86,15 @@ public open class PackedDataContainer : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val packName: MethodStringName1<PackedDataContainer, Error, Any?> =
+        MethodStringName1<PackedDataContainer, Error, Any?>("pack")
+
+    @JvmStatic
+    public val sizeName: MethodStringName0<PackedDataContainer, Int> =
+        MethodStringName0<PackedDataContainer, Int>("size")
+  }
 
   public object MethodBindings {
     internal val packPtr: VoidPtr =

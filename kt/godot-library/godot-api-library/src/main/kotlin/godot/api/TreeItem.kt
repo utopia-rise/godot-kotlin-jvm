@@ -14,6 +14,11 @@ import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
 import godot.core.Rect2
 import godot.core.StringName
 import godot.core.VariantArray
@@ -41,6 +46,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it
@@ -1266,7 +1272,476 @@ public open class TreeItem internal constructor() : Object() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setCellModeName: MethodStringName2<TreeItem, Unit, Int, TreeCellMode> =
+        MethodStringName2<TreeItem, Unit, Int, TreeCellMode>("set_cell_mode")
+
+    @JvmStatic
+    public val getCellModeName: MethodStringName1<TreeItem, TreeCellMode, Int> =
+        MethodStringName1<TreeItem, TreeCellMode, Int>("get_cell_mode")
+
+    @JvmStatic
+    public val setAutoTranslateModeName:
+        MethodStringName2<TreeItem, Unit, Int, Node.AutoTranslateMode> =
+        MethodStringName2<TreeItem, Unit, Int, Node.AutoTranslateMode>("set_auto_translate_mode")
+
+    @JvmStatic
+    public val getAutoTranslateModeName: MethodStringName1<TreeItem, Node.AutoTranslateMode, Int> =
+        MethodStringName1<TreeItem, Node.AutoTranslateMode, Int>("get_auto_translate_mode")
+
+    @JvmStatic
+    public val setEditMultilineName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_edit_multiline")
+
+    @JvmStatic
+    public val isEditMultilineName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_edit_multiline")
+
+    @JvmStatic
+    public val setCheckedName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_checked")
+
+    @JvmStatic
+    public val setIndeterminateName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_indeterminate")
+
+    @JvmStatic
+    public val isCheckedName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_checked")
+
+    @JvmStatic
+    public val isIndeterminateName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_indeterminate")
+
+    @JvmStatic
+    public val propagateCheckName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("propagate_check")
+
+    @JvmStatic
+    public val setTextName: MethodStringName2<TreeItem, Unit, Int, String> =
+        MethodStringName2<TreeItem, Unit, Int, String>("set_text")
+
+    @JvmStatic
+    public val getTextName: MethodStringName1<TreeItem, String, Int> =
+        MethodStringName1<TreeItem, String, Int>("get_text")
+
+    @JvmStatic
+    public val setTextDirectionName: MethodStringName2<TreeItem, Unit, Int, Control.TextDirection> =
+        MethodStringName2<TreeItem, Unit, Int, Control.TextDirection>("set_text_direction")
+
+    @JvmStatic
+    public val getTextDirectionName: MethodStringName1<TreeItem, Control.TextDirection, Int> =
+        MethodStringName1<TreeItem, Control.TextDirection, Int>("get_text_direction")
+
+    @JvmStatic
+    public val setAutowrapModeName: MethodStringName2<TreeItem, Unit, Int, TextServer.AutowrapMode>
+        = MethodStringName2<TreeItem, Unit, Int, TextServer.AutowrapMode>("set_autowrap_mode")
+
+    @JvmStatic
+    public val getAutowrapModeName: MethodStringName1<TreeItem, TextServer.AutowrapMode, Int> =
+        MethodStringName1<TreeItem, TextServer.AutowrapMode, Int>("get_autowrap_mode")
+
+    @JvmStatic
+    public val setTextOverrunBehaviorName:
+        MethodStringName2<TreeItem, Unit, Int, TextServer.OverrunBehavior> =
+        MethodStringName2<TreeItem, Unit, Int, TextServer.OverrunBehavior>("set_text_overrun_behavior")
+
+    @JvmStatic
+    public val getTextOverrunBehaviorName:
+        MethodStringName1<TreeItem, TextServer.OverrunBehavior, Int> =
+        MethodStringName1<TreeItem, TextServer.OverrunBehavior, Int>("get_text_overrun_behavior")
+
+    @JvmStatic
+    public val setStructuredTextBidiOverrideName:
+        MethodStringName2<TreeItem, Unit, Int, TextServer.StructuredTextParser> =
+        MethodStringName2<TreeItem, Unit, Int, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
+
+    @JvmStatic
+    public val getStructuredTextBidiOverrideName:
+        MethodStringName1<TreeItem, TextServer.StructuredTextParser, Int> =
+        MethodStringName1<TreeItem, TextServer.StructuredTextParser, Int>("get_structured_text_bidi_override")
+
+    @JvmStatic
+    public val setStructuredTextBidiOverrideOptionsName:
+        MethodStringName2<TreeItem, Unit, Int, VariantArray<Any?>> =
+        MethodStringName2<TreeItem, Unit, Int, VariantArray<Any?>>("set_structured_text_bidi_override_options")
+
+    @JvmStatic
+    public val getStructuredTextBidiOverrideOptionsName:
+        MethodStringName1<TreeItem, VariantArray<Any?>, Int> =
+        MethodStringName1<TreeItem, VariantArray<Any?>, Int>("get_structured_text_bidi_override_options")
+
+    @JvmStatic
+    public val setLanguageName: MethodStringName2<TreeItem, Unit, Int, String> =
+        MethodStringName2<TreeItem, Unit, Int, String>("set_language")
+
+    @JvmStatic
+    public val getLanguageName: MethodStringName1<TreeItem, String, Int> =
+        MethodStringName1<TreeItem, String, Int>("get_language")
+
+    @JvmStatic
+    public val setSuffixName: MethodStringName2<TreeItem, Unit, Int, String> =
+        MethodStringName2<TreeItem, Unit, Int, String>("set_suffix")
+
+    @JvmStatic
+    public val getSuffixName: MethodStringName1<TreeItem, String, Int> =
+        MethodStringName1<TreeItem, String, Int>("get_suffix")
+
+    @JvmStatic
+    public val setIconName: MethodStringName2<TreeItem, Unit, Int, Texture2D?> =
+        MethodStringName2<TreeItem, Unit, Int, Texture2D?>("set_icon")
+
+    @JvmStatic
+    public val getIconName: MethodStringName1<TreeItem, Texture2D?, Int> =
+        MethodStringName1<TreeItem, Texture2D?, Int>("get_icon")
+
+    @JvmStatic
+    public val setIconOverlayName: MethodStringName2<TreeItem, Unit, Int, Texture2D?> =
+        MethodStringName2<TreeItem, Unit, Int, Texture2D?>("set_icon_overlay")
+
+    @JvmStatic
+    public val getIconOverlayName: MethodStringName1<TreeItem, Texture2D?, Int> =
+        MethodStringName1<TreeItem, Texture2D?, Int>("get_icon_overlay")
+
+    @JvmStatic
+    public val setIconRegionName: MethodStringName2<TreeItem, Unit, Int, Rect2> =
+        MethodStringName2<TreeItem, Unit, Int, Rect2>("set_icon_region")
+
+    @JvmStatic
+    public val getIconRegionName: MethodStringName1<TreeItem, Rect2, Int> =
+        MethodStringName1<TreeItem, Rect2, Int>("get_icon_region")
+
+    @JvmStatic
+    public val setIconMaxWidthName: MethodStringName2<TreeItem, Unit, Int, Int> =
+        MethodStringName2<TreeItem, Unit, Int, Int>("set_icon_max_width")
+
+    @JvmStatic
+    public val getIconMaxWidthName: MethodStringName1<TreeItem, Int, Int> =
+        MethodStringName1<TreeItem, Int, Int>("get_icon_max_width")
+
+    @JvmStatic
+    public val setIconModulateName: MethodStringName2<TreeItem, Unit, Int, Color> =
+        MethodStringName2<TreeItem, Unit, Int, Color>("set_icon_modulate")
+
+    @JvmStatic
+    public val getIconModulateName: MethodStringName1<TreeItem, Color, Int> =
+        MethodStringName1<TreeItem, Color, Int>("get_icon_modulate")
+
+    @JvmStatic
+    public val setRangeName: MethodStringName2<TreeItem, Unit, Int, Double> =
+        MethodStringName2<TreeItem, Unit, Int, Double>("set_range")
+
+    @JvmStatic
+    public val getRangeName: MethodStringName1<TreeItem, Double, Int> =
+        MethodStringName1<TreeItem, Double, Int>("get_range")
+
+    @JvmStatic
+    public val setRangeConfigName:
+        MethodStringName5<TreeItem, Unit, Int, Double, Double, Double, Boolean> =
+        MethodStringName5<TreeItem, Unit, Int, Double, Double, Double, Boolean>("set_range_config")
+
+    @JvmStatic
+    public val getRangeConfigName: MethodStringName1<TreeItem, Dictionary<Any?, Any?>, Int> =
+        MethodStringName1<TreeItem, Dictionary<Any?, Any?>, Int>("get_range_config")
+
+    @JvmStatic
+    public val setMetadataName: MethodStringName2<TreeItem, Unit, Int, Any?> =
+        MethodStringName2<TreeItem, Unit, Int, Any?>("set_metadata")
+
+    @JvmStatic
+    public val getMetadataName: MethodStringName1<TreeItem, Any?, Int> =
+        MethodStringName1<TreeItem, Any?, Int>("get_metadata")
+
+    @JvmStatic
+    public val setCustomDrawName: MethodStringName3<TreeItem, Unit, Int, Object?, StringName> =
+        MethodStringName3<TreeItem, Unit, Int, Object?, StringName>("set_custom_draw")
+
+    @JvmStatic
+    public val setCustomDrawCallbackName: MethodStringName2<TreeItem, Unit, Int, Callable> =
+        MethodStringName2<TreeItem, Unit, Int, Callable>("set_custom_draw_callback")
+
+    @JvmStatic
+    public val getCustomDrawCallbackName: MethodStringName1<TreeItem, Callable, Int> =
+        MethodStringName1<TreeItem, Callable, Int>("get_custom_draw_callback")
+
+    @JvmStatic
+    public val setCollapsedName: MethodStringName1<TreeItem, Unit, Boolean> =
+        MethodStringName1<TreeItem, Unit, Boolean>("set_collapsed")
+
+    @JvmStatic
+    public val isCollapsedName: MethodStringName0<TreeItem, Boolean> =
+        MethodStringName0<TreeItem, Boolean>("is_collapsed")
+
+    @JvmStatic
+    public val setCollapsedRecursiveName: MethodStringName1<TreeItem, Unit, Boolean> =
+        MethodStringName1<TreeItem, Unit, Boolean>("set_collapsed_recursive")
+
+    @JvmStatic
+    public val isAnyCollapsedName: MethodStringName1<TreeItem, Boolean, Boolean> =
+        MethodStringName1<TreeItem, Boolean, Boolean>("is_any_collapsed")
+
+    @JvmStatic
+    public val setVisibleName: MethodStringName1<TreeItem, Unit, Boolean> =
+        MethodStringName1<TreeItem, Unit, Boolean>("set_visible")
+
+    @JvmStatic
+    public val isVisibleName: MethodStringName0<TreeItem, Boolean> =
+        MethodStringName0<TreeItem, Boolean>("is_visible")
+
+    @JvmStatic
+    public val isVisibleInTreeName: MethodStringName0<TreeItem, Boolean> =
+        MethodStringName0<TreeItem, Boolean>("is_visible_in_tree")
+
+    @JvmStatic
+    public val uncollapseTreeName: MethodStringName0<TreeItem, Unit> =
+        MethodStringName0<TreeItem, Unit>("uncollapse_tree")
+
+    @JvmStatic
+    public val setCustomMinimumHeightName: MethodStringName1<TreeItem, Unit, Int> =
+        MethodStringName1<TreeItem, Unit, Int>("set_custom_minimum_height")
+
+    @JvmStatic
+    public val getCustomMinimumHeightName: MethodStringName0<TreeItem, Int> =
+        MethodStringName0<TreeItem, Int>("get_custom_minimum_height")
+
+    @JvmStatic
+    public val setSelectableName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_selectable")
+
+    @JvmStatic
+    public val isSelectableName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_selectable")
+
+    @JvmStatic
+    public val isSelectedName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_selected")
+
+    @JvmStatic
+    public val selectName: MethodStringName1<TreeItem, Unit, Int> =
+        MethodStringName1<TreeItem, Unit, Int>("select")
+
+    @JvmStatic
+    public val deselectName: MethodStringName1<TreeItem, Unit, Int> =
+        MethodStringName1<TreeItem, Unit, Int>("deselect")
+
+    @JvmStatic
+    public val setEditableName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_editable")
+
+    @JvmStatic
+    public val isEditableName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_editable")
+
+    @JvmStatic
+    public val setCustomColorName: MethodStringName2<TreeItem, Unit, Int, Color> =
+        MethodStringName2<TreeItem, Unit, Int, Color>("set_custom_color")
+
+    @JvmStatic
+    public val getCustomColorName: MethodStringName1<TreeItem, Color, Int> =
+        MethodStringName1<TreeItem, Color, Int>("get_custom_color")
+
+    @JvmStatic
+    public val clearCustomColorName: MethodStringName1<TreeItem, Unit, Int> =
+        MethodStringName1<TreeItem, Unit, Int>("clear_custom_color")
+
+    @JvmStatic
+    public val setCustomFontName: MethodStringName2<TreeItem, Unit, Int, Font?> =
+        MethodStringName2<TreeItem, Unit, Int, Font?>("set_custom_font")
+
+    @JvmStatic
+    public val getCustomFontName: MethodStringName1<TreeItem, Font?, Int> =
+        MethodStringName1<TreeItem, Font?, Int>("get_custom_font")
+
+    @JvmStatic
+    public val setCustomFontSizeName: MethodStringName2<TreeItem, Unit, Int, Int> =
+        MethodStringName2<TreeItem, Unit, Int, Int>("set_custom_font_size")
+
+    @JvmStatic
+    public val getCustomFontSizeName: MethodStringName1<TreeItem, Int, Int> =
+        MethodStringName1<TreeItem, Int, Int>("get_custom_font_size")
+
+    @JvmStatic
+    public val setCustomBgColorName: MethodStringName3<TreeItem, Unit, Int, Color, Boolean> =
+        MethodStringName3<TreeItem, Unit, Int, Color, Boolean>("set_custom_bg_color")
+
+    @JvmStatic
+    public val clearCustomBgColorName: MethodStringName1<TreeItem, Unit, Int> =
+        MethodStringName1<TreeItem, Unit, Int>("clear_custom_bg_color")
+
+    @JvmStatic
+    public val getCustomBgColorName: MethodStringName1<TreeItem, Color, Int> =
+        MethodStringName1<TreeItem, Color, Int>("get_custom_bg_color")
+
+    @JvmStatic
+    public val setCustomAsButtonName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_custom_as_button")
+
+    @JvmStatic
+    public val isCustomSetAsButtonName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("is_custom_set_as_button")
+
+    @JvmStatic
+    public val clearButtonsName: MethodStringName0<TreeItem, Unit> =
+        MethodStringName0<TreeItem, Unit>("clear_buttons")
+
+    @JvmStatic
+    public val addButtonName:
+        MethodStringName5<TreeItem, Unit, Int, Texture2D?, Int, Boolean, String> =
+        MethodStringName5<TreeItem, Unit, Int, Texture2D?, Int, Boolean, String>("add_button")
+
+    @JvmStatic
+    public val getButtonCountName: MethodStringName1<TreeItem, Int, Int> =
+        MethodStringName1<TreeItem, Int, Int>("get_button_count")
+
+    @JvmStatic
+    public val getButtonTooltipTextName: MethodStringName2<TreeItem, String, Int, Int> =
+        MethodStringName2<TreeItem, String, Int, Int>("get_button_tooltip_text")
+
+    @JvmStatic
+    public val getButtonIdName: MethodStringName2<TreeItem, Int, Int, Int> =
+        MethodStringName2<TreeItem, Int, Int, Int>("get_button_id")
+
+    @JvmStatic
+    public val getButtonByIdName: MethodStringName2<TreeItem, Int, Int, Int> =
+        MethodStringName2<TreeItem, Int, Int, Int>("get_button_by_id")
+
+    @JvmStatic
+    public val getButtonColorName: MethodStringName2<TreeItem, Color, Int, Int> =
+        MethodStringName2<TreeItem, Color, Int, Int>("get_button_color")
+
+    @JvmStatic
+    public val getButtonName: MethodStringName2<TreeItem, Texture2D?, Int, Int> =
+        MethodStringName2<TreeItem, Texture2D?, Int, Int>("get_button")
+
+    @JvmStatic
+    public val setButtonTooltipTextName: MethodStringName3<TreeItem, Unit, Int, Int, String> =
+        MethodStringName3<TreeItem, Unit, Int, Int, String>("set_button_tooltip_text")
+
+    @JvmStatic
+    public val setButtonName: MethodStringName3<TreeItem, Unit, Int, Int, Texture2D?> =
+        MethodStringName3<TreeItem, Unit, Int, Int, Texture2D?>("set_button")
+
+    @JvmStatic
+    public val eraseButtonName: MethodStringName2<TreeItem, Unit, Int, Int> =
+        MethodStringName2<TreeItem, Unit, Int, Int>("erase_button")
+
+    @JvmStatic
+    public val setButtonDisabledName: MethodStringName3<TreeItem, Unit, Int, Int, Boolean> =
+        MethodStringName3<TreeItem, Unit, Int, Int, Boolean>("set_button_disabled")
+
+    @JvmStatic
+    public val setButtonColorName: MethodStringName3<TreeItem, Unit, Int, Int, Color> =
+        MethodStringName3<TreeItem, Unit, Int, Int, Color>("set_button_color")
+
+    @JvmStatic
+    public val isButtonDisabledName: MethodStringName2<TreeItem, Boolean, Int, Int> =
+        MethodStringName2<TreeItem, Boolean, Int, Int>("is_button_disabled")
+
+    @JvmStatic
+    public val setTooltipTextName: MethodStringName2<TreeItem, Unit, Int, String> =
+        MethodStringName2<TreeItem, Unit, Int, String>("set_tooltip_text")
+
+    @JvmStatic
+    public val getTooltipTextName: MethodStringName1<TreeItem, String, Int> =
+        MethodStringName1<TreeItem, String, Int>("get_tooltip_text")
+
+    @JvmStatic
+    public val setTextAlignmentName: MethodStringName2<TreeItem, Unit, Int, HorizontalAlignment> =
+        MethodStringName2<TreeItem, Unit, Int, HorizontalAlignment>("set_text_alignment")
+
+    @JvmStatic
+    public val getTextAlignmentName: MethodStringName1<TreeItem, HorizontalAlignment, Int> =
+        MethodStringName1<TreeItem, HorizontalAlignment, Int>("get_text_alignment")
+
+    @JvmStatic
+    public val setExpandRightName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("set_expand_right")
+
+    @JvmStatic
+    public val getExpandRightName: MethodStringName1<TreeItem, Boolean, Int> =
+        MethodStringName1<TreeItem, Boolean, Int>("get_expand_right")
+
+    @JvmStatic
+    public val setDisableFoldingName: MethodStringName1<TreeItem, Unit, Boolean> =
+        MethodStringName1<TreeItem, Unit, Boolean>("set_disable_folding")
+
+    @JvmStatic
+    public val isFoldingDisabledName: MethodStringName0<TreeItem, Boolean> =
+        MethodStringName0<TreeItem, Boolean>("is_folding_disabled")
+
+    @JvmStatic
+    public val createChildName: MethodStringName1<TreeItem, TreeItem?, Int> =
+        MethodStringName1<TreeItem, TreeItem?, Int>("create_child")
+
+    @JvmStatic
+    public val addChildName: MethodStringName1<TreeItem, Unit, TreeItem?> =
+        MethodStringName1<TreeItem, Unit, TreeItem?>("add_child")
+
+    @JvmStatic
+    public val removeChildName: MethodStringName1<TreeItem, Unit, TreeItem?> =
+        MethodStringName1<TreeItem, Unit, TreeItem?>("remove_child")
+
+    @JvmStatic
+    public val getTreeName: MethodStringName0<TreeItem, Tree?> =
+        MethodStringName0<TreeItem, Tree?>("get_tree")
+
+    @JvmStatic
+    public val getNextName: MethodStringName0<TreeItem, TreeItem?> =
+        MethodStringName0<TreeItem, TreeItem?>("get_next")
+
+    @JvmStatic
+    public val getPrevName: MethodStringName0<TreeItem, TreeItem?> =
+        MethodStringName0<TreeItem, TreeItem?>("get_prev")
+
+    @JvmStatic
+    public val getParentName: MethodStringName0<TreeItem, TreeItem?> =
+        MethodStringName0<TreeItem, TreeItem?>("get_parent")
+
+    @JvmStatic
+    public val getFirstChildName: MethodStringName0<TreeItem, TreeItem?> =
+        MethodStringName0<TreeItem, TreeItem?>("get_first_child")
+
+    @JvmStatic
+    public val getNextInTreeName: MethodStringName1<TreeItem, TreeItem?, Boolean> =
+        MethodStringName1<TreeItem, TreeItem?, Boolean>("get_next_in_tree")
+
+    @JvmStatic
+    public val getPrevInTreeName: MethodStringName1<TreeItem, TreeItem?, Boolean> =
+        MethodStringName1<TreeItem, TreeItem?, Boolean>("get_prev_in_tree")
+
+    @JvmStatic
+    public val getNextVisibleName: MethodStringName1<TreeItem, TreeItem?, Boolean> =
+        MethodStringName1<TreeItem, TreeItem?, Boolean>("get_next_visible")
+
+    @JvmStatic
+    public val getPrevVisibleName: MethodStringName1<TreeItem, TreeItem?, Boolean> =
+        MethodStringName1<TreeItem, TreeItem?, Boolean>("get_prev_visible")
+
+    @JvmStatic
+    public val getChildName: MethodStringName1<TreeItem, TreeItem?, Int> =
+        MethodStringName1<TreeItem, TreeItem?, Int>("get_child")
+
+    @JvmStatic
+    public val getChildCountName: MethodStringName0<TreeItem, Int> =
+        MethodStringName0<TreeItem, Int>("get_child_count")
+
+    @JvmStatic
+    public val getChildrenName: MethodStringName0<TreeItem, VariantArray<TreeItem>> =
+        MethodStringName0<TreeItem, VariantArray<TreeItem>>("get_children")
+
+    @JvmStatic
+    public val getIndexName: MethodStringName0<TreeItem, Int> =
+        MethodStringName0<TreeItem, Int>("get_index")
+
+    @JvmStatic
+    public val moveBeforeName: MethodStringName1<TreeItem, Unit, TreeItem?> =
+        MethodStringName1<TreeItem, Unit, TreeItem?>("move_before")
+
+    @JvmStatic
+    public val moveAfterName: MethodStringName1<TreeItem, Unit, TreeItem?> =
+        MethodStringName1<TreeItem, Unit, TreeItem?>("move_after")
+  }
 
   public object MethodBindings {
     internal val setCellModePtr: VoidPtr =

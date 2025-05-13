@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Accept a [Color] to the input port and transform it according to [function].
@@ -135,7 +138,15 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setFunctionName: MethodStringName1<VisualShaderNodeColorFunc, Unit, Function> =
+        MethodStringName1<VisualShaderNodeColorFunc, Unit, Function>("set_function")
+
+    @JvmStatic
+    public val getFunctionName: MethodStringName0<VisualShaderNodeColorFunc, Function> =
+        MethodStringName0<VisualShaderNodeColorFunc, Function>("get_function")
+  }
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =

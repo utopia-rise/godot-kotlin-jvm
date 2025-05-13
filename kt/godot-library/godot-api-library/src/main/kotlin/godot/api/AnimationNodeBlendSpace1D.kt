@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,6 +30,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A resource used by [AnimationNodeBlendTree].
@@ -271,7 +276,87 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val addBlendPointName:
+        MethodStringName3<AnimationNodeBlendSpace1D, Unit, AnimationRootNode?, Float, Int> =
+        MethodStringName3<AnimationNodeBlendSpace1D, Unit, AnimationRootNode?, Float, Int>("add_blend_point")
+
+    @JvmStatic
+    public val setBlendPointPositionName:
+        MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, Float> =
+        MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, Float>("set_blend_point_position")
+
+    @JvmStatic
+    public val getBlendPointPositionName: MethodStringName1<AnimationNodeBlendSpace1D, Float, Int> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Float, Int>("get_blend_point_position")
+
+    @JvmStatic
+    public val setBlendPointNodeName:
+        MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, AnimationRootNode?> =
+        MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, AnimationRootNode?>("set_blend_point_node")
+
+    @JvmStatic
+    public val getBlendPointNodeName:
+        MethodStringName1<AnimationNodeBlendSpace1D, AnimationRootNode?, Int> =
+        MethodStringName1<AnimationNodeBlendSpace1D, AnimationRootNode?, Int>("get_blend_point_node")
+
+    @JvmStatic
+    public val removeBlendPointName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Int> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, Int>("remove_blend_point")
+
+    @JvmStatic
+    public val getBlendPointCountName: MethodStringName0<AnimationNodeBlendSpace1D, Int> =
+        MethodStringName0<AnimationNodeBlendSpace1D, Int>("get_blend_point_count")
+
+    @JvmStatic
+    public val setMinSpaceName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float>("set_min_space")
+
+    @JvmStatic
+    public val getMinSpaceName: MethodStringName0<AnimationNodeBlendSpace1D, Float> =
+        MethodStringName0<AnimationNodeBlendSpace1D, Float>("get_min_space")
+
+    @JvmStatic
+    public val setMaxSpaceName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float>("set_max_space")
+
+    @JvmStatic
+    public val getMaxSpaceName: MethodStringName0<AnimationNodeBlendSpace1D, Float> =
+        MethodStringName0<AnimationNodeBlendSpace1D, Float>("get_max_space")
+
+    @JvmStatic
+    public val setSnapName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float>("set_snap")
+
+    @JvmStatic
+    public val getSnapName: MethodStringName0<AnimationNodeBlendSpace1D, Float> =
+        MethodStringName0<AnimationNodeBlendSpace1D, Float>("get_snap")
+
+    @JvmStatic
+    public val setValueLabelName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, String> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, String>("set_value_label")
+
+    @JvmStatic
+    public val getValueLabelName: MethodStringName0<AnimationNodeBlendSpace1D, String> =
+        MethodStringName0<AnimationNodeBlendSpace1D, String>("get_value_label")
+
+    @JvmStatic
+    public val setBlendModeName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, BlendMode> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, BlendMode>("set_blend_mode")
+
+    @JvmStatic
+    public val getBlendModeName: MethodStringName0<AnimationNodeBlendSpace1D, BlendMode> =
+        MethodStringName0<AnimationNodeBlendSpace1D, BlendMode>("get_blend_mode")
+
+    @JvmStatic
+    public val setUseSyncName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Boolean> =
+        MethodStringName1<AnimationNodeBlendSpace1D, Unit, Boolean>("set_use_sync")
+
+    @JvmStatic
+    public val isUsingSyncName: MethodStringName0<AnimationNodeBlendSpace1D, Boolean> =
+        MethodStringName0<AnimationNodeBlendSpace1D, Boolean>("is_using_sync")
+  }
 
   public object MethodBindings {
     internal val addBlendPointPtr: VoidPtr =

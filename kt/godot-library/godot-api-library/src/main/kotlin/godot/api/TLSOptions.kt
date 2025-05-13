@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
@@ -103,6 +106,42 @@ public open class TLSOptions internal constructor() : RefCounted() {
   }
 
   public companion object {
+    @JvmStatic
+    public val clientName: MethodStringName2<TLSOptions, TLSOptions?, X509Certificate?, String> =
+        MethodStringName2<TLSOptions, TLSOptions?, X509Certificate?, String>("client")
+
+    @JvmStatic
+    public val clientUnsafeName: MethodStringName1<TLSOptions, TLSOptions?, X509Certificate?> =
+        MethodStringName1<TLSOptions, TLSOptions?, X509Certificate?>("client_unsafe")
+
+    @JvmStatic
+    public val serverName: MethodStringName2<TLSOptions, TLSOptions?, CryptoKey?, X509Certificate?>
+        = MethodStringName2<TLSOptions, TLSOptions?, CryptoKey?, X509Certificate?>("server")
+
+    @JvmStatic
+    public val isServerName: MethodStringName0<TLSOptions, Boolean> =
+        MethodStringName0<TLSOptions, Boolean>("is_server")
+
+    @JvmStatic
+    public val isUnsafeClientName: MethodStringName0<TLSOptions, Boolean> =
+        MethodStringName0<TLSOptions, Boolean>("is_unsafe_client")
+
+    @JvmStatic
+    public val getCommonNameOverrideName: MethodStringName0<TLSOptions, String> =
+        MethodStringName0<TLSOptions, String>("get_common_name_override")
+
+    @JvmStatic
+    public val getTrustedCaChainName: MethodStringName0<TLSOptions, X509Certificate?> =
+        MethodStringName0<TLSOptions, X509Certificate?>("get_trusted_ca_chain")
+
+    @JvmStatic
+    public val getPrivateKeyName: MethodStringName0<TLSOptions, CryptoKey?> =
+        MethodStringName0<TLSOptions, CryptoKey?>("get_private_key")
+
+    @JvmStatic
+    public val getOwnCertificateName: MethodStringName0<TLSOptions, X509Certificate?> =
+        MethodStringName0<TLSOptions, X509Certificate?>("get_own_certificate")
+
     /**
      * Creates a TLS client configuration which validates certificates and their common names (fully
      * qualified domain names).

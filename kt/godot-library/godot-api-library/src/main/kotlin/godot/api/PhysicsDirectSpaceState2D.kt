@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Provides direct access to a physics space in the [PhysicsServer2D]. It's used mainly to do
@@ -175,7 +178,43 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val intersectPointName:
+        MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters2D?, Int>
+        =
+        MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters2D?, Int>("intersect_point")
+
+    @JvmStatic
+    public val intersectRayName:
+        MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters2D?>
+        =
+        MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters2D?>("intersect_ray")
+
+    @JvmStatic
+    public val intersectShapeName:
+        MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters2D?, Int>
+        =
+        MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters2D?, Int>("intersect_shape")
+
+    @JvmStatic
+    public val castMotionName:
+        MethodStringName1<PhysicsDirectSpaceState2D, PackedFloat32Array, PhysicsShapeQueryParameters2D?>
+        =
+        MethodStringName1<PhysicsDirectSpaceState2D, PackedFloat32Array, PhysicsShapeQueryParameters2D?>("cast_motion")
+
+    @JvmStatic
+    public val collideShapeName:
+        MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Vector2>, PhysicsShapeQueryParameters2D?, Int>
+        =
+        MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Vector2>, PhysicsShapeQueryParameters2D?, Int>("collide_shape")
+
+    @JvmStatic
+    public val getRestInfoName:
+        MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters2D?>
+        =
+        MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters2D?>("get_rest_info")
+  }
 
   public object MethodBindings {
     internal val intersectPointPtr: VoidPtr =

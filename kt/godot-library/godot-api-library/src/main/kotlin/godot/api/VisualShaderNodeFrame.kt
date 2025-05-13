@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt32Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -26,6 +28,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve
@@ -242,7 +245,56 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setTitleName: MethodStringName1<VisualShaderNodeFrame, Unit, String> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, String>("set_title")
+
+    @JvmStatic
+    public val getTitleName: MethodStringName0<VisualShaderNodeFrame, String> =
+        MethodStringName0<VisualShaderNodeFrame, String>("get_title")
+
+    @JvmStatic
+    public val setTintColorEnabledName: MethodStringName1<VisualShaderNodeFrame, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, Boolean>("set_tint_color_enabled")
+
+    @JvmStatic
+    public val isTintColorEnabledName: MethodStringName0<VisualShaderNodeFrame, Boolean> =
+        MethodStringName0<VisualShaderNodeFrame, Boolean>("is_tint_color_enabled")
+
+    @JvmStatic
+    public val setTintColorName: MethodStringName1<VisualShaderNodeFrame, Unit, Color> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, Color>("set_tint_color")
+
+    @JvmStatic
+    public val getTintColorName: MethodStringName0<VisualShaderNodeFrame, Color> =
+        MethodStringName0<VisualShaderNodeFrame, Color>("get_tint_color")
+
+    @JvmStatic
+    public val setAutoshrinkEnabledName: MethodStringName1<VisualShaderNodeFrame, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, Boolean>("set_autoshrink_enabled")
+
+    @JvmStatic
+    public val isAutoshrinkEnabledName: MethodStringName0<VisualShaderNodeFrame, Boolean> =
+        MethodStringName0<VisualShaderNodeFrame, Boolean>("is_autoshrink_enabled")
+
+    @JvmStatic
+    public val addAttachedNodeName: MethodStringName1<VisualShaderNodeFrame, Unit, Int> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, Int>("add_attached_node")
+
+    @JvmStatic
+    public val removeAttachedNodeName: MethodStringName1<VisualShaderNodeFrame, Unit, Int> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, Int>("remove_attached_node")
+
+    @JvmStatic
+    public val setAttachedNodesName:
+        MethodStringName1<VisualShaderNodeFrame, Unit, PackedInt32Array> =
+        MethodStringName1<VisualShaderNodeFrame, Unit, PackedInt32Array>("set_attached_nodes")
+
+    @JvmStatic
+    public val getAttachedNodesName: MethodStringName0<VisualShaderNodeFrame, PackedInt32Array> =
+        MethodStringName0<VisualShaderNodeFrame, PackedInt32Array>("get_attached_nodes")
+  }
 
   public object MethodBindings {
     internal val setTitlePtr: VoidPtr =

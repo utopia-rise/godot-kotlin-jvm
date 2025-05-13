@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -19,6 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
@@ -74,7 +77,25 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setVaryingNameName: MethodStringName1<VisualShaderNodeVarying, Unit, String> =
+        MethodStringName1<VisualShaderNodeVarying, Unit, String>("set_varying_name")
+
+    @JvmStatic
+    public val getVaryingNameName: MethodStringName0<VisualShaderNodeVarying, String> =
+        MethodStringName0<VisualShaderNodeVarying, String>("get_varying_name")
+
+    @JvmStatic
+    public val setVaryingTypeName:
+        MethodStringName1<VisualShaderNodeVarying, Unit, VisualShader.VaryingType> =
+        MethodStringName1<VisualShaderNodeVarying, Unit, VisualShader.VaryingType>("set_varying_type")
+
+    @JvmStatic
+    public val getVaryingTypeName:
+        MethodStringName0<VisualShaderNodeVarying, VisualShader.VaryingType> =
+        MethodStringName0<VisualShaderNodeVarying, VisualShader.VaryingType>("get_varying_type")
+  }
 
   public object MethodBindings {
     internal val setVaryingNamePtr: VoidPtr =

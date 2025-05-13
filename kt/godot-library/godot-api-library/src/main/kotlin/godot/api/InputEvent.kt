@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
@@ -33,6 +37,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class of all types of input events. See [Node.Input].
@@ -298,6 +303,67 @@ public open class InputEvent internal constructor() : Resource() {
       getActionStrength(action.asCachedStringName(), exactMatch)
 
   public companion object {
+    @JvmStatic
+    public val setDeviceName: MethodStringName1<InputEvent, Unit, Int> =
+        MethodStringName1<InputEvent, Unit, Int>("set_device")
+
+    @JvmStatic
+    public val getDeviceName: MethodStringName0<InputEvent, Int> =
+        MethodStringName0<InputEvent, Int>("get_device")
+
+    @JvmStatic
+    public val isActionName: MethodStringName2<InputEvent, Boolean, StringName, Boolean> =
+        MethodStringName2<InputEvent, Boolean, StringName, Boolean>("is_action")
+
+    @JvmStatic
+    public val isActionPressedName:
+        MethodStringName3<InputEvent, Boolean, StringName, Boolean, Boolean> =
+        MethodStringName3<InputEvent, Boolean, StringName, Boolean, Boolean>("is_action_pressed")
+
+    @JvmStatic
+    public val isActionReleasedName: MethodStringName2<InputEvent, Boolean, StringName, Boolean> =
+        MethodStringName2<InputEvent, Boolean, StringName, Boolean>("is_action_released")
+
+    @JvmStatic
+    public val getActionStrengthName: MethodStringName2<InputEvent, Float, StringName, Boolean> =
+        MethodStringName2<InputEvent, Float, StringName, Boolean>("get_action_strength")
+
+    @JvmStatic
+    public val isCanceledName: MethodStringName0<InputEvent, Boolean> =
+        MethodStringName0<InputEvent, Boolean>("is_canceled")
+
+    @JvmStatic
+    public val isPressedName: MethodStringName0<InputEvent, Boolean> =
+        MethodStringName0<InputEvent, Boolean>("is_pressed")
+
+    @JvmStatic
+    public val isReleasedName: MethodStringName0<InputEvent, Boolean> =
+        MethodStringName0<InputEvent, Boolean>("is_released")
+
+    @JvmStatic
+    public val isEchoName: MethodStringName0<InputEvent, Boolean> =
+        MethodStringName0<InputEvent, Boolean>("is_echo")
+
+    @JvmStatic
+    public val asTextName: MethodStringName0<InputEvent, String> =
+        MethodStringName0<InputEvent, String>("as_text")
+
+    @JvmStatic
+    public val isMatchName: MethodStringName2<InputEvent, Boolean, InputEvent?, Boolean> =
+        MethodStringName2<InputEvent, Boolean, InputEvent?, Boolean>("is_match")
+
+    @JvmStatic
+    public val isActionTypeName: MethodStringName0<InputEvent, Boolean> =
+        MethodStringName0<InputEvent, Boolean>("is_action_type")
+
+    @JvmStatic
+    public val accumulateName: MethodStringName1<InputEvent, Boolean, InputEvent?> =
+        MethodStringName1<InputEvent, Boolean, InputEvent?>("accumulate")
+
+    @JvmStatic
+    public val xformedByName: MethodStringName2<InputEvent, InputEvent?, Transform2D, Vector2> =
+        MethodStringName2<InputEvent, InputEvent?, Transform2D, Vector2>("xformed_by")
+
     /**
      * Device ID used for emulated mouse input from a touchscreen, or for emulated touch input from
      * a mouse. This can be used to distinguish emulated mouse input from physical mouse input, or

@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class WebRTCDataChannel internal constructor() : PacketPeer() {
@@ -223,7 +226,63 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val pollName: MethodStringName0<WebRTCDataChannel, Error> =
+        MethodStringName0<WebRTCDataChannel, Error>("poll")
+
+    @JvmStatic
+    public val closeName: MethodStringName0<WebRTCDataChannel, Unit> =
+        MethodStringName0<WebRTCDataChannel, Unit>("close")
+
+    @JvmStatic
+    public val wasStringPacketName: MethodStringName0<WebRTCDataChannel, Boolean> =
+        MethodStringName0<WebRTCDataChannel, Boolean>("was_string_packet")
+
+    @JvmStatic
+    public val setWriteModeName: MethodStringName1<WebRTCDataChannel, Unit, WriteMode> =
+        MethodStringName1<WebRTCDataChannel, Unit, WriteMode>("set_write_mode")
+
+    @JvmStatic
+    public val getWriteModeName: MethodStringName0<WebRTCDataChannel, WriteMode> =
+        MethodStringName0<WebRTCDataChannel, WriteMode>("get_write_mode")
+
+    @JvmStatic
+    public val getReadyStateName: MethodStringName0<WebRTCDataChannel, ChannelState> =
+        MethodStringName0<WebRTCDataChannel, ChannelState>("get_ready_state")
+
+    @JvmStatic
+    public val getLabelName: MethodStringName0<WebRTCDataChannel, String> =
+        MethodStringName0<WebRTCDataChannel, String>("get_label")
+
+    @JvmStatic
+    public val isOrderedName: MethodStringName0<WebRTCDataChannel, Boolean> =
+        MethodStringName0<WebRTCDataChannel, Boolean>("is_ordered")
+
+    @JvmStatic
+    public val getIdName: MethodStringName0<WebRTCDataChannel, Int> =
+        MethodStringName0<WebRTCDataChannel, Int>("get_id")
+
+    @JvmStatic
+    public val getMaxPacketLifeTimeName: MethodStringName0<WebRTCDataChannel, Int> =
+        MethodStringName0<WebRTCDataChannel, Int>("get_max_packet_life_time")
+
+    @JvmStatic
+    public val getMaxRetransmitsName: MethodStringName0<WebRTCDataChannel, Int> =
+        MethodStringName0<WebRTCDataChannel, Int>("get_max_retransmits")
+
+    @JvmStatic
+    public val getProtocolName: MethodStringName0<WebRTCDataChannel, String> =
+        MethodStringName0<WebRTCDataChannel, String>("get_protocol")
+
+    @JvmStatic
+    public val isNegotiatedName: MethodStringName0<WebRTCDataChannel, Boolean> =
+        MethodStringName0<WebRTCDataChannel, Boolean>("is_negotiated")
+
+    @JvmStatic
+    public val getBufferedAmountName: MethodStringName0<WebRTCDataChannel, Int> =
+        MethodStringName0<WebRTCDataChannel, Int>("get_buffered_amount")
+  }
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =

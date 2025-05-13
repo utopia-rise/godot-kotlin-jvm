@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about pan gestures. A pan gesture is performed when the user swipes the touch
@@ -83,7 +86,15 @@ public open class InputEventPanGesture : InputEventGesture() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setDeltaName: MethodStringName1<InputEventPanGesture, Unit, Vector2> =
+        MethodStringName1<InputEventPanGesture, Unit, Vector2>("set_delta")
+
+    @JvmStatic
+    public val getDeltaName: MethodStringName0<InputEventPanGesture, Vector2> =
+        MethodStringName0<InputEventPanGesture, Vector2>("get_delta")
+  }
 
   public object MethodBindings {
     internal val setDeltaPtr: VoidPtr =

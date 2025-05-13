@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This node is only available in `Fragment` and `Light` visual shaders.
@@ -198,7 +201,31 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setOpTypeName: MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, OpType> =
+        MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, OpType>("set_op_type")
+
+    @JvmStatic
+    public val getOpTypeName: MethodStringName0<VisualShaderNodeDerivativeFunc, OpType> =
+        MethodStringName0<VisualShaderNodeDerivativeFunc, OpType>("get_op_type")
+
+    @JvmStatic
+    public val setFunctionName: MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Function> =
+        MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Function>("set_function")
+
+    @JvmStatic
+    public val getFunctionName: MethodStringName0<VisualShaderNodeDerivativeFunc, Function> =
+        MethodStringName0<VisualShaderNodeDerivativeFunc, Function>("get_function")
+
+    @JvmStatic
+    public val setPrecisionName: MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Precision>
+        = MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Precision>("set_precision")
+
+    @JvmStatic
+    public val getPrecisionName: MethodStringName0<VisualShaderNodeDerivativeFunc, Precision> =
+        MethodStringName0<VisualShaderNodeDerivativeFunc, Precision>("get_precision")
+  }
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =

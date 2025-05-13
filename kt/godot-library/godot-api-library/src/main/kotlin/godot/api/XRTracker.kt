@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * This object is the base of all XR trackers.
@@ -116,7 +119,31 @@ public open class XRTracker internal constructor() : RefCounted() {
 
   public final fun setTrackerName(name: String) = setTrackerName(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getTrackerTypeName: MethodStringName0<XRTracker, XRServer.TrackerType> =
+        MethodStringName0<XRTracker, XRServer.TrackerType>("get_tracker_type")
+
+    @JvmStatic
+    public val setTrackerTypeName: MethodStringName1<XRTracker, Unit, XRServer.TrackerType> =
+        MethodStringName1<XRTracker, Unit, XRServer.TrackerType>("set_tracker_type")
+
+    @JvmStatic
+    public val getTrackerNameName: MethodStringName0<XRTracker, StringName> =
+        MethodStringName0<XRTracker, StringName>("get_tracker_name")
+
+    @JvmStatic
+    public val setTrackerNameName: MethodStringName1<XRTracker, Unit, StringName> =
+        MethodStringName1<XRTracker, Unit, StringName>("set_tracker_name")
+
+    @JvmStatic
+    public val getTrackerDescName: MethodStringName0<XRTracker, String> =
+        MethodStringName0<XRTracker, String>("get_tracker_desc")
+
+    @JvmStatic
+    public val setTrackerDescName: MethodStringName1<XRTracker, Unit, String> =
+        MethodStringName1<XRTracker, Unit, String>("set_tracker_desc")
+  }
 
   public object MethodBindings {
     internal val getTrackerTypePtr: VoidPtr =

@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName5
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This resource describes a mathematical curve by defining a set of points and tangents at each
@@ -394,7 +399,135 @@ public open class Curve : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val getPointCountName: MethodStringName0<Curve, Int> =
+        MethodStringName0<Curve, Int>("get_point_count")
+
+    @JvmStatic
+    public val setPointCountName: MethodStringName1<Curve, Unit, Int> =
+        MethodStringName1<Curve, Unit, Int>("set_point_count")
+
+    @JvmStatic
+    public val addPointName:
+        MethodStringName5<Curve, Int, Vector2, Float, Float, TangentMode, TangentMode> =
+        MethodStringName5<Curve, Int, Vector2, Float, Float, TangentMode, TangentMode>("add_point")
+
+    @JvmStatic
+    public val removePointName: MethodStringName1<Curve, Unit, Int> =
+        MethodStringName1<Curve, Unit, Int>("remove_point")
+
+    @JvmStatic
+    public val clearPointsName: MethodStringName0<Curve, Unit> =
+        MethodStringName0<Curve, Unit>("clear_points")
+
+    @JvmStatic
+    public val getPointPositionName: MethodStringName1<Curve, Vector2, Int> =
+        MethodStringName1<Curve, Vector2, Int>("get_point_position")
+
+    @JvmStatic
+    public val setPointValueName: MethodStringName2<Curve, Unit, Int, Float> =
+        MethodStringName2<Curve, Unit, Int, Float>("set_point_value")
+
+    @JvmStatic
+    public val setPointOffsetName: MethodStringName2<Curve, Int, Int, Float> =
+        MethodStringName2<Curve, Int, Int, Float>("set_point_offset")
+
+    @JvmStatic
+    public val sampleName: MethodStringName1<Curve, Float, Float> =
+        MethodStringName1<Curve, Float, Float>("sample")
+
+    @JvmStatic
+    public val sampleBakedName: MethodStringName1<Curve, Float, Float> =
+        MethodStringName1<Curve, Float, Float>("sample_baked")
+
+    @JvmStatic
+    public val getPointLeftTangentName: MethodStringName1<Curve, Float, Int> =
+        MethodStringName1<Curve, Float, Int>("get_point_left_tangent")
+
+    @JvmStatic
+    public val getPointRightTangentName: MethodStringName1<Curve, Float, Int> =
+        MethodStringName1<Curve, Float, Int>("get_point_right_tangent")
+
+    @JvmStatic
+    public val getPointLeftModeName: MethodStringName1<Curve, TangentMode, Int> =
+        MethodStringName1<Curve, TangentMode, Int>("get_point_left_mode")
+
+    @JvmStatic
+    public val getPointRightModeName: MethodStringName1<Curve, TangentMode, Int> =
+        MethodStringName1<Curve, TangentMode, Int>("get_point_right_mode")
+
+    @JvmStatic
+    public val setPointLeftTangentName: MethodStringName2<Curve, Unit, Int, Float> =
+        MethodStringName2<Curve, Unit, Int, Float>("set_point_left_tangent")
+
+    @JvmStatic
+    public val setPointRightTangentName: MethodStringName2<Curve, Unit, Int, Float> =
+        MethodStringName2<Curve, Unit, Int, Float>("set_point_right_tangent")
+
+    @JvmStatic
+    public val setPointLeftModeName: MethodStringName2<Curve, Unit, Int, TangentMode> =
+        MethodStringName2<Curve, Unit, Int, TangentMode>("set_point_left_mode")
+
+    @JvmStatic
+    public val setPointRightModeName: MethodStringName2<Curve, Unit, Int, TangentMode> =
+        MethodStringName2<Curve, Unit, Int, TangentMode>("set_point_right_mode")
+
+    @JvmStatic
+    public val getMinValueName: MethodStringName0<Curve, Float> =
+        MethodStringName0<Curve, Float>("get_min_value")
+
+    @JvmStatic
+    public val setMinValueName: MethodStringName1<Curve, Unit, Float> =
+        MethodStringName1<Curve, Unit, Float>("set_min_value")
+
+    @JvmStatic
+    public val getMaxValueName: MethodStringName0<Curve, Float> =
+        MethodStringName0<Curve, Float>("get_max_value")
+
+    @JvmStatic
+    public val setMaxValueName: MethodStringName1<Curve, Unit, Float> =
+        MethodStringName1<Curve, Unit, Float>("set_max_value")
+
+    @JvmStatic
+    public val getValueRangeName: MethodStringName0<Curve, Float> =
+        MethodStringName0<Curve, Float>("get_value_range")
+
+    @JvmStatic
+    public val getMinDomainName: MethodStringName0<Curve, Float> =
+        MethodStringName0<Curve, Float>("get_min_domain")
+
+    @JvmStatic
+    public val setMinDomainName: MethodStringName1<Curve, Unit, Float> =
+        MethodStringName1<Curve, Unit, Float>("set_min_domain")
+
+    @JvmStatic
+    public val getMaxDomainName: MethodStringName0<Curve, Float> =
+        MethodStringName0<Curve, Float>("get_max_domain")
+
+    @JvmStatic
+    public val setMaxDomainName: MethodStringName1<Curve, Unit, Float> =
+        MethodStringName1<Curve, Unit, Float>("set_max_domain")
+
+    @JvmStatic
+    public val getDomainRangeName: MethodStringName0<Curve, Float> =
+        MethodStringName0<Curve, Float>("get_domain_range")
+
+    @JvmStatic
+    public val cleanDupesName: MethodStringName0<Curve, Unit> =
+        MethodStringName0<Curve, Unit>("clean_dupes")
+
+    @JvmStatic
+    public val bakeName: MethodStringName0<Curve, Unit> = MethodStringName0<Curve, Unit>("bake")
+
+    @JvmStatic
+    public val getBakeResolutionName: MethodStringName0<Curve, Int> =
+        MethodStringName0<Curve, Int>("get_bake_resolution")
+
+    @JvmStatic
+    public val setBakeResolutionName: MethodStringName1<Curve, Unit, Int> =
+        MethodStringName1<Curve, Unit, Int>("set_bake_resolution")
+  }
 
   public object MethodBindings {
     internal val getPointCountPtr: VoidPtr =

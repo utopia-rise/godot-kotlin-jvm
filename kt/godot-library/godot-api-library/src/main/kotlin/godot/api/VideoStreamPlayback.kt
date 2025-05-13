@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName3
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
@@ -21,6 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is intended to be overridden by video decoder extensions with custom implementations
@@ -145,7 +147,12 @@ public open class VideoStreamPlayback : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val mixAudioName:
+        MethodStringName3<VideoStreamPlayback, Int, Int, PackedFloat32Array, Int> =
+        MethodStringName3<VideoStreamPlayback, Int, Int, PackedFloat32Array, Int>("mix_audio")
+  }
 
   public object MethodBindings {
     internal val mixAudioPtr: VoidPtr =

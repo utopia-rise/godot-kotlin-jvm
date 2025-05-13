@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.VariantArray
@@ -25,6 +28,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Container for parsed source geometry data used in navigation mesh baking.
@@ -216,7 +220,89 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val clearName: MethodStringName0<NavigationMeshSourceGeometryData2D, Unit> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, Unit>("clear")
+
+    @JvmStatic
+    public val hasDataName: MethodStringName0<NavigationMeshSourceGeometryData2D, Boolean> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, Boolean>("has_data")
+
+    @JvmStatic
+    public val setTraversableOutlinesName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>
+        =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>("set_traversable_outlines")
+
+    @JvmStatic
+    public val getTraversableOutlinesName:
+        MethodStringName0<NavigationMeshSourceGeometryData2D, VariantArray<PackedVector2Array>> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, VariantArray<PackedVector2Array>>("get_traversable_outlines")
+
+    @JvmStatic
+    public val setObstructionOutlinesName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>
+        =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>("set_obstruction_outlines")
+
+    @JvmStatic
+    public val getObstructionOutlinesName:
+        MethodStringName0<NavigationMeshSourceGeometryData2D, VariantArray<PackedVector2Array>> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, VariantArray<PackedVector2Array>>("get_obstruction_outlines")
+
+    @JvmStatic
+    public val appendTraversableOutlinesName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>
+        =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>("append_traversable_outlines")
+
+    @JvmStatic
+    public val appendObstructionOutlinesName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>
+        =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<PackedVector2Array>>("append_obstruction_outlines")
+
+    @JvmStatic
+    public val addTraversableOutlineName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, PackedVector2Array> =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, PackedVector2Array>("add_traversable_outline")
+
+    @JvmStatic
+    public val addObstructionOutlineName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, PackedVector2Array> =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, PackedVector2Array>("add_obstruction_outline")
+
+    @JvmStatic
+    public val mergeName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, NavigationMeshSourceGeometryData2D?>
+        =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, NavigationMeshSourceGeometryData2D?>("merge")
+
+    @JvmStatic
+    public val addProjectedObstructionName:
+        MethodStringName2<NavigationMeshSourceGeometryData2D, Unit, PackedVector2Array, Boolean> =
+        MethodStringName2<NavigationMeshSourceGeometryData2D, Unit, PackedVector2Array, Boolean>("add_projected_obstruction")
+
+    @JvmStatic
+    public val clearProjectedObstructionsName:
+        MethodStringName0<NavigationMeshSourceGeometryData2D, Unit> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, Unit>("clear_projected_obstructions")
+
+    @JvmStatic
+    public val setProjectedObstructionsName:
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<Any?>> =
+        MethodStringName1<NavigationMeshSourceGeometryData2D, Unit, VariantArray<Any?>>("set_projected_obstructions")
+
+    @JvmStatic
+    public val getProjectedObstructionsName:
+        MethodStringName0<NavigationMeshSourceGeometryData2D, VariantArray<Any?>> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, VariantArray<Any?>>("get_projected_obstructions")
+
+    @JvmStatic
+    public val getBoundsName: MethodStringName0<NavigationMeshSourceGeometryData2D, Rect2> =
+        MethodStringName0<NavigationMeshSourceGeometryData2D, Rect2>("get_bounds")
+  }
 
   public object MethodBindings {
     internal val clearPtr: VoidPtr =

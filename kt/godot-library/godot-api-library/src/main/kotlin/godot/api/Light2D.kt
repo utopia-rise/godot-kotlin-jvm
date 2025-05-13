@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see
@@ -508,7 +511,135 @@ public open class Light2D internal constructor() : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmStatic
+    public val setEnabledName: MethodStringName1<Light2D, Unit, Boolean> =
+        MethodStringName1<Light2D, Unit, Boolean>("set_enabled")
+
+    @JvmStatic
+    public val isEnabledName: MethodStringName0<Light2D, Boolean> =
+        MethodStringName0<Light2D, Boolean>("is_enabled")
+
+    @JvmStatic
+    public val setEditorOnlyName: MethodStringName1<Light2D, Unit, Boolean> =
+        MethodStringName1<Light2D, Unit, Boolean>("set_editor_only")
+
+    @JvmStatic
+    public val isEditorOnlyName: MethodStringName0<Light2D, Boolean> =
+        MethodStringName0<Light2D, Boolean>("is_editor_only")
+
+    @JvmStatic
+    public val setColorName: MethodStringName1<Light2D, Unit, Color> =
+        MethodStringName1<Light2D, Unit, Color>("set_color")
+
+    @JvmStatic
+    public val getColorName: MethodStringName0<Light2D, Color> =
+        MethodStringName0<Light2D, Color>("get_color")
+
+    @JvmStatic
+    public val setEnergyName: MethodStringName1<Light2D, Unit, Float> =
+        MethodStringName1<Light2D, Unit, Float>("set_energy")
+
+    @JvmStatic
+    public val getEnergyName: MethodStringName0<Light2D, Float> =
+        MethodStringName0<Light2D, Float>("get_energy")
+
+    @JvmStatic
+    public val setZRangeMinName: MethodStringName1<Light2D, Unit, Int> =
+        MethodStringName1<Light2D, Unit, Int>("set_z_range_min")
+
+    @JvmStatic
+    public val getZRangeMinName: MethodStringName0<Light2D, Int> =
+        MethodStringName0<Light2D, Int>("get_z_range_min")
+
+    @JvmStatic
+    public val setZRangeMaxName: MethodStringName1<Light2D, Unit, Int> =
+        MethodStringName1<Light2D, Unit, Int>("set_z_range_max")
+
+    @JvmStatic
+    public val getZRangeMaxName: MethodStringName0<Light2D, Int> =
+        MethodStringName0<Light2D, Int>("get_z_range_max")
+
+    @JvmStatic
+    public val setLayerRangeMinName: MethodStringName1<Light2D, Unit, Int> =
+        MethodStringName1<Light2D, Unit, Int>("set_layer_range_min")
+
+    @JvmStatic
+    public val getLayerRangeMinName: MethodStringName0<Light2D, Int> =
+        MethodStringName0<Light2D, Int>("get_layer_range_min")
+
+    @JvmStatic
+    public val setLayerRangeMaxName: MethodStringName1<Light2D, Unit, Int> =
+        MethodStringName1<Light2D, Unit, Int>("set_layer_range_max")
+
+    @JvmStatic
+    public val getLayerRangeMaxName: MethodStringName0<Light2D, Int> =
+        MethodStringName0<Light2D, Int>("get_layer_range_max")
+
+    @JvmStatic
+    public val setItemCullMaskName: MethodStringName1<Light2D, Unit, Int> =
+        MethodStringName1<Light2D, Unit, Int>("set_item_cull_mask")
+
+    @JvmStatic
+    public val getItemCullMaskName: MethodStringName0<Light2D, Int> =
+        MethodStringName0<Light2D, Int>("get_item_cull_mask")
+
+    @JvmStatic
+    public val setItemShadowCullMaskName: MethodStringName1<Light2D, Unit, Int> =
+        MethodStringName1<Light2D, Unit, Int>("set_item_shadow_cull_mask")
+
+    @JvmStatic
+    public val getItemShadowCullMaskName: MethodStringName0<Light2D, Int> =
+        MethodStringName0<Light2D, Int>("get_item_shadow_cull_mask")
+
+    @JvmStatic
+    public val setShadowEnabledName: MethodStringName1<Light2D, Unit, Boolean> =
+        MethodStringName1<Light2D, Unit, Boolean>("set_shadow_enabled")
+
+    @JvmStatic
+    public val isShadowEnabledName: MethodStringName0<Light2D, Boolean> =
+        MethodStringName0<Light2D, Boolean>("is_shadow_enabled")
+
+    @JvmStatic
+    public val setShadowSmoothName: MethodStringName1<Light2D, Unit, Float> =
+        MethodStringName1<Light2D, Unit, Float>("set_shadow_smooth")
+
+    @JvmStatic
+    public val getShadowSmoothName: MethodStringName0<Light2D, Float> =
+        MethodStringName0<Light2D, Float>("get_shadow_smooth")
+
+    @JvmStatic
+    public val setShadowFilterName: MethodStringName1<Light2D, Unit, ShadowFilter> =
+        MethodStringName1<Light2D, Unit, ShadowFilter>("set_shadow_filter")
+
+    @JvmStatic
+    public val getShadowFilterName: MethodStringName0<Light2D, ShadowFilter> =
+        MethodStringName0<Light2D, ShadowFilter>("get_shadow_filter")
+
+    @JvmStatic
+    public val setShadowColorName: MethodStringName1<Light2D, Unit, Color> =
+        MethodStringName1<Light2D, Unit, Color>("set_shadow_color")
+
+    @JvmStatic
+    public val getShadowColorName: MethodStringName0<Light2D, Color> =
+        MethodStringName0<Light2D, Color>("get_shadow_color")
+
+    @JvmStatic
+    public val setBlendModeName: MethodStringName1<Light2D, Unit, BlendMode> =
+        MethodStringName1<Light2D, Unit, BlendMode>("set_blend_mode")
+
+    @JvmStatic
+    public val getBlendModeName: MethodStringName0<Light2D, BlendMode> =
+        MethodStringName0<Light2D, BlendMode>("get_blend_mode")
+
+    @JvmStatic
+    public val setHeightName: MethodStringName1<Light2D, Unit, Float> =
+        MethodStringName1<Light2D, Unit, Float>("set_height")
+
+    @JvmStatic
+    public val getHeightName: MethodStringName0<Light2D, Float> =
+        MethodStringName0<Light2D, Float>("get_height")
+  }
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =
