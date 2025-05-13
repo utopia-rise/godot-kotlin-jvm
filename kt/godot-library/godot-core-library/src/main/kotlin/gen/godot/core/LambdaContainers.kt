@@ -1,6 +1,7 @@
 @file:Suppress(
   "PackageDirectoryMismatch", "UNCHECKED_CAST",
   "unused",
+  "RedundantVisibilityModifier",
 )
 
 package godot.core
