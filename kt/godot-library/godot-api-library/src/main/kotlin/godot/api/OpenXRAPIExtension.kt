@@ -18,7 +18,6 @@ import godot.core.MethodStringName7
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2i
-import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -496,11 +495,6 @@ public open class OpenXRAPIExtension : RefCounted() {
         MethodStringName0<OpenXRAPIExtension, Long>("get_session")
 
     @JvmStatic
-    public val transformFromPoseName:
-        MethodStringName1<OpenXRAPIExtension, Transform3D, `const void*`?> =
-        MethodStringName1<OpenXRAPIExtension, Transform3D, `const void*`?>("transform_from_pose")
-
-    @JvmStatic
     public val xrResultName:
         MethodStringName3<OpenXRAPIExtension, Boolean, Long, String, VariantArray<Any?>> =
         MethodStringName3<OpenXRAPIExtension, Boolean, Long, String, VariantArray<Any?>>("xr_result")
@@ -681,9 +675,6 @@ public open class OpenXRAPIExtension : RefCounted() {
 
     internal val getSessionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2455072627)
-
-    internal val transformFromPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 2963875352)
 
     internal val xrResultPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3886436197)

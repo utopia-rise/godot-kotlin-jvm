@@ -36,17 +36,8 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         for (method in clazz.methods) {
-            if (context.isNativeStructure(method.type.identifier)) {
-                continue
-            }
-            var shouldGenerate = true
-            for (argument in method.arguments) {
-                if (context.isNativeStructure(argument.type.identifier)) {
-                    shouldGenerate = false
-                    break
-                }
-            }
-            if (!shouldGenerate) {
+
+            if (!method.canGenerate) {
                 continue
             }
 
@@ -126,6 +117,7 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
         clazz.methods
             .filter { !it.isVirtual }
             .onEach {
+                if(!it.canGenerate)  return@onEach
                 classTask.bindings.addProperty(
                     PropertySpec
                         .builder("${it.name}Ptr", VOID_PTR)
@@ -145,17 +137,15 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
 
 
 class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
-
     override fun apply(classTask: EnrichedClassTask, context: GenerationContext) = configure(classTask.builder) {
         val clazz = classTask.clazz
         clazz.methods
             .filter { !it.isVirtual }
             .onEach {
                 if (it.isVararg) return@onEach
-
+                if(!it.canGenerate)  return@onEach
 
                 val argCount = it.arguments.size
-
                 val methodStringClassName = ClassName(
                     godotCorePackage,
                     "MethodStringName$argCount"

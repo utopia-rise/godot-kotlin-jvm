@@ -78,7 +78,6 @@ interface TypeGenerationTrait {
         else -> VARIANT_PARSER_OBJECT
     }
 
-
     fun isVoid() = nature == Nature.VOID
     fun isCoreType() = nature == Nature.CORE || nature == Nature.TYPED_ARRAY
     fun isPrimitive() = nature == Nature.PRIMITIVE
@@ -90,6 +89,7 @@ interface TypeGenerationTrait {
     fun isObjectSubClass() = nature == Nature.CLASS
     fun isVariant() = isCoreType() && identifier == GodotTypes.variant
     fun isCoreClass() = identifier == GodotTypes.godotObject || identifier == GodotTypes.refCounted
+    fun isNativeType() = nature == Nature.NATIVE
 }
 
 fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
@@ -156,6 +156,7 @@ class GenerationType(rawIdentifier: String) : TypeGenerationTrait {
         identifier.startsWith(enumPrefix) -> Nature.ENUM
         identifier.startsWith(bitfieldPrefix) -> Nature.BITFIELD
         identifier.startsWith(GodotTypes.typedArray) == true -> Nature.TYPED_ARRAY
+        identifier.contains("*") -> Nature.NATIVE
         else -> Nature.CLASS
     }
 }
