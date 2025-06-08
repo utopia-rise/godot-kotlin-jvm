@@ -17,28 +17,16 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
         target.plugins.apply(org.gradle.api.publish.maven.plugins.MavenPublishPlugin::class.java)
 
         target.afterEvaluate { evaluatedProject ->
-            val mavenCentralUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME")
-            val mavenCentralPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD")
-            val gpgInMemoryKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
-            val gpgPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
+            val mavenCentralUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME") ?: target.propOrEnv("mavenCentralUsername")
+            val mavenCentralPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD") ?: target.propOrEnv("mavenCentralPassword")
+            val gpgInMemoryKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII") ?: target.propOrEnv("signingInMemoryKey")
+            val gpgPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE") ?: target.propOrEnv("signingInMemoryKeyPassword")
 
             val canSign = mavenCentralUser != null && mavenCentralPassword != null && gpgInMemoryKey != null && gpgPassword != null
 
             target.extensions.getByType(JavaPluginExtension::class.java).apply {
                 withSourcesJar()
                 withJavadocJar()
-            }
-
-            if (canSign) {
-                evaluatedProject.logger.info("Will sign artifact for project \"${evaluatedProject.name}\" and setup publishing")
-
-                evaluatedProject.pluginManager.apply(MavenPublishPlugin::class.java)
-                evaluatedProject.extensions.getByType(MavenPublishBaseExtension::class.java).apply {
-                    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-                    signAllPublications()
-                }
-            } else {
-                evaluatedProject.logger.warn("Cannot sign project \"${evaluatedProject.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
             }
 
             target.extensions.getByType(PublishingExtension::class.java).apply {
@@ -107,20 +95,31 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                 }
             }
 
+
             if (canSign) {
+                evaluatedProject.logger.info("Will sign artifact for project \"${evaluatedProject.name}\" and setup publishing")
+
+                evaluatedProject.pluginManager.apply(MavenPublishPlugin::class.java)
+                evaluatedProject.extensions.getByType(MavenPublishBaseExtension::class.java).apply {
+                    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+                    signAllPublications()
+                }
+
                 target
                     .tasks
                     .filter { task -> task.name.startsWith("publish") }
                     .forEach { task ->
                         task.dependsOn(target.tasks.withType(Sign::class.java))
                     }
+            } else {
+                evaluatedProject.logger.warn("Cannot sign project \"${evaluatedProject.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
             }
         }
     }
 }
 
 fun Project.propOrEnv(name: String): String? {
-    var property: String? = findProperty(name) as String?
+    var property: String? = findProperty(name) as? String?
     if (property == null) {
         property = System.getenv(name)
     }
