@@ -16,6 +16,14 @@ jobs:
   deploy-jvm:
     name: Deploy jvm artifacts
     runs-on: ubuntu-latest
+    env:
+      GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+      GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
+      GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME }}
+      GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD }}
+    #      GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+    #      GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
+    #      GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH: ${{secrets.GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH }}
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4
@@ -41,15 +49,10 @@ jobs:
       - name: Setup publish gradle properties
         shell: sh
         run: |
-          echo "mavenCentralUsername=$MAVEN_CENTRAL_USERNAME" >> ~/.gradle/gradle.properties
-          echo "mavenCentralPassword=$MAVEN_CENTRAL_PASSWORD" >> ~/.gradle/gradle.properties
-          echo "signingInMemoryKey=$GPG_IN_MEMORY_KEY" >> ~/.gradle/gradle.properties
-          echo "signingInMemoryKeyPassword=$GPG_PASSWORD" >> ~/.gradle/gradle.properties
-        env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD }}
-          GPG_IN_MEMORY_KEY: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
-          GPG_PASSWORD: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
+          echo "mavenCentralUsername=$GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME" >> ~/.gradle/gradle.properties
+          echo "mavenCentralPassword=$GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD" >> ~/.gradle/gradle.properties
+          echo "signingInMemoryKey=$GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII" >> ~/.gradle/gradle.properties
+          echo "signingInMemoryKeyPassword=$GODOT_KOTLIN_GPG_KEY_PASSPHRASE" >> ~/.gradle/gradle.properties
 
 #      - name: Publish common
 #        shell: sh
