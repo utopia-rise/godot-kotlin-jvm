@@ -6,7 +6,6 @@ import com.vanniktech.maven.publish.MavenPublishPlugin
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.plugins.signing.Sign
@@ -23,11 +22,6 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
             val gpgPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE") ?: target.propOrEnv("signingInMemoryKeyPassword")
 
             val canSign = mavenCentralUser != null && mavenCentralPassword != null && gpgInMemoryKey != null && gpgPassword != null
-
-            target.extensions.getByType(JavaPluginExtension::class.java).apply {
-                withSourcesJar()
-                withJavadocJar()
-            }
 
             target.extensions.getByType(PublishingExtension::class.java).apply {
                 publications { publicationContainer ->
@@ -105,12 +99,14 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                     signAllPublications()
                 }
 
-                target
-                    .tasks
-                    .filter { task -> task.name.startsWith("publish") }
-                    .forEach { task ->
-                        task.dependsOn(target.tasks.withType(Sign::class.java))
-                    }
+                target.afterEvaluate {
+                    target
+                        .tasks
+                        .filter { task -> task.name.startsWith("publish") }
+                        .forEach { task ->
+                            task.dependsOn(target.tasks.withType(Sign::class.java))
+                        }
+                }
             } else {
                 evaluatedProject.logger.warn("Cannot sign project \"${evaluatedProject.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
             }
