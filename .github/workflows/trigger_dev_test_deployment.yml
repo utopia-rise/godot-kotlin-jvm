@@ -17,19 +17,6 @@ jobs:
     name: Deploy jvm artifacts
     runs-on: ubuntu-latest
     steps:
-      - name: Setup publish gradle properties
-        shell: sh
-        run: |
-          echo "mavenCentralUsername=$MAVEN_CENTRAL_USERNAME" >> ~/.gradle/gradle.properties
-          echo "mavenCentralPassword=$MAVEN_CENTRAL_PASSWORD" >> ~/.gradle/gradle.properties
-          echo "signingInMemoryKey=$GPG_IN_MEMORY_KEY" >> ~/.gradle/gradle.properties
-          echo "signingInMemoryKeyPassword=$GPG_PASSWORD" >> ~/.gradle/gradle.properties
-        env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD }}
-          GPG_IN_MEMORY_KEY: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
-          GPG_PASSWORD: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
-
       - name: Clone Godot Engine
         uses: actions/checkout@v4
         with:
@@ -50,6 +37,19 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+
+      - name: Setup publish gradle properties
+        shell: sh
+        run: |
+          echo "mavenCentralUsername=$MAVEN_CENTRAL_USERNAME" >> ~/.gradle/gradle.properties
+          echo "mavenCentralPassword=$MAVEN_CENTRAL_PASSWORD" >> ~/.gradle/gradle.properties
+          echo "signingInMemoryKey=$GPG_IN_MEMORY_KEY" >> ~/.gradle/gradle.properties
+          echo "signingInMemoryKeyPassword=$GPG_PASSWORD" >> ~/.gradle/gradle.properties
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD }}
+          GPG_IN_MEMORY_KEY: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+          GPG_PASSWORD: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
 
 #      - name: Publish common
 #        shell: sh
