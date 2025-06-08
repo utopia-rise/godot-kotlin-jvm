@@ -132,7 +132,7 @@ jobs:
       - name: Publish godot-plugins-common
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-plugins-common:publish
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-plugins-common:publish --stacktrace
 
 #      - name: Publish godot plugins
 #        shell: sh
