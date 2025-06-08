@@ -13,10 +13,10 @@ on:
         type: string
 
 env:
-  GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+  GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII_CLEANED }} # TODO: remove old key and rename this one once we're sure that the new deployment works
   GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
-  GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME }}
-  GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD }}
+  GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME }} # TODO: remove old username and password from secrets once we're sure the deployment works
+  GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD }} # TODO: remove old username and password from secrets once we're sure the deployment works
   GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
   GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
   GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH: ${{secrets.GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH }}
@@ -46,6 +46,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+
+      - name: Setup publish gradle properties
+        shell: sh
+        run: |
+          echo "mavenCentralUsername=$GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME" >> ~/.gradle/gradle.properties
+          echo "mavenCentralPassword=$GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD" >> ~/.gradle/gradle.properties
+          echo "signingInMemoryKey=$GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII" >> ~/.gradle/gradle.properties
+          echo "signingInMemoryKeyPassword=$GODOT_KOTLIN_GPG_KEY_PASSPHRASE" >> ~/.gradle/gradle.properties
 
       - name: Publish common
         shell: sh
