@@ -12,6 +12,7 @@ kotlin {
 dependencies {
     compileOnly(kotlin("gradle-plugin", version = libs.versions.kotlin.get()))
     implementation(libs.grgit)
+    implementation(libs.maven.publish)
 }
 
 gradlePlugin {
