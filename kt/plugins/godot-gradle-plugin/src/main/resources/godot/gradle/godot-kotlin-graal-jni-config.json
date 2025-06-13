@@ -59,7 +59,7 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "getMethodBindPtr$godot_library", "parameterTypes" : ["java.lang.String", "java.lang.String", "long"] }
+      { "name" : "getMethodBindPtr", "parameterTypes" : ["java.lang.String", "java.lang.String", "long"] }
     ]
   },
   {
@@ -331,7 +331,10 @@
       { "name" : "engine_call_to_float64_array", "parameterTypes" : ["long"] },
       { "name" : "engine_call_to_int32_array", "parameterTypes" : ["long"] },
       { "name" : "engine_call_to_int64_array", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_size", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_size", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["byte[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -399,7 +402,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["float[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -433,7 +439,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["double[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -467,7 +476,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["int[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -501,7 +513,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["long[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -569,7 +584,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["float[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -603,7 +621,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["float[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -637,7 +658,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["float[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {
@@ -683,7 +707,9 @@
       { "name" : "<init>", "parameterTypes" : [] },
       { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
-      { "name" : "init", "parameterTypes": ["java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
+      { "name" : "initJar", "parameterTypes": ["java.lang.ClassLoader"]},
+      { "name" : "initNativeImage", "parameterTypes": []},
+      { "name" : "getVersion", "parameterTypes": []},
       { "name" : "finish", "parameterTypes" : [] }
     ]
   },
@@ -716,7 +742,6 @@
       {"name":"invokeNoReturn","parameterTypes":[] },
       {"name":"invokeWithReturn","parameterTypes":[] },
       {"name":"getReturnVariantType","parameterTypes":[] },
-      {"name":"hashCode","parameterTypes":[] },
       {"name":"onCancel","parameterTypes":[] }
     ]
   },

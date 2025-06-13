@@ -11,14 +11,12 @@ JVM_INSTANCE_WRAPPER(LambdaCallable, "godot.core.LambdaCallable") {
     JNI_VOID_METHOD(INVOKE_NO_RETURN)
     JNI_OBJECT_METHOD(INVOKE_WITH_RETURN)
     JNI_INT_METHOD(GET_RETURN_VARIANT_TYPE)
-    JNI_INT_METHOD(HASH_CODE)
     JNI_VOID_METHOD(ON_CANCEL)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(INVOKE_NO_RETURN, "invokeNoReturn", "()V")
         INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "()Ljava/lang/Object;")
         INIT_JNI_METHOD(GET_RETURN_VARIANT_TYPE, "getReturnVariantType", "()I")
-        INIT_JNI_METHOD(HASH_CODE, "hashCode", "()I")
         INIT_JNI_METHOD(ON_CANCEL, "onCancel", "()V")
     )
 
