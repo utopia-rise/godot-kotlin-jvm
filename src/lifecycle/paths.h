@@ -36,7 +36,7 @@ static constexpr const char* ANDROID_RELATIVE_JVM_LIB_PATH {""};
 
 static constexpr const char* IOS_BOOTSTRAP_FILE {""};
 static constexpr const char* IOS_USER_CODE_FILE {""};
-static constexpr const char* IOS_GRAAL_NATIVE_IMAGE_FILE {JVM_DIRECTORY "usercode.a"};
+static constexpr const char* IOS_GRAAL_NATIVE_IMAGE_FILE {"usercode.a"};
 static constexpr const char* IOS_RELATIVE_JVM_LIB_PATH {""};
 
 #ifdef X11_ENABLED
