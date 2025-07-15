@@ -4,6 +4,12 @@ Using the Godot editor:
 
 ![Build button](../assets/img/editor-plugin/build_button.png)
 
+!!! warning
+    On macOS you may receive an error when trying to build the project from the Godot editor. In such case, open up the terminal and change the permissions of the `gradlew` file to be executable.
+    ```shell
+    chmod +x gradlew
+    ```
+
 Using your IDE:
 
 ![Gradle task](../assets/img/build_ide.png)
