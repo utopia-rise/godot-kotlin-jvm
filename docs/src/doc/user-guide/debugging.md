@@ -44,7 +44,7 @@ Use the same port as you used in step 2, in our case `5005`
 
 ![remote debug configuration_step_5](../assets/img/remote_debug_configuration_intellij_breakpoint.png)
 
-#### 6. Launch the game in Godot.
+#### 6. Launch the game in Godot
 
 Depending on your flags (`--wait-for-debugger`), the game will suspend until you attached the remote debugger from IntelliJ
 
