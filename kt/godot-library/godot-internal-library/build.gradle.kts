@@ -18,11 +18,6 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
@@ -33,7 +28,7 @@ val targetSuffix = if (isRelease) "release" else "debug"
 
 publishing {
     publications {
-        @Suppress("UNUSED_VARIABLE")
+        @Suppress("UNUSED_VARIABLE", "unused")
         val godotInternalLibraryPublication by creating(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
@@ -41,9 +36,6 @@ publishing {
             }
             artifactId = "godot-internal-library-$targetSuffix"
             description = "Contains internal utilities for the Godot kotlin libraries"
-            artifact(tasks.jar)
-            artifact(tasks.getByName("sourcesJar"))
-            artifact(tasks.getByName("javadocJar"))
         }
     }
 }

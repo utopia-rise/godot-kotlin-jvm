@@ -16,10 +16,10 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
         target.plugins.apply(org.gradle.api.publish.maven.plugins.MavenPublishPlugin::class.java)
 
         target.afterEvaluate { evaluatedProject ->
-            val mavenCentralUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME") ?: target.propOrEnv("mavenCentralUsername")
-            val mavenCentralPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD") ?: target.propOrEnv("mavenCentralPassword")
-            val gpgInMemoryKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII") ?: target.propOrEnv("signingInMemoryKey")
-            val gpgPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE") ?: target.propOrEnv("signingInMemoryKeyPassword")
+            val mavenCentralUser = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralUsername") ?: target.propOrEnv("mavenCentralUsername")
+            val mavenCentralPassword = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralPassword") ?: target.propOrEnv("mavenCentralPassword")
+            val gpgInMemoryKey = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKey") ?: target.propOrEnv("signingInMemoryKey")
+            val gpgPassword = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword") ?: target.propOrEnv("signingInMemoryKeyPassword")
 
             val canSign = mavenCentralUser != null && mavenCentralPassword != null && gpgInMemoryKey != null && gpgPassword != null
 
@@ -115,9 +115,7 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
 }
 
 fun Project.propOrEnv(name: String): String? {
-    var property: String? = findProperty(name) as? String?
-    if (property == null) {
-        property = System.getenv(name)
-    }
-    return property
+    return findProperty(name) as? String?
+        ?: System.getenv(name).ifEmpty { null }
+        ?: providers.systemProperty(name).orNull
 }
