@@ -251,6 +251,8 @@ bool GDKotlin::load_bootstrap() {
 
         JVM_LOG_VERBOSE("Loading bootstrap jar: %s", bootstrap_jar);
         bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
+
+        // set context classloader to bootstrap initially
         bootstrap_class_loader->set_as_context_loader(env);
     }
 
@@ -318,6 +320,9 @@ bool GDKotlin::load_user_code() {
           bootstrap_class_loader->get_wrapped()
         );
 
+        // update context classloader to use usercode jar
+        user_class_loader->set_as_context_loader(env);
+
         bootstrap->init_jar(env, user_class_loader->get_wrapped());
         delete user_class_loader;
         return FileAccess::exists(user_code_path);
@@ -326,6 +331,10 @@ bool GDKotlin::load_user_code() {
 
 void GDKotlin::unload_user_code() {
     jni::Env env {jni::Jvm::current_env()};
+
+    // reset context classloader to bootstrap
+    bootstrap_class_loader->set_as_context_loader(env);
+
     bootstrap->finish(env);
     TypeManager::get_instance().clear();
     jar.unref();

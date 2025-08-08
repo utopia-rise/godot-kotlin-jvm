@@ -33,7 +33,6 @@ internal class Bootstrap {
     }
 
     fun finish() {
-        Thread.currentThread().contextClassLoader = null
         clearClassesCache()
         serviceLoader.reload()
     }
