@@ -79,6 +79,9 @@ jobs:
         with:
           path: modules/kotlin_jvm
 
+      - name: Apply common macos host patches
+        uses: ./modules/kotlin_jvm/.github/actions/mac-host-patches
+
       - name: Setup Godot build cache
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         with:
