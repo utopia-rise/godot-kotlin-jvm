@@ -5,7 +5,7 @@ repo_name: 'utopia-rise/godot-kotlin-jvm'
 repo_url: 'https://github.com/utopia-rise/godot-kotlin-jvm'
 
 theme:
-  name: material
+  name: mkdocs
   favicon: assets/img/favicon.ico
   palette:
     - media: "(prefers-color-scheme)"

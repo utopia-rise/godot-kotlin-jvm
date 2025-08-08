@@ -5,7 +5,13 @@ Using the Godot editor:
 ![Build button](../assets/img/editor-plugin/build_button.png)
 
 !!! warning
-    On macOS you may receive an error when trying to build the project from the Godot editor. In such case, open up the terminal and change the permissions of the `gradlew` file to be executable.
+    On Linux or macOS you may receive an error when trying to build the project from the Godot editor (This can happen if you created your project via the IntelliJ template). 
+    ```shell
+    ERROR: Godot-JVM: Could not create child process: /Users/username/projectname/gradlew 
+    ERROR:  at: execute_with_pipe (drivers/unix/os_unix.cpp:659)
+    ```
+    
+    In such case, open up the terminal and change the permissions of the `gradlew` file to be executable.
     ```shell
     chmod +x gradlew
     ```
