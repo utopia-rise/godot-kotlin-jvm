@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,11 +21,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can
- * give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
+ * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
  *
- * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
- * sure to keep its scale the same on all axes and adjust its [shape] resource instead.
+ * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its [shape] resource instead.
  */
 @GodotBaseType
 public open class CollisionShape3D : Node3D() {
@@ -55,19 +50,13 @@ public open class CollisionShape3D : Node3D() {
     }
 
   /**
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug > Visible Collision Shapes** is checked at the top of the editor.
    *
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugColor: Color
@@ -79,8 +68,7 @@ public open class CollisionShape3D : Node3D() {
     }
 
   /**
-   * If `true`, when the shape is displayed, it will show a solid fill color in addition to its
-   * wireframe.
+   * If `true`, when the shape is displayed, it will show a solid fill color in addition to its wireframe.
    */
   public final inline var debugFill: Boolean
     @JvmName("debugFillProperty")
@@ -90,7 +78,7 @@ public open class CollisionShape3D : Node3D() {
       setEnableDebugFill(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(159, scriptIndex)
   }
 
@@ -105,12 +93,9 @@ public open class CollisionShape3D : Node3D() {
    * collisionshape3d.debugColor = myCoreType
    * ``````
    *
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug > Visible Collision Shapes** is checked at the top of the editor.
    *
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug color.
    */
   @CoreTypeHelper
   public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply {
@@ -121,12 +106,12 @@ public open class CollisionShape3D : Node3D() {
   /**
    * This method does nothing.
    */
-  public final fun resourceChanged(resource: Resource?): Unit {
+  public final fun resourceChanged(resource: Resource?) {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(ptr, MethodBindings.resourceChangedPtr, NIL)
   }
 
-  public final fun setShape(shape: Shape3D?): Unit {
+  public final fun setShape(shape: Shape3D?) {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
@@ -137,7 +122,7 @@ public open class CollisionShape3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
-  public final fun setDisabled(enable: Boolean): Unit {
+  public final fun setDisabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setDisabledPtr, NIL)
   }
@@ -149,15 +134,14 @@ public open class CollisionShape3D : Node3D() {
   }
 
   /**
-   * Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings
-   * geometry.
+   * Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry.
    */
-  public final fun makeConvexFromSiblings(): Unit {
+  public final fun makeConvexFromSiblings() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
   }
 
-  public final fun setDebugColor(color: Color): Unit {
+  public final fun setDebugColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setDebugColorPtr, NIL)
   }
@@ -168,7 +152,7 @@ public open class CollisionShape3D : Node3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setEnableDebugFill(enable: Boolean): Unit {
+  public final fun setEnableDebugFill(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEnableDebugFillPtr, NIL)
   }
@@ -183,33 +167,33 @@ public open class CollisionShape3D : Node3D() {
 
   public object MethodBindings {
     internal val resourceChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "resource_changed", 968641751)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "resource_changed", 968_641_751)
 
     internal val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_shape", 1549710052)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_shape", 1_549_710_052)
 
     internal val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "get_shape", 3214262478)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "get_shape", 3_214_262_478)
 
     internal val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_disabled", 2586408642)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_disabled", 2_586_408_642)
 
     internal val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "is_disabled", 36873697)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "is_disabled", 36_873_697)
 
     internal val makeConvexFromSiblingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3218959716)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3_218_959_716)
 
     internal val setDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_debug_color", 2920490490)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_debug_color", 2_920_490_490)
 
     internal val getDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "get_debug_color", 3444240500)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "get_debug_color", 3_444_240_500)
 
     internal val setEnableDebugFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_enable_debug_fill", 2586408642)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_enable_debug_fill", 2_586_408_642)
 
     internal val getEnableDebugFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "get_enable_debug_fill", 36873697)
+        TypeManager.getMethodBindPtr("CollisionShape3D", "get_enable_debug_fill", 36_873_697)
   }
 }

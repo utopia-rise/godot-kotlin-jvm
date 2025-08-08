@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,19 +27,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A raycast represents a ray from its origin to its [targetPosition] that finds the closest object
- * along its path, if it intersects any.
+ * A raycast represents a ray from its origin to its [targetPosition] that finds the closest object along its path, if it intersects any.
  *
- * [RayCast3D] can ignore some objects by adding them to an exception list, by making its detection
- * reporting ignore [Area3D]s ([collideWithAreas]) or [PhysicsBody3D]s ([collideWithBodies]), or by
- * configuring physics layers.
+ * [RayCast3D] can ignore some objects by adding them to an exception list, by making its detection reporting ignore [Area3D]s ([collideWithAreas]) or [PhysicsBody3D]s ([collideWithBodies]), or by configuring physics layers.
  *
- * [RayCast3D] calculates intersection every physics frame, and it holds the result until the next
- * physics frame. For an immediate raycast, or if you want to configure a [RayCast3D] multiple times
- * within the same physics frame, use [forceRaycastUpdate].
+ * [RayCast3D] calculates intersection every physics frame, and it holds the result until the next physics frame. For an immediate raycast, or if you want to configure a [RayCast3D] multiple times within the same physics frame, use [forceRaycastUpdate].
  *
- * To sweep over a region of 3D space, you can approximate the region with multiple [RayCast3D]s or
- * use [ShapeCast3D].
+ * To sweep over a region of 3D space, you can approximate the region with multiple [RayCast3D]s or use [ShapeCast3D].
  */
 @GodotBaseType
 public open class RayCast3D : Node3D() {
@@ -72,11 +63,8 @@ public open class RayCast3D : Node3D() {
    * The ray's destination point, relative to the RayCast's `position`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -88,10 +76,7 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will
-   * be detected. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -102,9 +87,7 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision
-   * normal will be `Vector3(0, 0, 0)`. Does not affect shapes with no volume like concave polygon or
-   * heightmap.
+   * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect shapes with no volume like concave polygon or heightmap.
    */
   public final inline var hitFromInside: Boolean
     @JvmName("hitFromInsideProperty")
@@ -115,8 +98,7 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * If `true`, the ray will hit back faces with concave polygon shapes with back face enabled or
-   * heightmap shapes.
+   * If `true`, the ray will hit back faces with concave polygon shapes with back face enabled or heightmap shapes.
    */
   public final inline var hitBackFaces: Boolean
     @JvmName("hitBackFacesProperty")
@@ -149,19 +131,13 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
-   * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
-   * [RayCast3D] is colliding with something.
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [RayCast3D] is colliding with something.
    *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
-   * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugShapeCustomColor: Color
@@ -173,9 +149,7 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to
-   * represent the [RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug**
-   * menu for the debug shape to be visible at run-time.
+   * If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to represent the [RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for the debug shape to be visible at run-time.
    */
   public final inline var debugShapeThickness: Int
     @JvmName("debugShapeThicknessProperty")
@@ -185,7 +159,7 @@ public open class RayCast3D : Node3D() {
       setDebugShapeThickness(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(532, scriptIndex)
   }
 
@@ -219,21 +193,17 @@ public open class RayCast3D : Node3D() {
    * raycast3d.debugShapeCustomColor = myCoreType
    * ``````
    *
-   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
-   * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
-   * [RayCast3D] is colliding with something.
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [RayCast3D] is colliding with something.
    *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
-   * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
   @CoreTypeHelper
-  public final fun debugShapeCustomColorMutate(block: Color.() -> Unit): Color =
-      debugShapeCustomColor.apply {
+  public final fun debugShapeCustomColorMutate(block: Color.() -> Unit): Color = debugShapeCustomColor.apply {
      block(this)
      debugShapeCustomColor = this
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -244,7 +214,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTargetPosition(localPoint: Vector3): Unit {
+  public final fun setTargetPosition(localPoint: Vector3) {
     TransferContext.writeArguments(VECTOR3 to localPoint)
     TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
   }
@@ -256,8 +226,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Returns whether any object is intersecting with the ray's vector (considering the vector
-   * length).
+   * Returns whether any object is intersecting with the ray's vector (considering the vector length).
    */
   public final fun isColliding(): Boolean {
     TransferContext.writeArguments()
@@ -266,24 +235,19 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Updates the collision information for the ray immediately, without waiting for the next
-   * `_physics_process` call. Use this method, for example, when the ray or its parent has changed
-   * state.
+   * Updates the collision information for the ray immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the ray or its parent has changed state.
    *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
-  public final fun forceRaycastUpdate(): Unit {
+  public final fun forceRaycastUpdate() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceRaycastUpdatePtr, NIL)
   }
 
   /**
-   * Returns the first object that the ray intersects, or `null` if no object is intersecting the
-   * ray (i.e. [isColliding] returns `false`).
+   * Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    *
-   * **Note:** This object is not guaranteed to be a [CollisionObject3D]. For example, if the ray
-   * intersects a [CSGShape3D] or a [GridMap], the method will return a [CSGShape3D] or [GridMap]
-   * instance.
+   * **Note:** This object is not guaranteed to be a [CollisionObject3D]. For example, if the ray intersects a [CSGShape3D] or a [GridMap], the method will return a [CSGShape3D] or [GridMap] instance.
    */
   public final fun getCollider(): Object? {
     TransferContext.writeArguments()
@@ -292,8 +256,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object
-   * is intersecting the ray (i.e. [isColliding] returns `false`).
+   * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
   public final fun getColliderRid(): RID {
     TransferContext.writeArguments()
@@ -302,8 +265,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Returns the shape ID of the first object that the ray intersects, or `0` if no object is
-   * intersecting the ray (i.e. [isColliding] returns `false`).
+   * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    *
    * To get the intersected shape node, for a [CollisionObject3D] target, use:
    *
@@ -330,12 +292,9 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Returns the collision point at which the ray intersects the closest object, in the global
-   * coordinate system. If [hitFromInside] is `true` and the ray starts inside of a collision shape,
-   * this function will return the origin point of the ray.
+   * Returns the collision point at which the ray intersects the closest object, in the global coordinate system. If [hitFromInside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.
    *
-   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
-   * returned point is valid and up-to-date.
+   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the returned point is valid and up-to-date.
    */
   public final fun getCollisionPoint(): Vector3 {
     TransferContext.writeArguments()
@@ -344,11 +303,9 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Returns the normal of the intersecting object's shape at the collision point, or `Vector3(0, 0,
-   * 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
+   * Returns the normal of the intersecting object's shape at the collision point, or `Vector3(0, 0, 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
    *
-   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
-   * returned normal is valid and up-to-date.
+   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the returned normal is valid and up-to-date.
    */
   public final fun getCollisionNormal(): Vector3 {
     TransferContext.writeArguments()
@@ -357,8 +314,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Returns the collision object's face index at the collision point, or `-1` if the shape
-   * intersecting the ray is not a [ConcavePolygonShape3D].
+   * Returns the collision object's face index at the collision point, or `-1` if the shape intersecting the ray is not a [ConcavePolygonShape3D].
    */
   public final fun getCollisionFaceIndex(): Int {
     TransferContext.writeArguments()
@@ -369,16 +325,15 @@ public open class RayCast3D : Node3D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  public final fun addExceptionRid(rid: RID): Unit {
+  public final fun addExceptionRid(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionRidPtr, NIL)
   }
 
   /**
-   * Adds a collision exception so the ray does not report collisions with the specified
-   * [CollisionObject3D] node.
+   * Adds a collision exception so the ray does not report collisions with the specified [CollisionObject3D] node.
    */
-  public final fun addException(node: CollisionObject3D?): Unit {
+  public final fun addException(node: CollisionObject3D?) {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -386,16 +341,15 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  public final fun removeExceptionRid(rid: RID): Unit {
+  public final fun removeExceptionRid(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionRidPtr, NIL)
   }
 
   /**
-   * Removes a collision exception so the ray does report collisions with the specified
-   * [CollisionObject3D] node.
+   * Removes a collision exception so the ray does report collisions with the specified [CollisionObject3D] node.
    */
-  public final fun removeException(node: CollisionObject3D?): Unit {
+  public final fun removeException(node: CollisionObject3D?) {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionPtr, NIL)
   }
@@ -403,12 +357,12 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  public final fun clearExceptions(): Unit {
+  public final fun clearExceptions() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
-  public final fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -420,17 +374,15 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -438,7 +390,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setExcludeParentBody(mask: Boolean): Unit {
+  public final fun setExcludeParentBody(mask: Boolean) {
     TransferContext.writeArguments(BOOL to mask)
     TransferContext.callMethod(ptr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
@@ -449,7 +401,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
@@ -460,7 +412,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
@@ -471,7 +423,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHitFromInside(enable: Boolean): Unit {
+  public final fun setHitFromInside(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHitFromInsidePtr, NIL)
   }
@@ -482,7 +434,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHitBackFaces(enable: Boolean): Unit {
+  public final fun setHitBackFaces(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHitBackFacesPtr, NIL)
   }
@@ -493,7 +445,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDebugShapeCustomColor(debugShapeCustomColor: Color): Unit {
+  public final fun setDebugShapeCustomColor(debugShapeCustomColor: Color) {
     TransferContext.writeArguments(COLOR to debugShapeCustomColor)
     TransferContext.callMethod(ptr, MethodBindings.setDebugShapeCustomColorPtr, NIL)
   }
@@ -504,7 +456,7 @@ public open class RayCast3D : Node3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setDebugShapeThickness(debugShapeThickness: Int): Unit {
+  public final fun setDebugShapeThickness(debugShapeThickness: Int) {
     TransferContext.writeArguments(LONG to debugShapeThickness.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDebugShapeThicknessPtr, NIL)
   }
@@ -519,108 +471,108 @@ public open class RayCast3D : Node3D() {
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_enabled", 2_586_408_642)
 
     internal val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "is_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "is_enabled", 36_873_697)
 
     internal val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_target_position", 3460891852)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_target_position", 3_460_891_852)
 
     internal val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_target_position", 3360562783)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_target_position", 3_360_562_783)
 
     internal val isCollidingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "is_colliding", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "is_colliding", 36_873_697)
 
     internal val forceRaycastUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "force_raycast_update", 3218959716)
+        TypeManager.getMethodBindPtr("RayCast3D", "force_raycast_update", 3_218_959_716)
 
     internal val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collider", 1981248198)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collider", 1_981_248_198)
 
     internal val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collider_rid", 2944877500)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collider_rid", 2_944_877_500)
 
     internal val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collider_shape", 3905245786)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collider_shape", 3_905_245_786)
 
     internal val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_point", 3360562783)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_point", 3_360_562_783)
 
     internal val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_normal", 3360562783)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_normal", 3_360_562_783)
 
     internal val getCollisionFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_face_index", 3905245786)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_face_index", 3_905_245_786)
 
     internal val addExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "add_exception_rid", 2722037293)
+        TypeManager.getMethodBindPtr("RayCast3D", "add_exception_rid", 2_722_037_293)
 
     internal val addExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "add_exception", 1976431078)
+        TypeManager.getMethodBindPtr("RayCast3D", "add_exception", 1_976_431_078)
 
     internal val removeExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "remove_exception_rid", 2722037293)
+        TypeManager.getMethodBindPtr("RayCast3D", "remove_exception_rid", 2_722_037_293)
 
     internal val removeExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "remove_exception", 1976431078)
+        TypeManager.getMethodBindPtr("RayCast3D", "remove_exception", 1_976_431_078)
 
     internal val clearExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "clear_exceptions", 3218959716)
+        TypeManager.getMethodBindPtr("RayCast3D", "clear_exceptions", 3_218_959_716)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_mask", 3_905_245_786)
 
     internal val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_collision_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_collision_mask_value", 300_928_843)
 
     internal val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_mask_value", 1_116_898_809)
 
     internal val setExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_exclude_parent_body", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_exclude_parent_body", 2_586_408_642)
 
     internal val getExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_exclude_parent_body", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_exclude_parent_body", 36_873_697)
 
     internal val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_collide_with_areas", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_collide_with_areas", 2_586_408_642)
 
     internal val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "is_collide_with_areas_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "is_collide_with_areas_enabled", 36_873_697)
 
     internal val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_collide_with_bodies", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_collide_with_bodies", 2_586_408_642)
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "is_collide_with_bodies_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "is_collide_with_bodies_enabled", 36_873_697)
 
     internal val setHitFromInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_hit_from_inside", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_hit_from_inside", 2_586_408_642)
 
     internal val isHitFromInsideEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "is_hit_from_inside_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "is_hit_from_inside_enabled", 36_873_697)
 
     internal val setHitBackFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_hit_back_faces", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_hit_back_faces", 2_586_408_642)
 
     internal val isHitBackFacesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "is_hit_back_faces_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast3D", "is_hit_back_faces_enabled", 36_873_697)
 
     internal val setDebugShapeCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_debug_shape_custom_color", 2920490490)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_debug_shape_custom_color", 2_920_490_490)
 
     internal val getDebugShapeCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_debug_shape_custom_color", 3444240500)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_debug_shape_custom_color", 3_444_240_500)
 
     internal val setDebugShapeThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "set_debug_shape_thickness", 1286410249)
+        TypeManager.getMethodBindPtr("RayCast3D", "set_debug_shape_thickness", 1_286_410_249)
 
     internal val getDebugShapeThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast3D", "get_debug_shape_thickness", 3905245786)
+        TypeManager.getMethodBindPtr("RayCast3D", "get_debug_shape_thickness", 3_905_245_786)
   }
 }

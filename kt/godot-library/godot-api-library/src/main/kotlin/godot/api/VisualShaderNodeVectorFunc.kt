@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
       setFunction(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(833, scriptIndex)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -153,8 +149,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     ROUNDEVEN(24),
     /**
-     * Extracts the sign of the parameter, i.e. returns `-1` if the parameter is negative, `1` if
-     * it's positive and `0` otherwise.
+     * Extracts the sign of the parameter, i.e. returns `-1` if the parameter is negative, `1` if it's positive and `0` otherwise.
      */
     SIGN(25),
     /**
@@ -178,8 +173,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     TANH(30),
     /**
-     * Returns a value equal to the nearest integer to the parameter whose absolute value is not
-     * larger than the absolute value of the parameter.
+     * Returns a value equal to the nearest integer to the parameter whose absolute value is not larger than the absolute value of the parameter.
      */
     TRUNC(31),
     /**
@@ -206,9 +200,9 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorFunc", "set_function", 629964457)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorFunc", "set_function", 629_964_457)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorFunc", "get_function", 4047776843)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorFunc", "get_function", 4_047_776_843)
   }
 }

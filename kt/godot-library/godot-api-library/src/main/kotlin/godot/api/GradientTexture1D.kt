@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,14 +15,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is
- * filled by sampling the gradient for each pixel. Therefore, the texture does not necessarily
- * represent an exact copy of the gradient, as it may miss some colors if there are not enough pixels.
- * See also [GradientTexture2D], [CurveTexture] and [CurveXYZTexture].
+ * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is filled by sampling the gradient for each pixel. Therefore, the texture does not necessarily represent an exact copy of the gradient, as it may miss some colors if there are not enough pixels. See also [GradientTexture2D], [CurveTexture] and [CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture1D : Texture2D() {
@@ -52,10 +45,7 @@ public open class GradientTexture1D : Texture2D() {
     }
 
   /**
-   * If `true`, the generated texture will support high dynamic range ([Image.FORMAT_RGBAF] format).
-   * This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the
-   * generated texture will use low dynamic range; overbright colors will be clamped
-   * ([Image.FORMAT_RGBA8] format).
+   * If `true`, the generated texture will support high dynamic range ([Image.FORMAT_RGBAF] format). This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the generated texture will use low dynamic range; overbright colors will be clamped ([Image.FORMAT_RGBA8] format).
    */
   public final inline var useHdr: Boolean
     @JvmName("useHdrProperty")
@@ -65,11 +55,11 @@ public open class GradientTexture1D : Texture2D() {
       setUseHdr(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(260, scriptIndex)
   }
 
-  public final fun setGradient(gradient: Gradient?): Unit {
+  public final fun setGradient(gradient: Gradient?) {
     TransferContext.writeArguments(OBJECT to gradient)
     TransferContext.callMethod(ptr, MethodBindings.setGradientPtr, NIL)
   }
@@ -80,12 +70,12 @@ public open class GradientTexture1D : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
-  public final fun setWidth(width: Int): Unit {
+  public final fun setWidth(width: Int) {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public final fun setUseHdr(enabled: Boolean): Unit {
+  public final fun setUseHdr(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUseHdrPtr, NIL)
   }
@@ -114,18 +104,18 @@ public open class GradientTexture1D : Texture2D() {
 
   public object MethodBindings {
     internal val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "set_gradient", 2756054477)
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_gradient", 2_756_054_477)
 
     internal val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "get_gradient", 132272999)
+        TypeManager.getMethodBindPtr("GradientTexture1D", "get_gradient", 132_272_999)
 
     internal val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "set_width", 1286410249)
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_width", 1_286_410_249)
 
     internal val setUseHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "set_use_hdr", 2586408642)
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_use_hdr", 2_586_408_642)
 
     internal val isUsingHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "is_using_hdr", 36873697)
+        TypeManager.getMethodBindPtr("GradientTexture1D", "is_using_hdr", 36_873_697)
   }
 }

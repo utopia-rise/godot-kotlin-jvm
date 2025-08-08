@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,13 +30,11 @@ import kotlin.jvm.JvmName
  *
  * It will attempt to match font style, but it's not guaranteed.
  *
- * The returned font might be part of a font collection or be a variable font with OpenType
- * "weight", "width" and/or "italic" features set.
+ * The returned font might be part of a font collection or be a variable font with OpenType "weight", "width" and/or "italic" features set.
  *
  * You can create [FontVariation] of the system font for precise control over its features.
  *
- * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will
- * fallback to default theme font.
+ * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will fallback to default theme font.
  */
 @GodotBaseType
 public open class SystemFont : Font() {
@@ -47,11 +42,8 @@ public open class SystemFont : Font() {
    * Array of font family names to search, first matching font found is used.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fontNames: PackedStringArray
@@ -74,8 +66,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight
-   * is `400`, bold font weight is `700`.
+   * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
   public final inline var fontWeight: Int
     @JvmName("fontWeightProperty")
@@ -86,8 +77,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Preferred font stretch amount, compared to a normal width. A percentage value between `50&#37;`
-   * and `200&#37;`.
+   * Preferred font stretch amount, compared to a normal width. A percentage value between `50&#37;` and `200&#37;`.
    */
   public final inline var fontStretch: Int
     @JvmName("fontStretchProperty")
@@ -120,8 +110,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
-   * this property).
+   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore this property).
    */
   public final inline var disableEmbeddedBitmaps: Boolean
     @JvmName("disableEmbeddedBitmapsProperty")
@@ -165,9 +154,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better
-   * kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use
-   * [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
+   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
    */
   public final inline var subpixelPositioning: TextServer.SubpixelPositioning
     @JvmName("subpixelPositioningProperty")
@@ -178,9 +165,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are
-   * accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel
-   * positioning is enabled.
+   * If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled.
    */
   public final inline var keepRoundingRemainders: Boolean
     @JvmName("keepRoundingRemaindersProperty")
@@ -191,8 +176,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
-   * field generated from the dynamic font vector data.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
    */
   public final inline var multichannelSignedDistanceField: Boolean
     @JvmName("multichannelSignedDistanceFieldProperty")
@@ -203,10 +187,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * The width of the range around the shape between the minimum and maximum representable signed
-   * distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the
-   * largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to
-   * look correct.
+   * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
    */
   public final inline var msdfPixelRange: Int
     @JvmName("msdfPixelRangeProperty")
@@ -217,9 +198,7 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Source font size used to generate MSDF textures. Higher values allow for more precision, but
-   * are slower to render and require more memory. Only increase this value if you notice a visible
-   * lack of precision in glyph rendering.
+   * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
    */
   public final inline var msdfSize: Int
     @JvmName("msdfSizeProperty")
@@ -240,7 +219,7 @@ public open class SystemFont : Font() {
       setOversampling(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(650, scriptIndex)
   }
 
@@ -258,22 +237,19 @@ public open class SystemFont : Font() {
    * Array of font family names to search, first matching font found is used.
    */
   @CoreTypeHelper
-  public final fun fontNamesMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
-      fontNames.apply {
+  public final fun fontNamesMutate(block: PackedStringArray.() -> Unit): PackedStringArray = fontNames.apply {
      block(this)
      fontNames = this
   }
 
   /**
    * This is a helper function for [fontNames] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Array of font family names to search, first matching font found is used.
    */
   @CoreTypeHelper
-  public final fun fontNamesMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = fontNames.apply {
+  public final fun fontNamesMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = fontNames.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -281,7 +257,7 @@ public open class SystemFont : Font() {
      fontNames = this
   }
 
-  public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
+  public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing) {
     TransferContext.writeArguments(LONG to antialiasing.id)
     TransferContext.callMethod(ptr, MethodBindings.setAntialiasingPtr, NIL)
   }
@@ -292,7 +268,7 @@ public open class SystemFont : Font() {
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean): Unit {
+  public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean) {
     TransferContext.writeArguments(BOOL to disableEmbeddedBitmaps)
     TransferContext.callMethod(ptr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
   }
@@ -303,7 +279,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
+  public final fun setGenerateMipmaps(generateMipmaps: Boolean) {
     TransferContext.writeArguments(BOOL to generateMipmaps)
     TransferContext.callMethod(ptr, MethodBindings.setGenerateMipmapsPtr, NIL)
   }
@@ -314,7 +290,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
+  public final fun setAllowSystemFallback(allowSystemFallback: Boolean) {
     TransferContext.writeArguments(BOOL to allowSystemFallback)
     TransferContext.callMethod(ptr, MethodBindings.setAllowSystemFallbackPtr, NIL)
   }
@@ -325,7 +301,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setForceAutohinter(forceAutohinter: Boolean): Unit {
+  public final fun setForceAutohinter(forceAutohinter: Boolean) {
     TransferContext.writeArguments(BOOL to forceAutohinter)
     TransferContext.callMethod(ptr, MethodBindings.setForceAutohinterPtr, NIL)
   }
@@ -336,7 +312,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHinting(hinting: TextServer.Hinting): Unit {
+  public final fun setHinting(hinting: TextServer.Hinting) {
     TransferContext.writeArguments(LONG to hinting.id)
     TransferContext.callMethod(ptr, MethodBindings.setHintingPtr, NIL)
   }
@@ -347,8 +323,7 @@ public open class SystemFont : Font() {
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
-      Unit {
+  public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning) {
     TransferContext.writeArguments(LONG to subpixelPositioning.id)
     TransferContext.callMethod(ptr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
@@ -359,7 +334,7 @@ public open class SystemFont : Font() {
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setKeepRoundingRemainders(keepRoundingRemainders: Boolean): Unit {
+  public final fun setKeepRoundingRemainders(keepRoundingRemainders: Boolean) {
     TransferContext.writeArguments(BOOL to keepRoundingRemainders)
     TransferContext.callMethod(ptr, MethodBindings.setKeepRoundingRemaindersPtr, NIL)
   }
@@ -370,7 +345,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
+  public final fun setMultichannelSignedDistanceField(msdf: Boolean) {
     TransferContext.writeArguments(BOOL to msdf)
     TransferContext.callMethod(ptr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
   }
@@ -381,7 +356,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
+  public final fun setMsdfPixelRange(msdfPixelRange: Int) {
     TransferContext.writeArguments(LONG to msdfPixelRange.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
@@ -392,7 +367,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMsdfSize(msdfSize: Int): Unit {
+  public final fun setMsdfSize(msdfSize: Int) {
     TransferContext.writeArguments(LONG to msdfSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMsdfSizePtr, NIL)
   }
@@ -403,7 +378,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOversampling(oversampling: Float): Unit {
+  public final fun setOversampling(oversampling: Float) {
     TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOversamplingPtr, NIL)
   }
@@ -420,7 +395,7 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setFontNames(names: PackedStringArray): Unit {
+  public final fun setFontNames(names: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to names)
     TransferContext.callMethod(ptr, MethodBindings.setFontNamesPtr, NIL)
   }
@@ -431,17 +406,17 @@ public open class SystemFont : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFontItalic(italic: Boolean): Unit {
+  public final fun setFontItalic(italic: Boolean) {
     TransferContext.writeArguments(BOOL to italic)
     TransferContext.callMethod(ptr, MethodBindings.setFontItalicPtr, NIL)
   }
 
-  public final fun setFontWeight(weight: Int): Unit {
+  public final fun setFontWeight(weight: Int) {
     TransferContext.writeArguments(LONG to weight.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFontWeightPtr, NIL)
   }
 
-  public final fun setFontStretch(stretch: Int): Unit {
+  public final fun setFontStretch(stretch: Int) {
     TransferContext.writeArguments(LONG to stretch.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFontStretchPtr, NIL)
   }
@@ -450,93 +425,93 @@ public open class SystemFont : Font() {
 
   public object MethodBindings {
     internal val setAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_antialiasing", 1669900)
+        TypeManager.getMethodBindPtr("SystemFont", "set_antialiasing", 1_669_900)
 
     internal val getAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing", 4262718649)
+        TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing", 4_262_718_649)
 
     internal val setDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps", 2_586_408_642)
 
     internal val getDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps", 36_873_697)
 
     internal val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps", 2_586_408_642)
 
     internal val getGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_generate_mipmaps", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "get_generate_mipmaps", 36_873_697)
 
     internal val setAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_allow_system_fallback", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_allow_system_fallback", 2_586_408_642)
 
     internal val isAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_allow_system_fallback", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "is_allow_system_fallback", 36_873_697)
 
     internal val setForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_force_autohinter", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_force_autohinter", 2_586_408_642)
 
     internal val isForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter", 36_873_697)
 
     internal val setHintingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_hinting", 1827459492)
+        TypeManager.getMethodBindPtr("SystemFont", "set_hinting", 1_827_459_492)
 
     internal val getHintingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_hinting", 3683214614)
+        TypeManager.getMethodBindPtr("SystemFont", "get_hinting", 3_683_214_614)
 
     internal val setSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_subpixel_positioning", 4225742182)
+        TypeManager.getMethodBindPtr("SystemFont", "set_subpixel_positioning", 4_225_742_182)
 
     internal val getSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1069238588)
+        TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1_069_238_588)
 
     internal val setKeepRoundingRemaindersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_keep_rounding_remainders", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_keep_rounding_remainders", 2_586_408_642)
 
     internal val getKeepRoundingRemaindersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_keep_rounding_remainders", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "get_keep_rounding_remainders", 36_873_697)
 
     internal val setMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2_586_408_642)
 
     internal val isMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field", 36_873_697)
 
     internal val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_pixel_range", 1286410249)
+        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_pixel_range", 1_286_410_249)
 
     internal val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_pixel_range", 3905245786)
+        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_pixel_range", 3_905_245_786)
 
     internal val setMsdfSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_size", 1286410249)
+        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_size", 1_286_410_249)
 
     internal val getMsdfSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_size", 3905245786)
+        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_size", 3_905_245_786)
 
     internal val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_oversampling", 373806689)
+        TypeManager.getMethodBindPtr("SystemFont", "set_oversampling", 373_806_689)
 
     internal val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_oversampling", 1740695150)
+        TypeManager.getMethodBindPtr("SystemFont", "get_oversampling", 1_740_695_150)
 
     internal val getFontNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_font_names", 1139954409)
+        TypeManager.getMethodBindPtr("SystemFont", "get_font_names", 1_139_954_409)
 
     internal val setFontNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_names", 4015028928)
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_names", 4_015_028_928)
 
     internal val getFontItalicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_font_italic", 36873697)
+        TypeManager.getMethodBindPtr("SystemFont", "get_font_italic", 36_873_697)
 
     internal val setFontItalicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_italic", 2586408642)
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_italic", 2_586_408_642)
 
     internal val setFontWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_weight", 1286410249)
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_weight", 1_286_410_249)
 
     internal val setFontStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_stretch", 1286410249)
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_stretch", 1_286_410_249)
   }
 }

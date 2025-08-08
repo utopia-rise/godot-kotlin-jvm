@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,17 +29,14 @@ public infix fun Long.and(other: XRBodyModifier3D.BodyUpdate): Long = this.and(o
 /**
  * This node uses body tracking data from an [XRBodyTracker] to pose the skeleton of a body mesh.
  *
- * Positioning of the body is performed by creating an [XRNode3D] ancestor of the body mesh driven
- * by the same [XRBodyTracker].
+ * Positioning of the body is performed by creating an [XRNode3D] ancestor of the body mesh driven by the same [XRBodyTracker].
  *
- * The body tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the
- * skeleton, which can be used to adjust the tracked body to match the scale of the body model.
+ * The body tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the skeleton, which can be used to adjust the tracked body to match the scale of the body model.
  */
 @GodotBaseType
 public open class XRBodyModifier3D : SkeletonModifier3D() {
   /**
-   * The name of the [XRBodyTracker] registered with [XRServer] to obtain the body tracking data
-   * from.
+   * The name of the [XRBodyTracker] registered with [XRServer] to obtain the body tracking data from.
    */
   public final inline var bodyTracker: StringName
     @JvmName("bodyTrackerProperty")
@@ -74,11 +68,11 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
       setBoneUpdate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(859, scriptIndex)
   }
 
-  public final fun setBodyTracker(trackerName: StringName): Unit {
+  public final fun setBodyTracker(trackerName: StringName) {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(ptr, MethodBindings.setBodyTrackerPtr, NIL)
   }
@@ -89,7 +83,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setBodyUpdate(bodyUpdate: BodyUpdate): Unit {
+  public final fun setBodyUpdate(bodyUpdate: BodyUpdate) {
     TransferContext.writeArguments(LONG to bodyUpdate.flag)
     TransferContext.callMethod(ptr, MethodBindings.setBodyUpdatePtr, NIL)
   }
@@ -100,7 +94,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     return BodyUpdate(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+  public final fun setBoneUpdate(boneUpdate: BoneUpdate) {
     TransferContext.writeArguments(LONG to boneUpdate.id)
     TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
@@ -111,8 +105,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBodyTracker(trackerName: String): Unit =
-      setBodyTracker(trackerName.asCachedStringName())
+  public final fun setBodyTracker(trackerName: String): Unit = setBodyTracker(trackerName.asCachedStringName())
 
   public class BodyUpdate(
     public val flag: Long,
@@ -166,13 +159,11 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     id: Long,
   ) {
     /**
-     * The skeleton's bones are fully updated (both position and rotation) to match the tracked
-     * bones.
+     * The skeleton's bones are fully updated (both position and rotation) to match the tracked bones.
      */
     FULL(0),
     /**
-     * The skeleton's bones are only rotated to align with the tracked bones, preserving bone
-     * length.
+     * The skeleton's bones are only rotated to align with the tracked bones, preserving bone length.
      */
     ROTATION_ONLY(1),
     /**
@@ -195,21 +186,21 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
 
   public object MethodBindings {
     internal val setBodyTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_tracker", 3304788590)
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_tracker", 3_304_788_590)
 
     internal val getBodyTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_tracker", 2002593661)
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_tracker", 2_002_593_661)
 
     internal val setBodyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_update", 2211199417)
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_update", 2_211_199_417)
 
     internal val getBodyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_update", 2642335328)
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_update", 2_642_335_328)
 
     internal val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_bone_update", 3356796943)
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_bone_update", 3_356_796_943)
 
     internal val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_bone_update", 1309305964)
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_bone_update", 1_309_305_964)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,16 +24,12 @@ import kotlin.jvm.JvmName
 /**
  * Compiled shader file in SPIR-V form.
  *
- * See also [RDShaderSource]. [RDShaderFile] is only meant to be used with the [RenderingDevice]
- * API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various
- * nodes use for high-level shader programming.
+ * See also [RDShaderSource]. [RDShaderFile] is only meant to be used with the [RenderingDevice] API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various nodes use for high-level shader programming.
  */
 @GodotBaseType
 public open class RDShaderFile : Resource() {
   /**
-   * The base compilation error message, which indicates errors not related to a specific shader
-   * stage if non-empty. If empty, shader compilation is not necessarily successful (check
-   * [RDShaderSPIRV]'s error message members).
+   * The base compilation error message, which indicates errors not related to a specific shader stage if non-empty. If empty, shader compilation is not necessarily successful (check [RDShaderSPIRV]'s error message members).
    */
   public final inline var baseError: String
     @JvmName("baseErrorProperty")
@@ -46,15 +39,14 @@ public open class RDShaderFile : Resource() {
       setBaseError(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(522, scriptIndex)
   }
 
   /**
    * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
-  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: StringName = StringName("")):
-      Unit {
+  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: StringName = StringName("")) {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
     TransferContext.callMethod(ptr, MethodBindings.setBytecodePtr, NIL)
   }
@@ -77,7 +69,7 @@ public open class RDShaderFile : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
-  public final fun setBaseError(error: String): Unit {
+  public final fun setBaseError(error: String) {
     TransferContext.writeArguments(STRING to error)
     TransferContext.callMethod(ptr, MethodBindings.setBaseErrorPtr, NIL)
   }
@@ -91,31 +83,29 @@ public open class RDShaderFile : Resource() {
   /**
    * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
-  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: String): Unit =
-      setBytecode(bytecode, version.asCachedStringName())
+  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: String): Unit = setBytecode(bytecode, version.asCachedStringName())
 
   /**
    * Returns the SPIR-V intermediate representation for the specified shader [version].
    */
-  public final fun getSpirv(version: String): RDShaderSPIRV? =
-      getSpirv(version.asCachedStringName())
+  public final fun getSpirv(version: String): RDShaderSPIRV? = getSpirv(version.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val setBytecodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "set_bytecode", 1526857008)
+        TypeManager.getMethodBindPtr("RDShaderFile", "set_bytecode", 1_526_857_008)
 
     internal val getSpirvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "get_spirv", 2689310080)
+        TypeManager.getMethodBindPtr("RDShaderFile", "get_spirv", 2_689_310_080)
 
     internal val getVersionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "get_version_list", 3995934104)
+        TypeManager.getMethodBindPtr("RDShaderFile", "get_version_list", 3_995_934_104)
 
     internal val setBaseErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "set_base_error", 83702148)
+        TypeManager.getMethodBindPtr("RDShaderFile", "set_base_error", 83_702_148)
 
     internal val getBaseErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "get_base_error", 201670096)
+        TypeManager.getMethodBindPtr("RDShaderFile", "get_base_error", 201_670_096)
   }
 }

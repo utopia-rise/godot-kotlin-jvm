@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,29 +22,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A [Parallax2D] is used to create a parallax effect. It can move at a different speed relative to
- * the camera movement using [scrollScale]. This creates an illusion of depth in a 2D game. If manual
- * scrolling is desired, the [Camera2D] position can be ignored with [ignoreCameraScroll].
+ * A [Parallax2D] is used to create a parallax effect. It can move at a different speed relative to the camera movement using [scrollScale]. This creates an illusion of depth in a 2D game. If manual scrolling is desired, the [Camera2D] position can be ignored with [ignoreCameraScroll].
  *
- * **Note:** Any changes to this node's position made after it enters the scene tree will be
- * overridden if [ignoreCameraScroll] is `false` or [screenOffset] is modified.
+ * **Note:** Any changes to this node's position made after it enters the scene tree will be overridden if [ignoreCameraScroll] is `false` or [screenOffset] is modified.
  */
 @GodotBaseType
 public open class Parallax2D : Node2D() {
   /**
-   * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the
-   * camera.
+   * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the camera.
    *
-   * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
-   * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
-   * further, and a value of `0` stops the objects completely.
+   * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1` scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear further, and a value of `0` stops the objects completely.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollScale: Vector2
@@ -59,17 +47,13 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be
-   * overridden.
+   * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be overridden.
    *
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollOffset: Vector2
@@ -81,17 +65,11 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * Repeats the [Texture2D] of each of this node's children and offsets them by this value. When
-   * scrolling, the node's position loops, giving the illusion of an infinite scrolling background if
-   * the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be
-   * repeated.
+   * Repeats the [Texture2D] of each of this node's children and offsets them by this value. When scrolling, the node's position loops, giving the illusion of an infinite scrolling background if the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be repeated.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var repeatSize: Vector2
@@ -106,11 +84,8 @@ public open class Parallax2D : Node2D() {
    * Velocity at which the offset scrolls automatically, in pixels per second.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var autoscroll: Vector2
@@ -122,8 +97,7 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * Overrides the amount of times the texture repeats. Each texture copy spreads evenly from the
-   * original by [repeatSize]. Useful for when zooming out with a camera.
+   * Overrides the amount of times the texture repeats. Each texture copy spreads evenly from the original by [repeatSize]. Useful for when zooming out with a camera.
    */
   public final inline var repeatTimes: Int
     @JvmName("repeatTimesProperty")
@@ -134,15 +108,11 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the
-   * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var limitBegin: Vector2
@@ -154,16 +124,11 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
-   * [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined
-   * to work.
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined to work.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var limitEnd: Vector2
@@ -175,9 +140,7 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * If `true`, this [Parallax2D] is offset by the current camera's position. If the [Parallax2D] is
-   * in a [CanvasLayer] separate from the current camera, it may be desired to match the value with
-   * [CanvasLayer.followViewportEnabled].
+   * If `true`, this [Parallax2D] is offset by the current camera's position. If the [Parallax2D] is in a [CanvasLayer] separate from the current camera, it may be desired to match the value with [CanvasLayer.followViewportEnabled].
    */
   public final inline var followViewport: Boolean
     @JvmName("followViewportProperty")
@@ -199,15 +162,11 @@ public open class Parallax2D : Node2D() {
     }
 
   /**
-   * Offset used to scroll this [Parallax2D]. This value is updated automatically unless
-   * [ignoreCameraScroll] is `true`.
+   * Offset used to scroll this [Parallax2D]. This value is updated automatically unless [ignoreCameraScroll] is `true`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenOffset: Vector2
@@ -218,7 +177,7 @@ public open class Parallax2D : Node2D() {
       setScreenOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(446, scriptIndex)
   }
 
@@ -233,12 +192,9 @@ public open class Parallax2D : Node2D() {
    * parallax2d.scrollScale = myCoreType
    * ``````
    *
-   * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the
-   * camera.
+   * Multiplier to the final [Parallax2D]'s offset. Can be used to simulate distance from the camera.
    *
-   * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1`
-   * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
-   * further, and a value of `0` stops the objects completely.
+   * For example, a value of `1` scrolls at the same speed as the camera. A value greater than `1` scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear further, and a value of `0` stops the objects completely.
    */
   @CoreTypeHelper
   public final fun scrollScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollScale.apply {
@@ -257,8 +213,7 @@ public open class Parallax2D : Node2D() {
    * parallax2d.scrollOffset = myCoreType
    * ``````
    *
-   * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be
-   * overridden.
+   * The [Parallax2D]'s offset. Similar to [screenOffset] and [Node2D.position], but will not be overridden.
    *
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    */
@@ -279,10 +234,7 @@ public open class Parallax2D : Node2D() {
    * parallax2d.repeatSize = myCoreType
    * ``````
    *
-   * Repeats the [Texture2D] of each of this node's children and offsets them by this value. When
-   * scrolling, the node's position loops, giving the illusion of an infinite scrolling background if
-   * the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be
-   * repeated.
+   * Repeats the [Texture2D] of each of this node's children and offsets them by this value. When scrolling, the node's position loops, giving the illusion of an infinite scrolling background if the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be repeated.
    */
   @CoreTypeHelper
   public final fun repeatSizeMutate(block: Vector2.() -> Unit): Vector2 = repeatSize.apply {
@@ -320,8 +272,7 @@ public open class Parallax2D : Node2D() {
    * parallax2d.limitBegin = myCoreType
    * ``````
    *
-   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the
-   * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
    */
   @CoreTypeHelper
   public final fun limitBeginMutate(block: Vector2.() -> Unit): Vector2 = limitBegin.apply {
@@ -340,9 +291,7 @@ public open class Parallax2D : Node2D() {
    * parallax2d.limitEnd = myCoreType
    * ``````
    *
-   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
-   * [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined
-   * to work.
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined to work.
    */
   @CoreTypeHelper
   public final fun limitEndMutate(block: Vector2.() -> Unit): Vector2 = limitEnd.apply {
@@ -361,8 +310,7 @@ public open class Parallax2D : Node2D() {
    * parallax2d.screenOffset = myCoreType
    * ``````
    *
-   * Offset used to scroll this [Parallax2D]. This value is updated automatically unless
-   * [ignoreCameraScroll] is `true`.
+   * Offset used to scroll this [Parallax2D]. This value is updated automatically unless [ignoreCameraScroll] is `true`.
    */
   @CoreTypeHelper
   public final fun screenOffsetMutate(block: Vector2.() -> Unit): Vector2 = screenOffset.apply {
@@ -370,7 +318,7 @@ public open class Parallax2D : Node2D() {
      screenOffset = this
   }
 
-  public final fun setScrollScale(scale: Vector2): Unit {
+  public final fun setScrollScale(scale: Vector2) {
     TransferContext.writeArguments(VECTOR2 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setScrollScalePtr, NIL)
   }
@@ -381,7 +329,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setRepeatSize(repeatSize: Vector2): Unit {
+  public final fun setRepeatSize(repeatSize: Vector2) {
     TransferContext.writeArguments(VECTOR2 to repeatSize)
     TransferContext.callMethod(ptr, MethodBindings.setRepeatSizePtr, NIL)
   }
@@ -392,7 +340,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setRepeatTimes(repeatTimes: Int): Unit {
+  public final fun setRepeatTimes(repeatTimes: Int) {
     TransferContext.writeArguments(LONG to repeatTimes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRepeatTimesPtr, NIL)
   }
@@ -403,7 +351,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAutoscroll(autoscroll: Vector2): Unit {
+  public final fun setAutoscroll(autoscroll: Vector2) {
     TransferContext.writeArguments(VECTOR2 to autoscroll)
     TransferContext.callMethod(ptr, MethodBindings.setAutoscrollPtr, NIL)
   }
@@ -414,7 +362,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScrollOffset(offset: Vector2): Unit {
+  public final fun setScrollOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setScrollOffsetPtr, NIL)
   }
@@ -425,7 +373,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScreenOffset(offset: Vector2): Unit {
+  public final fun setScreenOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setScreenOffsetPtr, NIL)
   }
@@ -436,7 +384,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setLimitBegin(offset: Vector2): Unit {
+  public final fun setLimitBegin(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setLimitBeginPtr, NIL)
   }
@@ -447,7 +395,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setLimitEnd(offset: Vector2): Unit {
+  public final fun setLimitEnd(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setLimitEndPtr, NIL)
   }
@@ -458,7 +406,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setFollowViewport(follow: Boolean): Unit {
+  public final fun setFollowViewport(follow: Boolean) {
     TransferContext.writeArguments(BOOL to follow)
     TransferContext.callMethod(ptr, MethodBindings.setFollowViewportPtr, NIL)
   }
@@ -469,7 +417,7 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIgnoreCameraScroll(ignore: Boolean): Unit {
+  public final fun setIgnoreCameraScroll(ignore: Boolean) {
     TransferContext.writeArguments(BOOL to ignore)
     TransferContext.callMethod(ptr, MethodBindings.setIgnoreCameraScrollPtr, NIL)
   }
@@ -484,63 +432,63 @@ public open class Parallax2D : Node2D() {
 
   public object MethodBindings {
     internal val setScrollScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_scale", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_scale", 743_155_724)
 
     internal val getScrollScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_scale", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_scale", 3_341_600_327)
 
     internal val setRepeatSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_size", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_size", 743_155_724)
 
     internal val getRepeatSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_size", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_size", 3_341_600_327)
 
     internal val setRepeatTimesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_times", 1286410249)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_times", 1_286_410_249)
 
     internal val getRepeatTimesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_times", 3905245786)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_times", 3_905_245_786)
 
     internal val setAutoscrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_autoscroll", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_autoscroll", 743_155_724)
 
     internal val getAutoscrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_autoscroll", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_autoscroll", 3_341_600_327)
 
     internal val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_offset", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_offset", 743_155_724)
 
     internal val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_offset", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_offset", 3_341_600_327)
 
     internal val setScreenOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_screen_offset", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_screen_offset", 743_155_724)
 
     internal val getScreenOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_screen_offset", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_screen_offset", 3_341_600_327)
 
     internal val setLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_begin", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_begin", 743_155_724)
 
     internal val getLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_begin", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_begin", 3_341_600_327)
 
     internal val setLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_end", 743155724)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_end", 743_155_724)
 
     internal val getLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_end", 3341600327)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_end", 3_341_600_327)
 
     internal val setFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_follow_viewport", 2586408642)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_follow_viewport", 2_586_408_642)
 
     internal val getFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_follow_viewport", 2240911060)
+        TypeManager.getMethodBindPtr("Parallax2D", "get_follow_viewport", 2_240_911_060)
 
     internal val setIgnoreCameraScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll", 2586408642)
+        TypeManager.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll", 2_586_408_642)
 
     internal val isIgnoreCameraScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll", 2240911060)
+        TypeManager.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll", 2_240_911_060)
   }
 }

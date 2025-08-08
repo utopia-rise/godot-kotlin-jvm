@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -43,21 +40,13 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game
- * objects inherit from [Node3D]. Use [Node3D] as a parent node to move, scale, rotate and show/hide
- * children in a 3D project.
+ * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game objects inherit from [Node3D]. Use [Node3D] as a parent node to move, scale, rotate and show/hide children in a 3D project.
  *
- * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless
- * the [Node3D] object is set as top-level. Affine operations in this coordinate system correspond to
- * direct affine operations on the [Node3D]'s transform. The word local below refers to this coordinate
- * system. The coordinate system that is attached to the [Node3D] object itself is referred to as
- * object-local coordinate system.
+ * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [Node3D] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [Node3D]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [Node3D] object itself is referred to as object-local coordinate system.
  *
- * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles
- * specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
+ * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
  *
- * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot
- * 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
+ * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
  */
 @GodotBaseType
 public open class Node3D : Node() {
@@ -70,11 +59,8 @@ public open class Node3D : Node() {
    * Local space [Transform3D] of this node, with respect to the parent node.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -89,11 +75,8 @@ public open class Node3D : Node() {
    * World3D space (global) [Transform3D] of this node.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalTransform: Transform3D
@@ -105,15 +88,11 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Local position or translation of this node relative to the parent. This is equivalent to
-   * `transform.origin`.
+   * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector3
@@ -125,24 +104,15 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
-   * angles construct a rotation in the order specified by the [rotationOrder] property.
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [rotationOrder] property.
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
-   * script, use [rotationDegrees].
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rotation: Vector3
@@ -157,11 +127,8 @@ public open class Node3D : Node() {
    * Helper property to access [rotation] in degrees instead of radians.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rotationDegrees: Vector3
@@ -173,15 +140,11 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
-   * rotations.
+   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex rotations.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var quaternion: Quaternion
@@ -196,11 +159,8 @@ public open class Node3D : Node() {
    * Basis of the [transform] property. Represents the rotation, scale, and shear of this node.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var basis: Basis
@@ -214,19 +174,13 @@ public open class Node3D : Node() {
   /**
    * Scale part of the local transformation.
    *
-   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
-   * to the way scale is represented with transformation matrices in Godot, the scale values will
-   * either be all positive or all negative.
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
    *
-   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
-   * are not visually affected by [scale].
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s are not visually affected by [scale].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector3
@@ -249,8 +203,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Specify the axis rotation order of the [rotation] property. The final orientation is
-   * constructed by rotating the Euler angles in the order specified by this property.
+   * Specify the axis rotation order of the [rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property.
    */
   public final inline var rotationOrder: EulerOrder
     @JvmName("rotationOrderProperty")
@@ -261,8 +214,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, the node will not inherit its transformations from its parent. Node transformations
-   * are only in global space.
+   * If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space.
    */
   public final inline var topLevel: Boolean
     @JvmName("topLevelProperty")
@@ -276,11 +228,8 @@ public open class Node3D : Node() {
    * Global position of this node. This is equivalent to `global_transform.origin`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalPosition: Vector3
@@ -295,11 +244,8 @@ public open class Node3D : Node() {
    * Global basis of this node. This is equivalent to `global_transform.basis`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalBasis: Basis
@@ -311,21 +257,13 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
-   * in the format (X angle, Y angle, Z angle).
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalRotation: Vector3
@@ -340,11 +278,8 @@ public open class Node3D : Node() {
    * Helper property to access [globalRotation] in degrees instead of radians.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalRotationDegrees: Vector3
@@ -356,8 +291,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as
-   * well (in other words, [isVisibleInTree] must return `true`).
+   * If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [isVisibleInTree] must return `true`).
    */
   public final inline var visible: Boolean
     @JvmName("visibleProperty")
@@ -368,12 +302,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Defines the visibility range parent for this node and its subtree. The visibility parent must
-   * be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and
-   * all of its visibility ancestors) is hidden by being closer to the camera than its own
-   * [GeometryInstance3D.visibilityRangeBegin]. Nodes hidden via the [Node3D.visible] property are
-   * essentially removed from the visibility dependency tree, so dependent instances will not take the
-   * hidden node or its ancestors into account.
+   * Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [GeometryInstance3D.visibilityRangeBegin]. Nodes hidden via the [Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account.
    */
   public final inline var visibilityParent: NodePath
     @JvmName("visibilityParentProperty")
@@ -383,7 +312,7 @@ public open class Node3D : Node() {
       setVisibilityParent(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(396, scriptIndex)
   }
 
@@ -420,8 +349,7 @@ public open class Node3D : Node() {
    * World3D space (global) [Transform3D] of this node.
    */
   @CoreTypeHelper
-  public final fun globalTransformMutate(block: Transform3D.() -> Unit): Transform3D =
-      globalTransform.apply {
+  public final fun globalTransformMutate(block: Transform3D.() -> Unit): Transform3D = globalTransform.apply {
      block(this)
      globalTransform = this
   }
@@ -437,8 +365,7 @@ public open class Node3D : Node() {
    * node3d.position = myCoreType
    * ``````
    *
-   * Local position or translation of this node relative to the parent. This is equivalent to
-   * `transform.origin`.
+   * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
    */
   @CoreTypeHelper
   public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply {
@@ -457,17 +384,11 @@ public open class Node3D : Node() {
    * node3d.rotation = myCoreType
    * ``````
    *
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
-   * angles construct a rotation in the order specified by the [rotationOrder] property.
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [rotationOrder] property.
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
-   * script, use [rotationDegrees].
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
    */
   @CoreTypeHelper
   public final fun rotationMutate(block: Vector3.() -> Unit): Vector3 = rotation.apply {
@@ -489,8 +410,7 @@ public open class Node3D : Node() {
    * Helper property to access [rotation] in degrees instead of radians.
    */
   @CoreTypeHelper
-  public final fun rotationDegreesMutate(block: Vector3.() -> Unit): Vector3 =
-      rotationDegrees.apply {
+  public final fun rotationDegreesMutate(block: Vector3.() -> Unit): Vector3 = rotationDegrees.apply {
      block(this)
      rotationDegrees = this
   }
@@ -506,8 +426,7 @@ public open class Node3D : Node() {
    * node3d.quaternion = myCoreType
    * ``````
    *
-   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
-   * rotations.
+   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex rotations.
    */
   @CoreTypeHelper
   public final fun quaternionMutate(block: Quaternion.() -> Unit): Quaternion = quaternion.apply {
@@ -547,12 +466,9 @@ public open class Node3D : Node() {
    *
    * Scale part of the local transformation.
    *
-   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
-   * to the way scale is represented with transformation matrices in Godot, the scale values will
-   * either be all positive or all negative.
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
    *
-   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
-   * are not visually affected by [scale].
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s are not visually affected by [scale].
    */
   @CoreTypeHelper
   public final fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply {
@@ -609,14 +525,9 @@ public open class Node3D : Node() {
    * node3d.globalRotation = myCoreType
    * ``````
    *
-   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
-   * in the format (X angle, Y angle, Z angle).
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    */
   @CoreTypeHelper
   public final fun globalRotationMutate(block: Vector3.() -> Unit): Vector3 = globalRotation.apply {
@@ -638,13 +549,12 @@ public open class Node3D : Node() {
    * Helper property to access [globalRotation] in degrees instead of radians.
    */
   @CoreTypeHelper
-  public final fun globalRotationDegreesMutate(block: Vector3.() -> Unit): Vector3 =
-      globalRotationDegrees.apply {
+  public final fun globalRotationDegreesMutate(block: Vector3.() -> Unit): Vector3 = globalRotationDegrees.apply {
      block(this)
      globalRotationDegrees = this
   }
 
-  public final fun setTransform(local: Transform3D): Unit {
+  public final fun setTransform(local: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to local)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -655,7 +565,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setPosition(position: Vector3): Unit {
+  public final fun setPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -666,7 +576,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setRotation(eulerRadians: Vector3): Unit {
+  public final fun setRotation(eulerRadians: Vector3) {
     TransferContext.writeArguments(VECTOR3 to eulerRadians)
     TransferContext.callMethod(ptr, MethodBindings.setRotationPtr, NIL)
   }
@@ -677,7 +587,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setRotationDegrees(eulerDegrees: Vector3): Unit {
+  public final fun setRotationDegrees(eulerDegrees: Vector3) {
     TransferContext.writeArguments(VECTOR3 to eulerDegrees)
     TransferContext.callMethod(ptr, MethodBindings.setRotationDegreesPtr, NIL)
   }
@@ -688,7 +598,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setRotationOrder(order: EulerOrder): Unit {
+  public final fun setRotationOrder(order: EulerOrder) {
     TransferContext.writeArguments(LONG to order.id)
     TransferContext.callMethod(ptr, MethodBindings.setRotationOrderPtr, NIL)
   }
@@ -699,7 +609,7 @@ public open class Node3D : Node() {
     return EulerOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setRotationEditMode(editMode: RotationEditMode): Unit {
+  public final fun setRotationEditMode(editMode: RotationEditMode) {
     TransferContext.writeArguments(LONG to editMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setRotationEditModePtr, NIL)
   }
@@ -710,7 +620,7 @@ public open class Node3D : Node() {
     return RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setScale(scale: Vector3): Unit {
+  public final fun setScale(scale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setScalePtr, NIL)
   }
@@ -721,7 +631,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setQuaternion(quaternion: Quaternion): Unit {
+  public final fun setQuaternion(quaternion: Quaternion) {
     TransferContext.writeArguments(QUATERNION to quaternion)
     TransferContext.callMethod(ptr, MethodBindings.setQuaternionPtr, NIL)
   }
@@ -732,7 +642,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
-  public final fun setBasis(basis: Basis): Unit {
+  public final fun setBasis(basis: Basis) {
     TransferContext.writeArguments(BASIS to basis)
     TransferContext.callMethod(ptr, MethodBindings.setBasisPtr, NIL)
   }
@@ -743,7 +653,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
-  public final fun setGlobalTransform(global: Transform3D): Unit {
+  public final fun setGlobalTransform(global: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to global)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalTransformPtr, NIL)
   }
@@ -755,18 +665,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * When using physics interpolation, there will be circumstances in which you want to know the
-   * interpolated (displayed) transform of a node rather than the standard transform (which may only be
-   * accurate to the most recent physics tick).
+   * When using physics interpolation, there will be circumstances in which you want to know the interpolated (displayed) transform of a node rather than the standard transform (which may only be accurate to the most recent physics tick).
    *
-   * This is particularly important for frame-based operations that take place in [Node.Process],
-   * rather than [Node.PhysicsProcess]. Examples include [Camera3D]s focusing on a node, or finding
-   * where to fire lasers from on a frame rather than physics tick.
+   * This is particularly important for frame-based operations that take place in [Node.Process], rather than [Node.PhysicsProcess]. Examples include [Camera3D]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
    *
-   * **Note:** This function creates an interpolation pump on the [Node3D] the first time it is
-   * called, which can respond to physics interpolation resets. If you get problems with "streaking"
-   * when initially following a [Node3D], be sure to call [getGlobalTransformInterpolated] at least
-   * once *before* resetting the [Node3D] physics interpolation.
+   * **Note:** This function creates an interpolation pump on the [Node3D] the first time it is called, which can respond to physics interpolation resets. If you get problems with "streaking" when initially following a [Node3D], be sure to call [getGlobalTransformInterpolated] at least once *before* resetting the [Node3D] physics interpolation.
    */
   public final fun getGlobalTransformInterpolated(): Transform3D {
     TransferContext.writeArguments()
@@ -774,7 +677,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setGlobalPosition(position: Vector3): Unit {
+  public final fun setGlobalPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalPositionPtr, NIL)
   }
@@ -785,7 +688,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setGlobalBasis(basis: Basis): Unit {
+  public final fun setGlobalBasis(basis: Basis) {
     TransferContext.writeArguments(BASIS to basis)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalBasisPtr, NIL)
   }
@@ -796,7 +699,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
-  public final fun setGlobalRotation(eulerRadians: Vector3): Unit {
+  public final fun setGlobalRotation(eulerRadians: Vector3) {
     TransferContext.writeArguments(VECTOR3 to eulerRadians)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalRotationPtr, NIL)
   }
@@ -807,7 +710,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setGlobalRotationDegrees(eulerDegrees: Vector3): Unit {
+  public final fun setGlobalRotationDegrees(eulerDegrees: Vector3) {
     TransferContext.writeArguments(VECTOR3 to eulerDegrees)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
   }
@@ -819,11 +722,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D],
-   * or [topLevel] is `true`.
+   * Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D], or [topLevel] is `true`.
    *
-   * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not
-   * take [topLevel] into account.
+   * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not take [topLevel] into account.
    */
   public final fun getParentNode3d(): Node3D? {
     TransferContext.writeArguments()
@@ -834,12 +735,12 @@ public open class Node3D : Node() {
   /**
    * Sets whether the node ignores notification that its transformation (global or local) changed.
    */
-  public final fun setIgnoreTransformNotification(enabled: Boolean): Unit {
+  public final fun setIgnoreTransformNotification(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setIgnoreTransformNotificationPtr, NIL)
   }
 
-  public final fun setAsTopLevel(enable: Boolean): Unit {
+  public final fun setAsTopLevel(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAsTopLevelPtr, NIL)
   }
@@ -851,10 +752,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to
-   * the local transformation scale are preserved.
+   * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved.
    */
-  public final fun setDisableScale(disable: Boolean): Unit {
+  public final fun setDisableScale(disable: Boolean) {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(ptr, MethodBindings.setDisableScalePtr, NIL)
   }
@@ -878,16 +778,14 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Forces the transform to update. Transform changes in physics are not instant for performance
-   * reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform
-   * when doing physics operations.
+   * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
    */
-  public final fun forceUpdateTransform(): Unit {
+  public final fun forceUpdateTransform() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateTransformPtr, NIL)
   }
 
-  public final fun setVisibilityParent(path: NodePath): Unit {
+  public final fun setVisibilityParent(path: NodePath) {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityParentPtr, NIL)
   }
@@ -901,7 +799,7 @@ public open class Node3D : Node() {
   /**
    * Updates all the [Node3D] gizmos attached to this node.
    */
-  public final fun updateGizmos(): Unit {
+  public final fun updateGizmos() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateGizmosPtr, NIL)
   }
@@ -909,10 +807,9 @@ public open class Node3D : Node() {
   /**
    * Attach an editor gizmo to this [Node3D].
    *
-   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
-   * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
+   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
-  public final fun addGizmo(gizmo: Node3DGizmo?): Unit {
+  public final fun addGizmo(gizmo: Node3DGizmo?) {
     TransferContext.writeArguments(OBJECT to gizmo)
     TransferContext.callMethod(ptr, MethodBindings.addGizmoPtr, NIL)
   }
@@ -929,7 +826,7 @@ public open class Node3D : Node() {
   /**
    * Clear all gizmos attached to this [Node3D].
    */
-  public final fun clearGizmos(): Unit {
+  public final fun clearGizmos() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearGizmosPtr, NIL)
   }
@@ -937,28 +834,26 @@ public open class Node3D : Node() {
   /**
    * Set subgizmo selection for this node in the editor.
    *
-   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
-   * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
+   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
   public final fun setSubgizmoSelection(
     gizmo: Node3DGizmo?,
     id: Int,
     transform: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to gizmo, LONG to id.toLong(), TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setSubgizmoSelectionPtr, NIL)
   }
 
   /**
-   * Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid
-   * after a property change.
+   * Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change.
    */
-  public final fun clearSubgizmoSelection(): Unit {
+  public final fun clearSubgizmoSelection() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSubgizmoSelectionPtr, NIL)
   }
 
-  public final fun setVisible(visible: Boolean): Unit {
+  public final fun setVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
@@ -970,15 +865,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
-   * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
-   * the scene tree.
+   * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree.
    *
-   * Visibility is checked only in parent nodes that inherit from [Node3D]. If the parent is of any
-   * other type (such as [Node], [AnimationPlayer], or [Node2D]), it is assumed to be visible.
+   * Visibility is checked only in parent nodes that inherit from [Node3D]. If the parent is of any other type (such as [Node], [AnimationPlayer], or [Node2D]), it is assumed to be visible.
    *
-   * **Note:** This method does not take [VisualInstance3D.layers] into account, so even if this
-   * method returns `true`, the node might end up not being rendered.
+   * **Note:** This method does not take [VisualInstance3D.layers] into account, so even if this method returns `true`, the node might end up not being rendered.
    */
   public final fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -989,7 +880,7 @@ public open class Node3D : Node() {
   /**
    * Enables rendering of this node. Changes [visible] to `true`.
    */
-  public final fun show(): Unit {
+  public final fun show() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPtr, NIL)
   }
@@ -997,23 +888,21 @@ public open class Node3D : Node() {
   /**
    * Disables rendering of this node. Changes [visible] to `false`.
    */
-  public final fun hide(): Unit {
+  public final fun hide() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hidePtr, NIL)
   }
 
   /**
-   * Sets whether the node notifies about its local transformation changes. [Node3D] will not
-   * propagate this by default.
+   * Sets whether the node notifies about its local transformation changes. [Node3D] will not propagate this by default.
    */
-  public final fun setNotifyLocalTransform(enable: Boolean): Unit {
+  public final fun setNotifyLocalTransform(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setNotifyLocalTransformPtr, NIL)
   }
 
   /**
-   * Returns whether node notifies about its local transformation changes. [Node3D] will not
-   * propagate this by default.
+   * Returns whether node notifies about its local transformation changes. [Node3D] will not propagate this by default.
    */
   public final fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -1022,17 +911,15 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node notifies about its global and local transformation changes. [Node3D] will
-   * not propagate this by default, unless it is in the editor context and it has a valid gizmo.
+   * Sets whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default, unless it is in the editor context and it has a valid gizmo.
    */
-  public final fun setNotifyTransform(enable: Boolean): Unit {
+  public final fun setNotifyTransform(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setNotifyTransformPtr, NIL)
   }
 
   /**
-   * Returns whether the node notifies about its global and local transformation changes. [Node3D]
-   * will not propagate this by default.
+   * Returns whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default.
    */
   public final fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -1043,16 +930,15 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
    */
-  public final fun rotate(axis: Vector3, angle: Float): Unit {
+  public final fun rotate(axis: Vector3, angle: Float) {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.rotatePtr, NIL)
   }
 
   /**
-   * Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in
-   * radians. The rotation axis is in global coordinate system.
+   * Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system.
    */
-  public final fun globalRotate(axis: Vector3, angle: Float): Unit {
+  public final fun globalRotate(axis: Vector3, angle: Float) {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.globalRotatePtr, NIL)
   }
@@ -1060,25 +946,23 @@ public open class Node3D : Node() {
   /**
    * Scales the global (world) transformation by the given [Vector3] scale factors.
    */
-  public final fun globalScale(scale: Vector3): Unit {
+  public final fun globalScale(scale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.globalScalePtr, NIL)
   }
 
   /**
-   * Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate
-   * system.
+   * Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate system.
    */
-  public final fun globalTranslate(offset: Vector3): Unit {
+  public final fun globalTranslate(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.globalTranslatePtr, NIL)
   }
 
   /**
-   * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
-   * The rotation axis is in object-local coordinate system.
+   * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system.
    */
-  public final fun rotateObjectLocal(axis: Vector3, angle: Float): Unit {
+  public final fun rotateObjectLocal(axis: Vector3, angle: Float) {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.rotateObjectLocalPtr, NIL)
   }
@@ -1086,7 +970,7 @@ public open class Node3D : Node() {
   /**
    * Scales the local transformation by given 3D scale factors in object-local coordinate system.
    */
-  public final fun scaleObjectLocal(scale: Vector3): Unit {
+  public final fun scaleObjectLocal(scale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.scaleObjectLocalPtr, NIL)
   }
@@ -1094,7 +978,7 @@ public open class Node3D : Node() {
   /**
    * Changes the node's position by the given offset [Vector3] in local space.
    */
-  public final fun translateObjectLocal(offset: Vector3): Unit {
+  public final fun translateObjectLocal(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.translateObjectLocalPtr, NIL)
   }
@@ -1102,7 +986,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around the X axis by angle in radians.
    */
-  public final fun rotateX(angle: Float): Unit {
+  public final fun rotateX(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.rotateXPtr, NIL)
   }
@@ -1110,7 +994,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around the Y axis by angle in radians.
    */
-  public final fun rotateY(angle: Float): Unit {
+  public final fun rotateY(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.rotateYPtr, NIL)
   }
@@ -1118,7 +1002,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around the Z axis by angle in radians.
    */
-  public final fun rotateZ(angle: Float): Unit {
+  public final fun rotateZ(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.rotateZPtr, NIL)
   }
@@ -1126,20 +1010,17 @@ public open class Node3D : Node() {
   /**
    * Changes the node's position by the given offset [Vector3].
    *
-   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10,
-   * 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X
-   * coordinate.
+   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.
    */
-  public final fun translate(offset: Vector3): Unit {
+  public final fun translate(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.translatePtr, NIL)
   }
 
   /**
-   * Resets this node's transformations (like scale, skew and taper) preserving its rotation and
-   * translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D].
+   * Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D].
    */
-  public final fun orthonormalize(): Unit {
+  public final fun orthonormalize() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.orthonormalizePtr, NIL)
   }
@@ -1147,44 +1028,36 @@ public open class Node3D : Node() {
   /**
    * Reset all transformations for this node (sets its [Transform3D] to the identity matrix).
    */
-  public final fun setIdentity(): Unit {
+  public final fun setIdentity() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setIdentityPtr, NIL)
   }
 
   /**
-   * Rotates the node so that the local forward axis (-Z, [Vector3.FORWARD]) points toward the
-   * [target] position.
+   * Rotates the node so that the local forward axis (-Z, [Vector3.FORWARD]) points toward the [target] position.
    *
-   * The local up axis (+Y) points as close to the [up] vector as possible while staying
-   * perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is
-   * preserved. Non-uniform scaling may not work correctly.
+   * The local up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.
    *
-   * The [target] position cannot be the same as the node's position, the [up] vector cannot be
-   * zero.
+   * The [target] position cannot be the same as the node's position, the [up] vector cannot be zero.
    *
-   * The [target] and the [up] cannot be [Vector3.ZERO], and shouldn't be colinear to avoid
-   * unintended rotation around local Z axis.
+   * The [target] and the [up] cannot be [Vector3.ZERO], and shouldn't be colinear to avoid unintended rotation around local Z axis.
    *
    * Operations take place in global space, which means that the node must be in the scene tree.
    *
-   * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is
-   * left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated
-   * as forward (implies +X is right).
+   * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
    */
   @JvmOverloads
   public final fun lookAt(
     target: Vector3,
     up: Vector3 = Vector3(0, 1, 0),
     useModelFront: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up, BOOL to useModelFront)
     TransferContext.callMethod(ptr, MethodBindings.lookAtPtr, NIL)
   }
 
   /**
-   * Moves the node to the specified [position], and then rotates the node to point toward the
-   * [target] as per [lookAt]. Operations take place in global space.
+   * Moves the node to the specified [position], and then rotates the node to point toward the [target] as per [lookAt]. Operations take place in global space.
    */
   @JvmOverloads
   public final fun lookAtFromPosition(
@@ -1192,7 +1065,7 @@ public open class Node3D : Node() {
     target: Vector3,
     up: Vector3 = Vector3(0, 1, 0),
     useModelFront: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up, BOOL to useModelFront)
     TransferContext.callMethod(ptr, MethodBindings.lookAtFromPositionPtr, NIL)
   }
@@ -1215,8 +1088,7 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setVisibilityParent(path: String): Unit =
-      setVisibilityParent(path.asCachedNodePath())
+  public final fun setVisibilityParent(path: String): Unit = setVisibilityParent(path.asCachedNodePath())
 
   public enum class RotationEditMode(
     id: Long,
@@ -1247,12 +1119,9 @@ public open class Node3D : Node() {
 
   public companion object {
     /**
-     * [Node3D] nodes receive this notification when their global transform changes. This means that
-     * either the current or a parent node changed its transform.
+     * [Node3D] nodes receive this notification when their global transform changes. This means that either the current or a parent node changed its transform.
      *
-     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with
-     * [setNotifyTransform]. The notification is also sent if the node is in the editor context and it
-     * has at least one valid gizmo.
+     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyTransform]. The notification is also sent if the node is in the editor context and it has at least one valid gizmo.
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
@@ -1262,8 +1131,7 @@ public open class Node3D : Node() {
     public final const val NOTIFICATION_ENTER_WORLD: Long = 41
 
     /**
-     * [Node3D] nodes receive this notification when they are unregistered from current [World3D]
-     * resource.
+     * [Node3D] nodes receive this notification when they are unregistered from current [World3D] resource.
      */
     public final const val NOTIFICATION_EXIT_WORLD: Long = 42
 
@@ -1273,219 +1141,223 @@ public open class Node3D : Node() {
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
 
     /**
-     * [Node3D] nodes receive this notification when their local transform changes. This is not
-     * received when the transform of a parent node is changed.
+     * [Node3D] nodes receive this notification when their local transform changes. This is not received when the transform of a parent node is changed.
      *
-     * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it,
-     * with [setNotifyLocalTransform].
+     * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyLocalTransform].
      */
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 44
   }
 
   public object MethodBindings {
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_transform", 2952846383)
+        TypeManager.getMethodBindPtr("Node3D", "set_transform", 2_952_846_383)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_transform", 3229777777)
+        TypeManager.getMethodBindPtr("Node3D", "get_transform", 3_229_777_777)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_position", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_position", 3_460_891_852)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_position", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_position", 3_360_562_783)
 
     internal val setRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation", 3_460_891_852)
 
     internal val getRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation", 3_360_562_783)
 
     internal val setRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_degrees", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation_degrees", 3_460_891_852)
 
     internal val getRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_degrees", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation_degrees", 3_360_562_783)
 
     internal val setRotationOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_order", 1820889989)
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation_order", 1_820_889_989)
 
     internal val getRotationOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_order", 916939469)
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation_order", 916_939_469)
 
     internal val setRotationEditModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_edit_mode", 141483330)
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation_edit_mode", 141_483_330)
 
     internal val getRotationEditModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_edit_mode", 1572188370)
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation_edit_mode", 1_572_188_370)
 
     internal val setScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_scale", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_scale", 3_460_891_852)
 
     internal val getScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_scale", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_scale", 3_360_562_783)
 
     internal val setQuaternionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_quaternion", 1727505552)
+        TypeManager.getMethodBindPtr("Node3D", "set_quaternion", 1_727_505_552)
 
     internal val getQuaternionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_quaternion", 1222331677)
+        TypeManager.getMethodBindPtr("Node3D", "get_quaternion", 1_222_331_677)
 
     internal val setBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_basis", 1055510324)
+        TypeManager.getMethodBindPtr("Node3D", "set_basis", 1_055_510_324)
 
     internal val getBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_basis", 2716978435)
+        TypeManager.getMethodBindPtr("Node3D", "get_basis", 2_716_978_435)
 
     internal val setGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_transform", 2952846383)
+        TypeManager.getMethodBindPtr("Node3D", "set_global_transform", 2_952_846_383)
 
     internal val getGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_transform", 3229777777)
+        TypeManager.getMethodBindPtr("Node3D", "get_global_transform", 3_229_777_777)
 
     internal val getGlobalTransformInterpolatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_transform_interpolated", 4183770049)
+        TypeManager.getMethodBindPtr("Node3D", "get_global_transform_interpolated", 4_183_770_049)
 
     internal val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_position", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_global_position", 3_460_891_852)
 
     internal val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_position", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_global_position", 3_360_562_783)
 
     internal val setGlobalBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_basis", 1055510324)
+        TypeManager.getMethodBindPtr("Node3D", "set_global_basis", 1_055_510_324)
 
     internal val getGlobalBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_basis", 2716978435)
+        TypeManager.getMethodBindPtr("Node3D", "get_global_basis", 2_716_978_435)
 
     internal val setGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation", 3_460_891_852)
 
     internal val getGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation", 3_360_562_783)
 
     internal val setGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation_degrees", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation_degrees", 3_460_891_852)
 
     internal val getGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation_degrees", 3360562783)
+        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation_degrees", 3_360_562_783)
 
     internal val getParentNode3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_parent_node_3d", 151077316)
+        TypeManager.getMethodBindPtr("Node3D", "get_parent_node_3d", 151_077_316)
 
     internal val setIgnoreTransformNotificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_ignore_transform_notification", 2586408642)
+        TypeManager.getMethodBindPtr("Node3D", "set_ignore_transform_notification", 2_586_408_642)
 
     internal val setAsTopLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_as_top_level", 2586408642)
+        TypeManager.getMethodBindPtr("Node3D", "set_as_top_level", 2_586_408_642)
 
     internal val isSetAsTopLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_set_as_top_level", 36873697)
+        TypeManager.getMethodBindPtr("Node3D", "is_set_as_top_level", 36_873_697)
 
     internal val setDisableScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_disable_scale", 2586408642)
+        TypeManager.getMethodBindPtr("Node3D", "set_disable_scale", 2_586_408_642)
 
     internal val isScaleDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_scale_disabled", 36873697)
+        TypeManager.getMethodBindPtr("Node3D", "is_scale_disabled", 36_873_697)
 
     internal val getWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_world_3d", 317588385)
+        TypeManager.getMethodBindPtr("Node3D", "get_world_3d", 317_588_385)
 
     internal val forceUpdateTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "force_update_transform", 3218959716)
+        TypeManager.getMethodBindPtr("Node3D", "force_update_transform", 3_218_959_716)
 
     internal val setVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_visibility_parent", 1348162250)
+        TypeManager.getMethodBindPtr("Node3D", "set_visibility_parent", 1_348_162_250)
 
     internal val getVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_visibility_parent", 4075236667)
+        TypeManager.getMethodBindPtr("Node3D", "get_visibility_parent", 4_075_236_667)
 
     internal val updateGizmosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "update_gizmos", 3218959716)
+        TypeManager.getMethodBindPtr("Node3D", "update_gizmos", 3_218_959_716)
 
     internal val addGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "add_gizmo", 1544533845)
+        TypeManager.getMethodBindPtr("Node3D", "add_gizmo", 1_544_533_845)
 
     internal val getGizmosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_gizmos", 3995934104)
+        TypeManager.getMethodBindPtr("Node3D", "get_gizmos", 3_995_934_104)
 
     internal val clearGizmosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "clear_gizmos", 3218959716)
+        TypeManager.getMethodBindPtr("Node3D", "clear_gizmos", 3_218_959_716)
 
     internal val setSubgizmoSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_subgizmo_selection", 3317607635)
+        TypeManager.getMethodBindPtr("Node3D", "set_subgizmo_selection", 3_317_607_635)
 
     internal val clearSubgizmoSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "clear_subgizmo_selection", 3218959716)
+        TypeManager.getMethodBindPtr("Node3D", "clear_subgizmo_selection", 3_218_959_716)
 
     internal val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_visible", 2586408642)
+        TypeManager.getMethodBindPtr("Node3D", "set_visible", 2_586_408_642)
 
     internal val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_visible", 36873697)
+        TypeManager.getMethodBindPtr("Node3D", "is_visible", 36_873_697)
 
     internal val isVisibleInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_visible_in_tree", 36873697)
+        TypeManager.getMethodBindPtr("Node3D", "is_visible_in_tree", 36_873_697)
 
-    internal val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "show", 3218959716)
+    internal val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "show", 3_218_959_716)
 
-    internal val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "hide", 3218959716)
+    internal val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "hide", 3_218_959_716)
 
     internal val setNotifyLocalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_notify_local_transform", 2586408642)
+        TypeManager.getMethodBindPtr("Node3D", "set_notify_local_transform", 2_586_408_642)
 
     internal val isLocalTransformNotificationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_local_transform_notification_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Node3D", "is_local_transform_notification_enabled", 36_873_697)
 
     internal val setNotifyTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_notify_transform", 2586408642)
+        TypeManager.getMethodBindPtr("Node3D", "set_notify_transform", 2_586_408_642)
 
     internal val isTransformNotificationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_transform_notification_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Node3D", "is_transform_notification_enabled", 36_873_697)
 
-    internal val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate", 3436291937)
+    internal val rotatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "rotate", 3_436_291_937)
 
     internal val globalRotatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_rotate", 3436291937)
+        TypeManager.getMethodBindPtr("Node3D", "global_rotate", 3_436_291_937)
 
     internal val globalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_scale", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "global_scale", 3_460_891_852)
 
     internal val globalTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_translate", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "global_translate", 3_460_891_852)
 
     internal val rotateObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "rotate_object_local", 3436291937)
+        TypeManager.getMethodBindPtr("Node3D", "rotate_object_local", 3_436_291_937)
 
     internal val scaleObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "scale_object_local", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "scale_object_local", 3_460_891_852)
 
     internal val translateObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "translate_object_local", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "translate_object_local", 3_460_891_852)
 
-    internal val rotateXPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_x", 373806689)
+    internal val rotateXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "rotate_x", 373_806_689)
 
-    internal val rotateYPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_y", 373806689)
+    internal val rotateYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "rotate_y", 373_806_689)
 
-    internal val rotateZPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_z", 373806689)
+    internal val rotateZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "rotate_z", 373_806_689)
 
     internal val translatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "translate", 3460891852)
+        TypeManager.getMethodBindPtr("Node3D", "translate", 3_460_891_852)
 
     internal val orthonormalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "orthonormalize", 3218959716)
+        TypeManager.getMethodBindPtr("Node3D", "orthonormalize", 3_218_959_716)
 
     internal val setIdentityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_identity", 3218959716)
+        TypeManager.getMethodBindPtr("Node3D", "set_identity", 3_218_959_716)
 
-    internal val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "look_at", 2882425029)
+    internal val lookAtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "look_at", 2_882_425_029)
 
     internal val lookAtFromPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "look_at_from_position", 2086826090)
+        TypeManager.getMethodBindPtr("Node3D", "look_at_from_position", 2_086_826_090)
 
-    internal val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_local", 192990374)
+    internal val toLocalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "to_local", 192_990_374)
 
     internal val toGlobalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "to_global", 192990374)
+        TypeManager.getMethodBindPtr("Node3D", "to_global", 192_990_374)
   }
 }

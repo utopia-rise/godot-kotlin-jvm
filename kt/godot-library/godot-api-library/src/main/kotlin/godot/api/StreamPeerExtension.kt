@@ -1,23 +1,22 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
-public abstract class StreamPeerExtension : StreamPeer() {
-  public override fun new(scriptIndex: Int): Unit {
+public open class StreamPeerExtension : StreamPeer() {
+  override fun new(scriptIndex: Int) {
     createNativeObject(636, scriptIndex)
   }
 
-  public abstract fun _getAvailableBytes(): Int
+  public open fun _getAvailableBytes(): Int {
+    throw NotImplementedError("_getAvailableBytes is not implemented for StreamPeerExtension")
+  }
 
   public companion object
 

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,18 +18,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows
- * games to easily change between different states that require different inputs or need to reinterpret
- * inputs. For instance we could have an action set that is active when a menu is open, an action set
- * that is active when the player is freely walking around and an action set that is active when the
- * player is controlling a vehicle.
+ * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows games to easily change between different states that require different inputs or need to reinterpret inputs. For instance we could have an action set that is active when a menu is open, an action set that is active when the player is freely walking around and an action set that is active when the player is controlling a vehicle.
  *
- * Action sets can contain the same action with the same name, if such action sets are active at the
- * same time the action set with the highest priority defines which binding is active.
+ * Action sets can contain the same action with the same name, if such action sets are active at the same time the action set with the highest priority defines which binding is active.
  */
 @GodotBaseType
 public open class OpenXRActionSet : Resource() {
@@ -69,11 +60,11 @@ public open class OpenXRActionSet : Resource() {
       setActions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(414, scriptIndex)
   }
 
-  public final fun setLocalizedName(localizedName: String): Unit {
+  public final fun setLocalizedName(localizedName: String) {
     TransferContext.writeArguments(STRING to localizedName)
     TransferContext.callMethod(ptr, MethodBindings.setLocalizedNamePtr, NIL)
   }
@@ -84,7 +75,7 @@ public open class OpenXRActionSet : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setPriority(priority: Int): Unit {
+  public final fun setPriority(priority: Int) {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPriorityPtr, NIL)
   }
@@ -104,7 +95,7 @@ public open class OpenXRActionSet : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setActions(actions: VariantArray<Any?>): Unit {
+  public final fun setActions(actions: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to actions)
     TransferContext.callMethod(ptr, MethodBindings.setActionsPtr, NIL)
   }
@@ -118,7 +109,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Add an action to this action set.
    */
-  public final fun addAction(action: OpenXRAction?): Unit {
+  public final fun addAction(action: OpenXRAction?) {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(ptr, MethodBindings.addActionPtr, NIL)
   }
@@ -126,7 +117,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Remove an action from this action set.
    */
-  public final fun removeAction(action: OpenXRAction?): Unit {
+  public final fun removeAction(action: OpenXRAction?) {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(ptr, MethodBindings.removeActionPtr, NIL)
   }
@@ -135,30 +126,30 @@ public open class OpenXRActionSet : Resource() {
 
   public object MethodBindings {
     internal val setLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_localized_name", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_localized_name", 83_702_148)
 
     internal val getLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_localized_name", 201670096)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_localized_name", 201_670_096)
 
     internal val setPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_priority", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_priority", 1_286_410_249)
 
     internal val getPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_priority", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_priority", 3_905_245_786)
 
     internal val getActionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_action_count", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_action_count", 3_905_245_786)
 
     internal val setActionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_actions", 381264803)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_actions", 381_264_803)
 
     internal val getActionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_actions", 3995934104)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_actions", 3_995_934_104)
 
     internal val addActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "add_action", 349361333)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "add_action", 349_361_333)
 
     internal val removeActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "remove_action", 349361333)
+        TypeManager.getMethodBindPtr("OpenXRActionSet", "remove_action", 349_361_333)
   }
 }

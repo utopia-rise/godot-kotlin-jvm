@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,9 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
- * strings to their individual translations, and they also provide convenience methods for
- * pluralization.
+ * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of strings to their individual translations, and they also provide convenience methods for pluralization.
  */
 @GodotBaseType
 public open class Translation : Resource() {
@@ -44,7 +39,7 @@ public open class Translation : Resource() {
       setLocale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(693, scriptIndex)
   }
 
@@ -67,7 +62,7 @@ public open class Translation : Resource() {
     throw NotImplementedError("Translation::_getMessage is not implemented.")
   }
 
-  public final fun setLocale(locale: String): Unit {
+  public final fun setLocale(locale: String) {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(ptr, MethodBindings.setLocalePtr, NIL)
   }
@@ -81,14 +76,13 @@ public open class Translation : Resource() {
   /**
    * Adds a message if nonexistent, followed by its translation.
    *
-   * An additional context could be used to specify the translation context or differentiate
-   * polysemic words.
+   * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
   public final fun addMessage(
     srcMessage: StringName,
     xlatedMessage: StringName,
     context: StringName = StringName(""),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.addMessagePtr, NIL)
   }
@@ -96,14 +90,13 @@ public open class Translation : Resource() {
   /**
    * Adds a message involving plural translation if nonexistent, followed by its translation.
    *
-   * An additional context could be used to specify the translation context or differentiate
-   * polysemic words.
+   * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
   public final fun addPluralMessage(
     srcMessage: StringName,
     xlatedMessages: PackedStringArray,
     context: StringName = StringName(""),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.addPluralMessagePtr, NIL)
   }
@@ -111,8 +104,7 @@ public open class Translation : Resource() {
   /**
    * Returns a message's translation.
    */
-  public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
-      StringName {
+  public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.getMessagePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
@@ -121,8 +113,7 @@ public open class Translation : Resource() {
   /**
    * Returns a message's translation involving plurals.
    *
-   * The number [n] is the number or quantity of the plural object. It will be used to guide the
-   * translation system to fetch the correct plural form for the selected language.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    */
   public final fun getPluralMessage(
     srcMessage: StringName,
@@ -138,8 +129,7 @@ public open class Translation : Resource() {
   /**
    * Erases a message.
    */
-  public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")):
-      Unit {
+  public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")) {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.eraseMessagePtr, NIL)
   }
@@ -174,86 +164,78 @@ public open class Translation : Resource() {
   /**
    * Adds a message if nonexistent, followed by its translation.
    *
-   * An additional context could be used to specify the translation context or differentiate
-   * polysemic words.
+   * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
   public final fun addMessage(
     srcMessage: String,
     xlatedMessage: String,
     context: String,
-  ): Unit =
-      addMessage(srcMessage.asCachedStringName(), xlatedMessage.asCachedStringName(), context.asCachedStringName())
+  ): Unit = addMessage(srcMessage.asCachedStringName(), xlatedMessage.asCachedStringName(), context.asCachedStringName())
 
   /**
    * Adds a message involving plural translation if nonexistent, followed by its translation.
    *
-   * An additional context could be used to specify the translation context or differentiate
-   * polysemic words.
+   * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
   public final fun addPluralMessage(
     srcMessage: String,
     xlatedMessages: PackedStringArray,
     context: String,
-  ): Unit =
-      addPluralMessage(srcMessage.asCachedStringName(), xlatedMessages, context.asCachedStringName())
+  ): Unit = addPluralMessage(srcMessage.asCachedStringName(), xlatedMessages, context.asCachedStringName())
 
   /**
    * Returns a message's translation.
    */
-  public final fun getMessage(srcMessage: String, context: String): StringName =
-      getMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
+  public final fun getMessage(srcMessage: String, context: String): StringName = getMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
 
   /**
    * Returns a message's translation involving plurals.
    *
-   * The number [n] is the number or quantity of the plural object. It will be used to guide the
-   * translation system to fetch the correct plural form for the selected language.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    */
   public final fun getPluralMessage(
     srcMessage: String,
     srcPluralMessage: String,
     n: Int,
     context: String,
-  ): StringName =
-      getPluralMessage(srcMessage.asCachedStringName(), srcPluralMessage.asCachedStringName(), n, context.asCachedStringName())
+  ): StringName = getPluralMessage(srcMessage.asCachedStringName(), srcPluralMessage.asCachedStringName(), n, context.asCachedStringName())
 
   /**
    * Erases a message.
    */
-  public final fun eraseMessage(srcMessage: String, context: String): Unit =
-      eraseMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
+  public final fun eraseMessage(srcMessage: String, context: String): Unit = eraseMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val setLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "set_locale", 83702148)
+        TypeManager.getMethodBindPtr("Translation", "set_locale", 83_702_148)
 
     internal val getLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_locale", 201670096)
+        TypeManager.getMethodBindPtr("Translation", "get_locale", 201_670_096)
 
     internal val addMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_message", 3898530326)
+        TypeManager.getMethodBindPtr("Translation", "add_message", 3_898_530_326)
 
     internal val addPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_plural_message", 2356982266)
+        TypeManager.getMethodBindPtr("Translation", "add_plural_message", 2_356_982_266)
 
     internal val getMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message", 1829228469)
+        TypeManager.getMethodBindPtr("Translation", "get_message", 1_829_228_469)
 
     internal val getPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_plural_message", 229954002)
+        TypeManager.getMethodBindPtr("Translation", "get_plural_message", 229_954_002)
 
     internal val eraseMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "erase_message", 3959009644)
+        TypeManager.getMethodBindPtr("Translation", "erase_message", 3_959_009_644)
 
     internal val getMessageListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message_list", 1139954409)
+        TypeManager.getMethodBindPtr("Translation", "get_message_list", 1_139_954_409)
 
     internal val getTranslatedMessageListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_translated_message_list", 1139954409)
+        TypeManager.getMethodBindPtr("Translation", "get_translated_message_list", 1_139_954_409)
 
     internal val getMessageCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message_count", 3905245786)
+        TypeManager.getMethodBindPtr("Translation", "get_message_count", 3_905_245_786)
   }
 }

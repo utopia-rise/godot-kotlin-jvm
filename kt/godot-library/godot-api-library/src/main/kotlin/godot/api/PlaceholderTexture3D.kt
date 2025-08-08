@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,15 +23,11 @@ import kotlin.jvm.JvmName
 /**
  * This class is used when loading a project that uses a [Texture3D] subclass in 2 conditions:
  *
- * - When running the project exported in dedicated server mode, only the texture's dimensions are
- * kept (as they may be relied upon for gameplay purposes or positioning of other elements). This
- * allows reducing the exported PCK's size significantly.
+ * - When running the project exported in dedicated server mode, only the texture's dimensions are kept (as they may be relied upon for gameplay purposes or positioning of other elements). This allows reducing the exported PCK's size significantly.
  *
- * - When this subclass is missing due to using a different engine version or build (e.g. modules
- * disabled).
+ * - When this subclass is missing due to using a different engine version or build (e.g. modules disabled).
  *
- * **Note:** This is not intended to be used as an actual texture for rendering. It is not
- * guaranteed to work like one in shaders or materials (for example when calculating UV).
+ * **Note:** This is not intended to be used as an actual texture for rendering. It is not guaranteed to work like one in shaders or materials (for example when calculating UV).
  */
 @GodotBaseType
 public open class PlaceholderTexture3D : Texture3D() {
@@ -42,11 +35,8 @@ public open class PlaceholderTexture3D : Texture3D() {
    * The texture's size (in pixels).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3i
@@ -57,7 +47,7 @@ public open class PlaceholderTexture3D : Texture3D() {
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(493, scriptIndex)
   }
 
@@ -80,7 +70,7 @@ public open class PlaceholderTexture3D : Texture3D() {
      size = this
   }
 
-  public final fun setSize(size: Vector3i): Unit {
+  public final fun setSize(size: Vector3i) {
     TransferContext.writeArguments(VECTOR3I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -137,9 +127,9 @@ public open class PlaceholderTexture3D : Texture3D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "set_size", 560364750)
+        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "set_size", 560_364_750)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "get_size", 2785653706)
+        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "get_size", 2_785_653_706)
   }
 }

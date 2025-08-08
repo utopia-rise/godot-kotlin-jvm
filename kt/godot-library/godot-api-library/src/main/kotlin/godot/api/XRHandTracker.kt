@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,7 +21,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
@@ -35,9 +31,7 @@ public infix fun Long.xor(other: XRHandTracker.HandJointFlags): Long = this.xor(
 public infix fun Long.and(other: XRHandTracker.HandJointFlags): Long = this.and(other.flag)
 
 /**
- * A hand tracking system will create an instance of this object and add it to the [XRServer]. This
- * tracking system will then obtain skeleton data, convert it to the Godot Humanoid hand skeleton and
- * store this data on the [XRHandTracker] object.
+ * A hand tracking system will create an instance of this object and add it to the [XRServer]. This tracking system will then obtain skeleton data, convert it to the Godot Humanoid hand skeleton and store this data on the [XRHandTracker] object.
  *
  * Use [XRHandModifier3D] to animate a hand mesh using hand tracking data.
  */
@@ -65,11 +59,11 @@ public open class XRHandTracker : XRPositionalTracker() {
       setHandTrackingSource(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(867, scriptIndex)
   }
 
-  public final fun setHasTrackingData(hasData: Boolean): Unit {
+  public final fun setHasTrackingData(hasData: Boolean) {
     TransferContext.writeArguments(BOOL to hasData)
     TransferContext.callMethod(ptr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
@@ -80,7 +74,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHandTrackingSource(source: HandTrackingSource): Unit {
+  public final fun setHandTrackingSource(source: HandTrackingSource) {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(ptr, MethodBindings.setHandTrackingSourcePtr, NIL)
   }
@@ -94,14 +88,13 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets flags about the validity of the tracking data for the given hand joint.
    */
-  public final fun setHandJointFlags(joint: HandJoint, flags: HandJointFlags): Unit {
+  public final fun setHandJointFlags(joint: HandJoint, flags: HandJointFlags) {
     TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointFlagsPtr, NIL)
   }
 
   /**
-   * Returns flags about the validity of the tracking data for the given hand joint (see
-   * [XRHandTracker.HandJointFlags]).
+   * Returns flags about the validity of the tracking data for the given hand joint (see [XRHandTracker.HandJointFlags]).
    */
   public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
     TransferContext.writeArguments(LONG to joint.id)
@@ -112,7 +105,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the transform for the given hand joint.
    */
-  public final fun setHandJointTransform(joint: HandJoint, transform: Transform3D): Unit {
+  public final fun setHandJointTransform(joint: HandJoint, transform: Transform3D) {
     TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointTransformPtr, NIL)
   }
@@ -129,7 +122,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the radius of the given hand joint.
    */
-  public final fun setHandJointRadius(joint: HandJoint, radius: Float): Unit {
+  public final fun setHandJointRadius(joint: HandJoint, radius: Float) {
     TransferContext.writeArguments(LONG to joint.id, DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHandJointRadiusPtr, NIL)
   }
@@ -146,7 +139,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the linear velocity for the given hand joint.
    */
-  public final fun setHandJointLinearVelocity(joint: HandJoint, linearVelocity: Vector3): Unit {
+  public final fun setHandJointLinearVelocity(joint: HandJoint, linearVelocity: Vector3) {
     TransferContext.writeArguments(LONG to joint.id, VECTOR3 to linearVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointLinearVelocityPtr, NIL)
   }
@@ -163,7 +156,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the angular velocity for the given hand joint.
    */
-  public final fun setHandJointAngularVelocity(joint: HandJoint, angularVelocity: Vector3): Unit {
+  public final fun setHandJointAngularVelocity(joint: HandJoint, angularVelocity: Vector3) {
     TransferContext.writeArguments(LONG to joint.id, VECTOR3 to angularVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointAngularVelocityPtr, NIL)
   }
@@ -185,18 +178,15 @@ public open class XRHandTracker : XRPositionalTracker() {
      */
     UNKNOWN(0),
     /**
-     * The source of hand tracking data is unobstructed, meaning that an accurate method of hand
-     * tracking is used. These include optical hand tracking, data gloves, etc.
+     * The source of hand tracking data is unobstructed, meaning that an accurate method of hand tracking is used. These include optical hand tracking, data gloves, etc.
      */
     UNOBSTRUCTED(1),
     /**
-     * The source of hand tracking data is a controller, meaning that joint positions are inferred
-     * from controller inputs.
+     * The source of hand tracking data is a controller, meaning that joint positions are inferred from controller inputs.
      */
     CONTROLLER(2),
     /**
-     * No hand tracking data is tracked, this either means the hand is obscured, the controller is
-     * turned off, or tracking is not supported for the current input type.
+     * No hand tracking data is tracked, this either means the hand is obscured, the controller is turned off, or tracking is not supported for the current input type.
      */
     NOT_TRACKED(3),
     /**
@@ -345,13 +335,11 @@ public open class XRHandTracker : XRPositionalTracker() {
 
     public infix fun or(other: Long): HandJointFlags = HandJointFlags(flag.or(other))
 
-    public infix fun xor(other: HandJointFlags): HandJointFlags =
-        HandJointFlags(flag.xor(other.flag))
+    public infix fun xor(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.xor(other.flag))
 
     public infix fun xor(other: Long): HandJointFlags = HandJointFlags(flag.xor(other))
 
-    public infix fun and(other: HandJointFlags): HandJointFlags =
-        HandJointFlags(flag.and(other.flag))
+    public infix fun and(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.and(other.flag))
 
     public infix fun and(other: Long): HandJointFlags = HandJointFlags(flag.and(other))
 
@@ -375,8 +363,7 @@ public open class XRHandTracker : XRPositionalTracker() {
       public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
       /**
-       * The hand joint's orientation is actively tracked. May not be set if tracking has been
-       * temporarily lost.
+       * The hand joint's orientation is actively tracked. May not be set if tracking has been temporarily lost.
        */
       @JvmField
       public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
@@ -388,8 +375,7 @@ public open class XRHandTracker : XRPositionalTracker() {
       public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
       /**
-       * The hand joint's position is actively tracked. May not be set if tracking has been
-       * temporarily lost.
+       * The hand joint's position is actively tracked. May not be set if tracking has been temporarily lost.
        */
       @JvmField
       public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
@@ -412,45 +398,45 @@ public open class XRHandTracker : XRPositionalTracker() {
 
   public object MethodBindings {
     internal val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_has_tracking_data", 2586408642)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_has_tracking_data", 2_586_408_642)
 
     internal val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_has_tracking_data", 36873697)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_has_tracking_data", 36_873_697)
 
     internal val setHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source", 2958308861)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source", 2_958_308_861)
 
     internal val getHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source", 2475045250)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source", 2_475_045_250)
 
     internal val setHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags", 3028437365)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags", 3_028_437_365)
 
     internal val getHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags", 1730972401)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags", 1_730_972_401)
 
     internal val setHandJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform", 2529959613)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform", 2_529_959_613)
 
     internal val getHandJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform", 1090840196)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform", 1_090_840_196)
 
     internal val setHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius", 2723659615)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius", 2_723_659_615)
 
     internal val getHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius", 3400025734)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius", 3_400_025_734)
 
     internal val setHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity", 1978646737)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity", 1_978_646_737)
 
     internal val getHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity", 547240792)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity", 547_240_792)
 
     internal val setHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity", 1978646737)
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity", 1_978_646_737)
 
     internal val getHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547240792)
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547_240_792)
   }
 }

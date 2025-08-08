@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,9 +31,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A texture-based nine-patch [StyleBox], in a way similar to [NinePatchRect]. This stylebox
- * performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it
- * possible to design bordered styles regardless of the stylebox's size.
+ * A texture-based nine-patch [StyleBox], in a way similar to [NinePatchRect]. This stylebox performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it possible to design bordered styles regardless of the stylebox's size.
  */
 @GodotBaseType
 public open class StyleBoxTexture : StyleBox() {
@@ -54,8 +49,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Increases the left margin of the 3×3 texture box.
    *
-   * A higher value means more of the source texture is considered to be part of the left border of
-   * the 3×3 box.
+   * A higher value means more of the source texture is considered to be part of the left border of the 3×3 box.
    *
    * This is also the value used as fallback for [StyleBox.contentMarginLeft] if it is negative.
    */
@@ -70,8 +64,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Increases the top margin of the 3×3 texture box.
    *
-   * A higher value means more of the source texture is considered to be part of the top border of
-   * the 3×3 box.
+   * A higher value means more of the source texture is considered to be part of the top border of the 3×3 box.
    *
    * This is also the value used as fallback for [StyleBox.contentMarginTop] if it is negative.
    */
@@ -86,8 +79,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Increases the right margin of the 3×3 texture box.
    *
-   * A higher value means more of the source texture is considered to be part of the right border of
-   * the 3×3 box.
+   * A higher value means more of the source texture is considered to be part of the right border of the 3×3 box.
    *
    * This is also the value used as fallback for [StyleBox.contentMarginRight] if it is negative.
    */
@@ -102,8 +94,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Increases the bottom margin of the 3×3 texture box.
    *
-   * A higher value means more of the source texture is considered to be part of the bottom border
-   * of the 3×3 box.
+   * A higher value means more of the source texture is considered to be part of the bottom border of the 3×3 box.
    *
    * This is also the value used as fallback for [StyleBox.contentMarginBottom] if it is negative.
    */
@@ -116,8 +107,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the left margin of this style box when drawing, causing it to be drawn larger than
-   * requested.
+   * Expands the left margin of this style box when drawing, causing it to be drawn larger than requested.
    */
   public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
@@ -128,8 +118,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the top margin of this style box when drawing, causing it to be drawn larger than
-   * requested.
+   * Expands the top margin of this style box when drawing, causing it to be drawn larger than requested.
    */
   public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
@@ -140,8 +129,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the right margin of this style box when drawing, causing it to be drawn larger than
-   * requested.
+   * Expands the right margin of this style box when drawing, causing it to be drawn larger than requested.
    */
   public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
@@ -152,8 +140,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the bottom margin of this style box when drawing, causing it to be drawn larger than
-   * requested.
+   * Expands the bottom margin of this style box when drawing, causing it to be drawn larger than requested.
    */
   public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
@@ -164,8 +151,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled horizontally. See
-   * [AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled horizontally. See [AxisStretchMode] for possible values.
    */
   public final inline var axisStretchHorizontal: AxisStretchMode
     @JvmName("axisStretchHorizontalProperty")
@@ -176,8 +162,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled vertically. See
-   * [AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled vertically. See [AxisStretchMode] for possible values.
    */
   public final inline var axisStretchVertical: AxisStretchMode
     @JvmName("axisStretchVerticalProperty")
@@ -195,11 +180,8 @@ public open class StyleBoxTexture : StyleBox() {
    * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -214,11 +196,8 @@ public open class StyleBoxTexture : StyleBox() {
    * Modulates the color of the texture when this style box is drawn.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulateColor: Color
@@ -240,7 +219,7 @@ public open class StyleBoxTexture : StyleBox() {
       setDrawCenter(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(644, scriptIndex)
   }
 
@@ -286,7 +265,7 @@ public open class StyleBoxTexture : StyleBox() {
      modulateColor = this
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -300,7 +279,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the margin to [size] pixels for the specified [Side].
    */
-  public final fun setTextureMargin(margin: Side, size: Float): Unit {
+  public final fun setTextureMargin(margin: Side, size: Float) {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureMarginPtr, NIL)
   }
@@ -308,7 +287,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the margin to [size] pixels for all sides.
    */
-  public final fun setTextureMarginAll(size: Float): Unit {
+  public final fun setTextureMarginAll(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureMarginAllPtr, NIL)
   }
@@ -325,7 +304,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
-  public final fun setExpandMargin(margin: Side, size: Float): Unit {
+  public final fun setExpandMargin(margin: Side, size: Float) {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExpandMarginPtr, NIL)
   }
@@ -333,7 +312,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
-  public final fun setExpandMarginAll(size: Float): Unit {
+  public final fun setExpandMarginAll(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
@@ -347,7 +326,7 @@ public open class StyleBoxTexture : StyleBox() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRegionRect(region: Rect2): Unit {
+  public final fun setRegionRect(region: Rect2) {
     TransferContext.writeArguments(RECT2 to region)
     TransferContext.callMethod(ptr, MethodBindings.setRegionRectPtr, NIL)
   }
@@ -358,7 +337,7 @@ public open class StyleBoxTexture : StyleBox() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setDrawCenter(enable: Boolean): Unit {
+  public final fun setDrawCenter(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setDrawCenterPtr, NIL)
   }
@@ -369,7 +348,7 @@ public open class StyleBoxTexture : StyleBox() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setModulate(color: Color): Unit {
+  public final fun setModulate(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setModulatePtr, NIL)
   }
@@ -380,7 +359,7 @@ public open class StyleBoxTexture : StyleBox() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
+  public final fun setHAxisStretchMode(mode: AxisStretchMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
@@ -391,7 +370,7 @@ public open class StyleBoxTexture : StyleBox() {
     return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
+  public final fun setVAxisStretchMode(mode: AxisStretchMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
@@ -413,19 +392,15 @@ public open class StyleBoxTexture : StyleBox() {
     id: Long,
   ) {
     /**
-     * Stretch the stylebox's texture. This results in visible distortion unless the texture size
-     * matches the stylebox's size perfectly.
+     * Stretch the stylebox's texture. This results in visible distortion unless the texture size matches the stylebox's size perfectly.
      */
     STRETCH(0),
     /**
-     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
-     * system.
+     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch system.
      */
     TILE(1),
     /**
-     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
-     * system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the
-     * nine-patch texture tile seamlessly.
+     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the nine-patch texture tile seamlessly.
      */
     TILE_FIT(2),
     ;
@@ -444,57 +419,57 @@ public open class StyleBoxTexture : StyleBox() {
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture", 3_635_182_373)
 
     internal val setTextureMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin", 4290182280)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin", 4_290_182_280)
 
     internal val setTextureMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin_all", 373806689)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin_all", 373_806_689)
 
     internal val getTextureMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture_margin", 2869120046)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture_margin", 2_869_120_046)
 
     internal val setExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin", 4290182280)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin", 4_290_182_280)
 
     internal val setExpandMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin_all", 373806689)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin_all", 373_806_689)
 
     internal val getExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_expand_margin", 2869120046)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_expand_margin", 2_869_120_046)
 
     internal val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_region_rect", 2046264180)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_region_rect", 2_046_264_180)
 
     internal val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_region_rect", 1639390495)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_region_rect", 1_639_390_495)
 
     internal val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_draw_center", 2586408642)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_draw_center", 2_586_408_642)
 
     internal val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "is_draw_center_enabled", 36873697)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "is_draw_center_enabled", 36_873_697)
 
     internal val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_modulate", 2920490490)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_modulate", 2_920_490_490)
 
     internal val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_modulate", 3444240500)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_modulate", 3_444_240_500)
 
     internal val setHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_h_axis_stretch_mode", 2965538783)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_h_axis_stretch_mode", 2_965_538_783)
 
     internal val getHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_h_axis_stretch_mode", 3807744063)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_h_axis_stretch_mode", 3_807_744_063)
 
     internal val setVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_v_axis_stretch_mode", 2965538783)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_v_axis_stretch_mode", 2_965_538_783)
 
     internal val getVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_v_axis_stretch_mode", 3807744063)
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_v_axis_stretch_mode", 3_807_744_063)
   }
 }

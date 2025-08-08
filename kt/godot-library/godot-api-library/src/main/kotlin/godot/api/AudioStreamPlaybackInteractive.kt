@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,19 +19,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Playback component of [AudioStreamInteractive]. Contains functions to change the currently played
- * clip.
+ * Playback component of [AudioStreamInteractive]. Contains functions to change the currently played clip.
  */
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(88, scriptIndex)
   }
 
   /**
    * Switch to a clip (by name).
    */
-  public final fun switchToClipByName(clipName: StringName): Unit {
+  public final fun switchToClipByName(clipName: StringName) {
     TransferContext.writeArguments(STRING_NAME to clipName)
     TransferContext.callMethod(ptr, MethodBindings.switchToClipByNamePtr, NIL)
   }
@@ -42,14 +38,13 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Switch to a clip (by index).
    */
-  public final fun switchToClip(clipIndex: Int): Unit {
+  public final fun switchToClip(clipIndex: Int) {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.switchToClipPtr, NIL)
   }
 
   /**
-   * Return the index of the currently playing clip. You can use this to get the name of the
-   * currently playing clip with [AudioStreamInteractive.getClipName].
+   * Return the index of the currently playing clip. You can use this to get the name of the currently playing clip with [AudioStreamInteractive.getClipName].
    *
    * **Example:** Get the currently playing clip name from inside an [AudioStreamPlayer] node.
    *
@@ -67,19 +62,18 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Switch to a clip (by name).
    */
-  public final fun switchToClipByName(clipName: String): Unit =
-      switchToClipByName(clipName.asCachedStringName())
+  public final fun switchToClipByName(clipName: String): Unit = switchToClipByName(clipName.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val switchToClipByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip_by_name", 3304788590)
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip_by_name", 3_304_788_590)
 
     internal val switchToClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip", 1_286_410_249)
 
     internal val getCurrentClipIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "get_current_clip_index", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "get_current_clip_index", 3_905_245_786)
   }
 }

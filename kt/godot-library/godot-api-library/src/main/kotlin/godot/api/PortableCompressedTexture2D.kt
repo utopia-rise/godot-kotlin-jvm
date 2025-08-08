@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,14 +30,11 @@ import kotlin.jvm.JvmStatic
 /**
  * This class allows storing compressed textures as self contained (not imported) resources.
  *
- * For 2D usage (compressed on disk, uncompressed on VRAM), the lossy and lossless modes are
- * recommended. For 3D usage (compressed on VRAM) it depends on the target platform.
+ * For 2D usage (compressed on disk, uncompressed on VRAM), the lossy and lossless modes are recommended. For 3D usage (compressed on VRAM) it depends on the target platform.
  *
- * If you intend to only use desktop, S3TC or BPTC are recommended. For only mobile, ETC2 is
- * recommended.
+ * If you intend to only use desktop, S3TC or BPTC are recommended. For only mobile, ETC2 is recommended.
  *
- * For portable, self contained 3D textures that work on both desktop and mobile, Basis Universal is
- * recommended (although it has a small quality cost and longer compression time as a tradeoff).
+ * For portable, self contained 3D textures that work on both desktop and mobile, Basis Universal is recommended (although it has a small quality cost and longer compression time as a tradeoff).
  *
  * This resource is intended to be created from code.
  */
@@ -50,11 +44,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * Allow overriding the texture size (for 2D only).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var sizeOverride: Vector2
@@ -66,11 +57,9 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   /**
-   * When running on the editor, this class will keep the source compressed data in memory.
-   * Otherwise, the source compressed data is lost after loading and the resource can't be re saved.
+   * When running on the editor, this class will keep the source compressed data in memory. Otherwise, the source compressed data is lost after loading and the resource can't be re saved.
    *
-   * This flag allows to keep the compressed data in memory if you intend it to persist after
-   * loading.
+   * This flag allows to keep the compressed data in memory if you intend it to persist after loading.
    */
   public final inline var keepCompressedBuffer: Boolean
     @JvmName("keepCompressedBufferProperty")
@@ -80,7 +69,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
       setKeepCompressedBuffer(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(504, scriptIndex)
   }
 
@@ -106,11 +95,9 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Initializes the compressed texture from a base image. The compression mode must be provided.
    *
-   * [normalMap] is recommended to ensure optimum quality if this image will be used as a normal
-   * map.
+   * [normalMap] is recommended to ensure optimum quality if this image will be used as a normal map.
    *
-   * If lossy compression is requested, the quality setting can optionally be provided. This maps to
-   * Lossy WebP compression quality.
+   * If lossy compression is requested, the quality setting can optionally be provided. This maps to Lossy WebP compression quality.
    */
   @JvmOverloads
   public final fun createFromImage(
@@ -118,7 +105,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     compressionMode: CompressionMode,
     normalMap: Boolean = false,
     lossyQuality: Float = 0.8f,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.createFromImagePtr, NIL)
   }
@@ -141,7 +128,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     return CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSizeOverride(size: Vector2): Unit {
+  public final fun setSizeOverride(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizeOverridePtr, NIL)
   }
@@ -152,7 +139,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setKeepCompressedBuffer(keep: Boolean): Unit {
+  public final fun setKeepCompressedBuffer(keep: Boolean) {
     TransferContext.writeArguments(BOOL to keep)
     TransferContext.callMethod(ptr, MethodBindings.setKeepCompressedBufferPtr, NIL)
   }
@@ -200,11 +187,10 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   public companion object {
     /**
-     * Overrides the flag globally for all textures of this type. This is used primarily by the
-     * editor.
+     * Overrides the flag globally for all textures of this type. This is used primarily by the editor.
      */
     @JvmStatic
-    public final fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
+    public final fun setKeepAllCompressedBuffers(keep: Boolean) {
       TransferContext.writeArguments(BOOL to keep)
       TransferContext.callMethod(0, MethodBindings.setKeepAllCompressedBuffersPtr, NIL)
     }
@@ -222,30 +208,30 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   public object MethodBindings {
     internal val createFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image", 3679243433)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image", 3_679_243_433)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_format", 3847873762)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_format", 3_847_873_762)
 
     internal val getCompressionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode", 3265612739)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode", 3_265_612_739)
 
     internal val setSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_size_override", 743155724)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_size_override", 743_155_724)
 
     internal val getSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_size_override", 3341600327)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_size_override", 3_341_600_327)
 
     internal val setKeepCompressedBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_compressed_buffer", 2586408642)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_compressed_buffer", 2_586_408_642)
 
     internal val isKeepingCompressedBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer", 36873697)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer", 36_873_697)
 
     internal val setKeepAllCompressedBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers", 2586408642)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers", 2_586_408_642)
 
     internal val isKeepingAllCompressedBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_all_compressed_buffers", 2240911060)
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_all_compressed_buffers", 2_240_911_060)
   }
 }

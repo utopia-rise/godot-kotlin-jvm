@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,24 +25,19 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have
- * its [Node3D.transform] updated by the [XRServer]. Nodes of this type must be added as children of
- * the [XROrigin3D] node.
+ * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have its [Node3D.transform] updated by the [XRServer]. Nodes of this type must be added as children of the [XROrigin3D] node.
  */
 @GodotBaseType
 public open class XRNode3D : Node3D() {
   /**
-   * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being
-   * tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
+   * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
    */
   public val trackingChanged: Signal1<Boolean> by Signal1
 
   /**
-   * The name of the tracker we're bound to. Which trackers are available is not known during design
-   * time.
+   * The name of the tracker we're bound to. Which trackers are available is not known during design time.
    *
-   * Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may
-   * be configured within a given [XRInterface].
+   * Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].
    */
   public final inline var tracker: StringName
     @JvmName("trackerProperty")
@@ -56,11 +48,9 @@ public open class XRNode3D : Node3D() {
     }
 
   /**
-   * The name of the pose we're bound to. Which poses a tracker supports is not known during design
-   * time.
+   * The name of the pose we're bound to. Which poses a tracker supports is not known during design time.
    *
-   * Godot defines number of standard pose names such as `aim` and `grip` but other may be
-   * configured within a given [XRInterface].
+   * Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [XRInterface].
    */
   public final inline var pose: StringName
     @JvmName("poseProperty")
@@ -81,11 +71,11 @@ public open class XRNode3D : Node3D() {
       setShowWhenTracked(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(870, scriptIndex)
   }
 
-  public final fun setTracker(trackerName: StringName): Unit {
+  public final fun setTracker(trackerName: StringName) {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(ptr, MethodBindings.setTrackerPtr, NIL)
   }
@@ -96,7 +86,7 @@ public open class XRNode3D : Node3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setPoseName(pose: StringName): Unit {
+  public final fun setPoseName(pose: StringName) {
     TransferContext.writeArguments(STRING_NAME to pose)
     TransferContext.callMethod(ptr, MethodBindings.setPoseNamePtr, NIL)
   }
@@ -107,7 +97,7 @@ public open class XRNode3D : Node3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setShowWhenTracked(show: Boolean): Unit {
+  public final fun setShowWhenTracked(show: Boolean) {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(ptr, MethodBindings.setShowWhenTrackedPtr, NIL)
   }
@@ -137,8 +127,7 @@ public open class XRNode3D : Node3D() {
   }
 
   /**
-   * Returns the [XRPose] containing the current state of the pose being tracked. This gives access
-   * to additional properties of this pose.
+   * Returns the [XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose.
    */
   public final fun getPose(): XRPose? {
     TransferContext.writeArguments()
@@ -151,8 +140,7 @@ public open class XRNode3D : Node3D() {
    *
    * [actionName] is the name of the action for this pulse.
    *
-   * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
-   * frequency.
+   * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.
    *
    * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
    *
@@ -166,13 +154,12 @@ public open class XRNode3D : Node3D() {
     amplitude: Double,
     durationSec: Double,
     delaySec: Double,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
     TransferContext.callMethod(ptr, MethodBindings.triggerHapticPulsePtr, NIL)
   }
 
-  public final fun setTracker(trackerName: String): Unit =
-      setTracker(trackerName.asCachedStringName())
+  public final fun setTracker(trackerName: String): Unit = setTracker(trackerName.asCachedStringName())
 
   public final fun setPoseName(pose: String): Unit = setPoseName(pose.asCachedStringName())
 
@@ -180,33 +167,33 @@ public open class XRNode3D : Node3D() {
 
   public object MethodBindings {
     internal val setTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_tracker", 3304788590)
+        TypeManager.getMethodBindPtr("XRNode3D", "set_tracker", 3_304_788_590)
 
     internal val getTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_tracker", 2002593661)
+        TypeManager.getMethodBindPtr("XRNode3D", "get_tracker", 2_002_593_661)
 
     internal val setPoseNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_pose_name", 3304788590)
+        TypeManager.getMethodBindPtr("XRNode3D", "set_pose_name", 3_304_788_590)
 
     internal val getPoseNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_pose_name", 2002593661)
+        TypeManager.getMethodBindPtr("XRNode3D", "get_pose_name", 2_002_593_661)
 
     internal val setShowWhenTrackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_show_when_tracked", 2586408642)
+        TypeManager.getMethodBindPtr("XRNode3D", "set_show_when_tracked", 2_586_408_642)
 
     internal val getShowWhenTrackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_show_when_tracked", 36873697)
+        TypeManager.getMethodBindPtr("XRNode3D", "get_show_when_tracked", 36_873_697)
 
     internal val getIsActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_is_active", 36873697)
+        TypeManager.getMethodBindPtr("XRNode3D", "get_is_active", 36_873_697)
 
     internal val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_has_tracking_data", 36873697)
+        TypeManager.getMethodBindPtr("XRNode3D", "get_has_tracking_data", 36_873_697)
 
     internal val getPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_pose", 2806551826)
+        TypeManager.getMethodBindPtr("XRNode3D", "get_pose", 2_806_551_826)
 
     internal val triggerHapticPulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse", 508576839)
+        TypeManager.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse", 508_576_839)
   }
 }

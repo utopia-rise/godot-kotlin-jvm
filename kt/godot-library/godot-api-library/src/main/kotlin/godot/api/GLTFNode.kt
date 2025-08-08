@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -42,12 +39,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Represents a glTF node. glTF nodes may have names, transforms, children (other glTF nodes), and
- * more specialized properties (represented by their own classes).
+ * Represents a glTF node. glTF nodes may have names, transforms, children (other glTF nodes), and more specialized properties (represented by their own classes).
  *
- * glTF nodes generally exist inside of [GLTFState] which represents all data of a glTF file. Most
- * of GLTFNode's properties are indices of other data in the glTF file. You can extend a glTF node with
- * additional properties by using [getAdditionalData] and [setAdditionalData].
+ * glTF nodes generally exist inside of [GLTFState] which represents all data of a glTF file. Most of GLTFNode's properties are indices of other data in the glTF file. You can extend a glTF node with additional properties by using [getAdditionalData] and [setAdditionalData].
  */
 @GodotBaseType
 public open class GLTFNode : Resource() {
@@ -74,8 +68,7 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * How deep into the node hierarchy this node is. A root node will have a height of 0, its
-   * children will have a height of 1, and so on. If -1, the height has not been calculated.
+   * How deep into the node hierarchy this node is. A root node will have a height of 0, its children will have a height of 1, and so on. If -1, the height has not been calculated.
    */
   public final inline var height: Int
     @JvmName("heightProperty")
@@ -86,15 +79,11 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * The transform of the glTF node relative to its parent. This property is usually unused since
-   * the position, rotation, and scale properties are preferred.
+   * The transform of the glTF node relative to its parent. This property is usually unused since the position, rotation, and scale properties are preferred.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var xform: Transform3D
@@ -106,8 +95,7 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * If this glTF node is a mesh, the index of the [GLTFMesh] in the [GLTFState] that describes the
-   * mesh's properties. If -1, this node is not a mesh.
+   * If this glTF node is a mesh, the index of the [GLTFMesh] in the [GLTFState] that describes the mesh's properties. If -1, this node is not a mesh.
    */
   public final inline var mesh: Int
     @JvmName("meshProperty")
@@ -118,8 +106,7 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * If this glTF node is a camera, the index of the [GLTFCamera] in the [GLTFState] that describes
-   * the camera's properties. If -1, this node is not a camera.
+   * If this glTF node is a camera, the index of the [GLTFCamera] in the [GLTFState] that describes the camera's properties. If -1, this node is not a camera.
    */
   public final inline var camera: Int
     @JvmName("cameraProperty")
@@ -130,8 +117,7 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * If this glTF node has a skin, the index of the [GLTFSkin] in the [GLTFState] that describes the
-   * skin's properties. If -1, this node does not have a skin.
+   * If this glTF node has a skin, the index of the [GLTFSkin] in the [GLTFState] that describes the skin's properties. If -1, this node does not have a skin.
    */
   public final inline var skin: Int
     @JvmName("skinProperty")
@@ -142,8 +128,7 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * If this glTF node has a skeleton, the index of the [GLTFSkeleton] in the [GLTFState] that
-   * describes the skeleton's properties. If -1, this node does not have a skeleton.
+   * If this glTF node has a skeleton, the index of the [GLTFSkeleton] in the [GLTFState] that describes the skeleton's properties. If -1, this node does not have a skeleton.
    */
   public final inline var skeleton: Int
     @JvmName("skeletonProperty")
@@ -157,11 +142,8 @@ public open class GLTFNode : Resource() {
    * The position of the glTF node relative to its parent.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector3
@@ -176,11 +158,8 @@ public open class GLTFNode : Resource() {
    * The rotation of the glTF node relative to its parent.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rotation: Quaternion
@@ -195,11 +174,8 @@ public open class GLTFNode : Resource() {
    * The scale of the glTF node relative to its parent.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector3
@@ -211,15 +187,11 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will
-   * be an empty array.
+   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will be an empty array.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var children: PackedInt32Array
@@ -231,8 +203,7 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * If this glTF node is a light, the index of the [GLTFLight] in the [GLTFState] that describes
-   * the light's properties. If -1, this node is not a light.
+   * If this glTF node is a light, the index of the [GLTFLight] in the [GLTFState] that describes the light's properties. If -1, this node is not a light.
    */
   public final inline var light: Int
     @JvmName("lightProperty")
@@ -242,7 +213,7 @@ public open class GLTFNode : Resource() {
       setLight(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(233, scriptIndex)
   }
 
@@ -257,8 +228,7 @@ public open class GLTFNode : Resource() {
    * gltfnode.xform = myCoreType
    * ``````
    *
-   * The transform of the glTF node relative to its parent. This property is usually unused since
-   * the position, rotation, and scale properties are preferred.
+   * The transform of the glTF node relative to its parent. This property is usually unused since the position, rotation, and scale properties are preferred.
    */
   @CoreTypeHelper
   public final fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply {
@@ -334,27 +304,22 @@ public open class GLTFNode : Resource() {
    * gltfnode.children = myCoreType
    * ``````
    *
-   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will
-   * be an empty array.
+   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will be an empty array.
    */
   @CoreTypeHelper
-  public final fun childrenMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      children.apply {
+  public final fun childrenMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = children.apply {
      block(this)
      children = this
   }
 
   /**
    * This is a helper function for [children] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will
-   * be an empty array.
+   * The indices of the child nodes in the [GLTFState]. If this glTF node has no children, this will be an empty array.
    */
   @CoreTypeHelper
-  public final fun childrenMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
-      children.apply {
+  public final fun childrenMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = children.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -368,7 +333,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setOriginalName(originalName: String): Unit {
+  public final fun setOriginalName(originalName: String) {
     TransferContext.writeArguments(STRING to originalName)
     TransferContext.callMethod(ptr, MethodBindings.setOriginalNamePtr, NIL)
   }
@@ -379,7 +344,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setParent(parent: Int): Unit {
+  public final fun setParent(parent: Int) {
     TransferContext.writeArguments(LONG to parent.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setParentPtr, NIL)
   }
@@ -390,7 +355,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHeight(height: Int): Unit {
+  public final fun setHeight(height: Int) {
     TransferContext.writeArguments(LONG to height.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
@@ -401,7 +366,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setXform(xform: Transform3D): Unit {
+  public final fun setXform(xform: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to xform)
     TransferContext.callMethod(ptr, MethodBindings.setXformPtr, NIL)
   }
@@ -412,7 +377,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMesh(mesh: Int): Unit {
+  public final fun setMesh(mesh: Int) {
     TransferContext.writeArguments(LONG to mesh.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -423,7 +388,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCamera(camera: Int): Unit {
+  public final fun setCamera(camera: Int) {
     TransferContext.writeArguments(LONG to camera.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCameraPtr, NIL)
   }
@@ -434,7 +399,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSkin(skin: Int): Unit {
+  public final fun setSkin(skin: Int) {
     TransferContext.writeArguments(LONG to skin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSkinPtr, NIL)
   }
@@ -445,7 +410,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSkeleton(skeleton: Int): Unit {
+  public final fun setSkeleton(skeleton: Int) {
     TransferContext.writeArguments(LONG to skeleton.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonPtr, NIL)
   }
@@ -456,7 +421,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setPosition(position: Vector3): Unit {
+  public final fun setPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -467,7 +432,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
-  public final fun setRotation(rotation: Quaternion): Unit {
+  public final fun setRotation(rotation: Quaternion) {
     TransferContext.writeArguments(QUATERNION to rotation)
     TransferContext.callMethod(ptr, MethodBindings.setRotationPtr, NIL)
   }
@@ -478,7 +443,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setScale(scale: Vector3): Unit {
+  public final fun setScale(scale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setScalePtr, NIL)
   }
@@ -489,7 +454,7 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setChildren(children: PackedInt32Array): Unit {
+  public final fun setChildren(children: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to children)
     TransferContext.callMethod(ptr, MethodBindings.setChildrenPtr, NIL)
   }
@@ -497,7 +462,7 @@ public open class GLTFNode : Resource() {
   /**
    * Appends the given child node index to the [children] array.
    */
-  public final fun appendChildIndex(childIndex: Int): Unit {
+  public final fun appendChildIndex(childIndex: Int) {
     TransferContext.writeArguments(LONG to childIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.appendChildIndexPtr, NIL)
   }
@@ -508,18 +473,15 @@ public open class GLTFNode : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLight(light: Int): Unit {
+  public final fun setLight(light: Int) {
     TransferContext.writeArguments(LONG to light.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLightPtr, NIL)
   }
 
   /**
-   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is `null`.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the return value can be anything you set. If nothing was set, the return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
@@ -528,146 +490,132 @@ public open class GLTFNode : Resource() {
   }
 
   /**
-   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the glTF file), and the second argument can be anything you want.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?) {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   /**
-   * Returns the [NodePath] that this GLTF node will have in the Godot scene tree after being
-   * imported. This is useful when importing glTF object model pointers with [GLTFObjectModelProperty],
-   * for handling extensions such as `KHR_animation_pointer` or `KHR_interactivity`.
+   * Returns the [NodePath] that this GLTF node will have in the Godot scene tree after being imported. This is useful when importing glTF object model pointers with [GLTFObjectModelProperty], for handling extensions such as `KHR_animation_pointer` or `KHR_interactivity`.
    *
-   * If [handleSkeletons] is `true`, paths to skeleton bone glTF nodes will be resolved properly.
-   * For example, a path that would be `^"A/B/C/Bone1/Bone2/Bone3"` if `false` will become
-   * `^"A/B/C/Skeleton3D:Bone3"`.
+   * If [handleSkeletons] is `true`, paths to skeleton bone glTF nodes will be resolved properly. For example, a path that would be `^"A/B/C/Bone1/Bone2/Bone3"` if `false` will become `^"A/B/C/Skeleton3D:Bone3"`.
    */
   @JvmOverloads
-  public final fun getSceneNodePath(gltfState: GLTFState?, handleSkeletons: Boolean = true):
-      NodePath {
+  public final fun getSceneNodePath(gltfState: GLTFState?, handleSkeletons: Boolean = true): NodePath {
     TransferContext.writeArguments(OBJECT to gltfState, BOOL to handleSkeletons)
     TransferContext.callMethod(ptr, MethodBindings.getSceneNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
-   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is `null`.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the return value can be anything you set. If nothing was set, the return value is `null`.
    */
-  public final fun getAdditionalData(extensionName: String): Any? =
-      getAdditionalData(extensionName.asCachedStringName())
+  public final fun getAdditionalData(extensionName: String): Any? = getAdditionalData(extensionName.asCachedStringName())
 
   /**
-   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the glTF file), and the second argument can be anything you want.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit =
-      setAdditionalData(extensionName.asCachedStringName(), additionalData)
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit = setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 
   public object MethodBindings {
     internal val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_original_name", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_original_name", 2_841_200_299)
 
     internal val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_original_name", 83702148)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_original_name", 83_702_148)
 
     internal val getParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_parent", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_parent", 2_455_072_627)
 
     internal val setParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_parent", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_parent", 1_286_410_249)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_height", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_height", 2_455_072_627)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_height", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_height", 1_286_410_249)
 
     internal val getXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_xform", 4183770049)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_xform", 4_183_770_049)
 
     internal val setXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_xform", 2952846383)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_xform", 2_952_846_383)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_mesh", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_mesh", 2_455_072_627)
 
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_mesh", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_mesh", 1_286_410_249)
 
     internal val getCameraPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_camera", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_camera", 2_455_072_627)
 
     internal val setCameraPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_camera", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_camera", 1_286_410_249)
 
     internal val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_skin", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_skin", 2_455_072_627)
 
     internal val setSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_skin", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_skin", 1_286_410_249)
 
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_skeleton", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_skeleton", 2_455_072_627)
 
     internal val setSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_skeleton", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_skeleton", 1_286_410_249)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_position", 3783033775)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_position", 3_783_033_775)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_position", 3460891852)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_position", 3_460_891_852)
 
     internal val getRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_rotation", 2916281908)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_rotation", 2_916_281_908)
 
     internal val setRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_rotation", 1727505552)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_rotation", 1_727_505_552)
 
     internal val getScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_scale", 3783033775)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_scale", 3_783_033_775)
 
     internal val setScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_scale", 3460891852)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_scale", 3_460_891_852)
 
     internal val getChildrenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_children", 969006518)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_children", 969_006_518)
 
     internal val setChildrenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_children", 3614634198)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_children", 3_614_634_198)
 
     internal val appendChildIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "append_child_index", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "append_child_index", 1_286_410_249)
 
     internal val getLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_light", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_light", 2_455_072_627)
 
     internal val setLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_light", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_light", 1_286_410_249)
 
     internal val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data", 2138907829)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data", 2_138_907_829)
 
     internal val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_additional_data", 3776071444)
+        TypeManager.getMethodBindPtr("GLTFNode", "set_additional_data", 3_776_071_444)
 
     internal val getSceneNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_scene_node_path", 573359477)
+        TypeManager.getMethodBindPtr("GLTFNode", "get_scene_node_path", 573_359_477)
   }
 }

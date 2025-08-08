@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,30 +24,17 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [GraphNode] allows to create nodes for a [GraphEdit] graph with customizable content based on its
- * child controls. [GraphNode] is derived from [Container] and it is responsible for placing its
- * children on screen. This works similar to [VBoxContainer]. Children, in turn, provide [GraphNode]
- * with so-called slots, each of which can have a connection port on either side.
+ * [GraphNode] allows to create nodes for a [GraphEdit] graph with customizable content based on its child controls. [GraphNode] is derived from [Container] and it is responsible for placing its children on screen. This works similar to [VBoxContainer]. Children, in turn, provide [GraphNode] with so-called slots, each of which can have a connection port on either side.
  *
- * Each [GraphNode] slot is defined by its index and can provide the node with up to two ports: one
- * on the left, and one on the right. By convention the left port is also referred to as the **input
- * port** and the right port is referred to as the **output port**. Each port can be enabled and
- * configured individually, using different type and color. The type is an arbitrary value that you can
- * define using your own considerations. The parent [GraphEdit] will receive this information on each
- * connect and disconnect request.
+ * Each [GraphNode] slot is defined by its index and can provide the node with up to two ports: one on the left, and one on the right. By convention the left port is also referred to as the **input port** and the right port is referred to as the **output port**. Each port can be enabled and configured individually, using different type and color. The type is an arbitrary value that you can define using your own considerations. The parent [GraphEdit] will receive this information on each connect and disconnect request.
  *
- * Slots can be configured in the Inspector dock once you add at least one child [Control]. The
- * properties are grouped by each slot's index in the "Slot" section.
+ * Slots can be configured in the Inspector dock once you add at least one child [Control]. The properties are grouped by each slot's index in the "Slot" section.
  *
- * **Note:** While GraphNode is set up using slots and slot indices, connections are made between
- * the ports which are enabled. Because of that [GraphEdit] uses the port's index and not the slot's
- * index. You can use [getInputPortSlot] and [getOutputPortSlot] to get the slot index from the port
- * index.
+ * **Note:** While GraphNode is set up using slots and slot indices, connections are made between the ports which are enabled. Because of that [GraphEdit] uses the port's index and not the slot's index. You can use [getInputPortSlot] and [getOutputPortSlot] to get the slot index from the port index.
  */
 @GodotBaseType
 public open class GraphNode : GraphElement() {
@@ -71,8 +55,7 @@ public open class GraphNode : GraphElement() {
     }
 
   /**
-   * If `true`, you can connect ports with different types, even if the connection was not
-   * explicitly allowed in the parent [GraphEdit].
+   * If `true`, you can connect ports with different types, even if the connection was not explicitly allowed in the parent [GraphEdit].
    */
   public final inline var ignoreInvalidConnectionType: Boolean
     @JvmName("ignoreInvalidConnectionTypeProperty")
@@ -82,7 +65,7 @@ public open class GraphNode : GraphElement() {
       setIgnoreInvalidConnectionType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(265, scriptIndex)
   }
 
@@ -91,11 +74,11 @@ public open class GraphNode : GraphElement() {
     position: Vector2i,
     left: Boolean,
     color: Color,
-  ): Unit {
-    throw NotImplementedError("GraphNode::_drawPort is not implemented.")
+  ) {
+    throw NotImplementedError("_drawPort is not implemented for GraphNode")
   }
 
-  public final fun setTitle(title: String): Unit {
+  public final fun setTitle(title: String) {
     TransferContext.writeArguments(STRING to title)
     TransferContext.callMethod(ptr, MethodBindings.setTitlePtr, NIL)
   }
@@ -107,9 +90,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying
-   * the title by default. This can be used to add custom controls to the title bar such as option or
-   * close buttons.
+   * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying the title by default. This can be used to add custom controls to the title bar such as option or close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {
     TransferContext.writeArguments()
@@ -120,26 +101,17 @@ public open class GraphNode : GraphElement() {
   /**
    * Sets properties of the slot with the given [slotIndex].
    *
-   * If [enableLeftPort]/[enableRightPort] is `true`, a port will appear and the slot will be able
-   * to be connected from this side.
+   * If [enableLeftPort]/[enableRightPort] is `true`, a port will appear and the slot will be able to be connected from this side.
    *
-   * With [typeLeft]/[typeRight] an arbitrary type can be assigned to each port. Two ports can be
-   * connected if they share the same type, or if the connection between their types is allowed in the
-   * parent [GraphEdit] (see [GraphEdit.addValidConnectionType]). Keep in mind that the [GraphEdit] has
-   * the final say in accepting the connection. Type compatibility simply allows the [signal
-   * GraphEdit.connection_request] signal to be emitted.
+   * With [typeLeft]/[typeRight] an arbitrary type can be assigned to each port. Two ports can be connected if they share the same type, or if the connection between their types is allowed in the parent [GraphEdit] (see [GraphEdit.addValidConnectionType]). Keep in mind that the [GraphEdit] has the final say in accepting the connection. Type compatibility simply allows the [signal GraphEdit.connection_request] signal to be emitted.
    *
-   * Ports can be further customized using [colorLeft]/[colorRight] and
-   * [customIconLeft]/[customIconRight]. The color parameter adds a tint to the icon. The custom icon
-   * can be used to override the default port dot.
+   * Ports can be further customized using [colorLeft]/[colorRight] and [customIconLeft]/[customIconRight]. The color parameter adds a tint to the icon. The custom icon can be used to override the default port dot.
    *
-   * Additionally, [drawStylebox] can be used to enable or disable drawing of the background
-   * stylebox for each slot. See [theme_item slot].
+   * Additionally, [drawStylebox] can be used to enable or disable drawing of the background stylebox for each slot. See [theme_item slot].
    *
    * Individual properties can also be set using one of the `set_slot_*` methods.
    *
-   * **Note:** This method only sets properties of the slot. To create the slot itself, add a
-   * [Control]-derived child to the GraphNode.
+   * **Note:** This method only sets properties of the slot. To create the slot itself, add a [Control]-derived child to the GraphNode.
    */
   @JvmOverloads
   public final fun setSlot(
@@ -153,25 +125,23 @@ public open class GraphNode : GraphElement() {
     customIconLeft: Texture2D? = null,
     customIconRight: Texture2D? = null,
     drawStylebox: Boolean = true,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enableLeftPort, LONG to typeLeft.toLong(), COLOR to colorLeft, BOOL to enableRightPort, LONG to typeRight.toLong(), COLOR to colorRight, OBJECT to customIconLeft, OBJECT to customIconRight, BOOL to drawStylebox)
     TransferContext.callMethod(ptr, MethodBindings.setSlotPtr, NIL)
   }
 
   /**
-   * Disables the slot with the given [slotIndex]. This will remove the corresponding input and
-   * output port from the GraphNode.
+   * Disables the slot with the given [slotIndex]. This will remove the corresponding input and output port from the GraphNode.
    */
-  public final fun clearSlot(slotIndex: Int): Unit {
+  public final fun clearSlot(slotIndex: Int) {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.clearSlotPtr, NIL)
   }
 
   /**
-   * Disables all slots of the GraphNode. This will remove all input/output ports from the
-   * GraphNode.
+   * Disables all slots of the GraphNode. This will remove all input/output ports from the GraphNode.
    */
-  public final fun clearAllSlots(): Unit {
+  public final fun clearAllSlots() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearAllSlotsPtr, NIL)
   }
@@ -186,19 +156,17 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Toggles the left (input) side of the slot with the given [slotIndex]. If [enable] is `true`, a
-   * port will appear on the left side and the slot will be able to be connected from this side.
+   * Toggles the left (input) side of the slot with the given [slotIndex]. If [enable] is `true`, a port will appear on the left side and the slot will be able to be connected from this side.
    */
-  public final fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean): Unit {
+  public final fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSlotEnabledLeftPtr, NIL)
   }
 
   /**
-   * Sets the left (input) type of the slot with the given [slotIndex] to [type]. If the value is
-   * negative, all connections will be disallowed to be created via user inputs.
+   * Sets the left (input) type of the slot with the given [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
    */
-  public final fun setSlotTypeLeft(slotIndex: Int, type: Int): Unit {
+  public final fun setSlotTypeLeft(slotIndex: Int, type: Int) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSlotTypeLeftPtr, NIL)
   }
@@ -215,7 +183,7 @@ public open class GraphNode : GraphElement() {
   /**
    * Sets the [Color] of the left (input) side of the slot with the given [slotIndex] to [color].
    */
-  public final fun setSlotColorLeft(slotIndex: Int, color: Color): Unit {
+  public final fun setSlotColorLeft(slotIndex: Int, color: Color) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSlotColorLeftPtr, NIL)
   }
@@ -230,10 +198,9 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets the custom [Texture2D] of the left (input) side of the slot with the given [slotIndex] to
-   * [customIcon].
+   * Sets the custom [Texture2D] of the left (input) side of the slot with the given [slotIndex] to [customIcon].
    */
-  public final fun setSlotCustomIconLeft(slotIndex: Int, customIcon: Texture2D?): Unit {
+  public final fun setSlotCustomIconLeft(slotIndex: Int, customIcon: Texture2D?) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
     TransferContext.callMethod(ptr, MethodBindings.setSlotCustomIconLeftPtr, NIL)
   }
@@ -257,19 +224,17 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Toggles the right (output) side of the slot with the given [slotIndex]. If [enable] is `true`,
-   * a port will appear on the right side and the slot will be able to be connected from this side.
+   * Toggles the right (output) side of the slot with the given [slotIndex]. If [enable] is `true`, a port will appear on the right side and the slot will be able to be connected from this side.
    */
-  public final fun setSlotEnabledRight(slotIndex: Int, enable: Boolean): Unit {
+  public final fun setSlotEnabledRight(slotIndex: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSlotEnabledRightPtr, NIL)
   }
 
   /**
-   * Sets the right (output) type of the slot with the given [slotIndex] to [type]. If the value is
-   * negative, all connections will be disallowed to be created via user inputs.
+   * Sets the right (output) type of the slot with the given [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
    */
-  public final fun setSlotTypeRight(slotIndex: Int, type: Int): Unit {
+  public final fun setSlotTypeRight(slotIndex: Int, type: Int) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSlotTypeRightPtr, NIL)
   }
@@ -286,7 +251,7 @@ public open class GraphNode : GraphElement() {
   /**
    * Sets the [Color] of the right (output) side of the slot with the given [slotIndex] to [color].
    */
-  public final fun setSlotColorRight(slotIndex: Int, color: Color): Unit {
+  public final fun setSlotColorRight(slotIndex: Int, color: Color) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSlotColorRightPtr, NIL)
   }
@@ -301,10 +266,9 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets the custom [Texture2D] of the right (output) side of the slot with the given [slotIndex]
-   * to [customIcon].
+   * Sets the custom [Texture2D] of the right (output) side of the slot with the given [slotIndex] to [customIcon].
    */
-  public final fun setSlotCustomIconRight(slotIndex: Int, customIcon: Texture2D?): Unit {
+  public final fun setSlotCustomIconRight(slotIndex: Int, customIcon: Texture2D?) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
     TransferContext.callMethod(ptr, MethodBindings.setSlotCustomIconRightPtr, NIL)
   }
@@ -330,12 +294,12 @@ public open class GraphNode : GraphElement() {
   /**
    * Toggles the background [StyleBox] of the slot with the given [slotIndex].
    */
-  public final fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean): Unit {
+  public final fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSlotDrawStyleboxPtr, NIL)
   }
 
-  public final fun setIgnoreInvalidConnectionType(ignore: Boolean): Unit {
+  public final fun setIgnoreInvalidConnectionType(ignore: Boolean) {
     TransferContext.writeArguments(BOOL to ignore)
     TransferContext.callMethod(ptr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
   }
@@ -440,111 +404,111 @@ public open class GraphNode : GraphElement() {
 
   public object MethodBindings {
     internal val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_title", 83702148)
+        TypeManager.getMethodBindPtr("GraphNode", "set_title", 83_702_148)
 
     internal val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_title", 201670096)
+        TypeManager.getMethodBindPtr("GraphNode", "get_title", 201_670_096)
 
     internal val getTitlebarHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_titlebar_hbox", 3590609951)
+        TypeManager.getMethodBindPtr("GraphNode", "get_titlebar_hbox", 3_590_609_951)
 
     internal val setSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot", 2873310869)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot", 2_873_310_869)
 
     internal val clearSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "clear_slot", 1286410249)
+        TypeManager.getMethodBindPtr("GraphNode", "clear_slot", 1_286_410_249)
 
     internal val clearAllSlotsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "clear_all_slots", 3218959716)
+        TypeManager.getMethodBindPtr("GraphNode", "clear_all_slots", 3_218_959_716)
 
     internal val isSlotEnabledLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_left", 1116898809)
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_left", 1_116_898_809)
 
     internal val setSlotEnabledLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_left", 300928843)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_left", 300_928_843)
 
     internal val setSlotTypeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_left", 3937882851)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_left", 3_937_882_851)
 
     internal val getSlotTypeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_left", 923996154)
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_left", 923_996_154)
 
     internal val setSlotColorLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_left", 2878471219)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_left", 2_878_471_219)
 
     internal val getSlotColorLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left", 3457211756)
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left", 3_457_211_756)
 
     internal val setSlotCustomIconLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left", 666127730)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left", 666_127_730)
 
     internal val getSlotCustomIconLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left", 3536238170)
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left", 3_536_238_170)
 
     internal val isSlotEnabledRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right", 1116898809)
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right", 1_116_898_809)
 
     internal val setSlotEnabledRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_right", 300928843)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_right", 300_928_843)
 
     internal val setSlotTypeRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_right", 3937882851)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_right", 3_937_882_851)
 
     internal val getSlotTypeRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_right", 923996154)
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_right", 923_996_154)
 
     internal val setSlotColorRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_right", 2878471219)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_right", 2_878_471_219)
 
     internal val getSlotColorRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right", 3457211756)
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right", 3_457_211_756)
 
     internal val setSlotCustomIconRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right", 666127730)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right", 666_127_730)
 
     internal val getSlotCustomIconRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right", 3536238170)
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right", 3_536_238_170)
 
     internal val isSlotDrawStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox", 1116898809)
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox", 1_116_898_809)
 
     internal val setSlotDrawStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox", 300928843)
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox", 300_928_843)
 
     internal val setIgnoreInvalidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type", 2586408642)
+        TypeManager.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type", 2_586_408_642)
 
     internal val isIgnoringValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type", 36873697)
+        TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type", 36_873_697)
 
     internal val getInputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count", 2455072627)
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count", 2_455_072_627)
 
     internal val getInputPortPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_position", 3114997196)
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_position", 3_114_997_196)
 
     internal val getInputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_type", 3744713108)
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_type", 3_744_713_108)
 
     internal val getInputPortColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_color", 2624840992)
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_color", 2_624_840_992)
 
     internal val getInputPortSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_slot", 3744713108)
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_slot", 3_744_713_108)
 
     internal val getOutputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_count", 2455072627)
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_count", 2_455_072_627)
 
     internal val getOutputPortPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_position", 3114997196)
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_position", 3_114_997_196)
 
     internal val getOutputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_type", 3744713108)
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_type", 3_744_713_108)
 
     internal val getOutputPortColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_color", 2624840992)
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_color", 2_624_840_992)
 
     internal val getOutputPortSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_slot", 3744713108)
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_slot", 3_744_713_108)
   }
 }

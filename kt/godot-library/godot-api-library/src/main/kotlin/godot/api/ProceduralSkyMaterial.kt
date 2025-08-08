@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,20 +26,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [ProceduralSkyMaterial] provides a way to create an effective background quickly by defining
- * procedural parameters for the sun, the sky and the ground. The sky and ground are defined by a main
- * color, a color at the horizon, and an easing curve to interpolate between them. Suns are described
- * by a position in the sky, a color, and a max angle from the sun at which the easing curve ends. The
- * max angle therefore defines the size of the sun in the sky.
+ * [ProceduralSkyMaterial] provides a way to create an effective background quickly by defining procedural parameters for the sun, the sky and the ground. The sky and ground are defined by a main color, a color at the horizon, and an easing curve to interpolate between them. Suns are described by a position in the sky, a color, and a max angle from the sun at which the easing curve ends. The max angle therefore defines the size of the sun in the sky.
  *
- * [ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and
- * angular distance of the first four [DirectionalLight3D] nodes in the scene. This means that the suns
- * are defined individually by the properties of their corresponding [DirectionalLight3D]s and globally
- * by [sunAngleMax] and [sunCurve].
+ * [ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and angular distance of the first four [DirectionalLight3D] nodes in the scene. This means that the suns are defined individually by the properties of their corresponding [DirectionalLight3D]s and globally by [sunAngleMax] and [sunCurve].
  *
- * [ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for
- * real-time updates. This makes it a great option for a sky that is simple and computationally cheap,
- * but unrealistic. If you need a more realistic procedural option, use [PhysicalSkyMaterial].
+ * [ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for real-time updates. This makes it a great option for a sky that is simple and computationally cheap, but unrealistic. If you need a more realistic procedural option, use [PhysicalSkyMaterial].
  */
 @GodotBaseType
 public open class ProceduralSkyMaterial : Material() {
@@ -50,11 +38,8 @@ public open class ProceduralSkyMaterial : Material() {
    * Color of the sky at the top. Blends with [skyHorizonColor].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyTopColor: Color
@@ -69,11 +54,8 @@ public open class ProceduralSkyMaterial : Material() {
    * Color of the sky at the horizon. Blends with [skyTopColor].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyHorizonColor: Color
@@ -107,11 +89,7 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * The sky cover texture to use. This texture must use an equirectangular projection (similar to
-   * [PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will
-   * be multiplied by [skyEnergyMultiplier] and [skyCoverModulate]. This is mainly suited to displaying
-   * stars at night, but it can also be used to display clouds at day or night (with a
-   * non-physically-accurate look).
+   * The sky cover texture to use. This texture must use an equirectangular projection (similar to [PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will be multiplied by [skyEnergyMultiplier] and [skyCoverModulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look).
    */
   public final inline var skyCover: Texture2D?
     @JvmName("skyCoverProperty")
@@ -122,16 +100,11 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
-   * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
-   * Only effective if a texture is defined in [skyCover].
+   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyCoverModulate: Color
@@ -146,11 +119,8 @@ public open class ProceduralSkyMaterial : Material() {
    * Color of the ground at the bottom. Blends with [groundHorizonColor].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var groundBottomColor: Color
@@ -165,11 +135,8 @@ public open class ProceduralSkyMaterial : Material() {
    * Color of the ground at the horizon. Blends with [groundBottomColor].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var groundHorizonColor: Color
@@ -225,8 +192,7 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding
-   * that appears from the smooth changes in color in the sky.
+   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky.
    */
   public final inline var useDebanding: Boolean
     @JvmName("useDebandingProperty")
@@ -247,7 +213,7 @@ public open class ProceduralSkyMaterial : Material() {
       setEnergyMultiplier(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(507, scriptIndex)
   }
 
@@ -300,9 +266,7 @@ public open class ProceduralSkyMaterial : Material() {
    * proceduralskymaterial.skyCoverModulate = myCoreType
    * ``````
    *
-   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
-   * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
-   * Only effective if a texture is defined in [skyCover].
+   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
    */
   @CoreTypeHelper
   public final fun skyCoverModulateMutate(block: Color.() -> Unit): Color = skyCoverModulate.apply {
@@ -324,8 +288,7 @@ public open class ProceduralSkyMaterial : Material() {
    * Color of the ground at the bottom. Blends with [groundHorizonColor].
    */
   @CoreTypeHelper
-  public final fun groundBottomColorMutate(block: Color.() -> Unit): Color =
-      groundBottomColor.apply {
+  public final fun groundBottomColorMutate(block: Color.() -> Unit): Color = groundBottomColor.apply {
      block(this)
      groundBottomColor = this
   }
@@ -344,13 +307,12 @@ public open class ProceduralSkyMaterial : Material() {
    * Color of the ground at the horizon. Blends with [groundBottomColor].
    */
   @CoreTypeHelper
-  public final fun groundHorizonColorMutate(block: Color.() -> Unit): Color =
-      groundHorizonColor.apply {
+  public final fun groundHorizonColorMutate(block: Color.() -> Unit): Color = groundHorizonColor.apply {
      block(this)
      groundHorizonColor = this
   }
 
-  public final fun setSkyTopColor(color: Color): Unit {
+  public final fun setSkyTopColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSkyTopColorPtr, NIL)
   }
@@ -361,7 +323,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setSkyHorizonColor(color: Color): Unit {
+  public final fun setSkyHorizonColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSkyHorizonColorPtr, NIL)
   }
@@ -372,7 +334,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setSkyCurve(curve: Float): Unit {
+  public final fun setSkyCurve(curve: Float) {
     TransferContext.writeArguments(DOUBLE to curve.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSkyCurvePtr, NIL)
   }
@@ -383,7 +345,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSkyEnergyMultiplier(multiplier: Float): Unit {
+  public final fun setSkyEnergyMultiplier(multiplier: Float) {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSkyEnergyMultiplierPtr, NIL)
   }
@@ -394,7 +356,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSkyCover(skyCover: Texture2D?): Unit {
+  public final fun setSkyCover(skyCover: Texture2D?) {
     TransferContext.writeArguments(OBJECT to skyCover)
     TransferContext.callMethod(ptr, MethodBindings.setSkyCoverPtr, NIL)
   }
@@ -405,7 +367,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setSkyCoverModulate(color: Color): Unit {
+  public final fun setSkyCoverModulate(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSkyCoverModulatePtr, NIL)
   }
@@ -416,7 +378,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setGroundBottomColor(color: Color): Unit {
+  public final fun setGroundBottomColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setGroundBottomColorPtr, NIL)
   }
@@ -427,7 +389,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setGroundHorizonColor(color: Color): Unit {
+  public final fun setGroundHorizonColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setGroundHorizonColorPtr, NIL)
   }
@@ -438,7 +400,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setGroundCurve(curve: Float): Unit {
+  public final fun setGroundCurve(curve: Float) {
     TransferContext.writeArguments(DOUBLE to curve.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGroundCurvePtr, NIL)
   }
@@ -449,7 +411,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGroundEnergyMultiplier(energy: Float): Unit {
+  public final fun setGroundEnergyMultiplier(energy: Float) {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGroundEnergyMultiplierPtr, NIL)
   }
@@ -460,7 +422,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSunAngleMax(degrees: Float): Unit {
+  public final fun setSunAngleMax(degrees: Float) {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSunAngleMaxPtr, NIL)
   }
@@ -471,7 +433,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSunCurve(curve: Float): Unit {
+  public final fun setSunCurve(curve: Float) {
     TransferContext.writeArguments(DOUBLE to curve.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSunCurvePtr, NIL)
   }
@@ -482,7 +444,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUseDebanding(useDebanding: Boolean): Unit {
+  public final fun setUseDebanding(useDebanding: Boolean) {
     TransferContext.writeArguments(BOOL to useDebanding)
     TransferContext.callMethod(ptr, MethodBindings.setUseDebandingPtr, NIL)
   }
@@ -493,7 +455,7 @@ public open class ProceduralSkyMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEnergyMultiplier(multiplier: Float): Unit {
+  public final fun setEnergyMultiplier(multiplier: Float) {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
@@ -522,87 +484,87 @@ public open class ProceduralSkyMaterial : Material() {
 
   public object MethodBindings {
     internal val setSkyTopColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color", 2920490490)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color", 2_920_490_490)
 
     internal val getSkyTopColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color", 3444240500)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color", 3_444_240_500)
 
     internal val setSkyHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color", 2920490490)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color", 2_920_490_490)
 
     internal val getSkyHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color", 3444240500)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color", 3_444_240_500)
 
     internal val setSkyCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve", 373_806_689)
 
     internal val getSkyCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve", 1_740_695_150)
 
     internal val setSkyEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier", 373_806_689)
 
     internal val getSkyEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier", 1_740_695_150)
 
     internal val setSkyCoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover", 4051416890)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover", 4_051_416_890)
 
     internal val getSkyCoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover", 3635182373)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover", 3_635_182_373)
 
     internal val setSkyCoverModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate", 2920490490)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate", 2_920_490_490)
 
     internal val getSkyCoverModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate", 3444240500)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate", 3_444_240_500)
 
     internal val setGroundBottomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color", 2920490490)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color", 2_920_490_490)
 
     internal val getGroundBottomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color", 3444240500)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color", 3_444_240_500)
 
     internal val setGroundHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color", 2920490490)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color", 2_920_490_490)
 
     internal val getGroundHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color", 3444240500)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color", 3_444_240_500)
 
     internal val setGroundCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve", 373_806_689)
 
     internal val getGroundCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve", 1_740_695_150)
 
     internal val setGroundEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier", 373_806_689)
 
     internal val getGroundEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier", 1_740_695_150)
 
     internal val setSunAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max", 373_806_689)
 
     internal val getSunAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max", 1_740_695_150)
 
     internal val setSunCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve", 373_806_689)
 
     internal val getSunCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve", 1_740_695_150)
 
     internal val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding", 2586408642)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding", 2_586_408_642)
 
     internal val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding", 36873697)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding", 36_873_697)
 
     internal val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier", 373_806_689)
 
     internal val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier", 1_740_695_150)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,17 +24,15 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(500, scriptIndex)
   }
 
   /**
-   * Sets up [PolygonPathFinder] with an array of points that define the vertices of the polygon,
-   * and an array of indices that determine the edges of the polygon.
+   * Sets up [PolygonPathFinder] with an array of points that define the vertices of the polygon, and an array of indices that determine the edges of the polygon.
    *
    * The length of [connections] must be even, returns an error if odd.
    *
@@ -62,7 +57,7 @@ public open class PolygonPathFinder : Resource() {
    * polygonPathFinder.Setup(points, connections);
    * ```
    */
-  public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
+  public final fun setup(points: PackedVector2Array, connections: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
     TransferContext.callMethod(ptr, MethodBindings.setupPtr, NIL)
   }
@@ -119,7 +114,7 @@ public open class PolygonPathFinder : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPointPenalty(idx: Int, penalty: Float): Unit {
+  public final fun setPointPenalty(idx: Int, penalty: Float) {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to penalty.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPointPenaltyPtr, NIL)
   }
@@ -140,27 +135,27 @@ public open class PolygonPathFinder : Resource() {
 
   public object MethodBindings {
     internal val setupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "setup", 3251786936)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "setup", 3_251_786_936)
 
     internal val findPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "find_path", 1562168077)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "find_path", 1_562_168_077)
 
     internal val getIntersectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_intersections", 3932192302)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_intersections", 3_932_192_302)
 
     internal val getClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_closest_point", 2656412154)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_closest_point", 2_656_412_154)
 
     internal val isPointInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "is_point_inside", 556197845)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "is_point_inside", 556_197_845)
 
     internal val setPointPenaltyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "set_point_penalty", 1602489585)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "set_point_penalty", 1_602_489_585)
 
     internal val getPointPenaltyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_point_penalty", 2339986948)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_point_penalty", 2_339_986_948)
 
     internal val getBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_bounds", 1639390495)
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_bounds", 1_639_390_495)
   }
 }

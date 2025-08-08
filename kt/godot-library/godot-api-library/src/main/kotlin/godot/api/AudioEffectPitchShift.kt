@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,19 +16,15 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
- * with minimal effect on transients.
+ * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased with minimal effect on transients.
  */
 @GodotBaseType
 public open class AudioEffectPitchShift : AudioEffect() {
   /**
-   * The pitch scale to use. `1.0` is the default pitch and plays sounds unaffected. [pitchScale]
-   * can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial
-   * pitch).
+   * The pitch scale to use. `1.0` is the default pitch and plays sounds unaffected. [pitchScale] can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial pitch).
    */
   public final inline var pitchScale: Float
     @JvmName("pitchScaleProperty")
@@ -42,8 +35,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   /**
-   * The oversampling factor to use. Higher values result in better quality, but are more demanding
-   * on the CPU and may cause audio cracking if the CPU can't keep up.
+   * The oversampling factor to use. Higher values result in better quality, but are more demanding on the CPU and may cause audio cracking if the CPU can't keep up.
    */
   public final inline var oversampling: Int
     @JvmName("oversamplingProperty")
@@ -54,10 +46,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   /**
-   * The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier
-   * transform[/url] buffer. Higher values smooth out the effect over time, but have greater latency.
-   * The effects of this higher latency are especially noticeable on sounds that have sudden amplitude
-   * changes.
+   * The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier transform[/url] buffer. Higher values smooth out the effect over time, but have greater latency. The effects of this higher latency are especially noticeable on sounds that have sudden amplitude changes.
    */
   public final inline var fftSize: FFTSize
     @JvmName("fftSizeProperty")
@@ -67,11 +56,11 @@ public open class AudioEffectPitchShift : AudioEffect() {
       setFftSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(69, scriptIndex)
   }
 
-  public final fun setPitchScale(rate: Float): Unit {
+  public final fun setPitchScale(rate: Float) {
     TransferContext.writeArguments(DOUBLE to rate.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPitchScalePtr, NIL)
   }
@@ -82,7 +71,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOversampling(amount: Int): Unit {
+  public final fun setOversampling(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOversamplingPtr, NIL)
   }
@@ -93,7 +82,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFftSize(size: FFTSize): Unit {
+  public final fun setFftSize(size: FFTSize) {
     TransferContext.writeArguments(LONG to size.id)
     TransferContext.callMethod(ptr, MethodBindings.setFftSizePtr, NIL)
   }
@@ -115,28 +104,23 @@ public open class AudioEffectPitchShift : AudioEffect() {
     id: Long,
   ) {
     /**
-     * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable
-     * over time.
+     * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable over time.
      */
     FFT_SIZE_256(0),
     /**
-     * Use a buffer of 512 samples for the Fast Fourier transform. Low latency, but less stable over
-     * time.
+     * Use a buffer of 512 samples for the Fast Fourier transform. Low latency, but less stable over time.
      */
     FFT_SIZE_512(1),
     /**
-     * Use a buffer of 1024 samples for the Fast Fourier transform. This is a compromise between
-     * latency and stability over time.
+     * Use a buffer of 1024 samples for the Fast Fourier transform. This is a compromise between latency and stability over time.
      */
     FFT_SIZE_1024(2),
     /**
-     * Use a buffer of 2048 samples for the Fast Fourier transform. High latency, but stable over
-     * time.
+     * Use a buffer of 2048 samples for the Fast Fourier transform. High latency, but stable over time.
      */
     FFT_SIZE_2048(3),
     /**
-     * Use a buffer of 4096 samples for the Fast Fourier transform. Highest latency, but most stable
-     * over time.
+     * Use a buffer of 4096 samples for the Fast Fourier transform. Highest latency, but most stable over time.
      */
     FFT_SIZE_4096(4),
     /**
@@ -159,21 +143,21 @@ public open class AudioEffectPitchShift : AudioEffect() {
 
   public object MethodBindings {
     internal val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_pitch_scale", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_pitch_scale", 373_806_689)
 
     internal val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_pitch_scale", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_pitch_scale", 1_740_695_150)
 
     internal val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_oversampling", 1286410249)
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_oversampling", 1_286_410_249)
 
     internal val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_oversampling", 3905245786)
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_oversampling", 3_905_245_786)
 
     internal val setFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_fft_size", 2323518741)
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_fft_size", 2_323_518_741)
 
     internal val getFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_fft_size", 2361246789)
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_fft_size", 2_361_246_789)
   }
 }

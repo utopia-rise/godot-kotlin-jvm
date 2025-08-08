@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -36,25 +33,18 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,
- * or other flexible materials.
+ * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
  *
- * Additionally, [SoftBody3D] is subject to wind forces defined in [Area3D] (see
- * [Area3D.windSourcePath], [Area3D.windForceMagnitude], and [Area3D.windAttenuationFactor]).
+ * Additionally, [SoftBody3D] is subject to wind forces defined in [Area3D] (see [Area3D.windSourcePath], [Area3D.windForceMagnitude], and [Area3D.windAttenuationFactor]).
  *
- * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them
- * for things that can affect gameplay (such as trampolines).
+ * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them for things that can affect gameplay (such as trampolines).
  */
 @GodotBaseType
 public open class SoftBody3D : MeshInstance3D() {
   /**
-   * The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32
-   * different layers. See also [collisionMask].
+   * The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32 different layers. See also [collisionMask].
    *
-   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
-   * that object A scans. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionLayer: Long
     @JvmName("collisionLayerProperty")
@@ -65,13 +55,9 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32
-   * different layers. See also [collisionLayer].
+   * The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32 different layers. See also [collisionLayer].
    *
-   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
-   * that object A scans. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -93,8 +79,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Increasing this value will improve the resulting simulation, but can affect performance. Use
-   * with care.
+   * Increasing this value will improve the resulting simulation, but can affect performance. Use with care.
    */
   public final inline var simulationPrecision: Int
     @JvmName("simulationPrecisionProperty")
@@ -116,8 +101,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Higher values will result in a stiffer body, while lower values will increase the body's
-   * ability to bend. The value can be between `0.0` and `1.0` (inclusive).
+   * Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive).
    */
   public final inline var linearStiffness: Float
     @JvmName("linearStiffnessProperty")
@@ -128,8 +112,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * The pressure coefficient of this soft body. Simulate pressure build-up from inside this body.
-   * Higher values increase the strength of this effect.
+   * The pressure coefficient of this soft body. Simulate pressure build-up from inside this body. Higher values increase the strength of this effect.
    */
   public final inline var pressureCoefficient: Float
     @JvmName("pressureCoefficientProperty")
@@ -140,8 +123,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * The body's damping coefficient. Higher values will slow down the body more noticeably when
-   * forces are applied.
+   * The body's damping coefficient. Higher values will slow down the body more noticeably when forces are applied.
    */
   public final inline var dampingCoefficient: Float
     @JvmName("dampingCoefficientProperty")
@@ -176,8 +158,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
-   * See [DisableMode] for more details about the different modes.
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED]. See [DisableMode] for more details about the different modes.
    */
   public final inline var disableMode: DisableMode
     @JvmName("disableModeProperty")
@@ -187,7 +168,7 @@ public open class SoftBody3D : MeshInstance3D() {
       setDisableMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(613, scriptIndex)
   }
 
@@ -200,7 +181,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setCollisionMask(collisionMask: Long): Unit {
+  public final fun setCollisionMask(collisionMask: Long) {
     TransferContext.writeArguments(LONG to collisionMask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -211,7 +192,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCollisionLayer(collisionLayer: Long): Unit {
+  public final fun setCollisionLayer(collisionLayer: Long) {
     TransferContext.writeArguments(LONG to collisionLayer)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerPtr, NIL)
   }
@@ -223,17 +204,15 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -242,17 +221,15 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -260,7 +237,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setParentCollisionIgnore(parentCollisionIgnore: NodePath): Unit {
+  public final fun setParentCollisionIgnore(parentCollisionIgnore: NodePath) {
     TransferContext.writeArguments(NODE_PATH to parentCollisionIgnore)
     TransferContext.callMethod(ptr, MethodBindings.setParentCollisionIgnorePtr, NIL)
   }
@@ -271,7 +248,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setDisableMode(mode: DisableMode): Unit {
+  public final fun setDisableMode(mode: DisableMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDisableModePtr, NIL)
   }
@@ -294,7 +271,7 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public final fun addCollisionExceptionWith(body: Node?): Unit {
+  public final fun addCollisionExceptionWith(body: Node?) {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.addCollisionExceptionWithPtr, NIL)
   }
@@ -302,12 +279,12 @@ public open class SoftBody3D : MeshInstance3D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public final fun removeCollisionExceptionWith(body: Node?): Unit {
+  public final fun removeCollisionExceptionWith(body: Node?) {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }
 
-  public final fun setSimulationPrecision(simulationPrecision: Int): Unit {
+  public final fun setSimulationPrecision(simulationPrecision: Int) {
     TransferContext.writeArguments(LONG to simulationPrecision.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSimulationPrecisionPtr, NIL)
   }
@@ -318,7 +295,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTotalMass(mass: Float): Unit {
+  public final fun setTotalMass(mass: Float) {
     TransferContext.writeArguments(DOUBLE to mass.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTotalMassPtr, NIL)
   }
@@ -329,7 +306,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinearStiffness(linearStiffness: Float): Unit {
+  public final fun setLinearStiffness(linearStiffness: Float) {
     TransferContext.writeArguments(DOUBLE to linearStiffness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLinearStiffnessPtr, NIL)
   }
@@ -340,7 +317,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPressureCoefficient(pressureCoefficient: Float): Unit {
+  public final fun setPressureCoefficient(pressureCoefficient: Float) {
     TransferContext.writeArguments(DOUBLE to pressureCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPressureCoefficientPtr, NIL)
   }
@@ -351,7 +328,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDampingCoefficient(dampingCoefficient: Float): Unit {
+  public final fun setDampingCoefficient(dampingCoefficient: Float) {
     TransferContext.writeArguments(DOUBLE to dampingCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDampingCoefficientPtr, NIL)
   }
@@ -362,7 +339,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDragCoefficient(dragCoefficient: Float): Unit {
+  public final fun setDragCoefficient(dragCoefficient: Float) {
     TransferContext.writeArguments(DOUBLE to dragCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDragCoefficientPtr, NIL)
   }
@@ -383,8 +360,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath]
-   * can define a [Node3D] the pinned vertex will be attached to.
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath] can define a [Node3D] the pinned vertex will be attached to.
    */
   @JvmOverloads
   public final fun setPointPinned(
@@ -392,7 +368,7 @@ public open class SoftBody3D : MeshInstance3D() {
     pinned: Boolean,
     attachmentPath: NodePath = NodePath(""),
     insertAt: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to pointIndex.toLong(), BOOL to pinned, NODE_PATH to attachmentPath, LONG to insertAt.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPointPinnedPtr, NIL)
   }
@@ -406,7 +382,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRayPickable(rayPickable: Boolean): Unit {
+  public final fun setRayPickable(rayPickable: Boolean) {
     TransferContext.writeArguments(BOOL to rayPickable)
     TransferContext.callMethod(ptr, MethodBindings.setRayPickablePtr, NIL)
   }
@@ -417,12 +393,10 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setParentCollisionIgnore(parentCollisionIgnore: String): Unit =
-      setParentCollisionIgnore(parentCollisionIgnore.asCachedNodePath())
+  public final fun setParentCollisionIgnore(parentCollisionIgnore: String): Unit = setParentCollisionIgnore(parentCollisionIgnore.asCachedNodePath())
 
   /**
-   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath]
-   * can define a [Node3D] the pinned vertex will be attached to.
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath] can define a [Node3D] the pinned vertex will be attached to.
    */
   @JvmOverloads
   public final fun setPointPinned(
@@ -436,15 +410,13 @@ public open class SoftBody3D : MeshInstance3D() {
     id: Long,
   ) {
     /**
-     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
-     * simulation to stop all physics interactions with this [SoftBody3D].
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [SoftBody3D].
      *
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     REMOVE(0),
     /**
-     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
-     * simulation.
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics simulation.
      */
     KEEP_ACTIVE(1),
     ;
@@ -463,102 +435,102 @@ public open class SoftBody3D : MeshInstance3D() {
 
   public object MethodBindings {
     internal val getPhysicsRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_physics_rid", 2944877500)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_physics_rid", 2_944_877_500)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_mask", 3_905_245_786)
 
     internal val setCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_layer", 1286410249)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_layer", 1_286_410_249)
 
     internal val getCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_layer", 3905245786)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_layer", 3_905_245_786)
 
     internal val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_mask_value", 300_928_843)
 
     internal val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_mask_value", 1_116_898_809)
 
     internal val setCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_layer_value", 300928843)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_collision_layer_value", 300_928_843)
 
     internal val getCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_layer_value", 1116898809)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_layer_value", 1_116_898_809)
 
     internal val setParentCollisionIgnorePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_parent_collision_ignore", 1348162250)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_parent_collision_ignore", 1_348_162_250)
 
     internal val getParentCollisionIgnorePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_parent_collision_ignore", 4075236667)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_parent_collision_ignore", 4_075_236_667)
 
     internal val setDisableModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_disable_mode", 1104158384)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_disable_mode", 1_104_158_384)
 
     internal val getDisableModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_disable_mode", 4135042476)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_disable_mode", 4_135_042_476)
 
     internal val getCollisionExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_exceptions", 2915620761)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_collision_exceptions", 2_915_620_761)
 
     internal val addCollisionExceptionWithPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "add_collision_exception_with", 1078189570)
+        TypeManager.getMethodBindPtr("SoftBody3D", "add_collision_exception_with", 1_078_189_570)
 
     internal val removeCollisionExceptionWithPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "remove_collision_exception_with", 1078189570)
+        TypeManager.getMethodBindPtr("SoftBody3D", "remove_collision_exception_with", 1_078_189_570)
 
     internal val setSimulationPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_simulation_precision", 1286410249)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_simulation_precision", 1_286_410_249)
 
     internal val getSimulationPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_simulation_precision", 2455072627)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_simulation_precision", 2_455_072_627)
 
     internal val setTotalMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_total_mass", 373806689)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_total_mass", 373_806_689)
 
     internal val getTotalMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_total_mass", 191475506)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_total_mass", 191_475_506)
 
     internal val setLinearStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_linear_stiffness", 373806689)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_linear_stiffness", 373_806_689)
 
     internal val getLinearStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_linear_stiffness", 191475506)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_linear_stiffness", 191_475_506)
 
     internal val setPressureCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_pressure_coefficient", 373806689)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_pressure_coefficient", 373_806_689)
 
     internal val getPressureCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_pressure_coefficient", 191475506)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_pressure_coefficient", 191_475_506)
 
     internal val setDampingCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_damping_coefficient", 373806689)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_damping_coefficient", 373_806_689)
 
     internal val getDampingCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_damping_coefficient", 191475506)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_damping_coefficient", 191_475_506)
 
     internal val setDragCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_drag_coefficient", 373806689)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_drag_coefficient", 373_806_689)
 
     internal val getDragCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_drag_coefficient", 191475506)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_drag_coefficient", 191_475_506)
 
     internal val getPointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "get_point_transform", 871989493)
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_point_transform", 871_989_493)
 
     internal val setPointPinnedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_point_pinned", 528784402)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_point_pinned", 528_784_402)
 
     internal val isPointPinnedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "is_point_pinned", 1116898809)
+        TypeManager.getMethodBindPtr("SoftBody3D", "is_point_pinned", 1_116_898_809)
 
     internal val setRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_ray_pickable", 2586408642)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_ray_pickable", 2_586_408_642)
 
     internal val isRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "is_ray_pickable", 36873697)
+        TypeManager.getMethodBindPtr("SoftBody3D", "is_ray_pickable", 36_873_697)
   }
 }

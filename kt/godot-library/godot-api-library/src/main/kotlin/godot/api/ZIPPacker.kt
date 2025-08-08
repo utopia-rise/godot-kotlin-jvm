@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,12 +16,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class implements a writer that allows storing the multiple blobs in a ZIP archive. See also
- * [ZIPReader] and [PCKPacker].
+ * This class implements a writer that allows storing the multiple blobs in a ZIP archive. See also [ZIPReader] and [PCKPacker].
  *
  * ```
  * # Create a ZIP archive with a single file at its root.
@@ -43,7 +38,7 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(877, scriptIndex)
   }
 
@@ -53,8 +48,7 @@ public open class ZIPPacker : RefCounted() {
    * This must be called before everything else.
    */
   @JvmOverloads
-  public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
-      Error {
+  public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE): Error {
     TransferContext.writeArguments(STRING to path, LONG to append.id)
     TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -132,17 +126,17 @@ public open class ZIPPacker : RefCounted() {
   public companion object
 
   public object MethodBindings {
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "open", 1936816515)
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "open", 1_936_816_515)
 
     internal val startFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPPacker", "start_file", 166001499)
+        TypeManager.getMethodBindPtr("ZIPPacker", "start_file", 166_001_499)
 
     internal val writeFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPPacker", "write_file", 680677267)
+        TypeManager.getMethodBindPtr("ZIPPacker", "write_file", 680_677_267)
 
     internal val closeFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPPacker", "close_file", 166280745)
+        TypeManager.getMethodBindPtr("ZIPPacker", "close_file", 166_280_745)
 
-    internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "close", 166280745)
+    internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "close", 166_280_745)
   }
 }

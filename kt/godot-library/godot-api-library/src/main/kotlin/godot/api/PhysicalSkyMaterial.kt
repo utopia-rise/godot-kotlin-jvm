@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,19 +26,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on
- * physical properties. This results in a substantially more realistic sky than the
- * [ProceduralSkyMaterial], but it is slightly slower and less flexible.
+ * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on physical properties. This results in a substantially more realistic sky than the [ProceduralSkyMaterial], but it is slightly slower and less flexible.
  *
- * The [PhysicalSkyMaterial] only supports one sun. The color, energy, and direction of the sun are
- * taken from the first [DirectionalLight3D] in the scene tree.
+ * The [PhysicalSkyMaterial] only supports one sun. The color, energy, and direction of the sun are taken from the first [DirectionalLight3D] in the scene tree.
  */
 @GodotBaseType
 public open class PhysicalSkyMaterial : Material() {
   /**
-   * Controls the strength of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
-   * scattering[/url]. Rayleigh scattering results from light colliding with small particles. It is
-   * responsible for the blue color of the sky.
+   * Controls the strength of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky.
    */
   public final inline var rayleighCoefficient: Float
     @JvmName("rayleighCoefficientProperty")
@@ -52,17 +44,11 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
-   * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
-   * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
-   * corresponding blue sunset.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rayleighColor: Color
@@ -74,9 +60,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the strength of [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url]
-   * for the sky. Mie scattering results from light colliding with larger particles (like water). On
-   * earth, Mie scattering results in a whitish color around the sun and horizon.
+   * Controls the strength of [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, Mie scattering results in a whitish color around the sun and horizon.
    */
   public final inline var mieCoefficient: Float
     @JvmName("mieCoefficientProperty")
@@ -87,9 +71,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the direction of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
-   * scattering[/url]. A value of `1` means that when light hits a particle it's passing through
-   * straight forward. A value of `-1` means that all light is scatter backwards.
+   * Controls the direction of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url]. A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards.
    */
   public final inline var mieEccentricity: Float
     @JvmName("mieEccentricityProperty")
@@ -100,16 +82,11 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
-   * scattering[/url] effect. While not physically accurate, this allows for the creation of
-   * alien-looking planets.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] effect. While not physically accurate, this allows for the creation of alien-looking planets.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var mieColor: Color
@@ -121,8 +98,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while
-   * a low turbidity results in a clearer atmosphere.
+   * Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere.
    */
   public final inline var turbidity: Float
     @JvmName("turbidityProperty")
@@ -147,11 +123,8 @@ public open class PhysicalSkyMaterial : Material() {
    * Modulates the [Color] on the bottom half of the sky to represent the ground.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var groundColor: Color
@@ -174,8 +147,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding
-   * that appears from the smooth changes in color in the sky.
+   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky.
    */
   public final inline var useDebanding: Boolean
     @JvmName("useDebandingProperty")
@@ -186,8 +158,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * [Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be
-   * visible during the day.
+   * [Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be visible during the day.
    */
   public final inline var nightSky: Texture2D?
     @JvmName("nightSkyProperty")
@@ -197,7 +168,7 @@ public open class PhysicalSkyMaterial : Material() {
       setNightSky(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(458, scriptIndex)
   }
 
@@ -212,10 +183,7 @@ public open class PhysicalSkyMaterial : Material() {
    * physicalskymaterial.rayleighColor = myCoreType
    * ``````
    *
-   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
-   * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
-   * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
-   * corresponding blue sunset.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    */
   @CoreTypeHelper
   public final fun rayleighColorMutate(block: Color.() -> Unit): Color = rayleighColor.apply {
@@ -234,9 +202,7 @@ public open class PhysicalSkyMaterial : Material() {
    * physicalskymaterial.mieColor = myCoreType
    * ``````
    *
-   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
-   * scattering[/url] effect. While not physically accurate, this allows for the creation of
-   * alien-looking planets.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] effect. While not physically accurate, this allows for the creation of alien-looking planets.
    */
   @CoreTypeHelper
   public final fun mieColorMutate(block: Color.() -> Unit): Color = mieColor.apply {
@@ -263,7 +229,7 @@ public open class PhysicalSkyMaterial : Material() {
      groundColor = this
   }
 
-  public final fun setRayleighCoefficient(rayleigh: Float): Unit {
+  public final fun setRayleighCoefficient(rayleigh: Float) {
     TransferContext.writeArguments(DOUBLE to rayleigh.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRayleighCoefficientPtr, NIL)
   }
@@ -274,7 +240,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRayleighColor(color: Color): Unit {
+  public final fun setRayleighColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setRayleighColorPtr, NIL)
   }
@@ -285,7 +251,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setMieCoefficient(mie: Float): Unit {
+  public final fun setMieCoefficient(mie: Float) {
     TransferContext.writeArguments(DOUBLE to mie.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMieCoefficientPtr, NIL)
   }
@@ -296,7 +262,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMieEccentricity(eccentricity: Float): Unit {
+  public final fun setMieEccentricity(eccentricity: Float) {
     TransferContext.writeArguments(DOUBLE to eccentricity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMieEccentricityPtr, NIL)
   }
@@ -307,7 +273,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMieColor(color: Color): Unit {
+  public final fun setMieColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setMieColorPtr, NIL)
   }
@@ -318,7 +284,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setTurbidity(turbidity: Float): Unit {
+  public final fun setTurbidity(turbidity: Float) {
     TransferContext.writeArguments(DOUBLE to turbidity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTurbidityPtr, NIL)
   }
@@ -329,7 +295,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSunDiskScale(scale: Float): Unit {
+  public final fun setSunDiskScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSunDiskScalePtr, NIL)
   }
@@ -340,7 +306,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGroundColor(color: Color): Unit {
+  public final fun setGroundColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setGroundColorPtr, NIL)
   }
@@ -351,7 +317,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setEnergyMultiplier(multiplier: Float): Unit {
+  public final fun setEnergyMultiplier(multiplier: Float) {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
@@ -362,7 +328,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUseDebanding(useDebanding: Boolean): Unit {
+  public final fun setUseDebanding(useDebanding: Boolean) {
     TransferContext.writeArguments(BOOL to useDebanding)
     TransferContext.callMethod(ptr, MethodBindings.setUseDebandingPtr, NIL)
   }
@@ -373,7 +339,7 @@ public open class PhysicalSkyMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNightSky(nightSky: Texture2D?): Unit {
+  public final fun setNightSky(nightSky: Texture2D?) {
     TransferContext.writeArguments(OBJECT to nightSky)
     TransferContext.callMethod(ptr, MethodBindings.setNightSkyPtr, NIL)
   }
@@ -402,69 +368,69 @@ public open class PhysicalSkyMaterial : Material() {
 
   public object MethodBindings {
     internal val setRayleighCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient", 373_806_689)
 
     internal val getRayleighCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient", 1_740_695_150)
 
     internal val setRayleighColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color", 2920490490)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color", 2_920_490_490)
 
     internal val getRayleighColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color", 3444240500)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color", 3_444_240_500)
 
     internal val setMieCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient", 373_806_689)
 
     internal val getMieCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient", 1_740_695_150)
 
     internal val setMieEccentricityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity", 373_806_689)
 
     internal val getMieEccentricityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity", 1_740_695_150)
 
     internal val setMieColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color", 2920490490)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color", 2_920_490_490)
 
     internal val getMieColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color", 3444240500)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color", 3_444_240_500)
 
     internal val setTurbidityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity", 373_806_689)
 
     internal val getTurbidityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity", 1_740_695_150)
 
     internal val setSunDiskScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale", 373_806_689)
 
     internal val getSunDiskScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale", 1_740_695_150)
 
     internal val setGroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color", 2920490490)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color", 2_920_490_490)
 
     internal val getGroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color", 3444240500)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color", 3_444_240_500)
 
     internal val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier", 373_806_689)
 
     internal val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier", 1_740_695_150)
 
     internal val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding", 2_586_408_642)
 
     internal val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding", 36_873_697)
 
     internal val setNightSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky", 4051416890)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky", 4_051_416_890)
 
     internal val getNightSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky", 3635182373)
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky", 3_635_182_373)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,7 +16,6 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Represents a class from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
@@ -30,7 +26,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JavaClass : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(316, scriptIndex)
   }
 
@@ -44,8 +40,7 @@ public open class JavaClass : RefCounted() {
   }
 
   /**
-   * Returns the object's Java methods and their signatures as an [Array] of dictionaries, in the
-   * same format as [Object.getMethodList].
+   * Returns the object's Java methods and their signatures as an [Array] of dictionaries, in the same format as [Object.getMethodList].
    */
   public final fun getJavaMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -66,12 +61,12 @@ public open class JavaClass : RefCounted() {
 
   public object MethodBindings {
     internal val getJavaClassNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaClass", "get_java_class_name", 201670096)
+        TypeManager.getMethodBindPtr("JavaClass", "get_java_class_name", 201_670_096)
 
     internal val getJavaMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaClass", "get_java_method_list", 3995934104)
+        TypeManager.getMethodBindPtr("JavaClass", "get_java_method_list", 3_995_934_104)
 
     internal val getJavaParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaClass", "get_java_parent_class", 541536347)
+        TypeManager.getMethodBindPtr("JavaClass", "get_java_parent_class", 541_536_347)
   }
 }

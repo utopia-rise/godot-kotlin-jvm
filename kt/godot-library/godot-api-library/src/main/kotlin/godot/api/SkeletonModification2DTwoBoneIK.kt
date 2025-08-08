@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,21 +25,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This [SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works
- * by leveraging the law of cosines and the lengths of the bones to figure out what rotation the bones
- * currently have, and what rotation they need to make a complete triangle, where the first bone, the
- * second bone, and the target form the three vertices of the triangle. Because the algorithm works by
- * making a triangle, it can only operate on two bones.
+ * This [SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works by leveraging the law of cosines and the lengths of the bones to figure out what rotation the bones currently have, and what rotation they need to make a complete triangle, where the first bone, the second bone, and the target form the three vertices of the triangle. Because the algorithm works by making a triangle, it can only operate on two bones.
  *
- * TwoBoneIK is great for arms, legs, and really any joints that can be represented by just two
- * bones that bend to reach a target. This solver is more lightweight than
- * [SkeletonModification2DFABRIK], but gives similar, natural looking results.
+ * TwoBoneIK is great for arms, legs, and really any joints that can be represented by just two bones that bend to reach a target. This solver is more lightweight than [SkeletonModification2DFABRIK], but gives similar, natural looking results.
  */
 @GodotBaseType
 public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
-   * The NodePath to the node that is the target for the TwoBoneIK modification. This node is what
-   * the modification will use when bending the [Bone2D] nodes.
+   * The NodePath to the node that is the target for the TwoBoneIK modification. This node is what the modification will use when bending the [Bone2D] nodes.
    */
   public final inline var targetNodepath: NodePath
     @JvmName("targetNodepathProperty")
@@ -53,9 +43,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   /**
-   * The minimum distance the target can be at. If the target is closer than this distance, the
-   * modification will solve as if it's at this minimum distance. When set to `0`, the modification
-   * will solve without distance constraints.
+   * The minimum distance the target can be at. If the target is closer than this distance, the modification will solve as if it's at this minimum distance. When set to `0`, the modification will solve without distance constraints.
    */
   public final inline var targetMinimumDistance: Float
     @JvmName("targetMinimumDistanceProperty")
@@ -66,9 +54,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   /**
-   * The maximum distance the target can be at. If the target is farther than this distance, the
-   * modification will solve as if it's at this maximum distance. When set to `0`, the modification
-   * will solve without distance constraints.
+   * The maximum distance the target can be at. If the target is farther than this distance, the modification will solve as if it's at this maximum distance. When set to `0`, the modification will solve without distance constraints.
    */
   public final inline var targetMaximumDistance: Float
     @JvmName("targetMaximumDistanceProperty")
@@ -79,8 +65,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   /**
-   * If `true`, the bones in the modification will bend outward as opposed to inwards when
-   * contracting. If `false`, the bones will bend inwards when contracting.
+   * If `true`, the bones in the modification will bend outward as opposed to inwards when contracting. If `false`, the bones will bend inwards when contracting.
    */
   public final inline var flipBendDirection: Boolean
     @JvmName("flipBendDirectionProperty")
@@ -90,11 +75,11 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
       setFlipBendDirection(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(603, scriptIndex)
   }
 
-  public final fun setTargetNode(targetNodepath: NodePath): Unit {
+  public final fun setTargetNode(targetNodepath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to targetNodepath)
     TransferContext.callMethod(ptr, MethodBindings.setTargetNodePtr, NIL)
   }
@@ -105,7 +90,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setTargetMinimumDistance(minimumDistance: Float): Unit {
+  public final fun setTargetMinimumDistance(minimumDistance: Float) {
     TransferContext.writeArguments(DOUBLE to minimumDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTargetMinimumDistancePtr, NIL)
   }
@@ -116,7 +101,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTargetMaximumDistance(maximumDistance: Float): Unit {
+  public final fun setTargetMaximumDistance(maximumDistance: Float) {
     TransferContext.writeArguments(DOUBLE to maximumDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTargetMaximumDistancePtr, NIL)
   }
@@ -127,7 +112,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFlipBendDirection(flipDirection: Boolean): Unit {
+  public final fun setFlipBendDirection(flipDirection: Boolean) {
     TransferContext.writeArguments(BOOL to flipDirection)
     TransferContext.callMethod(ptr, MethodBindings.setFlipBendDirectionPtr, NIL)
   }
@@ -141,7 +126,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
    * Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
-  public final fun setJointOneBone2dNode(bone2dNode: NodePath): Unit {
+  public final fun setJointOneBone2dNode(bone2dNode: NodePath) {
     TransferContext.writeArguments(NODE_PATH to bone2dNode)
     TransferContext.callMethod(ptr, MethodBindings.setJointOneBone2dNodePtr, NIL)
   }
@@ -156,17 +141,15 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   }
 
   /**
-   * Sets the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK
-   * modification.
+   * Sets the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
-  public final fun setJointOneBoneIdx(boneIdx: Int): Unit {
+  public final fun setJointOneBoneIdx(boneIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setJointOneBoneIdxPtr, NIL)
   }
 
   /**
-   * Returns the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK
-   * modification.
+   * Returns the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
   public final fun getJointOneBoneIdx(): Int {
     TransferContext.writeArguments()
@@ -177,7 +160,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   /**
    * Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
-  public final fun setJointTwoBone2dNode(bone2dNode: NodePath): Unit {
+  public final fun setJointTwoBone2dNode(bone2dNode: NodePath) {
     TransferContext.writeArguments(NODE_PATH to bone2dNode)
     TransferContext.callMethod(ptr, MethodBindings.setJointTwoBone2dNodePtr, NIL)
   }
@@ -192,17 +175,15 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   }
 
   /**
-   * Sets the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK
-   * modification.
+   * Sets the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
-  public final fun setJointTwoBoneIdx(boneIdx: Int): Unit {
+  public final fun setJointTwoBoneIdx(boneIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setJointTwoBoneIdxPtr, NIL)
   }
 
   /**
-   * Returns the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK
-   * modification.
+   * Returns the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
   public final fun getJointTwoBoneIdx(): Int {
     TransferContext.writeArguments()
@@ -210,70 +191,67 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTargetNode(targetNodepath: String): Unit =
-      setTargetNode(targetNodepath.asCachedNodePath())
+  public final fun setTargetNode(targetNodepath: String): Unit = setTargetNode(targetNodepath.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
-  public final fun setJointOneBone2dNode(bone2dNode: String): Unit =
-      setJointOneBone2dNode(bone2dNode.asCachedNodePath())
+  public final fun setJointOneBone2dNode(bone2dNode: String): Unit = setJointOneBone2dNode(bone2dNode.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
-  public final fun setJointTwoBone2dNode(bone2dNode: String): Unit =
-      setJointTwoBone2dNode(bone2dNode.asCachedNodePath())
+  public final fun setJointTwoBone2dNode(bone2dNode: String): Unit = setJointTwoBone2dNode(bone2dNode.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_node", 1348162250)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_node", 1_348_162_250)
 
     internal val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_node", 4075236667)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_node", 4_075_236_667)
 
     internal val setTargetMinimumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_minimum_distance", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_minimum_distance", 373_806_689)
 
     internal val getTargetMinimumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_minimum_distance", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_minimum_distance", 1_740_695_150)
 
     internal val setTargetMaximumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_maximum_distance", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_maximum_distance", 373_806_689)
 
     internal val getTargetMaximumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_maximum_distance", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_maximum_distance", 1_740_695_150)
 
     internal val setFlipBendDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_flip_bend_direction", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_flip_bend_direction", 2_586_408_642)
 
     internal val getFlipBendDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_flip_bend_direction", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_flip_bend_direction", 36_873_697)
 
     internal val setJointOneBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone2d_node", 1348162250)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone2d_node", 1_348_162_250)
 
     internal val getJointOneBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone2d_node", 4075236667)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone2d_node", 4_075_236_667)
 
     internal val setJointOneBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone_idx", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone_idx", 1_286_410_249)
 
     internal val getJointOneBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone_idx", 3905245786)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone_idx", 3_905_245_786)
 
     internal val setJointTwoBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone2d_node", 1348162250)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone2d_node", 1_348_162_250)
 
     internal val getJointTwoBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone2d_node", 4075236667)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone2d_node", 4_075_236_667)
 
     internal val setJointTwoBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone_idx", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone_idx", 1_286_410_249)
 
     internal val getJointTwoBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone_idx", 3905245786)
+        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone_idx", 3_905_245_786)
   }
 }

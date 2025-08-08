@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,34 +24,30 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A two-dimensional array of boolean values, can be used to efficiently store a binary matrix
- * (every matrix element takes only one bit) and query the values using natural cartesian coordinates.
+ * A two-dimensional array of boolean values, can be used to efficiently store a binary matrix (every matrix element takes only one bit) and query the values using natural cartesian coordinates.
  */
 @GodotBaseType
 public open class BitMap : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(105, scriptIndex)
   }
 
   /**
    * Creates a bitmap with the specified size, filled with `false`.
    */
-  public final fun create(size: Vector2i): Unit {
+  public final fun create(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.createPtr, NIL)
   }
 
   /**
-   * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to
-   * `false` if the alpha value of the image at that position is equal to [threshold] or less, and
-   * `true` in other case.
+   * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to `false` if the alpha value of the image at that position is equal to [threshold] or less, and `true` in other case.
    */
   @JvmOverloads
-  public final fun createFromImageAlpha(image: Image?, threshold: Float = 0.1f): Unit {
+  public final fun createFromImageAlpha(image: Image?, threshold: Float = 0.1f) {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.createFromImageAlphaPtr, NIL)
   }
@@ -62,7 +55,7 @@ public open class BitMap : Resource() {
   /**
    * Sets the bitmap's element at the specified position, to the specified value.
    */
-  public final fun setBitv(position: Vector2i, bit: Boolean): Unit {
+  public final fun setBitv(position: Vector2i, bit: Boolean) {
     TransferContext.writeArguments(VECTOR2I to position, BOOL to bit)
     TransferContext.callMethod(ptr, MethodBindings.setBitvPtr, NIL)
   }
@@ -74,7 +67,7 @@ public open class BitMap : Resource() {
     x: Int,
     y: Int,
     bit: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong(), BOOL to bit)
     TransferContext.callMethod(ptr, MethodBindings.setBitPtr, NIL)
   }
@@ -100,7 +93,7 @@ public open class BitMap : Resource() {
   /**
    * Sets a rectangular portion of the bitmap to the specified value.
    */
-  public final fun setBitRect(rect: Rect2i, bit: Boolean): Unit {
+  public final fun setBitRect(rect: Rect2i, bit: Boolean) {
     TransferContext.writeArguments(RECT2I to rect, BOOL to bit)
     TransferContext.callMethod(ptr, MethodBindings.setBitRectPtr, NIL)
   }
@@ -126,26 +119,21 @@ public open class BitMap : Resource() {
   /**
    * Resizes the image to [newSize].
    */
-  public final fun resize(newSize: Vector2i): Unit {
+  public final fun resize(newSize: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to newSize)
     TransferContext.callMethod(ptr, MethodBindings.resizePtr, NIL)
   }
 
   /**
-   * Applies morphological dilation or erosion to the bitmap. If [pixels] is positive, dilation is
-   * applied to the bitmap. If [pixels] is negative, erosion is applied to the bitmap. [rect] defines
-   * the area where the morphological operation is applied. Pixels located outside the [rect] are
-   * unaffected by [growMask].
+   * Applies morphological dilation or erosion to the bitmap. If [pixels] is positive, dilation is applied to the bitmap. If [pixels] is negative, erosion is applied to the bitmap. [rect] defines the area where the morphological operation is applied. Pixels located outside the [rect] are unaffected by [growMask].
    */
-  public final fun growMask(pixels: Int, rect: Rect2i): Unit {
+  public final fun growMask(pixels: Int, rect: Rect2i) {
     TransferContext.writeArguments(LONG to pixels.toLong(), RECT2I to rect)
     TransferContext.callMethod(ptr, MethodBindings.growMaskPtr, NIL)
   }
 
   /**
-   * Returns an image of the same size as the bitmap and with a [Image.Format] of type
-   * [Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false`
-   * bits into black.
+   * Returns an image of the same size as the bitmap and with a [Image.Format] of type [Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false` bits into black.
    */
   public final fun convertToImage(): Image? {
     TransferContext.writeArguments()
@@ -154,9 +142,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Creates an [Array] of polygons covering a rectangular portion of the bitmap. It uses a marching
-   * squares algorithm, followed by Ramer-Douglas-Peucker (RDP) reduction of the number of vertices.
-   * Each polygon is described as a [PackedVector2Array] of its vertices.
+   * Creates an [Array] of polygons covering a rectangular portion of the bitmap. It uses a marching squares algorithm, followed by Ramer-Douglas-Peucker (RDP) reduction of the number of vertices. Each polygon is described as a [PackedVector2Array] of its vertices.
    *
    * To get polygons covering the whole bitmap, pass:
    *
@@ -164,12 +150,10 @@ public open class BitMap : Resource() {
    * Rect2(Vector2(), get_size())
    * ```
    *
-   * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower
-   * [epsilon] corresponds to more points in the polygons.
+   * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [epsilon] corresponds to more points in the polygons.
    */
   @JvmOverloads
-  public final fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):
-      VariantArray<PackedVector2Array> {
+  public final fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.opaqueToPolygonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
@@ -178,39 +162,43 @@ public open class BitMap : Resource() {
   public companion object
 
   public object MethodBindings {
-    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "create", 1130785943)
+    internal val createPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BitMap", "create", 1_130_785_943)
 
     internal val createFromImageAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "create_from_image_alpha", 106271684)
+        TypeManager.getMethodBindPtr("BitMap", "create_from_image_alpha", 106_271_684)
 
     internal val setBitvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "set_bitv", 4153096796)
+        TypeManager.getMethodBindPtr("BitMap", "set_bitv", 4_153_096_796)
 
-    internal val setBitPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "set_bit", 1383440665)
+    internal val setBitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BitMap", "set_bit", 1_383_440_665)
 
     internal val getBitvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "get_bitv", 3900751641)
+        TypeManager.getMethodBindPtr("BitMap", "get_bitv", 3_900_751_641)
 
-    internal val getBitPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "get_bit", 2522259332)
+    internal val getBitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BitMap", "get_bit", 2_522_259_332)
 
     internal val setBitRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "set_bit_rect", 472162941)
+        TypeManager.getMethodBindPtr("BitMap", "set_bit_rect", 472_162_941)
 
     internal val getTrueBitCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "get_true_bit_count", 3905245786)
+        TypeManager.getMethodBindPtr("BitMap", "get_true_bit_count", 3_905_245_786)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "get_size", 3690982128)
+        TypeManager.getMethodBindPtr("BitMap", "get_size", 3_690_982_128)
 
-    internal val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "resize", 1130785943)
+    internal val resizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BitMap", "resize", 1_130_785_943)
 
     internal val growMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "grow_mask", 3317281434)
+        TypeManager.getMethodBindPtr("BitMap", "grow_mask", 3_317_281_434)
 
     internal val convertToImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "convert_to_image", 4190603485)
+        TypeManager.getMethodBindPtr("BitMap", "convert_to_image", 4_190_603_485)
 
     internal val opaqueToPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "opaque_to_polygons", 48478126)
+        TypeManager.getMethodBindPtr("BitMap", "opaque_to_polygons", 48_478_126)
   }
 }

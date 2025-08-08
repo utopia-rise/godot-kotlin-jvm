@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,23 +20,19 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key
- * names.
+ * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key names.
  *
- * By assigning the actual [Skeleton3D] bone name as the key value, it maps the [Skeleton3D] to the
- * [SkeletonProfile].
+ * By assigning the actual [Skeleton3D] bone name as the key value, it maps the [Skeleton3D] to the [SkeletonProfile].
  */
 @GodotBaseType
 public open class BoneMap : Resource() {
   /**
-   * This signal is emitted when change the key value in the [BoneMap]. This is used to validate
-   * mapping and to update [BoneMap] editor.
+   * This signal is emitted when change the key value in the [BoneMap]. This is used to validate mapping and to update [BoneMap] editor.
    */
   public val boneMapUpdated: Signal0 by Signal0
 
   /**
-   * This signal is emitted when change the value in profile or change the reference of profile.
-   * This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor.
+   * This signal is emitted when change the value in profile or change the reference of profile. This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor.
    */
   public val profileUpdated: Signal0 by Signal0
 
@@ -54,7 +47,7 @@ public open class BoneMap : Resource() {
       setProfile(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(108, scriptIndex)
   }
 
@@ -64,7 +57,7 @@ public open class BoneMap : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
   }
 
-  public final fun setProfile(profile: SkeletonProfile?): Unit {
+  public final fun setProfile(profile: SkeletonProfile?) {
     TransferContext.writeArguments(OBJECT to profile)
     TransferContext.callMethod(ptr, MethodBindings.setProfilePtr, NIL)
   }
@@ -85,15 +78,13 @@ public open class BoneMap : Resource() {
    *
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
-  public final fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName):
-      Unit {
+  public final fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName) {
     TransferContext.writeArguments(STRING_NAME to profileBoneName, STRING_NAME to skeletonBoneName)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonBoneNamePtr, NIL)
   }
 
   /**
-   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
-   * be returned.
+   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will be returned.
    *
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
@@ -108,42 +99,38 @@ public open class BoneMap : Resource() {
    *
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
-  public final fun getSkeletonBoneName(profileBoneName: String): StringName =
-      getSkeletonBoneName(profileBoneName.asCachedStringName())
+  public final fun getSkeletonBoneName(profileBoneName: String): StringName = getSkeletonBoneName(profileBoneName.asCachedStringName())
 
   /**
    * Maps a skeleton bone name to [profileBoneName].
    *
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
-  public final fun setSkeletonBoneName(profileBoneName: String, skeletonBoneName: String): Unit =
-      setSkeletonBoneName(profileBoneName.asCachedStringName(), skeletonBoneName.asCachedStringName())
+  public final fun setSkeletonBoneName(profileBoneName: String, skeletonBoneName: String): Unit = setSkeletonBoneName(profileBoneName.asCachedStringName(), skeletonBoneName.asCachedStringName())
 
   /**
-   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
-   * be returned.
+   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will be returned.
    *
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
-  public final fun findProfileBoneName(skeletonBoneName: String): StringName =
-      findProfileBoneName(skeletonBoneName.asCachedStringName())
+  public final fun findProfileBoneName(skeletonBoneName: String): StringName = findProfileBoneName(skeletonBoneName.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val getProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "get_profile", 4291782652)
+        TypeManager.getMethodBindPtr("BoneMap", "get_profile", 4_291_782_652)
 
     internal val setProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "set_profile", 3870374136)
+        TypeManager.getMethodBindPtr("BoneMap", "set_profile", 3_870_374_136)
 
     internal val getSkeletonBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "get_skeleton_bone_name", 1965194235)
+        TypeManager.getMethodBindPtr("BoneMap", "get_skeleton_bone_name", 1_965_194_235)
 
     internal val setSkeletonBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "set_skeleton_bone_name", 3740211285)
+        TypeManager.getMethodBindPtr("BoneMap", "set_skeleton_bone_name", 3_740_211_285)
 
     internal val findProfileBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "find_profile_bone_name", 1965194235)
+        TypeManager.getMethodBindPtr("BoneMap", "find_profile_bone_name", 1_965_194_235)
   }
 }

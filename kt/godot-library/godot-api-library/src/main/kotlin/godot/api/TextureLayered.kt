@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,12 +13,11 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but
- * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
+ * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
  *
  * Data is set on a per-layer basis. For [Texture2DArray]s, the layer specifies the array layer.
  *
@@ -29,49 +25,62 @@ import kotlin.Unit
  *
  * A [TextureLayered] can be loaded with [ResourceLoader.load].
  *
- * Internally, Godot maps these files to their respective counterparts in the target rendering
- * driver (Vulkan, OpenGL3).
+ * Internally, Godot maps these files to their respective counterparts in the target rendering driver (Vulkan, OpenGL3).
  */
 @GodotBaseType
-public abstract class TextureLayered : Texture() {
-  public override fun new(scriptIndex: Int): Unit {
+public open class TextureLayered : Texture() {
+  override fun new(scriptIndex: Int) {
     createNativeObject(674, scriptIndex)
   }
 
   /**
    * Called when the [TextureLayered]'s format is queried.
    */
-  public abstract fun _getFormat(): Image.Format
+  public open fun _getFormat(): Image.Format {
+    throw NotImplementedError("_getFormat is not implemented for TextureLayered")
+  }
 
   /**
    * Called when the layers' type in the [TextureLayered] is queried.
    */
-  public abstract fun _getLayeredType(): Long
+  public open fun _getLayeredType(): Long {
+    throw NotImplementedError("_getLayeredType is not implemented for TextureLayered")
+  }
 
   /**
    * Called when the [TextureLayered]'s width queried.
    */
-  public abstract fun _getWidth(): Int
+  public open fun _getWidth(): Int {
+    throw NotImplementedError("_getWidth is not implemented for TextureLayered")
+  }
 
   /**
    * Called when the [TextureLayered]'s height is queried.
    */
-  public abstract fun _getHeight(): Int
+  public open fun _getHeight(): Int {
+    throw NotImplementedError("_getHeight is not implemented for TextureLayered")
+  }
 
   /**
    * Called when the number of layers in the [TextureLayered] is queried.
    */
-  public abstract fun _getLayers(): Int
+  public open fun _getLayers(): Int {
+    throw NotImplementedError("_getLayers is not implemented for TextureLayered")
+  }
 
   /**
    * Called when the presence of mipmaps in the [TextureLayered] is queried.
    */
-  public abstract fun _hasMipmaps(): Boolean
+  public open fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("_hasMipmaps is not implemented for TextureLayered")
+  }
 
   /**
    * Called when the data for a layer in the [TextureLayered] is queried.
    */
-  public abstract fun _getLayerData(layerIndex: Int): Image?
+  public open fun _getLayerData(layerIndex: Int): Image? {
+    throw NotImplementedError("_getLayerData is not implemented for TextureLayered")
+  }
 
   /**
    * Returns the current format being used by this texture. See [Image.Format] for details.
@@ -83,8 +92,7 @@ public abstract class TextureLayered : Texture() {
   }
 
   /**
-   * Returns the [TextureLayered]'s type. The type determines how the data is accessed, with
-   * cubemaps having special types.
+   * Returns the [TextureLayered]'s type. The type determines how the data is accessed, with cubemaps having special types.
    */
   public final fun getLayeredType(): LayeredType {
     TransferContext.writeArguments()
@@ -168,24 +176,24 @@ public abstract class TextureLayered : Texture() {
 
   public object MethodBindings {
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_format", 3847873762)
+        TypeManager.getMethodBindPtr("TextureLayered", "get_format", 3_847_873_762)
 
     internal val getLayeredTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layered_type", 518123893)
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layered_type", 518_123_893)
 
     internal val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_width", 3905245786)
+        TypeManager.getMethodBindPtr("TextureLayered", "get_width", 3_905_245_786)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_height", 3905245786)
+        TypeManager.getMethodBindPtr("TextureLayered", "get_height", 3_905_245_786)
 
     internal val getLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layers", 3905245786)
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layers", 3_905_245_786)
 
     internal val hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "has_mipmaps", 36873697)
+        TypeManager.getMethodBindPtr("TextureLayered", "has_mipmaps", 36_873_697)
 
     internal val getLayerDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data", 3655284255)
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data", 3_655_284_255)
   }
 }

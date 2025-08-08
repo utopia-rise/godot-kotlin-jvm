@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -10,7 +7,6 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmField
 
 public infix fun Long.or(other: ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
@@ -20,13 +16,11 @@ public infix fun Long.xor(other: ImageFormatLoader.LoaderFlags): Long = this.xor
 public infix fun Long.and(other: ImageFormatLoader.LoaderFlags): Long = this.and(other.flag)
 
 /**
- * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
- * but you can choose to implement support for additional image formats by extending
- * [ImageFormatLoaderExtension].
+ * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few), but you can choose to implement support for additional image formats by extending [ImageFormatLoaderExtension].
  */
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(283, scriptIndex)
   }
 

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,20 +16,16 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and
- * they are represented as a rectangular boxes with title and a set of properties. Each node also has
- * connection ports that allow to connect it to another nodes and control the flow of the shader.
+ * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and they are represented as a rectangular boxes with title and a set of properties. Each node also has connection ports that allow to connect it to another nodes and control the flow of the shader.
  */
 @GodotBaseType
 public open class VisualShaderNode internal constructor() : Resource() {
   /**
-   * Sets the output port index which will be showed for preview. If set to `-1` no port will be
-   * open for preview.
+   * Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview.
    */
   public final inline var outputPortForPreview: Int
     @JvmName("outputPortForPreviewProperty")
@@ -51,8 +44,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     }
 
   /**
-   * Represents the index of the frame this node is linked to. If set to `-1` the node is not linked
-   * to any frame.
+   * Represents the index of the frame this node is linked to. If set to `-1` the node is not linked to any frame.
    */
   public final inline var linkedParentGraphFrame: Int
     @JvmName("linkedParentGraphFrameProperty")
@@ -62,13 +54,12 @@ public open class VisualShaderNode internal constructor() : Resource() {
       setFrame(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(727, scriptIndex)
   }
 
   /**
-   * Returns the input port which should be connected by default when this node is created as a
-   * result of dragging a connection from an existing node to the empty space on the graph.
+   * Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph.
    */
   public final fun getDefaultInputPort(type: PortType): Int {
     TransferContext.writeArguments(LONG to type.id)
@@ -76,7 +67,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOutputPortForPreview(port: Int): Unit {
+  public final fun setOutputPortForPreview(port: Int) {
     TransferContext.writeArguments(LONG to port.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOutputPortForPreviewPtr, NIL)
   }
@@ -95,7 +86,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     port: Int,
     `value`: Any?,
     prevValue: Any? = null,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to port.toLong(), ANY to value, ANY to prevValue)
     TransferContext.callMethod(ptr, MethodBindings.setInputPortDefaultValuePtr, NIL)
   }
@@ -112,7 +103,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Removes the default value of the input [port].
    */
-  public final fun removeInputPortDefaultValue(port: Int): Unit {
+  public final fun removeInputPortDefaultValue(port: Int) {
     TransferContext.writeArguments(LONG to port.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeInputPortDefaultValuePtr, NIL)
   }
@@ -120,23 +111,21 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Clears the default input ports value.
    */
-  public final fun clearDefaultInputValues(): Unit {
+  public final fun clearDefaultInputValues() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearDefaultInputValuesPtr, NIL)
   }
 
   /**
-   * Sets the default input ports values using an [Array] of the form `[index0, value0, index1,
-   * value1, ...]`. For example: `[0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0)]`.
+   * Sets the default input ports values using an [Array] of the form `[index0, value0, index1, value1, ...]`. For example: `[0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0)]`.
    */
-  public final fun setDefaultInputValues(values: VariantArray<Any?>): Unit {
+  public final fun setDefaultInputValues(values: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to values)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultInputValuesPtr, NIL)
   }
 
   /**
-   * Returns an [Array] containing default values for all of the input ports of the node in the form
-   * `[index0, value0, index1, value1, ...]`.
+   * Returns an [Array] containing default values for all of the input ports of the node in the form `[index0, value0, index1, value1, ...]`.
    */
   public final fun getDefaultInputValues(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -144,7 +133,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public final fun setFrame(frame: Int): Unit {
+  public final fun setFrame(frame: Int) {
     TransferContext.writeArguments(LONG to frame.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFramePtr, NIL)
   }
@@ -171,18 +160,15 @@ public open class VisualShaderNode internal constructor() : Resource() {
      */
     SCALAR_UINT(2),
     /**
-     * 2D vector of floating-point values. Translated to [code skip-lint]vec2[/code] type in shader
-     * code.
+     * 2D vector of floating-point values. Translated to [code skip-lint]vec2[/code] type in shader code.
      */
     VECTOR_2D(3),
     /**
-     * 3D vector of floating-point values. Translated to [code skip-lint]vec3[/code] type in shader
-     * code.
+     * 3D vector of floating-point values. Translated to [code skip-lint]vec3[/code] type in shader code.
      */
     VECTOR_3D(4),
     /**
-     * 4D vector of floating-point values. Translated to [code skip-lint]vec4[/code] type in shader
-     * code.
+     * 4D vector of floating-point values. Translated to [code skip-lint]vec4[/code] type in shader code.
      */
     VECTOR_4D(5),
     /**
@@ -194,8 +180,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
      */
     TRANSFORM(7),
     /**
-     * Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for
-     * input ports in non-uniform nodes.
+     * Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes.
      */
     SAMPLER(8),
     /**
@@ -218,36 +203,36 @@ public open class VisualShaderNode internal constructor() : Resource() {
 
   public object MethodBindings {
     internal val getDefaultInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_port", 1894493699)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_port", 1_894_493_699)
 
     internal val setOutputPortForPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview", 1_286_410_249)
 
     internal val getOutputPortForPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_output_port_for_preview", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_output_port_for_preview", 3_905_245_786)
 
     internal val setInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_input_port_default_value", 150923387)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_input_port_default_value", 150_923_387)
 
     internal val getInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_input_port_default_value", 4227898402)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_input_port_default_value", 4_227_898_402)
 
     internal val removeInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "remove_input_port_default_value", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "remove_input_port_default_value", 1_286_410_249)
 
     internal val clearDefaultInputValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "clear_default_input_values", 3218959716)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "clear_default_input_values", 3_218_959_716)
 
     internal val setDefaultInputValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_default_input_values", 381264803)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_default_input_values", 381_264_803)
 
     internal val getDefaultInputValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_values", 3995934104)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_values", 3_995_934_104)
 
     internal val setFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_frame", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_frame", 1_286_410_249)
 
     internal val getFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_frame", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_frame", 3_905_245_786)
   }
 }

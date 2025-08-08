@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,17 +18,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new
- * packets. See also [PacketPeerUDP.connectToHost].
+ * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new packets. See also [PacketPeerUDP.connectToHost].
  *
- * After starting the server ([listen]), you will need to [poll] it at regular intervals (e.g.
- * inside [Node.Process]) for it to process new packets, delivering them to the appropriate
- * [PacketPeerUDP], and taking new connections.
+ * After starting the server ([listen]), you will need to [poll] it at regular intervals (e.g. inside [Node.Process]) for it to process new packets, delivering them to the appropriate [PacketPeerUDP], and taking new connections.
  *
  * Below a small example of how it can be used:
  *
@@ -52,8 +45,7 @@ import kotlin.jvm.JvmOverloads
  *     if server.is_connection_available():
  *         var peer = server.take_connection()
  *         var packet = peer.get_packet()
- *         print("Accepted peer: &#37;s:&#37;s" &#37; [peer.get_packet_ip(),
- * peer.get_packet_port()])
+ *         print("Accepted peer: &#37;s:&#37;s" &#37; [peer.get_packet_ip(), peer.get_packet_port()])
  *         print("Received data: &#37;s" &#37; [packet.get_string_from_utf8()])
  *         # Reply so it knows we received the message.
  *         peer.put_packet(packet)
@@ -158,9 +150,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class UDPServer : RefCounted() {
   /**
-   * Define the maximum number of pending connections, during [poll], any new pending connection
-   * exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents
-   * any new pending connection to be accepted (e.g. when all your players have connected).
+   * Define the maximum number of pending connections, during [poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected).
    */
   public final inline var maxPendingConnections: Int
     @JvmName("maxPendingConnectionsProperty")
@@ -170,14 +160,12 @@ public open class UDPServer : RefCounted() {
       setMaxPendingConnections(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(702, scriptIndex)
   }
 
   /**
-   * Starts the server by opening a UDP socket listening on the given [port]. You can optionally
-   * specify a [bindAddress] to only listen for packets sent to that address. See also
-   * [PacketPeerUDP.bind].
+   * Starts the server by opening a UDP socket listening on the given [port]. You can optionally specify a [bindAddress] to only listen for packets sent to that address. See also [PacketPeerUDP.bind].
    */
   @JvmOverloads
   public final fun listen(port: Int, bindAddress: String = "*"): Error {
@@ -187,11 +175,7 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Call this method at regular intervals (e.g. inside [Node.Process]) to process new packets. And
-   * packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any
-   * packet received from an unknown address/port pair will be added as a pending connection (see
-   * [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined
-   * via [maxPendingConnections].
+   * Call this method at regular intervals (e.g. inside [Node.Process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined via [maxPendingConnections].
    */
   public final fun poll(): Error {
     TransferContext.writeArguments()
@@ -227,9 +211,7 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Returns the first pending connection (connected to the appropriate address/port). Will return
-   * `null` if no new connection is available. See also [isConnectionAvailable],
-   * [PacketPeerUDP.connectToHost].
+   * Returns the first pending connection (connected to the appropriate address/port). Will return `null` if no new connection is available. See also [isConnectionAvailable], [PacketPeerUDP.connectToHost].
    */
   public final fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
@@ -238,15 +220,14 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP]
-   * accepted via [takeConnection] (remote peers will not be notified).
+   * Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP] accepted via [takeConnection] (remote peers will not be notified).
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
-  public final fun setMaxPendingConnections(maxPendingConnections: Int): Unit {
+  public final fun setMaxPendingConnections(maxPendingConnections: Int) {
     TransferContext.writeArguments(LONG to maxPendingConnections.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
   }
@@ -261,28 +242,28 @@ public open class UDPServer : RefCounted() {
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "listen", 3167955072)
+        TypeManager.getMethodBindPtr("UDPServer", "listen", 3_167_955_072)
 
-    internal val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "poll", 166280745)
+    internal val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "poll", 166_280_745)
 
     internal val isConnectionAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "is_connection_available", 36873697)
+        TypeManager.getMethodBindPtr("UDPServer", "is_connection_available", 36_873_697)
 
     internal val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "get_local_port", 3905245786)
+        TypeManager.getMethodBindPtr("UDPServer", "get_local_port", 3_905_245_786)
 
     internal val isListeningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "is_listening", 36873697)
+        TypeManager.getMethodBindPtr("UDPServer", "is_listening", 36_873_697)
 
     internal val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "take_connection", 808734560)
+        TypeManager.getMethodBindPtr("UDPServer", "take_connection", 808_734_560)
 
-    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "stop", 3_218_959_716)
 
     internal val setMaxPendingConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "set_max_pending_connections", 1286410249)
+        TypeManager.getMethodBindPtr("UDPServer", "set_max_pending_connections", 1_286_410_249)
 
     internal val getMaxPendingConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "get_max_pending_connections", 3905245786)
+        TypeManager.getMethodBindPtr("UDPServer", "get_max_pending_connections", 3_905_245_786)
   }
 }

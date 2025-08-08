@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -10,7 +7,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.Callable
 import godot.core.RID
 import godot.core.Transform3D
@@ -32,49 +28,31 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
- * PhysicsServer3D is the server responsible for all 3D physics. It can directly create and
- * manipulate all physics objects:
+ * PhysicsServer3D is the server responsible for all 3D physics. It can directly create and manipulate all physics objects:
  *
- * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and
- * joints. Its state can be queried for collision and intersection information, and several parameters
- * of the simulation can be modified.
+ * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and joints. Its state can be queried for collision and intersection information, and several parameters of the simulation can be modified.
  *
- * - A *shape* is a geometric shape such as a sphere, a box, a cylinder, or a polygon. It can be
- * used for collision detection by adding it to a body/area, possibly with an extra transformation
- * relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to
- * them, and a single shape can be added to bodies/areas multiple times with different local
- * transformations.
+ * - A *shape* is a geometric shape such as a sphere, a box, a cylinder, or a polygon. It can be used for collision detection by adding it to a body/area, possibly with an extra transformation relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to them, and a single shape can be added to bodies/areas multiple times with different local transformations.
  *
- * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such
- * as position and velocity) can be queried and updated. A force integration callback can be set to
- * customize the body's physics.
+ * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such as position and velocity) can be queried and updated. A force integration callback can be set to customize the body's physics.
  *
- * - An *area* is a region in space which can be used to detect bodies and areas entering and
- * exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and
- * similarly an area monitoring callback can be set. Gravity and damping can be overridden within the
- * area by setting area parameters.
+ * - An *area* is a region in space which can be used to detect bodies and areas entering and exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and similarly an area monitoring callback can be set. Gravity and damping can be overridden within the area by setting area parameters.
  *
- * - A *joint* is a constraint, either between two bodies or on one body relative to a point.
- * Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
+ * - A *joint* is a constraint, either between two bodies or on one body relative to a point. Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
  *
- * Physics objects in [PhysicsServer3D] may be created and manipulated independently; they do not
- * have to be tied to nodes in the scene tree.
+ * Physics objects in [PhysicsServer3D] may be created and manipulated independently; they do not have to be tied to nodes in the scene tree.
  *
- * **Note:** All the 3D physics nodes use the physics server internally. Adding a physics node to
- * the scene tree will cause a corresponding physics object to be created in the physics server. A
- * rigid body node registers a callback that updates the node's transform with the transform of the
- * respective body object in the physics server (every physics update). An area node registers a
- * callback to inform the area node about overlaps with the respective area object in the physics
- * server. The raycast node queries the direct state of the relevant space in the physics server.
+ * **Note:** All the 3D physics nodes use the physics server internally. Adding a physics node to the scene tree will cause a corresponding physics object to be created in the physics server. A rigid body node registers a callback that updates the node's transform with the transform of the respective body object in the physics server (every physics update). An area node registers a callback to inform the area node about overlaps with the respective area object in the physics server. The raycast node queries the direct state of the relevant space in the physics server.
  */
 @GodotBaseType
 public object PhysicsServer3D : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(23)
   }
 
@@ -149,11 +127,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the shape data that defines its shape and size. The data to be passed depends on the kind
-   * of shape created [shapeGetType].
+   * Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [shapeGetType].
    */
   @JvmStatic
-  public final fun shapeSetData(shape: RID, `data`: Any?): Unit {
+  public final fun shapeSetData(shape: RID, `data`: Any?) {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(ptr, MethodBindings.shapeSetDataPtr, NIL)
   }
@@ -164,7 +141,7 @@ public object PhysicsServer3D : Object() {
    * **Note:** This is not used in Godot Physics.
    */
   @JvmStatic
-  public final fun shapeSetMargin(shape: RID, margin: Float): Unit {
+  public final fun shapeSetMargin(shape: RID, margin: Float) {
     TransferContext.writeArguments(_RID to shape, DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.shapeSetMarginPtr, NIL)
   }
@@ -202,9 +179,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Creates a space. A space is a collection of parameters for the physics engine that can be
-   * assigned to an area or a body. It can be assigned to an area with [areaSetSpace], or to a body
-   * with [bodySetSpace].
+   * Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [areaSetSpace], or to a body with [bodySetSpace].
    */
   @JvmStatic
   public final fun spaceCreate(): RID {
@@ -217,7 +192,7 @@ public object PhysicsServer3D : Object() {
    * Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
    */
   @JvmStatic
-  public final fun spaceSetActive(space: RID, active: Boolean): Unit {
+  public final fun spaceSetActive(space: RID, active: Boolean) {
     TransferContext.writeArguments(_RID to space, BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.spaceSetActivePtr, NIL)
   }
@@ -233,15 +208,14 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value for a space parameter. A list of available parameters is on the [SpaceParameter]
-   * constants.
+   * Sets the value for a space parameter. A list of available parameters is on the [SpaceParameter] constants.
    */
   @JvmStatic
   public final fun spaceSetParam(
     space: RID,
     `param`: SpaceParameter,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.spaceSetParamPtr, NIL)
   }
@@ -257,8 +231,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make
-   * collision/intersection queries.
+   * Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make collision/intersection queries.
    */
   @JvmStatic
   public final fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState3D? {
@@ -268,13 +241,9 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Creates a 3D area object in the physics server, and returns the [RID] that identifies it. The
-   * default settings for the created area include a collision layer and mask set to `1`, and
-   * `monitorable` set to `false`.
+   * Creates a 3D area object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and `monitorable` set to `false`.
    *
-   * Use [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use
-   * [areaSetSpace] to add the area to a space. If you want the area to be detectable use
-   * [areaSetMonitorable].
+   * Use [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use [areaSetSpace] to add the area to a space. If you want the area to be detectable use [areaSetMonitorable].
    */
   @JvmStatic
   public final fun areaCreate(): RID {
@@ -287,7 +256,7 @@ public object PhysicsServer3D : Object() {
    * Assigns a space to the area.
    */
   @JvmStatic
-  public final fun areaSetSpace(area: RID, space: RID): Unit {
+  public final fun areaSetSpace(area: RID, space: RID) {
     TransferContext.writeArguments(_RID to area, _RID to space)
     TransferContext.callMethod(ptr, MethodBindings.areaSetSpacePtr, NIL)
   }
@@ -303,8 +272,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their
-   * index, so you should track which shape has a given index.
+   * Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
    */
   @JvmOverloads
   @JvmStatic
@@ -313,21 +281,20 @@ public object PhysicsServer3D : Object() {
     shape: RID,
     transform: Transform3D = Transform3D(),
     disabled: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.areaAddShapePtr, NIL)
   }
 
   /**
-   * Substitutes a given area shape by another. The old shape is selected by its index, the new one
-   * by its [RID].
+   * Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
    */
   @JvmStatic
   public final fun areaSetShape(
     area: RID,
     shapeIdx: Int,
     shape: RID,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong(), _RID to shape)
     TransferContext.callMethod(ptr, MethodBindings.areaSetShapePtr, NIL)
   }
@@ -340,7 +307,7 @@ public object PhysicsServer3D : Object() {
     area: RID,
     shapeIdx: Int,
     transform: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong(), TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.areaSetShapeTransformPtr, NIL)
   }
@@ -350,7 +317,7 @@ public object PhysicsServer3D : Object() {
     area: RID,
     shapeIdx: Int,
     disabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.areaSetShapeDisabledPtr, NIL)
   }
@@ -389,17 +356,16 @@ public object PhysicsServer3D : Object() {
    * Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
    */
   @JvmStatic
-  public final fun areaRemoveShape(area: RID, shapeIdx: Int): Unit {
+  public final fun areaRemoveShape(area: RID, shapeIdx: Int) {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.areaRemoveShapePtr, NIL)
   }
 
   /**
-   * Removes all shapes from an area. It does not delete the shapes, so they can be reassigned
-   * later.
+   * Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
    */
   @JvmStatic
-  public final fun areaClearShapes(area: RID): Unit {
+  public final fun areaClearShapes(area: RID) {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(ptr, MethodBindings.areaClearShapesPtr, NIL)
   }
@@ -408,7 +374,7 @@ public object PhysicsServer3D : Object() {
    * Assigns the area to one or many physics layers.
    */
   @JvmStatic
-  public final fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
+  public final fun areaSetCollisionLayer(area: RID, layer: Long) {
     TransferContext.writeArguments(_RID to area, LONG to layer)
     TransferContext.callMethod(ptr, MethodBindings.areaSetCollisionLayerPtr, NIL)
   }
@@ -427,7 +393,7 @@ public object PhysicsServer3D : Object() {
    * Sets which physics layers the area will monitor.
    */
   @JvmStatic
-  public final fun areaSetCollisionMask(area: RID, mask: Long): Unit {
+  public final fun areaSetCollisionMask(area: RID, mask: Long) {
     TransferContext.writeArguments(_RID to area, LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.areaSetCollisionMaskPtr, NIL)
   }
@@ -443,15 +409,14 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value for an area parameter. A list of available parameters is on the [AreaParameter]
-   * constants.
+   * Sets the value for an area parameter. A list of available parameters is on the [AreaParameter] constants.
    */
   @JvmStatic
   public final fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.areaSetParamPtr, NIL)
   }
@@ -460,14 +425,13 @@ public object PhysicsServer3D : Object() {
    * Sets the transform matrix for an area.
    */
   @JvmStatic
-  public final fun areaSetTransform(area: RID, transform: Transform3D): Unit {
+  public final fun areaSetTransform(area: RID, transform: Transform3D) {
     TransferContext.writeArguments(_RID to area, TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.areaSetTransformPtr, NIL)
   }
 
   /**
-   * Returns an area parameter value. A list of available parameters is on the [AreaParameter]
-   * constants.
+   * Returns an area parameter value. A list of available parameters is on the [AreaParameter] constants.
    */
   @JvmStatic
   public final fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
@@ -490,7 +454,7 @@ public object PhysicsServer3D : Object() {
    * Assigns the area to a descendant of [Object], so it can exist in the node tree.
    */
   @JvmStatic
-  public final fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
+  public final fun areaAttachObjectInstanceId(area: RID, id: Long) {
     TransferContext.writeArguments(_RID to area, LONG to id)
     TransferContext.callMethod(ptr, MethodBindings.areaAttachObjectInstanceIdPtr, NIL)
   }
@@ -506,59 +470,49 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
-   * body enters or exits (a shape of) the given area, and must take the following five parameters:
+   * Sets the area's body monitor callback. This callback will be called when any other (shape of a) body enters or exits (a shape of) the given area, and must take the following five parameters:
    *
-   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
-   * the other body shape entered or exited the area,
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether the other body shape entered or exited the area,
    *
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
    *
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
    *
-   * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
-   * area,
+   * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the area,
    *
-   * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or
-   * exited.
+   * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or exited.
    *
-   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a
-   * body (with all its shapes) is entering for the first time or exiting for the last time.
+   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a body (with all its shapes) is entering for the first time or exiting for the last time.
    */
   @JvmStatic
-  public final fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
+  public final fun areaSetMonitorCallback(area: RID, callback: Callable) {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.areaSetMonitorCallbackPtr, NIL)
   }
 
   /**
-   * Sets the area's area monitor callback. This callback will be called when any other (shape of
-   * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
+   * Sets the area's area monitor callback. This callback will be called when any other (shape of an) area enters or exits (a shape of) the given area, and must take the following five parameters:
    *
-   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
-   * the other area's shape entered or exited the area,
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether the other area's shape entered or exited the area,
    *
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
    *
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
    *
-   * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
-   * the area,
+   * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited the area,
    *
-   * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered
-   * or exited.
+   * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered or exited.
    *
-   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an
-   * area (with all its shapes) is entering for the first time or exiting for the last time.
+   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an area (with all its shapes) is entering for the first time or exiting for the last time.
    */
   @JvmStatic
-  public final fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
+  public final fun areaSetAreaMonitorCallback(area: RID, callback: Callable) {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.areaSetAreaMonitorCallbackPtr, NIL)
   }
 
   @JvmStatic
-  public final fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
+  public final fun areaSetMonitorable(area: RID, monitorable: Boolean) {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
     TransferContext.callMethod(ptr, MethodBindings.areaSetMonitorablePtr, NIL)
   }
@@ -567,18 +521,15 @@ public object PhysicsServer3D : Object() {
    * Sets object pickable with rays.
    */
   @JvmStatic
-  public final fun areaSetRayPickable(area: RID, enable: Boolean): Unit {
+  public final fun areaSetRayPickable(area: RID, enable: Boolean) {
     TransferContext.writeArguments(_RID to area, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.areaSetRayPickablePtr, NIL)
   }
 
   /**
-   * Creates a 3D body object in the physics server, and returns the [RID] that identifies it. The
-   * default settings for the created area include a collision layer and mask set to `1`, and body mode
-   * set to [BODY_MODE_RIGID].
+   * Creates a 3D body object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and body mode set to [BODY_MODE_RIGID].
    *
-   * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
-   * [bodySetSpace] to add the body to a space.
+   * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use [bodySetSpace] to add the body to a space.
    */
   @JvmStatic
   public final fun bodyCreate(): RID {
@@ -591,7 +542,7 @@ public object PhysicsServer3D : Object() {
    * Assigns a space to the body (see [spaceCreate]).
    */
   @JvmStatic
-  public final fun bodySetSpace(body: RID, space: RID): Unit {
+  public final fun bodySetSpace(body: RID, space: RID) {
     TransferContext.writeArguments(_RID to body, _RID to space)
     TransferContext.callMethod(ptr, MethodBindings.bodySetSpacePtr, NIL)
   }
@@ -610,7 +561,7 @@ public object PhysicsServer3D : Object() {
    * Sets the body mode, from one of the [BodyMode] constants.
    */
   @JvmStatic
-  public final fun bodySetMode(body: RID, mode: BodyMode): Unit {
+  public final fun bodySetMode(body: RID, mode: BodyMode) {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.bodySetModePtr, NIL)
   }
@@ -629,7 +580,7 @@ public object PhysicsServer3D : Object() {
    * Sets the physics layer or layers a body belongs to.
    */
   @JvmStatic
-  public final fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
+  public final fun bodySetCollisionLayer(body: RID, layer: Long) {
     TransferContext.writeArguments(_RID to body, LONG to layer)
     TransferContext.callMethod(ptr, MethodBindings.bodySetCollisionLayerPtr, NIL)
   }
@@ -648,7 +599,7 @@ public object PhysicsServer3D : Object() {
    * Sets the physics layer or layers a body can collide with.
    */
   @JvmStatic
-  public final fun bodySetCollisionMask(body: RID, mask: Long): Unit {
+  public final fun bodySetCollisionMask(body: RID, mask: Long) {
     TransferContext.writeArguments(_RID to body, LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.bodySetCollisionMaskPtr, NIL)
   }
@@ -667,7 +618,7 @@ public object PhysicsServer3D : Object() {
    * Sets the body's collision priority.
    */
   @JvmStatic
-  public final fun bodySetCollisionPriority(body: RID, priority: Float): Unit {
+  public final fun bodySetCollisionPriority(body: RID, priority: Float) {
     TransferContext.writeArguments(_RID to body, DOUBLE to priority.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.bodySetCollisionPriorityPtr, NIL)
   }
@@ -683,8 +634,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their
-   * index, so you should track which shape has a given index.
+   * Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
    */
   @JvmOverloads
   @JvmStatic
@@ -693,21 +643,20 @@ public object PhysicsServer3D : Object() {
     shape: RID,
     transform: Transform3D = Transform3D(),
     disabled: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.bodyAddShapePtr, NIL)
   }
 
   /**
-   * Substitutes a given body shape by another. The old shape is selected by its index, the new one
-   * by its [RID].
+   * Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
    */
   @JvmStatic
   public final fun bodySetShape(
     body: RID,
     shapeIdx: Int,
     shape: RID,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), _RID to shape)
     TransferContext.callMethod(ptr, MethodBindings.bodySetShapePtr, NIL)
   }
@@ -720,7 +669,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     shapeIdx: Int,
     transform: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.bodySetShapeTransformPtr, NIL)
   }
@@ -730,7 +679,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     shapeIdx: Int,
     disabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.bodySetShapeDisabledPtr, NIL)
   }
@@ -769,7 +718,7 @@ public object PhysicsServer3D : Object() {
    * Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
    */
   @JvmStatic
-  public final fun bodyRemoveShape(body: RID, shapeIdx: Int): Unit {
+  public final fun bodyRemoveShape(body: RID, shapeIdx: Int) {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.bodyRemoveShapePtr, NIL)
   }
@@ -778,7 +727,7 @@ public object PhysicsServer3D : Object() {
    * Removes all shapes from a body.
    */
   @JvmStatic
-  public final fun bodyClearShapes(body: RID): Unit {
+  public final fun bodyClearShapes(body: RID) {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.bodyClearShapesPtr, NIL)
   }
@@ -787,7 +736,7 @@ public object PhysicsServer3D : Object() {
    * Assigns the area to a descendant of [Object], so it can exist in the node tree.
    */
   @JvmStatic
-  public final fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
+  public final fun bodyAttachObjectInstanceId(body: RID, id: Long) {
     TransferContext.writeArguments(_RID to body, LONG to id)
     TransferContext.callMethod(ptr, MethodBindings.bodyAttachObjectInstanceIdPtr, NIL)
   }
@@ -805,14 +754,12 @@ public object PhysicsServer3D : Object() {
   /**
    * If `true`, the continuous collision detection mode is enabled.
    *
-   * Continuous collision detection tries to predict where a moving body will collide, instead of
-   * moving it and correcting its movement if it collided.
+   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
    */
   @JvmStatic
-  public final fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
+  public final fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean) {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetEnableContinuousCollisionDetectionPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.bodySetEnableContinuousCollisionDetectionPtr, NIL)
   }
 
   /**
@@ -821,8 +768,7 @@ public object PhysicsServer3D : Object() {
   @JvmStatic
   public final fun bodyIsContinuousCollisionDetectionEnabled(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr,
-        BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -834,14 +780,13 @@ public object PhysicsServer3D : Object() {
     body: RID,
     `param`: BodyParameter,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.bodySetParamPtr, NIL)
   }
 
   /**
-   * Returns the value of a body parameter. A list of available parameters is on the [BodyParameter]
-   * constants.
+   * Returns the value of a body parameter. A list of available parameters is on the [BodyParameter] constants.
    */
   @JvmStatic
   public final fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
@@ -851,11 +796,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Restores the default inertia and center of mass based on shapes to cancel any custom values
-   * previously set using [bodySetParam].
+   * Restores the default inertia and center of mass based on shapes to cancel any custom values previously set using [bodySetParam].
    */
   @JvmStatic
-  public final fun bodyResetMassProperties(body: RID): Unit {
+  public final fun bodyResetMassProperties(body: RID) {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.bodyResetMassPropertiesPtr, NIL)
   }
@@ -868,7 +812,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     state: BodyState,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.bodySetStatePtr, NIL)
   }
@@ -886,14 +830,12 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a directional impulse without affecting rotation.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
    * This is equivalent to using [bodyApplyImpulse] at the body's center of mass.
    */
   @JvmStatic
-  public final fun bodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
+  public final fun bodyApplyCentralImpulse(body: RID, impulse: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.bodyApplyCentralImpulsePtr, NIL)
   }
@@ -901,9 +843,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a positioned impulse to the body.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
    * [position] is the offset from the body origin in global coordinates.
    */
@@ -913,7 +853,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     impulse: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.bodyApplyImpulsePtr, NIL)
   }
@@ -921,31 +861,27 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a rotational impulse to the body without affecting the position.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    */
   @JvmStatic
-  public final fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3): Unit {
+  public final fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.bodyApplyTorqueImpulsePtr, NIL)
   }
 
   /**
-   * Applies a directional force without affecting rotation. A force is time dependent and meant to
-   * be applied every physics update.
+   * Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.
    *
    * This is equivalent to using [bodyApplyForce] at the body's center of mass.
    */
   @JvmStatic
-  public final fun bodyApplyCentralForce(body: RID, force: Vector3): Unit {
+  public final fun bodyApplyCentralForce(body: RID, force: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
     TransferContext.callMethod(ptr, MethodBindings.bodyApplyCentralForcePtr, NIL)
   }
 
   /**
-   * Applies a positioned force to the body. A force is time dependent and meant to be applied every
-   * physics update.
+   * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
    *
    * [position] is the offset from the body origin in global coordinates.
    */
@@ -955,36 +891,33 @@ public object PhysicsServer3D : Object() {
     body: RID,
     force: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.bodyApplyForcePtr, NIL)
   }
 
   /**
-   * Applies a rotational force without affecting position. A force is time dependent and meant to
-   * be applied every physics update.
+   * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    */
   @JvmStatic
-  public final fun bodyApplyTorque(body: RID, torque: Vector3): Unit {
+  public final fun bodyApplyTorque(body: RID, torque: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
     TransferContext.callMethod(ptr, MethodBindings.bodyApplyTorquePtr, NIL)
   }
 
   /**
-   * Adds a constant directional force without affecting rotation that keeps being applied over time
-   * until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
+   * Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
    *
    * This is equivalent to using [bodyAddConstantForce] at the body's center of mass.
    */
   @JvmStatic
-  public final fun bodyAddConstantCentralForce(body: RID, force: Vector3): Unit {
+  public final fun bodyAddConstantCentralForce(body: RID, force: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
     TransferContext.callMethod(ptr, MethodBindings.bodyAddConstantCentralForcePtr, NIL)
   }
 
   /**
-   * Adds a constant positioned force to the body that keeps being applied over time until cleared
-   * with `body_set_constant_force(body, Vector3(0, 0, 0))`.
+   * Adds a constant positioned force to the body that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
    *
    * [position] is the offset from the body origin in global coordinates.
    */
@@ -994,17 +927,16 @@ public object PhysicsServer3D : Object() {
     body: RID,
     force: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.bodyAddConstantForcePtr, NIL)
   }
 
   /**
-   * Adds a constant rotational force without affecting position that keeps being applied over time
-   * until cleared with `body_set_constant_torque(body, Vector3(0, 0, 0))`.
+   * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `body_set_constant_torque(body, Vector3(0, 0, 0))`.
    */
   @JvmStatic
-  public final fun bodyAddConstantTorque(body: RID, torque: Vector3): Unit {
+  public final fun bodyAddConstantTorque(body: RID, torque: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
     TransferContext.callMethod(ptr, MethodBindings.bodyAddConstantTorquePtr, NIL)
   }
@@ -1015,7 +947,7 @@ public object PhysicsServer3D : Object() {
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   @JvmStatic
-  public final fun bodySetConstantForce(body: RID, force: Vector3): Unit {
+  public final fun bodySetConstantForce(body: RID, force: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
     TransferContext.callMethod(ptr, MethodBindings.bodySetConstantForcePtr, NIL)
   }
@@ -1038,7 +970,7 @@ public object PhysicsServer3D : Object() {
    * See [bodyAddConstantTorque].
    */
   @JvmStatic
-  public final fun bodySetConstantTorque(body: RID, torque: Vector3): Unit {
+  public final fun bodySetConstantTorque(body: RID, torque: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
     TransferContext.callMethod(ptr, MethodBindings.bodySetConstantTorquePtr, NIL)
   }
@@ -1056,11 +988,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector
-   * length. This is useful for jumping behavior.
+   * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
    */
   @JvmStatic
-  public final fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3): Unit {
+  public final fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3) {
     TransferContext.writeArguments(_RID to body, VECTOR3 to axisVelocity)
     TransferContext.callMethod(ptr, MethodBindings.bodySetAxisVelocityPtr, NIL)
   }
@@ -1070,7 +1001,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     axis: BodyAxis,
     lock: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to axis.id, BOOL to lock)
     TransferContext.callMethod(ptr, MethodBindings.bodySetAxisLockPtr, NIL)
   }
@@ -1086,7 +1017,7 @@ public object PhysicsServer3D : Object() {
    * Adds a body to the list of bodies exempt from collisions.
    */
   @JvmStatic
-  public final fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
+  public final fun bodyAddCollisionException(body: RID, exceptedBody: RID) {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
     TransferContext.callMethod(ptr, MethodBindings.bodyAddCollisionExceptionPtr, NIL)
   }
@@ -1094,21 +1025,19 @@ public object PhysicsServer3D : Object() {
   /**
    * Removes a body from the list of bodies exempt from collisions.
    *
-   * Continuous collision detection tries to predict where a moving body will collide, instead of
-   * moving it and correcting its movement if it collided.
+   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
    */
   @JvmStatic
-  public final fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
+  public final fun bodyRemoveCollisionException(body: RID, exceptedBody: RID) {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
     TransferContext.callMethod(ptr, MethodBindings.bodyRemoveCollisionExceptionPtr, NIL)
   }
 
   /**
-   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies.
-   * This is enabled by setting the maximum number of contacts reported to a number greater than 0.
+   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies. This is enabled by setting the maximum number of contacts reported to a number greater than 0.
    */
   @JvmStatic
-  public final fun bodySetMaxContactsReported(body: RID, amount: Int): Unit {
+  public final fun bodySetMaxContactsReported(body: RID, amount: Int) {
     TransferContext.writeArguments(_RID to body, LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.bodySetMaxContactsReportedPtr, NIL)
   }
@@ -1124,22 +1053,18 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets whether the body omits the standard force integration. If [enable] is `true`, the body
-   * will not automatically use applied forces, torques, and damping to update the body's linear and
-   * angular velocity. In this case, [bodySetForceIntegrationCallback] can be used to manually update
-   * the linear and angular velocity instead.
+   * Sets whether the body omits the standard force integration. If [enable] is `true`, the body will not automatically use applied forces, torques, and damping to update the body's linear and angular velocity. In this case, [bodySetForceIntegrationCallback] can be used to manually update the linear and angular velocity instead.
    *
    * This method is called when the property [RigidBody3D.customIntegrator] is set.
    */
   @JvmStatic
-  public final fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
+  public final fun bodySetOmitForceIntegration(body: RID, enable: Boolean) {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.bodySetOmitForceIntegrationPtr, NIL)
   }
 
   /**
-   * Returns `true` if the body is omitting the standard force integration. See
-   * [bodySetOmitForceIntegration].
+   * Returns `true` if the body is omitting the standard force integration. See [bodySetOmitForceIntegration].
    */
   @JvmStatic
   public final fun bodyIsOmittingForceIntegration(body: RID): Boolean {
@@ -1149,37 +1074,30 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the body's state synchronization callback function to [callable]. Use an empty [Callable]
-   * ([code skip-lint]Callable()[/code]) to clear the callback.
+   * Sets the body's state synchronization callback function to [callable]. Use an empty [Callable] ([code skip-lint]Callable()[/code]) to clear the callback.
    *
-   * The function [callable] will be called every physics frame, assuming that the body was active
-   * during the previous physics tick, and can be used to fetch the latest state from the physics
-   * server.
+   * The function [callable] will be called every physics frame, assuming that the body was active during the previous physics tick, and can be used to fetch the latest state from the physics server.
    *
    * The function [callable] must take the following parameters:
    *
    * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve the body's state.
    */
   @JvmStatic
-  public final fun bodySetStateSyncCallback(body: RID, callable: Callable): Unit {
+  public final fun bodySetStateSyncCallback(body: RID, callable: Callable) {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.bodySetStateSyncCallbackPtr, NIL)
   }
 
   /**
-   * Sets the body's custom force integration callback function to [callable]. Use an empty
-   * [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback.
+   * Sets the body's custom force integration callback function to [callable]. Use an empty [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback.
    *
-   * The function [callable] will be called every physics tick, before the standard force
-   * integration (see [bodySetOmitForceIntegration]). It can be used for example to update the body's
-   * linear and angular velocity based on contact with other bodies.
+   * The function [callable] will be called every physics tick, before the standard force integration (see [bodySetOmitForceIntegration]). It can be used for example to update the body's linear and angular velocity based on contact with other bodies.
    *
    * If [userdata] is not `null`, the function [callable] must take the following two parameters:
    *
    * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve and modify the body's state,
    *
-   * 2. [code skip-lint]userdata[/code]: a [Variant]; its value will be the [userdata] passed into
-   * this method.
+   * 2. [code skip-lint]userdata[/code]: a [Variant]; its value will be the [userdata] passed into this method.
    *
    * If [userdata] is `null`, then [callable] must take only the `state` parameter.
    */
@@ -1189,7 +1107,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     callable: Callable,
     userdata: Any? = null,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
     TransferContext.callMethod(ptr, MethodBindings.bodySetForceIntegrationCallbackPtr, NIL)
   }
@@ -1198,15 +1116,13 @@ public object PhysicsServer3D : Object() {
    * Sets the body pickable with rays if [enable] is set.
    */
   @JvmStatic
-  public final fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
+  public final fun bodySetRayPickable(body: RID, enable: Boolean) {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.bodySetRayPickablePtr, NIL)
   }
 
   /**
-   * Returns `true` if a collision would result from moving along a motion vector from a given point
-   * in space. [PhysicsTestMotionParameters3D] is passed to set motion parameters.
-   * [PhysicsTestMotionResult3D] can be passed to return additional information.
+   * Returns `true` if a collision would result from moving along a motion vector from a given point in space. [PhysicsTestMotionParameters3D] is passed to set motion parameters. [PhysicsTestMotionResult3D] can be passed to return additional information.
    */
   @JvmOverloads
   @JvmStatic
@@ -1221,8 +1137,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or
-   * removed from the physics space.
+   * Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or removed from the physics space.
    */
   @JvmStatic
   public final fun bodyGetDirectState(body: RID): PhysicsDirectBodyState3D? {
@@ -1242,12 +1157,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Requests that the physics server updates the rendering server with the latest positions of the
-   * given soft body's points through the [renderingServerHandler] interface.
+   * Requests that the physics server updates the rendering server with the latest positions of the given soft body's points through the [renderingServerHandler] interface.
    */
   @JvmStatic
-  public final fun softBodyUpdateRenderingServer(body: RID,
-      renderingServerHandler: PhysicsServer3DRenderingServerHandler?): Unit {
+  public final fun softBodyUpdateRenderingServer(body: RID, renderingServerHandler: PhysicsServer3DRenderingServerHandler?) {
     TransferContext.writeArguments(_RID to body, OBJECT to renderingServerHandler)
     TransferContext.callMethod(ptr, MethodBindings.softBodyUpdateRenderingServerPtr, NIL)
   }
@@ -1256,7 +1169,7 @@ public object PhysicsServer3D : Object() {
    * Assigns a space to the given soft body (see [spaceCreate]).
    */
   @JvmStatic
-  public final fun softBodySetSpace(body: RID, space: RID): Unit {
+  public final fun softBodySetSpace(body: RID, space: RID) {
     TransferContext.writeArguments(_RID to body, _RID to space)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetSpacePtr, NIL)
   }
@@ -1275,7 +1188,7 @@ public object PhysicsServer3D : Object() {
    * Sets the mesh of the given soft body.
    */
   @JvmStatic
-  public final fun softBodySetMesh(body: RID, mesh: RID): Unit {
+  public final fun softBodySetMesh(body: RID, mesh: RID) {
     TransferContext.writeArguments(_RID to body, _RID to mesh)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetMeshPtr, NIL)
   }
@@ -1284,18 +1197,17 @@ public object PhysicsServer3D : Object() {
    * Returns the bounds of the given soft body in global coordinates.
    */
   @JvmStatic
-  public final fun softBodyGetBounds(body: RID): AABB {
+  public final fun softBodyGetBounds(body: RID): CoreAABB {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetBoundsPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyGetBoundsPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
   /**
    * Sets the physics layer or layers the given soft body belongs to.
    */
   @JvmStatic
-  public final fun softBodySetCollisionLayer(body: RID, layer: Long): Unit {
+  public final fun softBodySetCollisionLayer(body: RID, layer: Long) {
     TransferContext.writeArguments(_RID to body, LONG to layer)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetCollisionLayerPtr, NIL)
   }
@@ -1314,7 +1226,7 @@ public object PhysicsServer3D : Object() {
    * Sets the physics layer or layers the given soft body can collide with.
    */
   @JvmStatic
-  public final fun softBodySetCollisionMask(body: RID, mask: Long): Unit {
+  public final fun softBodySetCollisionMask(body: RID, mask: Long) {
     TransferContext.writeArguments(_RID to body, LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetCollisionMaskPtr, NIL)
   }
@@ -1333,7 +1245,7 @@ public object PhysicsServer3D : Object() {
    * Adds the given body to the list of bodies exempt from collisions.
    */
   @JvmStatic
-  public final fun softBodyAddCollisionException(body: RID, bodyB: RID): Unit {
+  public final fun softBodyAddCollisionException(body: RID, bodyB: RID) {
     TransferContext.writeArguments(_RID to body, _RID to bodyB)
     TransferContext.callMethod(ptr, MethodBindings.softBodyAddCollisionExceptionPtr, NIL)
   }
@@ -1342,7 +1254,7 @@ public object PhysicsServer3D : Object() {
    * Removes the given body from the list of bodies exempt from collisions.
    */
   @JvmStatic
-  public final fun softBodyRemoveCollisionException(body: RID, bodyB: RID): Unit {
+  public final fun softBodyRemoveCollisionException(body: RID, bodyB: RID) {
     TransferContext.writeArguments(_RID to body, _RID to bodyB)
     TransferContext.callMethod(ptr, MethodBindings.softBodyRemoveCollisionExceptionPtr, NIL)
   }
@@ -1350,15 +1262,14 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the given body state for the given body (see [BodyState] constants).
    *
-   * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
-   * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
+   * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY], [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
    */
   @JvmStatic
   public final fun softBodySetState(
     body: RID,
     state: BodyState,
     variant: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to variant)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetStatePtr, NIL)
   }
@@ -1366,8 +1277,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the given soft body state (see [BodyState] constants).
    *
-   * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
-   * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
+   * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY], [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
    */
   @JvmStatic
   public final fun softBodyGetState(body: RID, state: BodyState): Any? {
@@ -1380,7 +1290,7 @@ public object PhysicsServer3D : Object() {
    * Sets the global transform of the given soft body.
    */
   @JvmStatic
-  public final fun softBodySetTransform(body: RID, transform: Transform3D): Unit {
+  public final fun softBodySetTransform(body: RID, transform: Transform3D) {
     TransferContext.writeArguments(_RID to body, TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetTransformPtr, NIL)
   }
@@ -1389,17 +1299,16 @@ public object PhysicsServer3D : Object() {
    * Sets whether the given soft body will be pickable when using object picking.
    */
   @JvmStatic
-  public final fun softBodySetRayPickable(body: RID, enable: Boolean): Unit {
+  public final fun softBodySetRayPickable(body: RID, enable: Boolean) {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetRayPickablePtr, NIL)
   }
 
   /**
-   * Sets the simulation precision of the given soft body. Increasing this value will improve the
-   * resulting simulation, but can affect performance. Use with care.
+   * Sets the simulation precision of the given soft body. Increasing this value will improve the resulting simulation, but can affect performance. Use with care.
    */
   @JvmStatic
-  public final fun softBodySetSimulationPrecision(body: RID, simulationPrecision: Int): Unit {
+  public final fun softBodySetSimulationPrecision(body: RID, simulationPrecision: Int) {
     TransferContext.writeArguments(_RID to body, LONG to simulationPrecision.toLong())
     TransferContext.callMethod(ptr, MethodBindings.softBodySetSimulationPrecisionPtr, NIL)
   }
@@ -1418,7 +1327,7 @@ public object PhysicsServer3D : Object() {
    * Sets the total mass for the given soft body.
    */
   @JvmStatic
-  public final fun softBodySetTotalMass(body: RID, totalMass: Float): Unit {
+  public final fun softBodySetTotalMass(body: RID, totalMass: Float) {
     TransferContext.writeArguments(_RID to body, DOUBLE to totalMass.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.softBodySetTotalMassPtr, NIL)
   }
@@ -1434,12 +1343,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the linear stiffness of the given soft body. Higher values will result in a stiffer body,
-   * while lower values will increase the body's ability to bend. The value can be between `0.0` and
-   * `1.0` (inclusive).
+   * Sets the linear stiffness of the given soft body. Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive).
    */
   @JvmStatic
-  public final fun softBodySetLinearStiffness(body: RID, stiffness: Float): Unit {
+  public final fun softBodySetLinearStiffness(body: RID, stiffness: Float) {
     TransferContext.writeArguments(_RID to body, DOUBLE to stiffness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.softBodySetLinearStiffnessPtr, NIL)
   }
@@ -1455,11 +1362,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the pressure coefficient of the given soft body. Simulates pressure build-up from inside
-   * this body. Higher values increase the strength of this effect.
+   * Sets the pressure coefficient of the given soft body. Simulates pressure build-up from inside this body. Higher values increase the strength of this effect.
    */
   @JvmStatic
-  public final fun softBodySetPressureCoefficient(body: RID, pressureCoefficient: Float): Unit {
+  public final fun softBodySetPressureCoefficient(body: RID, pressureCoefficient: Float) {
     TransferContext.writeArguments(_RID to body, DOUBLE to pressureCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.softBodySetPressureCoefficientPtr, NIL)
   }
@@ -1475,11 +1381,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the damping coefficient of the given soft body. Higher values will slow down the body more
-   * noticeably when forces are applied.
+   * Sets the damping coefficient of the given soft body. Higher values will slow down the body more noticeably when forces are applied.
    */
   @JvmStatic
-  public final fun softBodySetDampingCoefficient(body: RID, dampingCoefficient: Float): Unit {
+  public final fun softBodySetDampingCoefficient(body: RID, dampingCoefficient: Float) {
     TransferContext.writeArguments(_RID to body, DOUBLE to dampingCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.softBodySetDampingCoefficientPtr, NIL)
   }
@@ -1495,13 +1400,12 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the drag coefficient of the given soft body. Higher values increase this body's air
-   * resistance.
+   * Sets the drag coefficient of the given soft body. Higher values increase this body's air resistance.
    *
    * **Note:** This value is currently unused by Godot's default physics implementation.
    */
   @JvmStatic
-  public final fun softBodySetDragCoefficient(body: RID, dragCoefficient: Float): Unit {
+  public final fun softBodySetDragCoefficient(body: RID, dragCoefficient: Float) {
     TransferContext.writeArguments(_RID to body, DOUBLE to dragCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.softBodySetDragCoefficientPtr, NIL)
   }
@@ -1524,7 +1428,7 @@ public object PhysicsServer3D : Object() {
     body: RID,
     pointIndex: Int,
     globalPosition: Vector3,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to globalPosition)
     TransferContext.callMethod(ptr, MethodBindings.softBodyMovePointPtr, NIL)
   }
@@ -1543,7 +1447,7 @@ public object PhysicsServer3D : Object() {
    * Unpins all points of the given soft body.
    */
   @JvmStatic
-  public final fun softBodyRemoveAllPinnedPoints(body: RID): Unit {
+  public final fun softBodyRemoveAllPinnedPoints(body: RID) {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.softBodyRemoveAllPinnedPointsPtr, NIL)
   }
@@ -1551,15 +1455,14 @@ public object PhysicsServer3D : Object() {
   /**
    * Pins or unpins the given soft body point based on the value of [pin].
    *
-   * **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by
-   * forces, but you can still move it using [softBodyMovePoint].
+   * **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by forces, but you can still move it using [softBodyMovePoint].
    */
   @JvmStatic
   public final fun softBodyPinPoint(
     body: RID,
     pointIndex: Int,
     pin: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), BOOL to pin)
     TransferContext.callMethod(ptr, MethodBindings.softBodyPinPointPtr, NIL)
   }
@@ -1582,7 +1485,7 @@ public object PhysicsServer3D : Object() {
   }
 
   @JvmStatic
-  public final fun jointClear(joint: RID): Unit {
+  public final fun jointClear(joint: RID) {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(ptr, MethodBindings.jointClearPtr, NIL)
   }
@@ -1594,7 +1497,7 @@ public object PhysicsServer3D : Object() {
     localA: Vector3,
     bodyB: RID,
     localB: Vector3,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB, VECTOR3 to localB)
     TransferContext.callMethod(ptr, MethodBindings.jointMakePinPtr, NIL)
   }
@@ -1607,7 +1510,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     `param`: PinJointParam,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.pinJointSetParamPtr, NIL)
   }
@@ -1626,7 +1529,7 @@ public object PhysicsServer3D : Object() {
    * Sets position of the joint in the local space of body a of the joint.
    */
   @JvmStatic
-  public final fun pinJointSetLocalA(joint: RID, localA: Vector3): Unit {
+  public final fun pinJointSetLocalA(joint: RID, localA: Vector3) {
     TransferContext.writeArguments(_RID to joint, VECTOR3 to localA)
     TransferContext.callMethod(ptr, MethodBindings.pinJointSetLocalAPtr, NIL)
   }
@@ -1645,7 +1548,7 @@ public object PhysicsServer3D : Object() {
    * Sets position of the joint in the local space of body b of the joint.
    */
   @JvmStatic
-  public final fun pinJointSetLocalB(joint: RID, localB: Vector3): Unit {
+  public final fun pinJointSetLocalB(joint: RID, localB: Vector3) {
     TransferContext.writeArguments(_RID to joint, VECTOR3 to localB)
     TransferContext.callMethod(ptr, MethodBindings.pinJointSetLocalBPtr, NIL)
   }
@@ -1667,7 +1570,7 @@ public object PhysicsServer3D : Object() {
     hingeA: Transform3D,
     bodyB: RID,
     hingeB: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to bodyB, TRANSFORM3D to hingeB)
     TransferContext.callMethod(ptr, MethodBindings.jointMakeHingePtr, NIL)
   }
@@ -1680,7 +1583,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     `param`: HingeJointParam,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.hingeJointSetParamPtr, NIL)
   }
@@ -1703,7 +1606,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     flag: HingeJointFlag,
     enabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.hingeJointSetFlagPtr, NIL)
   }
@@ -1725,7 +1628,7 @@ public object PhysicsServer3D : Object() {
     localRefA: Transform3D,
     bodyB: RID,
     localRefB: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(ptr, MethodBindings.jointMakeSliderPtr, NIL)
   }
@@ -1738,7 +1641,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     `param`: SliderJointParam,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.sliderJointSetParamPtr, NIL)
   }
@@ -1760,7 +1663,7 @@ public object PhysicsServer3D : Object() {
     localRefA: Transform3D,
     bodyB: RID,
     localRefB: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(ptr, MethodBindings.jointMakeConeTwistPtr, NIL)
   }
@@ -1773,7 +1676,7 @@ public object PhysicsServer3D : Object() {
     joint: RID,
     `param`: ConeTwistJointParam,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.coneTwistJointSetParamPtr, NIL)
   }
@@ -1802,7 +1705,7 @@ public object PhysicsServer3D : Object() {
    * Sets the priority value of the Joint3D.
    */
   @JvmStatic
-  public final fun jointSetSolverPriority(joint: RID, priority: Int): Unit {
+  public final fun jointSetSolverPriority(joint: RID, priority: Int) {
     TransferContext.writeArguments(_RID to joint, LONG to priority.toLong())
     TransferContext.callMethod(ptr, MethodBindings.jointSetSolverPriorityPtr, NIL)
   }
@@ -1821,7 +1724,7 @@ public object PhysicsServer3D : Object() {
    * Sets whether the bodies attached to the [Joint3D] will collide with each other.
    */
   @JvmStatic
-  public final fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
+  public final fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean) {
     TransferContext.writeArguments(_RID to joint, BOOL to disable)
     TransferContext.callMethod(ptr, MethodBindings.jointDisableCollisionsBetweenBodiesPtr, NIL)
   }
@@ -1837,8 +1740,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Make the joint a generic six degrees of freedom (6DOF) joint. Use [generic6dofJointSetFlag] and
-   * [generic6dofJointSetParam] to set the joint's flags and parameters respectively.
+   * Make the joint a generic six degrees of freedom (6DOF) joint. Use [generic6dofJointSetFlag] and [generic6dofJointSetParam] to set the joint's flags and parameters respectively.
    */
   @JvmStatic
   public final fun jointMakeGeneric6dof(
@@ -1847,14 +1749,13 @@ public object PhysicsServer3D : Object() {
     localRefA: Transform3D,
     bodyB: RID,
     localRefB: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(ptr, MethodBindings.jointMakeGeneric6dofPtr, NIL)
   }
 
   /**
-   * Sets the value of a given generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list
-   * of available parameters.
+   * Sets the value of a given generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list of available parameters.
    */
   @JvmStatic
   public final fun generic6dofJointSetParam(
@@ -1862,14 +1763,13 @@ public object PhysicsServer3D : Object() {
     axis: Vector3.Axis,
     `param`: G6DOFJointAxisParam,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.generic6dofJointSetParamPtr, NIL)
   }
 
   /**
-   * Returns the value of a generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list of
-   * available parameters.
+   * Returns the value of a generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list of available parameters.
    */
   @JvmStatic
   public final fun generic6dofJointGetParam(
@@ -1883,8 +1783,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value of a given generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
-   * available flags.
+   * Sets the value of a given generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of available flags.
    */
   @JvmStatic
   public final fun generic6dofJointSetFlag(
@@ -1892,14 +1791,13 @@ public object PhysicsServer3D : Object() {
     axis: Vector3.Axis,
     flag: G6DOFJointAxisFlag,
     enable: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.generic6dofJointSetFlagPtr, NIL)
   }
 
   /**
-   * Returns the value of a generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
-   * available flags.
+   * Returns the value of a generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of available flags.
    */
   @JvmStatic
   public final fun generic6dofJointGetFlag(
@@ -1913,11 +1811,10 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the
-   * objects that can be created by PhysicsServer3D, an error will be sent to the console.
+   * Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the objects that can be created by PhysicsServer3D, an error will be sent to the console.
    */
   @JvmStatic
-  public final fun freeRid(rid: RID): Unit {
+  public final fun freeRid(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.freeRidPtr, NIL)
   }
@@ -1926,14 +1823,13 @@ public object PhysicsServer3D : Object() {
    * Activates or deactivates the 3D physics engine.
    */
   @JvmStatic
-  public final fun setActive(active: Boolean): Unit {
+  public final fun setActive(active: Boolean) {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
   }
 
   /**
-   * Returns information about the current state of the 3D physics engine. See [ProcessInfo] for a
-   * list of available states.
+   * Returns information about the current state of the 3D physics engine. See [ProcessInfo] for a list of available states.
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
@@ -1997,8 +1893,7 @@ public object PhysicsServer3D : Object() {
      */
     DAMPING(1),
     /**
-     * If above 0, this value is the maximum value for an impulse that this Joint3D puts on its
-     * ends.
+     * If above 0, this value is the maximum value for an impulse that this Joint3D puts on its ends.
      */
     IMPULSE_CLAMP(2),
     ;
@@ -2017,8 +1912,7 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * The speed with which the two bodies get pulled together when they move in different
-     * directions.
+     * The speed with which the two bodies get pulled together when they move in different directions.
      */
     BIAS(0),
     /**
@@ -2093,13 +1987,11 @@ public object PhysicsServer3D : Object() {
      */
     LINEAR_LIMIT_LOWER(1),
     /**
-     * A factor applied to the movement across the slider axis once the limits get surpassed. The
-     * lower, the slower the movement.
+     * A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement.
      */
     LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy
-     * gets lost.
+     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost.
      */
     LINEAR_LIMIT_RESTITUTION(3),
     /**
@@ -2107,8 +1999,7 @@ public object PhysicsServer3D : Object() {
      */
     LINEAR_LIMIT_DAMPING(4),
     /**
-     * A factor applied to the movement across the slider axis as long as the slider is in the
-     * limits. The lower, the slower the movement.
+     * A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement.
      */
     LINEAR_MOTION_SOFTNESS(5),
     /**
@@ -2217,8 +2108,7 @@ public object PhysicsServer3D : Object() {
      */
     BIAS(2),
     /**
-     * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the
-     * joint.
+     * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the joint.
      */
     SOFTNESS(3),
     /**
@@ -2249,13 +2139,11 @@ public object PhysicsServer3D : Object() {
      */
     LINEAR_UPPER_LIMIT(1),
     /**
-     * A factor that gets applied to the movement across the axes. The lower, the slower the
-     * movement.
+     * A factor that gets applied to the movement across the axes. The lower, the slower the movement.
      */
     LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution on the axes movement. The lower, the more velocity-energy gets
-     * lost.
+     * The amount of restitution on the axes movement. The lower, the more velocity-energy gets lost.
      */
     LINEAR_RESTITUTION(3),
     /**
@@ -2298,8 +2186,7 @@ public object PhysicsServer3D : Object() {
      */
     ANGULAR_FORCE_LIMIT(15),
     /**
-     * When correcting the crossing of limits in rotation across the axes, this error tolerance
-     * factor defines how much the correction gets slowed down. The lower, the slower.
+     * When correcting the crossing of limits in rotation across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
      */
     ANGULAR_ERP(16),
     /**
@@ -2406,13 +2293,11 @@ public object PhysicsServer3D : Object() {
      */
     HEIGHTMAP(8),
     /**
-     * The [Shape3D] is used internally for a soft body. Any attempt to create this kind of shape
-     * results in an error.
+     * The [Shape3D] is used internally for a soft body. Any attempt to create this kind of shape results in an error.
      */
     SOFT_BODY(9),
     /**
-     * This constant is used internally by the engine. Any attempt to create this kind of shape
-     * results in an error.
+     * This constant is used internally by the engine. Any attempt to create this kind of shape results in an error.
      */
     CUSTOM(10),
     ;
@@ -2431,8 +2316,7 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
-     * possible values.
+     * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for possible values.
      */
     GRAVITY_OVERRIDE_MODE(0),
     /**
@@ -2448,20 +2332,13 @@ public object PhysicsServer3D : Object() {
      */
     GRAVITY_IS_POINT(3),
     /**
-     * Constant to set/get the distance at which the gravity strength is equal to the gravity
-     * controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface
-     * gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will
-     * have falloff according to the inverse square law, so in the example, at 200 meters from the
-     * center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it
-     * will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
+     * Constant to set/get the distance at which the gravity strength is equal to the gravity controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
      *
-     * The above is true only when the unit distance is a positive number. When this is set to 0.0,
-     * the gravity will be constant regardless of distance.
+     * The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.
      */
     GRAVITY_POINT_UNIT_DISTANCE(4),
     /**
-     * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for
-     * possible values.
+     * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for possible values.
      */
     LINEAR_DAMP_OVERRIDE_MODE(5),
     /**
@@ -2469,8 +2346,7 @@ public object PhysicsServer3D : Object() {
      */
     LINEAR_DAMP(6),
     /**
-     * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for
-     * possible values.
+     * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for possible values.
      */
     ANGULAR_DAMP_OVERRIDE_MODE(7),
     /**
@@ -2482,23 +2358,19 @@ public object PhysicsServer3D : Object() {
      */
     PRIORITY(9),
     /**
-     * Constant to set/get the magnitude of area-specific wind force. This wind force only applies
-     * to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.
+     * Constant to set/get the magnitude of area-specific wind force. This wind force only applies to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.
      */
     WIND_FORCE_MAGNITUDE(10),
     /**
-     * Constant to set/get the 3D vector that specifies the origin from which an area-specific wind
-     * blows.
+     * Constant to set/get the 3D vector that specifies the origin from which an area-specific wind blows.
      */
     WIND_SOURCE(11),
     /**
-     * Constant to set/get the 3D vector that specifies the direction in which an area-specific wind
-     * blows.
+     * Constant to set/get the 3D vector that specifies the direction in which an area-specific wind blows.
      */
     WIND_DIRECTION(12),
     /**
-     * Constant to set/get the exponential rate at which wind force decreases with distance from its
-     * origin.
+     * Constant to set/get the exponential rate at which wind force decreases with distance from its origin.
      */
     WIND_ATTENUATION_FACTOR(13),
     ;
@@ -2517,28 +2389,23 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * This area does not affect gravity/damp. These are generally areas that exist only to detect
-     * collisions, and objects entering or exiting them.
+     * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
      */
     DISABLED(0),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many
-     * overlapping areas can combine their physics to make interesting effects.
+     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects.
      */
     COMBINE(1),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops
-     * taking into account the rest of the areas, even the default one.
+     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one.
      */
     COMBINE_REPLACE(2),
     /**
-     * This area replaces any gravity/damp, even the default one, and stops taking into account the
-     * rest of the areas.
+     * This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas.
      */
     REPLACE(3),
     /**
-     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the
-     * areas, down to the default one.
+     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one.
      */
     REPLACE_COMBINE(4),
     ;
@@ -2557,23 +2424,19 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
-     * collide with other bodies along its path when moved.
+     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
      */
     STATIC(0),
     /**
-     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and
-     * collides with other bodies along its path.
+     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
      */
     KINEMATIC(1),
     /**
-     * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces
-     * applied.
+     * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces applied.
      */
     RIGID(2),
     /**
-     * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear
-     * velocity is affected by external forces.
+     * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear velocity is affected by external forces.
      */
     RIGID_LINEAR(3),
     ;
@@ -2709,13 +2572,11 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * The value of the first parameter and area callback function receives, when an object enters
-     * one of its shapes.
+     * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
      */
     ADDED(0),
     /**
-     * The value of the first parameter and area callback function receives, when an object exits
-     * one of its shapes.
+     * The value of the first parameter and area callback function receives, when an object exits one of its shapes.
      */
     REMOVED(1),
     ;
@@ -2761,45 +2622,35 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant to set/get the maximum distance a pair of bodies has to move before their collision
-     * status has to be recalculated.
+     * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
      */
     CONTACT_RECYCLE_RADIUS(0),
     /**
-     * Constant to set/get the maximum distance a shape can be from another before they are
-     * considered separated and the contact is discarded.
+     * Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded.
      */
     CONTACT_MAX_SEPARATION(1),
     /**
-     * Constant to set/get the maximum distance a shape can penetrate another shape before it is
-     * considered a collision.
+     * Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision.
      */
     CONTACT_MAX_ALLOWED_PENETRATION(2),
     /**
-     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a
-     * factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in
-     * that state because of numerical imprecision.
+     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision.
      */
     CONTACT_DEFAULT_BIAS(3),
     /**
-     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially
-     * inactive for both linear and angular velocity will be put to sleep after the time given.
+     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
      */
     BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
     /**
-     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially
-     * inactive for both linear and angular velocity will be put to sleep after the time given.
+     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
      */
     BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
     /**
-     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for
-     * both linear and angular velocity will be put to sleep after this time.
+     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time.
      */
     BODY_TIME_TO_SLEEP(6),
     /**
-     * Constant to set/get the number of solver iterations for contacts and constraints. The greater
-     * the number of iterations, the more accurate the collisions and constraints will be. However, a
-     * greater number of iterations requires more CPU power, which can decrease performance.
+     * Constant to set/get the number of solver iterations for contacts and constraints. The greater the number of iterations, the more accurate the collisions and constraints will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
      */
     SOLVER_ITERATIONS(7),
     ;
@@ -2837,510 +2688,510 @@ public object PhysicsServer3D : Object() {
 
   public object MethodBindings {
     internal val worldBoundaryShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "world_boundary_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "world_boundary_shape_create", 529_393_457)
 
     internal val separationRayShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "separation_ray_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "separation_ray_shape_create", 529_393_457)
 
     internal val sphereShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "sphere_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "sphere_shape_create", 529_393_457)
 
     internal val boxShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "box_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "box_shape_create", 529_393_457)
 
     internal val capsuleShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "capsule_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "capsule_shape_create", 529_393_457)
 
     internal val cylinderShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "cylinder_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "cylinder_shape_create", 529_393_457)
 
     internal val convexPolygonShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "convex_polygon_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "convex_polygon_shape_create", 529_393_457)
 
     internal val concavePolygonShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "concave_polygon_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "concave_polygon_shape_create", 529_393_457)
 
     internal val heightmapShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "heightmap_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "heightmap_shape_create", 529_393_457)
 
     internal val customShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "custom_shape_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "custom_shape_create", 529_393_457)
 
     internal val shapeSetDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_data", 3175752987)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_data", 3_175_752_987)
 
     internal val shapeSetMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_margin", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_margin", 1_794_382_983)
 
     internal val shapeGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_type", 3418923367)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_type", 3_418_923_367)
 
     internal val shapeGetDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_data", 4171304767)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_data", 4_171_304_767)
 
     internal val shapeGetMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_margin", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_margin", 866_169_185)
 
     internal val spaceCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_create", 529_393_457)
 
     internal val spaceSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_active", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_active", 1_265_174_801)
 
     internal val spaceIsActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_is_active", 4155700596)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_is_active", 4_155_700_596)
 
     internal val spaceSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_param", 2406017470)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_param", 2_406_017_470)
 
     internal val spaceGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_param", 1523206731)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_param", 1_523_206_731)
 
     internal val spaceGetDirectStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_direct_state", 2048616813)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_direct_state", 2_048_616_813)
 
     internal val areaCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_create", 529_393_457)
 
     internal val areaSetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_space", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_space", 395_945_892)
 
     internal val areaGetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_space", 3814569979)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_space", 3_814_569_979)
 
     internal val areaAddShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_add_shape", 3711419014)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_add_shape", 3_711_419_014)
 
     internal val areaSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape", 2310537182)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape", 2_310_537_182)
 
     internal val areaSetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_transform", 675327471)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_transform", 675_327_471)
 
     internal val areaSetShapeDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_disabled", 2658558584)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_disabled", 2_658_558_584)
 
     internal val areaGetShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_count", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_count", 2_198_884_583)
 
     internal val areaGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape", 1066463050)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape", 1_066_463_050)
 
     internal val areaGetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_transform", 1050775521)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_transform", 1_050_775_521)
 
     internal val areaRemoveShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_remove_shape", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_remove_shape", 3_411_492_887)
 
     internal val areaClearShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_clear_shapes", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_clear_shapes", 2_722_037_293)
 
     internal val areaSetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_layer", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_layer", 3_411_492_887)
 
     internal val areaGetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_layer", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_layer", 2_198_884_583)
 
     internal val areaSetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_mask", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_mask", 3_411_492_887)
 
     internal val areaGetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_mask", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_mask", 2_198_884_583)
 
     internal val areaSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_param", 2980114638)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_param", 2_980_114_638)
 
     internal val areaSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_transform", 3935195649)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_transform", 3_935_195_649)
 
     internal val areaGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_param", 890056067)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_param", 890_056_067)
 
     internal val areaGetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_transform", 1128465797)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_transform", 1_128_465_797)
 
     internal val areaAttachObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_attach_object_instance_id", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_attach_object_instance_id", 3_411_492_887)
 
     internal val areaGetObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_object_instance_id", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_object_instance_id", 2_198_884_583)
 
     internal val areaSetMonitorCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitor_callback", 3379118538)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitor_callback", 3_379_118_538)
 
     internal val areaSetAreaMonitorCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_area_monitor_callback", 3379118538)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_area_monitor_callback", 3_379_118_538)
 
     internal val areaSetMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitorable", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitorable", 1_265_174_801)
 
     internal val areaSetRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_ray_pickable", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_ray_pickable", 1_265_174_801)
 
     internal val bodyCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_create", 529_393_457)
 
     internal val bodySetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_space", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_space", 395_945_892)
 
     internal val bodyGetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_space", 3814569979)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_space", 3_814_569_979)
 
     internal val bodySetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_mode", 606803466)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_mode", 606_803_466)
 
     internal val bodyGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_mode", 2488819728)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_mode", 2_488_819_728)
 
     internal val bodySetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_layer", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_layer", 3_411_492_887)
 
     internal val bodyGetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_layer", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_layer", 2_198_884_583)
 
     internal val bodySetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_mask", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_mask", 3_411_492_887)
 
     internal val bodyGetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_mask", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_mask", 2_198_884_583)
 
     internal val bodySetCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_priority", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_priority", 1_794_382_983)
 
     internal val bodyGetCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_priority", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_priority", 866_169_185)
 
     internal val bodyAddShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_shape", 3711419014)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_shape", 3_711_419_014)
 
     internal val bodySetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape", 2310537182)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape", 2_310_537_182)
 
     internal val bodySetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_transform", 675327471)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_transform", 675_327_471)
 
     internal val bodySetShapeDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_disabled", 2658558584)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_disabled", 2_658_558_584)
 
     internal val bodyGetShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_count", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_count", 2_198_884_583)
 
     internal val bodyGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape", 1066463050)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape", 1_066_463_050)
 
     internal val bodyGetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_transform", 1050775521)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_transform", 1_050_775_521)
 
     internal val bodyRemoveShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_shape", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_shape", 3_411_492_887)
 
     internal val bodyClearShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_clear_shapes", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_clear_shapes", 2_722_037_293)
 
     internal val bodyAttachObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_attach_object_instance_id", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_attach_object_instance_id", 3_411_492_887)
 
     internal val bodyGetObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_object_instance_id", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_object_instance_id", 2_198_884_583)
 
     internal val bodySetEnableContinuousCollisionDetectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_enable_continuous_collision_detection", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_enable_continuous_collision_detection", 1_265_174_801)
 
     internal val bodyIsContinuousCollisionDetectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_continuous_collision_detection_enabled", 4155700596)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_continuous_collision_detection_enabled", 4_155_700_596)
 
     internal val bodySetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_param", 910941953)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_param", 910_941_953)
 
     internal val bodyGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_param", 3385027841)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_param", 3_385_027_841)
 
     internal val bodyResetMassPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_reset_mass_properties", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_reset_mass_properties", 2_722_037_293)
 
     internal val bodySetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state", 599977762)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state", 599_977_762)
 
     internal val bodyGetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_state", 1850449534)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_state", 1_850_449_534)
 
     internal val bodyApplyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_impulse", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_impulse", 3_227_306_858)
 
     internal val bodyApplyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_impulse", 390416203)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_impulse", 390_416_203)
 
     internal val bodyApplyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque_impulse", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque_impulse", 3_227_306_858)
 
     internal val bodyApplyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_force", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_force", 3_227_306_858)
 
     internal val bodyApplyForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_force", 390416203)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_force", 390_416_203)
 
     internal val bodyApplyTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque", 3_227_306_858)
 
     internal val bodyAddConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_central_force", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_central_force", 3_227_306_858)
 
     internal val bodyAddConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_force", 390416203)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_force", 390_416_203)
 
     internal val bodyAddConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_torque", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_torque", 3_227_306_858)
 
     internal val bodySetConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_force", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_force", 3_227_306_858)
 
     internal val bodyGetConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_force", 531438156)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_force", 531_438_156)
 
     internal val bodySetConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_torque", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_torque", 3_227_306_858)
 
     internal val bodyGetConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_torque", 531438156)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_torque", 531_438_156)
 
     internal val bodySetAxisVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_velocity", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_velocity", 3_227_306_858)
 
     internal val bodySetAxisLockPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_lock", 2020836892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_lock", 2_020_836_892)
 
     internal val bodyIsAxisLockedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_axis_locked", 587853580)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_axis_locked", 587_853_580)
 
     internal val bodyAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_collision_exception", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_collision_exception", 395_945_892)
 
     internal val bodyRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_collision_exception", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_collision_exception", 395_945_892)
 
     internal val bodySetMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_max_contacts_reported", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_max_contacts_reported", 3_411_492_887)
 
     internal val bodyGetMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_max_contacts_reported", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_max_contacts_reported", 2_198_884_583)
 
     internal val bodySetOmitForceIntegrationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_omit_force_integration", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_omit_force_integration", 1_265_174_801)
 
     internal val bodyIsOmittingForceIntegrationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_omitting_force_integration", 4155700596)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_omitting_force_integration", 4_155_700_596)
 
     internal val bodySetStateSyncCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state_sync_callback", 3379118538)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state_sync_callback", 3_379_118_538)
 
     internal val bodySetForceIntegrationCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_force_integration_callback", 3059434249)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_force_integration_callback", 3_059_434_249)
 
     internal val bodySetRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_ray_pickable", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_ray_pickable", 1_265_174_801)
 
     internal val bodyTestMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_test_motion", 1944921792)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_test_motion", 1_944_921_792)
 
     internal val bodyGetDirectStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_direct_state", 3029727957)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_direct_state", 3_029_727_957)
 
     internal val softBodyCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_create", 529_393_457)
 
     internal val softBodyUpdateRenderingServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_update_rendering_server", 2218179753)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_update_rendering_server", 2_218_179_753)
 
     internal val softBodySetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_space", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_space", 395_945_892)
 
     internal val softBodyGetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_space", 3814569979)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_space", 3_814_569_979)
 
     internal val softBodySetMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_mesh", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_mesh", 395_945_892)
 
     internal val softBodyGetBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_bounds", 974181306)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_bounds", 974_181_306)
 
     internal val softBodySetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_layer", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_layer", 3_411_492_887)
 
     internal val softBodyGetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_layer", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_layer", 2_198_884_583)
 
     internal val softBodySetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_mask", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_mask", 3_411_492_887)
 
     internal val softBodyGetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_mask", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_mask", 2_198_884_583)
 
     internal val softBodyAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_add_collision_exception", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_add_collision_exception", 395_945_892)
 
     internal val softBodyRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_collision_exception", 395945892)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_collision_exception", 395_945_892)
 
     internal val softBodySetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_state", 599977762)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_state", 599_977_762)
 
     internal val softBodyGetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_state", 1850449534)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_state", 1_850_449_534)
 
     internal val softBodySetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_transform", 3935195649)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_transform", 3_935_195_649)
 
     internal val softBodySetRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_ray_pickable", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_ray_pickable", 1_265_174_801)
 
     internal val softBodySetSimulationPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_simulation_precision", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_simulation_precision", 3_411_492_887)
 
     internal val softBodyGetSimulationPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_simulation_precision", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_simulation_precision", 2_198_884_583)
 
     internal val softBodySetTotalMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_total_mass", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_total_mass", 1_794_382_983)
 
     internal val softBodyGetTotalMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_total_mass", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_total_mass", 866_169_185)
 
     internal val softBodySetLinearStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_linear_stiffness", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_linear_stiffness", 1_794_382_983)
 
     internal val softBodyGetLinearStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_linear_stiffness", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_linear_stiffness", 866_169_185)
 
     internal val softBodySetPressureCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_pressure_coefficient", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_pressure_coefficient", 1_794_382_983)
 
     internal val softBodyGetPressureCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_pressure_coefficient", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_pressure_coefficient", 866_169_185)
 
     internal val softBodySetDampingCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_damping_coefficient", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_damping_coefficient", 1_794_382_983)
 
     internal val softBodyGetDampingCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_damping_coefficient", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_damping_coefficient", 866_169_185)
 
     internal val softBodySetDragCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_drag_coefficient", 1794382983)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_drag_coefficient", 1_794_382_983)
 
     internal val softBodyGetDragCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_drag_coefficient", 866169185)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_drag_coefficient", 866_169_185)
 
     internal val softBodyMovePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_move_point", 831953689)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_move_point", 831_953_689)
 
     internal val softBodyGetPointGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_point_global_position", 3440143363)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_point_global_position", 3_440_143_363)
 
     internal val softBodyRemoveAllPinnedPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_all_pinned_points", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_all_pinned_points", 2_722_037_293)
 
     internal val softBodyPinPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_pin_point", 2658558584)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_pin_point", 2_658_558_584)
 
     internal val softBodyIsPointPinnedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_is_point_pinned", 3120086654)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_is_point_pinned", 3_120_086_654)
 
     internal val jointCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_create", 529393457)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_create", 529_393_457)
 
     internal val jointClearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_clear", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_clear", 2_722_037_293)
 
     internal val jointMakePinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_pin", 4280171926)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_pin", 4_280_171_926)
 
     internal val pinJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_param", 810685294)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_param", 810_685_294)
 
     internal val pinJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_param", 2817972347)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_param", 2_817_972_347)
 
     internal val pinJointSetLocalAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_a", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_a", 3_227_306_858)
 
     internal val pinJointGetLocalAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_a", 531438156)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_a", 531_438_156)
 
     internal val pinJointSetLocalBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_b", 3227306858)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_b", 3_227_306_858)
 
     internal val pinJointGetLocalBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_b", 531438156)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_b", 531_438_156)
 
     internal val jointMakeHingePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_hinge", 1684107643)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_hinge", 1_684_107_643)
 
     internal val hingeJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_param", 3165502333)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_param", 3_165_502_333)
 
     internal val hingeJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_param", 2129207581)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_param", 2_129_207_581)
 
     internal val hingeJointSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_flag", 1601626188)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_flag", 1_601_626_188)
 
     internal val hingeJointGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_flag", 4165147865)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_flag", 4_165_147_865)
 
     internal val jointMakeSliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_slider", 1684107643)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_slider", 1_684_107_643)
 
     internal val sliderJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_set_param", 2264833593)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_set_param", 2_264_833_593)
 
     internal val sliderJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_get_param", 3498644957)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_get_param", 3_498_644_957)
 
     internal val jointMakeConeTwistPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_cone_twist", 1684107643)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_cone_twist", 1_684_107_643)
 
     internal val coneTwistJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_set_param", 808587618)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_set_param", 808_587_618)
 
     internal val coneTwistJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_get_param", 1134789658)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_get_param", 1_134_789_658)
 
     internal val jointGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_type", 4290791900)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_type", 4_290_791_900)
 
     internal val jointSetSolverPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_set_solver_priority", 3411492887)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_set_solver_priority", 3_411_492_887)
 
     internal val jointGetSolverPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_solver_priority", 2198884583)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_solver_priority", 2_198_884_583)
 
     internal val jointDisableCollisionsBetweenBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_disable_collisions_between_bodies", 1265174801)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_disable_collisions_between_bodies", 1_265_174_801)
 
     internal val jointIsDisabledCollisionsBetweenBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_is_disabled_collisions_between_bodies", 4155700596)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_is_disabled_collisions_between_bodies", 4_155_700_596)
 
     internal val jointMakeGeneric6dofPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_generic_6dof", 1684107643)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_generic_6dof", 1_684_107_643)
 
     internal val generic6dofJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_param", 2600081391)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_param", 2_600_081_391)
 
     internal val generic6dofJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_param", 467122058)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_param", 467_122_058)
 
     internal val generic6dofJointSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_flag", 3570926903)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_flag", 3_570_926_903)
 
     internal val generic6dofJointGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_flag", 4158090196)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_flag", 4_158_090_196)
 
     internal val freeRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "free_rid", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "free_rid", 2_722_037_293)
 
     internal val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "set_active", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "set_active", 2_586_408_642)
 
     internal val getProcessInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "get_process_info", 1332958745)
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "get_process_info", 1_332_958_745)
   }
 }

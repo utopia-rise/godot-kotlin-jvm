@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,8 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * TextureProgressBar works like [ProgressBar], but uses up to 3 textures instead of Godot's [Theme]
- * resource. It can be used to create horizontal, vertical and radial progress bars.
+ * TextureProgressBar works like [ProgressBar], but uses up to 3 textures instead of Godot's [Theme] resource. It can be used to create horizontal, vertical and radial progress bars.
  */
 @GodotBaseType
 public open class TextureProgressBar : Range() {
@@ -49,10 +45,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE],
-   * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
-   * equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the
-   * texture fills and tends towards [radialFillDegrees].
+   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [radialFillDegrees].
    *
    * **Note:** [radialInitialAngle] is wrapped between `0` and `360` degrees (inclusive).
    */
@@ -65,9 +58,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE],
-   * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
-   * equal to its `max_value`, the texture fills up to this angle.
+   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.
    *
    * See [Range.value], [Range.maxValue].
    */
@@ -80,19 +71,13 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
-   * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
    *
-   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
-   * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
-   * empty space where needed.
+   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you need to move it outside the texture's bounds, modify the [textureProgress] to contain additional empty space where needed.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var radialCenterOffset: Vector2
@@ -104,10 +89,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*`
-   * properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial
-   * [fillMode], this setting will only enable stretching for [textureProgress], while [textureUnder]
-   * and [textureOver] will be treated like in [NinePatchRect].
+   * If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*` properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial [fillMode], this setting will only enable stretching for [textureProgress], while [textureUnder] and [textureOver] will be treated like in [NinePatchRect].
    */
   public final inline var ninePatchStretch: Boolean
     @JvmName("ninePatchStretchProperty")
@@ -151,9 +133,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and
-   * side will have a height of 16 pixels. You can set all 4 margin values individually to create
-   * panels with non-uniform borders. Only effective if [ninePatchStretch] is `true`.
+   * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. Only effective if [ninePatchStretch] is `true`.
    */
   public final inline var stretchMarginBottom: Int
     @JvmName("stretchMarginBottomProperty")
@@ -175,8 +155,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that
-   * hides part of [textureProgress].
+   * [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [textureProgress].
    */
   public final inline var textureOver: Texture2D?
     @JvmName("textureOverProperty")
@@ -187,9 +166,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * [Texture2D] that clips based on the node's `value` and [fillMode]. As `value` increased, the
-   * texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if
-   * `value` is equal to `min_value`.
+   * [Texture2D] that clips based on the node's `value` and [fillMode]. As `value` increased, the texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if `value` is equal to `min_value`.
    *
    * The `value` property comes from [Range]. See [Range.value], [Range.minValue], [Range.maxValue].
    */
@@ -202,15 +179,11 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
-   * borders, to avoid transparent margins in your progress texture.
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureProgressOffset: Vector2
@@ -225,11 +198,8 @@ public open class TextureProgressBar : Range() {
    * Multiplies the color of the bar's [textureUnder] texture.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintUnder: Color
@@ -241,15 +211,11 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
-   * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintOver: Color
@@ -264,11 +230,8 @@ public open class TextureProgressBar : Range() {
    * Multiplies the color of the bar's [textureProgress] texture.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintProgress: Color
@@ -279,7 +242,7 @@ public open class TextureProgressBar : Range() {
       setTintProgress(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(676, scriptIndex)
   }
 
@@ -294,16 +257,12 @@ public open class TextureProgressBar : Range() {
    * textureprogressbar.radialCenterOffset = myCoreType
    * ``````
    *
-   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
-   * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
    *
-   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
-   * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
-   * empty space where needed.
+   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you need to move it outside the texture's bounds, modify the [textureProgress] to contain additional empty space where needed.
    */
   @CoreTypeHelper
-  public final fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      radialCenterOffset.apply {
+  public final fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 = radialCenterOffset.apply {
      block(this)
      radialCenterOffset = this
   }
@@ -319,12 +278,10 @@ public open class TextureProgressBar : Range() {
    * textureprogressbar.textureProgressOffset = myCoreType
    * ``````
    *
-   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
-   * borders, to avoid transparent margins in your progress texture.
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
    */
   @CoreTypeHelper
-  public final fun textureProgressOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      textureProgressOffset.apply {
+  public final fun textureProgressOffsetMutate(block: Vector2.() -> Unit): Vector2 = textureProgressOffset.apply {
      block(this)
      textureProgressOffset = this
   }
@@ -359,8 +316,7 @@ public open class TextureProgressBar : Range() {
    * textureprogressbar.tintOver = myCoreType
    * ``````
    *
-   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
-   * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
   @CoreTypeHelper
   public final fun tintOverMutate(block: Color.() -> Unit): Color = tintOver.apply {
@@ -387,7 +343,7 @@ public open class TextureProgressBar : Range() {
      tintProgress = this
   }
 
-  public final fun setUnderTexture(tex: Texture2D?): Unit {
+  public final fun setUnderTexture(tex: Texture2D?) {
     TransferContext.writeArguments(OBJECT to tex)
     TransferContext.callMethod(ptr, MethodBindings.setUnderTexturePtr, NIL)
   }
@@ -398,7 +354,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setProgressTexture(tex: Texture2D?): Unit {
+  public final fun setProgressTexture(tex: Texture2D?) {
     TransferContext.writeArguments(OBJECT to tex)
     TransferContext.callMethod(ptr, MethodBindings.setProgressTexturePtr, NIL)
   }
@@ -409,7 +365,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setOverTexture(tex: Texture2D?): Unit {
+  public final fun setOverTexture(tex: Texture2D?) {
     TransferContext.writeArguments(OBJECT to tex)
     TransferContext.callMethod(ptr, MethodBindings.setOverTexturePtr, NIL)
   }
@@ -420,7 +376,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setFillMode(mode: Int): Unit {
+  public final fun setFillMode(mode: Int) {
     TransferContext.writeArguments(LONG to mode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFillModePtr, NIL)
   }
@@ -431,7 +387,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTintUnder(tint: Color): Unit {
+  public final fun setTintUnder(tint: Color) {
     TransferContext.writeArguments(COLOR to tint)
     TransferContext.callMethod(ptr, MethodBindings.setTintUnderPtr, NIL)
   }
@@ -442,7 +398,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setTintProgress(tint: Color): Unit {
+  public final fun setTintProgress(tint: Color) {
     TransferContext.writeArguments(COLOR to tint)
     TransferContext.callMethod(ptr, MethodBindings.setTintProgressPtr, NIL)
   }
@@ -453,7 +409,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setTintOver(tint: Color): Unit {
+  public final fun setTintOver(tint: Color) {
     TransferContext.writeArguments(COLOR to tint)
     TransferContext.callMethod(ptr, MethodBindings.setTintOverPtr, NIL)
   }
@@ -464,7 +420,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setTextureProgressOffset(offset: Vector2): Unit {
+  public final fun setTextureProgressOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setTextureProgressOffsetPtr, NIL)
   }
@@ -475,7 +431,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setRadialInitialAngle(mode: Float): Unit {
+  public final fun setRadialInitialAngle(mode: Float) {
     TransferContext.writeArguments(DOUBLE to mode.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadialInitialAnglePtr, NIL)
   }
@@ -486,7 +442,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRadialCenterOffset(mode: Vector2): Unit {
+  public final fun setRadialCenterOffset(mode: Vector2) {
     TransferContext.writeArguments(VECTOR2 to mode)
     TransferContext.callMethod(ptr, MethodBindings.setRadialCenterOffsetPtr, NIL)
   }
@@ -497,7 +453,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setFillDegrees(mode: Float): Unit {
+  public final fun setFillDegrees(mode: Float) {
     TransferContext.writeArguments(DOUBLE to mode.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFillDegreesPtr, NIL)
   }
@@ -509,17 +465,15 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related
-   * properties.
+   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
    */
-  public final fun setStretchMargin(margin: Side, `value`: Int): Unit {
+  public final fun setStretchMargin(margin: Side, `value`: Int) {
     TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setStretchMarginPtr, NIL)
   }
 
   /**
-   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related
-   * properties.
+   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
    */
   public final fun getStretchMargin(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
@@ -527,7 +481,7 @@ public open class TextureProgressBar : Range() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setNinePatchStretch(stretch: Boolean): Unit {
+  public final fun setNinePatchStretch(stretch: Boolean) {
     TransferContext.writeArguments(BOOL to stretch)
     TransferContext.callMethod(ptr, MethodBindings.setNinePatchStretchPtr, NIL)
   }
@@ -558,15 +512,11 @@ public open class TextureProgressBar : Range() {
      */
     BOTTOM_TO_TOP(3),
     /**
-     * Turns the node into a radial bar. The [textureProgress] fills clockwise. See
-     * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
-     * fills up.
+     * Turns the node into a radial bar. The [textureProgress] fills clockwise. See [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar fills up.
      */
     CLOCKWISE(4),
     /**
-     * Turns the node into a radial bar. The [textureProgress] fills counterclockwise. See
-     * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
-     * fills up.
+     * Turns the node into a radial bar. The [textureProgress] fills counterclockwise. See [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar fills up.
      */
     COUNTER_CLOCKWISE(5),
     /**
@@ -578,9 +528,7 @@ public open class TextureProgressBar : Range() {
      */
     BILINEAR_TOP_AND_BOTTOM(7),
     /**
-     * Turns the node into a radial bar. The [textureProgress] fills radially from the center,
-     * expanding both clockwise and counterclockwise. See [radialCenterOffset], [radialInitialAngle]
-     * and [radialFillDegrees] to control the way the bar fills up.
+     * Turns the node into a radial bar. The [textureProgress] fills radially from the center, expanding both clockwise and counterclockwise. See [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar fills up.
      */
     CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;
@@ -599,81 +547,81 @@ public open class TextureProgressBar : Range() {
 
   public object MethodBindings {
     internal val setUnderTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_under_texture", 4051416890)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_under_texture", 4_051_416_890)
 
     internal val getUnderTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_under_texture", 3635182373)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_under_texture", 3_635_182_373)
 
     internal val setProgressTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_progress_texture", 4051416890)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_progress_texture", 4_051_416_890)
 
     internal val getProgressTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_progress_texture", 3635182373)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_progress_texture", 3_635_182_373)
 
     internal val setOverTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_over_texture", 4051416890)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_over_texture", 4_051_416_890)
 
     internal val getOverTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_over_texture", 3635182373)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_over_texture", 3_635_182_373)
 
     internal val setFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_mode", 1286410249)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_mode", 1_286_410_249)
 
     internal val getFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_mode", 2455072627)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_mode", 2_455_072_627)
 
     internal val setTintUnderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_under", 2920490490)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_under", 2_920_490_490)
 
     internal val getTintUnderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_under", 3444240500)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_under", 3_444_240_500)
 
     internal val setTintProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_progress", 2920490490)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_progress", 2_920_490_490)
 
     internal val getTintProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_progress", 3444240500)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_progress", 3_444_240_500)
 
     internal val setTintOverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_over", 2920490490)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_over", 2_920_490_490)
 
     internal val getTintOverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_over", 3444240500)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_over", 3_444_240_500)
 
     internal val setTextureProgressOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_texture_progress_offset", 743155724)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_texture_progress_offset", 743_155_724)
 
     internal val getTextureProgressOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_texture_progress_offset", 3341600327)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_texture_progress_offset", 3_341_600_327)
 
     internal val setRadialInitialAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_initial_angle", 373806689)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_initial_angle", 373_806_689)
 
     internal val getRadialInitialAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_initial_angle", 191475506)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_initial_angle", 191_475_506)
 
     internal val setRadialCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_center_offset", 743155724)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_center_offset", 743_155_724)
 
     internal val getRadialCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_center_offset", 1497962370)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_center_offset", 1_497_962_370)
 
     internal val setFillDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_degrees", 373806689)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_degrees", 373_806_689)
 
     internal val getFillDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_degrees", 191475506)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_degrees", 191_475_506)
 
     internal val setStretchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_stretch_margin", 437707142)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_stretch_margin", 437_707_142)
 
     internal val getStretchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_stretch_margin", 1983885014)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_stretch_margin", 1_983_885_014)
 
     internal val setNinePatchStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_nine_patch_stretch", 2586408642)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_nine_patch_stretch", 2_586_408_642)
 
     internal val getNinePatchStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_nine_patch_stretch", 36873697)
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_nine_patch_stretch", 36_873_697)
   }
 }

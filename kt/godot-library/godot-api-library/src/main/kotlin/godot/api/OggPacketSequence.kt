@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -47,11 +44,8 @@ public open class OggPacketSequence : Resource() {
    * Contains the granule positions for each page in this packet sequence.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var granulePositions: PackedInt64Array
@@ -63,8 +57,7 @@ public open class OggPacketSequence : Resource() {
     }
 
   /**
-   * Holds sample rate information about this sequence. Must be set by another class that actually
-   * understands the codec.
+   * Holds sample rate information about this sequence. Must be set by another class that actually understands the codec.
    */
   public final inline var samplingRate: Float
     @JvmName("samplingRateProperty")
@@ -74,7 +67,7 @@ public open class OggPacketSequence : Resource() {
       setSamplingRate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(407, scriptIndex)
   }
 
@@ -92,22 +85,19 @@ public open class OggPacketSequence : Resource() {
    * Contains the granule positions for each page in this packet sequence.
    */
   @CoreTypeHelper
-  public final fun granulePositionsMutate(block: PackedInt64Array.() -> Unit): PackedInt64Array =
-      granulePositions.apply {
+  public final fun granulePositionsMutate(block: PackedInt64Array.() -> Unit): PackedInt64Array = granulePositions.apply {
      block(this)
      granulePositions = this
   }
 
   /**
    * This is a helper function for [granulePositions] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Contains the granule positions for each page in this packet sequence.
    */
   @CoreTypeHelper
-  public final fun granulePositionsMutateEach(block: (index: Int, `value`: Long) -> Unit):
-      PackedInt64Array = granulePositions.apply {
+  public final fun granulePositionsMutateEach(block: (index: Int, `value`: Long) -> Unit): PackedInt64Array = granulePositions.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -115,7 +105,7 @@ public open class OggPacketSequence : Resource() {
      granulePositions = this
   }
 
-  public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>): Unit {
+  public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>) {
     TransferContext.writeArguments(ARRAY to packetData)
     TransferContext.callMethod(ptr, MethodBindings.setPacketDataPtr, NIL)
   }
@@ -126,19 +116,18 @@ public open class OggPacketSequence : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
-  public final fun setPacketGranulePositions(granulePositions: PackedInt64Array): Unit {
+  public final fun setPacketGranulePositions(granulePositions: PackedInt64Array) {
     TransferContext.writeArguments(PACKED_INT_64_ARRAY to granulePositions)
     TransferContext.callMethod(ptr, MethodBindings.setPacketGranulePositionsPtr, NIL)
   }
 
   public final fun getPacketGranulePositions(): PackedInt64Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPacketGranulePositionsPtr,
-        PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketGranulePositionsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
-  public final fun setSamplingRate(samplingRate: Float): Unit {
+  public final fun setSamplingRate(samplingRate: Float) {
     TransferContext.writeArguments(DOUBLE to samplingRate.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSamplingRatePtr, NIL)
   }
@@ -162,24 +151,24 @@ public open class OggPacketSequence : Resource() {
 
   public object MethodBindings {
     internal val setPacketDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_data", 381264803)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_data", 381_264_803)
 
     internal val getPacketDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_data", 3995934104)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_data", 3_995_934_104)
 
     internal val setPacketGranulePositionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions", 3709968205)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions", 3_709_968_205)
 
     internal val getPacketGranulePositionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions", 235988956)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions", 235_988_956)
 
     internal val setSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_sampling_rate", 373806689)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "set_sampling_rate", 373_806_689)
 
     internal val getSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_sampling_rate", 1740695150)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_sampling_rate", 1_740_695_150)
 
     internal val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_length", 1740695150)
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_length", 1_740_695_150)
   }
 }

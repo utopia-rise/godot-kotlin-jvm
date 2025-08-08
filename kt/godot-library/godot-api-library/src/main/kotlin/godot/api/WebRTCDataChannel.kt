@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,7 +17,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 @GodotBaseType
@@ -36,7 +32,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
       setWriteMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(841, scriptIndex)
   }
 
@@ -52,7 +48,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Closes this data channel, notifying the other peer.
    */
-  public final fun close(): Unit {
+  public final fun close() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
@@ -66,7 +62,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setWriteMode(writeMode: WriteMode): Unit {
+  public final fun setWriteMode(writeMode: WriteMode) {
     TransferContext.writeArguments(LONG to writeMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setWriteModePtr, NIL)
   }
@@ -107,8 +103,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns the ID assigned to this channel during creation (or auto-assigned during negotiation).
    *
-   * If the channel is not negotiated out-of-band the ID will only be available after the connection
-   * is established (will return `65535` until then).
+   * If the channel is not negotiated out-of-band the ID will only be available after the connection is established (will return `65535` until then).
    */
   public final fun getId(): Int {
     TransferContext.writeArguments()
@@ -139,8 +134,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the sub-protocol assigned to this channel during creation. An empty string if not
-   * specified.
+   * Returns the sub-protocol assigned to this channel during creation. An empty string if not specified.
    */
   public final fun getProtocol(): String {
     TransferContext.writeArguments()
@@ -170,13 +164,11 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     id: Long,
   ) {
     /**
-     * Tells the channel to send data over this channel as text. An external peer (non-Godot) would
-     * receive this as a string.
+     * Tells the channel to send data over this channel as text. An external peer (non-Godot) would receive this as a string.
      */
     TEXT(0),
     /**
-     * Tells the channel to send data over this channel as binary. An external peer (non-Godot)
-     * would receive this as array buffer or blob.
+     * Tells the channel to send data over this channel as binary. An external peer (non-Godot) would receive this as array buffer or blob.
      */
     BINARY(1),
     ;
@@ -203,8 +195,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
      */
     STATE_OPEN(1),
     /**
-     * The channel is being closed, no new messages will be accepted, but those already in queue
-     * will be flushed.
+     * The channel is being closed, no new messages will be accepted, but those already in queue will be flushed.
      */
     STATE_CLOSING(2),
     /**
@@ -227,45 +218,45 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "poll", 166280745)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "poll", 166_280_745)
 
     internal val closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "close", 3218959716)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "close", 3_218_959_716)
 
     internal val wasStringPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "was_string_packet", 36873697)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "was_string_packet", 36_873_697)
 
     internal val setWriteModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "set_write_mode", 1999768052)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "set_write_mode", 1_999_768_052)
 
     internal val getWriteModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_write_mode", 2848495172)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_write_mode", 2_848_495_172)
 
     internal val getReadyStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_ready_state", 3501143017)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_ready_state", 3_501_143_017)
 
     internal val getLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_label", 201670096)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_label", 201_670_096)
 
     internal val isOrderedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_ordered", 36873697)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_ordered", 36_873_697)
 
     internal val getIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_id", 3905245786)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_id", 3_905_245_786)
 
     internal val getMaxPacketLifeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_packet_life_time", 3905245786)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_packet_life_time", 3_905_245_786)
 
     internal val getMaxRetransmitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_retransmits", 3905245786)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_retransmits", 3_905_245_786)
 
     internal val getProtocolPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_protocol", 201670096)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_protocol", 201_670_096)
 
     internal val isNegotiatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_negotiated", 36873697)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_negotiated", 36_873_697)
 
     internal val getBufferedAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_buffered_amount", 3905245786)
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_buffered_amount", 3_905_245_786)
   }
 }

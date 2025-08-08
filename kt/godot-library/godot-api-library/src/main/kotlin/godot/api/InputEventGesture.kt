@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,21 +18,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures
- * can't be emulated using mouse, because they typically require multi-touch.
+ * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures can't be emulated using mouse, because they typically require multi-touch.
  */
 @GodotBaseType
 public open class InputEventGesture internal constructor() : InputEventWithModifiers() {
   /**
-   * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the
-   * position is relative to the current [Control] that received this gesture.
+   * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the position is relative to the current [Control] that received this gesture.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -46,7 +38,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
       setPosition(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(295, scriptIndex)
   }
 
@@ -61,8 +53,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
    * inputeventgesture.position = myCoreType
    * ``````
    *
-   * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the
-   * position is relative to the current [Control] that received this gesture.
+   * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the position is relative to the current [Control] that received this gesture.
    */
   @CoreTypeHelper
   public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply {
@@ -70,7 +61,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
      position = this
   }
 
-  public final fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2) {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -85,9 +76,9 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
 
   public object MethodBindings {
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventGesture", "set_position", 743155724)
+        TypeManager.getMethodBindPtr("InputEventGesture", "set_position", 743_155_724)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventGesture", "get_position", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventGesture", "get_position", 3_341_600_327)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,7 +17,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -55,29 +51,22 @@ import kotlin.jvm.JvmOverloads
  *         print("Received message: ", packet_string)
  * ```
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(442, scriptIndex)
   }
 
   /**
-   * Binds this [PacketPeerUDP] to the specified [port] and [bindAddress] with a buffer size
-   * [recvBufSize], allowing it to receive incoming packets.
+   * Binds this [PacketPeerUDP] to the specified [port] and [bindAddress] with a buffer size [recvBufSize], allowing it to receive incoming packets.
    *
-   * If [bindAddress] is set to `"*"` (default), the peer will be bound on all available addresses
-   * (both IPv4 and IPv6).
+   * If [bindAddress] is set to `"*"` (default), the peer will be bound on all available addresses (both IPv4 and IPv6).
    *
-   * If [bindAddress] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound
-   * to all available addresses matching that IP type.
+   * If [bindAddress] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.
    *
-   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the peer
-   * will only be bound to the interface with that address (or fail if no interface with the given
-   * address exists).
+   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the peer will only be bound to the interface with that address (or fail if no interface with the given address exists).
    */
   @JvmOverloads
   public final fun bind(
@@ -93,7 +82,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Closes the [PacketPeerUDP]'s underlying UDP socket.
    */
-  public final fun close(): Unit {
+  public final fun close() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
@@ -101,8 +90,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Waits for a packet to arrive on the bound address. See [bind].
    *
-   * **Note:** [wait] can't be interrupted once it has been called. This can be worked around by
-   * allowing the other party to send a specific "death pill" packet like this:
+   * **Note:** [wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:
    *
    * ```gdscript
    * //gdscript
@@ -152,16 +140,9 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Calling this method connects this UDP peer to the given [host]/[port] pair. UDP is in reality
-   * connectionless, so this option only means that incoming packets from different addresses are
-   * automatically discarded, and that outgoing packets are always sent to the connected address
-   * (future calls to [setDestAddress] are not allowed). This method does not send any data to the
-   * remote peer, to do that, use [PacketPeer.putVar] or [PacketPeer.putPacket] as usual. See also
-   * [UDPServer].
+   * Calling this method connects this UDP peer to the given [host]/[port] pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to [setDestAddress] are not allowed). This method does not send any data to the remote peer, to do that, use [PacketPeer.putVar] or [PacketPeer.putPacket] as usual. See also [UDPServer].
    *
-   * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP
-   * spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your
-   * application is transferring sensitive information.
+   * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your application is transferring sensitive information.
    */
   public final fun connectToHost(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -170,8 +151,7 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Returns `true` if the UDP socket is open and has been connected to a remote address. See
-   * [connectToHost].
+   * Returns `true` if the UDP socket is open and has been connected to a remote address. See [connectToHost].
    */
   public final fun isSocketConnected(): Boolean {
     TransferContext.writeArguments()
@@ -180,8 +160,7 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Returns the IP of the remote peer that sent the last packet(that was received with
-   * [PacketPeer.getPacket] or [PacketPeer.getVar]).
+   * Returns the IP of the remote peer that sent the last packet(that was received with [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
   public final fun getPacketIp(): String {
     TransferContext.writeArguments()
@@ -190,8 +169,7 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Returns the port of the remote peer that sent the last packet(that was received with
-   * [PacketPeer.getPacket] or [PacketPeer.getVar]).
+   * Returns the port of the remote peer that sent the last packet(that was received with [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
   public final fun getPacketPort(): Int {
     TransferContext.writeArguments()
@@ -209,11 +187,9 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Sets the destination address and port for sending packets and variables. A hostname will be
-   * resolved using DNS if needed.
+   * Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.
    *
-   * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address
-   * (e.g. `255.255.255.255`).
+   * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).
    */
   public final fun setDestAddress(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -222,26 +198,21 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255",
-   * 4343)`. This option is disabled by default.
+   * Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.
    *
-   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and
-   * this option to be enabled to receive broadcast packets too.
+   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.
    */
-  public final fun setBroadcastEnabled(enabled: Boolean): Unit {
+  public final fun setBroadcastEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setBroadcastEnabledPtr, NIL)
   }
 
   /**
-   * Joins the multicast group specified by [multicastAddress] using the interface identified by
-   * [interfaceName].
+   * Joins the multicast group specified by [multicastAddress] using the interface identified by [interfaceName].
    *
-   * You can join the same multicast group with multiple interfaces. Use [IP.getLocalInterfaces] to
-   * know which are available.
+   * You can join the same multicast group with multiple interfaces. Use [IP.getLocalInterfaces] to know which are available.
    *
-   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for
-   * multicast to work.
+   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.
    */
   public final fun joinMulticastGroup(multicastAddress: String, interfaceName: String): Error {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
@@ -250,8 +221,7 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Removes the interface identified by [interfaceName] from the multicast group specified by
-   * [multicastAddress].
+   * Removes the interface identified by [interfaceName] from the multicast group specified by [multicastAddress].
    */
   public final fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): Error {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
@@ -263,41 +233,42 @@ public open class PacketPeerUDP : PacketPeer() {
 
   public object MethodBindings {
     internal val bindPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "bind", 4051239242)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "bind", 4_051_239_242)
 
     internal val closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "close", 3218959716)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "close", 3_218_959_716)
 
-    internal val waitPtr: VoidPtr = TypeManager.getMethodBindPtr("PacketPeerUDP", "wait", 166280745)
+    internal val waitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "wait", 166_280_745)
 
     internal val isBoundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "is_bound", 36873697)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "is_bound", 36_873_697)
 
     internal val connectToHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "connect_to_host", 993915709)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "connect_to_host", 993_915_709)
 
     internal val isSocketConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "is_socket_connected", 36873697)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "is_socket_connected", 36_873_697)
 
     internal val getPacketIpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_packet_ip", 201670096)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_packet_ip", 201_670_096)
 
     internal val getPacketPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_packet_port", 3905245786)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_packet_port", 3_905_245_786)
 
     internal val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_local_port", 3905245786)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_local_port", 3_905_245_786)
 
     internal val setDestAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "set_dest_address", 993915709)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "set_dest_address", 993_915_709)
 
     internal val setBroadcastEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "set_broadcast_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "set_broadcast_enabled", 2_586_408_642)
 
     internal val joinMulticastGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "join_multicast_group", 852856452)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "join_multicast_group", 852_856_452)
 
     internal val leaveMulticastGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "leave_multicast_group", 852856452)
+        TypeManager.getMethodBindPtr("PacketPeerUDP", "leave_multicast_group", 852_856_452)
   }
 }

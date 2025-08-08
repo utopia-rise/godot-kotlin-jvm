@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
       setFunction(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(733, scriptIndex)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -90,8 +86,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * ```
      * vec3 c = clamp(c, vec3(0.0), vec3(1.0));
      * const vec3 a = vec3(0.055f);
-     * return mix((vec3(1.0f) + a) * pow(c.rgb, vec3(1.0f / 2.4f)) - a, 12.92f * c.rgb,
-     * lessThan(c.rgb, vec3(0.0031308f)));
+     * return mix((vec3(1.0f) + a) * pow(c.rgb, vec3(1.0f / 2.4f)) - a, 12.92f * c.rgb, lessThan(c.rgb, vec3(0.0031308f)));
      * ```
      *
      * The Compatibility renderer uses a simpler formula:
@@ -107,8 +102,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      *
      * ```
      * vec3 c = input;
-     * return mix(pow((c.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)), c.rgb * (1.0 /
-     * 12.92), lessThan(c.rgb, vec3(0.04045)));
+     * return mix(pow((c.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)), c.rgb * (1.0 / 12.92), lessThan(c.rgb, vec3(0.04045)));
      * ```
      *
      * The Compatibility renderer uses a simpler formula:
@@ -139,9 +133,9 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "set_function", 3973396138)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "set_function", 3_973_396_138)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "get_function", 554863321)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "get_function", 554_863_321)
   }
 }

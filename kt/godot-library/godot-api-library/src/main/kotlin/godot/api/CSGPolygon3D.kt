@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,29 +31,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also
- * [CSGMesh3D] for using 3D meshes as CSG nodes.
+ * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also [CSGMesh3D] for using 3D meshes as CSG nodes.
  *
- * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
- * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
- * node within another CSG node also has a significant CPU cost, so it should be avoided during
- * gameplay.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG node within another CSG node also has a significant CPU cost, so it should be avoided during gameplay.
  */
 @GodotBaseType
 public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
-   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave
-   * polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise,
-   * triangulation will fail and no mesh will be generated.
+   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise, triangulation will fail and no mesh will be generated.
    *
    * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
@@ -90,8 +78,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_SPIN], the total number of degrees the [polygon] is rotated when
-   * extruding.
+   * When [mode] is [MODE_SPIN], the total number of degrees the [polygon] is rotated when extruding.
    */
   public final inline var spinDegrees: Float
     @JvmName("spinDegreesProperty")
@@ -124,8 +111,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], this will determine if the interval should be by distance
-   * ([PATH_INTERVAL_DISTANCE]) or subdivision fractions ([PATH_INTERVAL_SUBDIVIDE]).
+   * When [mode] is [MODE_PATH], this will determine if the interval should be by distance ([PATH_INTERVAL_DISTANCE]) or subdivision fractions ([PATH_INTERVAL_SUBDIVIDE]).
    */
   public final inline var pathIntervalType: PathIntervalType
     @JvmName("pathIntervalTypeProperty")
@@ -147,8 +133,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], extrusions that are less than this angle, will be merged together
-   * to reduce polygon count.
+   * When [mode] is [MODE_PATH], extrusions that are less than this angle, will be merged together to reduce polygon count.
    */
   public final inline var pathSimplifyAngle: Float
     @JvmName("pathSimplifyAngleProperty")
@@ -159,8 +144,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], the path rotation method used to rotate the [polygon] as it is
-   * extruded.
+   * When [mode] is [MODE_PATH], the path rotation method used to rotate the [polygon] as it is extruded.
    */
   public final inline var pathRotation: PathRotation
     @JvmName("pathRotationProperty")
@@ -171,9 +155,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], if `true` the polygon will be rotated according to the proper
-   * tangent of the path at the sampled points. If `false` an approximation is used, which decreases in
-   * accuracy as the number of subdivisions decreases.
+   * When [mode] is [MODE_PATH], if `true` the polygon will be rotated according to the proper tangent of the path at the sampled points. If `false` an approximation is used, which decreases in accuracy as the number of subdivisions decreases.
    */
   public final inline var pathRotationAccurate: Boolean
     @JvmName("pathRotationAccurateProperty")
@@ -184,8 +166,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the
-   * starting point for the extrusions, not the [Transform3D] of the [pathNode].
+   * When [mode] is [MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the starting point for the extrusions, not the [Transform3D] of the [pathNode].
    */
   public final inline var pathLocal: Boolean
     @JvmName("pathLocalProperty")
@@ -196,9 +177,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], by default, the top half of the [material] is stretched along the
-   * entire length of the extruded shape. If `false` the top half of the material is repeated every
-   * step of the extrusion.
+   * When [mode] is [MODE_PATH], by default, the top half of the [material] is stretched along the entire length of the extruded shape. If `false` the top half of the material is repeated every step of the extrusion.
    */
   public final inline var pathContinuousU: Boolean
     @JvmName("pathContinuousUProperty")
@@ -209,9 +188,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], this is the distance along the path, in meters, the texture
-   * coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no
-   * tiling.
+   * When [mode] is [MODE_PATH], this is the distance along the path, in meters, the texture coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no tiling.
    */
   public final inline var pathUDistance: Float
     @JvmName("pathUDistanceProperty")
@@ -222,8 +199,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion
-   * between the last and first points of the path.
+   * When [mode] is [MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion between the last and first points of the path.
    */
   public final inline var pathJoined: Boolean
     @JvmName("pathJoinedProperty")
@@ -245,9 +221,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * Material to use for the resulting mesh. The UV maps the top half of the material to the
-   * extruded shape (U along the length of the extrusions and V around the outline of the [polygon]),
-   * the bottom-left quarter to the front end face, and the bottom-right quarter to the back end face.
+   * Material to use for the resulting mesh. The UV maps the top half of the material to the extruded shape (U along the length of the extrusions and V around the outline of the [polygon]), the bottom-left quarter to the front end face, and the bottom-right quarter to the back end face.
    */
   public final inline var material: Material?
     @JvmName("materialProperty")
@@ -257,7 +231,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(121, scriptIndex)
   }
 
@@ -272,33 +246,26 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * csgpolygon3d.polygon = myCoreType
    * ``````
    *
-   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave
-   * polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise,
-   * triangulation will fail and no mesh will be generated.
+   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise, triangulation will fail and no mesh will be generated.
    *
    * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
    */
   @CoreTypeHelper
-  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      polygon.apply {
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = polygon.apply {
      block(this)
      polygon = this
   }
 
   /**
    * This is a helper function for [polygon] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave
-   * polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise,
-   * triangulation will fail and no mesh will be generated.
+   * The point array that defines the 2D polygon that is extruded. This can be a convex or concave polygon with 3 or more points. The polygon must *not* have any intersecting edges. Otherwise, triangulation will fail and no mesh will be generated.
    *
    * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
    */
   @CoreTypeHelper
-  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = polygon.apply {
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = polygon.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -306,7 +273,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
      polygon = this
   }
 
-  public final fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
   }
@@ -317,7 +284,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public final fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
@@ -328,7 +295,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDepth(depth: Float): Unit {
+  public final fun setDepth(depth: Float) {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDepthPtr, NIL)
   }
@@ -339,7 +306,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSpinDegrees(degrees: Float): Unit {
+  public final fun setSpinDegrees(degrees: Float) {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSpinDegreesPtr, NIL)
   }
@@ -350,7 +317,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSpinSides(spinSides: Int): Unit {
+  public final fun setSpinSides(spinSides: Int) {
     TransferContext.writeArguments(LONG to spinSides.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSpinSidesPtr, NIL)
   }
@@ -361,7 +328,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPathNode(path: NodePath): Unit {
+  public final fun setPathNode(path: NodePath) {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setPathNodePtr, NIL)
   }
@@ -372,7 +339,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setPathIntervalType(intervalType: PathIntervalType): Unit {
+  public final fun setPathIntervalType(intervalType: PathIntervalType) {
     TransferContext.writeArguments(LONG to intervalType.id)
     TransferContext.callMethod(ptr, MethodBindings.setPathIntervalTypePtr, NIL)
   }
@@ -383,7 +350,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return PathIntervalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathInterval(interval: Float): Unit {
+  public final fun setPathInterval(interval: Float) {
     TransferContext.writeArguments(DOUBLE to interval.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPathIntervalPtr, NIL)
   }
@@ -394,7 +361,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPathSimplifyAngle(degrees: Float): Unit {
+  public final fun setPathSimplifyAngle(degrees: Float) {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPathSimplifyAnglePtr, NIL)
   }
@@ -405,7 +372,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPathRotation(pathRotation: PathRotation): Unit {
+  public final fun setPathRotation(pathRotation: PathRotation) {
     TransferContext.writeArguments(LONG to pathRotation.id)
     TransferContext.callMethod(ptr, MethodBindings.setPathRotationPtr, NIL)
   }
@@ -416,7 +383,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathRotationAccurate(enable: Boolean): Unit {
+  public final fun setPathRotationAccurate(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPathRotationAccuratePtr, NIL)
   }
@@ -427,7 +394,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPathLocal(enable: Boolean): Unit {
+  public final fun setPathLocal(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPathLocalPtr, NIL)
   }
@@ -438,7 +405,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPathContinuousU(enable: Boolean): Unit {
+  public final fun setPathContinuousU(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPathContinuousUPtr, NIL)
   }
@@ -449,7 +416,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPathUDistance(distance: Float): Unit {
+  public final fun setPathUDistance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPathUDistancePtr, NIL)
   }
@@ -460,7 +427,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPathJoined(enable: Boolean): Unit {
+  public final fun setPathJoined(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPathJoinedPtr, NIL)
   }
@@ -471,7 +438,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -482,7 +449,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean) {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(ptr, MethodBindings.setSmoothFacesPtr, NIL)
   }
@@ -557,8 +524,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     id: Long,
   ) {
     /**
-     * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters,
-     * each interval of the path will extrude.
+     * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters, each interval of the path will extrude.
      */
     DISTANCE(0),
     /**
@@ -581,105 +547,105 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   public object MethodBindings {
     internal val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_polygon", 1509147220)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_polygon", 1_509_147_220)
 
     internal val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_polygon", 2961356807)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_polygon", 2_961_356_807)
 
     internal val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_mode", 3158377035)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_mode", 3_158_377_035)
 
     internal val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_mode", 1201612222)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_mode", 1_201_612_222)
 
     internal val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_depth", 373806689)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_depth", 373_806_689)
 
     internal val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_depth", 1740695150)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_depth", 1_740_695_150)
 
     internal val setSpinDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees", 373806689)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees", 373_806_689)
 
     internal val getSpinDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees", 1740695150)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees", 1_740_695_150)
 
     internal val setSpinSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_sides", 1286410249)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_sides", 1_286_410_249)
 
     internal val getSpinSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_sides", 3905245786)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_sides", 3_905_245_786)
 
     internal val setPathNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_node", 1348162250)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_node", 1_348_162_250)
 
     internal val getPathNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_node", 4075236667)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_node", 4_075_236_667)
 
     internal val setPathIntervalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type", 3744240707)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type", 3_744_240_707)
 
     internal val getPathIntervalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type", 3434618397)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type", 3_434_618_397)
 
     internal val setPathIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval", 373806689)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval", 373_806_689)
 
     internal val getPathIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval", 1740695150)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval", 1_740_695_150)
 
     internal val setPathSimplifyAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle", 373806689)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle", 373_806_689)
 
     internal val getPathSimplifyAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle", 1740695150)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle", 1_740_695_150)
 
     internal val setPathRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation", 1412947288)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation", 1_412_947_288)
 
     internal val getPathRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647219346)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647_219_346)
 
     internal val setPathRotationAccuratePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation_accurate", 2586408642)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation_accurate", 2_586_408_642)
 
     internal val getPathRotationAccuratePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation_accurate", 36873697)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation_accurate", 36_873_697)
 
     internal val setPathLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2586408642)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2_586_408_642)
 
     internal val isPathLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_local", 36873697)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_local", 36_873_697)
 
     internal val setPathContinuousUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u", 2586408642)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u", 2_586_408_642)
 
     internal val isPathContinuousUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u", 36873697)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u", 36_873_697)
 
     internal val setPathUDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance", 373806689)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance", 373_806_689)
 
     internal val getPathUDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance", 1740695150)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance", 1_740_695_150)
 
     internal val setPathJoinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_joined", 2586408642)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_joined", 2_586_408_642)
 
     internal val isPathJoinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_joined", 36873697)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_joined", 36_873_697)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_material", 5_934_680)
 
     internal val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces", 2586408642)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces", 2_586_408_642)
 
     internal val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces", 36873697)
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces", 36_873_697)
   }
 }

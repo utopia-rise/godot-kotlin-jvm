@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,8 +20,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and
- * region drawing is not supported.
+ * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and region drawing is not supported.
  */
 @GodotBaseType
 public open class MeshTexture : Texture2D() {
@@ -54,11 +50,8 @@ public open class MeshTexture : Texture2D() {
    * Sets the size of the image, needed for reference.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var imageSize: Vector2
@@ -69,7 +62,7 @@ public open class MeshTexture : Texture2D() {
       setImageSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(357, scriptIndex)
   }
 
@@ -92,7 +85,7 @@ public open class MeshTexture : Texture2D() {
      imageSize = this
   }
 
-  public final fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -103,7 +96,7 @@ public open class MeshTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
-  public final fun setImageSize(size: Vector2): Unit {
+  public final fun setImageSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setImageSizePtr, NIL)
   }
@@ -114,7 +107,7 @@ public open class MeshTexture : Texture2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setBaseTexture(texture: Texture2D?): Unit {
+  public final fun setBaseTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setBaseTexturePtr, NIL)
   }
@@ -143,21 +136,21 @@ public open class MeshTexture : Texture2D() {
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_mesh", 194775623)
+        TypeManager.getMethodBindPtr("MeshTexture", "set_mesh", 194_775_623)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_mesh", 1808005922)
+        TypeManager.getMethodBindPtr("MeshTexture", "get_mesh", 1_808_005_922)
 
     internal val setImageSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_image_size", 743155724)
+        TypeManager.getMethodBindPtr("MeshTexture", "set_image_size", 743_155_724)
 
     internal val getImageSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_image_size", 3341600327)
+        TypeManager.getMethodBindPtr("MeshTexture", "get_image_size", 3_341_600_327)
 
     internal val setBaseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_base_texture", 4051416890)
+        TypeManager.getMethodBindPtr("MeshTexture", "set_base_texture", 4_051_416_890)
 
     internal val getBaseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_base_texture", 3635182373)
+        TypeManager.getMethodBindPtr("MeshTexture", "get_base_texture", 3_635_182_373)
   }
 }

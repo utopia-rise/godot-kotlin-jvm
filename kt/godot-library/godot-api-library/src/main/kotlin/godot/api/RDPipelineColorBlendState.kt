@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -57,11 +54,8 @@ public open class RDPipelineColorBlendState : RefCounted() {
    * The constant color to blend with. See also [RenderingDevice.drawListSetBlendConstants].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var blendConstant: Color
@@ -83,7 +77,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
       setAttachments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(515, scriptIndex)
   }
 
@@ -106,7 +100,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
      blendConstant = this
   }
 
-  public final fun setEnableLogicOp(pMember: Boolean): Unit {
+  public final fun setEnableLogicOp(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setEnableLogicOpPtr, NIL)
   }
@@ -117,7 +111,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
+  public final fun setLogicOp(pMember: RenderingDevice.LogicOperation) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setLogicOpPtr, NIL)
   }
@@ -128,7 +122,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBlendConstant(pMember: Color): Unit {
+  public final fun setBlendConstant(pMember: Color) {
     TransferContext.writeArguments(COLOR to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setBlendConstantPtr, NIL)
   }
@@ -139,8 +133,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>):
-      Unit {
+  public final fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>) {
     TransferContext.writeArguments(ARRAY to attachments)
     TransferContext.callMethod(ptr, MethodBindings.setAttachmentsPtr, NIL)
   }
@@ -155,27 +148,27 @@ public open class RDPipelineColorBlendState : RefCounted() {
 
   public object MethodBindings {
     internal val setEnableLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op", 2_586_408_642)
 
     internal val getEnableLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op", 36_873_697)
 
     internal val setLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op", 3610841058)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op", 3_610_841_058)
 
     internal val getLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op", 988254690)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op", 988_254_690)
 
     internal val setBlendConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant", 2920490490)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant", 2_920_490_490)
 
     internal val getBlendConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant", 3444240500)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant", 3_444_240_500)
 
     internal val setAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments", 381264803)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments", 381_264_803)
 
     internal val getAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments", 3995934104)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments", 3_995_934_104)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.core
 
@@ -15,8 +12,7 @@ public enum class Error(
   /**
    * Methods that return [Error] return [OK] when no error occurred.
    *
-   * Since [OK] has value `0`, and all other error constants are positive integers, it can also be
-   * used in boolean checks.
+   * Since [OK] has value `0`, and all other error constants are positive integers, it can also be used in boolean checks.
    *
    * ```
    * var error = method_that_returns_error()
@@ -28,8 +24,7 @@ public enum class Error(
    *     printerr("Still failing!")
    * ```
    *
-   * **Note:** Many functions do not return an error code, but will print error messages to standard
-   * output.
+   * **Note:** Many functions do not return an error code, but will print error messages to standard output.
    */
   OK(0),
   /**
@@ -219,8 +214,7 @@ public enum class Error(
   /**
    * Bug error, caused by an implementation issue in the method.
    *
-   * **Note:** If a built-in method returns this code, please open an issue on
-   * [url=https://github.com/godotengine/godot/issues]the GitHub Issue Tracker[/url].
+   * **Note:** If a built-in method returns this code, please open an issue on [url=https://github.com/godotengine/godot/issues]the GitHub Issue Tracker[/url].
    */
   BUG(47),
   /**

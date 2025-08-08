@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,15 +30,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This class serves as a default material with a wide variety of rendering features and properties
- * without the need to write shader code. See the tutorial below for details.
+ * This class serves as a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
 @GodotBaseType
 public open class BaseMaterial3D internal constructor() : Material() {
   /**
-   * The material's transparency mode. Some transparency modes will disable shadow casting. Any
-   * transparency mode other than [TRANSPARENCY_DISABLED] has a greater performance impact compared to
-   * opaque rendering. See also [blendMode].
+   * The material's transparency mode. Some transparency modes will disable shadow casting. Any transparency mode other than [TRANSPARENCY_DISABLED] has a greater performance impact compared to opaque rendering. See also [blendMode].
    */
   public final inline var transparency: Transparency
     @JvmName("transparencyProperty")
@@ -52,10 +46,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Threshold at which the alpha scissor will discard values. Higher values will result in more
-   * pixels being discarded. If the material becomes too opaque at a distance, try increasing
-   * [alphaScissorThreshold]. If the material disappears at a distance, try decreasing
-   * [alphaScissorThreshold].
+   * Threshold at which the alpha scissor will discard values. Higher values will result in more pixels being discarded. If the material becomes too opaque at a distance, try increasing [alphaScissorThreshold]. If the material disappears at a distance, try decreasing [alphaScissorThreshold].
    */
   public final inline var alphaScissorThreshold: Float
     @JvmName("alphaScissorThresholdProperty")
@@ -101,8 +92,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The material's blend mode.
    *
-   * **Note:** Values other than `Mix` force the object into the transparent pipeline. See
-   * [BlendMode].
+   * **Note:** Values other than `Mix` force the object into the transparent pipeline. See [BlendMode].
    */
   public final inline var blendMode: BlendMode
     @JvmName("blendModeProperty")
@@ -113,8 +103,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Determines which side of the triangle to cull depending on whether the triangle faces towards
-   * or away from the camera. See [CullMode].
+   * Determines which side of the triangle to cull depending on whether the triangle faces towards or away from the camera. See [CullMode].
    */
   public final inline var cullMode: CullMode
     @JvmName("cullModeProperty")
@@ -147,9 +136,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is
-   * faster, making it the best choice for mobile applications, however it looks considerably worse
-   * than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.
+   * Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.
    */
   public final inline var shadingMode: ShadingMode
     @JvmName("shadingModeProperty")
@@ -173,9 +160,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The method for rendering the specular blob. See [SpecularMode].
    *
-   * **Note:** [specularMode] only applies to the specular blob. It does not affect specular
-   * reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To
-   * disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
+   * **Note:** [specularMode] only applies to the specular blob. It does not affect specular reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
    */
   public final inline var specularMode: SpecularMode
     @JvmName("specularModeProperty")
@@ -197,9 +182,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, the object will not be affected by fog (neither volumetric nor depth fog). This is
-   * useful for unshaded or transparent materials (e.g. particles), which without this setting will be
-   * affected even if fully transparent.
+   * If `true`, the object will not be affected by fog (neither volumetric nor depth fog). This is useful for unshaded or transparent materials (e.g. particles), which without this setting will be affected even if fully transparent.
    */
   public final inline var disableFog: Boolean
     @JvmName("disableFogProperty")
@@ -221,12 +204,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, vertex colors are considered to be stored in sRGB color space and are converted to
-   * linear color space during rendering. If `false`, vertex colors are considered to be stored in
-   * linear color space and are rendered as-is. See also [albedoTextureForceSrgb].
+   * If `true`, vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. If `false`, vertex colors are considered to be stored in linear color space and are rendered as-is. See also [albedoTextureForceSrgb].
    *
-   * **Note:** Only effective when using the Forward+ and Mobile rendering methods, not
-   * Compatibility.
+   * **Note:** Only effective when using the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public final inline var vertexColorIsSrgb: Boolean
     @JvmName("vertexColorIsSrgbProperty")
@@ -239,16 +219,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The material's base color.
    *
-   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
-   * will *not* modulate the detail texture. This can be used to color partial areas of a material by
-   * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
+   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor] will *not* modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var albedoColor: Color
@@ -273,13 +248,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, forces a conversion of the [albedoTexture] from sRGB color space to linear color
-   * space. See also [vertexColorIsSrgb].
+   * If `true`, forces a conversion of the [albedoTexture] from sRGB color space to linear color space. See also [vertexColorIsSrgb].
    *
-   * This should only be enabled when needed (typically when using a [ViewportTexture] as
-   * [albedoTexture]). If [albedoTextureForceSrgb] is `true` when it shouldn't be, the texture will
-   * appear to be too dark. If [albedoTextureForceSrgb] is `false` when it shouldn't be, the texture
-   * will appear to be too bright.
+   * This should only be enabled when needed (typically when using a [ViewportTexture] as [albedoTexture]). If [albedoTextureForceSrgb] is `true` when it shouldn't be, the texture will appear to be too dark. If [albedoTextureForceSrgb] is `false` when it shouldn't be, the texture will appear to be too bright.
    */
   public final inline var albedoTextureForceSrgb: Boolean
     @JvmName("albedoTextureForceSrgbProperty")
@@ -290,8 +261,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Enables multichannel signed distance field rendering shader. Use [msdfPixelRange] and
-   * [msdfOutlineSize] to configure MSDF parameters.
+   * Enables multichannel signed distance field rendering shader. Use [msdfPixelRange] and [msdfOutlineSize] to configure MSDF parameters.
    */
   public final inline var albedoTextureMsdf: Boolean
     @JvmName("albedoTextureMsdfProperty")
@@ -302,10 +272,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The Occlusion/Roughness/Metallic texture to use. This is a more efficient replacement of
-   * [aoTexture], [roughnessTexture] and [metallicTexture] in [ORMMaterial3D]. Ambient occlusion is
-   * stored in the red channel. Roughness map is stored in the green channel. Metallic map is stored in
-   * the blue channel. The alpha channel is ignored.
+   * The Occlusion/Roughness/Metallic texture to use. This is a more efficient replacement of [aoTexture], [roughnessTexture] and [metallicTexture] in [ORMMaterial3D]. Ambient occlusion is stored in the red channel. Roughness map is stored in the green channel. Metallic map is stored in the blue channel. The alpha channel is ignored.
    */
   public final inline var ormTexture: Texture2D?
     @JvmName("ormTextureProperty")
@@ -316,12 +283,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * A high value makes the material appear more like a metal. Non-metals use their albedo as the
-   * diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears
-   * on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and
-   * set the diffuse color to black resulting in a tinted reflection. Materials work better when fully
-   * metal or fully non-metal, values between `0` and `1` should only be used for blending between
-   * metal and non-metal sections. To alter the amount of reflection use [roughness].
+   * A high value makes the material appear more like a metal. Non-metals use their albedo as the diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and set the diffuse color to black resulting in a tinted reflection. Materials work better when fully metal or fully non-metal, values between `0` and `1` should only be used for blending between metal and non-metal sections. To alter the amount of reflection use [roughness].
    */
   public final inline var metallic: Float
     @JvmName("metallicProperty")
@@ -332,14 +294,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Adjusts the strength of specular reflections. Specular reflections are composed of scene
-   * reflections and the specular lobe which is the bright spot that is reflected from light sources.
-   * When set to `0.0`, no specular reflections will be visible. This differs from the
-   * [SPECULAR_DISABLED] [SpecularMode] as [SPECULAR_DISABLED] only applies to the specular lobe from
-   * the light source.
+   * Adjusts the strength of specular reflections. Specular reflections are composed of scene reflections and the specular lobe which is the bright spot that is reflected from light sources. When set to `0.0`, no specular reflections will be visible. This differs from the [SPECULAR_DISABLED] [SpecularMode] as [SPECULAR_DISABLED] only applies to the specular lobe from the light source.
    *
-   * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in
-   * most cases. See also [roughness].
+   * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [roughness].
    */
   public final inline var metallicSpecular: Float
     @JvmName("metallicSpecularProperty")
@@ -361,10 +318,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies the channel of the [metallicTexture] in which the metallic information is stored.
-   * This is useful when you store the information for multiple effects in a single texture. For
-   * example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in
-   * the green you could reduce the number of textures you use.
+   * Specifies the channel of the [metallicTexture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public final inline var metallicTextureChannel: TextureChannel
     @JvmName("metallicTextureChannelProperty")
@@ -375,8 +329,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Surface reflection. A value of `0` represents a perfect mirror while a value of `1` completely
-   * blurs the reflection. See also [metallic].
+   * Surface reflection. A value of `0` represents a perfect mirror while a value of `1` completely blurs the reflection. See also [metallic].
    */
   public final inline var roughness: Float
     @JvmName("roughnessProperty")
@@ -398,10 +351,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies the channel of the [roughnessTexture] in which the roughness information is stored.
-   * This is useful when you store the information for multiple effects in a single texture. For
-   * example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in
-   * the green you could reduce the number of textures you use.
+   * Specifies the channel of the [roughnessTexture] in which the roughness information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public final inline var roughnessTextureChannel: TextureChannel
     @JvmName("roughnessTextureChannelProperty")
@@ -412,9 +362,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, the body emits light. Emitting light makes the object appear brighter. The object
-   * can also cast light on other objects if a [VoxelGI], SDFGI, or [LightmapGI] is used and this
-   * object is used in baked lighting.
+   * If `true`, the body emits light. Emitting light makes the object appear brighter. The object can also cast light on other objects if a [VoxelGI], SDFGI, or [LightmapGI] is used and this object is used in baked lighting.
    */
   public final inline var emissionEnabled: Boolean
     @JvmName("emissionEnabledProperty")
@@ -428,11 +376,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The emitted light's color. See [emissionEnabled].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emission: Color
@@ -455,9 +400,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Luminance of emitted light, measured in nits (candela per square meter). Only available when
-   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default is
-   * roughly equivalent to an indoor lightbulb.
+   * Luminance of emitted light, measured in nits (candela per square meter). Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default is roughly equivalent to an indoor lightbulb.
    */
   public final inline var emissionIntensity: Float
     @JvmName("emissionIntensityProperty")
@@ -468,8 +411,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See
-   * [EmissionOperator] for options.
+   * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See [EmissionOperator] for options.
    */
   public final inline var emissionOperator: EmissionOperator
     @JvmName("emissionOperatorProperty")
@@ -502,8 +444,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, normal mapping is enabled. This has a slight performance cost, especially on mobile
-   * GPUs.
+   * If `true`, normal mapping is enabled. This has a slight performance cost, especially on mobile GPUs.
    */
   public final inline var normalEnabled: Boolean
     @JvmName("normalEnabledProperty")
@@ -525,22 +466,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture used to specify the normal at a given pixel. The [normalTexture] only uses the red and
-   * green channels; the blue and alpha channels are ignored. The normal read from [normalTexture] is
-   * oriented around the surface normal provided by the [Mesh].
+   * Texture used to specify the normal at a given pixel. The [normalTexture] only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [normalTexture] is oriented around the surface normal provided by the [Mesh].
    *
-   * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise,
-   * the normal map won't render correctly and will only appear to darken the whole surface. If
-   * creating geometry with [SurfaceTool], you can use [SurfaceTool.generateNormals] and
-   * [SurfaceTool.generateTangents] to automatically generate normals and tangents respectively.
+   * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise, the normal map won't render correctly and will only appear to darken the whole surface. If creating geometry with [SurfaceTool], you can use [SurfaceTool.generateNormals] and [SurfaceTool.generateTangents] to automatically generate normals and tangents respectively.
    *
-   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See
-   * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
-   * page[/url] for a comparison of normal map coordinates expected by popular engines.
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
    *
-   * **Note:** If [detailEnabled] is `true`, the [detailAlbedo] texture is drawn *below* the
-   * [normalTexture]. To display a normal map *above* the [detailAlbedo] texture, use [detailNormal]
-   * instead.
+   * **Note:** If [detailEnabled] is `true`, the [detailAlbedo] texture is drawn *below* the [normalTexture]. To display a normal map *above* the [detailAlbedo] texture, use [detailNormal] instead.
    */
   public final inline var normalTexture: Texture2D?
     @JvmName("normalTextureProperty")
@@ -551,11 +483,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on
-   * an object.
+   * If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on an object.
    *
-   * **Note:** Rim lighting is not visible if the material's [shadingMode] is
-   * [SHADING_MODE_UNSHADED].
+   * **Note:** Rim lighting is not visible if the material's [shadingMode] is [SHADING_MODE_UNSHADED].
    */
   public final inline var rimEnabled: Boolean
     @JvmName("rimEnabledProperty")
@@ -577,8 +507,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The amount of to blend light and albedo color when rendering rim effect. If `0` the light color
-   * is used, while `1` means albedo color is used. An intermediate value generally works best.
+   * The amount of to blend light and albedo color when rendering rim effect. If `0` the light color is used, while `1` means albedo color is used. An intermediate value generally works best.
    */
   public final inline var rimTint: Float
     @JvmName("rimTintProperty")
@@ -600,12 +529,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting
-   * calculation resulting in an added specular blob. This makes materials appear as if they have a
-   * clear layer on them that can be either glossy or rough.
+   * If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting calculation resulting in an added specular blob. This makes materials appear as if they have a clear layer on them that can be either glossy or rough.
    *
-   * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is
-   * [SHADING_MODE_UNSHADED].
+   * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is [SHADING_MODE_UNSHADED].
    */
   public final inline var clearcoatEnabled: Boolean
     @JvmName("clearcoatEnabledProperty")
@@ -616,8 +542,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the
-   * clearcoat effect.
+   * Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the clearcoat effect.
    */
   public final inline var clearcoat: Float
     @JvmName("clearcoatProperty")
@@ -628,8 +553,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets the roughness of the clearcoat pass. A higher value results in a rougher clearcoat while a
-   * lower value results in a smoother clearcoat.
+   * Sets the roughness of the clearcoat pass. A higher value results in a rougher clearcoat while a lower value results in a smoother clearcoat.
    */
   public final inline var clearcoatRoughness: Float
     @JvmName("clearcoatRoughnessProperty")
@@ -640,8 +564,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture that defines the strength of the clearcoat effect and the glossiness of the clearcoat.
-   * Strength is specified in the red channel while glossiness is specified in the green channel.
+   * Texture that defines the strength of the clearcoat effect and the glossiness of the clearcoat. Strength is specified in the red channel while glossiness is specified in the green channel.
    */
   public final inline var clearcoatTexture: Texture2D?
     @JvmName("clearcoatTextureProperty")
@@ -652,15 +575,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns
-   * it to tangent space. This is useful for brushed aluminum and hair reflections.
+   * If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns it to tangent space. This is useful for brushed aluminum and hair reflections.
    *
-   * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain
-   * tangents, the anisotropy effect will appear broken.
+   * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain tangents, the anisotropy effect will appear broken.
    *
-   * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering,
-   * which can be enabled by setting [textureFilter] to
-   * [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
+   * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering, which can be enabled by setting [textureFilter] to [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
    */
   public final inline var anisotropyEnabled: Boolean
     @JvmName("anisotropyEnabledProperty")
@@ -671,8 +590,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The strength of the anisotropy effect. This is multiplied by [anisotropyFlowmap]'s alpha
-   * channel if a texture is defined there and the texture contains an alpha channel.
+   * The strength of the anisotropy effect. This is multiplied by [anisotropyFlowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel.
    */
   public final inline var anisotropy: Float
     @JvmName("anisotropyProperty")
@@ -683,16 +601,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture that offsets the tangent map for anisotropy calculations and optionally controls the
-   * anisotropy effect (if an alpha channel is present). The flowmap texture is expected to be a
-   * derivative map, with the red channel representing distortion on the X axis and green channel
-   * representing distortion on the Y axis. Values below 0.5 will result in negative distortion,
-   * whereas values above 0.5 will result in positive distortion.
+   * Texture that offsets the tangent map for anisotropy calculations and optionally controls the anisotropy effect (if an alpha channel is present). The flowmap texture is expected to be a derivative map, with the red channel representing distortion on the X axis and green channel representing distortion on the Y axis. Values below 0.5 will result in negative distortion, whereas values above 0.5 will result in positive distortion.
    *
-   * If present, the texture's alpha channel will be used to multiply the strength of the
-   * [anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while
-   * fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue
-   * channel is ignored.
+   * If present, the texture's alpha channel will be used to multiply the strength of the [anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue channel is ignored.
    */
   public final inline var anisotropyFlowmap: Texture2D?
     @JvmName("anisotropyFlowmapProperty")
@@ -703,8 +614,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, ambient occlusion is enabled. Ambient occlusion darkens areas based on the
-   * [aoTexture].
+   * If `true`, ambient occlusion is enabled. Ambient occlusion darkens areas based on the [aoTexture].
    */
   public final inline var aoEnabled: Boolean
     @JvmName("aoEnabledProperty")
@@ -715,10 +625,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Amount that ambient occlusion affects lighting from lights. If `0`, ambient occlusion only
-   * affects ambient light. If `1`, ambient occlusion affects lights just as much as it affects ambient
-   * light. This can be used to impact the strength of the ambient occlusion effect, but typically
-   * looks unrealistic.
+   * Amount that ambient occlusion affects lighting from lights. If `0`, ambient occlusion only affects ambient light. If `1`, ambient occlusion affects lights just as much as it affects ambient light. This can be used to impact the strength of the ambient occlusion effect, but typically looks unrealistic.
    */
   public final inline var aoLightAffect: Float
     @JvmName("aoLightAffectProperty")
@@ -751,10 +658,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored.
-   * This is useful when you store the information for multiple effects in a single texture. For
-   * example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in
-   * the green you could reduce the number of textures you use.
+   * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public final inline var aoTextureChannel: TextureChannel
     @JvmName("aoTextureChannelProperty")
@@ -765,12 +669,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, height mapping is enabled (also called "parallax mapping" or "depth mapping"). See
-   * also [normalEnabled]. Height mapping is a demanding feature on the GPU, so it should only be used
-   * on materials where it makes a significant visual difference.
+   * If `true`, height mapping is enabled (also called "parallax mapping" or "depth mapping"). See also [normalEnabled]. Height mapping is a demanding feature on the GPU, so it should only be used on materials where it makes a significant visual difference.
    *
-   * **Note:** Height mapping is not supported if triplanar mapping is used on the same material.
-   * The value of [heightmapEnabled] will be ignored if [uv1Triplanar] is enabled.
+   * **Note:** Height mapping is not supported if triplanar mapping is used on the same material. The value of [heightmapEnabled] will be ignored if [uv1Triplanar] is enabled.
    */
   public final inline var heightmapEnabled: Boolean
     @JvmName("heightmapEnabledProperty")
@@ -781,18 +682,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The heightmap scale to use for the parallax effect (see [heightmapEnabled]). The default value
-   * is tuned so that the highest point (value = 255) appears to be 5 cm higher than the lowest point
-   * (value = 0). Higher values result in a deeper appearance, but may result in artifacts appearing
-   * when looking at the material from oblique angles, especially when the camera moves. Negative
-   * values can be used to invert the parallax effect, but this is different from inverting the texture
-   * using [heightmapFlipTexture] as the material will also appear to be "closer" to the camera. In
-   * most cases, [heightmapScale] should be kept to a positive value.
+   * The heightmap scale to use for the parallax effect (see [heightmapEnabled]). The default value is tuned so that the highest point (value = 255) appears to be 5 cm higher than the lowest point (value = 0). Higher values result in a deeper appearance, but may result in artifacts appearing when looking at the material from oblique angles, especially when the camera moves. Negative values can be used to invert the parallax effect, but this is different from inverting the texture using [heightmapFlipTexture] as the material will also appear to be "closer" to the camera. In most cases, [heightmapScale] should be kept to a positive value.
    *
-   * **Note:** If the height map effect looks strange regardless of this value, try adjusting
-   * [heightmapFlipBinormal] and [heightmapFlipTangent]. See also [heightmapTexture] for
-   * recommendations on authoring heightmap textures, as the way the heightmap texture is authored
-   * affects how [heightmapScale] behaves.
+   * **Note:** If the height map effect looks strange regardless of this value, try adjusting [heightmapFlipBinormal] and [heightmapFlipTangent]. See also [heightmapTexture] for recommendations on authoring heightmap textures, as the way the heightmap texture is authored affects how [heightmapScale] behaves.
    */
   public final inline var heightmapScale: Float
     @JvmName("heightmapScaleProperty")
@@ -803,10 +695,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, uses parallax occlusion mapping to represent depth in the material instead of simple
-   * offset mapping (see [heightmapEnabled]). This results in a more convincing depth effect, but is
-   * much more expensive on the GPU. Only enable this on materials where it makes a significant visual
-   * difference.
+   * If `true`, uses parallax occlusion mapping to represent depth in the material instead of simple offset mapping (see [heightmapEnabled]). This results in a more convincing depth effect, but is much more expensive on the GPU. Only enable this on materials where it makes a significant visual difference.
    */
   public final inline var heightmapDeepParallax: Boolean
     @JvmName("heightmapDeepParallaxProperty")
@@ -817,10 +706,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The number of layers to use for parallax occlusion mapping when the camera is far away from the
-   * material. Higher values result in a more convincing depth effect, especially in materials that
-   * have steep height changes. Higher values have a significant cost on the GPU, so it should only be
-   * increased on materials where it makes a significant visual difference.
+   * The number of layers to use for parallax occlusion mapping when the camera is far away from the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.
    *
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
@@ -833,10 +719,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The number of layers to use for parallax occlusion mapping when the camera is up close to the
-   * material. Higher values result in a more convincing depth effect, especially in materials that
-   * have steep height changes. Higher values have a significant cost on the GPU, so it should only be
-   * increased on materials where it makes a significant visual difference.
+   * The number of layers to use for parallax occlusion mapping when the camera is up close to the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.
    *
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
@@ -849,9 +732,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, flips the mesh's tangent vectors when interpreting the height map. If the heightmap
-   * effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting
-   * this to `true`.
+   * If `true`, flips the mesh's tangent vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting this to `true`.
    */
   public final inline var heightmapFlipTangent: Boolean
     @JvmName("heightmapFlipTangentProperty")
@@ -862,9 +743,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, flips the mesh's binormal vectors when interpreting the height map. If the heightmap
-   * effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting
-   * this to `true`.
+   * If `true`, flips the mesh's binormal vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting this to `true`.
    */
   public final inline var heightmapFlipBinormal: Boolean
     @JvmName("heightmapFlipBinormalProperty")
@@ -877,13 +756,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The texture to use as a height map. See also [heightmapEnabled].
    *
-   * For best results, the texture should be normalized (with [heightmapScale] reduced to
-   * compensate). In [url=https://gimp.org]GIMP[/url], this can be done using **Colors > Auto >
-   * Equalize**. If the texture only uses a small part of its available range, the parallax effect may
-   * look strange, especially when the camera moves.
+   * For best results, the texture should be normalized (with [heightmapScale] reduced to compensate). In [url=https://gimp.org]GIMP[/url], this can be done using **Colors > Auto > Equalize**. If the texture only uses a small part of its available range, the parallax effect may look strange, especially when the camera moves.
    *
-   * **Note:** To reduce memory usage and improve loading times, you may be able to use a
-   * lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.
+   * **Note:** To reduce memory usage and improve loading times, you may be able to use a lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.
    */
   public final inline var heightmapTexture: Texture2D?
     @JvmName("heightmapTextureProperty")
@@ -894,12 +769,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, interprets the height map texture as a depth map, with brighter values appearing to
-   * be "lower" in altitude compared to darker values.
+   * If `true`, interprets the height map texture as a depth map, with brighter values appearing to be "lower" in altitude compared to darker values.
    *
-   * This can be enabled for compatibility with some materials authored for Godot 3.x. This is not
-   * necessary if the Invert import option was used to invert the depth map in Godot 3.x, in which case
-   * [heightmapFlipTexture] should remain `false`.
+   * This can be enabled for compatibility with some materials authored for Godot 3.x. This is not necessary if the Invert import option was used to invert the depth map in Godot 3.x, in which case [heightmapFlipTexture] should remain `false`.
    */
   public final inline var heightmapFlipTexture: Boolean
     @JvmName("heightmapFlipTextureProperty")
@@ -910,9 +782,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, subsurface scattering is enabled. Emulates light that penetrates an object's
-   * surface, is scattered, and then emerges. Subsurface scattering quality is controlled by
-   * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
+   * If `true`, subsurface scattering is enabled. Emulates light that penetrates an object's surface, is scattered, and then emerges. Subsurface scattering quality is controlled by [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
    */
   public final inline var subsurfScatterEnabled: Boolean
     @JvmName("subsurfScatterEnabledProperty")
@@ -923,9 +793,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The strength of the subsurface scattering effect. The depth of the effect is also controlled by
-   * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale], which is
-   * set globally.
+   * The strength of the subsurface scattering effect. The depth of the effect is also controlled by [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale], which is set globally.
    */
   public final inline var subsurfScatterStrength: Float
     @JvmName("subsurfScatterStrengthProperty")
@@ -936,8 +804,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, subsurface scattering will use a special mode optimized for the color and density of
-   * human skin, such as boosting the intensity of the red channel in subsurface scattering.
+   * If `true`, subsurface scattering will use a special mode optimized for the color and density of human skin, such as boosting the intensity of the red channel in subsurface scattering.
    */
   public final inline var subsurfScatterSkinMode: Boolean
     @JvmName("subsurfScatterSkinModeProperty")
@@ -948,8 +815,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture used to control the subsurface scattering strength. Stored in the red texture channel.
-   * Multiplied by [subsurfScatterStrength].
+   * Texture used to control the subsurface scattering strength. Stored in the red texture channel. Multiplied by [subsurfScatterStrength].
    */
   public final inline var subsurfScatterTexture: Texture2D?
     @JvmName("subsurfScatterTextureProperty")
@@ -960,8 +826,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, enables subsurface scattering transmittance. Only effective if
-   * [subsurfScatterEnabled] is `true`. See also [backlightEnabled].
+   * If `true`, enables subsurface scattering transmittance. Only effective if [subsurfScatterEnabled] is `true`. See also [backlightEnabled].
    */
   public final inline var subsurfScatterTransmittanceEnabled: Boolean
     @JvmName("subsurfScatterTransmittanceEnabledProperty")
@@ -972,15 +837,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The color to multiply the subsurface scattering transmittance effect with. Ignored if
-   * [subsurfScatterSkinMode] is `true`.
+   * The color to multiply the subsurface scattering transmittance effect with. Ignored if [subsurfScatterSkinMode] is `true`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var subsurfScatterTransmittanceColor: Color
@@ -992,8 +853,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The texture to use for multiplying the intensity of the subsurface scattering transmittance
-   * intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
+   * The texture to use for multiplying the intensity of the subsurface scattering transmittance intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
    */
   public final inline var subsurfScatterTransmittanceTexture: Texture2D?
     @JvmName("subsurfScatterTransmittanceTextureProperty")
@@ -1040,11 +900,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The color used by the backlight effect. Represents the light passing through an object.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var backlight: Color
@@ -1067,11 +924,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind
-   * the object.
+   * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind the object.
    *
-   * **Note:** Refraction is implemented using the screen texture. Only opaque materials will appear
-   * in the refraction, since transparent materials do not appear in the screen texture.
+   * **Note:** Refraction is implemented using the screen texture. Only opaque materials will appear in the refraction, since transparent materials do not appear in the screen texture.
    */
   public final inline var refractionEnabled: Boolean
     @JvmName("refractionEnabledProperty")
@@ -1093,8 +948,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture that controls the strength of the refraction per-pixel. Multiplied by
-   * [refractionScale].
+   * Texture that controls the strength of the refraction per-pixel. Multiplied by [refractionScale].
    */
   public final inline var refractionTexture: Texture2D?
     @JvmName("refractionTextureProperty")
@@ -1105,10 +959,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies the channel of the [refractionTexture] in which the refraction information is stored.
-   * This is useful when you store the information for multiple effects in a single texture. For
-   * example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion
-   * in the green you could reduce the number of textures you use.
+   * Specifies the channel of the [refractionTexture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public final inline var refractionTextureChannel: TextureChannel
     @JvmName("refractionTextureChannelProperty")
@@ -1119,9 +970,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, enables the detail overlay. Detail is a second texture that gets mixed over the
-   * surface of the object based on [detailMask] and [detailAlbedo]'s alpha channel. This can be used
-   * to add variation to objects, or to blend between two different albedo/normal textures.
+   * If `true`, enables the detail overlay. Detail is a second texture that gets mixed over the surface of the object based on [detailMask] and [detailAlbedo]'s alpha channel. This can be used to add variation to objects, or to blend between two different albedo/normal textures.
    */
   public final inline var detailEnabled: Boolean
     @JvmName("detailEnabledProperty")
@@ -1132,8 +981,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture used to specify how the detail textures get blended with the base textures.
-   * [detailMask] can be used together with [detailAlbedo]'s alpha channel (if any).
+   * Texture used to specify how the detail textures get blended with the base textures. [detailMask] can be used together with [detailAlbedo]'s alpha channel (if any).
    */
   public final inline var detailMask: Texture2D?
     @JvmName("detailMaskProperty")
@@ -1144,8 +992,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [BlendMode] for
-   * options.
+   * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [BlendMode] for options.
    */
   public final inline var detailBlendMode: BlendMode
     @JvmName("detailBlendModeProperty")
@@ -1167,9 +1014,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture that specifies the color of the detail overlay. [detailAlbedo]'s alpha channel is used
-   * as a mask, even when the material is opaque. To use a dedicated texture as a mask, see
-   * [detailMask].
+   * Texture that specifies the color of the detail overlay. [detailAlbedo]'s alpha channel is used as a mask, even when the material is opaque. To use a dedicated texture as a mask, see [detailMask].
    *
    * **Note:** [detailAlbedo] is *not* modulated by [albedoColor].
    */
@@ -1182,13 +1027,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Texture that specifies the per-pixel normal of the detail overlay. The [detailNormal] texture
-   * only uses the red and green channels; the blue and alpha channels are ignored. The normal read
-   * from [detailNormal] is oriented around the surface normal provided by the [Mesh].
+   * Texture that specifies the per-pixel normal of the detail overlay. The [detailNormal] texture only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [detailNormal] is oriented around the surface normal provided by the [Mesh].
    *
-   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See
-   * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
-   * page[/url] for a comparison of normal map coordinates expected by popular engines.
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
    */
   public final inline var detailNormal: Texture2D?
     @JvmName("detailNormalProperty")
@@ -1199,15 +1040,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The
-   * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
+   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv1Scale: Vector3
@@ -1219,16 +1056,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex
-   * function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is
-   * enabled, but it is not used anywhere else.
+   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv1Offset: Vector3
@@ -1240,14 +1072,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, instead of using `UV` textures will use a triplanar texture lookup to determine how
-   * to apply textures. Triplanar uses the orientation of the object's surface to blend between texture
-   * coordinates. It reads from the source texture 3 times, once for each axis and then blends between
-   * the results based on how closely the pixel aligns with each axis. This is often used for natural
-   * features to get a realistic blend of materials. Because triplanar texturing requires many more
-   * texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is
-   * blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp
-   * texturing.
+   * If `true`, instead of using `UV` textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing.
    */
   public final inline var uv1Triplanar: Boolean
     @JvmName("uv1TriplanarProperty")
@@ -1258,11 +1083,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * A lower number blends the texture more softly while a higher number blends the texture more
-   * sharply.
+   * A lower number blends the texture more softly while a higher number blends the texture more sharply.
    *
-   * **Note:** [uv1TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values
-   * outside that range can look broken depending on the mesh.
+   * **Note:** [uv1TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.
    */
   public final inline var uv1TriplanarSharpness: Float
     @JvmName("uv1TriplanarSharpnessProperty")
@@ -1273,8 +1096,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, triplanar mapping for `UV` is calculated in world space rather than object local
-   * space. See also [uv1Triplanar].
+   * If `true`, triplanar mapping for `UV` is calculated in world space rather than object local space. See also [uv1Triplanar].
    */
   public final inline var uv1WorldTriplanar: Boolean
     @JvmName("uv1WorldTriplanarProperty")
@@ -1285,15 +1107,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
-   * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
+   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv2Scale: Vector3
@@ -1305,16 +1123,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex
-   * function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is
-   * enabled, but it is not used anywhere else.
+   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv2Offset: Vector3
@@ -1326,14 +1139,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, instead of using `UV2` textures will use a triplanar texture lookup to determine how
-   * to apply textures. Triplanar uses the orientation of the object's surface to blend between texture
-   * coordinates. It reads from the source texture 3 times, once for each axis and then blends between
-   * the results based on how closely the pixel aligns with each axis. This is often used for natural
-   * features to get a realistic blend of materials. Because triplanar texturing requires many more
-   * texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is
-   * blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp
-   * texturing.
+   * If `true`, instead of using `UV2` textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing.
    */
   public final inline var uv2Triplanar: Boolean
     @JvmName("uv2TriplanarProperty")
@@ -1344,11 +1150,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * A lower number blends the texture more softly while a higher number blends the texture more
-   * sharply.
+   * A lower number blends the texture more softly while a higher number blends the texture more sharply.
    *
-   * **Note:** [uv2TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values
-   * outside that range can look broken depending on the mesh.
+   * **Note:** [uv2TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.
    */
   public final inline var uv2TriplanarSharpness: Float
     @JvmName("uv2TriplanarSharpnessProperty")
@@ -1359,8 +1163,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, triplanar mapping for `UV2` is calculated in world space rather than object local
-   * space. See also [uv2Triplanar].
+   * If `true`, triplanar mapping for `UV2` is calculated in world space rather than object local space. See also [uv2Triplanar].
    */
   public final inline var uv2WorldTriplanar: Boolean
     @JvmName("uv2WorldTriplanarProperty")
@@ -1373,10 +1176,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Filter flags for the texture. See [TextureFilter] for options.
    *
-   * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor
-   * filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need
-   * sharper height transitions between pixels, resize the heightmap texture in an image editor with
-   * nearest-neighbor filtering.
+   * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.
    */
   public final inline var textureFilter: TextureFilter
     @JvmName("textureFilterProperty")
@@ -1409,9 +1209,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, enables the "shadow to opacity" render mode where lighting modifies the alpha so
-   * shadowed areas are opaque and non-shadowed areas are transparent. Useful for overlaying shadows
-   * onto a camera feed in AR.
+   * If `true`, enables the "shadow to opacity" render mode where lighting modifies the alpha so shadowed areas are opaque and non-shadowed areas are transparent. Useful for overlaying shadows onto a camera feed in AR.
    */
   public final inline var shadowToOpacity: Boolean
     @JvmName("shadowToOpacityProperty")
@@ -1424,9 +1222,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Controls how the object faces the camera. See [BillboardMode].
    *
-   * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is
-   * not horizontal when the screen is attached to your head instead of on the table. See
-   * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
+   * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
    */
   public final inline var billboardMode: BillboardMode
     @JvmName("billboardModeProperty")
@@ -1437,8 +1233,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when
-   * billboarding. Only applies when [billboardMode] is not [BILLBOARD_DISABLED].
+   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. Only applies when [billboardMode] is not [BILLBOARD_DISABLED].
    */
   public final inline var billboardKeepScale: Boolean
     @JvmName("billboardKeepScaleProperty")
@@ -1449,8 +1244,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The number of horizontal frames in the particle sprite sheet. Only enabled when using
-   * [BILLBOARD_PARTICLES]. See [billboardMode].
+   * The number of horizontal frames in the particle sprite sheet. Only enabled when using [BILLBOARD_PARTICLES]. See [billboardMode].
    */
   public final inline var particlesAnimHFrames: Int
     @JvmName("particlesAnimHFramesProperty")
@@ -1461,8 +1255,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The number of vertical frames in the particle sprite sheet. Only enabled when using
-   * [BILLBOARD_PARTICLES]. See [billboardMode].
+   * The number of vertical frames in the particle sprite sheet. Only enabled when using [BILLBOARD_PARTICLES]. See [billboardMode].
    */
   public final inline var particlesAnimVFrames: Int
     @JvmName("particlesAnimVFramesProperty")
@@ -1473,8 +1266,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, particle animations are looped. Only enabled when using [BILLBOARD_PARTICLES]. See
-   * [billboardMode].
+   * If `true`, particle animations are looped. Only enabled when using [BILLBOARD_PARTICLES]. See [billboardMode].
    */
   public final inline var particlesAnimLoop: Boolean
     @JvmName("particlesAnimLoopProperty")
@@ -1485,14 +1277,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, enables the vertex grow setting. This can be used to create mesh-based outlines
-   * using a second material pass and its [cullMode] set to [CULL_FRONT]. See also [growAmount].
+   * If `true`, enables the vertex grow setting. This can be used to create mesh-based outlines using a second material pass and its [cullMode] set to [CULL_FRONT]. See also [growAmount].
    *
-   * **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in
-   * sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively
-   * using [url=http://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in the
-   * 3D authoring software. In this case, grow will be able to join every outline together, just like
-   * in the original mesh.
+   * **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively using [url=http://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in the 3D authoring software. In this case, grow will be able to join every outline together, just like in the original mesh.
    */
   public final inline var grow: Boolean
     @JvmName("growProperty")
@@ -1527,8 +1314,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, render point size can be changed.
    *
-   * **Note:** This is only effective for objects whose geometry is point-based rather than
-   * triangle-based. See also [pointSize].
+   * **Note:** This is only effective for objects whose geometry is point-based rather than triangle-based. See also [pointSize].
    */
   public final inline var usePointSize: Boolean
     @JvmName("usePointSizeProperty")
@@ -1550,10 +1336,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, enables parts of the shader required for [GPUParticles3D] trails to function. This
-   * also requires using a mesh with appropriate skinning, such as [RibbonTrailMesh] or
-   * [TubeTrailMesh]. Enabling this feature outside of materials used in [GPUParticles3D] meshes will
-   * break material rendering.
+   * If `true`, enables parts of the shader required for [GPUParticles3D] trails to function. This also requires using a mesh with appropriate skinning, such as [RibbonTrailMesh] or [TubeTrailMesh]. Enabling this feature outside of materials used in [GPUParticles3D] meshes will break material rendering.
    */
   public final inline var useParticleTrails: Boolean
     @JvmName("useParticleTrailsProperty")
@@ -1564,8 +1347,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel
-   * based on its distance to another object.
+   * If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object.
    */
   public final inline var proximityFadeEnabled: Boolean
     @JvmName("proximityFadeEnabledProperty")
@@ -1576,8 +1358,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Distance over which the fade effect takes place. The larger the distance the longer it takes
-   * for an object to fade.
+   * Distance over which the fade effect takes place. The larger the distance the longer it takes for an object to fade.
    */
   public final inline var proximityFadeDistance: Float
     @JvmName("proximityFadeDistanceProperty")
@@ -1588,8 +1369,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The width of the range around the shape between the minimum and maximum representable signed
-   * distance.
+   * The width of the range around the shape between the minimum and maximum representable signed distance.
    */
   public final inline var msdfPixelRange: Float
     @JvmName("msdfPixelRangeProperty")
@@ -1622,12 +1402,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Distance at which the object starts to become visible. If the object is less than this distance
-   * away, it will be invisible.
+   * Distance at which the object starts to become visible. If the object is less than this distance away, it will be invisible.
    *
-   * **Note:** If [distanceFadeMinDistance] is greater than [distanceFadeMaxDistance], the behavior
-   * will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully
-   * disappear once it reaches [distanceFadeMinDistance].
+   * **Note:** If [distanceFadeMinDistance] is greater than [distanceFadeMaxDistance], the behavior will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully disappear once it reaches [distanceFadeMinDistance].
    */
   public final inline var distanceFadeMinDistance: Float
     @JvmName("distanceFadeMinDistanceProperty")
@@ -1640,9 +1417,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Distance at which the object appears fully opaque.
    *
-   * **Note:** If [distanceFadeMaxDistance] is less than [distanceFadeMinDistance], the behavior
-   * will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully
-   * disappear once it reaches [distanceFadeMinDistance].
+   * **Note:** If [distanceFadeMaxDistance] is less than [distanceFadeMinDistance], the behavior will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully disappear once it reaches [distanceFadeMinDistance].
    */
   public final inline var distanceFadeMaxDistance: Float
     @JvmName("distanceFadeMaxDistanceProperty")
@@ -1652,7 +1427,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
       setDistanceFadeMaxDistance(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(104, scriptIndex)
   }
 
@@ -1669,9 +1444,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * The material's base color.
    *
-   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor]
-   * will *not* modulate the detail texture. This can be used to color partial areas of a material by
-   * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
+   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor] will *not* modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    */
   @CoreTypeHelper
   public final fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply {
@@ -1699,8 +1472,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * This is a helper function for [subsurfScatterTransmittanceColor] to make dealing with local
-   * copies easier.
+   * This is a helper function for [subsurfScatterTransmittanceColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -1710,12 +1482,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * basematerial3d.subsurfScatterTransmittanceColor = myCoreType
    * ``````
    *
-   * The color to multiply the subsurface scattering transmittance effect with. Ignored if
-   * [subsurfScatterSkinMode] is `true`.
+   * The color to multiply the subsurface scattering transmittance effect with. Ignored if [subsurfScatterSkinMode] is `true`.
    */
   @CoreTypeHelper
-  public final fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color =
-      subsurfScatterTransmittanceColor.apply {
+  public final fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color = subsurfScatterTransmittanceColor.apply {
      block(this)
      subsurfScatterTransmittanceColor = this
   }
@@ -1750,8 +1520,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * basematerial3d.uv1Scale = myCoreType
    * ``````
    *
-   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The
-   * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
+   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
   public final fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply {
@@ -1770,9 +1539,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * basematerial3d.uv1Offset = myCoreType
    * ``````
    *
-   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex
-   * function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is
-   * enabled, but it is not used anywhere else.
+   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
   public final fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply {
@@ -1791,8 +1558,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * basematerial3d.uv2Scale = myCoreType
    * ``````
    *
-   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
-   * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
+   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
   public final fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply {
@@ -1811,9 +1577,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * basematerial3d.uv2Offset = myCoreType
    * ``````
    *
-   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex
-   * function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is
-   * enabled, but it is not used anywhere else.
+   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeHelper
   public final fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply {
@@ -1821,7 +1585,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      uv2Offset = this
   }
 
-  public final fun setAlbedo(albedo: Color): Unit {
+  public final fun setAlbedo(albedo: Color) {
     TransferContext.writeArguments(COLOR to albedo)
     TransferContext.callMethod(ptr, MethodBindings.setAlbedoPtr, NIL)
   }
@@ -1832,7 +1596,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setTransparency(transparency: Transparency): Unit {
+  public final fun setTransparency(transparency: Transparency) {
     TransferContext.writeArguments(LONG to transparency.id)
     TransferContext.callMethod(ptr, MethodBindings.setTransparencyPtr, NIL)
   }
@@ -1843,7 +1607,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return Transparency.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
+  public final fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing) {
     TransferContext.writeArguments(LONG to alphaAa.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
@@ -1854,7 +1618,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
+  public final fun setAlphaAntialiasingEdge(edge: Float) {
     TransferContext.writeArguments(DOUBLE to edge.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
@@ -1865,7 +1629,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setShadingMode(shadingMode: ShadingMode): Unit {
+  public final fun setShadingMode(shadingMode: ShadingMode) {
     TransferContext.writeArguments(LONG to shadingMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setShadingModePtr, NIL)
   }
@@ -1876,7 +1640,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSpecular(specular: Float): Unit {
+  public final fun setSpecular(specular: Float) {
     TransferContext.writeArguments(DOUBLE to specular.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSpecularPtr, NIL)
   }
@@ -1887,7 +1651,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMetallic(metallic: Float): Unit {
+  public final fun setMetallic(metallic: Float) {
     TransferContext.writeArguments(DOUBLE to metallic.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMetallicPtr, NIL)
   }
@@ -1898,7 +1662,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRoughness(roughness: Float): Unit {
+  public final fun setRoughness(roughness: Float) {
     TransferContext.writeArguments(DOUBLE to roughness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRoughnessPtr, NIL)
   }
@@ -1909,7 +1673,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmission(emission: Color): Unit {
+  public final fun setEmission(emission: Color) {
     TransferContext.writeArguments(COLOR to emission)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionPtr, NIL)
   }
@@ -1920,7 +1684,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setEmissionEnergyMultiplier(emissionEnergyMultiplier: Float): Unit {
+  public final fun setEmissionEnergyMultiplier(emissionEnergyMultiplier: Float) {
     TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
   }
@@ -1931,7 +1695,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionIntensity(emissionEnergyMultiplier: Float): Unit {
+  public final fun setEmissionIntensity(emissionEnergyMultiplier: Float) {
     TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionIntensityPtr, NIL)
   }
@@ -1942,7 +1706,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setNormalScale(normalScale: Float): Unit {
+  public final fun setNormalScale(normalScale: Float) {
     TransferContext.writeArguments(DOUBLE to normalScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setNormalScalePtr, NIL)
   }
@@ -1953,7 +1717,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRim(rim: Float): Unit {
+  public final fun setRim(rim: Float) {
     TransferContext.writeArguments(DOUBLE to rim.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRimPtr, NIL)
   }
@@ -1964,7 +1728,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRimTint(rimTint: Float): Unit {
+  public final fun setRimTint(rimTint: Float) {
     TransferContext.writeArguments(DOUBLE to rimTint.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRimTintPtr, NIL)
   }
@@ -1975,7 +1739,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setClearcoat(clearcoat: Float): Unit {
+  public final fun setClearcoat(clearcoat: Float) {
     TransferContext.writeArguments(DOUBLE to clearcoat.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setClearcoatPtr, NIL)
   }
@@ -1986,7 +1750,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setClearcoatRoughness(clearcoatRoughness: Float): Unit {
+  public final fun setClearcoatRoughness(clearcoatRoughness: Float) {
     TransferContext.writeArguments(DOUBLE to clearcoatRoughness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setClearcoatRoughnessPtr, NIL)
   }
@@ -1997,7 +1761,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAnisotropy(anisotropy: Float): Unit {
+  public final fun setAnisotropy(anisotropy: Float) {
     TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAnisotropyPtr, NIL)
   }
@@ -2008,7 +1772,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHeightmapScale(heightmapScale: Float): Unit {
+  public final fun setHeightmapScale(heightmapScale: Float) {
     TransferContext.writeArguments(DOUBLE to heightmapScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightmapScalePtr, NIL)
   }
@@ -2019,7 +1783,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSubsurfaceScatteringStrength(strength: Float): Unit {
+  public final fun setSubsurfaceScatteringStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
   }
@@ -2030,7 +1794,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTransmittanceColor(color: Color): Unit {
+  public final fun setTransmittanceColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setTransmittanceColorPtr, NIL)
   }
@@ -2041,7 +1805,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setTransmittanceDepth(depth: Float): Unit {
+  public final fun setTransmittanceDepth(depth: Float) {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTransmittanceDepthPtr, NIL)
   }
@@ -2052,7 +1816,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTransmittanceBoost(boost: Float): Unit {
+  public final fun setTransmittanceBoost(boost: Float) {
     TransferContext.writeArguments(DOUBLE to boost.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTransmittanceBoostPtr, NIL)
   }
@@ -2063,7 +1827,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBacklight(backlight: Color): Unit {
+  public final fun setBacklight(backlight: Color) {
     TransferContext.writeArguments(COLOR to backlight)
     TransferContext.callMethod(ptr, MethodBindings.setBacklightPtr, NIL)
   }
@@ -2074,7 +1838,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setRefraction(refraction: Float): Unit {
+  public final fun setRefraction(refraction: Float) {
     TransferContext.writeArguments(DOUBLE to refraction.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRefractionPtr, NIL)
   }
@@ -2085,7 +1849,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPointSize(pointSize: Float): Unit {
+  public final fun setPointSize(pointSize: Float) {
     TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPointSizePtr, NIL)
   }
@@ -2096,7 +1860,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDetailUv(detailUv: DetailUV): Unit {
+  public final fun setDetailUv(detailUv: DetailUV) {
     TransferContext.writeArguments(LONG to detailUv.id)
     TransferContext.callMethod(ptr, MethodBindings.setDetailUvPtr, NIL)
   }
@@ -2107,7 +1871,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBlendMode(blendMode: BlendMode): Unit {
+  public final fun setBlendMode(blendMode: BlendMode) {
     TransferContext.writeArguments(LONG to blendMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
@@ -2118,7 +1882,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
+  public final fun setDepthDrawMode(depthDrawMode: DepthDrawMode) {
     TransferContext.writeArguments(LONG to depthDrawMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDepthDrawModePtr, NIL)
   }
@@ -2129,7 +1893,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCullMode(cullMode: CullMode): Unit {
+  public final fun setCullMode(cullMode: CullMode) {
     TransferContext.writeArguments(LONG to cullMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
@@ -2140,7 +1904,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
+  public final fun setDiffuseMode(diffuseMode: DiffuseMode) {
     TransferContext.writeArguments(LONG to diffuseMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDiffuseModePtr, NIL)
   }
@@ -2151,7 +1915,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSpecularMode(specularMode: SpecularMode): Unit {
+  public final fun setSpecularMode(specularMode: SpecularMode) {
     TransferContext.writeArguments(LONG to specularMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setSpecularModePtr, NIL)
   }
@@ -2163,12 +1927,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and
-   * off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be
-   * bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by
-   * setting the corresponding member to `true`. See [Flags] enumerator for options.
+   * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by setting the corresponding member to `true`. See [Flags] enumerator for options.
    */
-  public final fun setFlag(flag: Flags, enable: Boolean): Unit {
+  public final fun setFlag(flag: Flags, enable: Boolean) {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
@@ -2182,7 +1943,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTextureFilter(mode: TextureFilter): Unit {
+  public final fun setTextureFilter(mode: TextureFilter) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
@@ -2194,12 +1955,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * If `true`, enables the specified [Feature]. Many features that are available in
-   * [BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only
-   * incurred when specified. Features can also be enabled by setting the corresponding member to
-   * `true`.
+   * If `true`, enables the specified [Feature]. Many features that are available in [BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only incurred when specified. Features can also be enabled by setting the corresponding member to `true`.
    */
-  public final fun setFeature(feature: Feature, enable: Boolean): Unit {
+  public final fun setFeature(feature: Feature, enable: Boolean) {
     TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFeaturePtr, NIL)
   }
@@ -2216,7 +1974,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the texture for the slot specified by [param]. See [TextureParam] for available slots.
    */
-  public final fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
+  public final fun setTexture(`param`: TextureParam, texture: Texture2D?) {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -2230,7 +1988,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setDetailBlendMode(detailBlendMode: BlendMode): Unit {
+  public final fun setDetailBlendMode(detailBlendMode: BlendMode) {
     TransferContext.writeArguments(LONG to detailBlendMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDetailBlendModePtr, NIL)
   }
@@ -2241,7 +1999,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUv1Scale(scale: Vector3): Unit {
+  public final fun setUv1Scale(scale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setUv1ScalePtr, NIL)
   }
@@ -2252,7 +2010,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setUv1Offset(offset: Vector3): Unit {
+  public final fun setUv1Offset(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setUv1OffsetPtr, NIL)
   }
@@ -2263,7 +2021,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setUv1TriplanarBlendSharpness(sharpness: Float): Unit {
+  public final fun setUv1TriplanarBlendSharpness(sharpness: Float) {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
   }
@@ -2274,7 +2032,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUv2Scale(scale: Vector3): Unit {
+  public final fun setUv2Scale(scale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setUv2ScalePtr, NIL)
   }
@@ -2285,7 +2043,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setUv2Offset(offset: Vector3): Unit {
+  public final fun setUv2Offset(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setUv2OffsetPtr, NIL)
   }
@@ -2296,7 +2054,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setUv2TriplanarBlendSharpness(sharpness: Float): Unit {
+  public final fun setUv2TriplanarBlendSharpness(sharpness: Float) {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
   }
@@ -2307,7 +2065,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBillboardMode(mode: BillboardMode): Unit {
+  public final fun setBillboardMode(mode: BillboardMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBillboardModePtr, NIL)
   }
@@ -2318,7 +2076,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setParticlesAnimHFrames(frames: Int): Unit {
+  public final fun setParticlesAnimHFrames(frames: Int) {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
   }
@@ -2329,7 +2087,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setParticlesAnimVFrames(frames: Int): Unit {
+  public final fun setParticlesAnimVFrames(frames: Int) {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
   }
@@ -2340,7 +2098,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setParticlesAnimLoop(loop: Boolean): Unit {
+  public final fun setParticlesAnimLoop(loop: Boolean) {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimLoopPtr, NIL)
   }
@@ -2351,7 +2109,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHeightmapDeepParallax(enable: Boolean): Unit {
+  public final fun setHeightmapDeepParallax(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
   }
@@ -2362,7 +2120,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHeightmapDeepParallaxMinLayers(layer: Int): Unit {
+  public final fun setHeightmapDeepParallaxMinLayers(layer: Int) {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
   }
@@ -2373,7 +2131,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHeightmapDeepParallaxMaxLayers(layer: Int): Unit {
+  public final fun setHeightmapDeepParallaxMaxLayers(layer: Int) {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
   }
@@ -2384,7 +2142,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHeightmapDeepParallaxFlipTangent(flip: Boolean): Unit {
+  public final fun setHeightmapDeepParallaxFlipTangent(flip: Boolean) {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(ptr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
   }
@@ -2395,7 +2153,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHeightmapDeepParallaxFlipBinormal(flip: Boolean): Unit {
+  public final fun setHeightmapDeepParallaxFlipBinormal(flip: Boolean) {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(ptr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr, NIL)
   }
@@ -2406,7 +2164,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGrow(amount: Float): Unit {
+  public final fun setGrow(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGrowPtr, NIL)
   }
@@ -2417,7 +2175,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionOperator(`operator`: EmissionOperator): Unit {
+  public final fun setEmissionOperator(`operator`: EmissionOperator) {
     TransferContext.writeArguments(LONG to `operator`.id)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionOperatorPtr, NIL)
   }
@@ -2428,7 +2186,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAoLightAffect(amount: Float): Unit {
+  public final fun setAoLightAffect(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAoLightAffectPtr, NIL)
   }
@@ -2439,7 +2197,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAlphaScissorThreshold(threshold: Float): Unit {
+  public final fun setAlphaScissorThreshold(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
@@ -2450,7 +2208,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAlphaHashScale(threshold: Float): Unit {
+  public final fun setAlphaHashScale(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
@@ -2461,7 +2219,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGrowEnabled(enable: Boolean): Unit {
+  public final fun setGrowEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setGrowEnabledPtr, NIL)
   }
@@ -2472,7 +2230,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMetallicTextureChannel(channel: TextureChannel): Unit {
+  public final fun setMetallicTextureChannel(channel: TextureChannel) {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(ptr, MethodBindings.setMetallicTextureChannelPtr, NIL)
   }
@@ -2483,7 +2241,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
+  public final fun setRoughnessTextureChannel(channel: TextureChannel) {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(ptr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
   }
@@ -2494,7 +2252,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAoTextureChannel(channel: TextureChannel): Unit {
+  public final fun setAoTextureChannel(channel: TextureChannel) {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(ptr, MethodBindings.setAoTextureChannelPtr, NIL)
   }
@@ -2505,7 +2263,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setRefractionTextureChannel(channel: TextureChannel): Unit {
+  public final fun setRefractionTextureChannel(channel: TextureChannel) {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(ptr, MethodBindings.setRefractionTextureChannelPtr, NIL)
   }
@@ -2516,7 +2274,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setProximityFadeEnabled(enabled: Boolean): Unit {
+  public final fun setProximityFadeEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setProximityFadeEnabledPtr, NIL)
   }
@@ -2527,7 +2285,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setProximityFadeDistance(distance: Float): Unit {
+  public final fun setProximityFadeDistance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setProximityFadeDistancePtr, NIL)
   }
@@ -2538,7 +2296,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMsdfPixelRange(range: Float): Unit {
+  public final fun setMsdfPixelRange(range: Float) {
     TransferContext.writeArguments(DOUBLE to range.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
@@ -2549,7 +2307,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMsdfOutlineSize(size: Float): Unit {
+  public final fun setMsdfOutlineSize(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMsdfOutlineSizePtr, NIL)
   }
@@ -2560,7 +2318,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDistanceFade(mode: DistanceFadeMode): Unit {
+  public final fun setDistanceFade(mode: DistanceFadeMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadePtr, NIL)
   }
@@ -2571,7 +2329,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDistanceFadeMaxDistance(distance: Float): Unit {
+  public final fun setDistanceFadeMaxDistance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
   }
@@ -2582,7 +2340,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDistanceFadeMinDistance(distance: Float): Unit {
+  public final fun setDistanceFadeMinDistance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
   }
@@ -2702,47 +2460,27 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long,
   ) {
     /**
-     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
-     * from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     NEAREST(0),
     /**
-     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
-     * from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     LINEAR(1),
     /**
-     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
-     * uses the nearest mipmap if
-     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
-     * makes the texture look pixelated from up close, and smooth from a distance.
+     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or uses the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look pixelated from up close, and smooth from a distance.
      */
     NEAREST_WITH_MIPMAPS(2),
     /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
-     * uses the nearest mipmap if
-     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
-     * makes the texture look smooth from up close, and smooth from a distance.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or uses the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look smooth from up close, and smooth from a distance.
      */
     LINEAR_WITH_MIPMAPS(3),
     /**
-     * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the
-     * nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is
-     * `true`) based on the angle between the surface and the camera view. This makes the texture look
-     * pixelated from up close, and smooth from a distance. Anisotropic filtering improves texture
-     * quality on surfaces that are almost in line with the camera, but is slightly slower. The
-     * anisotropic filtering level can be changed by adjusting
-     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`) based on the angle between the surface and the camera view. This makes the texture look pixelated from up close, and smooth from a distance. Anisotropic filtering improves texture quality on surfaces that are almost in line with the camera, but is slightly slower. The anisotropic filtering level can be changed by adjusting [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     NEAREST_WITH_MIPMAPS_ANISOTROPIC(4),
     /**
-     * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses
-     * the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter]
-     * is `true`) based on the angle between the surface and the camera view. This makes the texture
-     * look smooth from up close, and smooth from a distance. Anisotropic filtering improves texture
-     * quality on surfaces that are almost in line with the camera, but is slightly slower. The
-     * anisotropic filtering level can be changed by adjusting
-     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`) based on the angle between the surface and the camera view. This makes the texture look smooth from up close, and smooth from a distance. Anisotropic filtering improves texture quality on surfaces that are almost in line with the camera, but is slightly slower. The anisotropic filtering level can be changed by adjusting [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
@@ -2792,26 +2530,19 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     DISABLED(0),
     /**
-     * The material will use the texture's alpha values for transparency. This is the slowest to
-     * render, and disables shadow casting.
+     * The material will use the texture's alpha values for transparency. This is the slowest to render, and disables shadow casting.
      */
     ALPHA(1),
     /**
-     * The material will cut off all values below a threshold, the rest will remain opaque. The
-     * opaque portions will be rendered in the depth prepass. This is faster to render than alpha
-     * blending, but slower than opaque rendering. This also supports casting shadows.
+     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendered in the depth prepass. This is faster to render than alpha blending, but slower than opaque rendering. This also supports casting shadows.
      */
     ALPHA_SCISSOR(2),
     /**
-     * The material will cut off all values below a spatially-deterministic threshold, the rest will
-     * remain opaque. This is faster to render than alpha blending, but slower than opaque rendering.
-     * This also supports casting shadows. Alpha hashing is suited for hair rendering.
+     * The material will cut off all values below a spatially-deterministic threshold, the rest will remain opaque. This is faster to render than alpha blending, but slower than opaque rendering. This also supports casting shadows. Alpha hashing is suited for hair rendering.
      */
     ALPHA_HASH(3),
     /**
-     * The material will use the texture's alpha value for transparency, but will discard fragments
-     * with an alpha of less than 0.99 during the depth prepass and fragments with an alpha less than
-     * 0.1 during the shadow pass. This also supports casting shadows.
+     * The material will use the texture's alpha value for transparency, but will discard fragments with an alpha of less than 0.99 during the depth prepass and fragments with an alpha less than 0.1 during the shadow pass. This also supports casting shadows.
      */
     ALPHA_DEPTH_PRE_PASS(4),
     /**
@@ -2834,8 +2565,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long,
   ) {
     /**
-     * The object will not receive shadows. This is the fastest to render, but it disables all
-     * interactions with lights.
+     * The object will not receive shadows. This is the fastest to render, but it disables all interactions with lights.
      */
     UNSHADED(0),
     /**
@@ -2843,8 +2573,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     PER_PIXEL(1),
     /**
-     * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care
-     * about visual quality.
+     * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care about visual quality.
      */
     PER_VERTEX(2),
     /**
@@ -2934,8 +2663,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long,
   ) {
     /**
-     * Default blend mode. The color of the object is blended over the background based on the
-     * object's alpha value.
+     * Default blend mode. The color of the object is blended over the background based on the object's alpha value.
      */
     MIX(0),
     /**
@@ -2951,11 +2679,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     MUL(3),
     /**
-     * The color of the object is added to the background and the alpha channel is used to mask out
-     * the background. This is effectively a hybrid of the blend mix and add modes, useful for effects
-     * like fire where you want the flame to add but the smoke to mix. By default, this works with
-     * unshaded materials using premultiplied textures. For shaded materials, use the
-     * `PREMUL_ALPHA_FACTOR` built-in so that lighting can be modulated as well.
+     * The color of the object is added to the background and the alpha channel is used to mask out the background. This is effectively a hybrid of the blend mix and add modes, useful for effects like fire where you want the flame to add but the smoke to mix. By default, this works with unshaded materials using premultiplied textures. For shaded materials, use the `PREMUL_ALPHA_FACTOR` built-in so that lighting can be modulated as well.
      */
     PREMULT_ALPHA(4),
     ;
@@ -2978,13 +2702,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     ANTIALIASING_OFF(0),
     /**
-     * Enables AlphaToCoverage. Alpha values in the material are passed to the AntiAliasing sample
-     * mask.
+     * Enables AlphaToCoverage. Alpha values in the material are passed to the AntiAliasing sample mask.
      */
     ANTIALIASING_ALPHA_TO_COVERAGE(1),
     /**
-     * Enables AlphaToCoverage and forces all non-zero alpha values to `1`. Alpha values in the
-     * material are passed to the AntiAliasing sample mask.
+     * Enables AlphaToCoverage and forces all non-zero alpha values to `1`. Alpha values in the material are passed to the AntiAliasing sample mask.
      */
     ANTIALIASING_ALPHA_TO_COVERAGE_AND_TO_ONE(2),
     ;
@@ -3003,21 +2725,17 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long,
   ) {
     /**
-     * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if
-     * any) and during the opaque pass.
+     * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if any) and during the opaque pass.
      */
     OPAQUE_ONLY(0),
     /**
-     * Objects will write to depth during the opaque and the transparent passes. Transparent objects
-     * that are close to the camera may obscure other transparent objects behind them.
+     * Objects will write to depth during the opaque and the transparent passes. Transparent objects that are close to the camera may obscure other transparent objects behind them.
      *
-     * **Note:** This does not influence whether transparent objects are included in the depth
-     * prepass or not. For that, see [Transparency].
+     * **Note:** This does not influence whether transparent objects are included in the depth prepass or not. For that, see [Transparency].
      */
     ALWAYS(1),
     /**
-     * Objects will not write their depth to the depth buffer, even during the depth prepass (if
-     * enabled).
+     * Objects will not write their depth to the depth buffer, even during the depth prepass (if enabled).
      */
     DISABLED(2),
     ;
@@ -3036,15 +2754,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long,
   ) {
     /**
-     * Default cull mode. The back of the object is culled when not visible. Back face triangles
-     * will be culled when facing the camera. This results in only the front side of triangles being
-     * drawn. For closed-surface meshes, this means that only the exterior of the mesh will be visible.
+     * Default cull mode. The back of the object is culled when not visible. Back face triangles will be culled when facing the camera. This results in only the front side of triangles being drawn. For closed-surface meshes, this means that only the exterior of the mesh will be visible.
      */
     BACK(0),
     /**
-     * Front face triangles will be culled when facing the camera. This results in only the back
-     * side of triangles being drawn. For closed-surface meshes, this means that the interior of the
-     * mesh will be drawn instead of the exterior.
+     * Front face triangles will be culled when facing the camera. This results in only the back side of triangles being drawn. For closed-surface meshes, this means that the interior of the mesh will be drawn instead of the exterior.
      */
     FRONT(1),
     /**
@@ -3067,9 +2781,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long,
   ) {
     /**
-     * Disables the depth test, so this object is drawn on top of all others drawn before it. This
-     * puts the object in the transparent draw pass where it is sorted based on distance to camera.
-     * Objects drawn after it in the draw order may cover it. This also disables writing to depth.
+     * Disables the depth test, so this object is drawn on top of all others drawn before it. This puts the object in the transparent draw pass where it is sorted based on distance to camera. Objects drawn after it in the draw order may cover it. This also disables writing to depth.
      */
     DISABLE_DEPTH_TEST(0),
     /**
@@ -3077,15 +2789,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     ALBEDO_FROM_VERTEX_COLOR(1),
     /**
-     * Vertex colors are considered to be stored in sRGB color space and are converted to linear
-     * color space during rendering. See also [vertexColorIsSrgb].
+     * Vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. See also [vertexColorIsSrgb].
      *
      * **Note:** Only effective when using the Forward+ and Mobile rendering methods.
      */
     SRGB_VERTEX_COLOR(2),
     /**
-     * Uses point size to alter the size of primitive points. Also changes the albedo texture lookup
-     * to use `POINT_COORD` instead of `UV`.
+     * Uses point size to alter the size of primitive points. Also changes the albedo texture lookup to use `POINT_COORD` instead of `UV`.
      */
     USE_POINT_SIZE(3),
     /**
@@ -3093,8 +2803,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FIXED_SIZE(4),
     /**
-     * Shader will keep the scale set for the mesh. Otherwise the scale is lost when billboarding.
-     * Only applies when [billboardMode] is [BILLBOARD_ENABLED].
+     * Shader will keep the scale set for the mesh. Otherwise the scale is lost when billboarding. Only applies when [billboardMode] is [BILLBOARD_ENABLED].
      */
     BILLBOARD_KEEP_SCALE(5),
     /**
@@ -3122,8 +2831,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     EMISSION_ON_UV2(11),
     /**
-     * Forces the shader to convert albedo from sRGB space to linear space. See also
-     * [albedoTextureForceSrgb].
+     * Forces the shader to convert albedo from sRGB space to linear space. See also [albedoTextureForceSrgb].
      */
     ALBEDO_TEXTURE_FORCE_SRGB(12),
     /**
@@ -3139,9 +2847,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     USE_SHADOW_TO_OPACITY(15),
     /**
-     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
-     * the linear filtering modes, this can result in artifacts at the edges of a texture when the
-     * sampler filters across the edges of the texture.
+     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
      */
     USE_TEXTURE_REPEAT(16),
     /**
@@ -3149,15 +2855,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     INVERT_HEIGHTMAP(17),
     /**
-     * Enables the skin mode for subsurface scattering which is used to improve the look of
-     * subsurface scattering when used for human skin.
+     * Enables the skin mode for subsurface scattering which is used to improve the look of subsurface scattering when used for human skin.
      */
     SUBSURFACE_MODE_SKIN(18),
     /**
-     * Enables parts of the shader required for [GPUParticles3D] trails to function. This also
-     * requires using a mesh with appropriate skinning, such as [RibbonTrailMesh] or [TubeTrailMesh].
-     * Enabling this feature outside of materials used in [GPUParticles3D] meshes will break material
-     * rendering.
+     * Enables parts of the shader required for [GPUParticles3D] trails to function. This also requires using a mesh with appropriate skinning, such as [RibbonTrailMesh] or [TubeTrailMesh]. Enabling this feature outside of materials used in [GPUParticles3D] meshes will break material rendering.
      */
     PARTICLE_TRAILS_MODE(19),
     /**
@@ -3258,11 +2960,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FIXED_Y(2),
     /**
-     * Used for particle systems when assigned to [GPUParticles3D] and [CPUParticles3D] nodes
-     * (flipbook animation). Enables `particles_anim_*` properties.
+     * Used for particle systems when assigned to [GPUParticles3D] and [CPUParticles3D] nodes (flipbook animation). Enables `particles_anim_*` properties.
      *
-     * The [ParticleProcessMaterial.animSpeedMin] or [CPUParticles3D.animSpeedMin] should also be
-     * set to a value bigger than zero for the animation to play.
+     * The [ParticleProcessMaterial.animSpeedMin] or [CPUParticles3D.animSpeedMin] should also be set to a value bigger than zero for the animation to play.
      */
     PARTICLES(3),
     ;
@@ -3297,8 +2997,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     ALPHA(3),
     /**
-     * Used to read from the linear (non-perceptual) average of the red, green and blue channels of
-     * a texture.
+     * Used to read from the linear (non-perceptual) average of the red, green and blue channels of a texture.
      */
     GRAYSCALE(4),
     ;
@@ -3344,21 +3043,15 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     DISABLED(0),
     /**
-     * Smoothly fades the object out based on each pixel's distance from the camera using the alpha
-     * channel.
+     * Smoothly fades the object out based on each pixel's distance from the camera using the alpha channel.
      */
     PIXEL_ALPHA(1),
     /**
-     * Smoothly fades the object out based on each pixel's distance from the camera using a
-     * dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without
-     * enabling transparency. On certain hardware, this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
+     * Smoothly fades the object out based on each pixel's distance from the camera using a dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware, this can be faster than [DISTANCE_FADE_PIXEL_ALPHA].
      */
     PIXEL_DITHER(2),
     /**
-     * Smoothly fades the object out based on the object's distance from the camera using a
-     * dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without
-     * enabling transparency. On certain hardware, this can be faster than [DISTANCE_FADE_PIXEL_ALPHA]
-     * and [DISTANCE_FADE_PIXEL_DITHER].
+     * Smoothly fades the object out based on the object's distance from the camera using a dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware, this can be faster than [DISTANCE_FADE_PIXEL_ALPHA] and [DISTANCE_FADE_PIXEL_DITHER].
      */
     OBJECT_DITHER(3),
     ;
@@ -3377,411 +3070,411 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public object MethodBindings {
     internal val setAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_albedo", 2920490490)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_albedo", 2_920_490_490)
 
     internal val getAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_albedo", 3444240500)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_albedo", 3_444_240_500)
 
     internal val setTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transparency", 3435651667)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transparency", 3_435_651_667)
 
     internal val getTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transparency", 990903061)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transparency", 990_903_061)
 
     internal val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing", 3212649852)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing", 3_212_649_852)
 
     internal val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing", 2889939400)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing", 2_889_939_400)
 
     internal val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge", 373_806_689)
 
     internal val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge", 1_740_695_150)
 
     internal val setShadingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_shading_mode", 3368750322)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_shading_mode", 3_368_750_322)
 
     internal val getShadingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_shading_mode", 2132070559)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_shading_mode", 2_132_070_559)
 
     internal val setSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular", 373_806_689)
 
     internal val getSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular", 1_740_695_150)
 
     internal val setMetallicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic", 373_806_689)
 
     internal val getMetallicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic", 1_740_695_150)
 
     internal val setRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness", 373_806_689)
 
     internal val getRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness", 1_740_695_150)
 
     internal val setEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission", 2920490490)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission", 2_920_490_490)
 
     internal val getEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission", 3444240500)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission", 3_444_240_500)
 
     internal val setEmissionEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier", 373_806_689)
 
     internal val getEmissionEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier", 1_740_695_150)
 
     internal val setEmissionIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity", 373_806_689)
 
     internal val getEmissionIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity", 1_740_695_150)
 
     internal val setNormalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_normal_scale", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_normal_scale", 373_806_689)
 
     internal val getNormalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_normal_scale", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_normal_scale", 1_740_695_150)
 
     internal val setRimPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim", 373_806_689)
 
     internal val getRimPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim", 1_740_695_150)
 
     internal val setRimTintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim_tint", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim_tint", 373_806_689)
 
     internal val getRimTintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim_tint", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim_tint", 1_740_695_150)
 
     internal val setClearcoatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat", 373_806_689)
 
     internal val getClearcoatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat", 1_740_695_150)
 
     internal val setClearcoatRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness", 373_806_689)
 
     internal val getClearcoatRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness", 1_740_695_150)
 
     internal val setAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_anisotropy", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_anisotropy", 373_806_689)
 
     internal val getAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_anisotropy", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_anisotropy", 1_740_695_150)
 
     internal val setHeightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale", 373_806_689)
 
     internal val getHeightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale", 1_740_695_150)
 
     internal val setSubsurfaceScatteringStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength", 373_806_689)
 
     internal val getSubsurfaceScatteringStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength", 1_740_695_150)
 
     internal val setTransmittanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color", 2920490490)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color", 2_920_490_490)
 
     internal val getTransmittanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color", 3444240500)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color", 3_444_240_500)
 
     internal val setTransmittanceDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth", 373_806_689)
 
     internal val getTransmittanceDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth", 1_740_695_150)
 
     internal val setTransmittanceBoostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost", 373_806_689)
 
     internal val getTransmittanceBoostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost", 1_740_695_150)
 
     internal val setBacklightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_backlight", 2920490490)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_backlight", 2_920_490_490)
 
     internal val getBacklightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_backlight", 3444240500)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_backlight", 3_444_240_500)
 
     internal val setRefractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction", 373_806_689)
 
     internal val getRefractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction", 1_740_695_150)
 
     internal val setPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_point_size", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_point_size", 373_806_689)
 
     internal val getPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_point_size", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_point_size", 1_740_695_150)
 
     internal val setDetailUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_uv", 456801921)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_uv", 456_801_921)
 
     internal val getDetailUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_uv", 2306920512)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_uv", 2_306_920_512)
 
     internal val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_blend_mode", 2830186259)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_blend_mode", 2_830_186_259)
 
     internal val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_blend_mode", 4022690962)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_blend_mode", 4_022_690_962)
 
     internal val setDepthDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode", 1456584748)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode", 1_456_584_748)
 
     internal val getDepthDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode", 2578197639)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode", 2_578_197_639)
 
     internal val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode", 2338909218)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode", 2_338_909_218)
 
     internal val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_cull_mode", 1941499586)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_cull_mode", 1_941_499_586)
 
     internal val setDiffuseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode", 1045299638)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode", 1_045_299_638)
 
     internal val getDiffuseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode", 3973617136)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode", 3_973_617_136)
 
     internal val setSpecularModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular_mode", 584737147)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular_mode", 584_737_147)
 
     internal val getSpecularModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular_mode", 2569953298)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular_mode", 2_569_953_298)
 
     internal val setFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_flag", 3070159527)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_flag", 3_070_159_527)
 
     internal val getFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_flag", 1286410065)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_flag", 1_286_410_065)
 
     internal val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture_filter", 22904437)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture_filter", 22_904_437)
 
     internal val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture_filter", 3289213076)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture_filter", 3_289_213_076)
 
     internal val setFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_feature", 2819288693)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_feature", 2_819_288_693)
 
     internal val getFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_feature", 1965241794)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_feature", 1_965_241_794)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture", 464208135)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture", 464_208_135)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture", 329605813)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture", 329_605_813)
 
     internal val setDetailBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode", 2830186259)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode", 2_830_186_259)
 
     internal val getDetailBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode", 4022690962)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode", 4_022_690_962)
 
     internal val setUv1ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale", 3460891852)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale", 3_460_891_852)
 
     internal val getUv1ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale", 3360562783)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale", 3_360_562_783)
 
     internal val setUv1OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset", 3460891852)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset", 3_460_891_852)
 
     internal val getUv1OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset", 3360562783)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset", 3_360_562_783)
 
     internal val setUv1TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness", 373_806_689)
 
     internal val getUv1TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness", 1_740_695_150)
 
     internal val setUv2ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale", 3460891852)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale", 3_460_891_852)
 
     internal val getUv2ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale", 3360562783)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale", 3_360_562_783)
 
     internal val setUv2OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset", 3460891852)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset", 3_460_891_852)
 
     internal val getUv2OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset", 3360562783)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset", 3_360_562_783)
 
     internal val setUv2TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness", 373_806_689)
 
     internal val getUv2TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness", 1_740_695_150)
 
     internal val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode", 4202036497)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode", 4_202_036_497)
 
     internal val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode", 1283840139)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode", 1_283_840_139)
 
     internal val setParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames", 1286410249)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames", 1_286_410_249)
 
     internal val getParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames", 3905245786)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames", 3_905_245_786)
 
     internal val setParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames", 1286410249)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames", 1_286_410_249)
 
     internal val getParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames", 3905245786)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames", 3_905_245_786)
 
     internal val setParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop", 2586408642)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop", 2_586_408_642)
 
     internal val getParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop", 36873697)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop", 36_873_697)
 
     internal val setHeightmapDeepParallaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax", 2586408642)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax", 2_586_408_642)
 
     internal val isHeightmapDeepParallaxEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled", 36873697)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled", 36_873_697)
 
     internal val setHeightmapDeepParallaxMinLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers", 1286410249)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers", 1_286_410_249)
 
     internal val getHeightmapDeepParallaxMinLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers", 3905245786)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers", 3_905_245_786)
 
     internal val setHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers", 1286410249)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers", 1_286_410_249)
 
     internal val getHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers", 3905245786)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers", 3_905_245_786)
 
     internal val setHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent", 2586408642)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent", 2_586_408_642)
 
     internal val getHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent", 36873697)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent", 36_873_697)
 
     internal val setHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal", 2586408642)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal", 2_586_408_642)
 
     internal val getHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal", 36873697)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal", 36_873_697)
 
     internal val setGrowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow", 373_806_689)
 
     internal val getGrowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_grow", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_grow", 1_740_695_150)
 
     internal val setEmissionOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_operator", 3825128922)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_operator", 3_825_128_922)
 
     internal val getEmissionOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_operator", 974205018)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_operator", 974_205_018)
 
     internal val setAoLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect", 373_806_689)
 
     internal val getAoLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect", 1_740_695_150)
 
     internal val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold", 373_806_689)
 
     internal val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold", 1_740_695_150)
 
     internal val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale", 373_806_689)
 
     internal val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale", 1_740_695_150)
 
     internal val setGrowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled", 2_586_408_642)
 
     internal val isGrowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled", 36873697)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled", 36_873_697)
 
     internal val setMetallicTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel", 744167988)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel", 744_167_988)
 
     internal val getMetallicTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel", 568133867)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel", 568_133_867)
 
     internal val setRoughnessTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel", 744167988)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel", 744_167_988)
 
     internal val getRoughnessTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel", 568133867)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel", 568_133_867)
 
     internal val setAoTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel", 744167988)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel", 744_167_988)
 
     internal val getAoTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel", 568133867)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel", 568_133_867)
 
     internal val setRefractionTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel", 744167988)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel", 744_167_988)
 
     internal val getRefractionTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel", 568133867)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel", 568_133_867)
 
     internal val setProximityFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled", 2_586_408_642)
 
     internal val isProximityFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled", 36873697)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled", 36_873_697)
 
     internal val setProximityFadeDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance", 373_806_689)
 
     internal val getProximityFadeDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance", 1_740_695_150)
 
     internal val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range", 373_806_689)
 
     internal val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range", 1_740_695_150)
 
     internal val setMsdfOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size", 373_806_689)
 
     internal val getMsdfOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size", 1_740_695_150)
 
     internal val setDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade", 1379478617)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade", 1_379_478_617)
 
     internal val getDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade", 2694575734)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade", 2_694_575_734)
 
     internal val setDistanceFadeMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance", 373_806_689)
 
     internal val getDistanceFadeMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance", 1_740_695_150)
 
     internal val setDistanceFadeMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance", 373806689)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance", 373_806_689)
 
     internal val getDistanceFadeMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance", 1740695150)
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance", 1_740_695_150)
   }
 }

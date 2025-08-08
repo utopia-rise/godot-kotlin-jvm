@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,15 +14,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard
- * limiters predict volume peaks, and will smoothly apply gain reduction when a peak crosses the
- * ceiling threshold to prevent clipping and distortion. It preserves the waveform and prevents it from
- * crossing the ceiling threshold. Adding one in the Master bus is recommended as a safety measure to
- * prevent sudden volume peaks from occurring, and to prevent distortion caused by clipping.
+ * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard limiters predict volume peaks, and will smoothly apply gain reduction when a peak crosses the ceiling threshold to prevent clipping and distortion. It preserves the waveform and prevents it from crossing the ceiling threshold. Adding one in the Master bus is recommended as a safety measure to prevent sudden volume peaks from occurring, and to prevent distortion caused by clipping.
  */
 @GodotBaseType
 public open class AudioEffectHardLimiter : AudioEffect() {
@@ -43,8 +35,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   /**
    * The waveform's maximum allowed value, in decibels. This value can range from `-24.0` to `0.0`.
    *
-   * The default value of `-0.3` prevents potential inter-sample peaks (ISP) from crossing over 0
-   * dB, which can cause slight distortion on some older hardware.
+   * The default value of `-0.3` prevents potential inter-sample peaks (ISP) from crossing over 0 dB, which can cause slight distortion on some older hardware.
    */
   public final inline var ceilingDb: Float
     @JvmName("ceilingDbProperty")
@@ -65,11 +56,11 @@ public open class AudioEffectHardLimiter : AudioEffect() {
       setRelease(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(59, scriptIndex)
   }
 
-  public final fun setCeilingDb(ceiling: Float): Unit {
+  public final fun setCeilingDb(ceiling: Float) {
     TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCeilingDbPtr, NIL)
   }
@@ -80,7 +71,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPreGainDb(pPreGain: Float): Unit {
+  public final fun setPreGainDb(pPreGain: Float) {
     TransferContext.writeArguments(DOUBLE to pPreGain.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPreGainDbPtr, NIL)
   }
@@ -91,7 +82,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRelease(pRelease: Float): Unit {
+  public final fun setRelease(pRelease: Float) {
     TransferContext.writeArguments(DOUBLE to pRelease.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setReleasePtr, NIL)
   }
@@ -113,21 +104,21 @@ public open class AudioEffectHardLimiter : AudioEffect() {
 
   public object MethodBindings {
     internal val setCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db", 373_806_689)
 
     internal val getCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db", 1_740_695_150)
 
     internal val setPreGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db", 373_806_689)
 
     internal val getPreGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db", 1_740_695_150)
 
     internal val setReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_release", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_release", 373_806_689)
 
     internal val getReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_release", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_release", 1_740_695_150)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,24 +16,20 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies
- * in audio. AudioEffectEQs are useful on the Master bus to completely master a mix and give it more
- * character. They are also useful when a game is run on a mobile device, to adjust the mix to that
- * kind of speakers (it can be added but disabled when headphones are plugged).
+ * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies in audio. AudioEffectEQs are useful on the Master bus to completely master a mix and give it more character. They are also useful when a game is run on a mobile device, to adjust the mix to that kind of speakers (it can be added but disabled when headphones are plugged).
  */
 @GodotBaseType
 public open class AudioEffectEQ : AudioEffect() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(54, scriptIndex)
   }
 
   /**
    * Sets band's gain at the specified index, in dB.
    */
-  public final fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
+  public final fun setBandGainDb(bandIdx: Int, volumeDb: Float) {
     TransferContext.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBandGainDbPtr, NIL)
   }
@@ -70,12 +63,12 @@ public open class AudioEffectEQ : AudioEffect() {
 
   public object MethodBindings {
     internal val setBandGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db", 1602489585)
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db", 1_602_489_585)
 
     internal val getBandGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db", 2339986948)
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db", 2_339_986_948)
 
     internal val getBandCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_count", 3905245786)
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_count", 3_905_245_786)
   }
 }

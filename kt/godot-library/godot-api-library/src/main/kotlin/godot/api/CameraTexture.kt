@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,7 +15,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -40,8 +36,7 @@ public open class CameraTexture : Texture2D() {
     }
 
   /**
-   * Which image within the [CameraFeed] we want access to, important if the camera image is split
-   * in a Y and CbCr component.
+   * Which image within the [CameraFeed] we want access to, important if the camera image is split in a Y and CbCr component.
    */
   public final inline var whichFeed: CameraServer.FeedImage
     @JvmName("whichFeedProperty")
@@ -62,11 +57,11 @@ public open class CameraTexture : Texture2D() {
       setCameraActive(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(134, scriptIndex)
   }
 
-  public final fun setCameraFeedId(feedId: Int): Unit {
+  public final fun setCameraFeedId(feedId: Int) {
     TransferContext.writeArguments(LONG to feedId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCameraFeedIdPtr, NIL)
   }
@@ -77,7 +72,7 @@ public open class CameraTexture : Texture2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setWhichFeed(whichFeed: CameraServer.FeedImage): Unit {
+  public final fun setWhichFeed(whichFeed: CameraServer.FeedImage) {
     TransferContext.writeArguments(LONG to whichFeed.id)
     TransferContext.callMethod(ptr, MethodBindings.setWhichFeedPtr, NIL)
   }
@@ -88,7 +83,7 @@ public open class CameraTexture : Texture2D() {
     return CameraServer.FeedImage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCameraActive(active: Boolean): Unit {
+  public final fun setCameraActive(active: Boolean) {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.setCameraActivePtr, NIL)
   }
@@ -117,21 +112,21 @@ public open class CameraTexture : Texture2D() {
 
   public object MethodBindings {
     internal val setCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "set_camera_feed_id", 1286410249)
+        TypeManager.getMethodBindPtr("CameraTexture", "set_camera_feed_id", 1_286_410_249)
 
     internal val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "get_camera_feed_id", 3905245786)
+        TypeManager.getMethodBindPtr("CameraTexture", "get_camera_feed_id", 3_905_245_786)
 
     internal val setWhichFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "set_which_feed", 1595299230)
+        TypeManager.getMethodBindPtr("CameraTexture", "set_which_feed", 1_595_299_230)
 
     internal val getWhichFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "get_which_feed", 91039457)
+        TypeManager.getMethodBindPtr("CameraTexture", "get_which_feed", 91_039_457)
 
     internal val setCameraActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "set_camera_active", 2586408642)
+        TypeManager.getMethodBindPtr("CameraTexture", "set_camera_active", 2_586_408_642)
 
     internal val getCameraActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "get_camera_active", 36873697)
+        TypeManager.getMethodBindPtr("CameraTexture", "get_camera_active", 36_873_697)
   }
 }

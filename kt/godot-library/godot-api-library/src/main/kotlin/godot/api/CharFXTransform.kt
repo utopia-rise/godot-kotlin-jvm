@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -38,22 +35,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * By setting various properties on this object, you can control how individual characters will be
- * displayed in a [RichTextEffect].
+ * By setting various properties on this object, you can control how individual characters will be displayed in a [RichTextEffect].
  */
 @GodotBaseType
 public open class CharFXTransform : RefCounted() {
   /**
-   * The current transform of the current glyph. It can be overridden (for example, by driving the
-   * position and rotation from a curve). You can also alter the existing value to apply transforms on
-   * top of other effects.
+   * The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -70,11 +61,8 @@ public open class CharFXTransform : RefCounted() {
    * **Note:** Read-only. Setting this property won't affect drawing.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var range: Vector2i
@@ -86,9 +74,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops
-   * when the [RichTextLabel] is paused (see [Node.processMode]). Resets when the text in the
-   * [RichTextLabel] is changed.
+   * The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops when the [RichTextLabel] is paused (see [Node.processMode]). Resets when the text in the [RichTextLabel] is changed.
    *
    * **Note:** Time still passes while the [RichTextLabel] is hidden.
    */
@@ -101,9 +87,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters
-   * around hidden characters will reflow to take the space of hidden characters. If this is not
-   * desired, set their [color] to `Color(1, 1, 1, 0)` instead.
+   * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [color] to `Color(1, 1, 1, 0)` instead.
    */
   public final inline var visible: Boolean
     @JvmName("visibleProperty")
@@ -130,11 +114,8 @@ public open class CharFXTransform : RefCounted() {
    * The position offset the character will be drawn with (in pixels).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -149,11 +130,8 @@ public open class CharFXTransform : RefCounted() {
    * The color the character will be drawn with.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -165,14 +143,9 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if
-   * their contents match a type such as [bool], [int] or [float], they will be converted
-   * automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color].
-   * String arguments may not contain spaces, even if they're quoted. If present, quotes will also be
-   * present in the final string.
+   * Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if their contents match a type such as [bool], [int] or [float], they will be converted automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color]. String arguments may not contain spaces, even if they're quoted. If present, quotes will also be present in the final string.
    *
-   * For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will
-   * map to the following [Dictionary]:
+   * For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [Dictionary]:
    *
    * ```
    * {"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
@@ -187,8 +160,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Glyph index specific to the [font]. If you want to replace this glyph, use
-   * [TextServer.fontGetGlyphIndex] with [font] to get a new glyph index for a single character.
+   * Glyph index specific to the [font]. If you want to replace this glyph, use [TextServer.fontGetGlyphIndex] with [font] to get a new glyph index for a single character.
    */
   public final inline var glyphIndex: Long
     @JvmName("glyphIndexProperty")
@@ -238,8 +210,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * [TextServer] RID of the font used to render glyph, this value can be used with
-   * `TextServer.font_*` methods to retrieve font information.
+   * [TextServer] RID of the font used to render glyph, this value can be used with `TextServer.font_*` methods to retrieve font information.
    *
    * **Note:** Read-only. Setting this property won't affect drawing.
    */
@@ -251,7 +222,7 @@ public open class CharFXTransform : RefCounted() {
       setFont(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(145, scriptIndex)
   }
 
@@ -266,9 +237,7 @@ public open class CharFXTransform : RefCounted() {
    * charfxtransform.transform = myCoreType
    * ``````
    *
-   * The current transform of the current glyph. It can be overridden (for example, by driving the
-   * position and rotation from a curve). You can also alter the existing value to apply transforms on
-   * top of other effects.
+   * The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects.
    */
   @CoreTypeHelper
   public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply {
@@ -341,7 +310,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public final fun setTransform(transform: Transform2D): Unit {
+  public final fun setTransform(transform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -352,7 +321,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setRange(range: Vector2i): Unit {
+  public final fun setRange(range: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to range)
     TransferContext.callMethod(ptr, MethodBindings.setRangePtr, NIL)
   }
@@ -363,7 +332,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setElapsedTime(time: Double): Unit {
+  public final fun setElapsedTime(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setElapsedTimePtr, NIL)
   }
@@ -374,7 +343,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVisibility(visibility: Boolean): Unit {
+  public final fun setVisibility(visibility: Boolean) {
     TransferContext.writeArguments(BOOL to visibility)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityPtr, NIL)
   }
@@ -385,7 +354,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOutline(outline: Boolean): Unit {
+  public final fun setOutline(outline: Boolean) {
     TransferContext.writeArguments(BOOL to outline)
     TransferContext.callMethod(ptr, MethodBindings.setOutlinePtr, NIL)
   }
@@ -396,7 +365,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -407,7 +376,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -418,7 +387,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public final fun setEnvironment(environment: Dictionary<Any?, Any?>): Unit {
+  public final fun setEnvironment(environment: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to environment)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentPtr, NIL)
   }
@@ -429,7 +398,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setGlyphIndex(glyphIndex: Long): Unit {
+  public final fun setGlyphIndex(glyphIndex: Long) {
     TransferContext.writeArguments(LONG to glyphIndex)
     TransferContext.callMethod(ptr, MethodBindings.setGlyphIndexPtr, NIL)
   }
@@ -440,7 +409,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setRelativeIndex(relativeIndex: Int): Unit {
+  public final fun setRelativeIndex(relativeIndex: Int) {
     TransferContext.writeArguments(LONG to relativeIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRelativeIndexPtr, NIL)
   }
@@ -451,7 +420,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setGlyphCount(glyphCount: Int): Unit {
+  public final fun setGlyphCount(glyphCount: Int) {
     TransferContext.writeArguments(LONG to glyphCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setGlyphCountPtr, NIL)
   }
@@ -462,7 +431,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setGlyphFlags(glyphFlags: Int): Unit {
+  public final fun setGlyphFlags(glyphFlags: Int) {
     TransferContext.writeArguments(LONG to glyphFlags.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setGlyphFlagsPtr, NIL)
   }
@@ -473,7 +442,7 @@ public open class CharFXTransform : RefCounted() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setFont(font: RID): Unit {
+  public final fun setFont(font: RID) {
     TransferContext.writeArguments(_RID to font)
     TransferContext.callMethod(ptr, MethodBindings.setFontPtr, NIL)
   }
@@ -482,81 +451,81 @@ public open class CharFXTransform : RefCounted() {
 
   public object MethodBindings {
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_transform", 3761352769)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_transform", 3_761_352_769)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_transform", 2761652528)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_transform", 2_761_652_528)
 
     internal val getRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_range", 2741790807)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_range", 2_741_790_807)
 
     internal val setRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_range", 1130785943)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_range", 1_130_785_943)
 
     internal val getElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_elapsed_time", 191475506)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_elapsed_time", 191_475_506)
 
     internal val setElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_elapsed_time", 373806689)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_elapsed_time", 373_806_689)
 
     internal val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "is_visible", 2240911060)
+        TypeManager.getMethodBindPtr("CharFXTransform", "is_visible", 2_240_911_060)
 
     internal val setVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_visibility", 2586408642)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_visibility", 2_586_408_642)
 
     internal val isOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "is_outline", 2240911060)
+        TypeManager.getMethodBindPtr("CharFXTransform", "is_outline", 2_240_911_060)
 
     internal val setOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_outline", 2586408642)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_outline", 2_586_408_642)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_offset", 1497962370)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_offset", 1_497_962_370)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_offset", 743_155_724)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_color", 3200896285)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_color", 3_200_896_285)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_color", 2_920_490_490)
 
     internal val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_environment", 2382534195)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_environment", 2_382_534_195)
 
     internal val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_environment", 4155329257)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_environment", 4_155_329_257)
 
     internal val getGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_index", 3905245786)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_index", 3_905_245_786)
 
     internal val setGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_index", 1286410249)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_index", 1_286_410_249)
 
     internal val getRelativeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_relative_index", 3905245786)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_relative_index", 3_905_245_786)
 
     internal val setRelativeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_relative_index", 1286410249)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_relative_index", 1_286_410_249)
 
     internal val getGlyphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_count", 3905245786)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_count", 3_905_245_786)
 
     internal val setGlyphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_count", 1286410249)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_count", 1_286_410_249)
 
     internal val getGlyphFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_flags", 3905245786)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_flags", 3_905_245_786)
 
     internal val setGlyphFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_flags", 1286410249)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_flags", 1_286_410_249)
 
     internal val getFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_font", 2944877500)
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_font", 2_944_877_500)
 
     internal val setFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_font", 2722037293)
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_font", 2_722_037_293)
   }
 }

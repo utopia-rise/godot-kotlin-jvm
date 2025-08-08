@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -43,11 +40,8 @@ public open class GLTFSkin : Resource() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var jointsOriginal: PackedInt32Array
@@ -70,11 +64,8 @@ public open class GLTFSkin : Resource() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var joints: PackedInt32Array
@@ -89,11 +80,8 @@ public open class GLTFSkin : Resource() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var nonJoints: PackedInt32Array
@@ -108,11 +96,8 @@ public open class GLTFSkin : Resource() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var roots: PackedInt32Array
@@ -155,7 +140,7 @@ public open class GLTFSkin : Resource() {
       setGodotSkin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(238, scriptIndex)
   }
 
@@ -171,20 +156,17 @@ public open class GLTFSkin : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun jointsOriginalMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      jointsOriginal.apply {
+  public final fun jointsOriginalMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = jointsOriginal.apply {
      block(this)
      jointsOriginal = this
   }
 
   /**
    * This is a helper function for [jointsOriginal] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun jointsOriginalMutateEach(block: (index: Int, `value`: Int) -> Unit):
-      PackedInt32Array = jointsOriginal.apply {
+  public final fun jointsOriginalMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = jointsOriginal.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -204,20 +186,17 @@ public open class GLTFSkin : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun jointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      joints.apply {
+  public final fun jointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = joints.apply {
      block(this)
      joints = this
   }
 
   /**
    * This is a helper function for [joints] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun jointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
-      joints.apply {
+  public final fun jointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = joints.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -237,20 +216,17 @@ public open class GLTFSkin : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun nonJointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      nonJoints.apply {
+  public final fun nonJointsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = nonJoints.apply {
      block(this)
      nonJoints = this
   }
 
   /**
    * This is a helper function for [nonJoints] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun nonJointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
-      = nonJoints.apply {
+  public final fun nonJointsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = nonJoints.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -277,12 +253,10 @@ public open class GLTFSkin : Resource() {
 
   /**
    * This is a helper function for [roots] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun rootsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
-      roots.apply {
+  public final fun rootsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = roots.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -296,7 +270,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSkinRoot(skinRoot: Int): Unit {
+  public final fun setSkinRoot(skinRoot: Int) {
     TransferContext.writeArguments(LONG to skinRoot.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSkinRootPtr, NIL)
   }
@@ -307,7 +281,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setJointsOriginal(jointsOriginal: PackedInt32Array): Unit {
+  public final fun setJointsOriginal(jointsOriginal: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to jointsOriginal)
     TransferContext.callMethod(ptr, MethodBindings.setJointsOriginalPtr, NIL)
   }
@@ -318,7 +292,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Transform3D>)
   }
 
-  public final fun setInverseBinds(inverseBinds: VariantArray<Transform3D>): Unit {
+  public final fun setInverseBinds(inverseBinds: VariantArray<Transform3D>) {
     TransferContext.writeArguments(ARRAY to inverseBinds)
     TransferContext.callMethod(ptr, MethodBindings.setInverseBindsPtr, NIL)
   }
@@ -329,7 +303,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setJoints(joints: PackedInt32Array): Unit {
+  public final fun setJoints(joints: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to joints)
     TransferContext.callMethod(ptr, MethodBindings.setJointsPtr, NIL)
   }
@@ -340,7 +314,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setNonJoints(nonJoints: PackedInt32Array): Unit {
+  public final fun setNonJoints(nonJoints: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to nonJoints)
     TransferContext.callMethod(ptr, MethodBindings.setNonJointsPtr, NIL)
   }
@@ -351,7 +325,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setRoots(roots: PackedInt32Array): Unit {
+  public final fun setRoots(roots: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to roots)
     TransferContext.callMethod(ptr, MethodBindings.setRootsPtr, NIL)
   }
@@ -362,7 +336,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSkeleton(skeleton: Int): Unit {
+  public final fun setSkeleton(skeleton: Int) {
     TransferContext.writeArguments(LONG to skeleton.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonPtr, NIL)
   }
@@ -373,7 +347,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public final fun setJointIToBoneI(jointIToBoneI: Dictionary<Any?, Any?>): Unit {
+  public final fun setJointIToBoneI(jointIToBoneI: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to jointIToBoneI)
     TransferContext.callMethod(ptr, MethodBindings.setJointIToBoneIPtr, NIL)
   }
@@ -384,7 +358,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public final fun setJointIToName(jointIToName: Dictionary<Any?, Any?>): Unit {
+  public final fun setJointIToName(jointIToName: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to jointIToName)
     TransferContext.callMethod(ptr, MethodBindings.setJointIToNamePtr, NIL)
   }
@@ -395,7 +369,7 @@ public open class GLTFSkin : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
-  public final fun setGodotSkin(godotSkin: Skin?): Unit {
+  public final fun setGodotSkin(godotSkin: Skin?) {
     TransferContext.writeArguments(OBJECT to godotSkin)
     TransferContext.callMethod(ptr, MethodBindings.setGodotSkinPtr, NIL)
   }
@@ -404,63 +378,63 @@ public open class GLTFSkin : Resource() {
 
   public object MethodBindings {
     internal val getSkinRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_skin_root", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_skin_root", 2_455_072_627)
 
     internal val setSkinRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_skin_root", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_skin_root", 1_286_410_249)
 
     internal val getJointsOriginalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints_original", 969006518)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints_original", 969_006_518)
 
     internal val setJointsOriginalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints_original", 3614634198)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints_original", 3_614_634_198)
 
     internal val getInverseBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_inverse_binds", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_inverse_binds", 2_915_620_761)
 
     internal val setInverseBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_inverse_binds", 381264803)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_inverse_binds", 381_264_803)
 
     internal val getJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints", 969006518)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints", 969_006_518)
 
     internal val setJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints", 3614634198)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints", 3_614_634_198)
 
     internal val getNonJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_non_joints", 969006518)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_non_joints", 969_006_518)
 
     internal val setNonJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_non_joints", 3614634198)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_non_joints", 3_614_634_198)
 
     internal val getRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_roots", 969006518)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_roots", 969_006_518)
 
     internal val setRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_roots", 3614634198)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_roots", 3_614_634_198)
 
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_skeleton", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_skeleton", 2_455_072_627)
 
     internal val setSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_skeleton", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_skeleton", 1_286_410_249)
 
     internal val getJointIToBoneIPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_bone_i", 2382534195)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_bone_i", 2_382_534_195)
 
     internal val setJointIToBoneIPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_bone_i", 4155329257)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_bone_i", 4_155_329_257)
 
     internal val getJointIToNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_name", 2382534195)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_name", 2_382_534_195)
 
     internal val setJointIToNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_name", 4155329257)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_name", 4_155_329_257)
 
     internal val getGodotSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_godot_skin", 1032037385)
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_godot_skin", 1_032_037_385)
 
     internal val setGodotSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_godot_skin", 3971435618)
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_godot_skin", 3_971_435_618)
   }
 }

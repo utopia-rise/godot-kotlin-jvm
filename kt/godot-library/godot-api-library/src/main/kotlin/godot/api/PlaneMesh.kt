@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,13 +22,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
- * default, this mesh is aligned on the X and Z axes; this default rotation isn't suited for use with
- * billboarded materials. For billboarded materials, change [orientation] to [FACE_Z].
+ * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Z axes; this default rotation isn't suited for use with billboarded materials. For billboarded materials, change [orientation] to [FACE_Z].
  *
- * **Note:** When using a large textured [PlaneMesh] (e.g. as a floor), you may stumble upon UV
- * jittering issues depending on the camera angle. To solve this, increase [subdivideDepth] and
- * [subdivideWidth] until you no longer notice UV jittering.
+ * **Note:** When using a large textured [PlaneMesh] (e.g. as a floor), you may stumble upon UV jittering issues depending on the camera angle. To solve this, increase [subdivideDepth] and [subdivideWidth] until you no longer notice UV jittering.
  */
 @GodotBaseType
 public open class PlaneMesh : PrimitiveMesh() {
@@ -39,11 +32,8 @@ public open class PlaneMesh : PrimitiveMesh() {
    * Size of the generated plane.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2
@@ -80,11 +70,8 @@ public open class PlaneMesh : PrimitiveMesh() {
    * Offset of the generated plane. Useful for particles.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var centerOffset: Vector3
@@ -106,7 +93,7 @@ public open class PlaneMesh : PrimitiveMesh() {
       setOrientation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(495, scriptIndex)
   }
 
@@ -148,7 +135,7 @@ public open class PlaneMesh : PrimitiveMesh() {
      centerOffset = this
   }
 
-  public final fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -159,7 +146,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setSubdivideWidth(subdivide: Int): Unit {
+  public final fun setSubdivideWidth(subdivide: Int) {
     TransferContext.writeArguments(LONG to subdivide.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
@@ -170,7 +157,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSubdivideDepth(subdivide: Int): Unit {
+  public final fun setSubdivideDepth(subdivide: Int) {
     TransferContext.writeArguments(LONG to subdivide.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
@@ -181,7 +168,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCenterOffset(offset: Vector3): Unit {
+  public final fun setCenterOffset(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setCenterOffsetPtr, NIL)
   }
@@ -192,7 +179,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setOrientation(orientation: Orientation): Unit {
+  public final fun setOrientation(orientation: Orientation) {
     TransferContext.writeArguments(LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
   }
@@ -211,13 +198,11 @@ public open class PlaneMesh : PrimitiveMesh() {
      */
     FACE_X(0),
     /**
-     * [PlaneMesh] will face the positive Y-axis. This matches the behavior of the [PlaneMesh] in
-     * Godot 3.x.
+     * [PlaneMesh] will face the positive Y-axis. This matches the behavior of the [PlaneMesh] in Godot 3.x.
      */
     FACE_Y(1),
     /**
-     * [PlaneMesh] will face the positive Z-axis. This matches the behavior of the QuadMesh in Godot
-     * 3.x.
+     * [PlaneMesh] will face the positive Z-axis. This matches the behavior of the QuadMesh in Godot 3.x.
      */
     FACE_Z(2),
     ;
@@ -236,33 +221,33 @@ public open class PlaneMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_size", 743155724)
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_size", 743_155_724)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_size", 3341600327)
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_size", 3_341_600_327)
 
     internal val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_width", 1286410249)
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_width", 1_286_410_249)
 
     internal val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_width", 3905245786)
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_width", 3_905_245_786)
 
     internal val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_depth", 1286410249)
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_depth", 1_286_410_249)
 
     internal val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_depth", 3905245786)
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_depth", 3_905_245_786)
 
     internal val setCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_center_offset", 3460891852)
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_center_offset", 3_460_891_852)
 
     internal val getCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_center_offset", 3360562783)
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_center_offset", 3_360_562_783)
 
     internal val setOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_orientation", 2751399687)
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_orientation", 2_751_399_687)
 
     internal val getOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_orientation", 3227599250)
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_orientation", 3_227_599_250)
   }
 }

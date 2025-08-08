@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,42 +26,26 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The [LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide
- * high-quality indirect lighting with very little light leaking. [LightmapGI] can also provide rough
- * reflections using spherical harmonics if [directional] is enabled. Dynamic objects can receive
- * indirect lighting thanks to *light probes*, which can be automatically placed by setting
- * [generateProbesSubdiv] to a value other than [GENERATE_PROBES_DISABLED]. Additional lightmap probes
- * can also be added by creating [LightmapProbe] nodes. The downside is that lightmaps are fully static
- * and cannot be baked in an exported project. Baking a [LightmapGI] node is also slower compared to
- * [VoxelGI].
+ * The [LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide high-quality indirect lighting with very little light leaking. [LightmapGI] can also provide rough reflections using spherical harmonics if [directional] is enabled. Dynamic objects can receive indirect lighting thanks to *light probes*, which can be automatically placed by setting [generateProbesSubdiv] to a value other than [GENERATE_PROBES_DISABLED]. Additional lightmap probes can also be added by creating [LightmapProbe] nodes. The downside is that lightmaps are fully static and cannot be baked in an exported project. Baking a [LightmapGI] node is also slower compared to [VoxelGI].
  *
- * **Procedural generation:** Lightmap baking functionality is only available in the editor. This
- * means [LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally
- * generated or user-built levels, use [VoxelGI] or SDFGI instead (see [Environment.sdfgiEnabled]).
+ * **Procedural generation:** Lightmap baking functionality is only available in the editor. This means [LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally generated or user-built levels, use [VoxelGI] or SDFGI instead (see [Environment.sdfgiEnabled]).
  *
- * **Performance:** [LightmapGI] provides the best possible run-time performance for global
- * illumination. It is suitable for low-end hardware including integrated graphics and mobile devices.
+ * **Performance:** [LightmapGI] provides the best possible run-time performance for global illumination. It is suitable for low-end hardware including integrated graphics and mobile devices.
  *
- * **Note:** Due to how lightmaps work, most properties only have a visible effect once lightmaps
- * are baked again.
+ * **Note:** Due to how lightmaps work, most properties only have a visible effect once lightmaps are baked again.
  *
- * **Note:** Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not supported, as these
- * cannot store UV2 data required for baking.
+ * **Note:** Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not supported, as these cannot store UV2 data required for baking.
  *
- * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked from devices
- * that support the Forward+ or Mobile renderers.
+ * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked from devices that support the Forward+ or Mobile renderers.
  *
- * **Note:** The [LightmapGI] node only bakes light data for child nodes of its parent. Nodes
- * further up the hierarchy of the scene will not be baked.
+ * **Note:** The [LightmapGI] node only bakes light data for child nodes of its parent. Nodes further up the hierarchy of the scene will not be baked.
  */
 @GodotBaseType
 public open class LightmapGI : VisualInstance3D() {
   /**
-   * The quality preset to use when baking lightmaps. This affects bake times, but output file sizes
-   * remain mostly identical across quality levels.
+   * The quality preset to use when baking lightmaps. This affects bake times, but output file sizes remain mostly identical across quality levels.
    *
-   * To further speed up bake times, decrease [bounces], disable [useDenoiser] and/or decrease
-   * [texelScale].
+   * To further speed up bake times, decrease [bounces], disable [useDenoiser] and/or decrease [texelScale].
    *
    * To further increase quality, enable [supersampling] and/or increase [texelScale].
    */
@@ -77,14 +58,9 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, lightmaps are baked with the texel scale multiplied with [supersamplingFactor] and
-   * downsampled before saving the lightmap (so the effective texel density is identical to having
-   * supersampling disabled).
+   * If `true`, lightmaps are baked with the texel scale multiplied with [supersamplingFactor] and downsampled before saving the lightmap (so the effective texel density is identical to having supersampling disabled).
    *
-   * Supersampling provides increased lightmap quality with less noise, smoother shadows and better
-   * shadowing of small-scale features in objects. However, it may result in significantly increased
-   * bake times and memory usage while baking lightmaps. Padding is automatically adjusted to avoid
-   * increasing light leaking.
+   * Supersampling provides increased lightmap quality with less noise, smoother shadows and better shadowing of small-scale features in objects. However, it may result in significantly increased bake times and memory usage while baking lightmaps. Padding is automatically adjusted to avoid increasing light leaking.
    */
   public final inline var supersampling: Boolean
     @JvmName("supersamplingProperty")
@@ -95,12 +71,9 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The factor by which the texel density is multiplied for supersampling. For best results, use an
-   * integer value. While fractional values are allowed, they can result in increased light leaking and
-   * a blurry lightmap.
+   * The factor by which the texel density is multiplied for supersampling. For best results, use an integer value. While fractional values are allowed, they can result in increased light leaking and a blurry lightmap.
    *
-   * Higher values may result in better quality, but also increase bake times and memory usage while
-   * baking.
+   * Higher values may result in better quality, but also increase bake times and memory usage while baking.
    *
    * See [supersampling] for more information.
    */
@@ -113,9 +86,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * Number of light bounces that are taken into account during baking. Higher values result in
-   * brighter, more realistic lighting, at the cost of longer bake times. If set to `0`, only
-   * environment lighting, direct light and emissive lighting is baked.
+   * Number of light bounces that are taken into account during baking. Higher values result in brighter, more realistic lighting, at the cost of longer bake times. If set to `0`, only environment lighting, direct light and emissive lighting is baked.
    */
   public final inline var bounces: Int
     @JvmName("bouncesProperty")
@@ -126,13 +97,9 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The energy multiplier for each bounce. Higher values will make indirect lighting brighter. A
-   * value of `1.0` represents physically accurate behavior, but higher values can be used to make
-   * indirect lighting propagate more visibly when using a low number of bounces. This can be used to
-   * speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy].
+   * The energy multiplier for each bounce. Higher values will make indirect lighting brighter. A value of `1.0` represents physically accurate behavior, but higher values can be used to make indirect lighting propagate more visibly when using a low number of bounces. This can be used to speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy].
    *
-   * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than
-   * or equal to `1`.
+   * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than or equal to `1`.
    */
   public final inline var bounceIndirectEnergy: Float
     @JvmName("bounceIndirectEnergyProperty")
@@ -143,16 +110,9 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This
-   * results in more realistic lighting appearance, especially with normal mapped materials and for
-   * lights that have their direct light baked ([Light3D.lightBakeMode] set to [Light3D.BAKE_STATIC]
-   * and with [Light3D.editorOnly] set to `false`). The directional information is also used to provide
-   * rough reflections for static and dynamic objects. This has a small run-time performance cost as
-   * the shader has to perform more work to interpret the direction information from the lightmap.
-   * Directional lightmaps also take longer to bake and result in larger file sizes.
+   * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This results in more realistic lighting appearance, especially with normal mapped materials and for lights that have their direct light baked ([Light3D.lightBakeMode] set to [Light3D.BAKE_STATIC] and with [Light3D.editorOnly] set to `false`). The directional information is also used to provide rough reflections for static and dynamic objects. This has a small run-time performance cost as the shader has to perform more work to interpret the direction information from the lightmap. Directional lightmaps also take longer to bake and result in larger file sizes.
    *
-   * **Note:** The property's name has no relationship with [DirectionalLight3D]. [directional]
-   * works with all light types.
+   * **Note:** The property's name has no relationship with [DirectionalLight3D]. [directional] works with all light types.
    */
   public final inline var directional: Boolean
     @JvmName("directionalProperty")
@@ -163,17 +123,11 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The shadowmasking policy to use for directional shadows on static objects that are baked with
-   * this [LightmapGI] instance.
+   * The shadowmasking policy to use for directional shadows on static objects that are baked with this [LightmapGI] instance.
    *
-   * Shadowmasking allows [DirectionalLight3D] nodes to cast shadows even outside the range defined
-   * by their [DirectionalLight3D.directionalShadowMaxDistance] property. This is done by baking a
-   * texture that contains a shadowmap for the directional light, then using this texture according to
-   * the current shadowmask mode.
+   * Shadowmasking allows [DirectionalLight3D] nodes to cast shadows even outside the range defined by their [DirectionalLight3D.directionalShadowMaxDistance] property. This is done by baking a texture that contains a shadowmap for the directional light, then using this texture according to the current shadowmask mode.
    *
-   * **Note:** The shadowmask texture is only created if [shadowmaskMode] is not
-   * [LightmapGIData.SHADOWMASK_MODE_NONE]. To see a difference, you need to bake lightmaps again after
-   * switching from [LightmapGIData.SHADOWMASK_MODE_NONE] to any other mode.
+   * **Note:** The shadowmask texture is only created if [shadowmaskMode] is not [LightmapGIData.SHADOWMASK_MODE_NONE]. To see a difference, you need to bake lightmaps again after switching from [LightmapGIData.SHADOWMASK_MODE_NONE] to any other mode.
    */
   public final inline var shadowmaskMode: LightmapGIData.ShadowmaskMode
     @JvmName("shadowmaskModeProperty")
@@ -184,13 +138,9 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, a texture with the lighting information will be generated to speed up the generation
-   * of indirect lighting at the cost of some accuracy. The geometry might exhibit extra light leak
-   * artifacts when using low resolution lightmaps or UVs that stretch the lightmap significantly
-   * across surfaces. Leave [useTextureForBounces] at its default value of `true` if unsure.
+   * If `true`, a texture with the lighting information will be generated to speed up the generation of indirect lighting at the cost of some accuracy. The geometry might exhibit extra light leak artifacts when using low resolution lightmaps or UVs that stretch the lightmap significantly across surfaces. Leave [useTextureForBounces] at its default value of `true` if unsure.
    *
-   * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than
-   * or equal to `1`.
+   * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than or equal to `1`.
    */
   public final inline var useTextureForBounces: Boolean
     @JvmName("useTextureForBouncesProperty")
@@ -212,10 +162,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, uses a GPU-based denoising algorithm on the generated lightmap. This eliminates most
-   * noise within the generated lightmap at the cost of longer bake times. File sizes are generally not
-   * impacted significantly by the use of a denoiser, although lossless compression may do a better job
-   * at compressing a denoised image.
+   * If `true`, uses a GPU-based denoising algorithm on the generated lightmap. This eliminates most noise within the generated lightmap at the cost of longer bake times. File sizes are generally not impacted significantly by the use of a denoiser, although lossless compression may do a better job at compressing a denoised image.
    */
   public final inline var useDenoiser: Boolean
     @JvmName("useDenoiserProperty")
@@ -226,9 +173,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The strength of denoising step applied to the generated lightmaps. Only effective if
-   * [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to
-   * JNLM.
+   * The strength of denoising step applied to the generated lightmaps. Only effective if [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to JNLM.
    */
   public final inline var denoiserStrength: Float
     @JvmName("denoiserStrengthProperty")
@@ -239,10 +184,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The distance in pixels from which the denoiser samples. Lower values preserve more details, but
-   * may give blotchy results if the lightmap quality is not high enough. Only effective if
-   * [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to
-   * JNLM.
+   * The distance in pixels from which the denoiser samples. Lower values preserve more details, but may give blotchy results if the lightmap quality is not high enough. Only effective if [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to JNLM.
    */
   public final inline var denoiserRange: Int
     @JvmName("denoiserRangeProperty")
@@ -253,9 +195,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The bias to use when computing shadows. Increasing [bias] can fix shadow acne on the resulting
-   * baked lightmap, but can introduce peter-panning (shadows not connecting to their casters).
-   * Real-time [Light3D] shadows are not affected by this [bias] property.
+   * The bias to use when computing shadows. Increasing [bias] can fix shadow acne on the resulting baked lightmap, but can introduce peter-panning (shadows not connecting to their casters). Real-time [Light3D] shadows are not affected by this [bias] property.
    */
   public final inline var bias: Float
     @JvmName("biasProperty")
@@ -266,13 +206,9 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * Scales the lightmap texel density of all meshes for the current bake. This is a multiplier that
-   * builds upon the existing lightmap texel size defined in each imported 3D scene, along with the
-   * per-mesh density multiplier (which is designed to be used when the same mesh is used at different
-   * scales). Lower values will result in faster bake times.
+   * Scales the lightmap texel density of all meshes for the current bake. This is a multiplier that builds upon the existing lightmap texel size defined in each imported 3D scene, along with the per-mesh density multiplier (which is designed to be used when the same mesh is used at different scales). Lower values will result in faster bake times.
    *
-   * For example, doubling [texelScale] doubles the lightmap texture resolution for all objects *on
-   * each axis*, so it will *quadruple* the texel count.
+   * For example, doubling [texelScale] doubles the lightmap texture resolution for all objects *on each axis*, so it will *quadruple* the texel count.
    */
   public final inline var texelScale: Float
     @JvmName("texelScaleProperty")
@@ -283,9 +219,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The maximum texture size for the generated texture atlas. Higher values will result in fewer
-   * slices being generated, but may not work on all hardware as a result of hardware limitations on
-   * texture sizes. Leave [maxTextureSize] at its default value of `16384` if unsure.
+   * The maximum texture size for the generated texture atlas. Higher values will result in fewer slices being generated, but may not work on all hardware as a result of hardware limitations on texture sizes. Leave [maxTextureSize] at its default value of `16384` if unsure.
    */
   public final inline var maxTextureSize: Int
     @JvmName("maxTextureSizeProperty")
@@ -307,8 +241,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The sky to use as a source of environment lighting. Only effective if [environmentMode] is
-   * [ENVIRONMENT_MODE_CUSTOM_SKY].
+   * The sky to use as a source of environment lighting. Only effective if [environmentMode] is [ENVIRONMENT_MODE_CUSTOM_SKY].
    */
   public final inline var environmentCustomSky: Sky?
     @JvmName("environmentCustomSkyProperty")
@@ -319,15 +252,11 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The color to use for environment lighting. Only effective if [environmentMode] is
-   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
+   * The color to use for environment lighting. Only effective if [environmentMode] is [ENVIRONMENT_MODE_CUSTOM_COLOR].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var environmentCustomColor: Color
@@ -339,8 +268,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The color multiplier to use for environment lighting. Only effective if [environmentMode] is
-   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
+   * The color multiplier to use for environment lighting. Only effective if [environmentMode] is [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
   public final inline var environmentCustomEnergy: Float
     @JvmName("environmentCustomEnergyProperty")
@@ -351,10 +279,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The [CameraAttributes] resource that specifies exposure levels to bake at. Auto-exposure and
-   * non exposure properties will be ignored. Exposure settings should be used to reduce the dynamic
-   * range present when baking. If exposure is too high, the [LightmapGI] will have banding artifacts
-   * or may have over-exposure artifacts.
+   * The [CameraAttributes] resource that specifies exposure levels to bake at. Auto-exposure and non exposure properties will be ignored. Exposure settings should be used to reduce the dynamic range present when baking. If exposure is too high, the [LightmapGI] will have banding artifacts or may have over-exposure artifacts.
    */
   public final inline var cameraAttributes: CameraAttributes?
     @JvmName("cameraAttributesProperty")
@@ -365,15 +290,11 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The level of subdivision to use when automatically generating [LightmapProbe]s for dynamic
-   * object lighting. Higher values result in more accurate indirect lighting on dynamic objects, at
-   * the cost of longer bake times and larger file sizes.
+   * The level of subdivision to use when automatically generating [LightmapProbe]s for dynamic object lighting. Higher values result in more accurate indirect lighting on dynamic objects, at the cost of longer bake times and larger file sizes.
    *
-   * **Note:** Automatically generated [LightmapProbe]s are not visible as nodes in the Scene tree
-   * dock, and cannot be modified this way after they are generated.
+   * **Note:** Automatically generated [LightmapProbe]s are not visible as nodes in the Scene tree dock, and cannot be modified this way after they are generated.
    *
-   * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always
-   * applied using [Light3D] nodes in real-time.
+   * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always applied using [Light3D] nodes in real-time.
    */
   public final inline var generateProbesSubdiv: GenerateProbes
     @JvmName("generateProbesSubdivProperty")
@@ -384,8 +305,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The [LightmapGIData] associated to this [LightmapGI] node. This resource is automatically
-   * created after baking, and is not meant to be created manually.
+   * The [LightmapGIData] associated to this [LightmapGI] node. This resource is automatically created after baking, and is not meant to be created manually.
    */
   public final inline var lightData: LightmapGIData?
     @JvmName("lightDataProperty")
@@ -395,13 +315,12 @@ public open class LightmapGI : VisualInstance3D() {
       setLightData(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(334, scriptIndex)
   }
 
   /**
-   * This is a helper function for [environmentCustomColor] to make dealing with local copies
-   * easier.
+   * This is a helper function for [environmentCustomColor] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -411,17 +330,15 @@ public open class LightmapGI : VisualInstance3D() {
    * lightmapgi.environmentCustomColor = myCoreType
    * ``````
    *
-   * The color to use for environment lighting. Only effective if [environmentMode] is
-   * [ENVIRONMENT_MODE_CUSTOM_COLOR].
+   * The color to use for environment lighting. Only effective if [environmentMode] is [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
   @CoreTypeHelper
-  public final fun environmentCustomColorMutate(block: Color.() -> Unit): Color =
-      environmentCustomColor.apply {
+  public final fun environmentCustomColorMutate(block: Color.() -> Unit): Color = environmentCustomColor.apply {
      block(this)
      environmentCustomColor = this
   }
 
-  public final fun setLightData(`data`: LightmapGIData?): Unit {
+  public final fun setLightData(`data`: LightmapGIData?) {
     TransferContext.writeArguments(OBJECT to data)
     TransferContext.callMethod(ptr, MethodBindings.setLightDataPtr, NIL)
   }
@@ -432,7 +349,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as LightmapGIData?)
   }
 
-  public final fun setBakeQuality(bakeQuality: BakeQuality): Unit {
+  public final fun setBakeQuality(bakeQuality: BakeQuality) {
     TransferContext.writeArguments(LONG to bakeQuality.id)
     TransferContext.callMethod(ptr, MethodBindings.setBakeQualityPtr, NIL)
   }
@@ -443,7 +360,7 @@ public open class LightmapGI : VisualInstance3D() {
     return BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBounces(bounces: Int): Unit {
+  public final fun setBounces(bounces: Int) {
     TransferContext.writeArguments(LONG to bounces.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBouncesPtr, NIL)
   }
@@ -454,7 +371,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBounceIndirectEnergy(bounceIndirectEnergy: Float): Unit {
+  public final fun setBounceIndirectEnergy(bounceIndirectEnergy: Float) {
     TransferContext.writeArguments(DOUBLE to bounceIndirectEnergy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
   }
@@ -465,7 +382,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGenerateProbes(subdivision: GenerateProbes): Unit {
+  public final fun setGenerateProbes(subdivision: GenerateProbes) {
     TransferContext.writeArguments(LONG to subdivision.id)
     TransferContext.callMethod(ptr, MethodBindings.setGenerateProbesPtr, NIL)
   }
@@ -476,7 +393,7 @@ public open class LightmapGI : VisualInstance3D() {
     return GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBias(bias: Float): Unit {
+  public final fun setBias(bias: Float) {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBiasPtr, NIL)
   }
@@ -487,7 +404,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEnvironmentMode(mode: EnvironmentMode): Unit {
+  public final fun setEnvironmentMode(mode: EnvironmentMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentModePtr, NIL)
   }
@@ -498,7 +415,7 @@ public open class LightmapGI : VisualInstance3D() {
     return EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEnvironmentCustomSky(sky: Sky?): Unit {
+  public final fun setEnvironmentCustomSky(sky: Sky?) {
     TransferContext.writeArguments(OBJECT to sky)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
   }
@@ -509,7 +426,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as Sky?)
   }
 
-  public final fun setEnvironmentCustomColor(color: Color): Unit {
+  public final fun setEnvironmentCustomColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
   }
@@ -520,7 +437,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setEnvironmentCustomEnergy(energy: Float): Unit {
+  public final fun setEnvironmentCustomEnergy(energy: Float) {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
   }
@@ -531,7 +448,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTexelScale(texelScale: Float): Unit {
+  public final fun setTexelScale(texelScale: Float) {
     TransferContext.writeArguments(DOUBLE to texelScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTexelScalePtr, NIL)
   }
@@ -542,7 +459,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxTextureSize(maxTextureSize: Int): Unit {
+  public final fun setMaxTextureSize(maxTextureSize: Int) {
     TransferContext.writeArguments(LONG to maxTextureSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxTextureSizePtr, NIL)
   }
@@ -553,7 +470,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSupersamplingEnabled(enable: Boolean): Unit {
+  public final fun setSupersamplingEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSupersamplingEnabledPtr, NIL)
   }
@@ -564,7 +481,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSupersamplingFactor(factor: Float): Unit {
+  public final fun setSupersamplingFactor(factor: Float) {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSupersamplingFactorPtr, NIL)
   }
@@ -575,7 +492,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUseDenoiser(useDenoiser: Boolean): Unit {
+  public final fun setUseDenoiser(useDenoiser: Boolean) {
     TransferContext.writeArguments(BOOL to useDenoiser)
     TransferContext.callMethod(ptr, MethodBindings.setUseDenoiserPtr, NIL)
   }
@@ -586,7 +503,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDenoiserStrength(denoiserStrength: Float): Unit {
+  public final fun setDenoiserStrength(denoiserStrength: Float) {
     TransferContext.writeArguments(DOUBLE to denoiserStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDenoiserStrengthPtr, NIL)
   }
@@ -597,7 +514,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDenoiserRange(denoiserRange: Int): Unit {
+  public final fun setDenoiserRange(denoiserRange: Int) {
     TransferContext.writeArguments(LONG to denoiserRange.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDenoiserRangePtr, NIL)
   }
@@ -608,7 +525,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setInterior(enable: Boolean): Unit {
+  public final fun setInterior(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setInteriorPtr, NIL)
   }
@@ -619,7 +536,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDirectional(directional: Boolean): Unit {
+  public final fun setDirectional(directional: Boolean) {
     TransferContext.writeArguments(BOOL to directional)
     TransferContext.callMethod(ptr, MethodBindings.setDirectionalPtr, NIL)
   }
@@ -630,7 +547,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShadowmaskMode(mode: LightmapGIData.ShadowmaskMode): Unit {
+  public final fun setShadowmaskMode(mode: LightmapGIData.ShadowmaskMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setShadowmaskModePtr, NIL)
   }
@@ -641,7 +558,7 @@ public open class LightmapGI : VisualInstance3D() {
     return LightmapGIData.ShadowmaskMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUseTextureForBounces(useTextureForBounces: Boolean): Unit {
+  public final fun setUseTextureForBounces(useTextureForBounces: Boolean) {
     TransferContext.writeArguments(BOOL to useTextureForBounces)
     TransferContext.callMethod(ptr, MethodBindings.setUseTextureForBouncesPtr, NIL)
   }
@@ -652,7 +569,7 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?) {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
     TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
   }
@@ -667,27 +584,19 @@ public open class LightmapGI : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * Low bake quality (fastest bake times). The quality of this preset can be adjusted by changing
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityRayCount] and
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityProbeRayCount].
+     * Low bake quality (fastest bake times). The quality of this preset can be adjusted by changing [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityRayCount] and [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityProbeRayCount].
      */
     LOW(0),
     /**
-     * Medium bake quality (fast bake times). The quality of this preset can be adjusted by changing
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityRayCount] and
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityProbeRayCount].
+     * Medium bake quality (fast bake times). The quality of this preset can be adjusted by changing [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityRayCount] and [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityProbeRayCount].
      */
     MEDIUM(1),
     /**
-     * High bake quality (slow bake times). The quality of this preset can be adjusted by changing
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityRayCount] and
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityProbeRayCount].
+     * High bake quality (slow bake times). The quality of this preset can be adjusted by changing [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityRayCount] and [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityProbeRayCount].
      */
     HIGH(2),
     /**
-     * Highest bake quality (slowest bake times). The quality of this preset can be adjusted by
-     * changing [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityRayCount] and
-     * [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityProbeRayCount].
+     * Highest bake quality (slowest bake times). The quality of this preset can be adjusted by changing [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityRayCount] and [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityProbeRayCount].
      */
     ULTRA(3),
     ;
@@ -761,30 +670,23 @@ public open class LightmapGI : VisualInstance3D() {
      */
     NO_SAVE_PATH(4),
     /**
-     * Lightmap baking failed as there are no meshes whose [GeometryInstance3D.giMode] is
-     * [GeometryInstance3D.GI_MODE_STATIC] and with valid UV2 mapping in the current scene. You may
-     * need to select 3D scenes in the Import dock and change their global illumination mode
-     * accordingly.
+     * Lightmap baking failed as there are no meshes whose [GeometryInstance3D.giMode] is [GeometryInstance3D.GI_MODE_STATIC] and with valid UV2 mapping in the current scene. You may need to select 3D scenes in the Import dock and change their global illumination mode accordingly.
      */
     NO_MESHES(5),
     /**
-     * Lightmap baking failed as the lightmapper failed to analyze some of the meshes marked as
-     * static for baking.
+     * Lightmap baking failed as the lightmapper failed to analyze some of the meshes marked as static for baking.
      */
     MESHES_INVALID(6),
     /**
-     * Lightmap baking failed as the resulting image couldn't be saved or imported by Godot after it
-     * was saved.
+     * Lightmap baking failed as the resulting image couldn't be saved or imported by Godot after it was saved.
      */
     CANT_CREATE_IMAGE(7),
     /**
-     * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button
-     * in the progress dialog).
+     * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button in the progress dialog).
      */
     USER_ABORTED(8),
     /**
-     * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes
-     * marked for baking.
+     * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes marked for baking.
      */
     TEXTURE_SIZE_TOO_SMALL(9),
     /**
@@ -817,9 +719,7 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Use the scene's environment lighting when baking lightmaps.
      *
-     * **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like
-     * [ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is *not* taken into account by
-     * [LightmapGI] when baking lightmaps.
+     * **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like [ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is *not* taken into account by [LightmapGI] when baking lightmaps.
      */
     SCENE(1),
     /**
@@ -827,8 +727,7 @@ public open class LightmapGI : VisualInstance3D() {
      */
     CUSTOM_SKY(2),
     /**
-     * Use [environmentCustomColor] multiplied by [environmentCustomEnergy] as a constant source of
-     * environment lighting when baking lightmaps.
+     * Use [environmentCustomColor] multiplied by [environmentCustomEnergy] as a constant source of environment lighting when baking lightmaps.
      */
     CUSTOM_COLOR(3),
     ;
@@ -847,135 +746,135 @@ public open class LightmapGI : VisualInstance3D() {
 
   public object MethodBindings {
     internal val setLightDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_light_data", 1790597277)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_light_data", 1_790_597_277)
 
     internal val getLightDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_light_data", 290354153)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_light_data", 290_354_153)
 
     internal val setBakeQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bake_quality", 1192215803)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bake_quality", 1_192_215_803)
 
     internal val getBakeQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bake_quality", 688832735)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bake_quality", 688_832_735)
 
     internal val setBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bounces", 1286410249)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bounces", 1_286_410_249)
 
     internal val getBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bounces", 3905245786)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bounces", 3_905_245_786)
 
     internal val setBounceIndirectEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy", 373806689)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy", 373_806_689)
 
     internal val getBounceIndirectEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy", 1740695150)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy", 1_740_695_150)
 
     internal val setGenerateProbesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes", 549981046)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes", 549_981_046)
 
     internal val getGenerateProbesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_generate_probes", 3930596226)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_generate_probes", 3_930_596_226)
 
     internal val setBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bias", 373806689)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bias", 373_806_689)
 
     internal val getBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bias", 1740695150)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bias", 1_740_695_150)
 
     internal val setEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_mode", 2282650285)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_mode", 2_282_650_285)
 
     internal val getEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_mode", 4128646479)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_mode", 4_128_646_479)
 
     internal val setEnvironmentCustomSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_sky", 3336722921)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_sky", 3_336_722_921)
 
     internal val getEnvironmentCustomSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_sky", 1177136966)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_sky", 1_177_136_966)
 
     internal val setEnvironmentCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_color", 2920490490)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_color", 2_920_490_490)
 
     internal val getEnvironmentCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_color", 3444240500)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_color", 3_444_240_500)
 
     internal val setEnvironmentCustomEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_energy", 373806689)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_energy", 373_806_689)
 
     internal val getEnvironmentCustomEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy", 1740695150)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy", 1_740_695_150)
 
     internal val setTexelScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_texel_scale", 373806689)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_texel_scale", 373_806_689)
 
     internal val getTexelScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_texel_scale", 1740695150)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_texel_scale", 1_740_695_150)
 
     internal val setMaxTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size", 1286410249)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size", 1_286_410_249)
 
     internal val getMaxTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3905245786)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3_905_245_786)
 
     internal val setSupersamplingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_supersampling_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_supersampling_enabled", 2_586_408_642)
 
     internal val isSupersamplingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_supersampling_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LightmapGI", "is_supersampling_enabled", 36_873_697)
 
     internal val setSupersamplingFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_supersampling_factor", 373806689)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_supersampling_factor", 373_806_689)
 
     internal val getSupersamplingFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_supersampling_factor", 1740695150)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_supersampling_factor", 1_740_695_150)
 
     internal val setUseDenoiserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2586408642)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2_586_408_642)
 
     internal val isUsingDenoiserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser", 36873697)
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser", 36_873_697)
 
     internal val setDenoiserStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength", 373806689)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength", 373_806_689)
 
     internal val getDenoiserStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength", 1740695150)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength", 1_740_695_150)
 
     internal val setDenoiserRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_range", 1286410249)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_range", 1_286_410_249)
 
     internal val getDenoiserRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_range", 3905245786)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_range", 3_905_245_786)
 
     internal val setInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_interior", 2586408642)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_interior", 2_586_408_642)
 
     internal val isInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_interior", 36873697)
+        TypeManager.getMethodBindPtr("LightmapGI", "is_interior", 36_873_697)
 
     internal val setDirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_directional", 2586408642)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_directional", 2_586_408_642)
 
     internal val isDirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_directional", 36873697)
+        TypeManager.getMethodBindPtr("LightmapGI", "is_directional", 36_873_697)
 
     internal val setShadowmaskModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_shadowmask_mode", 3451066572)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_shadowmask_mode", 3_451_066_572)
 
     internal val getShadowmaskModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_shadowmask_mode", 785478560)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_shadowmask_mode", 785_478_560)
 
     internal val setUseTextureForBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2586408642)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2_586_408_642)
 
     internal val isUsingTextureForBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces", 36873697)
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces", 36_873_697)
 
     internal val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes", 2817810567)
+        TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes", 2_817_810_567)
 
     internal val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_camera_attributes", 3921283215)
+        TypeManager.getMethodBindPtr("LightmapGI", "get_camera_attributes", 3_921_283_215)
   }
 }

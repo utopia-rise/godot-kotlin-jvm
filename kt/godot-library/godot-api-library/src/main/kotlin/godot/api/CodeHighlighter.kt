@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,8 +26,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * By adjusting various properties of this resource, you can change the colors of strings, comments,
- * numbers, and other text patterns inside a [TextEdit] control.
+ * By adjusting various properties of this resource, you can change the colors of strings, comments, numbers, and other text patterns inside a [TextEdit] control.
  */
 @GodotBaseType
 public open class CodeHighlighter : SyntaxHighlighter() {
@@ -38,11 +34,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the color for numbers.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var numberColor: Color
@@ -57,11 +50,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the color for symbols.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var symbolColor: Color
@@ -76,11 +66,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets color for functions. A function is a non-keyword string followed by a '('.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var functionColor: Color
@@ -92,15 +79,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets color for member variables. A member variable is non-keyword, non-function string
-   * proceeded with a '.'.
+   * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var memberVariableColor: Color
@@ -112,8 +95,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the
-   * keyword. The value is the keyword color.
+   * Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color.
    */
   public final inline var keywordColors: Dictionary<Any?, Any?>
     @JvmName("keywordColorsProperty")
@@ -124,8 +106,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary]
-   * key is the member keyword. The value is the member keyword color.
+   * Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color.
    */
   public final inline var memberKeywordColors: Dictionary<Any?, Any?>
     @JvmName("memberKeywordColorsProperty")
@@ -136,8 +117,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets the color regions. All existing regions will be removed. The [Dictionary] key is the
-   * region start and end key, separated by a space. The value is the region color.
+   * Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color.
    */
   public final inline var colorRegions: Dictionary<Any?, Any?>
     @JvmName("colorRegionsProperty")
@@ -147,7 +127,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       setColorRegions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(153, scriptIndex)
   }
 
@@ -219,12 +199,10 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * codehighlighter.memberVariableColor = myCoreType
    * ``````
    *
-   * Sets color for member variables. A member variable is non-keyword, non-function string
-   * proceeded with a '.'.
+   * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
    */
   @CoreTypeHelper
-  public final fun memberVariableColorMutate(block: Color.() -> Unit): Color =
-      memberVariableColor.apply {
+  public final fun memberVariableColorMutate(block: Color.() -> Unit): Color = memberVariableColor.apply {
      block(this)
      memberVariableColor = this
   }
@@ -234,7 +212,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    *
    * The keyword cannot contain any symbols except '_'.
    */
-  public final fun addKeywordColor(keyword: String, color: Color): Unit {
+  public final fun addKeywordColor(keyword: String, color: Color) {
     TransferContext.writeArguments(STRING to keyword, COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.addKeywordColorPtr, NIL)
   }
@@ -242,7 +220,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes the keyword.
    */
-  public final fun removeKeywordColor(keyword: String): Unit {
+  public final fun removeKeywordColor(keyword: String) {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(ptr, MethodBindings.removeKeywordColorPtr, NIL)
   }
@@ -265,7 +243,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setKeywordColors(keywords: Dictionary<Any?, Any?>): Unit {
+  public final fun setKeywordColors(keywords: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to keywords)
     TransferContext.callMethod(ptr, MethodBindings.setKeywordColorsPtr, NIL)
   }
@@ -273,7 +251,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes all keywords.
    */
-  public final fun clearKeywordColors(): Unit {
+  public final fun clearKeywordColors() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearKeywordColorsPtr, NIL)
   }
@@ -291,7 +269,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    *
    * It will not be highlighted if preceded by a '.'.
    */
-  public final fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
+  public final fun addMemberKeywordColor(memberKeyword: String, color: Color) {
     TransferContext.writeArguments(STRING to memberKeyword, COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.addMemberKeywordColorPtr, NIL)
   }
@@ -299,7 +277,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes the member keyword.
    */
-  public final fun removeMemberKeywordColor(memberKeyword: String): Unit {
+  public final fun removeMemberKeywordColor(memberKeyword: String) {
     TransferContext.writeArguments(STRING to memberKeyword)
     TransferContext.callMethod(ptr, MethodBindings.removeMemberKeywordColorPtr, NIL)
   }
@@ -322,7 +300,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setMemberKeywordColors(memberKeyword: Dictionary<Any?, Any?>): Unit {
+  public final fun setMemberKeywordColors(memberKeyword: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to memberKeyword)
     TransferContext.callMethod(ptr, MethodBindings.setMemberKeywordColorsPtr, NIL)
   }
@@ -330,7 +308,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes all member keywords.
    */
-  public final fun clearMemberKeywordColors(): Unit {
+  public final fun clearMemberKeywordColors() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearMemberKeywordColorsPtr, NIL)
   }
@@ -342,11 +320,9 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   }
 
   /**
-   * Adds a color region (such as for comments or strings) from [startKey] to [endKey]. Both keys
-   * should be symbols, and [startKey] must not be shared with other delimiters.
+   * Adds a color region (such as for comments or strings) from [startKey] to [endKey]. Both keys should be symbols, and [startKey] must not be shared with other delimiters.
    *
-   * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the
-   * next line.
+   * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the next line.
    */
   @JvmOverloads
   public final fun addColorRegion(
@@ -354,7 +330,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     endKey: String,
     color: Color,
     lineOnly: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, COLOR to color, BOOL to lineOnly)
     TransferContext.callMethod(ptr, MethodBindings.addColorRegionPtr, NIL)
   }
@@ -362,7 +338,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes the color region that uses that start key.
    */
-  public final fun removeColorRegion(startKey: String): Unit {
+  public final fun removeColorRegion(startKey: String) {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(ptr, MethodBindings.removeColorRegionPtr, NIL)
   }
@@ -376,7 +352,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setColorRegions(colorRegions: Dictionary<Any?, Any?>): Unit {
+  public final fun setColorRegions(colorRegions: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to colorRegions)
     TransferContext.callMethod(ptr, MethodBindings.setColorRegionsPtr, NIL)
   }
@@ -384,7 +360,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes all color regions.
    */
-  public final fun clearColorRegions(): Unit {
+  public final fun clearColorRegions() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearColorRegionsPtr, NIL)
   }
@@ -395,7 +371,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public final fun setFunctionColor(color: Color): Unit {
+  public final fun setFunctionColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionColorPtr, NIL)
   }
@@ -406,7 +382,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setNumberColor(color: Color): Unit {
+  public final fun setNumberColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setNumberColorPtr, NIL)
   }
@@ -417,7 +393,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setSymbolColor(color: Color): Unit {
+  public final fun setSymbolColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSymbolColorPtr, NIL)
   }
@@ -428,7 +404,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setMemberVariableColor(color: Color): Unit {
+  public final fun setMemberVariableColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setMemberVariableColorPtr, NIL)
   }
@@ -443,87 +419,87 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   public object MethodBindings {
     internal val addKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_keyword_color", 1636512886)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "add_keyword_color", 1_636_512_886)
 
     internal val removeKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_keyword_color", 83702148)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_keyword_color", 83_702_148)
 
     internal val hasKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_keyword_color", 3927539163)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "has_keyword_color", 3_927_539_163)
 
     internal val getKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_color", 3855908743)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_color", 3_855_908_743)
 
     internal val setKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_keyword_colors", 4155329257)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_keyword_colors", 4_155_329_257)
 
     internal val clearKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_keyword_colors", 3218959716)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_keyword_colors", 3_218_959_716)
 
     internal val getKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_colors", 3102165223)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_colors", 3_102_165_223)
 
     internal val addMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_member_keyword_color", 1636512886)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "add_member_keyword_color", 1_636_512_886)
 
     internal val removeMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_member_keyword_color", 83702148)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_member_keyword_color", 83_702_148)
 
     internal val hasMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_member_keyword_color", 3927539163)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "has_member_keyword_color", 3_927_539_163)
 
     internal val getMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_color", 3855908743)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_color", 3_855_908_743)
 
     internal val setMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_keyword_colors", 4155329257)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_keyword_colors", 4_155_329_257)
 
     internal val clearMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_member_keyword_colors", 3218959716)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_member_keyword_colors", 3_218_959_716)
 
     internal val getMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_colors", 3102165223)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_colors", 3_102_165_223)
 
     internal val addColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_color_region", 2924977451)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "add_color_region", 2_924_977_451)
 
     internal val removeColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_color_region", 83702148)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_color_region", 83_702_148)
 
     internal val hasColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_color_region", 3927539163)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "has_color_region", 3_927_539_163)
 
     internal val setColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_color_regions", 4155329257)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_color_regions", 4_155_329_257)
 
     internal val clearColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_color_regions", 3218959716)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_color_regions", 3_218_959_716)
 
     internal val getColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_color_regions", 3102165223)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_color_regions", 3_102_165_223)
 
     internal val setFunctionColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_function_color", 2920490490)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_function_color", 2_920_490_490)
 
     internal val getFunctionColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_function_color", 3444240500)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_function_color", 3_444_240_500)
 
     internal val setNumberColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_number_color", 2920490490)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_number_color", 2_920_490_490)
 
     internal val getNumberColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_number_color", 3444240500)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_number_color", 3_444_240_500)
 
     internal val setSymbolColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_symbol_color", 2920490490)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_symbol_color", 2_920_490_490)
 
     internal val getSymbolColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_symbol_color", 3444240500)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_symbol_color", 3_444_240_500)
 
     internal val setMemberVariableColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_variable_color", 2920490490)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_variable_color", 2_920_490_490)
 
     internal val getMemberVariableColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_variable_color", 3444240500)
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_variable_color", 3_444_240_500)
   }
 }

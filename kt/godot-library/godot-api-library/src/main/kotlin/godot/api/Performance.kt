@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,31 +31,24 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * This class provides access to a number of different monitors related to performance, such as
- * memory usage, draw calls, and FPS. These are the same as the values displayed in the **Monitor** tab
- * in the editor's **Debugger** panel. By using the [getMonitor] method of this class, you can access
- * this data from your code.
+ * This class provides access to a number of different monitors related to performance, such as memory usage, draw calls, and FPS. These are the same as the values displayed in the **Monitor** tab in the editor's **Debugger** panel. By using the [getMonitor] method of this class, you can access this data from your code.
  *
- * You can add custom monitors using the [addCustomMonitor] method. Custom monitors are available in
- * **Monitor** tab in the editor's **Debugger** panel together with built-in monitors.
+ * You can add custom monitors using the [addCustomMonitor] method. Custom monitors are available in **Monitor** tab in the editor's **Debugger** panel together with built-in monitors.
  *
- * **Note:** Some of the built-in monitors are only available in debug mode and will always return
- * `0` when used in a project exported in release mode.
+ * **Note:** Some of the built-in monitors are only available in debug mode and will always return `0` when used in a project exported in release mode.
  *
- * **Note:** Some of the built-in monitors are not updated in real-time for performance reasons, so
- * there may be a delay of up to 1 second between changes.
+ * **Note:** Some of the built-in monitors are not updated in real-time for performance reasons, so there may be a delay of up to 1 second between changes.
  *
  * **Note:** Custom monitors do not support negative values. Negative values are clamped to 0.
  */
 @GodotBaseType
 public object Performance : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(20)
   }
 
   /**
-   * Returns the value of one of the available built-in monitors. You should provide one of the
-   * [Monitor] constants as the argument, like this:
+   * Returns the value of one of the available built-in monitors. You should provide one of the [Monitor] constants as the argument, like this:
    *
    * ```gdscript
    * //gdscript
@@ -67,8 +57,7 @@ public object Performance : Object() {
    *
    * ```csharp
    * //csharp
-   * GD.Print(Performance.GetMonitor(Performance.Monitor.TimeFps)); // Prints the FPS to the
-   * console.
+   * GD.Print(Performance.GetMonitor(Performance.Monitor.TimeFps)); // Prints the FPS to the console.
    * ```
    *
    * See [getCustomMonitor] to query custom performance monitors' values.
@@ -81,10 +70,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using
-   * slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash
-   * delimiter, then the default category is used. The default category is `"Custom"`. Prints an error
-   * if given [id] is already present.
+   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash delimiter, then the default category is used. The default category is `"Custom"`. Prints an error if given [id] is already present.
    *
    * ```gdscript
    * //gdscript
@@ -95,13 +81,11 @@ public object Performance : Object() {
    *     Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
    *
    *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the
-   * code is valid.
+   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the code is valid.
    *     Performance.add_custom_monitor("MyMonitor", monitor_value)
    *
    *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * IDs, so the code is valid.
+   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different IDs, so the code is valid.
    *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
    *
    *     # Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
@@ -120,13 +104,11 @@ public object Performance : Object() {
    *     // Adds monitor with name "MyName" to category "MyCategory".
    *     Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
    *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the
-   * code is valid.
+   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code is valid.
    *     Performance.AddCustomMonitor("MyMonitor", monitorValue);
    *
    *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * ids so the code is valid.
+   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids so the code is valid.
    *     Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
    *
    *     // Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
@@ -139,8 +121,7 @@ public object Performance : Object() {
    * }
    * ```
    *
-   * The debugger calls the callable to get the value of custom monitor. The callable must return a
-   * zero or positive integer or floating-point number.
+   * The debugger calls the callable to get the value of custom monitor. The callable must return a zero or positive integer or floating-point number.
    *
    * Callables are called with arguments supplied in argument array.
    */
@@ -150,17 +131,16 @@ public object Performance : Object() {
     id: StringName,
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
     TransferContext.callMethod(ptr, MethodBindings.addCustomMonitorPtr, NIL)
   }
 
   /**
-   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
-   * absent.
+   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already absent.
    */
   @JvmStatic
-  public final fun removeCustomMonitor(id: StringName): Unit {
+  public final fun removeCustomMonitor(id: StringName) {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(ptr, MethodBindings.removeCustomMonitorPtr, NIL)
   }
@@ -176,8 +156,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns the value of custom monitor with given [id]. The callable is called to get the value of
-   * custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
+   * Returns the value of custom monitor with given [id]. The callable is called to get the value of custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
    */
   @JvmStatic
   public final fun getCustomMonitor(id: StringName): Any? {
@@ -187,8 +166,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns the last tick in which custom monitor was added/removed (in microseconds since the
-   * engine started). This is set to [Time.getTicksUsec] when the monitor is updated.
+   * Returns the last tick in which custom monitor was added/removed (in microseconds since the engine started). This is set to [Time.getTicksUsec] when the monitor is updated.
    */
   @JvmStatic
   public final fun getMonitorModificationTime(): Long {
@@ -208,10 +186,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using
-   * slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash
-   * delimiter, then the default category is used. The default category is `"Custom"`. Prints an error
-   * if given [id] is already present.
+   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash delimiter, then the default category is used. The default category is `"Custom"`. Prints an error if given [id] is already present.
    *
    * ```gdscript
    * //gdscript
@@ -222,13 +197,11 @@ public object Performance : Object() {
    *     Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
    *
    *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the
-   * code is valid.
+   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the code is valid.
    *     Performance.add_custom_monitor("MyMonitor", monitor_value)
    *
    *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * IDs, so the code is valid.
+   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different IDs, so the code is valid.
    *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
    *
    *     # Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
@@ -247,13 +220,11 @@ public object Performance : Object() {
    *     // Adds monitor with name "MyName" to category "MyCategory".
    *     Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
    *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the
-   * code is valid.
+   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code is valid.
    *     Performance.AddCustomMonitor("MyMonitor", monitorValue);
    *
    *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * ids so the code is valid.
+   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids so the code is valid.
    *     Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
    *
    *     // Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
@@ -266,8 +237,7 @@ public object Performance : Object() {
    * }
    * ```
    *
-   * The debugger calls the callable to get the value of custom monitor. The callable must return a
-   * zero or positive integer or floating-point number.
+   * The debugger calls the callable to get the value of custom monitor. The callable must return a zero or positive integer or floating-point number.
    *
    * Callables are called with arguments supplied in argument array.
    */
@@ -280,12 +250,10 @@ public object Performance : Object() {
   ): Unit = addCustomMonitor(id.asCachedStringName(), callable, arguments)
 
   /**
-   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
-   * absent.
+   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already absent.
    */
   @JvmStatic
-  public final fun removeCustomMonitor(id: String): Unit =
-      removeCustomMonitor(id.asCachedStringName())
+  public final fun removeCustomMonitor(id: String): Unit = removeCustomMonitor(id.asCachedStringName())
 
   /**
    * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.
@@ -294,8 +262,7 @@ public object Performance : Object() {
   public final fun hasCustomMonitor(id: String): Boolean = hasCustomMonitor(id.asCachedStringName())
 
   /**
-   * Returns the value of custom monitor with given [id]. The callable is called to get the value of
-   * custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
+   * Returns the value of custom monitor with given [id]. The callable is called to get the value of custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
    */
   @JvmStatic
   public final fun getCustomMonitor(id: String): Any? = getCustomMonitor(id.asCachedStringName())
@@ -304,8 +271,7 @@ public object Performance : Object() {
     id: Long,
   ) {
     /**
-     * The number of frames rendered in the last second. This metric is only updated once per
-     * second, even if queried more often. *Higher is better.*
+     * The number of frames rendered in the last second. This metric is only updated once per second, even if queried more often. *Higher is better.*
      */
     TIME_FPS(0),
     /**
@@ -317,8 +283,7 @@ public object Performance : Object() {
      */
     TIME_PHYSICS_PROCESS(2),
     /**
-     * Time it took to complete one navigation step, in seconds. This includes navigation map
-     * updates as well as agent avoidance calculations. *Lower is better.*
+     * Time it took to complete one navigation step, in seconds. This includes navigation map updates as well as agent avoidance calculations. *Lower is better.*
      */
     TIME_NAVIGATION_PROCESS(3),
     /**
@@ -330,8 +295,7 @@ public object Performance : Object() {
      */
     MEMORY_STATIC_MAX(5),
     /**
-     * Largest amount of memory the message queue buffer has used, in bytes. The message queue is
-     * used for deferred functions calls and notifications. *Lower is better.*
+     * Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications. *Lower is better.*
      */
     MEMORY_MESSAGE_BUFFER_MAX(6),
     /**
@@ -343,38 +307,27 @@ public object Performance : Object() {
      */
     OBJECT_RESOURCE_COUNT(8),
     /**
-     * Number of nodes currently instantiated in the scene tree. This also includes the root node.
-     * *Lower is better.*
+     * Number of nodes currently instantiated in the scene tree. This also includes the root node. *Lower is better.*
      */
     OBJECT_NODE_COUNT(9),
     /**
-     * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree. *Lower
-     * is better.*
+     * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree. *Lower is better.*
      */
     OBJECT_ORPHAN_NODE_COUNT(10),
     /**
-     * The total number of objects in the last rendered frame. This metric doesn't include culled
-     * objects (either via hiding nodes, frustum culling or occlusion culling). *Lower is better.*
+     * The total number of objects in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling). *Lower is better.*
      */
     RENDER_TOTAL_OBJECTS_IN_FRAME(11),
     /**
-     * The total number of vertices or indices rendered in the last rendered frame. This metric
-     * doesn't include primitives from culled objects (either via hiding nodes, frustum culling or
-     * occlusion culling). Due to the depth prepass and shadow passes, the number of primitives is
-     * always higher than the actual number of vertices in the scene (typically double or triple the
-     * original vertex count). *Lower is better.*
+     * The total number of vertices or indices rendered in the last rendered frame. This metric doesn't include primitives from culled objects (either via hiding nodes, frustum culling or occlusion culling). Due to the depth prepass and shadow passes, the number of primitives is always higher than the actual number of vertices in the scene (typically double or triple the original vertex count). *Lower is better.*
      */
     RENDER_TOTAL_PRIMITIVES_IN_FRAME(12),
     /**
-     * The total number of draw calls performed in the last rendered frame. This metric doesn't
-     * include culled objects (either via hiding nodes, frustum culling or occlusion culling), since
-     * they do not result in draw calls. *Lower is better.*
+     * The total number of draw calls performed in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling), since they do not result in draw calls. *Lower is better.*
      */
     RENDER_TOTAL_DRAW_CALLS_IN_FRAME(13),
     /**
-     * The amount of video memory used (texture and vertex memory combined, in bytes). Since this
-     * metric also includes miscellaneous allocations, this value is always greater than the sum of
-     * [RENDER_TEXTURE_MEM_USED] and [RENDER_BUFFER_MEM_USED]. *Lower is better.*
+     * The amount of video memory used (texture and vertex memory combined, in bytes). Since this metric also includes miscellaneous allocations, this value is always greater than the sum of [RENDER_TEXTURE_MEM_USED] and [RENDER_BUFFER_MEM_USED]. *Lower is better.*
      */
     RENDER_VIDEO_MEM_USED(14),
     /**
@@ -410,13 +363,11 @@ public object Performance : Object() {
      */
     PHYSICS_3D_ISLAND_COUNT(22),
     /**
-     * Output latency of the [AudioServer]. Equivalent to calling [AudioServer.getOutputLatency], it
-     * is not recommended to call this every frame.
+     * Output latency of the [AudioServer]. Equivalent to calling [AudioServer.getOutputLatency], it is not recommended to call this every frame.
      */
     AUDIO_OUTPUT_LATENCY(23),
     /**
-     * Number of active navigation maps in the [NavigationServer3D]. This also includes the two
-     * empty default navigation maps created by World2D and World3D.
+     * Number of active navigation maps in the [NavigationServer3D]. This also includes the two empty default navigation maps created by World2D and World3D.
      */
     NAVIGATION_ACTIVE_MAPS(24),
     /**
@@ -440,8 +391,7 @@ public object Performance : Object() {
      */
     NAVIGATION_EDGE_COUNT(29),
     /**
-     * Number of navigation mesh polygon edges that were merged due to edge key overlap in the
-     * [NavigationServer3D].
+     * Number of navigation mesh polygon edges that were merged due to edge key overlap in the [NavigationServer3D].
      */
     NAVIGATION_EDGE_MERGE_COUNT(30),
     /**
@@ -449,8 +399,7 @@ public object Performance : Object() {
      */
     NAVIGATION_EDGE_CONNECTION_COUNT(31),
     /**
-     * Number of navigation mesh polygon edges that could not be merged in the [NavigationServer3D].
-     * The edges still may be connected by edge proximity or with links.
+     * Number of navigation mesh polygon edges that could not be merged in the [NavigationServer3D]. The edges still may be connected by edge proximity or with links.
      */
     NAVIGATION_EDGE_FREE_COUNT(32),
     /**
@@ -462,26 +411,19 @@ public object Performance : Object() {
      */
     PIPELINE_COMPILATIONS_CANVAS(34),
     /**
-     * Number of pipeline compilations that were triggered by loading meshes. These compilations
-     * will show up as longer loading times the first time a user runs the game and the pipeline is
-     * required.
+     * Number of pipeline compilations that were triggered by loading meshes. These compilations will show up as longer loading times the first time a user runs the game and the pipeline is required.
      */
     PIPELINE_COMPILATIONS_MESH(35),
     /**
-     * Number of pipeline compilations that were triggered by building the surface cache before
-     * rendering the scene. These compilations will show up as a stutter when loading an scene the
-     * first time a user runs the game and the pipeline is required.
+     * Number of pipeline compilations that were triggered by building the surface cache before rendering the scene. These compilations will show up as a stutter when loading an scene the first time a user runs the game and the pipeline is required.
      */
     PIPELINE_COMPILATIONS_SURFACE(36),
     /**
-     * Number of pipeline compilations that were triggered while drawing the scene. These
-     * compilations will show up as stutters during gameplay the first time a user runs the game and
-     * the pipeline is required.
+     * Number of pipeline compilations that were triggered while drawing the scene. These compilations will show up as stutters during gameplay the first time a user runs the game and the pipeline is required.
      */
     PIPELINE_COMPILATIONS_DRAW(37),
     /**
-     * Number of pipeline compilations that were triggered to optimize the current scene. These
-     * compilations are done in the background and should not cause any stutters whatsoever.
+     * Number of pipeline compilations that were triggered to optimize the current scene. These compilations are done in the background and should not cause any stutters whatsoever.
      */
     PIPELINE_COMPILATIONS_SPECIALIZATION(38),
     /**
@@ -502,24 +444,24 @@ public object Performance : Object() {
 
   public object MethodBindings {
     internal val getMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_monitor", 1943275655)
+        TypeManager.getMethodBindPtr("Performance", "get_monitor", 1_943_275_655)
 
     internal val addCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor", 4099036814)
+        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor", 4_099_036_814)
 
     internal val removeCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor", 3304788590)
+        TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor", 3_304_788_590)
 
     internal val hasCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "has_custom_monitor", 2041966384)
+        TypeManager.getMethodBindPtr("Performance", "has_custom_monitor", 2_041_966_384)
 
     internal val getCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor", 2138907829)
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor", 2_138_907_829)
 
     internal val getMonitorModificationTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_monitor_modification_time", 2455072627)
+        TypeManager.getMethodBindPtr("Performance", "get_monitor_modification_time", 2_455_072_627)
 
     internal val getCustomMonitorNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names", 2915620761)
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names", 2_915_620_761)
   }
 }

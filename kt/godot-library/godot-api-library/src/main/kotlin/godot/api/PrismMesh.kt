@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,8 +28,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class PrismMesh : PrimitiveMesh() {
   /**
-   * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the
-   * bottom-left edge.
+   * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the bottom-left edge.
    */
   public final inline var leftToRight: Float
     @JvmName("leftToRightProperty")
@@ -46,11 +42,8 @@ public open class PrismMesh : PrimitiveMesh() {
    * Size of the prism.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -94,7 +87,7 @@ public open class PrismMesh : PrimitiveMesh() {
       setSubdivideDepth(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(506, scriptIndex)
   }
 
@@ -117,7 +110,7 @@ public open class PrismMesh : PrimitiveMesh() {
      size = this
   }
 
-  public final fun setLeftToRight(leftToRight: Float): Unit {
+  public final fun setLeftToRight(leftToRight: Float) {
     TransferContext.writeArguments(DOUBLE to leftToRight.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLeftToRightPtr, NIL)
   }
@@ -128,7 +121,7 @@ public open class PrismMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -139,7 +132,7 @@ public open class PrismMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setSubdivideWidth(segments: Int): Unit {
+  public final fun setSubdivideWidth(segments: Int) {
     TransferContext.writeArguments(LONG to segments.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
@@ -150,7 +143,7 @@ public open class PrismMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSubdivideHeight(segments: Int): Unit {
+  public final fun setSubdivideHeight(segments: Int) {
     TransferContext.writeArguments(LONG to segments.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubdivideHeightPtr, NIL)
   }
@@ -161,7 +154,7 @@ public open class PrismMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSubdivideDepth(segments: Int): Unit {
+  public final fun setSubdivideDepth(segments: Int) {
     TransferContext.writeArguments(LONG to segments.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
@@ -176,33 +169,33 @@ public open class PrismMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setLeftToRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_left_to_right", 373806689)
+        TypeManager.getMethodBindPtr("PrismMesh", "set_left_to_right", 373_806_689)
 
     internal val getLeftToRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_left_to_right", 1740695150)
+        TypeManager.getMethodBindPtr("PrismMesh", "get_left_to_right", 1_740_695_150)
 
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("PrismMesh", "set_size", 3_460_891_852)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("PrismMesh", "get_size", 3_360_562_783)
 
     internal val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_width", 1286410249)
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_width", 1_286_410_249)
 
     internal val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_width", 3905245786)
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_width", 3_905_245_786)
 
     internal val setSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_height", 1286410249)
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_height", 1_286_410_249)
 
     internal val getSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_height", 3905245786)
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_height", 3_905_245_786)
 
     internal val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_depth", 1286410249)
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_depth", 1_286_410_249)
 
     internal val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_depth", 3905245786)
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_depth", 3_905_245_786)
   }
 }

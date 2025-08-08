@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,12 +14,9 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * The HashingContext class provides an interface for computing cryptographic hashes over multiple
- * iterations. Useful for computing hashes of big files (so you don't have to load them all in memory),
- * network streams, and data streams in general (so you don't have to hold buffers).
+ * The HashingContext class provides an interface for computing cryptographic hashes over multiple iterations. Useful for computing hashes of big files (so you don't have to load them all in memory), network streams, and data streams in general (so you don't have to hold buffers).
  *
  * The [HashType] enum shows the supported hashing algorithms.
  *
@@ -80,13 +74,12 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class HashingContext : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(278, scriptIndex)
   }
 
   /**
-   * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of
-   * an SHA-256).
+   * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of an SHA-256).
    */
   public final fun start(type: HashType): Error {
     TransferContext.writeArguments(LONG to type.id)
@@ -143,12 +136,12 @@ public open class HashingContext : RefCounted() {
 
   public object MethodBindings {
     internal val startPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HashingContext", "start", 3940338335)
+        TypeManager.getMethodBindPtr("HashingContext", "start", 3_940_338_335)
 
     internal val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HashingContext", "update", 680677267)
+        TypeManager.getMethodBindPtr("HashingContext", "update", 680_677_267)
 
     internal val finishPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HashingContext", "finish", 2115431945)
+        TypeManager.getMethodBindPtr("HashingContext", "finish", 2_115_431_945)
   }
 }

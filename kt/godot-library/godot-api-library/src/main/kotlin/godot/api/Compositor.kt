@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -24,8 +20,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class Compositor : Resource() {
   /**
-   * The custom [CompositorEffect]s that are applied during rendering of viewports using this
-   * compositor.
+   * The custom [CompositorEffect]s that are applied during rendering of viewports using this compositor.
    */
   public final inline var compositorEffects: VariantArray<CompositorEffect>
     @JvmName("compositorEffectsProperty")
@@ -35,11 +30,11 @@ public open class Compositor : Resource() {
       setCompositorEffects(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(164, scriptIndex)
   }
 
-  public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
+  public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>) {
     TransferContext.writeArguments(ARRAY to compositorEffects)
     TransferContext.callMethod(ptr, MethodBindings.setCompositorEffectsPtr, NIL)
   }
@@ -54,9 +49,9 @@ public open class Compositor : Resource() {
 
   public object MethodBindings {
     internal val setCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Compositor", "set_compositor_effects", 381264803)
+        TypeManager.getMethodBindPtr("Compositor", "set_compositor_effects", 381_264_803)
 
     internal val getCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Compositor", "get_compositor_effects", 3995934104)
+        TypeManager.getMethodBindPtr("Compositor", "get_compositor_effects", 3_995_934_104)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,8 +31,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that displays 2D texture information in a 3D environment. See also [Sprite3D] where many
- * other properties are defined.
+ * A node that displays 2D texture information in a 3D environment. See also [Sprite3D] where many other properties are defined.
  */
 @GodotBaseType
 public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
@@ -54,11 +50,8 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * The texture's drawing offset.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -92,24 +85,15 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
-   * simulate the color of ambient light.
+   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.
    *
-   * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
-   * not supported.
+   * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are not supported.
    *
-   * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
-   * material override must be configured to take vertex colors into account for albedo. Otherwise, the
-   * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
-   * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
-   * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -143,13 +127,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible
-   * values.
+   * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible values.
    *
-   * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
-   * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
-   * intended shadow cannot be determined and this will result in undefined behavior. See
-   * [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
+   * **Note:** When billboarding is enabled and the material also casts shadows, billboards will face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the intended shadow cannot be determined and this will result in undefined behavior. See [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
    */
   public final inline var billboard: BaseMaterial3D.BillboardMode
     @JvmName("billboardProperty")
@@ -160,8 +140,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, the texture's transparency and the opacity are used to make those parts of the
-   * sprite invisible.
+   * If `true`, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
    */
   public final inline var transparent: Boolean
     @JvmName("transparentProperty")
@@ -183,8 +162,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, texture can be seen from the back as well, if `false`, it is invisible when looking
-   * at it from behind.
+   * If `true`, texture can be seen from the back as well, if `false`, it is invisible when looking at it from behind.
    */
   public final inline var doubleSided: Boolean
     @JvmName("doubleSidedProperty")
@@ -274,9 +252,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
    *
-   * **Note:** Linear filtering may cause artifacts around the edges, which are especially
-   * noticeable on opaque textures. To prevent this, use textures with transparent or identical colors
-   * around the edges.
+   * **Note:** Linear filtering may cause artifacts around the edges, which are especially noticeable on opaque textures. To prevent this, use textures with transparent or identical colors around the edges.
    */
   public final inline var textureFilter: BaseMaterial3D.TextureFilter
     @JvmName("textureFilterProperty")
@@ -287,14 +263,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * Sets the render priority for the sprite. Higher priority objects will be sorted in front of
-   * lower priority objects.
+   * Sets the render priority for the sprite. Higher priority objects will be sorted in front of lower priority objects.
    *
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
    *
-   * **Note:** This only applies to sorting of transparent objects. This will not impact how
-   * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
-   * sorted, while transparent objects are sorted from back to front (subject to priority).
+   * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public final inline var renderPriority: Int
     @JvmName("renderPriorityProperty")
@@ -304,7 +277,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       setRenderPriority(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(628, scriptIndex)
   }
 
@@ -338,17 +311,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * spritebase3d.modulate = myCoreType
    * ``````
    *
-   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to
-   * simulate the color of ambient light.
+   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.
    *
-   * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are
-   * not supported.
+   * **Note:** Unlike [CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are not supported.
    *
-   * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the
-   * material override must be configured to take vertex colors into account for albedo. Otherwise, the
-   * color defined in [modulate] will be ignored. For a [BaseMaterial3D],
-   * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
-   * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * **Note:** If a [GeometryInstance3D.materialOverride] is defined on the [SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    */
   @CoreTypeHelper
   public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply {
@@ -356,7 +323,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      modulate = this
   }
 
-  public final fun setCentered(centered: Boolean): Unit {
+  public final fun setCentered(centered: Boolean) {
     TransferContext.writeArguments(BOOL to centered)
     TransferContext.callMethod(ptr, MethodBindings.setCenteredPtr, NIL)
   }
@@ -367,7 +334,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -378,7 +345,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setFlipH(flipH: Boolean): Unit {
+  public final fun setFlipH(flipH: Boolean) {
     TransferContext.writeArguments(BOOL to flipH)
     TransferContext.callMethod(ptr, MethodBindings.setFlipHPtr, NIL)
   }
@@ -389,7 +356,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFlipV(flipV: Boolean): Unit {
+  public final fun setFlipV(flipV: Boolean) {
     TransferContext.writeArguments(BOOL to flipV)
     TransferContext.callMethod(ptr, MethodBindings.setFlipVPtr, NIL)
   }
@@ -400,7 +367,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setModulate(modulate: Color): Unit {
+  public final fun setModulate(modulate: Color) {
     TransferContext.writeArguments(COLOR to modulate)
     TransferContext.callMethod(ptr, MethodBindings.setModulatePtr, NIL)
   }
@@ -411,7 +378,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setRenderPriority(priority: Int): Unit {
+  public final fun setRenderPriority(priority: Int) {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRenderPriorityPtr, NIL)
   }
@@ -422,7 +389,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPixelSize(pixelSize: Float): Unit {
+  public final fun setPixelSize(pixelSize: Float) {
     TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPixelSizePtr, NIL)
   }
@@ -433,7 +400,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAxis(axis: Vector3.Axis): Unit {
+  public final fun setAxis(axis: Vector3.Axis) {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(ptr, MethodBindings.setAxisPtr, NIL)
   }
@@ -445,10 +412,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * If `true`, the specified flag will be enabled. See [SpriteBase3D.DrawFlags] for a list of
-   * flags.
+   * If `true`, the specified flag will be enabled. See [SpriteBase3D.DrawFlags] for a list of flags.
    */
-  public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
+  public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean) {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDrawFlagPtr, NIL)
   }
@@ -462,7 +428,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
+  public final fun setAlphaCutMode(mode: AlphaCutMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaCutModePtr, NIL)
   }
@@ -473,7 +439,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAlphaScissorThreshold(threshold: Float): Unit {
+  public final fun setAlphaScissorThreshold(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
@@ -484,7 +450,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAlphaHashScale(threshold: Float): Unit {
+  public final fun setAlphaHashScale(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
@@ -495,7 +461,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
+  public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing) {
     TransferContext.writeArguments(LONG to alphaAa.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
@@ -506,7 +472,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
+  public final fun setAlphaAntialiasingEdge(edge: Float) {
     TransferContext.writeArguments(DOUBLE to edge.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
@@ -517,7 +483,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
+  public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBillboardModePtr, NIL)
   }
@@ -528,7 +494,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
+  public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
@@ -549,8 +515,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * Returns a [TriangleMesh] with the sprite's vertices following its current configuration (such
-   * as its [axis] and [pixelSize]).
+   * Returns a [TriangleMesh] with the sprite's vertices following its current configuration (such as its [axis] and [pixelSize]).
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
@@ -562,8 +527,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     id: Long,
   ) {
     /**
-     * If set, the texture's transparency and the opacity are used to make those parts of the sprite
-     * invisible.
+     * If set, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
      */
     FLAG_TRANSPARENT(0),
     /**
@@ -571,13 +535,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      */
     FLAG_SHADED(1),
     /**
-     * If set, texture can be seen from the back as well. If not, the texture is invisible when
-     * looking at it from behind.
+     * If set, texture can be seen from the back as well. If not, the texture is invisible when looking at it from behind.
      */
     FLAG_DOUBLE_SIDED(2),
     /**
-     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn
-     * after it in the draw order may cover it.
+     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
      */
     FLAG_DISABLE_DEPTH_TEST(3),
     /**
@@ -604,27 +566,19 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     id: Long,
   ) {
     /**
-     * This mode performs standard alpha blending. It can display translucent areas, but
-     * transparency sorting issues may be visible when multiple transparent materials are overlapping.
+     * This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping.
      */
     DISABLED(0),
     /**
-     * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible
-     * unless some form of screen-space antialiasing is enabled (see
-     * [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa]). On the bright side, this mode
-     * doesn't suffer from transparency sorting issues when multiple transparent materials are
-     * overlapping. This mode is also known as *alpha testing* or *1-bit transparency*.
+     * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa]). On the bright side, this mode doesn't suffer from transparency sorting issues when multiple transparent materials are overlapping. This mode is also known as *alpha testing* or *1-bit transparency*.
      */
     DISCARD(1),
     /**
-     * This mode draws fully opaque pixels in the depth prepass. This is slower than
-     * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
-     * smooth edges while using proper sorting.
+     * This mode draws fully opaque pixels in the depth prepass. This is slower than [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and smooth edges while using proper sorting.
      */
     OPAQUE_PREPASS(2),
     /**
-     * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will
-     * remain opaque.
+     * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will remain opaque.
      */
     HASH(3),
     ;
@@ -643,105 +597,105 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   public object MethodBindings {
     internal val setCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_centered", 2586408642)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_centered", 2_586_408_642)
 
     internal val isCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "is_centered", 36873697)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "is_centered", 36_873_697)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_offset", 743_155_724)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_offset", 3341600327)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_offset", 3_341_600_327)
 
     internal val setFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_h", 2586408642)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_h", 2_586_408_642)
 
     internal val isFlippedHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_h", 36873697)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_h", 36_873_697)
 
     internal val setFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_v", 2586408642)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_v", 2_586_408_642)
 
     internal val isFlippedVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_v", 36873697)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_v", 36_873_697)
 
     internal val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_modulate", 2920490490)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_modulate", 2_920_490_490)
 
     internal val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_modulate", 3444240500)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_modulate", 3_444_240_500)
 
     internal val setRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_render_priority", 1286410249)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_render_priority", 1_286_410_249)
 
     internal val getRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_render_priority", 3905245786)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_render_priority", 3_905_245_786)
 
     internal val setPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_pixel_size", 373806689)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_pixel_size", 373_806_689)
 
     internal val getPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_pixel_size", 1740695150)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_pixel_size", 1_740_695_150)
 
     internal val setAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_axis", 1144690656)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_axis", 1_144_690_656)
 
     internal val getAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_axis", 3050976882)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_axis", 3_050_976_882)
 
     internal val setDrawFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_draw_flag", 1135633219)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_draw_flag", 1_135_633_219)
 
     internal val getDrawFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_draw_flag", 1733036628)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_draw_flag", 1_733_036_628)
 
     internal val setAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_cut_mode", 227561226)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_cut_mode", 227_561_226)
 
     internal val getAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_cut_mode", 336003791)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_cut_mode", 336_003_791)
 
     internal val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_scissor_threshold", 373806689)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_scissor_threshold", 373_806_689)
 
     internal val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_scissor_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_scissor_threshold", 1_740_695_150)
 
     internal val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_hash_scale", 373806689)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_hash_scale", 373_806_689)
 
     internal val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_hash_scale", 1740695150)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_hash_scale", 1_740_695_150)
 
     internal val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing", 3212649852)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing", 3_212_649_852)
 
     internal val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing", 2889939400)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing", 2_889_939_400)
 
     internal val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing_edge", 373806689)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing_edge", 373_806_689)
 
     internal val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing_edge", 1740695150)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing_edge", 1_740_695_150)
 
     internal val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_billboard_mode", 4202036497)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_billboard_mode", 4_202_036_497)
 
     internal val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_billboard_mode", 1283840139)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_billboard_mode", 1_283_840_139)
 
     internal val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_texture_filter", 22904437)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_texture_filter", 22_904_437)
 
     internal val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_texture_filter", 3289213076)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_texture_filter", 3_289_213_076)
 
     internal val getItemRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_item_rect", 1639390495)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_item_rect", 1_639_390_495)
 
     internal val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "generate_triangle_mesh", 3476533166)
+        TypeManager.getMethodBindPtr("SpriteBase3D", "generate_triangle_mesh", 3_476_533_166)
   }
 }

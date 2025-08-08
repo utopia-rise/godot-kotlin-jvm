@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,25 +22,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the
- * resources are ready to use and can be retrieved from the preloader. You can add the resources using
- * the ResourcePreloader tab when the node is selected.
+ * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the resources are ready to use and can be retrieved from the preloader. You can add the resources using the ResourcePreloader tab when the node is selected.
  *
- * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most
- * situations, leaving the use of [ResourcePreloader] for more advanced scenarios.
+ * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most situations, leaving the use of [ResourcePreloader] for more advanced scenarios.
  */
 @GodotBaseType
 public open class ResourcePreloader : Node() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(557, scriptIndex)
   }
 
   /**
-   * Adds a resource to the preloader with the given [name]. If a resource with the given [name]
-   * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
-   * starting from 2.
+   * Adds a resource to the preloader with the given [name]. If a resource with the given [name] already exists, the new resource will be renamed to "[name] N" where N is an incrementing number starting from 2.
    */
-  public final fun addResource(name: StringName, resource: Resource?): Unit {
+  public final fun addResource(name: StringName, resource: Resource?) {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)
     TransferContext.callMethod(ptr, MethodBindings.addResourcePtr, NIL)
   }
@@ -51,7 +43,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Removes the resource associated to [name] from the preloader.
    */
-  public final fun removeResource(name: StringName): Unit {
+  public final fun removeResource(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeResourcePtr, NIL)
   }
@@ -59,7 +51,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Renames a resource inside the preloader from [name] to [newname].
    */
-  public final fun renameResource(name: StringName, newname: StringName): Unit {
+  public final fun renameResource(name: StringName, newname: StringName) {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(ptr, MethodBindings.renameResourcePtr, NIL)
   }
@@ -92,12 +84,9 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Adds a resource to the preloader with the given [name]. If a resource with the given [name]
-   * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
-   * starting from 2.
+   * Adds a resource to the preloader with the given [name]. If a resource with the given [name] already exists, the new resource will be renamed to "[name] N" where N is an incrementing number starting from 2.
    */
-  public final fun addResource(name: String, resource: Resource?): Unit =
-      addResource(name.asCachedStringName(), resource)
+  public final fun addResource(name: String, resource: Resource?): Unit = addResource(name.asCachedStringName(), resource)
 
   /**
    * Removes the resource associated to [name] from the preloader.
@@ -107,8 +96,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Renames a resource inside the preloader from [name] to [newname].
    */
-  public final fun renameResource(name: String, newname: String): Unit =
-      renameResource(name.asCachedStringName(), newname.asCachedStringName())
+  public final fun renameResource(name: String, newname: String): Unit = renameResource(name.asCachedStringName(), newname.asCachedStringName())
 
   /**
    * Returns `true` if the preloader contains a resource associated to [name].
@@ -124,21 +112,21 @@ public open class ResourcePreloader : Node() {
 
   public object MethodBindings {
     internal val addResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "add_resource", 1168801743)
+        TypeManager.getMethodBindPtr("ResourcePreloader", "add_resource", 1_168_801_743)
 
     internal val removeResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "remove_resource", 3304788590)
+        TypeManager.getMethodBindPtr("ResourcePreloader", "remove_resource", 3_304_788_590)
 
     internal val renameResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "rename_resource", 3740211285)
+        TypeManager.getMethodBindPtr("ResourcePreloader", "rename_resource", 3_740_211_285)
 
     internal val hasResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "has_resource", 2619796661)
+        TypeManager.getMethodBindPtr("ResourcePreloader", "has_resource", 2_619_796_661)
 
     internal val getResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource", 3742749261)
+        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource", 3_742_749_261)
 
     internal val getResourceListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource_list", 1139954409)
+        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource_list", 1_139_954_409)
   }
 }

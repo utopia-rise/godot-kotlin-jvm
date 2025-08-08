@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,23 +19,18 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
- * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
- * distance from the first vertex.
+ * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a distance from the first vertex.
  *
- * It is useful for making other nodes follow a path, without coding the movement pattern. For that,
- * the nodes must be children of this node. The descendant nodes will then move accordingly when
- * setting the [progress] in this node.
+ * It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be children of this node. The descendant nodes will then move accordingly when setting the [progress] in this node.
  */
 @GodotBaseType
 public open class PathFollow3D : Node3D() {
   /**
-   * The distance from the first vertex, measured in 3D units along the path. Changing this value
-   * sets this node's position to a point within the path.
+   * The distance from the first vertex, measured in 3D units along the path. Changing this value sets this node's position to a point within the path.
    */
   public final inline var progress: Float
     @JvmName("progressProperty")
@@ -49,13 +41,9 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last.
-   * This is just another way of expressing the progress within the path, as the progress supplied is
-   * multiplied internally by the path's length.
+   * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the progress within the path, as the progress supplied is multiplied internally by the path's length.
    *
-   * It can be set or get only if the [PathFollow3D] is the child of a [Path3D] which is part of the
-   * scene tree, and that this [Path3D] has a [Curve3D] with a non-zero length. Otherwise, trying to
-   * set this field will print an error, and getting this field will return `0.0`.
+   * It can be set or get only if the [PathFollow3D] is the child of a [Path3D] which is part of the scene tree, and that this [Path3D] has a [Curve3D] with a non-zero length. Otherwise, trying to set this field will print an error, and getting this field will return `0.0`.
    */
   public final inline var progressRatio: Float
     @JvmName("progressRatioProperty")
@@ -88,8 +76,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * Allows or forbids rotation on one or more axes, depending on the [RotationMode] constants being
-   * used.
+   * Allows or forbids rotation on one or more axes, depending on the [RotationMode] constants being used.
    */
   public final inline var rotationMode: RotationMode
     @JvmName("rotationModeProperty")
@@ -100,8 +87,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also
-   * [Vector3.FORWARD] and [Vector3.MODEL_FRONT].
+   * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [Vector3.FORWARD] and [Vector3.MODEL_FRONT].
    */
   public final inline var useModelFront: Boolean
     @JvmName("useModelFrontProperty")
@@ -112,17 +98,11 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, the position between two cached points is interpolated cubically, and linearly
-   * otherwise.
+   * If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.
    *
-   * The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster
-   * calculations. The point at the requested offset is then calculated interpolating between two
-   * adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached
-   * points may not follow the curve closely enough.
+   * The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.
    *
-   * There are two answers to this problem: either increase the number of cached points and increase
-   * memory consumption, or make a cubic interpolation between two points at the cost of (slightly)
-   * slower calculations.
+   * There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.
    */
   public final inline var cubicInterp: Boolean
     @JvmName("cubicInterpProperty")
@@ -133,8 +113,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, any offset outside the path's length will wrap around, instead of stopping at the
-   * ends. Use it for cyclic paths.
+   * If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths.
    */
   public final inline var loop: Boolean
     @JvmName("loopProperty")
@@ -155,11 +134,11 @@ public open class PathFollow3D : Node3D() {
       setTiltEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(453, scriptIndex)
   }
 
-  public final fun setProgress(progress: Float): Unit {
+  public final fun setProgress(progress: Float) {
     TransferContext.writeArguments(DOUBLE to progress.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setProgressPtr, NIL)
   }
@@ -170,7 +149,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHOffset(hOffset: Float): Unit {
+  public final fun setHOffset(hOffset: Float) {
     TransferContext.writeArguments(DOUBLE to hOffset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHOffsetPtr, NIL)
   }
@@ -181,7 +160,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVOffset(vOffset: Float): Unit {
+  public final fun setVOffset(vOffset: Float) {
     TransferContext.writeArguments(DOUBLE to vOffset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVOffsetPtr, NIL)
   }
@@ -192,7 +171,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setProgressRatio(ratio: Float): Unit {
+  public final fun setProgressRatio(ratio: Float) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setProgressRatioPtr, NIL)
   }
@@ -203,7 +182,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRotationMode(rotationMode: RotationMode): Unit {
+  public final fun setRotationMode(rotationMode: RotationMode) {
     TransferContext.writeArguments(LONG to rotationMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setRotationModePtr, NIL)
   }
@@ -214,7 +193,7 @@ public open class PathFollow3D : Node3D() {
     return RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCubicInterpolation(enabled: Boolean): Unit {
+  public final fun setCubicInterpolation(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCubicInterpolationPtr, NIL)
   }
@@ -225,7 +204,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseModelFront(enabled: Boolean): Unit {
+  public final fun setUseModelFront(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUseModelFrontPtr, NIL)
   }
@@ -236,7 +215,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean) {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
@@ -247,7 +226,7 @@ public open class PathFollow3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTiltEnabled(enabled: Boolean): Unit {
+  public final fun setTiltEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setTiltEnabledPtr, NIL)
   }
@@ -278,8 +257,7 @@ public open class PathFollow3D : Node3D() {
      */
     XYZ(3),
     /**
-     * Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode
-     * requires the [Path3D]'s [Curve3D.upVectorEnabled] property to be set to `true`.
+     * Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode requires the [Path3D]'s [Curve3D.upVectorEnabled] property to be set to `true`.
      */
     ORIENTED(4),
     ;
@@ -296,12 +274,10 @@ public open class PathFollow3D : Node3D() {
 
   public companion object {
     /**
-     * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and
-     * sideway direction) is calculated.
+     * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and sideway direction) is calculated.
      */
     @JvmStatic
-    public final fun correctPosture(transform: Transform3D, rotationMode: RotationMode):
-        Transform3D {
+    public final fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
       TransferContext.callMethod(0, MethodBindings.correctPosturePtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
@@ -310,60 +286,60 @@ public open class PathFollow3D : Node3D() {
 
   public object MethodBindings {
     internal val setProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress", 373806689)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress", 373_806_689)
 
     internal val getProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress", 1740695150)
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress", 1_740_695_150)
 
     internal val setHOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_h_offset", 373806689)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_h_offset", 373_806_689)
 
     internal val getHOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_h_offset", 1740695150)
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_h_offset", 1_740_695_150)
 
     internal val setVOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_v_offset", 373806689)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_v_offset", 373_806_689)
 
     internal val getVOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_v_offset", 1740695150)
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_v_offset", 1_740_695_150)
 
     internal val setProgressRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress_ratio", 373806689)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress_ratio", 373_806_689)
 
     internal val getProgressRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress_ratio", 1740695150)
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress_ratio", 1_740_695_150)
 
     internal val setRotationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_rotation_mode", 1640311967)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_rotation_mode", 1_640_311_967)
 
     internal val getRotationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_rotation_mode", 3814010545)
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_rotation_mode", 3_814_010_545)
 
     internal val setCubicInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_cubic_interpolation", 2586408642)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_cubic_interpolation", 2_586_408_642)
 
     internal val getCubicInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_cubic_interpolation", 36873697)
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_cubic_interpolation", 36_873_697)
 
     internal val setUseModelFrontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_use_model_front", 2586408642)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_use_model_front", 2_586_408_642)
 
     internal val isUsingModelFrontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "is_using_model_front", 36873697)
+        TypeManager.getMethodBindPtr("PathFollow3D", "is_using_model_front", 36_873_697)
 
     internal val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_loop", 2586408642)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_loop", 2_586_408_642)
 
     internal val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "has_loop", 36873697)
+        TypeManager.getMethodBindPtr("PathFollow3D", "has_loop", 36_873_697)
 
     internal val setTiltEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_tilt_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_tilt_enabled", 2_586_408_642)
 
     internal val isTiltEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "is_tilt_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PathFollow3D", "is_tilt_enabled", 36_873_697)
 
     internal val correctPosturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "correct_posture", 2686588690)
+        TypeManager.getMethodBindPtr("PathFollow3D", "correct_posture", 2_686_588_690)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,13 +24,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
- * [CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves)
- * cannot be stored. Holes in a [HeightMapShape3D] are created by assigning very low values to points
- * in the desired area.
+ * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a [CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves) cannot be stored. Holes in a [HeightMapShape3D] are created by assigning very low values to points in the desired area.
  *
- * **Performance:** [HeightMapShape3D] is faster to check collisions against than
- * [ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [BoxShape3D].
+ * **Performance:** [HeightMapShape3D] is faster to check collisions against than [ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [BoxShape3D].
  *
  * A heightmap collision shape can also be build by using an [Image] reference:
  *
@@ -77,11 +70,8 @@ public open class HeightMapShape3D : Shape3D() {
    * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var mapData: PackedFloat32Array
@@ -92,7 +82,7 @@ public open class HeightMapShape3D : Shape3D() {
       setMapData(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(279, scriptIndex)
   }
 
@@ -110,22 +100,19 @@ public open class HeightMapShape3D : Shape3D() {
    * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    */
   @CoreTypeHelper
-  public final fun mapDataMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
-      mapData.apply {
+  public final fun mapDataMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array = mapData.apply {
      block(this)
      mapData = this
   }
 
   /**
    * This is a helper function for [mapData] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    */
   @CoreTypeHelper
-  public final fun mapDataMutateEach(block: (index: Int, `value`: Float) -> Unit):
-      PackedFloat32Array = mapData.apply {
+  public final fun mapDataMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array = mapData.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -133,7 +120,7 @@ public open class HeightMapShape3D : Shape3D() {
      mapData = this
   }
 
-  public final fun setMapWidth(width: Int): Unit {
+  public final fun setMapWidth(width: Int) {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMapWidthPtr, NIL)
   }
@@ -144,7 +131,7 @@ public open class HeightMapShape3D : Shape3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMapDepth(height: Int): Unit {
+  public final fun setMapDepth(height: Int) {
     TransferContext.writeArguments(LONG to height.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMapDepthPtr, NIL)
   }
@@ -155,7 +142,7 @@ public open class HeightMapShape3D : Shape3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMapData(`data`: PackedFloat32Array): Unit {
+  public final fun setMapData(`data`: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.setMapDataPtr, NIL)
   }
@@ -185,21 +172,17 @@ public open class HeightMapShape3D : Shape3D() {
   }
 
   /**
-   * Updates [mapData] with data read from an [Image] reference. Automatically resizes heightmap
-   * [mapWidth] and [mapDepth] to fit the full image width and height.
+   * Updates [mapData] with data read from an [Image] reference. Automatically resizes heightmap [mapWidth] and [mapDepth] to fit the full image width and height.
    *
-   * The image needs to be in either [Image.FORMAT_RF] (32 bit), [Image.FORMAT_RH] (16 bit), or
-   * [Image.FORMAT_R8] (8 bit).
+   * The image needs to be in either [Image.FORMAT_RF] (32 bit), [Image.FORMAT_RH] (16 bit), or [Image.FORMAT_R8] (8 bit).
    *
-   * Each image pixel is read in as a float on the range from `0.0` (black pixel) to `1.0` (white
-   * pixel). This range value gets remapped to [heightMin] and [heightMax] to form the final height
-   * value.
+   * Each image pixel is read in as a float on the range from `0.0` (black pixel) to `1.0` (white pixel). This range value gets remapped to [heightMin] and [heightMax] to form the final height value.
    */
   public final fun updateMapDataFromImage(
     image: Image?,
     heightMin: Float,
     heightMax: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to heightMin.toDouble(), DOUBLE to heightMax.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.updateMapDataFromImagePtr, NIL)
   }
@@ -208,30 +191,30 @@ public open class HeightMapShape3D : Shape3D() {
 
   public object MethodBindings {
     internal val setMapWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_width", 1286410249)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_width", 1_286_410_249)
 
     internal val getMapWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_width", 3905245786)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_width", 3_905_245_786)
 
     internal val setMapDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_depth", 1286410249)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_depth", 1_286_410_249)
 
     internal val getMapDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_depth", 3905245786)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_depth", 3_905_245_786)
 
     internal val setMapDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_data", 2899603908)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_data", 2_899_603_908)
 
     internal val getMapDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_data", 675695659)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_data", 675_695_659)
 
     internal val getMinHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_min_height", 1740695150)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_min_height", 1_740_695_150)
 
     internal val getMaxHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_max_height", 1740695150)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_max_height", 1_740_695_150)
 
     internal val updateMapDataFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image", 2636652979)
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image", 2_636_652_979)
   }
 }

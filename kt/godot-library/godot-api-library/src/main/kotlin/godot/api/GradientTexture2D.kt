@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,11 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able
- * to transform a color transition into different patterns such as a linear or a radial gradient. The
- * gradient is sampled individually for each pixel so it does not necessarily represent an exact copy
- * of the gradient(see [width] and [height]). See also [GradientTexture1D], [CurveTexture] and
- * [CurveXYZTexture].
+ * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able to transform a color transition into different patterns such as a linear or a radial gradient. The gradient is sampled individually for each pixel so it does not necessarily represent an exact copy of the gradient(see [width] and [height]). See also [GradientTexture1D], [CurveTexture] and [CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture2D : Texture2D() {
@@ -47,8 +40,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The number of horizontal color samples that will be obtained from the [Gradient], which also
-   * represents the texture's width.
+   * The number of horizontal color samples that will be obtained from the [Gradient], which also represents the texture's width.
    */
   public final inline var width: Int
     @JvmName("widthProperty")
@@ -59,8 +51,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The number of vertical color samples that will be obtained from the [Gradient], which also
-   * represents the texture's height.
+   * The number of vertical color samples that will be obtained from the [Gradient], which also represents the texture's height.
    */
   public final inline var height: Int
     @JvmName("heightProperty")
@@ -71,10 +62,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * If `true`, the generated texture will support high dynamic range ([Image.FORMAT_RGBAF] format).
-   * This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the
-   * generated texture will use low dynamic range; overbright colors will be clamped
-   * ([Image.FORMAT_RGBA8] format).
+   * If `true`, the generated texture will support high dynamic range ([Image.FORMAT_RGBAF] format). This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the generated texture will use low dynamic range; overbright colors will be clamped ([Image.FORMAT_RGBA8] format).
    */
   public final inline var useHdr: Boolean
     @JvmName("useHdrProperty")
@@ -85,8 +73,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient fill type, one of the [Fill] values. The texture is filled by interpolating colors
-   * starting from [fillFrom] to [fillTo] offsets.
+   * The gradient fill type, one of the [Fill] values. The texture is filled by interpolating colors starting from [fillFrom] to [fillTo] offsets.
    */
   public final inline var fill: Fill
     @JvmName("fillProperty")
@@ -100,11 +87,8 @@ public open class GradientTexture2D : Texture2D() {
    * The initial offset used to fill the texture specified in UV coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fillFrom: Vector2
@@ -119,11 +103,8 @@ public open class GradientTexture2D : Texture2D() {
    * The final offset used to fill the texture specified in UV coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fillTo: Vector2
@@ -135,9 +116,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient repeat type, one of the [Repeat] values. The texture is filled starting from
-   * [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the
-   * entire texture.
+   * The gradient repeat type, one of the [Repeat] values. The texture is filled starting from [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the entire texture.
    */
   public final inline var repeat: Repeat
     @JvmName("repeatProperty")
@@ -147,7 +126,7 @@ public open class GradientTexture2D : Texture2D() {
       setRepeat(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(261, scriptIndex)
   }
 
@@ -189,7 +168,7 @@ public open class GradientTexture2D : Texture2D() {
      fillTo = this
   }
 
-  public final fun setGradient(gradient: Gradient?): Unit {
+  public final fun setGradient(gradient: Gradient?) {
     TransferContext.writeArguments(OBJECT to gradient)
     TransferContext.callMethod(ptr, MethodBindings.setGradientPtr, NIL)
   }
@@ -200,17 +179,17 @@ public open class GradientTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
-  public final fun setWidth(width: Int): Unit {
+  public final fun setWidth(width: Int) {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public final fun setHeight(height: Int): Unit {
+  public final fun setHeight(height: Int) {
     TransferContext.writeArguments(LONG to height.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
 
-  public final fun setUseHdr(enabled: Boolean): Unit {
+  public final fun setUseHdr(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUseHdrPtr, NIL)
   }
@@ -221,7 +200,7 @@ public open class GradientTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFill(fill: Fill): Unit {
+  public final fun setFill(fill: Fill) {
     TransferContext.writeArguments(LONG to fill.id)
     TransferContext.callMethod(ptr, MethodBindings.setFillPtr, NIL)
   }
@@ -232,7 +211,7 @@ public open class GradientTexture2D : Texture2D() {
     return Fill.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFillFrom(fillFrom: Vector2): Unit {
+  public final fun setFillFrom(fillFrom: Vector2) {
     TransferContext.writeArguments(VECTOR2 to fillFrom)
     TransferContext.callMethod(ptr, MethodBindings.setFillFromPtr, NIL)
   }
@@ -243,7 +222,7 @@ public open class GradientTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setFillTo(fillTo: Vector2): Unit {
+  public final fun setFillTo(fillTo: Vector2) {
     TransferContext.writeArguments(VECTOR2 to fillTo)
     TransferContext.callMethod(ptr, MethodBindings.setFillToPtr, NIL)
   }
@@ -254,7 +233,7 @@ public open class GradientTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setRepeat(repeat: Repeat): Unit {
+  public final fun setRepeat(repeat: Repeat) {
     TransferContext.writeArguments(LONG to repeat.id)
     TransferContext.callMethod(ptr, MethodBindings.setRepeatPtr, NIL)
   }
@@ -314,13 +293,11 @@ public open class GradientTexture2D : Texture2D() {
      */
     NONE(0),
     /**
-     * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same
-     * pattern in both directions.
+     * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same pattern in both directions.
      */
     REPEAT(1),
     /**
-     * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in
-     * both directions.
+     * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in both directions.
      */
     MIRROR(2),
     ;
@@ -339,45 +316,45 @@ public open class GradientTexture2D : Texture2D() {
 
   public object MethodBindings {
     internal val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_gradient", 2756054477)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_gradient", 2_756_054_477)
 
     internal val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_gradient", 132272999)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_gradient", 132_272_999)
 
     internal val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_width", 1286410249)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_width", 1_286_410_249)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_height", 1286410249)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_height", 1_286_410_249)
 
     internal val setUseHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_use_hdr", 2586408642)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_use_hdr", 2_586_408_642)
 
     internal val isUsingHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "is_using_hdr", 36873697)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "is_using_hdr", 36_873_697)
 
     internal val setFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill", 3623927636)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill", 3_623_927_636)
 
     internal val getFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill", 1876227217)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill", 1_876_227_217)
 
     internal val setFillFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_from", 743155724)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_from", 743_155_724)
 
     internal val getFillFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_from", 3341600327)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_from", 3_341_600_327)
 
     internal val setFillToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_to", 743155724)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_to", 743_155_724)
 
     internal val getFillToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_to", 3341600327)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_to", 3_341_600_327)
 
     internal val setRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_repeat", 1357597002)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_repeat", 1_357_597_002)
 
     internal val getRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_repeat", 3351758665)
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_repeat", 3_351_758_665)
   }
 }

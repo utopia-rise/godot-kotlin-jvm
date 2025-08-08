@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,12 +20,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class implements a reader that can extract the content of individual files inside a ZIP
- * archive. See also [ZIPPacker].
+ * This class implements a reader that can extract the content of individual files inside a ZIP archive. See also [ZIPPacker].
  *
  * ```
  * # Read a single file from a ZIP archive.
@@ -62,17 +57,15 @@ import kotlin.jvm.JvmOverloads
  *         # Write file contents, creating folders automatically when needed.
  *         # Not all ZIP archives are strictly ordered, so we need to do this in case
  *         # the file entry comes before the folder entry.
- *        
- * root_dir.make_dir_recursive(root_dir.get_current_dir().path_join(file_path).get_base_dir())
- *         var file = FileAccess.open(root_dir.get_current_dir().path_join(file_path),
- * FileAccess.WRITE)
+ *         root_dir.make_dir_recursive(root_dir.get_current_dir().path_join(file_path).get_base_dir())
+ *         var file = FileAccess.open(root_dir.get_current_dir().path_join(file_path), FileAccess.WRITE)
  *         var buffer = reader.read_file(file_path)
  *         file.store_buffer(buffer)
  * ```
  */
 @GodotBaseType
 public open class ZIPReader : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(878, scriptIndex)
   }
 
@@ -132,17 +125,17 @@ public open class ZIPReader : RefCounted() {
   public companion object
 
   public object MethodBindings {
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "open", 166001499)
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "open", 166_001_499)
 
-    internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "close", 166280745)
+    internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "close", 166_280_745)
 
     internal val getFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPReader", "get_files", 2981934095)
+        TypeManager.getMethodBindPtr("ZIPReader", "get_files", 2_981_934_095)
 
     internal val readFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPReader", "read_file", 740857591)
+        TypeManager.getMethodBindPtr("ZIPReader", "read_file", 740_857_591)
 
     internal val fileExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPReader", "file_exists", 35364943)
+        TypeManager.getMethodBindPtr("ZIPReader", "file_exists", 35_364_943)
   }
 }

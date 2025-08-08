@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,12 +18,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Input event type for gamepad buttons. For gamepad analog sticks and joysticks, see
- * [InputEventJoypadMotion].
+ * Input event type for gamepad buttons. For gamepad analog sticks and joysticks, see [InputEventJoypadMotion].
  */
 @GodotBaseType
 public open class InputEventJoypadButton : InputEvent() {
@@ -60,11 +55,11 @@ public open class InputEventJoypadButton : InputEvent() {
       setPressed(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(296, scriptIndex)
   }
 
-  public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
+  public final fun setButtonIndex(buttonIndex: JoyButton) {
     TransferContext.writeArguments(LONG to buttonIndex.id)
     TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
   }
@@ -75,7 +70,7 @@ public open class InputEventJoypadButton : InputEvent() {
     return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPressure(pressure: Float): Unit {
+  public final fun setPressure(pressure: Float) {
     TransferContext.writeArguments(DOUBLE to pressure.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPressurePtr, NIL)
   }
@@ -86,7 +81,7 @@ public open class InputEventJoypadButton : InputEvent() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
@@ -95,18 +90,18 @@ public open class InputEventJoypadButton : InputEvent() {
 
   public object MethodBindings {
     internal val setButtonIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_button_index", 1466368136)
+        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_button_index", 1_466_368_136)
 
     internal val getButtonIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "get_button_index", 595588182)
+        TypeManager.getMethodBindPtr("InputEventJoypadButton", "get_button_index", 595_588_182)
 
     internal val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_pressure", 373806689)
+        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_pressure", 373_806_689)
 
     internal val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "get_pressure", 1740695150)
+        TypeManager.getMethodBindPtr("InputEventJoypadButton", "get_pressure", 1_740_695_150)
 
     internal val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_pressed", 2_586_408_642)
   }
 }

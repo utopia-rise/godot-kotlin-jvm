@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,42 +18,29 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be
- * used to combine the rendering of [Control], [Node2D] and [Node3D] nodes. For example, you can use
- * this texture to display a 3D scene inside a [TextureRect], or a 2D overlay in a [Sprite3D].
+ * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be used to combine the rendering of [Control], [Node2D] and [Node3D] nodes. For example, you can use this texture to display a 3D scene inside a [TextureRect], or a 2D overlay in a [Sprite3D].
  *
  * To get a [ViewportTexture] in code, use the [Viewport.getTexture] method on the target viewport.
  *
- * **Note:** A [ViewportTexture] is always local to its scene (see [Resource.resourceLocalToScene]).
- * If the scene root is not ready, it may return incorrect data (see [signal Node.ready]).
+ * **Note:** A [ViewportTexture] is always local to its scene (see [Resource.resourceLocalToScene]). If the scene root is not ready, it may return incorrect data (see [signal Node.ready]).
  *
- * **Note:** Instantiating scenes containing a high-resolution [ViewportTexture] may cause
- * noticeable stutter.
+ * **Note:** Instantiating scenes containing a high-resolution [ViewportTexture] may cause noticeable stutter.
  *
- * **Note:** When using a [Viewport] with [Viewport.useHdr2d] set to `true`, the returned texture
- * will be an HDR image encoded in linear space. This may look darker than normal when displayed
- * directly on screen. To convert to gamma space, you can do the following:
+ * **Note:** When using a [Viewport] with [Viewport.useHdr2d] set to `true`, the returned texture will be an HDR image encoded in linear space. This may look darker than normal when displayed directly on screen. To convert to gamma space, you can do the following:
  *
  * ```
  * img.convert(Image.FORMAT_RGBA8)
  * imb.linear_to_srgb()
  * ```
  *
- * **Note:** Some nodes such as [Decal], [Light3D], and [PointLight2D] do not support using
- * [ViewportTexture] directly. To use texture data from a [ViewportTexture] in these nodes, you need to
- * create an [ImageTexture] by calling [Texture2D.getImage] on the [ViewportTexture] and passing the
- * result to [ImageTexture.createFromImage]. This conversion is a slow operation, so it should not be
- * performed every frame.
+ * **Note:** Some nodes such as [Decal], [Light3D], and [PointLight2D] do not support using [ViewportTexture] directly. To use texture data from a [ViewportTexture] in these nodes, you need to create an [ImageTexture] by calling [Texture2D.getImage] on the [ViewportTexture] and passing the result to [ImageTexture.createFromImage]. This conversion is a slow operation, so it should not be performed every frame.
  */
 @GodotBaseType
 public open class ViewportTexture : Texture2D() {
   /**
-   * The path to the [Viewport] node to display. This is relative to the local scene root (see
-   * [Resource.getLocalScene]), **not** to the nodes that use this texture.
+   * The path to the [Viewport] node to display. This is relative to the local scene root (see [Resource.getLocalScene]), **not** to the nodes that use this texture.
    *
-   * **Note:** In the editor, this path is automatically updated when the target viewport or one of
-   * its ancestors is renamed or moved. At runtime, this path may not automatically update if the scene
-   * root cannot be found.
+   * **Note:** In the editor, this path is automatically updated when the target viewport or one of its ancestors is renamed or moved. At runtime, this path may not automatically update if the scene root cannot be found.
    */
   public final inline var viewportPath: NodePath
     @JvmName("viewportPathProperty")
@@ -66,11 +50,11 @@ public open class ViewportTexture : Texture2D() {
       setViewportPathInScene(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(720, scriptIndex)
   }
 
-  public final fun setViewportPathInScene(path: NodePath): Unit {
+  public final fun setViewportPathInScene(path: NodePath) {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setViewportPathInScenePtr, NIL)
   }
@@ -81,16 +65,15 @@ public open class ViewportTexture : Texture2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setViewportPathInScene(path: String): Unit =
-      setViewportPathInScene(path.asCachedNodePath())
+  public final fun setViewportPathInScene(path: String): Unit = setViewportPathInScene(path.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setViewportPathInScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ViewportTexture", "set_viewport_path_in_scene", 1348162250)
+        TypeManager.getMethodBindPtr("ViewportTexture", "set_viewport_path_in_scene", 1_348_162_250)
 
     internal val getViewportPathInScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ViewportTexture", "get_viewport_path_in_scene", 4075236667)
+        TypeManager.getMethodBindPtr("ViewportTexture", "get_viewport_path_in_scene", 4_075_236_667)
   }
 }

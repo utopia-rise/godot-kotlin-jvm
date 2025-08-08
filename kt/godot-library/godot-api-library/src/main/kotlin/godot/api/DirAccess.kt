@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,7 +20,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -31,11 +27,9 @@ import kotlin.jvm.JvmStatic
 /**
  * This class is used to manage directories and their content, even outside of the project folder.
  *
- * [DirAccess] can't be instantiated directly. Instead it is created with a static method that takes
- * a path for which it will be opened.
+ * [DirAccess] can't be instantiated directly. Instead it is created with a static method that takes a path for which it will be opened.
  *
- * Most of the methods have a static alternative that can be used without creating a [DirAccess].
- * Static methods only support absolute paths (including `res://` and `user://`).
+ * Most of the methods have a static alternative that can be used without creating a [DirAccess]. Static methods only support absolute paths (including `res://` and `user://`).
  *
  * ```
  * # Standard
@@ -45,10 +39,7 @@ import kotlin.jvm.JvmStatic
  * DirAccess.make_dir_absolute("user://levels/world1")
  * ```
  *
- * **Note:** Accessing project ("res://") directories once exported may behave unexpectedly as some
- * files are converted to engine-specific formats and their original source files may not be present in
- * the expected PCK package. Because of this, to access resources in an exported project, it is
- * recommended to use [ResourceLoader] instead of [FileAccess].
+ * **Note:** Accessing project ("res://") directories once exported may behave unexpectedly as some files are converted to engine-specific formats and their original source files may not be present in the expected PCK package. Because of this, to access resources in an exported project, it is recommended to use [ResourceLoader] instead of [FileAccess].
  *
  * Here is an example on how to iterate through the files of a directory:
  *
@@ -98,8 +89,7 @@ import kotlin.jvm.JvmStatic
  * }
  * ```
  *
- * Keep in mind that file names may change or be remapped after export. If you want to see the
- * actual resource file list as it appears in the editor, use [ResourceLoader.listDirectory] instead.
+ * Keep in mind that file names may change or be remapped after export. If you want to see the actual resource file list as it appears in the editor, use [ResourceLoader.listDirectory] instead.
  */
 @GodotBaseType
 public open class DirAccess internal constructor() : RefCounted() {
@@ -129,20 +119,16 @@ public open class DirAccess internal constructor() : RefCounted() {
       setIncludeHidden(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(195, scriptIndex)
   }
 
   /**
-   * Initializes the stream used to list all files and directories using the [getNext] function,
-   * closing the currently opened stream if needed. Once the stream has been processed, it should
-   * typically be closed with [listDirEnd].
+   * Initializes the stream used to list all files and directories using the [getNext] function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with [listDirEnd].
    *
    * Affected by [includeHidden] and [includeNavigational].
    *
-   * **Note:** The order of files and directories returned by this method is not deterministic, and
-   * can vary between operating systems. If you want a list of all files or folders sorted
-   * alphabetically, use [getFiles] or [getDirectories].
+   * **Note:** The order of files and directories returned by this method is not deterministic, and can vary between operating systems. If you want a list of all files or folders sorted alphabetically, use [getFiles] or [getDirectories].
    */
   public final fun listDirBegin(): Error {
     TransferContext.writeArguments()
@@ -153,9 +139,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns the next element (file or directory) in the current directory.
    *
-   * The name of the file or directory is returned (and not its full path). Once the stream has been
-   * fully processed, the method returns an empty [String] and closes the stream automatically (i.e.
-   * [listDirEnd] would not be mandatory in such a case).
+   * The name of the file or directory is returned (and not its full path). Once the stream has been fully processed, the method returns an empty [String] and closes the stream automatically (i.e. [listDirEnd] would not be mandatory in such a case).
    */
   public final fun getNext(): String {
     TransferContext.writeArguments()
@@ -164,8 +148,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns whether the current item processed with the last [getNext] call is a directory (`.` and
-   * `..` are considered directories).
+   * Returns whether the current item processed with the last [getNext] call is a directory (`.` and `..` are considered directories).
    */
   public final fun currentIsDir(): Boolean {
     TransferContext.writeArguments()
@@ -174,26 +157,19 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Closes the current stream opened with [listDirBegin] (whether it has been fully processed with
-   * [getNext] does not matter).
+   * Closes the current stream opened with [listDirBegin] (whether it has been fully processed with [getNext] does not matter).
    */
-  public final fun listDirEnd(): Unit {
+  public final fun listDirEnd() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.listDirEndPtr, NIL)
   }
 
   /**
-   * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
-   * directories. The array is sorted alphabetically.
+   * Returns a [PackedStringArray] containing filenames of the directory contents, excluding directories. The array is sorted alphabetically.
    *
    * Affected by [includeHidden].
    *
-   * **Note:** When used on a `res://` path in an exported project, only the files actually included
-   * in the PCK at the given folder level are returned. In practice, this means that since imported
-   * resources are stored in a top-level `.godot/` folder, only paths to `*.gd` and `*.import` files
-   * are returned (plus a few files such as `project.godot` or `project.binary` and the project icon).
-   * In an exported project, the list of returned files will also vary depending on whether
-   * [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`.
+   * **Note:** When used on a `res://` path in an exported project, only the files actually included in the PCK at the given folder level are returned. In practice, this means that since imported resources are stored in a top-level `.godot/` folder, only paths to `*.gd` and `*.import` files are returned (plus a few files such as `project.godot` or `project.binary` and the project icon). In an exported project, the list of returned files will also vary depending on whether [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`.
    */
   public final fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
@@ -202,13 +178,11 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a [PackedStringArray] containing filenames of the directory contents, excluding files.
-   * The array is sorted alphabetically.
+   * Returns a [PackedStringArray] containing filenames of the directory contents, excluding files. The array is sorted alphabetically.
    *
    * Affected by [includeHidden] and [includeNavigational].
    *
-   * **Note:** The returned directories in the editor and after exporting in the `res://` directory
-   * may differ as some files are converted to engine-specific formats when exported.
+   * **Note:** The returned directories in the editor and after exporting in the `res://` directory may differ as some files are converted to engine-specific formats when exported.
    */
   public final fun getDirectories(): PackedStringArray {
     TransferContext.writeArguments()
@@ -217,8 +191,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the currently opened directory's drive index. See [getDriveName] to convert returned
-   * index to the name of the drive.
+   * Returns the currently opened directory's drive index. See [getDriveName] to convert returned index to the name of the drive.
    */
   public final fun getCurrentDrive(): Int {
     TransferContext.writeArguments()
@@ -227,15 +200,11 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes the currently opened directory to the one passed as an argument. The argument can be
-   * relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g.
-   * `/tmp/newdir` or `res://somedir/newdir`).
+   * Changes the currently opened directory to the one passed as an argument. The argument can be relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g. `/tmp/newdir` or `res://somedir/newdir`).
    *
    * Returns one of the [Error] code constants ([OK] on success).
    *
-   * **Note:** The new directory must be within the same scope, e.g. when you had opened a directory
-   * inside `res://`, you can't change it to `user://` directory. If you need to open a directory in
-   * another access scope, use [open] to create a new instance instead.
+   * **Note:** The new directory must be within the same scope, e.g. when you had opened a directory inside `res://`, you can't change it to `user://` directory. If you need to open a directory in another access scope, use [open] to create a new instance instead.
    */
   public final fun changeDir(toDir: String): Error {
     TransferContext.writeArguments(STRING to toDir)
@@ -244,8 +213,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the absolute path to the currently opened directory (e.g. `res://folder` or
-   * `C:\tmp\folder`).
+   * Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`).
    */
   @JvmOverloads
   public final fun getCurrentDir(includeDrive: Boolean = true): String {
@@ -255,9 +223,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates a directory. The argument can be relative to the current directory, or an absolute
-   * path. The target directory should be placed in an already existing directory (to create the full
-   * path recursively, see [makeDirRecursive]).
+   * Creates a directory. The argument can be relative to the current directory, or an absolute path. The target directory should be placed in an already existing directory (to create the full path recursively, see [makeDirRecursive]).
    *
    * Returns one of the [Error] code constants ([OK] on success).
    */
@@ -268,8 +234,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates a target directory and all necessary intermediate directories in its path, by calling
-   * [makeDir] recursively. The argument can be relative to the current directory, or an absolute path.
+   * Creates a target directory and all necessary intermediate directories in its path, by calling [makeDir] recursively. The argument can be relative to the current directory, or an absolute path.
    *
    * Returns one of the [Error] code constants ([OK] on success).
    */
@@ -280,14 +245,11 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns whether the target file exists. The argument can be relative to the current directory,
-   * or an absolute path.
+   * Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
    *
    * For a static equivalent, use [FileAccess.fileExists].
    *
-   * **Note:** Many resources types are imported (e.g. textures or sound files), and their source
-   * asset will not be included in the exported game, as only the imported version is used. See
-   * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
+   * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
    */
   public final fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -296,12 +258,9 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns whether the target directory exists. The argument can be relative to the current
-   * directory, or an absolute path.
+   * Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
    *
-   * **Note:** The returned [bool] in the editor and after exporting when used on a path in the
-   * `res://` directory may be different. Some files are converted to engine-specific formats when
-   * exported, potentially changing the directory structure.
+   * **Note:** The returned [bool] in the editor and after exporting when used on a path in the `res://` directory may be different. Some files are converted to engine-specific formats when exported, potentially changing the directory structure.
    */
   public final fun dirExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -310,8 +269,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the available space on the current directory's disk, in bytes. Returns `0` if the
-   * platform-specific method to query the available space fails.
+   * Returns the available space on the current directory's disk, in bytes. Returns `0` if the platform-specific method to query the available space fails.
    */
   public final fun getSpaceLeft(): Long {
     TransferContext.writeArguments()
@@ -320,12 +278,9 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Copies the [from] file to the [to] destination. Both arguments should be paths to files, either
-   * relative or absolute. If the destination file exists and is not access-protected, it will be
-   * overwritten.
+   * Copies the [from] file to the [to] destination. Both arguments should be paths to files, either relative or absolute. If the destination file exists and is not access-protected, it will be overwritten.
    *
-   * If [chmodFlags] is different than `-1`, the Unix permissions for the destination path will be
-   * set to the provided value, if available on the current operating system.
+   * If [chmodFlags] is different than `-1`, the Unix permissions for the destination path will be set to the provided value, if available on the current operating system.
    *
    * Returns one of the [Error] code constants ([OK] on success).
    */
@@ -341,9 +296,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Renames (move) the [from] file or directory to the [to] destination. Both arguments should be
-   * paths to files or directories, either relative or absolute. If the destination file or directory
-   * exists and is not access-protected, it will be overwritten.
+   * Renames (move) the [from] file or directory to the [to] destination. Both arguments should be paths to files or directories, either relative or absolute. If the destination file or directory exists and is not access-protected, it will be overwritten.
    *
    * Returns one of the [Error] code constants ([OK] on success).
    */
@@ -354,9 +307,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Permanently deletes the target file or an empty directory. The argument can be relative to the
-   * current directory, or an absolute path. If the target directory is not empty, the operation will
-   * fail.
+   * Permanently deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.
    *
    * If you don't want to delete the file/directory permanently, use [OS.moveToTrash] instead.
    *
@@ -369,8 +320,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if the file or directory is a symbolic link, directory junction, or other
-   * reparse point.
+   * Returns `true` if the file or directory is a symbolic link, directory junction, or other reparse point.
    *
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
@@ -394,8 +344,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Creates symbolic link between files or folders.
    *
-   * **Note:** On Windows, this method works only if the application is running with elevated
-   * privileges or Developer Mode is enabled.
+   * **Note:** On Windows, this method works only if the application is running with elevated privileges or Developer Mode is enabled.
    *
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
@@ -416,7 +365,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIncludeNavigational(enable: Boolean): Unit {
+  public final fun setIncludeNavigational(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setIncludeNavigationalPtr, NIL)
   }
@@ -427,7 +376,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIncludeHidden(enable: Boolean): Unit {
+  public final fun setIncludeHidden(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setIncludeHiddenPtr, NIL)
   }
@@ -441,8 +390,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns `true` if the file system or directory use case sensitive file names.
    *
-   * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and
-   * Windows. On other platforms, it always returns `true`.
+   * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and Windows. On other platforms, it always returns `true`.
    */
   public final fun isCaseSensitive(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -452,13 +400,9 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   public companion object {
     /**
-     * Creates a new [DirAccess] object and opens an existing directory of the filesystem. The
-     * [path] argument can be within the project tree (`res://folder`), the user directory
-     * (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or
-     * `C:\tmp\folder`).
+     * Creates a new [DirAccess] object and opens an existing directory of the filesystem. The [path] argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).
      *
-     * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
-     * that occurred.
+     * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmStatic
     public final fun `open`(path: String): DirAccess? {
@@ -478,15 +422,13 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates a temporary directory. This directory will be freed when the returned [DirAccess] is
-     * freed.
+     * Creates a temporary directory. This directory will be freed when the returned [DirAccess] is freed.
      *
      * If [prefix] is not empty, it will be prefixed to the directory name, separated by a `-`.
      *
      * If [keep] is `true`, the directory is not deleted when the returned [DirAccess] is freed.
      *
-     * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
-     * that occurred.
+     * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmOverloads
     @JvmStatic
@@ -497,17 +439,11 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
-     * directories, at the given [path]. The array is sorted alphabetically.
+     * Returns a [PackedStringArray] containing filenames of the directory contents, excluding directories, at the given [path]. The array is sorted alphabetically.
      *
      * Use [getFiles] if you want more control of what gets included.
      *
-     * **Note:** When used on a `res://` path in an exported project, only the files included in the
-     * PCK at the given folder level are returned. In practice, this means that since imported
-     * resources are stored in a top-level `.godot/` folder, only paths to `.gd` and `.import` files
-     * are returned (plus a few other files, such as `project.godot` or `project.binary` and the
-     * project icon). In an exported project, the list of returned files will also vary depending on
-     * [ProjectSettings.editor/export/convertTextResourcesToBinary].
+     * **Note:** When used on a `res://` path in an exported project, only the files included in the PCK at the given folder level are returned. In practice, this means that since imported resources are stored in a top-level `.godot/` folder, only paths to `.gd` and `.import` files are returned (plus a few other files, such as `project.godot` or `project.binary` and the project icon). In an exported project, the list of returned files will also vary depending on [ProjectSettings.editor/export/convertTextResourcesToBinary].
      */
     @JvmStatic
     public final fun getFilesAt(path: String): PackedStringArray {
@@ -517,13 +453,11 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
-     * files, at the given [path]. The array is sorted alphabetically.
+     * Returns a [PackedStringArray] containing filenames of the directory contents, excluding files, at the given [path]. The array is sorted alphabetically.
      *
      * Use [getDirectories] if you want more control of what gets included.
      *
-     * **Note:** The returned directories in the editor and after exporting in the `res://`
-     * directory may differ as some files are converted to engine-specific formats when exported.
+     * **Note:** The returned directories in the editor and after exporting in the `res://` directory may differ as some files are converted to engine-specific formats when exported.
      */
     @JvmStatic
     public final fun getDirectoriesAt(path: String): PackedStringArray {
@@ -555,8 +489,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      *
      * On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
      *
-     * On other platforms, or if the requested drive does not exist, the method returns an empty
-     * String.
+     * On other platforms, or if the requested drive does not exist, the method returns an empty String.
      */
     @JvmStatic
     public final fun getDriveName(idx: Int): String {
@@ -588,9 +521,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [dirExists]. Supports only absolute paths.
      *
-     * **Note:** The returned [bool] in the editor and after exporting when used on a path in the
-     * `res://` directory may be different. Some files are converted to engine-specific formats when
-     * exported, potentially changing the directory structure.
+     * **Note:** The returned [bool] in the editor and after exporting when used on a path in the `res://` directory may be different. Some files are converted to engine-specific formats when exported, potentially changing the directory structure.
      */
     @JvmStatic
     public final fun dirExistsAbsolute(path: String): Boolean {
@@ -636,117 +567,119 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "open", 1923528528)
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "open", 1_923_528_528)
 
     internal val getOpenErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_open_error", 166280745)
+        TypeManager.getMethodBindPtr("DirAccess", "get_open_error", 166_280_745)
 
     internal val createTempPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "create_temp", 812913566)
+        TypeManager.getMethodBindPtr("DirAccess", "create_temp", 812_913_566)
 
     internal val listDirBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "list_dir_begin", 166280745)
+        TypeManager.getMethodBindPtr("DirAccess", "list_dir_begin", 166_280_745)
 
     internal val getNextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_next", 2841200299)
+        TypeManager.getMethodBindPtr("DirAccess", "get_next", 2_841_200_299)
 
     internal val currentIsDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "current_is_dir", 36873697)
+        TypeManager.getMethodBindPtr("DirAccess", "current_is_dir", 36_873_697)
 
     internal val listDirEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "list_dir_end", 3218959716)
+        TypeManager.getMethodBindPtr("DirAccess", "list_dir_end", 3_218_959_716)
 
     internal val getFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_files", 2981934095)
+        TypeManager.getMethodBindPtr("DirAccess", "get_files", 2_981_934_095)
 
     internal val getFilesAtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_files_at", 3538744774)
+        TypeManager.getMethodBindPtr("DirAccess", "get_files_at", 3_538_744_774)
 
     internal val getDirectoriesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_directories", 2981934095)
+        TypeManager.getMethodBindPtr("DirAccess", "get_directories", 2_981_934_095)
 
     internal val getDirectoriesAtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_directories_at", 3538744774)
+        TypeManager.getMethodBindPtr("DirAccess", "get_directories_at", 3_538_744_774)
 
     internal val getDriveCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_drive_count", 2455072627)
+        TypeManager.getMethodBindPtr("DirAccess", "get_drive_count", 2_455_072_627)
 
     internal val getDriveNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_drive_name", 990163283)
+        TypeManager.getMethodBindPtr("DirAccess", "get_drive_name", 990_163_283)
 
     internal val getCurrentDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_current_drive", 2455072627)
+        TypeManager.getMethodBindPtr("DirAccess", "get_current_drive", 2_455_072_627)
 
     internal val changeDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "change_dir", 166001499)
+        TypeManager.getMethodBindPtr("DirAccess", "change_dir", 166_001_499)
 
     internal val getCurrentDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_current_dir", 1287308131)
+        TypeManager.getMethodBindPtr("DirAccess", "get_current_dir", 1_287_308_131)
 
     internal val makeDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "make_dir", 166001499)
+        TypeManager.getMethodBindPtr("DirAccess", "make_dir", 166_001_499)
 
     internal val makeDirAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "make_dir_absolute", 166001499)
+        TypeManager.getMethodBindPtr("DirAccess", "make_dir_absolute", 166_001_499)
 
     internal val makeDirRecursivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive", 166001499)
+        TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive", 166_001_499)
 
     internal val makeDirRecursiveAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive_absolute", 166001499)
+        TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive_absolute", 166_001_499)
 
     internal val fileExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "file_exists", 2323990056)
+        TypeManager.getMethodBindPtr("DirAccess", "file_exists", 2_323_990_056)
 
     internal val dirExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "dir_exists", 2323990056)
+        TypeManager.getMethodBindPtr("DirAccess", "dir_exists", 2_323_990_056)
 
     internal val dirExistsAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "dir_exists_absolute", 2323990056)
+        TypeManager.getMethodBindPtr("DirAccess", "dir_exists_absolute", 2_323_990_056)
 
     internal val getSpaceLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_space_left", 2455072627)
+        TypeManager.getMethodBindPtr("DirAccess", "get_space_left", 2_455_072_627)
 
-    internal val copyPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "copy", 1063198817)
+    internal val copyPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "copy", 1_063_198_817)
 
     internal val copyAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "copy_absolute", 1063198817)
+        TypeManager.getMethodBindPtr("DirAccess", "copy_absolute", 1_063_198_817)
 
-    internal val renamePtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "rename", 852856452)
+    internal val renamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "rename", 852_856_452)
 
     internal val renameAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "rename_absolute", 852856452)
+        TypeManager.getMethodBindPtr("DirAccess", "rename_absolute", 852_856_452)
 
-    internal val removePtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "remove", 166001499)
+    internal val removePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "remove", 166_001_499)
 
     internal val removeAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "remove_absolute", 166001499)
+        TypeManager.getMethodBindPtr("DirAccess", "remove_absolute", 166_001_499)
 
     internal val isLinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "is_link", 2323990056)
+        TypeManager.getMethodBindPtr("DirAccess", "is_link", 2_323_990_056)
 
     internal val readLinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "read_link", 1703090593)
+        TypeManager.getMethodBindPtr("DirAccess", "read_link", 1_703_090_593)
 
     internal val createLinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "create_link", 852856452)
+        TypeManager.getMethodBindPtr("DirAccess", "create_link", 852_856_452)
 
     internal val isBundlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "is_bundle", 3927539163)
+        TypeManager.getMethodBindPtr("DirAccess", "is_bundle", 3_927_539_163)
 
     internal val setIncludeNavigationalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "set_include_navigational", 2586408642)
+        TypeManager.getMethodBindPtr("DirAccess", "set_include_navigational", 2_586_408_642)
 
     internal val getIncludeNavigationalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_include_navigational", 36873697)
+        TypeManager.getMethodBindPtr("DirAccess", "get_include_navigational", 36_873_697)
 
     internal val setIncludeHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "set_include_hidden", 2586408642)
+        TypeManager.getMethodBindPtr("DirAccess", "set_include_hidden", 2_586_408_642)
 
     internal val getIncludeHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_include_hidden", 36873697)
+        TypeManager.getMethodBindPtr("DirAccess", "get_include_hidden", 36_873_697)
 
     internal val isCaseSensitivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "is_case_sensitive", 3927539163)
+        TypeManager.getMethodBindPtr("DirAccess", "is_case_sensitive", 3_927_539_163)
   }
 }

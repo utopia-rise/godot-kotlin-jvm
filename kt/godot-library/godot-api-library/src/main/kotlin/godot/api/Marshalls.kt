@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -29,13 +25,12 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Marshalls : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(14)
   }
 
   /**
-   * Returns a Base64-encoded string of the [Variant] [variant]. If [fullObjects] is `true`,
-   * encoding objects is allowed (and can potentially include code).
+   * Returns a Base64-encoded string of the [Variant] [variant]. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
@@ -48,14 +43,11 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded [Variant] corresponding to the Base64-encoded string [base64Str]. If
-   * [allowObjects] is `true`, decoding objects is allowed.
+   * Returns a decoded [Variant] corresponding to the Base64-encoded string [base64Str]. If [allowObjects] is `true`, decoding objects is allowed.
    *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
-   * if the serialized object comes from untrusted sources to avoid potential security threats such as
-   * remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
   @JvmOverloads
   @JvmStatic
@@ -107,21 +99,21 @@ public object Marshalls : Object() {
 
   public object MethodBindings {
     internal val variantToBase64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marshalls", "variant_to_base64", 3876248563)
+        TypeManager.getMethodBindPtr("Marshalls", "variant_to_base64", 3_876_248_563)
 
     internal val base64ToVariantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marshalls", "base64_to_variant", 218087648)
+        TypeManager.getMethodBindPtr("Marshalls", "base64_to_variant", 218_087_648)
 
     internal val rawToBase64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marshalls", "raw_to_base64", 3999417757)
+        TypeManager.getMethodBindPtr("Marshalls", "raw_to_base64", 3_999_417_757)
 
     internal val base64ToRawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marshalls", "base64_to_raw", 659035735)
+        TypeManager.getMethodBindPtr("Marshalls", "base64_to_raw", 659_035_735)
 
     internal val utf8ToBase64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marshalls", "utf8_to_base64", 1703090593)
+        TypeManager.getMethodBindPtr("Marshalls", "utf8_to_base64", 1_703_090_593)
 
     internal val base64ToUtf8Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marshalls", "base64_to_utf8", 1703090593)
+        TypeManager.getMethodBindPtr("Marshalls", "base64_to_utf8", 1_703_090_593)
   }
 }

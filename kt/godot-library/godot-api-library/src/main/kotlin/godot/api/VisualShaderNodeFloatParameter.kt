@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,7 +17,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -29,8 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
-   * A hint applied to the uniform, which controls the values it can take when set through the
-   * Inspector.
+   * A hint applied to the uniform, which controls the values it can take when set through the Inspector.
    */
   public final inline var hint: Hint
     @JvmName("hintProperty")
@@ -63,8 +58,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Step (increment) value for the range hint with step. Used if [hint] is set to
-   * [HINT_RANGE_STEP].
+   * Step (increment) value for the range hint with step. Used if [hint] is set to [HINT_RANGE_STEP].
    */
   public final inline var step: Float
     @JvmName("stepProperty")
@@ -96,11 +90,11 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(753, scriptIndex)
   }
 
-  public final fun setHint(hint: Hint): Unit {
+  public final fun setHint(hint: Hint) {
     TransferContext.writeArguments(LONG to hint.id)
     TransferContext.callMethod(ptr, MethodBindings.setHintPtr, NIL)
   }
@@ -111,7 +105,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     return Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMin(`value`: Float): Unit {
+  public final fun setMin(`value`: Float) {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
   }
@@ -122,7 +116,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMax(`value`: Float): Unit {
+  public final fun setMax(`value`: Float) {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
@@ -133,7 +127,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setStep(`value`: Float): Unit {
+  public final fun setStep(`value`: Float) {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setStepPtr, NIL)
   }
@@ -144,7 +138,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
@@ -155,7 +149,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultValue(`value`: Float): Unit {
+  public final fun setDefaultValue(`value`: Float) {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
@@ -174,14 +168,11 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
      */
     NONE(0),
     /**
-     * A range hint for scalar value, which limits possible input values between [min] and [max].
-     * Translated to `hint_range(min, max)` in shader code.
+     * A range hint for scalar value, which limits possible input values between [min] and [max]. Translated to `hint_range(min, max)` in shader code.
      */
     RANGE(1),
     /**
-     * A range hint for scalar value with step, which limits possible input values between [min] and
-     * [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader
-     * code.
+     * A range hint for scalar value with step, which limits possible input values between [min] and [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader code.
      */
     RANGE_STEP(2),
     /**
@@ -204,39 +195,39 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
 
   public object MethodBindings {
     internal val setHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_hint", 3712586466)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_hint", 3_712_586_466)
 
     internal val getHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_hint", 3042240429)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_hint", 3_042_240_429)
 
     internal val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_min", 373806689)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_min", 373_806_689)
 
     internal val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_min", 1740695150)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_min", 1_740_695_150)
 
     internal val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_max", 373806689)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_max", 373_806_689)
 
     internal val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_max", 1740695150)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_max", 1_740_695_150)
 
     internal val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_step", 373806689)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_step", 373_806_689)
 
     internal val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_step", 1740695150)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_step", 1_740_695_150)
 
     internal val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value_enabled", 2_586_408_642)
 
     internal val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "is_default_value_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "is_default_value_enabled", 36_873_697)
 
     internal val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value", 373806689)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value", 373_806_689)
 
     internal val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_default_value", 1740695150)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_default_value", 1_740_695_150)
   }
 }

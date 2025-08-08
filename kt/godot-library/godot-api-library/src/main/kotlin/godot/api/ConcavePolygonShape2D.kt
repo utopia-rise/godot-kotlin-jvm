@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,42 +19,24 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
- * it's in [CollisionPolygon2D.BUILD_SEGMENTS] mode.
+ * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when it's in [CollisionPolygon2D.BUILD_SEGMENTS] mode.
  *
- * Being just a collection of interconnected line segments, [ConcavePolygonShape2D] is the most
- * freely configurable single 2D shape. It can be used to form polygons of any nature, or even shapes
- * that don't enclose an area. However, [ConcavePolygonShape2D] is *hollow* even if the interconnected
- * line segments do enclose an area, which often makes it unsuitable for physics or detection.
+ * Being just a collection of interconnected line segments, [ConcavePolygonShape2D] is the most freely configurable single 2D shape. It can be used to form polygons of any nature, or even shapes that don't enclose an area. However, [ConcavePolygonShape2D] is *hollow* even if the interconnected line segments do enclose an area, which often makes it unsuitable for physics or detection.
  *
- * **Note:** When used for collision, [ConcavePolygonShape2D] is intended to work with static
- * [CollisionShape2D] nodes like [StaticBody2D] and will likely not behave well for [CharacterBody2D]s
- * or [RigidBody2D]s in a mode other than Static.
+ * **Note:** When used for collision, [ConcavePolygonShape2D] is intended to work with static [CollisionShape2D] nodes like [StaticBody2D] and will likely not behave well for [CharacterBody2D]s or [RigidBody2D]s in a mode other than Static.
  *
- * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving
- * fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and
- * on the next frame it may be "inside" it. [ConcavePolygonShape2D] is hollow, so it won't detect a
- * collision.
+ * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and on the next frame it may be "inside" it. [ConcavePolygonShape2D] is hollow, so it won't detect a collision.
  *
- * **Performance:** Due to its complexity, [ConcavePolygonShape2D] is the slowest 2D collision shape
- * to check collisions against. Its use should generally be limited to level geometry. If the polyline
- * is closed, [CollisionPolygon2D]'s [CollisionPolygon2D.BUILD_SOLIDS] mode can be used, which
- * decomposes the polygon into convex ones; see [ConvexPolygonShape2D]'s documentation for
- * instructions.
+ * **Performance:** Due to its complexity, [ConcavePolygonShape2D] is the slowest 2D collision shape to check collisions against. Its use should generally be limited to level geometry. If the polyline is closed, [CollisionPolygon2D]'s [CollisionPolygon2D.BUILD_SOLIDS] mode can be used, which decomposes the polygon into convex ones; see [ConvexPolygonShape2D]'s documentation for instructions.
  */
 @GodotBaseType
 public open class ConcavePolygonShape2D : Shape2D() {
   /**
-   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of
-   * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
-   * consists of the starting point of a segment and the endpoint of a segment.
+   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var segments: PackedVector2Array
@@ -68,7 +47,7 @@ public open class ConcavePolygonShape2D : Shape2D() {
       setSegments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(172, scriptIndex)
   }
 
@@ -83,29 +62,22 @@ public open class ConcavePolygonShape2D : Shape2D() {
    * concavepolygonshape2d.segments = myCoreType
    * ``````
    *
-   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of
-   * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
-   * consists of the starting point of a segment and the endpoint of a segment.
+   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment.
    */
   @CoreTypeHelper
-  public final fun segmentsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      segments.apply {
+  public final fun segmentsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = segments.apply {
      block(this)
      segments = this
   }
 
   /**
    * This is a helper function for [segments] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of
-   * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
-   * consists of the starting point of a segment and the endpoint of a segment.
+   * The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment.
    */
   @CoreTypeHelper
-  public final fun segmentsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = segments.apply {
+  public final fun segmentsMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = segments.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -113,7 +85,7 @@ public open class ConcavePolygonShape2D : Shape2D() {
      segments = this
   }
 
-  public final fun setSegments(segments: PackedVector2Array): Unit {
+  public final fun setSegments(segments: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to segments)
     TransferContext.callMethod(ptr, MethodBindings.setSegmentsPtr, NIL)
   }
@@ -128,9 +100,9 @@ public open class ConcavePolygonShape2D : Shape2D() {
 
   public object MethodBindings {
     internal val setSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "set_segments", 1509147220)
+        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "set_segments", 1_509_147_220)
 
     internal val getSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "get_segments", 2961356807)
+        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "get_segments", 2_961_356_807)
   }
 }

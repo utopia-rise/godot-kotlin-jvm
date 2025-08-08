@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,8 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * By changing various properties of this object, such as the point position, you can configure the
- * parameters for [PhysicsDirectSpaceState2D.intersectPoint].
+ * By changing various properties of this object, such as the point position, you can configure the parameters for [PhysicsDirectSpaceState2D.intersectPoint].
  */
 @GodotBaseType
 public open class PhysicsPointQueryParameters2D : RefCounted() {
@@ -37,11 +33,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
    * The position being queried for, in global coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -53,8 +46,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If different from `0`, restricts the query to a specific canvas layer specified by its instance
-   * ID. See [Object.getInstanceId].
+   * If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [Object.getInstanceId].
    *
    * If `0`, restricts the query to the Viewport's default canvas layer.
    */
@@ -67,10 +59,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
-   * detected. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -81,12 +70,9 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
-   * to get the [RID] associated with a [CollisionObject2D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid] to get the [RID] associated with a [CollisionObject2D]-derived node.
    *
-   * **Note:** The returned array is copied and any changes to it will not update the original
-   * property value. To update the value you need to modify the returned array, and then assign it to
-   * the property again.
+   * **Note:** The returned array is copied and any changes to it will not update the original property value. To update the value you need to modify the returned array, and then assign it to the property again.
    */
   public final inline var exclude: VariantArray<RID>
     @JvmName("excludeProperty")
@@ -118,7 +104,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
       setCollideWithAreas(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(470, scriptIndex)
   }
 
@@ -141,7 +127,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
      position = this
   }
 
-  public final fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2) {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -152,7 +138,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setCanvasInstanceId(canvasInstanceId: Long): Unit {
+  public final fun setCanvasInstanceId(canvasInstanceId: Long) {
     TransferContext.writeArguments(LONG to canvasInstanceId)
     TransferContext.callMethod(ptr, MethodBindings.setCanvasInstanceIdPtr, NIL)
   }
@@ -163,7 +149,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCollisionMask(collisionMask: Long): Unit {
+  public final fun setCollisionMask(collisionMask: Long) {
     TransferContext.writeArguments(LONG to collisionMask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -174,7 +160,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setExclude(exclude: VariantArray<RID>): Unit {
+  public final fun setExclude(exclude: VariantArray<RID>) {
     TransferContext.writeArguments(ARRAY to exclude)
     TransferContext.callMethod(ptr, MethodBindings.setExcludePtr, NIL)
   }
@@ -185,7 +171,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
-  public final fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
@@ -196,7 +182,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
@@ -211,39 +197,39 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
 
   public object MethodBindings {
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_position", 743155724)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_position", 743_155_724)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_position", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_position", 3_341_600_327)
 
     internal val setCanvasInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_canvas_instance_id", 1286410249)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_canvas_instance_id", 1_286_410_249)
 
     internal val getCanvasInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_canvas_instance_id", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_canvas_instance_id", 3_905_245_786)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_collision_mask", 3_905_245_786)
 
     internal val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_exclude", 381264803)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_exclude", 381_264_803)
 
     internal val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_exclude", 3995934104)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_exclude", 3_995_934_104)
 
     internal val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_bodies", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_bodies", 2_586_408_642)
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_bodies_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_bodies_enabled", 36_873_697)
 
     internal val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_areas", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_areas", 2_586_408_642)
 
     internal val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_areas_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_areas_enabled", 36_873_697)
   }
 }

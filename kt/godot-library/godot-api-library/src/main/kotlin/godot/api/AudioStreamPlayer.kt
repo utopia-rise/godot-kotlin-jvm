@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,26 +28,21 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user
- * interfaces, menus, or background music.
+ * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user interfaces, menus, or background music.
  *
- * To use this node, [stream] needs to be set to a valid [AudioStream] resource. Playing more than
- * one sound at the same time is also supported, see [maxPolyphony].
+ * To use this node, [stream] needs to be set to a valid [AudioStream] resource. Playing more than one sound at the same time is also supported, see [maxPolyphony].
  *
- * If you need to play audio at a specific position, use [AudioStreamPlayer2D] or
- * [AudioStreamPlayer3D] instead.
+ * If you need to play audio at a specific position, use [AudioStreamPlayer2D] or [AudioStreamPlayer3D] instead.
  */
 @GodotBaseType
 public open class AudioStreamPlayer : Node() {
   /**
-   * Emitted when a sound finishes playing without interruptions. This signal is *not* emitted when
-   * calling [stop], or when exiting the tree while sounds are playing.
+   * Emitted when a sound finishes playing without interruptions. This signal is *not* emitted when calling [stop], or when exiting the tree while sounds are playing.
    */
   public val finished: Signal0 by Signal0
 
   /**
-   * The [AudioStream] resource to be played. Setting this property stops all currently playing
-   * sounds. If left empty, the [AudioStreamPlayer] does not work.
+   * The [AudioStream] resource to be played. Setting this property stops all currently playing sounds. If left empty, the [AudioStreamPlayer] does not work.
    */
   public final inline var stream: AudioStream?
     @JvmName("streamProperty")
@@ -63,8 +55,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Volume of sound, in decibels. This is an offset of the [stream]'s volume.
    *
-   * **Note:** To convert between decibel and linear energy (like most volume sliders do), use
-   * [volumeLinear], or [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
+   * **Note:** To convert between decibel and linear energy (like most volume sliders do), use [volumeLinear], or [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
    */
   public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
@@ -77,9 +68,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Volume of sound, as a linear value.
    *
-   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
-   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
-   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
    */
   public final inline var volumeLinear: Float
     @JvmName("volumeLinearProperty")
@@ -90,8 +79,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The audio's pitch and tempo, as a multiplier of the [stream]'s sample rate. A value of `2.0`
-   * doubles the audio's pitch, while a value of `0.5` halves the pitch.
+   * The audio's pitch and tempo, as a multiplier of the [stream]'s sample rate. A value of `2.0` doubles the audio's pitch, while a value of `0.5` halves the pitch.
    */
   public final inline var pitchScale: Float
     @JvmName("pitchScaleProperty")
@@ -102,8 +90,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If `true`, this node is playing sounds. Setting this property has the same effect as [play] and
-   * [stop].
+   * If `true`, this node is playing sounds. Setting this property has the same effect as [play] and [stop].
    */
   public final inline var playing: Boolean
     @JvmName("playingProperty")
@@ -127,8 +114,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If `true`, the sounds are paused. Setting [streamPaused] to `false` resumes all sounds.
    *
-   * **Note:** This property is automatically changed when exiting or entering the tree, or this
-   * node is paused (see [Node.processMode]).
+   * **Note:** This property is automatically changed when exiting or entering the tree, or this node is paused (see [Node.processMode]).
    */
   public final inline var streamPaused: Boolean
     @JvmName("streamPausedProperty")
@@ -139,8 +125,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The mix target channels, as one of the [MixTarget] constants. Has no effect when two speakers
-   * or less are detected (see [AudioServer.SpeakerMode]).
+   * The mix target channels, as one of the [MixTarget] constants. Has no effect when two speakers or less are detected (see [AudioServer.SpeakerMode]).
    */
   public final inline var mixTarget: MixTarget
     @JvmName("mixTargetProperty")
@@ -151,8 +136,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The maximum number of sounds this node can play at the same time. Calling [play] after this
-   * value is reached will cut off the oldest sounds.
+   * The maximum number of sounds this node can play at the same time. Calling [play] after this value is reached will cut off the oldest sounds.
    */
   public final inline var maxPolyphony: Int
     @JvmName("maxPolyphonyProperty")
@@ -165,8 +149,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * The target bus name. All sounds from this node will be playing on this bus.
    *
-   * **Note:** At runtime, if no bus with the given name exists, all sounds will fall back on
-   * `"Master"`. See also [AudioServer.getBusName].
+   * **Note:** At runtime, if no bus with the given name exists, all sounds will fall back on `"Master"`. See also [AudioServer.getBusName].
    */
   public final inline var bus: StringName
     @JvmName("busProperty")
@@ -177,8 +160,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The playback type of the stream player. If set other than to the default value, it will force
-   * that playback type.
+   * The playback type of the stream player. If set other than to the default value, it will force that playback type.
    */
   public final inline var playbackType: AudioServer.PlaybackType
     @JvmName("playbackTypeProperty")
@@ -188,11 +170,11 @@ public open class AudioStreamPlayer : Node() {
       setPlaybackType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(94, scriptIndex)
   }
 
-  public final fun setStream(stream: AudioStream?): Unit {
+  public final fun setStream(stream: AudioStream?) {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPtr, NIL)
   }
@@ -203,7 +185,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
-  public final fun setVolumeDb(volumeDb: Float): Unit {
+  public final fun setVolumeDb(volumeDb: Float) {
     TransferContext.writeArguments(DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
   }
@@ -214,7 +196,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumeLinear(volumeLinear: Float): Unit {
+  public final fun setVolumeLinear(volumeLinear: Float) {
     TransferContext.writeArguments(DOUBLE to volumeLinear.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
   }
@@ -225,7 +207,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPitchScale(pitchScale: Float): Unit {
+  public final fun setPitchScale(pitchScale: Float) {
     TransferContext.writeArguments(DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPitchScalePtr, NIL)
   }
@@ -240,16 +222,15 @@ public open class AudioStreamPlayer : Node() {
    * Plays a sound from the beginning, or the given [fromPosition] in seconds.
    */
   @JvmOverloads
-  public final fun play(fromPosition: Float = 0.0f): Unit {
+  public final fun play(fromPosition: Float = 0.0f) {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
 
   /**
-   * Restarts all sounds to be played from the given [toPosition], in seconds. Does nothing if no
-   * sounds are playing.
+   * Restarts all sounds to be played from the given [toPosition], in seconds. Does nothing if no sounds are playing.
    */
-  public final fun seek(toPosition: Float): Unit {
+  public final fun seek(toPosition: Float) {
     TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
@@ -257,7 +238,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Stops all sounds from this node.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
@@ -269,15 +250,11 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns the position in the [AudioStream] of the latest sound, in seconds. Returns `0.0` if no
-   * sounds are playing.
+   * Returns the position in the [AudioStream] of the latest sound, in seconds. Returns `0.0` if no sounds are playing.
    *
-   * **Note:** The position is not always accurate, as the [AudioServer] does not mix audio every
-   * processed frame. To get more accurate results, add [AudioServer.getTimeSinceLastMix] to the
-   * returned position.
+   * **Note:** The position is not always accurate, as the [AudioServer] does not mix audio every processed frame. To get more accurate results, add [AudioServer.getTimeSinceLastMix] to the returned position.
    *
-   * **Note:** This method always returns `0.0` if the [stream] is an [AudioStreamInteractive],
-   * since it can have multiple clips playing at once.
+   * **Note:** This method always returns `0.0` if the [stream] is an [AudioStreamInteractive], since it can have multiple clips playing at once.
    */
   public final fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
@@ -285,7 +262,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBus(bus: StringName): Unit {
+  public final fun setBus(bus: StringName) {
     TransferContext.writeArguments(STRING_NAME to bus)
     TransferContext.callMethod(ptr, MethodBindings.setBusPtr, NIL)
   }
@@ -296,7 +273,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setAutoplay(enable: Boolean): Unit {
+  public final fun setAutoplay(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
@@ -307,7 +284,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMixTarget(mixTarget: MixTarget): Unit {
+  public final fun setMixTarget(mixTarget: MixTarget) {
     TransferContext.writeArguments(LONG to mixTarget.id)
     TransferContext.callMethod(ptr, MethodBindings.setMixTargetPtr, NIL)
   }
@@ -318,12 +295,12 @@ public open class AudioStreamPlayer : Node() {
     return MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPlaying(enable: Boolean): Unit {
+  public final fun setPlaying(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPlayingPtr, NIL)
   }
 
-  public final fun setStreamPaused(pause: Boolean): Unit {
+  public final fun setStreamPaused(pause: Boolean) {
     TransferContext.writeArguments(BOOL to pause)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPausedPtr, NIL)
   }
@@ -334,7 +311,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaxPolyphony(maxPolyphony: Int): Unit {
+  public final fun setMaxPolyphony(maxPolyphony: Int) {
     TransferContext.writeArguments(LONG to maxPolyphony.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxPolyphonyPtr, NIL)
   }
@@ -346,8 +323,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns `true` if any sound is active, even if [streamPaused] is set to `true`. See also
-   * [playing] and [getStreamPlayback].
+   * Returns `true` if any sound is active, even if [streamPaused] is set to `true`. See also [playing] and [getStreamPlayback].
    */
   public final fun hasStreamPlayback(): Boolean {
     TransferContext.writeArguments()
@@ -356,8 +332,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns the latest [AudioStreamPlayback] of this node, usually the most recently created by
-   * [play]. If no sounds are playing, this method fails and returns an empty playback.
+   * Returns the latest [AudioStreamPlayback] of this node, usually the most recently created by [play]. If no sounds are playing, this method fails and returns an empty playback.
    */
   public final fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
@@ -365,7 +340,7 @@ public open class AudioStreamPlayer : Node() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
-  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
+  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType) {
     TransferContext.writeArguments(LONG to playbackType.id)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackTypePtr, NIL)
   }
@@ -409,87 +384,87 @@ public open class AudioStreamPlayer : Node() {
 
   public object MethodBindings {
     internal val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream", 2210767741)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream", 2_210_767_741)
 
     internal val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream", 160907539)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream", 160_907_539)
 
     internal val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_db", 373_806_689)
 
     internal val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_db", 1_740_695_150)
 
     internal val setVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_linear", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_linear", 373_806_689)
 
     internal val getVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_linear", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_linear", 1_740_695_150)
 
     internal val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale", 373_806_689)
 
     internal val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_pitch_scale", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_pitch_scale", 1_740_695_150)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "play", 1958160172)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "play", 1_958_160_172)
 
     internal val seekPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "seek", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "seek", 373_806_689)
 
     internal val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "stop", 3218959716)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "stop", 3_218_959_716)
 
     internal val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_playing", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_playing", 36_873_697)
 
     internal val getPlaybackPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_position", 191475506)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_position", 191_475_506)
 
     internal val setBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_bus", 3304788590)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_bus", 3_304_788_590)
 
     internal val getBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_bus", 2002593661)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_bus", 2_002_593_661)
 
     internal val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_autoplay", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_autoplay", 2_586_408_642)
 
     internal val isAutoplayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_autoplay_enabled", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_autoplay_enabled", 36_873_697)
 
     internal val setMixTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_mix_target", 2300306138)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_mix_target", 2_300_306_138)
 
     internal val getMixTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_mix_target", 172807476)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_mix_target", 172_807_476)
 
     internal val setPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playing", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playing", 2_586_408_642)
 
     internal val setStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused", 2_586_408_642)
 
     internal val getStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_paused", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_paused", 36_873_697)
 
     internal val setMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_max_polyphony", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_max_polyphony", 1_286_410_249)
 
     internal val getMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_max_polyphony", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_max_polyphony", 3_905_245_786)
 
     internal val hasStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "has_stream_playback", 2240911060)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "has_stream_playback", 2_240_911_060)
 
     internal val getStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback", 210135309)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback", 210_135_309)
 
     internal val setPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playback_type", 725473817)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playback_type", 725_473_817)
 
     internal val getPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_type", 4011264623)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_type", 4_011_264_623)
   }
 }

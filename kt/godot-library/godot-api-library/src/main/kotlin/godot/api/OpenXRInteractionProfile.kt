@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,16 +18,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This object stores suggested bindings for an interaction profile. Interaction profiles define the
- * metadata for a tracked XR device such as an XR controller.
+ * This object stores suggested bindings for an interaction profile. Interaction profiles define the metadata for a tracked XR device such as an XR controller.
  *
- * For more information see the
- * [url=https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#semantic-path-interaction-profiles]interaction
- * profiles info in the OpenXR specification[/url].
+ * For more information see the [url=https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#semantic-path-interaction-profiles]interaction profiles info in the OpenXR specification[/url].
  */
 @GodotBaseType
 public open class OpenXRInteractionProfile : Resource() {
@@ -67,11 +60,11 @@ public open class OpenXRInteractionProfile : Resource() {
       setBindingModifiers(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(428, scriptIndex)
   }
 
-  public final fun setInteractionProfilePath(interactionProfilePath: String): Unit {
+  public final fun setInteractionProfilePath(interactionProfilePath: String) {
     TransferContext.writeArguments(STRING to interactionProfilePath)
     TransferContext.callMethod(ptr, MethodBindings.setInteractionProfilePathPtr, NIL)
   }
@@ -100,7 +93,7 @@ public open class OpenXRInteractionProfile : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRIPBinding?)
   }
 
-  public final fun setBindings(bindings: VariantArray<Any?>): Unit {
+  public final fun setBindings(bindings: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to bindings)
     TransferContext.callMethod(ptr, MethodBindings.setBindingsPtr, NIL)
   }
@@ -129,7 +122,7 @@ public open class OpenXRInteractionProfile : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRIPBindingModifier?)
   }
 
-  public final fun setBindingModifiers(bindingModifiers: VariantArray<Any?>): Unit {
+  public final fun setBindingModifiers(bindingModifiers: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to bindingModifiers)
     TransferContext.callMethod(ptr, MethodBindings.setBindingModifiersPtr, NIL)
   }
@@ -144,33 +137,33 @@ public open class OpenXRInteractionProfile : Resource() {
 
   public object MethodBindings {
     internal val setInteractionProfilePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_interaction_profile_path", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_interaction_profile_path", 83_702_148)
 
     internal val getInteractionProfilePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_interaction_profile_path", 201670096)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_interaction_profile_path", 201_670_096)
 
     internal val getBindingCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_count", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_count", 3_905_245_786)
 
     internal val getBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding", 3934429652)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding", 3_934_429_652)
 
     internal val setBindingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_bindings", 381264803)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_bindings", 381_264_803)
 
     internal val getBindingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings", 3995934104)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings", 3_995_934_104)
 
     internal val getBindingModifierCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifier_count", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifier_count", 3_905_245_786)
 
     internal val getBindingModifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifier", 2419896583)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifier", 2_419_896_583)
 
     internal val setBindingModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_binding_modifiers", 381264803)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_binding_modifiers", 381_264_803)
 
     internal val getBindingModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifiers", 3995934104)
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifiers", 3_995_934_104)
   }
 }

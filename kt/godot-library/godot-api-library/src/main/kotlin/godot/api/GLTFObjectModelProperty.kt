@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,29 +30,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GLTFObjectModelProperty defines a mapping between a property in the glTF object model and a
- * NodePath in the Godot scene tree. This can be used to animate properties in a glTF file using the
- * `KHR_animation_pointer` extension, or to access them through an engine-agnostic script such as a
- * behavior graph as defined by the `KHR_interactivity` extension.
+ * GLTFObjectModelProperty defines a mapping between a property in the glTF object model and a NodePath in the Godot scene tree. This can be used to animate properties in a glTF file using the `KHR_animation_pointer` extension, or to access them through an engine-agnostic script such as a behavior graph as defined by the `KHR_interactivity` extension.
  *
- * The glTF property is identified by JSON pointer(s) stored in [jsonPointers], while the Godot
- * property it maps to is defined by [nodePaths]. In most cases [jsonPointers] and [nodePaths] will
- * each only have one item, but in some cases a single glTF JSON pointer will map to multiple Godot
- * properties, or a single Godot property will be mapped to multiple glTF JSON pointers, or it might be
- * a many-to-many relationship.
+ * The glTF property is identified by JSON pointer(s) stored in [jsonPointers], while the Godot property it maps to is defined by [nodePaths]. In most cases [jsonPointers] and [nodePaths] will each only have one item, but in some cases a single glTF JSON pointer will map to multiple Godot properties, or a single Godot property will be mapped to multiple glTF JSON pointers, or it might be a many-to-many relationship.
  *
- * [Expression] objects can be used to define conversions between the data, such as when glTF
- * defines an angle in radians and Godot uses degrees. The [objectModelType] property defines the type
- * of data stored in the glTF file as defined by the object model, see [GLTFObjectModelType] for
- * possible values.
+ * [Expression] objects can be used to define conversions between the data, such as when glTF defines an angle in radians and Godot uses degrees. The [objectModelType] property defines the type of data stored in the glTF file as defined by the object model, see [GLTFObjectModelType] for possible values.
  */
 @GodotBaseType
 public open class GLTFObjectModelProperty : RefCounted() {
   /**
-   * If set, this [Expression] will be used to convert the property value from the glTF object model
-   * to the value expected by the Godot property. This is useful when the glTF object model uses a
-   * different unit system, or when the data needs to be transformed in some way. If `null`, the value
-   * will be copied as-is.
+   * If set, this [Expression] will be used to convert the property value from the glTF object model to the value expected by the Godot property. This is useful when the glTF object model uses a different unit system, or when the data needs to be transformed in some way. If `null`, the value will be copied as-is.
    */
   public final inline var gltfToGodotExpression: Expression?
     @JvmName("gltfToGodotExpressionProperty")
@@ -66,10 +50,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   /**
-   * If set, this [Expression] will be used to convert the property value from the Godot property to
-   * the value expected by the glTF object model. This is useful when the glTF object model uses a
-   * different unit system, or when the data needs to be transformed in some way. If `null`, the value
-   * will be copied as-is.
+   * If set, this [Expression] will be used to convert the property value from the Godot property to the value expected by the glTF object model. This is useful when the glTF object model uses a different unit system, or when the data needs to be transformed in some way. If `null`, the value will be copied as-is.
    */
   public final inline var godotToGltfExpression: Expression?
     @JvmName("godotToGltfExpressionProperty")
@@ -80,13 +61,9 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   /**
-   * An array of [NodePath]s that point to a property, or multiple properties, in the Godot scene
-   * tree. On import, this will either be set by [GLTFDocument], or by a [GLTFDocumentExtension] class.
-   * For simple cases, use [appendPathToProperty] to add properties to this array.
+   * An array of [NodePath]s that point to a property, or multiple properties, in the Godot scene tree. On import, this will either be set by [GLTFDocument], or by a [GLTFDocumentExtension] class. For simple cases, use [appendPathToProperty] to add properties to this array.
    *
-   * In most cases [nodePaths] will only have one item, but in some cases a single glTF JSON pointer
-   * will map to multiple Godot properties. For example, a [GLTFCamera] or [GLTFLight] used on multiple
-   * glTF nodes will be represented by multiple Godot nodes.
+   * In most cases [nodePaths] will only have one item, but in some cases a single glTF JSON pointer will map to multiple Godot properties. For example, a [GLTFCamera] or [GLTFLight] used on multiple glTF nodes will be represented by multiple Godot nodes.
    */
   public final inline var nodePaths: VariantArray<NodePath>
     @JvmName("nodePathsProperty")
@@ -97,9 +74,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   /**
-   * The type of data stored in the glTF file as defined by the object model. This is a superset of
-   * the available accessor types, and determines the accessor type. See [GLTFObjectModelType] for
-   * possible values.
+   * The type of data stored in the glTF file as defined by the object model. This is a superset of the available accessor types, and determines the accessor type. See [GLTFObjectModelType] for possible values.
    */
   public final inline var objectModelType: GLTFObjectModelType
     @JvmName("objectModelTypeProperty")
@@ -110,10 +85,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   /**
-   * The glTF object model JSON pointers used to identify the property in the glTF object model. In
-   * most cases, there will be only one item in this array, but niche cases may require multiple
-   * pointers. The items are themselves arrays which represent the JSON pointer split into its
-   * components.
+   * The glTF object model JSON pointers used to identify the property in the glTF object model. In most cases, there will be only one item in this array, but niche cases may require multiple pointers. The items are themselves arrays which represent the JSON pointer split into its components.
    */
   public final inline var jsonPointers: VariantArray<PackedStringArray>
     @JvmName("jsonPointersProperty")
@@ -124,8 +96,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   /**
-   * The type of data stored in the Godot property. This is the type of the property that the
-   * [nodePaths] point to.
+   * The type of data stored in the Godot property. This is the type of the property that the [nodePaths] point to.
    */
   public final inline var variantType: VariantType
     @JvmName("variantTypeProperty")
@@ -135,35 +106,28 @@ public open class GLTFObjectModelProperty : RefCounted() {
       setVariantType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(234, scriptIndex)
   }
 
   /**
-   * Appends a [NodePath] to [nodePaths]. This can be used by [GLTFDocumentExtension] classes to
-   * define how a glTF object model property maps to a Godot property, or multiple Godot properties.
-   * Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the
-   * order does not matter).
+   * Appends a [NodePath] to [nodePaths]. This can be used by [GLTFDocumentExtension] classes to define how a glTF object model property maps to a Godot property, or multiple Godot properties. Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the order does not matter).
    */
-  public final fun appendNodePath(nodePath: NodePath): Unit {
+  public final fun appendNodePath(nodePath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to nodePath)
     TransferContext.callMethod(ptr, MethodBindings.appendNodePathPtr, NIL)
   }
 
   /**
-   * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a
-   * new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also
-   * call [setTypes] once (the order does not matter).
+   * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also call [setTypes] once (the order does not matter).
    */
-  public final fun appendPathToProperty(nodePath: NodePath, propName: StringName): Unit {
+  public final fun appendPathToProperty(nodePath: NodePath, propName: StringName) {
     TransferContext.writeArguments(NODE_PATH to nodePath, STRING_NAME to propName)
     TransferContext.callMethod(ptr, MethodBindings.appendPathToPropertyPtr, NIL)
   }
 
   /**
-   * The GLTF accessor type associated with this property's [objectModelType]. See
-   * [GLTFAccessor.accessorType] for possible values, and see [GLTFObjectModelType] for how the object
-   * model type maps to accessor types.
+   * The GLTF accessor type associated with this property's [objectModelType]. See [GLTFAccessor.accessorType] for possible values, and see [GLTFObjectModelType] for how the object model type maps to accessor types.
    */
   public final fun getAccessorType(): GLTFAccessor.GLTFAccessorType {
     TransferContext.writeArguments()
@@ -177,7 +141,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as Expression?)
   }
 
-  public final fun setGltfToGodotExpression(gltfToGodotExpr: Expression?): Unit {
+  public final fun setGltfToGodotExpression(gltfToGodotExpr: Expression?) {
     TransferContext.writeArguments(OBJECT to gltfToGodotExpr)
     TransferContext.callMethod(ptr, MethodBindings.setGltfToGodotExpressionPtr, NIL)
   }
@@ -188,7 +152,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as Expression?)
   }
 
-  public final fun setGodotToGltfExpression(godotToGltfExpr: Expression?): Unit {
+  public final fun setGodotToGltfExpression(godotToGltfExpr: Expression?) {
     TransferContext.writeArguments(OBJECT to godotToGltfExpr)
     TransferContext.callMethod(ptr, MethodBindings.setGodotToGltfExpressionPtr, NIL)
   }
@@ -200,8 +164,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   /**
-   * Returns `true` if [nodePaths] is not empty. This is used during import to determine if a
-   * [GLTFObjectModelProperty] can handle converting a glTF object model property to a Godot property.
+   * Returns `true` if [nodePaths] is not empty. This is used during import to determine if a [GLTFObjectModelProperty] can handle converting a glTF object model property to a Godot property.
    */
   public final fun hasNodePaths(): Boolean {
     TransferContext.writeArguments()
@@ -209,7 +172,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNodePaths(nodePaths: VariantArray<NodePath>): Unit {
+  public final fun setNodePaths(nodePaths: VariantArray<NodePath>) {
     TransferContext.writeArguments(ARRAY to nodePaths)
     TransferContext.callMethod(ptr, MethodBindings.setNodePathsPtr, NIL)
   }
@@ -220,7 +183,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     return GLTFObjectModelType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setObjectModelType(type: GLTFObjectModelType): Unit {
+  public final fun setObjectModelType(type: GLTFObjectModelType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setObjectModelTypePtr, NIL)
   }
@@ -232,8 +195,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   /**
-   * Returns `true` if [jsonPointers] is not empty. This is used during export to determine if a
-   * [GLTFObjectModelProperty] can handle converting a Godot property to a glTF object model property.
+   * Returns `true` if [jsonPointers] is not empty. This is used during export to determine if a [GLTFObjectModelProperty] can handle converting a Godot property to a glTF object model property.
    */
   public final fun hasJsonPointers(): Boolean {
     TransferContext.writeArguments()
@@ -241,7 +203,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setJsonPointers(jsonPointers: VariantArray<PackedStringArray>): Unit {
+  public final fun setJsonPointers(jsonPointers: VariantArray<PackedStringArray>) {
     TransferContext.writeArguments(ARRAY to jsonPointers)
     TransferContext.callMethod(ptr, MethodBindings.setJsonPointersPtr, NIL)
   }
@@ -252,96 +214,74 @@ public open class GLTFObjectModelProperty : RefCounted() {
     return VariantType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVariantType(variantType: VariantType): Unit {
+  public final fun setVariantType(variantType: VariantType) {
     TransferContext.writeArguments(LONG to variantType.id)
     TransferContext.callMethod(ptr, MethodBindings.setVariantTypePtr, NIL)
   }
 
   /**
-   * Sets the [variantType] and [objectModelType] properties. This is a convenience method to set
-   * both properties at once, since they are almost always known at the same time. This method should
-   * be called once. Calling it again with the same values will have no effect.
+   * Sets the [variantType] and [objectModelType] properties. This is a convenience method to set both properties at once, since they are almost always known at the same time. This method should be called once. Calling it again with the same values will have no effect.
    */
-  public final fun setTypes(variantType: VariantType, objModelType: GLTFObjectModelType): Unit {
+  public final fun setTypes(variantType: VariantType, objModelType: GLTFObjectModelType) {
     TransferContext.writeArguments(LONG to variantType.id, LONG to objModelType.id)
     TransferContext.callMethod(ptr, MethodBindings.setTypesPtr, NIL)
   }
 
   /**
-   * Appends a [NodePath] to [nodePaths]. This can be used by [GLTFDocumentExtension] classes to
-   * define how a glTF object model property maps to a Godot property, or multiple Godot properties.
-   * Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the
-   * order does not matter).
+   * Appends a [NodePath] to [nodePaths]. This can be used by [GLTFDocumentExtension] classes to define how a glTF object model property maps to a Godot property, or multiple Godot properties. Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the order does not matter).
    */
-  public final fun appendNodePath(nodePath: String): Unit =
-      appendNodePath(nodePath.asCachedNodePath())
+  public final fun appendNodePath(nodePath: String): Unit = appendNodePath(nodePath.asCachedNodePath())
 
   /**
-   * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a
-   * new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also
-   * call [setTypes] once (the order does not matter).
+   * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also call [setTypes] once (the order does not matter).
    */
-  public final fun appendPathToProperty(nodePath: String, propName: String): Unit =
-      appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
+  public final fun appendPathToProperty(nodePath: String, propName: String): Unit = appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
 
   public enum class GLTFObjectModelType(
     id: Long,
   ) {
     /**
-     * Unknown or not set object model type. If the object model type is set to this value, the real
-     * type still needs to be determined.
+     * Unknown or not set object model type. If the object model type is set to this value, the real type still needs to be determined.
      */
     UNKNOWN(0),
     /**
-     * Object model type "bool". Represented in the glTF JSON as a boolean, and encoded in a
-     * [GLTFAccessor] as "SCALAR". When encoded in an accessor, a value of `0` is `false`, and any
-     * other value is `true`.
+     * Object model type "bool". Represented in the glTF JSON as a boolean, and encoded in a [GLTFAccessor] as "SCALAR". When encoded in an accessor, a value of `0` is `false`, and any other value is `true`.
      */
     BOOL(1),
     /**
-     * Object model type "float". Represented in the glTF JSON as a number, and encoded in a
-     * [GLTFAccessor] as "SCALAR".
+     * Object model type "float". Represented in the glTF JSON as a number, and encoded in a [GLTFAccessor] as "SCALAR".
      */
     FLOAT(2),
     /**
-     * Object model type "float[lb][rb]". Represented in the glTF JSON as an array of numbers, and
-     * encoded in a [GLTFAccessor] as "SCALAR".
+     * Object model type "float[lb][rb]". Represented in the glTF JSON as an array of numbers, and encoded in a [GLTFAccessor] as "SCALAR".
      */
     FLOAT_ARRAY(3),
     /**
-     * Object model type "float2". Represented in the glTF JSON as an array of two numbers, and
-     * encoded in a [GLTFAccessor] as "VEC2".
+     * Object model type "float2". Represented in the glTF JSON as an array of two numbers, and encoded in a [GLTFAccessor] as "VEC2".
      */
     FLOAT2(4),
     /**
-     * Object model type "float3". Represented in the glTF JSON as an array of three numbers, and
-     * encoded in a [GLTFAccessor] as "VEC3".
+     * Object model type "float3". Represented in the glTF JSON as an array of three numbers, and encoded in a [GLTFAccessor] as "VEC3".
      */
     FLOAT3(5),
     /**
-     * Object model type "float4". Represented in the glTF JSON as an array of four numbers, and
-     * encoded in a [GLTFAccessor] as "VEC4".
+     * Object model type "float4". Represented in the glTF JSON as an array of four numbers, and encoded in a [GLTFAccessor] as "VEC4".
      */
     FLOAT4(6),
     /**
-     * Object model type "float2x2". Represented in the glTF JSON as an array of four numbers, and
-     * encoded in a [GLTFAccessor] as "MAT2".
+     * Object model type "float2x2". Represented in the glTF JSON as an array of four numbers, and encoded in a [GLTFAccessor] as "MAT2".
      */
     FLOAT2X2(7),
     /**
-     * Object model type "float3x3". Represented in the glTF JSON as an array of nine numbers, and
-     * encoded in a [GLTFAccessor] as "MAT3".
+     * Object model type "float3x3". Represented in the glTF JSON as an array of nine numbers, and encoded in a [GLTFAccessor] as "MAT3".
      */
     FLOAT3X3(8),
     /**
-     * Object model type "float4x4". Represented in the glTF JSON as an array of sixteen numbers,
-     * and encoded in a [GLTFAccessor] as "MAT4".
+     * Object model type "float4x4". Represented in the glTF JSON as an array of sixteen numbers, and encoded in a [GLTFAccessor] as "MAT4".
      */
     FLOAT4X4(9),
     /**
-     * Object model type "int". Represented in the glTF JSON as a number, and encoded in a
-     * [GLTFAccessor] as "SCALAR". The range of values is limited to signed integers. For
-     * `KHR_interactivity`, only 32-bit integers are supported.
+     * Object model type "int". Represented in the glTF JSON as a number, and encoded in a [GLTFAccessor] as "SCALAR". The range of values is limited to signed integers. For `KHR_interactivity`, only 32-bit integers are supported.
      */
     INT(10),
     ;
@@ -360,57 +300,57 @@ public open class GLTFObjectModelProperty : RefCounted() {
 
   public object MethodBindings {
     internal val appendNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "append_node_path", 1348162250)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "append_node_path", 1_348_162_250)
 
     internal val appendPathToPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "append_path_to_property", 1331931644)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "append_path_to_property", 1_331_931_644)
 
     internal val getAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_accessor_type", 1998183368)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_accessor_type", 1_998_183_368)
 
     internal val getGltfToGodotExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_gltf_to_godot_expression", 2240072449)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_gltf_to_godot_expression", 2_240_072_449)
 
     internal val setGltfToGodotExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_gltf_to_godot_expression", 1815845073)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_gltf_to_godot_expression", 1_815_845_073)
 
     internal val getGodotToGltfExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_godot_to_gltf_expression", 2240072449)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_godot_to_gltf_expression", 2_240_072_449)
 
     internal val setGodotToGltfExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_godot_to_gltf_expression", 1815845073)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_godot_to_gltf_expression", 1_815_845_073)
 
     internal val getNodePathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_node_paths", 3995934104)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_node_paths", 3_995_934_104)
 
     internal val hasNodePathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "has_node_paths", 36873697)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "has_node_paths", 36_873_697)
 
     internal val setNodePathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_node_paths", 381264803)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_node_paths", 381_264_803)
 
     internal val getObjectModelTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_object_model_type", 1094778507)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_object_model_type", 1_094_778_507)
 
     internal val setObjectModelTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_object_model_type", 4108684086)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_object_model_type", 4_108_684_086)
 
     internal val getJsonPointersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_json_pointers", 3995934104)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_json_pointers", 3_995_934_104)
 
     internal val hasJsonPointersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "has_json_pointers", 36873697)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "has_json_pointers", 36_873_697)
 
     internal val setJsonPointersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_json_pointers", 381264803)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_json_pointers", 381_264_803)
 
     internal val getVariantTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_variant_type", 3416842102)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "get_variant_type", 3_416_842_102)
 
     internal val setVariantTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_variant_type", 2887708385)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_variant_type", 2_887_708_385)
 
     internal val setTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_types", 4150728237)
+        TypeManager.getMethodBindPtr("GLTFObjectModelProperty", "set_types", 4_150_728_237)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,24 +12,17 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
- * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
- * set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform3D].
+ * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess] set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform3D].
  *
- * When [AnimatableBody3D] is moved, its linear and angular velocity are estimated and used to
- * affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other
- * moving objects.
+ * When [AnimatableBody3D] is moved, its linear and angular velocity are estimated and used to affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other moving objects.
  */
 @GodotBaseType
 public open class AnimatableBody3D : StaticBody3D() {
   /**
-   * If `true`, the body's movement will be synchronized to the physics frame. This is useful when
-   * animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together
-   * with [PhysicsBody3D.moveAndCollide].
+   * If `true`, the body's movement will be synchronized to the physics frame. This is useful when animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together with [PhysicsBody3D.moveAndCollide].
    */
   public final inline var syncToPhysics: Boolean
     @JvmName("syncToPhysicsProperty")
@@ -42,11 +32,11 @@ public open class AnimatableBody3D : StaticBody3D() {
       setSyncToPhysics(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(8, scriptIndex)
   }
 
-  public final fun setSyncToPhysics(enable: Boolean): Unit {
+  public final fun setSyncToPhysics(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSyncToPhysicsPtr, NIL)
   }
@@ -61,9 +51,9 @@ public open class AnimatableBody3D : StaticBody3D() {
 
   public object MethodBindings {
     internal val setSyncToPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatableBody3D", "set_sync_to_physics", 2586408642)
+        TypeManager.getMethodBindPtr("AnimatableBody3D", "set_sync_to_physics", 2_586_408_642)
 
     internal val isSyncToPhysicsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatableBody3D", "is_sync_to_physics_enabled", 36873697)
+        TypeManager.getMethodBindPtr("AnimatableBody3D", "is_sync_to_physics_enabled", 36_873_697)
   }
 }

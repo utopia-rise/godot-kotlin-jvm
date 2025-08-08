@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,26 +20,19 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
- * bus into its internal ring buffer.
+ * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect bus into its internal ring buffer.
  *
- * Application code should consume these audio frames from this ring buffer using [getBuffer] and
- * process it as needed, for example to capture data from an [AudioStreamMicrophone], implement
- * application-defined effects, or to transmit audio over the network. When capturing audio data from a
- * microphone, the format of the samples will be stereo 32-bit floating-point PCM.
+ * Application code should consume these audio frames from this ring buffer using [getBuffer] and process it as needed, for example to capture data from an [AudioStreamMicrophone], implement application-defined effects, or to transmit audio over the network. When capturing audio data from a microphone, the format of the samples will be stereo 32-bit floating-point PCM.
  *
- * Unlike [AudioEffectRecord], this effect only returns the raw audio samples instead of encoding
- * them into an [AudioStream].
+ * Unlike [AudioEffectRecord], this effect only returns the raw audio samples instead of encoding them into an [AudioStream].
  */
 @GodotBaseType
 public open class AudioEffectCapture : AudioEffect() {
   /**
-   * Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect
-   * if already initialized.
+   * Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect if already initialized.
    */
   public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
@@ -52,13 +42,12 @@ public open class AudioEffectCapture : AudioEffect() {
       setBufferLength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(49, scriptIndex)
   }
 
   /**
-   * Returns `true` if at least [frames] audio frames are available to read in the internal ring
-   * buffer.
+   * Returns `true` if at least [frames] audio frames are available to read in the internal ring buffer.
    */
   public final fun canGetBuffer(frames: Int): Boolean {
     TransferContext.writeArguments(LONG to frames.toLong())
@@ -69,11 +58,9 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Gets the next [frames] audio samples from the internal ring buffer.
    *
-   * Returns a [PackedVector2Array] containing exactly [frames] audio samples if available, or an
-   * empty [PackedVector2Array] if insufficient data was available.
+   * Returns a [PackedVector2Array] containing exactly [frames] audio samples if available, or an empty [PackedVector2Array] if insufficient data was available.
    *
-   * The samples are signed floating-point PCM between `-1` and `1`. You will have to scale them if
-   * you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
+   * The samples are signed floating-point PCM between `-1` and `1`. You will have to scale them if you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
    */
   public final fun getBuffer(frames: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to frames.toLong())
@@ -84,15 +71,14 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Clears the internal ring buffer.
    *
-   * **Note:** Calling this during a capture can cause the loss of samples which causes popping in
-   * the playback.
+   * **Note:** Calling this during a capture can cause the loss of samples which causes popping in the playback.
    */
-  public final fun clearBuffer(): Unit {
+  public final fun clearBuffer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
   }
 
-  public final fun setBufferLength(bufferLengthSeconds: Float): Unit {
+  public final fun setBufferLength(bufferLengthSeconds: Float) {
     TransferContext.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
   }
@@ -150,30 +136,30 @@ public open class AudioEffectCapture : AudioEffect() {
 
   public object MethodBindings {
     internal val canGetBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "can_get_buffer", 1116898809)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "can_get_buffer", 1_116_898_809)
 
     internal val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer", 2649534757)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer", 2_649_534_757)
 
     internal val clearBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "clear_buffer", 3218959716)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "clear_buffer", 3_218_959_716)
 
     internal val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "set_buffer_length", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "set_buffer_length", 373_806_689)
 
     internal val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length", 191475506)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length", 191_475_506)
 
     internal val getFramesAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_frames_available", 3905245786)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_frames_available", 3_905_245_786)
 
     internal val getDiscardedFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames", 3905245786)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames", 3_905_245_786)
 
     internal val getBufferLengthFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames", 3905245786)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames", 3_905_245_786)
 
     internal val getPushedFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames", 3905245786)
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames", 3_905_245_786)
   }
 }

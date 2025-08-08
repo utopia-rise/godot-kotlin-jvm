@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,12 +15,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
- * directly, but contains all the functions necessary for accessing the derived resource types.
+ * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types.
  */
 @GodotBaseType
 public open class TextureLayeredRD internal constructor() : TextureLayered() {
@@ -38,11 +33,11 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
       setTextureRdRid(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(675, scriptIndex)
   }
 
-  public final fun setTextureRdRid(textureRdRid: RID): Unit {
+  public final fun setTextureRdRid(textureRdRid: RID) {
     TransferContext.writeArguments(_RID to textureRdRid)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRdRidPtr, NIL)
   }
@@ -106,9 +101,9 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
 
   public object MethodBindings {
     internal val setTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayeredRD", "set_texture_rd_rid", 2722037293)
+        TypeManager.getMethodBindPtr("TextureLayeredRD", "set_texture_rd_rid", 2_722_037_293)
 
     internal val getTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayeredRD", "get_texture_rd_rid", 2944877500)
+        TypeManager.getMethodBindPtr("TextureLayeredRD", "get_texture_rd_rid", 2_944_877_500)
   }
 }

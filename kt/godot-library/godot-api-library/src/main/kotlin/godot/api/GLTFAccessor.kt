@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,19 +23,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GLTFAccessor is a data structure representing a glTF `accessor` that would be found in the
- * `"accessors"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer. An
- * accessor is a typed interpretation of the data in a buffer view.
+ * GLTFAccessor is a data structure representing a glTF `accessor` that would be found in the `"accessors"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer. An accessor is a typed interpretation of the data in a buffer view.
  *
- * Most custom data stored in glTF does not need accessors, only buffer views (see
- * [GLTFBufferView]). Accessors are for more advanced use cases such as interleaved mesh data encoded
- * for the GPU.
+ * Most custom data stored in glTF does not need accessors, only buffer views (see [GLTFBufferView]). Accessors are for more advanced use cases such as interleaved mesh data encoded for the GPU.
  */
 @GodotBaseType
 public open class GLTFAccessor : Resource() {
   /**
-   * The index of the buffer view this accessor is referencing. If `-1`, this accessor is not
-   * referencing any buffer view.
+   * The index of the buffer view this accessor is referencing. If `-1`, this accessor is not referencing any buffer view.
    */
   public final inline var bufferView: Int
     @JvmName("bufferViewProperty")
@@ -60,9 +52,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The glTF component type as an enum. See [GLTFComponentType] for possible values. Within the
-   * core glTF specification, a value of 5125 or "UNSIGNED_INT" must not be used for any accessor that
-   * is not referenced by mesh.primitive.indices.
+   * The glTF component type as an enum. See [GLTFComponentType] for possible values. Within the core glTF specification, a value of 5125 or "UNSIGNED_INT" must not be used for any accessor that is not referenced by mesh.primitive.indices.
    */
   public final inline var componentType: Int
     @JvmName("componentTypeProperty")
@@ -95,8 +85,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The glTF accessor type as an enum. Possible values are 0 for "SCALAR", 1 for "VEC2", 2 for
-   * "VEC3", 3 for "VEC4", 4 for "MAT2", 5 for "MAT3", and 6 for "MAT4".
+   * The glTF accessor type as an enum. Possible values are 0 for "SCALAR", 1 for "VEC2", 2 for "VEC3", 3 for "VEC4", 4 for "MAT2", 5 for "MAT3", and 6 for "MAT4".
    */
   public final inline var accessorType: GLTFAccessorType
     @JvmName("accessorTypeProperty")
@@ -121,11 +110,8 @@ public open class GLTFAccessor : Resource() {
    * Minimum value of each component in this accessor.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var min: PackedFloat64Array
@@ -140,11 +126,8 @@ public open class GLTFAccessor : Resource() {
    * Maximum value of each component in this accessor.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var max: PackedFloat64Array
@@ -167,9 +150,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The index of the buffer view with sparse indices. The referenced buffer view MUST NOT have its
-   * target or byteStride properties defined. The buffer view and the optional byteOffset MUST be
-   * aligned to the componentType byte length.
+   * The index of the buffer view with sparse indices. The referenced buffer view MUST NOT have its target or byteStride properties defined. The buffer view and the optional byteOffset MUST be aligned to the componentType byte length.
    */
   public final inline var sparseIndicesBufferView: Int
     @JvmName("sparseIndicesBufferViewProperty")
@@ -191,8 +172,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The indices component data type as an enum. Possible values are 5121 for "UNSIGNED_BYTE", 5123
-   * for "UNSIGNED_SHORT", and 5125 for "UNSIGNED_INT".
+   * The indices component data type as an enum. Possible values are 5121 for "UNSIGNED_BYTE", 5123 for "UNSIGNED_SHORT", and 5125 for "UNSIGNED_INT".
    */
   public final inline var sparseIndicesComponentType: Int
     @JvmName("sparseIndicesComponentTypeProperty")
@@ -203,8 +183,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The index of the bufferView with sparse values. The referenced buffer view MUST NOT have its
-   * target or byteStride properties defined.
+   * The index of the bufferView with sparse values. The referenced buffer view MUST NOT have its target or byteStride properties defined.
    */
   public final inline var sparseValuesBufferView: Int
     @JvmName("sparseValuesBufferViewProperty")
@@ -225,7 +204,7 @@ public open class GLTFAccessor : Resource() {
       setSparseValuesByteOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(224, scriptIndex)
   }
 
@@ -250,14 +229,12 @@ public open class GLTFAccessor : Resource() {
 
   /**
    * This is a helper function for [min] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Minimum value of each component in this accessor.
    */
   @CoreTypeHelper
-  public final fun minMutateEach(block: (index: Int, `value`: Double) -> Unit): PackedFloat64Array =
-      min.apply {
+  public final fun minMutateEach(block: (index: Int, `value`: Double) -> Unit): PackedFloat64Array = min.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -286,14 +263,12 @@ public open class GLTFAccessor : Resource() {
 
   /**
    * This is a helper function for [max] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Maximum value of each component in this accessor.
    */
   @CoreTypeHelper
-  public final fun maxMutateEach(block: (index: Int, `value`: Double) -> Unit): PackedFloat64Array =
-      max.apply {
+  public final fun maxMutateEach(block: (index: Int, `value`: Double) -> Unit): PackedFloat64Array = max.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -307,7 +282,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBufferView(bufferView: Int): Unit {
+  public final fun setBufferView(bufferView: Int) {
     TransferContext.writeArguments(LONG to bufferView.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBufferViewPtr, NIL)
   }
@@ -318,7 +293,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setByteOffset(byteOffset: Int): Unit {
+  public final fun setByteOffset(byteOffset: Int) {
     TransferContext.writeArguments(LONG to byteOffset.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
   }
@@ -329,7 +304,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setComponentType(componentType: Int): Unit {
+  public final fun setComponentType(componentType: Int) {
     TransferContext.writeArguments(LONG to componentType.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setComponentTypePtr, NIL)
   }
@@ -340,7 +315,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNormalized(normalized: Boolean): Unit {
+  public final fun setNormalized(normalized: Boolean) {
     TransferContext.writeArguments(BOOL to normalized)
     TransferContext.callMethod(ptr, MethodBindings.setNormalizedPtr, NIL)
   }
@@ -351,7 +326,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCount(count: Int): Unit {
+  public final fun setCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCountPtr, NIL)
   }
@@ -362,7 +337,7 @@ public open class GLTFAccessor : Resource() {
     return GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {
+  public final fun setAccessorType(accessorType: GLTFAccessorType) {
     TransferContext.writeArguments(LONG to accessorType.id)
     TransferContext.callMethod(ptr, MethodBindings.setAccessorTypePtr, NIL)
   }
@@ -373,7 +348,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setType(type: Int): Unit {
+  public final fun setType(type: Int) {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTypePtr, NIL)
   }
@@ -384,7 +359,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
 
-  public final fun setMin(min: PackedFloat64Array): Unit {
+  public final fun setMin(min: PackedFloat64Array) {
     TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to min)
     TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
   }
@@ -395,7 +370,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
 
-  public final fun setMax(max: PackedFloat64Array): Unit {
+  public final fun setMax(max: PackedFloat64Array) {
     TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to max)
     TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
@@ -406,7 +381,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSparseCount(sparseCount: Int): Unit {
+  public final fun setSparseCount(sparseCount: Int) {
     TransferContext.writeArguments(LONG to sparseCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSparseCountPtr, NIL)
   }
@@ -417,7 +392,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSparseIndicesBufferView(sparseIndicesBufferView: Int): Unit {
+  public final fun setSparseIndicesBufferView(sparseIndicesBufferView: Int) {
     TransferContext.writeArguments(LONG to sparseIndicesBufferView.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesBufferViewPtr, NIL)
   }
@@ -428,7 +403,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Int): Unit {
+  public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Int) {
     TransferContext.writeArguments(LONG to sparseIndicesByteOffset.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesByteOffsetPtr, NIL)
   }
@@ -439,7 +414,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSparseIndicesComponentType(sparseIndicesComponentType: Int): Unit {
+  public final fun setSparseIndicesComponentType(sparseIndicesComponentType: Int) {
     TransferContext.writeArguments(LONG to sparseIndicesComponentType.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesComponentTypePtr, NIL)
   }
@@ -450,7 +425,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSparseValuesBufferView(sparseValuesBufferView: Int): Unit {
+  public final fun setSparseValuesBufferView(sparseValuesBufferView: Int) {
     TransferContext.writeArguments(LONG to sparseValuesBufferView.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSparseValuesBufferViewPtr, NIL)
   }
@@ -461,7 +436,7 @@ public open class GLTFAccessor : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Int): Unit {
+  public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Int) {
     TransferContext.writeArguments(LONG to sparseValuesByteOffset.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
   }
@@ -470,38 +445,31 @@ public open class GLTFAccessor : Resource() {
     id: Long,
   ) {
     /**
-     * Accessor type "SCALAR". For the glTF object model, this can be used to map to a single float,
-     * int, or bool value, or a float array.
+     * Accessor type "SCALAR". For the glTF object model, this can be used to map to a single float, int, or bool value, or a float array.
      */
     TYPE_SCALAR(0),
     /**
-     * Accessor type "VEC2". For the glTF object model, this maps to "float2", represented in the
-     * glTF JSON as an array of two floats.
+     * Accessor type "VEC2". For the glTF object model, this maps to "float2", represented in the glTF JSON as an array of two floats.
      */
     TYPE_VEC2(1),
     /**
-     * Accessor type "VEC3". For the glTF object model, this maps to "float3", represented in the
-     * glTF JSON as an array of three floats.
+     * Accessor type "VEC3". For the glTF object model, this maps to "float3", represented in the glTF JSON as an array of three floats.
      */
     TYPE_VEC3(2),
     /**
-     * Accessor type "VEC4". For the glTF object model, this maps to "float4", represented in the
-     * glTF JSON as an array of four floats.
+     * Accessor type "VEC4". For the glTF object model, this maps to "float4", represented in the glTF JSON as an array of four floats.
      */
     TYPE_VEC4(3),
     /**
-     * Accessor type "MAT2". For the glTF object model, this maps to "float2x2", represented in the
-     * glTF JSON as an array of four floats.
+     * Accessor type "MAT2". For the glTF object model, this maps to "float2x2", represented in the glTF JSON as an array of four floats.
      */
     TYPE_MAT2(4),
     /**
-     * Accessor type "MAT3". For the glTF object model, this maps to "float3x3", represented in the
-     * glTF JSON as an array of nine floats.
+     * Accessor type "MAT3". For the glTF object model, this maps to "float3x3", represented in the glTF JSON as an array of nine floats.
      */
     TYPE_MAT3(5),
     /**
-     * Accessor type "MAT4". For the glTF object model, this maps to "float4x4", represented in the
-     * glTF JSON as an array of sixteen floats.
+     * Accessor type "MAT4". For the glTF object model, this maps to "float4x4", represented in the glTF JSON as an array of sixteen floats.
      */
     TYPE_MAT4(6),
     ;
@@ -520,79 +488,53 @@ public open class GLTFAccessor : Resource() {
     id: Long,
   ) {
     /**
-     * Component type "NONE". This is not a valid component type, and is used to indicate that the
-     * component type is not set.
+     * Component type "NONE". This is not a valid component type, and is used to indicate that the component type is not set.
      */
     COMPONENT_TYPE_NONE(0),
     /**
-     * Component type "BYTE". The value is `0x1400` which comes from OpenGL. This indicates data is
-     * stored in 1-byte or 8-bit signed integers. This is a core part of the glTF specification.
+     * Component type "BYTE". The value is `0x1400` which comes from OpenGL. This indicates data is stored in 1-byte or 8-bit signed integers. This is a core part of the glTF specification.
      */
-    COMPONENT_TYPE_SIGNED_BYTE(5120),
+    COMPONENT_TYPE_SIGNED_BYTE(5_120),
     /**
-     * Component type "UNSIGNED_BYTE". The value is `0x1401` which comes from OpenGL. This indicates
-     * data is stored in 1-byte or 8-bit unsigned integers. This is a core part of the glTF
-     * specification.
+     * Component type "UNSIGNED_BYTE". The value is `0x1401` which comes from OpenGL. This indicates data is stored in 1-byte or 8-bit unsigned integers. This is a core part of the glTF specification.
      */
-    COMPONENT_TYPE_UNSIGNED_BYTE(5121),
+    COMPONENT_TYPE_UNSIGNED_BYTE(5_121),
     /**
-     * Component type "SHORT". The value is `0x1402` which comes from OpenGL. This indicates data is
-     * stored in 2-byte or 16-bit signed integers. This is a core part of the glTF specification.
+     * Component type "SHORT". The value is `0x1402` which comes from OpenGL. This indicates data is stored in 2-byte or 16-bit signed integers. This is a core part of the glTF specification.
      */
-    COMPONENT_TYPE_SIGNED_SHORT(5122),
+    COMPONENT_TYPE_SIGNED_SHORT(5_122),
     /**
-     * Component type "UNSIGNED_SHORT". The value is `0x1403` which comes from OpenGL. This
-     * indicates data is stored in 2-byte or 16-bit unsigned integers. This is a core part of the glTF
-     * specification.
+     * Component type "UNSIGNED_SHORT". The value is `0x1403` which comes from OpenGL. This indicates data is stored in 2-byte or 16-bit unsigned integers. This is a core part of the glTF specification.
      */
-    COMPONENT_TYPE_UNSIGNED_SHORT(5123),
+    COMPONENT_TYPE_UNSIGNED_SHORT(5_123),
     /**
-     * Component type "INT". The value is `0x1404` which comes from OpenGL. This indicates data is
-     * stored in 4-byte or 32-bit signed integers. This is NOT a core part of the glTF specification,
-     * and may not be supported by all glTF importers. May be used by some extensions including
-     * `KHR_interactivity`.
+     * Component type "INT". The value is `0x1404` which comes from OpenGL. This indicates data is stored in 4-byte or 32-bit signed integers. This is NOT a core part of the glTF specification, and may not be supported by all glTF importers. May be used by some extensions including `KHR_interactivity`.
      */
-    COMPONENT_TYPE_SIGNED_INT(5124),
+    COMPONENT_TYPE_SIGNED_INT(5_124),
     /**
-     * Component type "UNSIGNED_INT". The value is `0x1405` which comes from OpenGL. This indicates
-     * data is stored in 4-byte or 32-bit unsigned integers. This is a core part of the glTF
-     * specification.
+     * Component type "UNSIGNED_INT". The value is `0x1405` which comes from OpenGL. This indicates data is stored in 4-byte or 32-bit unsigned integers. This is a core part of the glTF specification.
      */
-    COMPONENT_TYPE_UNSIGNED_INT(5125),
+    COMPONENT_TYPE_UNSIGNED_INT(5_125),
     /**
-     * Component type "FLOAT". The value is `0x1406` which comes from OpenGL. This indicates data is
-     * stored in 4-byte or 32-bit floating-point numbers. This is a core part of the glTF
-     * specification.
+     * Component type "FLOAT". The value is `0x1406` which comes from OpenGL. This indicates data is stored in 4-byte or 32-bit floating-point numbers. This is a core part of the glTF specification.
      */
-    COMPONENT_TYPE_SINGLE_FLOAT(5126),
+    COMPONENT_TYPE_SINGLE_FLOAT(5_126),
     /**
-     * Component type "DOUBLE". The value is `0x140A` which comes from OpenGL. This indicates data
-     * is stored in 8-byte or 64-bit floating-point numbers. This is NOT a core part of the glTF
-     * specification, and may not be supported by all glTF importers. May be used by some extensions
-     * including `KHR_interactivity`.
+     * Component type "DOUBLE". The value is `0x140A` which comes from OpenGL. This indicates data is stored in 8-byte or 64-bit floating-point numbers. This is NOT a core part of the glTF specification, and may not be supported by all glTF importers. May be used by some extensions including `KHR_interactivity`.
      */
-    COMPONENT_TYPE_DOUBLE_FLOAT(5130),
+    COMPONENT_TYPE_DOUBLE_FLOAT(5_130),
     /**
-     * Component type "HALF_FLOAT". The value is `0x140B` which comes from OpenGL. This indicates
-     * data is stored in 2-byte or 16-bit floating-point numbers. This is NOT a core part of the glTF
-     * specification, and may not be supported by all glTF importers. May be used by some extensions
-     * including `KHR_interactivity`.
+     * Component type "HALF_FLOAT". The value is `0x140B` which comes from OpenGL. This indicates data is stored in 2-byte or 16-bit floating-point numbers. This is NOT a core part of the glTF specification, and may not be supported by all glTF importers. May be used by some extensions including `KHR_interactivity`.
      */
-    COMPONENT_TYPE_HALF_FLOAT(5131),
+    COMPONENT_TYPE_HALF_FLOAT(5_131),
     /**
-     * Component type "LONG". The value is `0x140E` which comes from OpenGL. This indicates data is
-     * stored in 8-byte or 64-bit signed integers. This is NOT a core part of the glTF specification,
-     * and may not be supported by all glTF importers. May be used by some extensions including
-     * `KHR_interactivity`.
+     * Component type "LONG". The value is `0x140E` which comes from OpenGL. This indicates data is stored in 8-byte or 64-bit signed integers. This is NOT a core part of the glTF specification, and may not be supported by all glTF importers. May be used by some extensions including `KHR_interactivity`.
      */
-    COMPONENT_TYPE_SIGNED_LONG(5134),
+    COMPONENT_TYPE_SIGNED_LONG(5_134),
     /**
-     * Component type "UNSIGNED_LONG". The value is `0x140F` which comes from OpenGL. This indicates
-     * data is stored in 8-byte or 64-bit unsigned integers. This is NOT a core part of the glTF
-     * specification, and may not be supported by all glTF importers. May be used by some extensions
-     * including `KHR_interactivity`.
+     * Component type "UNSIGNED_LONG". The value is `0x140F` which comes from OpenGL. This indicates data is stored in 8-byte or 64-bit unsigned integers. This is NOT a core part of the glTF specification, and may not be supported by all glTF importers. May be used by some extensions including `KHR_interactivity`.
      */
-    COMPONENT_TYPE_UNSIGNED_LONG(5135),
+    COMPONENT_TYPE_UNSIGNED_LONG(5_135),
     ;
 
     public val id: Long
@@ -609,93 +551,93 @@ public open class GLTFAccessor : Resource() {
 
   public object MethodBindings {
     internal val getBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2_455_072_627)
 
     internal val setBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1_286_410_249)
 
     internal val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2_455_072_627)
 
     internal val setByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1_286_410_249)
 
     internal val getComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type", 2_455_072_627)
 
     internal val setComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type", 1_286_410_249)
 
     internal val getNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized", 2_240_911_060)
 
     internal val setNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_normalized", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_normalized", 2_586_408_642)
 
     internal val getCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_count", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_count", 2_455_072_627)
 
     internal val setCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_count", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_count", 1_286_410_249)
 
     internal val getAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679305214)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679_305_214)
 
     internal val setAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2347728198)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2_347_728_198)
 
     internal val getTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_type", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_type", 2_455_072_627)
 
     internal val setTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_type", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_type", 1_286_410_249)
 
     internal val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_min", 148_677_866)
 
     internal val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_min", 2576592201)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_min", 2_576_592_201)
 
     internal val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_max", 148_677_866)
 
     internal val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_max", 2576592201)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_max", 2_576_592_201)
 
     internal val getSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2_455_072_627)
 
     internal val setSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1_286_410_249)
 
     internal val getSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2_455_072_627)
 
     internal val setSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1_286_410_249)
 
     internal val getSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2_455_072_627)
 
     internal val setSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1_286_410_249)
 
     internal val getSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2_455_072_627)
 
     internal val setSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1_286_410_249)
 
     internal val getSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2_455_072_627)
 
     internal val setSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1_286_410_249)
 
     internal val getSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2_455_072_627)
 
     internal val setSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1_286_410_249)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Abstract render data object, exists for the duration of rendering a single viewport.
@@ -24,7 +20,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RenderData internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(540, scriptIndex)
   }
 
@@ -47,8 +43,7 @@ public open class RenderData internal constructor() : Object() {
   }
 
   /**
-   * Returns the [RID] of the environment object in the [RenderingServer] being used to render this
-   * viewport.
+   * Returns the [RID] of the environment object in the [RenderingServer] being used to render this viewport.
    */
   public final fun getEnvironment(): RID {
     TransferContext.writeArguments()
@@ -57,8 +52,7 @@ public open class RenderData internal constructor() : Object() {
   }
 
   /**
-   * Returns the [RID] of the camera attributes object in the [RenderingServer] being used to render
-   * this viewport.
+   * Returns the [RID] of the camera attributes object in the [RenderingServer] being used to render this viewport.
    */
   public final fun getCameraAttributes(): RID {
     TransferContext.writeArguments()
@@ -70,15 +64,15 @@ public open class RenderData internal constructor() : Object() {
 
   public object MethodBindings {
     internal val getRenderSceneBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_buffers", 2793216201)
+        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_buffers", 2_793_216_201)
 
     internal val getRenderSceneDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_data", 1288715698)
+        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_data", 1_288_715_698)
 
     internal val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_environment", 2944877500)
+        TypeManager.getMethodBindPtr("RenderData", "get_environment", 2_944_877_500)
 
     internal val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_camera_attributes", 2944877500)
+        TypeManager.getMethodBindPtr("RenderData", "get_camera_attributes", 2_944_877_500)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,12 +14,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
- * shader to Fragment shader.
+ * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex shader to Fragment shader.
  */
 @GodotBaseType
 public open class VisualShaderNodeVarying internal constructor() : VisualShaderNode() {
@@ -48,11 +43,11 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
       setVaryingType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(820, scriptIndex)
   }
 
-  public final fun setVaryingName(name: String): Unit {
+  public final fun setVaryingName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setVaryingNamePtr, NIL)
   }
@@ -63,7 +58,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setVaryingType(type: VisualShader.VaryingType): Unit {
+  public final fun setVaryingType(type: VisualShader.VaryingType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setVaryingTypePtr, NIL)
   }
@@ -78,15 +73,15 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
 
   public object MethodBindings {
     internal val setVaryingNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_name", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_name", 83_702_148)
 
     internal val getVaryingNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_name", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_name", 201_670_096)
 
     internal val setVaryingTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_type", 3565867981)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_type", 3_565_867_981)
 
     internal val getVaryingTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_type", 523183580)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_type", 523_183_580)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,11 +14,9 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
- * supports creating the message over time rather than providing it all at once.
+ * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it supports creating the message over time rather than providing it all at once.
  *
  * ```gdscript
  * //gdscript
@@ -71,13 +66,12 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class HMACContext : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(271, scriptIndex)
   }
 
   /**
-   * Initializes the HMACContext. This method cannot be called again on the same HMACContext until
-   * [finish] has been called.
+   * Initializes the HMACContext. This method cannot be called again on the same HMACContext until [finish] has been called.
    */
   public final fun start(hashType: HashingContext.HashType, key: PackedByteArray): Error {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
@@ -86,8 +80,7 @@ public open class HMACContext : RefCounted() {
   }
 
   /**
-   * Updates the message to be HMACed. This can be called multiple times before [finish] is called
-   * to append [data] to the message, but cannot be called until [start] has been called.
+   * Updates the message to be HMACed. This can be called multiple times before [finish] is called to append [data] to the message, but cannot be called until [start] has been called.
    */
   public final fun update(`data`: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -108,12 +101,12 @@ public open class HMACContext : RefCounted() {
 
   public object MethodBindings {
     internal val startPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HMACContext", "start", 3537364598)
+        TypeManager.getMethodBindPtr("HMACContext", "start", 3_537_364_598)
 
     internal val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HMACContext", "update", 680677267)
+        TypeManager.getMethodBindPtr("HMACContext", "update", 680_677_267)
 
     internal val finishPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HMACContext", "finish", 2115431945)
+        TypeManager.getMethodBindPtr("HMACContext", "finish", 2_115_431_945)
   }
 }

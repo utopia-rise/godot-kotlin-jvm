@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,12 +30,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This object manages all 3D rendering buffers for the rendering device based renderers. An
- * instance of this object is created for every viewport that has 3D rendering enabled.
+ * This object manages all 3D rendering buffers for the rendering device based renderers. An instance of this object is created for every viewport that has 3D rendering enabled.
  *
- * All buffers are organized in **contexts**. The default context is called **render_buffers** and
- * can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and
- * MSAA variants of these buffers.
+ * All buffers are organized in **contexts**. The default context is called **render_buffers** and can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and MSAA variants of these buffers.
  *
  * Buffers are only guaranteed to exist during rendering of the viewport.
  *
@@ -46,7 +40,7 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class RenderSceneBuffersRD : RenderSceneBuffers() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(546, scriptIndex)
   }
 
@@ -60,8 +54,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Create a new texture with the given definition and cache this under the given name. Will return
-   * the existing texture if it already exists.
+   * Create a new texture with the given definition and cache this under the given name. Will return the existing texture if it already exists.
    */
   public final fun createTexture(
     context: StringName,
@@ -81,8 +74,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Create a new texture using the given format and view and cache this under the given name. Will
-   * return the existing texture if it already exists.
+   * Create a new texture using the given format and view and cache this under the given name. Will return the existing texture if it already exists.
    */
   public final fun createTextureFromFormat(
     context: StringName,
@@ -97,9 +89,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Create a new texture view for an existing texture and cache this under the given [viewName].
-   * Will return the existing texture view if it already exists. Will error if the source texture
-   * doesn't exist.
+   * Create a new texture view for an existing texture and cache this under the given [viewName]. Will return the existing texture view if it already exists. Will error if the source texture doesn't exist.
    */
   public final fun createTextureView(
     context: StringName,
@@ -179,14 +169,13 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   /**
    * Frees all buffers related to this context.
    */
-  public final fun clearContext(context: StringName): Unit {
+  public final fun clearContext(context: StringName) {
     TransferContext.writeArguments(STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.clearContextPtr, NIL)
   }
 
   /**
-   * Returns the color texture we are rendering 3D content to. If multiview is used this will be a
-   * texture array with all views.
+   * Returns the color texture we are rendering 3D content to. If multiview is used this will be a texture array with all views.
    *
    * If [msaa] is `true` and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
@@ -210,8 +199,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Returns the depth texture we are rendering 3D content to. If multiview is used this will be a
-   * texture array with all views.
+   * Returns the depth texture we are rendering 3D content to. If multiview is used this will be a texture array with all views.
    *
    * If [msaa] is `true` and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
@@ -235,8 +223,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Returns the velocity texture we are rendering 3D content to. If multiview is used this will be
-   * a texture array with all views.
+   * Returns the velocity texture we are rendering 3D content to. If multiview is used this will be a texture array with all views.
    *
    * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
@@ -276,8 +263,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Returns the internal size of the render buffer (size before upscaling) with which textures are
-   * created by default.
+   * Returns the internal size of the render buffer (size before upscaling) with which textures are created by default.
    */
   public final fun getInternalSize(): Vector2i {
     TransferContext.writeArguments()
@@ -304,8 +290,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Returns the FSR sharpness value used while rendering the 3D content (if [getScaling3dMode] is
-   * an FSR mode).
+   * Returns the FSR sharpness value used while rendering the 3D content (if [getScaling3dMode] is an FSR mode).
    */
   public final fun getFsrSharpness(): Float {
     TransferContext.writeArguments()
@@ -361,12 +346,10 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   /**
    * Returns `true` if a cached texture exists for this name.
    */
-  public final fun hasTexture(context: String, name: String): Boolean =
-      hasTexture(context.asCachedStringName(), name.asCachedStringName())
+  public final fun hasTexture(context: String, name: String): Boolean = hasTexture(context.asCachedStringName(), name.asCachedStringName())
 
   /**
-   * Create a new texture with the given definition and cache this under the given name. Will return
-   * the existing texture if it already exists.
+   * Create a new texture with the given definition and cache this under the given name. Will return the existing texture if it already exists.
    */
   public final fun createTexture(
     context: String,
@@ -379,12 +362,10 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     mipmaps: Long,
     unique: Boolean,
     discardable: Boolean,
-  ): RID =
-      createTexture(context.asCachedStringName(), name.asCachedStringName(), dataFormat, usageBits, textureSamples, size, layers, mipmaps, unique, discardable)
+  ): RID = createTexture(context.asCachedStringName(), name.asCachedStringName(), dataFormat, usageBits, textureSamples, size, layers, mipmaps, unique, discardable)
 
   /**
-   * Create a new texture using the given format and view and cache this under the given name. Will
-   * return the existing texture if it already exists.
+   * Create a new texture using the given format and view and cache this under the given name. Will return the existing texture if it already exists.
    */
   public final fun createTextureFromFormat(
     context: String,
@@ -392,33 +373,27 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     format: RDTextureFormat?,
     view: RDTextureView?,
     unique: Boolean,
-  ): RID =
-      createTextureFromFormat(context.asCachedStringName(), name.asCachedStringName(), format, view, unique)
+  ): RID = createTextureFromFormat(context.asCachedStringName(), name.asCachedStringName(), format, view, unique)
 
   /**
-   * Create a new texture view for an existing texture and cache this under the given [viewName].
-   * Will return the existing texture view if it already exists. Will error if the source texture
-   * doesn't exist.
+   * Create a new texture view for an existing texture and cache this under the given [viewName]. Will return the existing texture view if it already exists. Will error if the source texture doesn't exist.
    */
   public final fun createTextureView(
     context: String,
     name: String,
     viewName: String,
     view: RDTextureView?,
-  ): RID =
-      createTextureView(context.asCachedStringName(), name.asCachedStringName(), viewName.asCachedStringName(), view)
+  ): RID = createTextureView(context.asCachedStringName(), name.asCachedStringName(), viewName.asCachedStringName(), view)
 
   /**
    * Returns a cached texture with this name.
    */
-  public final fun getTexture(context: String, name: String): RID =
-      getTexture(context.asCachedStringName(), name.asCachedStringName())
+  public final fun getTexture(context: String, name: String): RID = getTexture(context.asCachedStringName(), name.asCachedStringName())
 
   /**
    * Returns the texture format information with which a cached texture was created.
    */
-  public final fun getTextureFormat(context: String, name: String): RDTextureFormat? =
-      getTextureFormat(context.asCachedStringName(), name.asCachedStringName())
+  public final fun getTextureFormat(context: String, name: String): RDTextureFormat? = getTextureFormat(context.asCachedStringName(), name.asCachedStringName())
 
   /**
    * Returns a specific slice (layer or mipmap) for a cached texture.
@@ -430,8 +405,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     mipmap: Long,
     layers: Long,
     mipmaps: Long,
-  ): RID =
-      getTextureSlice(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps)
+  ): RID = getTextureSlice(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps)
 
   /**
    * Returns a specific view of a slice (layer or mipmap) for a cached texture.
@@ -444,8 +418,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     layers: Long,
     mipmaps: Long,
     view: RDTextureView?,
-  ): RID =
-      getTextureSliceView(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps, view)
+  ): RID = getTextureSliceView(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps, view)
 
   /**
    * Returns the texture size of a given slice of a cached texture.
@@ -465,84 +438,84 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
 
   public object MethodBindings {
     internal val hasTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "has_texture", 471820014)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "has_texture", 471_820_014)
 
     internal val createTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture", 2950875024)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture", 2_950_875_024)
 
     internal val createTextureFromFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_from_format", 3344669382)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_from_format", 3_344_669_382)
 
     internal val createTextureViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_view", 283055834)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_view", 283_055_834)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture", 750006389)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture", 750_006_389)
 
     internal val getTextureFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_format", 371461758)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_format", 371_461_758)
 
     internal val getTextureSlicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice", 588440706)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice", 588_440_706)
 
     internal val getTextureSliceViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_view", 682451778)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_view", 682_451_778)
 
     internal val getTextureSliceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_size", 2617625368)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_size", 2_617_625_368)
 
     internal val clearContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "clear_context", 3304788590)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "clear_context", 3_304_788_590)
 
     internal val getColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_texture", 3050822880)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_texture", 3_050_822_880)
 
     internal val getColorLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_layer", 3087988589)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_layer", 3_087_988_589)
 
     internal val getDepthTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_texture", 3050822880)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_texture", 3_050_822_880)
 
     internal val getDepthLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_layer", 3087988589)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_layer", 3_087_988_589)
 
     internal val getVelocityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_texture", 3050822880)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_texture", 3_050_822_880)
 
     internal val getVelocityLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_layer", 3087988589)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_layer", 3_087_988_589)
 
     internal val getRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_render_target", 2944877500)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_render_target", 2_944_877_500)
 
     internal val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_view_count", 3905245786)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_view_count", 3_905_245_786)
 
     internal val getInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_internal_size", 3690982128)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_internal_size", 3_690_982_128)
 
     internal val getTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_target_size", 3690982128)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_target_size", 3_690_982_128)
 
     internal val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_scaling_3d_mode", 976778074)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_scaling_3d_mode", 976_778_074)
 
     internal val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_fsr_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_fsr_sharpness", 1_740_695_150)
 
     internal val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_msaa_3d", 3109158617)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_msaa_3d", 3_109_158_617)
 
     internal val getTextureSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_samples", 407791724)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_samples", 407_791_724)
 
     internal val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_screen_space_aa", 641513172)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_screen_space_aa", 641_513_172)
 
     internal val getUseTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_taa", 36873697)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_taa", 36_873_697)
 
     internal val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_debanding", 36873697)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_debanding", 36_873_697)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -39,9 +36,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A control for displaying plain text. It gives you control over the horizontal and vertical
- * alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold,
- * italics, or other rich text formatting. For that, use [RichTextLabel] instead.
+ * A control for displaying plain text. It gives you control over the horizontal and vertical alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics, or other rich text formatting. For that, use [RichTextLabel] instead.
  */
 @GodotBaseType
 public open class Label : Control() {
@@ -57,8 +52,7 @@ public open class Label : Control() {
     }
 
   /**
-   * A [LabelSettings] resource that can be shared between multiple [Label] nodes. Takes priority
-   * over theme properties.
+   * A [LabelSettings] resource that can be shared between multiple [Label] nodes. Takes priority over theme properties.
    */
   public final inline var labelSettings: LabelSettings?
     @JvmName("labelSettingsProperty")
@@ -69,8 +63,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [HorizontalAlignment] constants.
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -81,8 +74,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one
-   * of the [VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one of the [VerticalAlignment] constants.
    */
   public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
@@ -93,9 +85,7 @@ public open class Label : Control() {
     }
 
   /**
-   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
-   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
-   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -117,8 +107,7 @@ public open class Label : Control() {
     }
 
   /**
-   * String used as a paragraph separator. Each paragraph is processed independently, in its own
-   * BiDi context.
+   * String used as a paragraph separator. Each paragraph is processed independently, in its own BiDi context.
    */
   public final inline var paragraphSeparator: String
     @JvmName("paragraphSeparatorProperty")
@@ -129,8 +118,7 @@ public open class Label : Control() {
     }
 
   /**
-   * If `true`, the Label only shows the text that fits inside its bounding rectangle and will clip
-   * text horizontally.
+   * If `true`, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
    */
   public final inline var clipText: Boolean
     @JvmName("clipTextProperty")
@@ -141,8 +129,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [TextServer.OverrunBehavior] for a description of all modes.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -178,11 +165,8 @@ public open class Label : Control() {
    * Aligns text to the given tab-stops.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tabStops: PackedFloat32Array
@@ -216,8 +200,7 @@ public open class Label : Control() {
     }
 
   /**
-   * The number of characters to display. If set to `-1`, all characters are displayed. This can be
-   * useful when animating the text appearing in a dialog box.
+   * The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.
    *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
@@ -230,8 +213,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See
-   * [TextServer.VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [TextServer.VisibleCharactersBehavior] for more info.
    */
   public final inline var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     @JvmName("visibleCharactersBehaviorProperty")
@@ -242,10 +224,7 @@ public open class Label : Control() {
     }
 
   /**
-   * The fraction of characters to display, relative to the total number of characters (see
-   * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
-   * half of the characters will be displayed. This can be useful when animating the text appearing in
-   * a dialog box.
+   * The fraction of characters to display, relative to the total number of characters (see [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.
    *
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
@@ -269,8 +248,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -302,7 +280,7 @@ public open class Label : Control() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(328, scriptIndex)
   }
 
@@ -320,22 +298,19 @@ public open class Label : Control() {
    * Aligns text to the given tab-stops.
    */
   @CoreTypeHelper
-  public final fun tabStopsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
-      tabStops.apply {
+  public final fun tabStopsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array = tabStops.apply {
      block(this)
      tabStops = this
   }
 
   /**
    * This is a helper function for [tabStops] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Aligns text to the given tab-stops.
    */
   @CoreTypeHelper
-  public final fun tabStopsMutateEach(block: (index: Int, `value`: Float) -> Unit):
-      PackedFloat32Array = tabStops.apply {
+  public final fun tabStopsMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array = tabStops.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -343,7 +318,7 @@ public open class Label : Control() {
      tabStops = this
   }
 
-  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
@@ -354,7 +329,7 @@ public open class Label : Control() {
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+  public final fun setVerticalAlignment(alignment: VerticalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
@@ -365,7 +340,7 @@ public open class Label : Control() {
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setText(text: String): Unit {
+  public final fun setText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -376,7 +351,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setLabelSettings(settings: LabelSettings?): Unit {
+  public final fun setLabelSettings(settings: LabelSettings?) {
     TransferContext.writeArguments(OBJECT to settings)
     TransferContext.callMethod(ptr, MethodBindings.setLabelSettingsPtr, NIL)
   }
@@ -387,7 +362,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(OBJECT) as LabelSettings?)
   }
 
-  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+  public final fun setTextDirection(direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -398,7 +373,7 @@ public open class Label : Control() {
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -409,7 +384,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setParagraphSeparator(paragraphSeparator: String): Unit {
+  public final fun setParagraphSeparator(paragraphSeparator: String) {
     TransferContext.writeArguments(STRING to paragraphSeparator)
     TransferContext.callMethod(ptr, MethodBindings.setParagraphSeparatorPtr, NIL)
   }
@@ -420,7 +395,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode) {
     TransferContext.writeArguments(LONG to autowrapMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
@@ -431,7 +406,7 @@ public open class Label : Control() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag) {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
@@ -442,7 +417,7 @@ public open class Label : Control() {
     return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setClipText(enable: Boolean): Unit {
+  public final fun setClipText(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setClipTextPtr, NIL)
   }
@@ -453,7 +428,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTabStops(tabStops: PackedFloat32Array): Unit {
+  public final fun setTabStops(tabStops: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(ptr, MethodBindings.setTabStopsPtr, NIL)
   }
@@ -464,7 +439,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
-  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior) {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
@@ -475,7 +450,7 @@ public open class Label : Control() {
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEllipsisChar(char: String): Unit {
+  public final fun setEllipsisChar(char: String) {
     TransferContext.writeArguments(STRING to char)
     TransferContext.callMethod(ptr, MethodBindings.setEllipsisCharPtr, NIL)
   }
@@ -486,7 +461,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setUppercase(enable: Boolean): Unit {
+  public final fun setUppercase(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUppercasePtr, NIL)
   }
@@ -521,8 +496,7 @@ public open class Label : Control() {
   }
 
   /**
-   * Returns the number of lines shown. Useful if the [Label]'s height cannot currently display all
-   * lines.
+   * Returns the number of lines shown. Useful if the [Label]'s height cannot currently display all lines.
    */
   public final fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()
@@ -539,7 +513,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setVisibleCharacters(amount: Int): Unit {
+  public final fun setVisibleCharacters(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setVisibleCharactersPtr, NIL)
   }
@@ -556,13 +530,12 @@ public open class Label : Control() {
     return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior):
-      Unit {
+  public final fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior) {
     TransferContext.writeArguments(LONG to behavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
   }
 
-  public final fun setVisibleRatio(ratio: Float): Unit {
+  public final fun setVisibleRatio(ratio: Float) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVisibleRatioPtr, NIL)
   }
@@ -573,7 +546,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinesSkipped(linesSkipped: Int): Unit {
+  public final fun setLinesSkipped(linesSkipped: Int) {
     TransferContext.writeArguments(LONG to linesSkipped.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLinesSkippedPtr, NIL)
   }
@@ -584,7 +557,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMaxLinesVisible(linesVisible: Int): Unit {
+  public final fun setMaxLinesVisible(linesVisible: Int) {
     TransferContext.writeArguments(LONG to linesVisible.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxLinesVisiblePtr, NIL)
   }
@@ -595,7 +568,7 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser) {
     TransferContext.writeArguments(LONG to parser.id)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
@@ -606,7 +579,7 @@ public open class Label : Control() {
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
@@ -618,10 +591,7 @@ public open class Label : Control() {
   }
 
   /**
-   * Returns the bounding rectangle of the character at position [pos] in the label's local
-   * coordinate system. If the character is a non-visual character or [pos] is outside the valid range,
-   * an empty [Rect2] is returned. If the character is a part of a composite grapheme, the bounding
-   * rectangle of the whole grapheme is returned.
+   * Returns the bounding rectangle of the character at position [pos] in the label's local coordinate system. If the character is a non-visual character or [pos] is outside the valid range, an empty [Rect2] is returned. If the character is a part of a composite grapheme, the bounding rectangle of the whole grapheme is returned.
    */
   public final fun getCharacterBounds(pos: Int): Rect2 {
     TransferContext.writeArguments(LONG to pos.toLong())
@@ -633,142 +603,143 @@ public open class Label : Control() {
 
   public object MethodBindings {
     internal val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_horizontal_alignment", 2312603777)
+        TypeManager.getMethodBindPtr("Label", "set_horizontal_alignment", 2_312_603_777)
 
     internal val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_horizontal_alignment", 341400642)
+        TypeManager.getMethodBindPtr("Label", "get_horizontal_alignment", 341_400_642)
 
     internal val setVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_vertical_alignment", 1796458609)
+        TypeManager.getMethodBindPtr("Label", "set_vertical_alignment", 1_796_458_609)
 
     internal val getVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_vertical_alignment", 3274884059)
+        TypeManager.getMethodBindPtr("Label", "get_vertical_alignment", 3_274_884_059)
 
-    internal val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_text", 83702148)
+    internal val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_text", 83_702_148)
 
-    internal val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_text", 201_670_096)
 
     internal val setLabelSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_label_settings", 1030653839)
+        TypeManager.getMethodBindPtr("Label", "set_label_settings", 1_030_653_839)
 
     internal val getLabelSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_label_settings", 826676056)
+        TypeManager.getMethodBindPtr("Label", "get_label_settings", 826_676_056)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_text_direction", 119160795)
+        TypeManager.getMethodBindPtr("Label", "set_text_direction", 119_160_795)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_text_direction", 797257663)
+        TypeManager.getMethodBindPtr("Label", "get_text_direction", 797_257_663)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_language", 83702148)
+        TypeManager.getMethodBindPtr("Label", "set_language", 83_702_148)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_language", 201670096)
+        TypeManager.getMethodBindPtr("Label", "get_language", 201_670_096)
 
     internal val setParagraphSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_paragraph_separator", 83702148)
+        TypeManager.getMethodBindPtr("Label", "set_paragraph_separator", 83_702_148)
 
     internal val getParagraphSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_paragraph_separator", 201670096)
+        TypeManager.getMethodBindPtr("Label", "get_paragraph_separator", 201_670_096)
 
     internal val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_autowrap_mode", 3289138044)
+        TypeManager.getMethodBindPtr("Label", "set_autowrap_mode", 3_289_138_044)
 
     internal val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_autowrap_mode", 1549071663)
+        TypeManager.getMethodBindPtr("Label", "get_autowrap_mode", 1_549_071_663)
 
     internal val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_justification_flags", 2877345813)
+        TypeManager.getMethodBindPtr("Label", "set_justification_flags", 2_877_345_813)
 
     internal val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_justification_flags", 1583363614)
+        TypeManager.getMethodBindPtr("Label", "get_justification_flags", 1_583_363_614)
 
     internal val setClipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_clip_text", 2586408642)
+        TypeManager.getMethodBindPtr("Label", "set_clip_text", 2_586_408_642)
 
     internal val isClippingTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "is_clipping_text", 36873697)
+        TypeManager.getMethodBindPtr("Label", "is_clipping_text", 36_873_697)
 
     internal val setTabStopsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_tab_stops", 2899603908)
+        TypeManager.getMethodBindPtr("Label", "set_tab_stops", 2_899_603_908)
 
     internal val getTabStopsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_tab_stops", 675695659)
+        TypeManager.getMethodBindPtr("Label", "get_tab_stops", 675_695_659)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_text_overrun_behavior", 1008890932)
+        TypeManager.getMethodBindPtr("Label", "set_text_overrun_behavior", 1_008_890_932)
 
     internal val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior", 3779142101)
+        TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior", 3_779_142_101)
 
     internal val setEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_ellipsis_char", 83702148)
+        TypeManager.getMethodBindPtr("Label", "set_ellipsis_char", 83_702_148)
 
     internal val getEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_ellipsis_char", 201670096)
+        TypeManager.getMethodBindPtr("Label", "get_ellipsis_char", 201_670_096)
 
     internal val setUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_uppercase", 2586408642)
+        TypeManager.getMethodBindPtr("Label", "set_uppercase", 2_586_408_642)
 
     internal val isUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "is_uppercase", 36873697)
+        TypeManager.getMethodBindPtr("Label", "is_uppercase", 36_873_697)
 
     internal val getLineHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_line_height", 181039630)
+        TypeManager.getMethodBindPtr("Label", "get_line_height", 181_039_630)
 
     internal val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_line_count", 3905245786)
+        TypeManager.getMethodBindPtr("Label", "get_line_count", 3_905_245_786)
 
     internal val getVisibleLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_line_count", 3905245786)
+        TypeManager.getMethodBindPtr("Label", "get_visible_line_count", 3_905_245_786)
 
     internal val getTotalCharacterCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_total_character_count", 3905245786)
+        TypeManager.getMethodBindPtr("Label", "get_total_character_count", 3_905_245_786)
 
     internal val setVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_characters", 1286410249)
+        TypeManager.getMethodBindPtr("Label", "set_visible_characters", 1_286_410_249)
 
     internal val getVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_characters", 3905245786)
+        TypeManager.getMethodBindPtr("Label", "get_visible_characters", 3_905_245_786)
 
     internal val getVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_characters_behavior", 258789322)
+        TypeManager.getMethodBindPtr("Label", "get_visible_characters_behavior", 258_789_322)
 
     internal val setVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_characters_behavior", 3383839701)
+        TypeManager.getMethodBindPtr("Label", "set_visible_characters_behavior", 3_383_839_701)
 
     internal val setVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_ratio", 373806689)
+        TypeManager.getMethodBindPtr("Label", "set_visible_ratio", 373_806_689)
 
     internal val getVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_ratio", 1740695150)
+        TypeManager.getMethodBindPtr("Label", "get_visible_ratio", 1_740_695_150)
 
     internal val setLinesSkippedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_lines_skipped", 1286410249)
+        TypeManager.getMethodBindPtr("Label", "set_lines_skipped", 1_286_410_249)
 
     internal val getLinesSkippedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_lines_skipped", 3905245786)
+        TypeManager.getMethodBindPtr("Label", "get_lines_skipped", 3_905_245_786)
 
     internal val setMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_max_lines_visible", 1286410249)
+        TypeManager.getMethodBindPtr("Label", "set_max_lines_visible", 1_286_410_249)
 
     internal val getMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_max_lines_visible", 3905245786)
+        TypeManager.getMethodBindPtr("Label", "get_max_lines_visible", 3_905_245_786)
 
     internal val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override", 55961453)
+        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override", 55_961_453)
 
     internal val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override", 3385126229)
+        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override", 3_385_126_229)
 
     internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override_options", 381264803)
+        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override_options", 381_264_803)
 
     internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options", 3995934104)
+        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options", 3_995_934_104)
 
     internal val getCharacterBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_character_bounds", 3327874267)
+        TypeManager.getMethodBindPtr("Label", "get_character_bounds", 3_327_874_267)
   }
 }

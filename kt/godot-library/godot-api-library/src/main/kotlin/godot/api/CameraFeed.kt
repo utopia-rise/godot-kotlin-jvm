@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -35,16 +32,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A camera feed gives you access to a single physical camera attached to your device. When enabled,
- * Godot will start capturing frames from the camera which can then be used. See also [CameraServer].
+ * A camera feed gives you access to a single physical camera attached to your device. When enabled, Godot will start capturing frames from the camera which can then be used. See also [CameraServer].
  *
- * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be
- * combined in a shader. Godot does this automatically for you if you set the environment to show the
- * camera image in the background.
+ * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be combined in a shader. Godot does this automatically for you if you set the environment to show the camera image in the background.
  *
- * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms
- * no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
- * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
+ * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
  */
 @GodotBaseType
 public open class CameraFeed : RefCounted() {
@@ -73,11 +65,8 @@ public open class CameraFeed : RefCounted() {
    * The transform applied to the camera's image.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var feedTransform: Transform2D
@@ -95,7 +84,7 @@ public open class CameraFeed : RefCounted() {
     @JvmName("formatsProperty")
     get() = getFormats()
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(132, scriptIndex)
   }
 
@@ -113,8 +102,7 @@ public open class CameraFeed : RefCounted() {
    * The transform applied to the camera's image.
    */
   @CoreTypeHelper
-  public final fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      feedTransform.apply {
+  public final fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D = feedTransform.apply {
      block(this)
      feedTransform = this
   }
@@ -123,14 +111,14 @@ public open class CameraFeed : RefCounted() {
    * Called when the camera feed is activated.
    */
   public open fun _activateFeed(): Boolean {
-    throw NotImplementedError("CameraFeed::_activateFeed is not implemented.")
+    throw NotImplementedError("_activateFeed is not implemented for CameraFeed")
   }
 
   /**
    * Called when the camera feed is deactivated.
    */
-  public open fun _deactivateFeed(): Unit {
-    throw NotImplementedError("CameraFeed::_deactivateFeed is not implemented.")
+  public open fun _deactivateFeed() {
+    throw NotImplementedError("_deactivateFeed is not implemented for CameraFeed")
   }
 
   /**
@@ -148,7 +136,7 @@ public open class CameraFeed : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setActive(active: Boolean): Unit {
+  public final fun setActive(active: Boolean) {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
   }
@@ -165,7 +153,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Sets the camera's name.
    */
-  public final fun setName(name: String): Unit {
+  public final fun setName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setNamePtr, NIL)
   }
@@ -182,7 +170,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Sets the position of this camera.
    */
-  public final fun setPosition(position: FeedPosition): Unit {
+  public final fun setPosition(position: FeedPosition) {
     TransferContext.writeArguments(LONG to position.id)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -193,7 +181,7 @@ public open class CameraFeed : RefCounted() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public final fun setTransform(transform: Transform2D): Unit {
+  public final fun setTransform(transform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -201,7 +189,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Sets RGB image for this feed.
    */
-  public final fun setRgbImage(rgbImage: Image?): Unit {
+  public final fun setRgbImage(rgbImage: Image?) {
     TransferContext.writeArguments(OBJECT to rgbImage)
     TransferContext.callMethod(ptr, MethodBindings.setRgbImagePtr, NIL)
   }
@@ -209,7 +197,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Sets YCbCr image for this feed.
    */
-  public final fun setYcbcrImage(ycbcrImage: Image?): Unit {
+  public final fun setYcbcrImage(ycbcrImage: Image?) {
     TransferContext.writeArguments(OBJECT to ycbcrImage)
     TransferContext.callMethod(ptr, MethodBindings.setYcbcrImagePtr, NIL)
   }
@@ -217,14 +205,13 @@ public open class CameraFeed : RefCounted() {
   /**
    * Sets the feed as external feed provided by another library.
    */
-  public final fun setExternal(width: Int, height: Int): Unit {
+  public final fun setExternal(width: Int, height: Int) {
     TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setExternalPtr, NIL)
   }
 
   /**
-   * Returns the texture backend ID (usable by some external libraries that need a handle to a
-   * texture to write data).
+   * Returns the texture backend ID (usable by some external libraries that need a handle to a texture to write data).
    */
   public final fun getTextureTexId(feedImageType: CameraServer.FeedImage): Long {
     TransferContext.writeArguments(LONG to feedImageType.id)
@@ -248,9 +235,7 @@ public open class CameraFeed : RefCounted() {
   }
 
   /**
-   * Sets the feed format parameters for the given index in the [formats] array. Returns `true` on
-   * success. By default YUYV encoded stream is transformed to FEED_RGB. YUYV encoded stream output
-   * format can be changed with [parameters].output value:
+   * Sets the feed format parameters for the given index in the [formats] array. Returns `true` on success. By default YUYV encoded stream is transformed to FEED_RGB. YUYV encoded stream output format can be changed with [parameters].output value:
    *
    * `separate` will result in FEED_YCBCR_SEP
    *
@@ -330,51 +315,51 @@ public open class CameraFeed : RefCounted() {
 
   public object MethodBindings {
     internal val getIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_id", 3905245786)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_id", 3_905_245_786)
 
     internal val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "is_active", 36873697)
+        TypeManager.getMethodBindPtr("CameraFeed", "is_active", 36_873_697)
 
     internal val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_active", 2586408642)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_active", 2_586_408_642)
 
     internal val getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_name", 201670096)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_name", 201_670_096)
 
     internal val setNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_name", 83702148)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_name", 83_702_148)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_position", 2711679033)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_position", 2_711_679_033)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_position", 611162623)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_position", 611_162_623)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_transform", 3814499831)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_transform", 3_814_499_831)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_transform", 2761652528)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_transform", 2_761_652_528)
 
     internal val setRgbImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_rgb_image", 532598488)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_rgb_image", 532_598_488)
 
     internal val setYcbcrImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_ycbcr_image", 532598488)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_ycbcr_image", 532_598_488)
 
     internal val setExternalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_external", 3937882851)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_external", 3_937_882_851)
 
     internal val getTextureTexIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_texture_tex_id", 1135699418)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_texture_tex_id", 1_135_699_418)
 
     internal val getDatatypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_datatype", 1477782850)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_datatype", 1_477_782_850)
 
     internal val getFormatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_formats", 3995934104)
+        TypeManager.getMethodBindPtr("CameraFeed", "get_formats", 3_995_934_104)
 
     internal val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_format", 31872775)
+        TypeManager.getMethodBindPtr("CameraFeed", "set_format", 31_872_775)
   }
 }

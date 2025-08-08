@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,14 +19,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.
  *
- * If there is [AnimationMixer], modification always performs after playback process of the
- * [AnimationMixer].
+ * If there is [AnimationMixer], modification always performs after playback process of the [AnimationMixer].
  *
  * This node should be used to implement custom IK solvers, constraints, or skeleton physics.
  */
@@ -38,8 +33,7 @@ public open class SkeletonModifier3D : Node3D() {
   /**
    * Notifies when the modification have been finished.
    *
-   * **Note:** If you want to get the modified bone pose by the modifier, you must use
-   * [Skeleton3D.getBonePose] or [Skeleton3D.getBoneGlobalPose] at the moment this signal is fired.
+   * **Note:** If you want to get the modified bone pose by the modifier, you must use [Skeleton3D.getBonePose] or [Skeleton3D.getBoneGlobalPose] at the moment this signal is fired.
    */
   public val modificationProcessed: Signal0 by Signal0
 
@@ -57,8 +51,7 @@ public open class SkeletonModifier3D : Node3D() {
   /**
    * Sets the influence of the modification.
    *
-   * **Note:** This value is used by [Skeleton3D] to blend, so the [SkeletonModifier3D] should
-   * always apply only 100&#37; of the result without interpolation.
+   * **Note:** This value is used by [Skeleton3D] to blend, so the [SkeletonModifier3D] should always apply only 100&#37; of the result without interpolation.
    */
   public final inline var influence: Float
     @JvmName("influenceProperty")
@@ -68,19 +61,17 @@ public open class SkeletonModifier3D : Node3D() {
       setInfluence(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(605, scriptIndex)
   }
 
   /**
-   * Override this virtual method to implement a custom skeleton modifier. You should do things like
-   * get the [Skeleton3D]'s current pose and apply the pose here.
+   * Override this virtual method to implement a custom skeleton modifier. You should do things like get the [Skeleton3D]'s current pose and apply the pose here.
    *
-   * [_processModification] must not apply [influence] to bone poses because the [Skeleton3D]
-   * automatically applies influence to all bone poses set by the modifier.
+   * [_processModification] must not apply [influence] to bone poses because the [Skeleton3D] automatically applies influence to all bone poses set by the modifier.
    */
-  public open fun _processModification(): Unit {
-    throw NotImplementedError("SkeletonModifier3D::_processModification is not implemented.")
+  public open fun _processModification() {
+    throw NotImplementedError("_processModification is not implemented for SkeletonModifier3D")
   }
 
   /**
@@ -92,7 +83,7 @@ public open class SkeletonModifier3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
-  public final fun setActive(active: Boolean): Unit {
+  public final fun setActive(active: Boolean) {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
   }
@@ -103,7 +94,7 @@ public open class SkeletonModifier3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setInfluence(influence: Float): Unit {
+  public final fun setInfluence(influence: Float) {
     TransferContext.writeArguments(DOUBLE to influence.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInfluencePtr, NIL)
   }
@@ -157,18 +148,18 @@ public open class SkeletonModifier3D : Node3D() {
 
   public object MethodBindings {
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "get_skeleton", 1488626673)
+        TypeManager.getMethodBindPtr("SkeletonModifier3D", "get_skeleton", 1_488_626_673)
 
     internal val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "set_active", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModifier3D", "set_active", 2_586_408_642)
 
     internal val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "is_active", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModifier3D", "is_active", 36_873_697)
 
     internal val setInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "set_influence", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModifier3D", "set_influence", 373_806_689)
 
     internal val getInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "get_influence", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModifier3D", "get_influence", 1_740_695_150)
   }
 }

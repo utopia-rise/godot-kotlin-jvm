@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,9 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for
- * moving character's head to look at the player, rotating a turret to look at a target, or any other
- * case where you want to make a bone rotate towards something quickly and easily.
+ * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for moving character's head to look at the player, rotating a turret to look at a target, or any other case where you want to make a bone rotate towards something quickly and easily.
  */
 @GodotBaseType
 public open class SkeletonModification2DLookAt : SkeletonModification2D() {
@@ -57,8 +52,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     }
 
   /**
-   * The NodePath to the node that is the target for the LookAt modification. This node is what the
-   * modification will rotate the [Bone2D] to.
+   * The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [Bone2D] to.
    */
   public final inline var targetNodepath: NodePath
     @JvmName("targetNodepathProperty")
@@ -68,11 +62,11 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
       setTargetNode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(600, scriptIndex)
   }
 
-  public final fun setBone2dNode(bone2dNodepath: NodePath): Unit {
+  public final fun setBone2dNode(bone2dNodepath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to bone2dNodepath)
     TransferContext.callMethod(ptr, MethodBindings.setBone2dNodePtr, NIL)
   }
@@ -83,7 +77,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setBoneIndex(boneIdx: Int): Unit {
+  public final fun setBoneIndex(boneIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBoneIndexPtr, NIL)
   }
@@ -94,7 +88,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTargetNode(targetNodepath: NodePath): Unit {
+  public final fun setTargetNode(targetNodepath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to targetNodepath)
     TransferContext.callMethod(ptr, MethodBindings.setTargetNodePtr, NIL)
   }
@@ -106,17 +100,15 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   /**
-   * Sets the amount of additional rotation that is to be applied after executing the modification.
-   * This allows for offsetting the results by the inputted rotation amount.
+   * Sets the amount of additional rotation that is to be applied after executing the modification. This allows for offsetting the results by the inputted rotation amount.
    */
-  public final fun setAdditionalRotation(rotation: Float): Unit {
+  public final fun setAdditionalRotation(rotation: Float) {
     TransferContext.writeArguments(DOUBLE to rotation.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalRotationPtr, NIL)
   }
 
   /**
-   * Returns the amount of additional rotation that is applied after the LookAt modification
-   * executes.
+   * Returns the amount of additional rotation that is applied after the LookAt modification executes.
    */
   public final fun getAdditionalRotation(): Float {
     TransferContext.writeArguments()
@@ -125,10 +117,9 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   /**
-   * Sets whether this modification will use constraints or not. When `true`, constraints will be
-   * applied when solving the LookAt modification.
+   * Sets whether this modification will use constraints or not. When `true`, constraints will be applied when solving the LookAt modification.
    */
-  public final fun setEnableConstraint(enableConstraint: Boolean): Unit {
+  public final fun setEnableConstraint(enableConstraint: Boolean) {
     TransferContext.writeArguments(BOOL to enableConstraint)
     TransferContext.callMethod(ptr, MethodBindings.setEnableConstraintPtr, NIL)
   }
@@ -145,7 +136,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets the constraint's minimum allowed angle.
    */
-  public final fun setConstraintAngleMin(angleMin: Float): Unit {
+  public final fun setConstraintAngleMin(angleMin: Float) {
     TransferContext.writeArguments(DOUBLE to angleMin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConstraintAngleMinPtr, NIL)
   }
@@ -162,7 +153,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets the constraint's maximum allowed angle.
    */
-  public final fun setConstraintAngleMax(angleMax: Float): Unit {
+  public final fun setConstraintAngleMax(angleMax: Float) {
     TransferContext.writeArguments(DOUBLE to angleMax.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConstraintAngleMaxPtr, NIL)
   }
@@ -179,11 +170,9 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * When `true`, the modification will use an inverted joint constraint.
    *
-   * An inverted joint constraint only constraints the [Bone2D] to the angles *outside of* the
-   * inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint
-   * constraint, as it constraints the joint to the outside of the inputted values.
+   * An inverted joint constraint only constraints the [Bone2D] to the angles *outside of* the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.
    */
-  public final fun setConstraintAngleInvert(invert: Boolean): Unit {
+  public final fun setConstraintAngleInvert(invert: Boolean) {
     TransferContext.writeArguments(BOOL to invert)
     TransferContext.callMethod(ptr, MethodBindings.setConstraintAngleInvertPtr, NIL)
   }
@@ -197,61 +186,59 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBone2dNode(bone2dNodepath: String): Unit =
-      setBone2dNode(bone2dNodepath.asCachedNodePath())
+  public final fun setBone2dNode(bone2dNodepath: String): Unit = setBone2dNode(bone2dNodepath.asCachedNodePath())
 
-  public final fun setTargetNode(targetNodepath: String): Unit =
-      setTargetNode(targetNodepath.asCachedNodePath())
+  public final fun setTargetNode(targetNodepath: String): Unit = setTargetNode(targetNodepath.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone2d_node", 1348162250)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone2d_node", 1_348_162_250)
 
     internal val getBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone2d_node", 4075236667)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone2d_node", 4_075_236_667)
 
     internal val setBoneIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone_index", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone_index", 1_286_410_249)
 
     internal val getBoneIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone_index", 3905245786)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone_index", 3_905_245_786)
 
     internal val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_target_node", 1348162250)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_target_node", 1_348_162_250)
 
     internal val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_target_node", 4075236667)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_target_node", 4_075_236_667)
 
     internal val setAdditionalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_additional_rotation", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_additional_rotation", 373_806_689)
 
     internal val getAdditionalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_additional_rotation", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_additional_rotation", 1_740_695_150)
 
     internal val setEnableConstraintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_enable_constraint", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_enable_constraint", 2_586_408_642)
 
     internal val getEnableConstraintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_enable_constraint", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_enable_constraint", 36_873_697)
 
     internal val setConstraintAngleMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_min", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_min", 373_806_689)
 
     internal val getConstraintAngleMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_min", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_min", 1_740_695_150)
 
     internal val setConstraintAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_max", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_max", 373_806_689)
 
     internal val getConstraintAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_max", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_max", 1_740_695_150)
 
     internal val setConstraintAngleInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_invert", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_invert", 2_586_408_642)
 
     internal val getConstraintAngleInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_invert", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_invert", 36_873_697)
   }
 }

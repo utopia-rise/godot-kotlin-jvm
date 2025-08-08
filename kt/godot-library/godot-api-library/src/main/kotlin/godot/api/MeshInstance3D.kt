@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,11 +30,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by
- * creating an instance of it. This is the class most often used render 3D geometry and can be used to
- * instance a single [Mesh] in many places. This allows reusing geometry, which can save on resources.
- * When a [Mesh] has to be instantiated more than thousands of times at close proximity, consider using
- * a [MultiMesh] in a [MultiMeshInstance3D] instead.
+ * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used render 3D geometry and can be used to instance a single [Mesh] in many places. This allows reusing geometry, which can save on resources. When a [Mesh] has to be instantiated more than thousands of times at close proximity, consider using a [MultiMesh] in a [MultiMeshInstance3D] instead.
  */
 @GodotBaseType
 public open class MeshInstance3D : GeometryInstance3D() {
@@ -74,11 +67,11 @@ public open class MeshInstance3D : GeometryInstance3D() {
       setSkeletonPath(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(355, scriptIndex)
   }
 
-  public final fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -89,7 +82,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
-  public final fun setSkeletonPath(skeletonPath: NodePath): Unit {
+  public final fun setSkeletonPath(skeletonPath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to skeletonPath)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonPathPtr, NIL)
   }
@@ -100,7 +93,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setSkin(skin: Skin?): Unit {
+  public final fun setSkin(skin: Skin?) {
     TransferContext.writeArguments(OBJECT to skin)
     TransferContext.callMethod(ptr, MethodBindings.setSkinPtr, NIL)
   }
@@ -112,8 +105,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the internal [SkinReference] containing the skeleton's [RID] attached to this RID. See
-   * also [Resource.getRid], [SkinReference.getSkeleton], and [RenderingServer.instanceAttachSkeleton].
+   * Returns the internal [SkinReference] containing the skeleton's [RID] attached to this RID. See also [Resource.getRid], [SkinReference.getSkeleton], and [RenderingServer.instanceAttachSkeleton].
    */
   public final fun getSkinReference(): SkinReference? {
     TransferContext.writeArguments()
@@ -122,8 +114,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the number of surface override materials. This is equivalent to [Mesh.getSurfaceCount].
-   * See also [getSurfaceOverrideMaterial].
+   * Returns the number of surface override materials. This is equivalent to [Mesh.getSurfaceCount]. See also [getSurfaceOverrideMaterial].
    */
   public final fun getSurfaceOverrideMaterialCount(): Int {
     TransferContext.writeArguments()
@@ -132,25 +123,19 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the override [material] for the specified [surface] of the [Mesh] resource. This material
-   * is associated with this [MeshInstance3D] rather than with [mesh].
+   * Sets the override [material] for the specified [surface] of the [Mesh] resource. This material is associated with this [MeshInstance3D] rather than with [mesh].
    *
-   * **Note:** This assigns the [Material] associated to the [MeshInstance3D]'s Surface Material
-   * Override properties, not the material within the [Mesh] resource. To set the material within the
-   * [Mesh] resource, use [Mesh.surfaceSetMaterial] instead.
+   * **Note:** This assigns the [Material] associated to the [MeshInstance3D]'s Surface Material Override properties, not the material within the [Mesh] resource. To set the material within the [Mesh] resource, use [Mesh.surfaceSetMaterial] instead.
    */
-  public final fun setSurfaceOverrideMaterial(surface: Int, material: Material?): Unit {
+  public final fun setSurfaceOverrideMaterial(surface: Int, material: Material?) {
     TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setSurfaceOverrideMaterialPtr, NIL)
   }
 
   /**
-   * Returns the override [Material] for the specified [surface] of the [Mesh] resource. See also
-   * [getSurfaceOverrideMaterialCount].
+   * Returns the override [Material] for the specified [surface] of the [Mesh] resource. See also [getSurfaceOverrideMaterialCount].
    *
-   * **Note:** This returns the [Material] associated to the [MeshInstance3D]'s Surface Material
-   * Override properties, not the material within the [Mesh] resource. To get the material within the
-   * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
+   * **Note:** This returns the [Material] associated to the [MeshInstance3D]'s Surface Material Override properties, not the material within the [Mesh] resource. To get the material within the [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
   public final fun getSurfaceOverrideMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())
@@ -159,10 +144,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the [Material] that will be used by the [Mesh] when drawing. This can return the
-   * [GeometryInstance3D.materialOverride], the surface override [Material] defined in this
-   * [MeshInstance3D], or the surface [Material] defined in the [mesh]. For example, if
-   * [GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
+   * Returns the [Material] that will be used by the [Mesh] when drawing. This can return the [GeometryInstance3D.materialOverride], the surface override [Material] defined in this [MeshInstance3D], or the surface [Material] defined in the [mesh]. For example, if [GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
    *
    * Returns `null` if no material is active, including when [mesh] is `null`.
    */
@@ -173,38 +155,31 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [StaticBody3D] child node with a [ConcavePolygonShape3D] collision shape
-   * calculated from the mesh geometry. It's mainly used for testing.
+   * This helper creates a [StaticBody3D] child node with a [ConcavePolygonShape3D] collision shape calculated from the mesh geometry. It's mainly used for testing.
    */
-  public final fun createTrimeshCollision(): Unit {
+  public final fun createTrimeshCollision() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTrimeshCollisionPtr, NIL)
   }
 
   /**
-   * This helper creates a [StaticBody3D] child node with a [ConvexPolygonShape3D] collision shape
-   * calculated from the mesh geometry. It's mainly used for testing.
+   * This helper creates a [StaticBody3D] child node with a [ConvexPolygonShape3D] collision shape calculated from the mesh geometry. It's mainly used for testing.
    *
-   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
-   * can set it to `false` to make the process faster if not needed.
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
    *
-   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
-   * vertices. Disabled by default.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
   @JvmOverloads
-  public final fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
+  public final fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false) {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(ptr, MethodBindings.createConvexCollisionPtr, NIL)
   }
 
   /**
-   * This helper creates a [StaticBody3D] child node with multiple [ConvexPolygonShape3D] collision
-   * shapes calculated from the mesh geometry via convex decomposition. The convex decomposition
-   * operation can be controlled with parameters from the optional [settings].
+   * This helper creates a [StaticBody3D] child node with multiple [ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. The convex decomposition operation can be controlled with parameters from the optional [settings].
    */
   @JvmOverloads
-  public final fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? =
-      null): Unit {
+  public final fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? = null) {
     TransferContext.writeArguments(OBJECT to settings)
     TransferContext.callMethod(ptr, MethodBindings.createMultipleConvexCollisionsPtr, NIL)
   }
@@ -219,8 +194,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
-   * this name exists, including when [mesh] is `null`.
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with this name exists, including when [mesh] is `null`.
    */
   public final fun findBlendShapeByName(name: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -229,8 +203,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces
-   * an error if [mesh] is `null` or doesn't have a blend shape at that index.
+   * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
   public final fun getBlendShapeValue(blendShapeIdx: Int): Float {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
@@ -239,30 +212,25 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is
-   * `null` or doesn't have a blend shape at that index.
+   * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
-  public final fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
+  public final fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float) {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapeValuePtr, NIL)
   }
 
   /**
-   * This helper creates a [MeshInstance3D] child node with gizmos at every vertex calculated from
-   * the mesh geometry. It's mainly used for testing.
+   * This helper creates a [MeshInstance3D] child node with gizmos at every vertex calculated from the mesh geometry. It's mainly used for testing.
    */
-  public final fun createDebugTangents(): Unit {
+  public final fun createDebugTangents() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createDebugTangentsPtr, NIL)
   }
 
   /**
-   * Takes a snapshot from the current [ArrayMesh] with all blend shapes applied according to their
-   * current weights and bakes it to the provided [existing] mesh. If no [existing] mesh is provided a
-   * new [ArrayMesh] is created, baked and returned. Mesh surface materials are not copied.
+   * Takes a snapshot from the current [ArrayMesh] with all blend shapes applied according to their current weights and bakes it to the provided [existing] mesh. If no [existing] mesh is provided a new [ArrayMesh] is created, baked and returned. Mesh surface materials are not copied.
    *
-   * **Performance:** [Mesh] data needs to be received from the GPU, stalling the [RenderingServer]
-   * in the process.
+   * **Performance:** [Mesh] data needs to be received from the GPU, stalling the [RenderingServer] in the process.
    */
   @JvmOverloads
   public final fun bakeMeshFromCurrentBlendShapeMix(existing: ArrayMesh? = null): ArrayMesh? {
@@ -272,13 +240,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Takes a snapshot of the current animated skeleton pose of the skinned mesh and bakes it to the
-   * provided [existing] mesh. If no [existing] mesh is provided a new [ArrayMesh] is created, baked,
-   * and returned. Requires a skeleton with a registered skin to work. Blendshapes are ignored. Mesh
-   * surface materials are not copied.
+   * Takes a snapshot of the current animated skeleton pose of the skinned mesh and bakes it to the provided [existing] mesh. If no [existing] mesh is provided a new [ArrayMesh] is created, baked, and returned. Requires a skeleton with a registered skin to work. Blendshapes are ignored. Mesh surface materials are not copied.
    *
-   * **Performance:** [Mesh] data needs to be retrieved from the GPU, stalling the [RenderingServer]
-   * in the process.
+   * **Performance:** [Mesh] data needs to be retrieved from the GPU, stalling the [RenderingServer] in the process.
    */
   @JvmOverloads
   public final fun bakeMeshFromCurrentSkeletonPose(existing: ArrayMesh? = null): ArrayMesh? {
@@ -287,80 +251,77 @@ public open class MeshInstance3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
-  public final fun setSkeletonPath(skeletonPath: String): Unit =
-      setSkeletonPath(skeletonPath.asCachedNodePath())
+  public final fun setSkeletonPath(skeletonPath: String): Unit = setSkeletonPath(skeletonPath.asCachedNodePath())
 
   /**
-   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
-   * this name exists, including when [mesh] is `null`.
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with this name exists, including when [mesh] is `null`.
    */
-  public final fun findBlendShapeByName(name: String): Int =
-      findBlendShapeByName(name.asCachedStringName())
+  public final fun findBlendShapeByName(name: String): Int = findBlendShapeByName(name.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_mesh", 194775623)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_mesh", 194_775_623)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_mesh", 1808005922)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_mesh", 1_808_005_922)
 
     internal val setSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skeleton_path", 1348162250)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skeleton_path", 1_348_162_250)
 
     internal val getSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skeleton_path", 277076166)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skeleton_path", 277_076_166)
 
     internal val setSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skin", 3971435618)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skin", 3_971_435_618)
 
     internal val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin", 2074563878)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin", 2_074_563_878)
 
     internal val getSkinReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin_reference", 2060603409)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin_reference", 2_060_603_409)
 
     internal val getSurfaceOverrideMaterialCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material_count", 3905245786)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material_count", 3_905_245_786)
 
     internal val setSurfaceOverrideMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_surface_override_material", 3671737478)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_surface_override_material", 3_671_737_478)
 
     internal val getSurfaceOverrideMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material", 2897466400)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material", 2_897_466_400)
 
     internal val getActiveMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_active_material", 2897466400)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_active_material", 2_897_466_400)
 
     internal val createTrimeshCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_trimesh_collision", 3218959716)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_trimesh_collision", 3_218_959_716)
 
     internal val createConvexCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_convex_collision", 2751962654)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_convex_collision", 2_751_962_654)
 
     internal val createMultipleConvexCollisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_multiple_convex_collisions", 628789669)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_multiple_convex_collisions", 628_789_669)
 
     internal val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_count", 3905245786)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_count", 3_905_245_786)
 
     internal val findBlendShapeByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "find_blend_shape_by_name", 4150868206)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "find_blend_shape_by_name", 4_150_868_206)
 
     internal val getBlendShapeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_value", 2339986948)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_value", 2_339_986_948)
 
     internal val setBlendShapeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_blend_shape_value", 1602489585)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_blend_shape_value", 1_602_489_585)
 
     internal val createDebugTangentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_debug_tangents", 3218959716)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_debug_tangents", 3_218_959_716)
 
     internal val bakeMeshFromCurrentBlendShapeMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_blend_shape_mix", 1457573577)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_blend_shape_mix", 1_457_573_577)
 
     internal val bakeMeshFromCurrentSkeletonPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_skeleton_pose", 1457573577)
+        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_skeleton_pose", 1_457_573_577)
   }
 }

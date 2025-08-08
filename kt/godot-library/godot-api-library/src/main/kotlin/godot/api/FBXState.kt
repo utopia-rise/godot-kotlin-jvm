@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -24,8 +20,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class FBXState : GLTFState() {
   /**
-   * If `true`, the import process used auxiliary nodes called geometry helper nodes. These nodes
-   * help preserve the pivots and transformations of the original 3D model during import.
+   * If `true`, the import process used auxiliary nodes called geometry helper nodes. These nodes help preserve the pivots and transformations of the original 3D model during import.
    */
   public final inline var allowGeometryHelperNodes: Boolean
     @JvmName("allowGeometryHelperNodesProperty")
@@ -35,7 +30,7 @@ public open class FBXState : GLTFState() {
       setAllowGeometryHelperNodes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(210, scriptIndex)
   }
 
@@ -45,7 +40,7 @@ public open class FBXState : GLTFState() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowGeometryHelperNodes(allow: Boolean): Unit {
+  public final fun setAllowGeometryHelperNodes(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
   }
@@ -54,9 +49,9 @@ public open class FBXState : GLTFState() {
 
   public object MethodBindings {
     internal val getAllowGeometryHelperNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FBXState", "get_allow_geometry_helper_nodes", 2240911060)
+        TypeManager.getMethodBindPtr("FBXState", "get_allow_geometry_helper_nodes", 2_240_911_060)
 
     internal val setAllowGeometryHelperNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FBXState", "set_allow_geometry_helper_nodes", 2586408642)
+        TypeManager.getMethodBindPtr("FBXState", "set_allow_geometry_helper_nodes", 2_586_408_642)
   }
 }

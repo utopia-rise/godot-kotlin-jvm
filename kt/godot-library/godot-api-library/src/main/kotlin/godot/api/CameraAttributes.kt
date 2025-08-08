@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,33 +15,25 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
  *
- * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and
- * depth of field that will be used by all cameras without their own [CameraAttributes], including the
- * editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the
- * [WorldEnvironment]. When used in [VoxelGI] or [LightmapGI], only the exposure settings will be used.
+ * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and depth of field that will be used by all cameras without their own [CameraAttributes], including the editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the [WorldEnvironment]. When used in [VoxelGI] or [LightmapGI], only the exposure settings will be used.
  *
  * See also [Environment] for general 3D environment settings.
  *
- * This is a pure virtual class that is inherited by [CameraAttributesPhysical] and
- * [CameraAttributesPractical].
+ * This is a pure virtual class that is inherited by [CameraAttributesPhysical] and [CameraAttributesPractical].
  */
 @GodotBaseType
 public open class CameraAttributes : Resource() {
   /**
-   * Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter
-   * image.
+   * Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter image.
    *
-   * If [autoExposureEnabled] is `true`, this can be used as a method of exposure compensation,
-   * doubling the value will increase the exposure value (measured in EV100) by 1 stop.
+   * If [autoExposureEnabled] is `true`, this can be used as a method of exposure compensation, doubling the value will increase the exposure value (measured in EV100) by 1 stop.
    *
-   * **Note:** Only available when
-   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled.
+   * **Note:** Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled.
    */
   public final inline var exposureSensitivity: Float
     @JvmName("exposureSensitivityProperty")
@@ -66,9 +55,7 @@ public open class CameraAttributes : Resource() {
     }
 
   /**
-   * If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the
-   * renderer will automatically determine the exposure setting to adapt to the scene's illumination
-   * and the observed light.
+   * If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the renderer will automatically determine the exposure setting to adapt to the scene's illumination and the observed light.
    */
   public final inline var autoExposureEnabled: Boolean
     @JvmName("autoExposureEnabledProperty")
@@ -90,8 +77,7 @@ public open class CameraAttributes : Resource() {
     }
 
   /**
-   * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto
-   * exposure.
+   * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto exposure.
    */
   public final inline var autoExposureSpeed: Float
     @JvmName("autoExposureSpeedProperty")
@@ -101,11 +87,11 @@ public open class CameraAttributes : Resource() {
       setAutoExposureSpeed(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(129, scriptIndex)
   }
 
-  public final fun setExposureMultiplier(multiplier: Float): Unit {
+  public final fun setExposureMultiplier(multiplier: Float) {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExposureMultiplierPtr, NIL)
   }
@@ -116,7 +102,7 @@ public open class CameraAttributes : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setExposureSensitivity(sensitivity: Float): Unit {
+  public final fun setExposureSensitivity(sensitivity: Float) {
     TransferContext.writeArguments(DOUBLE to sensitivity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExposureSensitivityPtr, NIL)
   }
@@ -127,7 +113,7 @@ public open class CameraAttributes : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAutoExposureEnabled(enabled: Boolean): Unit {
+  public final fun setAutoExposureEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAutoExposureEnabledPtr, NIL)
   }
@@ -138,7 +124,7 @@ public open class CameraAttributes : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoExposureSpeed(exposureSpeed: Float): Unit {
+  public final fun setAutoExposureSpeed(exposureSpeed: Float) {
     TransferContext.writeArguments(DOUBLE to exposureSpeed.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAutoExposureSpeedPtr, NIL)
   }
@@ -149,7 +135,7 @@ public open class CameraAttributes : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAutoExposureScale(exposureGrey: Float): Unit {
+  public final fun setAutoExposureScale(exposureGrey: Float) {
     TransferContext.writeArguments(DOUBLE to exposureGrey.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAutoExposureScalePtr, NIL)
   }
@@ -164,33 +150,33 @@ public open class CameraAttributes : Resource() {
 
   public object MethodBindings {
     internal val setExposureMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier", 373_806_689)
 
     internal val getExposureMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier", 1_740_695_150)
 
     internal val setExposureSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity", 373806689)
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity", 373_806_689)
 
     internal val getExposureSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity", 1740695150)
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity", 1_740_695_150)
 
     internal val setAutoExposureEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled", 2_586_408_642)
 
     internal val isAutoExposureEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled", 36_873_697)
 
     internal val setAutoExposureSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed", 373806689)
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed", 373_806_689)
 
     internal val getAutoExposureSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed", 1740695150)
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed", 1_740_695_150)
 
     internal val setAutoExposureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale", 373806689)
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale", 373_806_689)
 
     internal val getAutoExposureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale", 1740695150)
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale", 1_740_695_150)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,18 +14,15 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
- * spaces.
+ * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open spaces.
  */
 @GodotBaseType
 public open class AudioEffectReverb : AudioEffect() {
   /**
-   * Time between the original signal and the early reflections of the reverb signal, in
-   * milliseconds.
+   * Time between the original signal and the early reflections of the reverb signal, in milliseconds.
    */
   public final inline var predelayMsec: Float
     @JvmName("predelayMsecProperty")
@@ -72,8 +66,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range
-   * from 0 to 1.
+   * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range from 0 to 1.
    */
   public final inline var spread: Float
     @JvmName("spreadProperty")
@@ -84,8 +77,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and
-   * attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
+   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
    */
   public final inline var hipass: Float
     @JvmName("hipassProperty")
@@ -96,8 +88,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from
-   * 0 to 1.
+   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1.
    */
   public final inline var dry: Float
     @JvmName("dryProperty")
@@ -108,8 +99,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of modified sound. At 0, only original sound is outputted. Value can range from
-   * 0 to 1.
+   * Output percent of modified sound. At 0, only original sound is outputted. Value can range from 0 to 1.
    */
   public final inline var wet: Float
     @JvmName("wetProperty")
@@ -119,11 +109,11 @@ public open class AudioEffectReverb : AudioEffect() {
       setWet(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(71, scriptIndex)
   }
 
-  public final fun setPredelayMsec(msec: Float): Unit {
+  public final fun setPredelayMsec(msec: Float) {
     TransferContext.writeArguments(DOUBLE to msec.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPredelayMsecPtr, NIL)
   }
@@ -134,7 +124,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPredelayFeedback(feedback: Float): Unit {
+  public final fun setPredelayFeedback(feedback: Float) {
     TransferContext.writeArguments(DOUBLE to feedback.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPredelayFeedbackPtr, NIL)
   }
@@ -145,7 +135,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRoomSize(size: Float): Unit {
+  public final fun setRoomSize(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRoomSizePtr, NIL)
   }
@@ -156,7 +146,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDamping(amount: Float): Unit {
+  public final fun setDamping(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDampingPtr, NIL)
   }
@@ -167,7 +157,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSpread(amount: Float): Unit {
+  public final fun setSpread(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSpreadPtr, NIL)
   }
@@ -178,7 +168,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDry(amount: Float): Unit {
+  public final fun setDry(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDryPtr, NIL)
   }
@@ -189,7 +179,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setWet(amount: Float): Unit {
+  public final fun setWet(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setWetPtr, NIL)
   }
@@ -200,7 +190,7 @@ public open class AudioEffectReverb : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHpf(amount: Float): Unit {
+  public final fun setHpf(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHpfPtr, NIL)
   }
@@ -222,51 +212,51 @@ public open class AudioEffectReverb : AudioEffect() {
 
   public object MethodBindings {
     internal val setPredelayMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_msec", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_msec", 373_806_689)
 
     internal val getPredelayMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_msec", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_msec", 1_740_695_150)
 
     internal val setPredelayFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_feedback", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_feedback", 373_806_689)
 
     internal val getPredelayFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_feedback", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_feedback", 1_740_695_150)
 
     internal val setRoomSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_room_size", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_room_size", 373_806_689)
 
     internal val getRoomSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_room_size", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_room_size", 1_740_695_150)
 
     internal val setDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_damping", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_damping", 373_806_689)
 
     internal val getDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_damping", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_damping", 1_740_695_150)
 
     internal val setSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_spread", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_spread", 373_806_689)
 
     internal val getSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_spread", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_spread", 1_740_695_150)
 
     internal val setDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_dry", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_dry", 373_806_689)
 
     internal val getDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_dry", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_dry", 1_740_695_150)
 
     internal val setWetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_wet", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_wet", 373_806_689)
 
     internal val getWetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_wet", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_wet", 1_740_695_150)
 
     internal val setHpfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_hpf", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_hpf", 373_806_689)
 
     internal val getHpfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_hpf", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_hpf", 1_740_695_150)
   }
 }

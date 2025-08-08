@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,14 +30,11 @@ import kotlin.jvm.JvmOverloads
 /**
  * Plays audio that is attenuated with distance to the listener.
  *
- * By default, audio is heard from the screen center. This can be changed by adding an
- * [AudioListener2D] node to the scene and enabling it by calling [AudioListener2D.makeCurrent] on it.
+ * By default, audio is heard from the screen center. This can be changed by adding an [AudioListener2D] node to the scene and enabling it by calling [AudioListener2D.makeCurrent] on it.
  *
  * See also [AudioStreamPlayer] to play a sound non-positionally.
  *
- * **Note:** Hiding an [AudioStreamPlayer2D] node does not disable its audio output. To temporarily
- * disable an [AudioStreamPlayer2D]'s audio output, set [volumeDb] to a very low value like `-100`
- * (which isn't audible to human hearing).
+ * **Note:** Hiding an [AudioStreamPlayer2D] node does not disable its audio output. To temporarily disable an [AudioStreamPlayer2D]'s audio output, set [volumeDb] to a very low value like `-100` (which isn't audible to human hearing).
  */
 @GodotBaseType
 public open class AudioStreamPlayer2D : Node2D() {
@@ -74,9 +68,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Base volume before attenuation, as a linear value.
    *
-   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
-   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
-   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
    */
   public final inline var volumeLinear: Float
     @JvmName("volumeLinearProperty")
@@ -153,8 +145,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * The maximum number of sounds this node can play at the same time. Playing additional sounds
-   * after this value is reached will cut off the oldest sounds.
+   * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
    */
   public final inline var maxPolyphony: Int
     @JvmName("maxPolyphonyProperty")
@@ -165,9 +156,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Scales the panning strength for this node by multiplying the base
-   * [ProjectSettings.audio/general/2dPanningStrength] with this factor. Higher values will pan audio
-   * from left to right more dramatically than lower values.
+   * Scales the panning strength for this node by multiplying the base [ProjectSettings.audio/general/2dPanningStrength] with this factor. Higher values will pan audio from left to right more dramatically than lower values.
    */
   public final inline var panningStrength: Float
     @JvmName("panningStrengthProperty")
@@ -180,10 +169,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Bus on which this audio is playing.
    *
-   * **Note:** When setting this property, keep in mind that no validation is performed to see if
-   * the given name matches an existing bus. This is because audio bus layouts might be loaded after
-   * this property is set. If this given name can't be resolved at runtime, it will fall back to
-   * `"Master"`.
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
    */
   public final inline var bus: StringName
     @JvmName("busProperty")
@@ -194,10 +180,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Determines which [Area2D] layers affect the sound for reverb and audio bus effects. Areas can
-   * be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you
-   * might use this is making a "water" area so that sounds played in the water are redirected through
-   * an audio bus to make them sound like they are being played underwater.
+   * Determines which [Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
    */
   public final inline var areaMask: Long
     @JvmName("areaMaskProperty")
@@ -208,8 +191,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * The playback type of the stream player. If set other than to the default value, it will force
-   * that playback type.
+   * The playback type of the stream player. If set other than to the default value, it will force that playback type.
    */
   public final inline var playbackType: AudioServer.PlaybackType
     @JvmName("playbackTypeProperty")
@@ -219,11 +201,11 @@ public open class AudioStreamPlayer2D : Node2D() {
       setPlaybackType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(95, scriptIndex)
   }
 
-  public final fun setStream(stream: AudioStream?): Unit {
+  public final fun setStream(stream: AudioStream?) {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPtr, NIL)
   }
@@ -234,7 +216,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
-  public final fun setVolumeDb(volumeDb: Float): Unit {
+  public final fun setVolumeDb(volumeDb: Float) {
     TransferContext.writeArguments(DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
   }
@@ -245,7 +227,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumeLinear(volumeLinear: Float): Unit {
+  public final fun setVolumeLinear(volumeLinear: Float) {
     TransferContext.writeArguments(DOUBLE to volumeLinear.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
   }
@@ -256,7 +238,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPitchScale(pitchScale: Float): Unit {
+  public final fun setPitchScale(pitchScale: Float) {
     TransferContext.writeArguments(DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPitchScalePtr, NIL)
   }
@@ -268,11 +250,10 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in
-   * seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
   @JvmOverloads
-  public final fun play(fromPosition: Float = 0.0f): Unit {
+  public final fun play(fromPosition: Float = 0.0f) {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
@@ -280,7 +261,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Sets the position from which audio will be played, in seconds.
    */
-  public final fun seek(toPosition: Float): Unit {
+  public final fun seek(toPosition: Float) {
     TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
@@ -288,7 +269,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Stops the audio.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
@@ -308,7 +289,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBus(bus: StringName): Unit {
+  public final fun setBus(bus: StringName) {
     TransferContext.writeArguments(STRING_NAME to bus)
     TransferContext.callMethod(ptr, MethodBindings.setBusPtr, NIL)
   }
@@ -319,7 +300,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setAutoplay(enable: Boolean): Unit {
+  public final fun setAutoplay(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
@@ -330,12 +311,12 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPlaying(enable: Boolean): Unit {
+  public final fun setPlaying(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPlayingPtr, NIL)
   }
 
-  public final fun setMaxDistance(pixels: Float): Unit {
+  public final fun setMaxDistance(pixels: Float) {
     TransferContext.writeArguments(DOUBLE to pixels.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxDistancePtr, NIL)
   }
@@ -346,7 +327,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAttenuation(curve: Float): Unit {
+  public final fun setAttenuation(curve: Float) {
     TransferContext.writeArguments(DOUBLE to curve.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAttenuationPtr, NIL)
   }
@@ -357,7 +338,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAreaMask(mask: Long): Unit {
+  public final fun setAreaMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setAreaMaskPtr, NIL)
   }
@@ -368,7 +349,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStreamPaused(pause: Boolean): Unit {
+  public final fun setStreamPaused(pause: Boolean) {
     TransferContext.writeArguments(BOOL to pause)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPausedPtr, NIL)
   }
@@ -379,7 +360,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaxPolyphony(maxPolyphony: Int): Unit {
+  public final fun setMaxPolyphony(maxPolyphony: Int) {
     TransferContext.writeArguments(LONG to maxPolyphony.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxPolyphonyPtr, NIL)
   }
@@ -390,7 +371,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPanningStrength(panningStrength: Float): Unit {
+  public final fun setPanningStrength(panningStrength: Float) {
     TransferContext.writeArguments(DOUBLE to panningStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPanningStrengthPtr, NIL)
   }
@@ -419,7 +400,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
-  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
+  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType) {
     TransferContext.writeArguments(LONG to playbackType.id)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackTypePtr, NIL)
   }
@@ -436,105 +417,105 @@ public open class AudioStreamPlayer2D : Node2D() {
 
   public object MethodBindings {
     internal val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_stream", 2210767741)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_stream", 2_210_767_741)
 
     internal val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_stream", 160907539)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_stream", 160_907_539)
 
     internal val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_volume_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_volume_db", 373_806_689)
 
     internal val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_volume_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_volume_db", 1_740_695_150)
 
     internal val setVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_volume_linear", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_volume_linear", 373_806_689)
 
     internal val getVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_volume_linear", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_volume_linear", 1_740_695_150)
 
     internal val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_pitch_scale", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_pitch_scale", 373_806_689)
 
     internal val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_pitch_scale", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_pitch_scale", 1_740_695_150)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "play", 1958160172)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "play", 1_958_160_172)
 
     internal val seekPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "seek", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "seek", 373_806_689)
 
     internal val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "stop", 3218959716)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "stop", 3_218_959_716)
 
     internal val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "is_playing", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "is_playing", 36_873_697)
 
     internal val getPlaybackPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_playback_position", 191475506)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_playback_position", 191_475_506)
 
     internal val setBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_bus", 3304788590)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_bus", 3_304_788_590)
 
     internal val getBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_bus", 2002593661)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_bus", 2_002_593_661)
 
     internal val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_autoplay", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_autoplay", 2_586_408_642)
 
     internal val isAutoplayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "is_autoplay_enabled", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "is_autoplay_enabled", 36_873_697)
 
     internal val setPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_playing", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_playing", 2_586_408_642)
 
     internal val setMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_max_distance", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_max_distance", 373_806_689)
 
     internal val getMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_max_distance", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_max_distance", 1_740_695_150)
 
     internal val setAttenuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_attenuation", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_attenuation", 373_806_689)
 
     internal val getAttenuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_attenuation", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_attenuation", 1_740_695_150)
 
     internal val setAreaMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_area_mask", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_area_mask", 1_286_410_249)
 
     internal val getAreaMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_area_mask", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_area_mask", 3_905_245_786)
 
     internal val setStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_stream_paused", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_stream_paused", 2_586_408_642)
 
     internal val getStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_stream_paused", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_stream_paused", 36_873_697)
 
     internal val setMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_max_polyphony", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_max_polyphony", 1_286_410_249)
 
     internal val getMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_max_polyphony", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_max_polyphony", 3_905_245_786)
 
     internal val setPanningStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_panning_strength", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_panning_strength", 373_806_689)
 
     internal val getPanningStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_panning_strength", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_panning_strength", 1_740_695_150)
 
     internal val hasStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "has_stream_playback", 2240911060)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "has_stream_playback", 2_240_911_060)
 
     internal val getStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_stream_playback", 210135309)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_stream_playback", 210_135_309)
 
     internal val setPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_playback_type", 725473817)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_playback_type", 725_473_817)
 
     internal val getPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_playback_type", 4011264623)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_playback_type", 4_011_264_623)
   }
 }

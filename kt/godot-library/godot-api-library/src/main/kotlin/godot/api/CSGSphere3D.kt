@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,16 +18,12 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * This node allows you to create a sphere for use with the CSG system.
  *
- * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
- * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
- * node within another CSG node also has a significant CPU cost, so it should be avoided during
- * gameplay.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG node within another CSG node also has a significant CPU cost, so it should be avoided during gameplay.
  */
 @GodotBaseType
 public open class CSGSphere3D : CSGPrimitive3D() {
@@ -68,8 +61,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     }
 
   /**
-   * If `true` the normals of the sphere are set to give a smooth effect making the sphere seem
-   * rounded. If `false` the sphere will have a flat shaded look.
+   * If `true` the normals of the sphere are set to give a smooth effect making the sphere seem rounded. If `false` the sphere will have a flat shaded look.
    */
   public final inline var smoothFaces: Boolean
     @JvmName("smoothFacesProperty")
@@ -90,11 +82,11 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(124, scriptIndex)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -105,7 +97,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRadialSegments(radialSegments: Int): Unit {
+  public final fun setRadialSegments(radialSegments: Int) {
     TransferContext.writeArguments(LONG to radialSegments.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
@@ -116,7 +108,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setRings(rings: Int): Unit {
+  public final fun setRings(rings: Int) {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
   }
@@ -127,7 +119,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean) {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(ptr, MethodBindings.setSmoothFacesPtr, NIL)
   }
@@ -138,7 +130,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -153,33 +145,33 @@ public open class CSGSphere3D : CSGPrimitive3D() {
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radius", 1_740_695_150)
 
     internal val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radial_segments", 1286410249)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radial_segments", 1_286_410_249)
 
     internal val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radial_segments", 3905245786)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radial_segments", 3_905_245_786)
 
     internal val setRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_rings", 1286410249)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_rings", 1_286_410_249)
 
     internal val getRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_rings", 3905245786)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_rings", 3_905_245_786)
 
     internal val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_smooth_faces", 2586408642)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_smooth_faces", 2_586_408_642)
 
     internal val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_smooth_faces", 36873697)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_smooth_faces", 36_873_697)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_material", 5_934_680)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,17 +22,14 @@ import kotlin.jvm.JvmName
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.
  *
- * Positioning of hands is performed by creating an [XRNode3D] ancestor of the hand mesh driven by
- * the same [XRHandTracker].
+ * Positioning of hands is performed by creating an [XRNode3D] ancestor of the hand mesh driven by the same [XRHandTracker].
  *
- * The hand tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the
- * skeleton, which can be used to adjust the tracked hand to match the scale of the hand model.
+ * The hand tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the skeleton, which can be used to adjust the tracked hand to match the scale of the hand model.
  */
 @GodotBaseType
 public open class XRHandModifier3D : SkeletonModifier3D() {
   /**
-   * The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data
-   * from.
+   * The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data from.
    */
   public final inline var handTracker: StringName
     @JvmName("handTrackerProperty")
@@ -56,11 +50,11 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
       setBoneUpdate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(866, scriptIndex)
   }
 
-  public final fun setHandTracker(trackerName: StringName): Unit {
+  public final fun setHandTracker(trackerName: StringName) {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(ptr, MethodBindings.setHandTrackerPtr, NIL)
   }
@@ -71,7 +65,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+  public final fun setBoneUpdate(boneUpdate: BoneUpdate) {
     TransferContext.writeArguments(LONG to boneUpdate.id)
     TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
@@ -82,20 +76,17 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHandTracker(trackerName: String): Unit =
-      setHandTracker(trackerName.asCachedStringName())
+  public final fun setHandTracker(trackerName: String): Unit = setHandTracker(trackerName.asCachedStringName())
 
   public enum class BoneUpdate(
     id: Long,
   ) {
     /**
-     * The skeleton's bones are fully updated (both position and rotation) to match the tracked
-     * bones.
+     * The skeleton's bones are fully updated (both position and rotation) to match the tracked bones.
      */
     FULL(0),
     /**
-     * The skeleton's bones are only rotated to align with the tracked bones, preserving bone
-     * length.
+     * The skeleton's bones are only rotated to align with the tracked bones, preserving bone length.
      */
     ROTATION_ONLY(1),
     /**
@@ -118,15 +109,15 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
 
   public object MethodBindings {
     internal val setHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "set_hand_tracker", 3304788590)
+        TypeManager.getMethodBindPtr("XRHandModifier3D", "set_hand_tracker", 3_304_788_590)
 
     internal val getHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "get_hand_tracker", 2002593661)
+        TypeManager.getMethodBindPtr("XRHandModifier3D", "get_hand_tracker", 2_002_593_661)
 
     internal val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "set_bone_update", 3635701455)
+        TypeManager.getMethodBindPtr("XRHandModifier3D", "set_bone_update", 3_635_701_455)
 
     internal val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "get_bone_update", 2873665691)
+        TypeManager.getMethodBindPtr("XRHandModifier3D", "get_bone_update", 2_873_665_691)
   }
 }

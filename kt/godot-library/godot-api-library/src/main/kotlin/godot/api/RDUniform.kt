@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,7 +16,6 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -49,11 +45,11 @@ public open class RDUniform : RefCounted() {
       setBinding(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(527, scriptIndex)
   }
 
-  public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
+  public final fun setUniformType(pMember: RenderingDevice.UniformType) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setUniformTypePtr, NIL)
   }
@@ -64,7 +60,7 @@ public open class RDUniform : RefCounted() {
     return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBinding(pMember: Int): Unit {
+  public final fun setBinding(pMember: Int) {
     TransferContext.writeArguments(LONG to pMember.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBindingPtr, NIL)
   }
@@ -76,10 +72,9 @@ public open class RDUniform : RefCounted() {
   }
 
   /**
-   * Binds the given id to the uniform. The data associated with the id is then used when the
-   * uniform is passed to a shader.
+   * Binds the given id to the uniform. The data associated with the id is then used when the uniform is passed to a shader.
    */
-  public final fun addId(id: RID): Unit {
+  public final fun addId(id: RID) {
     TransferContext.writeArguments(_RID to id)
     TransferContext.callMethod(ptr, MethodBindings.addIdPtr, NIL)
   }
@@ -87,7 +82,7 @@ public open class RDUniform : RefCounted() {
   /**
    * Unbinds all ids currently bound to the uniform.
    */
-  public final fun clearIds(): Unit {
+  public final fun clearIds() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearIdsPtr, NIL)
   }
@@ -105,23 +100,24 @@ public open class RDUniform : RefCounted() {
 
   public object MethodBindings {
     internal val setUniformTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "set_uniform_type", 1664894931)
+        TypeManager.getMethodBindPtr("RDUniform", "set_uniform_type", 1_664_894_931)
 
     internal val getUniformTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "get_uniform_type", 475470040)
+        TypeManager.getMethodBindPtr("RDUniform", "get_uniform_type", 475_470_040)
 
     internal val setBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "set_binding", 1286410249)
+        TypeManager.getMethodBindPtr("RDUniform", "set_binding", 1_286_410_249)
 
     internal val getBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "get_binding", 3905245786)
+        TypeManager.getMethodBindPtr("RDUniform", "get_binding", 3_905_245_786)
 
-    internal val addIdPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "add_id", 2722037293)
+    internal val addIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDUniform", "add_id", 2_722_037_293)
 
     internal val clearIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "clear_ids", 3218959716)
+        TypeManager.getMethodBindPtr("RDUniform", "clear_ids", 3_218_959_716)
 
     internal val getIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "get_ids", 3995934104)
+        TypeManager.getMethodBindPtr("RDUniform", "get_ids", 3_995_934_104)
   }
 }

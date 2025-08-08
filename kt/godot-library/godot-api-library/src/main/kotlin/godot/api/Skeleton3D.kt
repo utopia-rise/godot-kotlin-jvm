@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -47,14 +44,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and
- * animation (see [Animation]). It can also use ragdoll physics.
+ * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and animation (see [Animation]). It can also use ragdoll physics.
  *
- * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone
- * rest defines the initial transform of the bone pose.
+ * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone rest defines the initial transform of the bone pose.
  *
- * Note that "global pose" below refers to the overall transform of the bone with respect to
- * skeleton, so it is not the actual global/world transform of the bone.
+ * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it is not the actual global/world transform of the bone.
  */
 @GodotBaseType
 public open class Skeleton3D : Node3D() {
@@ -66,24 +60,19 @@ public open class Skeleton3D : Node3D() {
   /**
    * Emitted when the pose is updated.
    *
-   * **Note:** During the update process, this signal is not fired, so modification by
-   * [SkeletonModifier3D] is not detected.
+   * **Note:** During the update process, this signal is not fired, so modification by [SkeletonModifier3D] is not detected.
    */
   public val poseUpdated: Signal0 by Signal0
 
   /**
-   * Emitted when the final pose has been calculated will be applied to the skin in the update
-   * process.
+   * Emitted when the final pose has been calculated will be applied to the skin in the update process.
    *
-   * This means that all [SkeletonModifier3D] processing is complete. In order to detect the
-   * completion of the processing of each [SkeletonModifier3D], use [signal
-   * SkeletonModifier3D.modification_processed].
+   * This means that all [SkeletonModifier3D] processing is complete. In order to detect the completion of the processing of each [SkeletonModifier3D], use [signal SkeletonModifier3D.modification_processed].
    */
   public val skeletonUpdated: Signal0 by Signal0
 
   /**
-   * Emitted when the bone at [boneIdx] is toggled with [setBoneEnabled]. Use [isBoneEnabled] to
-   * check the new value.
+   * Emitted when the bone at [boneIdx] is toggled with [setBoneEnabled]. Use [isBoneEnabled] to check the new value.
    */
   public val boneEnabledChanged: Signal1<Long> by Signal1
 
@@ -97,8 +86,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Multiplies the 3D position track animation.
    *
-   * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual
-   * position value.
+   * **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.
    */
   public final inline var motionScale: Float
     @JvmName("motionScaleProperty")
@@ -109,8 +97,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   /**
-   * If `true`, forces the bones in their default rest pose, regardless of their values. In the
-   * editor, this also prevents the bones from being edited.
+   * If `true`, forces the bones in their default rest pose, regardless of their values. In the editor, this also prevents the bones from being edited.
    */
   public final inline var showRestOnly: Boolean
     @JvmName("showRestOnlyProperty")
@@ -132,13 +119,9 @@ public open class Skeleton3D : Node3D() {
     }
 
   /**
-   * If you follow the recommended workflow and explicitly have [PhysicalBoneSimulator3D] as a child
-   * of [Skeleton3D], you can control whether it is affected by raycasting without running
-   * [physicalBonesStartSimulation], by its [SkeletonModifier3D.active].
+   * If you follow the recommended workflow and explicitly have [PhysicalBoneSimulator3D] as a child of [Skeleton3D], you can control whether it is affected by raycasting without running [physicalBonesStartSimulation], by its [SkeletonModifier3D.active].
    *
-   * However, for old (deprecated) configurations, [Skeleton3D] has an internal virtual
-   * [PhysicalBoneSimulator3D] for compatibility. This property controls the internal virtual
-   * [PhysicalBoneSimulator3D]'s [SkeletonModifier3D.active].
+   * However, for old (deprecated) configurations, [Skeleton3D] has an internal virtual [PhysicalBoneSimulator3D] for compatibility. This property controls the internal virtual [PhysicalBoneSimulator3D]'s [SkeletonModifier3D.active].
    */
   public final inline var animatePhysicalBones: Boolean
     @JvmName("animatePhysicalBonesProperty")
@@ -148,16 +131,14 @@ public open class Skeleton3D : Node3D() {
       setAnimatePhysicalBones(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(594, scriptIndex)
   }
 
   /**
-   * Adds a new bone with the given name. Returns the new bone's index, or `-1` if this method
-   * fails.
+   * Adds a new bone with the given name. Returns the new bone's index, or `-1` if this method fails.
    *
-   * **Note:** Bone names should be unique, non empty, and cannot include the `:` and `/`
-   * characters.
+   * **Note:** Bone names should be unique, non empty, and cannot include the `:` and `/` characters.
    */
   public final fun addBone(name: String): Int {
     TransferContext.writeArguments(STRING to name)
@@ -166,8 +147,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the bone index that matches [name] as its name. Returns `-1` if no bone with this name
-   * exists.
+   * Returns the bone index that matches [name] as its name. Returns `-1` if no bone with this name exists.
    */
   public final fun findBone(name: String): Int {
     TransferContext.writeArguments(STRING to name)
@@ -187,7 +167,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the bone name, [name], for the bone at [boneIdx].
    */
-  public final fun setBoneName(boneIdx: Int, name: String): Unit {
+  public final fun setBoneName(boneIdx: Int, name: String) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
   }
@@ -226,7 +206,7 @@ public open class Skeleton3D : Node3D() {
     boneIdx: Int,
     key: StringName,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setBoneMetaPtr, NIL)
   }
@@ -243,8 +223,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the bone index which is the parent of the bone at [boneIdx]. If -1, then bone has no
-   * parent.
+   * Returns the bone index which is the parent of the bone at [boneIdx]. If -1, then bone has no parent.
    *
    * **Note:** The parent bone returned will always be less than [boneIdx].
    */
@@ -255,12 +234,11 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the bone index [parentIdx] as the parent of the bone at [boneIdx]. If -1, then bone has no
-   * parent.
+   * Sets the bone index [parentIdx] as the parent of the bone at [boneIdx]. If -1, then bone has no parent.
    *
    * **Note:** [parentIdx] must be less than [boneIdx].
    */
-  public final fun setBoneParent(boneIdx: Int, parentIdx: Int): Unit {
+  public final fun setBoneParent(boneIdx: Int, parentIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to parentIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBoneParentPtr, NIL)
   }
@@ -275,8 +253,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the number of times the bone hierarchy has changed within this skeleton, including
-   * renames.
+   * Returns the number of times the bone hierarchy has changed within this skeleton, including renames.
    *
    * The Skeleton version is not serialized: only use within a single instance of Skeleton3D.
    *
@@ -289,17 +266,15 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Unparents the bone at [boneIdx] and sets its rest position to that of its parent prior to being
-   * reset.
+   * Unparents the bone at [boneIdx] and sets its rest position to that of its parent prior to being reset.
    */
-  public final fun unparentBoneAndRest(boneIdx: Int): Unit {
+  public final fun unparentBoneAndRest(boneIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.unparentBoneAndRestPtr, NIL)
   }
 
   /**
-   * Returns an array containing the bone indexes of all the child node of the passed in bone,
-   * [boneIdx].
+   * Returns an array containing the bone indexes of all the child node of the passed in bone, [boneIdx].
    */
   public final fun getBoneChildren(boneIdx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -308,9 +283,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns an array with all of the bones that are parentless. Another way to look at this is that
-   * it returns the indexes of all the bones that are not dependent or modified by other bones in the
-   * Skeleton.
+   * Returns an array with all of the bones that are parentless. Another way to look at this is that it returns the indexes of all the bones that are not dependent or modified by other bones in the Skeleton.
    */
   public final fun getParentlessBones(): PackedInt32Array {
     TransferContext.writeArguments()
@@ -330,7 +303,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the rest transform for bone [boneIdx].
    */
-  public final fun setBoneRest(boneIdx: Int, rest: Transform3D): Unit {
+  public final fun setBoneRest(boneIdx: Int, rest: Transform3D) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to rest)
     TransferContext.callMethod(ptr, MethodBindings.setBoneRestPtr, NIL)
   }
@@ -362,7 +335,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns all bones in the skeleton to their rest poses.
    */
-  public final fun localizeRests(): Unit {
+  public final fun localizeRests() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.localizeRestsPtr, NIL)
   }
@@ -370,7 +343,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Clear all the bones in this skeleton.
    */
-  public final fun clearBones(): Unit {
+  public final fun clearBones() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBonesPtr, NIL)
   }
@@ -378,9 +351,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns the pose transform of the specified bone.
    *
-   * **Note:** This is the pose you set to the skeleton in the process, the final pose can get
-   * overridden by modifiers in the deferred process, if you want to access the final pose, use [signal
-   * SkeletonModifier3D.modification_processed].
+   * **Note:** This is the pose you set to the skeleton in the process, the final pose can get overridden by modifiers in the deferred process, if you want to access the final pose, use [signal SkeletonModifier3D.modification_processed].
    */
   public final fun getBonePose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -391,26 +362,23 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the pose transform, [pose], for the bone at [boneIdx].
    */
-  public final fun setBonePose(boneIdx: Int, pose: Transform3D): Unit {
+  public final fun setBonePose(boneIdx: Int, pose: Transform3D) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose)
     TransferContext.callMethod(ptr, MethodBindings.setBonePosePtr, NIL)
   }
 
   /**
-   * Sets the pose position of the bone at [boneIdx] to [position]. [position] is a [Vector3]
-   * describing a position local to the [Skeleton3D] node.
+   * Sets the pose position of the bone at [boneIdx] to [position]. [position] is a [Vector3] describing a position local to the [Skeleton3D] node.
    */
-  public final fun setBonePosePosition(boneIdx: Int, position: Vector3): Unit {
+  public final fun setBonePosePosition(boneIdx: Int, position: Vector3) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setBonePosePositionPtr, NIL)
   }
 
   /**
-   * Sets the pose rotation of the bone at [boneIdx] to [rotation]. [rotation] is a [Quaternion]
-   * describing a rotation in the bone's local coordinate space with respect to the rotation of any
-   * parent bones.
+   * Sets the pose rotation of the bone at [boneIdx] to [rotation]. [rotation] is a [Quaternion] describing a rotation in the bone's local coordinate space with respect to the rotation of any parent bones.
    */
-  public final fun setBonePoseRotation(boneIdx: Int, rotation: Quaternion): Unit {
+  public final fun setBonePoseRotation(boneIdx: Int, rotation: Quaternion) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), QUATERNION to rotation)
     TransferContext.callMethod(ptr, MethodBindings.setBonePoseRotationPtr, NIL)
   }
@@ -418,14 +386,13 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the pose scale of the bone at [boneIdx] to [scale].
    */
-  public final fun setBonePoseScale(boneIdx: Int, scale: Vector3): Unit {
+  public final fun setBonePoseScale(boneIdx: Int, scale: Vector3) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setBonePoseScalePtr, NIL)
   }
 
   /**
-   * Returns the pose position of the bone at [boneIdx]. The returned [Vector3] is in the local
-   * coordinate space of the [Skeleton3D] node.
+   * Returns the pose position of the bone at [boneIdx]. The returned [Vector3] is in the local coordinate space of the [Skeleton3D] node.
    */
   public final fun getBonePosePosition(boneIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -434,8 +401,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the pose rotation of the bone at [boneIdx]. The returned [Quaternion] is local to the
-   * bone with respect to the rotation of any parent bones.
+   * Returns the pose rotation of the bone at [boneIdx]. The returned [Quaternion] is local to the bone with respect to the rotation of any parent bones.
    */
   public final fun getBonePoseRotation(boneIdx: Int): Quaternion {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -455,7 +421,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the bone pose to rest for [boneIdx].
    */
-  public final fun resetBonePose(boneIdx: Int): Unit {
+  public final fun resetBonePose(boneIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.resetBonePosePtr, NIL)
   }
@@ -463,7 +429,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets all bone poses to rests.
    */
-  public final fun resetBonePoses(): Unit {
+  public final fun resetBonePoses() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetBonePosesPtr, NIL)
   }
@@ -481,18 +447,15 @@ public open class Skeleton3D : Node3D() {
    * Disables the pose for the bone at [boneIdx] if `false`, enables the bone pose if `true`.
    */
   @JvmOverloads
-  public final fun setBoneEnabled(boneIdx: Int, enabled: Boolean = true): Unit {
+  public final fun setBoneEnabled(boneIdx: Int, enabled: Boolean = true) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setBoneEnabledPtr, NIL)
   }
 
   /**
-   * Returns the overall transform of the specified bone, with respect to the skeleton. Being
-   * relative to the skeleton frame, this is not the actual "global" transform of the bone.
+   * Returns the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
    *
-   * **Note:** This is the global pose you set to the skeleton in the process, the final global pose
-   * can get overridden by modifiers in the deferred process, if you want to access the final global
-   * pose, use [signal SkeletonModifier3D.modification_processed].
+   * **Note:** This is the global pose you set to the skeleton in the process, the final global pose can get overridden by modifiers in the deferred process, if you want to access the final global pose, use [signal SkeletonModifier3D.modification_processed].
    */
   public final fun getBoneGlobalPose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -503,11 +466,9 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the global pose transform, [pose], for the bone at [boneIdx].
    *
-   * **Note:** If other bone poses have been changed, this method executes a dirty poses
-   * recalculation and will cause performance to deteriorate. If you know that multiple global poses
-   * will be applied, consider using [setBonePose] with precalculation.
+   * **Note:** If other bone poses have been changed, this method executes a dirty poses recalculation and will cause performance to deteriorate. If you know that multiple global poses will be applied, consider using [setBonePose] with precalculation.
    */
-  public final fun setBoneGlobalPose(boneIdx: Int, pose: Transform3D): Unit {
+  public final fun setBoneGlobalPose(boneIdx: Int, pose: Transform3D) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose)
     TransferContext.callMethod(ptr, MethodBindings.setBoneGlobalPosePtr, NIL)
   }
@@ -515,7 +476,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Force updates the bone transforms/poses for all bones in the skeleton.
    */
-  public final fun forceUpdateAllBoneTransforms(): Unit {
+  public final fun forceUpdateAllBoneTransforms() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateAllBoneTransformsPtr, NIL)
   }
@@ -523,12 +484,12 @@ public open class Skeleton3D : Node3D() {
   /**
    * Force updates the bone transform for the bone at [boneIdx] and all of its children.
    */
-  public final fun forceUpdateBoneChildTransform(boneIdx: Int): Unit {
+  public final fun forceUpdateBoneChildTransform(boneIdx: Int) {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateBoneChildTransformPtr, NIL)
   }
 
-  public final fun setMotionScale(motionScale: Float): Unit {
+  public final fun setMotionScale(motionScale: Float) {
     TransferContext.writeArguments(DOUBLE to motionScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMotionScalePtr, NIL)
   }
@@ -539,7 +500,7 @@ public open class Skeleton3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setShowRestOnly(enabled: Boolean): Unit {
+  public final fun setShowRestOnly(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setShowRestOnlyPtr, NIL)
   }
@@ -550,7 +511,7 @@ public open class Skeleton3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setModifierCallbackModeProcess(mode: ModifierCallbackModeProcess): Unit {
+  public final fun setModifierCallbackModeProcess(mode: ModifierCallbackModeProcess) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setModifierCallbackModeProcessPtr, NIL)
   }
@@ -564,7 +525,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Removes the global pose override on all bones in the skeleton.
    */
-  public final fun clearBonesGlobalPoseOverride(): Unit {
+  public final fun clearBonesGlobalPoseOverride() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBonesGlobalPoseOverridePtr, NIL)
   }
@@ -572,12 +533,9 @@ public open class Skeleton3D : Node3D() {
   /**
    * Sets the global pose transform, [pose], for the bone at [boneIdx].
    *
-   * [amount] is the interpolation strength that will be used when applying the pose, and
-   * [persistent] determines if the applied pose will remain.
+   * [amount] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
    *
-   * **Note:** The pose transform needs to be a global pose! To convert a world transform from a
-   * [Node3D] to a global bone pose, multiply the [Transform3D.affineInverse] of the node's
-   * [Node3D.globalTransform] by the desired world transform.
+   * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [Node3D] to a global bone pose, multiply the [Transform3D.affineInverse] of the node's [Node3D.globalTransform] by the desired world transform.
    */
   @JvmOverloads
   public final fun setBoneGlobalPoseOverride(
@@ -585,7 +543,7 @@ public open class Skeleton3D : Node3D() {
     pose: Transform3D,
     amount: Float,
     persistent: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose, DOUBLE to amount.toDouble(), BOOL to persistent)
     TransferContext.callMethod(ptr, MethodBindings.setBoneGlobalPoseOverridePtr, NIL)
   }
@@ -600,9 +558,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the overall transform of the specified bone, with respect to the skeleton, but without
-   * any global pose overrides. Being relative to the skeleton frame, this is not the actual "global"
-   * transform of the bone.
+   * Returns the overall transform of the specified bone, with respect to the skeleton, but without any global pose overrides. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
    */
   public final fun getBoneGlobalPoseNoOverride(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -610,7 +566,7 @@ public open class Skeleton3D : Node3D() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setAnimatePhysicalBones(enabled: Boolean): Unit {
+  public final fun setAnimatePhysicalBones(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAnimatePhysicalBonesPtr, NIL)
   }
@@ -624,21 +580,18 @@ public open class Skeleton3D : Node3D() {
   /**
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
-  public final fun physicalBonesStopSimulation(): Unit {
+  public final fun physicalBonesStopSimulation() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
   }
 
   /**
-   * Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the
-   * physics world.
+   * Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the physics world.
    *
-   * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be
-   * simulated.
+   * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.
    */
   @JvmOverloads
-  public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
-      godot.core.variantArrayOf()): Unit {
+  public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()) {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
   }
@@ -648,7 +601,7 @@ public open class Skeleton3D : Node3D() {
    *
    * Works just like the [RigidBody3D] node.
    */
-  public final fun physicalBonesAddCollisionException(exception: RID): Unit {
+  public final fun physicalBonesAddCollisionException(exception: RID) {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
   }
@@ -658,7 +611,7 @@ public open class Skeleton3D : Node3D() {
    *
    * Works just like the [RigidBody3D] node.
    */
-  public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {
+  public final fun physicalBonesRemoveCollisionException(exception: RID) {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }
@@ -666,14 +619,12 @@ public open class Skeleton3D : Node3D() {
   /**
    * Returns bone metadata for [boneIdx] with [key].
    */
-  public final fun getBoneMeta(boneIdx: Int, key: String): Any? =
-      getBoneMeta(boneIdx, key.asCachedStringName())
+  public final fun getBoneMeta(boneIdx: Int, key: String): Any? = getBoneMeta(boneIdx, key.asCachedStringName())
 
   /**
    * Returns whether there exists any bone metadata for [boneIdx] with key [key].
    */
-  public final fun hasBoneMeta(boneIdx: Int, key: String): Boolean =
-      hasBoneMeta(boneIdx, key.asCachedStringName())
+  public final fun hasBoneMeta(boneIdx: Int, key: String): Boolean = hasBoneMeta(boneIdx, key.asCachedStringName())
 
   /**
    * Sets bone metadata for [boneIdx], will set the [key] meta to [value].
@@ -688,13 +639,11 @@ public open class Skeleton3D : Node3D() {
     id: Long,
   ) {
     /**
-     * Set a flag to process modification during physics frames (see
-     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Set a flag to process modification during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     PHYSICS(0),
     /**
-     * Set a flag to process modification during process frames (see
-     * [Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Set a flag to process modification during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     IDLE(1),
     ;
@@ -705,183 +654,181 @@ public open class Skeleton3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long): ModifierCallbackModeProcess =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): ModifierCallbackModeProcess = entries.single { it.id == `value` }
     }
   }
 
   public companion object {
     /**
-     * Notification received when this skeleton's pose needs to be updated. In that case, this is
-     * called only once per frame in a deferred process.
+     * Notification received when this skeleton's pose needs to be updated. In that case, this is called only once per frame in a deferred process.
      */
     public final const val NOTIFICATION_UPDATE_SKELETON: Long = 50
   }
 
   public object MethodBindings {
     internal val addBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "add_bone", 1597066294)
+        TypeManager.getMethodBindPtr("Skeleton3D", "add_bone", 1_597_066_294)
 
     internal val findBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "find_bone", 1321353865)
+        TypeManager.getMethodBindPtr("Skeleton3D", "find_bone", 1_321_353_865)
 
     internal val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_name", 844755477)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_name", 844_755_477)
 
     internal val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_name", 501894301)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_name", 501_894_301)
 
     internal val getBoneMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_meta", 203112058)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_meta", 203_112_058)
 
     internal val getBoneMetaListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_meta_list", 663333327)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_meta_list", 663_333_327)
 
     internal val hasBoneMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "has_bone_meta", 921227809)
+        TypeManager.getMethodBindPtr("Skeleton3D", "has_bone_meta", 921_227_809)
 
     internal val setBoneMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_meta", 702482756)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_meta", 702_482_756)
 
     internal val getConcatenatedBoneNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_concatenated_bone_names", 2002593661)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_concatenated_bone_names", 2_002_593_661)
 
     internal val getBoneParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_parent", 923996154)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_parent", 923_996_154)
 
     internal val setBoneParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_parent", 3937882851)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_parent", 3_937_882_851)
 
     internal val getBoneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_count", 3905245786)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_count", 3_905_245_786)
 
     internal val getVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_version", 3905245786)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_version", 3_905_245_786)
 
     internal val unparentBoneAndRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "unparent_bone_and_rest", 1286410249)
+        TypeManager.getMethodBindPtr("Skeleton3D", "unparent_bone_and_rest", 1_286_410_249)
 
     internal val getBoneChildrenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_children", 1706082319)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_children", 1_706_082_319)
 
     internal val getParentlessBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_parentless_bones", 1930428628)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_parentless_bones", 1_930_428_628)
 
     internal val getBoneRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_rest", 1965739696)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_rest", 1_965_739_696)
 
     internal val setBoneRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_rest", 3616898986)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_rest", 3_616_898_986)
 
     internal val getBoneGlobalRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_rest", 1965739696)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_rest", 1_965_739_696)
 
     internal val createSkinFromRestTransformsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "create_skin_from_rest_transforms", 1032037385)
+        TypeManager.getMethodBindPtr("Skeleton3D", "create_skin_from_rest_transforms", 1_032_037_385)
 
     internal val registerSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "register_skin", 3405789568)
+        TypeManager.getMethodBindPtr("Skeleton3D", "register_skin", 3_405_789_568)
 
     internal val localizeRestsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "localize_rests", 3218959716)
+        TypeManager.getMethodBindPtr("Skeleton3D", "localize_rests", 3_218_959_716)
 
     internal val clearBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "clear_bones", 3218959716)
+        TypeManager.getMethodBindPtr("Skeleton3D", "clear_bones", 3_218_959_716)
 
     internal val getBonePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose", 1965739696)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose", 1_965_739_696)
 
     internal val setBonePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose", 3616898986)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose", 3_616_898_986)
 
     internal val setBonePosePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose_position", 1530502735)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose_position", 1_530_502_735)
 
     internal val setBonePoseRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose_rotation", 2823819782)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose_rotation", 2_823_819_782)
 
     internal val setBonePoseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose_scale", 1530502735)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_pose_scale", 1_530_502_735)
 
     internal val getBonePosePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose_position", 711720468)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose_position", 711_720_468)
 
     internal val getBonePoseRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose_rotation", 476865136)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose_rotation", 476_865_136)
 
     internal val getBonePoseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose_scale", 711720468)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_pose_scale", 711_720_468)
 
     internal val resetBonePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "reset_bone_pose", 1286410249)
+        TypeManager.getMethodBindPtr("Skeleton3D", "reset_bone_pose", 1_286_410_249)
 
     internal val resetBonePosesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "reset_bone_poses", 3218959716)
+        TypeManager.getMethodBindPtr("Skeleton3D", "reset_bone_poses", 3_218_959_716)
 
     internal val isBoneEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "is_bone_enabled", 1116898809)
+        TypeManager.getMethodBindPtr("Skeleton3D", "is_bone_enabled", 1_116_898_809)
 
     internal val setBoneEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_enabled", 972357352)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_enabled", 972_357_352)
 
     internal val getBoneGlobalPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_pose", 1965739696)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_pose", 1_965_739_696)
 
     internal val setBoneGlobalPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_global_pose", 3616898986)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_global_pose", 3_616_898_986)
 
     internal val forceUpdateAllBoneTransformsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "force_update_all_bone_transforms", 3218959716)
+        TypeManager.getMethodBindPtr("Skeleton3D", "force_update_all_bone_transforms", 3_218_959_716)
 
     internal val forceUpdateBoneChildTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "force_update_bone_child_transform", 1286410249)
+        TypeManager.getMethodBindPtr("Skeleton3D", "force_update_bone_child_transform", 1_286_410_249)
 
     internal val setMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_motion_scale", 373806689)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_motion_scale", 373_806_689)
 
     internal val getMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_motion_scale", 1740695150)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_motion_scale", 1_740_695_150)
 
     internal val setShowRestOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_show_rest_only", 2586408642)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_show_rest_only", 2_586_408_642)
 
     internal val isShowRestOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "is_show_rest_only", 36873697)
+        TypeManager.getMethodBindPtr("Skeleton3D", "is_show_rest_only", 36_873_697)
 
     internal val setModifierCallbackModeProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_modifier_callback_mode_process", 3916362634)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_modifier_callback_mode_process", 3_916_362_634)
 
     internal val getModifierCallbackModeProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_modifier_callback_mode_process", 997182536)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_modifier_callback_mode_process", 997_182_536)
 
     internal val clearBonesGlobalPoseOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "clear_bones_global_pose_override", 3218959716)
+        TypeManager.getMethodBindPtr("Skeleton3D", "clear_bones_global_pose_override", 3_218_959_716)
 
     internal val setBoneGlobalPoseOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_global_pose_override", 3483398371)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_global_pose_override", 3_483_398_371)
 
     internal val getBoneGlobalPoseOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_pose_override", 1965739696)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_pose_override", 1_965_739_696)
 
     internal val getBoneGlobalPoseNoOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_pose_no_override", 1965739696)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_global_pose_no_override", 1_965_739_696)
 
     internal val setAnimatePhysicalBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "set_animate_physical_bones", 2586408642)
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_animate_physical_bones", 2_586_408_642)
 
     internal val getAnimatePhysicalBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "get_animate_physical_bones", 36873697)
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_animate_physical_bones", 36_873_697)
 
     internal val physicalBonesStopSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_stop_simulation", 3218959716)
+        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_stop_simulation", 3_218_959_716)
 
     internal val physicalBonesStartSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_start_simulation", 2787316981)
+        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_start_simulation", 2_787_316_981)
 
     internal val physicalBonesAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_add_collision_exception", 2722037293)
+        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_add_collision_exception", 2_722_037_293)
 
     internal val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_remove_collision_exception", 2722037293)
+        TypeManager.getMethodBindPtr("Skeleton3D", "physical_bones_remove_collision_exception", 2_722_037_293)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -47,9 +44,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This resource holds data that can be used to animate anything in the engine. Animations are
- * divided into tracks and each track must be linked to a node. The state of that node can be changed
- * through time, by adding timed keys (events) to the track.
+ * This resource holds data that can be used to animate anything in the engine. Animations are divided into tracks and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
  *
  * ```gdscript
  * //gdscript
@@ -75,21 +70,16 @@ import kotlin.jvm.JvmOverloads
  * animation.Length = 2.0f;
  * ```
  *
- * Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] to
- * be played back. Animation tracks have different types, each with its own set of dedicated methods.
- * Check [TrackType] to see available types.
+ * Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] to be played back. Animation tracks have different types, each with its own set of dedicated methods. Check [TrackType] to see available types.
  *
- * **Note:** For 3D position/rotation/scale, using the dedicated [TYPE_POSITION_3D],
- * [TYPE_ROTATION_3D] and [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for
- * performance reasons.
+ * **Note:** For 3D position/rotation/scale, using the dedicated [TYPE_POSITION_3D], [TYPE_ROTATION_3D] and [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
  */
 @GodotBaseType
 public open class Animation : Resource() {
   /**
    * The total length of the animation (in seconds).
    *
-   * **Note:** Length is not delimited by the last key, as this one may be before or after the end
-   * to ensure correct interpolation and looping.
+   * **Note:** Length is not delimited by the last key, as this one may be before or after the end to ensure correct interpolation and looping.
    */
   public final inline var length: Float
     @JvmName("lengthProperty")
@@ -100,9 +90,7 @@ public open class Animation : Resource() {
     }
 
   /**
-   * Determines the behavior of both ends of the animation timeline during animation playback. This
-   * is used for correct interpolation of animation cycles, and for hinting the player that it must
-   * restart the animation.
+   * Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
    */
   public final inline var loopMode: LoopMode
     @JvmName("loopModeProperty")
@@ -124,14 +112,13 @@ public open class Animation : Resource() {
     }
 
   /**
-   * Returns `true` if the capture track is included. This is a cached readonly value for
-   * performance.
+   * Returns `true` if the capture track is included. This is a cached readonly value for performance.
    */
   public final inline val captureIncluded: Boolean
     @JvmName("captureIncludedProperty")
     get() = isCaptureIncluded()
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(12, scriptIndex)
   }
 
@@ -148,7 +135,7 @@ public open class Animation : Resource() {
   /**
    * Removes a track by specifying the track index.
    */
-  public final fun removeTrack(trackIdx: Int): Unit {
+  public final fun removeTrack(trackIdx: Int) {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeTrackPtr, NIL)
   }
@@ -181,13 +168,11 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
-   * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
-   * properties or bones must append their name after the path, separated by `":"`.
+   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.
    *
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
-  public final fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
+  public final fun trackSetPath(trackIdx: Int, path: NodePath) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.trackSetPathPtr, NIL)
   }
@@ -204,7 +189,7 @@ public open class Animation : Resource() {
   /**
    * Moves a track up.
    */
-  public final fun trackMoveUp(trackIdx: Int): Unit {
+  public final fun trackMoveUp(trackIdx: Int) {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackMoveUpPtr, NIL)
   }
@@ -212,7 +197,7 @@ public open class Animation : Resource() {
   /**
    * Moves a track down.
    */
-  public final fun trackMoveDown(trackIdx: Int): Unit {
+  public final fun trackMoveDown(trackIdx: Int) {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackMoveDownPtr, NIL)
   }
@@ -220,7 +205,7 @@ public open class Animation : Resource() {
   /**
    * Changes the index position of track [trackIdx] to the one defined in [toIdx].
    */
-  public final fun trackMoveTo(trackIdx: Int, toIdx: Int): Unit {
+  public final fun trackMoveTo(trackIdx: Int, toIdx: Int) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to toIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackMoveToPtr, NIL)
   }
@@ -228,7 +213,7 @@ public open class Animation : Resource() {
   /**
    * Swaps the track [trackIdx]'s index position with the track [withIdx].
    */
-  public final fun trackSwap(trackIdx: Int, withIdx: Int): Unit {
+  public final fun trackSwap(trackIdx: Int, withIdx: Int) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to withIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackSwapPtr, NIL)
   }
@@ -236,7 +221,7 @@ public open class Animation : Resource() {
   /**
    * Sets the given track as imported or not.
    */
-  public final fun trackSetImported(trackIdx: Int, imported: Boolean): Unit {
+  public final fun trackSetImported(trackIdx: Int, imported: Boolean) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to imported)
     TransferContext.callMethod(ptr, MethodBindings.trackSetImportedPtr, NIL)
   }
@@ -253,7 +238,7 @@ public open class Animation : Resource() {
   /**
    * Enables/disables the given track. Tracks are enabled by default.
    */
-  public final fun trackSetEnabled(trackIdx: Int, enabled: Boolean): Unit {
+  public final fun trackSetEnabled(trackIdx: Int, enabled: Boolean) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.trackSetEnabledPtr, NIL)
   }
@@ -320,8 +305,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be
-   * the index of a 3D position track.
+   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be the index of a 3D position track.
    */
   @JvmOverloads
   public final fun positionTrackInterpolate(
@@ -335,8 +319,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be
-   * the index of a 3D rotation track.
+   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be the index of a 3D rotation track.
    */
   @JvmOverloads
   public final fun rotationTrackInterpolate(
@@ -350,8 +333,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the
-   * index of a 3D scale track.
+   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the index of a 3D scale track.
    */
   @JvmOverloads
   public final fun scaleTrackInterpolate(
@@ -365,8 +347,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must
-   * be the index of a blend shape track.
+   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must be the index of a blend shape track.
    */
   @JvmOverloads
   public final fun blendShapeTrackInterpolate(
@@ -397,7 +378,7 @@ public open class Animation : Resource() {
   /**
    * Removes a key by index in a given track.
    */
-  public final fun trackRemoveKey(trackIdx: Int, keyIdx: Int): Unit {
+  public final fun trackRemoveKey(trackIdx: Int, keyIdx: Int) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.trackRemoveKeyPtr, NIL)
   }
@@ -405,7 +386,7 @@ public open class Animation : Resource() {
   /**
    * Removes a key at [time] in a given track.
    */
-  public final fun trackRemoveKeyAtTime(trackIdx: Int, time: Double): Unit {
+  public final fun trackRemoveKeyAtTime(trackIdx: Int, time: Double) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.trackRemoveKeyAtTimePtr, NIL)
   }
@@ -417,20 +398,19 @@ public open class Animation : Resource() {
     trackIdx: Int,
     key: Int,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to key.toLong(), ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.trackSetKeyValuePtr, NIL)
   }
 
   /**
-   * Sets the transition curve (easing) for a specific key (see the built-in math function
-   * [@GlobalScope.ease]).
+   * Sets the transition curve (easing) for a specific key (see the built-in math function [@GlobalScope.ease]).
    */
   public final fun trackSetKeyTransition(
     trackIdx: Int,
     keyIdx: Int,
     transition: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to transition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.trackSetKeyTransitionPtr, NIL)
   }
@@ -442,14 +422,13 @@ public open class Animation : Resource() {
     trackIdx: Int,
     keyIdx: Int,
     time: Double,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.trackSetKeyTimePtr, NIL)
   }
 
   /**
-   * Returns the transition curve (easing) for a specific key (see the built-in math function
-   * [@GlobalScope.ease]).
+   * Returns the transition curve (easing) for a specific key (see the built-in math function [@GlobalScope.ease]).
    */
   public final fun trackGetKeyTransition(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -485,17 +464,13 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time
-   * is given.
+   * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.
    *
    * If [limit] is `true`, it does not return keys outside the animation range.
    *
-   * If [backward] is `true`, the direction is reversed in methods that rely on one directional
-   * processing.
+   * If [backward] is `true`, the direction is reversed in methods that rely on one directional processing.
    *
-   * For example, in case [findMode] is [FIND_MODE_NEAREST], if there is no key in the current
-   * position just after seeked, the first key found is retrieved by searching before the position, but
-   * if [backward] is `true`, the first key found is retrieved after the position.
+   * For example, in case [findMode] is [FIND_MODE_NEAREST], if there is no key in the current position just after seeked, the first key found is retrieved by searching before the position, but if [backward] is `true`, the first key found is retrieved after the position.
    */
   @JvmOverloads
   public final fun trackFindKey(
@@ -513,8 +488,7 @@ public open class Animation : Resource() {
   /**
    * Sets the interpolation type of a given track.
    */
-  public final fun trackSetInterpolationType(trackIdx: Int, interpolation: InterpolationType):
-      Unit {
+  public final fun trackSetInterpolationType(trackIdx: Int, interpolation: InterpolationType) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to interpolation.id)
     TransferContext.callMethod(ptr, MethodBindings.trackSetInterpolationTypePtr, NIL)
   }
@@ -531,14 +505,13 @@ public open class Animation : Resource() {
   /**
    * If `true`, the track at [trackIdx] wraps the interpolation loop.
    */
-  public final fun trackSetInterpolationLoopWrap(trackIdx: Int, interpolation: Boolean): Unit {
+  public final fun trackSetInterpolationLoopWrap(trackIdx: Int, interpolation: Boolean) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to interpolation)
     TransferContext.callMethod(ptr, MethodBindings.trackSetInterpolationLoopWrapPtr, NIL)
   }
 
   /**
-   * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the
-   * interpolation loop by default.
+   * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the interpolation loop by default.
    */
   public final fun trackGetInterpolationLoopWrap(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
@@ -558,7 +531,7 @@ public open class Animation : Resource() {
   /**
    * Sets the update mode (see [UpdateMode]) of a value track.
    */
-  public final fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
+  public final fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.valueTrackSetUpdateModePtr, NIL)
   }
@@ -573,12 +546,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index
-   * of a value track.
+   * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index of a value track.
    *
-   * A [backward] mainly affects the direction of key retrieval of the track with [UPDATE_DISCRETE]
-   * converted by [AnimationMixer.ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to match the
-   * result with [trackFindKey].
+   * A [backward] mainly affects the direction of key retrieval of the track with [UPDATE_DISCRETE] converted by [AnimationMixer.ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to match the result with [trackFindKey].
    */
   @JvmOverloads
   public final fun valueTrackInterpolate(
@@ -610,11 +580,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of
-   * a Bezier Track.
+   * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of a Bezier Track.
    *
-   * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the
-   * right-side one, while [value] is the actual value at this point.
+   * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the right-side one, while [value] is the actual value at this point.
    */
   @JvmOverloads
   public final fun bezierTrackInsertKey(
@@ -630,21 +598,19 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the
-   * index of a Bezier Track.
+   * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the index of a Bezier Track.
    */
   public final fun bezierTrackSetKeyValue(
     trackIdx: Int,
     keyIdx: Int,
     `value`: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.bezierTrackSetKeyValuePtr, NIL)
   }
 
   /**
-   * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must
-   * be the index of a Bezier Track.
+   * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
   @JvmOverloads
   public final fun bezierTrackSetKeyInHandle(
@@ -652,14 +618,13 @@ public open class Animation : Resource() {
     keyIdx: Int,
     inHandle: Vector2,
     balancedValueTimeRatio: Float = 1.0f,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), VECTOR2 to inHandle, DOUBLE to balancedValueTimeRatio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.bezierTrackSetKeyInHandlePtr, NIL)
   }
 
   /**
-   * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must
-   * be the index of a Bezier Track.
+   * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
   @JvmOverloads
   public final fun bezierTrackSetKeyOutHandle(
@@ -667,14 +632,13 @@ public open class Animation : Resource() {
     keyIdx: Int,
     outHandle: Vector2,
     balancedValueTimeRatio: Float = 1.0f,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), VECTOR2 to outHandle, DOUBLE to balancedValueTimeRatio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.bezierTrackSetKeyOutHandlePtr, NIL)
   }
 
   /**
-   * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a
-   * Bezier Track.
+   * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
    */
   public final fun bezierTrackGetKeyValue(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -683,8 +647,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
-   * Bezier Track.
+   * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
    */
   public final fun bezierTrackGetKeyInHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -693,8 +656,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
-   * Bezier Track.
+   * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
    */
   public final fun bezierTrackGetKeyOutHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -703,8 +665,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the
-   * index of a Bezier Track.
+   * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the index of a Bezier Track.
    */
   public final fun bezierTrackInterpolate(trackIdx: Int, time: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
@@ -713,11 +674,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of
-   * an Audio Track.
+   * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of an Audio Track.
    *
-   * [stream] is the [AudioStream] resource to play. [startOffset] is the number of seconds cut off
-   * at the beginning of the audio stream, while [endOffset] is at the ending.
+   * [stream] is the [AudioStream] resource to play. [startOffset] is the number of seconds cut off at the beginning of the audio stream, while [endOffset] is at the ending.
    */
   @JvmOverloads
   public final fun audioTrackInsertKey(
@@ -733,47 +692,43 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the
-   * index of an Audio Track.
+   * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the index of an Audio Track.
    */
   public final fun audioTrackSetKeyStream(
     trackIdx: Int,
     keyIdx: Int,
     stream: Resource?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.audioTrackSetKeyStreamPtr, NIL)
   }
 
   /**
-   * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must
-   * be the index of an Audio Track.
+   * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be the index of an Audio Track.
    */
   public final fun audioTrackSetKeyStartOffset(
     trackIdx: Int,
     keyIdx: Int,
     offset: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.audioTrackSetKeyStartOffsetPtr, NIL)
   }
 
   /**
-   * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be
-   * the index of an Audio Track.
+   * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be the index of an Audio Track.
    */
   public final fun audioTrackSetKeyEndOffset(
     trackIdx: Int,
     keyIdx: Int,
     offset: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.audioTrackSetKeyEndOffsetPtr, NIL)
   }
 
   /**
-   * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of
-   * an Audio Track.
+   * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
    */
   public final fun audioTrackGetKeyStream(trackIdx: Int, keyIdx: Int): Resource? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -782,8 +737,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
-   * an Audio Track.
+   * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
    *
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
@@ -794,8 +748,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
-   * an Audio Track.
+   * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
    *
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
@@ -806,10 +759,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets whether the track will be blended with other animations. If `true`, the audio playback
-   * volume changes depending on the blend value.
+   * Sets whether the track will be blended with other animations. If `true`, the audio playback volume changes depending on the blend value.
    */
-  public final fun audioTrackSetUseBlend(trackIdx: Int, enable: Boolean): Unit {
+  public final fun audioTrackSetUseBlend(trackIdx: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.audioTrackSetUseBlendPtr, NIL)
   }
@@ -824,8 +776,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
-   * the index of an Animation Track.
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
    */
   public final fun animationTrackInsertKey(
     trackIdx: Int,
@@ -838,21 +789,19 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
-   * an Animation Track.
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of an Animation Track.
    */
   public final fun animationTrackSetKeyAnimation(
     trackIdx: Int,
     keyIdx: Int,
     animation: StringName,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), STRING_NAME to animation)
     TransferContext.callMethod(ptr, MethodBindings.animationTrackSetKeyAnimationPtr, NIL)
   }
 
   /**
-   * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index
-   * of an Animation Track.
+   * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index of an Animation Track.
    */
   public final fun animationTrackGetKeyAnimation(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -863,7 +812,7 @@ public open class Animation : Resource() {
   /**
    * Adds a marker to this Animation.
    */
-  public final fun addMarker(name: StringName, time: Double): Unit {
+  public final fun addMarker(name: StringName, time: Double) {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.addMarkerPtr, NIL)
   }
@@ -871,7 +820,7 @@ public open class Animation : Resource() {
   /**
    * Removes the marker with the given name from this Animation.
    */
-  public final fun removeMarker(name: StringName): Unit {
+  public final fun removeMarker(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeMarkerPtr, NIL)
   }
@@ -895,8 +844,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the closest marker that comes after the given time. If no such marker exists, an empty
-   * string is returned.
+   * Returns the closest marker that comes after the given time. If no such marker exists, an empty string is returned.
    */
   public final fun getNextMarker(time: Double): StringName {
     TransferContext.writeArguments(DOUBLE to time)
@@ -905,8 +853,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the closest marker that comes before the given time. If no such marker exists, an empty
-   * string is returned.
+   * Returns the closest marker that comes before the given time. If no such marker exists, an empty string is returned.
    */
   public final fun getPrevMarker(time: Double): StringName {
     TransferContext.writeArguments(DOUBLE to time)
@@ -944,12 +891,12 @@ public open class Animation : Resource() {
   /**
    * Sets the given marker's color.
    */
-  public final fun setMarkerColor(name: StringName, color: Color): Unit {
+  public final fun setMarkerColor(name: StringName, color: Color) {
     TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setMarkerColorPtr, NIL)
   }
 
-  public final fun setLength(timeSec: Float): Unit {
+  public final fun setLength(timeSec: Float) {
     TransferContext.writeArguments(DOUBLE to timeSec.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
   }
@@ -960,7 +907,7 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLoopMode(loopMode: LoopMode): Unit {
+  public final fun setLoopMode(loopMode: LoopMode) {
     TransferContext.writeArguments(LONG to loopMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
   }
@@ -971,7 +918,7 @@ public open class Animation : Resource() {
     return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStep(sizeSec: Float): Unit {
+  public final fun setStep(sizeSec: Float) {
     TransferContext.writeArguments(DOUBLE to sizeSec.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setStepPtr, NIL)
   }
@@ -985,7 +932,7 @@ public open class Animation : Resource() {
   /**
    * Clear the animation (clear all tracks and reset all).
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -993,41 +940,35 @@ public open class Animation : Resource() {
   /**
    * Adds a new track to [toAnimation] that is a copy of the given track from this animation.
    */
-  public final fun copyTrack(trackIdx: Int, toAnimation: Animation?): Unit {
+  public final fun copyTrack(trackIdx: Int, toAnimation: Animation?) {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)
     TransferContext.callMethod(ptr, MethodBindings.copyTrackPtr, NIL)
   }
 
   /**
-   * Optimize the animation and all its tracks in-place. This will preserve only as many keys as are
-   * necessary to keep the animation within the specified bounds.
+   * Optimize the animation and all its tracks in-place. This will preserve only as many keys as are necessary to keep the animation within the specified bounds.
    */
   @JvmOverloads
   public final fun optimize(
     allowedVelocityErr: Float = 0.01f,
     allowedAngularErr: Float = 0.01f,
     precision: Int = 3,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(DOUBLE to allowedVelocityErr.toDouble(), DOUBLE to allowedAngularErr.toDouble(), LONG to precision.toLong())
     TransferContext.callMethod(ptr, MethodBindings.optimizePtr, NIL)
   }
 
   /**
-   * Compress the animation and all its tracks in-place. This will make [trackIsCompressed] return
-   * `true` once called on this [Animation]. Compressed tracks require less memory to be played, and
-   * are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D
-   * software. Compression is lossy, but the difference is usually not noticeable in real world
-   * conditions.
+   * Compress the animation and all its tracks in-place. This will make [trackIsCompressed] return `true` once called on this [Animation]. Compressed tracks require less memory to be played, and are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D software. Compression is lossy, but the difference is usually not noticeable in real world conditions.
    *
-   * **Note:** Compressed tracks have various limitations (such as not being editable from the
-   * editor), so only use compressed animations if you actually need them.
+   * **Note:** Compressed tracks have various limitations (such as not being editable from the editor), so only use compressed animations if you actually need them.
    */
   @JvmOverloads
   public final fun compress(
     pageSize: Long = 8192,
     fps: Long = 120,
     splitTolerance: Float = 4.0f,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to pageSize, LONG to fps, DOUBLE to splitTolerance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.compressPtr, NIL)
   }
@@ -1039,24 +980,19 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
-   * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
-   * properties or bones must append their name after the path, separated by `":"`.
+   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.
    *
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
-  public final fun trackSetPath(trackIdx: Int, path: String): Unit =
-      trackSetPath(trackIdx, path.asCachedNodePath())
+  public final fun trackSetPath(trackIdx: Int, path: String): Unit = trackSetPath(trackIdx, path.asCachedNodePath())
 
   /**
    * Returns the index of the specified track. If the track is not found, return -1.
    */
-  public final fun findTrack(path: String, type: TrackType): Int =
-      findTrack(path.asCachedNodePath(), type)
+  public final fun findTrack(path: String, type: TrackType): Int = findTrack(path.asCachedNodePath(), type)
 
   /**
-   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
-   * the index of an Animation Track.
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
    */
   public final fun animationTrackInsertKey(
     trackIdx: Int,
@@ -1065,8 +1001,7 @@ public open class Animation : Resource() {
   ): Int = animationTrackInsertKey(trackIdx, time, animation.asCachedStringName())
 
   /**
-   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
-   * an Animation Track.
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of an Animation Track.
    */
   public final fun animationTrackSetKeyAnimation(
     trackIdx: Int,
@@ -1077,8 +1012,7 @@ public open class Animation : Resource() {
   /**
    * Adds a marker to this Animation.
    */
-  public final fun addMarker(name: String, time: Double): Unit =
-      addMarker(name.asCachedStringName(), time)
+  public final fun addMarker(name: String, time: Double): Unit = addMarker(name.asCachedStringName(), time)
 
   /**
    * Removes the marker with the given name from this Animation.
@@ -1103,16 +1037,13 @@ public open class Animation : Resource() {
   /**
    * Sets the given marker's color.
    */
-  public final fun setMarkerColor(name: String, color: Color): Unit =
-      setMarkerColor(name.asCachedStringName(), color)
+  public final fun setMarkerColor(name: String, color: Color): Unit = setMarkerColor(name.asCachedStringName(), color)
 
   public enum class TrackType(
     id: Long,
   ) {
     /**
-     * Value tracks set values in node properties, but only those which can be interpolated. For 3D
-     * position/rotation/scale, using the dedicated [TYPE_POSITION_3D], [TYPE_ROTATION_3D] and
-     * [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
+     * Value tracks set values in node properties, but only those which can be interpolated. For 3D position/rotation/scale, using the dedicated [TYPE_POSITION_3D], [TYPE_ROTATION_3D] and [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
      */
     TYPE_VALUE(0),
     /**
@@ -1136,13 +1067,11 @@ public open class Animation : Resource() {
      */
     TYPE_METHOD(5),
     /**
-     * Bezier tracks are used to interpolate a value using custom curves. They can also be used to
-     * animate sub-properties of vectors and colors (e.g. alpha value of a [Color]).
+     * Bezier tracks are used to interpolate a value using custom curves. They can also be used to animate sub-properties of vectors and colors (e.g. alpha value of a [Color]).
      */
     TYPE_BEZIER(6),
     /**
-     * Audio tracks are used to play an audio stream with either type of [AudioStreamPlayer]. The
-     * stream can be trimmed and previewed in the animation.
+     * Audio tracks are used to play an audio stream with either type of [AudioStreamPlayer]. The stream can be trimmed and previewed in the animation.
      */
     TYPE_AUDIO(7),
     /**
@@ -1173,9 +1102,7 @@ public open class Animation : Resource() {
      */
     LINEAR(1),
     /**
-     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to
-     * interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external
-     * software, even if it requires using a higher animation framerate in return.
+     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external software, even if it requires using a higher animation framerate in return.
      */
     CUBIC(2),
     /**
@@ -1214,9 +1141,7 @@ public open class Animation : Resource() {
      */
     DISCRETE(1),
     /**
-     * Same as [UPDATE_CONTINUOUS] but works as a flag to capture the value of the current object
-     * and perform interpolation in some methods. See also [AnimationMixer.capture],
-     * [AnimationPlayer.playbackAutoCapture], and [AnimationPlayer.playWithCapture].
+     * Same as [UPDATE_CONTINUOUS] but works as a flag to capture the value of the current object and perform interpolation in some methods. See also [AnimationMixer.capture], [AnimationPlayer.playbackAutoCapture], and [AnimationPlayer.playWithCapture].
      */
     CAPTURE(2),
     ;
@@ -1239,8 +1164,7 @@ public open class Animation : Resource() {
      */
     NONE(0),
     /**
-     * At both ends of the animation, the animation will be repeated without changing the playback
-     * direction.
+     * At both ends of the animation, the animation will be repeated without changing the playback direction.
      */
     LINEAR(1),
     /**
@@ -1267,13 +1191,11 @@ public open class Animation : Resource() {
      */
     NONE(0),
     /**
-     * This flag indicates that the animation has reached the end of the animation and just after
-     * loop processed.
+     * This flag indicates that the animation has reached the end of the animation and just after loop processed.
      */
     END(1),
     /**
-     * This flag indicates that the animation has reached the start of the animation and just after
-     * loop processed.
+     * This flag indicates that the animation has reached the start of the animation and just after loop processed.
      */
     START(2),
     ;
@@ -1319,257 +1241,258 @@ public open class Animation : Resource() {
 
   public object MethodBindings {
     internal val addTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "add_track", 3843682357)
+        TypeManager.getMethodBindPtr("Animation", "add_track", 3_843_682_357)
 
     internal val removeTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "remove_track", 1286410249)
+        TypeManager.getMethodBindPtr("Animation", "remove_track", 1_286_410_249)
 
     internal val getTrackCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_track_count", 3905245786)
+        TypeManager.getMethodBindPtr("Animation", "get_track_count", 3_905_245_786)
 
     internal val trackGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_type", 3445944217)
+        TypeManager.getMethodBindPtr("Animation", "track_get_type", 3_445_944_217)
 
     internal val trackGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_path", 408788394)
+        TypeManager.getMethodBindPtr("Animation", "track_get_path", 408_788_394)
 
     internal val trackSetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_path", 2761262315)
+        TypeManager.getMethodBindPtr("Animation", "track_set_path", 2_761_262_315)
 
     internal val findTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "find_track", 245376003)
+        TypeManager.getMethodBindPtr("Animation", "find_track", 245_376_003)
 
     internal val trackMoveUpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_move_up", 1286410249)
+        TypeManager.getMethodBindPtr("Animation", "track_move_up", 1_286_410_249)
 
     internal val trackMoveDownPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_move_down", 1286410249)
+        TypeManager.getMethodBindPtr("Animation", "track_move_down", 1_286_410_249)
 
     internal val trackMoveToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_move_to", 3937882851)
+        TypeManager.getMethodBindPtr("Animation", "track_move_to", 3_937_882_851)
 
     internal val trackSwapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_swap", 3937882851)
+        TypeManager.getMethodBindPtr("Animation", "track_swap", 3_937_882_851)
 
     internal val trackSetImportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_imported", 300928843)
+        TypeManager.getMethodBindPtr("Animation", "track_set_imported", 300_928_843)
 
     internal val trackIsImportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_is_imported", 1116898809)
+        TypeManager.getMethodBindPtr("Animation", "track_is_imported", 1_116_898_809)
 
     internal val trackSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_enabled", 300928843)
+        TypeManager.getMethodBindPtr("Animation", "track_set_enabled", 300_928_843)
 
     internal val trackIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_is_enabled", 1116898809)
+        TypeManager.getMethodBindPtr("Animation", "track_is_enabled", 1_116_898_809)
 
     internal val positionTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "position_track_insert_key", 2540608232)
+        TypeManager.getMethodBindPtr("Animation", "position_track_insert_key", 2_540_608_232)
 
     internal val rotationTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "rotation_track_insert_key", 4165004800)
+        TypeManager.getMethodBindPtr("Animation", "rotation_track_insert_key", 4_165_004_800)
 
     internal val scaleTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "scale_track_insert_key", 2540608232)
+        TypeManager.getMethodBindPtr("Animation", "scale_track_insert_key", 2_540_608_232)
 
     internal val blendShapeTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_insert_key", 1534913637)
+        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_insert_key", 1_534_913_637)
 
     internal val positionTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "position_track_interpolate", 3530011197)
+        TypeManager.getMethodBindPtr("Animation", "position_track_interpolate", 3_530_011_197)
 
     internal val rotationTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "rotation_track_interpolate", 2915876792)
+        TypeManager.getMethodBindPtr("Animation", "rotation_track_interpolate", 2_915_876_792)
 
     internal val scaleTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "scale_track_interpolate", 3530011197)
+        TypeManager.getMethodBindPtr("Animation", "scale_track_interpolate", 3_530_011_197)
 
     internal val blendShapeTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_interpolate", 2482365182)
+        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_interpolate", 2_482_365_182)
 
     internal val trackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_insert_key", 808952278)
+        TypeManager.getMethodBindPtr("Animation", "track_insert_key", 808_952_278)
 
     internal val trackRemoveKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_remove_key", 3937882851)
+        TypeManager.getMethodBindPtr("Animation", "track_remove_key", 3_937_882_851)
 
     internal val trackRemoveKeyAtTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_remove_key_at_time", 1602489585)
+        TypeManager.getMethodBindPtr("Animation", "track_remove_key_at_time", 1_602_489_585)
 
     internal val trackSetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_key_value", 2060538656)
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_value", 2_060_538_656)
 
     internal val trackSetKeyTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_key_transition", 3506521499)
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_transition", 3_506_521_499)
 
     internal val trackSetKeyTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_key_time", 3506521499)
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_time", 3_506_521_499)
 
     internal val trackGetKeyTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_transition", 3085491603)
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_transition", 3_085_491_603)
 
     internal val trackGetKeyCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_count", 923996154)
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_count", 923_996_154)
 
     internal val trackGetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_value", 678354945)
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_value", 678_354_945)
 
     internal val trackGetKeyTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_time", 3085491603)
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_time", 3_085_491_603)
 
     internal val trackFindKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_find_key", 4230953007)
+        TypeManager.getMethodBindPtr("Animation", "track_find_key", 4_230_953_007)
 
     internal val trackSetInterpolationTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_type", 4112932513)
+        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_type", 4_112_932_513)
 
     internal val trackGetInterpolationTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_type", 1530756894)
+        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_type", 1_530_756_894)
 
     internal val trackSetInterpolationLoopWrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_loop_wrap", 300928843)
+        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_loop_wrap", 300_928_843)
 
     internal val trackGetInterpolationLoopWrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_loop_wrap", 1116898809)
+        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_loop_wrap", 1_116_898_809)
 
     internal val trackIsCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_is_compressed", 1116898809)
+        TypeManager.getMethodBindPtr("Animation", "track_is_compressed", 1_116_898_809)
 
     internal val valueTrackSetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "value_track_set_update_mode", 2854058312)
+        TypeManager.getMethodBindPtr("Animation", "value_track_set_update_mode", 2_854_058_312)
 
     internal val valueTrackGetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "value_track_get_update_mode", 1440326473)
+        TypeManager.getMethodBindPtr("Animation", "value_track_get_update_mode", 1_440_326_473)
 
     internal val valueTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "value_track_interpolate", 747269075)
+        TypeManager.getMethodBindPtr("Animation", "value_track_interpolate", 747_269_075)
 
     internal val methodTrackGetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "method_track_get_name", 351665558)
+        TypeManager.getMethodBindPtr("Animation", "method_track_get_name", 351_665_558)
 
     internal val methodTrackGetParamsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "method_track_get_params", 2345056839)
+        TypeManager.getMethodBindPtr("Animation", "method_track_get_params", 2_345_056_839)
 
     internal val bezierTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_insert_key", 3656773645)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_insert_key", 3_656_773_645)
 
     internal val bezierTrackSetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_value", 3506521499)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_value", 3_506_521_499)
 
     internal val bezierTrackSetKeyInHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_in_handle", 1719223284)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_in_handle", 1_719_223_284)
 
     internal val bezierTrackSetKeyOutHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_out_handle", 1719223284)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_out_handle", 1_719_223_284)
 
     internal val bezierTrackGetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_value", 3085491603)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_value", 3_085_491_603)
 
     internal val bezierTrackGetKeyInHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_in_handle", 3016396712)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_in_handle", 3_016_396_712)
 
     internal val bezierTrackGetKeyOutHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_out_handle", 3016396712)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_out_handle", 3_016_396_712)
 
     internal val bezierTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_interpolate", 1900462983)
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_interpolate", 1_900_462_983)
 
     internal val audioTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_insert_key", 4021027286)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_insert_key", 4_021_027_286)
 
     internal val audioTrackSetKeyStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_stream", 3886397084)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_stream", 3_886_397_084)
 
     internal val audioTrackSetKeyStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_start_offset", 3506521499)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_start_offset", 3_506_521_499)
 
     internal val audioTrackSetKeyEndOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_end_offset", 3506521499)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_end_offset", 3_506_521_499)
 
     internal val audioTrackGetKeyStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_stream", 635277205)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_stream", 635_277_205)
 
     internal val audioTrackGetKeyStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_start_offset", 3085491603)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_start_offset", 3_085_491_603)
 
     internal val audioTrackGetKeyEndOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_end_offset", 3085491603)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_end_offset", 3_085_491_603)
 
     internal val audioTrackSetUseBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_use_blend", 300928843)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_use_blend", 300_928_843)
 
     internal val audioTrackIsUseBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_is_use_blend", 1116898809)
+        TypeManager.getMethodBindPtr("Animation", "audio_track_is_use_blend", 1_116_898_809)
 
     internal val animationTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "animation_track_insert_key", 158676774)
+        TypeManager.getMethodBindPtr("Animation", "animation_track_insert_key", 158_676_774)
 
     internal val animationTrackSetKeyAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "animation_track_set_key_animation", 117615382)
+        TypeManager.getMethodBindPtr("Animation", "animation_track_set_key_animation", 117_615_382)
 
     internal val animationTrackGetKeyAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "animation_track_get_key_animation", 351665558)
+        TypeManager.getMethodBindPtr("Animation", "animation_track_get_key_animation", 351_665_558)
 
     internal val addMarkerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "add_marker", 4135858297)
+        TypeManager.getMethodBindPtr("Animation", "add_marker", 4_135_858_297)
 
     internal val removeMarkerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "remove_marker", 3304788590)
+        TypeManager.getMethodBindPtr("Animation", "remove_marker", 3_304_788_590)
 
     internal val hasMarkerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "has_marker", 2619796661)
+        TypeManager.getMethodBindPtr("Animation", "has_marker", 2_619_796_661)
 
     internal val getMarkerAtTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_marker_at_time", 4079494655)
+        TypeManager.getMethodBindPtr("Animation", "get_marker_at_time", 4_079_494_655)
 
     internal val getNextMarkerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_next_marker", 4079494655)
+        TypeManager.getMethodBindPtr("Animation", "get_next_marker", 4_079_494_655)
 
     internal val getPrevMarkerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_prev_marker", 4079494655)
+        TypeManager.getMethodBindPtr("Animation", "get_prev_marker", 4_079_494_655)
 
     internal val getMarkerTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_marker_time", 2349060816)
+        TypeManager.getMethodBindPtr("Animation", "get_marker_time", 2_349_060_816)
 
     internal val getMarkerNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_marker_names", 1139954409)
+        TypeManager.getMethodBindPtr("Animation", "get_marker_names", 1_139_954_409)
 
     internal val getMarkerColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_marker_color", 3742943038)
+        TypeManager.getMethodBindPtr("Animation", "get_marker_color", 3_742_943_038)
 
     internal val setMarkerColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "set_marker_color", 4260178595)
+        TypeManager.getMethodBindPtr("Animation", "set_marker_color", 4_260_178_595)
 
     internal val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "set_length", 373806689)
+        TypeManager.getMethodBindPtr("Animation", "set_length", 373_806_689)
 
     internal val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_length", 1740695150)
+        TypeManager.getMethodBindPtr("Animation", "get_length", 1_740_695_150)
 
     internal val setLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "set_loop_mode", 3155355575)
+        TypeManager.getMethodBindPtr("Animation", "set_loop_mode", 3_155_355_575)
 
     internal val getLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_loop_mode", 1988889481)
+        TypeManager.getMethodBindPtr("Animation", "get_loop_mode", 1_988_889_481)
 
     internal val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "set_step", 373806689)
+        TypeManager.getMethodBindPtr("Animation", "set_step", 373_806_689)
 
     internal val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_step", 1740695150)
+        TypeManager.getMethodBindPtr("Animation", "get_step", 1_740_695_150)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "clear", 3218959716)
+    internal val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "clear", 3_218_959_716)
 
     internal val copyTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "copy_track", 148001024)
+        TypeManager.getMethodBindPtr("Animation", "copy_track", 148_001_024)
 
     internal val optimizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "optimize", 3303583852)
+        TypeManager.getMethodBindPtr("Animation", "optimize", 3_303_583_852)
 
     internal val compressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "compress", 3608408117)
+        TypeManager.getMethodBindPtr("Animation", "compress", 3_608_408_117)
 
     internal val isCaptureIncludedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "is_capture_included", 36873697)
+        TypeManager.getMethodBindPtr("Animation", "is_capture_included", 36_873_697)
   }
 }

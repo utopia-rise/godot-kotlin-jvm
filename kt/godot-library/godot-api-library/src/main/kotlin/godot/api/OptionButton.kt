@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,36 +20,29 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed.
- * The item selected becomes the "current" item and is displayed as the button text.
+ * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed. The item selected becomes the "current" item and is displayed as the button text.
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
- * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
  *
- * **Note:** The [Button.text] and [Button.icon] properties are set automatically based on the
- * selected item. They shouldn't be changed manually.
+ * **Note:** The [Button.text] and [Button.icon] properties are set automatically based on the selected item. They shouldn't be changed manually.
  */
 @GodotBaseType
 public open class OptionButton : Button() {
   /**
-   * Emitted when the current item has been changed by the user. The index of the item selected is
-   * passed as argument.
+   * Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.
    *
    * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by Signal1
 
   /**
-   * Emitted when the user navigates to an item using the [ProjectSettings.input/uiUp] or
-   * [ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as
-   * argument.
+   * Emitted when the user navigates to an item using the [ProjectSettings.input/uiUp] or [ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as argument.
    */
   public val itemFocused: Signal1<Long> by Signal1
 
@@ -64,11 +54,9 @@ public open class OptionButton : Button() {
     get() = getSelected()
 
   /**
-   * If `true`, minimum size will be determined by the longest item's text, instead of the currently
-   * selected one's.
+   * If `true`, minimum size will be determined by the longest item's text, instead of the currently selected one's.
    *
-   * **Note:** For performance reasons, the minimum size doesn't update immediately when adding,
-   * removing or modifying items.
+   * **Note:** For performance reasons, the minimum size doesn't update immediately when adding, removing or modifying items.
    */
   public final inline var fitToLongestItem: Boolean
     @JvmName("fitToLongestItemProperty")
@@ -100,30 +88,28 @@ public open class OptionButton : Button() {
       setItemCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(433, scriptIndex)
   }
 
   /**
-   * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index
-   * will be used as the item's ID. New items are appended at the end.
+   * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
    */
   @JvmOverloads
-  public final fun addItem(label: String, id: Int = -1): Unit {
+  public final fun addItem(label: String, id: Int = -1) {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addItemPtr, NIL)
   }
 
   /**
-   * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed,
-   * the item index will be used as the item's ID. New items are appended at the end.
+   * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
    */
   @JvmOverloads
   public final fun addIconItem(
     texture: Texture2D?,
     label: String,
     id: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addIconItemPtr, NIL)
   }
@@ -131,7 +117,7 @@ public open class OptionButton : Button() {
   /**
    * Sets the text of the item at index [idx].
    */
-  public final fun setItemText(idx: Int, text: String): Unit {
+  public final fun setItemText(idx: Int, text: String) {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextPtr, NIL)
   }
@@ -139,7 +125,7 @@ public open class OptionButton : Button() {
   /**
    * Sets the icon of the item at index [idx].
    */
-  public final fun setItemIcon(idx: Int, texture: Texture2D?): Unit {
+  public final fun setItemIcon(idx: Int, texture: Texture2D?) {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -147,10 +133,9 @@ public open class OptionButton : Button() {
   /**
    * Sets whether the item at index [idx] is disabled.
    *
-   * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the
-   * current selected item is set as disabled, it will remain selected.
+   * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the current selected item is set as disabled, it will remain selected.
    */
-  public final fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
+  public final fun setItemDisabled(idx: Int, disabled: Boolean) {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setItemDisabledPtr, NIL)
   }
@@ -158,16 +143,15 @@ public open class OptionButton : Button() {
   /**
    * Sets the ID of the item at index [idx].
    */
-  public final fun setItemId(idx: Int, id: Int): Unit {
+  public final fun setItemId(idx: Int, id: Int) {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemIdPtr, NIL)
   }
 
   /**
-   * Sets the metadata of an item. Metadata may be of any type and can be used to store extra
-   * information about an item, such as an external string ID.
+   * Sets the metadata of an item. Metadata may be of any type and can be used to store extra information about an item, such as an external string ID.
    */
-  public final fun setItemMetadata(idx: Int, metadata: Any?): Unit {
+  public final fun setItemMetadata(idx: Int, metadata: Any?) {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(ptr, MethodBindings.setItemMetadataPtr, NIL)
   }
@@ -175,7 +159,7 @@ public open class OptionButton : Button() {
   /**
    * Sets the tooltip of the item at index [idx].
    */
-  public final fun setItemTooltip(idx: Int, tooltip: String): Unit {
+  public final fun setItemTooltip(idx: Int, tooltip: String) {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setItemTooltipPtr, NIL)
   }
@@ -217,8 +201,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Retrieves the metadata of an item. Metadata may be any type and can be used to store extra
-   * information about an item, such as an external string ID.
+   * Retrieves the metadata of an item. Metadata may be any type and can be used to store extra information about an item, such as an external string ID.
    */
   public final fun getItemMetadata(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -254,12 +237,10 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds a separator to the list of items. Separators help to group items, and can optionally be
-   * given a [text] header. A separator also gets an index assigned, and is appended at the end of the
-   * item list.
+   * Adds a separator to the list of items. Separators help to group items, and can optionally be given a [text] header. A separator also gets an index assigned, and is appended at the end of the item list.
    */
   @JvmOverloads
-  public final fun addSeparator(text: String = ""): Unit {
+  public final fun addSeparator(text: String = "") {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.addSeparatorPtr, NIL)
   }
@@ -267,18 +248,17 @@ public open class OptionButton : Button() {
   /**
    * Clears all the items in the [OptionButton].
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
-   * Selects an item by index and makes it the current item. This will work even if the item is
-   * disabled.
+   * Selects an item by index and makes it the current item. This will work even if the item is disabled.
    *
    * Passing `-1` as the index deselects any currently selected item.
    */
-  public final fun select(idx: Int): Unit {
+  public final fun select(idx: Int) {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
   }
@@ -310,7 +290,7 @@ public open class OptionButton : Button() {
   /**
    * Removes the item at index [idx].
    */
-  public final fun removeItem(idx: Int): Unit {
+  public final fun removeItem(idx: Int) {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeItemPtr, NIL)
   }
@@ -318,8 +298,7 @@ public open class OptionButton : Button() {
   /**
    * Returns the [PopupMenu] contained in this button.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
@@ -328,15 +307,14 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adjusts popup position and sizing for the [OptionButton], then shows the [PopupMenu]. Prefer
-   * this over using `get_popup().popup()`.
+   * Adjusts popup position and sizing for the [OptionButton], then shows the [PopupMenu]. Prefer this over using `get_popup().popup()`.
    */
-  public final fun showPopup(): Unit {
+  public final fun showPopup() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPopupPtr, NIL)
   }
 
-  public final fun setItemCount(count: Int): Unit {
+  public final fun setItemCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemCountPtr, NIL)
   }
@@ -348,8 +326,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns `true` if this button contains at least one item which is not disabled, or marked as a
-   * separator.
+   * Returns `true` if this button contains at least one item which is not disabled, or marked as a separator.
    */
   public final fun hasSelectableItems(): Boolean {
     TransferContext.writeArguments()
@@ -358,8 +335,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the index of the first item which is not disabled, or marked as a separator. If
-   * [fromLast] is `true`, the items will be searched in reverse order.
+   * Returns the index of the first item which is not disabled, or marked as a separator. If [fromLast] is `true`, the items will be searched in reverse order.
    *
    * Returns `-1` if no item is found.
    */
@@ -370,7 +346,7 @@ public open class OptionButton : Button() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFitToLongestItem(fit: Boolean): Unit {
+  public final fun setFitToLongestItem(fit: Boolean) {
     TransferContext.writeArguments(BOOL to fit)
     TransferContext.callMethod(ptr, MethodBindings.setFitToLongestItemPtr, NIL)
   }
@@ -381,7 +357,7 @@ public open class OptionButton : Button() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowReselect(allow: Boolean): Unit {
+  public final fun setAllowReselect(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowReselectPtr, NIL)
   }
@@ -395,7 +371,7 @@ public open class OptionButton : Button() {
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
-  public final fun setDisableShortcuts(disabled: Boolean): Unit {
+  public final fun setDisableShortcuts(disabled: Boolean) {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
@@ -404,105 +380,105 @@ public open class OptionButton : Button() {
 
   public object MethodBindings {
     internal val addItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "add_item", 2697778442)
+        TypeManager.getMethodBindPtr("OptionButton", "add_item", 2_697_778_442)
 
     internal val addIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "add_icon_item", 3781678508)
+        TypeManager.getMethodBindPtr("OptionButton", "add_icon_item", 3_781_678_508)
 
     internal val setItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_text", 501894301)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_text", 501_894_301)
 
     internal val setItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_icon", 666127730)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_icon", 666_127_730)
 
     internal val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_disabled", 300928843)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_disabled", 300_928_843)
 
     internal val setItemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_id", 3937882851)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_id", 3_937_882_851)
 
     internal val setItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_metadata", 2152698145)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_metadata", 2_152_698_145)
 
     internal val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_tooltip", 501894301)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_tooltip", 501_894_301)
 
     internal val getItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_text", 844755477)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_text", 844_755_477)
 
     internal val getItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_icon", 3536238170)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_icon", 3_536_238_170)
 
     internal val getItemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_id", 923996154)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_id", 923_996_154)
 
     internal val getItemIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_index", 923996154)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_index", 923_996_154)
 
     internal val getItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_metadata", 4227898402)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_metadata", 4_227_898_402)
 
     internal val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_tooltip", 844755477)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_tooltip", 844_755_477)
 
     internal val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "is_item_disabled", 1116898809)
+        TypeManager.getMethodBindPtr("OptionButton", "is_item_disabled", 1_116_898_809)
 
     internal val isItemSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "is_item_separator", 1116898809)
+        TypeManager.getMethodBindPtr("OptionButton", "is_item_separator", 1_116_898_809)
 
     internal val addSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "add_separator", 3005725572)
+        TypeManager.getMethodBindPtr("OptionButton", "add_separator", 3_005_725_572)
 
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("OptionButton", "clear", 3_218_959_716)
 
     internal val selectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "select", 1286410249)
+        TypeManager.getMethodBindPtr("OptionButton", "select", 1_286_410_249)
 
     internal val getSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selected", 3905245786)
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected", 3_905_245_786)
 
     internal val getSelectedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selected_id", 3905245786)
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected_id", 3_905_245_786)
 
     internal val getSelectedMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selected_metadata", 1214101251)
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected_metadata", 1_214_101_251)
 
     internal val removeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "remove_item", 1286410249)
+        TypeManager.getMethodBindPtr("OptionButton", "remove_item", 1_286_410_249)
 
     internal val getPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_popup", 229722558)
+        TypeManager.getMethodBindPtr("OptionButton", "get_popup", 229_722_558)
 
     internal val showPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "show_popup", 3218959716)
+        TypeManager.getMethodBindPtr("OptionButton", "show_popup", 3_218_959_716)
 
     internal val setItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_count", 1286410249)
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_count", 1_286_410_249)
 
     internal val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_count", 3905245786)
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_count", 3_905_245_786)
 
     internal val hasSelectableItemsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "has_selectable_items", 36873697)
+        TypeManager.getMethodBindPtr("OptionButton", "has_selectable_items", 36_873_697)
 
     internal val getSelectableItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selectable_item", 894402480)
+        TypeManager.getMethodBindPtr("OptionButton", "get_selectable_item", 894_402_480)
 
     internal val setFitToLongestItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_fit_to_longest_item", 2586408642)
+        TypeManager.getMethodBindPtr("OptionButton", "set_fit_to_longest_item", 2_586_408_642)
 
     internal val isFitToLongestItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "is_fit_to_longest_item", 36873697)
+        TypeManager.getMethodBindPtr("OptionButton", "is_fit_to_longest_item", 36_873_697)
 
     internal val setAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_allow_reselect", 2586408642)
+        TypeManager.getMethodBindPtr("OptionButton", "set_allow_reselect", 2_586_408_642)
 
     internal val getAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_allow_reselect", 36873697)
+        TypeManager.getMethodBindPtr("OptionButton", "get_allow_reselect", 36_873_697)
 
     internal val setDisableShortcutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_disable_shortcuts", 2586408642)
+        TypeManager.getMethodBindPtr("OptionButton", "set_disable_shortcuts", 2_586_408_642)
   }
 }

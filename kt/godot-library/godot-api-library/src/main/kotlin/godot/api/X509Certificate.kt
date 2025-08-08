@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,19 +14,15 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
- * like any other [Resource].
+ * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved like any other [Resource].
  *
- * They can be used as the server certificate in [StreamPeerTLS.acceptStream] (along with the proper
- * [CryptoKey]), and to specify the only certificate that should be accepted when connecting to a TLS
- * server via [StreamPeerTLS.connectToStream].
+ * They can be used as the server certificate in [StreamPeerTLS.acceptStream] (along with the proper [CryptoKey]), and to specify the only certificate that should be accepted when connecting to a TLS server via [StreamPeerTLS.connectToStream].
  */
 @GodotBaseType
 public open class X509Certificate : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(856, scriptIndex)
   }
 
@@ -52,8 +45,7 @@ public open class X509Certificate : Resource() {
   }
 
   /**
-   * Returns a string representation of the certificate, or an empty string if the certificate is
-   * invalid.
+   * Returns a string representation of the certificate, or an empty string if the certificate is invalid.
    */
   public final fun saveToString(): String {
     TransferContext.writeArguments()
@@ -74,15 +66,15 @@ public open class X509Certificate : Resource() {
 
   public object MethodBindings {
     internal val savePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("X509Certificate", "save", 166001499)
+        TypeManager.getMethodBindPtr("X509Certificate", "save", 166_001_499)
 
     internal val loadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("X509Certificate", "load", 166001499)
+        TypeManager.getMethodBindPtr("X509Certificate", "load", 166_001_499)
 
     internal val saveToStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("X509Certificate", "save_to_string", 2841200299)
+        TypeManager.getMethodBindPtr("X509Certificate", "save_to_string", 2_841_200_299)
 
     internal val loadFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("X509Certificate", "load_from_string", 166001499)
+        TypeManager.getMethodBindPtr("X509Certificate", "load_from_string", 166_001_499)
   }
 }

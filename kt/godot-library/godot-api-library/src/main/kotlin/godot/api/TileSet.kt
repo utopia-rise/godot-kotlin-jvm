@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -38,22 +35,15 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A TileSet is a library of tiles for a [TileMapLayer]. A TileSet handles a list of
- * [TileSetSource], each of them storing a set of tiles.
+ * A TileSet is a library of tiles for a [TileMapLayer]. A TileSet handles a list of [TileSetSource], each of them storing a set of tiles.
  *
- * Tiles can either be from a [TileSetAtlasSource], which renders tiles out of a texture with
- * support for physics, navigation, etc., or from a [TileSetScenesCollectionSource], which exposes
- * scene-based tiles.
+ * Tiles can either be from a [TileSetAtlasSource], which renders tiles out of a texture with support for physics, navigation, etc., or from a [TileSetScenesCollectionSource], which exposes scene-based tiles.
  *
- * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID, and their
- * alternative tile ID.
+ * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID, and their alternative tile ID.
  *
- * A TileSet can be configured so that its tiles expose more or fewer properties. To do so, the
- * TileSet resources use property layers, which you can add or remove depending on your needs.
+ * A TileSet can be configured so that its tiles expose more or fewer properties. To do so, the TileSet resources use property layers, which you can add or remove depending on your needs.
  *
- * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer has
- * dedicated properties (physics layer and mask), so you may add several TileSet physics layers for
- * each type of collision you need.
+ * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer has dedicated properties (physics layer and mask), so you may add several TileSet physics layers for each type of collision you need.
  *
  * See the functions to add new layers for more information.
  */
@@ -71,8 +61,7 @@ public open class TileSet : Resource() {
     }
 
   /**
-   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles
-   * are indexed in the TileMap grid.
+   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid.
    */
   public final inline var tileLayout: TileLayout
     @JvmName("tileLayoutProperty")
@@ -83,8 +72,7 @@ public open class TileSet : Resource() {
     }
 
   /**
-   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset
-   * axis.
+   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis.
    */
   public final inline var tileOffsetAxis: TileOffsetAxis
     @JvmName("tileOffsetAxisProperty")
@@ -95,15 +83,11 @@ public open class TileSet : Resource() {
     }
 
   /**
-   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
-   * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tileSize: Vector2i
@@ -125,7 +109,7 @@ public open class TileSet : Resource() {
       setUvClipping(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(685, scriptIndex)
   }
 
@@ -140,8 +124,7 @@ public open class TileSet : Resource() {
    * tileset.tileSize = myCoreType
    * ``````
    *
-   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
-   * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    */
   @CoreTypeHelper
   public final fun tileSizeMutate(block: Vector2i.() -> Unit): Vector2i = tileSize.apply {
@@ -150,8 +133,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns a new unused source ID. This generated ID is the same that a call to [addSource] would
-   * return.
+   * Returns a new unused source ID. This generated ID is the same that a call to [addSource] would return.
    */
   public final fun getNextSourceId(): Int {
     TransferContext.writeArguments()
@@ -160,13 +142,11 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a [TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its
-   * source ID. Otherwise, a unique identifier is automatically generated.
+   * Adds a [TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
    *
    * The function returns the added source ID or -1 if the source could not be added.
    *
-   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was
-   * attached to another [TileSet], it will be removed from that one.
+   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [TileSet], it will be removed from that one.
    */
   @JvmOverloads
   public final fun addSource(source: TileSetSource?, atlasSourceIdOverride: Int = -1): Int {
@@ -178,7 +158,7 @@ public open class TileSet : Resource() {
   /**
    * Removes the source with the given source ID.
    */
-  public final fun removeSource(sourceId: Int): Unit {
+  public final fun removeSource(sourceId: Int) {
     TransferContext.writeArguments(LONG to sourceId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeSourcePtr, NIL)
   }
@@ -186,7 +166,7 @@ public open class TileSet : Resource() {
   /**
    * Changes a source's ID.
    */
-  public final fun setSourceId(sourceId: Int, newSourceId: Int): Unit {
+  public final fun setSourceId(sourceId: Int, newSourceId: Int) {
     TransferContext.writeArguments(LONG to sourceId.toLong(), LONG to newSourceId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSourceIdPtr, NIL)
   }
@@ -227,7 +207,7 @@ public open class TileSet : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as TileSetSource?)
   }
 
-  public final fun setTileShape(shape: TileShape): Unit {
+  public final fun setTileShape(shape: TileShape) {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setTileShapePtr, NIL)
   }
@@ -238,7 +218,7 @@ public open class TileSet : Resource() {
     return TileShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTileLayout(layout: TileLayout): Unit {
+  public final fun setTileLayout(layout: TileLayout) {
     TransferContext.writeArguments(LONG to layout.id)
     TransferContext.callMethod(ptr, MethodBindings.setTileLayoutPtr, NIL)
   }
@@ -249,7 +229,7 @@ public open class TileSet : Resource() {
     return TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTileOffsetAxis(alignment: TileOffsetAxis): Unit {
+  public final fun setTileOffsetAxis(alignment: TileOffsetAxis) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setTileOffsetAxisPtr, NIL)
   }
@@ -260,7 +240,7 @@ public open class TileSet : Resource() {
     return TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTileSize(size: Vector2i): Unit {
+  public final fun setTileSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setTileSizePtr, NIL)
   }
@@ -271,7 +251,7 @@ public open class TileSet : Resource() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setUvClipping(uvClipping: Boolean): Unit {
+  public final fun setUvClipping(uvClipping: Boolean) {
     TransferContext.writeArguments(BOOL to uvClipping)
     TransferContext.callMethod(ptr, MethodBindings.setUvClippingPtr, NIL)
   }
@@ -292,22 +272,20 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds an occlusion layer to the TileSet at the given position [toPosition] in the array. If
-   * [toPosition] is -1, adds it at the end of the array.
+   * Adds an occlusion layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
   @JvmOverloads
-  public final fun addOcclusionLayer(toPosition: Int = -1): Unit {
+  public final fun addOcclusionLayer(toPosition: Int = -1) {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addOcclusionLayerPtr, NIL)
   }
 
   /**
-   * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the
-   * array. Also updates the atlas tiles accordingly.
+   * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public final fun moveOcclusionLayer(layerIndex: Int, toPosition: Int): Unit {
+  public final fun moveOcclusionLayer(layerIndex: Int, toPosition: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveOcclusionLayerPtr, NIL)
   }
@@ -315,16 +293,15 @@ public open class TileSet : Resource() {
   /**
    * Removes the occlusion layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public final fun removeOcclusionLayer(layerIndex: Int): Unit {
+  public final fun removeOcclusionLayer(layerIndex: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeOcclusionLayerPtr, NIL)
   }
 
   /**
-   * Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet
-   * occlusion layer.
+   * Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer.
    */
-  public final fun setOcclusionLayerLightMask(layerIndex: Int, lightMask: Int): Unit {
+  public final fun setOcclusionLayerLightMask(layerIndex: Int, lightMask: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to lightMask.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOcclusionLayerLightMaskPtr, NIL)
   }
@@ -341,7 +318,7 @@ public open class TileSet : Resource() {
   /**
    * Enables or disables SDF collision for occluders in the given TileSet occlusion layer.
    */
-  public final fun setOcclusionLayerSdfCollision(layerIndex: Int, sdfCollision: Boolean): Unit {
+  public final fun setOcclusionLayerSdfCollision(layerIndex: Int, sdfCollision: Boolean) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), BOOL to sdfCollision)
     TransferContext.callMethod(ptr, MethodBindings.setOcclusionLayerSdfCollisionPtr, NIL)
   }
@@ -365,22 +342,20 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a physics layer to the TileSet at the given position [toPosition] in the array. If
-   * [toPosition] is -1, adds it at the end of the array.
+   * Adds a physics layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
   @JvmOverloads
-  public final fun addPhysicsLayer(toPosition: Int = -1): Unit {
+  public final fun addPhysicsLayer(toPosition: Int = -1) {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addPhysicsLayerPtr, NIL)
   }
 
   /**
-   * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array.
-   * Also updates the atlas tiles accordingly.
+   * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public final fun movePhysicsLayer(layerIndex: Int, toPosition: Int): Unit {
+  public final fun movePhysicsLayer(layerIndex: Int, toPosition: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.movePhysicsLayerPtr, NIL)
   }
@@ -388,23 +363,21 @@ public open class TileSet : Resource() {
   /**
    * Removes the physics layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public final fun removePhysicsLayer(layerIndex: Int): Unit {
+  public final fun removePhysicsLayer(layerIndex: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removePhysicsLayerPtr, NIL)
   }
 
   /**
-   * Sets the collision layer (as in the physics server) for bodies in the given TileSet physics
-   * layer.
+   * Sets the collision layer (as in the physics server) for bodies in the given TileSet physics layer.
    */
-  public final fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Long): Unit {
+  public final fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Long) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layer)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsLayerCollisionLayerPtr, NIL)
   }
 
   /**
-   * Returns the collision layer (as in the physics server) bodies on the given TileSet's physics
-   * layer are in.
+   * Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in.
    */
   public final fun getPhysicsLayerCollisionLayer(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -415,7 +388,7 @@ public open class TileSet : Resource() {
   /**
    * Sets the collision mask for bodies in the given TileSet physics layer.
    */
-  public final fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Long): Unit {
+  public final fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Long) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsLayerCollisionMaskPtr, NIL)
   }
@@ -432,7 +405,7 @@ public open class TileSet : Resource() {
   /**
    * Sets the collision priority for bodies in the given TileSet physics layer.
    */
-  public final fun setPhysicsLayerCollisionPriority(layerIndex: Int, priority: Float): Unit {
+  public final fun setPhysicsLayerCollisionPriority(layerIndex: Int, priority: Float) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), DOUBLE to priority.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsLayerCollisionPriorityPtr, NIL)
   }
@@ -449,8 +422,7 @@ public open class TileSet : Resource() {
   /**
    * Sets the physics material for bodies in the given TileSet physics layer.
    */
-  public final fun setPhysicsLayerPhysicsMaterial(layerIndex: Int,
-      physicsMaterial: PhysicsMaterial?): Unit {
+  public final fun setPhysicsLayerPhysicsMaterial(layerIndex: Int, physicsMaterial: PhysicsMaterial?) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), OBJECT to physicsMaterial)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsLayerPhysicsMaterialPtr, NIL)
   }
@@ -474,20 +446,18 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1,
-   * adds it at the end of the array.
+   * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
   @JvmOverloads
-  public final fun addTerrainSet(toPosition: Int = -1): Unit {
+  public final fun addTerrainSet(toPosition: Int = -1) {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addTerrainSetPtr, NIL)
   }
 
   /**
-   * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array.
-   * Also updates the atlas tiles accordingly.
+   * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public final fun moveTerrainSet(terrainSet: Int, toPosition: Int): Unit {
+  public final fun moveTerrainSet(terrainSet: Int, toPosition: Int) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveTerrainSetPtr, NIL)
   }
@@ -495,16 +465,15 @@ public open class TileSet : Resource() {
   /**
    * Removes the terrain set at index [terrainSet]. Also updates the atlas tiles accordingly.
    */
-  public final fun removeTerrainSet(terrainSet: Int): Unit {
+  public final fun removeTerrainSet(terrainSet: Int) {
     TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeTerrainSetPtr, NIL)
   }
 
   /**
-   * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the
-   * neighboring tiles' terrains.
+   * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains.
    */
-  public final fun setTerrainSetMode(terrainSet: Int, mode: TerrainMode): Unit {
+  public final fun setTerrainSetMode(terrainSet: Int, mode: TerrainMode) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setTerrainSetModePtr, NIL)
   }
@@ -528,33 +497,30 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in
-   * the array. If [toPosition] is -1, adds it at the end of the array.
+   * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
   @JvmOverloads
-  public final fun addTerrain(terrainSet: Int, toPosition: Int = -1): Unit {
+  public final fun addTerrain(terrainSet: Int, toPosition: Int = -1) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addTerrainPtr, NIL)
   }
 
   /**
-   * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position
-   * [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public final fun moveTerrain(
     terrainSet: Int,
     terrainIndex: Int,
     toPosition: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveTerrainPtr, NIL)
   }
 
   /**
-   * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates
-   * the atlas tiles accordingly.
+   * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates the atlas tiles accordingly.
    */
-  public final fun removeTerrain(terrainSet: Int, terrainIndex: Int): Unit {
+  public final fun removeTerrain(terrainSet: Int, terrainIndex: Int) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeTerrainPtr, NIL)
   }
@@ -566,7 +532,7 @@ public open class TileSet : Resource() {
     terrainSet: Int,
     terrainIndex: Int,
     name: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setTerrainNamePtr, NIL)
   }
@@ -581,14 +547,13 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets a terrain's color. This color is used for identifying the different terrains in the
-   * TileSet editor.
+   * Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor.
    */
   public final fun setTerrainColor(
     terrainSet: Int,
     terrainIndex: Int,
     color: Color,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setTerrainColorPtr, NIL)
   }
@@ -612,22 +577,20 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a navigation layer to the TileSet at the given position [toPosition] in the array. If
-   * [toPosition] is -1, adds it at the end of the array.
+   * Adds a navigation layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
   @JvmOverloads
-  public final fun addNavigationLayer(toPosition: Int = -1): Unit {
+  public final fun addNavigationLayer(toPosition: Int = -1) {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addNavigationLayerPtr, NIL)
   }
 
   /**
-   * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the
-   * array. Also updates the atlas tiles accordingly.
+   * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public final fun moveNavigationLayer(layerIndex: Int, toPosition: Int): Unit {
+  public final fun moveNavigationLayer(layerIndex: Int, toPosition: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveNavigationLayerPtr, NIL)
   }
@@ -635,23 +598,21 @@ public open class TileSet : Resource() {
   /**
    * Removes the navigation layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public final fun removeNavigationLayer(layerIndex: Int): Unit {
+  public final fun removeNavigationLayer(layerIndex: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeNavigationLayerPtr, NIL)
   }
 
   /**
-   * Sets the navigation layers (as in the navigation server) for navigation regions in the given
-   * TileSet navigation layer.
+   * Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer.
    */
-  public final fun setNavigationLayerLayers(layerIndex: Int, layers: Long): Unit {
+  public final fun setNavigationLayerLayers(layerIndex: Int, layers: Long) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayerLayersPtr, NIL)
   }
 
   /**
-   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation
-   * layer.
+   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer.
    */
   public final fun getNavigationLayerLayers(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -660,23 +621,19 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Based on [value], enables or disables the specified navigation layer of the TileSet navigation
-   * data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1
-   * and 32.
+   * Based on [value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1 and 32.
    */
   public final fun setNavigationLayerLayerValue(
     layerIndex: Int,
     layerNumber: Int,
     `value`: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayerLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified navigation layer of the TileSet navigation data layer
-   * identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1
-   * and 32.
+   * Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1 and 32.
    */
   public final fun getNavigationLayerLayerValue(layerIndex: Int, layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong())
@@ -694,22 +651,20 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a custom data layer to the TileSet at the given position [toPosition] in the array. If
-   * [toPosition] is -1, adds it at the end of the array.
+   * Adds a custom data layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
   @JvmOverloads
-  public final fun addCustomDataLayer(toPosition: Int = -1): Unit {
+  public final fun addCustomDataLayer(toPosition: Int = -1) {
     TransferContext.writeArguments(LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addCustomDataLayerPtr, NIL)
   }
 
   /**
-   * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the
-   * array. Also updates the atlas tiles accordingly.
+   * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
-  public final fun moveCustomDataLayer(layerIndex: Int, toPosition: Int): Unit {
+  public final fun moveCustomDataLayer(layerIndex: Int, toPosition: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveCustomDataLayerPtr, NIL)
   }
@@ -717,7 +672,7 @@ public open class TileSet : Resource() {
   /**
    * Removes the custom data layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
-  public final fun removeCustomDataLayer(layerIndex: Int): Unit {
+  public final fun removeCustomDataLayer(layerIndex: Int) {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeCustomDataLayerPtr, NIL)
   }
@@ -732,10 +687,9 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the name of the custom data layer identified by the given index. Names are identifiers of
-   * the layer therefore if the name is already taken it will fail and raise an error.
+   * Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error.
    */
-  public final fun setCustomDataLayerName(layerIndex: Int, layerName: String): Unit {
+  public final fun setCustomDataLayerName(layerIndex: Int, layerName: String) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), STRING to layerName)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataLayerNamePtr, NIL)
   }
@@ -761,7 +715,7 @@ public open class TileSet : Resource() {
   /**
    * Sets the type of the custom data layer identified by the given index.
    */
-  public final fun setCustomDataLayerType(layerIndex: Int, layerType: VariantType): Unit {
+  public final fun setCustomDataLayerType(layerIndex: Int, layerType: VariantType) {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.id)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataLayerTypePtr, NIL)
   }
@@ -776,16 +730,13 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers
-   * to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept
-   * the same when using source-level proxies.
+   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
    *
-   * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will
-   * find and use the proxy's target source when one is available.
+   * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.
    *
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
-  public final fun setSourceLevelTileProxy(sourceFrom: Int, sourceTo: Int): Unit {
+  public final fun setSourceLevelTileProxy(sourceFrom: Int, sourceTo: Int) {
     TransferContext.writeArguments(LONG to sourceFrom.toLong(), LONG to sourceTo.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSourceLevelTileProxyPtr, NIL)
   }
@@ -813,18 +764,15 @@ public open class TileSet : Resource() {
   /**
    * Removes a source-level tile proxy.
    */
-  public final fun removeSourceLevelTileProxy(sourceFrom: Int): Unit {
+  public final fun removeSourceLevelTileProxy(sourceFrom: Int) {
     TransferContext.writeArguments(LONG to sourceFrom.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeSourceLevelTileProxyPtr, NIL)
   }
 
   /**
-   * Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile
-   * identifiers to another set of identifiers. The alternative tile ID is kept the same when using
-   * coordinates-level proxies.
+   * Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers. The alternative tile ID is kept the same when using coordinates-level proxies.
    *
-   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will
-   * find and use the proxy's target tile when one is available.
+   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.
    *
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
@@ -833,19 +781,17 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     sourceTo: Int,
     coordsTo: Vector2i,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to pSourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to sourceTo.toLong(), VECTOR2I to coordsTo)
     TransferContext.callMethod(ptr, MethodBindings.setCoordsLevelTileProxyPtr, NIL)
   }
 
   /**
-   * Returns the coordinate-level proxy for the given identifiers. The returned array contains the
-   * two target identifiers of the proxy (source ID and atlas coordinates ID).
+   * Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).
    *
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */
-  public final fun getCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i):
-      VariantArray<Any?> {
+  public final fun getCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
     TransferContext.callMethod(ptr, MethodBindings.getCoordsLevelTileProxyPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
@@ -863,17 +809,15 @@ public open class TileSet : Resource() {
   /**
    * Removes a coordinates-level proxy for the given identifiers.
    */
-  public final fun removeCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): Unit {
+  public final fun removeCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i) {
     TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
     TransferContext.callMethod(ptr, MethodBindings.removeCoordsLevelTileProxyPtr, NIL)
   }
 
   /**
-   * Create an alternative-level proxy for the given identifiers. A proxy will map set of tile
-   * identifiers to another set of identifiers.
+   * Create an alternative-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers.
    *
-   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will
-   * find and use the proxy's target tile when one is available.
+   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.
    *
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
@@ -884,14 +828,13 @@ public open class TileSet : Resource() {
     sourceTo: Int,
     coordsTo: Vector2i,
     alternativeTo: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong(), LONG to sourceTo.toLong(), VECTOR2I to coordsTo, LONG to alternativeTo.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setAlternativeLevelTileProxyPtr, NIL)
   }
 
   /**
-   * Returns the alternative-level proxy for the given identifiers. The returned array contains the
-   * three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).
+   * Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).
    *
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */
@@ -925,20 +868,17 @@ public open class TileSet : Resource() {
     sourceFrom: Int,
     coordsFrom: Vector2i,
     alternativeFrom: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeAlternativeLevelTileProxyPtr, NIL)
   }
 
   /**
-   * According to the configured proxies, maps the provided identifiers to a new set of identifiers.
-   * The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
+   * According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
    *
-   * This function first look for matching alternative-level proxies, then coordinates-level
-   * proxies, then source-level proxies.
+   * This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.
    *
-   * If no proxy corresponding to provided identifiers are found, returns the same values the ones
-   * used as arguments.
+   * If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.
    */
   public final fun mapTileProxy(
     sourceFrom: Int,
@@ -953,7 +893,7 @@ public open class TileSet : Resource() {
   /**
    * Clears tile proxies pointing to invalid tiles.
    */
-  public final fun cleanupInvalidTileProxies(): Unit {
+  public final fun cleanupInvalidTileProxies() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cleanupInvalidTileProxiesPtr, NIL)
   }
@@ -961,14 +901,13 @@ public open class TileSet : Resource() {
   /**
    * Clears all tile proxies.
    */
-  public final fun clearTileProxies(): Unit {
+  public final fun clearTileProxies() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearTileProxiesPtr, NIL)
   }
 
   /**
-   * Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the
-   * given [index].
+   * Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [index].
    */
   @JvmOverloads
   public final fun addPattern(pattern: TileMapPattern?, index: Int = -1): Int {
@@ -990,7 +929,7 @@ public open class TileSet : Resource() {
   /**
    * Remove the [TileMapPattern] at the given index.
    */
-  public final fun removePattern(index: Int): Unit {
+  public final fun removePattern(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removePatternPtr, NIL)
   }
@@ -1041,8 +980,7 @@ public open class TileSet : Resource() {
     id: Long,
   ) {
     /**
-     * Tile coordinates layout where both axis stay consistent with their respective local
-     * horizontal and vertical axis.
+     * Tile coordinates layout where both axis stay consistent with their respective local horizontal and vertical axis.
      */
     STACKED(0),
     /**
@@ -1050,23 +988,19 @@ public open class TileSet : Resource() {
      */
     STACKED_OFFSET(1),
     /**
-     * Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes
-     * down-right.
+     * Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes down-right.
      */
     STAIRS_RIGHT(2),
     /**
-     * Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes
-     * down-right.
+     * Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes down-right.
      */
     STAIRS_DOWN(3),
     /**
-     * Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes
-     * down-right.
+     * Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes down-right.
      */
     DIAMOND_RIGHT(4),
     /**
-     * Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes
-     * down-left.
+     * Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left.
      */
     DIAMOND_DOWN(5),
     ;
@@ -1214,270 +1148,270 @@ public open class TileSet : Resource() {
 
   public object MethodBindings {
     internal val getNextSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_next_source_id", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_next_source_id", 3_905_245_786)
 
     internal val addSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_source", 1059186179)
+        TypeManager.getMethodBindPtr("TileSet", "add_source", 1_059_186_179)
 
     internal val removeSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_source", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_source", 1_286_410_249)
 
     internal val setSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_source_id", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "set_source_id", 3_937_882_851)
 
     internal val getSourceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_source_count", 3_905_245_786)
 
     internal val getSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source_id", 923996154)
+        TypeManager.getMethodBindPtr("TileSet", "get_source_id", 923_996_154)
 
     internal val hasSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_source", 1116898809)
+        TypeManager.getMethodBindPtr("TileSet", "has_source", 1_116_898_809)
 
     internal val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source", 1763540252)
+        TypeManager.getMethodBindPtr("TileSet", "get_source", 1_763_540_252)
 
     internal val setTileShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_shape", 2131427112)
+        TypeManager.getMethodBindPtr("TileSet", "set_tile_shape", 2_131_427_112)
 
     internal val getTileShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_shape", 716918169)
+        TypeManager.getMethodBindPtr("TileSet", "get_tile_shape", 716_918_169)
 
     internal val setTileLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_layout", 1071216679)
+        TypeManager.getMethodBindPtr("TileSet", "set_tile_layout", 1_071_216_679)
 
     internal val getTileLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_layout", 194628839)
+        TypeManager.getMethodBindPtr("TileSet", "get_tile_layout", 194_628_839)
 
     internal val setTileOffsetAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_offset_axis", 3300198521)
+        TypeManager.getMethodBindPtr("TileSet", "set_tile_offset_axis", 3_300_198_521)
 
     internal val getTileOffsetAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_offset_axis", 762494114)
+        TypeManager.getMethodBindPtr("TileSet", "get_tile_offset_axis", 762_494_114)
 
     internal val setTileSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_size", 1130785943)
+        TypeManager.getMethodBindPtr("TileSet", "set_tile_size", 1_130_785_943)
 
     internal val getTileSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_size", 3690982128)
+        TypeManager.getMethodBindPtr("TileSet", "get_tile_size", 3_690_982_128)
 
     internal val setUvClippingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_uv_clipping", 2586408642)
+        TypeManager.getMethodBindPtr("TileSet", "set_uv_clipping", 2_586_408_642)
 
     internal val isUvClippingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "is_uv_clipping", 36873697)
+        TypeManager.getMethodBindPtr("TileSet", "is_uv_clipping", 36_873_697)
 
     internal val getOcclusionLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layers_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layers_count", 3_905_245_786)
 
     internal val addOcclusionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_occlusion_layer", 1025054187)
+        TypeManager.getMethodBindPtr("TileSet", "add_occlusion_layer", 1_025_054_187)
 
     internal val moveOcclusionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_occlusion_layer", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "move_occlusion_layer", 3_937_882_851)
 
     internal val removeOcclusionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_occlusion_layer", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_occlusion_layer", 1_286_410_249)
 
     internal val setOcclusionLayerLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_occlusion_layer_light_mask", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "set_occlusion_layer_light_mask", 3_937_882_851)
 
     internal val getOcclusionLayerLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layer_light_mask", 923996154)
+        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layer_light_mask", 923_996_154)
 
     internal val setOcclusionLayerSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_occlusion_layer_sdf_collision", 300928843)
+        TypeManager.getMethodBindPtr("TileSet", "set_occlusion_layer_sdf_collision", 300_928_843)
 
     internal val getOcclusionLayerSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layer_sdf_collision", 1116898809)
+        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layer_sdf_collision", 1_116_898_809)
 
     internal val getPhysicsLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layers_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_physics_layers_count", 3_905_245_786)
 
     internal val addPhysicsLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_physics_layer", 1025054187)
+        TypeManager.getMethodBindPtr("TileSet", "add_physics_layer", 1_025_054_187)
 
     internal val movePhysicsLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_physics_layer", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "move_physics_layer", 3_937_882_851)
 
     internal val removePhysicsLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_physics_layer", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_physics_layer", 1_286_410_249)
 
     internal val setPhysicsLayerCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_layer", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_layer", 3_937_882_851)
 
     internal val getPhysicsLayerCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_layer", 923996154)
+        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_layer", 923_996_154)
 
     internal val setPhysicsLayerCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_mask", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_mask", 3_937_882_851)
 
     internal val getPhysicsLayerCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_mask", 923996154)
+        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_mask", 923_996_154)
 
     internal val setPhysicsLayerCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_priority", 1602489585)
+        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_priority", 1_602_489_585)
 
     internal val getPhysicsLayerCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_priority", 2339986948)
+        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_priority", 2_339_986_948)
 
     internal val setPhysicsLayerPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_physics_material", 1018687357)
+        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_physics_material", 1_018_687_357)
 
     internal val getPhysicsLayerPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_physics_material", 788318639)
+        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_physics_material", 788_318_639)
 
     internal val getTerrainSetsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_sets_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_terrain_sets_count", 3_905_245_786)
 
     internal val addTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_terrain_set", 1025054187)
+        TypeManager.getMethodBindPtr("TileSet", "add_terrain_set", 1_025_054_187)
 
     internal val moveTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_terrain_set", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "move_terrain_set", 3_937_882_851)
 
     internal val removeTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_terrain_set", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_terrain_set", 1_286_410_249)
 
     internal val setTerrainSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_terrain_set_mode", 3943003916)
+        TypeManager.getMethodBindPtr("TileSet", "set_terrain_set_mode", 3_943_003_916)
 
     internal val getTerrainSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_set_mode", 2084469411)
+        TypeManager.getMethodBindPtr("TileSet", "get_terrain_set_mode", 2_084_469_411)
 
     internal val getTerrainsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrains_count", 923996154)
+        TypeManager.getMethodBindPtr("TileSet", "get_terrains_count", 923_996_154)
 
     internal val addTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_terrain", 1230568737)
+        TypeManager.getMethodBindPtr("TileSet", "add_terrain", 1_230_568_737)
 
     internal val moveTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_terrain", 1649997291)
+        TypeManager.getMethodBindPtr("TileSet", "move_terrain", 1_649_997_291)
 
     internal val removeTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_terrain", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "remove_terrain", 3_937_882_851)
 
     internal val setTerrainNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_terrain_name", 2285447957)
+        TypeManager.getMethodBindPtr("TileSet", "set_terrain_name", 2_285_447_957)
 
     internal val getTerrainNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_name", 1391810591)
+        TypeManager.getMethodBindPtr("TileSet", "get_terrain_name", 1_391_810_591)
 
     internal val setTerrainColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_terrain_color", 3733378741)
+        TypeManager.getMethodBindPtr("TileSet", "set_terrain_color", 3_733_378_741)
 
     internal val getTerrainColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_color", 2165839948)
+        TypeManager.getMethodBindPtr("TileSet", "get_terrain_color", 2_165_839_948)
 
     internal val getNavigationLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layers_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layers_count", 3_905_245_786)
 
     internal val addNavigationLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_navigation_layer", 1025054187)
+        TypeManager.getMethodBindPtr("TileSet", "add_navigation_layer", 1_025_054_187)
 
     internal val moveNavigationLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_navigation_layer", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "move_navigation_layer", 3_937_882_851)
 
     internal val removeNavigationLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_navigation_layer", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_navigation_layer", 1_286_410_249)
 
     internal val setNavigationLayerLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_navigation_layer_layers", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "set_navigation_layer_layers", 3_937_882_851)
 
     internal val getNavigationLayerLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layer_layers", 923996154)
+        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layer_layers", 923_996_154)
 
     internal val setNavigationLayerLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_navigation_layer_layer_value", 1383440665)
+        TypeManager.getMethodBindPtr("TileSet", "set_navigation_layer_layer_value", 1_383_440_665)
 
     internal val getNavigationLayerLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layer_layer_value", 2522259332)
+        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layer_layer_value", 2_522_259_332)
 
     internal val getCustomDataLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layers_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layers_count", 3_905_245_786)
 
     internal val addCustomDataLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_custom_data_layer", 1025054187)
+        TypeManager.getMethodBindPtr("TileSet", "add_custom_data_layer", 1_025_054_187)
 
     internal val moveCustomDataLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_custom_data_layer", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "move_custom_data_layer", 3_937_882_851)
 
     internal val removeCustomDataLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_custom_data_layer", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_custom_data_layer", 1_286_410_249)
 
     internal val getCustomDataLayerByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_by_name", 1321353865)
+        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_by_name", 1_321_353_865)
 
     internal val setCustomDataLayerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_name", 501894301)
+        TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_name", 501_894_301)
 
     internal val hasCustomDataLayerByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_custom_data_layer_by_name", 3927539163)
+        TypeManager.getMethodBindPtr("TileSet", "has_custom_data_layer_by_name", 3_927_539_163)
 
     internal val getCustomDataLayerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_name", 844755477)
+        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_name", 844_755_477)
 
     internal val setCustomDataLayerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_type", 3492912874)
+        TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_type", 3_492_912_874)
 
     internal val getCustomDataLayerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_type", 2990820875)
+        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_type", 2_990_820_875)
 
     internal val setSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_source_level_tile_proxy", 3937882851)
+        TypeManager.getMethodBindPtr("TileSet", "set_source_level_tile_proxy", 3_937_882_851)
 
     internal val getSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source_level_tile_proxy", 3744713108)
+        TypeManager.getMethodBindPtr("TileSet", "get_source_level_tile_proxy", 3_744_713_108)
 
     internal val hasSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_source_level_tile_proxy", 3067735520)
+        TypeManager.getMethodBindPtr("TileSet", "has_source_level_tile_proxy", 3_067_735_520)
 
     internal val removeSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_source_level_tile_proxy", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_source_level_tile_proxy", 1_286_410_249)
 
     internal val setCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_coords_level_tile_proxy", 1769939278)
+        TypeManager.getMethodBindPtr("TileSet", "set_coords_level_tile_proxy", 1_769_939_278)
 
     internal val getCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_coords_level_tile_proxy", 2856536371)
+        TypeManager.getMethodBindPtr("TileSet", "get_coords_level_tile_proxy", 2_856_536_371)
 
     internal val hasCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_coords_level_tile_proxy", 3957903770)
+        TypeManager.getMethodBindPtr("TileSet", "has_coords_level_tile_proxy", 3_957_903_770)
 
     internal val removeCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_coords_level_tile_proxy", 2311374912)
+        TypeManager.getMethodBindPtr("TileSet", "remove_coords_level_tile_proxy", 2_311_374_912)
 
     internal val setAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_alternative_level_tile_proxy", 3862385460)
+        TypeManager.getMethodBindPtr("TileSet", "set_alternative_level_tile_proxy", 3_862_385_460)
 
     internal val getAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_alternative_level_tile_proxy", 2303761075)
+        TypeManager.getMethodBindPtr("TileSet", "get_alternative_level_tile_proxy", 2_303_761_075)
 
     internal val hasAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_alternative_level_tile_proxy", 180086755)
+        TypeManager.getMethodBindPtr("TileSet", "has_alternative_level_tile_proxy", 180_086_755)
 
     internal val removeAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_alternative_level_tile_proxy", 2328951467)
+        TypeManager.getMethodBindPtr("TileSet", "remove_alternative_level_tile_proxy", 2_328_951_467)
 
     internal val mapTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "map_tile_proxy", 4267935328)
+        TypeManager.getMethodBindPtr("TileSet", "map_tile_proxy", 4_267_935_328)
 
     internal val cleanupInvalidTileProxiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "cleanup_invalid_tile_proxies", 3218959716)
+        TypeManager.getMethodBindPtr("TileSet", "cleanup_invalid_tile_proxies", 3_218_959_716)
 
     internal val clearTileProxiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "clear_tile_proxies", 3218959716)
+        TypeManager.getMethodBindPtr("TileSet", "clear_tile_proxies", 3_218_959_716)
 
     internal val addPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_pattern", 763712015)
+        TypeManager.getMethodBindPtr("TileSet", "add_pattern", 763_712_015)
 
     internal val getPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_pattern", 4207737510)
+        TypeManager.getMethodBindPtr("TileSet", "get_pattern", 4_207_737_510)
 
     internal val removePatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_pattern", 1286410249)
+        TypeManager.getMethodBindPtr("TileSet", "remove_pattern", 1_286_410_249)
 
     internal val getPatternsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_patterns_count", 2455072627)
+        TypeManager.getMethodBindPtr("TileSet", "get_patterns_count", 2_455_072_627)
   }
 }

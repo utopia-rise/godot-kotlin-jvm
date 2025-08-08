@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,22 +27,14 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [CharacterBody2D] is a specialized class for physics bodies that are meant to be user-controlled.
- * They are not affected by physics at all, but they affect other physics bodies in their path. They
- * are mainly used to provide high-level API to move objects with wall and slope detection
- * ([moveAndSlide] method) in addition to the general collision detection provided by
- * [PhysicsBody2D.moveAndCollide]. This makes it useful for highly configurable physics bodies that
- * must move in specific ways and collide with the world, as is often the case with user-controlled
- * characters.
+ * [CharacterBody2D] is a specialized class for physics bodies that are meant to be user-controlled. They are not affected by physics at all, but they affect other physics bodies in their path. They are mainly used to provide high-level API to move objects with wall and slope detection ([moveAndSlide] method) in addition to the general collision detection provided by [PhysicsBody2D.moveAndCollide]. This makes it useful for highly configurable physics bodies that must move in specific ways and collide with the world, as is often the case with user-controlled characters.
  *
- * For game objects that don't require complex movement or collision detection, such as moving
- * platforms, [AnimatableBody2D] is simpler to configure.
+ * For game objects that don't require complex movement or collision detection, such as moving platforms, [AnimatableBody2D] is simpler to configure.
  */
 @GodotBaseType
 public open class CharacterBody2D : PhysicsBody2D() {
   /**
-   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants
-   * for available modes.
+   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants for available modes.
    */
   public final inline var motionMode: MotionMode
     @JvmName("motionModeProperty")
@@ -56,17 +45,11 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
-   * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
-   * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTION_MODE_FLOATING] as [motionMode].
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var upDirection: Vector2
@@ -81,11 +64,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -97,8 +77,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `true`, during a jump against the ceiling, the body will slide, if `false` it will be
-   * stopped and will fall vertically.
+   * If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically.
    */
   public final inline var slideOnCeiling: Boolean
     @JvmName("slideOnCeilingProperty")
@@ -109,8 +88,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Maximum number of times the body can change direction before it stops when calling
-   * [moveAndSlide].
+   * Maximum number of times the body can change direction before it stops when calling [moveAndSlide].
    */
   public final inline var maxSlides: Int
     @JvmName("maxSlidesProperty")
@@ -121,9 +99,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
-   * default value equals 15 degrees. This property only affects movement when [motionMode] is
-   * [MOTION_MODE_FLOATING].
+   * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [motionMode] is [MOTION_MODE_FLOATING].
    */
   public final inline var wallMinSlideAngle: Float
     @JvmName("wallMinSlideAngleProperty")
@@ -134,8 +110,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `true`, the body will not slide on slopes when calling [moveAndSlide] when the body is
-   * standing still.
+   * If `true`, the body will not slide on slopes when calling [moveAndSlide] when the body is standing still.
    *
    * If `false`, the body will slide on floor's slopes when [velocity] applies a downward force.
    */
@@ -148,11 +123,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `false` (by default), the body will move faster on downward slopes and slower on upward
-   * slopes.
+   * If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.
    *
-   * If `true`, the body will always move at the same speed on the ground no matter the slope. Note
-   * that you need to use [floorSnapLength] to stick along a downward slope at constant speed.
+   * If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [floorSnapLength] to stick along a downward slope at constant speed.
    */
   public final inline var floorConstantSpeed: Boolean
     @JvmName("floorConstantSpeedProperty")
@@ -163,8 +136,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `true`, the body will be able to move on the floor only. This option avoids to be able to
-   * walk on walls, it will however allow to slide down along them.
+   * If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them.
    */
   public final inline var floorBlockOnWall: Boolean
     @JvmName("floorBlockOnWallProperty")
@@ -175,8 +147,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather
-   * than a wall, when calling [moveAndSlide]. The default value equals 45 degrees.
+   * Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [moveAndSlide]. The default value equals 45 degrees.
    */
   public final inline var floorMaxAngle: Float
     @JvmName("floorMaxAngleProperty")
@@ -187,15 +158,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached
-   * to slopes when calling [moveAndSlide]. The snapping vector is determined by the given distance
-   * along the opposite direction of the [upDirection].
+   * Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [moveAndSlide]. The snapping vector is determined by the given distance along the opposite direction of the [upDirection].
    *
-   * As long as the snapping vector is in contact with the ground and the body moves against
-   * [upDirection], the body will remain attached to the surface. Snapping is not applied if the body
-   * moves along [upDirection], meaning it contains vertical rising velocity, so it will be able to
-   * detach from the ground when jumping or when the body is pushed up by something. If you want to
-   * apply a snap without taking into account the velocity, use [applyFloorSnap].
+   * As long as the snapping vector is in contact with the ground and the body moves against [upDirection], the body will remain attached to the surface. Snapping is not applied if the body moves along [upDirection], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [applyFloorSnap].
    */
   public final inline var floorSnapLength: Float
     @JvmName("floorSnapLengthProperty")
@@ -206,9 +171,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Sets the behavior to apply when you leave a moving platform. By default, to be physically
-   * accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants
-   * for available behavior.
+   * Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants for available behavior.
    */
   public final inline var platformOnLeave: PlatformOnLeave
     @JvmName("platformOnLeaveProperty")
@@ -219,9 +182,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Collision layers that will be included for detecting floor bodies that will act as moving
-   * platforms to be followed by the [CharacterBody2D]. By default, all floor bodies are detected and
-   * propagate their velocity.
+   * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity.
    */
   public final inline var platformFloorLayers: Long
     @JvmName("platformFloorLayersProperty")
@@ -232,8 +193,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Collision layers that will be included for detecting wall bodies that will act as moving
-   * platforms to be followed by the [CharacterBody2D]. By default, all wall bodies are ignored.
+   * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all wall bodies are ignored.
    */
   public final inline var platformWallLayers: Long
     @JvmName("platformWallLayersProperty")
@@ -246,15 +206,11 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Extra margin used for collision recovery when calling [moveAndSlide].
    *
-   * If the body is at least this close to another body, it will consider them to be colliding and
-   * will be pushed away before performing the actual motion.
+   * If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.
    *
-   * A higher value means it's more flexible for detecting collision, which helps with consistently
-   * detecting walls and floors.
+   * A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.
    *
-   * A lower value forces the collision algorithm to use more exact detection, so it can be used in
-   * cases that specifically require precision, e.g at very low scale to avoid visible jittering, or
-   * for stability with a stack of character bodies.
+   * A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.
    */
   public final inline var safeMargin: Float
     @JvmName("safeMarginProperty")
@@ -264,7 +220,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       setSafeMargin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(146, scriptIndex)
   }
 
@@ -279,10 +235,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * characterbody2d.upDirection = myCoreType
    * ``````
    *
-   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
-   * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
-   * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTION_MODE_FLOATING] as [motionMode].
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
    */
   @CoreTypeHelper
   public final fun upDirectionMutate(block: Vector2.() -> Unit): Vector2 = upDirection.apply {
@@ -310,18 +263,11 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Moves the body based on [velocity]. If the body collides with another, it will slide along the
-   * other body (by default only on floor) rather than stop immediately. If the other body is a
-   * [CharacterBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You
-   * can use this to make moving and rotating platforms, or to make nodes push other nodes.
+   * Moves the body based on [velocity]. If the body collides with another, it will slide along the other body (by default only on floor) rather than stop immediately. If the other body is a [CharacterBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.
    *
-   * Modifies [velocity] if a slide collision occurred. To get the latest collision call
-   * [getLastSlideCollision], for detailed information about collisions that occurred, use
-   * [getSlideCollision].
+   * Modifies [velocity] if a slide collision occurred. To get the latest collision call [getLastSlideCollision], for detailed information about collisions that occurred, use [getSlideCollision].
    *
-   * When the body touches a moving platform, the platform's velocity is automatically added to the
-   * body motion. If a collision occurs due to the platform's motion, it will always be first in the
-   * slide collisions.
+   * When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.
    *
    * The general behavior and available properties change according to the [motionMode].
    *
@@ -334,15 +280,14 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Allows to manually apply a snap to the floor regardless of the body's velocity. This function
-   * does nothing when [isOnFloor] returns `true`.
+   * Allows to manually apply a snap to the floor regardless of the body's velocity. This function does nothing when [isOnFloor] returns `true`.
    */
-  public final fun applyFloorSnap(): Unit {
+  public final fun applyFloorSnap() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.applyFloorSnapPtr, NIL)
   }
 
-  public final fun setVelocity(velocity: Vector2): Unit {
+  public final fun setVelocity(velocity: Vector2) {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityPtr, NIL)
   }
@@ -353,7 +298,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setSafeMargin(margin: Float): Unit {
+  public final fun setSafeMargin(margin: Float) {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSafeMarginPtr, NIL)
   }
@@ -370,12 +315,12 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFloorStopOnSlopeEnabled(enabled: Boolean): Unit {
+  public final fun setFloorStopOnSlopeEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFloorStopOnSlopeEnabledPtr, NIL)
   }
 
-  public final fun setFloorConstantSpeedEnabled(enabled: Boolean): Unit {
+  public final fun setFloorConstantSpeedEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFloorConstantSpeedEnabledPtr, NIL)
   }
@@ -386,7 +331,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFloorBlockOnWallEnabled(enabled: Boolean): Unit {
+  public final fun setFloorBlockOnWallEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFloorBlockOnWallEnabledPtr, NIL)
   }
@@ -397,7 +342,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSlideOnCeilingEnabled(enabled: Boolean): Unit {
+  public final fun setSlideOnCeilingEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSlideOnCeilingEnabledPtr, NIL)
   }
@@ -408,7 +353,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPlatformFloorLayers(excludeLayer: Long): Unit {
+  public final fun setPlatformFloorLayers(excludeLayer: Long) {
     TransferContext.writeArguments(LONG to excludeLayer)
     TransferContext.callMethod(ptr, MethodBindings.setPlatformFloorLayersPtr, NIL)
   }
@@ -419,7 +364,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPlatformWallLayers(excludeLayer: Long): Unit {
+  public final fun setPlatformWallLayers(excludeLayer: Long) {
     TransferContext.writeArguments(LONG to excludeLayer)
     TransferContext.callMethod(ptr, MethodBindings.setPlatformWallLayersPtr, NIL)
   }
@@ -436,7 +381,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMaxSlides(maxSlides: Int): Unit {
+  public final fun setMaxSlides(maxSlides: Int) {
     TransferContext.writeArguments(LONG to maxSlides.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxSlidesPtr, NIL)
   }
@@ -447,7 +392,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFloorMaxAngle(radians: Float): Unit {
+  public final fun setFloorMaxAngle(radians: Float) {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFloorMaxAnglePtr, NIL)
   }
@@ -458,7 +403,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFloorSnapLength(floorSnapLength: Float): Unit {
+  public final fun setFloorSnapLength(floorSnapLength: Float) {
     TransferContext.writeArguments(DOUBLE to floorSnapLength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFloorSnapLengthPtr, NIL)
   }
@@ -469,7 +414,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setWallMinSlideAngle(radians: Float): Unit {
+  public final fun setWallMinSlideAngle(radians: Float) {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setWallMinSlideAnglePtr, NIL)
   }
@@ -480,12 +425,12 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setUpDirection(upDirection: Vector2): Unit {
+  public final fun setUpDirection(upDirection: Vector2) {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(ptr, MethodBindings.setUpDirectionPtr, NIL)
   }
 
-  public final fun setMotionMode(mode: MotionMode): Unit {
+  public final fun setMotionMode(mode: MotionMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setMotionModePtr, NIL)
   }
@@ -496,7 +441,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     return MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave): Unit {
+  public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave) {
     TransferContext.writeArguments(LONG to onLeaveApplyVelocity.id)
     TransferContext.callMethod(ptr, MethodBindings.setPlatformOnLeavePtr, NIL)
   }
@@ -508,9 +453,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body collided with the floor on the last call of [moveAndSlide].
-   * Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a
-   * surface is "floor" or not.
+   * Returns `true` if the body collided with the floor on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "floor" or not.
    */
   public final fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
@@ -519,9 +462,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body collided only with the floor on the last call of [moveAndSlide].
-   * Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a
-   * surface is "floor" or not.
+   * Returns `true` if the body collided only with the floor on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "floor" or not.
    */
   public final fun isOnFloorOnly(): Boolean {
     TransferContext.writeArguments()
@@ -530,9 +471,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body collided with the ceiling on the last call of [moveAndSlide].
-   * Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a
-   * surface is "ceiling" or not.
+   * Returns `true` if the body collided with the ceiling on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "ceiling" or not.
    */
   public final fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
@@ -541,9 +480,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body collided only with the ceiling on the last call of [moveAndSlide].
-   * Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a
-   * surface is "ceiling" or not.
+   * Returns `true` if the body collided only with the ceiling on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "ceiling" or not.
    */
   public final fun isOnCeilingOnly(): Boolean {
     TransferContext.writeArguments()
@@ -552,9 +489,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body collided with a wall on the last call of [moveAndSlide]. Otherwise,
-   * returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is
-   * "wall" or not.
+   * Returns `true` if the body collided with a wall on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "wall" or not.
    */
   public final fun isOnWall(): Boolean {
     TransferContext.writeArguments()
@@ -563,9 +498,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body collided only with a wall on the last call of [moveAndSlide].
-   * Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a
-   * surface is "wall" or not.
+   * Returns `true` if the body collided only with a wall on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "wall" or not.
    */
   public final fun isOnWallOnly(): Boolean {
     TransferContext.writeArguments()
@@ -574,8 +507,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the collision normal of the floor at the last collision point. Only valid after calling
-   * [moveAndSlide] and when [isOnFloor] returns `true`.
+   * Returns the collision normal of the floor at the last collision point. Only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    *
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
@@ -586,8 +518,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the collision normal of the wall at the last collision point. Only valid after calling
-   * [moveAndSlide] and when [isOnWall] returns `true`.
+   * Returns the collision normal of the wall at the last collision point. Only valid after calling [moveAndSlide] and when [isOnWall] returns `true`.
    *
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
@@ -598,9 +529,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the last motion applied to the [CharacterBody2D] during the last call to
-   * [moveAndSlide]. The movement can be split into multiple motions when sliding occurs, and this
-   * method return the last one, which is useful to retrieve the current direction of the movement.
+   * Returns the last motion applied to the [CharacterBody2D] during the last call to [moveAndSlide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement.
    */
   public final fun getLastMotion(): Vector2 {
     TransferContext.writeArguments()
@@ -618,9 +547,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the current real velocity since the last call to [moveAndSlide]. For example, when you
-   * climb a slope, you will move diagonally even though the velocity is horizontal. This method
-   * returns the diagonal movement, as opposed to [velocity] which returns the requested velocity.
+   * Returns the current real velocity since the last call to [moveAndSlide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [velocity] which returns the requested velocity.
    */
   public final fun getRealVelocity(): Vector2 {
     TransferContext.writeArguments()
@@ -629,9 +556,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the floor's collision angle at the last collision point according to [upDirection],
-   * which is [Vector2.UP] by default. This value is always positive and only valid after calling
-   * [moveAndSlide] and when [isOnFloor] returns `true`.
+   * Returns the floor's collision angle at the last collision point according to [upDirection], which is [Vector2.UP] by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
   @JvmOverloads
   public final fun getFloorAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
@@ -641,8 +566,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the linear velocity of the platform at the last collision point. Only valid after
-   * calling [moveAndSlide].
+   * Returns the linear velocity of the platform at the last collision point. Only valid after calling [moveAndSlide].
    */
   public final fun getPlatformVelocity(): Vector2 {
     TransferContext.writeArguments()
@@ -651,8 +575,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the number of times the body collided and changed direction during the last call to
-   * [moveAndSlide].
+   * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide].
    */
   public final fun getSlideCollisionCount(): Int {
     TransferContext.writeArguments()
@@ -661,10 +584,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns a [KinematicCollision2D], which contains information about a collision that occurred
-   * during the last call to [moveAndSlide]. Since the body can collide several times in a single call
-   * to [moveAndSlide], you must specify the index of the collision in the range 0 to
-   * ([getSlideCollisionCount] - 1).
+   * Returns a [KinematicCollision2D], which contains information about a collision that occurred during the last call to [moveAndSlide]. Since the body can collide several times in a single call to [moveAndSlide], you must specify the index of the collision in the range 0 to ([getSlideCollisionCount] - 1).
    *
    * **Example:** Iterate through the collisions with a `for` loop:
    *
@@ -691,8 +611,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns a [KinematicCollision2D], which contains information about the latest collision that
-   * occurred during the last call to [moveAndSlide].
+   * Returns a [KinematicCollision2D], which contains information about the latest collision that occurred during the last call to [moveAndSlide].
    */
   public final fun getLastSlideCollision(): KinematicCollision2D? {
     TransferContext.writeArguments()
@@ -704,15 +623,11 @@ public open class CharacterBody2D : PhysicsBody2D() {
     id: Long,
   ) {
     /**
-     * Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion
-     * will react to slopes (acceleration/slowdown). This mode is suitable for sided games like
-     * platformers.
+     * Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion will react to slopes (acceleration/slowdown). This mode is suitable for sided games like platformers.
      */
     GROUNDED(0),
     /**
-     * Apply when there is no notion of floor or ceiling. All collisions will be reported as
-     * `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is
-     * suitable for top-down games.
+     * Apply when there is no notion of floor or ceiling. All collisions will be reported as `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is suitable for top-down games.
      */
     FLOATING(1),
     ;
@@ -735,9 +650,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
      */
     ADD_VELOCITY(0),
     /**
-     * Add the last platform velocity to the [velocity] when you leave a moving platform, but any
-     * downward motion is ignored. It's useful to keep full jump height even when the platform is
-     * moving down.
+     * Add the last platform velocity to the [velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
      */
     ADD_UPWARD_VELOCITY(1),
     /**
@@ -760,147 +673,147 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   public object MethodBindings {
     internal val moveAndSlidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "move_and_slide", 2240911060)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "move_and_slide", 2_240_911_060)
 
     internal val applyFloorSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "apply_floor_snap", 3218959716)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "apply_floor_snap", 3_218_959_716)
 
     internal val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_velocity", 743155724)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_velocity", 743_155_724)
 
     internal val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_velocity", 3_341_600_327)
 
     internal val setSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_safe_margin", 373806689)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_safe_margin", 373_806_689)
 
     internal val getSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_safe_margin", 1740695150)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_safe_margin", 1_740_695_150)
 
     internal val isFloorStopOnSlopeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_stop_on_slope_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_stop_on_slope_enabled", 36_873_697)
 
     internal val setFloorStopOnSlopeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_stop_on_slope_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_stop_on_slope_enabled", 2_586_408_642)
 
     internal val setFloorConstantSpeedEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_constant_speed_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_constant_speed_enabled", 2_586_408_642)
 
     internal val isFloorConstantSpeedEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_constant_speed_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_constant_speed_enabled", 36_873_697)
 
     internal val setFloorBlockOnWallEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_block_on_wall_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_block_on_wall_enabled", 2_586_408_642)
 
     internal val isFloorBlockOnWallEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_block_on_wall_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_block_on_wall_enabled", 36_873_697)
 
     internal val setSlideOnCeilingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_slide_on_ceiling_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_slide_on_ceiling_enabled", 2_586_408_642)
 
     internal val isSlideOnCeilingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_slide_on_ceiling_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_slide_on_ceiling_enabled", 36_873_697)
 
     internal val setPlatformFloorLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_floor_layers", 1286410249)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_floor_layers", 1_286_410_249)
 
     internal val getPlatformFloorLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_floor_layers", 3905245786)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_floor_layers", 3_905_245_786)
 
     internal val setPlatformWallLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_wall_layers", 1286410249)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_wall_layers", 1_286_410_249)
 
     internal val getPlatformWallLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_wall_layers", 3905245786)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_wall_layers", 3_905_245_786)
 
     internal val getMaxSlidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_max_slides", 3905245786)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_max_slides", 3_905_245_786)
 
     internal val setMaxSlidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_max_slides", 1286410249)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_max_slides", 1_286_410_249)
 
     internal val getFloorMaxAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_max_angle", 1740695150)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_max_angle", 1_740_695_150)
 
     internal val setFloorMaxAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_max_angle", 373806689)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_max_angle", 373_806_689)
 
     internal val getFloorSnapLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_snap_length", 191475506)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_snap_length", 191_475_506)
 
     internal val setFloorSnapLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_snap_length", 373806689)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_snap_length", 373_806_689)
 
     internal val getWallMinSlideAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_min_slide_angle", 1740695150)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_min_slide_angle", 1_740_695_150)
 
     internal val setWallMinSlideAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_wall_min_slide_angle", 373806689)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_wall_min_slide_angle", 373_806_689)
 
     internal val getUpDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_up_direction", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_up_direction", 3_341_600_327)
 
     internal val setUpDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_up_direction", 743155724)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_up_direction", 743_155_724)
 
     internal val setMotionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_motion_mode", 1224392233)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_motion_mode", 1_224_392_233)
 
     internal val getMotionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_motion_mode", 1160151236)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_motion_mode", 1_160_151_236)
 
     internal val setPlatformOnLeavePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_on_leave", 2423324375)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_on_leave", 2_423_324_375)
 
     internal val getPlatformOnLeavePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_on_leave", 4054324341)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_on_leave", 4_054_324_341)
 
     internal val isOnFloorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor", 36_873_697)
 
     internal val isOnFloorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor_only", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor_only", 36_873_697)
 
     internal val isOnCeilingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling", 36_873_697)
 
     internal val isOnCeilingOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling_only", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling_only", 36_873_697)
 
     internal val isOnWallPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall", 36_873_697)
 
     internal val isOnWallOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall_only", 36873697)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall_only", 36_873_697)
 
     internal val getFloorNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_normal", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_normal", 3_341_600_327)
 
     internal val getWallNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_normal", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_normal", 3_341_600_327)
 
     internal val getLastMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_motion", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_motion", 3_341_600_327)
 
     internal val getPositionDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_position_delta", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_position_delta", 3_341_600_327)
 
     internal val getRealVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_real_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_real_velocity", 3_341_600_327)
 
     internal val getFloorAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_angle", 2841063350)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_angle", 2_841_063_350)
 
     internal val getPlatformVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_velocity", 3_341_600_327)
 
     internal val getSlideCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision_count", 3905245786)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision_count", 3_905_245_786)
 
     internal val getSlideCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision", 860659811)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision", 860_659_811)
 
     internal val getLastSlideCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_slide_collision", 2161834755)
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_slide_collision", 2_161_834_755)
   }
 }

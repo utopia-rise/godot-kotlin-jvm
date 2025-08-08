@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,29 +17,23 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or
- * also is returned by a TCP server.
+ * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or also is returned by a TCP server.
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(638, scriptIndex)
   }
 
   /**
    * Opens the TCP socket, and binds it to the specified local address.
    *
-   * This method is generally not needed, and only used to force the subsequent call to
-   * [connectToHost] to use the specified [host] and [port] as source address. This can be desired in
-   * some NAT punchthrough techniques, or when forcing the source network interface.
+   * This method is generally not needed, and only used to force the subsequent call to [connectToHost] to use the specified [host] and [port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.
    */
   @JvmOverloads
   public final fun bind(port: Int, host: String = "*"): Error {
@@ -52,8 +43,7 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK]
-   * on success.
+   * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK] on success.
    */
   public final fun connectToHost(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -109,20 +99,17 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  public final fun disconnectFromHost(): Unit {
+  public final fun disconnectFromHost() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.disconnectFromHostPtr, NIL)
   }
 
   /**
-   * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the
-   * default), packet transfers will be delayed and combined using
-   * [url=https://en.wikipedia.org/wiki/Nagle&#37;27s_algorithm]Nagle's algorithm[/url].
+   * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the default), packet transfers will be delayed and combined using [url=https://en.wikipedia.org/wiki/Nagle&#37;27s_algorithm]Nagle's algorithm[/url].
    *
-   * **Note:** It's recommended to leave this disabled for applications that send large packets or
-   * need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
+   * **Note:** It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
-  public final fun setNoDelay(enabled: Boolean): Unit {
+  public final fun setNoDelay(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setNoDelayPtr, NIL)
   }
@@ -162,29 +149,30 @@ public open class StreamPeerTCP : StreamPeer() {
 
   public object MethodBindings {
     internal val bindPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "bind", 3167955072)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "bind", 3_167_955_072)
 
     internal val connectToHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host", 993915709)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host", 993_915_709)
 
-    internal val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "poll", 166280745)
+    internal val pollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "poll", 166_280_745)
 
     internal val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status", 859471121)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status", 859_471_121)
 
     internal val getConnectedHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host", 201670096)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host", 201_670_096)
 
     internal val getConnectedPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_port", 3905245786)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_port", 3_905_245_786)
 
     internal val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port", 3905245786)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port", 3_905_245_786)
 
     internal val disconnectFromHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host", 3218959716)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host", 3_218_959_716)
 
     internal val setNoDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay", 2586408642)
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay", 2_586_408_642)
   }
 }

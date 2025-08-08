@@ -1,20 +1,14 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * JavaScriptObject is used to interact with JavaScript objects retrieved or created via
- * [JavaScriptBridge.getInterface], [JavaScriptBridge.createObject], or
- * [JavaScriptBridge.createCallback].
+ * JavaScriptObject is used to interact with JavaScript objects retrieved or created via [JavaScriptBridge.getInterface], [JavaScriptBridge.createObject], or [JavaScriptBridge.createCallback].
  *
  * ```
  * extends Node
@@ -48,7 +42,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(321, scriptIndex)
   }
 

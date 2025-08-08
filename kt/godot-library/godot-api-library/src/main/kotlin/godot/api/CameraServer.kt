@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,18 +16,14 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * The [CameraServer] keeps track of different cameras accessible in Godot. These are external
- * cameras such as webcams or the cameras on your phone.
+ * The [CameraServer] keeps track of different cameras accessible in Godot. These are external cameras such as webcams or the cameras on your phone.
  *
  * It is notably used to provide AR modules with a video feed from the camera.
  *
- * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms
- * no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
- * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
+ * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
  */
 @GodotBaseType
 public object CameraServer : Object() {
@@ -46,7 +39,7 @@ public object CameraServer : Object() {
   @JvmStatic
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(1)
   }
 
@@ -84,7 +77,7 @@ public object CameraServer : Object() {
    * Adds the camera [feed] to the camera server.
    */
   @JvmStatic
-  public final fun addFeed(feed: CameraFeed?): Unit {
+  public final fun addFeed(feed: CameraFeed?) {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(ptr, MethodBindings.addFeedPtr, NIL)
   }
@@ -93,7 +86,7 @@ public object CameraServer : Object() {
    * Removes the specified camera [feed].
    */
   @JvmStatic
-  public final fun removeFeed(feed: CameraFeed?): Unit {
+  public final fun removeFeed(feed: CameraFeed?) {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(ptr, MethodBindings.removeFeedPtr, NIL)
   }
@@ -131,18 +124,18 @@ public object CameraServer : Object() {
 
   public object MethodBindings {
     internal val getFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "get_feed", 361927068)
+        TypeManager.getMethodBindPtr("CameraServer", "get_feed", 361_927_068)
 
     internal val getFeedCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "get_feed_count", 2455072627)
+        TypeManager.getMethodBindPtr("CameraServer", "get_feed_count", 2_455_072_627)
 
     internal val feedsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "feeds", 2915620761)
+        TypeManager.getMethodBindPtr("CameraServer", "feeds", 2_915_620_761)
 
     internal val addFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "add_feed", 3204782488)
+        TypeManager.getMethodBindPtr("CameraServer", "add_feed", 3_204_782_488)
 
     internal val removeFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "remove_feed", 3204782488)
+        TypeManager.getMethodBindPtr("CameraServer", "remove_feed", 3_204_782_488)
   }
 }

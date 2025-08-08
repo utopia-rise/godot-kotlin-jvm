@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,16 +14,12 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This is an internal editor class intended for keeping data of resources of unknown type (most
- * likely this type was supplied by an extension that is no longer loaded). It can't be manually
- * instantiated or placed in a scene.
+ * This is an internal editor class intended for keeping data of resources of unknown type (most likely this type was supplied by an extension that is no longer loaded). It can't be manually instantiated or placed in a scene.
  *
- * **Warning:** Ignore missing resources unless you know what you are doing. Existing properties on
- * a missing resource can be freely modified in code, regardless of the type they are intended to be.
+ * **Warning:** Ignore missing resources unless you know what you are doing. Existing properties on a missing resource can be freely modified in code, regardless of the type they are intended to be.
  */
 @GodotBaseType
 public open class MissingResource : Resource() {
@@ -42,8 +35,7 @@ public open class MissingResource : Resource() {
     }
 
   /**
-   * If set to `true`, allows new properties to be added on top of the existing ones with
-   * [Object.set].
+   * If set to `true`, allows new properties to be added on top of the existing ones with [Object.set].
    */
   public final inline var recordingProperties: Boolean
     @JvmName("recordingPropertiesProperty")
@@ -53,11 +45,11 @@ public open class MissingResource : Resource() {
       setRecordingProperties(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(360, scriptIndex)
   }
 
-  public final fun setOriginalClass(name: String): Unit {
+  public final fun setOriginalClass(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setOriginalClassPtr, NIL)
   }
@@ -68,7 +60,7 @@ public open class MissingResource : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setRecordingProperties(enable: Boolean): Unit {
+  public final fun setRecordingProperties(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setRecordingPropertiesPtr, NIL)
   }
@@ -83,15 +75,15 @@ public open class MissingResource : Resource() {
 
   public object MethodBindings {
     internal val setOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "set_original_class", 83702148)
+        TypeManager.getMethodBindPtr("MissingResource", "set_original_class", 83_702_148)
 
     internal val getOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "get_original_class", 201670096)
+        TypeManager.getMethodBindPtr("MissingResource", "get_original_class", 201_670_096)
 
     internal val setRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "set_recording_properties", 2586408642)
+        TypeManager.getMethodBindPtr("MissingResource", "set_recording_properties", 2_586_408_642)
 
     internal val isRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "is_recording_properties", 36873697)
+        TypeManager.getMethodBindPtr("MissingResource", "is_recording_properties", 36_873_697)
   }
 }

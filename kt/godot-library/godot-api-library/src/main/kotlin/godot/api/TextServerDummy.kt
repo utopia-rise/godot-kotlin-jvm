@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,12 +21,9 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * A dummy [TextServer] interface that doesn't do anything. Useful for freeing up memory when
- * rendering text is not needed, as text servers are resource-intensive. It can also be used for
- * performance comparisons in complex GUIs to check the impact of text rendering.
+ * A dummy [TextServer] interface that doesn't do anything. Useful for freeing up memory when rendering text is not needed, as text servers are resource-intensive. It can also be used for performance comparisons in complex GUIs to check the impact of text rendering.
  *
  * A dummy text server is always available at the start of a project. Here's how to access it:
  *
@@ -44,12 +38,11 @@ import kotlin.Unit
  *             TextServerManager.remove_interface(text_server)
  * ```
  *
- * The command line argument `--text-driver Dummy` (case-sensitive) can be used to force the "Dummy"
- * [TextServer] on any project.
+ * The command line argument `--text-driver Dummy` (case-sensitive) can be used to force the "Dummy" [TextServer] on any project.
  */
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(661, scriptIndex)
   }
 

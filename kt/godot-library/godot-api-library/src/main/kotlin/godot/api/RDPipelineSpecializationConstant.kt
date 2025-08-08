@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,22 +14,17 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A *specialization constant* is a way to create additional variants of shaders without actually
- * increasing the number of shader versions that are compiled. This allows improving performance by
- * reducing the number of shader versions and reducing `if` branching, while still allowing shaders to
- * be flexible for different use cases.
+ * A *specialization constant* is a way to create additional variants of shaders without actually increasing the number of shader versions that are compiled. This allows improving performance by reducing the number of shader versions and reducing `if` branching, while still allowing shaders to be flexible for different use cases.
  *
  * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineSpecializationConstant : RefCounted() {
   /**
-   * The specialization constant's value. Only [bool], [int] and [float] types are valid for
-   * specialization constants.
+   * The specialization constant's value. Only [bool], [int] and [float] types are valid for specialization constants.
    */
   public final inline var `value`: Any?
     @JvmName("valueProperty")
@@ -43,8 +35,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     }
 
   /**
-   * The identifier of the specialization constant. This is a value starting from `0` and that
-   * increments for every different specialization constant for a given shader.
+   * The identifier of the specialization constant. This is a value starting from `0` and that increments for every different specialization constant for a given shader.
    */
   public final inline var constantId: Long
     @JvmName("constantIdProperty")
@@ -54,11 +45,11 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
       setConstantId(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(520, scriptIndex)
   }
 
-  public final fun setValue(`value`: Any?): Unit {
+  public final fun setValue(`value`: Any?) {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setValuePtr, NIL)
   }
@@ -69,7 +60,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
-  public final fun setConstantId(constantId: Long): Unit {
+  public final fun setConstantId(constantId: Long) {
     TransferContext.writeArguments(LONG to constantId)
     TransferContext.callMethod(ptr, MethodBindings.setConstantIdPtr, NIL)
   }
@@ -84,15 +75,15 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
 
   public object MethodBindings {
     internal val setValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "set_value", 1114965689)
+        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "set_value", 1_114_965_689)
 
     internal val getValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "get_value", 1214101251)
+        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "get_value", 1_214_101_251)
 
     internal val setConstantIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "set_constant_id", 1286410249)
+        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "set_constant_id", 1_286_410_249)
 
     internal val getConstantIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "get_constant_id", 3905245786)
+        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "get_constant_id", 3_905_245_786)
   }
 }

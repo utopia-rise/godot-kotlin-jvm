@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
       setFunction(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(751, scriptIndex)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -69,48 +65,39 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     ASIN(3),
     /**
-     * Returns the arc-cosine of the parameter. Translates to `acos(x)` in the Godot Shader
-     * Language.
+     * Returns the arc-cosine of the parameter. Translates to `acos(x)` in the Godot Shader Language.
      */
     ACOS(4),
     /**
-     * Returns the arc-tangent of the parameter. Translates to `atan(x)` in the Godot Shader
-     * Language.
+     * Returns the arc-tangent of the parameter. Translates to `atan(x)` in the Godot Shader Language.
      */
     ATAN(5),
     /**
-     * Returns the hyperbolic sine of the parameter. Translates to `sinh(x)` in the Godot Shader
-     * Language.
+     * Returns the hyperbolic sine of the parameter. Translates to `sinh(x)` in the Godot Shader Language.
      */
     SINH(6),
     /**
-     * Returns the hyperbolic cosine of the parameter. Translates to `cosh(x)` in the Godot Shader
-     * Language.
+     * Returns the hyperbolic cosine of the parameter. Translates to `cosh(x)` in the Godot Shader Language.
      */
     COSH(7),
     /**
-     * Returns the hyperbolic tangent of the parameter. Translates to `tanh(x)` in the Godot Shader
-     * Language.
+     * Returns the hyperbolic tangent of the parameter. Translates to `tanh(x)` in the Godot Shader Language.
      */
     TANH(8),
     /**
-     * Returns the natural logarithm of the parameter. Translates to `log(x)` in the Godot Shader
-     * Language.
+     * Returns the natural logarithm of the parameter. Translates to `log(x)` in the Godot Shader Language.
      */
     LOG(9),
     /**
-     * Returns the natural exponentiation of the parameter. Translates to `exp(x)` in the Godot
-     * Shader Language.
+     * Returns the natural exponentiation of the parameter. Translates to `exp(x)` in the Godot Shader Language.
      */
     EXP(10),
     /**
-     * Returns the square root of the parameter. Translates to `sqrt(x)` in the Godot Shader
-     * Language.
+     * Returns the square root of the parameter. Translates to `sqrt(x)` in the Godot Shader Language.
      */
     SQRT(11),
     /**
-     * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader
-     * Language.
+     * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader Language.
      */
     ABS(12),
     /**
@@ -118,23 +105,19 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     SIGN(13),
     /**
-     * Finds the nearest integer less than or equal to the parameter. Translates to `floor(x)` in
-     * the Godot Shader Language.
+     * Finds the nearest integer less than or equal to the parameter. Translates to `floor(x)` in the Godot Shader Language.
      */
     FLOOR(14),
     /**
-     * Finds the nearest integer to the parameter. Translates to `round(x)` in the Godot Shader
-     * Language.
+     * Finds the nearest integer to the parameter. Translates to `round(x)` in the Godot Shader Language.
      */
     ROUND(15),
     /**
-     * Finds the nearest integer that is greater than or equal to the parameter. Translates to
-     * `ceil(x)` in the Godot Shader Language.
+     * Finds the nearest integer that is greater than or equal to the parameter. Translates to `ceil(x)` in the Godot Shader Language.
      */
     CEIL(16),
     /**
-     * Computes the fractional part of the argument. Translates to `fract(x)` in the Godot Shader
-     * Language.
+     * Computes the fractional part of the argument. Translates to `fract(x)` in the Godot Shader Language.
      */
     FRACT(17),
     /**
@@ -146,43 +129,35 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     NEGATE(19),
     /**
-     * Returns the arc-hyperbolic-cosine of the parameter. Translates to `acosh(x)` in the Godot
-     * Shader Language.
+     * Returns the arc-hyperbolic-cosine of the parameter. Translates to `acosh(x)` in the Godot Shader Language.
      */
     ACOSH(20),
     /**
-     * Returns the arc-hyperbolic-sine of the parameter. Translates to `asinh(x)` in the Godot
-     * Shader Language.
+     * Returns the arc-hyperbolic-sine of the parameter. Translates to `asinh(x)` in the Godot Shader Language.
      */
     ASINH(21),
     /**
-     * Returns the arc-hyperbolic-tangent of the parameter. Translates to `atanh(x)` in the Godot
-     * Shader Language.
+     * Returns the arc-hyperbolic-tangent of the parameter. Translates to `atanh(x)` in the Godot Shader Language.
      */
     ATANH(22),
     /**
-     * Convert a quantity in radians to degrees. Translates to `degrees(x)` in the Godot Shader
-     * Language.
+     * Convert a quantity in radians to degrees. Translates to `degrees(x)` in the Godot Shader Language.
      */
     DEGREES(23),
     /**
-     * Returns 2 raised by the power of the parameter. Translates to `exp2(x)` in the Godot Shader
-     * Language.
+     * Returns 2 raised by the power of the parameter. Translates to `exp2(x)` in the Godot Shader Language.
      */
     EXP2(24),
     /**
-     * Returns the inverse of the square root of the parameter. Translates to `inversesqrt(x)` in
-     * the Godot Shader Language.
+     * Returns the inverse of the square root of the parameter. Translates to `inversesqrt(x)` in the Godot Shader Language.
      */
     INVERSE_SQRT(25),
     /**
-     * Returns the base 2 logarithm of the parameter. Translates to `log2(x)` in the Godot Shader
-     * Language.
+     * Returns the base 2 logarithm of the parameter. Translates to `log2(x)` in the Godot Shader Language.
      */
     LOG2(26),
     /**
-     * Convert a quantity in degrees to radians. Translates to `radians(x)` in the Godot Shader
-     * Language.
+     * Convert a quantity in degrees to radians. Translates to `radians(x)` in the Godot Shader Language.
      */
     RADIANS(27),
     /**
@@ -190,13 +165,11 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     RECIPROCAL(28),
     /**
-     * Finds the nearest even integer to the parameter. Translates to `roundEven(x)` in the Godot
-     * Shader Language.
+     * Finds the nearest even integer to the parameter. Translates to `roundEven(x)` in the Godot Shader Language.
      */
     ROUNDEVEN(29),
     /**
-     * Returns a value equal to the nearest integer to `x` whose absolute value is not larger than
-     * the absolute value of `x`. Translates to `trunc(x)` in the Godot Shader Language.
+     * Returns a value equal to the nearest integer to `x` whose absolute value is not larger than the absolute value of `x`. Translates to `trunc(x)` in the Godot Shader Language.
      */
     TRUNC(30),
     /**
@@ -223,9 +196,9 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function", 536026177)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function", 536_026_177)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function", 2033948868)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function", 2_033_948_868)
   }
 }

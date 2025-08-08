@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,12 +15,10 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class holds the context information required for encryption and decryption operations with
- * AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
+ * This class holds the context information required for encryption and decryption operations with AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
  *
  * ```gdscript
  * //gdscript
@@ -33,8 +28,7 @@ import kotlin.jvm.JvmOverloads
  *
  * func _ready():
  *     var key = "My secret key!!!" # Key must be either 16 or 32 bytes.
- *     var data = "My secret text!!" # Data size must be multiple of 16 bytes, apply padding if
- * needed.
+ *     var data = "My secret text!!" # Data size must be multiple of 16 bytes, apply padding if needed.
  *     # Encrypt ECB
  *     aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8_buffer())
  *     var encrypted = aes.update(data.to_utf8_buffer())
@@ -71,8 +65,7 @@ import kotlin.jvm.JvmOverloads
  *     public override void _Ready()
  *     {
  *         string key = "My secret key!!!"; // Key must be either 16 or 32 bytes.
- *         string data = "My secret text!!"; // Data size must be multiple of 16 bytes, apply
- * padding if needed.
+ *         string data = "My secret text!!"; // Data size must be multiple of 16 bytes, apply padding if needed.
  *         // Encrypt ECB
  *         _aes.Start(AesContext.Mode.EcbEncrypt, key.ToUtf8Buffer());
  *         byte[] encrypted = _aes.Update(data.ToUtf8Buffer());
@@ -101,14 +94,12 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class AESContext : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(2, scriptIndex)
   }
 
   /**
-   * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be
-   * provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is
-   * either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
+   * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
   @JvmOverloads
   public final fun start(
@@ -122,8 +113,7 @@ public open class AESContext : RefCounted() {
   }
 
   /**
-   * Run the desired operation for this AES context. Will return a [PackedByteArray] containing the
-   * result of encrypting (or decrypting) the given [src]. See [start] for mode of operation.
+   * Run the desired operation for this AES context. Will return a [PackedByteArray] containing the result of encrypting (or decrypting) the given [src]. See [start] for mode of operation.
    *
    * **Note:** The size of [src] must be a multiple of 16. Apply some padding if needed.
    */
@@ -134,11 +124,9 @@ public open class AESContext : RefCounted() {
   }
 
   /**
-   * Get the current IV state for this context (IV gets updated when calling [update]). You normally
-   * don't need this function.
+   * Get the current IV state for this context (IV gets updated when calling [update]). You normally don't need this function.
    *
-   * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or
-   * [MODE_CBC_DECRYPT].
+   * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
   public final fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()
@@ -149,7 +137,7 @@ public open class AESContext : RefCounted() {
   /**
    * Close this AES context so it can be started again. See [start].
    */
-  public final fun finish(): Unit {
+  public final fun finish() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.finishPtr, NIL)
   }
@@ -192,15 +180,16 @@ public open class AESContext : RefCounted() {
   public companion object
 
   public object MethodBindings {
-    internal val startPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "start", 3122411423)
+    internal val startPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AESContext", "start", 3_122_411_423)
 
     internal val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AESContext", "update", 527836100)
+        TypeManager.getMethodBindPtr("AESContext", "update", 527_836_100)
 
     internal val getIvStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AESContext", "get_iv_state", 2115431945)
+        TypeManager.getMethodBindPtr("AESContext", "get_iv_state", 2_115_431_945)
 
     internal val finishPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AESContext", "finish", 3218959716)
+        TypeManager.getMethodBindPtr("AESContext", "finish", 3_218_959_716)
   }
 }

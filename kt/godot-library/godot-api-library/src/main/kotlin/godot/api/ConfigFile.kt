@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,12 +23,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This helper class can be used to store [Variant] values on the filesystem using INI-style
- * formatting. The stored values are identified by a section and a key:
+ * This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key:
  *
  * [codeblock lang=text]
  *
@@ -44,8 +39,7 @@ import kotlin.jvm.JvmOverloads
  * a_vector=Vector3(1, 0, 2)
  *
  * ```
- * The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used
- * directly without accessing the filesystem.
+ * The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem.
  * The following example shows how to create a simple [ConfigFile] and save it on disc:
  *
  * ```gdscript
@@ -168,47 +162,34 @@ import kotlin.jvm.JvmOverloads
  *
  * ```
  *
- * Any operation that mutates the ConfigFile such as [setValue], [clear], or [eraseSection], only
- * changes what is loaded in memory. If you want to write the change to a file, you have to save the
- * changes with [save], [saveEncrypted], or [saveEncryptedPass].
+ * Any operation that mutates the ConfigFile such as [setValue], [clear], or [eraseSection], only changes what is loaded in memory. If you want to write the change to a file, you have to save the changes with [save], [saveEncrypted], or [saveEncryptedPass].
  *
- * Keep in mind that section and property names can't contain spaces. Anything after a space will be
- * ignored on save and on load.
+ * Keep in mind that section and property names can't contain spaces. Anything after a space will be ignored on save and on load.
  *
- * ConfigFiles can also contain manually written comment lines starting with a semicolon (`;`).
- * Those lines will be ignored when parsing the file. Note that comments will be lost when saving the
- * ConfigFile. This can still be useful for dedicated server configuration files, which are typically
- * never overwritten without explicit user action.
+ * ConfigFiles can also contain manually written comment lines starting with a semicolon (`;`). Those lines will be ignored when parsing the file. Note that comments will be lost when saving the ConfigFile. This can still be useful for dedicated server configuration files, which are typically never overwritten without explicit user action.
  *
- * **Note:** The file extension given to a ConfigFile does not have any impact on its formatting or
- * behavior. By convention, the `.cfg` extension is used here, but any other extension such as `.ini`
- * is also valid. Since neither `.cfg` nor `.ini` are standardized, Godot's ConfigFile formatting may
- * differ from files written by other programs.
+ * **Note:** The file extension given to a ConfigFile does not have any impact on its formatting or behavior. By convention, the `.cfg` extension is used here, but any other extension such as `.ini` is also valid. Since neither `.cfg` nor `.ini` are standardized, Godot's ConfigFile formatting may differ from files written by other programs.
  */
 @GodotBaseType
 public open class ConfigFile : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(175, scriptIndex)
   }
 
   /**
-   * Assigns a value to the specified key of the specified section. If either the section or the key
-   * do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and
-   * deletes the section if it ends up empty once the key has been removed.
+   * Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
    */
   public final fun setValue(
     section: String,
     key: String,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setValuePtr, NIL)
   }
 
   /**
-   * Returns the current value for the specified section and key. If either the section or the key
-   * do not exist, the method returns the fallback [default] value. If [default] is not specified or
-   * set to `null`, an error is also raised.
+   * Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [default] value. If [default] is not specified or set to `null`, an error is also raised.
    */
   @JvmOverloads
   public final fun getValue(
@@ -249,8 +230,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Returns an array of all defined key identifiers in the specified section. Raises an error and
-   * returns an empty array if the section does not exist.
+   * Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist.
    */
   public final fun getSectionKeys(section: String): PackedStringArray {
     TransferContext.writeArguments(STRING to section)
@@ -259,26 +239,23 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Deletes the specified section along with all the key-value pairs inside. Raises an error if the
-   * section does not exist.
+   * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
    */
-  public final fun eraseSection(section: String): Unit {
+  public final fun eraseSection(section: String) {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(ptr, MethodBindings.eraseSectionPtr, NIL)
   }
 
   /**
-   * Deletes the specified key in a section. Raises an error if either the section or the key do not
-   * exist.
+   * Deletes the specified key in a section. Raises an error if either the section or the key do not exist.
    */
-  public final fun eraseSectionKey(section: String, key: String): Unit {
+  public final fun eraseSectionKey(section: String, key: String) {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(ptr, MethodBindings.eraseSectionKeyPtr, NIL)
   }
 
   /**
-   * Loads the config file specified as a parameter. The file's contents are parsed and loaded in
-   * the [ConfigFile] object which the method was called on.
+   * Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -289,8 +266,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Parses the passed string as the contents of a config file. The string is parsed and loaded in
-   * the ConfigFile object which the method was called on.
+   * Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -301,8 +277,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output
-   * file uses an INI-style structure.
+   * Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -322,9 +297,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Loads the encrypted config file specified as a parameter, using the provided [key] to decrypt
-   * it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was
-   * called on.
+   * Loads the encrypted config file specified as a parameter, using the provided [key] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -335,9 +308,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Loads the encrypted config file specified as a parameter, using the provided [password] to
-   * decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method
-   * was called on.
+   * Loads the encrypted config file specified as a parameter, using the provided [password] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -348,8 +319,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a
-   * parameter, using the provided [key] to encrypt it. The output file uses an INI-style structure.
+   * Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [key] to encrypt it. The output file uses an INI-style structure.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -360,9 +330,7 @@ public open class ConfigFile : RefCounted() {
   }
 
   /**
-   * Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a
-   * parameter, using the provided [password] to encrypt it. The output file uses an INI-style
-   * structure.
+   * Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [password] to encrypt it. The output file uses an INI-style structure.
    *
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
@@ -375,7 +343,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Removes the entire contents of the config.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -384,50 +352,52 @@ public open class ConfigFile : RefCounted() {
 
   public object MethodBindings {
     internal val setValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "set_value", 2504492430)
+        TypeManager.getMethodBindPtr("ConfigFile", "set_value", 2_504_492_430)
 
     internal val getValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_value", 89809366)
+        TypeManager.getMethodBindPtr("ConfigFile", "get_value", 89_809_366)
 
     internal val hasSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "has_section", 3927539163)
+        TypeManager.getMethodBindPtr("ConfigFile", "has_section", 3_927_539_163)
 
     internal val hasSectionKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "has_section_key", 820780508)
+        TypeManager.getMethodBindPtr("ConfigFile", "has_section_key", 820_780_508)
 
     internal val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_sections", 1139954409)
+        TypeManager.getMethodBindPtr("ConfigFile", "get_sections", 1_139_954_409)
 
     internal val getSectionKeysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_section_keys", 4291131558)
+        TypeManager.getMethodBindPtr("ConfigFile", "get_section_keys", 4_291_131_558)
 
     internal val eraseSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "erase_section", 83702148)
+        TypeManager.getMethodBindPtr("ConfigFile", "erase_section", 83_702_148)
 
     internal val eraseSectionKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "erase_section_key", 3186203200)
+        TypeManager.getMethodBindPtr("ConfigFile", "erase_section_key", 3_186_203_200)
 
-    internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "load", 166001499)
+    internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "load", 166_001_499)
 
-    internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "parse", 166001499)
+    internal val parsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConfigFile", "parse", 166_001_499)
 
-    internal val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "save", 166001499)
+    internal val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "save", 166_001_499)
 
     internal val encodeToTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "encode_to_text", 201670096)
+        TypeManager.getMethodBindPtr("ConfigFile", "encode_to_text", 201_670_096)
 
     internal val loadEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted", 887037711)
+        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted", 887_037_711)
 
     internal val loadEncryptedPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted_pass", 852856452)
+        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted_pass", 852_856_452)
 
     internal val saveEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted", 887037711)
+        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted", 887_037_711)
 
     internal val saveEncryptedPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted_pass", 852856452)
+        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted_pass", 852_856_452)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "clear", 3218959716)
+    internal val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConfigFile", "clear", 3_218_959_716)
   }
 }

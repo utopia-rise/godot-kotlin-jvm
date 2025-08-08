@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,15 +16,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
  *
- * By distorting the waveform the frequency content changes, which will often make the sound
- * "crunchy" or "abrasive". For games, it can simulate sound coming from some saturated device or
- * speaker very efficiently.
+ * By distorting the waveform the frequency content changes, which will often make the sound "crunchy" or "abrasive". For games, it can simulate sound coming from some saturated device or speaker very efficiently.
  */
 @GodotBaseType
 public open class AudioEffectDistortion : AudioEffect() {
@@ -43,8 +37,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * Increases or decreases the volume before the effect, in decibels. Value can range from -60 to
-   * 60.
+   * Increases or decreases the volume before the effect, in decibels. Value can range from -60 to 60.
    */
   public final inline var preGain: Float
     @JvmName("preGainProperty")
@@ -55,8 +48,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the
-   * distortion. Value can range from 1 to 20000.
+   * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000.
    */
   public final inline var keepHfHz: Float
     @JvmName("keepHfHzProperty")
@@ -78,8 +70,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * Increases or decreases the volume after the effect, in decibels. Value can range from -80 to
-   * 24.
+   * Increases or decreases the volume after the effect, in decibels. Value can range from -80 to 24.
    */
   public final inline var postGain: Float
     @JvmName("postGainProperty")
@@ -89,11 +80,11 @@ public open class AudioEffectDistortion : AudioEffect() {
       setPostGain(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(53, scriptIndex)
   }
 
-  public final fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
@@ -104,7 +95,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPreGain(preGain: Float): Unit {
+  public final fun setPreGain(preGain: Float) {
     TransferContext.writeArguments(DOUBLE to preGain.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPreGainPtr, NIL)
   }
@@ -115,7 +106,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setKeepHfHz(keepHfHz: Float): Unit {
+  public final fun setKeepHfHz(keepHfHz: Float) {
     TransferContext.writeArguments(DOUBLE to keepHfHz.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setKeepHfHzPtr, NIL)
   }
@@ -126,7 +117,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDrive(drive: Float): Unit {
+  public final fun setDrive(drive: Float) {
     TransferContext.writeArguments(DOUBLE to drive.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDrivePtr, NIL)
   }
@@ -137,7 +128,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPostGain(postGain: Float): Unit {
+  public final fun setPostGain(postGain: Float) {
     TransferContext.writeArguments(DOUBLE to postGain.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPostGainPtr, NIL)
   }
@@ -164,18 +155,15 @@ public open class AudioEffectDistortion : AudioEffect() {
     CLIP(0),
     ATAN(1),
     /**
-     * Low-resolution digital distortion effect (bit depth reduction). You can use it to emulate the
-     * sound of early digital audio devices.
+     * Low-resolution digital distortion effect (bit depth reduction). You can use it to emulate the sound of early digital audio devices.
      */
     LOFI(2),
     /**
-     * Emulates the warm distortion produced by a field effect transistor, which is commonly used in
-     * solid-state musical instrument amplifiers. The [drive] property has no effect in this mode.
+     * Emulates the warm distortion produced by a field effect transistor, which is commonly used in solid-state musical instrument amplifiers. The [drive] property has no effect in this mode.
      */
     OVERDRIVE(3),
     /**
-     * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive
-     * sound.
+     * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive sound.
      */
     WAVESHAPE(4),
     ;
@@ -194,33 +182,33 @@ public open class AudioEffectDistortion : AudioEffect() {
 
   public object MethodBindings {
     internal val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_mode", 1314744793)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_mode", 1_314_744_793)
 
     internal val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_mode", 809118343)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_mode", 809_118_343)
 
     internal val setPreGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain", 373_806_689)
 
     internal val getPreGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain", 1_740_695_150)
 
     internal val setKeepHfHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz", 373_806_689)
 
     internal val getKeepHfHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz", 1_740_695_150)
 
     internal val setDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_drive", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_drive", 373_806_689)
 
     internal val getDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_drive", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_drive", 1_740_695_150)
 
     internal val setPostGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_post_gain", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_post_gain", 373_806_689)
 
     internal val getPostGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_post_gain", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_post_gain", 1_740_695_150)
   }
 }

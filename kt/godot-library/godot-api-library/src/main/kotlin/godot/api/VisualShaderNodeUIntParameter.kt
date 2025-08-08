@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,12 +14,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range
- * of accepted values.
+ * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range of accepted values.
  */
 @GodotBaseType
 public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
@@ -38,8 +33,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Default value of this parameter, which will be used if not set externally.
-   * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
+   * Default value of this parameter, which will be used if not set externally. [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
   public final inline var defaultValue: Int
     @JvmName("defaultValueProperty")
@@ -49,11 +43,11 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(817, scriptIndex)
   }
 
-  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
@@ -64,7 +58,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultValue(`value`: Int): Unit {
+  public final fun setDefaultValue(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
@@ -79,15 +73,15 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
 
   public object MethodBindings {
     internal val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value_enabled", 2_586_408_642)
 
     internal val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "is_default_value_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "is_default_value_enabled", 36_873_697)
 
     internal val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value", 1_286_410_249)
 
     internal val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "get_default_value", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "get_default_value", 3_905_245_786)
   }
 }

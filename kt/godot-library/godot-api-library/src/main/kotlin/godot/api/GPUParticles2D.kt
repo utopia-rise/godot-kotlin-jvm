@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -41,43 +38,29 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
- * features an emitter that generates some number of particles at a given rate.
+ * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D] features an emitter that generates some number of particles at a given rate.
  *
- * Use the [processMaterial] property to add a [ParticleProcessMaterial] to configure particle
- * appearance and behavior. Alternatively, you can add a [ShaderMaterial] which will be applied to all
- * particles.
+ * Use the [processMaterial] property to add a [ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [ShaderMaterial] which will be applied to all particles.
  *
- * 2D particles can optionally collide with [LightOccluder2D], but they don't collide with
- * [PhysicsBody2D] nodes.
+ * 2D particles can optionally collide with [LightOccluder2D], but they don't collide with [PhysicsBody2D] nodes.
  */
 @GodotBaseType
 public open class GPUParticles2D : Node2D() {
   /**
-   * Emitted when all active particles have finished processing. To immediately restart the emission
-   * cycle, call [restart].
+   * Emitted when all active particles have finished processing. To immediately restart the emission cycle, call [restart].
    *
-   * This signal is never emitted when [oneShot] is disabled, as particles will be emitted and
-   * processed continuously.
+   * This signal is never emitted when [oneShot] is disabled, as particles will be emitted and processed continuously.
    *
-   * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
-   * a short period after receiving the signal during which setting [emitting] to `true` will not
-   * restart the emission cycle. This delay is avoided by instead calling [restart].
+   * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the signal during which setting [emitting] to `true` will not restart the emission cycle. This delay is avoided by instead calling [restart].
    */
   public val finished: Signal0 by Signal0
 
   /**
-   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from
-   * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
-   * emission cycle unless all active particles have finished processing. Use the [signal finished]
-   * signal to be notified once all active particles finish processing.
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle unless all active particles have finished processing. Use the [signal finished] signal to be notified once all active particles finish processing.
    *
-   * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
-   * a short period after receiving the [signal finished] signal during which setting this to `true`
-   * will not restart the emission cycle.
+   * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the [signal finished] signal during which setting this to `true` will not restart the emission cycle.
    *
-   * **Tip:** If your [oneShot] emitter needs to immediately restart emitting particles once [signal
-   * finished] signal is received, consider calling [restart] instead of setting [emitting].
+   * **Tip:** If your [oneShot] emitter needs to immediately restart emitting particles once [signal finished] signal is received, consider calling [restart] instead of setting [emitting].
    */
   public final inline var emitting: Boolean
     @JvmName("emittingProperty")
@@ -88,12 +71,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The number of particles to emit in one emission cycle. The effective emission rate is `(amount
-   * * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements,
-   * even if not all particles are visible at a given time or if [amountRatio] is decreased.
+   * The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [amountRatio] is decreased.
    *
-   * **Note:** Changing this value will cause the particle system to restart. To avoid this, change
-   * [amountRatio] instead.
+   * **Note:** Changing this value will cause the particle system to restart. To avoid this, change [amountRatio] instead.
    */
   public final inline var amount: Int
     @JvmName("amountProperty")
@@ -104,16 +84,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`,
-   * this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`.
-   * Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted
-   * particles and doesn't cause the particle system to restart. [amountRatio] can be used to create
-   * effects that make the number of emitted particles vary over time.
+   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [amountRatio] can be used to create effects that make the number of emitted particles vary over time.
    *
-   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be
-   * allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If
-   * you don't intend to change the number of particles emitted while the particles are emitting, make
-   * sure [amountRatio] is set to `1` and change [amount] to your liking instead.
+   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [amountRatio] is set to `1` and change [amount] to your liking instead.
    */
   public final inline var amountRatio: Float
     @JvmName("amountRatioProperty")
@@ -124,12 +97,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Path to another [GPUParticles2D] node that will be used as a subemitter (see
-   * [ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as
-   * fireworks, sparks on collision, bubbles popping into water drops, and more.
+   * Path to another [GPUParticles2D] node that will be used as a subemitter (see [ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.
    *
-   * **Note:** When [subEmitter] is set, the target [GPUParticles2D] node will no longer emit
-   * particles on its own.
+   * **Note:** When [subEmitter] is set, the target [GPUParticles2D] node will no longer emit particles on its own.
    */
   public final inline var subEmitter: NodePath
     @JvmName("subEmitterProperty")
@@ -142,11 +112,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.
    *
-   * **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the
-   * [GPUParticles2D]'s [CanvasItem.material] property, then enable
-   * [CanvasItemMaterial.particlesAnimation] and set [CanvasItemMaterial.particlesAnimHFrames],
-   * [CanvasItemMaterial.particlesAnimVFrames], and [CanvasItemMaterial.particlesAnimLoop] to match the
-   * flipbook texture.
+   * **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the [GPUParticles2D]'s [CanvasItem.material] property, then enable [CanvasItemMaterial.particlesAnimation] and set [CanvasItemMaterial.particlesAnimHFrames], [CanvasItemMaterial.particlesAnimVFrames], and [CanvasItemMaterial.particlesAnimLoop] to match the flipbook texture.
    */
   public final inline var texture: Texture2D?
     @JvmName("textureProperty")
@@ -157,8 +123,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The amount of time each particle will exist (in seconds). The effective emission rate is
-   * `(amount * amount_ratio) / lifetime` particles per second.
+   * The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second.
    */
   public final inline var lifetime: Double
     @JvmName("lifetimeProperty")
@@ -171,8 +136,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Causes all the particles in this node to interpolate towards the end of their lifetime.
    *
-   * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
-   * implemented for custom process shaders.
+   * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
    */
   public final inline var interpToEnd: Float
     @JvmName("interpToEndProperty")
@@ -183,8 +147,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
-   * the cycle's end.
+   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
    */
   public final inline var oneShot: Boolean
     @JvmName("oneShotProperty")
@@ -197,10 +160,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle system starts as if it had already run for this many seconds.
    *
-   * **Note:** This can be very expensive if set to a high number as it requires running the
-   * particle shader a number of times equal to the [fixedFps] (or 30, if [fixedFps] is 0) for every
-   * second. In extreme cases it can even lead to a GPU crash due to the volume of work done in a
-   * single frame.
+   * **Note:** This can be very expensive if set to a high number as it requires running the particle shader a number of times equal to the [fixedFps] (or 30, if [fixedFps] is 0) for every second. In extreme cases it can even lead to a GPU crash due to the volume of work done in a single frame.
    */
   public final inline var preprocess: Double
     @JvmName("preprocessProperty")
@@ -211,8 +171,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the
-   * particles.
+   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
    */
   public final inline var speedScale: Double
     @JvmName("speedScaleProperty")
@@ -223,8 +182,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a
-   * gap in emissions before the next cycle begins.
+   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
    */
   public final inline var explosiveness: Float
     @JvmName("explosivenessProperty")
@@ -246,9 +204,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles will use the same seed for every simulation using the seed defined in
-   * [seed]. This is useful for situations where the visual outcome should be consistent across
-   * replays, for example when using Movie Maker mode.
+   * If `true`, particles will use the same seed for every simulation using the seed defined in [seed]. This is useful for situations where the visual outcome should be consistent across replays, for example when using Movie Maker mode.
    */
   public final inline var useFixedSeed: Boolean
     @JvmName("useFixedSeedProperty")
@@ -270,9 +226,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will
-   * make the particles render at 2 frames per second. Note this does not slow down the simulation of
-   * the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
   public final inline var fixedFps: Int
     @JvmName("fixedFpsProperty")
@@ -283,8 +237,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Enables particle interpolation, which makes the particle movement smoother when their
-   * [fixedFps] is lower than the screen refresh rate.
+   * Enables particle interpolation, which makes the particle movement smoother when their [fixedFps] is lower than the screen refresh rate.
    */
   public final inline var interpolate: Boolean
     @JvmName("interpolateProperty")
@@ -295,8 +248,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, results in fractional delta calculation which has a smoother particles display
-   * effect.
+   * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
   public final inline var fractDelta: Boolean
     @JvmName("fractDeltaProperty")
@@ -307,11 +259,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If
-   * particles appear to sink into the ground when colliding, increase this value. If particles appear
-   * to float when colliding, decrease this value. Only effective if
-   * [ParticleProcessMaterial.collisionMode] is [ParticleProcessMaterial.COLLISION_RIGID] or
-   * [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
+   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [ParticleProcessMaterial.collisionMode] is [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
    *
    * **Note:** Particles always have a spherical collision shape.
    */
@@ -324,18 +272,13 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The [Rect2] that determines the node's region which needs to be visible on screen for the
-   * particle system to be active.
+   * The [Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
    *
-   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
-   * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var visibilityRect: Rect2
@@ -347,10 +290,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This
-   * will cause particles to move and rotate along the [GPUParticles2D] node (and its parents) when it
-   * is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate
-   * along the [GPUParticles2D] node (and its parents) when it is moved or rotated.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [GPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [GPUParticles2D] node (and its parents) when it is moved or rotated.
    */
   public final inline var localCoords: Boolean
     @JvmName("localCoordsProperty")
@@ -374,8 +314,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * If `true`, enables particle trails using a mesh skinning system.
    *
-   * **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with
-   * the [trailSections] and [trailSectionSubdivisions] properties.
+   * **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with the [trailSections] and [trailSectionSubdivisions] properties.
    */
   public final inline var trailEnabled: Boolean
     @JvmName("trailEnabledProperty")
@@ -386,8 +325,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The amount of time the particle's trail should represent (in seconds). Only effective if
-   * [trailEnabled] is `true`.
+   * The amount of time the particle's trail should represent (in seconds). Only effective if [trailEnabled] is `true`.
    */
   public final inline var trailLifetime: Double
     @JvmName("trailLifetimeProperty")
@@ -398,9 +336,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The number of sections to use for the particle trail rendering. Higher values can result in
-   * smoother trail curves, at the cost of performance due to increased mesh complexity. See also
-   * [trailSectionSubdivisions]. Only effective if [trailEnabled] is `true`.
+   * The number of sections to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [trailSectionSubdivisions]. Only effective if [trailEnabled] is `true`.
    */
   public final inline var trailSections: Int
     @JvmName("trailSectionsProperty")
@@ -411,9 +347,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The number of subdivisions to use for the particle trail rendering. Higher values can result in
-   * smoother trail curves, at the cost of performance due to increased mesh complexity. See also
-   * [trailSections]. Only effective if [trailEnabled] is `true`.
+   * The number of subdivisions to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [trailSections]. Only effective if [trailEnabled] is `true`.
    */
   public final inline var trailSectionSubdivisions: Int
     @JvmName("trailSectionSubdivisionsProperty")
@@ -434,7 +368,7 @@ public open class GPUParticles2D : Node2D() {
       setProcessMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(243, scriptIndex)
   }
 
@@ -449,11 +383,9 @@ public open class GPUParticles2D : Node2D() {
    * gpuparticles2d.visibilityRect = myCoreType
    * ``````
    *
-   * The [Rect2] that determines the node's region which needs to be visible on screen for the
-   * particle system to be active.
+   * The [Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
    *
-   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
-   * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
   @CoreTypeHelper
   public final fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply {
@@ -461,82 +393,82 @@ public open class GPUParticles2D : Node2D() {
      visibilityRect = this
   }
 
-  public final fun setEmitting(emitting: Boolean): Unit {
+  public final fun setEmitting(emitting: Boolean) {
     TransferContext.writeArguments(BOOL to emitting)
     TransferContext.callMethod(ptr, MethodBindings.setEmittingPtr, NIL)
   }
 
-  public final fun setAmount(amount: Int): Unit {
+  public final fun setAmount(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setAmountPtr, NIL)
   }
 
-  public final fun setLifetime(secs: Double): Unit {
+  public final fun setLifetime(secs: Double) {
     TransferContext.writeArguments(DOUBLE to secs)
     TransferContext.callMethod(ptr, MethodBindings.setLifetimePtr, NIL)
   }
 
-  public final fun setOneShot(secs: Boolean): Unit {
+  public final fun setOneShot(secs: Boolean) {
     TransferContext.writeArguments(BOOL to secs)
     TransferContext.callMethod(ptr, MethodBindings.setOneShotPtr, NIL)
   }
 
-  public final fun setPreProcessTime(secs: Double): Unit {
+  public final fun setPreProcessTime(secs: Double) {
     TransferContext.writeArguments(DOUBLE to secs)
     TransferContext.callMethod(ptr, MethodBindings.setPreProcessTimePtr, NIL)
   }
 
-  public final fun setExplosivenessRatio(ratio: Float): Unit {
+  public final fun setExplosivenessRatio(ratio: Float) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExplosivenessRatioPtr, NIL)
   }
 
-  public final fun setRandomnessRatio(ratio: Float): Unit {
+  public final fun setRandomnessRatio(ratio: Float) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRandomnessRatioPtr, NIL)
   }
 
-  public final fun setVisibilityRect(visibilityRect: Rect2): Unit {
+  public final fun setVisibilityRect(visibilityRect: Rect2) {
     TransferContext.writeArguments(RECT2 to visibilityRect)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRectPtr, NIL)
   }
 
-  public final fun setUseLocalCoordinates(enable: Boolean): Unit {
+  public final fun setUseLocalCoordinates(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
   }
 
-  public final fun setFixedFps(fps: Int): Unit {
+  public final fun setFixedFps(fps: Int) {
     TransferContext.writeArguments(LONG to fps.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFixedFpsPtr, NIL)
   }
 
-  public final fun setFractionalDelta(enable: Boolean): Unit {
+  public final fun setFractionalDelta(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFractionalDeltaPtr, NIL)
   }
 
-  public final fun setInterpolate(enable: Boolean): Unit {
+  public final fun setInterpolate(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setInterpolatePtr, NIL)
   }
 
-  public final fun setProcessMaterial(material: Material?): Unit {
+  public final fun setProcessMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setProcessMaterialPtr, NIL)
   }
 
-  public final fun setSpeedScale(scale: Double): Unit {
+  public final fun setSpeedScale(scale: Double) {
     TransferContext.writeArguments(DOUBLE to scale)
     TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
-  public final fun setCollisionBaseSize(size: Float): Unit {
+  public final fun setCollisionBaseSize(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCollisionBaseSizePtr, NIL)
   }
 
-  public final fun setInterpToEnd(interp: Float): Unit {
+  public final fun setInterpToEnd(interp: Float) {
     TransferContext.writeArguments(DOUBLE to interp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInterpToEndPtr, NIL)
   }
@@ -544,10 +476,9 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Requests the particles to process for extra process time during a single frame.
    *
-   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
-   * [restart] with parameter `keep_seed` set to `true`.
+   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling [restart] with parameter `keep_seed` set to `true`.
    */
-  public final fun requestParticlesProcess(processTime: Float): Unit {
+  public final fun requestParticlesProcess(processTime: Float) {
     TransferContext.writeArguments(DOUBLE to processTime.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
@@ -648,7 +579,7 @@ public open class GPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDrawOrder(order: DrawOrder): Unit {
+  public final fun setDrawOrder(order: DrawOrder) {
     TransferContext.writeArguments(LONG to order.id)
     TransferContext.callMethod(ptr, MethodBindings.setDrawOrderPtr, NIL)
   }
@@ -659,7 +590,7 @@ public open class GPUParticles2D : Node2D() {
     return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -673,8 +604,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Returns a rectangle containing the positions of all existing particles.
    *
-   * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling
-   * it often may have a negative impact on performance.
+   * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling it often may have a negative impact on performance.
    */
   public final fun captureRect(): Rect2 {
     TransferContext.writeArguments()
@@ -683,21 +613,19 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing
-   * from the viewport, wait for the [signal finished] signal before calling.
+   * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing from the viewport, wait for the [signal finished] signal before calling.
    *
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
    *
-   * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
-   * playback.
+   * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and playback.
    */
   @JvmOverloads
-  public final fun restart(keepSeed: Boolean = false): Unit {
+  public final fun restart(keepSeed: Boolean = false) {
     TransferContext.writeArguments(BOOL to keepSeed)
     TransferContext.callMethod(ptr, MethodBindings.restartPtr, NIL)
   }
 
-  public final fun setSubEmitter(path: NodePath): Unit {
+  public final fun setSubEmitter(path: NodePath) {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterPtr, NIL)
   }
@@ -709,14 +637,11 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends
-   * on the value of [flags]. See [EmitFlags].
+   * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends on the value of [flags]. See [EmitFlags].
    *
-   * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
-   * `(rotation, age, animation, lifetime)`.
+   * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as `(rotation, age, animation, lifetime)`.
    *
-   * **Note:** [emitParticle] is only supported on the Forward+ and Mobile rendering methods, not
-   * Compatibility.
+   * **Note:** [emitParticle] is only supported on the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public final fun emitParticle(
     xform: Transform2D,
@@ -724,17 +649,17 @@ public open class GPUParticles2D : Node2D() {
     color: Color,
     custom: Color,
     flags: Long,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(ptr, MethodBindings.emitParticlePtr, NIL)
   }
 
-  public final fun setTrailEnabled(enabled: Boolean): Unit {
+  public final fun setTrailEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setTrailEnabledPtr, NIL)
   }
 
-  public final fun setTrailLifetime(secs: Double): Unit {
+  public final fun setTrailLifetime(secs: Double) {
     TransferContext.writeArguments(DOUBLE to secs)
     TransferContext.callMethod(ptr, MethodBindings.setTrailLifetimePtr, NIL)
   }
@@ -751,7 +676,7 @@ public open class GPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setTrailSections(sections: Int): Unit {
+  public final fun setTrailSections(sections: Int) {
     TransferContext.writeArguments(LONG to sections.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTrailSectionsPtr, NIL)
   }
@@ -762,7 +687,7 @@ public open class GPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTrailSectionSubdivisions(subdivisions: Int): Unit {
+  public final fun setTrailSectionSubdivisions(subdivisions: Int) {
     TransferContext.writeArguments(LONG to subdivisions.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTrailSectionSubdivisionsPtr, NIL)
   }
@@ -776,12 +701,12 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Sets this node's properties to match a given [CPUParticles2D] node.
    */
-  public final fun convertFromParticles(particles: Node?): Unit {
+  public final fun convertFromParticles(particles: Node?) {
     TransferContext.writeArguments(OBJECT to particles)
     TransferContext.callMethod(ptr, MethodBindings.convertFromParticlesPtr, NIL)
   }
 
-  public final fun setAmountRatio(ratio: Float): Unit {
+  public final fun setAmountRatio(ratio: Float) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAmountRatioPtr, NIL)
   }
@@ -792,7 +717,7 @@ public open class GPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUseFixedSeed(useFixedSeed: Boolean): Unit {
+  public final fun setUseFixedSeed(useFixedSeed: Boolean) {
     TransferContext.writeArguments(BOOL to useFixedSeed)
     TransferContext.callMethod(ptr, MethodBindings.setUseFixedSeedPtr, NIL)
   }
@@ -803,7 +728,7 @@ public open class GPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSeed(seed: Long): Unit {
+  public final fun setSeed(seed: Long) {
     TransferContext.writeArguments(LONG to seed)
     TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
   }
@@ -824,13 +749,11 @@ public open class GPUParticles2D : Node2D() {
      */
     INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime. In other words, the particle with the
-     * highest lifetime is drawn at the front.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
      */
     LIFETIME(1),
     /**
-     * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
-     * the lowest lifetime is drawn at the front.
+     * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
      */
     REVERSE_LIFETIME(2),
     ;
@@ -857,8 +780,7 @@ public open class GPUParticles2D : Node2D() {
      */
     ROTATION_SCALE(2),
     /**
-     * Particle starts with the specified velocity vector, which defines the emission direction and
-     * speed.
+     * Particle starts with the specified velocity vector, which defines the emission direction and speed.
      */
     VELOCITY(4),
     /**
@@ -885,174 +807,174 @@ public open class GPUParticles2D : Node2D() {
 
   public object MethodBindings {
     internal val setEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_emitting", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_emitting", 2_586_408_642)
 
     internal val setAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_amount", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_amount", 1_286_410_249)
 
     internal val setLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_lifetime", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_lifetime", 373_806_689)
 
     internal val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_one_shot", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_one_shot", 2_586_408_642)
 
     internal val setPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_pre_process_time", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_pre_process_time", 373_806_689)
 
     internal val setExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_explosiveness_ratio", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_explosiveness_ratio", 373_806_689)
 
     internal val setRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_randomness_ratio", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_randomness_ratio", 373_806_689)
 
     internal val setVisibilityRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_visibility_rect", 2046264180)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_visibility_rect", 2_046_264_180)
 
     internal val setUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_use_local_coordinates", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_use_local_coordinates", 2_586_408_642)
 
     internal val setFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_fixed_fps", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_fixed_fps", 1_286_410_249)
 
     internal val setFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_fractional_delta", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_fractional_delta", 2_586_408_642)
 
     internal val setInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_interpolate", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_interpolate", 2_586_408_642)
 
     internal val setProcessMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_process_material", 2757459619)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_process_material", 2_757_459_619)
 
     internal val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_speed_scale", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_speed_scale", 373_806_689)
 
     internal val setCollisionBaseSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_collision_base_size", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_collision_base_size", 373_806_689)
 
     internal val setInterpToEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_interp_to_end", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_interp_to_end", 373_806_689)
 
     internal val requestParticlesProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "request_particles_process", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "request_particles_process", 373_806_689)
 
     internal val isEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "is_emitting", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "is_emitting", 36_873_697)
 
     internal val getAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_amount", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_amount", 3_905_245_786)
 
     internal val getLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_lifetime", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_lifetime", 1_740_695_150)
 
     internal val getOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_one_shot", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_one_shot", 36_873_697)
 
     internal val getPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_pre_process_time", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_pre_process_time", 1_740_695_150)
 
     internal val getExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_explosiveness_ratio", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_explosiveness_ratio", 1_740_695_150)
 
     internal val getRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_randomness_ratio", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_randomness_ratio", 1_740_695_150)
 
     internal val getVisibilityRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_visibility_rect", 1639390495)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_visibility_rect", 1_639_390_495)
 
     internal val getUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_use_local_coordinates", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_use_local_coordinates", 36_873_697)
 
     internal val getFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_fixed_fps", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_fixed_fps", 3_905_245_786)
 
     internal val getFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_fractional_delta", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_fractional_delta", 36_873_697)
 
     internal val getInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_interpolate", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_interpolate", 36_873_697)
 
     internal val getProcessMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_process_material", 5934680)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_process_material", 5_934_680)
 
     internal val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_speed_scale", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_speed_scale", 1_740_695_150)
 
     internal val getCollisionBaseSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_collision_base_size", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_collision_base_size", 1_740_695_150)
 
     internal val getInterpToEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_interp_to_end", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_interp_to_end", 1_740_695_150)
 
     internal val setDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_draw_order", 1939677959)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_draw_order", 1_939_677_959)
 
     internal val getDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_draw_order", 941479095)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_draw_order", 941_479_095)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_texture", 3_635_182_373)
 
     internal val captureRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "capture_rect", 1639390495)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "capture_rect", 1_639_390_495)
 
     internal val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "restart", 107499316)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "restart", 107_499_316)
 
     internal val setSubEmitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_sub_emitter", 1348162250)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_sub_emitter", 1_348_162_250)
 
     internal val getSubEmitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_sub_emitter", 4075236667)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_sub_emitter", 4_075_236_667)
 
     internal val emitParticlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "emit_particle", 2179202058)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "emit_particle", 2_179_202_058)
 
     internal val setTrailEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_enabled", 2_586_408_642)
 
     internal val setTrailLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_lifetime", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_lifetime", 373_806_689)
 
     internal val isTrailEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "is_trail_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "is_trail_enabled", 36_873_697)
 
     internal val getTrailLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_lifetime", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_lifetime", 1_740_695_150)
 
     internal val setTrailSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_sections", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_sections", 1_286_410_249)
 
     internal val getTrailSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_sections", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_sections", 3_905_245_786)
 
     internal val setTrailSectionSubdivisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_section_subdivisions", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_trail_section_subdivisions", 1_286_410_249)
 
     internal val getTrailSectionSubdivisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_section_subdivisions", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_section_subdivisions", 3_905_245_786)
 
     internal val convertFromParticlesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "convert_from_particles", 1078189570)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "convert_from_particles", 1_078_189_570)
 
     internal val setAmountRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_amount_ratio", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_amount_ratio", 373_806_689)
 
     internal val getAmountRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_amount_ratio", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_amount_ratio", 1_740_695_150)
 
     internal val setUseFixedSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_use_fixed_seed", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_use_fixed_seed", 2_586_408_642)
 
     internal val getUseFixedSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_use_fixed_seed", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_use_fixed_seed", 36_873_697)
 
     internal val setSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "set_seed", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_seed", 1_286_410_249)
 
     internal val getSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "get_seed", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_seed", 3_905_245_786)
   }
 }

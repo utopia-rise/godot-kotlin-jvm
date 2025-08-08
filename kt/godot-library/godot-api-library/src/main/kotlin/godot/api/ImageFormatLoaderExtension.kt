@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,24 +14,20 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
- * but you can choose to implement support for additional image formats by extending this class.
+ * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few), but you can choose to implement support for additional image formats by extending this class.
  *
- * Be sure to respect the documented return types and values. You should create an instance of it,
- * and call [addFormatLoader] to register that loader during the initialization phase.
+ * Be sure to respect the documented return types and values. You should create an instance of it, and call [addFormatLoader] to register that loader during the initialization phase.
  */
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(284, scriptIndex)
   }
 
   /**
-   * Returns the list of file extensions for this image format. Files with the given extensions will
-   * be treated as image file and loaded using this class.
+   * Returns the list of file extensions for this image format. Files with the given extensions will be treated as image file and loaded using this class.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
     throw NotImplementedError("ImageFormatLoaderExtension::_getRecognizedExtensions is not implemented.")
@@ -53,10 +46,9 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   }
 
   /**
-   * Add this format loader to the engine, allowing it to recognize the file extensions returned by
-   * [_getRecognizedExtensions].
+   * Add this format loader to the engine, allowing it to recognize the file extensions returned by [_getRecognizedExtensions].
    */
-  public final fun addFormatLoader(): Unit {
+  public final fun addFormatLoader() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.addFormatLoaderPtr, NIL)
   }
@@ -64,7 +56,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   /**
    * Remove this format loader from the engine.
    */
-  public final fun removeFormatLoader(): Unit {
+  public final fun removeFormatLoader() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.removeFormatLoaderPtr, NIL)
   }
@@ -73,9 +65,9 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
 
   public object MethodBindings {
     internal val addFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader", 3218959716)
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader", 3_218_959_716)
 
     internal val removeFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader", 3218959716)
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader", 3_218_959_716)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,20 +20,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
- * [XROrigin3D] node, tracking will update its position to the player's tracked hand Palm joint
- * location (the center of the middle finger's metacarpal bone). This node also updates the skeleton of
- * a properly skinned hand or avatar model.
+ * This node enables OpenXR's hand tracking functionality. The node should be a child node of an [XROrigin3D] node, tracking will update its position to the player's tracked hand Palm joint location (the center of the middle finger's metacarpal bone). This node also updates the skeleton of a properly skinned hand or avatar model.
  *
- * If the skeleton is a hand (one of the hand bones is the root node of the skeleton), then the
- * skeleton will be placed relative to the hand palm location and the hand mesh and skeleton should be
- * children of the OpenXRHand node.
+ * If the skeleton is a hand (one of the hand bones is the root node of the skeleton), then the skeleton will be placed relative to the hand palm location and the hand mesh and skeleton should be children of the OpenXRHand node.
  *
- * If the hand bones are part of a full skeleton, then the root of the hand will keep its location
- * with the assumption that IK is used to position the hand and arm.
+ * If the hand bones are part of a full skeleton, then the root of the hand will keep its location with the assumption that IK is used to position the hand and arm.
  *
- * By default the skeleton hand bones are repositioned to match the size of the tracked hand. To
- * preserve the modeled bone sizes change [boneUpdate] to apply rotation only.
+ * By default the skeleton hand bones are repositioned to match the size of the tracked hand. To preserve the modeled bone sizes change [boneUpdate] to apply rotation only.
  */
 @GodotBaseType
 public open class OpenXRHand : Node3D() {
@@ -95,11 +85,11 @@ public open class OpenXRHand : Node3D() {
       setBoneUpdate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(423, scriptIndex)
   }
 
-  public final fun setHand(hand: Hands): Unit {
+  public final fun setHand(hand: Hands) {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(ptr, MethodBindings.setHandPtr, NIL)
   }
@@ -110,7 +100,7 @@ public open class OpenXRHand : Node3D() {
     return Hands.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHandSkeleton(handSkeleton: NodePath): Unit {
+  public final fun setHandSkeleton(handSkeleton: NodePath) {
     TransferContext.writeArguments(NODE_PATH to handSkeleton)
     TransferContext.callMethod(ptr, MethodBindings.setHandSkeletonPtr, NIL)
   }
@@ -121,7 +111,7 @@ public open class OpenXRHand : Node3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setMotionRange(motionRange: MotionRange): Unit {
+  public final fun setMotionRange(motionRange: MotionRange) {
     TransferContext.writeArguments(LONG to motionRange.id)
     TransferContext.callMethod(ptr, MethodBindings.setMotionRangePtr, NIL)
   }
@@ -132,7 +122,7 @@ public open class OpenXRHand : Node3D() {
     return MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
+  public final fun setSkeletonRig(skeletonRig: SkeletonRig) {
     TransferContext.writeArguments(LONG to skeletonRig.id)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonRigPtr, NIL)
   }
@@ -143,7 +133,7 @@ public open class OpenXRHand : Node3D() {
     return SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+  public final fun setBoneUpdate(boneUpdate: BoneUpdate) {
     TransferContext.writeArguments(LONG to boneUpdate.id)
     TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
@@ -154,8 +144,7 @@ public open class OpenXRHand : Node3D() {
     return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHandSkeleton(handSkeleton: String): Unit =
-      setHandSkeleton(handSkeleton.asCachedNodePath())
+  public final fun setHandSkeleton(handSkeleton: String): Unit = setHandSkeleton(handSkeleton.asCachedNodePath())
 
   public enum class Hands(
     id: Long,
@@ -242,8 +231,7 @@ public open class OpenXRHand : Node3D() {
     id: Long,
   ) {
     /**
-     * The skeletons bones are fully updated (both position and rotation) to match the tracked
-     * bones.
+     * The skeletons bones are fully updated (both position and rotation) to match the tracked bones.
      */
     FULL(0),
     /**
@@ -270,33 +258,33 @@ public open class OpenXRHand : Node3D() {
 
   public object MethodBindings {
     internal val setHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand", 1849328560)
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand", 1_849_328_560)
 
     internal val getHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand", 2850644561)
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand", 2_850_644_561)
 
     internal val setHandSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand_skeleton", 1348162250)
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand_skeleton", 1_348_162_250)
 
     internal val getHandSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand_skeleton", 4075236667)
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand_skeleton", 4_075_236_667)
 
     internal val setMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_motion_range", 3326516003)
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_motion_range", 3_326_516_003)
 
     internal val getMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_motion_range", 2191822314)
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_motion_range", 2_191_822_314)
 
     internal val setSkeletonRigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_skeleton_rig", 1528072213)
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_skeleton_rig", 1_528_072_213)
 
     internal val getSkeletonRigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_skeleton_rig", 968409338)
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_skeleton_rig", 968_409_338)
 
     internal val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_bone_update", 3144625444)
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_bone_update", 3_144_625_444)
 
     internal val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_bone_update", 1310695248)
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_bone_update", 1_310_695_248)
   }
 }

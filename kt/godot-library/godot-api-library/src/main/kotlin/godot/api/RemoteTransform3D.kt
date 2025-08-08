@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,11 +20,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
- * remote node) in the scene.
+ * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the remote node) in the scene.
  *
- * It can be set to update another Node's position, rotation and/or scale. It can use either global
- * or local coordinates.
+ * It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.
  */
 @GodotBaseType
 public open class RemoteTransform3D : Node3D() {
@@ -86,11 +81,11 @@ public open class RemoteTransform3D : Node3D() {
       setUpdateScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(539, scriptIndex)
   }
 
-  public final fun setRemoteNode(path: NodePath): Unit {
+  public final fun setRemoteNode(path: NodePath) {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setRemoteNodePtr, NIL)
   }
@@ -102,15 +97,14 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   /**
-   * [RemoteTransform3D] caches the remote node. It may not notice if the remote node disappears;
-   * [forceUpdateCache] forces it to update the cache again.
+   * [RemoteTransform3D] caches the remote node. It may not notice if the remote node disappears; [forceUpdateCache] forces it to update the cache again.
    */
-  public final fun forceUpdateCache(): Unit {
+  public final fun forceUpdateCache() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateCachePtr, NIL)
   }
 
-  public final fun setUseGlobalCoordinates(useGlobalCoordinates: Boolean): Unit {
+  public final fun setUseGlobalCoordinates(useGlobalCoordinates: Boolean) {
     TransferContext.writeArguments(BOOL to useGlobalCoordinates)
     TransferContext.callMethod(ptr, MethodBindings.setUseGlobalCoordinatesPtr, NIL)
   }
@@ -121,7 +115,7 @@ public open class RemoteTransform3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUpdatePosition(updateRemotePosition: Boolean): Unit {
+  public final fun setUpdatePosition(updateRemotePosition: Boolean) {
     TransferContext.writeArguments(BOOL to updateRemotePosition)
     TransferContext.callMethod(ptr, MethodBindings.setUpdatePositionPtr, NIL)
   }
@@ -132,7 +126,7 @@ public open class RemoteTransform3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUpdateRotation(updateRemoteRotation: Boolean): Unit {
+  public final fun setUpdateRotation(updateRemoteRotation: Boolean) {
     TransferContext.writeArguments(BOOL to updateRemoteRotation)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateRotationPtr, NIL)
   }
@@ -143,7 +137,7 @@ public open class RemoteTransform3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUpdateScale(updateRemoteScale: Boolean): Unit {
+  public final fun setUpdateScale(updateRemoteScale: Boolean) {
     TransferContext.writeArguments(BOOL to updateRemoteScale)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateScalePtr, NIL)
   }
@@ -160,36 +154,36 @@ public open class RemoteTransform3D : Node3D() {
 
   public object MethodBindings {
     internal val setRemoteNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_remote_node", 1348162250)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_remote_node", 1_348_162_250)
 
     internal val getRemoteNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_remote_node", 4075236667)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_remote_node", 4_075_236_667)
 
     internal val forceUpdateCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "force_update_cache", 3218959716)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "force_update_cache", 3_218_959_716)
 
     internal val setUseGlobalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_use_global_coordinates", 2586408642)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_use_global_coordinates", 2_586_408_642)
 
     internal val getUseGlobalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_use_global_coordinates", 36873697)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_use_global_coordinates", 36_873_697)
 
     internal val setUpdatePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_position", 2586408642)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_position", 2_586_408_642)
 
     internal val getUpdatePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_position", 36873697)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_position", 36_873_697)
 
     internal val setUpdateRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_rotation", 2586408642)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_rotation", 2_586_408_642)
 
     internal val getUpdateRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_rotation", 36873697)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_rotation", 36_873_697)
 
     internal val setUpdateScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_scale", 2586408642)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_scale", 2_586_408_642)
 
     internal val getUpdateScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_scale", 36873697)
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_scale", 36_873_697)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,16 +23,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
- * [Skeleton2D] react to physics.
+ * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a [Skeleton2D] react to physics.
  *
- * **Note:** To make the [Bone2D]s visually follow the [PhysicalBone2D] node, use a
- * [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] parent.
+ * **Note:** To make the [Bone2D]s visually follow the [PhysicalBone2D] node, use a [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] parent.
  *
- * **Note:** The [PhysicalBone2D] node does not automatically create a [Joint2D] node to keep
- * [PhysicalBone2D] nodes together. They must be created manually. For most cases, you want to use a
- * [PinJoint2D] node. The [PhysicalBone2D] node will automatically configure the [Joint2D] node once
- * it's been added as a child node.
+ * **Note:** The [PhysicalBone2D] node does not automatically create a [Joint2D] node to keep [PhysicalBone2D] nodes together. They must be created manually. For most cases, you want to use a [PinJoint2D] node. The [PhysicalBone2D] node will automatically configure the [Joint2D] node once it's been added as a child node.
  */
 @GodotBaseType
 public open class PhysicalBone2D : RigidBody2D() {
@@ -62,9 +54,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     }
 
   /**
-   * If `true`, the [PhysicalBone2D] will automatically configure the first [Joint2D] child node.
-   * The automatic configuration is limited to setting up the node properties and positioning the
-   * [Joint2D].
+   * If `true`, the [PhysicalBone2D] will automatically configure the first [Joint2D] child node. The automatic configuration is limited to setting up the node properties and positioning the [Joint2D].
    */
   public final inline var autoConfigureJoint: Boolean
     @JvmName("autoConfigureJointProperty")
@@ -75,12 +65,9 @@ public open class PhysicalBone2D : RigidBody2D() {
     }
 
   /**
-   * If `true`, the [PhysicalBone2D] will start simulating using physics. If `false`, the
-   * [PhysicalBone2D] will follow the transform of the [Bone2D] node.
+   * If `true`, the [PhysicalBone2D] will start simulating using physics. If `false`, the [PhysicalBone2D] will follow the transform of the [Bone2D] node.
    *
-   * **Note:** To have the [Bone2D]s visually follow the [PhysicalBone2D], use a
-   * [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] node with the [Bone2D]
-   * nodes.
+   * **Note:** To have the [Bone2D]s visually follow the [PhysicalBone2D], use a [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] node with the [Bone2D] nodes.
    */
   public final inline var simulatePhysics: Boolean
     @JvmName("simulatePhysicsProperty")
@@ -91,8 +78,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     }
 
   /**
-   * If `true`, the [PhysicalBone2D] will keep the transform of the bone it is bound to when
-   * simulating physics.
+   * If `true`, the [PhysicalBone2D] will keep the transform of the bone it is bound to when simulating physics.
    */
   public final inline var followBoneWhenSimulating: Boolean
     @JvmName("followBoneWhenSimulatingProperty")
@@ -102,13 +88,12 @@ public open class PhysicalBone2D : RigidBody2D() {
       setFollowBoneWhenSimulating(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(455, scriptIndex)
   }
 
   /**
-   * Returns the first [Joint2D] child node, if one exists. This is mainly a helper function to make
-   * it easier to get the [Joint2D] that the [PhysicalBone2D] is autoconfiguring.
+   * Returns the first [Joint2D] child node, if one exists. This is mainly a helper function to make it easier to get the [Joint2D] that the [PhysicalBone2D] is autoconfiguring.
    */
   public final fun getJoint(): Joint2D? {
     TransferContext.writeArguments()
@@ -122,12 +107,12 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoConfigureJoint(autoConfigureJoint: Boolean): Unit {
+  public final fun setAutoConfigureJoint(autoConfigureJoint: Boolean) {
     TransferContext.writeArguments(BOOL to autoConfigureJoint)
     TransferContext.callMethod(ptr, MethodBindings.setAutoConfigureJointPtr, NIL)
   }
 
-  public final fun setSimulatePhysics(simulatePhysics: Boolean): Unit {
+  public final fun setSimulatePhysics(simulatePhysics: Boolean) {
     TransferContext.writeArguments(BOOL to simulatePhysics)
     TransferContext.callMethod(ptr, MethodBindings.setSimulatePhysicsPtr, NIL)
   }
@@ -139,8 +124,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   }
 
   /**
-   * Returns a boolean that indicates whether the [PhysicalBone2D] is running and simulating using
-   * the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics.
+   * Returns a boolean that indicates whether the [PhysicalBone2D] is running and simulating using the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics.
    */
   public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
@@ -148,7 +132,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBone2dNodepath(nodepath: NodePath): Unit {
+  public final fun setBone2dNodepath(nodepath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to nodepath)
     TransferContext.callMethod(ptr, MethodBindings.setBone2dNodepathPtr, NIL)
   }
@@ -159,7 +143,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setBone2dIndex(boneIndex: Int): Unit {
+  public final fun setBone2dIndex(boneIndex: Int) {
     TransferContext.writeArguments(LONG to boneIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBone2dIndexPtr, NIL)
   }
@@ -170,7 +154,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFollowBoneWhenSimulating(followBone: Boolean): Unit {
+  public final fun setFollowBoneWhenSimulating(followBone: Boolean) {
     TransferContext.writeArguments(BOOL to followBone)
     TransferContext.callMethod(ptr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
   }
@@ -181,46 +165,45 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBone2dNodepath(nodepath: String): Unit =
-      setBone2dNodepath(nodepath.asCachedNodePath())
+  public final fun setBone2dNodepath(nodepath: String): Unit = setBone2dNodepath(nodepath.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val getJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_joint", 3582132112)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_joint", 3_582_132_112)
 
     internal val getAutoConfigureJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_auto_configure_joint", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_auto_configure_joint", 36_873_697)
 
     internal val setAutoConfigureJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_auto_configure_joint", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_auto_configure_joint", 2_586_408_642)
 
     internal val setSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_simulate_physics", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_simulate_physics", 2_586_408_642)
 
     internal val getSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_simulate_physics", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_simulate_physics", 36_873_697)
 
     internal val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "is_simulating_physics", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "is_simulating_physics", 36_873_697)
 
     internal val setBone2dNodepathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_nodepath", 1348162250)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_nodepath", 1_348_162_250)
 
     internal val getBone2dNodepathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_nodepath", 4075236667)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_nodepath", 4_075_236_667)
 
     internal val setBone2dIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_index", 1286410249)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_index", 1_286_410_249)
 
     internal val getBone2dIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_index", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_index", 3_905_245_786)
 
     internal val setFollowBoneWhenSimulatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_follow_bone_when_simulating", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_follow_bone_when_simulating", 2_586_408_642)
 
     internal val getFollowBoneWhenSimulatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_follow_bone_when_simulating", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_follow_bone_when_simulating", 36_873_697)
   }
 }

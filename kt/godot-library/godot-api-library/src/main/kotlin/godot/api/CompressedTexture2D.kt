@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,13 +15,10 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is
- * created by importing other image formats with the import system. [CompressedTexture2D] can use one
- * of 4 compression methods (including a lack of any compression):
+ * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is created by importing other image formats with the import system. [CompressedTexture2D] can use one of 4 compression methods (including a lack of any compression):
  *
  * - Lossless (WebP or PNG, uncompressed on the GPU)
  *
@@ -34,16 +28,11 @@ import kotlin.jvm.JvmName
  *
  * - VRAM Uncompressed (uncompressed on the GPU)
  *
- * - Basis Universal (compressed on the GPU. Lower file sizes than VRAM Compressed, but slower to
- * compress and lower quality than VRAM Compressed)
+ * - Basis Universal (compressed on the GPU. Lower file sizes than VRAM Compressed, but slower to compress and lower quality than VRAM Compressed)
  *
- * Only **VRAM Compressed** actually reduces the memory usage on the GPU. The **Lossless** and
- * **Lossy** compression methods will reduce the required storage on disk, but they will not reduce
- * memory usage on the GPU as the texture is sent to the GPU uncompressed.
+ * Only **VRAM Compressed** actually reduces the memory usage on the GPU. The **Lossless** and **Lossy** compression methods will reduce the required storage on disk, but they will not reduce memory usage on the GPU as the texture is sent to the GPU uncompressed.
  *
- * Using **VRAM Compressed** also improves loading times, as VRAM-compressed textures are faster to
- * load compared to textures using lossless or lossy compression. VRAM compression can exhibit
- * noticeable artifacts and is intended to be used for 3D rendering, not 2D.
+ * Using **VRAM Compressed** also improves loading times, as VRAM-compressed textures are faster to load compared to textures using lossless or lossy compression. VRAM compression can exhibit noticeable artifacts and is intended to be used for 3D rendering, not 2D.
  */
 @GodotBaseType
 public open class CompressedTexture2D : Texture2D() {
@@ -54,7 +43,7 @@ public open class CompressedTexture2D : Texture2D() {
     @JvmName("loadPathProperty")
     get() = getLoadPath()
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(168, scriptIndex)
   }
 
@@ -91,9 +80,9 @@ public open class CompressedTexture2D : Texture2D() {
 
   public object MethodBindings {
     internal val loadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompressedTexture2D", "load", 166001499)
+        TypeManager.getMethodBindPtr("CompressedTexture2D", "load", 166_001_499)
 
     internal val getLoadPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompressedTexture2D", "get_load_path", 201670096)
+        TypeManager.getMethodBindPtr("CompressedTexture2D", "get_load_path", 201_670_096)
   }
 }

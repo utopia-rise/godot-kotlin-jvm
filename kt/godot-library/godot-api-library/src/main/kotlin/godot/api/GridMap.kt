@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -41,21 +38,15 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * GridMap lets you place meshes on a grid interactively. It works both from the editor and from
- * scripts, which can help you create in-game level editors.
+ * GridMap lets you place meshes on a grid interactively. It works both from the editor and from scripts, which can help you create in-game level editors.
  *
- * GridMaps use a [MeshLibrary] which contains a list of tiles. Each tile is a mesh with materials
- * plus optional collision and navigation shapes.
+ * GridMaps use a [MeshLibrary] which contains a list of tiles. Each tile is a mesh with materials plus optional collision and navigation shapes.
  *
- * A GridMap contains a collection of cells. Each grid cell refers to a tile in the [MeshLibrary].
- * All cells in the map have the same dimensions.
+ * A GridMap contains a collection of cells. Each grid cell refers to a tile in the [MeshLibrary]. All cells in the map have the same dimensions.
  *
- * Internally, a GridMap is split into a sparse collection of octants for efficient rendering and
- * physics processing. Every octant has the same dimensions and can contain several cells.
+ * Internally, a GridMap is split into a sparse collection of octants for efficient rendering and physics processing. Every octant has the same dimensions and can contain several cells.
  *
- * **Note:** GridMap doesn't extend [VisualInstance3D] and therefore can't be hidden or cull masked
- * based on [VisualInstance3D.layers]. If you make a light not affect the first layer, the whole
- * GridMap won't be lit by the light in question.
+ * **Note:** GridMap doesn't extend [VisualInstance3D] and therefore can't be hidden or cull masked based on [VisualInstance3D.layers]. If you make a light not affect the first layer, the whole GridMap won't be lit by the light in question.
  */
 @GodotBaseType
 public open class GridMap : Node3D() {
@@ -97,11 +88,8 @@ public open class GridMap : Node3D() {
    * This does not affect the size of the meshes. See [cellScale].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var cellSize: Vector3
@@ -159,8 +147,7 @@ public open class GridMap : Node3D() {
   /**
    * The scale of the cell items.
    *
-   * This does not affect the size of the grid cells themselves, only the items in them. This can be
-   * used to make cell items overlap their neighbors.
+   * This does not affect the size of the grid cells themselves, only the items in them. This can be used to make cell items overlap their neighbors.
    */
   public final inline var cellScale: Float
     @JvmName("cellScaleProperty")
@@ -173,8 +160,7 @@ public open class GridMap : Node3D() {
   /**
    * The physics layers this GridMap is in.
    *
-   * GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They
-   * only affect other physics bodies that collide with them.
+   * GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They only affect other physics bodies that collide with them.
    */
   public final inline var collisionLayer: Long
     @JvmName("collisionLayerProperty")
@@ -185,9 +171,7 @@ public open class GridMap : Node3D() {
     }
 
   /**
-   * The physics layers this GridMap detects collisions in. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * The physics layers this GridMap detects collisions in. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -198,9 +182,7 @@ public open class GridMap : Node3D() {
     }
 
   /**
-   * The priority used to solve colliding when occurring penetration. The higher the priority is,
-   * the lower the penetration into the object will be. This can for example be used to prevent the
-   * player from breaking through the boundaries of a level.
+   * The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
    */
   public final inline var collisionPriority: Float
     @JvmName("collisionPriorityProperty")
@@ -211,9 +193,7 @@ public open class GridMap : Node3D() {
     }
 
   /**
-   * If `true`, this GridMap creates a navigation region for each cell that uses a [meshLibrary]
-   * item with a navigation mesh. The created navigation region will use the navigation layers bitmask
-   * assigned to the [MeshLibrary]'s item.
+   * If `true`, this GridMap creates a navigation region for each cell that uses a [meshLibrary] item with a navigation mesh. The created navigation region will use the navigation layers bitmask assigned to the [MeshLibrary]'s item.
    */
   public final inline var bakeNavigation: Boolean
     @JvmName("bakeNavigationProperty")
@@ -223,7 +203,7 @@ public open class GridMap : Node3D() {
       setBakeNavigation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(267, scriptIndex)
   }
 
@@ -248,7 +228,7 @@ public open class GridMap : Node3D() {
      cellSize = this
   }
 
-  public final fun setCollisionLayer(layer: Long): Unit {
+  public final fun setCollisionLayer(layer: Long) {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerPtr, NIL)
   }
@@ -259,7 +239,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -271,17 +251,15 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -290,17 +268,15 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -308,7 +284,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollisionPriority(priority: Float): Unit {
+  public final fun setCollisionPriority(priority: Float) {
     TransferContext.writeArguments(DOUBLE to priority.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCollisionPriorityPtr, NIL)
   }
@@ -319,7 +295,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPhysicsMaterial(material: PhysicsMaterial?): Unit {
+  public final fun setPhysicsMaterial(material: PhysicsMaterial?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsMaterialPtr, NIL)
   }
@@ -330,7 +306,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
-  public final fun setBakeNavigation(bakeNavigation: Boolean): Unit {
+  public final fun setBakeNavigation(bakeNavigation: Boolean) {
     TransferContext.writeArguments(BOOL to bakeNavigation)
     TransferContext.callMethod(ptr, MethodBindings.setBakeNavigationPtr, NIL)
   }
@@ -342,21 +318,17 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation
-   * meshes.
+   * Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation meshes.
    */
-  public final fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID) {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
-   * Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation
-   * meshes.
+   * Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation meshes.
    *
-   * This function returns always the map set on the GridMap node and not the map on the
-   * NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node
-   * will not be aware of the map change.
+   * This function returns always the map set on the GridMap node and not the map on the NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node will not be aware of the map change.
    */
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
@@ -364,7 +336,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setMeshLibrary(meshLibrary: MeshLibrary?): Unit {
+  public final fun setMeshLibrary(meshLibrary: MeshLibrary?) {
     TransferContext.writeArguments(OBJECT to meshLibrary)
     TransferContext.callMethod(ptr, MethodBindings.setMeshLibraryPtr, NIL)
   }
@@ -375,7 +347,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as MeshLibrary?)
   }
 
-  public final fun setCellSize(size: Vector3): Unit {
+  public final fun setCellSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setCellSizePtr, NIL)
   }
@@ -386,7 +358,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setCellScale(scale: Float): Unit {
+  public final fun setCellScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCellScalePtr, NIL)
   }
@@ -397,7 +369,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOctantSize(size: Int): Unit {
+  public final fun setOctantSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOctantSizePtr, NIL)
   }
@@ -413,22 +385,20 @@ public open class GridMap : Node3D() {
    *
    * A negative item index such as [INVALID_CELL_ITEM] will clear the cell.
    *
-   * Optionally, the item's orientation can be passed. For valid orientation values, see
-   * [getOrthogonalIndexFromBasis].
+   * Optionally, the item's orientation can be passed. For valid orientation values, see [getOrthogonalIndexFromBasis].
    */
   @JvmOverloads
   public final fun setCellItem(
     position: Vector3i,
     item: Int,
     orientation: Int = 0,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(VECTOR3I to position, LONG to item.toLong(), LONG to orientation.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCellItemPtr, NIL)
   }
 
   /**
-   * The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty,
-   * [INVALID_CELL_ITEM] will be returned.
+   * The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty, [INVALID_CELL_ITEM] will be returned.
    */
   public final fun getCellItem(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
@@ -437,8 +407,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is
-   * empty.
+   * The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is empty.
    */
   public final fun getCellItemOrientation(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
@@ -456,8 +425,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component
-   * being either -1, 0, or 1. For further details, refer to the Godot source code.
+   * Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component being either -1, 0, or 1. For further details, refer to the Godot source code.
    */
   public final fun getBasisWithOrthogonalIndex(index: Int): Basis {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -466,10 +434,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * This function considers a discretization of rotations into 24 points on unit sphere, lying
-   * along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index (in
-   * the range from 0 to 23) of the point best representing the orientation of the object. For further
-   * details, refer to the Godot source code.
+   * This function considers a discretization of rotations into 24 points on unit sphere, lying along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index (in the range from 0 to 23) of the point best representing the orientation of the object. For further details, refer to the Godot source code.
    */
   public final fun getOrthogonalIndexFromBasis(basis: Basis): Int {
     TransferContext.writeArguments(BASIS to basis)
@@ -478,9 +443,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns the map coordinates of the cell containing the given [localPosition]. If
-   * [localPosition] is in global coordinates, consider using [Node3D.toLocal] before passing it to
-   * this method. See also [mapToLocal].
+   * Returns the map coordinates of the cell containing the given [localPosition]. If [localPosition] is in global coordinates, consider using [Node3D.toLocal] before passing it to this method. See also [mapToLocal].
    */
   public final fun localToMap(localPosition: Vector3): Vector3i {
     TransferContext.writeArguments(VECTOR3 to localPosition)
@@ -489,8 +452,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns the position of a grid cell in the GridMap's local coordinate space. To convert the
-   * returned value into global coordinates, use [Node3D.toGlobal]. See also [localToMap].
+   * Returns the position of a grid cell in the GridMap's local coordinate space. To convert the returned value into global coordinates, use [Node3D.toGlobal]. See also [localToMap].
    */
   public final fun mapToLocal(mapPosition: Vector3i): Vector3 {
     TransferContext.writeArguments(VECTOR3I to mapPosition)
@@ -501,12 +463,12 @@ public open class GridMap : Node3D() {
   /**
    * This method does nothing.
    */
-  public final fun resourceChanged(resource: Resource?): Unit {
+  public final fun resourceChanged(resource: Resource?) {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(ptr, MethodBindings.resourceChangedPtr, NIL)
   }
 
-  public final fun setCenterX(enable: Boolean): Unit {
+  public final fun setCenterX(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCenterXPtr, NIL)
   }
@@ -517,7 +479,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCenterY(enable: Boolean): Unit {
+  public final fun setCenterY(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCenterYPtr, NIL)
   }
@@ -528,7 +490,7 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCenterZ(enable: Boolean): Unit {
+  public final fun setCenterZ(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCenterZPtr, NIL)
   }
@@ -542,7 +504,7 @@ public open class GridMap : Node3D() {
   /**
    * Clear all cells.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -566,8 +528,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in
-   * the grid. The transforms are specified in local space.
+   * Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space.
    */
   public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -576,8 +537,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist
-   * within the current GridMap.
+   * Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap.
    */
   public final fun getBakeMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -597,7 +557,7 @@ public open class GridMap : Node3D() {
   /**
    * Clears all baked meshes. See [makeBakedMeshes].
    */
-  public final fun clearBakedMeshes(): Unit {
+  public final fun clearBakedMeshes() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBakedMeshesPtr, NIL)
   }
@@ -606,159 +566,157 @@ public open class GridMap : Node3D() {
    * Bakes lightmap data for all meshes in the assigned [MeshLibrary].
    */
   @JvmOverloads
-  public final fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Float =
-      0.1f): Unit {
+  public final fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Float = 0.1f) {
     TransferContext.writeArguments(BOOL to genLightmapUv, DOUBLE to lightmapUvTexelSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.makeBakedMeshesPtr, NIL)
   }
 
   public companion object {
     /**
-     * Invalid cell item that can be used in [setCellItem] to clear cells (or represent an empty
-     * cell in [getCellItem]).
+     * Invalid cell item that can be used in [setCellItem] to clear cells (or represent an empty cell in [getCellItem]).
      */
     public final const val INVALID_CELL_ITEM: Long = -1
   }
 
   public object MethodBindings {
     internal val setCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer", 1286410249)
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer", 1_286_410_249)
 
     internal val getCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer", 3905245786)
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer", 3_905_245_786)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask", 3_905_245_786)
 
     internal val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask_value", 300_928_843)
 
     internal val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask_value", 1_116_898_809)
 
     internal val setCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer_value", 300928843)
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer_value", 300_928_843)
 
     internal val getCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer_value", 1116898809)
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer_value", 1_116_898_809)
 
     internal val setCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_priority", 373806689)
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_priority", 373_806_689)
 
     internal val getCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_priority", 1740695150)
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_priority", 1_740_695_150)
 
     internal val setPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_physics_material", 1784508650)
+        TypeManager.getMethodBindPtr("GridMap", "set_physics_material", 1_784_508_650)
 
     internal val getPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_physics_material", 2521850424)
+        TypeManager.getMethodBindPtr("GridMap", "get_physics_material", 2_521_850_424)
 
     internal val setBakeNavigationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_bake_navigation", 2586408642)
+        TypeManager.getMethodBindPtr("GridMap", "set_bake_navigation", 2_586_408_642)
 
     internal val isBakingNavigationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "is_baking_navigation", 2240911060)
+        TypeManager.getMethodBindPtr("GridMap", "is_baking_navigation", 2_240_911_060)
 
     internal val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_navigation_map", 2722037293)
+        TypeManager.getMethodBindPtr("GridMap", "set_navigation_map", 2_722_037_293)
 
     internal val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_navigation_map", 2944877500)
+        TypeManager.getMethodBindPtr("GridMap", "get_navigation_map", 2_944_877_500)
 
     internal val setMeshLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_mesh_library", 1488083439)
+        TypeManager.getMethodBindPtr("GridMap", "set_mesh_library", 1_488_083_439)
 
     internal val getMeshLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_mesh_library", 3350993772)
+        TypeManager.getMethodBindPtr("GridMap", "get_mesh_library", 3_350_993_772)
 
     internal val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_cell_size", 3460891852)
+        TypeManager.getMethodBindPtr("GridMap", "set_cell_size", 3_460_891_852)
 
     internal val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_size", 3360562783)
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_size", 3_360_562_783)
 
     internal val setCellScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_cell_scale", 373806689)
+        TypeManager.getMethodBindPtr("GridMap", "set_cell_scale", 373_806_689)
 
     internal val getCellScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_scale", 1740695150)
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_scale", 1_740_695_150)
 
     internal val setOctantSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_octant_size", 1286410249)
+        TypeManager.getMethodBindPtr("GridMap", "set_octant_size", 1_286_410_249)
 
     internal val getOctantSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_octant_size", 3905245786)
+        TypeManager.getMethodBindPtr("GridMap", "get_octant_size", 3_905_245_786)
 
     internal val setCellItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_cell_item", 3449088946)
+        TypeManager.getMethodBindPtr("GridMap", "set_cell_item", 3_449_088_946)
 
     internal val getCellItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_item", 3724960147)
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_item", 3_724_960_147)
 
     internal val getCellItemOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_orientation", 3724960147)
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_orientation", 3_724_960_147)
 
     internal val getCellItemBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_basis", 3493604918)
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_basis", 3_493_604_918)
 
     internal val getBasisWithOrthogonalIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_basis_with_orthogonal_index", 2816196998)
+        TypeManager.getMethodBindPtr("GridMap", "get_basis_with_orthogonal_index", 2_816_196_998)
 
     internal val getOrthogonalIndexFromBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_orthogonal_index_from_basis", 4210359952)
+        TypeManager.getMethodBindPtr("GridMap", "get_orthogonal_index_from_basis", 4_210_359_952)
 
     internal val localToMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "local_to_map", 1257687843)
+        TypeManager.getMethodBindPtr("GridMap", "local_to_map", 1_257_687_843)
 
     internal val mapToLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "map_to_local", 1088329196)
+        TypeManager.getMethodBindPtr("GridMap", "map_to_local", 1_088_329_196)
 
     internal val resourceChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "resource_changed", 968641751)
+        TypeManager.getMethodBindPtr("GridMap", "resource_changed", 968_641_751)
 
     internal val setCenterXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_center_x", 2586408642)
+        TypeManager.getMethodBindPtr("GridMap", "set_center_x", 2_586_408_642)
 
     internal val getCenterXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_center_x", 36873697)
+        TypeManager.getMethodBindPtr("GridMap", "get_center_x", 36_873_697)
 
     internal val setCenterYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_center_y", 2586408642)
+        TypeManager.getMethodBindPtr("GridMap", "set_center_y", 2_586_408_642)
 
     internal val getCenterYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_center_y", 36873697)
+        TypeManager.getMethodBindPtr("GridMap", "get_center_y", 36_873_697)
 
     internal val setCenterZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_center_z", 2586408642)
+        TypeManager.getMethodBindPtr("GridMap", "set_center_z", 2_586_408_642)
 
     internal val getCenterZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_center_z", 36873697)
+        TypeManager.getMethodBindPtr("GridMap", "get_center_z", 36_873_697)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "clear", 3_218_959_716)
 
     internal val getUsedCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_used_cells", 3995934104)
+        TypeManager.getMethodBindPtr("GridMap", "get_used_cells", 3_995_934_104)
 
     internal val getUsedCellsByItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_used_cells_by_item", 663333327)
+        TypeManager.getMethodBindPtr("GridMap", "get_used_cells_by_item", 663_333_327)
 
     internal val getMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_meshes", 3995934104)
+        TypeManager.getMethodBindPtr("GridMap", "get_meshes", 3_995_934_104)
 
     internal val getBakeMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_bake_meshes", 2915620761)
+        TypeManager.getMethodBindPtr("GridMap", "get_bake_meshes", 2_915_620_761)
 
     internal val getBakeMeshInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_bake_mesh_instance", 937000113)
+        TypeManager.getMethodBindPtr("GridMap", "get_bake_mesh_instance", 937_000_113)
 
     internal val clearBakedMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "clear_baked_meshes", 3218959716)
+        TypeManager.getMethodBindPtr("GridMap", "clear_baked_meshes", 3_218_959_716)
 
     internal val makeBakedMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "make_baked_meshes", 3609286057)
+        TypeManager.getMethodBindPtr("GridMap", "make_baked_meshes", 3_609_286_057)
   }
 }

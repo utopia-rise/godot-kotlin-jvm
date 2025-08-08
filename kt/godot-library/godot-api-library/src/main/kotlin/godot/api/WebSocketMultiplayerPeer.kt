@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,12 +28,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for WebSocket server and client, allowing them to be used as multiplayer peer for the
- * [MultiplayerAPI].
+ * Base class for WebSocket server and client, allowing them to be used as multiplayer peer for the [MultiplayerAPI].
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
@@ -44,11 +38,8 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var supportedProtocols: PackedStringArray
@@ -60,15 +51,11 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     }
 
   /**
-   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more
-   * details.
+   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more details.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var handshakeHeaders: PackedStringArray
@@ -80,8 +67,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     }
 
   /**
-   * The inbound buffer size for connected peers. See [WebSocketPeer.inboundBufferSize] for more
-   * details.
+   * The inbound buffer size for connected peers. See [WebSocketPeer.inboundBufferSize] for more details.
    */
   public final inline var inboundBufferSize: Int
     @JvmName("inboundBufferSizeProperty")
@@ -92,8 +78,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     }
 
   /**
-   * The outbound buffer size for connected peers. See [WebSocketPeer.outboundBufferSize] for more
-   * details.
+   * The outbound buffer size for connected peers. See [WebSocketPeer.outboundBufferSize] for more details.
    */
   public final inline var outboundBufferSize: Int
     @JvmName("outboundBufferSizeProperty")
@@ -115,8 +100,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     }
 
   /**
-   * The maximum number of queued packets for connected peers. See [WebSocketPeer.maxQueuedPackets]
-   * for more details.
+   * The maximum number of queued packets for connected peers. See [WebSocketPeer.maxQueuedPackets] for more details.
    */
   public final inline var maxQueuedPackets: Int
     @JvmName("maxQueuedPacketsProperty")
@@ -126,7 +110,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
       setMaxQueuedPackets(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(846, scriptIndex)
   }
 
@@ -144,22 +128,19 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
    */
   @CoreTypeHelper
-  public final fun supportedProtocolsMutate(block: PackedStringArray.() -> Unit): PackedStringArray
-      = supportedProtocols.apply {
+  public final fun supportedProtocolsMutate(block: PackedStringArray.() -> Unit): PackedStringArray = supportedProtocols.apply {
      block(this)
      supportedProtocols = this
   }
 
   /**
    * This is a helper function for [supportedProtocols] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
    */
   @CoreTypeHelper
-  public final fun supportedProtocolsMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = supportedProtocols.apply {
+  public final fun supportedProtocolsMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = supportedProtocols.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -178,27 +159,22 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * websocketmultiplayerpeer.handshakeHeaders = myCoreType
    * ``````
    *
-   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more
-   * details.
+   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more details.
    */
   @CoreTypeHelper
-  public final fun handshakeHeadersMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
-      handshakeHeaders.apply {
+  public final fun handshakeHeadersMutate(block: PackedStringArray.() -> Unit): PackedStringArray = handshakeHeaders.apply {
      block(this)
      handshakeHeaders = this
   }
 
   /**
    * This is a helper function for [handshakeHeaders] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more
-   * details.
+   * The extra headers to use during handshake. See [WebSocketPeer.handshakeHeaders] for more details.
    */
   @CoreTypeHelper
-  public final fun handshakeHeadersMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = handshakeHeaders.apply {
+  public final fun handshakeHeadersMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = handshakeHeaders.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -207,13 +183,9 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Starts a new multiplayer client connecting to the given [url]. TLS certificates will be
-   * verified against the hostname when connecting using the `wss://` protocol. You can pass the
-   * optional [tlsClientOptions] parameter to customize the trusted certification authorities, or
-   * disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * Starts a new multiplayer client connecting to the given [url]. TLS certificates will be verified against the hostname when connecting using the `wss://` protocol. You can pass the optional [tlsClientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    *
-   * **Note:** It is recommended to specify the scheme part of the URL, i.e. the [url] should start
-   * with either `ws://` or `wss://`.
+   * **Note:** It is recommended to specify the scheme part of the URL, i.e. the [url] should start with either `ws://` or `wss://`.
    */
   @JvmOverloads
   public final fun createClient(url: String, tlsClientOptions: TLSOptions? = null): Error {
@@ -223,8 +195,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Starts a new multiplayer server listening on the given [port]. You can optionally specify a
-   * [bindAddress], and provide valid [tlsServerOptions] to use TLS. See [TLSOptions.server].
+   * Starts a new multiplayer server listening on the given [port]. You can optionally specify a [bindAddress], and provide valid [tlsServerOptions] to use TLS. See [TLSOptions.server].
    */
   @JvmOverloads
   public final fun createServer(
@@ -270,7 +241,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setSupportedProtocols(protocols: PackedStringArray): Unit {
+  public final fun setSupportedProtocols(protocols: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
     TransferContext.callMethod(ptr, MethodBindings.setSupportedProtocolsPtr, NIL)
   }
@@ -281,7 +252,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setHandshakeHeaders(protocols: PackedStringArray): Unit {
+  public final fun setHandshakeHeaders(protocols: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
     TransferContext.callMethod(ptr, MethodBindings.setHandshakeHeadersPtr, NIL)
   }
@@ -292,7 +263,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setInboundBufferSize(bufferSize: Int): Unit {
+  public final fun setInboundBufferSize(bufferSize: Int) {
     TransferContext.writeArguments(LONG to bufferSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInboundBufferSizePtr, NIL)
   }
@@ -303,7 +274,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOutboundBufferSize(bufferSize: Int): Unit {
+  public final fun setOutboundBufferSize(bufferSize: Int) {
     TransferContext.writeArguments(LONG to bufferSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOutboundBufferSizePtr, NIL)
   }
@@ -314,12 +285,12 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHandshakeTimeout(timeout: Float): Unit {
+  public final fun setHandshakeTimeout(timeout: Float) {
     TransferContext.writeArguments(DOUBLE to timeout.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHandshakeTimeoutPtr, NIL)
   }
 
-  public final fun setMaxQueuedPackets(maxQueuedPackets: Int): Unit {
+  public final fun setMaxQueuedPackets(maxQueuedPackets: Int) {
     TransferContext.writeArguments(LONG to maxQueuedPackets.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
   }
@@ -334,54 +305,54 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
 
   public object MethodBindings {
     internal val createClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_client", 1966198364)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_client", 1_966_198_364)
 
     internal val createServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_server", 2400822951)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_server", 2_400_822_951)
 
     internal val getPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer", 1381378851)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer", 1_381_378_851)
 
     internal val getPeerAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_address", 844755477)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_address", 844_755_477)
 
     internal val getPeerPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_port", 923996154)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_port", 923_996_154)
 
     internal val getSupportedProtocolsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_supported_protocols", 1139954409)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_supported_protocols", 1_139_954_409)
 
     internal val setSupportedProtocolsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_supported_protocols", 4015028928)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_supported_protocols", 4_015_028_928)
 
     internal val getHandshakeHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_headers", 1139954409)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_headers", 1_139_954_409)
 
     internal val setHandshakeHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_headers", 4015028928)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_headers", 4_015_028_928)
 
     internal val getInboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_inbound_buffer_size", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_inbound_buffer_size", 3_905_245_786)
 
     internal val setInboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_inbound_buffer_size", 1286410249)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_inbound_buffer_size", 1_286_410_249)
 
     internal val getOutboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_outbound_buffer_size", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_outbound_buffer_size", 3_905_245_786)
 
     internal val setOutboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_outbound_buffer_size", 1286410249)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_outbound_buffer_size", 1_286_410_249)
 
     internal val getHandshakeTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_timeout", 1740695150)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_timeout", 1_740_695_150)
 
     internal val setHandshakeTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_timeout", 373806689)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_timeout", 373_806_689)
 
     internal val setMaxQueuedPacketsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_max_queued_packets", 1286410249)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_max_queued_packets", 1_286_410_249)
 
     internal val getMaxQueuedPacketsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_max_queued_packets", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_max_queued_packets", 3_905_245_786)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,11 +30,9 @@ import kotlin.jvm.JvmName
 /**
  * A control used for playback of [VideoStream] resources.
  *
- * Supported video formats are [url=https://www.theora.org/]Ogg Theora[/url] (`.ogv`,
- * [VideoStreamTheora]) and any format exposed via a GDExtension plugin.
+ * Supported video formats are [url=https://www.theora.org/]Ogg Theora[/url] (`.ogv`, [VideoStreamTheora]) and any format exposed via a GDExtension plugin.
  *
- * **Warning:** On Web, video playback *will* perform poorly due to missing architecture-specific
- * assembly optimizations.
+ * **Warning:** On Web, video playback *will* perform poorly due to missing architecture-specific assembly optimizations.
  */
 @GodotBaseType
 public open class VideoStreamPlayer : Control() {
@@ -113,8 +108,7 @@ public open class VideoStreamPlayer : Control() {
     }
 
   /**
-   * If `true`, the video scales to the control size. Otherwise, the control minimum size will be
-   * automatically adjusted to match the video stream's dimensions.
+   * If `true`, the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions.
    */
   public final inline var expand: Boolean
     @JvmName("expandProperty")
@@ -149,8 +143,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The current position of the stream, in seconds.
    *
-   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except
-   * in video formats implemented by a GDExtension add-on.
+   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.
    */
   public final inline var streamPosition: Double
     @JvmName("streamPositionProperty")
@@ -171,11 +164,11 @@ public open class VideoStreamPlayer : Control() {
       setBus(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(717, scriptIndex)
   }
 
-  public final fun setStream(stream: VideoStream?): Unit {
+  public final fun setStream(stream: VideoStream?) {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPtr, NIL)
   }
@@ -187,10 +180,9 @@ public open class VideoStreamPlayer : Control() {
   }
 
   /**
-   * Starts the video playback from the beginning. If the video is paused, this will not unpause the
-   * video.
+   * Starts the video playback from the beginning. If the video is paused, this will not unpause the video.
    */
-  public final fun play(): Unit {
+  public final fun play() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
@@ -198,10 +190,9 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Stops the video playback and sets the stream position to 0.
    *
-   * **Note:** Although the stream position will be set to 0, the first frame of the video stream
-   * won't become the current frame.
+   * **Note:** Although the stream position will be set to 0, the first frame of the video stream won't become the current frame.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
@@ -217,7 +208,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPaused(paused: Boolean): Unit {
+  public final fun setPaused(paused: Boolean) {
     TransferContext.writeArguments(BOOL to paused)
     TransferContext.callMethod(ptr, MethodBindings.setPausedPtr, NIL)
   }
@@ -228,7 +219,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean) {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
@@ -239,7 +230,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVolume(volume: Float): Unit {
+  public final fun setVolume(volume: Float) {
     TransferContext.writeArguments(DOUBLE to volume.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumePtr, NIL)
   }
@@ -250,7 +241,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumeDb(db: Float): Unit {
+  public final fun setVolumeDb(db: Float) {
     TransferContext.writeArguments(DOUBLE to db.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
   }
@@ -261,7 +252,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAudioTrack(track: Int): Unit {
+  public final fun setAudioTrack(track: Int) {
     TransferContext.writeArguments(LONG to track.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setAudioTrackPtr, NIL)
   }
@@ -284,9 +275,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The length of the current stream, in seconds.
    *
-   * **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value
-   * will always be zero, as getting the stream length is not implemented yet. The feature may be
-   * supported by video formats implemented by a GDExtension add-on.
+   * **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.
    */
   public final fun getStreamLength(): Double {
     TransferContext.writeArguments()
@@ -294,7 +283,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setStreamPosition(position: Double): Unit {
+  public final fun setStreamPosition(position: Double) {
     TransferContext.writeArguments(DOUBLE to position)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPositionPtr, NIL)
   }
@@ -305,7 +294,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setAutoplay(enabled: Boolean): Unit {
+  public final fun setAutoplay(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
@@ -316,7 +305,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setExpand(enable: Boolean): Unit {
+  public final fun setExpand(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setExpandPtr, NIL)
   }
@@ -327,7 +316,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBufferingMsec(msec: Int): Unit {
+  public final fun setBufferingMsec(msec: Int) {
     TransferContext.writeArguments(LONG to msec.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBufferingMsecPtr, NIL)
   }
@@ -338,7 +327,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBus(bus: StringName): Unit {
+  public final fun setBus(bus: StringName) {
     TransferContext.writeArguments(STRING_NAME to bus)
     TransferContext.callMethod(ptr, MethodBindings.setBusPtr, NIL)
   }
@@ -364,87 +353,87 @@ public open class VideoStreamPlayer : Control() {
 
   public object MethodBindings {
     internal val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream", 2317102564)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream", 2_317_102_564)
 
     internal val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream", 438621487)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream", 438_621_487)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "play", 3218959716)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "play", 3_218_959_716)
 
     internal val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "stop", 3218959716)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "stop", 3_218_959_716)
 
     internal val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_playing", 36873697)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_playing", 36_873_697)
 
     internal val setPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_paused", 2586408642)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_paused", 2_586_408_642)
 
     internal val isPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused", 36873697)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused", 36_873_697)
 
     internal val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop", 2586408642)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop", 2_586_408_642)
 
     internal val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop", 36873697)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop", 36_873_697)
 
     internal val setVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume", 373806689)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume", 373_806_689)
 
     internal val getVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume", 1740695150)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume", 1_740_695_150)
 
     internal val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume_db", 373806689)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume_db", 373_806_689)
 
     internal val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db", 1740695150)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db", 1_740_695_150)
 
     internal val setAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track", 1286410249)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track", 1_286_410_249)
 
     internal val getAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_audio_track", 3905245786)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_audio_track", 3_905_245_786)
 
     internal val getStreamNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name", 201670096)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name", 201_670_096)
 
     internal val getStreamLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length", 1740695150)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length", 1_740_695_150)
 
     internal val setStreamPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position", 373806689)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position", 373_806_689)
 
     internal val getStreamPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_position", 1740695150)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_position", 1_740_695_150)
 
     internal val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_autoplay", 2586408642)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_autoplay", 2_586_408_642)
 
     internal val hasAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_autoplay", 36873697)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_autoplay", 36_873_697)
 
     internal val setExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_expand", 2586408642)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_expand", 2_586_408_642)
 
     internal val hasExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_expand", 36873697)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_expand", 36_873_697)
 
     internal val setBufferingMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec", 1286410249)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec", 1_286_410_249)
 
     internal val getBufferingMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec", 3905245786)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec", 3_905_245_786)
 
     internal val setBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_bus", 3304788590)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_bus", 3_304_788_590)
 
     internal val getBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_bus", 2002593661)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_bus", 2_002_593_661)
 
     internal val getVideoTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_video_texture", 3635182373)
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_video_texture", 3_635_182_373)
   }
 }

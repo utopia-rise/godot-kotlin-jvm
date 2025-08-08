@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,15 +23,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * An expression can be made of any arithmetic operation, built-in math function call, method call
- * of a passed instance, or built-in type construction call.
+ * An expression can be made of any arithmetic operation, built-in math function call, method call of a passed instance, or built-in type construction call.
  *
- * An example expression text using the built-in math functions could be `sqrt(pow(3, 2) + pow(4,
- * 2))`.
+ * An example expression text using the built-in math functions could be `sqrt(pow(3, 2) + pow(4, 2))`.
  *
  * In the following example we use a [LineEdit] node to write our expression and show the result.
  *
@@ -82,30 +76,26 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class Expression : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(207, scriptIndex)
   }
 
   /**
    * Parses the expression and returns an [Error] code.
    *
-   * You can optionally specify names of variables that may appear in the expression with
-   * [inputNames], so that you can bind them when it gets executed.
+   * You can optionally specify names of variables that may appear in the expression with [inputNames], so that you can bind them when it gets executed.
    */
   @JvmOverloads
-  public final fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
-      Error {
+  public final fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()): Error {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
     TransferContext.callMethod(ptr, MethodBindings.parsePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
-   * Executes the expression that was previously parsed by [parse] and returns the result. Before
-   * you use the returned object, you should check if the method failed by calling [hasExecuteFailed].
+   * Executes the expression that was previously parsed by [parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [hasExecuteFailed].
    *
-   * If you defined input variables in [parse], you can specify their values in the inputs array, in
-   * the same order.
+   * If you defined input variables in [parse], you can specify their values in the inputs array, in the same order.
    */
   @JvmOverloads
   public final fun execute(
@@ -140,15 +130,16 @@ public open class Expression : RefCounted() {
   public companion object
 
   public object MethodBindings {
-    internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "parse", 3069722906)
+    internal val parsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Expression", "parse", 3_069_722_906)
 
     internal val executePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "execute", 3712471238)
+        TypeManager.getMethodBindPtr("Expression", "execute", 3_712_471_238)
 
     internal val hasExecuteFailedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "has_execute_failed", 36873697)
+        TypeManager.getMethodBindPtr("Expression", "has_execute_failed", 36_873_697)
 
     internal val getErrorTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "get_error_text", 201670096)
+        TypeManager.getMethodBindPtr("Expression", "get_error_text", 201_670_096)
   }
 }

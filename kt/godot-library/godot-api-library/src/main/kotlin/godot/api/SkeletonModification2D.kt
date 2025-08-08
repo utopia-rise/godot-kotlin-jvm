@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,21 +19,17 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
- * in a [Skeleton2D] can be mixed and matched together to create complex interactions.
+ * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes in a [Skeleton2D] can be mixed and matched together to create complex interactions.
  *
- * This is used to provide Godot with a flexible and powerful Inverse Kinematics solution that can
- * be adapted for many different uses.
+ * This is used to provide Godot with a flexible and powerful Inverse Kinematics solution that can be adapted for many different uses.
  */
 @GodotBaseType
 public open class SkeletonModification2D : Resource() {
   /**
-   * If `true`, the modification's [_execute] function will be called by the
-   * [SkeletonModificationStack2D].
+   * If `true`, the modification's [_execute] function will be called by the [SkeletonModificationStack2D].
    */
   public final inline var enabled: Boolean
     @JvmName("enabledProperty")
@@ -47,8 +40,7 @@ public open class SkeletonModification2D : Resource() {
     }
 
   /**
-   * The execution mode for the modification. This tells the modification stack when to execute the
-   * modification. Some modifications have settings that are only available in certain execution modes.
+   * The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes.
    */
   public final inline var executionMode: Int
     @JvmName("executionModeProperty")
@@ -58,37 +50,34 @@ public open class SkeletonModification2D : Resource() {
       setExecutionMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(596, scriptIndex)
   }
 
   /**
-   * Executes the given modification. This is where the modification performs whatever function it
-   * is designed to do.
+   * Executes the given modification. This is where the modification performs whatever function it is designed to do.
    */
-  public open fun _execute(delta: Double): Unit {
-    throw NotImplementedError("SkeletonModification2D::_execute is not implemented.")
+  public open fun _execute(delta: Double) {
+    throw NotImplementedError("_execute is not implemented for SkeletonModification2D")
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
-  public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
-    throw NotImplementedError("SkeletonModification2D::_setupModification is not implemented.")
+  public open fun _setupModification(modificationStack: SkeletonModificationStack2D?) {
+    throw NotImplementedError("_setupModification is not implemented for SkeletonModification2D")
   }
 
   /**
-   * Used for drawing **editor-only** modification gizmos. This function will only be called in the
-   * Godot editor and can be overridden to draw custom gizmos.
+   * Used for drawing **editor-only** modification gizmos. This function will only be called in the Godot editor and can be overridden to draw custom gizmos.
    *
-   * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton]
-   * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
+   * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton] and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
-  public open fun _drawEditorGizmo(): Unit {
-    throw NotImplementedError("SkeletonModification2D::_drawEditorGizmo is not implemented.")
+  public open fun _drawEditorGizmo() {
+    throw NotImplementedError("_drawEditorGizmo is not implemented for SkeletonModification2D")
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -100,8 +89,7 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Returns the [SkeletonModificationStack2D] that this modification is bound to. Through the
-   * modification stack, you can access the Skeleton2D the modification is operating on.
+   * Returns the [SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton2D the modification is operating on.
    */
   public final fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
@@ -110,11 +98,9 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Manually allows you to set the setup state of the modification. This function should only
-   * rarely be used, as the [SkeletonModificationStack2D] the modification is bound to should handle
-   * setting the modification up.
+   * Manually allows you to set the setup state of the modification. This function should only rarely be used, as the [SkeletonModificationStack2D] the modification is bound to should handle setting the modification up.
    */
-  public final fun setIsSetup(isSetup: Boolean): Unit {
+  public final fun setIsSetup(isSetup: Boolean) {
     TransferContext.writeArguments(BOOL to isSetup)
     TransferContext.callMethod(ptr, MethodBindings.setIsSetupPtr, NIL)
   }
@@ -128,7 +114,7 @@ public open class SkeletonModification2D : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setExecutionMode(executionMode: Int): Unit {
+  public final fun setExecutionMode(executionMode: Int) {
     TransferContext.writeArguments(LONG to executionMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setExecutionModePtr, NIL)
   }
@@ -140,8 +126,7 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will
-   * inversely clamp the angle, clamping it to the range outside of the given bounds.
+   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
   public final fun clampAngle(
     angle: Float,
@@ -155,17 +140,15 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Sets whether this modification will call [_drawEditorGizmo] in the Godot editor to draw
-   * modification-specific gizmos.
+   * Sets whether this modification will call [_drawEditorGizmo] in the Godot editor to draw modification-specific gizmos.
    */
-  public final fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
+  public final fun setEditorDrawGizmo(drawGizmo: Boolean) {
     TransferContext.writeArguments(BOOL to drawGizmo)
     TransferContext.callMethod(ptr, MethodBindings.setEditorDrawGizmoPtr, NIL)
   }
 
   /**
-   * Returns whether this modification will call [_drawEditorGizmo] in the Godot editor to draw
-   * modification-specific gizmos.
+   * Returns whether this modification will call [_drawEditorGizmo] in the Godot editor to draw modification-specific gizmos.
    */
   public final fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()
@@ -177,33 +160,33 @@ public open class SkeletonModification2D : Resource() {
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled", 2_586_408_642)
 
     internal val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_enabled", 2240911060)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_enabled", 2_240_911_060)
 
     internal val getModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_modification_stack", 2137761694)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_modification_stack", 2_137_761_694)
 
     internal val setIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_is_setup", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_is_setup", 2_586_408_642)
 
     internal val getIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_is_setup", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_is_setup", 36_873_697)
 
     internal val setExecutionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_execution_mode", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_execution_mode", 1_286_410_249)
 
     internal val getExecutionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_execution_mode", 3905245786)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_execution_mode", 3_905_245_786)
 
     internal val clampAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "clamp_angle", 1229502682)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "clamp_angle", 1_229_502_682)
 
     internal val setEditorDrawGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo", 2_586_408_642)
 
     internal val getEditorDrawGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo", 36_873_697)
   }
 }

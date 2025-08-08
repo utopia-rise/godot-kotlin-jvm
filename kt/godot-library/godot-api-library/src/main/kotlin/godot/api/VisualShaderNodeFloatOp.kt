@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
       setOperator(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(752, scriptIndex)
   }
 
-  public final fun setOperator(op: Operator): Unit {
+  public final fun setOperator(op: Operator) {
     TransferContext.writeArguments(LONG to op.id)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
@@ -69,8 +65,7 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
      */
     DIV(3),
     /**
-     * Calculates the remainder of two numbers. Translates to `mod(a, b)` in the Godot Shader
-     * Language.
+     * Calculates the remainder of two numbers. Translates to `mod(a, b)` in the Godot Shader Language.
      */
     MOD(4),
     /**
@@ -86,13 +81,11 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
      */
     MIN(7),
     /**
-     * Returns the arc-tangent of the parameters. Translates to `atan(a, b)` in the Godot Shader
-     * Language.
+     * Returns the arc-tangent of the parameters. Translates to `atan(a, b)` in the Godot Shader Language.
      */
     ATAN2(8),
     /**
-     * Generates a step function by comparing `b`(x) to `a`(edge). Returns 0.0 if `x` is smaller
-     * than `edge` and otherwise 1.0. Translates to `step(a, b)` in the Godot Shader Language.
+     * Generates a step function by comparing `b`(x) to `a`(edge). Returns 0.0 if `x` is smaller than `edge` and otherwise 1.0. Translates to `step(a, b)` in the Godot Shader Language.
      */
     STEP(9),
     /**
@@ -115,9 +108,9 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatOp", "set_operator", 2488468047)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatOp", "set_operator", 2_488_468_047)
 
     internal val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatOp", "get_operator", 1867979390)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatOp", "get_operator", 1_867_979_390)
   }
 }

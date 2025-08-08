@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -37,15 +34,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An instance of this object represents a device that is tracked, such as a controller or anchor
- * point. HMDs aren't represented here as they are handled internally.
+ * An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
  *
- * As controllers are turned on and the [XRInterface] detects them, instances of this object are
- * automatically added to this list of active tracking objects accessible through the [XRServer].
+ * As controllers are turned on and the [XRInterface] detects them, instances of this object are automatically added to this list of active tracking objects accessible through the [XRServer].
  *
- * The [XRNode3D] and [XRAnchor3D] both consume objects of this type and should be used in your
- * project. The positional trackers are just under-the-hood objects that make this all work. These are
- * mostly exposed so that GDExtension-based interfaces can interact with them.
+ * The [XRNode3D] and [XRAnchor3D] both consume objects of this type and should be used in your project. The positional trackers are just under-the-hood objects that make this all work. These are mostly exposed so that GDExtension-based interfaces can interact with them.
  */
 @GodotBaseType
 public open class XRPositionalTracker : XRTracker() {
@@ -60,8 +53,7 @@ public open class XRPositionalTracker : XRTracker() {
   public val poseLostTracking: Signal1<XRPose> by Signal1
 
   /**
-   * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs
-   * to be mapped to buttons.
+   * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons.
    */
   public val buttonPressed: Signal1<String> by Signal1
 
@@ -86,8 +78,7 @@ public open class XRPositionalTracker : XRTracker() {
   public val profileChanged: Signal1<String> by Signal1
 
   /**
-   * The profile associated with this tracker, interface dependent but will indicate the type of
-   * controller being tracked.
+   * The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked.
    */
   public final inline var profile: String
     @JvmName("profileProperty")
@@ -108,7 +99,7 @@ public open class XRPositionalTracker : XRTracker() {
       setTrackerHand(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(873, scriptIndex)
   }
 
@@ -118,7 +109,7 @@ public open class XRPositionalTracker : XRTracker() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setTrackerProfile(profile: String): Unit {
+  public final fun setTrackerProfile(profile: String) {
     TransferContext.writeArguments(STRING to profile)
     TransferContext.callMethod(ptr, MethodBindings.setTrackerProfilePtr, NIL)
   }
@@ -129,7 +120,7 @@ public open class XRPositionalTracker : XRTracker() {
     return TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTrackerHand(hand: TrackerHand): Unit {
+  public final fun setTrackerHand(hand: TrackerHand) {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(ptr, MethodBindings.setTrackerHandPtr, NIL)
   }
@@ -153,18 +144,15 @@ public open class XRPositionalTracker : XRTracker() {
   }
 
   /**
-   * Marks this pose as invalid, we don't clear the last reported state but it allows users to
-   * decide if trackers need to be hidden if we lose tracking or just remain at their last known
-   * position.
+   * Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position.
    */
-  public final fun invalidatePose(name: StringName): Unit {
+  public final fun invalidatePose(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.invalidatePosePtr, NIL)
   }
 
   /**
-   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
-   * pose. This method is called by a [XRInterface] implementation and should not be used directly.
+   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly.
    */
   public final fun setPose(
     name: StringName,
@@ -172,14 +160,13 @@ public open class XRPositionalTracker : XRTracker() {
     linearVelocity: Vector3,
     angularVelocity: Vector3,
     trackingConfidence: XRPose.TrackingConfidence,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
     TransferContext.callMethod(ptr, MethodBindings.setPosePtr, NIL)
   }
 
   /**
-   * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending
-   * on whether the input is a button, trigger or thumbstick/thumbpad.
+   * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad.
    */
   public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -188,10 +175,9 @@ public open class XRPositionalTracker : XRTracker() {
   }
 
   /**
-   * Changes the value for the given input. This method is called by a [XRInterface] implementation
-   * and should not be used directly.
+   * Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly.
    */
-  public final fun setInput(name: StringName, `value`: Any?): Unit {
+  public final fun setInput(name: StringName, `value`: Any?) {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setInputPtr, NIL)
   }
@@ -207,15 +193,12 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun getPose(name: String): XRPose? = getPose(name.asCachedStringName())
 
   /**
-   * Marks this pose as invalid, we don't clear the last reported state but it allows users to
-   * decide if trackers need to be hidden if we lose tracking or just remain at their last known
-   * position.
+   * Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position.
    */
   public final fun invalidatePose(name: String): Unit = invalidatePose(name.asCachedStringName())
 
   /**
-   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
-   * pose. This method is called by a [XRInterface] implementation and should not be used directly.
+   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly.
    */
   public final fun setPose(
     name: String,
@@ -223,21 +206,17 @@ public open class XRPositionalTracker : XRTracker() {
     linearVelocity: Vector3,
     angularVelocity: Vector3,
     trackingConfidence: XRPose.TrackingConfidence,
-  ): Unit =
-      setPose(name.asCachedStringName(), transform, linearVelocity, angularVelocity, trackingConfidence)
+  ): Unit = setPose(name.asCachedStringName(), transform, linearVelocity, angularVelocity, trackingConfidence)
 
   /**
-   * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending
-   * on whether the input is a button, trigger or thumbstick/thumbpad.
+   * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad.
    */
   public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
 
   /**
-   * Changes the value for the given input. This method is called by a [XRInterface] implementation
-   * and should not be used directly.
+   * Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly.
    */
-  public final fun setInput(name: String, `value`: Any?): Unit =
-      setInput(name.asCachedStringName(), value)
+  public final fun setInput(name: String, `value`: Any?): Unit = setInput(name.asCachedStringName(), value)
 
   public enum class TrackerHand(
     id: Long,
@@ -274,33 +253,33 @@ public open class XRPositionalTracker : XRTracker() {
 
   public object MethodBindings {
     internal val getTrackerProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile", 201670096)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile", 201_670_096)
 
     internal val setTrackerProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile", 83702148)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile", 83_702_148)
 
     internal val getTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand", 4181770860)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand", 4_181_770_860)
 
     internal val setTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand", 3904108980)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand", 3_904_108_980)
 
     internal val hasPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "has_pose", 2619796661)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "has_pose", 2_619_796_661)
 
     internal val getPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_pose", 4099720006)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_pose", 4_099_720_006)
 
     internal val invalidatePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "invalidate_pose", 3304788590)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "invalidate_pose", 3_304_788_590)
 
     internal val setPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_pose", 3451230163)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_pose", 3_451_230_163)
 
     internal val getInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_input", 2760726917)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_input", 2_760_726_917)
 
     internal val setInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_input", 3776071444)
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_input", 3_776_071_444)
   }
 }

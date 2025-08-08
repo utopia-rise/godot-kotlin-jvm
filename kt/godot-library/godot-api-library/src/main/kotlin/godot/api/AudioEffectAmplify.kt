@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,7 +14,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -26,8 +22,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AudioEffectAmplify : AudioEffect() {
   /**
-   * Amount of amplification in decibels. Positive values make the sound louder, negative values
-   * make it quieter. Value can range from -80 to 24.
+   * Amount of amplification in decibels. Positive values make the sound louder, negative values make it quieter. Value can range from -80 to 24.
    */
   public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
@@ -40,9 +35,7 @@ public open class AudioEffectAmplify : AudioEffect() {
   /**
    * Amount of amplification as a linear value.
    *
-   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
-   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
-   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
    */
   public final inline var volumeLinear: Float
     @JvmName("volumeLinearProperty")
@@ -52,11 +45,11 @@ public open class AudioEffectAmplify : AudioEffect() {
       setVolumeLinear(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(46, scriptIndex)
   }
 
-  public final fun setVolumeDb(volume: Float): Unit {
+  public final fun setVolumeDb(volume: Float) {
     TransferContext.writeArguments(DOUBLE to volume.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
   }
@@ -67,7 +60,7 @@ public open class AudioEffectAmplify : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumeLinear(volume: Float): Unit {
+  public final fun setVolumeLinear(volume: Float) {
     TransferContext.writeArguments(DOUBLE to volume.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
   }
@@ -89,15 +82,15 @@ public open class AudioEffectAmplify : AudioEffect() {
 
   public object MethodBindings {
     internal val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_db", 373_806_689)
 
     internal val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1_740_695_150)
 
     internal val setVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_linear", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_linear", 373_806_689)
 
     internal val getVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_linear", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_linear", 1_740_695_150)
   }
 }

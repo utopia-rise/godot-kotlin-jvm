@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -35,32 +32,23 @@ import kotlin.jvm.JvmOverloads
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.
  *
- * Visibility can be handled directly with [setVisibilityFor] or as-needed with
- * [addVisibilityFilter] and [updateVisibility].
+ * Visibility can be handled directly with [setVisibilityFor] or as-needed with [addVisibilityFilter] and [updateVisibility].
  *
- * [MultiplayerSpawner]s will handle nodes according to visibility of synchronizers as long as the
- * node at [rootPath] was spawned by one.
+ * [MultiplayerSpawner]s will handle nodes according to visibility of synchronizers as long as the node at [rootPath] was spawned by one.
  *
- * Internally, [MultiplayerSynchronizer] uses [MultiplayerAPI.objectConfigurationAdd] to notify
- * synchronization start passing the [Node] at [rootPath] as the `object` and itself as the
- * `configuration`, and uses [MultiplayerAPI.objectConfigurationRemove] to notify synchronization end
- * in a similar way.
+ * Internally, [MultiplayerSynchronizer] uses [MultiplayerAPI.objectConfigurationAdd] to notify synchronization start passing the [Node] at [rootPath] as the `object` and itself as the `configuration`, and uses [MultiplayerAPI.objectConfigurationRemove] to notify synchronization end in a similar way.
  *
- * **Note:** Synchronization is not supported for [Object] type properties, like [Resource].
- * Properties that are unique to each peer, like the instance IDs of [Object]s (see
- * [Object.getInstanceId]) or [RID]s, will also not work in synchronization.
+ * **Note:** Synchronization is not supported for [Object] type properties, like [Resource]. Properties that are unique to each peer, like the instance IDs of [Object]s (see [Object.getInstanceId]) or [RID]s, will also not work in synchronization.
  */
 @GodotBaseType
 public open class MultiplayerSynchronizer : Node() {
   /**
-   * Emitted when a new synchronization state is received by this synchronizer after the properties
-   * have been updated.
+   * Emitted when a new synchronization state is received by this synchronizer after the properties have been updated.
    */
   public val synchronized: Signal0 by Signal0
 
   /**
-   * Emitted when a new delta synchronization state is received by this synchronizer after the
-   * properties have been updated.
+   * Emitted when a new delta synchronization state is received by this synchronizer after the properties have been updated.
    */
   public val deltaSynchronized: Signal0 by Signal0
 
@@ -72,8 +60,7 @@ public open class MultiplayerSynchronizer : Node() {
   /**
    * Node path that replicated properties are relative to.
    *
-   * If [rootPath] was spawned by a [MultiplayerSpawner], the node will be also be spawned and
-   * despawned based on this synchronizer visibility options.
+   * If [rootPath] was spawned by a [MultiplayerSpawner], the node will be also be spawned and despawned based on this synchronizer visibility options.
    */
   public final inline var rootPath: NodePath
     @JvmName("rootPathProperty")
@@ -84,9 +71,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Time interval between synchronizations. Used when the replication is set to
-   * [SceneReplicationConfig.REPLICATION_MODE_ALWAYS]. If set to `0.0` (the default), synchronizations
-   * happen every network process frame.
+   * Time interval between synchronizations. Used when the replication is set to [SceneReplicationConfig.REPLICATION_MODE_ALWAYS]. If set to `0.0` (the default), synchronizations happen every network process frame.
    */
   public final inline var replicationInterval: Double
     @JvmName("replicationIntervalProperty")
@@ -97,9 +82,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Time interval between delta synchronizations. Used when the replication is set to
-   * [SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE]. If set to `0.0` (the default), delta
-   * synchronizations happen every network process frame.
+   * Time interval between delta synchronizations. Used when the replication is set to [SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE]. If set to `0.0` (the default), delta synchronizations happen every network process frame.
    */
   public final inline var deltaInterval: Double
     @JvmName("deltaIntervalProperty")
@@ -132,8 +115,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Whether synchronization should be visible to all peers by default. See [setVisibilityFor] and
-   * [addVisibilityFilter] for ways of configuring fine-grained visibility options.
+   * Whether synchronization should be visible to all peers by default. See [setVisibilityFor] and [addVisibilityFilter] for ways of configuring fine-grained visibility options.
    */
   public final inline var publicVisibility: Boolean
     @JvmName("publicVisibilityProperty")
@@ -143,11 +125,11 @@ public open class MultiplayerSynchronizer : Node() {
       setVisibilityPublic(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(371, scriptIndex)
   }
 
-  public final fun setRootPath(path: NodePath): Unit {
+  public final fun setRootPath(path: NodePath) {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setRootPathPtr, NIL)
   }
@@ -158,7 +140,7 @@ public open class MultiplayerSynchronizer : Node() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setReplicationInterval(milliseconds: Double): Unit {
+  public final fun setReplicationInterval(milliseconds: Double) {
     TransferContext.writeArguments(DOUBLE to milliseconds)
     TransferContext.callMethod(ptr, MethodBindings.setReplicationIntervalPtr, NIL)
   }
@@ -169,7 +151,7 @@ public open class MultiplayerSynchronizer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setDeltaInterval(milliseconds: Double): Unit {
+  public final fun setDeltaInterval(milliseconds: Double) {
     TransferContext.writeArguments(DOUBLE to milliseconds)
     TransferContext.callMethod(ptr, MethodBindings.setDeltaIntervalPtr, NIL)
   }
@@ -180,7 +162,7 @@ public open class MultiplayerSynchronizer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setReplicationConfig(config: SceneReplicationConfig?): Unit {
+  public final fun setReplicationConfig(config: SceneReplicationConfig?) {
     TransferContext.writeArguments(OBJECT to config)
     TransferContext.callMethod(ptr, MethodBindings.setReplicationConfigPtr, NIL)
   }
@@ -191,7 +173,7 @@ public open class MultiplayerSynchronizer : Node() {
     return (TransferContext.readReturnValue(OBJECT) as SceneReplicationConfig?)
   }
 
-  public final fun setVisibilityUpdateMode(mode: VisibilityUpdateMode): Unit {
+  public final fun setVisibilityUpdateMode(mode: VisibilityUpdateMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityUpdateModePtr, NIL)
   }
@@ -203,16 +185,15 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   /**
-   * Updates the visibility of [forPeer] according to visibility filters. If [forPeer] is `0` (the
-   * default), all peers' visibilties are updated.
+   * Updates the visibility of [forPeer] according to visibility filters. If [forPeer] is `0` (the default), all peers' visibilties are updated.
    */
   @JvmOverloads
-  public final fun updateVisibility(forPeer: Int = 0): Unit {
+  public final fun updateVisibility(forPeer: Int = 0) {
     TransferContext.writeArguments(LONG to forPeer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.updateVisibilityPtr, NIL)
   }
 
-  public final fun setVisibilityPublic(visible: Boolean): Unit {
+  public final fun setVisibilityPublic(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityPublicPtr, NIL)
   }
@@ -228,7 +209,7 @@ public open class MultiplayerSynchronizer : Node() {
    *
    * [filter] should take a peer ID [int] and return a [bool].
    */
-  public final fun addVisibilityFilter(filter: Callable): Unit {
+  public final fun addVisibilityFilter(filter: Callable) {
     TransferContext.writeArguments(CALLABLE to filter)
     TransferContext.callMethod(ptr, MethodBindings.addVisibilityFilterPtr, NIL)
   }
@@ -236,16 +217,15 @@ public open class MultiplayerSynchronizer : Node() {
   /**
    * Removes a peer visibility filter from this synchronizer.
    */
-  public final fun removeVisibilityFilter(filter: Callable): Unit {
+  public final fun removeVisibilityFilter(filter: Callable) {
     TransferContext.writeArguments(CALLABLE to filter)
     TransferContext.callMethod(ptr, MethodBindings.removeVisibilityFilterPtr, NIL)
   }
 
   /**
-   * Sets the visibility of [peer] to [visible]. If [peer] is `0`, the value of [publicVisibility]
-   * will be updated instead.
+   * Sets the visibility of [peer] to [visible]. If [peer] is `0`, the value of [publicVisibility] will be updated instead.
    */
-  public final fun setVisibilityFor(peer: Int, visible: Boolean): Unit {
+  public final fun setVisibilityFor(peer: Int, visible: Boolean) {
     TransferContext.writeArguments(LONG to peer.toLong(), BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityForPtr, NIL)
   }
@@ -265,18 +245,15 @@ public open class MultiplayerSynchronizer : Node() {
     id: Long,
   ) {
     /**
-     * Visibility filters are updated during process frames (see
-     * [Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Visibility filters are updated during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     PROCESS_IDLE(0),
     /**
-     * Visibility filters are updated during physics frames (see
-     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Visibility filters are updated during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     PROCESS_PHYSICS(1),
     /**
-     * Visibility filters are not updated automatically, and must be updated manually by calling
-     * [updateVisibility].
+     * Visibility filters are not updated automatically, and must be updated manually by calling [updateVisibility].
      */
     PROCESS_NONE(2),
     ;
@@ -295,54 +272,54 @@ public open class MultiplayerSynchronizer : Node() {
 
   public object MethodBindings {
     internal val setRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path", 1348162250)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path", 1_348_162_250)
 
     internal val getRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path", 4075236667)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path", 4_075_236_667)
 
     internal val setReplicationIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval", 373806689)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval", 373_806_689)
 
     internal val getReplicationIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval", 1740695150)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval", 1_740_695_150)
 
     internal val setDeltaIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval", 373806689)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval", 373_806_689)
 
     internal val getDeltaIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval", 1740695150)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval", 1_740_695_150)
 
     internal val setReplicationConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config", 3889206742)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config", 3_889_206_742)
 
     internal val getReplicationConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config", 3200254614)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config", 3_200_254_614)
 
     internal val setVisibilityUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode", 3494860300)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode", 3_494_860_300)
 
     internal val getVisibilityUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode", 3352241418)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode", 3_352_241_418)
 
     internal val updateVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility", 1995695955)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility", 1_995_695_955)
 
     internal val setVisibilityPublicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public", 2586408642)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public", 2_586_408_642)
 
     internal val isVisibilityPublicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public", 36873697)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public", 36_873_697)
 
     internal val addVisibilityFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter", 1611583062)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter", 1_611_583_062)
 
     internal val removeVisibilityFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter", 1611583062)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter", 1_611_583_062)
 
     internal val setVisibilityForPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for", 300928843)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for", 300_928_843)
 
     internal val getVisibilityForPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for", 1116898809)
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for", 1_116_898_809)
   }
 }

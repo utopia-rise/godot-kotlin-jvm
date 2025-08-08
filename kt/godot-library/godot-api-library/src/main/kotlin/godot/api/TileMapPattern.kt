@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,18 +18,16 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].
  *
- * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative
- * coordinates.
+ * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative coordinates.
  */
 @GodotBaseType
 public open class TileMapPattern : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(684, scriptIndex)
   }
 
@@ -45,7 +40,7 @@ public open class TileMapPattern : Resource() {
     sourceId: Int = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
     alternativeTile: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCellPtr, NIL)
   }
@@ -62,7 +57,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Remove the cell at the given coordinates.
    */
-  public final fun removeCell(coords: Vector2i, updateSize: Boolean): Unit {
+  public final fun removeCell(coords: Vector2i, updateSize: Boolean) {
     TransferContext.writeArguments(VECTOR2I to coords, BOOL to updateSize)
     TransferContext.callMethod(ptr, MethodBindings.removeCellPtr, NIL)
   }
@@ -115,7 +110,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Sets the size of the pattern.
    */
-  public final fun setSize(size: Vector2i): Unit {
+  public final fun setSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -133,33 +128,33 @@ public open class TileMapPattern : Resource() {
 
   public object MethodBindings {
     internal val setCellPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "set_cell", 2224802556)
+        TypeManager.getMethodBindPtr("TileMapPattern", "set_cell", 2_224_802_556)
 
     internal val hasCellPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "has_cell", 3900751641)
+        TypeManager.getMethodBindPtr("TileMapPattern", "has_cell", 3_900_751_641)
 
     internal val removeCellPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "remove_cell", 4153096796)
+        TypeManager.getMethodBindPtr("TileMapPattern", "remove_cell", 4_153_096_796)
 
     internal val getCellSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_source_id", 2485466453)
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_source_id", 2_485_466_453)
 
     internal val getCellAtlasCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_atlas_coords", 3050897911)
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_atlas_coords", 3_050_897_911)
 
     internal val getCellAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_alternative_tile", 2485466453)
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_alternative_tile", 2_485_466_453)
 
     internal val getUsedCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_used_cells", 3995934104)
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_used_cells", 3_995_934_104)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_size", 3690982128)
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_size", 3_690_982_128)
 
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "set_size", 1130785943)
+        TypeManager.getMethodBindPtr("TileMapPattern", "set_size", 1_130_785_943)
 
     internal val isEmptyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "is_empty", 36873697)
+        TypeManager.getMethodBindPtr("TileMapPattern", "is_empty", 36_873_697)
   }
 }

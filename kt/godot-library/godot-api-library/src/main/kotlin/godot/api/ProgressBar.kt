@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,12 +14,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A control used for visual representation of a percentage. Shows fill percentage from right to
- * left.
+ * A control used for visual representation of a percentage. Shows fill percentage from right to left.
  */
 @GodotBaseType
 public open class ProgressBar : Range() {
@@ -49,8 +44,7 @@ public open class ProgressBar : Range() {
     }
 
   /**
-   * When set to `true`, the progress bar indicates that something is happening with an animation,
-   * but does not show the fill percentage or value.
+   * When set to `true`, the progress bar indicates that something is happening with an animation, but does not show the fill percentage or value.
    */
   public final inline var indeterminate: Boolean
     @JvmName("indeterminateProperty")
@@ -71,11 +65,11 @@ public open class ProgressBar : Range() {
       setEditorPreviewIndeterminate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(508, scriptIndex)
   }
 
-  public final fun setFillMode(mode: Int): Unit {
+  public final fun setFillMode(mode: Int) {
     TransferContext.writeArguments(LONG to mode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFillModePtr, NIL)
   }
@@ -86,7 +80,7 @@ public open class ProgressBar : Range() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setShowPercentage(visible: Boolean): Unit {
+  public final fun setShowPercentage(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setShowPercentagePtr, NIL)
   }
@@ -97,7 +91,7 @@ public open class ProgressBar : Range() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIndeterminate(indeterminate: Boolean): Unit {
+  public final fun setIndeterminate(indeterminate: Boolean) {
     TransferContext.writeArguments(BOOL to indeterminate)
     TransferContext.callMethod(ptr, MethodBindings.setIndeterminatePtr, NIL)
   }
@@ -108,7 +102,7 @@ public open class ProgressBar : Range() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean): Unit {
+  public final fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean) {
     TransferContext.writeArguments(BOOL to previewIndeterminate)
     TransferContext.callMethod(ptr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
   }
@@ -123,15 +117,11 @@ public open class ProgressBar : Range() {
     id: Long,
   ) {
     /**
-     * The progress bar fills from begin to end horizontally, according to the language direction.
-     * If [Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`,
-     * it fills from right to left.
+     * The progress bar fills from begin to end horizontally, according to the language direction. If [Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`, it fills from right to left.
      */
     BEGIN_TO_END(0),
     /**
-     * The progress bar fills from end to begin horizontally, according to the language direction.
-     * If [Control.isLayoutRtl] returns `false`, it fills from right to left, and if it returns `true`,
-     * it fills from left to right.
+     * The progress bar fills from end to begin horizontally, according to the language direction. If [Control.isLayoutRtl] returns `false`, it fills from right to left, and if it returns `true`, it fills from left to right.
      */
     END_TO_BEGIN(1),
     /**
@@ -158,27 +148,27 @@ public open class ProgressBar : Range() {
 
   public object MethodBindings {
     internal val setFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_fill_mode", 1286410249)
+        TypeManager.getMethodBindPtr("ProgressBar", "set_fill_mode", 1_286_410_249)
 
     internal val getFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "get_fill_mode", 2455072627)
+        TypeManager.getMethodBindPtr("ProgressBar", "get_fill_mode", 2_455_072_627)
 
     internal val setShowPercentagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_show_percentage", 2586408642)
+        TypeManager.getMethodBindPtr("ProgressBar", "set_show_percentage", 2_586_408_642)
 
     internal val isPercentageShownPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown", 36873697)
+        TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown", 36_873_697)
 
     internal val setIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_indeterminate", 2586408642)
+        TypeManager.getMethodBindPtr("ProgressBar", "set_indeterminate", 2_586_408_642)
 
     internal val isIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_indeterminate", 36873697)
+        TypeManager.getMethodBindPtr("ProgressBar", "is_indeterminate", 36_873_697)
 
     internal val setEditorPreviewIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate", 2586408642)
+        TypeManager.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate", 2_586_408_642)
 
     internal val isEditorPreviewIndeterminateEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled", 36873697)
+        TypeManager.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled", 36_873_697)
   }
 }

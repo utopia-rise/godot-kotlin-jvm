@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,12 +16,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * A [Texture2D] based on an [Image]. For an image to be displayed, an [ImageTexture] has to be
- * created from it using the [createFromImage] method:
+ * A [Texture2D] based on an [Image]. For an image to be displayed, an [ImageTexture] has to be created from it using the [createFromImage] method:
  *
  * ```
  * var image = Image.load_from_file("res://icon.svg")
@@ -32,39 +27,31 @@ import kotlin.jvm.JvmStatic
  * $Sprite2D.texture = texture
  * ```
  *
- * This way, textures can be created at run-time by loading images both from within the editor and
- * externally.
+ * This way, textures can be created at run-time by loading images both from within the editor and externally.
  *
- * **Warning:** Prefer to load imported textures with [@GDScript.load] over loading them from within
- * the filesystem dynamically with [Image.load], as it may not work in exported projects:
+ * **Warning:** Prefer to load imported textures with [@GDScript.load] over loading them from within the filesystem dynamically with [Image.load], as it may not work in exported projects:
  *
  * ```
  * var texture = load("res://icon.svg")
  * $Sprite2D.texture = texture
  * ```
  *
- * This is because images have to be imported as a [CompressedTexture2D] first to be loaded with
- * [@GDScript.load]. If you'd still like to load an image file just like any other [Resource], import
- * it as an [Image] resource instead, and then load it normally using the [@GDScript.load] method.
+ * This is because images have to be imported as a [CompressedTexture2D] first to be loaded with [@GDScript.load]. If you'd still like to load an image file just like any other [Resource], import it as an [Image] resource instead, and then load it normally using the [@GDScript.load] method.
  *
- * **Note:** The image can be retrieved from an imported texture using the [Texture2D.getImage]
- * method, which returns a copy of the image:
+ * **Note:** The image can be retrieved from an imported texture using the [Texture2D.getImage] method, which returns a copy of the image:
  *
  * ```
  * var texture = load("res://icon.svg")
  * var image = texture.get_image()
  * ```
  *
- * An [ImageTexture] is not meant to be operated from within the editor interface directly, and is
- * mostly useful for rendering images on screen dynamically via code. If you need to generate images
- * procedurally from within the editor, consider saving and importing images as custom texture
- * resources implementing a new [EditorImportPlugin].
+ * An [ImageTexture] is not meant to be operated from within the editor interface directly, and is mostly useful for rendering images on screen dynamically via code. If you need to generate images procedurally from within the editor, consider saving and importing images as custom texture resources implementing a new [EditorImportPlugin].
  *
  * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.
  */
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(285, scriptIndex)
   }
 
@@ -78,13 +65,11 @@ public open class ImageTexture : Texture2D() {
   }
 
   /**
-   * Replaces the texture's data with a new [Image]. This will re-allocate new memory for the
-   * texture.
+   * Replaces the texture's data with a new [Image]. This will re-allocate new memory for the texture.
    *
-   * If you want to update the image, but don't need to change its parameters (format, size), use
-   * [update] instead for better performance.
+   * If you want to update the image, but don't need to change its parameters (format, size), use [update] instead for better performance.
    */
-  public final fun setImage(image: Image?): Unit {
+  public final fun setImage(image: Image?) {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(ptr, MethodBindings.setImagePtr, NIL)
   }
@@ -92,14 +77,11 @@ public open class ImageTexture : Texture2D() {
   /**
    * Replaces the texture's data with a new [Image].
    *
-   * **Note:** The texture has to be created using [createFromImage] or initialized first with the
-   * [setImage] method before it can be updated. The new image dimensions, format, and mipmaps
-   * configuration should match the existing texture's image configuration.
+   * **Note:** The texture has to be created using [createFromImage] or initialized first with the [setImage] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration.
    *
-   * Use this method over [setImage] if you need to update the texture frequently, which is faster
-   * than allocating additional memory for a new texture each time.
+   * Use this method over [setImage] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.
    */
-  public final fun update(image: Image?): Unit {
+  public final fun update(image: Image?) {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
   }
@@ -107,7 +89,7 @@ public open class ImageTexture : Texture2D() {
   /**
    * Resizes the texture to the specified dimensions.
    */
-  public final fun setSizeOverride(size: Vector2i): Unit {
+  public final fun setSizeOverride(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizeOverridePtr, NIL)
   }
@@ -128,8 +110,7 @@ public open class ImageTexture : Texture2D() {
 
   public companion object {
     /**
-     * Creates a new [ImageTexture] and initializes it by allocating and setting the data from an
-     * [Image].
+     * Creates a new [ImageTexture] and initializes it by allocating and setting the data from an [Image].
      */
     @JvmStatic
     public final fun createFromImage(image: Image?): ImageTexture? {
@@ -141,18 +122,18 @@ public open class ImageTexture : Texture2D() {
 
   public object MethodBindings {
     internal val createFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
+        TypeManager.getMethodBindPtr("ImageTexture", "create_from_image", 2_775_144_163)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "get_format", 3847873762)
+        TypeManager.getMethodBindPtr("ImageTexture", "get_format", 3_847_873_762)
 
     internal val setImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "set_image", 532598488)
+        TypeManager.getMethodBindPtr("ImageTexture", "set_image", 532_598_488)
 
     internal val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "update", 532598488)
+        TypeManager.getMethodBindPtr("ImageTexture", "update", 532_598_488)
 
     internal val setSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "set_size_override", 1130785943)
+        TypeManager.getMethodBindPtr("ImageTexture", "set_size_override", 1_130_785_943)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -36,8 +33,7 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * [AudioServer] is a low-level server interface for audio access. It is in charge of creating
- * sample data (playable audio) as well as its playback via a voice interface.
+ * [AudioServer] is a low-level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
  */
 @GodotBaseType
 public object AudioServer : Object() {
@@ -66,10 +62,7 @@ public object AudioServer : Object() {
     }
 
   /**
-   * Name of the current device for audio output (see [getOutputDeviceList]). On systems with
-   * multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio
-   * output device. The value `"Default"` will play audio on the system-wide default audio output. If
-   * an invalid device name is set, the value will be reverted back to `"Default"`.
+   * Name of the current device for audio output (see [getOutputDeviceList]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`.
    */
   @JvmStatic
   public final inline var outputDevice: String
@@ -81,14 +74,9 @@ public object AudioServer : Object() {
     }
 
   /**
-   * Name of the current device for audio input (see [getInputDeviceList]). On systems with multiple
-   * audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input
-   * device. The value `"Default"` will record audio on the system-wide default audio input. If an
-   * invalid device name is set, the value will be reverted back to `"Default"`.
+   * Name of the current device for audio input (see [getInputDeviceList]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.
    *
-   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
-   * See also that setting's description for caveats related to permissions and operating system
-   * privacy settings.
+   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
    */
   @JvmStatic
   public final inline var inputDevice: String
@@ -100,9 +88,7 @@ public object AudioServer : Object() {
     }
 
   /**
-   * Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be
-   * played at half its speed). See also [Engine.timeScale] to affect the general simulation speed,
-   * which is independent from [AudioServer.playbackSpeedScale].
+   * Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be played at half its speed). See also [Engine.timeScale] to affect the general simulation speed, which is independent from [AudioServer.playbackSpeedScale].
    */
   @JvmStatic
   public final inline var playbackSpeedScale: Float
@@ -113,12 +99,12 @@ public object AudioServer : Object() {
       setPlaybackSpeedScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(0)
   }
 
   @JvmStatic
-  public final fun setBusCount(amount: Int): Unit {
+  public final fun setBusCount(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBusCountPtr, NIL)
   }
@@ -134,7 +120,7 @@ public object AudioServer : Object() {
    * Removes the bus at index [index].
    */
   @JvmStatic
-  public final fun removeBus(index: Int): Unit {
+  public final fun removeBus(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeBusPtr, NIL)
   }
@@ -144,7 +130,7 @@ public object AudioServer : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addBus(atPosition: Int = -1): Unit {
+  public final fun addBus(atPosition: Int = -1) {
     TransferContext.writeArguments(LONG to atPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addBusPtr, NIL)
   }
@@ -153,7 +139,7 @@ public object AudioServer : Object() {
    * Moves the bus from index [index] to index [toIndex].
    */
   @JvmStatic
-  public final fun moveBus(index: Int, toIndex: Int): Unit {
+  public final fun moveBus(index: Int, toIndex: Int) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to toIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveBusPtr, NIL)
   }
@@ -162,7 +148,7 @@ public object AudioServer : Object() {
    * Sets the name of the bus at index [busIdx] to [name].
    */
   @JvmStatic
-  public final fun setBusName(busIdx: Int, name: String): Unit {
+  public final fun setBusName(busIdx: Int, name: String) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setBusNamePtr, NIL)
   }
@@ -178,8 +164,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified
-   * name exist.
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified name exist.
    */
   @JvmStatic
   public final fun getBusIndex(busName: StringName): Int {
@@ -202,7 +187,7 @@ public object AudioServer : Object() {
    * Sets the volume in decibels of the bus at index [busIdx] to [volumeDb].
    */
   @JvmStatic
-  public final fun setBusVolumeDb(busIdx: Int, volumeDb: Float): Unit {
+  public final fun setBusVolumeDb(busIdx: Int, volumeDb: Float) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBusVolumeDbPtr, NIL)
   }
@@ -220,11 +205,10 @@ public object AudioServer : Object() {
   /**
    * Sets the volume as a linear value of the bus at index [busIdx] to [volumeLinear].
    *
-   * **Note:** Using this method is equivalent to calling [setBusVolumeDb] with the result of
-   * [@GlobalScope.linearToDb] on a value.
+   * **Note:** Using this method is equivalent to calling [setBusVolumeDb] with the result of [@GlobalScope.linearToDb] on a value.
    */
   @JvmStatic
-  public final fun setBusVolumeLinear(busIdx: Int, volumeLinear: Float): Unit {
+  public final fun setBusVolumeLinear(busIdx: Int, volumeLinear: Float) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), DOUBLE to volumeLinear.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBusVolumeLinearPtr, NIL)
   }
@@ -232,8 +216,7 @@ public object AudioServer : Object() {
   /**
    * Returns the volume of the bus at index [busIdx] as a linear value.
    *
-   * **Note:** The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on the
-   * result of [getBusVolumeDb].
+   * **Note:** The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on the result of [getBusVolumeDb].
    */
   @JvmStatic
   public final fun getBusVolumeLinear(busIdx: Int): Float {
@@ -246,7 +229,7 @@ public object AudioServer : Object() {
    * Connects the output of the bus at [busIdx] to the bus named [send].
    */
   @JvmStatic
-  public final fun setBusSend(busIdx: Int, send: StringName): Unit {
+  public final fun setBusSend(busIdx: Int, send: StringName) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), STRING_NAME to send)
     TransferContext.callMethod(ptr, MethodBindings.setBusSendPtr, NIL)
   }
@@ -265,7 +248,7 @@ public object AudioServer : Object() {
    * If `true`, the bus at index [busIdx] is in solo mode.
    */
   @JvmStatic
-  public final fun setBusSolo(busIdx: Int, enable: Boolean): Unit {
+  public final fun setBusSolo(busIdx: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setBusSoloPtr, NIL)
   }
@@ -284,7 +267,7 @@ public object AudioServer : Object() {
    * If `true`, the bus at index [busIdx] is muted.
    */
   @JvmStatic
-  public final fun setBusMute(busIdx: Int, enable: Boolean): Unit {
+  public final fun setBusMute(busIdx: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setBusMutePtr, NIL)
   }
@@ -303,7 +286,7 @@ public object AudioServer : Object() {
    * If `true`, the bus at index [busIdx] is bypassing effects.
    */
   @JvmStatic
-  public final fun setBusBypassEffects(busIdx: Int, enable: Boolean): Unit {
+  public final fun setBusBypassEffects(busIdx: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setBusBypassEffectsPtr, NIL)
   }
@@ -327,7 +310,7 @@ public object AudioServer : Object() {
     busIdx: Int,
     effect: AudioEffect?,
     atPosition: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), OBJECT to effect, LONG to atPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addBusEffectPtr, NIL)
   }
@@ -336,7 +319,7 @@ public object AudioServer : Object() {
    * Removes the effect at index [effectIdx] from the bus at index [busIdx].
    */
   @JvmStatic
-  public final fun removeBusEffect(busIdx: Int, effectIdx: Int): Unit {
+  public final fun removeBusEffect(busIdx: Int, effectIdx: Int) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeBusEffectPtr, NIL)
   }
@@ -362,8 +345,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally
-   * channel).
+   * Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel).
    */
   @JvmOverloads
   @JvmStatic
@@ -385,7 +367,7 @@ public object AudioServer : Object() {
     busIdx: Int,
     effectIdx: Int,
     byEffectIdx: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong(), LONG to byEffectIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.swapBusEffectsPtr, NIL)
   }
@@ -398,7 +380,7 @@ public object AudioServer : Object() {
     busIdx: Int,
     effectIdx: Int,
     enabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong(), BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setBusEffectEnabledPtr, NIL)
   }
@@ -434,7 +416,7 @@ public object AudioServer : Object() {
   }
 
   @JvmStatic
-  public final fun setPlaybackSpeedScale(scale: Float): Unit {
+  public final fun setPlaybackSpeedScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackSpeedScalePtr, NIL)
   }
@@ -452,7 +434,7 @@ public object AudioServer : Object() {
    * **Note:** Remember to unlock it afterwards.
    */
   @JvmStatic
-  public final fun lock(): Unit {
+  public final fun lock() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.lockPtr, NIL)
   }
@@ -461,7 +443,7 @@ public object AudioServer : Object() {
    * Unlocks the audio driver's main loop. (After locking it, you should always unlock it.)
    */
   @JvmStatic
-  public final fun unlock(): Unit {
+  public final fun unlock() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.unlockPtr, NIL)
   }
@@ -497,11 +479,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the name of the current audio driver. The default usually depends on the operating
-   * system, but may be overridden via the `--audio-driver`
-   * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url].
-   * `--headless` also automatically sets the audio driver to `Dummy`. See also
-   * [ProjectSettings.audio/driver/driver].
+   * Returns the name of the current audio driver. The default usually depends on the operating system, but may be overridden via the `--audio-driver` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]. `--headless` also automatically sets the audio driver to `Dummy`. See also [ProjectSettings.audio/driver/driver].
    */
   @JvmStatic
   public final fun getDriverName(): String {
@@ -528,7 +506,7 @@ public object AudioServer : Object() {
   }
 
   @JvmStatic
-  public final fun setOutputDevice(name: String): Unit {
+  public final fun setOutputDevice(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setOutputDevicePtr, NIL)
   }
@@ -554,9 +532,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the audio driver's effective output latency. This is based on
-   * [ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending
-   * on the operating system and audio driver.
+   * Returns the audio driver's effective output latency. This is based on [ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending on the operating system and audio driver.
    *
    * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
@@ -570,9 +546,7 @@ public object AudioServer : Object() {
   /**
    * Returns the names of all audio input devices detected on the system.
    *
-   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
-   * See also that setting's description for caveats related to permissions and operating system
-   * privacy settings.
+   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
    */
   @JvmStatic
   public final fun getInputDeviceList(): PackedStringArray {
@@ -589,7 +563,7 @@ public object AudioServer : Object() {
   }
 
   @JvmStatic
-  public final fun setInputDevice(name: String): Unit {
+  public final fun setInputDevice(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setInputDevicePtr, NIL)
   }
@@ -598,7 +572,7 @@ public object AudioServer : Object() {
    * Overwrites the currently used [AudioBusLayout].
    */
   @JvmStatic
-  public final fun setBusLayout(busLayout: AudioBusLayout?): Unit {
+  public final fun setBusLayout(busLayout: AudioBusLayout?) {
     TransferContext.writeArguments(OBJECT to busLayout)
     TransferContext.callMethod(ptr, MethodBindings.setBusLayoutPtr, NIL)
   }
@@ -614,24 +588,20 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If set to `true`, all instances of [AudioStreamPlayback] will call
-   * [AudioStreamPlayback.TagUsedStreams] every mix step.
+   * If set to `true`, all instances of [AudioStreamPlayback] will call [AudioStreamPlayback.TagUsedStreams] every mix step.
    *
-   * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the
-   * audio stream previews.
+   * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the audio stream previews.
    */
   @JvmStatic
-  public final fun setEnableTaggingUsedAudioStreams(enable: Boolean): Unit {
+  public final fun setEnableTaggingUsedAudioStreams(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEnableTaggingUsedAudioStreamsPtr, NIL)
   }
 
   /**
-   * If `true`, the stream is registered as a sample. The engine will not have to register it before
-   * playing the sample.
+   * If `true`, the stream is registered as a sample. The engine will not have to register it before playing the sample.
    *
-   * If `false`, the stream will have to be registered before playing it. To prevent lag spikes,
-   * register the stream as sample with [registerStreamAsSample].
+   * If `false`, the stream will have to be registered before playing it. To prevent lag spikes, register the stream as sample with [registerStreamAsSample].
    */
   @JvmStatic
   public final fun isStreamRegisteredAsSample(stream: AudioStream?): Boolean {
@@ -643,19 +613,16 @@ public object AudioServer : Object() {
   /**
    * Forces the registration of a stream as a sample.
    *
-   * **Note:** Lag spikes may occur when calling this method, especially on single-threaded builds.
-   * It is suggested to call this method while loading assets, where the lag spike could be masked,
-   * instead of registering the sample right before it needs to be played.
+   * **Note:** Lag spikes may occur when calling this method, especially on single-threaded builds. It is suggested to call this method while loading assets, where the lag spike could be masked, instead of registering the sample right before it needs to be played.
    */
   @JvmStatic
-  public final fun registerStreamAsSample(stream: AudioStream?): Unit {
+  public final fun registerStreamAsSample(stream: AudioStream?) {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.registerStreamAsSamplePtr, NIL)
   }
 
   /**
-   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified
-   * name exist.
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified name exist.
    */
   @JvmStatic
   public final fun getBusIndex(busName: String): Int = getBusIndex(busName.asCachedStringName())
@@ -664,8 +631,7 @@ public object AudioServer : Object() {
    * Connects the output of the bus at [busIdx] to the bus named [send].
    */
   @JvmStatic
-  public final fun setBusSend(busIdx: Int, send: String): Unit =
-      setBusSend(busIdx, send.asCachedStringName())
+  public final fun setBusSend(busIdx: Int, send: String): Unit = setBusSend(busIdx, send.asCachedStringName())
 
   public enum class SpeakerMode(
     id: Long,
@@ -702,8 +668,7 @@ public object AudioServer : Object() {
     id: Long,
   ) {
     /**
-     * The playback will be considered of the type declared at
-     * [ProjectSettings.audio/general/defaultPlaybackType].
+     * The playback will be considered of the type declared at [ProjectSettings.audio/general/defaultPlaybackType].
      */
     DEFAULT(0),
     /**
@@ -711,8 +676,7 @@ public object AudioServer : Object() {
      */
     STREAM(1),
     /**
-     * Force the playback to be considered as a sample. This can provide lower latency and more
-     * stable playback (with less risk of audio crackling), at the cost of having less flexibility.
+     * Force the playback to be considered as a sample. This can provide lower latency and more stable playback (with less risk of audio crackling), at the cost of having less flexibility.
      *
      * **Note:** Only currently supported on the web platform.
      *
@@ -737,161 +701,162 @@ public object AudioServer : Object() {
 
   public object MethodBindings {
     internal val setBusCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_count", 1286410249)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_count", 1_286_410_249)
 
     internal val getBusCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_count", 3905245786)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_count", 3_905_245_786)
 
     internal val removeBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "remove_bus", 1286410249)
+        TypeManager.getMethodBindPtr("AudioServer", "remove_bus", 1_286_410_249)
 
     internal val addBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "add_bus", 1025054187)
+        TypeManager.getMethodBindPtr("AudioServer", "add_bus", 1_025_054_187)
 
     internal val moveBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "move_bus", 3937882851)
+        TypeManager.getMethodBindPtr("AudioServer", "move_bus", 3_937_882_851)
 
     internal val setBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_name", 501894301)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_name", 501_894_301)
 
     internal val getBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_name", 844755477)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_name", 844_755_477)
 
     internal val getBusIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_index", 2458036349)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_index", 2_458_036_349)
 
     internal val getBusChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_channels", 923996154)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_channels", 923_996_154)
 
     internal val setBusVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_db", 1602489585)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_db", 1_602_489_585)
 
     internal val getBusVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_db", 2339986948)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_db", 2_339_986_948)
 
     internal val setBusVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_linear", 1602489585)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_linear", 1_602_489_585)
 
     internal val getBusVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_linear", 2339986948)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_linear", 2_339_986_948)
 
     internal val setBusSendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_send", 3780747571)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_send", 3_780_747_571)
 
     internal val getBusSendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_send", 659327637)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_send", 659_327_637)
 
     internal val setBusSoloPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_solo", 300928843)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_solo", 300_928_843)
 
     internal val isBusSoloPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_bus_solo", 1116898809)
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_solo", 1_116_898_809)
 
     internal val setBusMutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_mute", 300928843)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_mute", 300_928_843)
 
     internal val isBusMutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_bus_mute", 1116898809)
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_mute", 1_116_898_809)
 
     internal val setBusBypassEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_bypass_effects", 300928843)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_bypass_effects", 300_928_843)
 
     internal val isBusBypassingEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_bus_bypassing_effects", 1116898809)
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_bypassing_effects", 1_116_898_809)
 
     internal val addBusEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "add_bus_effect", 4068819785)
+        TypeManager.getMethodBindPtr("AudioServer", "add_bus_effect", 4_068_819_785)
 
     internal val removeBusEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "remove_bus_effect", 3937882851)
+        TypeManager.getMethodBindPtr("AudioServer", "remove_bus_effect", 3_937_882_851)
 
     internal val getBusEffectCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_count", 3744713108)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_count", 3_744_713_108)
 
     internal val getBusEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect", 726064442)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect", 726_064_442)
 
     internal val getBusEffectInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_instance", 1829771234)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_instance", 1_829_771_234)
 
     internal val swapBusEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "swap_bus_effects", 1649997291)
+        TypeManager.getMethodBindPtr("AudioServer", "swap_bus_effects", 1_649_997_291)
 
     internal val setBusEffectEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_effect_enabled", 1383440665)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_effect_enabled", 1_383_440_665)
 
     internal val isBusEffectEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_bus_effect_enabled", 2522259332)
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_effect_enabled", 2_522_259_332)
 
     internal val getBusPeakVolumeLeftDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_left_db", 3085491603)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_left_db", 3_085_491_603)
 
     internal val getBusPeakVolumeRightDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_right_db", 3085491603)
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_right_db", 3_085_491_603)
 
     internal val setPlaybackSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_playback_speed_scale", 373806689)
+        TypeManager.getMethodBindPtr("AudioServer", "set_playback_speed_scale", 373_806_689)
 
     internal val getPlaybackSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_playback_speed_scale", 1740695150)
+        TypeManager.getMethodBindPtr("AudioServer", "get_playback_speed_scale", 1_740_695_150)
 
-    internal val lockPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "lock", 3218959716)
+    internal val lockPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "lock", 3_218_959_716)
 
     internal val unlockPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "unlock", 3218959716)
+        TypeManager.getMethodBindPtr("AudioServer", "unlock", 3_218_959_716)
 
     internal val getSpeakerModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_speaker_mode", 2549190337)
+        TypeManager.getMethodBindPtr("AudioServer", "get_speaker_mode", 2_549_190_337)
 
     internal val getMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_mix_rate", 1740695150)
+        TypeManager.getMethodBindPtr("AudioServer", "get_mix_rate", 1_740_695_150)
 
     internal val getInputMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_input_mix_rate", 1740695150)
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_mix_rate", 1_740_695_150)
 
     internal val getDriverNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_driver_name", 201670096)
+        TypeManager.getMethodBindPtr("AudioServer", "get_driver_name", 201_670_096)
 
     internal val getOutputDeviceListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_output_device_list", 2981934095)
+        TypeManager.getMethodBindPtr("AudioServer", "get_output_device_list", 2_981_934_095)
 
     internal val getOutputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_output_device", 2841200299)
+        TypeManager.getMethodBindPtr("AudioServer", "get_output_device", 2_841_200_299)
 
     internal val setOutputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_output_device", 83702148)
+        TypeManager.getMethodBindPtr("AudioServer", "set_output_device", 83_702_148)
 
     internal val getTimeToNextMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_time_to_next_mix", 1740695150)
+        TypeManager.getMethodBindPtr("AudioServer", "get_time_to_next_mix", 1_740_695_150)
 
     internal val getTimeSinceLastMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_time_since_last_mix", 1740695150)
+        TypeManager.getMethodBindPtr("AudioServer", "get_time_since_last_mix", 1_740_695_150)
 
     internal val getOutputLatencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_output_latency", 1740695150)
+        TypeManager.getMethodBindPtr("AudioServer", "get_output_latency", 1_740_695_150)
 
     internal val getInputDeviceListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_input_device_list", 2981934095)
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_device_list", 2_981_934_095)
 
     internal val getInputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_input_device", 2841200299)
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_device", 2_841_200_299)
 
     internal val setInputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_input_device", 83702148)
+        TypeManager.getMethodBindPtr("AudioServer", "set_input_device", 83_702_148)
 
     internal val setBusLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_layout", 3319058824)
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_layout", 3_319_058_824)
 
     internal val generateBusLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "generate_bus_layout", 3769973890)
+        TypeManager.getMethodBindPtr("AudioServer", "generate_bus_layout", 3_769_973_890)
 
     internal val setEnableTaggingUsedAudioStreamsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_enable_tagging_used_audio_streams", 2586408642)
+        TypeManager.getMethodBindPtr("AudioServer", "set_enable_tagging_used_audio_streams", 2_586_408_642)
 
     internal val isStreamRegisteredAsSamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_stream_registered_as_sample", 500225754)
+        TypeManager.getMethodBindPtr("AudioServer", "is_stream_registered_as_sample", 500_225_754)
 
     internal val registerStreamAsSamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "register_stream_as_sample", 2210767741)
+        TypeManager.getMethodBindPtr("AudioServer", "register_stream_as_sample", 2_210_767_741)
   }
 }

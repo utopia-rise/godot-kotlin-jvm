@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,12 +19,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [Button] is the standard themed button. It can contain text and an icon, and it will display them
- * according to the current [Theme].
+ * [Button] is the standard themed button. It can contain text and an icon, and it will display them according to the current [Theme].
  *
  * **Example:** Create a button and connect a method that will be called when the button is pressed:
  *
@@ -61,9 +56,7 @@ import kotlin.jvm.JvmName
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** Buttons do not detect touch input and therefore don't support multitouch, since mouse
- * emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that
- * trigger gameplay movement or actions.
+ * **Note:** Buttons do not detect touch input and therefore don't support multitouch, since mouse emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that trigger gameplay movement or actions.
  */
 @GodotBaseType
 public open class Button : BaseButton() {
@@ -81,8 +74,7 @@ public open class Button : BaseButton() {
   /**
    * Button's icon, if text is present the icon will be placed before the text.
    *
-   * To edit margin and spacing of the icon, use [theme_item h_separation] theme property and
-   * `content_margin_*` properties of the used [StyleBox]es.
+   * To edit margin and spacing of the icon, use [theme_item h_separation] theme property and `content_margin_*` properties of the used [StyleBox]es.
    */
   public final inline var icon: Texture2D?
     @JvmName("iconProperty")
@@ -115,8 +107,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [TextServer.OverrunBehavior] for a description of all modes.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -127,8 +118,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
-   * node's bounding rectangle.
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -139,9 +129,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * If `true`, text that is too large to fit the button is clipped horizontally. If `false`, the
-   * button will always be wide enough to hold the text. The text is not vertically clipped, and the
-   * button's height is not affected by this property.
+   * If `true`, text that is too large to fit the button is clipped horizontally. If `false`, the button will always be wide enough to hold the text. The text is not vertically clipped, and the button's height is not affected by this property.
    */
   public final inline var clipText: Boolean
     @JvmName("clipTextProperty")
@@ -152,9 +140,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Specifies if the icon should be aligned horizontally to the left, right, or center of a button.
-   * Uses the same [HorizontalAlignment] constants as the text alignment. If centered horizontally and
-   * vertically, text will draw on top of the icon.
+   * Specifies if the icon should be aligned horizontally to the left, right, or center of a button. Uses the same [HorizontalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon.
    */
   public final inline var iconAlignment: HorizontalAlignment
     @JvmName("iconAlignmentProperty")
@@ -165,9 +151,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Specifies if the icon should be aligned vertically to the top, bottom, or center of a button.
-   * Uses the same [VerticalAlignment] constants as the text alignment. If centered horizontally and
-   * vertically, text will draw on top of the icon.
+   * Specifies if the icon should be aligned vertically to the top, bottom, or center of a button. Uses the same [VerticalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon.
    */
   public final inline var verticalIconAlignment: VerticalAlignment
     @JvmName("verticalIconAlignmentProperty")
@@ -178,8 +162,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its
-   * aspect. See also [theme_item icon_max_width].
+   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect. See also [theme_item icon_max_width].
    */
   public final inline var expandIcon: Boolean
     @JvmName("expandIconProperty")
@@ -201,8 +184,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -212,11 +194,11 @@ public open class Button : BaseButton() {
       setLanguage(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(113, scriptIndex)
   }
 
-  public final fun setText(text: String): Unit {
+  public final fun setText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -227,7 +209,7 @@ public open class Button : BaseButton() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior) {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
@@ -238,7 +220,7 @@ public open class Button : BaseButton() {
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode) {
     TransferContext.writeArguments(LONG to autowrapMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
@@ -249,7 +231,7 @@ public open class Button : BaseButton() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+  public final fun setTextDirection(direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -260,7 +242,7 @@ public open class Button : BaseButton() {
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -271,7 +253,7 @@ public open class Button : BaseButton() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setButtonIcon(texture: Texture2D?): Unit {
+  public final fun setButtonIcon(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setButtonIconPtr, NIL)
   }
@@ -282,7 +264,7 @@ public open class Button : BaseButton() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setFlat(enabled: Boolean): Unit {
+  public final fun setFlat(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlatPtr, NIL)
   }
@@ -293,7 +275,7 @@ public open class Button : BaseButton() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setClipText(enabled: Boolean): Unit {
+  public final fun setClipText(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setClipTextPtr, NIL)
   }
@@ -304,7 +286,7 @@ public open class Button : BaseButton() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTextAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setTextAlignment(alignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextAlignmentPtr, NIL)
   }
@@ -315,7 +297,7 @@ public open class Button : BaseButton() {
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setIconAlignment(iconAlignment: HorizontalAlignment): Unit {
+  public final fun setIconAlignment(iconAlignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to iconAlignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setIconAlignmentPtr, NIL)
   }
@@ -326,7 +308,7 @@ public open class Button : BaseButton() {
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVerticalIconAlignment(verticalIconAlignment: VerticalAlignment): Unit {
+  public final fun setVerticalIconAlignment(verticalIconAlignment: VerticalAlignment) {
     TransferContext.writeArguments(LONG to verticalIconAlignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalIconAlignmentPtr, NIL)
   }
@@ -337,7 +319,7 @@ public open class Button : BaseButton() {
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setExpandIcon(enabled: Boolean): Unit {
+  public final fun setExpandIcon(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setExpandIconPtr, NIL)
   }
@@ -351,73 +333,75 @@ public open class Button : BaseButton() {
   public companion object
 
   public object MethodBindings {
-    internal val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_text", 83702148)
+    internal val setTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_text", 83_702_148)
 
-    internal val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "get_text", 201_670_096)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_overrun_behavior", 1008890932)
+        TypeManager.getMethodBindPtr("Button", "set_text_overrun_behavior", 1_008_890_932)
 
     internal val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_overrun_behavior", 3779142101)
+        TypeManager.getMethodBindPtr("Button", "get_text_overrun_behavior", 3_779_142_101)
 
     internal val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_autowrap_mode", 3289138044)
+        TypeManager.getMethodBindPtr("Button", "set_autowrap_mode", 3_289_138_044)
 
     internal val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_autowrap_mode", 1549071663)
+        TypeManager.getMethodBindPtr("Button", "get_autowrap_mode", 1_549_071_663)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_direction", 119160795)
+        TypeManager.getMethodBindPtr("Button", "set_text_direction", 119_160_795)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_direction", 797257663)
+        TypeManager.getMethodBindPtr("Button", "get_text_direction", 797_257_663)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_language", 83702148)
+        TypeManager.getMethodBindPtr("Button", "set_language", 83_702_148)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_language", 201670096)
+        TypeManager.getMethodBindPtr("Button", "get_language", 201_670_096)
 
     internal val setButtonIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_button_icon", 4051416890)
+        TypeManager.getMethodBindPtr("Button", "set_button_icon", 4_051_416_890)
 
     internal val getButtonIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_button_icon", 3635182373)
+        TypeManager.getMethodBindPtr("Button", "get_button_icon", 3_635_182_373)
 
     internal val setFlatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_flat", 2586408642)
+        TypeManager.getMethodBindPtr("Button", "set_flat", 2_586_408_642)
 
-    internal val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "is_flat", 36873697)
+    internal val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "is_flat", 36_873_697)
 
     internal val setClipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_clip_text", 2586408642)
+        TypeManager.getMethodBindPtr("Button", "set_clip_text", 2_586_408_642)
 
     internal val getClipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_clip_text", 36873697)
+        TypeManager.getMethodBindPtr("Button", "get_clip_text", 36_873_697)
 
     internal val setTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_alignment", 2312603777)
+        TypeManager.getMethodBindPtr("Button", "set_text_alignment", 2_312_603_777)
 
     internal val getTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_alignment", 341400642)
+        TypeManager.getMethodBindPtr("Button", "get_text_alignment", 341_400_642)
 
     internal val setIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_icon_alignment", 2312603777)
+        TypeManager.getMethodBindPtr("Button", "set_icon_alignment", 2_312_603_777)
 
     internal val getIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_icon_alignment", 341400642)
+        TypeManager.getMethodBindPtr("Button", "get_icon_alignment", 341_400_642)
 
     internal val setVerticalIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_vertical_icon_alignment", 1796458609)
+        TypeManager.getMethodBindPtr("Button", "set_vertical_icon_alignment", 1_796_458_609)
 
     internal val getVerticalIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_vertical_icon_alignment", 3274884059)
+        TypeManager.getMethodBindPtr("Button", "get_vertical_icon_alignment", 3_274_884_059)
 
     internal val setExpandIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_expand_icon", 2586408642)
+        TypeManager.getMethodBindPtr("Button", "set_expand_icon", 2_586_408_642)
 
     internal val isExpandIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "is_expand_icon", 36873697)
+        TypeManager.getMethodBindPtr("Button", "is_expand_icon", 36_873_697)
   }
 }

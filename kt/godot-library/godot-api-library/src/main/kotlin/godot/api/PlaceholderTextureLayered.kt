@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,15 +24,11 @@ import kotlin.jvm.JvmName
 /**
  * This class is used when loading a project that uses a [TextureLayered] subclass in 2 conditions:
  *
- * - When running the project exported in dedicated server mode, only the texture's dimensions are
- * kept (as they may be relied upon for gameplay purposes or positioning of other elements). This
- * allows reducing the exported PCK's size significantly.
+ * - When running the project exported in dedicated server mode, only the texture's dimensions are kept (as they may be relied upon for gameplay purposes or positioning of other elements). This allows reducing the exported PCK's size significantly.
  *
- * - When this subclass is missing due to using a different engine version or build (e.g. modules
- * disabled).
+ * - When this subclass is missing due to using a different engine version or build (e.g. modules disabled).
  *
- * **Note:** This is not intended to be used as an actual texture for rendering. It is not
- * guaranteed to work like one in shaders or materials (for example when calculating UV).
+ * **Note:** This is not intended to be used as an actual texture for rendering. It is not guaranteed to work like one in shaders or materials (for example when calculating UV).
  */
 @GodotBaseType
 public open class PlaceholderTextureLayered internal constructor() : TextureLayered() {
@@ -43,11 +36,8 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
    * The size of each texture layer (in pixels).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -69,7 +59,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
       setLayers(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(494, scriptIndex)
   }
 
@@ -92,7 +82,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
      size = this
   }
 
-  public final fun setSize(size: Vector2i): Unit {
+  public final fun setSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -103,7 +93,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setLayers(layers: Int): Unit {
+  public final fun setLayers(layers: Int) {
     TransferContext.writeArguments(LONG to layers.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLayersPtr, NIL)
   }
@@ -161,12 +151,12 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_size", 1130785943)
+        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_size", 1_130_785_943)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "get_size", 3690982128)
+        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "get_size", 3_690_982_128)
 
     internal val setLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_layers", 1286410249)
+        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_layers", 1_286_410_249)
   }
 }

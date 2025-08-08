@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,13 +16,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
- * They specialize in describing blend and lighting behaviors for textures. Use a [ShaderMaterial] to
- * more fully customize a material's interactions with a [CanvasItem].
+ * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem. They specialize in describing blend and lighting behaviors for textures. Use a [ShaderMaterial] to more fully customize a material's interactions with a [CanvasItem].
  */
 @GodotBaseType
 public open class CanvasItemMaterial : Material() {
@@ -52,12 +46,9 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and
-   * [CPUParticles2D] nodes. The [ParticleProcessMaterial.animSpeedMax] or
-   * [CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
+   * If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and [CPUParticles2D] nodes. The [ParticleProcessMaterial.animSpeedMax] or [CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
    *
-   * This property (and other `particles_anim_*` properties that depend on it) has no effect on
-   * other types of nodes.
+   * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
    */
   public final inline var particlesAnimation: Boolean
     @JvmName("particlesAnimationProperty")
@@ -68,11 +59,9 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * The number of columns in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
-   * [CPUParticles2D].
+   * The number of columns in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or [CPUParticles2D].
    *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
-   * `true`.
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
   public final inline var particlesAnimHFrames: Int
     @JvmName("particlesAnimHFramesProperty")
@@ -83,11 +72,9 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
-   * [CPUParticles2D].
+   * The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or [CPUParticles2D].
    *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
-   * `true`.
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
   public final inline var particlesAnimVFrames: Int
     @JvmName("particlesAnimVFramesProperty")
@@ -100,8 +87,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * If `true`, the particles animation will loop.
    *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
-   * `true`.
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
   public final inline var particlesAnimLoop: Boolean
     @JvmName("particlesAnimLoopProperty")
@@ -111,11 +97,11 @@ public open class CanvasItemMaterial : Material() {
       setParticlesAnimLoop(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(137, scriptIndex)
   }
 
-  public final fun setBlendMode(blendMode: BlendMode): Unit {
+  public final fun setBlendMode(blendMode: BlendMode) {
     TransferContext.writeArguments(LONG to blendMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
@@ -126,7 +112,7 @@ public open class CanvasItemMaterial : Material() {
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLightMode(lightMode: LightMode): Unit {
+  public final fun setLightMode(lightMode: LightMode) {
     TransferContext.writeArguments(LONG to lightMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLightModePtr, NIL)
   }
@@ -137,7 +123,7 @@ public open class CanvasItemMaterial : Material() {
     return LightMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setParticlesAnimation(particlesAnim: Boolean): Unit {
+  public final fun setParticlesAnimation(particlesAnim: Boolean) {
     TransferContext.writeArguments(BOOL to particlesAnim)
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimationPtr, NIL)
   }
@@ -148,7 +134,7 @@ public open class CanvasItemMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setParticlesAnimHFrames(frames: Int): Unit {
+  public final fun setParticlesAnimHFrames(frames: Int) {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
   }
@@ -159,7 +145,7 @@ public open class CanvasItemMaterial : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setParticlesAnimVFrames(frames: Int): Unit {
+  public final fun setParticlesAnimVFrames(frames: Int) {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
   }
@@ -170,7 +156,7 @@ public open class CanvasItemMaterial : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setParticlesAnimLoop(loop: Boolean): Unit {
+  public final fun setParticlesAnimLoop(loop: Boolean) {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(ptr, MethodBindings.setParticlesAnimLoopPtr, NIL)
   }
@@ -261,39 +247,39 @@ public open class CanvasItemMaterial : Material() {
 
   public object MethodBindings {
     internal val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_blend_mode", 1786054936)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_blend_mode", 1_786_054_936)
 
     internal val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_blend_mode", 3318684035)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_blend_mode", 3_318_684_035)
 
     internal val setLightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_light_mode", 628074070)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_light_mode", 628_074_070)
 
     internal val getLightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_light_mode", 3863292382)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_light_mode", 3_863_292_382)
 
     internal val setParticlesAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_animation", 2586408642)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_animation", 2_586_408_642)
 
     internal val getParticlesAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_animation", 36873697)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_animation", 36_873_697)
 
     internal val setParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_h_frames", 1286410249)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_h_frames", 1_286_410_249)
 
     internal val getParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_h_frames", 3905245786)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_h_frames", 3_905_245_786)
 
     internal val setParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_v_frames", 1286410249)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_v_frames", 1_286_410_249)
 
     internal val getParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_v_frames", 3905245786)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_v_frames", 3_905_245_786)
 
     internal val setParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_loop", 2586408642)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_loop", 2_586_408_642)
 
     internal val getParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_loop", 36873697)
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_loop", 36_873_697)
   }
 }

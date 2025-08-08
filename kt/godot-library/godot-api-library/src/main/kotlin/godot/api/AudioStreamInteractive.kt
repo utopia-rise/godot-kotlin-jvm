@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,14 +29,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This is an audio stream that can playback music interactively, combining clips and a transition
- * table. Clips must be added first, and then the transition rules via the [addTransition].
- * Additionally, this stream exports a property parameter to control the playback via
- * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D].
+ * This is an audio stream that can playback music interactively, combining clips and a transition table. Clips must be added first, and then the transition rules via the [addTransition]. Additionally, this stream exports a property parameter to control the playback via [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D].
  *
- * The way this is used is by filling a number of clips, then configuring the transition table. From
- * there, clips are selected for playback and the music will smoothly go from the current to the new
- * one while using the corresponding transition rule defined in the transition table.
+ * The way this is used is by filling a number of clips, then configuring the transition table. From there, clips are selected for playback and the music will smoothly go from the current to the new one while using the corresponding transition rule defined in the transition table.
  */
 @GodotBaseType
 public open class AudioStreamInteractive : AudioStream() {
@@ -65,11 +57,11 @@ public open class AudioStreamInteractive : AudioStream() {
       setInitialClip(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(83, scriptIndex)
   }
 
-  public final fun setClipCount(clipCount: Int): Unit {
+  public final fun setClipCount(clipCount: Int) {
     TransferContext.writeArguments(LONG to clipCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setClipCountPtr, NIL)
   }
@@ -80,7 +72,7 @@ public open class AudioStreamInteractive : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setInitialClip(clipIndex: Int): Unit {
+  public final fun setInitialClip(clipIndex: Int) {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInitialClipPtr, NIL)
   }
@@ -94,7 +86,7 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Set the name of the current clip (for easier identification).
    */
-  public final fun setClipName(clipIndex: Int, name: StringName): Unit {
+  public final fun setClipName(clipIndex: Int, name: StringName) {
     TransferContext.writeArguments(LONG to clipIndex.toLong(), STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setClipNamePtr, NIL)
   }
@@ -111,7 +103,7 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Set the [AudioStream] associated with the current clip.
    */
-  public final fun setClipStream(clipIndex: Int, stream: AudioStream?): Unit {
+  public final fun setClipStream(clipIndex: Int, stream: AudioStream?) {
     TransferContext.writeArguments(LONG to clipIndex.toLong(), OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.setClipStreamPtr, NIL)
   }
@@ -128,7 +120,7 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Set whether a clip will auto-advance by changing the auto-advance mode.
    */
-  public final fun setClipAutoAdvance(clipIndex: Int, mode: AutoAdvanceMode): Unit {
+  public final fun setClipAutoAdvance(clipIndex: Int, mode: AutoAdvanceMode) {
     TransferContext.writeArguments(LONG to clipIndex.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setClipAutoAdvancePtr, NIL)
   }
@@ -143,10 +135,9 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   /**
-   * Set the index of the next clip towards which this clip will auto advance to when finished. If
-   * the clip being played loops, then auto-advance will be ignored.
+   * Set the index of the next clip towards which this clip will auto advance to when finished. If the clip being played loops, then auto-advance will be ignored.
    */
-  public final fun setClipAutoAdvanceNextClip(clipIndex: Int, autoAdvanceNextClip: Int): Unit {
+  public final fun setClipAutoAdvanceNextClip(clipIndex: Int, autoAdvanceNextClip: Int) {
     TransferContext.writeArguments(LONG to clipIndex.toLong(), LONG to autoAdvanceNextClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setClipAutoAdvanceNextClipPtr, NIL)
   }
@@ -161,26 +152,21 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   /**
-   * Add a transition between two clips. Provide the indices of the source and destination clips, or
-   * use the [CLIP_ANY] constant to indicate that transition happens to/from any clip to this one.
+   * Add a transition between two clips. Provide the indices of the source and destination clips, or use the [CLIP_ANY] constant to indicate that transition happens to/from any clip to this one.
    *
-   * * [fromTime] indicates the moment in the current clip the transition will begin after
-   * triggered.
+   * * [fromTime] indicates the moment in the current clip the transition will begin after triggered.
    *
    * * [toTime] indicates the time in the next clip that the playback will start from.
    *
-   * * [fadeMode] indicates how the fade will happen between clips. If unsure, just use
-   * [FADE_AUTOMATIC] which uses the most common type of fade for each situation.
+   * * [fadeMode] indicates how the fade will happen between clips. If unsure, just use [FADE_AUTOMATIC] which uses the most common type of fade for each situation.
    *
    * * [fadeBeats] indicates how many beats the fade will take. Using decimals is allowed.
    *
-   * * [useFillerClip] indicates that there will be a filler clip used between the source and
-   * destination clips.
+   * * [useFillerClip] indicates that there will be a filler clip used between the source and destination clips.
    *
    * * [fillerClip] the index of the filler clip.
    *
-   * * If [holdPrevious] is used, then this clip will be remembered. This can be used together with
-   * [AUTO_ADVANCE_RETURN_TO_HOLD] to return to this clip after another is done playing.
+   * * If [holdPrevious] is used, then this clip will be remembered. This can be used together with [AUTO_ADVANCE_RETURN_TO_HOLD] to return to this clip after another is done playing.
    */
   @JvmOverloads
   public final fun addTransition(
@@ -193,7 +179,7 @@ public open class AudioStreamInteractive : AudioStream() {
     useFillerClip: Boolean = false,
     fillerClip: Int = -1,
     holdPrevious: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong(), LONG to fromTime.id, LONG to toTime.id, LONG to fadeMode.id, DOUBLE to fadeBeats.toDouble(), BOOL to useFillerClip, LONG to fillerClip.toLong(), BOOL to holdPrevious)
     TransferContext.callMethod(ptr, MethodBindings.addTransitionPtr, NIL)
   }
@@ -208,10 +194,9 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   /**
-   * Erase a transition by providing [fromClip] and [toClip] clip indices. [CLIP_ANY] can be used
-   * for either argument or both.
+   * Erase a transition by providing [fromClip] and [toClip] clip indices. [CLIP_ANY] can be used for either argument or both.
    */
-  public final fun eraseTransition(fromClip: Int, toClip: Int): Unit {
+  public final fun eraseTransition(fromClip: Int, toClip: Int) {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.eraseTransitionPtr, NIL)
   }
@@ -291,8 +276,7 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Set the name of the current clip (for easier identification).
    */
-  public final fun setClipName(clipIndex: Int, name: String): Unit =
-      setClipName(clipIndex, name.asCachedStringName())
+  public final fun setClipName(clipIndex: Int, name: String): Unit = setClipName(clipIndex, name.asCachedStringName())
 
   public enum class TransitionFromTime(
     id: Long,
@@ -329,8 +313,7 @@ public open class AudioStreamInteractive : AudioStream() {
     id: Long,
   ) {
     /**
-     * Transition to the same position in the destination clip. This is useful when both clips have
-     * exactly the same length and the music should fade between them.
+     * Transition to the same position in the destination clip. This is useful when both clips have exactly the same length and the music should fade between them.
      */
     SAME_POSITION(0),
     /**
@@ -353,8 +336,7 @@ public open class AudioStreamInteractive : AudioStream() {
     id: Long,
   ) {
     /**
-     * Do not use fade for the transition. This is useful when transitioning from a clip-end to
-     * clip-beginning, and each clip has their begin/end.
+     * Do not use fade for the transition. This is useful when transitioning from a clip-end to clip-beginning, and each clip has their begin/end.
      */
     DISABLED(0),
     /**
@@ -370,8 +352,7 @@ public open class AudioStreamInteractive : AudioStream() {
      */
     CROSS(3),
     /**
-     * Use automatic fade logic depending on the transition from/to. It is recommended to use this
-     * by default.
+     * Use automatic fade logic depending on the transition from/to. It is recommended to use this by default.
      */
     AUTOMATIC(4),
     ;
@@ -398,8 +379,7 @@ public open class AudioStreamInteractive : AudioStream() {
      */
     ENABLED(1),
     /**
-     * Enable auto-advance, but instead of specifying a clip, the playback will return to hold (see
-     * [addTransition]).
+     * Enable auto-advance, but instead of specifying a clip, the playback will return to hold (see [addTransition]).
      */
     RETURN_TO_HOLD(2),
     ;
@@ -416,80 +396,79 @@ public open class AudioStreamInteractive : AudioStream() {
 
   public companion object {
     /**
-     * This constant describes that any clip is valid for a specific transition as either source or
-     * destination.
+     * This constant describes that any clip is valid for a specific transition as either source or destination.
      */
     public final const val CLIP_ANY: Long = -1
   }
 
   public object MethodBindings {
     internal val setClipCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_count", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_count", 1_286_410_249)
 
     internal val getClipCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_count", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_count", 3_905_245_786)
 
     internal val setInitialClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_initial_clip", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_initial_clip", 1_286_410_249)
 
     internal val getInitialClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_initial_clip", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_initial_clip", 3_905_245_786)
 
     internal val setClipNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_name", 3780747571)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_name", 3_780_747_571)
 
     internal val getClipNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_name", 659327637)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_name", 659_327_637)
 
     internal val setClipStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_stream", 111075094)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_stream", 111_075_094)
 
     internal val getClipStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_stream", 2739380747)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_stream", 2_739_380_747)
 
     internal val setClipAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance", 57217598)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance", 57_217_598)
 
     internal val getClipAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance", 1778634807)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance", 1_778_634_807)
 
     internal val setClipAutoAdvanceNextClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance_next_clip", 3937882851)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance_next_clip", 3_937_882_851)
 
     internal val getClipAutoAdvanceNextClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance_next_clip", 923996154)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance_next_clip", 923_996_154)
 
     internal val addTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "add_transition", 1630280552)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "add_transition", 1_630_280_552)
 
     internal val hasTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "has_transition", 2522259332)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "has_transition", 2_522_259_332)
 
     internal val eraseTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "erase_transition", 3937882851)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "erase_transition", 3_937_882_851)
 
     internal val getTransitionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_list", 1930428628)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_list", 1_930_428_628)
 
     internal val getTransitionFromTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_from_time", 3453338158)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_from_time", 3_453_338_158)
 
     internal val getTransitionToTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_to_time", 1369651373)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_to_time", 1_369_651_373)
 
     internal val getTransitionFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_mode", 4065396087)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_mode", 4_065_396_087)
 
     internal val getTransitionFadeBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_beats", 3085491603)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_beats", 3_085_491_603)
 
     internal val isTransitionUsingFillerClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_using_filler_clip", 2522259332)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_using_filler_clip", 2_522_259_332)
 
     internal val getTransitionFillerClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_filler_clip", 3175239445)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_filler_clip", 3_175_239_445)
 
     internal val isTransitionHoldingPreviousPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_holding_previous", 2522259332)
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_holding_previous", 2_522_259_332)
   }
 }

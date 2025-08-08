@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,15 +16,11 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions.
- * Provides low-level access to UPNP control commands. Allows to manage port mappings (port forwarding)
- * and to query network information of the device (like local and external IP address and status). Note
- * that methods on this class are synchronous and block the calling thread.
+ * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions. Provides low-level access to UPNP control commands. Allows to manage port mappings (port forwarding) and to query network information of the device (like local and external IP address and status). Note that methods on this class are synchronous and block the calling thread.
  */
 @GodotBaseType
 public open class UPNPDevice : RefCounted() {
@@ -97,13 +90,12 @@ public open class UPNPDevice : RefCounted() {
       setIgdStatus(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(704, scriptIndex)
   }
 
   /**
-   * Returns `true` if this is a valid IGD (InternetGatewayDevice) which potentially supports port
-   * forwarding.
+   * Returns `true` if this is a valid IGD (InternetGatewayDevice) which potentially supports port forwarding.
    */
   public final fun isValidGateway(): Boolean {
     TransferContext.writeArguments()
@@ -121,8 +113,7 @@ public open class UPNPDevice : RefCounted() {
   }
 
   /**
-   * Adds a port mapping to forward the given external port on this [UPNPDevice] for the given
-   * protocol to the local machine. See [UPNP.addPortMapping].
+   * Adds a port mapping to forward the given external port on this [UPNPDevice] for the given protocol to the local machine. See [UPNP.addPortMapping].
    */
   @JvmOverloads
   public final fun addPortMapping(
@@ -138,8 +129,7 @@ public open class UPNPDevice : RefCounted() {
   }
 
   /**
-   * Deletes the port mapping identified by the given port and protocol combination on this device.
-   * See [UPNP.deletePortMapping].
+   * Deletes the port mapping identified by the given port and protocol combination on this device. See [UPNP.deletePortMapping].
    */
   @JvmOverloads
   public final fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
@@ -148,7 +138,7 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setDescriptionUrl(url: String): Unit {
+  public final fun setDescriptionUrl(url: String) {
     TransferContext.writeArguments(STRING to url)
     TransferContext.callMethod(ptr, MethodBindings.setDescriptionUrlPtr, NIL)
   }
@@ -159,7 +149,7 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setServiceType(type: String): Unit {
+  public final fun setServiceType(type: String) {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(ptr, MethodBindings.setServiceTypePtr, NIL)
   }
@@ -170,7 +160,7 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setIgdControlUrl(url: String): Unit {
+  public final fun setIgdControlUrl(url: String) {
     TransferContext.writeArguments(STRING to url)
     TransferContext.callMethod(ptr, MethodBindings.setIgdControlUrlPtr, NIL)
   }
@@ -181,7 +171,7 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setIgdServiceType(type: String): Unit {
+  public final fun setIgdServiceType(type: String) {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(ptr, MethodBindings.setIgdServiceTypePtr, NIL)
   }
@@ -192,7 +182,7 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setIgdOurAddr(addr: String): Unit {
+  public final fun setIgdOurAddr(addr: String) {
     TransferContext.writeArguments(STRING to addr)
     TransferContext.callMethod(ptr, MethodBindings.setIgdOurAddrPtr, NIL)
   }
@@ -203,7 +193,7 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setIgdStatus(status: IGDStatus): Unit {
+  public final fun setIgdStatus(status: IGDStatus) {
     TransferContext.writeArguments(LONG to status.id)
     TransferContext.callMethod(ptr, MethodBindings.setIgdStatusPtr, NIL)
   }
@@ -273,51 +263,51 @@ public open class UPNPDevice : RefCounted() {
 
   public object MethodBindings {
     internal val isValidGatewayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "is_valid_gateway", 36873697)
+        TypeManager.getMethodBindPtr("UPNPDevice", "is_valid_gateway", 36_873_697)
 
     internal val queryExternalAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "query_external_address", 201670096)
+        TypeManager.getMethodBindPtr("UPNPDevice", "query_external_address", 201_670_096)
 
     internal val addPortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "add_port_mapping", 818314583)
+        TypeManager.getMethodBindPtr("UPNPDevice", "add_port_mapping", 818_314_583)
 
     internal val deletePortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "delete_port_mapping", 3444187325)
+        TypeManager.getMethodBindPtr("UPNPDevice", "delete_port_mapping", 3_444_187_325)
 
     internal val setDescriptionUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_description_url", 83702148)
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_description_url", 83_702_148)
 
     internal val getDescriptionUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_description_url", 201670096)
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_description_url", 201_670_096)
 
     internal val setServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_service_type", 83702148)
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_service_type", 83_702_148)
 
     internal val getServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_service_type", 201670096)
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_service_type", 201_670_096)
 
     internal val setIgdControlUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_control_url", 83702148)
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_control_url", 83_702_148)
 
     internal val getIgdControlUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_control_url", 201670096)
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_control_url", 201_670_096)
 
     internal val setIgdServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_service_type", 83702148)
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_service_type", 83_702_148)
 
     internal val getIgdServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_service_type", 201670096)
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_service_type", 201_670_096)
 
     internal val setIgdOurAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_our_addr", 83702148)
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_our_addr", 83_702_148)
 
     internal val getIgdOurAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_our_addr", 201670096)
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_our_addr", 201_670_096)
 
     internal val setIgdStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_status", 519504122)
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_status", 519_504_122)
 
     internal val getIgdStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_status", 180887011)
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_status", 180_887_011)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,14 +12,10 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The [ColorPalette] resource is designed to store and manage a collection of colors. This resource
- * is useful in scenarios where a predefined set of colors is required, such as for creating themes,
- * designing user interfaces, or managing game assets. The built-in [ColorPicker] control can also make
- * use of [ColorPalette] without additional code.
+ * The [ColorPalette] resource is designed to store and manage a collection of colors. This resource is useful in scenarios where a predefined set of colors is required, such as for creating themes, designing user interfaces, or managing game assets. The built-in [ColorPicker] control can also make use of [ColorPalette] without additional code.
  */
 @GodotBaseType
 public open class ColorPalette : Resource() {
@@ -37,11 +30,11 @@ public open class ColorPalette : Resource() {
       setColors(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(160, scriptIndex)
   }
 
-  public final fun setColors(colors: PackedColorArray): Unit {
+  public final fun setColors(colors: PackedColorArray) {
     TransferContext.writeArguments(PACKED_COLOR_ARRAY to colors)
     TransferContext.callMethod(ptr, MethodBindings.setColorsPtr, NIL)
   }
@@ -56,9 +49,9 @@ public open class ColorPalette : Resource() {
 
   public object MethodBindings {
     internal val setColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPalette", "set_colors", 3546319833)
+        TypeManager.getMethodBindPtr("ColorPalette", "set_colors", 3_546_319_833)
 
     internal val getColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPalette", "get_colors", 1392750486)
+        TypeManager.getMethodBindPtr("ColorPalette", "get_colors", 1_392_750_486)
   }
 }

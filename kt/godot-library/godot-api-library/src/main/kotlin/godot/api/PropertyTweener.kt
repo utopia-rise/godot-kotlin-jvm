@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,20 +17,17 @@ import kotlin.Any
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
- * more usage information.
+ * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for more usage information.
  *
  * The tweener will finish automatically if the target object is freed.
  *
- * **Note:** [Tween.tweenProperty] is the only correct way to create [PropertyTweener]. Any
- * [PropertyTweener] created manually will not function correctly.
+ * **Note:** [Tween.tweenProperty] is the only correct way to create [PropertyTweener]. Any [PropertyTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(510, scriptIndex)
   }
 
@@ -51,8 +45,7 @@ public open class PropertyTweener : Tweener() {
    * ```csharp
    * //csharp
    * Tween tween = GetTree().CreateTween();
-   * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).From(new
-   * Vector2(100.0f, 100.0f));
+   * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).From(new Vector2(100.0f, 100.0f));
    * ```
    */
   public final fun from(`value`: Any?): PropertyTweener? {
@@ -62,9 +55,7 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Makes the [PropertyTweener] use the current property value (i.e. at the time of creating this
-   * [PropertyTweener]) as a starting point. This is equivalent of using [from] with the current value.
-   * These two calls will do the same:
+   * Makes the [PropertyTweener] use the current property value (i.e. at the time of creating this [PropertyTweener]) as a starting point. This is equivalent of using [from] with the current value. These two calls will do the same:
    *
    * ```gdscript
    * //gdscript
@@ -108,8 +99,7 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Sets the type of used transition from [Tween.TransitionType]. If not set, the default
-   * transition is used from the [Tween] that contains this Tweener.
+   * Sets the type of used transition from [Tween.TransitionType]. If not set, the default transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
     TransferContext.writeArguments(LONG to trans.id)
@@ -118,8 +108,7 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from
-   * the [Tween] that contains this Tweener.
+   * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): PropertyTweener? {
     TransferContext.writeArguments(LONG to ease.id)
@@ -128,11 +117,7 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Allows interpolating the value with a custom easing function. The provided [interpolatorMethod]
-   * will be called with a value ranging from `0.0` to `1.0` and is expected to return a value within
-   * the same range (values outside the range can be used for overshoot). The return value of the
-   * method is then used for interpolation between initial and final value. Note that the parameter
-   * passed to the method is still subject to the tweener's own easing.
+   * Allows interpolating the value with a custom easing function. The provided [interpolatorMethod] will be called with a value ranging from `0.0` to `1.0` and is expected to return a value within the same range (values outside the range can be used for overshoot). The return value of the method is then used for interpolation between initial and final value. Note that the parameter passed to the method is still subject to the tweener's own easing.
    *
    * ```gdscript
    * //gdscript
@@ -141,8 +126,7 @@ public open class PropertyTweener : Tweener() {
    * func _ready():
    *     var tween = create_tween()
    *     # Interpolate the value using a custom curve.
-   *     tween.tween_property(self, "position:x", 300,
-   * 1).as_relative().set_custom_interpolator(tween_curve)
+   *     tween.tween_property(self, "position:x", 300, 1).as_relative().set_custom_interpolator(tween_curve)
    *
    * func tween_curve(v):
    *     return curve.sample_baked(v)
@@ -158,8 +142,7 @@ public open class PropertyTweener : Tweener() {
    *     Tween tween = CreateTween();
    *     // Interpolate the value using a custom curve.
    *     Callable tweenCurveCallable = Callable.From<float, float>(TweenCurve);
-   *     tween.TweenProperty(this, "position:x", 300.0f,
-   * 1.0f).AsRelative().SetCustomInterpolator(tweenCurveCallable);
+   *     tween.TweenProperty(this, "position:x", 300.0f, 1.0f).AsRelative().SetCustomInterpolator(tweenCurveCallable);
    * }
    *
    * private float TweenCurve(float value)
@@ -175,8 +158,7 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default
-   * there's no delay.
+   * Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default there's no delay.
    */
   public final fun setDelay(delay: Double): PropertyTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
@@ -188,24 +170,24 @@ public open class PropertyTweener : Tweener() {
 
   public object MethodBindings {
     internal val fromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "from", 4190193059)
+        TypeManager.getMethodBindPtr("PropertyTweener", "from", 4_190_193_059)
 
     internal val fromCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "from_current", 4279177709)
+        TypeManager.getMethodBindPtr("PropertyTweener", "from_current", 4_279_177_709)
 
     internal val asRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "as_relative", 4279177709)
+        TypeManager.getMethodBindPtr("PropertyTweener", "as_relative", 4_279_177_709)
 
     internal val setTransPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_trans", 1899107404)
+        TypeManager.getMethodBindPtr("PropertyTweener", "set_trans", 1_899_107_404)
 
     internal val setEasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_ease", 1080455622)
+        TypeManager.getMethodBindPtr("PropertyTweener", "set_ease", 1_080_455_622)
 
     internal val setCustomInterpolatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_custom_interpolator", 3174170268)
+        TypeManager.getMethodBindPtr("PropertyTweener", "set_custom_interpolator", 3_174_170_268)
 
     internal val setDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_delay", 2171559331)
+        TypeManager.getMethodBindPtr("PropertyTweener", "set_delay", 2_171_559_331)
   }
 }

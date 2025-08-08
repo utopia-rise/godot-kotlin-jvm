@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -38,10 +35,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s
- * do not require coding, they share the same logic with script shaders. They use [VisualShaderNode]s
- * that can be connected to each other to control the flow of the shader. The visual shader graph is
- * converted to a script shader behind the scenes.
+ * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s do not require coding, they share the same logic with script shaders. They use [VisualShaderNode]s that can be connected to each other to control the flow of the shader. The visual shader graph is converted to a script shader behind the scenes.
  */
 @GodotBaseType
 public open class VisualShader : Shader() {
@@ -49,11 +43,8 @@ public open class VisualShader : Shader() {
    * The offset vector of the whole graph.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var graphOffset: Vector2
@@ -64,7 +55,7 @@ public open class VisualShader : Shader() {
       setGraphOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(726, scriptIndex)
   }
 
@@ -90,7 +81,7 @@ public open class VisualShader : Shader() {
   /**
    * Sets the mode of this shader.
    */
-  public final fun setMode(mode: Shader.Mode): Unit {
+  public final fun setMode(mode: Shader.Mode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
@@ -103,7 +94,7 @@ public open class VisualShader : Shader() {
     node: VisualShaderNode?,
     position: Vector2,
     id: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to type.id, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addNodePtr, NIL)
   }
@@ -124,7 +115,7 @@ public open class VisualShader : Shader() {
     type: Type,
     id: Int,
     position: Vector2,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setNodePositionPtr, NIL)
   }
@@ -159,7 +150,7 @@ public open class VisualShader : Shader() {
   /**
    * Removes the specified node from the shader.
    */
-  public final fun removeNode(type: Type, id: Int): Unit {
+  public final fun removeNode(type: Type, id: Int) {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeNodePtr, NIL)
   }
@@ -171,7 +162,7 @@ public open class VisualShader : Shader() {
     type: Type,
     id: Int,
     newClass: StringName,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), STRING_NAME to newClass)
     TransferContext.callMethod(ptr, MethodBindings.replaceNodePtr, NIL)
   }
@@ -230,14 +221,13 @@ public open class VisualShader : Shader() {
     fromPort: Int,
     toNode: Int,
     toPort: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.disconnectNodesPtr, NIL)
   }
 
   /**
-   * Connects the specified nodes and ports, even if they can't be connected. Such connection is
-   * invalid and will not function properly.
+   * Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly.
    */
   public final fun connectNodesForced(
     type: Type,
@@ -245,7 +235,7 @@ public open class VisualShader : Shader() {
     fromPort: Int,
     toNode: Int,
     toPort: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.connectNodesForcedPtr, NIL)
   }
@@ -259,7 +249,7 @@ public open class VisualShader : Shader() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
-  public final fun setGraphOffset(offset: Vector2): Unit {
+  public final fun setGraphOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setGraphOffsetPtr, NIL)
   }
@@ -277,7 +267,7 @@ public open class VisualShader : Shader() {
     type: Type,
     id: Int,
     frame: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), LONG to frame.toLong())
     TransferContext.callMethod(ptr, MethodBindings.attachNodeToFramePtr, NIL)
   }
@@ -285,7 +275,7 @@ public open class VisualShader : Shader() {
   /**
    * Detaches the given node from the frame it is attached to.
    */
-  public final fun detachNodeFromFrame(type: Type, id: Int): Unit {
+  public final fun detachNodeFromFrame(type: Type, id: Int) {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.detachNodeFromFramePtr, NIL)
   }
@@ -297,16 +287,15 @@ public open class VisualShader : Shader() {
     name: String,
     mode: VaryingMode,
     type: VaryingType,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to name, LONG to mode.id, LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.addVaryingPtr, NIL)
   }
 
   /**
-   * Removes a varying value node with the given [name]. Prints an error if a node with this name is
-   * not found.
+   * Removes a varying value node with the given [name]. Prints an error if a node with this name is not found.
    */
-  public final fun removeVarying(name: String): Unit {
+  public final fun removeVarying(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.removeVaryingPtr, NIL)
   }
@@ -480,69 +469,69 @@ public open class VisualShader : Shader() {
 
   public object MethodBindings {
     internal val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "set_mode", 3978014962)
+        TypeManager.getMethodBindPtr("VisualShader", "set_mode", 3_978_014_962)
 
     internal val addNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "add_node", 1560769431)
+        TypeManager.getMethodBindPtr("VisualShader", "add_node", 1_560_769_431)
 
     internal val getNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node", 3784670312)
+        TypeManager.getMethodBindPtr("VisualShader", "get_node", 3_784_670_312)
 
     internal val setNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "set_node_position", 2726660721)
+        TypeManager.getMethodBindPtr("VisualShader", "set_node_position", 2_726_660_721)
 
     internal val getNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node_position", 2175036082)
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_position", 2_175_036_082)
 
     internal val getNodeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node_list", 2370592410)
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_list", 2_370_592_410)
 
     internal val getValidNodeIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_valid_node_id", 629467342)
+        TypeManager.getMethodBindPtr("VisualShader", "get_valid_node_id", 629_467_342)
 
     internal val removeNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "remove_node", 844050912)
+        TypeManager.getMethodBindPtr("VisualShader", "remove_node", 844_050_912)
 
     internal val replaceNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "replace_node", 3144735253)
+        TypeManager.getMethodBindPtr("VisualShader", "replace_node", 3_144_735_253)
 
     internal val isNodeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "is_node_connection", 3922381898)
+        TypeManager.getMethodBindPtr("VisualShader", "is_node_connection", 3_922_381_898)
 
     internal val canConnectNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "can_connect_nodes", 3922381898)
+        TypeManager.getMethodBindPtr("VisualShader", "can_connect_nodes", 3_922_381_898)
 
     internal val connectNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes", 3081049573)
+        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes", 3_081_049_573)
 
     internal val disconnectNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "disconnect_nodes", 2268060358)
+        TypeManager.getMethodBindPtr("VisualShader", "disconnect_nodes", 2_268_060_358)
 
     internal val connectNodesForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes_forced", 2268060358)
+        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes_forced", 2_268_060_358)
 
     internal val getNodeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node_connections", 1441964831)
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_connections", 1_441_964_831)
 
     internal val setGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset", 743155724)
+        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset", 743_155_724)
 
     internal val getGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset", 3341600327)
+        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset", 3_341_600_327)
 
     internal val attachNodeToFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "attach_node_to_frame", 2479945279)
+        TypeManager.getMethodBindPtr("VisualShader", "attach_node_to_frame", 2_479_945_279)
 
     internal val detachNodeFromFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "detach_node_from_frame", 844050912)
+        TypeManager.getMethodBindPtr("VisualShader", "detach_node_from_frame", 844_050_912)
 
     internal val addVaryingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "add_varying", 2084110726)
+        TypeManager.getMethodBindPtr("VisualShader", "add_varying", 2_084_110_726)
 
     internal val removeVaryingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "remove_varying", 83702148)
+        TypeManager.getMethodBindPtr("VisualShader", "remove_varying", 83_702_148)
 
     internal val hasVaryingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "has_varying", 3927539163)
+        TypeManager.getMethodBindPtr("VisualShader", "has_varying", 3_927_539_163)
   }
 }

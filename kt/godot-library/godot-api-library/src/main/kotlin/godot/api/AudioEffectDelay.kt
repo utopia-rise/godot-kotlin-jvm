@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,19 +16,15 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Plays input signal back after a period of time. The delayed signal may be played back multiple
- * times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo
- * effect to a pronounced blending of previous sounds with new sounds.
+ * Plays input signal back after a period of time. The delayed signal may be played back multiple times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo effect to a pronounced blending of previous sounds with new sounds.
  */
 @GodotBaseType
 public open class AudioEffectDelay : AudioEffect() {
   /**
-   * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0
-   * to 1.
+   * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0 to 1.
    */
   public final inline var dry: Float
     @JvmName("dryProperty")
@@ -163,8 +156,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the
-   * source signal.
+   * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the source signal.
    */
   public final inline var feedbackLowpass: Float
     @JvmName("feedbackLowpassProperty")
@@ -174,11 +166,11 @@ public open class AudioEffectDelay : AudioEffect() {
       setFeedbackLowpass(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(52, scriptIndex)
   }
 
-  public final fun setDry(amount: Float): Unit {
+  public final fun setDry(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDryPtr, NIL)
   }
@@ -189,7 +181,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTap1Active(amount: Boolean): Unit {
+  public final fun setTap1Active(amount: Boolean) {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(ptr, MethodBindings.setTap1ActivePtr, NIL)
   }
@@ -200,7 +192,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTap1DelayMs(amount: Float): Unit {
+  public final fun setTap1DelayMs(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTap1DelayMsPtr, NIL)
   }
@@ -211,7 +203,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTap1LevelDb(amount: Float): Unit {
+  public final fun setTap1LevelDb(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTap1LevelDbPtr, NIL)
   }
@@ -222,7 +214,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTap1Pan(amount: Float): Unit {
+  public final fun setTap1Pan(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTap1PanPtr, NIL)
   }
@@ -233,7 +225,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTap2Active(amount: Boolean): Unit {
+  public final fun setTap2Active(amount: Boolean) {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(ptr, MethodBindings.setTap2ActivePtr, NIL)
   }
@@ -244,7 +236,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTap2DelayMs(amount: Float): Unit {
+  public final fun setTap2DelayMs(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTap2DelayMsPtr, NIL)
   }
@@ -255,7 +247,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTap2LevelDb(amount: Float): Unit {
+  public final fun setTap2LevelDb(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTap2LevelDbPtr, NIL)
   }
@@ -266,7 +258,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTap2Pan(amount: Float): Unit {
+  public final fun setTap2Pan(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTap2PanPtr, NIL)
   }
@@ -277,7 +269,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFeedbackActive(amount: Boolean): Unit {
+  public final fun setFeedbackActive(amount: Boolean) {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(ptr, MethodBindings.setFeedbackActivePtr, NIL)
   }
@@ -288,7 +280,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFeedbackDelayMs(amount: Float): Unit {
+  public final fun setFeedbackDelayMs(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFeedbackDelayMsPtr, NIL)
   }
@@ -299,7 +291,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFeedbackLevelDb(amount: Float): Unit {
+  public final fun setFeedbackLevelDb(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFeedbackLevelDbPtr, NIL)
   }
@@ -310,7 +302,7 @@ public open class AudioEffectDelay : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFeedbackLowpass(amount: Float): Unit {
+  public final fun setFeedbackLowpass(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFeedbackLowpassPtr, NIL)
   }
@@ -332,81 +324,81 @@ public open class AudioEffectDelay : AudioEffect() {
 
   public object MethodBindings {
     internal val setDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_dry", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_dry", 373_806_689)
 
     internal val getDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_dry", 191475506)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_dry", 191_475_506)
 
     internal val setTap1ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_active", 2586408642)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_active", 2_586_408_642)
 
     internal val isTap1ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap1_active", 36873697)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap1_active", 36_873_697)
 
     internal val setTap1DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms", 373_806_689)
 
     internal val getTap1DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms", 1_740_695_150)
 
     internal val setTap1LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db", 373_806_689)
 
     internal val getTap1LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db", 1_740_695_150)
 
     internal val setTap1PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan", 373_806_689)
 
     internal val getTap1PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan", 1_740_695_150)
 
     internal val setTap2ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_active", 2586408642)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_active", 2_586_408_642)
 
     internal val isTap2ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap2_active", 36873697)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap2_active", 36_873_697)
 
     internal val setTap2DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms", 373_806_689)
 
     internal val getTap2DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms", 1_740_695_150)
 
     internal val setTap2LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db", 373_806_689)
 
     internal val getTap2LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db", 1_740_695_150)
 
     internal val setTap2PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan", 373_806_689)
 
     internal val getTap2PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan", 1_740_695_150)
 
     internal val setFeedbackActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_active", 2586408642)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_active", 2_586_408_642)
 
     internal val isFeedbackActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_feedback_active", 36873697)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_feedback_active", 36_873_697)
 
     internal val setFeedbackDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms", 373_806_689)
 
     internal val getFeedbackDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms", 1_740_695_150)
 
     internal val setFeedbackLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db", 373_806_689)
 
     internal val getFeedbackLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db", 1_740_695_150)
 
     internal val setFeedbackLowpassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass", 373_806_689)
 
     internal val getFeedbackLowpassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass", 1_740_695_150)
   }
 }

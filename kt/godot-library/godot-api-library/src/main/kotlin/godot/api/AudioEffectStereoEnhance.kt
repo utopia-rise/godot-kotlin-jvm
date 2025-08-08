@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,7 +14,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -26,8 +22,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
-   * Amplifies the difference between stereo channels, increasing or decreasing existing panning. A
-   * value of 0.0 will downmix stereo to mono. Does not affect a mono signal.
+   * Amplifies the difference between stereo channels, increasing or decreasing existing panning. A value of 0.0 will downmix stereo to mono. Does not affect a mono signal.
    */
   public final inline var panPullout: Float
     @JvmName("panPulloutProperty")
@@ -38,8 +33,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   /**
-   * Widens sound stage through phase shifting in conjunction with [surround]. Just delays the right
-   * channel if [surround] is 0.
+   * Widens sound stage through phase shifting in conjunction with [surround]. Just delays the right channel if [surround] is 0.
    */
   public final inline var timePulloutMs: Float
     @JvmName("timePulloutMsProperty")
@@ -50,8 +44,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   /**
-   * Widens sound stage through phase shifting in conjunction with [timePulloutMs]. Just pans sound
-   * to the left channel if [timePulloutMs] is 0.
+   * Widens sound stage through phase shifting in conjunction with [timePulloutMs]. Just pans sound to the left channel if [timePulloutMs] is 0.
    */
   public final inline var surround: Float
     @JvmName("surroundProperty")
@@ -61,11 +54,11 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       setSurround(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(74, scriptIndex)
   }
 
-  public final fun setPanPullout(amount: Float): Unit {
+  public final fun setPanPullout(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPanPulloutPtr, NIL)
   }
@@ -76,7 +69,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTimePullout(amount: Float): Unit {
+  public final fun setTimePullout(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTimePulloutPtr, NIL)
   }
@@ -87,7 +80,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSurround(amount: Float): Unit {
+  public final fun setSurround(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSurroundPtr, NIL)
   }
@@ -109,21 +102,21 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
 
   public object MethodBindings {
     internal val setPanPulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout", 373_806_689)
 
     internal val getPanPulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout", 1_740_695_150)
 
     internal val setTimePulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout", 373_806_689)
 
     internal val getTimePulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout", 1_740_695_150)
 
     internal val setSurroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround", 373_806_689)
 
     internal val getSurroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround", 1_740_695_150)
   }
 }

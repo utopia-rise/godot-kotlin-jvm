@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,13 +13,10 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
- * its Cancel button can have a different outcome from pressing the OK button. The order of the two
- * buttons varies depending on the host OS.
+ * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing its Cancel button can have a different outcome from pressing the OK button. The order of the two buttons varies depending on the host OS.
  *
  * To get cancel action, you can use:
  *
@@ -49,15 +43,14 @@ public open class ConfirmationDialog : AcceptDialog() {
       setCancelButtonText(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(176, scriptIndex)
   }
 
   /**
    * Returns the cancel button.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getCancelButton(): Button? {
     TransferContext.writeArguments()
@@ -65,7 +58,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
-  public final fun setCancelButtonText(text: String): Unit {
+  public final fun setCancelButtonText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setCancelButtonTextPtr, NIL)
   }
@@ -80,12 +73,12 @@ public open class ConfirmationDialog : AcceptDialog() {
 
   public object MethodBindings {
     internal val getCancelButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button", 1856205918)
+        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button", 1_856_205_918)
 
     internal val setCancelButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "set_cancel_button_text", 83702148)
+        TypeManager.getMethodBindPtr("ConfirmationDialog", "set_cancel_button_text", 83_702_148)
 
     internal val getCancelButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button_text", 201670096)
+        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button_text", 201_670_096)
   }
 }

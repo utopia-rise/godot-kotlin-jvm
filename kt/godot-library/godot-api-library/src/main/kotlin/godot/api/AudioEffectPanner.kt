@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,7 +14,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -36,11 +32,11 @@ public open class AudioEffectPanner : AudioEffect() {
       setPan(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(67, scriptIndex)
   }
 
-  public final fun setPan(cpanume: Float): Unit {
+  public final fun setPan(cpanume: Float) {
     TransferContext.writeArguments(DOUBLE to cpanume.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPanPtr, NIL)
   }
@@ -62,9 +58,9 @@ public open class AudioEffectPanner : AudioEffect() {
 
   public object MethodBindings {
     internal val setPanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPanner", "set_pan", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectPanner", "set_pan", 373_806_689)
 
     internal val getPanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPanner", "get_pan", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectPanner", "get_pan", 1_740_695_150)
   }
 }

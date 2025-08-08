@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -13,11 +10,9 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Represents an object from the Java Native Interface. It can be returned from Java methods called
- * on [JavaClass] or other [JavaObject]s. See [JavaClassWrapper] for an example.
+ * Represents an object from the Java Native Interface. It can be returned from Java methods called on [JavaClass] or other [JavaObject]s. See [JavaClassWrapper] for an example.
  *
  * **Note:** This class only works on Android. On any other platform, this class does nothing.
  *
@@ -25,7 +20,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JavaObject : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(318, scriptIndex)
   }
 
@@ -42,6 +37,6 @@ public open class JavaObject : RefCounted() {
 
   public object MethodBindings {
     internal val getJavaClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaObject", "get_java_class", 541536347)
+        TypeManager.getMethodBindPtr("JavaObject", "get_java_class", 541_536_347)
   }
 }

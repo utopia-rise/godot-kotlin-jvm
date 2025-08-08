@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,16 +27,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This resource describes a color transition by defining a set of colored points and how to
- * interpolate between them.
+ * This resource describes a color transition by defining a set of colored points and how to interpolate between them.
  *
  * See also [Curve] which supports more complex easing methods, but does not support colors.
  */
 @GodotBaseType
 public open class Gradient : Resource() {
   /**
-   * The algorithm used to interpolate between points of the gradient. See [InterpolationMode] for
-   * available modes.
+   * The algorithm used to interpolate between points of the gradient. See [InterpolationMode] for available modes.
    */
   public final inline var interpolationMode: InterpolationMode
     @JvmName("interpolationModeProperty")
@@ -50,11 +45,9 @@ public open class Gradient : Resource() {
     }
 
   /**
-   * The color space used to interpolate between points of the gradient. It does not affect the
-   * returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
+   * The color space used to interpolate between points of the gradient. It does not affect the returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
    *
-   * **Note:** This setting has no effect when [interpolationMode] is set to
-   * [GRADIENT_INTERPOLATE_CONSTANT].
+   * **Note:** This setting has no effect when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public final inline var interpolationColorSpace: ColorSpace
     @JvmName("interpolationColorSpaceProperty")
@@ -67,15 +60,11 @@ public open class Gradient : Resource() {
   /**
    * Gradient's offsets as a [PackedFloat32Array].
    *
-   * **Note:** Setting this property updates all offsets at once. To update any offset individually
-   * use [setOffset].
+   * **Note:** Setting this property updates all offsets at once. To update any offset individually use [setOffset].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offsets: PackedFloat32Array
@@ -89,8 +78,7 @@ public open class Gradient : Resource() {
   /**
    * Gradient's colors as a [PackedColorArray].
    *
-   * **Note:** Setting this property updates all colors at once. To update any color individually
-   * use [setColor].
+   * **Note:** Setting this property updates all colors at once. To update any color individually use [setColor].
    */
   public final inline var colors: PackedColorArray
     @JvmName("colorsProperty")
@@ -100,7 +88,7 @@ public open class Gradient : Resource() {
       setColors(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(259, scriptIndex)
   }
 
@@ -117,29 +105,24 @@ public open class Gradient : Resource() {
    *
    * Gradient's offsets as a [PackedFloat32Array].
    *
-   * **Note:** Setting this property updates all offsets at once. To update any offset individually
-   * use [setOffset].
+   * **Note:** Setting this property updates all offsets at once. To update any offset individually use [setOffset].
    */
   @CoreTypeHelper
-  public final fun offsetsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
-      offsets.apply {
+  public final fun offsetsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array = offsets.apply {
      block(this)
      offsets = this
   }
 
   /**
    * This is a helper function for [offsets] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Gradient's offsets as a [PackedFloat32Array].
    *
-   * **Note:** Setting this property updates all offsets at once. To update any offset individually
-   * use [setOffset].
+   * **Note:** Setting this property updates all offsets at once. To update any offset individually use [setOffset].
    */
   @CoreTypeHelper
-  public final fun offsetsMutateEach(block: (index: Int, `value`: Float) -> Unit):
-      PackedFloat32Array = offsets.apply {
+  public final fun offsetsMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array = offsets.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -150,7 +133,7 @@ public open class Gradient : Resource() {
   /**
    * Adds the specified color to the gradient, with the specified offset.
    */
-  public final fun addPoint(offset: Float, color: Color): Unit {
+  public final fun addPoint(offset: Float, color: Color) {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.addPointPtr, NIL)
   }
@@ -158,7 +141,7 @@ public open class Gradient : Resource() {
   /**
    * Removes the color at index [point].
    */
-  public final fun removePoint(point: Int): Unit {
+  public final fun removePoint(point: Int) {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removePointPtr, NIL)
   }
@@ -166,7 +149,7 @@ public open class Gradient : Resource() {
   /**
    * Sets the offset for the gradient color at index [point].
    */
-  public final fun setOffset(point: Int, offset: Float): Unit {
+  public final fun setOffset(point: Int, offset: Float) {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -183,10 +166,9 @@ public open class Gradient : Resource() {
   /**
    * Reverses/mirrors the gradient.
    *
-   * **Note:** This method mirrors all points around the middle of the gradient, which may produce
-   * unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
+   * **Note:** This method mirrors all points around the middle of the gradient, which may produce unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
-  public final fun reverse(): Unit {
+  public final fun reverse() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reversePtr, NIL)
   }
@@ -194,7 +176,7 @@ public open class Gradient : Resource() {
   /**
    * Sets the color of the gradient color at index [point].
    */
-  public final fun setColor(point: Int, color: Color): Unit {
+  public final fun setColor(point: Int, color: Color) {
     TransferContext.writeArguments(LONG to point.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -226,7 +208,7 @@ public open class Gradient : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOffsets(offsets: PackedFloat32Array): Unit {
+  public final fun setOffsets(offsets: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to offsets)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetsPtr, NIL)
   }
@@ -237,7 +219,7 @@ public open class Gradient : Resource() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
-  public final fun setColors(colors: PackedColorArray): Unit {
+  public final fun setColors(colors: PackedColorArray) {
     TransferContext.writeArguments(PACKED_COLOR_ARRAY to colors)
     TransferContext.callMethod(ptr, MethodBindings.setColorsPtr, NIL)
   }
@@ -248,7 +230,7 @@ public open class Gradient : Resource() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
-  public final fun setInterpolationMode(interpolationMode: InterpolationMode): Unit {
+  public final fun setInterpolationMode(interpolationMode: InterpolationMode) {
     TransferContext.writeArguments(LONG to interpolationMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setInterpolationModePtr, NIL)
   }
@@ -259,7 +241,7 @@ public open class Gradient : Resource() {
     return InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setInterpolationColorSpace(interpolationColorSpace: ColorSpace): Unit {
+  public final fun setInterpolationColorSpace(interpolationColorSpace: ColorSpace) {
     TransferContext.writeArguments(LONG to interpolationColorSpace.id)
     TransferContext.callMethod(ptr, MethodBindings.setInterpolationColorSpacePtr, NIL)
   }
@@ -278,8 +260,7 @@ public open class Gradient : Resource() {
      */
     GRADIENT_INTERPOLATE_LINEAR(0),
     /**
-     * Constant interpolation, color changes abruptly at each point and stays uniform between. This
-     * might cause visible aliasing when used for a gradient texture in some cases.
+     * Constant interpolation, color changes abruptly at each point and stays uniform between. This might cause visible aliasing when used for a gradient texture in some cases.
      */
     GRADIENT_INTERPOLATE_CONSTANT(1),
     /**
@@ -310,8 +291,7 @@ public open class Gradient : Resource() {
      */
     GRADIENT_LINEAR_SRGB(1),
     /**
-     * [url=https://bottosson.github.io/posts/oklab/]Oklab[/url] color space. This color space
-     * provides a smooth and uniform-looking transition between colors.
+     * [url=https://bottosson.github.io/posts/oklab/]Oklab[/url] color space. This color space provides a smooth and uniform-looking transition between colors.
      */
     GRADIENT_OKLAB(2),
     ;
@@ -330,53 +310,54 @@ public open class Gradient : Resource() {
 
   public object MethodBindings {
     internal val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "add_point", 3629403827)
+        TypeManager.getMethodBindPtr("Gradient", "add_point", 3_629_403_827)
 
     internal val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "remove_point", 1286410249)
+        TypeManager.getMethodBindPtr("Gradient", "remove_point", 1_286_410_249)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_offset", 1602489585)
+        TypeManager.getMethodBindPtr("Gradient", "set_offset", 1_602_489_585)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_offset", 4025615559)
+        TypeManager.getMethodBindPtr("Gradient", "get_offset", 4_025_615_559)
 
     internal val reversePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "reverse", 3218959716)
+        TypeManager.getMethodBindPtr("Gradient", "reverse", 3_218_959_716)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_color", 2878471219)
+        TypeManager.getMethodBindPtr("Gradient", "set_color", 2_878_471_219)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_color", 2624840992)
+        TypeManager.getMethodBindPtr("Gradient", "get_color", 2_624_840_992)
 
-    internal val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "sample", 1250405064)
+    internal val samplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "sample", 1_250_405_064)
 
     internal val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("Gradient", "get_point_count", 3_905_245_786)
 
     internal val setOffsetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_offsets", 2899603908)
+        TypeManager.getMethodBindPtr("Gradient", "set_offsets", 2_899_603_908)
 
     internal val getOffsetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_offsets", 675695659)
+        TypeManager.getMethodBindPtr("Gradient", "get_offsets", 675_695_659)
 
     internal val setColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_colors", 3546319833)
+        TypeManager.getMethodBindPtr("Gradient", "set_colors", 3_546_319_833)
 
     internal val getColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_colors", 1392750486)
+        TypeManager.getMethodBindPtr("Gradient", "get_colors", 1_392_750_486)
 
     internal val setInterpolationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_mode", 1971444490)
+        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_mode", 1_971_444_490)
 
     internal val getInterpolationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_mode", 3674172981)
+        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_mode", 3_674_172_981)
 
     internal val setInterpolationColorSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_color_space", 3685995981)
+        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_color_space", 3_685_995_981)
 
     internal val getInterpolationColorSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_color_space", 1538296000)
+        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_color_space", 1_538_296_000)
   }
 }

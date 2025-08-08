@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,56 +24,53 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A texture works by registering an image in the video hardware, which then can be used in 3D
- * models or 2D [Sprite2D] or GUI [Control].
+ * A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [Sprite2D] or GUI [Control].
  *
  * Textures are often created by loading them from a file. See [@GDScript.load].
  *
  * [Texture2D] is a base for other resources. It cannot be used directly.
  *
- * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.
- * Larger textures may fail to import.
+ * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations. Larger textures may fail to import.
  */
 @GodotBaseType
-public abstract class Texture2D : Texture() {
-  public override fun new(scriptIndex: Int): Unit {
+public open class Texture2D : Texture() {
+  override fun new(scriptIndex: Int) {
     createNativeObject(665, scriptIndex)
   }
 
   /**
    * Called when the [Texture2D]'s width is queried.
    */
-  public abstract fun _getWidth(): Int
+  public open fun _getWidth(): Int {
+    throw NotImplementedError("_getWidth is not implemented for Texture2D")
+  }
 
   /**
    * Called when the [Texture2D]'s height is queried.
    */
-  public abstract fun _getHeight(): Int
+  public open fun _getHeight(): Int {
+    throw NotImplementedError("_getHeight is not implemented for Texture2D")
+  }
 
   /**
-   * Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)`
-   * position.
+   * Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position.
    */
   public open fun _isPixelOpaque(x: Int, y: Int): Boolean {
-    throw NotImplementedError("Texture2D::_isPixelOpaque is not implemented.")
+    throw NotImplementedError("_isPixelOpaque is not implemented for Texture2D")
   }
 
   /**
    * Called when the presence of an alpha channel in the [Texture2D] is queried.
    */
   public open fun _hasAlpha(): Boolean {
-    throw NotImplementedError("Texture2D::_hasAlpha is not implemented.")
+    throw NotImplementedError("_hasAlpha is not implemented for Texture2D")
   }
 
   /**
-   * Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the
-   * top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn,
-   * while [transpose] specifies whether drawing should be performed in column-major order instead of
-   * row-major order (resulting in 90-degree clockwise rotation).
+   * Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
    *
    * **Note:** This is only used in 2D rendering, not 3D.
    */
@@ -85,15 +79,12 @@ public abstract class Texture2D : Texture() {
     pos: Vector2,
     modulate: Color,
     transpose: Boolean,
-  ): Unit {
-    throw NotImplementedError("Texture2D::_draw is not implemented.")
+  ) {
+    throw NotImplementedError("_draw is not implemented for Texture2D")
   }
 
   /**
-   * Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [rect].
-   * [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether
-   * drawing should be performed in column-major order instead of row-major order (resulting in
-   * 90-degree clockwise rotation).
+   * Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
    *
    * **Note:** This is only used in 2D rendering, not 3D.
    */
@@ -103,15 +94,12 @@ public abstract class Texture2D : Texture() {
     tile: Boolean,
     modulate: Color,
     transpose: Boolean,
-  ): Unit {
-    throw NotImplementedError("Texture2D::_drawRect is not implemented.")
+  ) {
+    throw NotImplementedError("_drawRect is not implemented for Texture2D")
   }
 
   /**
-   * Called when a part of the [Texture2D] specified by [srcRect]'s coordinates is requested to be
-   * drawn onto [CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being
-   * drawn, while [transpose] specifies whether drawing should be performed in column-major order
-   * instead of row-major order (resulting in 90-degree clockwise rotation).
+   * Called when a part of the [Texture2D] specified by [srcRect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
    *
    * **Note:** This is only used in 2D rendering, not 3D.
    */
@@ -122,8 +110,8 @@ public abstract class Texture2D : Texture() {
     modulate: Color,
     transpose: Boolean,
     clipUv: Boolean,
-  ): Unit {
-    throw NotImplementedError("Texture2D::_drawRectRegion is not implemented.")
+  ) {
+    throw NotImplementedError("_drawRectRegion is not implemented for Texture2D")
   }
 
   /**
@@ -163,8 +151,7 @@ public abstract class Texture2D : Texture() {
   }
 
   /**
-   * Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified
-   * [position].
+   * Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [position].
    */
   @JvmOverloads
   public final fun draw(
@@ -172,7 +159,7 @@ public abstract class Texture2D : Texture() {
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
@@ -187,7 +174,7 @@ public abstract class Texture2D : Texture() {
     tile: Boolean,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(ptr, MethodBindings.drawRectPtr, NIL)
   }
@@ -203,19 +190,17 @@ public abstract class Texture2D : Texture() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
     clipUv: Boolean = true,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
     TransferContext.callMethod(ptr, MethodBindings.drawRectRegionPtr, NIL)
   }
 
   /**
-   * Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each
-   * time). [Image]s can be accessed and manipulated directly.
+   * Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.
    *
    * **Note:** This will return `null` if this [Texture2D] is invalid.
    *
-   * **Note:** This will fetch the texture data from the GPU, which might cause performance problems
-   * when overused. Avoid calling [getImage] every frame, especially on large textures.
+   * **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused. Avoid calling [getImage] every frame, especially on large textures.
    */
   public final fun getImage(): Image? {
     TransferContext.writeArguments()
@@ -236,29 +221,29 @@ public abstract class Texture2D : Texture() {
 
   public object MethodBindings {
     internal val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "get_width", 3905245786)
+        TypeManager.getMethodBindPtr("Texture2D", "get_width", 3_905_245_786)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "get_height", 3905245786)
+        TypeManager.getMethodBindPtr("Texture2D", "get_height", 3_905_245_786)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "get_size", 3341600327)
+        TypeManager.getMethodBindPtr("Texture2D", "get_size", 3_341_600_327)
 
     internal val hasAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "has_alpha", 36873697)
+        TypeManager.getMethodBindPtr("Texture2D", "has_alpha", 36_873_697)
 
-    internal val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw", 2729649137)
+    internal val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw", 2_729_649_137)
 
     internal val drawRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "draw_rect", 3499451691)
+        TypeManager.getMethodBindPtr("Texture2D", "draw_rect", 3_499_451_691)
 
     internal val drawRectRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "draw_rect_region", 2963678660)
+        TypeManager.getMethodBindPtr("Texture2D", "draw_rect_region", 2_963_678_660)
 
     internal val getImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "get_image", 4190603485)
+        TypeManager.getMethodBindPtr("Texture2D", "get_image", 4_190_603_485)
 
     internal val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "create_placeholder", 121922552)
+        TypeManager.getMethodBindPtr("Texture2D", "create_placeholder", 121_922_552)
   }
 }

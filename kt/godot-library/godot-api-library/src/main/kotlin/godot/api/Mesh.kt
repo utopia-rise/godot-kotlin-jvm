@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -12,7 +9,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.StringName
@@ -31,11 +27,14 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 public infix fun Long.or(other: Mesh.ArrayFormat): Long = this.or(other.flag)
 
@@ -44,23 +43,16 @@ public infix fun Long.xor(other: Mesh.ArrayFormat): Long = this.xor(other.flag)
 public infix fun Long.and(other: Mesh.ArrayFormat): Long = this.and(other.flag)
 
 /**
- * Mesh is a type of [Resource] that contains vertex array-based geometry, divided in *surfaces*.
- * Each surface contains a completely separate array and a material used to draw it. Design wise, a
- * mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing
- * software commonly contain multiple materials. The maximum number of surfaces per mesh is
- * [RenderingServer.MAX_MESH_SURFACES].
+ * Mesh is a type of [Resource] that contains vertex array-based geometry, divided in *surfaces*. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials. The maximum number of surfaces per mesh is [RenderingServer.MAX_MESH_SURFACES].
  */
 @GodotBaseType
-public abstract class Mesh : Resource() {
+public open class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var lightmapSizeHint: Vector2i
@@ -71,7 +63,7 @@ public abstract class Mesh : Resource() {
       setLightmapSizeHint(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(351, scriptIndex)
   }
 
@@ -89,8 +81,7 @@ public abstract class Mesh : Resource() {
    * Sets a hint to be used for lightmap resolution.
    */
   @CoreTypeHelper
-  public final fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i =
-      lightmapSizeHint.apply {
+  public final fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i = lightmapSizeHint.apply {
      block(this)
      lightmapSizeHint = this
   }
@@ -98,76 +89,102 @@ public abstract class Mesh : Resource() {
   /**
    * Virtual method to override the surface count for a custom class extending [Mesh].
    */
-  public abstract fun _getSurfaceCount(): Int
+  public open fun _getSurfaceCount(): Int {
+    throw NotImplementedError("_getSurfaceCount is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface array length for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetArrayLen(index: Int): Int
+  public open fun _surfaceGetArrayLen(index: Int): Int {
+    throw NotImplementedError("_surfaceGetArrayLen is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface array index length for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetArrayIndexLen(index: Int): Int
+  public open fun _surfaceGetArrayIndexLen(index: Int): Int {
+    throw NotImplementedError("_surfaceGetArrayIndexLen is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface arrays for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetArrays(index: Int): VariantArray<Any?>
+  public open fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+    throw NotImplementedError("_surfaceGetArrays is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the blend shape arrays for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>>
+  public open fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+    throw NotImplementedError("_surfaceGetBlendShapeArrays is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface LODs for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?>
+  public open fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+    throw NotImplementedError("_surfaceGetLods is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface format for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetFormat(index: Int): Long
+  public open fun _surfaceGetFormat(index: Int): Long {
+    throw NotImplementedError("_surfaceGetFormat is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface primitive type for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetPrimitiveType(index: Int): Long
+  public open fun _surfaceGetPrimitiveType(index: Int): Long {
+    throw NotImplementedError("_surfaceGetPrimitiveType is not implemented for Mesh")
+  }
 
   /**
-   * Virtual method to override the setting of a [material] at the given [index] for a custom class
-   * extending [Mesh].
+   * Virtual method to override the setting of a [material] at the given [index] for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceSetMaterial(index: Int, material: Material?): Unit
+  public open fun _surfaceSetMaterial(index: Int, material: Material?) {
+    throw NotImplementedError("_surfaceSetMaterial is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the surface material for a custom class extending [Mesh].
    */
-  public abstract fun _surfaceGetMaterial(index: Int): Material?
+  public open fun _surfaceGetMaterial(index: Int): Material? {
+    throw NotImplementedError("_surfaceGetMaterial is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the number of blend shapes for a custom class extending [Mesh].
    */
-  public abstract fun _getBlendShapeCount(): Int
+  public open fun _getBlendShapeCount(): Int {
+    throw NotImplementedError("_getBlendShapeCount is not implemented for Mesh")
+  }
 
   /**
-   * Virtual method to override the retrieval of blend shape names for a custom class extending
-   * [Mesh].
+   * Virtual method to override the retrieval of blend shape names for a custom class extending [Mesh].
    */
-  public abstract fun _getBlendShapeName(index: Int): StringName
+  public open fun _getBlendShapeName(index: Int): StringName {
+    throw NotImplementedError("_getBlendShapeName is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the names of blend shapes for a custom class extending [Mesh].
    */
-  public abstract fun _setBlendShapeName(index: Int, name: StringName): Unit
+  public open fun _setBlendShapeName(index: Int, name: StringName) {
+    throw NotImplementedError("_setBlendShapeName is not implemented for Mesh")
+  }
 
   /**
    * Virtual method to override the [AABB] for a custom class extending [Mesh].
    */
-  public abstract fun _getAabb(): AABB
+  public open fun _getAabb(): CoreAABB {
+    throw NotImplementedError("_getAabb is not implemented for Mesh")
+  }
 
-  public final fun setLightmapSizeHint(size: Vector2i): Unit {
+  public final fun setLightmapSizeHint(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setLightmapSizeHintPtr, NIL)
   }
@@ -183,15 +200,14 @@ public abstract class Mesh : Resource() {
    *
    * **Note:** This is only implemented for [ArrayMesh] and [PrimitiveMesh].
    */
-  public final fun getAabb(): AABB {
+  public final fun getAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
   /**
-   * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one
-   * triangle.
+   * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
    */
   public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
@@ -200,8 +216,7 @@ public abstract class Mesh : Resource() {
   }
 
   /**
-   * Returns the number of surfaces that the [Mesh] holds. This is equivalent to
-   * [MeshInstance3D.getSurfaceOverrideMaterialCount].
+   * Returns the number of surfaces that the [Mesh] holds. This is equivalent to [MeshInstance3D.getSurfaceOverrideMaterialCount].
    */
   public final fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
@@ -210,8 +225,7 @@ public abstract class Mesh : Resource() {
   }
 
   /**
-   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see
-   * [ArrayMesh.addSurfaceFromArrays]).
+   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see [ArrayMesh.addSurfaceFromArrays]).
    */
   public final fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -231,12 +245,9 @@ public abstract class Mesh : Resource() {
   /**
    * Sets a [Material] for a given surface. Surface will be rendered using this material.
    *
-   * **Note:** This assigns the material within the [Mesh] resource, not the [Material] associated
-   * to the [MeshInstance3D]'s Surface Material Override properties. To set the [Material] associated
-   * to the [MeshInstance3D]'s Surface Material Override properties, use
-   * [MeshInstance3D.setSurfaceOverrideMaterial] instead.
+   * **Note:** This assigns the material within the [Mesh] resource, not the [Material] associated to the [MeshInstance3D]'s Surface Material Override properties. To set the [Material] associated to the [MeshInstance3D]'s Surface Material Override properties, use [MeshInstance3D.setSurfaceOverrideMaterial] instead.
    */
-  public final fun surfaceSetMaterial(surfIdx: Int, material: Material?): Unit {
+  public final fun surfaceSetMaterial(surfIdx: Int, material: Material?) {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetMaterialPtr, NIL)
   }
@@ -244,10 +255,7 @@ public abstract class Mesh : Resource() {
   /**
    * Returns a [Material] in a given surface. Surface is rendered using this material.
    *
-   * **Note:** This returns the material within the [Mesh] resource, not the [Material] associated
-   * to the [MeshInstance3D]'s Surface Material Override properties. To get the [Material] associated
-   * to the [MeshInstance3D]'s Surface Material Override properties, use
-   * [MeshInstance3D.getSurfaceOverrideMaterial] instead.
+   * **Note:** This returns the material within the [Mesh] resource, not the [Material] associated to the [MeshInstance3D]'s Surface Material Override properties. To get the [Material] associated to the [MeshInstance3D]'s Surface Material Override properties, use [MeshInstance3D.getSurfaceOverrideMaterial] instead.
    */
   public final fun surfaceGetMaterial(surfIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -276,15 +284,12 @@ public abstract class Mesh : Resource() {
   /**
    * Calculate a [ConvexPolygonShape3D] from the mesh.
    *
-   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
-   * can set it to `false` to make the process faster if not needed.
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
    *
-   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
-   * vertices. Disabled by default.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
   @JvmOverloads
-  public final fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
-      ConvexPolygonShape3D? {
+  public final fun createConvexShape(clean: Boolean = true, simplify: Boolean = false): ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(ptr, MethodBindings.createConvexShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ConvexPolygonShape3D?)
@@ -293,8 +298,7 @@ public abstract class Mesh : Resource() {
   /**
    * Calculate an outline mesh at a defined offset (margin) from the original mesh.
    *
-   * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to
-   * counterclockwise).
+   * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to counterclockwise).
    */
   public final fun createOutline(margin: Float): Mesh? {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
@@ -303,8 +307,7 @@ public abstract class Mesh : Resource() {
   }
 
   /**
-   * Generate a [TriangleMesh] from the mesh. Considers only surfaces using one of these primitive
-   * types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
+   * Generate a [TriangleMesh] from the mesh. Considers only surfaces using one of these primitive types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
@@ -357,13 +360,11 @@ public abstract class Mesh : Resource() {
     /**
      * [PackedVector3Array] of vertex normals.
      *
-     * **Note:** The array has to consist of normal vectors, otherwise they will be normalized by
-     * the engine, potentially causing visual discrepancies.
+     * **Note:** The array has to consist of normal vectors, otherwise they will be normalized by the engine, potentially causing visual discrepancies.
      */
     NORMAL(1),
     /**
-     * [PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats
-     * determine the tangent, and the last the binormal direction as -1 or 1.
+     * [PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
      */
     TANGENT(2),
     /**
@@ -379,54 +380,33 @@ public abstract class Mesh : Resource() {
      */
     TEX_UV2(5),
     /**
-     * Contains custom color channel 0. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
-     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
-     * [PackedFloat32Array] otherwise.
+     * Contains custom color channel 0. [PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
      */
     CUSTOM0(6),
     /**
-     * Contains custom color channel 1. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
-     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
-     * [PackedFloat32Array] otherwise.
+     * Contains custom color channel 1. [PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
      */
     CUSTOM1(7),
     /**
-     * Contains custom color channel 2. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
-     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
-     * [PackedFloat32Array] otherwise.
+     * Contains custom color channel 2. [PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
      */
     CUSTOM2(8),
     /**
-     * Contains custom color channel 3. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
-     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
-     * [PackedFloat32Array] otherwise.
+     * Contains custom color channel 3. [PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
      */
     CUSTOM3(9),
     /**
-     * [PackedFloat32Array] or [PackedInt32Array] of bone indices. Contains either 4 or 8 numbers
-     * per vertex depending on the presence of the [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
+     * [PackedFloat32Array] or [PackedInt32Array] of bone indices. Contains either 4 or 8 numbers per vertex depending on the presence of the [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     BONES(10),
     /**
-     * [PackedFloat32Array] or [PackedFloat64Array] of bone weights in the range `0.0` to `1.0`
-     * (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the
-     * [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
+     * [PackedFloat32Array] or [PackedFloat64Array] of bone weights in the range `0.0` to `1.0` (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     WEIGHTS(11),
     /**
-     * [PackedInt32Array] of integers used as indices referencing vertices, colors, normals,
-     * tangents, and textures. All of those arrays must have the same number of elements as the vertex
-     * array. No index can be beyond the vertex array size. When this index array is present, it puts
-     * the function into "index mode," where the index selects the *i*'th vertex, normal, tangent,
-     * color, UV, etc. This means if you want to have different normals or colors along an edge, you
-     * have to duplicate the vertices.
+     * [PackedInt32Array] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
      *
-     * For triangles, the index array is interpreted as triples, referring to the vertices of each
-     * triangle. For lines, the index array is in pairs indicating the start and end of each line.
+     * For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
      */
     INDEX(12),
     /**
@@ -449,38 +429,31 @@ public abstract class Mesh : Resource() {
     id: Long,
   ) {
     /**
-     * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded
-     * as [PackedByteArray].
+     * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded as [PackedByteArray].
      */
     RGBA8_UNORM(0),
     /**
-     * Indicates this custom channel contains signed normalized byte colors from -1 to 1, encoded as
-     * [PackedByteArray].
+     * Indicates this custom channel contains signed normalized byte colors from -1 to 1, encoded as [PackedByteArray].
      */
     RGBA8_SNORM(1),
     /**
-     * Indicates this custom channel contains half precision float colors, encoded as
-     * [PackedByteArray]. Only red and green channels are used.
+     * Indicates this custom channel contains half precision float colors, encoded as [PackedByteArray]. Only red and green channels are used.
      */
     RG_HALF(2),
     /**
-     * Indicates this custom channel contains half precision float colors, encoded as
-     * [PackedByteArray].
+     * Indicates this custom channel contains half precision float colors, encoded as [PackedByteArray].
      */
     RGBA_HALF(3),
     /**
-     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only the
-     * red channel is used.
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only the red channel is used.
      */
     R_FLOAT(4),
     /**
-     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only red
-     * and green channels are used.
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only red and green channels are used.
      */
     RG_FLOAT(5),
     /**
-     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only
-     * red, green and blue channels are used.
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only red, green and blue channels are used.
      */
     RGB_FLOAT(6),
     /**
@@ -532,8 +505,7 @@ public abstract class Mesh : Resource() {
 
     public companion object {
       /**
-       * Mesh array contains vertices. All meshes require a vertex array so this should always be
-       * present.
+       * Mesh array contains vertices. All meshes require a vertex array so this should always be present.
        */
       @JvmField
       public val VERTEX: ArrayFormat = ArrayFormat(1)
@@ -596,19 +568,19 @@ public abstract class Mesh : Resource() {
        * Mesh array contains bones.
        */
       @JvmField
-      public val BONES: ArrayFormat = ArrayFormat(1024)
+      public val BONES: ArrayFormat = ArrayFormat(1_024)
 
       /**
        * Mesh array contains bone weights.
        */
       @JvmField
-      public val WEIGHTS: ArrayFormat = ArrayFormat(2048)
+      public val WEIGHTS: ArrayFormat = ArrayFormat(2_048)
 
       /**
        * Mesh array uses indices.
        */
       @JvmField
-      public val INDEX: ArrayFormat = ArrayFormat(4096)
+      public val INDEX: ArrayFormat = ArrayFormat(4_096)
 
       /**
        * Mask of mesh channels permitted in blend shapes.
@@ -653,15 +625,13 @@ public abstract class Mesh : Resource() {
       public val CUSTOM3_SHIFT: ArrayFormat = ArrayFormat(22)
 
       /**
-       * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT
-       * constants. See [ArrayCustomFormat].
+       * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT constants. See [ArrayCustomFormat].
        */
       @JvmField
       public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
       /**
-       * Shift of first compress flag. Compress flags should be passed to
-       * [ArrayMesh.addSurfaceFromArrays] and [SurfaceTool.commit].
+       * Shift of first compress flag. Compress flags should be passed to [ArrayMesh.addSurfaceFromArrays] and [SurfaceTool.commit].
        */
       @JvmField
       public val COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
@@ -670,39 +640,31 @@ public abstract class Mesh : Resource() {
        * Flag used to mark that the array contains 2D vertices.
        */
       @JvmField
-      public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
+      public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33_554_432)
 
       /**
        * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
        */
       @JvmField
-      public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
+      public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67_108_864)
 
       /**
-       * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag
-       * indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
+       * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
        */
       @JvmField
-      public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
+      public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134_217_728)
 
       /**
        * Flag used to mark that the mesh intentionally contains no vertex array.
        */
       @JvmField
-      public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
+      public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268_435_456)
 
       /**
-       * Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents,
-       * UVs). When this form of compression is enabled, vertex positions will be packed into an
-       * RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed
-       * into an RG16UNORM representing an axis, and a 16-bit float stored in the A-channel of the
-       * vertex. UVs will use 16-bit normalized floats instead of full 32-bit signed floats. When using
-       * this compression mode you must use either vertices, normals, and tangents or only vertices.
-       * You cannot use normals without tangents. Importers will automatically enable this compression
-       * if they can.
+       * Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents, UVs). When this form of compression is enabled, vertex positions will be packed into an RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed into an RG16UNORM representing an axis, and a 16-bit float stored in the A-channel of the vertex. UVs will use 16-bit normalized floats instead of full 32-bit signed floats. When using this compression mode you must use either vertices, normals, and tangents or only vertices. You cannot use normals without tangents. Importers will automatically enable this compression if they can.
        */
       @JvmField
-      public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
+      public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536_870_912)
     }
   }
 
@@ -733,43 +695,45 @@ public abstract class Mesh : Resource() {
 
   public object MethodBindings {
     internal val setLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint", 1130785943)
+        TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint", 1_130_785_943)
 
     internal val getLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "get_lightmap_size_hint", 3690982128)
+        TypeManager.getMethodBindPtr("Mesh", "get_lightmap_size_hint", 3_690_982_128)
 
-    internal val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_aabb", 1068685055)
+    internal val getAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "get_aabb", 1_068_685_055)
 
-    internal val getFacesPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_faces", 497664490)
+    internal val getFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "get_faces", 497_664_490)
 
     internal val getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "get_surface_count", 3905245786)
+        TypeManager.getMethodBindPtr("Mesh", "get_surface_count", 3_905_245_786)
 
     internal val surfaceGetArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_arrays", 663333327)
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_arrays", 663_333_327)
 
     internal val surfaceGetBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays", 663333327)
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays", 663_333_327)
 
     internal val surfaceSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_set_material", 3671737478)
+        TypeManager.getMethodBindPtr("Mesh", "surface_set_material", 3_671_737_478)
 
     internal val surfaceGetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_material", 2897466400)
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_material", 2_897_466_400)
 
     internal val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_placeholder", 121922552)
+        TypeManager.getMethodBindPtr("Mesh", "create_placeholder", 121_922_552)
 
     internal val createTrimeshShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_trimesh_shape", 4160111210)
+        TypeManager.getMethodBindPtr("Mesh", "create_trimesh_shape", 4_160_111_210)
 
     internal val createConvexShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_convex_shape", 2529984628)
+        TypeManager.getMethodBindPtr("Mesh", "create_convex_shape", 2_529_984_628)
 
     internal val createOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_outline", 1208642001)
+        TypeManager.getMethodBindPtr("Mesh", "create_outline", 1_208_642_001)
 
     internal val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3476533166)
+        TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3_476_533_166)
   }
 }

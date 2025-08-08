@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -61,8 +58,7 @@ public open class StatusIndicator : Node() {
   /**
    * Status indicator native popup menu. If this is set, the [signal pressed] signal is not emitted.
    *
-   * **Note:** Native popup is only supported if [NativeMenu] supports
-   * [NativeMenu.FEATURE_POPUP_MENU] feature.
+   * **Note:** Native popup is only supported if [NativeMenu] supports [NativeMenu.FEATURE_POPUP_MENU] feature.
    */
   public final inline var menu: NodePath
     @JvmName("menuProperty")
@@ -83,11 +79,11 @@ public open class StatusIndicator : Node() {
       setVisible(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(633, scriptIndex)
   }
 
-  public final fun setTooltip(tooltip: String): Unit {
+  public final fun setTooltip(tooltip: String) {
     TransferContext.writeArguments(STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setTooltipPtr, NIL)
   }
@@ -98,7 +94,7 @@ public open class StatusIndicator : Node() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setIcon(texture: Texture2D?): Unit {
+  public final fun setIcon(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setIconPtr, NIL)
   }
@@ -109,7 +105,7 @@ public open class StatusIndicator : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setVisible(visible: Boolean): Unit {
+  public final fun setVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
@@ -120,7 +116,7 @@ public open class StatusIndicator : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMenu(menu: NodePath): Unit {
+  public final fun setMenu(menu: NodePath) {
     TransferContext.writeArguments(NODE_PATH to menu)
     TransferContext.callMethod(ptr, MethodBindings.setMenuPtr, NIL)
   }
@@ -132,8 +128,7 @@ public open class StatusIndicator : Node() {
   }
 
   /**
-   * Returns the status indicator rectangle in screen coordinates. If this status indicator is not
-   * visible, returns an empty [Rect2].
+   * Returns the status indicator rectangle in screen coordinates. If this status indicator is not visible, returns an empty [Rect2].
    */
   public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
@@ -147,30 +142,30 @@ public open class StatusIndicator : Node() {
 
   public object MethodBindings {
     internal val setTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "set_tooltip", 83702148)
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_tooltip", 83_702_148)
 
     internal val getTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "get_tooltip", 201670096)
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_tooltip", 201_670_096)
 
     internal val setIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "set_icon", 4051416890)
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_icon", 4_051_416_890)
 
     internal val getIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "get_icon", 3635182373)
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_icon", 3_635_182_373)
 
     internal val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "set_visible", 2586408642)
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_visible", 2_586_408_642)
 
     internal val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "is_visible", 36873697)
+        TypeManager.getMethodBindPtr("StatusIndicator", "is_visible", 36_873_697)
 
     internal val setMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "set_menu", 1348162250)
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_menu", 1_348_162_250)
 
     internal val getMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "get_menu", 4075236667)
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_menu", 4_075_236_667)
 
     internal val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "get_rect", 1639390495)
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_rect", 1_639_390_495)
   }
 }

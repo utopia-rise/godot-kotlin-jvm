@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,17 +13,12 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for
- * using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the
- * StreamPeer, so the user should not read or write to the wrapped StreamPeer directly.
+ * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the StreamPeer, so the user should not read or write to the wrapped StreamPeer directly.
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class PacketPeerStream : PacketPeer() {
@@ -57,11 +49,11 @@ public open class PacketPeerStream : PacketPeer() {
       setStreamPeer(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(441, scriptIndex)
   }
 
-  public final fun setStreamPeer(peer: StreamPeer?): Unit {
+  public final fun setStreamPeer(peer: StreamPeer?) {
     TransferContext.writeArguments(OBJECT to peer)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPeerPtr, NIL)
   }
@@ -72,12 +64,12 @@ public open class PacketPeerStream : PacketPeer() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
 
-  public final fun setInputBufferMaxSize(maxSizeBytes: Int): Unit {
+  public final fun setInputBufferMaxSize(maxSizeBytes: Int) {
     TransferContext.writeArguments(LONG to maxSizeBytes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInputBufferMaxSizePtr, NIL)
   }
 
-  public final fun setOutputBufferMaxSize(maxSizeBytes: Int): Unit {
+  public final fun setOutputBufferMaxSize(maxSizeBytes: Int) {
     TransferContext.writeArguments(LONG to maxSizeBytes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOutputBufferMaxSizePtr, NIL)
   }
@@ -98,21 +90,21 @@ public open class PacketPeerStream : PacketPeer() {
 
   public object MethodBindings {
     internal val setStreamPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "set_stream_peer", 3281897016)
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_stream_peer", 3_281_897_016)
 
     internal val getStreamPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "get_stream_peer", 2741655269)
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_stream_peer", 2_741_655_269)
 
     internal val setInputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "set_input_buffer_max_size", 1286410249)
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_input_buffer_max_size", 1_286_410_249)
 
     internal val setOutputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "set_output_buffer_max_size", 1286410249)
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_output_buffer_max_size", 1_286_410_249)
 
     internal val getInputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "get_input_buffer_max_size", 3905245786)
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_input_buffer_max_size", 3_905_245_786)
 
     internal val getOutputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "get_output_buffer_max_size", 3905245786)
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_output_buffer_max_size", 3_905_245_786)
   }
 }

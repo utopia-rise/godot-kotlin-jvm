@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,15 +15,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This resource defines a custom rendering effect that can be applied to [Viewport]s through the
- * viewports' [Environment]. You can implement a callback that is called during rendering at a given
- * stage of the rendering pipeline and allows you to insert additional passes. Note that this callback
- * happens on the rendering thread. CompositorEffect is an abstract base class and must be extended to
- * implement specific rendering logic.
+ * This resource defines a custom rendering effect that can be applied to [Viewport]s through the viewports' [Environment]. You can implement a callback that is called during rendering at a given stage of the rendering pipeline and allows you to insert additional passes. Note that this callback happens on the rendering thread. CompositorEffect is an abstract base class and must be extended to implement specific rendering logic.
  */
 @GodotBaseType
 public open class CompositorEffect : Resource() {
@@ -42,8 +34,7 @@ public open class CompositorEffect : Resource() {
     }
 
   /**
-   * The type of effect that is implemented, determines at what stage of rendering the callback is
-   * called.
+   * The type of effect that is implemented, determines at what stage of rendering the callback is called.
    */
   public final inline var effectCallbackType: EffectCallbackType
     @JvmName("effectCallbackTypeProperty")
@@ -54,8 +45,7 @@ public open class CompositorEffect : Resource() {
     }
 
   /**
-   * If `true` and MSAA is enabled, this will trigger a color buffer resolve before the effect is
-   * run.
+   * If `true` and MSAA is enabled, this will trigger a color buffer resolve before the effect is run.
    *
    * **Note:** In [_renderCallback], to access the resolved buffer use:
    *
@@ -73,8 +63,7 @@ public open class CompositorEffect : Resource() {
     }
 
   /**
-   * If `true` and MSAA is enabled, this will trigger a depth buffer resolve before the effect is
-   * run.
+   * If `true` and MSAA is enabled, this will trigger a depth buffer resolve before the effect is run.
    *
    * **Note:** In [_renderCallback], to access the resolved buffer use:
    *
@@ -110,21 +99,16 @@ public open class CompositorEffect : Resource() {
     }
 
   /**
-   * If `true` this triggers normal and roughness data to be output during our depth pre-pass, only
-   * applicable for the Forward+ renderer.
+   * If `true` this triggers normal and roughness data to be output during our depth pre-pass, only applicable for the Forward+ renderer.
    *
    * **Note:** In [_renderCallback], to access the roughness buffer use:
    *
    * ```
    * var render_scene_buffers = render_data.get_render_scene_buffers()
-   * var roughness_buffer = render_scene_buffers.get_texture("forward_clustered",
-   * "normal_roughness")
+   * var roughness_buffer = render_scene_buffers.get_texture("forward_clustered", "normal_roughness")
    * ```
    *
-   * The raw normal and roughness buffer is stored in an optimized format, different than the one
-   * available in Spatial shaders. When sampling the buffer, a conversion function must be applied. Use
-   * this function, copied from
-   * [url=https://github.com/godotengine/godot/blob/da5f39889f155658cef7f7ec3cc1abb94e17d815/servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl#L334-L341]here[/url]:
+   * The raw normal and roughness buffer is stored in an optimized format, different than the one available in Spatial shaders. When sampling the buffer, a conversion function must be applied. Use this function, copied from [url=https://github.com/godotengine/godot/blob/da5f39889f155658cef7f7ec3cc1abb94e17d815/servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl#L334-L341]here[/url]:
    *
    * ```
    * vec4 normal_roughness_compatibility(vec4 p_normal_roughness) {
@@ -146,8 +130,7 @@ public open class CompositorEffect : Resource() {
     }
 
   /**
-   * If `true` this triggers specular data being rendered to a separate buffer and combined after
-   * effects have been applied, only applicable for the Forward+ renderer.
+   * If `true` this triggers specular data being rendered to a separate buffer and combined after effects have been applied, only applicable for the Forward+ renderer.
    */
   public final inline var needsSeparateSpecular: Boolean
     @JvmName("needsSeparateSpecularProperty")
@@ -157,20 +140,18 @@ public open class CompositorEffect : Resource() {
       setNeedsSeparateSpecular(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(165, scriptIndex)
   }
 
   /**
-   * Implement this function with your custom rendering code. [effectCallbackType] should always
-   * match the effect callback type you've specified in [effectCallbackType]. [renderData] provides
-   * access to the rendering state, it is only valid during rendering and should not be stored.
+   * Implement this function with your custom rendering code. [effectCallbackType] should always match the effect callback type you've specified in [effectCallbackType]. [renderData] provides access to the rendering state, it is only valid during rendering and should not be stored.
    */
-  public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?): Unit {
-    throw NotImplementedError("CompositorEffect::_renderCallback is not implemented.")
+  public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?) {
+    throw NotImplementedError("_renderCallback is not implemented for CompositorEffect")
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -181,7 +162,7 @@ public open class CompositorEffect : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEffectCallbackType(effectCallbackType: EffectCallbackType): Unit {
+  public final fun setEffectCallbackType(effectCallbackType: EffectCallbackType) {
     TransferContext.writeArguments(LONG to effectCallbackType.id)
     TransferContext.callMethod(ptr, MethodBindings.setEffectCallbackTypePtr, NIL)
   }
@@ -192,7 +173,7 @@ public open class CompositorEffect : Resource() {
     return EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAccessResolvedColor(enable: Boolean): Unit {
+  public final fun setAccessResolvedColor(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAccessResolvedColorPtr, NIL)
   }
@@ -203,7 +184,7 @@ public open class CompositorEffect : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAccessResolvedDepth(enable: Boolean): Unit {
+  public final fun setAccessResolvedDepth(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAccessResolvedDepthPtr, NIL)
   }
@@ -214,7 +195,7 @@ public open class CompositorEffect : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNeedsMotionVectors(enable: Boolean): Unit {
+  public final fun setNeedsMotionVectors(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setNeedsMotionVectorsPtr, NIL)
   }
@@ -225,7 +206,7 @@ public open class CompositorEffect : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNeedsNormalRoughness(enable: Boolean): Unit {
+  public final fun setNeedsNormalRoughness(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setNeedsNormalRoughnessPtr, NIL)
   }
@@ -236,7 +217,7 @@ public open class CompositorEffect : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNeedsSeparateSpecular(enable: Boolean): Unit {
+  public final fun setNeedsSeparateSpecular(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setNeedsSeparateSpecularPtr, NIL)
   }
@@ -251,8 +232,7 @@ public open class CompositorEffect : Resource() {
     id: Long,
   ) {
     /**
-     * The callback is called before our opaque rendering pass, but after depth prepass (if
-     * applicable).
+     * The callback is called before our opaque rendering pass, but after depth prepass (if applicable).
      */
     PRE_OPAQUE(0),
     /**
@@ -260,18 +240,15 @@ public open class CompositorEffect : Resource() {
      */
     POST_OPAQUE(1),
     /**
-     * The callback is called after our sky is rendered, but before our back buffers are created
-     * (and if enabled, before subsurface scattering and/or screen space reflections).
+     * The callback is called after our sky is rendered, but before our back buffers are created (and if enabled, before subsurface scattering and/or screen space reflections).
      */
     POST_SKY(2),
     /**
-     * The callback is called before our transparent rendering pass, but after our sky is rendered
-     * and we've created our back buffers.
+     * The callback is called before our transparent rendering pass, but after our sky is rendered and we've created our back buffers.
      */
     PRE_TRANSPARENT(3),
     /**
-     * The callback is called after our transparent rendering pass, but before any built-in
-     * post-processing effects and output to our render target.
+     * The callback is called after our transparent rendering pass, but before any built-in post-processing effects and output to our render target.
      */
     POST_TRANSPARENT(4),
     /**
@@ -294,45 +271,45 @@ public open class CompositorEffect : Resource() {
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_enabled", 2_586_408_642)
 
     internal val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_enabled", 36_873_697)
 
     internal val setEffectCallbackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_effect_callback_type", 1390728419)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_effect_callback_type", 1_390_728_419)
 
     internal val getEffectCallbackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_effect_callback_type", 1221912590)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_effect_callback_type", 1_221_912_590)
 
     internal val setAccessResolvedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_color", 2586408642)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_color", 2_586_408_642)
 
     internal val getAccessResolvedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_color", 36873697)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_color", 36_873_697)
 
     internal val setAccessResolvedDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth", 2586408642)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth", 2_586_408_642)
 
     internal val getAccessResolvedDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth", 36873697)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth", 36_873_697)
 
     internal val setNeedsMotionVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors", 2586408642)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors", 2_586_408_642)
 
     internal val getNeedsMotionVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors", 36873697)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors", 36_873_697)
 
     internal val setNeedsNormalRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness", 2586408642)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness", 2_586_408_642)
 
     internal val getNeedsNormalRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness", 36873697)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness", 36_873_697)
 
     internal val setNeedsSeparateSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular", 2586408642)
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular", 2_586_408_642)
 
     internal val getNeedsSeparateSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular", 36873697)
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular", 36_873_697)
   }
 }
