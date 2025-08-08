@@ -33,10 +33,10 @@ functions = [
 	basis,
 	color,
 	plane,
-	quat,
 	rect2,
-	transform,
 	transform2_d,
 	vector2,
-	vector3
+	vector3,
+	quat,
+	transform
 ]
