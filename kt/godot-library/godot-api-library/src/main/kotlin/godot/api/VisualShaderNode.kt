@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -157,7 +158,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
 
   public enum class PortType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Floating-point scalar. Translated to [code skip-lint]float[/code] type in shader code.
      */
@@ -204,7 +205,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     MAX(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -51,7 +52,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
 
   public enum class Function(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Returns the sine of the parameter. Translates to `sin(x)` in the Godot Shader Language.
      */
@@ -209,7 +210,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
     MAX(32),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

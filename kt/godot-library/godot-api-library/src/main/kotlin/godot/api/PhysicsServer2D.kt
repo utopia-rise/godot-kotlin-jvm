@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.VariantCaster.ANY
@@ -1572,7 +1573,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class SpaceParameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision
      * status has to be recalculated. The default value of this parameter is
@@ -1632,7 +1633,7 @@ public object PhysicsServer2D : Object() {
     SOLVER_ITERATIONS(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1644,7 +1645,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class ShapeType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This is the constant for creating world boundary shapes. A world boundary shape is an
      * *infinite* line with an origin point, and a normal. Thus, it can be used for front/behind
@@ -1694,7 +1695,7 @@ public object PhysicsServer2D : Object() {
     CUSTOM(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1706,7 +1707,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class AreaParameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
      * possible values. The default value of this parameter is [AREA_SPACE_OVERRIDE_DISABLED].
@@ -1767,7 +1768,7 @@ public object PhysicsServer2D : Object() {
     PRIORITY(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1779,7 +1780,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class AreaSpaceOverrideMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect
      * collisions, and objects entering or exiting them.
@@ -1807,7 +1808,7 @@ public object PhysicsServer2D : Object() {
     REPLACE_COMBINE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1819,7 +1820,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class BodyMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
      * collide with other bodies along its path when moved.
@@ -1842,7 +1843,7 @@ public object PhysicsServer2D : Object() {
     RIGID_LINEAR(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1854,7 +1855,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class BodyParameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get a body's bounce factor. The default value of this parameter is `0.0`.
      */
@@ -1919,7 +1920,7 @@ public object PhysicsServer2D : Object() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1931,7 +1932,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class BodyDampMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The body's damping value is added to any value set in areas or the default value.
      */
@@ -1942,7 +1943,7 @@ public object PhysicsServer2D : Object() {
     REPLACE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1954,7 +1955,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class BodyState(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get the current transform matrix of the body.
      */
@@ -1977,7 +1978,7 @@ public object PhysicsServer2D : Object() {
     CAN_SLEEP(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1989,7 +1990,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class JointType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to create pin joints.
      */
@@ -2008,7 +2009,7 @@ public object PhysicsServer2D : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2020,7 +2021,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class JointParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get how fast the joint pulls the bodies back to satisfy the joint constraint.
      * The lower the value, the more the two bodies can pull on the joint. The default value of this
@@ -2045,7 +2046,7 @@ public object PhysicsServer2D : Object() {
     MAX_FORCE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2057,7 +2058,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class PinJointParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get a how much the bond of the pin joint can flex. The default value of this
      * parameter is `0.0`.
@@ -2077,7 +2078,7 @@ public object PhysicsServer2D : Object() {
     MOTOR_TARGET_VELOCITY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2089,7 +2090,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class PinJointFlag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If `true`, the pin has a maximum and a minimum rotation.
      */
@@ -2100,7 +2101,7 @@ public object PhysicsServer2D : Object() {
     MOTOR_ENABLED(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2112,7 +2113,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class DampedSpringParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sets the resting length of the spring joint. The joint will always try to go to back this
      * length when pulled apart. The default value of this parameter is the distance between the
@@ -2132,7 +2133,7 @@ public object PhysicsServer2D : Object() {
     DAMPING(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2144,7 +2145,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class CCDMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables continuous collision detection. This is the fastest way to detect body collisions,
      * but it can miss small and/or fast-moving objects.
@@ -2162,7 +2163,7 @@ public object PhysicsServer2D : Object() {
     CAST_SHAPE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2174,7 +2175,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class AreaBodyStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The value of the first parameter and area callback function receives, when an object enters
      * one of its shapes.
@@ -2187,7 +2188,7 @@ public object PhysicsServer2D : Object() {
     REMOVED(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2199,7 +2200,7 @@ public object PhysicsServer2D : Object() {
 
   public enum class ProcessInfo(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to get the number of objects that are not sleeping.
      */
@@ -2214,7 +2215,7 @@ public object PhysicsServer2D : Object() {
     INFO_ISLAND_COUNT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

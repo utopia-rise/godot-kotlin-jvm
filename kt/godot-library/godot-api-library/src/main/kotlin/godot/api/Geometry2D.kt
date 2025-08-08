@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.VariantArray
@@ -479,7 +480,7 @@ public object Geometry2D : Object() {
 
   public enum class PolyBooleanOperation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Create regions where either subject or clip polygons (or both) are filled.
      */
@@ -499,7 +500,7 @@ public object Geometry2D : Object() {
     OPERATION_XOR(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -511,7 +512,7 @@ public object Geometry2D : Object() {
 
   public enum class PolyJoinType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
      */
@@ -529,7 +530,7 @@ public object Geometry2D : Object() {
     JOIN_MITER(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -541,7 +542,7 @@ public object Geometry2D : Object() {
 
   public enum class PolyEndType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Endpoints are joined using the [PolyJoinType] value and the path filled as a polygon.
      */
@@ -564,7 +565,7 @@ public object Geometry2D : Object() {
     END_ROUND(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

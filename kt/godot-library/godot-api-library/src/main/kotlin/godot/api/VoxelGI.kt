@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -219,7 +220,7 @@ public open class VoxelGI : VisualInstance3D() {
 
   public enum class Subdiv(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use 64 subdivisions. This is the lowest quality setting, but the fastest. Use it if you can,
      * but especially use it on lower-end hardware.
@@ -244,7 +245,7 @@ public open class VoxelGI : VisualInstance3D() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

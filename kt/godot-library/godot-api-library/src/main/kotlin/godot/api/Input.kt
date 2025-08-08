@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.JoyAxis
 import godot.core.JoyButton
 import godot.core.Key
@@ -1057,7 +1058,7 @@ public object Input : Object() {
 
   public enum class MouseMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
@@ -1088,7 +1089,7 @@ public object Input : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1100,7 +1101,7 @@ public object Input : Object() {
 
   public enum class CursorShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Arrow cursor. Standard, default pointing cursor.
      */
@@ -1187,7 +1188,7 @@ public object Input : Object() {
     HELP(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

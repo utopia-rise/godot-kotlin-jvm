@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
@@ -1108,7 +1109,7 @@ public open class Animation : Resource() {
 
   public enum class TrackType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Value tracks set values in node properties, but only those which can be interpolated. For 3D
      * position/rotation/scale, using the dedicated [TYPE_POSITION_3D], [TYPE_ROTATION_3D] and
@@ -1151,7 +1152,7 @@ public open class Animation : Resource() {
     TYPE_ANIMATION(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1163,7 +1164,7 @@ public open class Animation : Resource() {
 
   public enum class InterpolationType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No interpolation (nearest value).
      */
@@ -1192,7 +1193,7 @@ public open class Animation : Resource() {
     CUBIC_ANGLE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1204,7 +1205,7 @@ public open class Animation : Resource() {
 
   public enum class UpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Update between keyframes and hold the value.
      */
@@ -1221,7 +1222,7 @@ public open class Animation : Resource() {
     CAPTURE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1233,7 +1234,7 @@ public open class Animation : Resource() {
 
   public enum class LoopMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * At both ends of the animation, the animation will stop playing.
      */
@@ -1249,7 +1250,7 @@ public open class Animation : Resource() {
     PINGPONG(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1261,7 +1262,7 @@ public open class Animation : Resource() {
 
   public enum class LoopedFlag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This flag indicates that the animation proceeds without any looping.
      */
@@ -1278,7 +1279,7 @@ public open class Animation : Resource() {
     START(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1290,7 +1291,7 @@ public open class Animation : Resource() {
 
   public enum class FindMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Finds the nearest time key.
      */
@@ -1305,7 +1306,7 @@ public open class Animation : Resource() {
     EXACT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

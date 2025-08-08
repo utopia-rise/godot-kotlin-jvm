@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
@@ -286,7 +287,7 @@ public open class AudioStreamWAV : AudioStream() {
 
   public enum class Format(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 8-bit PCM audio codec.
      */
@@ -305,7 +306,7 @@ public open class AudioStreamWAV : AudioStream() {
     QOA(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -317,7 +318,7 @@ public open class AudioStreamWAV : AudioStream() {
 
   public enum class LoopMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Audio does not loop.
      */
@@ -336,7 +337,7 @@ public open class AudioStreamWAV : AudioStream() {
     BACKWARD(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

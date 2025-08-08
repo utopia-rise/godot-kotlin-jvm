@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -289,7 +290,7 @@ public open class ENetConnection : RefCounted() {
 
   public enum class CompressionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No compression. This uses the most bandwidth, but has the upside of requiring the fewest CPU
      * resources. This option may also be used to make network debugging using tools like Wireshark
@@ -319,7 +320,7 @@ public open class ENetConnection : RefCounted() {
     ZSTD(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -331,7 +332,7 @@ public open class ENetConnection : RefCounted() {
 
   public enum class EventType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * An error occurred during [service]. You will likely need to [destroy] the host and recreate
      * it.
@@ -362,7 +363,7 @@ public open class ENetConnection : RefCounted() {
     RECEIVE(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -374,7 +375,7 @@ public open class ENetConnection : RefCounted() {
 
   public enum class HostStatistic(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Total data sent.
      */
@@ -393,7 +394,7 @@ public open class ENetConnection : RefCounted() {
     TOTAL_RECEIVED_PACKETS(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class VerticalAlignment(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Vertical top alignment, usually for text-derived classes.
    */
@@ -30,7 +30,7 @@ public enum class VerticalAlignment(
   FILL(3),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

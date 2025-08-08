@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.Rect2
 import godot.core.Signal0
@@ -861,7 +862,7 @@ public open class Tree : Control() {
 
   public enum class SelectMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Allows selection of a single cell at a time. From the perspective of items, only a single
      * item is allowed to be selected. And there is only one column selected in the selected item.
@@ -889,7 +890,7 @@ public open class Tree : Control() {
     MULTI(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -901,7 +902,7 @@ public open class Tree : Control() {
 
   public enum class DropModeFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables all drop sections, but still allows to detect the "on item" drop section by
      * [getDropSectionAtPosition].
@@ -926,7 +927,7 @@ public open class Tree : Control() {
     INBETWEEN(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

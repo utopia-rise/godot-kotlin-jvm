@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -164,7 +165,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
 
   public enum class BoneUpdate(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
      * bones.
@@ -181,7 +182,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

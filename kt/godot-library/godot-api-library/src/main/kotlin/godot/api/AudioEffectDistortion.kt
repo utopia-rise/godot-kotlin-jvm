@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -157,7 +158,7 @@ public open class AudioEffectDistortion : AudioEffect() {
 
   public enum class Mode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
      */
@@ -180,7 +181,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     WAVESHAPE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

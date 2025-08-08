@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class Side(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Left side, usually used for [Control] or [StyleBox]-derived classes.
    */
@@ -30,7 +30,7 @@ public enum class Side(
   BOTTOM(3),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

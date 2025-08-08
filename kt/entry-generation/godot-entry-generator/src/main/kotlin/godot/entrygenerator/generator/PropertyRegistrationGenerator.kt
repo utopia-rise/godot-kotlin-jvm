@@ -5,6 +5,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.entrygenerator.ext.hasAnnotation
+import godot.entrygenerator.ext.isEnum
 import godot.entrygenerator.ext.toGodotVariantType
 import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.generator.hintstring.PropertyHintStringGeneratorProvider
@@ -16,7 +17,6 @@ import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotPackage
 
 object PropertyRegistrationGenerator {
     fun generate(
@@ -28,12 +28,6 @@ object PropertyRegistrationGenerator {
             .properties
             .forEach { registeredProperty ->
                 when {
-                    registeredProperty.type.kind == TypeKind.ENUM_CLASS -> registerEnum(
-                        registeredProperty,
-                        className,
-                        registerClassControlFlow,
-                    )
-
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
                         registeredProperty.annotations.hasAnnotation<EnumAnnotation>() -> registerEnumFlag(
@@ -59,18 +53,48 @@ object PropertyRegistrationGenerator {
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
-        val typeFqNameWithNullability = if (registeredProperty.type.isNullable) {
-            "${registeredProperty.type.fqName}?"
+        val typeFqName = if (registeredProperty.type.isEnum()) {
+            "Int"
         } else {
             registeredProperty.type.fqName
         }
 
+        val typeFqNameWithNullability = if (registeredProperty.type.isNullable) {
+            "${typeFqName}?"
+        } else {
+            typeFqName
+        }
+
+        val variantType = if (registeredProperty.type.isEnum()) {
+            "%T(%T.entries.toTypedArray())"
+        } else {
+            "%T"
+        }
+
+        val typeClassName = ClassName(
+            registeredProperty.type.fqName.substringBeforeLast("."),
+            registeredProperty.type.fqName.substringAfterLast("."),
+        )
+
+        val variantTypeArguments = buildList {
+            add(registeredProperty.type.toKtVariantType())
+
+            if (registeredProperty.type.isEnum()) {
+                add(typeClassName)
+            }
+
+            add(registeredProperty.type.toGodotVariantType())
+
+            if (registeredProperty.type.isEnum()) {
+                add(typeClassName)
+            }
+        }
+
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·%L.flag)",
+                "property(%L,·$variantType,·$variantType,·%S,·%T,·%S,·%L.flag)",
                 getPropertyReference(registeredProperty, className),
-                registeredProperty.type.toKtVariantType(),
-                registeredProperty.type.toGodotVariantType(),
+                *variantTypeArguments.toTypedArray(),
                 typeFqNameWithNullability,
                 PropertyTypeHintProvider.provide(registeredProperty),
                 PropertyHintStringGeneratorProvider
@@ -106,23 +130,6 @@ object PropertyRegistrationGenerator {
         registerClassControlFlow
             .addStatement(
                 "enumFlagProperty(%L,·%L.flag,·%S)",
-                getPropertyReference(registeredProperty, className),
-                getPropertyUsage(registeredProperty),
-                PropertyHintStringGeneratorProvider
-                    .provide(registeredProperty)
-                    .getHintString()
-                    .replace("?", ""),
-            )
-    }
-
-    private fun registerEnum(
-        registeredProperty: RegisteredProperty,
-        className: ClassName,
-        registerClassControlFlow: FunSpec.Builder,
-    ) {
-        registerClassControlFlow
-            .addStatement(
-                "enumProperty(%L,·%L.flag,·%S)",
                 getPropertyReference(registeredProperty, className),
                 getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider

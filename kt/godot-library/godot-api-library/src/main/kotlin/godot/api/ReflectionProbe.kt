@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -520,7 +521,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   public enum class UpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Update the probe once on the next frame (recommended for most objects). The corresponding
      * radiance map will be generated over the following six frames. This takes more time to update
@@ -539,7 +540,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     ALWAYS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -551,7 +552,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   public enum class AmbientMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [size].
      */
@@ -568,7 +569,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     COLOR(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -226,7 +227,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
   public enum class Resolution(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least
      * precise.
@@ -259,7 +260,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -260,7 +261,7 @@ public open class PathFollow3D : Node3D() {
 
   public enum class RotationMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Forbids the PathFollow3D to rotate.
      */
@@ -284,7 +285,7 @@ public open class PathFollow3D : Node3D() {
     ORIENTED(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

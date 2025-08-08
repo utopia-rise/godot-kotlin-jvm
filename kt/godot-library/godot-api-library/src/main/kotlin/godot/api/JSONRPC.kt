@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
@@ -142,7 +143,7 @@ public open class JSONRPC : Object() {
 
   public enum class ErrorCode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The request could not be parsed as it was not valid by JSON standard ([JSON.parse] failed).
      */
@@ -166,7 +167,7 @@ public open class JSONRPC : Object() {
     INTERNAL_ERROR(-32603),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -236,7 +237,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   public enum class PeerState(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The peer is disconnected.
      */
@@ -281,7 +282,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     STATE_ZOMBIE(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -293,7 +294,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   public enum class PeerStatistic(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Mean packet loss of reliable packets as a ratio with respect to the [PACKET_LOSS_SCALE].
      */
@@ -360,7 +361,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     PACKET_THROTTLE_INTERVAL(13),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -307,7 +308,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
   public enum class Operation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Geometry of both primitives is merged, intersecting geometry is removed.
      */
@@ -322,7 +323,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     SUBTRACTION(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

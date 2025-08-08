@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -547,7 +548,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   public enum class ShadowCastingSetting(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Will not cast any shadows. Use this to improve performance for small geometry that is
      * unlikely to cast noticeable shadows (such as debris).
@@ -576,7 +577,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     SHADOWS_ONLY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -588,7 +589,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   public enum class GIMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disabled global illumination mode. Use for dynamic objects that do not contribute to global
      * illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will *receive*
@@ -611,7 +612,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     DYNAMIC(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -623,7 +624,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   public enum class LightmapScale(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The standard texel density for lightmapping with [LightmapGI].
      */
@@ -649,7 +650,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -661,7 +662,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   public enum class VisibilityRangeFadeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This
      * is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending
@@ -692,7 +693,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     DEPENDENCIES(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

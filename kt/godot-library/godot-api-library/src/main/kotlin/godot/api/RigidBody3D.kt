@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Basis
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
@@ -1098,7 +1099,7 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   public enum class FreezeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
      * only moved by user code and doesn't collide with other bodies along its path.
@@ -1111,7 +1112,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     KINEMATIC(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1123,7 +1124,7 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   public enum class CenterOfMassMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * In this mode, the body's center of mass is calculated automatically based on its shapes. This
      * assumes that the shapes' origins are also their center of mass.
@@ -1136,7 +1137,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     CUSTOM(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1148,7 +1149,7 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   public enum class DampMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
@@ -1160,7 +1161,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     REPLACE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

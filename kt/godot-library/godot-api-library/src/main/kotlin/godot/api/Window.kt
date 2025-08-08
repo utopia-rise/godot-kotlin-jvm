@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
@@ -2240,7 +2241,7 @@ public open class Window : Viewport() {
 
   public enum class Mode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
      * screen).
@@ -2302,7 +2303,7 @@ public open class Window : Viewport() {
     EXCLUSIVE_FULLSCREEN(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2314,7 +2315,7 @@ public open class Window : Viewport() {
 
   public enum class Flags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
@@ -2392,7 +2393,7 @@ public open class Window : Viewport() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2404,7 +2405,7 @@ public open class Window : Viewport() {
 
   public enum class ContentScaleMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The content will not be scaled to match the [Window]'s size.
      */
@@ -2421,7 +2422,7 @@ public open class Window : Viewport() {
     VIEWPORT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2433,7 +2434,7 @@ public open class Window : Viewport() {
 
   public enum class ContentScaleAspect(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
      */
@@ -2461,7 +2462,7 @@ public open class Window : Viewport() {
     EXPAND(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2473,7 +2474,7 @@ public open class Window : Viewport() {
 
   public enum class ContentScaleStretch(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The content will be stretched according to a fractional factor. This fills all the space
      * available in the window, but allows "pixel wobble" to occur due to uneven pixel scaling.
@@ -2486,7 +2487,7 @@ public open class Window : Viewport() {
     INTEGER(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2498,7 +2499,7 @@ public open class Window : Viewport() {
 
   public enum class LayoutDirection(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Automatic layout direction, determined from the parent window layout direction.
      */
@@ -2526,7 +2527,7 @@ public open class Window : Viewport() {
     LOCALE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2538,7 +2539,7 @@ public open class Window : Viewport() {
 
   public enum class WindowInitialPosition(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Initial window position is determined by [position].
      */
@@ -2566,7 +2567,7 @@ public open class Window : Viewport() {
     CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

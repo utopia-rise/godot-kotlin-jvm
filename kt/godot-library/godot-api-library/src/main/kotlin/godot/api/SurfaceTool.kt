@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
@@ -452,7 +453,7 @@ public open class SurfaceTool : RefCounted() {
 
   public enum class CustomFormat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
      * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
@@ -499,7 +500,7 @@ public open class SurfaceTool : RefCounted() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -511,7 +512,7 @@ public open class SurfaceTool : RefCounted() {
 
   public enum class SkinWeightCount(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Each individual vertex can be influenced by only 4 bone weights.
      */
@@ -522,7 +523,7 @@ public open class SurfaceTool : RefCounted() {
     SKIN_8_WEIGHTS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal2
@@ -432,7 +433,7 @@ public open class AnimationNode : Resource() {
 
   public enum class FilterAction(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not use filtering.
      */
@@ -451,7 +452,7 @@ public open class AnimationNode : Resource() {
     BLEND(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

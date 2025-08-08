@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -369,7 +370,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
 
   public enum class StateMachineType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Seeking to the beginning is treated as playing from the start state. Transition to the end
      * state is treated as exiting the state machine.
@@ -389,7 +390,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     GROUPED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

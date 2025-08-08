@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class HorizontalAlignment(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Horizontal left alignment, usually for text-derived classes.
    */
@@ -30,7 +30,7 @@ public enum class HorizontalAlignment(
   FILL(3),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

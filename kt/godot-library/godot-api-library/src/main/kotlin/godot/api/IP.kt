@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -172,7 +173,7 @@ public object IP : Object() {
 
   public enum class ResolverStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * DNS hostname resolver status: No status.
      */
@@ -191,7 +192,7 @@ public object IP : Object() {
     ERROR(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -203,7 +204,7 @@ public object IP : Object() {
 
   public enum class Type(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Address type: None.
      */
@@ -222,7 +223,7 @@ public object IP : Object() {
     ANY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

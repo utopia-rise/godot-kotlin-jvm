@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantCaster.ANY
@@ -1944,7 +1945,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class JointType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [Joint3D] is a [PinJoint3D].
      */
@@ -1971,7 +1972,7 @@ public object PhysicsServer3D : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1983,7 +1984,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class PinJointParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The strength with which the pinned objects try to stay in positional relation to each other.
      *
@@ -2003,7 +2004,7 @@ public object PhysicsServer3D : Object() {
     IMPULSE_CLAMP(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2015,7 +2016,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class HingeJointParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The speed with which the two bodies get pulled together when they move in different
      * directions.
@@ -2048,7 +2049,7 @@ public object PhysicsServer3D : Object() {
     MOTOR_MAX_IMPULSE(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2060,7 +2061,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class HingeJointFlag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If `true`, the Hinge has a maximum and a minimum rotation.
      */
@@ -2071,7 +2072,7 @@ public object PhysicsServer3D : Object() {
     ENABLE_MOTOR(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2083,7 +2084,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class SliderJointParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The maximum difference between the pivot points on their X axis before damping happens.
      */
@@ -2181,7 +2182,7 @@ public object PhysicsServer3D : Object() {
     MAX(22),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2193,7 +2194,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class ConeTwistJointParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
      *
@@ -2227,7 +2228,7 @@ public object PhysicsServer3D : Object() {
     RELAXATION(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2239,7 +2240,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class G6DOFJointAxisParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The minimum difference between the pivot points' axes.
      */
@@ -2319,7 +2320,7 @@ public object PhysicsServer3D : Object() {
     MAX(22),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2331,7 +2332,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class G6DOFJointAxisFlag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If set, linear motion is possible within the given limits.
      */
@@ -2356,7 +2357,7 @@ public object PhysicsServer3D : Object() {
     FLAG_MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2368,7 +2369,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class ShapeType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [Shape3D] is a [WorldBoundaryShape3D].
      */
@@ -2417,7 +2418,7 @@ public object PhysicsServer3D : Object() {
     CUSTOM(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2429,7 +2430,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class AreaParameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
      * possible values.
@@ -2503,7 +2504,7 @@ public object PhysicsServer3D : Object() {
     WIND_ATTENUATION_FACTOR(13),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2515,7 +2516,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class AreaSpaceOverrideMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect
      * collisions, and objects entering or exiting them.
@@ -2543,7 +2544,7 @@ public object PhysicsServer3D : Object() {
     REPLACE_COMBINE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2555,7 +2556,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class BodyMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
      * collide with other bodies along its path when moved.
@@ -2578,7 +2579,7 @@ public object PhysicsServer3D : Object() {
     RIGID_LINEAR(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2590,7 +2591,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class BodyParameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get a body's bounce factor.
      */
@@ -2637,7 +2638,7 @@ public object PhysicsServer3D : Object() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2649,7 +2650,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class BodyDampMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The body's damping value is added to any value set in areas or the default value.
      */
@@ -2660,7 +2661,7 @@ public object PhysicsServer3D : Object() {
     REPLACE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2672,7 +2673,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class BodyState(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get the current transform matrix of the body.
      */
@@ -2695,7 +2696,7 @@ public object PhysicsServer3D : Object() {
     CAN_SLEEP(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2707,7 +2708,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class AreaBodyStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The value of the first parameter and area callback function receives, when an object enters
      * one of its shapes.
@@ -2720,7 +2721,7 @@ public object PhysicsServer3D : Object() {
     REMOVED(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2732,7 +2733,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class ProcessInfo(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to get the number of objects that are not sleeping.
      */
@@ -2747,7 +2748,7 @@ public object PhysicsServer3D : Object() {
     INFO_ISLAND_COUNT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2759,7 +2760,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class SpaceParameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision
      * status has to be recalculated.
@@ -2804,7 +2805,7 @@ public object PhysicsServer3D : Object() {
     SOLVER_ITERATIONS(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2816,7 +2817,7 @@ public object PhysicsServer3D : Object() {
 
   public enum class BodyAxis(
     id: Long,
-  ) {
+  ) : GodotEnum {
     LINEAR_X(1),
     LINEAR_Y(2),
     LINEAR_Z(4),
@@ -2825,7 +2826,7 @@ public object PhysicsServer3D : Object() {
     ANGULAR_Z(32),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
@@ -224,7 +225,7 @@ public open class GLTFDocument : Resource() {
 
   public enum class RootNodeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, and mark it as the
      * single root node via the `GODOT_single_root` glTF extension. This will be parsed the same as
@@ -246,7 +247,7 @@ public open class GLTFDocument : Resource() {
     MULTI_ROOT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

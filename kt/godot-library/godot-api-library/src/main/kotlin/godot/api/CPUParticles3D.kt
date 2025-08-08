@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
 import godot.core.Signal0
@@ -1762,7 +1763,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   public enum class DrawOrder(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
      */
@@ -1778,7 +1779,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     VIEW_DEPTH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1790,7 +1791,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   public enum class Parameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
      * properties.
@@ -1852,7 +1853,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     MAX(12),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1864,7 +1865,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   public enum class ParticleFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
@@ -1883,7 +1884,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1895,7 +1896,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   public enum class EmissionShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * All particles will be emitted from a single point.
      */
@@ -1933,7 +1934,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

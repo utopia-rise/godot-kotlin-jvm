@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Signal0
@@ -2733,7 +2734,7 @@ public open class Node : Object() {
 
   public enum class ProcessMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Inherits [processMode] from the node's parent. This is the default for any newly created
      * node.
@@ -2761,7 +2762,7 @@ public open class Node : Object() {
     DISABLED(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2773,7 +2774,7 @@ public open class Node : Object() {
 
   public enum class ProcessThreadGroup(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Process this node based on the thread group mode of the first parent (or grandparent) node
      * that has a thread group mode that is not inherit. See [processThreadGroup] for more information.
@@ -2791,7 +2792,7 @@ public open class Node : Object() {
     SUB_THREAD(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2859,7 +2860,7 @@ public open class Node : Object() {
 
   public enum class PhysicsInterpolationMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Inherits [physicsInterpolationMode] from the node's parent. This is the default for any newly
      * created node.
@@ -2877,7 +2878,7 @@ public open class Node : Object() {
     OFF(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2889,7 +2890,7 @@ public open class Node : Object() {
 
   public enum class DuplicateFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Duplicate the node's signal connections.
      */
@@ -2910,7 +2911,7 @@ public open class Node : Object() {
     USE_INSTANTIATION(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2922,7 +2923,7 @@ public open class Node : Object() {
 
   public enum class InternalMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The node will not be internal.
      */
@@ -2938,7 +2939,7 @@ public open class Node : Object() {
     BACK(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2950,7 +2951,7 @@ public open class Node : Object() {
 
   public enum class AutoTranslateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Inherits [autoTranslateMode] from the node's parent. This is the default for any newly
      * created node.
@@ -2970,7 +2971,7 @@ public open class Node : Object() {
     DISABLED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class MouseButton(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Enum value which doesn't correspond to any mouse button. This is used to initialize
    * [MouseButton] properties with a generic state.
@@ -55,7 +55,7 @@ public enum class MouseButton(
   XBUTTON2(9),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

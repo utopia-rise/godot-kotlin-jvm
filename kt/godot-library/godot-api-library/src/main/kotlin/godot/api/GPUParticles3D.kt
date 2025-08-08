@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Transform3D
@@ -870,7 +871,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   public enum class DrawOrder(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
      */
@@ -891,7 +892,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     VIEW_DEPTH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -903,7 +904,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   public enum class EmitFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Particle starts at the specified position.
      */
@@ -927,7 +928,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     CUSTOM(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -939,14 +940,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   public enum class TransformAlign(
     id: Long,
-  ) {
+  ) : GodotEnum {
     DISABLED(0),
     Z_BILLBOARD(1),
     Y_TO_VELOCITY(2),
     Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

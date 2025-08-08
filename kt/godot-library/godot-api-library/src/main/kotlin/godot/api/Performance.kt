@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -301,7 +302,7 @@ public object Performance : Object() {
 
   public enum class Monitor(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The number of frames rendered in the last second. This metric is only updated once per
      * second, even if queried more often. *Higher is better.*
@@ -489,7 +490,7 @@ public object Performance : Object() {
     MAX(39),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

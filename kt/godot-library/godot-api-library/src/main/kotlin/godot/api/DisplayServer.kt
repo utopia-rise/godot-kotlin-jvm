@@ -14,6 +14,7 @@ import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.Key
 import godot.core.MouseButtonMask
 import godot.core.PackedInt32Array
@@ -3225,7 +3226,7 @@ public object DisplayServer : Object() {
 
   public enum class Feature(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Display server supports global menu. This allows the application to display its menu items in
      * the operating system's top bar. **macOS**
@@ -3378,7 +3379,7 @@ public object DisplayServer : Object() {
     EMOJI_AND_SYMBOL_PICKER(31),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3390,7 +3391,7 @@ public object DisplayServer : Object() {
 
   public enum class MouseMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
@@ -3421,7 +3422,7 @@ public object DisplayServer : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3433,7 +3434,7 @@ public object DisplayServer : Object() {
 
   public enum class ScreenOrientation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default landscape orientation.
      */
@@ -3464,7 +3465,7 @@ public object DisplayServer : Object() {
     SENSOR(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3476,7 +3477,7 @@ public object DisplayServer : Object() {
 
   public enum class VirtualKeyboardType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default text virtual keyboard.
      */
@@ -3515,7 +3516,7 @@ public object DisplayServer : Object() {
     KEYBOARD_TYPE_URL(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3527,7 +3528,7 @@ public object DisplayServer : Object() {
 
   public enum class CursorShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse
      * cursor, such as a [LineEdit] or [TextEdit].
@@ -3625,7 +3626,7 @@ public object DisplayServer : Object() {
     MAX(17),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3637,7 +3638,7 @@ public object DisplayServer : Object() {
 
   public enum class FileDialogMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The native file dialog allows selecting one, and only one file.
      */
@@ -3661,7 +3662,7 @@ public object DisplayServer : Object() {
     SAVE_FILE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3673,7 +3674,7 @@ public object DisplayServer : Object() {
 
   public enum class WindowMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
      * screen).
@@ -3737,7 +3738,7 @@ public object DisplayServer : Object() {
     EXCLUSIVE_FULLSCREEN(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3749,7 +3750,7 @@ public object DisplayServer : Object() {
 
   public enum class WindowFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [windowSetSize]. This flag is ignored for full screen windows.
@@ -3824,7 +3825,7 @@ public object DisplayServer : Object() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3836,7 +3837,7 @@ public object DisplayServer : Object() {
 
   public enum class WindowEvent(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sent when the mouse pointer enters the window.
      */
@@ -3878,7 +3879,7 @@ public object DisplayServer : Object() {
     TITLEBAR_CHANGE(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3890,7 +3891,7 @@ public object DisplayServer : Object() {
 
   public enum class WindowResizeEdge(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Top-left edge of a window.
      */
@@ -3929,7 +3930,7 @@ public object DisplayServer : Object() {
     EDGE_MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3941,7 +3942,7 @@ public object DisplayServer : Object() {
 
   public enum class VSyncMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No vertical synchronization, which means the engine will display frames as fast as possible
      * (tearing may be visible). Framerate is unlimited (regardless of [Engine.maxFps]).
@@ -3973,7 +3974,7 @@ public object DisplayServer : Object() {
     VSYNC_MAILBOX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3985,7 +3986,7 @@ public object DisplayServer : Object() {
 
   public enum class HandleType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Display handle:
      *
@@ -4055,7 +4056,7 @@ public object DisplayServer : Object() {
     EGL_CONFIG(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4067,7 +4068,7 @@ public object DisplayServer : Object() {
 
   public enum class TTSUtteranceEvent(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Utterance has begun to be spoken.
      */
@@ -4086,7 +4087,7 @@ public object DisplayServer : Object() {
     BOUNDARY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

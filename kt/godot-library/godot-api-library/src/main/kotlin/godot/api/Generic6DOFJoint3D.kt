@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -103,7 +104,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
 
   public enum class Param(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The minimum difference between the pivot points' axes.
      */
@@ -181,7 +182,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
     MAX(22),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -193,7 +194,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
 
   public enum class Flag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If enabled, linear motion is possible within the given limits.
      */
@@ -218,7 +219,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

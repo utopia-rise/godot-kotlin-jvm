@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -429,7 +430,7 @@ public open class UndoRedo : Object() {
 
   public enum class MergeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Makes "do"/"undo" operations stay in separate actions.
      */
@@ -446,7 +447,7 @@ public open class UndoRedo : Object() {
     ALL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

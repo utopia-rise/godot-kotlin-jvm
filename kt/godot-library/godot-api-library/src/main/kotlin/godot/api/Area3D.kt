@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.Signal1
@@ -819,7 +820,7 @@ public open class Area3D : CollisionObject3D() {
 
   public enum class SpaceOverride(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This area does not affect gravity/damping.
      */
@@ -845,7 +846,7 @@ public open class Area3D : CollisionObject3D() {
     REPLACE_COMBINE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

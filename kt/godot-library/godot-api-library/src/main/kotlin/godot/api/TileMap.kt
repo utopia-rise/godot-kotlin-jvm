@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Rect2i
 import godot.core.Signal0
@@ -917,7 +918,7 @@ public open class TileMap : Node2D() {
 
   public enum class VisibilityMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use the debug settings to determine visibility.
      */
@@ -932,7 +933,7 @@ public open class TileMap : Node2D() {
     FORCE_SHOW(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

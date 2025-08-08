@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.Rect2i
@@ -2832,7 +2833,7 @@ public open class TextEdit : Control() {
 
   public enum class MenuItems(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Cuts (copies and clears) the selected text.
      */
@@ -2963,7 +2964,7 @@ public open class TextEdit : Control() {
     MAX(31),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2975,7 +2976,7 @@ public open class TextEdit : Control() {
 
   public enum class EditAction(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No current action.
      */
@@ -2994,7 +2995,7 @@ public open class TextEdit : Control() {
     ACTION_DELETE(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3006,7 +3007,7 @@ public open class TextEdit : Control() {
 
   public enum class SearchFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Match case when searching.
      */
@@ -3021,7 +3022,7 @@ public open class TextEdit : Control() {
     BACKWARDS(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3033,7 +3034,7 @@ public open class TextEdit : Control() {
 
   public enum class CaretType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Vertical line caret.
      */
@@ -3044,7 +3045,7 @@ public open class TextEdit : Control() {
     BLOCK(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3056,7 +3057,7 @@ public open class TextEdit : Control() {
 
   public enum class SelectionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Not selecting.
      */
@@ -3079,7 +3080,7 @@ public open class TextEdit : Control() {
     LINE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3091,7 +3092,7 @@ public open class TextEdit : Control() {
 
   public enum class LineWrappingMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Line wrapping is disabled.
      */
@@ -3102,7 +3103,7 @@ public open class TextEdit : Control() {
     BOUNDARY(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3114,7 +3115,7 @@ public open class TextEdit : Control() {
 
   public enum class GutterType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * When a gutter is set to string using [setGutterType], it is used to contain text set via the
      * [setLineGutterText] method.
@@ -3132,7 +3133,7 @@ public open class TextEdit : Control() {
     CUSTOM(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

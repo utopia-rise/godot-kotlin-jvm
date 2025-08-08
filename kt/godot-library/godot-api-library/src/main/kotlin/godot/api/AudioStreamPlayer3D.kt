@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -622,7 +623,7 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   public enum class AttenuationModel(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Attenuation of loudness according to linear distance.
      */
@@ -643,7 +644,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     DISABLED(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -655,7 +656,7 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   public enum class DopplerTracking(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables doppler tracking.
      */
@@ -671,7 +672,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     PHYSICS_STEP(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

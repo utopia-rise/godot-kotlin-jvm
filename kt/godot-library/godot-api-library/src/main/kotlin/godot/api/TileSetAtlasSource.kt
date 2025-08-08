@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantParser.BOOL
@@ -595,7 +596,7 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   public enum class TileAnimationMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Tile animations start at same time, looking identical.
      */
@@ -610,7 +611,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

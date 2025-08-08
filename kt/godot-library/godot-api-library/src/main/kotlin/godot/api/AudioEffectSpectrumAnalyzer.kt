@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -113,7 +114,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
 
   public enum class FFTSize(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable
      * over time.
@@ -145,7 +146,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

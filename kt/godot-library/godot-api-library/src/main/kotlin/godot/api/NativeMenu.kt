@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.Key
 import godot.core.RID
 import godot.core.VariantCaster.ANY
@@ -1146,7 +1147,7 @@ public object NativeMenu : Object() {
 
   public enum class Feature(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * [NativeMenu] supports native global main menu.
      */
@@ -1169,7 +1170,7 @@ public object NativeMenu : Object() {
     KEY_CALLBACK(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1181,7 +1182,7 @@ public object NativeMenu : Object() {
 
   public enum class SystemMenus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Invalid special system menu ID.
      */
@@ -1210,7 +1211,7 @@ public object NativeMenu : Object() {
     DOCK_MENU_ID(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

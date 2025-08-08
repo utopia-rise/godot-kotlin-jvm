@@ -13,6 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedInt64Array
@@ -1892,7 +1893,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class DeviceType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Rendering device type does not match any of the other enum values or is unknown.
      */
@@ -1928,7 +1929,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1940,7 +1941,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class DriverResource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Specific device object based on a physical device.
      *
@@ -2024,7 +2025,7 @@ public open class RenderingDevice internal constructor() : Object() {
     VULKAN_RENDER_PIPELINE(12),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2036,7 +2037,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class DataFormat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 4-bit-per-channel red/green channel data format, packed into 8 bits. Values are in the `[0.0,
      * 1.0]` range.
@@ -3272,7 +3273,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(232),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3357,7 +3358,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class TextureType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 1-dimensional texture.
      */
@@ -3392,7 +3393,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3404,7 +3405,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class TextureSamples(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Perform 1 texture sample (this is the fastest but lowest-quality for antialiasing).
      */
@@ -3440,7 +3441,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3552,7 +3553,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class TextureSwizzle(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Return the sampled value as-is.
      */
@@ -3587,7 +3588,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3599,7 +3600,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class TextureSliceType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 2-dimensional texture slice.
      */
@@ -3614,7 +3615,7 @@ public open class RenderingDevice internal constructor() : Object() {
     TEXTURE_SLICE_3D(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3626,7 +3627,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class SamplerFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will
      * result in a pixelated look.
@@ -3639,7 +3640,7 @@ public open class RenderingDevice internal constructor() : Object() {
     LINEAR(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3651,7 +3652,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class SamplerRepeatMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sample with repeating enabled.
      */
@@ -3684,7 +3685,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3696,7 +3697,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class SamplerBorderColor(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Return a floating-point transparent black color when sampling outside the `[0.0, 1.0]` range.
      * Only effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
@@ -3733,7 +3734,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3745,7 +3746,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class VertexFrequency(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Vertex attribute addressing is a function of the vertex. This is used to specify the rate at
      * which vertex attributes are pulled from buffers.
@@ -3758,7 +3759,7 @@ public open class RenderingDevice internal constructor() : Object() {
     INSTANCE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3770,7 +3771,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class IndexBufferFormat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Index buffer in 16-bit unsigned integer format. This limits the maximum index that can be
      * specified to `65535`.
@@ -3783,7 +3784,7 @@ public open class RenderingDevice internal constructor() : Object() {
     UINT32(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3890,7 +3891,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class UniformType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sampler uniform.
      */
@@ -3937,7 +3938,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3949,7 +3950,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class RenderPrimitive(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Point rendering primitive (with constant size, regardless of distance from camera).
      */
@@ -4017,7 +4018,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(11),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4029,7 +4030,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class PolygonCullMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not use polygon front face or backface culling.
      */
@@ -4044,7 +4045,7 @@ public open class RenderingDevice internal constructor() : Object() {
     BACK(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4056,7 +4057,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class PolygonFrontFace(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Clockwise winding order to determine which face of a polygon is its front face.
      */
@@ -4067,7 +4068,7 @@ public open class RenderingDevice internal constructor() : Object() {
     COUNTER_CLOCKWISE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4079,7 +4080,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class StencilOperation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Keep the current stencil value.
      */
@@ -4122,7 +4123,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4134,7 +4135,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class CompareOperator(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * "Never" comparison (opposite of [COMPARE_OP_ALWAYS]).
      */
@@ -4173,7 +4174,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4185,7 +4186,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class LogicOperation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Clear logic operation (result is always `0`). See also [LOGIC_OP_SET].
      */
@@ -4260,7 +4261,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4272,7 +4273,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class BlendFactor(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant `0.0` blend factor.
      */
@@ -4364,7 +4365,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(19),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4376,7 +4377,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class BlendOperation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Additive blending operation (`source + destination`).
      */
@@ -4403,7 +4404,7 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4487,7 +4488,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class InitialAction(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Load the previous contents of the framebuffer.
      */
@@ -4512,7 +4513,7 @@ public open class RenderingDevice internal constructor() : Object() {
     CONTINUE(0),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4524,7 +4525,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class FinalAction(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Store the result of the draw list in the framebuffer. This is generally what you want to do.
      */
@@ -4542,7 +4543,7 @@ public open class RenderingDevice internal constructor() : Object() {
     CONTINUE(0),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4554,7 +4555,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class ShaderStage(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Vertex shader stage. This can be used to manipulate vertices from a shader (but not create
      * new vertices).
@@ -4606,7 +4607,7 @@ public open class RenderingDevice internal constructor() : Object() {
     COMPUTE_BIT(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4618,7 +4619,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class ShaderLanguage(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Khronos' GLSL shading language (used natively by OpenGL and Vulkan). This is the language
      * used for core Godot shaders.
@@ -4631,7 +4632,7 @@ public open class RenderingDevice internal constructor() : Object() {
     HLSL(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4643,7 +4644,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class PipelineSpecializationConstantType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Boolean specialization constant.
      */
@@ -4658,7 +4659,7 @@ public open class RenderingDevice internal constructor() : Object() {
     FLOAT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4671,14 +4672,14 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class Features(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Features support for buffer device address extension.
      */
     SUPPORTS_BUFFER_DEVICE_ADDRESS(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4690,7 +4691,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class Limit(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Maximum number of uniform sets that can be bound at a given time.
      */
@@ -4861,7 +4862,7 @@ public open class RenderingDevice internal constructor() : Object() {
     METALFX_TEMPORAL_SCALER_MAX_SCALE(47),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4873,7 +4874,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class MemoryType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Memory taken by textures.
      */
@@ -4889,7 +4890,7 @@ public open class RenderingDevice internal constructor() : Object() {
     TOTAL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -4901,7 +4902,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   public enum class BreadcrumbMarker(
     id: Long,
-  ) {
+  ) : GodotEnum {
     NONE(0),
     REFLECTION_PROBES(65536),
     SKY_PASS(131072),
@@ -4917,7 +4918,7 @@ public open class RenderingDevice internal constructor() : Object() {
     DEBUG_PASS(786432),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

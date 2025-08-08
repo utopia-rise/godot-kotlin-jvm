@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal1
@@ -959,7 +960,7 @@ public open class ItemList : Control() {
 
   public enum class IconMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Icon is drawn above the text.
      */
@@ -970,7 +971,7 @@ public open class ItemList : Control() {
     LEFT(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -982,7 +983,7 @@ public open class ItemList : Control() {
 
   public enum class SelectMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Only allow selecting a single item.
      */
@@ -997,7 +998,7 @@ public open class ItemList : Control() {
     TOGGLE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

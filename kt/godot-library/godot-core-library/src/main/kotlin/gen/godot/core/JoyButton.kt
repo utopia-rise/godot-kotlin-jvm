@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class JoyButton(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * An invalid game controller button.
    */
@@ -123,7 +123,7 @@ public enum class JoyButton(
   MAX(128),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class InlineAlignment(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Aligns the top of the inline object (e.g. image, table) to the position of the text specified
    * by `INLINE_ALIGNMENT_TO_*` constant.
@@ -76,7 +76,7 @@ public enum class InlineAlignment(
   TEXT_MASK(12),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

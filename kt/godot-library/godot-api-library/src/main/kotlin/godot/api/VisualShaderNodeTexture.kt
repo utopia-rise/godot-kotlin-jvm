@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -98,7 +99,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
 
   public enum class Source(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use the texture given as an argument for this function.
      */
@@ -140,7 +141,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -152,7 +153,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
 
   public enum class TextureType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
      */
@@ -172,7 +173,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     TYPE_MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

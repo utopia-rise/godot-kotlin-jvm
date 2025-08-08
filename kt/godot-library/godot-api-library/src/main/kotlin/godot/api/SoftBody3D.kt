@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.VariantArray
@@ -434,7 +435,7 @@ public open class SoftBody3D : MeshInstance3D() {
 
   public enum class DisableMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [SoftBody3D].
@@ -449,7 +450,7 @@ public open class SoftBody3D : MeshInstance3D() {
     KEEP_ACTIVE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

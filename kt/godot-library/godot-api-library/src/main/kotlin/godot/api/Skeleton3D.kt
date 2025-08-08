@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.RID
@@ -686,7 +687,7 @@ public open class Skeleton3D : Node3D() {
 
   public enum class ModifierCallbackModeProcess(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Set a flag to process modification during physics frames (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
@@ -699,7 +700,7 @@ public open class Skeleton3D : Node3D() {
     IDLE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

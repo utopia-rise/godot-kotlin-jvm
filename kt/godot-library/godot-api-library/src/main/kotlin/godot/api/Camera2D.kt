@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -782,7 +783,7 @@ public open class Camera2D : Node2D() {
 
   public enum class AnchorMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
      */
@@ -793,7 +794,7 @@ public open class Camera2D : Node2D() {
     DRAG_CENTER(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -805,7 +806,7 @@ public open class Camera2D : Node2D() {
 
   public enum class Camera2DProcessCallback(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The camera updates during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
@@ -816,7 +817,7 @@ public open class Camera2D : Node2D() {
     IDLE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

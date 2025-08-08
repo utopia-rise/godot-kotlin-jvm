@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class KeyLocation(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Used for keys which only appear once, or when a comparison doesn't need to differentiate the
    * `LEFT` and `RIGHT` versions.
@@ -30,7 +30,7 @@ public enum class KeyLocation(
   RIGHT(2),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

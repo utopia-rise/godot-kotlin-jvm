@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -644,7 +645,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   public enum class Param(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant for accessing [lightEnergy].
      */
@@ -736,7 +737,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     MAX(21),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -748,7 +749,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   public enum class BakeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into
      * account when baking global illumination. This mode should generally be used for dynamic lights
@@ -778,7 +779,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     DYNAMIC(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

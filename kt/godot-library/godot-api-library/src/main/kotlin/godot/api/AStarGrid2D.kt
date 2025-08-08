@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantArray
@@ -598,7 +599,7 @@ public open class AStarGrid2D : RefCounted() {
 
   public enum class Heuristic(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [url=https://en.wikipedia.org/wiki/Euclidean_distance]Euclidean heuristic[/url] to be
      * used for the pathfinding using the following formula:
@@ -655,7 +656,7 @@ public open class AStarGrid2D : RefCounted() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -667,7 +668,7 @@ public open class AStarGrid2D : RefCounted() {
 
   public enum class DiagonalMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The pathfinding algorithm will ignore solid neighbors around the target cell and allow
      * passing using diagonals.
@@ -693,7 +694,7 @@ public open class AStarGrid2D : RefCounted() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -705,7 +706,7 @@ public open class AStarGrid2D : RefCounted() {
 
   public enum class CellShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Rectangular cell shape.
      */
@@ -726,7 +727,7 @@ public open class AStarGrid2D : RefCounted() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

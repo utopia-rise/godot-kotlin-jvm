@@ -15,6 +15,7 @@ import godot.core.Basis
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
@@ -6802,7 +6803,7 @@ public object RenderingServer : Object() {
 
   public enum class TextureType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 2D texture.
      */
@@ -6817,7 +6818,7 @@ public object RenderingServer : Object() {
     TEXTURE_TYPE_3D(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -6829,7 +6830,7 @@ public object RenderingServer : Object() {
 
   public enum class TextureLayeredType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Array of 2-dimensional textures (see [Texture2DArray]).
      */
@@ -6844,7 +6845,7 @@ public object RenderingServer : Object() {
     CUBEMAP_ARRAY(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -6856,7 +6857,7 @@ public object RenderingServer : Object() {
 
   public enum class CubeMapLayer(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Left face of a [Cubemap].
      */
@@ -6883,7 +6884,7 @@ public object RenderingServer : Object() {
     CUBEMAP_LAYER_BACK(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -6895,7 +6896,7 @@ public object RenderingServer : Object() {
 
   public enum class ShaderMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Shader is a 3D shader.
      */
@@ -6922,7 +6923,7 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -6934,7 +6935,7 @@ public object RenderingServer : Object() {
 
   public enum class ArrayType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Array is a vertex position array.
      */
@@ -6993,7 +6994,7 @@ public object RenderingServer : Object() {
     MAX(13),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7005,7 +7006,7 @@ public object RenderingServer : Object() {
 
   public enum class ArrayCustomFormat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
      * normalized, unsigned floating-point in the `[0.0, 1.0]` range.
@@ -7052,7 +7053,7 @@ public object RenderingServer : Object() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7308,7 +7309,7 @@ public object RenderingServer : Object() {
 
   public enum class PrimitiveType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Primitive to draw consists of points.
      */
@@ -7336,7 +7337,7 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7348,7 +7349,7 @@ public object RenderingServer : Object() {
 
   public enum class BlendShapeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Blend shapes are normalized.
      */
@@ -7359,7 +7360,7 @@ public object RenderingServer : Object() {
     RELATIVE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7371,7 +7372,7 @@ public object RenderingServer : Object() {
 
   public enum class MultimeshTransformFormat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use [Transform2D] to store MultiMesh transform.
      */
@@ -7382,7 +7383,7 @@ public object RenderingServer : Object() {
     MULTIMESH_TRANSFORM_3D(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7394,7 +7395,7 @@ public object RenderingServer : Object() {
 
   public enum class MultimeshPhysicsInterpolationQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * MultiMesh physics interpolation favors speed over quality.
      */
@@ -7405,7 +7406,7 @@ public object RenderingServer : Object() {
     INTERP_QUALITY_HIGH(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7418,7 +7419,7 @@ public object RenderingServer : Object() {
 
   public enum class LightProjectorFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps
      * are used for rendering, which means light projectors at a distance will look sharp but grainy.
@@ -7461,7 +7462,7 @@ public object RenderingServer : Object() {
     LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7473,7 +7474,7 @@ public object RenderingServer : Object() {
 
   public enum class LightType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Directional (sun/moon) light (see [DirectionalLight3D]).
      */
@@ -7488,7 +7489,7 @@ public object RenderingServer : Object() {
     SPOT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7500,7 +7501,7 @@ public object RenderingServer : Object() {
 
   public enum class LightParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The light's energy multiplier.
      */
@@ -7603,7 +7604,7 @@ public object RenderingServer : Object() {
     MAX(21),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7615,7 +7616,7 @@ public object RenderingServer : Object() {
 
   public enum class LightBakeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into
      * account when baking global illumination. This mode should generally be used for dynamic lights
@@ -7640,7 +7641,7 @@ public object RenderingServer : Object() {
     DYNAMIC(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7652,7 +7653,7 @@ public object RenderingServer : Object() {
 
   public enum class LightOmniShadowMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use a dual paraboloid shadow map for omni lights.
      */
@@ -7663,7 +7664,7 @@ public object RenderingServer : Object() {
     CUBE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7675,7 +7676,7 @@ public object RenderingServer : Object() {
 
   public enum class LightDirectionalShadowMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use orthogonal shadow projection for directional light.
      */
@@ -7690,7 +7691,7 @@ public object RenderingServer : Object() {
     PARALLEL_4_SPLITS(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7703,7 +7704,7 @@ public object RenderingServer : Object() {
 
   public enum class LightDirectionalSkyMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use DirectionalLight3D in both sky rendering and scene lighting.
      */
@@ -7718,7 +7719,7 @@ public object RenderingServer : Object() {
     SKY_ONLY(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7730,7 +7731,7 @@ public object RenderingServer : Object() {
 
   public enum class ShadowQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality
      * setting, which means the [Light3D.shadowBlur] property is ignored if [Light3D.lightSize] and
@@ -7779,7 +7780,7 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7791,7 +7792,7 @@ public object RenderingServer : Object() {
 
   public enum class ReflectionProbeUpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Reflection probe will update reflections once and then stop.
      */
@@ -7802,7 +7803,7 @@ public object RenderingServer : Object() {
     ALWAYS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7815,7 +7816,7 @@ public object RenderingServer : Object() {
 
   public enum class ReflectionProbeAmbientMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the reflection probe's box defined by its size.
      */
@@ -7832,7 +7833,7 @@ public object RenderingServer : Object() {
     COLOR(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7845,7 +7846,7 @@ public object RenderingServer : Object() {
 
   public enum class DecalTexture(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Albedo texture slot in a decal ([Decal.textureAlbedo]).
      */
@@ -7868,7 +7869,7 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7880,7 +7881,7 @@ public object RenderingServer : Object() {
 
   public enum class DecalFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for
      * rendering, which means decals at a distance will look sharp but grainy. This has roughly the
@@ -7923,7 +7924,7 @@ public object RenderingServer : Object() {
     LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7935,7 +7936,7 @@ public object RenderingServer : Object() {
 
   public enum class VoxelGIQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Low [VoxelGI] rendering quality using 4 cones.
      */
@@ -7946,7 +7947,7 @@ public object RenderingServer : Object() {
     HIGH(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7958,7 +7959,7 @@ public object RenderingServer : Object() {
 
   public enum class ParticlesMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 2D particles.
      */
@@ -7969,7 +7970,7 @@ public object RenderingServer : Object() {
     PARTICLES_MODE_3D(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -7981,14 +7982,14 @@ public object RenderingServer : Object() {
 
   public enum class ParticlesTransformAlign(
     id: Long,
-  ) {
+  ) : GodotEnum {
     DISABLED(0),
     Z_BILLBOARD(1),
     Y_TO_VELOCITY(2),
     Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8000,7 +8001,7 @@ public object RenderingServer : Object() {
 
   public enum class ParticlesDrawOrder(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Draw particles in the order that they appear in the particles array.
      */
@@ -8021,7 +8022,7 @@ public object RenderingServer : Object() {
     VIEW_DEPTH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8033,7 +8034,7 @@ public object RenderingServer : Object() {
 
   public enum class ParticlesCollisionType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     SPHERE_ATTRACT(0),
     BOX_ATTRACT(1),
     VECTOR_FIELD_ATTRACT(2),
@@ -8043,7 +8044,7 @@ public object RenderingServer : Object() {
     HEIGHTFIELD_COLLIDE(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8055,7 +8056,7 @@ public object RenderingServer : Object() {
 
   public enum class ParticlesCollisionHeightfieldResolution(
     id: Long,
-  ) {
+  ) : GodotEnum {
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_1024(2),
@@ -8068,7 +8069,7 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8081,7 +8082,7 @@ public object RenderingServer : Object() {
 
   public enum class FogVolumeShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * [FogVolume] will be shaped like an ellipsoid (stretched sphere).
      */
@@ -8113,7 +8114,7 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8125,7 +8126,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportScaling3DMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
      * [Viewport.scaling3dScale]. Values less than `1.0` will result in undersampling while values
@@ -8173,7 +8174,7 @@ public object RenderingServer : Object() {
     VIEWPORT_SCALING_3D_MODE_MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8185,7 +8186,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportUpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not update the viewport's render target.
      */
@@ -8208,7 +8209,7 @@ public object RenderingServer : Object() {
     ALWAYS(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8220,7 +8221,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportClearMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Always clear the viewport's render target before drawing.
      */
@@ -8235,7 +8236,7 @@ public object RenderingServer : Object() {
     ONLY_NEXT_FRAME(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8247,7 +8248,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportEnvironmentMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disable rendering of 3D environment over 2D canvas.
      */
@@ -8268,7 +8269,7 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8280,7 +8281,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportSDFOversize(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not oversize the 2D signed distance field. Occluders may disappear when touching the
      * viewport's edges, and [GPUParticles3D] collision may stop working earlier than intended. This
@@ -8308,7 +8309,7 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8320,7 +8321,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportSDFScale(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Full resolution 2D signed distance field scale. This has the highest GPU requirements.
      */
@@ -8341,7 +8342,7 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8353,7 +8354,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportMSAA(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest
      * setting.
@@ -8380,7 +8381,7 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8392,7 +8393,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportAnisotropicFiltering(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Anisotropic filtering is disabled.
      */
@@ -8419,7 +8420,7 @@ public object RenderingServer : Object() {
     ANISOTROPY_MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8432,7 +8433,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportScreenSpaceAA(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not perform any antialiasing in the full screen post-process.
      */
@@ -8449,7 +8450,7 @@ public object RenderingServer : Object() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8461,7 +8462,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportOcclusionCullingBuildQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Low occlusion culling BVH build quality (as defined by Embree). Results in the lowest CPU
      * usage, but least effective culling.
@@ -8478,7 +8479,7 @@ public object RenderingServer : Object() {
     BUILD_QUALITY_HIGH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8491,7 +8492,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportRenderInfo(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Number of objects drawn in a single frame.
      */
@@ -8510,7 +8511,7 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8522,7 +8523,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportRenderInfoType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Visible render pass (excluding shadows).
      */
@@ -8542,7 +8543,7 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8554,7 +8555,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportDebugDraw(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Debug draw is disabled. Default setting.
      */
@@ -8700,7 +8701,7 @@ public object RenderingServer : Object() {
     INTERNAL_BUFFER(26),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8712,7 +8713,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportVRSMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Variable rate shading is disabled.
      */
@@ -8733,7 +8734,7 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8745,7 +8746,7 @@ public object RenderingServer : Object() {
 
   public enum class ViewportVRSUpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The input texture for variable rate shading will not be processed.
      */
@@ -8764,7 +8765,7 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8776,7 +8777,7 @@ public object RenderingServer : Object() {
 
   public enum class SkyMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader
      * uses `TIME` or `POSITION`, this will use [SKY_MODE_REALTIME]. If your shader uses any of the
@@ -8812,7 +8813,7 @@ public object RenderingServer : Object() {
     REALTIME(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8824,7 +8825,7 @@ public object RenderingServer : Object() {
 
   public enum class CompositorEffectFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The rendering effect requires the color buffer to be resolved if MSAA is enabled.
      */
@@ -8847,7 +8848,7 @@ public object RenderingServer : Object() {
     NEEDS_SEPARATE_SPECULAR(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8859,7 +8860,7 @@ public object RenderingServer : Object() {
 
   public enum class CompositorEffectCallbackType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The callback is called before our opaque rendering pass, but after depth prepass (if
      * applicable).
@@ -8887,7 +8888,7 @@ public object RenderingServer : Object() {
     ANY(-1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8900,7 +8901,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentBG(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use the clear color as background.
      */
@@ -8932,7 +8933,7 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8944,7 +8945,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentAmbientSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Gather ambient light from whichever source is specified as the background.
      */
@@ -8963,7 +8964,7 @@ public object RenderingServer : Object() {
     SKY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -8975,7 +8976,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentReflectionSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use the background for reflections.
      */
@@ -8990,7 +8991,7 @@ public object RenderingServer : Object() {
     SKY(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9003,7 +9004,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentGlowBlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
      * sources.
@@ -9031,7 +9032,7 @@ public object RenderingServer : Object() {
     MIX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9043,7 +9044,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentFogMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use a physically-based fog model defined primarily by fog density.
      */
@@ -9055,7 +9056,7 @@ public object RenderingServer : Object() {
     DEPTH(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9067,7 +9068,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentToneMapper(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
      * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
@@ -9104,7 +9105,7 @@ public object RenderingServer : Object() {
     AGX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9116,7 +9117,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSSRRoughnessQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Lowest quality of roughness filter for screen-space reflections. Rough materials will not
      * have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the
@@ -9137,7 +9138,7 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9150,7 +9151,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSSAOQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Lowest quality of screen-space ambient occlusion.
      */
@@ -9174,7 +9175,7 @@ public object RenderingServer : Object() {
     ULTRA(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9186,7 +9187,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSSILQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Lowest quality of screen-space indirect lighting.
      */
@@ -9210,7 +9211,7 @@ public object RenderingServer : Object() {
     ULTRA(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9222,7 +9223,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSDFGIYScale(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
      * they are wide. This allows providing increased GI detail and reduced light leaking with thin
@@ -9243,7 +9244,7 @@ public object RenderingServer : Object() {
     Y_SCALE_100_PERCENT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9255,7 +9256,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSDFGIRayCount(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Throw 4 rays per frame when converging SDFGI. This has the lowest GPU requirements, but
      * creates the most noisy result.
@@ -9292,7 +9293,7 @@ public object RenderingServer : Object() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9304,7 +9305,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSDFGIFramesToConverge(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Converge SDFGI over 5 frames. This is the most responsive, but creates the most noisy result
      * with a given ray count.
@@ -9337,7 +9338,7 @@ public object RenderingServer : Object() {
     CONVERGE_MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9350,7 +9351,7 @@ public object RenderingServer : Object() {
 
   public enum class EnvironmentSDFGIFramesToUpdateLight(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Update indirect light from dynamic lights in SDFGI over 1 frame. This is the most responsive,
      * but has the highest GPU requirements.
@@ -9379,7 +9380,7 @@ public object RenderingServer : Object() {
     UPDATE_LIGHT_MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9392,7 +9393,7 @@ public object RenderingServer : Object() {
 
   public enum class SubSurfaceScatteringQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables subsurface scattering entirely, even on materials that have
      * [BaseMaterial3D.subsurfScatterEnabled] set to `true`. This has the lowest GPU requirements.
@@ -9412,7 +9413,7 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9425,7 +9426,7 @@ public object RenderingServer : Object() {
 
   public enum class DOFBokehShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines
      * in blur pattern.
@@ -9443,7 +9444,7 @@ public object RenderingServer : Object() {
     CIRCLE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9455,7 +9456,7 @@ public object RenderingServer : Object() {
 
   public enum class DOFBlurQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering
      * artifacts.
@@ -9476,7 +9477,7 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9488,7 +9489,7 @@ public object RenderingServer : Object() {
 
   public enum class InstanceType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The instance does not have a type.
      */
@@ -9551,7 +9552,7 @@ public object RenderingServer : Object() {
     GEOMETRY_MASK(14),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9563,7 +9564,7 @@ public object RenderingServer : Object() {
 
   public enum class InstanceFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Allows the instance to be used in baked lighting.
      */
@@ -9587,7 +9588,7 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9599,7 +9600,7 @@ public object RenderingServer : Object() {
 
   public enum class ShadowCastingSetting(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disable shadows from this instance.
      */
@@ -9619,7 +9620,7 @@ public object RenderingServer : Object() {
     SHADOWS_ONLY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9631,7 +9632,7 @@ public object RenderingServer : Object() {
 
   public enum class VisibilityRangeFadeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disable visibility range fading for the given instance.
      */
@@ -9646,7 +9647,7 @@ public object RenderingServer : Object() {
     DEPENDENCIES(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9658,7 +9659,7 @@ public object RenderingServer : Object() {
 
   public enum class BakeChannels(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
      * [Image.FORMAT_RGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a`
@@ -9686,7 +9687,7 @@ public object RenderingServer : Object() {
     EMISSION(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9698,7 +9699,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasTextureChannel(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Diffuse canvas texture ([CanvasTexture.diffuseTexture]).
      */
@@ -9713,7 +9714,7 @@ public object RenderingServer : Object() {
     SPECULAR(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9725,7 +9726,7 @@ public object RenderingServer : Object() {
 
   public enum class NinePatchAxisMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The nine patch gets stretched where needed.
      */
@@ -9740,7 +9741,7 @@ public object RenderingServer : Object() {
     TILE_FIT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9752,7 +9753,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasItemTextureFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Uses the default filter mode for this [Viewport].
      */
@@ -9821,7 +9822,7 @@ public object RenderingServer : Object() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9833,7 +9834,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasItemTextureRepeat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Uses the default repeat mode for this [Viewport].
      */
@@ -9860,7 +9861,7 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9872,7 +9873,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasGroupMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Child draws over parent and is not clipped.
      */
@@ -9890,7 +9891,7 @@ public object RenderingServer : Object() {
     TRANSPARENT(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9902,7 +9903,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasLightMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * 2D point light (see [PointLight2D]).
      */
@@ -9913,7 +9914,7 @@ public object RenderingServer : Object() {
     DIRECTIONAL(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9925,7 +9926,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasLightBlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Adds light color additive to the canvas.
      */
@@ -9940,7 +9941,7 @@ public object RenderingServer : Object() {
     MIX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9952,7 +9953,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasLightShadowFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not apply a filter to canvas light shadows.
      */
@@ -9971,7 +9972,7 @@ public object RenderingServer : Object() {
     FILTER_MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -9983,7 +9984,7 @@ public object RenderingServer : Object() {
 
   public enum class CanvasOccluderPolygonCullMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Culling of the canvas occluder is disabled.
      */
@@ -9998,7 +9999,7 @@ public object RenderingServer : Object() {
     COUNTER_CLOCKWISE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -10011,7 +10012,7 @@ public object RenderingServer : Object() {
 
   public enum class GlobalShaderParameterType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Boolean global shader parameter (`global uniform bool ...`).
      */
@@ -10148,7 +10149,7 @@ public object RenderingServer : Object() {
     VAR_TYPE_MAX(29),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -10161,7 +10162,7 @@ public object RenderingServer : Object() {
 
   public enum class RenderingInfo(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Number of objects rendered in the current 3D scene. This varies depending on camera position
      * and rotation.
@@ -10223,7 +10224,7 @@ public object RenderingServer : Object() {
     PIPELINE_COMPILATIONS_SPECIALIZATION(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -10235,7 +10236,7 @@ public object RenderingServer : Object() {
 
   public enum class PipelineSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Pipeline compilation that was triggered by the 2D canvas renderer.
      */
@@ -10263,7 +10264,7 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -10275,12 +10276,12 @@ public object RenderingServer : Object() {
 
   public enum class Features(
     id: Long,
-  ) {
+  ) : GodotEnum {
     SHADERS(0),
     MULTITHREADED(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

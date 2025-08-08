@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Float
@@ -103,7 +104,7 @@ public open class OmniLight3D : Light3D() {
 
   public enum class ShadowMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOW_CUBE], but
      * lower-quality.
@@ -115,7 +116,7 @@ public open class OmniLight3D : Light3D() {
     CUBE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

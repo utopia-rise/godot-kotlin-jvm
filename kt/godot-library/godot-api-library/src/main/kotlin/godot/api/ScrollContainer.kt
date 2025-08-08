@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -322,7 +323,7 @@ public open class ScrollContainer : Container() {
 
   public enum class ScrollMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Scrolling disabled, scrollbar will be invisible.
      */
@@ -348,7 +349,7 @@ public open class ScrollContainer : Container() {
     RESERVE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
@@ -200,7 +201,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public enum class LookupResultType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     SCRIPT_LOCATION(0),
     CLASS(1),
     CLASS_CONSTANT(2),
@@ -215,7 +216,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     MAX(11),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -227,7 +228,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public enum class CodeCompletionLocation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The option is local to the location of the code completion query - e.g. a local variable.
      * Subsequent value of location represent options from the outer class, the exact value represent
@@ -253,7 +254,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     LOCATION_OTHER(1024),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -265,7 +266,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public enum class CodeCompletionKind(
     id: Long,
-  ) {
+  ) : GodotEnum {
     CLASS(0),
     FUNCTION(1),
     SIGNAL(2),
@@ -279,7 +280,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

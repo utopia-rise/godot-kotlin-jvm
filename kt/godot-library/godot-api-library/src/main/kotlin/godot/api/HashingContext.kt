@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
@@ -114,7 +115,7 @@ public open class HashingContext : RefCounted() {
 
   public enum class HashType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Hashing algorithm: MD5.
      */
@@ -129,7 +130,7 @@ public open class HashingContext : RefCounted() {
     SHA256(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -1274,7 +1275,7 @@ public open class CodeEdit : TextEdit() {
 
   public enum class CodeCompletionKind(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Marks the option as a class.
      */
@@ -1317,7 +1318,7 @@ public open class CodeEdit : TextEdit() {
     KIND_PLAIN_TEXT(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1329,7 +1330,7 @@ public open class CodeEdit : TextEdit() {
 
   public enum class CodeCompletionLocation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The option is local to the location of the code completion query - e.g. a local variable.
      * Subsequent value of location represent options from the outer class, the exact value represent
@@ -1355,7 +1356,7 @@ public open class CodeEdit : TextEdit() {
     LOCATION_OTHER(1024),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

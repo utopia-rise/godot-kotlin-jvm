@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.RID
 import godot.core.Signal0
@@ -443,7 +444,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
 
   public enum class DisableMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [CollisionObject3D].
@@ -466,7 +467,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     KEEP_ACTIVE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

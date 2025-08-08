@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -242,7 +243,7 @@ public open class XMLParser : RefCounted() {
 
   public enum class NodeType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * There's no node (no file or buffer opened).
      */
@@ -273,7 +274,7 @@ public open class XMLParser : RefCounted() {
     UNKNOWN(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

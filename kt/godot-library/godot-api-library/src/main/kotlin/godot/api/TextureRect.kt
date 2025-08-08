@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -145,7 +146,7 @@ public open class TextureRect : Control() {
 
   public enum class ExpandMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the
      * texture.
@@ -176,7 +177,7 @@ public open class TextureRect : Control() {
     FIT_HEIGHT_PROPORTIONAL(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -188,7 +189,7 @@ public open class TextureRect : Control() {
 
   public enum class StretchMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Scale to fit the node's bounding rectangle.
      */
@@ -222,7 +223,7 @@ public open class TextureRect : Control() {
     KEEP_ASPECT_COVERED(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

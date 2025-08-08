@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -243,7 +244,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   public enum class Hint(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The parameter will not constrain its value.
      */
@@ -267,7 +268,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

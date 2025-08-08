@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -123,7 +124,7 @@ public open class AspectRatioContainer : Container() {
 
   public enum class StretchMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The height of child controls is automatically adjusted based on the width of the container.
      */
@@ -148,7 +149,7 @@ public open class AspectRatioContainer : Container() {
     COVER(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -160,7 +161,7 @@ public open class AspectRatioContainer : Container() {
 
   public enum class AlignmentMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Aligns child controls with the beginning (left or top) of the container.
      */
@@ -175,7 +176,7 @@ public open class AspectRatioContainer : Container() {
     END(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

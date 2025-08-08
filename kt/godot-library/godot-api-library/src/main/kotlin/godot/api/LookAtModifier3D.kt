@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -794,7 +795,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
 
   public enum class OriginFrom(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The bone rest position of the bone specified in [bone] is used as origin.
      */
@@ -818,7 +819,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     EXTERNAL_NODE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

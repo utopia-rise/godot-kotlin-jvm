@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class VariantOperator(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Equality operator (`==`).
    */
@@ -118,7 +118,7 @@ public enum class VariantOperator(
   OP_MAX(25),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

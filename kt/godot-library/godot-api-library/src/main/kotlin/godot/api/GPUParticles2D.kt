@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.Signal0
@@ -818,7 +819,7 @@ public open class GPUParticles2D : Node2D() {
 
   public enum class DrawOrder(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
      */
@@ -835,7 +836,7 @@ public open class GPUParticles2D : Node2D() {
     REVERSE_LIFETIME(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -847,7 +848,7 @@ public open class GPUParticles2D : Node2D() {
 
   public enum class EmitFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Particle starts at the specified position.
      */
@@ -871,7 +872,7 @@ public open class GPUParticles2D : Node2D() {
     CUSTOM(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

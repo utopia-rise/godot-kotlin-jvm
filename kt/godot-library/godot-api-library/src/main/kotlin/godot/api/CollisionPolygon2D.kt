@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -216,7 +217,7 @@ public open class CollisionPolygon2D : Node2D() {
 
   public enum class BuildMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Collisions will include the polygon and its contained area. In this mode the node has the
      * same effect as several [ConvexPolygonShape2D] nodes, one for each convex shape in the convex
@@ -232,7 +233,7 @@ public open class CollisionPolygon2D : Node2D() {
     SEGMENTS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -694,7 +695,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   public enum class MotionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion
      * will react to slopes (acceleration/slowdown). This mode is suitable for grounded games like
@@ -709,7 +710,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     FLOATING(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -721,7 +722,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   public enum class PlatformOnLeave(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform.
      */
@@ -738,7 +739,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     DO_NOTHING(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

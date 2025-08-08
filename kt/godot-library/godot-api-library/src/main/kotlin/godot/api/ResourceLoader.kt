@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -275,7 +276,7 @@ public object ResourceLoader : Object() {
 
   public enum class ThreadLoadStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The resource is invalid, or has not been loaded with [loadThreadedRequest].
      */
@@ -294,7 +295,7 @@ public object ResourceLoader : Object() {
     LOADED(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -306,7 +307,7 @@ public object ResourceLoader : Object() {
 
   public enum class CacheMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Neither the main resource (the one requested to be loaded) nor any of its subresources are
      * retrieved from cache nor stored into it. Dependencies (external resources) are loaded with
@@ -339,7 +340,7 @@ public object ResourceLoader : Object() {
     REPLACE_DEEP(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

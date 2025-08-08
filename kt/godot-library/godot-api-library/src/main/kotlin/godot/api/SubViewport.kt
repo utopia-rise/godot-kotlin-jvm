@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -220,7 +221,7 @@ public open class SubViewport : Viewport() {
 
   public enum class ClearMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Always clear the render target before drawing.
      */
@@ -235,7 +236,7 @@ public open class SubViewport : Viewport() {
     ONCE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -247,7 +248,7 @@ public open class SubViewport : Viewport() {
 
   public enum class UpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not update the render target.
      */
@@ -270,7 +271,7 @@ public open class SubViewport : Viewport() {
     ALWAYS(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

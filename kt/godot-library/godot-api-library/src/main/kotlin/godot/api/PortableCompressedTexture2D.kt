@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -179,7 +180,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   public enum class CompressionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     LOSSLESS(0),
     LOSSY(1),
     BASIS_UNIVERSAL(2),
@@ -188,7 +189,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     BPTC(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

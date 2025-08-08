@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.Transform2D
 import godot.core.VariantArray
@@ -266,7 +267,7 @@ public open class CameraFeed : RefCounted() {
 
   public enum class FeedDataType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No image set for the feed.
      */
@@ -289,7 +290,7 @@ public open class CameraFeed : RefCounted() {
     EXTERNAL(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -301,7 +302,7 @@ public open class CameraFeed : RefCounted() {
 
   public enum class FeedPosition(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Unspecified position.
      */
@@ -316,7 +317,7 @@ public open class CameraFeed : RefCounted() {
     BACK(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

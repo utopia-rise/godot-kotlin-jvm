@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -216,7 +217,7 @@ public open class UPNPDevice : RefCounted() {
 
   public enum class IGDStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * OK.
      */
@@ -259,7 +260,7 @@ public open class UPNPDevice : RefCounted() {
     UNKNOWN_ERROR(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

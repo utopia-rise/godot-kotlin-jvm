@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.Side
@@ -2785,7 +2786,7 @@ public open class Control : CanvasItem() {
 
   public enum class FocusMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The node cannot grab focus. Use with [focusMode].
      */
@@ -2801,7 +2802,7 @@ public open class Control : CanvasItem() {
     ALL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2813,7 +2814,7 @@ public open class Control : CanvasItem() {
 
   public enum class CursorShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Show the system's arrow mouse cursor when the user hovers the node. Use with
      * [mouseDefaultCursorShape].
@@ -2902,7 +2903,7 @@ public open class Control : CanvasItem() {
     HELP(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2914,7 +2915,7 @@ public open class Control : CanvasItem() {
 
   public enum class LayoutPreset(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Snap all 4 anchors to the top-left of the parent control's bounds. Use with
      * [setAnchorsPreset].
@@ -3001,7 +3002,7 @@ public open class Control : CanvasItem() {
     PRESET_FULL_RECT(15),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3013,7 +3014,7 @@ public open class Control : CanvasItem() {
 
   public enum class LayoutPresetMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The control will be resized to its minimum size.
      */
@@ -3032,7 +3033,7 @@ public open class Control : CanvasItem() {
     PRESET_MODE_KEEP_SIZE(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3124,7 +3125,7 @@ public open class Control : CanvasItem() {
 
   public enum class MouseFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
      * on through [_guiInput]. The control will also receive the [signal mouse_entered] and [signal
@@ -3159,7 +3160,7 @@ public open class Control : CanvasItem() {
     IGNORE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3171,7 +3172,7 @@ public open class Control : CanvasItem() {
 
   public enum class GrowDirection(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The control will grow to the left or top to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
@@ -3189,7 +3190,7 @@ public open class Control : CanvasItem() {
     BOTH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3201,7 +3202,7 @@ public open class Control : CanvasItem() {
 
   public enum class Anchor(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it
      * with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once,
@@ -3216,7 +3217,7 @@ public open class Control : CanvasItem() {
     END(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3228,7 +3229,7 @@ public open class Control : CanvasItem() {
 
   public enum class LayoutDirection(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
      */
@@ -3269,7 +3270,7 @@ public open class Control : CanvasItem() {
     LOCALE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3281,7 +3282,7 @@ public open class Control : CanvasItem() {
 
   public enum class TextDirection(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Text writing direction is the same as layout direction.
      */
@@ -3300,7 +3301,7 @@ public open class Control : CanvasItem() {
     RTL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

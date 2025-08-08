@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Signal0
@@ -1770,7 +1771,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class PositionalShadowAtlasQuadrantSubdiv(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This quadrant will not be used.
      */
@@ -1809,7 +1810,7 @@ public open class Viewport internal constructor() : Node() {
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1822,7 +1823,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class Scaling3DMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
      * [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than
@@ -1886,7 +1887,7 @@ public open class Viewport internal constructor() : Node() {
     SCALING_3D_MODE_MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1898,7 +1899,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class MSAA(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
      * setting.
@@ -1926,7 +1927,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1938,7 +1939,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class AnisotropicFiltering(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Anisotropic filtering is disabled.
      */
@@ -1965,7 +1966,7 @@ public open class Viewport internal constructor() : Node() {
     ANISOTROPY_MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1977,7 +1978,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class ScreenSpaceAA(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not perform any antialiasing in the full screen post-process.
      */
@@ -1994,7 +1995,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2006,7 +2007,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class RenderInfo(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Amount of objects in frame.
      */
@@ -2025,7 +2026,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2037,7 +2038,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class RenderInfoType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Visible render pass (excluding shadows).
      */
@@ -2057,7 +2058,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2069,7 +2070,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class DebugDraw(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Objects are displayed normally.
      */
@@ -2200,7 +2201,7 @@ public open class Viewport internal constructor() : Node() {
     INTERNAL_BUFFER(26),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2212,7 +2213,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class DefaultCanvasItemTextureFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
@@ -2251,7 +2252,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2264,7 +2265,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class DefaultCanvasItemTextureRepeat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
      * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
@@ -2287,7 +2288,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2300,7 +2301,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class SDFOversize(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The signed distance field only covers the viewport's own rectangle.
      */
@@ -2326,7 +2327,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2338,7 +2339,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class SDFScale(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The signed distance field is rendered at full resolution.
      */
@@ -2357,7 +2358,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2369,7 +2370,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class VRSMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Variable Rate Shading is disabled.
      */
@@ -2389,7 +2390,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2401,7 +2402,7 @@ public open class Viewport internal constructor() : Node() {
 
   public enum class VRSUpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The input texture for variable rate shading will not be processed.
      */
@@ -2420,7 +2421,7 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

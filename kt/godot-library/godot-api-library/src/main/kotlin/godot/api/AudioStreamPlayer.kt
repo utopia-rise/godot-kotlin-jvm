@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -380,7 +381,7 @@ public open class AudioStreamPlayer : Node() {
 
   public enum class MixTarget(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The audio will be played only on the first channel. This is the default.
      */
@@ -395,7 +396,7 @@ public open class AudioStreamPlayer : Node() {
     CENTER(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

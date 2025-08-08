@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.Key
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
@@ -1658,7 +1659,7 @@ public object OS : Object() {
 
   public enum class RenderingDriver(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features
      * from Vulkan 1.1 and 1.2 if available.
@@ -1679,7 +1680,7 @@ public object OS : Object() {
     METAL(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1691,7 +1692,7 @@ public object OS : Object() {
 
   public enum class SystemDir(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Refers to the Desktop directory path.
      */
@@ -1726,7 +1727,7 @@ public object OS : Object() {
     RINGTONES(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1738,7 +1739,7 @@ public object OS : Object() {
 
   public enum class StdHandleType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Standard I/O device is invalid. No data can be received from or sent to these standard I/O
      * devices.
@@ -1766,7 +1767,7 @@ public object OS : Object() {
     UNKNOWN(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -129,7 +130,7 @@ public open class StreamPeerTCP : StreamPeer() {
 
   public enum class Status(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
      */
@@ -148,7 +149,7 @@ public open class StreamPeerTCP : StreamPeer() {
     ERROR(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

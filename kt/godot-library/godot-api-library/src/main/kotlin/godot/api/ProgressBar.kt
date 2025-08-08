@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -121,7 +122,7 @@ public open class ProgressBar : Range() {
 
   public enum class FillMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The progress bar fills from begin to end horizontally, according to the language direction.
      * If [Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`,
@@ -144,7 +145,7 @@ public open class ProgressBar : Range() {
     BOTTOM_TO_TOP(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

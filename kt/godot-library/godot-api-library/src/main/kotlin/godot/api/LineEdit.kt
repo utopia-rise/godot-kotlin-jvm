@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.Signal1
 import godot.core.VariantArray
@@ -1148,7 +1149,7 @@ public open class LineEdit : Control() {
 
   public enum class MenuItems(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Cuts (copies and clears) the selected text.
      */
@@ -1282,7 +1283,7 @@ public open class LineEdit : Control() {
     MAX(31),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1294,7 +1295,7 @@ public open class LineEdit : Control() {
 
   public enum class VirtualKeyboardType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default text virtual keyboard.
      */
@@ -1333,7 +1334,7 @@ public open class LineEdit : Control() {
     KEYBOARD_TYPE_URL(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

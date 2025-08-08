@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -368,7 +369,7 @@ public open class Curve : Resource() {
 
   public enum class TangentMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The tangent on this side of the point is user-defined.
      */
@@ -384,7 +385,7 @@ public open class Curve : Resource() {
     COUNT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

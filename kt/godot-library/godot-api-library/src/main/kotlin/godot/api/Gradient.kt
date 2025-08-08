@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.COLOR
@@ -272,7 +273,7 @@ public open class Gradient : Resource() {
 
   public enum class InterpolationMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Linear interpolation.
      */
@@ -288,7 +289,7 @@ public open class Gradient : Resource() {
     GRADIENT_INTERPOLATE_CUBIC(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -300,7 +301,7 @@ public open class Gradient : Resource() {
 
   public enum class ColorSpace(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * sRGB color space.
      */
@@ -316,7 +317,7 @@ public open class Gradient : Resource() {
     GRADIENT_OKLAB(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

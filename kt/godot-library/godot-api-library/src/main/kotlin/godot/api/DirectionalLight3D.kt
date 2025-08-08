@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -185,7 +186,7 @@ public open class DirectionalLight3D : Light3D() {
 
   public enum class ShadowMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest
      * directional shadow mode. May result in blurrier shadows on close objects.
@@ -203,7 +204,7 @@ public open class DirectionalLight3D : Light3D() {
     PARALLEL_4_SPLITS(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -215,7 +216,7 @@ public open class DirectionalLight3D : Light3D() {
 
   public enum class SkyMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Makes the light visible in both scene lighting and sky rendering.
      */
@@ -234,7 +235,7 @@ public open class DirectionalLight3D : Light3D() {
     SKY_ONLY(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

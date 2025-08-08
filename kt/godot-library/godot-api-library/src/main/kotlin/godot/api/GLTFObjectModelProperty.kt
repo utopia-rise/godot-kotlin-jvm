@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -285,7 +286,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
 
   public enum class GLTFObjectModelType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Unknown or not set object model type. If the object model type is set to this value, the real
      * type still needs to be determined.
@@ -345,7 +346,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     INT(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
@@ -822,7 +823,7 @@ public open class AnimationMixer internal constructor() : Node() {
 
   public enum class AnimationCallbackModeProcess(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Process animation during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      * This is especially useful when animating physics bodies.
@@ -838,7 +839,7 @@ public open class AnimationMixer internal constructor() : Node() {
     MANUAL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -851,7 +852,7 @@ public open class AnimationMixer internal constructor() : Node() {
 
   public enum class AnimationCallbackModeMethod(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Batch method calls during the animation process, then do the calls after events are
      * processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while
@@ -864,7 +865,7 @@ public open class AnimationMixer internal constructor() : Node() {
     IMMEDIATE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -877,7 +878,7 @@ public open class AnimationMixer internal constructor() : Node() {
 
   public enum class AnimationCallbackModeDiscrete(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * An [Animation.UPDATE_DISCRETE] track value takes precedence when blending
      * [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track values and
@@ -930,7 +931,7 @@ public open class AnimationMixer internal constructor() : Node() {
     FORCE_CONTINUOUS(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

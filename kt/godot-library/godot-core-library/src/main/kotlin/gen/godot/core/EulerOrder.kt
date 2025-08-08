@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class EulerOrder(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Specifies that Euler angles should be in XYZ order. When composing, the order is X, Y, Z. When
    * decomposing, the order is reversed, first Z, then Y, and X last.
@@ -44,7 +44,7 @@ public enum class EulerOrder(
   ZYX(5),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

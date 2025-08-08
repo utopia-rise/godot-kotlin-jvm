@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -450,7 +451,7 @@ public open class Light2D internal constructor() : Node2D() {
 
   public enum class ShadowFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
      * render. See [shadowFilter].
@@ -468,7 +469,7 @@ public open class Light2D internal constructor() : Node2D() {
     PCF13(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -480,7 +481,7 @@ public open class Light2D internal constructor() : Node2D() {
 
   public enum class BlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
      * is the common behavior of a light.
@@ -498,7 +499,7 @@ public open class Light2D internal constructor() : Node2D() {
     MIX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

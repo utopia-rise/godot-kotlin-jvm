@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -844,7 +845,7 @@ public open class Label3D : GeometryInstance3D() {
 
   public enum class DrawFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If set, lights in the environment affect the label.
      */
@@ -869,7 +870,7 @@ public open class Label3D : GeometryInstance3D() {
     FLAG_MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -881,7 +882,7 @@ public open class Label3D : GeometryInstance3D() {
 
   public enum class AlphaCutMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but
      * transparency sorting issues may be visible when multiple transparent materials are overlapping.
@@ -918,7 +919,7 @@ public open class Label3D : GeometryInstance3D() {
     HASH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -179,7 +180,7 @@ public open class XRHandTracker : XRPositionalTracker() {
 
   public enum class HandTrackingSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The source of hand tracking data is unknown.
      */
@@ -205,7 +206,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -217,7 +218,7 @@ public open class XRHandTracker : XRPositionalTracker() {
 
   public enum class HandJoint(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Palm joint.
      */
@@ -328,7 +329,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     MAX(26),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -331,7 +332,7 @@ public open class VisualShader : Shader() {
 
   public enum class Type(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * A vertex shader, operating on vertices.
      */
@@ -378,7 +379,7 @@ public open class VisualShader : Shader() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -390,7 +391,7 @@ public open class VisualShader : Shader() {
 
   public enum class VaryingMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Varying is passed from `Vertex` function to `Fragment` and `Light` functions.
      */
@@ -405,7 +406,7 @@ public open class VisualShader : Shader() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -417,7 +418,7 @@ public open class VisualShader : Shader() {
 
   public enum class VaryingType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Varying is of type [float].
      */
@@ -456,7 +457,7 @@ public open class VisualShader : Shader() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -69,7 +70,7 @@ public open class HingeJoint3D : Joint3D() {
 
   public enum class Param(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The speed with which the two bodies get pulled together when they move in different
      * directions.
@@ -106,7 +107,7 @@ public open class HingeJoint3D : Joint3D() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -118,7 +119,7 @@ public open class HingeJoint3D : Joint3D() {
 
   public enum class Flag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and
      * [angularLimit/upper] has effects.
@@ -134,7 +135,7 @@ public open class HingeJoint3D : Joint3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

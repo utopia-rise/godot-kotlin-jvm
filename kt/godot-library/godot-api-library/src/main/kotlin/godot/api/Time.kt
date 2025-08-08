@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -360,7 +361,7 @@ public object Time : Object() {
 
   public enum class Month(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The month of January, represented numerically as `01`.
      */
@@ -411,7 +412,7 @@ public object Time : Object() {
     DECEMBER(12),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -423,7 +424,7 @@ public object Time : Object() {
 
   public enum class Weekday(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The day of the week Sunday, represented numerically as `0`.
      */
@@ -454,7 +455,7 @@ public object Time : Object() {
     SATURDAY(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

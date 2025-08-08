@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -96,7 +97,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   public enum class OpType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * A floating-point scalar.
      */
@@ -119,7 +120,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -131,7 +132,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   public enum class Function(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sum of absolute derivative in `x` and `y`.
      */
@@ -150,7 +151,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -162,7 +163,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   public enum class Precision(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No precision is specified, the GPU driver is allowed to use whatever level of precision it
      * chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text
@@ -188,7 +189,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

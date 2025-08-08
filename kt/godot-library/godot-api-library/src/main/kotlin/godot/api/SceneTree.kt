@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
@@ -879,7 +880,7 @@ public open class SceneTree : MainLoop() {
 
   public enum class GroupCallFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Call nodes within a group with no special behavior (default).
      */
@@ -904,7 +905,7 @@ public open class SceneTree : MainLoop() {
     UNIQUE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

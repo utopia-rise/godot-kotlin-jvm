@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -239,7 +240,7 @@ public open class SceneReplicationConfig : Resource() {
 
   public enum class ReplicationMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not keep the given property synchronized.
      */
@@ -256,7 +257,7 @@ public open class SceneReplicationConfig : Resource() {
     ON_CHANGE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -141,7 +142,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   public enum class TextureType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
      */
@@ -165,7 +166,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     TYPE_MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -177,7 +178,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   public enum class ColorDefault(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Defaults to fully opaque white color.
      */
@@ -196,7 +197,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -208,7 +209,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   public enum class TextureFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sample the texture using the filter determined by the node this shader is attached to.
      */
@@ -277,7 +278,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     FILTER_MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -289,7 +290,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   public enum class TextureRepeat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Sample the texture using the repeat mode determined by the node this shader is attached to.
      */
@@ -308,7 +309,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     REPEAT_MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -320,7 +321,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   public enum class TextureSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The texture source is not specified in the shader.
      */
@@ -343,7 +344,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     SOURCE_MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

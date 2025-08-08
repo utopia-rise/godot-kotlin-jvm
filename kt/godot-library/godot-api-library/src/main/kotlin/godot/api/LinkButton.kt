@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -209,7 +210,7 @@ public open class LinkButton : BaseButton() {
 
   public enum class UnderlineMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
      */
@@ -225,7 +226,7 @@ public open class LinkButton : BaseButton() {
     NEVER(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

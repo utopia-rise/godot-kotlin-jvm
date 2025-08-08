@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.RID
 import godot.core.Rect2i
@@ -826,7 +827,7 @@ public open class TileMapLayer : Node2D() {
 
   public enum class DebugVisibilityMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Hide the collisions or navigation debug shapes in the editor, and use the debug settings to
      * determine their visibility in game (i.e. [SceneTree.debugCollisionsHint] or
@@ -843,7 +844,7 @@ public open class TileMapLayer : Node2D() {
     FORCE_SHOW(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

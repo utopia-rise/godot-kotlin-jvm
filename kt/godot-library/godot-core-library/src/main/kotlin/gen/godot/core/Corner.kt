@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class Corner(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Top-left corner.
    */
@@ -30,7 +30,7 @@ public enum class Corner(
   BOTTOM_LEFT(3),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

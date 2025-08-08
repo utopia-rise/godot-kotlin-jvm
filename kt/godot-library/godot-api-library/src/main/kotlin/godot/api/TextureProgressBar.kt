@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -540,7 +541,7 @@ public open class TextureProgressBar : Range() {
 
   public enum class FillMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [textureProgress] fills from left to right.
      */
@@ -585,7 +586,7 @@ public open class TextureProgressBar : Range() {
     CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.Signal0
@@ -1266,7 +1267,7 @@ public open class GraphEdit : Control() {
 
   public enum class PanningScheme(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * [kbd]Mouse Wheel[/kbd] will zoom, [kbd]Ctrl + Mouse Wheel[/kbd] will move the view.
      */
@@ -1277,7 +1278,7 @@ public open class GraphEdit : Control() {
     SCROLL_PANS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1289,7 +1290,7 @@ public open class GraphEdit : Control() {
 
   public enum class GridPattern(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Draw the grid using solid lines.
      */
@@ -1300,7 +1301,7 @@ public open class GraphEdit : Control() {
     DOTS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

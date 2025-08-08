@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -575,7 +576,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   public enum class FileMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The dialog allows selecting one, and only one file.
      */
@@ -598,7 +599,7 @@ public open class FileDialog : ConfirmationDialog() {
     SAVE_FILE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -610,7 +611,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   public enum class Access(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The dialog only allows accessing files under the [Resource] path (`res://`).
      */
@@ -625,7 +626,7 @@ public open class FileDialog : ConfirmationDialog() {
     FILESYSTEM(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

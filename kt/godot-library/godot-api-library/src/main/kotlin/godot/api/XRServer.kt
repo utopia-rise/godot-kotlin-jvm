@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -400,7 +401,7 @@ public object XRServer : Object() {
 
   public enum class TrackerType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The tracker tracks the location of the players head. This is usually a location centered
      * between the players eyes. Note that for handheld AR devices this can be the current location of
@@ -445,7 +446,7 @@ public object XRServer : Object() {
     ANY(255),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -457,7 +458,7 @@ public object XRServer : Object() {
 
   public enum class RotationMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to
      * in the real world. The user will look dead ahead in the virtual world.
@@ -474,7 +475,7 @@ public object XRServer : Object() {
     DONT_RESET_ROTATION(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

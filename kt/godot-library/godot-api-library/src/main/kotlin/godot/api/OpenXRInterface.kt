@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Quaternion
 import godot.core.Signal0
 import godot.core.Signal1
@@ -419,7 +420,7 @@ public open class OpenXRInterface : XRInterface() {
 
   public enum class Hand(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Left hand.
      */
@@ -434,7 +435,7 @@ public open class OpenXRInterface : XRInterface() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -446,7 +447,7 @@ public open class OpenXRInterface : XRInterface() {
 
   public enum class HandMotionRange(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Full hand range, if user closes their hands, we make a full fist.
      */
@@ -462,7 +463,7 @@ public open class OpenXRInterface : XRInterface() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -474,7 +475,7 @@ public open class OpenXRInterface : XRInterface() {
 
   public enum class HandTrackedSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The source of hand tracking data is unknown (the extension is likely unsupported).
      */
@@ -495,7 +496,7 @@ public open class OpenXRInterface : XRInterface() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -507,7 +508,7 @@ public open class OpenXRInterface : XRInterface() {
 
   public enum class HandJoints(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Palm joint.
      */
@@ -618,7 +619,7 @@ public open class OpenXRInterface : XRInterface() {
     MAX(26),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

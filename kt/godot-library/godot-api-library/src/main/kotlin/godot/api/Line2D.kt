@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -507,7 +508,7 @@ public open class Line2D : Node2D() {
 
   public enum class LineJointMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Makes the polyline's joints pointy, connecting the sides of the two segments by extending
      * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
@@ -526,7 +527,7 @@ public open class Line2D : Node2D() {
     ROUND(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -538,7 +539,7 @@ public open class Line2D : Node2D() {
 
   public enum class LineCapMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Draws no line cap.
      */
@@ -553,7 +554,7 @@ public open class Line2D : Node2D() {
     ROUND(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -565,7 +566,7 @@ public open class Line2D : Node2D() {
 
   public enum class LineTextureMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Takes the left pixels of the texture and renders them over the whole polyline.
      */
@@ -583,7 +584,7 @@ public open class Line2D : Node2D() {
     STRETCH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

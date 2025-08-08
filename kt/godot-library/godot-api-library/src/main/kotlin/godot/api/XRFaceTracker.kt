@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -129,7 +130,7 @@ public open class XRFaceTracker : XRTracker() {
 
   public enum class BlendShapeEntry(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Right eye looks outwards.
      */
@@ -708,7 +709,7 @@ public open class XRFaceTracker : XRTracker() {
     FT_MAX(143),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

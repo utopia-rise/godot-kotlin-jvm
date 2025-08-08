@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -185,7 +186,7 @@ public open class AudioStreamGenerator : AudioStream() {
 
   public enum class AudioStreamGeneratorMixRate(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Current [AudioServer] output mixing rate.
      */
@@ -204,7 +205,7 @@ public open class AudioStreamGenerator : AudioStream() {
     MIX_RATE_MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

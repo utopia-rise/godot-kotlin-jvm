@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class Orientation(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * General vertical alignment, usually used for [Separator], [ScrollBar], [Slider], etc.
    */
@@ -22,7 +22,7 @@ public enum class Orientation(
   HORIZONTAL(0),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

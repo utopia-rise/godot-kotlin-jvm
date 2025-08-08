@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -241,7 +242,7 @@ public open class XRPositionalTracker : XRTracker() {
 
   public enum class TrackerHand(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The hand this tracker is held in is unknown or not applicable.
      */
@@ -260,7 +261,7 @@ public open class XRPositionalTracker : XRTracker() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

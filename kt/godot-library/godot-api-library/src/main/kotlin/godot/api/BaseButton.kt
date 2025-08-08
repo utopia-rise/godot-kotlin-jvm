@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.MouseButtonMask
 import godot.core.Signal0
 import godot.core.Signal1
@@ -346,7 +347,7 @@ public open class BaseButton : Control() {
 
   public enum class DrawMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
      */
@@ -369,7 +370,7 @@ public open class BaseButton : Control() {
     HOVER_PRESSED(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -381,7 +382,7 @@ public open class BaseButton : Control() {
 
   public enum class ActionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Require just a press to consider the button clicked.
      */
@@ -392,7 +393,7 @@ public open class BaseButton : Control() {
     BUTTON_RELEASE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

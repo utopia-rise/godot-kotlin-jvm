@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -560,7 +561,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   public enum class DrawFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * If set, the texture's transparency and the opacity are used to make those parts of the sprite
      * invisible.
@@ -590,7 +591,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     FLAG_MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -602,7 +603,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   public enum class AlphaCutMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but
      * transparency sorting issues may be visible when multiple transparent materials are overlapping.
@@ -629,7 +630,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     HASH(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

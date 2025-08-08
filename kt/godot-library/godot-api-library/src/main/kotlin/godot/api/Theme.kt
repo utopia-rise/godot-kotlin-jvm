@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -1314,7 +1315,7 @@ public open class Theme : Resource() {
 
   public enum class DataType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Theme's [Color] item type.
      */
@@ -1345,7 +1346,7 @@ public open class Theme : Resource() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

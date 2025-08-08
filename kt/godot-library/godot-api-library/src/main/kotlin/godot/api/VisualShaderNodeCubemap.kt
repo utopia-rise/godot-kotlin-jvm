@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -97,7 +98,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
 
   public enum class Source(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use the [Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is
      * ignored.
@@ -114,7 +115,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -126,7 +127,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
 
   public enum class TextureType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
      */
@@ -146,7 +147,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     TYPE_MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -168,7 +169,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
 
   public enum class Hint(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No hint used.
      */
@@ -190,7 +191,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

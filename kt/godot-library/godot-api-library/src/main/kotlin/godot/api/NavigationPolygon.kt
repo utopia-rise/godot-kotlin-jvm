@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
@@ -606,7 +607,7 @@ public open class NavigationPolygon : Resource() {
 
   public enum class SamplePartitionType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Convex partitioning that yields navigation mesh with convex polygons.
      */
@@ -621,7 +622,7 @@ public open class NavigationPolygon : Resource() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -633,7 +634,7 @@ public open class NavigationPolygon : Resource() {
 
   public enum class ParsedGeometryType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
      * [MultiMeshInstance2D], and [TileMap] nodes.
@@ -656,7 +657,7 @@ public open class NavigationPolygon : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -668,7 +669,7 @@ public open class NavigationPolygon : Resource() {
 
   public enum class SourceGeometryMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
@@ -688,7 +689,7 @@ public open class NavigationPolygon : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

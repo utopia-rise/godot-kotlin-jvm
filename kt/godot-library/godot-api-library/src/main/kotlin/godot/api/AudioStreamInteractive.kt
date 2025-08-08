@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -296,7 +297,7 @@ public open class AudioStreamInteractive : AudioStream() {
 
   public enum class TransitionFromTime(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Start transition as soon as possible, don't wait for any specific time position.
      */
@@ -315,7 +316,7 @@ public open class AudioStreamInteractive : AudioStream() {
     END(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -327,7 +328,7 @@ public open class AudioStreamInteractive : AudioStream() {
 
   public enum class TransitionToTime(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Transition to the same position in the destination clip. This is useful when both clips have
      * exactly the same length and the music should fade between them.
@@ -339,7 +340,7 @@ public open class AudioStreamInteractive : AudioStream() {
     START(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -351,7 +352,7 @@ public open class AudioStreamInteractive : AudioStream() {
 
   public enum class FadeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not use fade for the transition. This is useful when transitioning from a clip-end to
      * clip-beginning, and each clip has their begin/end.
@@ -376,7 +377,7 @@ public open class AudioStreamInteractive : AudioStream() {
     AUTOMATIC(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -388,7 +389,7 @@ public open class AudioStreamInteractive : AudioStream() {
 
   public enum class AutoAdvanceMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disable auto-advance (default).
      */
@@ -404,7 +405,7 @@ public open class AudioStreamInteractive : AudioStream() {
     RETURN_TO_HOLD(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

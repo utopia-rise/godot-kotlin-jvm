@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -161,7 +162,7 @@ public open class Shader : Resource() {
 
   public enum class Mode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Mode used to draw all 3D objects.
      */
@@ -184,7 +185,7 @@ public open class Shader : Resource() {
     FOG(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

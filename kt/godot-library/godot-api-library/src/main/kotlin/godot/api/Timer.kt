@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -246,7 +247,7 @@ public open class Timer : Node() {
 
   public enum class TimerProcessCallback(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Update the timer every physics process frame (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
@@ -258,7 +259,7 @@ public open class Timer : Node() {
     IDLE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

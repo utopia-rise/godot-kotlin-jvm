@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -2505,7 +2506,7 @@ public open class Environment : Resource() {
 
   public enum class BGMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Clears the background using the clear color defined in
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor].
@@ -2540,7 +2541,7 @@ public open class Environment : Resource() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2552,7 +2553,7 @@ public open class Environment : Resource() {
 
   public enum class AmbientSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Gather ambient light from whichever source is specified as the background.
      */
@@ -2572,7 +2573,7 @@ public open class Environment : Resource() {
     SKY(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2584,7 +2585,7 @@ public open class Environment : Resource() {
 
   public enum class ReflectionSource(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use the background for reflections.
      */
@@ -2599,7 +2600,7 @@ public open class Environment : Resource() {
     SKY(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2611,7 +2612,7 @@ public open class Environment : Resource() {
 
   public enum class ToneMapper(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
      * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
@@ -2648,7 +2649,7 @@ public open class Environment : Resource() {
     AGX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2660,7 +2661,7 @@ public open class Environment : Resource() {
 
   public enum class GlowBlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
      * sources.
@@ -2688,7 +2689,7 @@ public open class Environment : Resource() {
     MIX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2700,7 +2701,7 @@ public open class Environment : Resource() {
 
   public enum class FogMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use a physically-based fog model defined primarily by fog density.
      */
@@ -2712,7 +2713,7 @@ public open class Environment : Resource() {
     DEPTH(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2724,7 +2725,7 @@ public open class Environment : Resource() {
 
   public enum class SDFGIYScale(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
      * they are wide. This allows providing increased GI detail and reduced light leaking with thin
@@ -2745,7 +2746,7 @@ public open class Environment : Resource() {
     Y_SCALE_100_PERCENT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

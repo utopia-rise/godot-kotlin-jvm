@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -148,7 +149,7 @@ public open class OccluderPolygon2D : Resource() {
 
   public enum class CullMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Culling is disabled. See [cullMode].
      */
@@ -163,7 +164,7 @@ public open class OccluderPolygon2D : Resource() {
     COUNTER_CLOCKWISE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

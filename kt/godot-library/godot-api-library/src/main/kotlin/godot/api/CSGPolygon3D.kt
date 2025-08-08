@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
@@ -497,7 +498,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   public enum class Mode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [polygon] shape is extruded along the negative Z axis.
      */
@@ -512,7 +513,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     PATH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -524,7 +525,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   public enum class PathRotation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [polygon] shape is not rotated.
      *
@@ -543,7 +544,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     PATH_FOLLOW(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -555,7 +556,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   public enum class PathIntervalType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters,
      * each interval of the path will extrude.
@@ -567,7 +568,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     SUBDIVIDE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

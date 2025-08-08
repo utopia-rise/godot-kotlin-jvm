@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -1006,7 +1007,7 @@ public open class TileSet : Resource() {
 
   public enum class TileShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Rectangular tile shape.
      */
@@ -1027,7 +1028,7 @@ public open class TileSet : Resource() {
     HEXAGON(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1039,7 +1040,7 @@ public open class TileSet : Resource() {
 
   public enum class TileLayout(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Tile coordinates layout where both axis stay consistent with their respective local
      * horizontal and vertical axis.
@@ -1071,7 +1072,7 @@ public open class TileSet : Resource() {
     DIAMOND_DOWN(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1083,7 +1084,7 @@ public open class TileSet : Resource() {
 
   public enum class TileOffsetAxis(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Horizontal half-offset.
      */
@@ -1094,7 +1095,7 @@ public open class TileSet : Resource() {
     VERTICAL(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1106,7 +1107,7 @@ public open class TileSet : Resource() {
 
   public enum class CellNeighbor(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Neighbor on the right side.
      */
@@ -1173,7 +1174,7 @@ public open class TileSet : Resource() {
     TOP_RIGHT_CORNER(15),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1185,7 +1186,7 @@ public open class TileSet : Resource() {
 
   public enum class TerrainMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Requires both corners and side to match with neighboring tiles' terrains.
      */
@@ -1200,7 +1201,7 @@ public open class TileSet : Resource() {
     MATCH_SIDES(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

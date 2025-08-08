@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform3D
@@ -397,7 +398,7 @@ public open class SkeletonProfile : Resource() {
 
   public enum class TailDirection(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Direction to the average coordinates of bone children.
      */
@@ -412,7 +413,7 @@ public open class SkeletonProfile : Resource() {
     END(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class VariantType(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Variable is `null`.
    */
@@ -174,7 +174,7 @@ public enum class VariantType(
   TYPE_MAX(39),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

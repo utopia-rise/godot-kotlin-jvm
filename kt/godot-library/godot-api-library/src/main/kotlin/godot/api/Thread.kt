@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -116,7 +117,7 @@ public open class Thread : RefCounted() {
 
   public enum class Priority(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * A thread running with lower priority than normally.
      */
@@ -131,7 +132,7 @@ public open class Thread : RefCounted() {
     HIGH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

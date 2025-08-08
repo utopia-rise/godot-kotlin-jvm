@@ -7,6 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotEnum
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -24,7 +25,7 @@ public open class ResourceImporter internal constructor() : RefCounted() {
 
   public enum class ImportOrder(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The default import order.
      */
@@ -37,7 +38,7 @@ public open class ResourceImporter internal constructor() : RefCounted() {
     SCENE(100),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class Key(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * Enum value which doesn't correspond to any key. This is used to initialize [Key] properties
    * with a generic state.
@@ -787,7 +787,7 @@ public enum class Key(
   SECTION(167),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

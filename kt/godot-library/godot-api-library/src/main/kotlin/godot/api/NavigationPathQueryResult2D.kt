@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
@@ -281,7 +282,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
 
   public enum class PathSegmentType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * This segment of the path goes through a region.
      */
@@ -292,7 +293,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     LINK(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

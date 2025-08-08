@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Rect2
 import godot.core.Side
 import godot.core.Signal0
@@ -258,7 +259,7 @@ public open class NinePatchRect : Control() {
 
   public enum class AxisStretchMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Stretches the center texture across the NinePatchRect. This may cause the texture to be
      * distorted.
@@ -278,7 +279,7 @@ public open class NinePatchRect : Control() {
     TILE_FIT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

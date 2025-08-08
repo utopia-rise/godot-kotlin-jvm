@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.InlineAlignment
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
@@ -2524,7 +2525,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class FontAntialiasing(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Font glyphs are rasterized as 1-bit bitmaps.
      */
@@ -2545,7 +2546,7 @@ public open class TextServer internal constructor() : RefCounted() {
     LCD(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2557,7 +2558,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class FontLCDSubpixelLayout(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
      */
@@ -2584,7 +2585,7 @@ public open class TextServer internal constructor() : RefCounted() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2596,7 +2597,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class Direction(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Text direction is determined based on contents and current locale.
      */
@@ -2616,7 +2617,7 @@ public open class TextServer internal constructor() : RefCounted() {
     INHERITED(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2628,7 +2629,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class Orientation(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Text is written horizontally.
      */
@@ -2641,7 +2642,7 @@ public open class TextServer internal constructor() : RefCounted() {
     VERTICAL(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2743,7 +2744,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class AutowrapMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Autowrap is disabled.
      */
@@ -2764,7 +2765,7 @@ public open class TextServer internal constructor() : RefCounted() {
     WORD_SMART(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2849,7 +2850,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class VisibleCharactersBehavior(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Trims text before the shaping. e.g, increasing [Label.visibleCharacters] or
      * [RichTextLabel.visibleCharacters] value is visually identical to typing the text.
@@ -2879,7 +2880,7 @@ public open class TextServer internal constructor() : RefCounted() {
     VC_GLYPHS_RTL(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2892,7 +2893,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class OverrunBehavior(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No text trimming is performed.
      */
@@ -2915,7 +2916,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TRIM_WORD_ELLIPSIS(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3112,7 +3113,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class Hinting(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables font hinting (smoother but less crisp).
      */
@@ -3130,7 +3131,7 @@ public open class TextServer internal constructor() : RefCounted() {
     NORMAL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3142,7 +3143,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class SubpixelPositioning(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once.
      */
@@ -3181,7 +3182,7 @@ public open class TextServer internal constructor() : RefCounted() {
     ONE_QUARTER_MAX_SIZE(16),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3193,7 +3194,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class Feature(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * TextServer supports simple text layouts.
      */
@@ -3258,7 +3259,7 @@ public open class TextServer internal constructor() : RefCounted() {
     UNICODE_SECURITY(16384),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3270,7 +3271,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class ContourPointTag(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Contour point is on the curve.
      */
@@ -3286,7 +3287,7 @@ public open class TextServer internal constructor() : RefCounted() {
     CURVE_TAG_OFF_CUBIC(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3298,7 +3299,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class SpacingType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Spacing for each glyph.
      */
@@ -3321,7 +3322,7 @@ public open class TextServer internal constructor() : RefCounted() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3381,7 +3382,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class StructuredTextParser(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use default Unicode BiDi algorithm.
      */
@@ -3412,7 +3413,7 @@ public open class TextServer internal constructor() : RefCounted() {
     CUSTOM(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3424,7 +3425,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public enum class FixedSizeScaleMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Bitmap font is not scaled.
      */
@@ -3441,7 +3442,7 @@ public open class TextServer internal constructor() : RefCounted() {
     ENABLED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

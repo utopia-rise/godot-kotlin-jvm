@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.InlineAlignment
 import godot.core.PackedFloat32Array
@@ -1685,7 +1686,7 @@ public open class RichTextLabel : Control() {
 
   public enum class ListType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Each list item has a number marker.
      */
@@ -1704,7 +1705,7 @@ public open class RichTextLabel : Control() {
     DOTS(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1716,7 +1717,7 @@ public open class RichTextLabel : Control() {
 
   public enum class MenuItems(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Copies the selected text.
      */
@@ -1731,7 +1732,7 @@ public open class RichTextLabel : Control() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1743,7 +1744,7 @@ public open class RichTextLabel : Control() {
 
   public enum class MetaUnderline(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Meta tag does not display an underline, even if [metaUnderlined] is `true`.
      */
@@ -1759,7 +1760,7 @@ public open class RichTextLabel : Control() {
     ON_HOVER(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

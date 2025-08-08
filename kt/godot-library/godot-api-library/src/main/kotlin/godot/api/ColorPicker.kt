@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedColorArray
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -385,7 +386,7 @@ public open class ColorPicker : VBoxContainer() {
 
   public enum class ColorModeType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Allows editing the color with Red/Green/Blue sliders.
      */
@@ -411,7 +412,7 @@ public open class ColorPicker : VBoxContainer() {
     MODE_OKHSL(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -423,7 +424,7 @@ public open class ColorPicker : VBoxContainer() {
 
   public enum class PickerShapeType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * HSV Color Model rectangle color space.
      */
@@ -447,7 +448,7 @@ public open class ColorPicker : VBoxContainer() {
     SHAPE_NONE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

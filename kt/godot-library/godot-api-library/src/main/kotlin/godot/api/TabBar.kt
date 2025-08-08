@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Rect2
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -657,7 +658,7 @@ public open class TabBar : Control() {
 
   public enum class AlignmentMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Places tabs to the left.
      */
@@ -676,7 +677,7 @@ public open class TabBar : Control() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -688,7 +689,7 @@ public open class TabBar : Control() {
 
   public enum class CloseButtonDisplayPolicy(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Never show the close buttons.
      */
@@ -707,7 +708,7 @@ public open class TabBar : Control() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

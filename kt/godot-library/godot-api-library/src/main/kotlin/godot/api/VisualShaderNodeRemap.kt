@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -49,7 +50,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
 
   public enum class OpType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * A floating-point scalar type.
      */
@@ -87,7 +88,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

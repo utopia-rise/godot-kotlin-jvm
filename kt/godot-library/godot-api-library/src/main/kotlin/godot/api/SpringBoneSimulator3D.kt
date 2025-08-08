@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -831,7 +832,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   public enum class BoneDirection(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Enumerated value for the +X axis.
      */
@@ -862,7 +863,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     FROM_PARENT(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -874,7 +875,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   public enum class CenterFrom(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The world origin is defined as center.
      */
@@ -894,7 +895,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     BONE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -906,7 +907,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
   public enum class RotationAxis(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Enumerated value for the rotation of the X axis.
      */
@@ -925,7 +926,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     ALL(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

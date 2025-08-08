@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -309,14 +310,14 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
 
   public enum class PathfindingAlgorithm(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The path query uses the default A* pathfinding algorithm.
      */
     ASTAR(0),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -328,7 +329,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
 
   public enum class PathPostProcessing(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This
      * will result in the shortest path possible inside the path corridor. This postprocessing very
@@ -350,7 +351,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     POSTPROCESSING_NONE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

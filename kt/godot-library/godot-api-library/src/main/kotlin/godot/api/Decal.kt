@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -539,7 +540,7 @@ public open class Decal : VisualInstance3D() {
 
   public enum class DecalTexture(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * [Texture2D] corresponding to [textureAlbedo].
      */
@@ -562,7 +563,7 @@ public open class Decal : VisualInstance3D() {
     TEXTURE_MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

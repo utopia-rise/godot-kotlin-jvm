@@ -13,6 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.Rect2
 import godot.core.StringName
@@ -1220,7 +1221,7 @@ public open class TreeItem internal constructor() : Object() {
 
   public enum class TreeCellMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Cell shows a string label, optionally with an icon. When editable, the text can be edited
      * using a [LineEdit], or a [TextEdit] popup if [setEditMultiline] is used.
@@ -1256,7 +1257,7 @@ public open class TreeItem internal constructor() : Object() {
     CELL_MODE_CUSTOM(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

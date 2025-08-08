@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedFloat32Array
 import godot.core.Transform2D
 import godot.core.Transform3D
@@ -468,7 +469,7 @@ public open class MultiMesh : Resource() {
 
   public enum class TransformFormat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use this when using 2D transforms.
      */
@@ -479,7 +480,7 @@ public open class MultiMesh : Resource() {
     TRANSFORM_3D(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -491,7 +492,7 @@ public open class MultiMesh : Resource() {
 
   public enum class PhysicsInterpolationQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Always interpolate using Basis lerping, which can produce warping artifacts in some
      * situations.
@@ -504,7 +505,7 @@ public open class MultiMesh : Resource() {
     INTERP_QUALITY_HIGH(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

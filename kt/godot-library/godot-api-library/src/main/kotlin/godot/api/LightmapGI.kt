@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -665,7 +666,7 @@ public open class LightmapGI : VisualInstance3D() {
 
   public enum class BakeQuality(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Low bake quality (fastest bake times). The quality of this preset can be adjusted by changing
      * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityRayCount] and
@@ -692,7 +693,7 @@ public open class LightmapGI : VisualInstance3D() {
     ULTRA(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -704,7 +705,7 @@ public open class LightmapGI : VisualInstance3D() {
 
   public enum class GenerateProbes(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Don't generate lightmap probes for lighting dynamic objects.
      */
@@ -727,7 +728,7 @@ public open class LightmapGI : VisualInstance3D() {
     SUBDIV_32(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -739,7 +740,7 @@ public open class LightmapGI : VisualInstance3D() {
 
   public enum class BakeError(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Lightmap baking was successful.
      */
@@ -797,7 +798,7 @@ public open class LightmapGI : VisualInstance3D() {
     ATLAS_TOO_SMALL(11),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -809,7 +810,7 @@ public open class LightmapGI : VisualInstance3D() {
 
   public enum class EnvironmentMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Ignore environment lighting when baking lightmaps.
      */
@@ -833,7 +834,7 @@ public open class LightmapGI : VisualInstance3D() {
     CUSTOM_COLOR(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

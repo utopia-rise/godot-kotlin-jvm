@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
@@ -255,7 +256,7 @@ public open class WebRTCPeerConnection : RefCounted() {
 
   public enum class ConnectionState(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The connection is new, data channels and an offer can be created in this state.
      */
@@ -282,7 +283,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     STATE_CLOSED(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -294,7 +295,7 @@ public open class WebRTCPeerConnection : RefCounted() {
 
   public enum class GatheringState(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The peer connection was just created and hasn't done any networking yet.
      */
@@ -311,7 +312,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     COMPLETE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -323,7 +324,7 @@ public open class WebRTCPeerConnection : RefCounted() {
 
   public enum class SignalingState(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * There is no ongoing exchange of offer and answer underway. This may mean that the
      * [WebRTCPeerConnection] is new ([STATE_NEW]) or that negotiation is complete and a connection has
@@ -358,7 +359,7 @@ public open class WebRTCPeerConnection : RefCounted() {
     CLOSED(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

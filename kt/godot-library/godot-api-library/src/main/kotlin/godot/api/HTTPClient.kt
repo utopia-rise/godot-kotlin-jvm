@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
@@ -412,7 +413,7 @@ public open class HTTPClient : RefCounted() {
 
   public enum class Method(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * HTTP GET method. The GET method requests a representation of the specified resource. Requests
      * using GET should only retrieve data.
@@ -465,7 +466,7 @@ public open class HTTPClient : RefCounted() {
     MAX(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -477,7 +478,7 @@ public open class HTTPClient : RefCounted() {
 
   public enum class Status(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Status: Disconnected from the server.
      */
@@ -520,7 +521,7 @@ public open class HTTPClient : RefCounted() {
     TLS_HANDSHAKE_ERROR(9),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -532,7 +533,7 @@ public open class HTTPClient : RefCounted() {
 
   public enum class ResponseCode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and
      * that the client should continue with the request (or ignore this status if already finished).
@@ -884,7 +885,7 @@ public open class HTTPClient : RefCounted() {
     NETWORK_AUTH_REQUIRED(511),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

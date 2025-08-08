@@ -1,5 +1,6 @@
 package godot.codegen.generation.rule
 
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.INT
@@ -11,8 +12,10 @@ import com.squareup.kotlinpoet.TypeSpec
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
-import godot.codegen.models.traits.addKdoc
 import godot.codegen.models.enriched.EnrichedEnum
+import godot.codegen.models.traits.addKdoc
+import godot.tools.common.constants.GodotKotlinJvmTypes.godotEnum
+import godot.tools.common.constants.godotCorePackage
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"
 
@@ -28,13 +31,15 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
     }
 
     fun TypeSpec.Builder.generateEnum(enum: EnrichedEnum) {
+        addSuperinterface(ClassName(godotCorePackage, godotEnum))
+
         primaryConstructor(
             FunSpec.constructorBuilder()
                 .addParameter("id", Long::class)
                 .addStatement("this.%N = %N", "id", "id")
                 .build()
         )
-        addProperty("id", Long::class)
+        addProperty("id", Long::class, KModifier.OVERRIDE)
 
         for (value in enum.values) {
             val valueName = value.name

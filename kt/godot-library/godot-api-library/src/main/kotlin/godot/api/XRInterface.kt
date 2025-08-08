@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedVector3Array
 import godot.core.Projection
 import godot.core.Signal1
@@ -446,7 +447,7 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   public enum class Capabilities(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No XR capabilities.
      */
@@ -480,7 +481,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_EXTERNAL(32),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -492,7 +493,7 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   public enum class TrackingStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Tracking is behaving as expected.
      */
@@ -517,7 +518,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_NOT_TRACKING(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -529,7 +530,7 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   public enum class PlayAreaMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Play area mode not set or not available.
      */
@@ -555,7 +556,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_PLAY_AREA_STAGE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -567,7 +568,7 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   public enum class EnvironmentBlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Opaque blend mode. This is typically used for VR devices.
      */
@@ -585,7 +586,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_ENV_BLEND_MODE_ALPHA_BLEND(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2i
@@ -450,7 +451,7 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   public enum class OpenXRAlphaBlendModeSupport(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Means that [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] isn't supported at all.
      */
@@ -465,7 +466,7 @@ public open class OpenXRAPIExtension : RefCounted() {
     OPENXR_ALPHA_BLEND_MODE_SUPPORT_EMULATING(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

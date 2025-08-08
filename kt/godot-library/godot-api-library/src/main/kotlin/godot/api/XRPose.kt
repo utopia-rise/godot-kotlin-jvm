@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
@@ -284,7 +285,7 @@ public open class XRPose : RefCounted() {
 
   public enum class TrackingConfidence(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No tracking information is available for this pose.
      */
@@ -300,7 +301,7 @@ public open class XRPose : RefCounted() {
     XR_HIGH(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

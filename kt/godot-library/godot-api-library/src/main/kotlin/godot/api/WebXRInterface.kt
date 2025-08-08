@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -530,7 +531,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   public enum class TargetRayMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * We don't know the target ray mode.
      */
@@ -549,7 +550,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     SCREEN(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

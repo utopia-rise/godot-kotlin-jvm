@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -545,7 +546,7 @@ public open class FastNoiseLite : Noise() {
 
   public enum class NoiseType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * A lattice of points are assigned random values then interpolated based on neighboring values.
      */
@@ -580,7 +581,7 @@ public open class FastNoiseLite : Noise() {
     TYPE_SIMPLEX_SMOOTH(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -592,7 +593,7 @@ public open class FastNoiseLite : Noise() {
 
   public enum class FractalType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No fractal noise.
      */
@@ -611,7 +612,7 @@ public open class FastNoiseLite : Noise() {
     PING_PONG(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -623,7 +624,7 @@ public open class FastNoiseLite : Noise() {
 
   public enum class CellularDistanceFunction(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Euclidean distance to the nearest point.
      */
@@ -642,7 +643,7 @@ public open class FastNoiseLite : Noise() {
     DISTANCE_HYBRID(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -654,7 +655,7 @@ public open class FastNoiseLite : Noise() {
 
   public enum class CellularReturnType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The cellular distance function will return the same value for all points within a cell.
      */
@@ -688,7 +689,7 @@ public open class FastNoiseLite : Noise() {
     RETURN_DISTANCE2_DIV(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -700,7 +701,7 @@ public open class FastNoiseLite : Noise() {
 
   public enum class DomainWarpType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The domain is warped using the simplex noise algorithm.
      */
@@ -716,7 +717,7 @@ public open class FastNoiseLite : Noise() {
     BASIC_GRID(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -728,7 +729,7 @@ public open class FastNoiseLite : Noise() {
 
   public enum class DomainWarpFractalType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No fractal noise for warping the space.
      */
@@ -744,7 +745,7 @@ public open class FastNoiseLite : Noise() {
     INDEPENDENT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

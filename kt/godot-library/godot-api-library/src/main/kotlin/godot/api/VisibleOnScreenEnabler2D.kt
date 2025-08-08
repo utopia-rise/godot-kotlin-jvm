@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -92,7 +93,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
 
   public enum class EnableMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
      */
@@ -107,7 +108,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     WHEN_PAUSED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

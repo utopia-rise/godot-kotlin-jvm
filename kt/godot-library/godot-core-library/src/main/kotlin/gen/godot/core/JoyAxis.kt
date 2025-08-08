@@ -11,7 +11,7 @@ import kotlin.Suppress
 
 public enum class JoyAxis(
   id: Long,
-) {
+) : GodotEnum {
   /**
    * An invalid game controller axis.
    */
@@ -51,7 +51,7 @@ public enum class JoyAxis(
   MAX(10),
   ;
 
-  public val id: Long
+  public override val id: Long
   init {
     this.id = id
   }

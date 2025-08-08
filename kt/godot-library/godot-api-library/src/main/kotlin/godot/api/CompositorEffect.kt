@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -249,7 +250,7 @@ public open class CompositorEffect : Resource() {
 
   public enum class EffectCallbackType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The callback is called before our opaque rendering pass, but after depth prepass (if
      * applicable).
@@ -280,7 +281,7 @@ public open class CompositorEffect : Resource() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

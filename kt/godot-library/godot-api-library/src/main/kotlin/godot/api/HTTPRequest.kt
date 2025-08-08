@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.Signal4
@@ -508,7 +509,7 @@ public open class HTTPRequest : Node() {
 
   public enum class Result(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Request successful.
      */
@@ -571,7 +572,7 @@ public open class HTTPRequest : Node() {
     TIMEOUT(13),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

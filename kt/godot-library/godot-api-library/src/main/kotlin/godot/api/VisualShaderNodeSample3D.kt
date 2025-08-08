@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -51,7 +52,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
 
   public enum class Source(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Creates internal uniform and provides a way to assign it within node.
      */
@@ -66,7 +67,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

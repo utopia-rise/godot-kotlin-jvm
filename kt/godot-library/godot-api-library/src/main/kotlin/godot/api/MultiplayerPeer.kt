@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -236,7 +237,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   public enum class ConnectionStatus(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The MultiplayerPeer is disconnected.
      */
@@ -251,7 +252,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     CONNECTED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -263,7 +264,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   public enum class TransferMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may
      * arrive in any order. Potentially faster than [TRANSFER_MODE_UNRELIABLE_ORDERED]. Use for
@@ -287,7 +288,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     RELIABLE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
@@ -501,7 +502,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   public enum class WriteMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is
      * allowed).
@@ -514,7 +515,7 @@ public open class WebSocketPeer : PacketPeer() {
     BINARY(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -526,7 +527,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   public enum class State(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Socket has been created. The connection is not yet open.
      */
@@ -546,7 +547,7 @@ public open class WebSocketPeer : PacketPeer() {
     CLOSED(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -226,7 +227,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   public enum class Resolution(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no
      * distant particles.
@@ -259,7 +260,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -271,7 +272,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   public enum class UpdateMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or
      * when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly
@@ -287,7 +288,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     ALWAYS(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

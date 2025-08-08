@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -244,7 +245,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
 
   public enum class BlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The interpolation between animations is linear.
      */
@@ -261,7 +262,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     DISCRETE_CARRY(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

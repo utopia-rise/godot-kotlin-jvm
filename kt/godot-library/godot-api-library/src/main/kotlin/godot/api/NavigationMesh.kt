@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
@@ -816,7 +817,7 @@ public open class NavigationMesh : Resource() {
 
   public enum class SamplePartitionType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
      * this if you have large open areas.
@@ -837,7 +838,7 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -849,7 +850,7 @@ public open class NavigationMesh : Resource() {
 
   public enum class ParsedGeometryType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
      * [GridMap] nodes.
@@ -870,7 +871,7 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -882,7 +883,7 @@ public open class NavigationMesh : Resource() {
 
   public enum class SourceGeometryMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
@@ -902,7 +903,7 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -159,7 +160,7 @@ public open class OpenXRHand : Node3D() {
 
   public enum class Hands(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Tracking the player's left hand.
      */
@@ -174,7 +175,7 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -186,7 +187,7 @@ public open class OpenXRHand : Node3D() {
 
   public enum class MotionRange(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * When player grips, hand skeleton will form a full fist.
      */
@@ -201,7 +202,7 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -213,7 +214,7 @@ public open class OpenXRHand : Node3D() {
 
   public enum class SkeletonRig(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * An OpenXR compliant skeleton.
      */
@@ -228,7 +229,7 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -240,7 +241,7 @@ public open class OpenXRHand : Node3D() {
 
   public enum class BoneUpdate(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The skeletons bones are fully updated (both position and rotation) to match the tracked
      * bones.
@@ -256,7 +257,7 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

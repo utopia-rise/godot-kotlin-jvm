@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -188,7 +189,7 @@ public open class AudioStreamRandomizer : AudioStream() {
 
   public enum class PlaybackMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Pick a stream at random according to the probability weights chosen for each stream, but
      * avoid playing the same stream twice in a row whenever possible. If only 1 sound is present in
@@ -207,7 +208,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     SEQUENTIAL(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

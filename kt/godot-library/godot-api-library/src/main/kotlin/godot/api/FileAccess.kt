@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantCaster.ANY
@@ -695,7 +696,7 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   public enum class ModeFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Opens the file for read operations. The cursor is positioned at the beginning of the file.
      */
@@ -723,7 +724,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     WRITE_READ(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -735,7 +736,7 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   public enum class CompressionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Uses the [url=https://fastlz.org/]FastLZ[/url] compression method.
      */
@@ -759,7 +760,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     BROTLI(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

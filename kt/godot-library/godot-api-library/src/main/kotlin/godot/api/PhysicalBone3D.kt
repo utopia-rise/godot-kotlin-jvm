@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -629,7 +630,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   public enum class DampMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
@@ -641,7 +642,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     REPLACE(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -653,7 +654,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   public enum class JointType(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No joint is applied to the PhysicsBone3D.
      */
@@ -680,7 +681,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     JOINT_TYPE_6DOF(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

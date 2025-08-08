@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
@@ -1500,7 +1501,7 @@ public open class CanvasItem internal constructor() : Node() {
 
   public enum class TextureFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
      */
@@ -1569,7 +1570,7 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1581,7 +1582,7 @@ public open class CanvasItem internal constructor() : Node() {
 
   public enum class TextureRepeat(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
      */
@@ -1604,7 +1605,7 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -1616,7 +1617,7 @@ public open class CanvasItem internal constructor() : Node() {
 
   public enum class ClipChildrenMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Child draws over parent and is not clipped.
      */
@@ -1637,7 +1638,7 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
