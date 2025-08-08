@@ -180,7 +180,7 @@ public open class MultiplayerSpawner : Node() {
     TransferContext.callMethod(ptr, MethodBindings.setSpawnFunctionPtr, NIL)
   }
 
-  public final fun setSpawnPath(path: String) = setSpawnPath(path.asCachedNodePath())
+  public final fun setSpawnPath(path: String): Unit = setSpawnPath(path.asCachedNodePath())
 
   public companion object
 

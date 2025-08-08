@@ -277,14 +277,15 @@ public object Performance : Object() {
     id: String,
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ) = addCustomMonitor(id.asCachedStringName(), callable, arguments)
+  ): Unit = addCustomMonitor(id.asCachedStringName(), callable, arguments)
 
   /**
    * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
    * absent.
    */
   @JvmStatic
-  public final fun removeCustomMonitor(id: String) = removeCustomMonitor(id.asCachedStringName())
+  public final fun removeCustomMonitor(id: String): Unit =
+      removeCustomMonitor(id.asCachedStringName())
 
   /**
    * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.

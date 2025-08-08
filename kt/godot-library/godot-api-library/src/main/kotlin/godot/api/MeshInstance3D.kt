@@ -287,7 +287,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
-  public final fun setSkeletonPath(skeletonPath: String) =
+  public final fun setSkeletonPath(skeletonPath: String): Unit =
       setSkeletonPath(skeletonPath.asCachedNodePath())
 
   /**

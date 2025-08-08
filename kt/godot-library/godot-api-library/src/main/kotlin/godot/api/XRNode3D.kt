@@ -171,9 +171,10 @@ public open class XRNode3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.triggerHapticPulsePtr, NIL)
   }
 
-  public final fun setTracker(trackerName: String) = setTracker(trackerName.asCachedStringName())
+  public final fun setTracker(trackerName: String): Unit =
+      setTracker(trackerName.asCachedStringName())
 
-  public final fun setPoseName(pose: String) = setPoseName(pose.asCachedStringName())
+  public final fun setPoseName(pose: String): Unit = setPoseName(pose.asCachedStringName())
 
   public companion object
 

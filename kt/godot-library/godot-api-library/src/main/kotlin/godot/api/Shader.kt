@@ -146,7 +146,7 @@ public open class Shader : Resource() {
     name: String,
     texture: Texture?,
     index: Int = 0,
-  ) = setDefaultTextureParameter(name.asCachedStringName(), texture, index)
+  ): Unit = setDefaultTextureParameter(name.asCachedStringName(), texture, index)
 
   /**
    * Returns the texture that is set as default for the specified parameter.

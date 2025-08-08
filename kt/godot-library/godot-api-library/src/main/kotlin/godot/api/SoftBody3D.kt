@@ -417,7 +417,7 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setParentCollisionIgnore(parentCollisionIgnore: String) =
+  public final fun setParentCollisionIgnore(parentCollisionIgnore: String): Unit =
       setParentCollisionIgnore(parentCollisionIgnore.asCachedNodePath())
 
   /**
@@ -430,7 +430,7 @@ public open class SoftBody3D : MeshInstance3D() {
     pinned: Boolean,
     attachmentPath: String,
     insertAt: Int = -1,
-  ) = setPointPinned(pointIndex, pinned, attachmentPath.asCachedNodePath(), insertAt)
+  ): Unit = setPointPinned(pointIndex, pinned, attachmentPath.asCachedNodePath(), insertAt)
 
   public enum class DisableMode(
     id: Long,

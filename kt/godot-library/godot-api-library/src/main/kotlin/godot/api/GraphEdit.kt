@@ -1218,7 +1218,8 @@ public open class GraphEdit : Control() {
     fromPort: Int,
     toNode: String,
     toPort: Int,
-  ) = disconnectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+  ): Unit =
+      disconnectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
 
   /**
    * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
@@ -1231,7 +1232,7 @@ public open class GraphEdit : Control() {
     toNode: String,
     toPort: Int,
     amount: Float,
-  ) =
+  ): Unit =
       setConnectionActivity(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, amount)
 
   /**
@@ -1243,13 +1244,13 @@ public open class GraphEdit : Control() {
   /**
    * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
    */
-  public final fun attachGraphElementToFrame(element: String, frame: String) =
+  public final fun attachGraphElementToFrame(element: String, frame: String): Unit =
       attachGraphElementToFrame(element.asCachedStringName(), frame.asCachedStringName())
 
   /**
    * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
    */
-  public final fun detachGraphElementFromFrame(element: String) =
+  public final fun detachGraphElementFromFrame(element: String): Unit =
       detachGraphElementFromFrame(element.asCachedStringName())
 
   /**

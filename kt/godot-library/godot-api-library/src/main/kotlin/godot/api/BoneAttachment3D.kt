@@ -170,7 +170,7 @@ public open class BoneAttachment3D : Node3D() {
    * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
    * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
    */
-  public final fun setExternalSkeleton(externalSkeleton: String) =
+  public final fun setExternalSkeleton(externalSkeleton: String): Unit =
       setExternalSkeleton(externalSkeleton.asCachedNodePath())
 
   public companion object

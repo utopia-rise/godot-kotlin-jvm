@@ -818,7 +818,7 @@ public object Engine : Object() {
    * for plugins.
    */
   @JvmStatic
-  public final fun registerSingleton(name: String, instance: Object?) =
+  public final fun registerSingleton(name: String, instance: Object?): Unit =
       registerSingleton(name.asCachedStringName(), instance)
 
   /**
@@ -826,7 +826,7 @@ public object Engine : Object() {
    * with user-defined singletons registered with [registerSingleton].
    */
   @JvmStatic
-  public final fun unregisterSingleton(name: String) =
+  public final fun unregisterSingleton(name: String): Unit =
       unregisterSingleton(name.asCachedStringName())
 
   public object MethodBindings {

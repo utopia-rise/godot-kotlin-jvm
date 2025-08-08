@@ -745,7 +745,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Triggers the [animationTo] animation when the [animationFrom] animation completes.
    */
-  public final fun animationSetNext(animationFrom: String, animationTo: String) =
+  public final fun animationSetNext(animationFrom: String, animationTo: String): Unit =
       animationSetNext(animationFrom.asCachedStringName(), animationTo.asCachedStringName())
 
   /**
@@ -761,7 +761,7 @@ public open class AnimationPlayer : AnimationMixer() {
     animationFrom: String,
     animationTo: String,
     sec: Double,
-  ) = setBlendTime(animationFrom.asCachedStringName(), animationTo.asCachedStringName(), sec)
+  ): Unit = setBlendTime(animationFrom.asCachedStringName(), animationTo.asCachedStringName(), sec)
 
   /**
    * Returns the blend time (in seconds) between two animations, referenced by their keys.
@@ -791,7 +791,7 @@ public open class AnimationPlayer : AnimationMixer() {
     customBlend: Double = -1.0,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-  ) = play(name.asCachedStringName(), customBlend, customSpeed, fromEnd)
+  ): Unit = play(name.asCachedStringName(), customBlend, customSpeed, fromEnd)
 
   /**
    * Plays the animation with key [name] and the section starting from [startMarker] and ending on
@@ -808,7 +808,7 @@ public open class AnimationPlayer : AnimationMixer() {
     customBlend: Double = -1.0,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-  ) =
+  ): Unit =
       playSectionWithMarkers(name.asCachedStringName(), startMarker.asCachedStringName(), endMarker.asCachedStringName(), customBlend, customSpeed, fromEnd)
 
   /**
@@ -828,7 +828,8 @@ public open class AnimationPlayer : AnimationMixer() {
     customBlend: Double = -1.0,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-  ) = playSection(name.asCachedStringName(), startTime, endTime, customBlend, customSpeed, fromEnd)
+  ): Unit =
+      playSection(name.asCachedStringName(), startTime, endTime, customBlend, customSpeed, fromEnd)
 
   /**
    * Plays the animation with key [name] in reverse.
@@ -837,7 +838,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * its description for more information.
    */
   @JvmOverloads
-  public final fun playBackwards(name: String, customBlend: Double = -1.0) =
+  public final fun playBackwards(name: String, customBlend: Double = -1.0): Unit =
       playBackwards(name.asCachedStringName(), customBlend)
 
   /**
@@ -853,7 +854,7 @@ public open class AnimationPlayer : AnimationMixer() {
     startMarker: String,
     endMarker: String,
     customBlend: Double = -1.0,
-  ) =
+  ): Unit =
       playSectionWithMarkersBackwards(name.asCachedStringName(), startMarker.asCachedStringName(), endMarker.asCachedStringName(), customBlend)
 
   /**
@@ -869,7 +870,7 @@ public open class AnimationPlayer : AnimationMixer() {
     startTime: Double = -1.0,
     endTime: Double = -1.0,
     customBlend: Double = -1.0,
-  ) = playSectionBackwards(name.asCachedStringName(), startTime, endTime, customBlend)
+  ): Unit = playSectionBackwards(name.asCachedStringName(), startTime, endTime, customBlend)
 
   /**
    * See also [AnimationMixer.capture].
@@ -902,7 +903,7 @@ public open class AnimationPlayer : AnimationMixer() {
     fromEnd: Boolean = false,
     transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
     easeType: Tween.EaseType = Tween.EaseType.IN,
-  ) =
+  ): Unit =
       playWithCapture(name.asCachedStringName(), duration, customBlend, customSpeed, fromEnd, transType, easeType)
 
   /**
@@ -912,7 +913,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** If a looped animation is currently playing, the queued animation will never play
    * unless the looped animation is stopped somehow.
    */
-  public final fun queue(name: String) = queue(name.asCachedStringName())
+  public final fun queue(name: String): Unit = queue(name.asCachedStringName())
 
   /**
    * Changes the start and end markers of the section being played. The current playback position
@@ -921,13 +922,13 @@ public open class AnimationPlayer : AnimationMixer() {
    * If the argument is empty, the section uses the beginning or end of the animation. If both are
    * empty, it means that the section is not set.
    */
-  public final fun setSectionWithMarkers(startMarker: String, endMarker: String) =
+  public final fun setSectionWithMarkers(startMarker: String, endMarker: String): Unit =
       setSectionWithMarkers(startMarker.asCachedStringName(), endMarker.asCachedStringName())
 
   /**
    * Sets the node which node path references will travel from.
    */
-  public final fun setRoot(path: String) = setRoot(path.asCachedNodePath())
+  public final fun setRoot(path: String): Unit = setRoot(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
     id: Long,

@@ -259,7 +259,7 @@ public open class MultiplayerSynchronizer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
+  public final fun setRootPath(path: String): Unit = setRootPath(path.asCachedNodePath())
 
   public enum class VisibilityUpdateMode(
     id: Long,

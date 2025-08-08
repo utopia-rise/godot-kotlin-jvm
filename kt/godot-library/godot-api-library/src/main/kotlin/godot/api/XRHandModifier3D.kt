@@ -82,7 +82,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHandTracker(trackerName: String) =
+  public final fun setHandTracker(trackerName: String): Unit =
       setHandTracker(trackerName.asCachedStringName())
 
   public enum class BoneUpdate(

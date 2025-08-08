@@ -810,12 +810,13 @@ public open class Area3D : CollisionObject3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setWindSourcePath(windSourcePath: String) =
+  public final fun setWindSourcePath(windSourcePath: String): Unit =
       setWindSourcePath(windSourcePath.asCachedNodePath())
 
-  public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
+  public final fun setAudioBusName(name: String): Unit = setAudioBusName(name.asCachedStringName())
 
-  public final fun setReverbBusName(name: String) = setReverbBusName(name.asCachedStringName())
+  public final fun setReverbBusName(name: String): Unit =
+      setReverbBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
     id: Long,

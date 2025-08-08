@@ -493,7 +493,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPathNode(path: String) = setPathNode(path.asCachedNodePath())
+  public final fun setPathNode(path: String): Unit = setPathNode(path.asCachedNodePath())
 
   public enum class Mode(
     id: Long,

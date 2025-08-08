@@ -1045,7 +1045,7 @@ public open class Animation : Resource() {
    *
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
-  public final fun trackSetPath(trackIdx: Int, path: String) =
+  public final fun trackSetPath(trackIdx: Int, path: String): Unit =
       trackSetPath(trackIdx, path.asCachedNodePath())
 
   /**
@@ -1072,18 +1072,18 @@ public open class Animation : Resource() {
     trackIdx: Int,
     keyIdx: Int,
     animation: String,
-  ) = animationTrackSetKeyAnimation(trackIdx, keyIdx, animation.asCachedStringName())
+  ): Unit = animationTrackSetKeyAnimation(trackIdx, keyIdx, animation.asCachedStringName())
 
   /**
    * Adds a marker to this Animation.
    */
-  public final fun addMarker(name: String, time: Double) =
+  public final fun addMarker(name: String, time: Double): Unit =
       addMarker(name.asCachedStringName(), time)
 
   /**
    * Removes the marker with the given name from this Animation.
    */
-  public final fun removeMarker(name: String) = removeMarker(name.asCachedStringName())
+  public final fun removeMarker(name: String): Unit = removeMarker(name.asCachedStringName())
 
   /**
    * Returns `true` if this Animation contains a marker with the given name.
@@ -1103,7 +1103,7 @@ public open class Animation : Resource() {
   /**
    * Sets the given marker's color.
    */
-  public final fun setMarkerColor(name: String, color: Color) =
+  public final fun setMarkerColor(name: String, color: Color): Unit =
       setMarkerColor(name.asCachedStringName(), color)
 
   public enum class TrackType(

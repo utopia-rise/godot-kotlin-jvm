@@ -154,7 +154,7 @@ public open class RemoteTransform3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRemoteNode(path: String) = setRemoteNode(path.asCachedNodePath())
+  public final fun setRemoteNode(path: String): Unit = setRemoteNode(path.asCachedNodePath())
 
   public companion object
 

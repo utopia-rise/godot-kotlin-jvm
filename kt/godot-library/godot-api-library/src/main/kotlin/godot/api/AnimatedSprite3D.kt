@@ -303,7 +303,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
+  public final fun setAnimation(name: String): Unit = setAnimation(name.asCachedStringName())
 
   /**
    * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the
@@ -317,7 +317,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     name: String,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-  ) = play(name.asCachedStringName(), customSpeed, fromEnd)
+  ): Unit = play(name.asCachedStringName(), customSpeed, fromEnd)
 
   /**
    * Plays the animation with key [name] in reverse.
@@ -325,7 +325,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */
-  public final fun playBackwards(name: String) = playBackwards(name.asCachedStringName())
+  public final fun playBackwards(name: String): Unit = playBackwards(name.asCachedStringName())
 
   public companion object
 

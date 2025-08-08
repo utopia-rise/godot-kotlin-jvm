@@ -154,7 +154,7 @@ public open class OpenXRHand : Node3D() {
     return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHandSkeleton(handSkeleton: String) =
+  public final fun setHandSkeleton(handSkeleton: String): Unit =
       setHandSkeleton(handSkeleton.asCachedNodePath())
 
   public enum class Hands(

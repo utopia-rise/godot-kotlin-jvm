@@ -193,20 +193,20 @@ public object InputMap : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addAction(action: String, deadzone: Float = 0.2f) =
+  public final fun addAction(action: String, deadzone: Float = 0.2f): Unit =
       addAction(action.asCachedStringName(), deadzone)
 
   /**
    * Removes an action from the [InputMap].
    */
   @JvmStatic
-  public final fun eraseAction(action: String) = eraseAction(action.asCachedStringName())
+  public final fun eraseAction(action: String): Unit = eraseAction(action.asCachedStringName())
 
   /**
    * Sets a deadzone value for the action.
    */
   @JvmStatic
-  public final fun actionSetDeadzone(action: String, deadzone: Float) =
+  public final fun actionSetDeadzone(action: String, deadzone: Float): Unit =
       actionSetDeadzone(action.asCachedStringName(), deadzone)
 
   /**
@@ -220,7 +220,7 @@ public object InputMap : Object() {
    * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
    */
   @JvmStatic
-  public final fun actionAddEvent(action: String, event: InputEvent?) =
+  public final fun actionAddEvent(action: String, event: InputEvent?): Unit =
       actionAddEvent(action.asCachedStringName(), event)
 
   /**
@@ -234,14 +234,14 @@ public object InputMap : Object() {
    * Removes an [InputEvent] from an action.
    */
   @JvmStatic
-  public final fun actionEraseEvent(action: String, event: InputEvent?) =
+  public final fun actionEraseEvent(action: String, event: InputEvent?): Unit =
       actionEraseEvent(action.asCachedStringName(), event)
 
   /**
    * Removes all events from an action.
    */
   @JvmStatic
-  public final fun actionEraseEvents(action: String) =
+  public final fun actionEraseEvents(action: String): Unit =
       actionEraseEvents(action.asCachedStringName())
 
   /**

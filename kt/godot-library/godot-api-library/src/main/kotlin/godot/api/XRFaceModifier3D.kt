@@ -85,10 +85,10 @@ public open class XRFaceModifier3D : Node3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setFaceTracker(trackerName: String) =
+  public final fun setFaceTracker(trackerName: String): Unit =
       setFaceTracker(trackerName.asCachedStringName())
 
-  public final fun setTarget(target: String) = setTarget(target.asCachedNodePath())
+  public final fun setTarget(target: String): Unit = setTarget(target.asCachedNodePath())
 
   public companion object
 

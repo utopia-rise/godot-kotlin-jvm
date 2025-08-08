@@ -91,7 +91,7 @@ public open class RDShaderFile : Resource() {
   /**
    * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
-  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: String) =
+  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: String): Unit =
       setBytecode(bytecode, version.asCachedStringName())
 
   /**

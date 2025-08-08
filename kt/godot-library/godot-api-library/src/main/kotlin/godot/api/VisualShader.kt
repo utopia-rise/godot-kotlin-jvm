@@ -327,7 +327,7 @@ public open class VisualShader : Shader() {
     type: Type,
     id: Int,
     newClass: String,
-  ) = replaceNode(type, id, newClass.asCachedStringName())
+  ): Unit = replaceNode(type, id, newClass.asCachedStringName())
 
   public enum class Type(
     id: Long,

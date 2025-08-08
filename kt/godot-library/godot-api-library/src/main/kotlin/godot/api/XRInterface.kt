@@ -441,7 +441,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     amplitude: Double,
     durationSec: Double,
     delaySec: Double,
-  ) =
+  ): Unit =
       triggerHapticPulse(actionName, trackerName.asCachedStringName(), frequency, amplitude, durationSec, delaySec)
 
   public enum class Capabilities(

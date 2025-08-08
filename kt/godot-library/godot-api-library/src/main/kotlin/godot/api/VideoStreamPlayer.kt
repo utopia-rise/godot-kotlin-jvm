@@ -358,7 +358,7 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
+  public final fun setBus(bus: String): Unit = setBus(bus.asCachedStringName())
 
   public companion object
 

@@ -6650,7 +6650,7 @@ public object RenderingServer : Object() {
     name: String,
     texture: RID,
     index: Int = 0,
-  ) = shaderSetDefaultTextureParameter(shader, name.asCachedStringName(), texture, index)
+  ): Unit = shaderSetDefaultTextureParameter(shader, name.asCachedStringName(), texture, index)
 
   /**
    * Returns a default texture from a shader searched by name.
@@ -6673,7 +6673,7 @@ public object RenderingServer : Object() {
     material: RID,
     parameter: String,
     `value`: Any?,
-  ) = materialSetParam(material, parameter.asCachedStringName(), value)
+  ): Unit = materialSetParam(material, parameter.asCachedStringName(), value)
 
   /**
    * Returns the value of a certain material's parameter.
@@ -6691,7 +6691,7 @@ public object RenderingServer : Object() {
     instance: RID,
     parameter: String,
     `value`: Any?,
-  ) = instanceGeometrySetShaderParameter(instance, parameter.asCachedStringName(), value)
+  ): Unit = instanceGeometrySetShaderParameter(instance, parameter.asCachedStringName(), value)
 
   /**
    * Returns the value of the per-instance shader uniform from the specified 3D geometry instance.
@@ -6721,7 +6721,7 @@ public object RenderingServer : Object() {
     instance: RID,
     parameter: String,
     `value`: Any?,
-  ) = canvasItemSetInstanceShaderParameter(instance, parameter.asCachedStringName(), value)
+  ): Unit = canvasItemSetInstanceShaderParameter(instance, parameter.asCachedStringName(), value)
 
   /**
    * Returns the value of the per-instance shader uniform from the specified canvas item instance.
@@ -6750,20 +6750,20 @@ public object RenderingServer : Object() {
     name: String,
     type: GlobalShaderParameterType,
     defaultValue: Any?,
-  ) = globalShaderParameterAdd(name.asCachedStringName(), type, defaultValue)
+  ): Unit = globalShaderParameterAdd(name.asCachedStringName(), type, defaultValue)
 
   /**
    * Removes the global shader uniform specified by [name].
    */
   @JvmStatic
-  public final fun globalShaderParameterRemove(name: String) =
+  public final fun globalShaderParameterRemove(name: String): Unit =
       globalShaderParameterRemove(name.asCachedStringName())
 
   /**
    * Sets the global shader uniform [name] to [value].
    */
   @JvmStatic
-  public final fun globalShaderParameterSet(name: String, `value`: Any?) =
+  public final fun globalShaderParameterSet(name: String, `value`: Any?): Unit =
       globalShaderParameterSet(name.asCachedStringName(), value)
 
   /**
@@ -6771,7 +6771,7 @@ public object RenderingServer : Object() {
    * [ShaderGlobalsOverride] node.
    */
   @JvmStatic
-  public final fun globalShaderParameterSetOverride(name: String, `value`: Any?) =
+  public final fun globalShaderParameterSetOverride(name: String, `value`: Any?): Unit =
       globalShaderParameterSetOverride(name.asCachedStringName(), value)
 
   /**

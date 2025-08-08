@@ -225,7 +225,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSkeletonPath(skeletonPath: String) =
+  public final fun setSkeletonPath(skeletonPath: String): Unit =
       setSkeletonPath(skeletonPath.asCachedNodePath())
 
   public companion object

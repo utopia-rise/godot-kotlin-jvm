@@ -814,7 +814,7 @@ public open class GPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSubEmitter(path: String) = setSubEmitter(path.asCachedNodePath())
+  public final fun setSubEmitter(path: String): Unit = setSubEmitter(path.asCachedNodePath())
 
   public enum class DrawOrder(
     id: Long,

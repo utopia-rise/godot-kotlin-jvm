@@ -371,7 +371,7 @@ public open class AnimationNode : Resource() {
   /**
    * Adds or removes a path for the filter.
    */
-  public final fun setFilterPath(path: String, enable: Boolean) =
+  public final fun setFilterPath(path: String, enable: Boolean): Unit =
       setFilterPath(path.asCachedNodePath(), enable)
 
   /**
@@ -395,7 +395,7 @@ public open class AnimationNode : Resource() {
     isExternalSeeking: Boolean,
     blend: Float,
     loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
-  ) =
+  ): Unit =
       blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
 
   /**
@@ -421,7 +421,7 @@ public open class AnimationNode : Resource() {
    * Sets a custom parameter. These are used as local memory, because resources can be reused across
    * the tree or scenes.
    */
-  public final fun setParameter(name: String, `value`: Any?) =
+  public final fun setParameter(name: String, `value`: Any?): Unit =
       setParameter(name.asCachedStringName(), value)
 
   /**

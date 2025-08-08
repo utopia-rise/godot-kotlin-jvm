@@ -383,7 +383,7 @@ public object TranslationServer : Object() {
    * **Note:** Trying to remove the main translation domain is an error.
    */
   @JvmStatic
-  public final fun removeDomain(domain: String) = removeDomain(domain.asCachedStringName())
+  public final fun removeDomain(domain: String): Unit = removeDomain(domain.asCachedStringName())
 
   /**
    * Returns the pseudolocalized string based on the [message] passed in.

@@ -246,15 +246,16 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTargetNode(targetNodepath: String) =
+  public final fun setTargetNode(targetNodepath: String): Unit =
       setTargetNode(targetNodepath.asCachedNodePath())
 
-  public final fun setTipNode(tipNodepath: String) = setTipNode(tipNodepath.asCachedNodePath())
+  public final fun setTipNode(tipNodepath: String): Unit =
+      setTipNode(tipNodepath.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
-  public final fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
+  public final fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: String): Unit =
       setCcdikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
   public companion object

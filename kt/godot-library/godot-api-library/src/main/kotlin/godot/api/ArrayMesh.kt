@@ -517,12 +517,12 @@ public open class ArrayMesh : Mesh() {
    * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called
    * before surface is added.
    */
-  public final fun addBlendShape(name: String) = addBlendShape(name.asCachedStringName())
+  public final fun addBlendShape(name: String): Unit = addBlendShape(name.asCachedStringName())
 
   /**
    * Sets the name of the blend shape at this index.
    */
-  public final fun setBlendShapeName(index: Int, name: String) =
+  public final fun setBlendShapeName(index: Int, name: String): Unit =
       setBlendShapeName(index, name.asCachedStringName())
 
   public companion object

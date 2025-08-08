@@ -634,7 +634,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
+  public final fun setAudioBusName(name: String): Unit = setAudioBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
     id: Long,

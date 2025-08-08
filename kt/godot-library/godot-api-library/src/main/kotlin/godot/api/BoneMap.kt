@@ -116,7 +116,7 @@ public open class BoneMap : Resource() {
    *
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
-  public final fun setSkeletonBoneName(profileBoneName: String, skeletonBoneName: String) =
+  public final fun setSkeletonBoneName(profileBoneName: String, skeletonBoneName: String): Unit =
       setSkeletonBoneName(profileBoneName.asCachedStringName(), skeletonBoneName.asCachedStringName())
 
   /**

@@ -164,7 +164,7 @@ public open class SceneReplicationConfig : Resource() {
    * [MultiplayerSynchronizer].
    */
   @JvmOverloads
-  public final fun addProperty(path: String, index: Int = -1) =
+  public final fun addProperty(path: String, index: Int = -1): Unit =
       addProperty(path.asCachedNodePath(), index)
 
   /**
@@ -175,7 +175,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    * Removes the property identified by the given [path] from the configuration.
    */
-  public final fun removeProperty(path: String) = removeProperty(path.asCachedNodePath())
+  public final fun removeProperty(path: String): Unit = removeProperty(path.asCachedNodePath())
 
   /**
    * Finds the index of the given [path].
@@ -193,7 +193,7 @@ public open class SceneReplicationConfig : Resource() {
    * Sets whether the property identified by the given [path] is configured to be synchronized on
    * spawn.
    */
-  public final fun propertySetSpawn(path: String, enabled: Boolean) =
+  public final fun propertySetSpawn(path: String, enabled: Boolean): Unit =
       propertySetSpawn(path.asCachedNodePath(), enabled)
 
   /**
@@ -207,7 +207,7 @@ public open class SceneReplicationConfig : Resource() {
    * Sets the synchronization mode for the property identified by the given [path]. See
    * [ReplicationMode].
    */
-  public final fun propertySetReplicationMode(path: String, mode: ReplicationMode) =
+  public final fun propertySetReplicationMode(path: String, mode: ReplicationMode): Unit =
       propertySetReplicationMode(path.asCachedNodePath(), mode)
 
   /**
@@ -220,7 +220,7 @@ public open class SceneReplicationConfig : Resource() {
    * Sets whether the property identified by the given [path] is configured to be synchronized on
    * process.
    */
-  public final fun propertySetSync(path: String, enabled: Boolean) =
+  public final fun propertySetSync(path: String, enabled: Boolean): Unit =
       propertySetSync(path.asCachedNodePath(), enabled)
 
   /**
@@ -234,7 +234,7 @@ public open class SceneReplicationConfig : Resource() {
    * Sets whether the property identified by the given [path] is configured to be reliably
    * synchronized when changes are detected on process.
    */
-  public final fun propertySetWatch(path: String, enabled: Boolean) =
+  public final fun propertySetWatch(path: String, enabled: Boolean): Unit =
       propertySetWatch(path.asCachedNodePath(), enabled)
 
   public enum class ReplicationMode(

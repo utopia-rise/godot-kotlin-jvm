@@ -1209,13 +1209,13 @@ public open class TreeItem internal constructor() : Object() {
     column: Int,
     `object`: Object?,
     callback: String,
-  ) = setCustomDraw(column, `object`, callback.asCachedStringName())
+  ): Unit = setCustomDraw(column, `object`, callback.asCachedStringName())
 
   /**
    * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a
    * comma separated list.
    */
-  public final fun callRecursive(method: String, vararg args: Any?) =
+  public final fun callRecursive(method: String, vararg args: Any?): Unit =
       callRecursive(method.asCachedStringName(), )
 
   public enum class TreeCellMode(

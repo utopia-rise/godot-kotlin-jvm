@@ -376,7 +376,7 @@ public open class AudioStreamPlayer : Node() {
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
+  public final fun setBus(bus: String): Unit = setBus(bus.asCachedStringName())
 
   public enum class MixTarget(
     id: Long,

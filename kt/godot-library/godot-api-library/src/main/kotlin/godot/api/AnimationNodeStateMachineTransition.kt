@@ -272,7 +272,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setAdvanceCondition(name: String) =
+  public final fun setAdvanceCondition(name: String): Unit =
       setAdvanceCondition(name.asCachedStringName())
 
   public enum class SwitchMode(

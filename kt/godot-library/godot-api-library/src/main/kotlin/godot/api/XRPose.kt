@@ -280,7 +280,7 @@ public open class XRPose : RefCounted() {
     return TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setName(name: String) = setName(name.asCachedStringName())
+  public final fun setName(name: String): Unit = setName(name.asCachedStringName())
 
   public enum class TrackingConfidence(
     id: Long,

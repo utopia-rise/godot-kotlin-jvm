@@ -812,7 +812,8 @@ public open class NavigationMesh : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public final fun setSourceGroupName(mask: String) = setSourceGroupName(mask.asCachedStringName())
+  public final fun setSourceGroupName(mask: String): Unit =
+      setSourceGroupName(mask.asCachedStringName())
 
   public enum class SamplePartitionType(
     id: Long,

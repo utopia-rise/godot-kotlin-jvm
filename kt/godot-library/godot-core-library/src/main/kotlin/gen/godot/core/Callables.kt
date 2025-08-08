@@ -27,17 +27,17 @@ public class LambdaCallable0<R> @PublishedApi internal constructor(
   public companion object {
     @JvmStatic
     @JvmName("create")
-    public fun <R> javaCreate(returnClass: Class<R>, function: () -> R) =
+    public fun <R> javaCreate(returnClass: Class<R>, function: () -> R): LambdaCallable0<R> =
         LambdaCallable0(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), null, function)
   }
 }
 
 public inline fun <reified R> callable0(noinline onCancelCall: (() -> Unit)? = null, noinline
-    function: () -> R) =
+    function: () -> R): LambdaCallable0<R> =
     LambdaCallable0(variantMapper.getOrDefault(R::class, NIL), onCancelCall, function)
 
-public inline fun <reified R> (() -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) =
-    callable0(onCancelCall, this)
+public inline fun <reified R> (() -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable0<R> = callable0(onCancelCall, this)
 
 public class LambdaCallable1<P0, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -51,7 +51,8 @@ public class LambdaCallable1<P0, R> @PublishedApi internal constructor(
 
   public override fun call(vararg args: Any?): Any? = function(args[0] as P0)
 
-  public fun bind(p0: P0) = LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0) }
+  public fun bind(p0: P0): LambdaCallable0<R> =
+      LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0) }
 
   public companion object {
     @JvmStatic
@@ -60,17 +61,17 @@ public class LambdaCallable1<P0, R> @PublishedApi internal constructor(
       returnClass: Class<R>,
       p0Class: Class<P0>,
       function: (p0: P0) -> R,
-    ) =
+    ): LambdaCallable1<P0, R> =
         LambdaCallable1(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, null, function)
   }
 }
 
 public inline fun <reified P0, reified R> callable1(noinline onCancelCall: (() -> Unit)? = null,
-    noinline function: (p0: P0) -> R) =
+    noinline function: (p0: P0) -> R): LambdaCallable1<P0, R> =
     LambdaCallable1(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified R> ((p0: P0) -> R).asCallable(noinline
-    onCancelCall: (() -> Unit)? = null) = callable1(onCancelCall, this)
+    onCancelCall: (() -> Unit)? = null): LambdaCallable1<P0, R> = callable1(onCancelCall, this)
 
 public class LambdaCallable2<P0, P1, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -85,10 +86,10 @@ public class LambdaCallable2<P0, P1, R> @PublishedApi internal constructor(
 
   public override fun call(vararg args: Any?): Any? = function(args[0] as P0, args[1] as P1)
 
-  public fun bind(p0: P0, p1: P1) =
+  public fun bind(p0: P0, p1: P1): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1) }
 
-  public fun bind(p1: P1) =
+  public fun bind(p1: P1): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1) }
 
   public companion object {
@@ -99,17 +100,17 @@ public class LambdaCallable2<P0, P1, R> @PublishedApi internal constructor(
       p0Class: Class<P0>,
       p1Class: Class<P1>,
       function: (p0: P0, p1: P1) -> R,
-    ) =
+    ): LambdaCallable2<P0, P1, R> =
         LambdaCallable2(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, null, function)
   }
 }
 
 public inline fun <reified P0, reified P1, reified R> callable2(noinline onCancelCall: (() -> Unit)?
-    = null, noinline function: (p0: P0, p1: P1) -> R) =
+    = null, noinline function: (p0: P0, p1: P1) -> R): LambdaCallable2<P0, P1, R> =
     LambdaCallable2(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified R> ((p0: P0, p1: P1) -> R).asCallable(noinline
-    onCancelCall: (() -> Unit)? = null) = callable2(onCancelCall, this)
+    onCancelCall: (() -> Unit)? = null): LambdaCallable2<P0, P1, R> = callable2(onCancelCall, this)
 
 public class LambdaCallable3<P0, P1, P2, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -139,12 +140,13 @@ public class LambdaCallable3<P0, P1, P2, R> @PublishedApi internal constructor(
     p0: P0,
     p1: P1,
     p2: P2,
-  ) = LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2) }
+  ): LambdaCallable0<R> =
+      LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2) }
 
-  public fun bind(p1: P1, p2: P2) =
+  public fun bind(p1: P1, p2: P2): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2) }
 
-  public fun bind(p2: P2) =
+  public fun bind(p2: P2): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2) }
 
   public companion object {
@@ -160,7 +162,7 @@ public class LambdaCallable3<P0, P1, P2, R> @PublishedApi internal constructor(
         p1: P1,
         p2: P2,
       ) -> R,
-    ) =
+    ): LambdaCallable3<P0, P1, P2, R> =
         LambdaCallable3(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, null, function)
   }
 }
@@ -170,14 +172,15 @@ public inline fun <reified P0, reified P1, reified P2, reified R> callable3(noin
   p0: P0,
   p1: P1,
   p2: P2,
-) -> R) =
+) -> R): LambdaCallable3<P0, P1, P2, R> =
     LambdaCallable3(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified R> ((
   p0: P0,
   p1: P1,
   p2: P2,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable3(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null): LambdaCallable3<P0, P1, P2, R> =
+    callable3(onCancelCall, this)
 
 public class LambdaCallable4<P0, P1, P2, P3, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -211,18 +214,20 @@ public class LambdaCallable4<P0, P1, P2, P3, R> @PublishedApi internal construct
     p1: P1,
     p2: P2,
     p3: P3,
-  ) = LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3) }
+  ): LambdaCallable0<R> =
+      LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3) }
 
   public fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
-  ) = LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3) }
+  ): LambdaCallable1<P0, R> =
+      LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3) }
 
-  public fun bind(p2: P2, p3: P3) =
+  public fun bind(p2: P2, p3: P3): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3) }
 
-  public fun bind(p3: P3) =
+  public fun bind(p3: P3): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3) }
 
   public companion object {
@@ -240,7 +245,7 @@ public class LambdaCallable4<P0, P1, P2, P3, R> @PublishedApi internal construct
         p2: P2,
         p3: P3,
       ) -> R,
-    ) =
+    ): LambdaCallable4<P0, P1, P2, P3, R> =
         LambdaCallable4(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, null, function)
   }
 }
@@ -251,7 +256,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ca
   p1: P1,
   p2: P2,
   p3: P3,
-) -> R) =
+) -> R): LambdaCallable4<P0, P1, P2, P3, R> =
     LambdaCallable4(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
@@ -259,7 +264,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
   p1: P1,
   p2: P2,
   p3: P3,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable4(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null): LambdaCallable4<P0, P1, P2, P3, R>
+    = callable4(onCancelCall, this)
 
 public class LambdaCallable5<P0, P1, P2, P3, P4, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -297,27 +303,28 @@ public class LambdaCallable5<P0, P1, P2, P3, P4, R> @PublishedApi internal const
     p2: P2,
     p3: P3,
     p4: P4,
-  ) = LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4) }
+  ): LambdaCallable0<R> =
+      LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4) }
 
   public fun bind(
     p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4) }
 
   public fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4) }
 
-  public fun bind(p3: P3, p4: P4) =
+  public fun bind(p3: P3, p4: P4): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4) }
 
-  public fun bind(p4: P4) =
+  public fun bind(p4: P4): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4) }
 
   public companion object {
@@ -337,7 +344,7 @@ public class LambdaCallable5<P0, P1, P2, P3, P4, R> @PublishedApi internal const
         p3: P3,
         p4: P4,
       ) -> R,
-    ) =
+    ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
         LambdaCallable5(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, null, function)
   }
 }
@@ -349,7 +356,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p2: P2,
   p3: P3,
   p4: P4,
-) -> R) =
+) -> R): LambdaCallable5<P0, P1, P2, P3, P4, R> =
     LambdaCallable5(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R> ((
@@ -358,7 +365,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p2: P2,
   p3: P3,
   p4: P4,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable5(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable5<P0, P1, P2, P3, P4, R> = callable5(onCancelCall, this)
 
 public class LambdaCallable6<P0, P1, P2, P3, P4, P5, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -401,7 +409,8 @@ public class LambdaCallable6<P0, P1, P2, P3, P4, P5, R> @PublishedApi internal c
     p3: P3,
     p4: P4,
     p5: P5,
-  ) = LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5) }
+  ): LambdaCallable0<R> =
+      LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5) }
 
   public fun bind(
     p1: P1,
@@ -409,7 +418,7 @@ public class LambdaCallable6<P0, P1, P2, P3, P4, P5, R> @PublishedApi internal c
     p3: P3,
     p4: P4,
     p5: P5,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5) }
 
   public fun bind(
@@ -417,20 +426,20 @@ public class LambdaCallable6<P0, P1, P2, P3, P4, P5, R> @PublishedApi internal c
     p3: P3,
     p4: P4,
     p5: P5,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5) }
 
   public fun bind(
     p3: P3,
     p4: P4,
     p5: P5,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5) }
 
-  public fun bind(p4: P4, p5: P5) =
+  public fun bind(p4: P4, p5: P5): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5) }
 
-  public fun bind(p5: P5) =
+  public fun bind(p5: P5): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5) }
 
   public companion object {
@@ -452,7 +461,7 @@ public class LambdaCallable6<P0, P1, P2, P3, P4, P5, R> @PublishedApi internal c
         p4: P4,
         p5: P5,
       ) -> R,
-    ) =
+    ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
         LambdaCallable6(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, null, function)
   }
 }
@@ -465,7 +474,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
   p5: P5,
-) -> R) =
+) -> R): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
     LambdaCallable6(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -476,7 +485,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
   p5: P5,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable6(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable6<P0, P1, P2, P3, P4, P5, R> = callable6(onCancelCall, this)
 
 public class LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -523,7 +533,8 @@ public class LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ) = LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6) }
+  ): LambdaCallable0<R> =
+      LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6) }
 
   public fun bind(
     p1: P1,
@@ -532,7 +543,7 @@ public class LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6) }
 
   public fun bind(
@@ -541,7 +552,7 @@ public class LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6) }
 
   public fun bind(
@@ -549,20 +560,20 @@ public class LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> @PublishedApi intern
     p4: P4,
     p5: P5,
     p6: P6,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6) }
 
   public fun bind(
     p4: P4,
     p5: P5,
     p6: P6,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6) }
 
-  public fun bind(p5: P5, p6: P6) =
+  public fun bind(p5: P5, p6: P6): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6) }
 
-  public fun bind(p6: P6) =
+  public fun bind(p6: P6): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6) }
 
   public companion object {
@@ -586,7 +597,7 @@ public class LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> @PublishedApi intern
         p5: P5,
         p6: P6,
       ) -> R,
-    ) =
+    ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
         LambdaCallable7(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, null, function)
   }
 }
@@ -600,7 +611,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
   p6: P6,
-) -> R) =
+) -> R): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
     LambdaCallable7(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -612,7 +623,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
   p6: P6,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable7(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> = callable7(onCancelCall, this)
 
 public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi internal constructor(
   variantConverter: VariantConverter,
@@ -663,7 +675,7 @@ public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
   public fun bind(
@@ -674,7 +686,7 @@ public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
   public fun bind(
@@ -684,7 +696,7 @@ public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
   public fun bind(
@@ -693,7 +705,7 @@ public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
   public fun bind(
@@ -701,20 +713,20 @@ public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi in
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
   public fun bind(
     p5: P5,
     p6: P6,
     p7: P7,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
-  public fun bind(p6: P6, p7: P7) =
+  public fun bind(p6: P6, p7: P7): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
-  public fun bind(p7: P7) =
+  public fun bind(p7: P7): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
 
   public companion object {
@@ -740,7 +752,7 @@ public class LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> @PublishedApi in
         p6: P6,
         p7: P7,
       ) -> R,
-    ) =
+    ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
         LambdaCallable8(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, null, function)
   }
 }
@@ -756,7 +768,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
   p7: P7,
-) -> R) =
+) -> R): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
     LambdaCallable8(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -769,7 +781,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
   p7: P7,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable8(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> = callable8(onCancelCall, this)
 
 public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedApi internal
     constructor(
@@ -825,7 +838,7 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public fun bind(
@@ -837,7 +850,7 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public fun bind(
@@ -848,7 +861,7 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public fun bind(
@@ -858,7 +871,7 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public fun bind(
@@ -867,7 +880,7 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public fun bind(
@@ -875,20 +888,20 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public fun bind(
     p6: P6,
     p7: P7,
     p8: P8,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
-  public fun bind(p7: P7, p8: P8) =
+  public fun bind(p7: P7, p8: P8): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
-  public fun bind(p8: P8) =
+  public fun bind(p8: P8): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
 
   public companion object {
@@ -916,7 +929,7 @@ public class LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> @PublishedAp
         p7: P7,
         p8: P8,
       ) -> R,
-    ) =
+    ): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
         LambdaCallable9(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, null, function)
   }
 }
@@ -933,7 +946,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
   p8: P8,
-) -> R) =
+) -> R): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
     LambdaCallable9(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -947,7 +960,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
   p8: P8,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable9(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> = callable9(onCancelCall, this)
 
 public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @PublishedApi internal
     constructor(
@@ -1007,7 +1021,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
@@ -1020,7 +1034,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
@@ -1032,7 +1046,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
@@ -1043,7 +1057,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
@@ -1053,7 +1067,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
@@ -1062,7 +1076,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
@@ -1070,20 +1084,20 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public fun bind(
     p7: P7,
     p8: P8,
     p9: P9,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
-  public fun bind(p8: P8, p9: P9) =
+  public fun bind(p8: P8, p9: P9): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
-  public fun bind(p9: P9) =
+  public fun bind(p9: P9): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
 
   public companion object {
@@ -1113,7 +1127,7 @@ public class LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> @Publis
         p8: P8,
         p9: P9,
       ) -> R,
-    ) =
+    ): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
         LambdaCallable10(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, null, function)
   }
 }
@@ -1131,7 +1145,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
   p9: P9,
-) -> R) =
+) -> R): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
     LambdaCallable10(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1146,7 +1160,8 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
   p9: P9,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable10(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> = callable10(onCancelCall, this)
 
 public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @PublishedApi internal
     constructor(
@@ -1210,7 +1225,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1224,7 +1239,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1237,7 +1252,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1249,7 +1264,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1260,7 +1275,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1270,7 +1285,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1279,7 +1294,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
@@ -1287,20 +1302,20 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public fun bind(
     p8: P8,
     p9: P9,
     p10: P10,
-  ) =
+  ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
-  public fun bind(p9: P9, p10: P10) =
+  public fun bind(p9: P9, p10: P10): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
-  public fun bind(p10: P10) =
+  public fun bind(p10: P10): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
       LambdaCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
 
   public companion object {
@@ -1332,7 +1347,7 @@ public class LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> @P
         p9: P9,
         p10: P10,
       ) -> R,
-    ) =
+    ): LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
         LambdaCallable11(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, null, function)
   }
 }
@@ -1351,7 +1366,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
   p10: P10,
-) -> R) =
+) -> R): LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
     LambdaCallable11(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1367,7 +1382,9 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
   p10: P10,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable11(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
+    callable11(onCancelCall, this)
 
 public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> @PublishedApi
     internal constructor(
@@ -1435,7 +1452,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1450,7 +1467,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1464,7 +1481,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1477,7 +1494,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1489,7 +1506,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1500,7 +1517,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1510,7 +1527,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1519,7 +1536,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
@@ -1527,20 +1544,20 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public fun bind(
     p9: P9,
     p10: P10,
     p11: P11,
-  ) =
+  ): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
-  public fun bind(p10: P10, p11: P11) =
+  public fun bind(p10: P10, p11: P11): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
       LambdaCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
-  public fun bind(p11: P11) =
+  public fun bind(p11: P11): LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
       LambdaCallable11(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
 
   public companion object {
@@ -1574,7 +1591,7 @@ public class LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
         p10: P10,
         p11: P11,
       ) -> R,
-    ) =
+    ): LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
         LambdaCallable12(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, null, function)
   }
 }
@@ -1594,7 +1611,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
   p11: P11,
-) -> R) =
+) -> R): LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
     LambdaCallable12(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1611,7 +1628,9 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
   p11: P11,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable12(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
+    callable12(onCancelCall, this)
 
 public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R>
     @PublishedApi internal constructor(
@@ -1683,7 +1702,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1699,7 +1718,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1714,7 +1733,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1728,7 +1747,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1741,7 +1760,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1753,7 +1772,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1764,7 +1783,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1774,7 +1793,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1783,7 +1802,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
@@ -1791,20 +1810,21 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public fun bind(
     p10: P10,
     p11: P11,
     p12: P12,
-  ) =
+  ): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
       LambdaCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
-  public fun bind(p11: P11, p12: P12) =
+  public fun bind(p11: P11, p12: P12):
+      LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
       LambdaCallable11(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
-  public fun bind(p12: P12) =
+  public fun bind(p12: P12): LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
       LambdaCallable12(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
 
   public companion object {
@@ -1840,7 +1860,7 @@ public class LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
         p11: P11,
         p12: P12,
       ) -> R,
-    ) =
+    ): LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R> =
         LambdaCallable13(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, null, function)
   }
 }
@@ -1861,7 +1881,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
   p12: P12,
-) -> R) =
+) -> R): LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R> =
     LambdaCallable13(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1879,7 +1899,9 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
   p12: P12,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable13(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R> =
+    callable13(onCancelCall, this)
 
 public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R>
     @PublishedApi internal constructor(
@@ -1955,7 +1977,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -1972,7 +1994,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -1988,7 +2010,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2003,7 +2025,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2017,7 +2039,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2030,7 +2052,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2042,7 +2064,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2053,7 +2075,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2063,7 +2085,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2072,7 +2094,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
@@ -2080,20 +2102,22 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
       LambdaCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public fun bind(
     p11: P11,
     p12: P12,
     p13: P13,
-  ) =
+  ): LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
       LambdaCallable11(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
-  public fun bind(p12: P12, p13: P13) =
+  public fun bind(p12: P12, p13: P13):
+      LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
       LambdaCallable12(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
-  public fun bind(p13: P13) =
+  public fun bind(p13: P13):
+      LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R> =
       LambdaCallable13(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
 
   public companion object {
@@ -2131,7 +2155,7 @@ public class LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
         p12: P12,
         p13: P13,
       ) -> R,
-    ) =
+    ): LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R> =
         LambdaCallable14(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p13Class)]!!, null, function)
   }
 }
@@ -2153,7 +2177,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
   p13: P13,
-) -> R) =
+) -> R): LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R> =
     LambdaCallable14(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -2173,7 +2197,9 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
   p13: P13,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable14(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R> =
+    callable14(onCancelCall, this)
 
 public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R>
     @PublishedApi internal constructor(
@@ -2253,7 +2279,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2271,7 +2297,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2288,7 +2314,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2304,7 +2330,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2319,7 +2345,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2333,7 +2359,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2346,7 +2372,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2358,7 +2384,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2369,7 +2395,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2379,7 +2405,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2388,7 +2414,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
       LambdaCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
@@ -2396,20 +2422,22 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
       LambdaCallable11(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public fun bind(
     p12: P12,
     p13: P13,
     p14: P14,
-  ) =
+  ): LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
       LambdaCallable12(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
-  public fun bind(p13: P13, p14: P14) =
+  public fun bind(p13: P13, p14: P14):
+      LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R> =
       LambdaCallable13(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
-  public fun bind(p14: P14) =
+  public fun bind(p14: P14):
+      LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R> =
       LambdaCallable14(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
 
   public companion object {
@@ -2449,7 +2477,7 @@ public class LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
         p13: P13,
         p14: P14,
       ) -> R,
-    ) =
+    ): LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R> =
         LambdaCallable15(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p13Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p14Class)]!!, null, function)
   }
 }
@@ -2473,7 +2501,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
   p14: P14,
-) -> R) =
+) -> R): LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R> =
     LambdaCallable15(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -2494,7 +2522,9 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
   p14: P14,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable15(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R> =
+    callable15(onCancelCall, this)
 
 public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15,
     R> @PublishedApi internal constructor(
@@ -2578,7 +2608,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable0<R> =
       LambdaCallable0(variantConverter, onCancelCall) {  -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2597,7 +2627,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable1<P0, R> =
       LambdaCallable1(variantConverter, p0Type, onCancelCall) { p0: P0 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2615,7 +2645,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable2<P0, P1, R> =
       LambdaCallable2(variantConverter, p0Type, p1Type, onCancelCall) { p0: P0, p1: P1 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2632,7 +2662,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable3<P0, P1, P2, R> =
       LambdaCallable3(variantConverter, p0Type, p1Type, p2Type, onCancelCall) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2648,7 +2678,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable4<P0, P1, P2, P3, R> =
       LambdaCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2663,7 +2693,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable5<P0, P1, P2, P3, P4, R> =
       LambdaCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2677,7 +2707,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable6<P0, P1, P2, P3, P4, P5, R> =
       LambdaCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2690,7 +2720,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable7<P0, P1, P2, P3, P4, P5, P6, R> =
       LambdaCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2702,7 +2732,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R> =
       LambdaCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2713,7 +2743,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R> =
       LambdaCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2723,7 +2753,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R> =
       LambdaCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2732,7 +2762,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R> =
       LambdaCallable11(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
@@ -2740,20 +2770,22 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R> =
       LambdaCallable12(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public fun bind(
     p13: P13,
     p14: P14,
     p15: P15,
-  ) =
+  ): LambdaCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R> =
       LambdaCallable13(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
-  public fun bind(p14: P14, p15: P15) =
+  public fun bind(p14: P14, p15: P15):
+      LambdaCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R> =
       LambdaCallable14(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
-  public fun bind(p15: P15) =
+  public fun bind(p15: P15):
+      LambdaCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R> =
       LambdaCallable15(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, onCancelCall) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
 
   public companion object {
@@ -2795,7 +2827,7 @@ public class LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, 
         p14: P14,
         p15: P15,
       ) -> R,
-    ) =
+    ): LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R> =
         LambdaCallable16(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p13Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p14Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p15Class)]!!, null, function)
   }
 }
@@ -2820,7 +2852,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
   p15: P15,
-) -> R) =
+) -> R): LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R> =
     LambdaCallable16(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, variantMapper[P15::class]!!, onCancelCall, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -2842,4 +2874,6 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
   p15: P15,
-) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null) = callable16(onCancelCall, this)
+) -> R).asCallable(noinline onCancelCall: (() -> Unit)? = null):
+    LambdaCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R> =
+    callable16(onCancelCall, this)

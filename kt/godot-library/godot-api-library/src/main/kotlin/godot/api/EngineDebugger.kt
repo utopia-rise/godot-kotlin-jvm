@@ -284,14 +284,15 @@ public object EngineDebugger : Object() {
    * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
   @JvmStatic
-  public final fun registerProfiler(name: String, profiler: EngineProfiler?) =
+  public final fun registerProfiler(name: String, profiler: EngineProfiler?): Unit =
       registerProfiler(name.asCachedStringName(), profiler)
 
   /**
    * Unregisters a profiler with given [name].
    */
   @JvmStatic
-  public final fun unregisterProfiler(name: String) = unregisterProfiler(name.asCachedStringName())
+  public final fun unregisterProfiler(name: String): Unit =
+      unregisterProfiler(name.asCachedStringName())
 
   /**
    * Returns `true` if a profiler with the given name is present and active otherwise `false`.
@@ -309,7 +310,7 @@ public object EngineDebugger : Object() {
    * Calls the `add` callable of the profiler with given [name] and [data].
    */
   @JvmStatic
-  public final fun profilerAddFrameData(name: String, `data`: VariantArray<Any?>) =
+  public final fun profilerAddFrameData(name: String, `data`: VariantArray<Any?>): Unit =
       profilerAddFrameData(name.asCachedStringName(), data)
 
   /**
@@ -322,7 +323,7 @@ public object EngineDebugger : Object() {
     name: String,
     enable: Boolean,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ) = profilerEnable(name.asCachedStringName(), enable, arguments)
+  ): Unit = profilerEnable(name.asCachedStringName(), enable, arguments)
 
   /**
    * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
@@ -335,14 +336,14 @@ public object EngineDebugger : Object() {
    * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
    */
   @JvmStatic
-  public final fun registerMessageCapture(name: String, callable: Callable) =
+  public final fun registerMessageCapture(name: String, callable: Callable): Unit =
       registerMessageCapture(name.asCachedStringName(), callable)
 
   /**
    * Unregisters the message capture with given [name].
    */
   @JvmStatic
-  public final fun unregisterMessageCapture(name: String) =
+  public final fun unregisterMessageCapture(name: String): Unit =
       unregisterMessageCapture(name.asCachedStringName())
 
   /**
@@ -362,14 +363,14 @@ public object EngineDebugger : Object() {
    * Inserts a new breakpoint with the given [source] and [line].
    */
   @JvmStatic
-  public final fun insertBreakpoint(line: Int, source: String) =
+  public final fun insertBreakpoint(line: Int, source: String): Unit =
       insertBreakpoint(line, source.asCachedStringName())
 
   /**
    * Removes a breakpoint with the given [source] and [line].
    */
   @JvmStatic
-  public final fun removeBreakpoint(line: Int, source: String) =
+  public final fun removeBreakpoint(line: Int, source: String): Unit =
       removeBreakpoint(line, source.asCachedStringName())
 
   public object MethodBindings {

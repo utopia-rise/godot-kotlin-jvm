@@ -664,7 +664,7 @@ public object AudioServer : Object() {
    * Connects the output of the bus at [busIdx] to the bus named [send].
    */
   @JvmStatic
-  public final fun setBusSend(busIdx: Int, send: String) =
+  public final fun setBusSend(busIdx: Int, send: String): Unit =
       setBusSend(busIdx, send.asCachedStringName())
 
   public enum class SpeakerMode(

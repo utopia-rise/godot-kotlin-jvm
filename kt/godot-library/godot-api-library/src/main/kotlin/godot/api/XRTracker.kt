@@ -114,7 +114,7 @@ public open class XRTracker internal constructor() : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setTrackerDescPtr, NIL)
   }
 
-  public final fun setTrackerName(name: String) = setTrackerName(name.asCachedStringName())
+  public final fun setTrackerName(name: String): Unit = setTrackerName(name.asCachedStringName())
 
   public companion object
 

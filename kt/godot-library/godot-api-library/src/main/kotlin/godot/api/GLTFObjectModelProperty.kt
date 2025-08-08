@@ -273,14 +273,15 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the
    * order does not matter).
    */
-  public final fun appendNodePath(nodePath: String) = appendNodePath(nodePath.asCachedNodePath())
+  public final fun appendNodePath(nodePath: String): Unit =
+      appendNodePath(nodePath.asCachedNodePath())
 
   /**
    * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a
    * new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also
    * call [setTypes] once (the order does not matter).
    */
-  public final fun appendPathToProperty(nodePath: String, propName: String) =
+  public final fun appendPathToProperty(nodePath: String, propName: String): Unit =
       appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
 
   public enum class GLTFObjectModelType(

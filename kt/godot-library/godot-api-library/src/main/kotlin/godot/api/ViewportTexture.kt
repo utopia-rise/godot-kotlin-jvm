@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.asCachedNodePath
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -82,21 +81,7 @@ public open class ViewportTexture : Texture2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  /**
-   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
-   */
-  public override fun _getWidth(): Int {
-    throw NotImplementedError("ViewportTexture::_getWidth can't be called from the JVM.")
-  }
-
-  /**
-   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
-   */
-  public override fun _getHeight(): Int {
-    throw NotImplementedError("ViewportTexture::_getHeight can't be called from the JVM.")
-  }
-
-  public final fun setViewportPathInScene(path: String) =
+  public final fun setViewportPathInScene(path: String): Unit =
       setViewportPathInScene(path.asCachedNodePath())
 
   public companion object

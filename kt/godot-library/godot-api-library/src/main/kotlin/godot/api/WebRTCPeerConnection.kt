@@ -384,7 +384,7 @@ public open class WebRTCPeerConnection : RefCounted() {
      * creating a new [WebRTCPeerConnection].
      */
     @JvmStatic
-    public final fun setDefaultExtension(extensionClass: String) =
+    public final fun setDefaultExtension(extensionClass: String): Unit =
         setDefaultExtension(extensionClass.asCachedStringName())
   }
 

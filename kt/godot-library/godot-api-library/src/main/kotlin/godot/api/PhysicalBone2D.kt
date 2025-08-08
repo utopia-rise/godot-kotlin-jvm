@@ -181,7 +181,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBone2dNodepath(nodepath: String) =
+  public final fun setBone2dNodepath(nodepath: String): Unit =
       setBone2dNodepath(nodepath.asCachedNodePath())
 
   public companion object

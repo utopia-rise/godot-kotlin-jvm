@@ -987,7 +987,7 @@ public open class GLTFState : Resource() {
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit =
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {

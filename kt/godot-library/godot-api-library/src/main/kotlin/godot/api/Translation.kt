@@ -181,7 +181,7 @@ public open class Translation : Resource() {
     srcMessage: String,
     xlatedMessage: String,
     context: String,
-  ) =
+  ): Unit =
       addMessage(srcMessage.asCachedStringName(), xlatedMessage.asCachedStringName(), context.asCachedStringName())
 
   /**
@@ -194,7 +194,7 @@ public open class Translation : Resource() {
     srcMessage: String,
     xlatedMessages: PackedStringArray,
     context: String,
-  ) =
+  ): Unit =
       addPluralMessage(srcMessage.asCachedStringName(), xlatedMessages, context.asCachedStringName())
 
   /**
@@ -220,7 +220,7 @@ public open class Translation : Resource() {
   /**
    * Erases a message.
    */
-  public final fun eraseMessage(srcMessage: String, context: String) =
+  public final fun eraseMessage(srcMessage: String, context: String): Unit =
       eraseMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
 
   public companion object

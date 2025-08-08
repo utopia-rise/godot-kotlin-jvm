@@ -459,7 +459,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   /**
    * Frees all buffers related to this context.
    */
-  public final fun clearContext(context: String) = clearContext(context.asCachedStringName())
+  public final fun clearContext(context: String): Unit = clearContext(context.asCachedStringName())
 
   public companion object
 

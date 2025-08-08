@@ -892,7 +892,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     texture: Texture2D?,
-  ) = setIcon(name.asCachedStringName(), themeType.asCachedStringName(), texture)
+  ): Unit = setIcon(name.asCachedStringName(), themeType.asCachedStringName(), texture)
 
   /**
    * Returns the icon property defined by [name] and [themeType], if it exists.
@@ -921,7 +921,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameIcon(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -929,7 +929,7 @@ public open class Theme : Resource() {
    *
    * Fails if it doesn't exist. Use [hasIcon] to check for existence.
    */
-  public final fun clearIcon(name: String, themeType: String) =
+  public final fun clearIcon(name: String, themeType: String): Unit =
       clearIcon(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -940,7 +940,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     texture: StyleBox?,
-  ) = setStylebox(name.asCachedStringName(), themeType.asCachedStringName(), texture)
+  ): Unit = setStylebox(name.asCachedStringName(), themeType.asCachedStringName(), texture)
 
   /**
    * Returns the [StyleBox] property defined by [name] and [themeType], if it exists.
@@ -969,7 +969,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameStylebox(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -977,7 +977,7 @@ public open class Theme : Resource() {
    *
    * Fails if it doesn't exist. Use [hasStylebox] to check for existence.
    */
-  public final fun clearStylebox(name: String, themeType: String) =
+  public final fun clearStylebox(name: String, themeType: String): Unit =
       clearStylebox(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -988,7 +988,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     font: Font?,
-  ) = setFont(name.asCachedStringName(), themeType.asCachedStringName(), font)
+  ): Unit = setFont(name.asCachedStringName(), themeType.asCachedStringName(), font)
 
   /**
    * Returns the [Font] property defined by [name] and [themeType], if it exists.
@@ -1021,7 +1021,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameFont(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1029,7 +1029,7 @@ public open class Theme : Resource() {
    *
    * Fails if it doesn't exist. Use [hasFont] to check for existence.
    */
-  public final fun clearFont(name: String, themeType: String) =
+  public final fun clearFont(name: String, themeType: String): Unit =
       clearFont(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1040,7 +1040,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     fontSize: Int,
-  ) = setFontSize(name.asCachedStringName(), themeType.asCachedStringName(), fontSize)
+  ): Unit = setFontSize(name.asCachedStringName(), themeType.asCachedStringName(), fontSize)
 
   /**
    * Returns the font size property defined by [name] and [themeType], if it exists.
@@ -1073,7 +1073,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameFontSize(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1081,7 +1081,7 @@ public open class Theme : Resource() {
    *
    * Fails if it doesn't exist. Use [hasFontSize] to check for existence.
    */
-  public final fun clearFontSize(name: String, themeType: String) =
+  public final fun clearFontSize(name: String, themeType: String): Unit =
       clearFontSize(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1092,7 +1092,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     color: Color,
-  ) = setColor(name.asCachedStringName(), themeType.asCachedStringName(), color)
+  ): Unit = setColor(name.asCachedStringName(), themeType.asCachedStringName(), color)
 
   /**
    * Returns the [Color] property defined by [name] and [themeType], if it exists.
@@ -1121,7 +1121,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameColor(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1129,7 +1129,7 @@ public open class Theme : Resource() {
    *
    * Fails if it doesn't exist. Use [hasColor] to check for existence.
    */
-  public final fun clearColor(name: String, themeType: String) =
+  public final fun clearColor(name: String, themeType: String): Unit =
       clearColor(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1140,7 +1140,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     constant: Int,
-  ) = setConstant(name.asCachedStringName(), themeType.asCachedStringName(), constant)
+  ): Unit = setConstant(name.asCachedStringName(), themeType.asCachedStringName(), constant)
 
   /**
    * Returns the constant property defined by [name] and [themeType], if it exists.
@@ -1168,7 +1168,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameConstant(oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1176,7 +1176,7 @@ public open class Theme : Resource() {
    *
    * Fails if it doesn't exist. Use [hasConstant] to check for existence.
    */
-  public final fun clearConstant(name: String, themeType: String) =
+  public final fun clearConstant(name: String, themeType: String): Unit =
       clearConstant(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1193,7 +1193,7 @@ public open class Theme : Resource() {
     name: String,
     themeType: String,
     `value`: Any?,
-  ) = setThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName(), value)
+  ): Unit = setThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName(), value)
 
   /**
    * Returns the theme property of [dataType] defined by [name] and [themeType], if it exists.
@@ -1239,7 +1239,7 @@ public open class Theme : Resource() {
     oldName: String,
     name: String,
     themeType: String,
-  ) =
+  ): Unit =
       renameThemeItem(dataType, oldName.asCachedStringName(), name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
@@ -1254,7 +1254,7 @@ public open class Theme : Resource() {
     dataType: DataType,
     name: String,
     themeType: String,
-  ) = clearThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName())
+  ): Unit = clearThemeItem(dataType, name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
    * Marks [themeType] as a variation of [baseType].
@@ -1269,7 +1269,7 @@ public open class Theme : Resource() {
    * **Note:** Suggestions only show up if this theme resource is set as the project default theme.
    * See [ProjectSettings.gui/theme/custom].
    */
-  public final fun setTypeVariation(themeType: String, baseType: String) =
+  public final fun setTypeVariation(themeType: String, baseType: String): Unit =
       setTypeVariation(themeType.asCachedStringName(), baseType.asCachedStringName())
 
   /**
@@ -1281,7 +1281,7 @@ public open class Theme : Resource() {
   /**
    * Unmarks [themeType] as being a variation of another theme type. See [setTypeVariation].
    */
-  public final fun clearTypeVariation(themeType: String) =
+  public final fun clearTypeVariation(themeType: String): Unit =
       clearTypeVariation(themeType.asCachedStringName())
 
   /**
@@ -1303,14 +1303,14 @@ public open class Theme : Resource() {
    * **Note:** Empty types are not saved with the theme. This method only exists to perform
    * in-memory changes to the resource. Use available `set_*` methods to add theme items.
    */
-  public final fun addType(themeType: String) = addType(themeType.asCachedStringName())
+  public final fun addType(themeType: String): Unit = addType(themeType.asCachedStringName())
 
   /**
    * Removes the theme type, gracefully discarding defined theme items. If the type is a variation,
    * this information is also erased. If the type is a base for type variations, those variations lose
    * their base.
    */
-  public final fun removeType(themeType: String) = removeType(themeType.asCachedStringName())
+  public final fun removeType(themeType: String): Unit = removeType(themeType.asCachedStringName())
 
   public enum class DataType(
     id: Long,

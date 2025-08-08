@@ -618,7 +618,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
+  public final fun setBus(bus: String): Unit = setBus(bus.asCachedStringName())
 
   public enum class AttenuationModel(
     id: Long,

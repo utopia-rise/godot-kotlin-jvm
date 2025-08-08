@@ -141,9 +141,9 @@ public open class Joint3D internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setNodeA(node: String) = setNodeA(node.asCachedNodePath())
+  public final fun setNodeA(node: String): Unit = setNodeA(node.asCachedNodePath())
 
-  public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
+  public final fun setNodeB(node: String): Unit = setNodeB(node.asCachedNodePath())
 
   public companion object
 

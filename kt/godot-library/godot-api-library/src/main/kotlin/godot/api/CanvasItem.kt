@@ -1489,7 +1489,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
    * (not the capitalized name in the inspector).
    */
-  public final fun setInstanceShaderParameter(name: String, `value`: Any?) =
+  public final fun setInstanceShaderParameter(name: String, `value`: Any?): Unit =
       setInstanceShaderParameter(name.asCachedStringName(), value)
 
   /**

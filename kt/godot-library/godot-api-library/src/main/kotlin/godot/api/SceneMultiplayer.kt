@@ -353,7 +353,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     TransferContext.callMethod(ptr, MethodBindings.setMaxDeltaPacketSizePtr, NIL)
   }
 
-  public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
+  public final fun setRootPath(path: String): Unit = setRootPath(path.asCachedNodePath())
 
   public companion object
 

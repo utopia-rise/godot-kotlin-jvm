@@ -2423,7 +2423,7 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setThemeTypeVariation(themeType: String) =
+  public final fun setThemeTypeVariation(themeType: String): Unit =
       setThemeTypeVariation(themeType.asCachedStringName())
 
   /**
@@ -2433,7 +2433,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeIcon].
    */
-  public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
+  public final fun addThemeIconOverride(name: String, texture: Texture2D?): Unit =
       addThemeIconOverride(name.asCachedStringName(), texture)
 
   /**
@@ -2472,7 +2472,7 @@ public open class Control : CanvasItem() {
    * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
    * ```
    */
-  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
+  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?): Unit =
       addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
 
   /**
@@ -2482,7 +2482,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeFont].
    */
-  public final fun addThemeFontOverride(name: String, font: Font?) =
+  public final fun addThemeFontOverride(name: String, font: Font?): Unit =
       addThemeFontOverride(name.asCachedStringName(), font)
 
   /**
@@ -2492,7 +2492,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeFontSize].
    */
-  public final fun addThemeFontSizeOverride(name: String, fontSize: Int) =
+  public final fun addThemeFontSizeOverride(name: String, fontSize: Int): Unit =
       addThemeFontSizeOverride(name.asCachedStringName(), fontSize)
 
   /**
@@ -2525,7 +2525,7 @@ public open class Control : CanvasItem() {
    * "Label"));
    * ```
    */
-  public final fun addThemeColorOverride(name: String, color: Color) =
+  public final fun addThemeColorOverride(name: String, color: Color): Unit =
       addThemeColorOverride(name.asCachedStringName(), color)
 
   /**
@@ -2535,49 +2535,49 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeConstant].
    */
-  public final fun addThemeConstantOverride(name: String, constant: Int) =
+  public final fun addThemeConstantOverride(name: String, constant: Int): Unit =
       addThemeConstantOverride(name.asCachedStringName(), constant)
 
   /**
    * Removes a local override for a theme icon with the specified [name] previously added by
    * [addThemeIconOverride] or via the Inspector dock.
    */
-  public final fun removeThemeIconOverride(name: String) =
+  public final fun removeThemeIconOverride(name: String): Unit =
       removeThemeIconOverride(name.asCachedStringName())
 
   /**
    * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
    * [addThemeStyleboxOverride] or via the Inspector dock.
    */
-  public final fun removeThemeStyleboxOverride(name: String) =
+  public final fun removeThemeStyleboxOverride(name: String): Unit =
       removeThemeStyleboxOverride(name.asCachedStringName())
 
   /**
    * Removes a local override for a theme [Font] with the specified [name] previously added by
    * [addThemeFontOverride] or via the Inspector dock.
    */
-  public final fun removeThemeFontOverride(name: String) =
+  public final fun removeThemeFontOverride(name: String): Unit =
       removeThemeFontOverride(name.asCachedStringName())
 
   /**
    * Removes a local override for a theme font size with the specified [name] previously added by
    * [addThemeFontSizeOverride] or via the Inspector dock.
    */
-  public final fun removeThemeFontSizeOverride(name: String) =
+  public final fun removeThemeFontSizeOverride(name: String): Unit =
       removeThemeFontSizeOverride(name.asCachedStringName())
 
   /**
    * Removes a local override for a theme [Color] with the specified [name] previously added by
    * [addThemeColorOverride] or via the Inspector dock.
    */
-  public final fun removeThemeColorOverride(name: String) =
+  public final fun removeThemeColorOverride(name: String): Unit =
       removeThemeColorOverride(name.asCachedStringName())
 
   /**
    * Removes a local override for a theme constant with the specified [name] previously added by
    * [addThemeConstantOverride] or via the Inspector dock.
    */
-  public final fun removeThemeConstantOverride(name: String) =
+  public final fun removeThemeConstantOverride(name: String): Unit =
       removeThemeConstantOverride(name.asCachedStringName())
 
   /**
@@ -2775,12 +2775,12 @@ public open class Control : CanvasItem() {
    * setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and
    * [focusNeighborTop].
    */
-  public final fun setFocusNeighbor(side: Side, neighbor: String) =
+  public final fun setFocusNeighbor(side: Side, neighbor: String): Unit =
       setFocusNeighbor(side, neighbor.asCachedNodePath())
 
-  public final fun setFocusNext(next: String) = setFocusNext(next.asCachedNodePath())
+  public final fun setFocusNext(next: String): Unit = setFocusNext(next.asCachedNodePath())
 
-  public final fun setFocusPrevious(previous: String) =
+  public final fun setFocusPrevious(previous: String): Unit =
       setFocusPrevious(previous.asCachedNodePath())
 
   public enum class FocusMode(

@@ -1195,7 +1195,7 @@ public open class Object : KtObject() {
    * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
    * on each call.
    */
-  public final fun `set`(`property`: String, `value`: Any?) =
+  public final fun `set`(`property`: String, `value`: Any?): Unit =
       set(property.asCachedStringName(), value)
 
   /**
@@ -1247,7 +1247,7 @@ public open class Object : KtObject() {
    * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
    * [StringName] on each call.
    */
-  public final fun setIndexed(propertyPath: String, `value`: Any?) =
+  public final fun setIndexed(propertyPath: String, `value`: Any?): Unit =
       setIndexed(propertyPath.asCachedNodePath(), value)
 
   /**
@@ -1318,7 +1318,8 @@ public open class Object : KtObject() {
    * Editor-only metadata is not displayed in the Inspector and should not be edited, although it can
    * still be found by this method.
    */
-  public final fun setMeta(name: String, `value`: Any?) = setMeta(name.asCachedStringName(), value)
+  public final fun setMeta(name: String, `value`: Any?): Unit =
+      setMeta(name.asCachedStringName(), value)
 
   /**
    * Removes the given entry [name] from the object's metadata. See also [hasMeta], [getMeta] and
@@ -1331,7 +1332,7 @@ public open class Object : KtObject() {
    * Editor-only metadata is not displayed in the Inspector and should not be edited, although it can
    * still be found by this method.
    */
-  public final fun removeMeta(name: String) = removeMeta(name.asCachedStringName())
+  public final fun removeMeta(name: String): Unit = removeMeta(name.asCachedStringName())
 
   /**
    * Returns the object's metadata value for the given entry [name]. If the entry does not exist,
@@ -1372,7 +1373,8 @@ public open class Object : KtObject() {
    * Removes the given user signal [signal] from the object. See also [addUserSignal] and
    * [hasUserSignal].
    */
-  public final fun removeUserSignal(signal: String) = removeUserSignal(signal.asCachedStringName())
+  public final fun removeUserSignal(signal: String): Unit =
+      removeUserSignal(signal.asCachedStringName())
 
   /**
    * Emits the given [signal] by name. The signal must exist, so it should be a built-in signal of
@@ -1503,7 +1505,7 @@ public open class Object : KtObject() {
    * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
    * on each call.
    */
-  public final fun setDeferred(`property`: String, `value`: Any?) =
+  public final fun setDeferred(`property`: String, `value`: Any?): Unit =
       setDeferred(property.asCachedStringName(), value)
 
   /**
@@ -1747,7 +1749,7 @@ public open class Object : KtObject() {
    * Disconnects a [signal] by name from a given [callable]. If the connection does not exist,
    * generates an error. Use [isConnected] to make sure that the connection exists.
    */
-  public final fun disconnect(signal: String, callable: Callable) =
+  public final fun disconnect(signal: String, callable: Callable): Unit =
       disconnect(signal.asCachedStringName(), callable)
 
   /**
@@ -1820,7 +1822,7 @@ public open class Object : KtObject() {
   /**
    * Sets the name of the translation domain used by [tr] and [trN]. See also [TranslationServer].
    */
-  public final fun setTranslationDomain(domain: String) =
+  public final fun setTranslationDomain(domain: String): Unit =
       setTranslationDomain(domain.asCachedStringName())
 
   public enum class ConnectFlags(

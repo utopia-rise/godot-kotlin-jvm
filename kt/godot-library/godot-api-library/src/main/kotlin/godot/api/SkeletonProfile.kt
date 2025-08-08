@@ -351,16 +351,16 @@ public open class SkeletonProfile : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setRequiredPtr, NIL)
   }
 
-  public final fun setRootBone(boneName: String) = setRootBone(boneName.asCachedStringName())
+  public final fun setRootBone(boneName: String): Unit = setRootBone(boneName.asCachedStringName())
 
-  public final fun setScaleBaseBone(boneName: String) =
+  public final fun setScaleBaseBone(boneName: String): Unit =
       setScaleBaseBone(boneName.asCachedStringName())
 
   /**
    * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
    * editor.
    */
-  public final fun setGroupName(groupIdx: Int, groupName: String) =
+  public final fun setGroupName(groupIdx: Int, groupName: String): Unit =
       setGroupName(groupIdx, groupName.asCachedStringName())
 
   /**
@@ -373,26 +373,26 @@ public open class SkeletonProfile : Resource() {
    *
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
-  public final fun setBoneName(boneIdx: Int, boneName: String) =
+  public final fun setBoneName(boneIdx: Int, boneName: String): Unit =
       setBoneName(boneIdx, boneName.asCachedStringName())
 
   /**
    * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string
    * is passed, then the bone has no parent.
    */
-  public final fun setBoneParent(boneIdx: Int, boneParent: String) =
+  public final fun setBoneParent(boneIdx: Int, boneParent: String): Unit =
       setBoneParent(boneIdx, boneParent.asCachedStringName())
 
   /**
    * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
    */
-  public final fun setBoneTail(boneIdx: Int, boneTail: String) =
+  public final fun setBoneTail(boneIdx: Int, boneTail: String): Unit =
       setBoneTail(boneIdx, boneTail.asCachedStringName())
 
   /**
    * Sets the group of the bone at [boneIdx].
    */
-  public final fun setGroup(boneIdx: Int, group: String) =
+  public final fun setGroup(boneIdx: Int, group: String): Unit =
       setGroup(boneIdx, group.asCachedStringName())
 
   public enum class TailDirection(

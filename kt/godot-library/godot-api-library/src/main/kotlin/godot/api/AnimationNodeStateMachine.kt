@@ -305,12 +305,12 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     name: String,
     node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
-  ) = addNode(name.asCachedStringName(), node, position)
+  ): Unit = addNode(name.asCachedStringName(), node, position)
 
   /**
    * Replaces the given animation node with a new animation node.
    */
-  public final fun replaceNode(name: String, node: AnimationNode?) =
+  public final fun replaceNode(name: String, node: AnimationNode?): Unit =
       replaceNode(name.asCachedStringName(), node)
 
   /**
@@ -321,12 +321,12 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Deletes the given animation node from the graph.
    */
-  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+  public final fun removeNode(name: String): Unit = removeNode(name.asCachedStringName())
 
   /**
    * Renames the given animation node.
    */
-  public final fun renameNode(name: String, newName: String) =
+  public final fun renameNode(name: String, newName: String): Unit =
       renameNode(name.asCachedStringName(), newName.asCachedStringName())
 
   /**
@@ -337,7 +337,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Sets the animation node's coordinates. Used for display in the editor.
    */
-  public final fun setNodePosition(name: String, position: Vector2) =
+  public final fun setNodePosition(name: String, position: Vector2): Unit =
       setNodePosition(name.asCachedStringName(), position)
 
   /**
@@ -359,12 +359,12 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     from: String,
     to: String,
     transition: AnimationNodeStateMachineTransition?,
-  ) = addTransition(from.asCachedStringName(), to.asCachedStringName(), transition)
+  ): Unit = addTransition(from.asCachedStringName(), to.asCachedStringName(), transition)
 
   /**
    * Deletes the transition between the two specified animation nodes.
    */
-  public final fun removeTransition(from: String, to: String) =
+  public final fun removeTransition(from: String, to: String): Unit =
       removeTransition(from.asCachedStringName(), to.asCachedStringName())
 
   public enum class StateMachineType(

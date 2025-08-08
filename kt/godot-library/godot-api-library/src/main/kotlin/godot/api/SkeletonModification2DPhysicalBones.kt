@@ -120,7 +120,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * **Note:** This is just the index used for this modification, not the bone index used in the
    * [Skeleton2D].
    */
-  public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: String) =
+  public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: String): Unit =
       setPhysicalBoneNode(jointIdx, physicalbone2dNode.asCachedNodePath())
 
   public companion object

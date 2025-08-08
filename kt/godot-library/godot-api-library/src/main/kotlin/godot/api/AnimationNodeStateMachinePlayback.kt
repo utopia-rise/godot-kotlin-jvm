@@ -165,7 +165,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * cause a teleportation.
    */
   @JvmOverloads
-  public final fun travel(toNode: String, resetOnTeleport: Boolean = true) =
+  public final fun travel(toNode: String, resetOnTeleport: Boolean = true): Unit =
       travel(toNode.asCachedStringName(), resetOnTeleport)
 
   /**
@@ -174,7 +174,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * If [reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads
-  public final fun start(node: String, reset: Boolean = true) =
+  public final fun start(node: String, reset: Boolean = true): Unit =
       start(node.asCachedStringName(), reset)
 
   public companion object

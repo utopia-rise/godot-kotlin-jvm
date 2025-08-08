@@ -211,7 +211,7 @@ public open class XRPositionalTracker : XRTracker() {
    * decide if trackers need to be hidden if we lose tracking or just remain at their last known
    * position.
    */
-  public final fun invalidatePose(name: String) = invalidatePose(name.asCachedStringName())
+  public final fun invalidatePose(name: String): Unit = invalidatePose(name.asCachedStringName())
 
   /**
    * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
@@ -223,7 +223,7 @@ public open class XRPositionalTracker : XRTracker() {
     linearVelocity: Vector3,
     angularVelocity: Vector3,
     trackingConfidence: XRPose.TrackingConfidence,
-  ) =
+  ): Unit =
       setPose(name.asCachedStringName(), transform, linearVelocity, angularVelocity, trackingConfidence)
 
   /**
@@ -236,7 +236,7 @@ public open class XRPositionalTracker : XRTracker() {
    * Changes the value for the given input. This method is called by a [XRInterface] implementation
    * and should not be used directly.
    */
-  public final fun setInput(name: String, `value`: Any?) =
+  public final fun setInput(name: String, `value`: Any?): Unit =
       setInput(name.asCachedStringName(), value)
 
   public enum class TrackerHand(

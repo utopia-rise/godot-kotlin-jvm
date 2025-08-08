@@ -197,10 +197,10 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBone2dNode(bone2dNodepath: String) =
+  public final fun setBone2dNode(bone2dNodepath: String): Unit =
       setBone2dNode(bone2dNodepath.asCachedNodePath())
 
-  public final fun setTargetNode(targetNodepath: String) =
+  public final fun setTargetNode(targetNodepath: String): Unit =
       setTargetNode(targetNodepath.asCachedNodePath())
 
   public companion object

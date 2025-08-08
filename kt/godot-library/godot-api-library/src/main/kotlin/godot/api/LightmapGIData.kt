@@ -184,7 +184,7 @@ public open class LightmapGIData : Resource() {
     uvScale: Rect2,
     sliceIndex: Int,
     subInstance: Int,
-  ) = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
+  ): Unit = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
 
   public enum class ShadowmaskMode(
     id: Long,

@@ -866,7 +866,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
-  public final fun setSubEmitter(path: String) = setSubEmitter(path.asCachedNodePath())
+  public final fun setSubEmitter(path: String): Unit = setSubEmitter(path.asCachedNodePath())
 
   public enum class DrawOrder(
     id: Long,

@@ -175,13 +175,13 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTargetNode(targetNodepath: String) =
+  public final fun setTargetNode(targetNodepath: String): Unit =
       setTargetNode(targetNodepath.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
-  public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
+  public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: String): Unit =
       setFabrikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
   public companion object

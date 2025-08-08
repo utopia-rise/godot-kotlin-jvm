@@ -682,7 +682,7 @@ public open class Skeleton3D : Node3D() {
     boneIdx: Int,
     key: String,
     `value`: Any?,
-  ) = setBoneMeta(boneIdx, key.asCachedStringName(), value)
+  ): Unit = setBoneMeta(boneIdx, key.asCachedStringName(), value)
 
   public enum class ModifierCallbackModeProcess(
     id: Long,

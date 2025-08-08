@@ -210,19 +210,19 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTargetNode(targetNodepath: String) =
+  public final fun setTargetNode(targetNodepath: String): Unit =
       setTargetNode(targetNodepath.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
-  public final fun setJointOneBone2dNode(bone2dNode: String) =
+  public final fun setJointOneBone2dNode(bone2dNode: String): Unit =
       setJointOneBone2dNode(bone2dNode.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
-  public final fun setJointTwoBone2dNode(bone2dNode: String) =
+  public final fun setJointTwoBone2dNode(bone2dNode: String): Unit =
       setJointTwoBone2dNode(bone2dNode.asCachedNodePath())
 
   public companion object

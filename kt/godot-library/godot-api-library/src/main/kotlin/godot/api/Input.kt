@@ -1046,14 +1046,14 @@ public object Input : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun actionPress(action: String, strength: Float = 1.0f) =
+  public final fun actionPress(action: String, strength: Float = 1.0f): Unit =
       actionPress(action.asCachedStringName(), strength)
 
   /**
    * If the specified action is already pressed, this will release it.
    */
   @JvmStatic
-  public final fun actionRelease(action: String) = actionRelease(action.asCachedStringName())
+  public final fun actionRelease(action: String): Unit = actionRelease(action.asCachedStringName())
 
   public enum class MouseMode(
     id: Long,

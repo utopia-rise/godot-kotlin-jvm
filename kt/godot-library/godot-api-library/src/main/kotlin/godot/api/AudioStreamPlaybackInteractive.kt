@@ -67,7 +67,7 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Switch to a clip (by name).
    */
-  public final fun switchToClipByName(clipName: String) =
+  public final fun switchToClipByName(clipName: String): Unit =
       switchToClipByName(clipName.asCachedStringName())
 
   public companion object

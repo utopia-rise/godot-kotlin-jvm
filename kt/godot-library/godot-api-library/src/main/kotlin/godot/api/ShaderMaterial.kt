@@ -117,7 +117,7 @@ public open class ShaderMaterial : Material() {
    * [Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore
    * faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.
    */
-  public final fun setShaderParameter(`param`: String, `value`: Any?) =
+  public final fun setShaderParameter(`param`: String, `value`: Any?): Unit =
       setShaderParameter(param.asCachedStringName(), value)
 
   /**

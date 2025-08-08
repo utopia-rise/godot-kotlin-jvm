@@ -787,9 +787,10 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTargetNode(targetNode: String) = setTargetNode(targetNode.asCachedNodePath())
+  public final fun setTargetNode(targetNode: String): Unit =
+      setTargetNode(targetNode.asCachedNodePath())
 
-  public final fun setOriginExternalNode(externalNode: String) =
+  public final fun setOriginExternalNode(externalNode: String): Unit =
       setOriginExternalNode(externalNode.asCachedNodePath())
 
   public enum class OriginFrom(

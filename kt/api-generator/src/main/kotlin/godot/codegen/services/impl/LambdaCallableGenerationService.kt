@@ -249,8 +249,14 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
             val typeVariables = typeVariableNames.toMutableList()
             var removedTypeVariables = 0
             while (typeVariables.isNotEmpty()) {
-                val bindReturnType =
-                    ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
+                val bindReturnType = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
+
+                val returnType = if (removedTypeVariables > 0) {
+                    bindReturnType.parameterizedBy(*typeVariableNames.take(typeVariableNames.size - typeVariables.size).toTypedArray(), returnTypeParameter)
+                } else {
+                    bindReturnType.parameterizedBy(returnTypeParameter)
+                }
+
                 classBuilder.addFunction(
                     FunSpec.builder("bind")
                         .addParameters(
@@ -291,6 +297,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                             bindReturnType,
                             *typeVariableNames.take(removedTypeVariables).toTypedArray()
                         )
+                        .returns(returnType)
                         .build()
                 )
 
@@ -304,6 +311,13 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
             callableFileSpec.addType(classBuilder.build())
 
             val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
+
+            val returnTypeName = if (argCount > 0) {
+                ktCallableClassName.parameterizedBy(*typeVariableNames.toTypedArray(), returnTypeParameter)
+            } else {
+                ktCallableClassName.parameterizedBy(returnTypeParameter)
+            }
+
             callableFileSpec.addFunction(
                 FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
                     .addTypeVariables(typeVariableNames.map { it.copy(reified = true) })
@@ -347,6 +361,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                                 .toTypedArray()
                         )
                     )
+                    .returns(returnTypeName)
                     .build()
             )
 
@@ -366,6 +381,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                                 .build()
                         )
                         .addCode("return·$CALLABLE_FUNCTION_NAME$argCount($ON_CANCEL_CALL_ARGUMENT_NAME,·this)")
+                        .returns(returnTypeName)
                         .build()
                 )
         }
@@ -437,6 +453,7 @@ object LambdaCallableGenerationService : ILambdaCallableGenerationService {
                             .addMember("\"create\"")
                             .build()
                     )
+                    .returns(genericClassNameInfo.className.parameterizedBy(*genericClassNameInfo.genericTypes.toTypedArray(), returnTypeParameter))
                     .build()
             )
             .build()

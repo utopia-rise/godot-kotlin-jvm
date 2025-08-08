@@ -129,7 +129,7 @@ public open class InputEventAction : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAction(action: String) = setAction(action.asCachedStringName())
+  public final fun setAction(action: String): Unit = setAction(action.asCachedStringName())
 
   public companion object
 

@@ -229,7 +229,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
+  public final fun setAnimation(name: String): Unit = setAnimation(name.asCachedStringName())
 
   public enum class PlayMode(
     id: Long,

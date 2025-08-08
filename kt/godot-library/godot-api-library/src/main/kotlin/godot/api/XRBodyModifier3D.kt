@@ -111,7 +111,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     return BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBodyTracker(trackerName: String) =
+  public final fun setBodyTracker(trackerName: String): Unit =
       setBodyTracker(trackerName.asCachedStringName())
 
   public class BodyUpdate(

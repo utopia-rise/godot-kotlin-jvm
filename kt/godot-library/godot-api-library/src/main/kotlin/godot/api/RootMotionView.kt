@@ -184,7 +184,7 @@ public open class RootMotionView : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAnimationPath(path: String) = setAnimationPath(path.asCachedNodePath())
+  public final fun setAnimationPath(path: String): Unit = setAnimationPath(path.asCachedNodePath())
 
   public companion object
 

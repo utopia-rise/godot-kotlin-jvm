@@ -89,7 +89,7 @@ public open class Skin : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearBindsPtr, NIL)
   }
 
-  public final fun setBindName(bindIndex: Int, name: String) =
+  public final fun setBindName(bindIndex: Int, name: String): Unit =
       setBindName(bindIndex, name.asCachedStringName())
 
   public companion object

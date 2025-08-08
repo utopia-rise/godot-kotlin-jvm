@@ -127,10 +127,11 @@ public open class AnimationTree : AnimationMixer() {
     return AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAdvanceExpressionBaseNode(path: String) =
+  public final fun setAdvanceExpressionBaseNode(path: String): Unit =
       setAdvanceExpressionBaseNode(path.asCachedNodePath())
 
-  public final fun setAnimationPlayer(path: String) = setAnimationPlayer(path.asCachedNodePath())
+  public final fun setAnimationPlayer(path: String): Unit =
+      setAnimationPlayer(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
     id: Long,

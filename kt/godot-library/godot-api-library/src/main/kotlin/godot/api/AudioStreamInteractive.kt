@@ -291,7 +291,7 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Set the name of the current clip (for easier identification).
    */
-  public final fun setClipName(clipIndex: Int, name: String) =
+  public final fun setClipName(clipIndex: Int, name: String): Unit =
       setClipName(clipIndex, name.asCachedStringName())
 
   public enum class TransitionFromTime(

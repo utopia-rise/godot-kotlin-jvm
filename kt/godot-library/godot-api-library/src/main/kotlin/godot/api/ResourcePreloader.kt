@@ -96,18 +96,18 @@ public open class ResourcePreloader : Node() {
    * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
    * starting from 2.
    */
-  public final fun addResource(name: String, resource: Resource?) =
+  public final fun addResource(name: String, resource: Resource?): Unit =
       addResource(name.asCachedStringName(), resource)
 
   /**
    * Removes the resource associated to [name] from the preloader.
    */
-  public final fun removeResource(name: String) = removeResource(name.asCachedStringName())
+  public final fun removeResource(name: String): Unit = removeResource(name.asCachedStringName())
 
   /**
    * Renames a resource inside the preloader from [name] to [newname].
    */
-  public final fun renameResource(name: String, newname: String) =
+  public final fun renameResource(name: String, newname: String): Unit =
       renameResource(name.asCachedStringName(), newname.asCachedStringName())
 
   /**

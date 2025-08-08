@@ -1215,7 +1215,8 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setVisibilityParent(path: String) = setVisibilityParent(path.asCachedNodePath())
+  public final fun setVisibilityParent(path: String): Unit =
+      setVisibilityParent(path.asCachedNodePath())
 
   public enum class RotationEditMode(
     id: Long,

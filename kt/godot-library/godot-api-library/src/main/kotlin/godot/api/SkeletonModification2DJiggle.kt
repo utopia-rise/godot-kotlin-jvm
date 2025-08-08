@@ -415,13 +415,13 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setTargetNode(targetNodepath: String) =
+  public final fun setTargetNode(targetNodepath: String): Unit =
       setTargetNode(targetNodepath.asCachedNodePath())
 
   /**
    * Sets the [Bone2D] node assigned to the Jiggle joint at [jointIdx].
    */
-  public final fun setJiggleJointBone2dNode(jointIdx: Int, bone2dNode: String) =
+  public final fun setJiggleJointBone2dNode(jointIdx: Int, bone2dNode: String): Unit =
       setJiggleJointBone2dNode(jointIdx, bone2dNode.asCachedNodePath())
 
   public companion object

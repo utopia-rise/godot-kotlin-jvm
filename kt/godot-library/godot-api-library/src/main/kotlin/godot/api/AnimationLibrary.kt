@@ -133,12 +133,12 @@ public open class AnimationLibrary : Resource() {
   /**
    * Removes the [Animation] with the key [name].
    */
-  public final fun removeAnimation(name: String) = removeAnimation(name.asCachedStringName())
+  public final fun removeAnimation(name: String): Unit = removeAnimation(name.asCachedStringName())
 
   /**
    * Changes the key of the [Animation] associated with the key [name] to [newname].
    */
-  public final fun renameAnimation(name: String, newname: String) =
+  public final fun renameAnimation(name: String, newname: String): Unit =
       renameAnimation(name.asCachedStringName(), newname.asCachedStringName())
 
   /**

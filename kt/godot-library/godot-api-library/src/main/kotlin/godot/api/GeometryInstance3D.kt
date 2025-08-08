@@ -536,7 +536,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
    * but not for Fog, Sky, or Particles shaders.
    */
-  public final fun setInstanceShaderParameter(name: String, `value`: Any?) =
+  public final fun setInstanceShaderParameter(name: String, `value`: Any?): Unit =
       setInstanceShaderParameter(name.asCachedStringName(), value)
 
   /**

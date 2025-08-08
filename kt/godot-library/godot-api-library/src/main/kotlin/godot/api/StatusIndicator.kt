@@ -141,7 +141,7 @@ public open class StatusIndicator : Node() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setMenu(menu: String) = setMenu(menu.asCachedNodePath())
+  public final fun setMenu(menu: String): Unit = setMenu(menu.asCachedNodePath())
 
   public companion object
 

@@ -193,7 +193,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     name: String,
     node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
-  ) = addNode(name.asCachedStringName(), node, position)
+  ): Unit = addNode(name.asCachedStringName(), node, position)
 
   /**
    * Returns the sub animation node with the specified [name].
@@ -203,12 +203,12 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Removes a sub animation node.
    */
-  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+  public final fun removeNode(name: String): Unit = removeNode(name.asCachedStringName())
 
   /**
    * Changes the name of a sub animation node.
    */
-  public final fun renameNode(name: String, newName: String) =
+  public final fun renameNode(name: String, newName: String): Unit =
       renameNode(name.asCachedStringName(), newName.asCachedStringName())
 
   /**
@@ -224,18 +224,18 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     inputNode: String,
     inputIndex: Int,
     outputNode: String,
-  ) = connectNode(inputNode.asCachedStringName(), inputIndex, outputNode.asCachedStringName())
+  ): Unit = connectNode(inputNode.asCachedStringName(), inputIndex, outputNode.asCachedStringName())
 
   /**
    * Disconnects the animation node connected to the specified input.
    */
-  public final fun disconnectNode(inputNode: String, inputIndex: Int) =
+  public final fun disconnectNode(inputNode: String, inputIndex: Int): Unit =
       disconnectNode(inputNode.asCachedStringName(), inputIndex)
 
   /**
    * Modifies the position of a sub animation node.
    */
-  public final fun setNodePosition(name: String, position: Vector2) =
+  public final fun setNodePosition(name: String, position: Vector2): Unit =
       setNodePosition(name.asCachedStringName(), position)
 
   /**

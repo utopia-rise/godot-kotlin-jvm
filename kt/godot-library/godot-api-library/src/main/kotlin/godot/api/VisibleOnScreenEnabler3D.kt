@@ -89,7 +89,8 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setEnableNodePath(path: String) = setEnableNodePath(path.asCachedNodePath())
+  public final fun setEnableNodePath(path: String): Unit =
+      setEnableNodePath(path.asCachedNodePath())
 
   public enum class EnableMode(
     id: Long,

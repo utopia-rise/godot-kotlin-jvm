@@ -223,7 +223,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Adds a new [anim] animation to the library.
    */
-  public final fun addAnimation(anim: String) = addAnimation(anim.asCachedStringName())
+  public final fun addAnimation(anim: String): Unit = addAnimation(anim.asCachedStringName())
 
   /**
    * Returns `true` if the [anim] animation exists.
@@ -234,24 +234,24 @@ public open class SpriteFrames : Resource() {
    * Duplicates the animation [animFrom] to a new animation named [animTo]. Fails if [animTo]
    * already exists, or if [animFrom] does not exist.
    */
-  public final fun duplicateAnimation(animFrom: String, animTo: String) =
+  public final fun duplicateAnimation(animFrom: String, animTo: String): Unit =
       duplicateAnimation(animFrom.asCachedStringName(), animTo.asCachedStringName())
 
   /**
    * Removes the [anim] animation.
    */
-  public final fun removeAnimation(anim: String) = removeAnimation(anim.asCachedStringName())
+  public final fun removeAnimation(anim: String): Unit = removeAnimation(anim.asCachedStringName())
 
   /**
    * Changes the [anim] animation's name to [newname].
    */
-  public final fun renameAnimation(anim: String, newname: String) =
+  public final fun renameAnimation(anim: String, newname: String): Unit =
       renameAnimation(anim.asCachedStringName(), newname.asCachedStringName())
 
   /**
    * Sets the speed for the [anim] animation in frames per second.
    */
-  public final fun setAnimationSpeed(anim: String, fps: Double) =
+  public final fun setAnimationSpeed(anim: String, fps: Double): Unit =
       setAnimationSpeed(anim.asCachedStringName(), fps)
 
   /**
@@ -264,7 +264,7 @@ public open class SpriteFrames : Resource() {
    * If [loop] is `true`, the [anim] animation will loop when it reaches the end, or the start if it
    * is played in reverse.
    */
-  public final fun setAnimationLoop(anim: String, loop: Boolean) =
+  public final fun setAnimationLoop(anim: String, loop: Boolean): Unit =
       setAnimationLoop(anim.asCachedStringName(), loop)
 
   /**
@@ -285,7 +285,7 @@ public open class SpriteFrames : Resource() {
     texture: Texture2D?,
     duration: Float = 1.0f,
     atPosition: Int = -1,
-  ) = addFrame(anim.asCachedStringName(), texture, duration, atPosition)
+  ): Unit = addFrame(anim.asCachedStringName(), texture, duration, atPosition)
 
   /**
    * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation. [duration]
@@ -297,12 +297,13 @@ public open class SpriteFrames : Resource() {
     idx: Int,
     texture: Texture2D?,
     duration: Float = 1.0f,
-  ) = setFrame(anim.asCachedStringName(), idx, texture, duration)
+  ): Unit = setFrame(anim.asCachedStringName(), idx, texture, duration)
 
   /**
    * Removes the [anim] animation's frame [idx].
    */
-  public final fun removeFrame(anim: String, idx: Int) = removeFrame(anim.asCachedStringName(), idx)
+  public final fun removeFrame(anim: String, idx: Int): Unit =
+      removeFrame(anim.asCachedStringName(), idx)
 
   /**
    * Returns the number of frames for the [anim] animation.
@@ -334,7 +335,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Removes all frames from the [anim] animation.
    */
-  public final fun clear(anim: String) = clear(anim.asCachedStringName())
+  public final fun clear(anim: String): Unit = clear(anim.asCachedStringName())
 
   public companion object
 

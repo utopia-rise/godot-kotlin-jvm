@@ -2573,14 +2573,15 @@ public open class Node : Object() {
    * [isInsideTree]).
    */
   @JvmOverloads
-  public final fun addToGroup(group: String, persistent: Boolean = false) =
+  public final fun addToGroup(group: String, persistent: Boolean = false): Unit =
       addToGroup(group.asCachedStringName(), persistent)
 
   /**
    * Removes the node from the given [group]. Does nothing if the node is not in the [group]. See
    * also notes in the description, and the [SceneTree]'s group methods.
    */
-  public final fun removeFromGroup(group: String) = removeFromGroup(group.asCachedStringName())
+  public final fun removeFromGroup(group: String): Unit =
+      removeFromGroup(group.asCachedStringName())
 
   /**
    * Returns `true` if this node has been added to the given [group]. See [addToGroup] and
@@ -2600,7 +2601,7 @@ public open class Node : Object() {
     method: String,
     args: VariantArray<Any?> = godot.core.variantArrayOf(),
     parentFirst: Boolean = false,
-  ) = propagateCall(method.asCachedStringName(), args, parentFirst)
+  ): Unit = propagateCall(method.asCachedStringName(), args, parentFirst)
 
   /**
    * Changes the RPC configuration for the given [method]. [config] should either be `null` to
@@ -2619,7 +2620,7 @@ public open class Node : Object() {
    * [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url]
    * tutorial.
    */
-  public final fun rpcConfig(method: String, config: Any?) =
+  public final fun rpcConfig(method: String, config: Any?): Unit =
       rpcConfig(method.asCachedStringName(), config)
 
   /**
@@ -2714,7 +2715,7 @@ public open class Node : Object() {
   /**
    * Similar to [callDeferredThreadGroup], but for setting properties.
    */
-  public final fun setDeferredThreadGroup(`property`: String, `value`: Any?) =
+  public final fun setDeferredThreadGroup(`property`: String, `value`: Any?): Unit =
       setDeferredThreadGroup(property.asCachedStringName(), value)
 
   /**
@@ -2728,7 +2729,7 @@ public open class Node : Object() {
   /**
    * Similar to [callThreadSafe], but for setting properties.
    */
-  public final fun setThreadSafe(`property`: String, `value`: Any?) =
+  public final fun setThreadSafe(`property`: String, `value`: Any?): Unit =
       setThreadSafe(property.asCachedStringName(), value)
 
   public enum class ProcessMode(

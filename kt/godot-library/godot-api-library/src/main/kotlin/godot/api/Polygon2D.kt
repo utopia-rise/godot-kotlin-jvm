@@ -667,16 +667,16 @@ public open class Polygon2D : Node2D() {
   /**
    * Adds a bone with the specified [path] and [weights].
    */
-  public final fun addBone(path: String, weights: PackedFloat32Array) =
+  public final fun addBone(path: String, weights: PackedFloat32Array): Unit =
       addBone(path.asCachedNodePath(), weights)
 
   /**
    * Sets the path to the node associated with the specified bone.
    */
-  public final fun setBonePath(index: Int, path: String) =
+  public final fun setBonePath(index: Int, path: String): Unit =
       setBonePath(index, path.asCachedNodePath())
 
-  public final fun setSkeleton(skeleton: String) = setSkeleton(skeleton.asCachedNodePath())
+  public final fun setSkeleton(skeleton: String): Unit = setSkeleton(skeleton.asCachedNodePath())
 
   public companion object
 

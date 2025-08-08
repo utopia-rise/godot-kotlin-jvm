@@ -763,7 +763,7 @@ public open class SceneTree : MainLoop() {
     group: String,
     method: String,
     vararg args: Any?,
-  ) = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), )
+  ): Unit = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), )
 
   /**
    * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
@@ -773,7 +773,7 @@ public open class SceneTree : MainLoop() {
     callFlags: Long,
     group: String,
     notification: Int,
-  ) = notifyGroupFlags(callFlags, group.asCachedStringName(), notification)
+  ): Unit = notifyGroupFlags(callFlags, group.asCachedStringName(), notification)
 
   /**
    * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
@@ -789,7 +789,7 @@ public open class SceneTree : MainLoop() {
     group: String,
     `property`: String,
     `value`: Any?,
-  ) = setGroupFlags(callFlags, group.asCachedStringName(), property, value)
+  ): Unit = setGroupFlags(callFlags, group.asCachedStringName(), property, value)
 
   /**
    * Calls [method] on each node inside this tree added to the given [group]. You can pass arguments
@@ -808,7 +808,7 @@ public open class SceneTree : MainLoop() {
     group: String,
     method: String,
     vararg args: Any?,
-  ) = callGroup(group.asCachedStringName(), method.asCachedStringName(), )
+  ): Unit = callGroup(group.asCachedStringName(), method.asCachedStringName(), )
 
   /**
    * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
@@ -818,7 +818,7 @@ public open class SceneTree : MainLoop() {
    * **Note:** This method acts immediately on all selected nodes at once, which may cause
    * stuttering in some performance-intensive situations.
    */
-  public final fun notifyGroup(group: String, notification: Int) =
+  public final fun notifyGroup(group: String, notification: Int): Unit =
       notifyGroup(group.asCachedStringName(), notification)
 
   /**
@@ -836,7 +836,7 @@ public open class SceneTree : MainLoop() {
     group: String,
     `property`: String,
     `value`: Any?,
-  ) = setGroup(group.asCachedStringName(), property, value)
+  ): Unit = setGroup(group.asCachedStringName(), property, value)
 
   /**
    * Returns an [Array] containing all nodes inside this tree, that have been added to the given
@@ -866,7 +866,7 @@ public open class SceneTree : MainLoop() {
    * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
    * `"/root/Foo/Bar"` will cause an error.
    */
-  public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: String) =
+  public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: String): Unit =
       setMultiplayer(multiplayer, rootPath.asCachedNodePath())
 
   /**

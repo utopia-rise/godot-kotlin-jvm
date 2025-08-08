@@ -416,7 +416,7 @@ public open class UndoRedo : Object() {
     `object`: Object?,
     `property`: String,
     `value`: Any?,
-  ) = addDoProperty(`object`, property.asCachedStringName(), value)
+  ): Unit = addDoProperty(`object`, property.asCachedStringName(), value)
 
   /**
    * Register a [property] that would change its value to [value] when the action is undone.
@@ -425,7 +425,7 @@ public open class UndoRedo : Object() {
     `object`: Object?,
     `property`: String,
     `value`: Any?,
-  ) = addUndoProperty(`object`, property.asCachedStringName(), value)
+  ): Unit = addUndoProperty(`object`, property.asCachedStringName(), value)
 
   public enum class MergeMode(
     id: Long,

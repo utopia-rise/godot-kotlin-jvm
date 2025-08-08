@@ -601,7 +601,7 @@ public open class NavigationPolygon : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public final fun setSourceGeometryGroupName(groupName: String) =
+  public final fun setSourceGeometryGroupName(groupName: String): Unit =
       setSourceGeometryGroupName(groupName.asCachedStringName())
 
   public enum class SamplePartitionType(

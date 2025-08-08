@@ -52,9 +52,9 @@ public class Signal0 @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun Object.Signal0(signalName: String) = Signal0(this, signalName)
+public inline fun Object.Signal0(signalName: String): Signal0 = Signal0(this, signalName)
 
-public inline fun Object.signal0() = Signal0.delegate
+public inline fun Object.signal0(): ReadOnlyProperty<Object, Signal0> = Signal0.delegate
 
 public inline fun Signal0.connect(flags: Int = 0, noinline method: () -> Unit): Error =
         connect(method.asCallable(), flags)
@@ -92,10 +92,12 @@ public class Signal1<P0> @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0> Object.Signal1(signalName: String) = Signal1<P0>(this, signalName)
+public inline fun <P0> Object.Signal1(signalName: String): Signal1<P0> =
+        Signal1<P0>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0> Object.signal1() = Signal1.delegate as ReadOnlyProperty<Object, Signal1<P0>>
+public inline fun <P0> Object.signal1(): ReadOnlyProperty<Object, Signal1<P0>> =
+        Signal1.delegate as ReadOnlyProperty<Object, Signal1<P0>>
 
 public inline fun <reified P0> Signal1<P0>.connect(flags: Int = 0, noinline
         method: (p0: P0) -> Unit): Error = connect(method.asCallable(), flags)
@@ -133,10 +135,11 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1> Object.Signal2(signalName: String) = Signal2<P0, P1>(this, signalName)
+public inline fun <P0, P1> Object.Signal2(signalName: String): Signal2<P0, P1> =
+        Signal2<P0, P1>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1> Object.signal2() =
+public inline fun <P0, P1> Object.signal2(): ReadOnlyProperty<Object, Signal2<P0, P1>> =
         Signal2.delegate as ReadOnlyProperty<Object, Signal2<P0, P1>>
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connect(flags: Int = 0, noinline
@@ -186,11 +189,11 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2> Object.Signal3(signalName: String) =
+public inline fun <P0, P1, P2> Object.Signal3(signalName: String): Signal3<P0, P1, P2> =
         Signal3<P0, P1, P2>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2> Object.signal3() =
+public inline fun <P0, P1, P2> Object.signal3(): ReadOnlyProperty<Object, Signal3<P0, P1, P2>> =
         Signal3.delegate as ReadOnlyProperty<Object, Signal3<P0, P1, P2>>
 
 public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.connect(flags: Int = 0,
@@ -247,11 +250,12 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3> Object.Signal4(signalName: String) =
+public inline fun <P0, P1, P2, P3> Object.Signal4(signalName: String): Signal4<P0, P1, P2, P3> =
         Signal4<P0, P1, P2, P3>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3> Object.signal4() =
+public inline fun <P0, P1, P2, P3> Object.signal4():
+        ReadOnlyProperty<Object, Signal4<P0, P1, P2, P3>> =
         Signal4.delegate as ReadOnlyProperty<Object, Signal4<P0, P1, P2, P3>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3>
@@ -313,11 +317,12 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4> Object.Signal5(signalName: String) =
-        Signal5<P0, P1, P2, P3, P4>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4> Object.Signal5(signalName: String):
+        Signal5<P0, P1, P2, P3, P4> = Signal5<P0, P1, P2, P3, P4>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4> Object.signal5() =
+public inline fun <P0, P1, P2, P3, P4> Object.signal5():
+        ReadOnlyProperty<Object, Signal5<P0, P1, P2, P3, P4>> =
         Signal5.delegate as ReadOnlyProperty<Object, Signal5<P0, P1, P2, P3, P4>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
@@ -383,11 +388,12 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5> Object.Signal6(signalName: String) =
-        Signal6<P0, P1, P2, P3, P4, P5>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5> Object.Signal6(signalName: String):
+        Signal6<P0, P1, P2, P3, P4, P5> = Signal6<P0, P1, P2, P3, P4, P5>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5> Object.signal6() =
+public inline fun <P0, P1, P2, P3, P4, P5> Object.signal6():
+        ReadOnlyProperty<Object, Signal6<P0, P1, P2, P3, P4, P5>> =
         Signal6.delegate as ReadOnlyProperty<Object, Signal6<P0, P1, P2, P3, P4, P5>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5>
@@ -458,11 +464,12 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.Signal7(signalName: String) =
-        Signal7<P0, P1, P2, P3, P4, P5, P6>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.Signal7(signalName: String):
+        Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7<P0, P1, P2, P3, P4, P5, P6>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.signal7() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.signal7():
+        ReadOnlyProperty<Object, Signal7<P0, P1, P2, P3, P4, P5, P6>> =
         Signal7.delegate as ReadOnlyProperty<Object, Signal7<P0, P1, P2, P3, P4, P5, P6>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -538,11 +545,13 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.Signal8(signalName: String) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.Signal8(signalName: String):
+        Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
         Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.signal8() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.signal8():
+        ReadOnlyProperty<Object, Signal8<P0, P1, P2, P3, P4, P5, P6, P7>> =
         Signal8.delegate as ReadOnlyProperty<Object, Signal8<P0, P1, P2, P3, P4, P5, P6, P7>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -623,11 +632,13 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.Signal9(signalName: String) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.Signal9(signalName: String):
+        Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
         Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.signal9() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.signal9():
+        ReadOnlyProperty<Object, Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> =
         Signal9.delegate as ReadOnlyProperty<Object, Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -712,11 +723,13 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.Signal10(signalName: String) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.Signal10(signalName: String):
+        Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
         Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.signal10() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.signal10():
+        ReadOnlyProperty<Object, Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> =
         Signal10.delegate as ReadOnlyProperty<Object, Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -807,11 +820,13 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.Signal11(signalName: String)
-        = Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.Signal11(signalName: String):
+        Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+        Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.signal11() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.signal11():
+        ReadOnlyProperty<Object, Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>> =
         Signal11.delegate as ReadOnlyProperty<Object, Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -908,11 +923,13 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
 
 @Suppress("FUNCTION_NAME")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
-        Object.Signal12(signalName: String) =
+        Object.Signal12(signalName: String):
+        Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
         Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> Object.signal12() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> Object.signal12():
+        ReadOnlyProperty<Object, Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> =
         Signal12.delegate as ReadOnlyProperty<Object, Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1014,11 +1031,13 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
 
 @Suppress("FUNCTION_NAME")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-        Object.Signal13(signalName: String) =
+        Object.Signal13(signalName: String):
+        Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
         Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> Object.signal13() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> Object.signal13():
+        ReadOnlyProperty<Object, Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> =
         Signal13.delegate as ReadOnlyProperty<Object, Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1124,11 +1143,14 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
 
 @Suppress("FUNCTION_NAME")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-        Object.Signal14(signalName: String) =
+        Object.Signal14(signalName: String):
+        Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
         Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> Object.signal14() =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> Object.signal14():
+        ReadOnlyProperty<Object, Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>>
+        =
         Signal14.delegate as ReadOnlyProperty<Object, Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1238,12 +1260,15 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
 
 @Suppress("FUNCTION_NAME")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-        Object.Signal15(signalName: String) =
+        Object.Signal15(signalName: String):
+        Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
         Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-        Object.signal15() =
+        Object.signal15():
+        ReadOnlyProperty<Object, Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>>
+        =
         Signal15.delegate as ReadOnlyProperty<Object, Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1358,12 +1383,15 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
 
 @Suppress("FUNCTION_NAME")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-        Object.Signal16(signalName: String) =
+        Object.Signal16(signalName: String):
+        Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
         Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-        Object.signal16() =
+        Object.signal16():
+        ReadOnlyProperty<Object, Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>>
+        =
         Signal16.delegate as ReadOnlyProperty<Object, Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified

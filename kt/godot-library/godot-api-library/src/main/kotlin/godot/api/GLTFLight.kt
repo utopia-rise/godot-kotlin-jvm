@@ -249,7 +249,7 @@ public open class GLTFLight : Resource() {
   public final fun getAdditionalData(extensionName: String): Any? =
       getAdditionalData(extensionName.asCachedStringName())
 
-  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit =
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {

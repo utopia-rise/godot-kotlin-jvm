@@ -315,7 +315,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
      */
     @JvmStatic
-    public final fun setDefaultInterface(interfaceName: String) =
+    public final fun setDefaultInterface(interfaceName: String): Unit =
         setDefaultInterface(interfaceName.asCachedStringName())
   }
 

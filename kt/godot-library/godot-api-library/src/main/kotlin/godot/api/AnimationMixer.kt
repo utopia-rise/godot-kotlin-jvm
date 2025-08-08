@@ -761,13 +761,13 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Removes the [AnimationLibrary] associated with the key [name].
    */
-  public final fun removeAnimationLibrary(name: String) =
+  public final fun removeAnimationLibrary(name: String): Unit =
       removeAnimationLibrary(name.asCachedStringName())
 
   /**
    * Moves the [AnimationLibrary] associated with the key [name] to the key [newname].
    */
-  public final fun renameAnimationLibrary(name: String, newname: String) =
+  public final fun renameAnimationLibrary(name: String, newname: String): Unit =
       renameAnimationLibrary(name.asCachedStringName(), newname.asCachedStringName())
 
   /**
@@ -795,9 +795,10 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
 
-  public final fun setRootNode(path: String) = setRootNode(path.asCachedNodePath())
+  public final fun setRootNode(path: String): Unit = setRootNode(path.asCachedNodePath())
 
-  public final fun setRootMotionTrack(path: String) = setRootMotionTrack(path.asCachedNodePath())
+  public final fun setRootMotionTrack(path: String): Unit =
+      setRootMotionTrack(path.asCachedNodePath())
 
   /**
    * If the animation track specified by [name] has an option [Animation.UPDATE_CAPTURE], stores
@@ -818,7 +819,7 @@ public open class AnimationMixer internal constructor() : Node() {
     duration: Double,
     transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
     easeType: Tween.EaseType = Tween.EaseType.IN,
-  ) = capture(name.asCachedStringName(), duration, transType, easeType)
+  ): Unit = capture(name.asCachedStringName(), duration, transType, easeType)
 
   public enum class AnimationCallbackModeProcess(
     id: Long,
