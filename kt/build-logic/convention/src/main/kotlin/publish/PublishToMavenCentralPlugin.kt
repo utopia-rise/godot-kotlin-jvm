@@ -116,6 +116,6 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
 
 fun Project.propOrEnv(name: String): String? {
     return findProperty(name) as? String?
-        ?: System.getenv(name).ifEmpty { null }
+        ?: System.getenv(name)?.ifEmpty { null }
         ?: providers.systemProperty(name).orNull
 }
