@@ -139,35 +139,35 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     event: InputEvent?,
     shapeIdx: Int,
   ) {
-    throw NotImplementedError("_inputEvent is not implemented for CollisionObject2D")
+    throw NotImplementedError("CollisionObject2D::_inputEvent is not implemented.")
   }
 
   /**
    * Called when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called.
    */
   public open fun _mouseEnter() {
-    throw NotImplementedError("_mouseEnter is not implemented for CollisionObject2D")
+    throw NotImplementedError("CollisionObject2D::_mouseEnter is not implemented.")
   }
 
   /**
    * Called when the mouse pointer exits all this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called.
    */
   public open fun _mouseExit() {
-    throw NotImplementedError("_mouseExit is not implemented for CollisionObject2D")
+    throw NotImplementedError("CollisionObject2D::_mouseExit is not implemented.")
   }
 
   /**
    * Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [shapeIdx] is the child index of the newly entered [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be called.
    */
   public open fun _mouseShapeEnter(shapeIdx: Int) {
-    throw NotImplementedError("_mouseShapeEnter is not implemented for CollisionObject2D")
+    throw NotImplementedError("CollisionObject2D::_mouseShapeEnter is not implemented.")
   }
 
   /**
    * Called when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be called.
    */
   public open fun _mouseShapeExit(shapeIdx: Int) {
-    throw NotImplementedError("_mouseShapeExit is not implemented for CollisionObject2D")
+    throw NotImplementedError("CollisionObject2D::_mouseShapeExit is not implemented.")
   }
 
   /**

@@ -102,14 +102,14 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getShaderRid(): RID {
+  override fun _getShaderRid(): RID {
     throw NotImplementedError("PanoramaSkyMaterial::_getShaderRid can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getShaderMode(): Shader.Mode {
+  override fun _getShaderMode(): Shader.Mode {
     throw NotImplementedError("PanoramaSkyMaterial::_getShaderMode can't be called from the JVM.")
   }
 

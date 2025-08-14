@@ -75,7 +75,7 @@ public open class GraphNode : GraphElement() {
     left: Boolean,
     color: Color,
   ) {
-    throw NotImplementedError("_drawPort is not implemented for GraphNode")
+    throw NotImplementedError("GraphNode::_drawPort is not implemented.")
   }
 
   public final fun setTitle(title: String) {

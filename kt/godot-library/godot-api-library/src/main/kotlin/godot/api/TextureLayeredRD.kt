@@ -51,49 +51,49 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFormat(): Image.Format {
+  override fun _getFormat(): Image.Format {
     throw NotImplementedError("TextureLayeredRD::_getFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayeredType(): Long {
+  override fun _getLayeredType(): Long {
     throw NotImplementedError("TextureLayeredRD::_getLayeredType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("TextureLayeredRD::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("TextureLayeredRD::_getHeight can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayers(): Int {
+  override fun _getLayers(): Int {
     throw NotImplementedError("TextureLayeredRD::_getLayers can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasMipmaps(): Boolean {
+  override fun _hasMipmaps(): Boolean {
     throw NotImplementedError("TextureLayeredRD::_hasMipmaps can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayerData(layerIndex: Int): Image? {
+  override fun _getLayerData(layerIndex: Int): Image? {
     throw NotImplementedError("TextureLayeredRD::_getLayerData can't be called from the JVM.")
   }
 

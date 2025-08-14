@@ -15,7 +15,6 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.jvm.JvmStatic
 
@@ -23,7 +22,7 @@ import kotlin.jvm.JvmStatic
  * [AnimationNodeExtension] exposes the APIs of [AnimationRootNode] to allow users to extend it from GDScript, C#, or C++. This class is not meant to be used directly, but to be extended by other classes. It is used to create custom nodes for the [AnimationTree] system.
  */
 @GodotBaseType
-public open class AnimationNodeExtension : AnimationNode() {
+public abstract class AnimationNodeExtension : AnimationNode() {
   override fun new(scriptIndex: Int) {
     createNativeObject(24, scriptIndex)
   }
@@ -35,9 +34,7 @@ public open class AnimationNodeExtension : AnimationNode() {
    *
    * The function must return a [PackedFloat32Array] of the node's time info, containing the following values (in order): animation length, time position, delta, [Animation.LoopMode] (encoded as a float), whether the animation is about to end (encoded as a float greater than `0`) and whether the animation is infinite (encoded as a float greater than `0`). All values must be included in the returned array.
    */
-  public open fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean): PackedFloat32Array {
-    throw NotImplementedError("_processAnimationNode is not implemented for AnimationNodeExtension")
-  }
+  public abstract fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean): PackedFloat32Array
 
   public companion object {
     /**

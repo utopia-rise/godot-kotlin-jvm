@@ -22,14 +22,14 @@ public open class OpenXRActionBindingModifier : OpenXRBindingModifier() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getDescription(): String {
+  override fun _getDescription(): String {
     throw NotImplementedError("OpenXRActionBindingModifier::_getDescription can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getIpModification(): PackedByteArray {
+  override fun _getIpModification(): PackedByteArray {
     throw NotImplementedError("OpenXRActionBindingModifier::_getIpModification can't be called from the JVM.")
   }
 

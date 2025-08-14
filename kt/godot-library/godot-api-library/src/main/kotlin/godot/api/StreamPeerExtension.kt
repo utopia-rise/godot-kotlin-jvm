@@ -5,18 +5,15 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.Suppress
 
 @GodotBaseType
-public open class StreamPeerExtension : StreamPeer() {
+public abstract class StreamPeerExtension : StreamPeer() {
   override fun new(scriptIndex: Int) {
     createNativeObject(636, scriptIndex)
   }
 
-  public open fun _getAvailableBytes(): Int {
-    throw NotImplementedError("_getAvailableBytes is not implemented for StreamPeerExtension")
-  }
+  public abstract fun _getAvailableBytes(): Int
 
   public companion object
 

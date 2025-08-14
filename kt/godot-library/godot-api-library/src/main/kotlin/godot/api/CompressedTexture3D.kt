@@ -57,42 +57,42 @@ public open class CompressedTexture3D : Texture3D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFormat(): Image.Format {
+  override fun _getFormat(): Image.Format {
     throw NotImplementedError("CompressedTexture3D::_getFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("CompressedTexture3D::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("CompressedTexture3D::_getHeight can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getDepth(): Int {
+  override fun _getDepth(): Int {
     throw NotImplementedError("CompressedTexture3D::_getDepth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasMipmaps(): Boolean {
+  override fun _hasMipmaps(): Boolean {
     throw NotImplementedError("CompressedTexture3D::_hasMipmaps can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getData(): VariantArray<Image> {
+  override fun _getData(): VariantArray<Image> {
     throw NotImplementedError("CompressedTexture3D::_getData can't be called from the JVM.")
   }
 

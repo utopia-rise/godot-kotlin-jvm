@@ -142,21 +142,21 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     normal: Vector3,
     shapeIdx: Int,
   ) {
-    throw NotImplementedError("_inputEvent is not implemented for CollisionObject3D")
+    throw NotImplementedError("CollisionObject3D::_inputEvent is not implemented.")
   }
 
   /**
    * Called when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseEnter() {
-    throw NotImplementedError("_mouseEnter is not implemented for CollisionObject3D")
+    throw NotImplementedError("CollisionObject3D::_mouseEnter is not implemented.")
   }
 
   /**
    * Called when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseExit() {
-    throw NotImplementedError("_mouseExit is not implemented for CollisionObject3D")
+    throw NotImplementedError("CollisionObject3D::_mouseExit is not implemented.")
   }
 
   public final fun setCollisionLayer(layer: Long) {

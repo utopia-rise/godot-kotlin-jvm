@@ -588,7 +588,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it is called before the standard force integration, but the [customIntegrator] property allows you to disable the standard force integration and do fully custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?) {
-    throw NotImplementedError("_integrateForces is not implemented for RigidBody3D")
+    throw NotImplementedError("RigidBody3D::_integrateForces is not implemented.")
   }
 
   public final fun setMass(mass: Float) {

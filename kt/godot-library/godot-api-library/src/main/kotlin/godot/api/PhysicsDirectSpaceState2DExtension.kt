@@ -20,7 +20,7 @@ import kotlin.Suppress
  * Intended for use with GDExtension to create custom implementations of [PhysicsDirectSpaceState2D].
  */
 @GodotBaseType
-public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
+public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
   override fun new(scriptIndex: Int) {
     createNativeObject(466, scriptIndex)
   }

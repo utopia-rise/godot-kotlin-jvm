@@ -6,7 +6,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
@@ -14,7 +13,7 @@ import kotlin.Suppress
  * Binding modifier base class. Subclasses implement various modifiers that alter how an OpenXR runtime processes inputs.
  */
 @GodotBaseType
-public open class OpenXRBindingModifier internal constructor() : Resource() {
+public abstract class OpenXRBindingModifier internal constructor() : Resource() {
   override fun new(scriptIndex: Int) {
     createNativeObject(416, scriptIndex)
   }
@@ -22,18 +21,14 @@ public open class OpenXRBindingModifier internal constructor() : Resource() {
   /**
    * Return the description of this class that is used for the title bar of the binding modifier editor.
    */
-  public open fun _getDescription(): String {
-    throw NotImplementedError("_getDescription is not implemented for OpenXRBindingModifier")
-  }
+  public abstract fun _getDescription(): String
 
   /**
    * Returns the data that is sent to OpenXR when submitting the suggested interacting bindings this modifier is a part of.
    *
    * **Note:** This must be data compatible with a `XrBindingModificationBaseHeaderKHR` structure.
    */
-  public open fun _getIpModification(): PackedByteArray {
-    throw NotImplementedError("_getIpModification is not implemented for OpenXRBindingModifier")
-  }
+  public abstract fun _getIpModification(): PackedByteArray
 
   public companion object
 

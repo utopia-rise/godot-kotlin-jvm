@@ -14,7 +14,6 @@ import godot.core.Vector2i
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.jvm.JvmStatic
@@ -35,7 +34,7 @@ import kotlin.jvm.JvmStatic
  * **Note:** MovieWriter is available for use in both the editor and exported projects, but it is *not* designed for use by end users to record videos while playing. Players wishing to record gameplay videos should install tools such as [url=https://obsproject.com/]OBS Studio[/url] or [url=https://www.maartenbaert.be/simplescreenrecorder/]SimpleScreenRecorder[/url] instead.
  */
 @GodotBaseType
-public open class MovieWriter : Object() {
+public abstract class MovieWriter : Object() {
   override fun new(scriptIndex: Int) {
     createNativeObject(362, scriptIndex)
   }
@@ -43,16 +42,12 @@ public open class MovieWriter : Object() {
   /**
    * Called when the audio sample rate used for recording the audio is requested by the engine. The value returned must be specified in Hz. Defaults to 48000 Hz if [_getAudioMixRate] is not overridden.
    */
-  public open fun _getAudioMixRate(): Long {
-    throw NotImplementedError("_getAudioMixRate is not implemented for MovieWriter")
-  }
+  public abstract fun _getAudioMixRate(): Long
 
   /**
    * Called when the audio speaker mode used for recording the audio is requested by the engine. This can affect the number of output channels in the resulting audio file/stream. Defaults to [AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
    */
-  public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
-    throw NotImplementedError("_getAudioSpeakerMode is not implemented for MovieWriter")
-  }
+  public abstract fun _getAudioSpeakerMode(): AudioServer.SpeakerMode
 
   /**
    * Called when the engine determines whether this [MovieWriter] is able to handle the file at [path]. Must return `true` if this [MovieWriter] is able to handle the given file path, `false` otherwise. Typically, [_handlesFile] is overridden as follows to allow the user to record a file at any path with a given file extension:
@@ -64,29 +59,23 @@ public open class MovieWriter : Object() {
    *     return path.get_extension().to_lower() == "mkv"
    * ```
    */
-  public open fun _handlesFile(path: String): Boolean {
-    throw NotImplementedError("_handlesFile is not implemented for MovieWriter")
-  }
+  public abstract fun _handlesFile(path: String): Boolean
 
   /**
    * Called once before the engine starts writing video and audio data. [movieSize] is the width and height of the video to save. [fps] is the number of frames per second specified in the project settings or using the `--fixed-fps <fps>` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url].
    */
-  public open fun _writeBegin(
+  public abstract fun _writeBegin(
     movieSize: Vector2i,
     fps: Long,
     basePath: String,
-  ): Error {
-    throw NotImplementedError("_writeBegin is not implemented for MovieWriter")
-  }
+  ): Error
 
   /**
    * Called when the engine finishes writing. This occurs when the engine quits by pressing the window manager's close button, or when [SceneTree.quit] is called.
    *
    * **Note:** Pressing [kbd]Ctrl + C[/kbd] on the terminal running the editor/project does *not* result in [_writeEnd] being called.
    */
-  public open fun _writeEnd() {
-    throw NotImplementedError("_writeEnd is not implemented for MovieWriter")
-  }
+  public abstract fun _writeEnd()
 
   public companion object {
     /**

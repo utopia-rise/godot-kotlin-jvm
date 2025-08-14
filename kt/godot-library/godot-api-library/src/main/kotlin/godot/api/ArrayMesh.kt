@@ -30,6 +30,7 @@ import kotlin.Any
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -376,6 +377,104 @@ public open class ArrayMesh : Mesh() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _getSurfaceCount(): Int {
+    throw NotImplementedError("ArrayMesh::_getSurfaceCount can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetArrayLen(index: Int): Int {
+    throw NotImplementedError("ArrayMesh::_surfaceGetArrayLen can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetArrayIndexLen(index: Int): Int {
+    throw NotImplementedError("ArrayMesh::_surfaceGetArrayIndexLen can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+    throw NotImplementedError("ArrayMesh::_surfaceGetArrays can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+    throw NotImplementedError("ArrayMesh::_surfaceGetBlendShapeArrays can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ArrayMesh::_surfaceGetLods can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetFormat(index: Int): Long {
+    throw NotImplementedError("ArrayMesh::_surfaceGetFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetPrimitiveType(index: Int): Long {
+    throw NotImplementedError("ArrayMesh::_surfaceGetPrimitiveType can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceSetMaterial(index: Int, material: Material?) {
+    throw NotImplementedError("ArrayMesh::_surfaceSetMaterial can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _surfaceGetMaterial(index: Int): Material? {
+    throw NotImplementedError("ArrayMesh::_surfaceGetMaterial can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _getBlendShapeCount(): Int {
+    throw NotImplementedError("ArrayMesh::_getBlendShapeCount can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _getBlendShapeName(index: Int): StringName {
+    throw NotImplementedError("ArrayMesh::_getBlendShapeName can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _setBlendShapeName(index: Int, name: StringName) {
+    throw NotImplementedError("ArrayMesh::_setBlendShapeName can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _getAabb(): CoreAABB {
+    throw NotImplementedError("ArrayMesh::_getAabb can't be called from the JVM.")
   }
 
   /**

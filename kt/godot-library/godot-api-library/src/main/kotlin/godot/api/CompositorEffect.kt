@@ -148,7 +148,7 @@ public open class CompositorEffect : Resource() {
    * Implement this function with your custom rendering code. [effectCallbackType] should always match the effect callback type you've specified in [effectCallbackType]. [renderData] provides access to the rendering state, it is only valid during rendering and should not be stored.
    */
   public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?) {
-    throw NotImplementedError("_renderCallback is not implemented for CompositorEffect")
+    throw NotImplementedError("CompositorEffect::_renderCallback is not implemented.")
   }
 
   public final fun setEnabled(enabled: Boolean) {

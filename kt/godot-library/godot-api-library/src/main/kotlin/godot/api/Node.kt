@@ -535,7 +535,7 @@ public open class Node : Object() {
    * **Note:** [delta] will be larger than expected if running at a framerate lower than [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result, avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double) {
-    throw NotImplementedError("_process is not implemented for Node")
+    throw NotImplementedError("Node::_process is not implemented.")
   }
 
   /**
@@ -552,7 +552,7 @@ public open class Node : Object() {
    * **Note:** [delta] will be larger than expected if running at a framerate lower than [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result, avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double) {
-    throw NotImplementedError("_physicsProcess is not implemented for Node")
+    throw NotImplementedError("Node::_physicsProcess is not implemented.")
   }
 
   /**
@@ -561,7 +561,7 @@ public open class Node : Object() {
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
    */
   public open fun _enterTree() {
-    throw NotImplementedError("_enterTree is not implemented for Node")
+    throw NotImplementedError("Node::_enterTree is not implemented.")
   }
 
   /**
@@ -570,7 +570,7 @@ public open class Node : Object() {
    * Corresponds to the [NOTIFICATION_EXIT_TREE] notification in [Object.Notification] and signal [signal tree_exiting]. To get notified when the node has already left the active tree, connect to the [signal tree_exited].
    */
   public open fun _exitTree() {
-    throw NotImplementedError("_exitTree is not implemented for Node")
+    throw NotImplementedError("Node::_exitTree is not implemented.")
   }
 
   /**
@@ -583,7 +583,7 @@ public open class Node : Object() {
    * **Note:** This method may be called only once for each node. After removing a node from the scene tree and adding it again, [_ready] will **not** be called a second time. This can be bypassed by requesting another call with [requestReady], which may be called anywhere before adding the node again.
    */
   public open fun _ready() {
-    throw NotImplementedError("_ready is not implemented for Node")
+    throw NotImplementedError("Node::_ready is not implemented.")
   }
 
   /**
@@ -607,7 +607,7 @@ public open class Node : Object() {
    * ```
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
-    throw NotImplementedError("_getConfigurationWarnings is not implemented for Node")
+    throw NotImplementedError("Node::_getConfigurationWarnings is not implemented.")
   }
 
   /**
@@ -622,7 +622,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _input(event: InputEvent?) {
-    throw NotImplementedError("_input is not implemented for Node")
+    throw NotImplementedError("Node::_input is not implemented.")
   }
 
   /**
@@ -637,7 +637,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
   public open fun _shortcutInput(event: InputEvent?) {
-    throw NotImplementedError("_shortcutInput is not implemented for Node")
+    throw NotImplementedError("Node::_shortcutInput is not implemented.")
   }
 
   /**
@@ -652,7 +652,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _unhandledInput(event: InputEvent?) {
-    throw NotImplementedError("_unhandledInput is not implemented for Node")
+    throw NotImplementedError("Node::_unhandledInput is not implemented.")
   }
 
   /**
@@ -669,7 +669,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _unhandledKeyInput(event: InputEvent?) {
-    throw NotImplementedError("_unhandledKeyInput is not implemented for Node")
+    throw NotImplementedError("Node::_unhandledKeyInput is not implemented.")
   }
 
   /**

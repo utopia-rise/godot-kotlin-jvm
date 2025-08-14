@@ -49,226 +49,225 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasFeature(feature: TextServer.Feature): Boolean {
+  override fun _hasFeature(feature: TextServer.Feature): Boolean {
     throw NotImplementedError("TextServerDummy::_hasFeature can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getName(): String {
+  override fun _getName(): String {
     throw NotImplementedError("TextServerDummy::_getName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFeatures(): Long {
+  override fun _getFeatures(): Long {
     throw NotImplementedError("TextServerDummy::_getFeatures can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _freeRid(rid: RID): Unit {
+  override fun _freeRid(rid: RID) {
     throw NotImplementedError("TextServerDummy::_freeRid can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _has(rid: RID): Boolean {
+  override fun _has(rid: RID): Boolean {
     throw NotImplementedError("TextServerDummy::_has can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _createFont(): RID {
+  override fun _createFont(): RID {
     throw NotImplementedError("TextServerDummy::_createFont can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
+  override fun _fontSetFixedSize(fontRid: RID, fixedSize: Long) {
     throw NotImplementedError("TextServerDummy::_fontSetFixedSize can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetFixedSize(fontRid: RID): Long {
+  override fun _fontGetFixedSize(fontRid: RID): Long {
     throw NotImplementedError("TextServerDummy::_fontGetFixedSize can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetFixedSizeScaleMode(fontRid: RID,
-      fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
+  override fun _fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: TextServer.FixedSizeScaleMode) {
     throw NotImplementedError("TextServerDummy::_fontSetFixedSizeScaleMode can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode {
+  override fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode {
     throw NotImplementedError("TextServerDummy::_fontGetFixedSizeScaleMode can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
+  override fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     throw NotImplementedError("TextServerDummy::_fontGetSizeCacheList can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontClearSizeCache(fontRid: RID): Unit {
+  override fun _fontClearSizeCache(fontRid: RID) {
     throw NotImplementedError("TextServerDummy::_fontClearSizeCache can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
+  override fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i) {
     throw NotImplementedError("TextServerDummy::_fontRemoveSizeCache can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetAscent(
+  override fun _fontSetAscent(
     fontRid: RID,
     size: Long,
     ascent: Double,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetAscent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetAscent(fontRid: RID, size: Long): Double {
+  override fun _fontGetAscent(fontRid: RID, size: Long): Double {
     throw NotImplementedError("TextServerDummy::_fontGetAscent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetDescent(
+  override fun _fontSetDescent(
     fontRid: RID,
     size: Long,
     descent: Double,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetDescent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetDescent(fontRid: RID, size: Long): Double {
+  override fun _fontGetDescent(fontRid: RID, size: Long): Double {
     throw NotImplementedError("TextServerDummy::_fontGetDescent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetUnderlinePosition(
+  override fun _fontSetUnderlinePosition(
     fontRid: RID,
     size: Long,
     underlinePosition: Double,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetUnderlinePosition can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
+  override fun _fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
     throw NotImplementedError("TextServerDummy::_fontGetUnderlinePosition can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetUnderlineThickness(
+  override fun _fontSetUnderlineThickness(
     fontRid: RID,
     size: Long,
     underlineThickness: Double,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetUnderlineThickness can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
+  override fun _fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
     throw NotImplementedError("TextServerDummy::_fontGetUnderlineThickness can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetScale(
+  override fun _fontSetScale(
     fontRid: RID,
     size: Long,
     scale: Double,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetScale can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetScale(fontRid: RID, size: Long): Double {
+  override fun _fontGetScale(fontRid: RID, size: Long): Double {
     throw NotImplementedError("TextServerDummy::_fontGetScale can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
+  override fun _fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
     throw NotImplementedError("TextServerDummy::_fontGetTextureCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontClearTextures(fontRid: RID, size: Vector2i): Unit {
+  override fun _fontClearTextures(fontRid: RID, size: Vector2i) {
     throw NotImplementedError("TextServerDummy::_fontClearTextures can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontRemoveTexture(
+  override fun _fontRemoveTexture(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontRemoveTexture can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetTextureImage(
+  override fun _fontSetTextureImage(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
     image: Image?,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetTextureImage can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetTextureImage(
+  override fun _fontGetTextureImage(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
@@ -279,32 +278,32 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
+  override fun _fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
     throw NotImplementedError("TextServerDummy::_fontGetGlyphList can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
+  override fun _fontClearGlyphs(fontRid: RID, size: Vector2i) {
     throw NotImplementedError("TextServerDummy::_fontClearGlyphs can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontRemoveGlyph(
+  override fun _fontRemoveGlyph(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontRemoveGlyph can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphAdvance(
+  override fun _fontGetGlyphAdvance(
     fontRid: RID,
     size: Long,
     glyph: Long,
@@ -315,19 +314,19 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetGlyphAdvance(
+  override fun _fontSetGlyphAdvance(
     fontRid: RID,
     size: Long,
     glyph: Long,
     advance: Vector2,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetGlyphAdvance can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphOffset(
+  override fun _fontGetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -338,19 +337,19 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetGlyphOffset(
+  override fun _fontSetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
     offset: Vector2,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetGlyphOffset can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphSize(
+  override fun _fontGetGlyphSize(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -361,19 +360,19 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetGlyphSize(
+  override fun _fontSetGlyphSize(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
     glSize: Vector2,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetGlyphSize can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphUvRect(
+  override fun _fontGetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -384,19 +383,19 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetGlyphUvRect(
+  override fun _fontSetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
     uvRect: Rect2,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetGlyphUvRect can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphTextureIdx(
+  override fun _fontGetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -407,19 +406,19 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontSetGlyphTextureIdx(
+  override fun _fontSetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
     textureIdx: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontSetGlyphTextureIdx can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphTextureRid(
+  override fun _fontGetGlyphTextureRid(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -430,7 +429,7 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphTextureSize(
+  override fun _fontGetGlyphTextureSize(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -441,7 +440,7 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetGlyphIndex(
+  override fun _fontGetGlyphIndex(
     fontRid: RID,
     size: Long,
     char: Long,
@@ -453,7 +452,7 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetCharFromGlyphIndex(
+  override fun _fontGetCharFromGlyphIndex(
     fontRid: RID,
     size: Long,
     glyphIndex: Long,
@@ -464,42 +463,42 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontHasChar(fontRid: RID, char: Long): Boolean {
+  override fun _fontHasChar(fontRid: RID, char: Long): Boolean {
     throw NotImplementedError("TextServerDummy::_fontHasChar can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetSupportedChars(fontRid: RID): String {
+  override fun _fontGetSupportedChars(fontRid: RID): String {
     throw NotImplementedError("TextServerDummy::_fontGetSupportedChars can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array {
+  override fun _fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array {
     throw NotImplementedError("TextServerDummy::_fontGetSupportedGlyphs can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontDrawGlyph(
+  override fun _fontDrawGlyph(
     fontRid: RID,
     canvas: RID,
     size: Long,
     pos: Vector2,
     index: Long,
     color: Color,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontDrawGlyph can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _fontDrawGlyphOutline(
+  override fun _fontDrawGlyphOutline(
     fontRid: RID,
     canvas: RID,
     size: Long,
@@ -507,29 +506,28 @@ public open class TextServerDummy : TextServerExtension() {
     pos: Vector2,
     index: Long,
     color: Color,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_fontDrawGlyphOutline can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _createShapedText(direction: TextServer.Direction,
-      orientation: TextServer.Orientation): RID {
+  override fun _createShapedText(direction: TextServer.Direction, orientation: TextServer.Orientation): RID {
     throw NotImplementedError("TextServerDummy::_createShapedText can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextClear(shaped: RID): Unit {
+  override fun _shapedTextClear(shaped: RID) {
     throw NotImplementedError("TextServerDummy::_shapedTextClear can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextAddString(
+  override fun _shapedTextAddString(
     shaped: RID,
     text: String,
     fonts: VariantArray<RID>,
@@ -544,7 +542,7 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextAddObject(
+  override fun _shapedTextAddObject(
     shaped: RID,
     key: Any?,
     size: Vector2,
@@ -558,7 +556,7 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextResizeObject(
+  override fun _shapedTextResizeObject(
     shaped: RID,
     key: Any?,
     size: Vector2,
@@ -571,41 +569,41 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedGetSpanCount(shaped: RID): Long {
+  override fun _shapedGetSpanCount(shaped: RID): Long {
     throw NotImplementedError("TextServerDummy::_shapedGetSpanCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedGetSpanMeta(shaped: RID, index: Long): Any? {
+  override fun _shapedGetSpanMeta(shaped: RID, index: Long): Any? {
     throw NotImplementedError("TextServerDummy::_shapedGetSpanMeta can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
+  override fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
     throw NotImplementedError("TextServerDummy::_shapedGetSpanEmbeddedObject can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedSetSpanUpdateFont(
+  override fun _shapedSetSpanUpdateFont(
     shaped: RID,
     index: Long,
     fonts: VariantArray<RID>,
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?>,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerDummy::_shapedSetSpanUpdateFont can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextSubstr(
+  override fun _shapedTextSubstr(
     shaped: RID,
     start: Long,
     length: Long,
@@ -616,126 +614,126 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetParent(shaped: RID): RID {
+  override fun _shapedTextGetParent(shaped: RID): RID {
     throw NotImplementedError("TextServerDummy::_shapedTextGetParent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextShape(shaped: RID): Boolean {
+  override fun _shapedTextShape(shaped: RID): Boolean {
     throw NotImplementedError("TextServerDummy::_shapedTextShape can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextIsReady(shaped: RID): Boolean {
+  override fun _shapedTextIsReady(shaped: RID): Boolean {
     throw NotImplementedError("TextServerDummy::_shapedTextIsReady can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetGlyphCount(shaped: RID): Long {
+  override fun _shapedTextGetGlyphCount(shaped: RID): Long {
     throw NotImplementedError("TextServerDummy::_shapedTextGetGlyphCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetRange(shaped: RID): Vector2i {
+  override fun _shapedTextGetRange(shaped: RID): Vector2i {
     throw NotImplementedError("TextServerDummy::_shapedTextGetRange can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetTrimPos(shaped: RID): Long {
+  override fun _shapedTextGetTrimPos(shaped: RID): Long {
     throw NotImplementedError("TextServerDummy::_shapedTextGetTrimPos can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetEllipsisPos(shaped: RID): Long {
+  override fun _shapedTextGetEllipsisPos(shaped: RID): Long {
     throw NotImplementedError("TextServerDummy::_shapedTextGetEllipsisPos can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
+  override fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
     throw NotImplementedError("TextServerDummy::_shapedTextGetEllipsisGlyphCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
+  override fun _shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
     throw NotImplementedError("TextServerDummy::_shapedTextGetObjects can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
+  override fun _shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     throw NotImplementedError("TextServerDummy::_shapedTextGetObjectRect can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
+  override fun _shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
     throw NotImplementedError("TextServerDummy::_shapedTextGetObjectRange can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
+  override fun _shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
     throw NotImplementedError("TextServerDummy::_shapedTextGetObjectGlyph can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetSize(shaped: RID): Vector2 {
+  override fun _shapedTextGetSize(shaped: RID): Vector2 {
     throw NotImplementedError("TextServerDummy::_shapedTextGetSize can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetAscent(shaped: RID): Double {
+  override fun _shapedTextGetAscent(shaped: RID): Double {
     throw NotImplementedError("TextServerDummy::_shapedTextGetAscent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetDescent(shaped: RID): Double {
+  override fun _shapedTextGetDescent(shaped: RID): Double {
     throw NotImplementedError("TextServerDummy::_shapedTextGetDescent can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetWidth(shaped: RID): Double {
+  override fun _shapedTextGetWidth(shaped: RID): Double {
     throw NotImplementedError("TextServerDummy::_shapedTextGetWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetUnderlinePosition(shaped: RID): Double {
+  override fun _shapedTextGetUnderlinePosition(shaped: RID): Double {
     throw NotImplementedError("TextServerDummy::_shapedTextGetUnderlinePosition can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _shapedTextGetUnderlineThickness(shaped: RID): Double {
+  override fun _shapedTextGetUnderlineThickness(shaped: RID): Double {
     throw NotImplementedError("TextServerDummy::_shapedTextGetUnderlineThickness can't be called from the JVM.")
   }
 

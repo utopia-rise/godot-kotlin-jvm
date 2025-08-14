@@ -29,7 +29,7 @@ import kotlin.jvm.JvmOverloads
  * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for usage.
  */
 @GodotBaseType
-public open class AudioStreamPlayback : RefCounted() {
+public abstract class AudioStreamPlayback : RefCounted() {
   override fun new(scriptIndex: Int) {
     createNativeObject(87, scriptIndex)
   }
@@ -38,63 +38,63 @@ public open class AudioStreamPlayback : RefCounted() {
    * Override this method to customize what happens when the playback starts at the given position, such as by calling [AudioStreamPlayer.play].
    */
   public open fun _start(fromPos: Double) {
-    throw NotImplementedError("_start is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_start is not implemented.")
   }
 
   /**
    * Override this method to customize what happens when the playback is stopped, such as by calling [AudioStreamPlayer.stop].
    */
   public open fun _stop() {
-    throw NotImplementedError("_stop is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_stop is not implemented.")
   }
 
   /**
    * Overridable method. Should return `true` if this playback is active and playing its audio stream.
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_isPlaying is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_isPlaying is not implemented.")
   }
 
   /**
    * Overridable method. Should return how many times this audio stream has looped. Most built-in playbacks always return `0`.
    */
   public open fun _getLoopCount(): Int {
-    throw NotImplementedError("_getLoopCount is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_getLoopCount is not implemented.")
   }
 
   /**
    * Overridable method. Should return the current progress along the audio stream, in seconds.
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_getPlaybackPosition is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_getPlaybackPosition is not implemented.")
   }
 
   /**
    * Override this method to customize what happens when seeking this audio stream at the given [position], such as by calling [AudioStreamPlayer.seek].
    */
   public open fun _seek(position: Double) {
-    throw NotImplementedError("_seek is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_seek is not implemented.")
   }
 
   /**
    * Overridable method. Called whenever the audio stream is mixed if the playback is active and [AudioServer.setEnableTaggingUsedAudioStreams] has been set to `true`. Editor plugins may use this method to "tag" the current position along the audio stream and display it in a preview.
    */
   public open fun _tagUsedStreams() {
-    throw NotImplementedError("_tagUsedStreams is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_tagUsedStreams is not implemented.")
   }
 
   /**
    * Set the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
   public open fun _setParameter(name: StringName, `value`: Any?) {
-    throw NotImplementedError("_setParameter is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_setParameter is not implemented.")
   }
 
   /**
    * Return the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
   public open fun _getParameter(name: StringName): Any? {
-    throw NotImplementedError("_getParameter is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("AudioStreamPlayback::_getParameter is not implemented.")
   }
 
   /**

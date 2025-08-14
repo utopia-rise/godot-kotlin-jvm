@@ -123,7 +123,7 @@ public open class TileMap : Node2D() {
    * **Note:** If the result of this function should changed, use [notifyRuntimeTileDataUpdate] to notify the TileMap it needs an update.
    */
   public open fun _useTileDataRuntimeUpdate(layer: Int, coords: Vector2i): Boolean {
-    throw NotImplementedError("_useTileDataRuntimeUpdate is not implemented for TileMap")
+    throw NotImplementedError("TileMap::_useTileDataRuntimeUpdate is not implemented.")
   }
 
   /**
@@ -140,7 +140,7 @@ public open class TileMap : Node2D() {
     coords: Vector2i,
     tileData: TileData?,
   ) {
-    throw NotImplementedError("_tileDataRuntimeUpdate is not implemented for TileMap")
+    throw NotImplementedError("TileMap::_tileDataRuntimeUpdate is not implemented.")
   }
 
   /**

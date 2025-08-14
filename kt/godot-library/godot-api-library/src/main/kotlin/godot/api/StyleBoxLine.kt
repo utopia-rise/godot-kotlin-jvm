@@ -173,7 +173,7 @@ public open class StyleBoxLine : StyleBox() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+  override fun _draw(toCanvasItem: RID, rect: Rect2) {
     throw NotImplementedError("StyleBoxLine::_draw can't be called from the JVM.")
   }
 

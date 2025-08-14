@@ -27,14 +27,14 @@ public open class EngineProfiler : RefCounted() {
    * Called when the profiler is enabled/disabled, along with a set of [options].
    */
   public open fun _toggle(enable: Boolean, options: VariantArray<Any?>) {
-    throw NotImplementedError("_toggle is not implemented for EngineProfiler")
+    throw NotImplementedError("EngineProfiler::_toggle is not implemented.")
   }
 
   /**
    * Called when data is added to profiler using [EngineDebugger.profilerAddFrameData].
    */
   public open fun _addFrame(`data`: VariantArray<Any?>) {
-    throw NotImplementedError("_addFrame is not implemented for EngineProfiler")
+    throw NotImplementedError("EngineProfiler::_addFrame is not implemented.")
   }
 
   /**
@@ -46,7 +46,7 @@ public open class EngineProfiler : RefCounted() {
     physicsTime: Double,
     physicsFrameTime: Double,
   ) {
-    throw NotImplementedError("_tick is not implemented for EngineProfiler")
+    throw NotImplementedError("EngineProfiler::_tick is not implemented.")
   }
 
   public companion object

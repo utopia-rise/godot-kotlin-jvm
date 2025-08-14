@@ -52,49 +52,49 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFormat(): Image.Format {
+  override fun _getFormat(): Image.Format {
     throw NotImplementedError("CompressedTextureLayered::_getFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayeredType(): Long {
+  override fun _getLayeredType(): Long {
     throw NotImplementedError("CompressedTextureLayered::_getLayeredType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("CompressedTextureLayered::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("CompressedTextureLayered::_getHeight can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayers(): Int {
+  override fun _getLayers(): Int {
     throw NotImplementedError("CompressedTextureLayered::_getLayers can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasMipmaps(): Boolean {
+  override fun _hasMipmaps(): Boolean {
     throw NotImplementedError("CompressedTextureLayered::_hasMipmaps can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayerData(layerIndex: Int): Image? {
+  override fun _getLayerData(layerIndex: Int): Image? {
     throw NotImplementedError("CompressedTextureLayered::_getLayerData can't be called from the JVM.")
   }
 

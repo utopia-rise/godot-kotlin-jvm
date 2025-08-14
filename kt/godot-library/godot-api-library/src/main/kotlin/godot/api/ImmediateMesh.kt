@@ -146,98 +146,98 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getSurfaceCount(): Int {
+  override fun _getSurfaceCount(): Int {
     throw NotImplementedError("ImmediateMesh::_getSurfaceCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayLen(index: Int): Int {
+  override fun _surfaceGetArrayLen(index: Int): Int {
     throw NotImplementedError("ImmediateMesh::_surfaceGetArrayLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayIndexLen(index: Int): Int {
+  override fun _surfaceGetArrayIndexLen(index: Int): Int {
     throw NotImplementedError("ImmediateMesh::_surfaceGetArrayIndexLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+  override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
     throw NotImplementedError("ImmediateMesh::_surfaceGetArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+  override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("ImmediateMesh::_surfaceGetBlendShapeArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+  override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("ImmediateMesh::_surfaceGetLods can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetFormat(index: Int): Long {
+  override fun _surfaceGetFormat(index: Int): Long {
     throw NotImplementedError("ImmediateMesh::_surfaceGetFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetPrimitiveType(index: Int): Long {
+  override fun _surfaceGetPrimitiveType(index: Int): Long {
     throw NotImplementedError("ImmediateMesh::_surfaceGetPrimitiveType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+  override fun _surfaceSetMaterial(index: Int, material: Material?) {
     throw NotImplementedError("ImmediateMesh::_surfaceSetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetMaterial(index: Int): Material? {
+  override fun _surfaceGetMaterial(index: Int): Material? {
     throw NotImplementedError("ImmediateMesh::_surfaceGetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeCount(): Int {
+  override fun _getBlendShapeCount(): Int {
     throw NotImplementedError("ImmediateMesh::_getBlendShapeCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeName(index: Int): StringName {
+  override fun _getBlendShapeName(index: Int): StringName {
     throw NotImplementedError("ImmediateMesh::_getBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _setBlendShapeName(index: Int, name: StringName): Unit {
+  override fun _setBlendShapeName(index: Int, name: StringName) {
     throw NotImplementedError("ImmediateMesh::_setBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getAabb(): AABB {
+  override fun _getAabb(): AABB {
     throw NotImplementedError("ImmediateMesh::_getAabb can't be called from the JVM.")
   }
 

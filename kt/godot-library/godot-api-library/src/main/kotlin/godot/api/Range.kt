@@ -155,7 +155,7 @@ public open class Range : Control() {
    * Called when the [Range]'s value is changed (following the same conditions as [signal value_changed]).
    */
   public open fun _valueChanged(newValue: Double) {
-    throw NotImplementedError("_valueChanged is not implemented for Range")
+    throw NotImplementedError("Range::_valueChanged is not implemented.")
   }
 
   public final fun getValue(): Double {

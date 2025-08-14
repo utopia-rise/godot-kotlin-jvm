@@ -71,7 +71,7 @@ public open class SkeletonModifier3D : Node3D() {
    * [_processModification] must not apply [influence] to bone poses because the [Skeleton3D] automatically applies influence to all bone poses set by the modifier.
    */
   public open fun _processModification() {
-    throw NotImplementedError("_processModification is not implemented for SkeletonModifier3D")
+    throw NotImplementedError("SkeletonModifier3D::_processModification is not implemented.")
   }
 
   /**

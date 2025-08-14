@@ -13,7 +13,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
@@ -22,14 +21,12 @@ import kotlin.Suppress
  * Intended for use with GDExtension to create custom implementations of [PhysicsDirectSpaceState3D].
  */
 @GodotBaseType
-public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
+public abstract class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
   override fun new(scriptIndex: Int) {
     createNativeObject(468, scriptIndex)
   }
 
-  public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {
-    throw NotImplementedError("_getClosestPointToObjectVolume is not implemented for PhysicsDirectSpaceState3DExtension")
-  }
+  public abstract fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)

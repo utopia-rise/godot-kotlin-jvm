@@ -36,7 +36,7 @@ public open class GLTFDocumentExtension : Resource() {
    * The return value is used to determine if this [GLTFDocumentExtension] instance should be used for importing a given glTF file. If [OK], the import will use this [GLTFDocumentExtension] instance. If not overridden, [OK] is returned.
    */
   public open fun _importPreflight(state: GLTFState?, extensions: PackedStringArray): Error {
-    throw NotImplementedError("_importPreflight is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_importPreflight is not implemented.")
   }
 
   /**
@@ -45,7 +45,7 @@ public open class GLTFDocumentExtension : Resource() {
    * Returns an array of the glTF extensions supported by this GLTFDocumentExtension class. This is used to validate if a glTF file with required extensions can be loaded.
    */
   public open fun _getSupportedExtensions(): PackedStringArray {
-    throw NotImplementedError("_getSupportedExtensions is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_getSupportedExtensions is not implemented.")
   }
 
   /**
@@ -58,7 +58,7 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode?,
     extensions: Dictionary<Any?, Any?>,
   ): Error {
-    throw NotImplementedError("_parseNodeExtensions is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_parseNodeExtensions is not implemented.")
   }
 
   /**
@@ -72,14 +72,14 @@ public open class GLTFDocumentExtension : Resource() {
     mimeType: String,
     retImage: Image?,
   ): Error {
-    throw NotImplementedError("_parseImageData is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_parseImageData is not implemented.")
   }
 
   /**
    * Returns the file extension to use for saving image data into, for example, `".png"`. If defined, when this extension is used to handle images, and the images are saved to a separate file, the image bytes will be copied to a file with this extension. If this is set, there should be a [ResourceImporter] class able to import the file. If not defined or empty, Godot will save the image into a PNG file.
    */
   public open fun _getImageFileExtension(): String {
-    throw NotImplementedError("_getImageFileExtension is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_getImageFileExtension is not implemented.")
   }
 
   /**
@@ -92,7 +92,7 @@ public open class GLTFDocumentExtension : Resource() {
     textureJson: Dictionary<Any?, Any?>,
     retGltfTexture: GLTFTexture?,
   ): Error {
-    throw NotImplementedError("_parseTextureJson is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_parseTextureJson is not implemented.")
   }
 
   /**
@@ -107,7 +107,7 @@ public open class GLTFDocumentExtension : Resource() {
     splitJsonPointer: PackedStringArray,
     partialPaths: VariantArray<NodePath>,
   ): GLTFObjectModelProperty? {
-    throw NotImplementedError("_importObjectModelProperty is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_importObjectModelProperty is not implemented.")
   }
 
   /**
@@ -116,7 +116,7 @@ public open class GLTFDocumentExtension : Resource() {
    * This method can be used to modify any of the data imported so far after parsing each node, but before generating the scene or any of its nodes.
    */
   public open fun _importPostParse(state: GLTFState?): Error {
-    throw NotImplementedError("_importPostParse is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_importPostParse is not implemented.")
   }
 
   /**
@@ -125,7 +125,7 @@ public open class GLTFDocumentExtension : Resource() {
    * This method can be used to modify or read from any of the processed data structures, before generating the nodes and then running the final per-node import step.
    */
   public open fun _importPreGenerate(state: GLTFState?): Error {
-    throw NotImplementedError("_importPreGenerate is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_importPreGenerate is not implemented.")
   }
 
   /**
@@ -140,7 +140,7 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode?,
     sceneParent: Node?,
   ): Node3D? {
-    throw NotImplementedError("_generateSceneNode is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_generateSceneNode is not implemented.")
   }
 
   /**
@@ -154,7 +154,7 @@ public open class GLTFDocumentExtension : Resource() {
     json: Dictionary<Any?, Any?>,
     node: Node?,
   ): Error {
-    throw NotImplementedError("_importNode is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_importNode is not implemented.")
   }
 
   /**
@@ -163,7 +163,7 @@ public open class GLTFDocumentExtension : Resource() {
    * This method can be used to modify the final Godot scene generated by the import process.
    */
   public open fun _importPost(state: GLTFState?, root: Node?): Error {
-    throw NotImplementedError("_importPost is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_importPost is not implemented.")
   }
 
   /**
@@ -172,7 +172,7 @@ public open class GLTFDocumentExtension : Resource() {
    * The return value is used to determine if this [GLTFDocumentExtension] instance should be used for exporting a given glTF file. If [OK], the export will use this [GLTFDocumentExtension] instance. If not overridden, [OK] is returned.
    */
   public open fun _exportPreflight(state: GLTFState?, root: Node?): Error {
-    throw NotImplementedError("_exportPreflight is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_exportPreflight is not implemented.")
   }
 
   /**
@@ -185,7 +185,7 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode?,
     sceneNode: Node?,
   ) {
-    throw NotImplementedError("_convertSceneNode is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_convertSceneNode is not implemented.")
   }
 
   /**
@@ -194,7 +194,7 @@ public open class GLTFDocumentExtension : Resource() {
    * This method can be used to modify the converted node data structures before serialization with any additional data from the scene tree.
    */
   public open fun _exportPostConvert(state: GLTFState?, root: Node?): Error {
-    throw NotImplementedError("_exportPostConvert is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_exportPostConvert is not implemented.")
   }
 
   /**
@@ -203,7 +203,7 @@ public open class GLTFDocumentExtension : Resource() {
    * This method can be used to alter the state before performing serialization. It runs every time when generating a buffer with [GLTFDocument.generateBuffer] or writing to the file system with [GLTFDocument.writeToFilesystem].
    */
   public open fun _exportPreserialize(state: GLTFState?): Error {
-    throw NotImplementedError("_exportPreserialize is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_exportPreserialize is not implemented.")
   }
 
   /**
@@ -221,7 +221,7 @@ public open class GLTFDocumentExtension : Resource() {
     targetObject: Object?,
     targetDepth: Int,
   ): GLTFObjectModelProperty? {
-    throw NotImplementedError("_exportObjectModelProperty is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_exportObjectModelProperty is not implemented.")
   }
 
   /**
@@ -230,7 +230,7 @@ public open class GLTFDocumentExtension : Resource() {
    * Returns an array of the image formats that can be saved/exported by this extension. This extension will only be selected as the image exporter if the [GLTFDocument]'s [GLTFDocument.imageFormat] is in this array. If this [GLTFDocumentExtension] is selected as the image exporter, one of the [_saveImageAtPath] or [_serializeImageToBytes] methods will run next, otherwise [_exportNode] will run next. If the format name contains `"Lossy"`, the lossy quality slider will be displayed.
    */
   public open fun _getSaveableImageFormats(): PackedStringArray {
-    throw NotImplementedError("_getSaveableImageFormats is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_getSaveableImageFormats is not implemented.")
   }
 
   /**
@@ -247,7 +247,7 @@ public open class GLTFDocumentExtension : Resource() {
     imageFormat: String,
     lossyQuality: Float,
   ): PackedByteArray {
-    throw NotImplementedError("_serializeImageToBytes is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_serializeImageToBytes is not implemented.")
   }
 
   /**
@@ -262,7 +262,7 @@ public open class GLTFDocumentExtension : Resource() {
     imageFormat: String,
     lossyQuality: Float,
   ): Error {
-    throw NotImplementedError("_saveImageAtPath is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_saveImageAtPath is not implemented.")
   }
 
   /**
@@ -276,7 +276,7 @@ public open class GLTFDocumentExtension : Resource() {
     gltfTexture: GLTFTexture?,
     imageFormat: String,
   ): Error {
-    throw NotImplementedError("_serializeTextureJson is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_serializeTextureJson is not implemented.")
   }
 
   /**
@@ -290,7 +290,7 @@ public open class GLTFDocumentExtension : Resource() {
     json: Dictionary<Any?, Any?>,
     node: Node?,
   ): Error {
-    throw NotImplementedError("_exportNode is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_exportNode is not implemented.")
   }
 
   /**
@@ -299,7 +299,7 @@ public open class GLTFDocumentExtension : Resource() {
    * This method can be used to modify the final JSON of the generated glTF file.
    */
   public open fun _exportPost(state: GLTFState?): Error {
-    throw NotImplementedError("_exportPost is not implemented for GLTFDocumentExtension")
+    throw NotImplementedError("GLTFDocumentExtension::_exportPost is not implemented.")
   }
 
   public companion object

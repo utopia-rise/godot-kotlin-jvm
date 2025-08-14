@@ -58,14 +58,14 @@ public open class SkeletonModification2D : Resource() {
    * Executes the given modification. This is where the modification performs whatever function it is designed to do.
    */
   public open fun _execute(delta: Double) {
-    throw NotImplementedError("_execute is not implemented for SkeletonModification2D")
+    throw NotImplementedError("SkeletonModification2D::_execute is not implemented.")
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
   public open fun _setupModification(modificationStack: SkeletonModificationStack2D?) {
-    throw NotImplementedError("_setupModification is not implemented for SkeletonModification2D")
+    throw NotImplementedError("SkeletonModification2D::_setupModification is not implemented.")
   }
 
   /**
@@ -74,7 +74,7 @@ public open class SkeletonModification2D : Resource() {
    * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton] and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo() {
-    throw NotImplementedError("_drawEditorGizmo is not implemented for SkeletonModification2D")
+    throw NotImplementedError("SkeletonModification2D::_drawEditorGizmo is not implemented.")
   }
 
   public final fun setEnabled(enabled: Boolean) {

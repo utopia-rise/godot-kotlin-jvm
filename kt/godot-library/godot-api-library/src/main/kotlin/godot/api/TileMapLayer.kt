@@ -241,7 +241,7 @@ public open class TileMapLayer : Node2D() {
    * **Note:** If the result of this function should change, use [notifyRuntimeTileDataUpdate] to notify the [TileMapLayer] it needs an update.
    */
   public open fun _useTileDataRuntimeUpdate(coords: Vector2i): Boolean {
-    throw NotImplementedError("_useTileDataRuntimeUpdate is not implemented for TileMapLayer")
+    throw NotImplementedError("TileMapLayer::_useTileDataRuntimeUpdate is not implemented.")
   }
 
   /**
@@ -254,7 +254,7 @@ public open class TileMapLayer : Node2D() {
    * **Note:** If the properties of [tileData] object should change over time, use [notifyRuntimeTileDataUpdate] to notify the [TileMapLayer] it needs an update.
    */
   public open fun _tileDataRuntimeUpdate(coords: Vector2i, tileData: TileData?) {
-    throw NotImplementedError("_tileDataRuntimeUpdate is not implemented for TileMapLayer")
+    throw NotImplementedError("TileMapLayer::_tileDataRuntimeUpdate is not implemented.")
   }
 
   /**
@@ -275,7 +275,7 @@ public open class TileMapLayer : Node2D() {
    * **Warning:** Implementing this method may degrade the [TileMapLayer]'s performance.
    */
   public open fun _updateCells(coords: VariantArray<Vector2i>, forcedCleanup: Boolean) {
-    throw NotImplementedError("_updateCells is not implemented for TileMapLayer")
+    throw NotImplementedError("TileMapLayer::_updateCells is not implemented.")
   }
 
   /**

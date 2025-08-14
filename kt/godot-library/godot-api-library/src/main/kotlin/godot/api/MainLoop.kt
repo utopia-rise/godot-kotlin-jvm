@@ -86,7 +86,7 @@ public open class MainLoop : Object() {
    * Called once during initialization.
    */
   public open fun _initialize() {
-    throw NotImplementedError("_initialize is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_initialize is not implemented.")
   }
 
   /**
@@ -97,7 +97,7 @@ public open class MainLoop : Object() {
    * **Note:** [delta] will be larger than expected if running at a framerate lower than [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result, avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Boolean {
-    throw NotImplementedError("_physicsProcess is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_physicsProcess is not implemented.")
   }
 
   /**
@@ -108,14 +108,14 @@ public open class MainLoop : Object() {
    * **Note:** [delta] will be larger than expected if running at a framerate lower than [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result, avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Boolean {
-    throw NotImplementedError("_process is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_process is not implemented.")
   }
 
   /**
    * Called before the program exits.
    */
   public open fun _finalize() {
-    throw NotImplementedError("_finalize is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_finalize is not implemented.")
   }
 
   public companion object {

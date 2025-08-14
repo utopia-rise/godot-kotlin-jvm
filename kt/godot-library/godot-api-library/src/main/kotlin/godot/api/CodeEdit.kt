@@ -311,14 +311,14 @@ public open class CodeEdit : TextEdit() {
    * Override this method to define how the selected entry should be inserted. If [replace] is `true`, any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean) {
-    throw NotImplementedError("_confirmCodeCompletion is not implemented for CodeEdit")
+    throw NotImplementedError("CodeEdit::_confirmCodeCompletion is not implemented.")
   }
 
   /**
    * Override this method to define what happens when the user requests code completion. If [force] is `true`, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean) {
-    throw NotImplementedError("_requestCodeCompletion is not implemented for CodeEdit")
+    throw NotImplementedError("CodeEdit::_requestCodeCompletion is not implemented.")
   }
 
   /**
@@ -327,7 +327,7 @@ public open class CodeEdit : TextEdit() {
    * Both [candidates] and the return is a [Array] of [Dictionary], see [getCodeCompletionOption] for [Dictionary] content.
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>): VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_filterCodeCompletionCandidates is not implemented for CodeEdit")
+    throw NotImplementedError("CodeEdit::_filterCodeCompletionCandidates is not implemented.")
   }
 
   public final fun setIndentSize(size: Int) {

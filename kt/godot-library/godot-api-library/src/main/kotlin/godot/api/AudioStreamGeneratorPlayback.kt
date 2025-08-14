@@ -86,7 +86,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() : AudioStr
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getStreamSamplingRate(): Float {
+  override fun _getStreamSamplingRate(): Float {
     throw NotImplementedError("AudioStreamGeneratorPlayback::_getStreamSamplingRate can't be called from the JVM.")
   }
 

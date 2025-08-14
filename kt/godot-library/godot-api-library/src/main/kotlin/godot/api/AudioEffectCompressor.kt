@@ -15,6 +15,7 @@ import godot.core.asCachedStringName
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -191,6 +192,13 @@ public open class AudioEffectCompressor : AudioEffect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSidechainPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  override fun _instantiate(): AudioEffectInstance? {
+    throw NotImplementedError("AudioEffectCompressor::_instantiate can't be called from the JVM.")
   }
 
   public final fun setSidechain(sidechain: String): Unit = setSidechain(sidechain.asCachedStringName())

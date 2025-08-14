@@ -34,21 +34,21 @@ public open class SyntaxHighlighter : Resource() {
    * See [getLineSyntaxHighlighting] for more details.
    */
   public open fun _getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_getLineSyntaxHighlighting is not implemented for SyntaxHighlighter")
+    throw NotImplementedError("SyntaxHighlighter::_getLineSyntaxHighlighting is not implemented.")
   }
 
   /**
    * Virtual method which can be overridden to clear any local caches.
    */
   public open fun _clearHighlightingCache() {
-    throw NotImplementedError("_clearHighlightingCache is not implemented for SyntaxHighlighter")
+    throw NotImplementedError("SyntaxHighlighter::_clearHighlightingCache is not implemented.")
   }
 
   /**
    * Virtual method which can be overridden to update any local caches.
    */
   public open fun _updateCache() {
-    throw NotImplementedError("_updateCache is not implemented for SyntaxHighlighter")
+    throw NotImplementedError("SyntaxHighlighter::_updateCache is not implemented.")
   }
 
   /**

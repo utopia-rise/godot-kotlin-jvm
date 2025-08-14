@@ -96,7 +96,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _instantiate(): AudioEffectInstance? {
+  override fun _instantiate(): AudioEffectInstance? {
     throw NotImplementedError("AudioEffectHardLimiter::_instantiate can't be called from the JVM.")
   }
 

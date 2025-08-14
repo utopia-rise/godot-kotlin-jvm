@@ -10,18 +10,15 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import kotlin.Float
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.Suppress
 
 @GodotBaseType
-public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
+public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   override fun new(scriptIndex: Int) {
     createNativeObject(92, scriptIndex)
   }
 
-  public open fun _getStreamSamplingRate(): Float {
-    throw NotImplementedError("_getStreamSamplingRate is not implemented for AudioStreamPlaybackResampled")
-  }
+  public abstract fun _getStreamSamplingRate(): Float
 
   public final fun beginResample() {
     TransferContext.writeArguments()

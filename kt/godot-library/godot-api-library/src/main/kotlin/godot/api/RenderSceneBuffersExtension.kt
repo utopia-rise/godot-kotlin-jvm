@@ -23,35 +23,35 @@ public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
    * Implement this in GDExtension to handle the (re)sizing of a viewport.
    */
   public open fun _configure(config: RenderSceneBuffersConfiguration?) {
-    throw NotImplementedError("_configure is not implemented for RenderSceneBuffersExtension")
+    throw NotImplementedError("RenderSceneBuffersExtension::_configure is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to record a new FSR sharpness value.
    */
   public open fun _setFsrSharpness(fsrSharpness: Float) {
-    throw NotImplementedError("_setFsrSharpness is not implemented for RenderSceneBuffersExtension")
+    throw NotImplementedError("RenderSceneBuffersExtension::_setFsrSharpness is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to change the texture mipmap bias.
    */
   public open fun _setTextureMipmapBias(textureMipmapBias: Float) {
-    throw NotImplementedError("_setTextureMipmapBias is not implemented for RenderSceneBuffersExtension")
+    throw NotImplementedError("RenderSceneBuffersExtension::_setTextureMipmapBias is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to change the anisotropic filtering level.
    */
   public open fun _setAnisotropicFilteringLevel(anisotropicFilteringLevel: Int) {
-    throw NotImplementedError("_setAnisotropicFilteringLevel is not implemented for RenderSceneBuffersExtension")
+    throw NotImplementedError("RenderSceneBuffersExtension::_setAnisotropicFilteringLevel is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to react to the debanding flag changing.
    */
   public open fun _setUseDebanding(useDebanding: Boolean) {
-    throw NotImplementedError("_setUseDebanding is not implemented for RenderSceneBuffersExtension")
+    throw NotImplementedError("RenderSceneBuffersExtension::_setUseDebanding is not implemented.")
   }
 
   public companion object

@@ -5,7 +5,6 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
@@ -14,7 +13,7 @@ import kotlin.Suppress
  * When applied on a bus, an audio effect creates a corresponding [AudioEffectInstance]. The instance is directly responsible for manipulating the sound, based on the original audio effect's properties.
  */
 @GodotBaseType
-public open class AudioEffect : Resource() {
+public abstract class AudioEffect : Resource() {
   override fun new(scriptIndex: Int) {
     createNativeObject(45, scriptIndex)
   }
@@ -36,9 +35,7 @@ public open class AudioEffect : Resource() {
    *
    * **Note:** It is recommended to keep a reference to the original [AudioEffect] in the new instance. Depending on the implementation this allows the effect instance to listen for changes at run-time and be modified accordingly.
    */
-  public open fun _instantiate(): AudioEffectInstance? {
-    throw NotImplementedError("_instantiate is not implemented for AudioEffect")
-  }
+  public abstract fun _instantiate(): AudioEffectInstance?
 
   public companion object
 
