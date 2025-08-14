@@ -4,6 +4,8 @@
 // Needs this as a macro if we want to append it to all other paths.
 #define JVM_DIRECTORY "jvm/"
 
+# define JNI_LIBS_BASE_DIR "android/jniLibs"
+
 static constexpr const char* USER_DIRECTORY {"user://"};
 static constexpr const char* RES_DIRECTORY {"res://"};
 
@@ -84,6 +86,18 @@ static constexpr const char* BOOTSTRAP_FILE {ANDROID_BOOTSTRAP_FILE};
 static constexpr const char* USER_CODE_FILE {ANDROID_USER_CODE_FILE};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {ANDROID_GRAAL_NATIVE_IMAGE_FILE};
 static constexpr const char* RELATIVE_JVM_LIB_PATH {ANDROID_RELATIVE_JVM_LIB_PATH};
+
+#ifdef __aarch64__
+static constexpr const char* JNI_LIBS_PATH {JVM_DIRECTORY JNI_LIBS_BASE_DIR "/" "arm64-v8a"};
+#elif defined(__arm__)
+static constexpr const char* JNI_LIBS_PATH {JVM_DIRECTORY JNI_LIBS_BASE_DIR "/" "armeabi"};
+#elif defined(__x86_64__)
+static constexpr const char* JNI_LIBS_PATH {JVM_DIRECTORY JNI_LIBS_BASE_DIR "/" "x86_64"};
+#elif defined(__i386__)
+static constexpr const char* JNI_LIBS_PATH {JVM_DIRECTORY JNI_LIBS_BASE_DIR "/" "x86"};
+#else
+#error "Unsupported architecture"
+#endif
 
 #elif IOS_ENABLED
 

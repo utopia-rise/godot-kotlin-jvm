@@ -55,6 +55,10 @@ private:
     static String get_path_to_native_image();
 #endif
 
+#ifdef __ANDROID__
+    static Vector<String> get_res_files_recursively(const String &path);
+#endif
+
     bool load_bootstrap();
     void unload_boostrap();
 
