@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Side
@@ -411,7 +412,7 @@ public open class StyleBoxTexture : StyleBox() {
 
   public enum class AxisStretchMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Stretch the stylebox's texture. This results in visible distortion unless the texture size
      * matches the stylebox's size perfectly.
@@ -430,7 +431,7 @@ public open class StyleBoxTexture : StyleBox() {
     TILE_FIT(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

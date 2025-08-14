@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -2609,7 +2610,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class TextureParam(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Texture specifying per-pixel color.
      */
@@ -2688,7 +2689,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(18),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2700,7 +2701,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class TextureFilter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
@@ -2751,7 +2752,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2763,7 +2764,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class DetailUV(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use `UV` with the detail texture.
      */
@@ -2774,7 +2775,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DETAIL_UV_2(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2786,7 +2787,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class Transparency(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The material will not use transparency. This is the fastest to render.
      */
@@ -2820,7 +2821,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2832,7 +2833,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class ShadingMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * The object will not receive shadows. This is the fastest to render, but it disables all
      * interactions with lights.
@@ -2853,7 +2854,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2865,7 +2866,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class Feature(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Constant for setting [emissionEnabled].
      */
@@ -2920,7 +2921,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(12),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2932,7 +2933,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class BlendMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default blend mode. The color of the object is blended over the background based on the
      * object's alpha value.
@@ -2960,7 +2961,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     PREMULT_ALPHA(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2972,7 +2973,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class AlphaAntiAliasing(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables Alpha AntiAliasing for the material.
      */
@@ -2989,7 +2990,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     ANTIALIASING_ALPHA_TO_COVERAGE_AND_TO_ONE(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3001,7 +3002,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class DepthDrawMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if
      * any) and during the opaque pass.
@@ -3022,7 +3023,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3034,7 +3035,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class CullMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default cull mode. The back of the object is culled when not visible. Back face triangles
      * will be culled when facing the camera. This results in only the front side of triangles being
@@ -3053,7 +3054,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3065,7 +3066,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class Flags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Disables the depth test, so this object is drawn on top of all others drawn before it. This
      * puts the object in the transparent draw pass where it is sorted based on distance to camera.
@@ -3174,7 +3175,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(22),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3186,7 +3187,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class DiffuseMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default diffuse scattering algorithm.
      */
@@ -3205,7 +3206,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     TOON(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3217,7 +3218,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class SpecularMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Default specular blob.
      */
@@ -3232,7 +3233,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3244,7 +3245,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class BillboardMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Billboard mode is disabled.
      */
@@ -3267,7 +3268,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     PARTICLES(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3279,7 +3280,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class TextureChannel(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Used to read from the red channel of a texture.
      */
@@ -3303,7 +3304,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     GRAYSCALE(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3315,7 +3316,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class EmissionOperator(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Adds the emission color to the color from the emission texture.
      */
@@ -3326,7 +3327,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MULTIPLY(1),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -3338,7 +3339,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   public enum class DistanceFadeMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Do not use distance fade.
      */
@@ -3363,7 +3364,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     OBJECT_DITHER(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }

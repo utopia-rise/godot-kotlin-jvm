@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -2751,7 +2752,7 @@ public open class ParticleProcessMaterial : Material() {
 
   public enum class Parameter(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity
      * properties.
@@ -2843,7 +2844,7 @@ public open class ParticleProcessMaterial : Material() {
     TURB_INFLUENCE_OVER_LIFE(12),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2855,7 +2856,7 @@ public open class ParticleProcessMaterial : Material() {
 
   public enum class ParticleFlags(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
@@ -2875,7 +2876,7 @@ public open class ParticleProcessMaterial : Material() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2887,7 +2888,7 @@ public open class ParticleProcessMaterial : Material() {
 
   public enum class EmissionShape(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * All particles will be emitted from a single point.
      */
@@ -2925,7 +2926,7 @@ public open class ParticleProcessMaterial : Material() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2937,7 +2938,7 @@ public open class ParticleProcessMaterial : Material() {
 
   public enum class SubEmitterMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     DISABLED(0),
     CONSTANT(1),
     AT_END(2),
@@ -2949,7 +2950,7 @@ public open class ParticleProcessMaterial : Material() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
@@ -2961,7 +2962,7 @@ public open class ParticleProcessMaterial : Material() {
 
   public enum class CollisionMode(
     id: Long,
-  ) {
+  ) : GodotEnum {
     /**
      * No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes.
      */
@@ -2982,7 +2983,7 @@ public open class ParticleProcessMaterial : Material() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val id: Long
     init {
       this.id = id
     }
