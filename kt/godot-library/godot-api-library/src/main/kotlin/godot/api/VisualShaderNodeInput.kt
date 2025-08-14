@@ -18,8 +18,8 @@ import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference
@@ -70,15 +70,15 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setInputNameName: MethodStringName1<VisualShaderNodeInput, Unit, String> =
         MethodStringName1<VisualShaderNodeInput, Unit, String>("set_input_name")
 
-    @JvmStatic
+    @JvmField
     public val getInputNameName: MethodStringName0<VisualShaderNodeInput, String> =
         MethodStringName0<VisualShaderNodeInput, String>("get_input_name")
 
-    @JvmStatic
+    @JvmField
     public val getInputRealNameName: MethodStringName0<VisualShaderNodeInput, String> =
         MethodStringName0<VisualShaderNodeInput, String>("get_input_real_name")
   }

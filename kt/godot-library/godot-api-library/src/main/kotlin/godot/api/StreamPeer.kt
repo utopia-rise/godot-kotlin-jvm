@@ -33,9 +33,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It
@@ -407,144 +407,144 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val putDataName: MethodStringName1<StreamPeer, Error, PackedByteArray> =
         MethodStringName1<StreamPeer, Error, PackedByteArray>("put_data")
 
-    @JvmStatic
+    @JvmField
     public val putPartialDataName:
         MethodStringName1<StreamPeer, VariantArray<Any?>, PackedByteArray> =
         MethodStringName1<StreamPeer, VariantArray<Any?>, PackedByteArray>("put_partial_data")
 
-    @JvmStatic
+    @JvmField
     public val getDataName: MethodStringName1<StreamPeer, VariantArray<Any?>, Int> =
         MethodStringName1<StreamPeer, VariantArray<Any?>, Int>("get_data")
 
-    @JvmStatic
+    @JvmField
     public val getPartialDataName: MethodStringName1<StreamPeer, VariantArray<Any?>, Int> =
         MethodStringName1<StreamPeer, VariantArray<Any?>, Int>("get_partial_data")
 
-    @JvmStatic
+    @JvmField
     public val getAvailableBytesName: MethodStringName0<StreamPeer, Int> =
         MethodStringName0<StreamPeer, Int>("get_available_bytes")
 
-    @JvmStatic
+    @JvmField
     public val setBigEndianName: MethodStringName1<StreamPeer, Unit, Boolean> =
         MethodStringName1<StreamPeer, Unit, Boolean>("set_big_endian")
 
-    @JvmStatic
+    @JvmField
     public val isBigEndianEnabledName: MethodStringName0<StreamPeer, Boolean> =
         MethodStringName0<StreamPeer, Boolean>("is_big_endian_enabled")
 
-    @JvmStatic
+    @JvmField
     public val put8Name: MethodStringName1<StreamPeer, Unit, Int> =
         MethodStringName1<StreamPeer, Unit, Int>("put_8")
 
-    @JvmStatic
+    @JvmField
     public val putU8Name: MethodStringName1<StreamPeer, Unit, Int> =
         MethodStringName1<StreamPeer, Unit, Int>("put_u8")
 
-    @JvmStatic
+    @JvmField
     public val put16Name: MethodStringName1<StreamPeer, Unit, Int> =
         MethodStringName1<StreamPeer, Unit, Int>("put_16")
 
-    @JvmStatic
+    @JvmField
     public val putU16Name: MethodStringName1<StreamPeer, Unit, Int> =
         MethodStringName1<StreamPeer, Unit, Int>("put_u16")
 
-    @JvmStatic
+    @JvmField
     public val put32Name: MethodStringName1<StreamPeer, Unit, Int> =
         MethodStringName1<StreamPeer, Unit, Int>("put_32")
 
-    @JvmStatic
+    @JvmField
     public val putU32Name: MethodStringName1<StreamPeer, Unit, Long> =
         MethodStringName1<StreamPeer, Unit, Long>("put_u32")
 
-    @JvmStatic
+    @JvmField
     public val put64Name: MethodStringName1<StreamPeer, Unit, Long> =
         MethodStringName1<StreamPeer, Unit, Long>("put_64")
 
-    @JvmStatic
+    @JvmField
     public val putU64Name: MethodStringName1<StreamPeer, Unit, Long> =
         MethodStringName1<StreamPeer, Unit, Long>("put_u64")
 
-    @JvmStatic
+    @JvmField
     public val putHalfName: MethodStringName1<StreamPeer, Unit, Float> =
         MethodStringName1<StreamPeer, Unit, Float>("put_half")
 
-    @JvmStatic
+    @JvmField
     public val putFloatName: MethodStringName1<StreamPeer, Unit, Float> =
         MethodStringName1<StreamPeer, Unit, Float>("put_float")
 
-    @JvmStatic
+    @JvmField
     public val putDoubleName: MethodStringName1<StreamPeer, Unit, Double> =
         MethodStringName1<StreamPeer, Unit, Double>("put_double")
 
-    @JvmStatic
+    @JvmField
     public val putStringName: MethodStringName1<StreamPeer, Unit, String> =
         MethodStringName1<StreamPeer, Unit, String>("put_string")
 
-    @JvmStatic
+    @JvmField
     public val putUtf8StringName: MethodStringName1<StreamPeer, Unit, String> =
         MethodStringName1<StreamPeer, Unit, String>("put_utf8_string")
 
-    @JvmStatic
+    @JvmField
     public val putVarName: MethodStringName2<StreamPeer, Unit, Any?, Boolean> =
         MethodStringName2<StreamPeer, Unit, Any?, Boolean>("put_var")
 
-    @JvmStatic
+    @JvmField
     public val get8Name: MethodStringName0<StreamPeer, Int> =
         MethodStringName0<StreamPeer, Int>("get_8")
 
-    @JvmStatic
+    @JvmField
     public val getU8Name: MethodStringName0<StreamPeer, Int> =
         MethodStringName0<StreamPeer, Int>("get_u8")
 
-    @JvmStatic
+    @JvmField
     public val get16Name: MethodStringName0<StreamPeer, Int> =
         MethodStringName0<StreamPeer, Int>("get_16")
 
-    @JvmStatic
+    @JvmField
     public val getU16Name: MethodStringName0<StreamPeer, Int> =
         MethodStringName0<StreamPeer, Int>("get_u16")
 
-    @JvmStatic
+    @JvmField
     public val get32Name: MethodStringName0<StreamPeer, Int> =
         MethodStringName0<StreamPeer, Int>("get_32")
 
-    @JvmStatic
+    @JvmField
     public val getU32Name: MethodStringName0<StreamPeer, Long> =
         MethodStringName0<StreamPeer, Long>("get_u32")
 
-    @JvmStatic
+    @JvmField
     public val get64Name: MethodStringName0<StreamPeer, Long> =
         MethodStringName0<StreamPeer, Long>("get_64")
 
-    @JvmStatic
+    @JvmField
     public val getU64Name: MethodStringName0<StreamPeer, Long> =
         MethodStringName0<StreamPeer, Long>("get_u64")
 
-    @JvmStatic
+    @JvmField
     public val getHalfName: MethodStringName0<StreamPeer, Float> =
         MethodStringName0<StreamPeer, Float>("get_half")
 
-    @JvmStatic
+    @JvmField
     public val getFloatName: MethodStringName0<StreamPeer, Float> =
         MethodStringName0<StreamPeer, Float>("get_float")
 
-    @JvmStatic
+    @JvmField
     public val getDoubleName: MethodStringName0<StreamPeer, Double> =
         MethodStringName0<StreamPeer, Double>("get_double")
 
-    @JvmStatic
+    @JvmField
     public val getStringName: MethodStringName1<StreamPeer, String, Int> =
         MethodStringName1<StreamPeer, String, Int>("get_string")
 
-    @JvmStatic
+    @JvmField
     public val getUtf8StringName: MethodStringName1<StreamPeer, String, Int> =
         MethodStringName1<StreamPeer, String, Int>("get_utf8_string")
 
-    @JvmStatic
+    @JvmField
     public val getVarName: MethodStringName1<StreamPeer, Any?, Boolean> =
         MethodStringName1<StreamPeer, Any?, Boolean>("get_var")
   }

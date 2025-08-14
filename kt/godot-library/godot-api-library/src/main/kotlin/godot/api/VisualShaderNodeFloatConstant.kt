@@ -18,8 +18,8 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to [code skip-lint]float[/code] in the shader language.
@@ -53,11 +53,11 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setConstantName: MethodStringName1<VisualShaderNodeFloatConstant, Unit, Float> =
         MethodStringName1<VisualShaderNodeFloatConstant, Unit, Float>("set_constant")
 
-    @JvmStatic
+    @JvmField
     public val getConstantName: MethodStringName0<VisualShaderNodeFloatConstant, Float> =
         MethodStringName0<VisualShaderNodeFloatConstant, Float>("get_constant")
   }

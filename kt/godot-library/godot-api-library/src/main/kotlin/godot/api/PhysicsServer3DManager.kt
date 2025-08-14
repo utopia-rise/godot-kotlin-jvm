@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -31,11 +32,11 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object PhysicsServer3DManager : Object() {
-  @JvmStatic
+  @JvmField
   public val registerServerName: MethodStringName2<PhysicsServer3DManager, Unit, String, Callable> =
       MethodStringName2<PhysicsServer3DManager, Unit, String, Callable>("register_server")
 
-  @JvmStatic
+  @JvmField
   public val setDefaultServerName: MethodStringName2<PhysicsServer3DManager, Unit, String, Int> =
       MethodStringName2<PhysicsServer3DManager, Unit, String, Int>("set_default_server")
 

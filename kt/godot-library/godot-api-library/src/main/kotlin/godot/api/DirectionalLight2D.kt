@@ -18,8 +18,8 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A directional light is a type of [Light2D] node that models an infinite number of parallel rays
@@ -78,11 +78,11 @@ public open class DirectionalLight2D : Light2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMaxDistanceName: MethodStringName1<DirectionalLight2D, Unit, Float> =
         MethodStringName1<DirectionalLight2D, Unit, Float>("set_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val getMaxDistanceName: MethodStringName0<DirectionalLight2D, Float> =
         MethodStringName0<DirectionalLight2D, Float>("get_max_distance")
   }

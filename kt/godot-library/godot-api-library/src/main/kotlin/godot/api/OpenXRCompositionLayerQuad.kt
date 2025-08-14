@@ -19,8 +19,8 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on a quad.
@@ -81,11 +81,11 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setQuadSizeName: MethodStringName1<OpenXRCompositionLayerQuad, Unit, Vector2> =
         MethodStringName1<OpenXRCompositionLayerQuad, Unit, Vector2>("set_quad_size")
 
-    @JvmStatic
+    @JvmField
     public val getQuadSizeName: MethodStringName0<OpenXRCompositionLayerQuad, Vector2> =
         MethodStringName0<OpenXRCompositionLayerQuad, Vector2>("get_quad_size")
   }

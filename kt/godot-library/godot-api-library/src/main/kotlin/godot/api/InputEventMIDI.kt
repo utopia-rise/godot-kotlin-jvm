@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * InputEventMIDI stores information about messages from
@@ -312,67 +312,67 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setChannelName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_channel")
 
-    @JvmStatic
+    @JvmField
     public val getChannelName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_channel")
 
-    @JvmStatic
+    @JvmField
     public val setMessageName: MethodStringName1<InputEventMIDI, Unit, MIDIMessage> =
         MethodStringName1<InputEventMIDI, Unit, MIDIMessage>("set_message")
 
-    @JvmStatic
+    @JvmField
     public val getMessageName: MethodStringName0<InputEventMIDI, MIDIMessage> =
         MethodStringName0<InputEventMIDI, MIDIMessage>("get_message")
 
-    @JvmStatic
+    @JvmField
     public val setPitchName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_pitch")
 
-    @JvmStatic
+    @JvmField
     public val getPitchName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_pitch")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setInstrumentName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_instrument")
 
-    @JvmStatic
+    @JvmField
     public val getInstrumentName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_instrument")
 
-    @JvmStatic
+    @JvmField
     public val setPressureName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_pressure")
 
-    @JvmStatic
+    @JvmField
     public val getPressureName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_pressure")
 
-    @JvmStatic
+    @JvmField
     public val setControllerNumberName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_controller_number")
 
-    @JvmStatic
+    @JvmField
     public val getControllerNumberName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_controller_number")
 
-    @JvmStatic
+    @JvmField
     public val setControllerValueName: MethodStringName1<InputEventMIDI, Unit, Int> =
         MethodStringName1<InputEventMIDI, Unit, Int>("set_controller_value")
 
-    @JvmStatic
+    @JvmField
     public val getControllerValueName: MethodStringName0<InputEventMIDI, Int> =
         MethodStringName0<InputEventMIDI, Int>("get_controller_value")
   }

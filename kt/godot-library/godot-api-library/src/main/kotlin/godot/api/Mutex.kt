@@ -16,7 +16,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [Thread]s, and
@@ -80,14 +80,14 @@ public open class Mutex : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val lockName: MethodStringName0<Mutex, Unit> = MethodStringName0<Mutex, Unit>("lock")
 
-    @JvmStatic
+    @JvmField
     public val tryLockName: MethodStringName0<Mutex, Boolean> =
         MethodStringName0<Mutex, Boolean>("try_lock")
 
-    @JvmStatic
+    @JvmField
     public val unlockName: MethodStringName0<Mutex, Unit> = MethodStringName0<Mutex, Unit>("unlock")
   }
 

@@ -19,7 +19,7 @@ import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This class allows OpenXR core and extensions to register metadata relating to supported
@@ -106,22 +106,22 @@ public open class OpenXRInteractionProfileMetadata : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val registerProfileRenameName:
         MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String> =
         MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String>("register_profile_rename")
 
-    @JvmStatic
+    @JvmField
     public val registerTopLevelPathName:
         MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String> =
         MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String>("register_top_level_path")
 
-    @JvmStatic
+    @JvmField
     public val registerInteractionProfileName:
         MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String> =
         MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String>("register_interaction_profile")
 
-    @JvmStatic
+    @JvmField
     public val registerIoPathName:
         MethodStringName6<OpenXRInteractionProfileMetadata, Unit, String, String, String, String, String, OpenXRAction.ActionType>
         =

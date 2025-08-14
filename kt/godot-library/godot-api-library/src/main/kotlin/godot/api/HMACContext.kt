@@ -20,7 +20,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
@@ -108,16 +108,16 @@ public open class HMACContext : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val startName:
         MethodStringName2<HMACContext, Error, HashingContext.HashType, PackedByteArray> =
         MethodStringName2<HMACContext, Error, HashingContext.HashType, PackedByteArray>("start")
 
-    @JvmStatic
+    @JvmField
     public val updateName: MethodStringName1<HMACContext, Error, PackedByteArray> =
         MethodStringName1<HMACContext, Error, PackedByteArray>("update")
 
-    @JvmStatic
+    @JvmField
     public val finishName: MethodStringName0<HMACContext, PackedByteArray> =
         MethodStringName0<HMACContext, PackedByteArray>("finish")
   }

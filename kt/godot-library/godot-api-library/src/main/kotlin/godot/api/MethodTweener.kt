@@ -17,7 +17,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls
@@ -66,15 +66,15 @@ public open class MethodTweener : Tweener() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDelayName: MethodStringName1<MethodTweener, MethodTweener?, Double> =
         MethodStringName1<MethodTweener, MethodTweener?, Double>("set_delay")
 
-    @JvmStatic
+    @JvmField
     public val setTransName: MethodStringName1<MethodTweener, MethodTweener?, Tween.TransitionType>
         = MethodStringName1<MethodTweener, MethodTweener?, Tween.TransitionType>("set_trans")
 
-    @JvmStatic
+    @JvmField
     public val setEaseName: MethodStringName1<MethodTweener, MethodTweener?, Tween.EaseType> =
         MethodStringName1<MethodTweener, MethodTweener?, Tween.EaseType>("set_ease")
   }

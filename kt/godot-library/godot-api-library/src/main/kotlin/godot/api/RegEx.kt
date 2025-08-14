@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -237,42 +238,42 @@ public open class RegEx : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createFromStringName: MethodStringName2<RegEx, RegEx?, String, Boolean> =
         MethodStringName2<RegEx, RegEx?, String, Boolean>("create_from_string")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<RegEx, Unit> = MethodStringName0<RegEx, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val compileName: MethodStringName2<RegEx, Error, String, Boolean> =
         MethodStringName2<RegEx, Error, String, Boolean>("compile")
 
-    @JvmStatic
+    @JvmField
     public val searchName: MethodStringName3<RegEx, RegExMatch?, String, Int, Int> =
         MethodStringName3<RegEx, RegExMatch?, String, Int, Int>("search")
 
-    @JvmStatic
+    @JvmField
     public val searchAllName: MethodStringName3<RegEx, VariantArray<RegExMatch>, String, Int, Int> =
         MethodStringName3<RegEx, VariantArray<RegExMatch>, String, Int, Int>("search_all")
 
-    @JvmStatic
+    @JvmField
     public val subName: MethodStringName5<RegEx, String, String, String, Boolean, Int, Int> =
         MethodStringName5<RegEx, String, String, String, Boolean, Int, Int>("sub")
 
-    @JvmStatic
+    @JvmField
     public val isValidName: MethodStringName0<RegEx, Boolean> =
         MethodStringName0<RegEx, Boolean>("is_valid")
 
-    @JvmStatic
+    @JvmField
     public val getPatternName: MethodStringName0<RegEx, String> =
         MethodStringName0<RegEx, String>("get_pattern")
 
-    @JvmStatic
+    @JvmField
     public val getGroupCountName: MethodStringName0<RegEx, Int> =
         MethodStringName0<RegEx, Int>("get_group_count")
 
-    @JvmStatic
+    @JvmField
     public val getNamesName: MethodStringName0<RegEx, PackedStringArray> =
         MethodStringName0<RegEx, PackedStringArray>("get_names")
 

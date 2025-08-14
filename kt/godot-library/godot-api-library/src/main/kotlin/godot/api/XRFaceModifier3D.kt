@@ -22,8 +22,8 @@ import godot.core.asCachedStringName
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node applies weights from an [XRFaceTracker] to a mesh with supporting face blend shapes.
@@ -93,19 +93,19 @@ public open class XRFaceModifier3D : Node3D() {
   public final fun setTarget(target: String) = setTarget(target.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFaceTrackerName: MethodStringName1<XRFaceModifier3D, Unit, StringName> =
         MethodStringName1<XRFaceModifier3D, Unit, StringName>("set_face_tracker")
 
-    @JvmStatic
+    @JvmField
     public val getFaceTrackerName: MethodStringName0<XRFaceModifier3D, StringName> =
         MethodStringName0<XRFaceModifier3D, StringName>("get_face_tracker")
 
-    @JvmStatic
+    @JvmField
     public val setTargetName: MethodStringName1<XRFaceModifier3D, Unit, NodePath> =
         MethodStringName1<XRFaceModifier3D, Unit, NodePath>("set_target")
 
-    @JvmStatic
+    @JvmField
     public val getTargetName: MethodStringName0<XRFaceModifier3D, NodePath> =
         MethodStringName0<XRFaceModifier3D, NodePath>("get_target")
   }

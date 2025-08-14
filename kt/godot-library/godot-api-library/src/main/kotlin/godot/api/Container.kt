@@ -22,7 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for all GUI containers. A [Container] automatically arranges its child controls in a
@@ -87,11 +87,11 @@ public open class Container : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val queueSortName: MethodStringName0<Container, Unit> =
         MethodStringName0<Container, Unit>("queue_sort")
 
-    @JvmStatic
+    @JvmField
     public val fitChildInRectName: MethodStringName2<Container, Unit, Control?, Rect2> =
         MethodStringName2<Container, Unit, Control?, Rect2>("fit_child_in_rect")
 

@@ -22,7 +22,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The
@@ -119,20 +119,20 @@ public open class SyntaxHighlighter : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getLineSyntaxHighlightingName:
         MethodStringName1<SyntaxHighlighter, Dictionary<Any?, Any?>, Int> =
         MethodStringName1<SyntaxHighlighter, Dictionary<Any?, Any?>, Int>("get_line_syntax_highlighting")
 
-    @JvmStatic
+    @JvmField
     public val updateCacheName: MethodStringName0<SyntaxHighlighter, Unit> =
         MethodStringName0<SyntaxHighlighter, Unit>("update_cache")
 
-    @JvmStatic
+    @JvmField
     public val clearHighlightingCacheName: MethodStringName0<SyntaxHighlighter, Unit> =
         MethodStringName0<SyntaxHighlighter, Unit>("clear_highlighting_cache")
 
-    @JvmStatic
+    @JvmField
     public val getTextEditName: MethodStringName0<SyntaxHighlighter, TextEdit?> =
         MethodStringName0<SyntaxHighlighter, TextEdit?>("get_text_edit")
   }

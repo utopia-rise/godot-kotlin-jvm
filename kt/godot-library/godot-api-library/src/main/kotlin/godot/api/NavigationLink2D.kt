@@ -30,8 +30,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A link between two positions on [NavigationRegion2D]s that agents can be routed through. These
@@ -360,95 +360,95 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<NavigationLink2D, RID> =
         MethodStringName0<NavigationLink2D, RID>("get_rid")
 
-    @JvmStatic
+    @JvmField
     public val setEnabledName: MethodStringName1<NavigationLink2D, Unit, Boolean> =
         MethodStringName1<NavigationLink2D, Unit, Boolean>("set_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isEnabledName: MethodStringName0<NavigationLink2D, Boolean> =
         MethodStringName0<NavigationLink2D, Boolean>("is_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationMapName: MethodStringName1<NavigationLink2D, Unit, RID> =
         MethodStringName1<NavigationLink2D, Unit, RID>("set_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationMapName: MethodStringName0<NavigationLink2D, RID> =
         MethodStringName0<NavigationLink2D, RID>("get_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val setBidirectionalName: MethodStringName1<NavigationLink2D, Unit, Boolean> =
         MethodStringName1<NavigationLink2D, Unit, Boolean>("set_bidirectional")
 
-    @JvmStatic
+    @JvmField
     public val isBidirectionalName: MethodStringName0<NavigationLink2D, Boolean> =
         MethodStringName0<NavigationLink2D, Boolean>("is_bidirectional")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayersName: MethodStringName1<NavigationLink2D, Unit, Long> =
         MethodStringName1<NavigationLink2D, Unit, Long>("set_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayersName: MethodStringName0<NavigationLink2D, Long> =
         MethodStringName0<NavigationLink2D, Long>("get_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayerValueName: MethodStringName2<NavigationLink2D, Unit, Int, Boolean>
         = MethodStringName2<NavigationLink2D, Unit, Int, Boolean>("set_navigation_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayerValueName: MethodStringName1<NavigationLink2D, Boolean, Int> =
         MethodStringName1<NavigationLink2D, Boolean, Int>("get_navigation_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val setStartPositionName: MethodStringName1<NavigationLink2D, Unit, Vector2> =
         MethodStringName1<NavigationLink2D, Unit, Vector2>("set_start_position")
 
-    @JvmStatic
+    @JvmField
     public val getStartPositionName: MethodStringName0<NavigationLink2D, Vector2> =
         MethodStringName0<NavigationLink2D, Vector2>("get_start_position")
 
-    @JvmStatic
+    @JvmField
     public val setEndPositionName: MethodStringName1<NavigationLink2D, Unit, Vector2> =
         MethodStringName1<NavigationLink2D, Unit, Vector2>("set_end_position")
 
-    @JvmStatic
+    @JvmField
     public val getEndPositionName: MethodStringName0<NavigationLink2D, Vector2> =
         MethodStringName0<NavigationLink2D, Vector2>("get_end_position")
 
-    @JvmStatic
+    @JvmField
     public val setGlobalStartPositionName: MethodStringName1<NavigationLink2D, Unit, Vector2> =
         MethodStringName1<NavigationLink2D, Unit, Vector2>("set_global_start_position")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalStartPositionName: MethodStringName0<NavigationLink2D, Vector2> =
         MethodStringName0<NavigationLink2D, Vector2>("get_global_start_position")
 
-    @JvmStatic
+    @JvmField
     public val setGlobalEndPositionName: MethodStringName1<NavigationLink2D, Unit, Vector2> =
         MethodStringName1<NavigationLink2D, Unit, Vector2>("set_global_end_position")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalEndPositionName: MethodStringName0<NavigationLink2D, Vector2> =
         MethodStringName0<NavigationLink2D, Vector2>("get_global_end_position")
 
-    @JvmStatic
+    @JvmField
     public val setEnterCostName: MethodStringName1<NavigationLink2D, Unit, Float> =
         MethodStringName1<NavigationLink2D, Unit, Float>("set_enter_cost")
 
-    @JvmStatic
+    @JvmField
     public val getEnterCostName: MethodStringName0<NavigationLink2D, Float> =
         MethodStringName0<NavigationLink2D, Float>("get_enter_cost")
 
-    @JvmStatic
+    @JvmField
     public val setTravelCostName: MethodStringName1<NavigationLink2D, Unit, Float> =
         MethodStringName1<NavigationLink2D, Unit, Float>("set_travel_cost")
 
-    @JvmStatic
+    @JvmField
     public val getTravelCostName: MethodStringName0<NavigationLink2D, Float> =
         MethodStringName0<NavigationLink2D, Float>("get_travel_cost")
   }

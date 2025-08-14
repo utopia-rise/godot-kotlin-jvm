@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Generate an axis-aligned box [PrimitiveMesh].
@@ -158,35 +158,35 @@ public open class BoxMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<BoxMesh, Unit, Vector3> =
         MethodStringName1<BoxMesh, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<BoxMesh, Vector3> =
         MethodStringName0<BoxMesh, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideWidthName: MethodStringName1<BoxMesh, Unit, Int> =
         MethodStringName1<BoxMesh, Unit, Int>("set_subdivide_width")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideWidthName: MethodStringName0<BoxMesh, Int> =
         MethodStringName0<BoxMesh, Int>("get_subdivide_width")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideHeightName: MethodStringName1<BoxMesh, Unit, Int> =
         MethodStringName1<BoxMesh, Unit, Int>("set_subdivide_height")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideHeightName: MethodStringName0<BoxMesh, Int> =
         MethodStringName0<BoxMesh, Int>("get_subdivide_height")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideDepthName: MethodStringName1<BoxMesh, Unit, Int> =
         MethodStringName1<BoxMesh, Unit, Int>("set_subdivide_depth")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideDepthName: MethodStringName0<BoxMesh, Int> =
         MethodStringName0<BoxMesh, Int>("get_subdivide_depth")
   }

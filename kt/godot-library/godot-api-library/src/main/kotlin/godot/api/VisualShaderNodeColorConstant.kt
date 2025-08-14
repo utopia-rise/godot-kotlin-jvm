@@ -19,8 +19,8 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Has two output ports representing RGB and alpha channels of [Color].
@@ -83,11 +83,11 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setConstantName: MethodStringName1<VisualShaderNodeColorConstant, Unit, Color> =
         MethodStringName1<VisualShaderNodeColorConstant, Unit, Color>("set_constant")
 
-    @JvmStatic
+    @JvmField
     public val getConstantName: MethodStringName0<VisualShaderNodeColorConstant, Color> =
         MethodStringName0<VisualShaderNodeColorConstant, Color>("get_constant")
   }

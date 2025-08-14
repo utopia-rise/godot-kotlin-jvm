@@ -18,8 +18,8 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This physics body implements all the physics logic needed to simulate a car. It is based on the
@@ -128,27 +128,27 @@ public open class VehicleBody3D : RigidBody3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEngineForceName: MethodStringName1<VehicleBody3D, Unit, Float> =
         MethodStringName1<VehicleBody3D, Unit, Float>("set_engine_force")
 
-    @JvmStatic
+    @JvmField
     public val getEngineForceName: MethodStringName0<VehicleBody3D, Float> =
         MethodStringName0<VehicleBody3D, Float>("get_engine_force")
 
-    @JvmStatic
+    @JvmField
     public val setBrakeName: MethodStringName1<VehicleBody3D, Unit, Float> =
         MethodStringName1<VehicleBody3D, Unit, Float>("set_brake")
 
-    @JvmStatic
+    @JvmField
     public val getBrakeName: MethodStringName0<VehicleBody3D, Float> =
         MethodStringName0<VehicleBody3D, Float>("get_brake")
 
-    @JvmStatic
+    @JvmField
     public val setSteeringName: MethodStringName1<VehicleBody3D, Unit, Float> =
         MethodStringName1<VehicleBody3D, Unit, Float>("set_steering")
 
-    @JvmStatic
+    @JvmField
     public val getSteeringName: MethodStringName0<VehicleBody3D, Float> =
         MethodStringName0<VehicleBody3D, Float>("get_steering")
   }

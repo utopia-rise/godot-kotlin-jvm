@@ -19,8 +19,8 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [BoxOccluder3D] stores a cuboid shape that can be used by the engine's occlusion culling system.
@@ -83,11 +83,11 @@ public open class BoxOccluder3D : Occluder3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<BoxOccluder3D, Unit, Vector3> =
         MethodStringName1<BoxOccluder3D, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<BoxOccluder3D, Vector3> =
         MethodStringName0<BoxOccluder3D, Vector3>("get_size")
   }

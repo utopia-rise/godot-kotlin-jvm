@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range
@@ -79,20 +79,20 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeUIntParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeUIntParameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeUIntParameter, Boolean>
         = MethodStringName0<VisualShaderNodeUIntParameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName: MethodStringName1<VisualShaderNodeUIntParameter, Unit, Int> =
         MethodStringName1<VisualShaderNodeUIntParameter, Unit, Int>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName: MethodStringName0<VisualShaderNodeUIntParameter, Int> =
         MethodStringName0<VisualShaderNodeUIntParameter, Int>("get_default_value")
   }

@@ -31,9 +31,9 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics
@@ -232,41 +232,41 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val moveAndCollideName:
         MethodStringName5<PhysicsBody3D, KinematicCollision3D?, Vector3, Boolean, Float, Boolean, Int>
         =
         MethodStringName5<PhysicsBody3D, KinematicCollision3D?, Vector3, Boolean, Float, Boolean, Int>("move_and_collide")
 
-    @JvmStatic
+    @JvmField
     public val testMoveName:
         MethodStringName6<PhysicsBody3D, Boolean, Transform3D, Vector3, KinematicCollision3D?, Float, Boolean, Int>
         =
         MethodStringName6<PhysicsBody3D, Boolean, Transform3D, Vector3, KinematicCollision3D?, Float, Boolean, Int>("test_move")
 
-    @JvmStatic
+    @JvmField
     public val getGravityName: MethodStringName0<PhysicsBody3D, Vector3> =
         MethodStringName0<PhysicsBody3D, Vector3>("get_gravity")
 
-    @JvmStatic
+    @JvmField
     public val setAxisLockName:
         MethodStringName2<PhysicsBody3D, Unit, PhysicsServer3D.BodyAxis, Boolean> =
         MethodStringName2<PhysicsBody3D, Unit, PhysicsServer3D.BodyAxis, Boolean>("set_axis_lock")
 
-    @JvmStatic
+    @JvmField
     public val getAxisLockName: MethodStringName1<PhysicsBody3D, Boolean, PhysicsServer3D.BodyAxis>
         = MethodStringName1<PhysicsBody3D, Boolean, PhysicsServer3D.BodyAxis>("get_axis_lock")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionExceptionsName:
         MethodStringName0<PhysicsBody3D, VariantArray<PhysicsBody3D>> =
         MethodStringName0<PhysicsBody3D, VariantArray<PhysicsBody3D>>("get_collision_exceptions")
 
-    @JvmStatic
+    @JvmField
     public val addCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node?> =
         MethodStringName1<PhysicsBody3D, Unit, Node?>("add_collision_exception_with")
 
-    @JvmStatic
+    @JvmField
     public val removeCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node?> =
         MethodStringName1<PhysicsBody3D, Unit, Node?>("remove_collision_exception_with")
   }

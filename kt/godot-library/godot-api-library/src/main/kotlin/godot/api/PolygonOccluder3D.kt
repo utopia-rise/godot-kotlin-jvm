@@ -21,8 +21,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [PolygonOccluder3D] stores a polygon shape that can be used by the engine's occlusion culling
@@ -120,11 +120,11 @@ public open class PolygonOccluder3D : Occluder3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPolygonName: MethodStringName1<PolygonOccluder3D, Unit, PackedVector2Array> =
         MethodStringName1<PolygonOccluder3D, Unit, PackedVector2Array>("set_polygon")
 
-    @JvmStatic
+    @JvmField
     public val getPolygonName: MethodStringName0<PolygonOccluder3D, PackedVector2Array> =
         MethodStringName0<PolygonOccluder3D, PackedVector2Array>("get_polygon")
   }

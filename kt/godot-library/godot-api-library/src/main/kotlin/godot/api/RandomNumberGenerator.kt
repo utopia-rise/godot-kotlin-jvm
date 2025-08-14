@@ -24,9 +24,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses
@@ -212,47 +212,47 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSeedName: MethodStringName1<RandomNumberGenerator, Unit, Long> =
         MethodStringName1<RandomNumberGenerator, Unit, Long>("set_seed")
 
-    @JvmStatic
+    @JvmField
     public val getSeedName: MethodStringName0<RandomNumberGenerator, Long> =
         MethodStringName0<RandomNumberGenerator, Long>("get_seed")
 
-    @JvmStatic
+    @JvmField
     public val setStateName: MethodStringName1<RandomNumberGenerator, Unit, Long> =
         MethodStringName1<RandomNumberGenerator, Unit, Long>("set_state")
 
-    @JvmStatic
+    @JvmField
     public val getStateName: MethodStringName0<RandomNumberGenerator, Long> =
         MethodStringName0<RandomNumberGenerator, Long>("get_state")
 
-    @JvmStatic
+    @JvmField
     public val randiName: MethodStringName0<RandomNumberGenerator, Long> =
         MethodStringName0<RandomNumberGenerator, Long>("randi")
 
-    @JvmStatic
+    @JvmField
     public val randfName: MethodStringName0<RandomNumberGenerator, Float> =
         MethodStringName0<RandomNumberGenerator, Float>("randf")
 
-    @JvmStatic
+    @JvmField
     public val randfnName: MethodStringName2<RandomNumberGenerator, Float, Float, Float> =
         MethodStringName2<RandomNumberGenerator, Float, Float, Float>("randfn")
 
-    @JvmStatic
+    @JvmField
     public val randfRangeName: MethodStringName2<RandomNumberGenerator, Float, Float, Float> =
         MethodStringName2<RandomNumberGenerator, Float, Float, Float>("randf_range")
 
-    @JvmStatic
+    @JvmField
     public val randiRangeName: MethodStringName2<RandomNumberGenerator, Int, Int, Int> =
         MethodStringName2<RandomNumberGenerator, Int, Int, Int>("randi_range")
 
-    @JvmStatic
+    @JvmField
     public val randWeightedName: MethodStringName1<RandomNumberGenerator, Long, PackedFloat32Array>
         = MethodStringName1<RandomNumberGenerator, Long, PackedFloat32Array>("rand_weighted")
 
-    @JvmStatic
+    @JvmField
     public val randomizeName: MethodStringName0<RandomNumberGenerator, Unit> =
         MethodStringName0<RandomNumberGenerator, Unit>("randomize")
   }

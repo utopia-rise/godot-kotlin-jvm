@@ -17,7 +17,7 @@ import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can
@@ -40,7 +40,7 @@ public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceSta
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isBodyExcludedFromQueryName:
         MethodStringName1<PhysicsDirectSpaceState2DExtension, Boolean, RID> =
         MethodStringName1<PhysicsDirectSpaceState2DExtension, Boolean, RID>("is_body_excluded_from_query")

@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for any object that keeps a reference count. [Resource] and many other helper objects
@@ -97,19 +97,19 @@ public open class RefCounted : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val initRefName: MethodStringName0<RefCounted, Boolean> =
         MethodStringName0<RefCounted, Boolean>("init_ref")
 
-    @JvmStatic
+    @JvmField
     public val referenceName: MethodStringName0<RefCounted, Boolean> =
         MethodStringName0<RefCounted, Boolean>("reference")
 
-    @JvmStatic
+    @JvmField
     public val unreferenceName: MethodStringName0<RefCounted, Boolean> =
         MethodStringName0<RefCounted, Boolean>("unreference")
 
-    @JvmStatic
+    @JvmField
     public val getReferenceCountName: MethodStringName0<RefCounted, Int> =
         MethodStringName0<RefCounted, Int>("get_reference_count")
   }

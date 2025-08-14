@@ -17,8 +17,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The FBXState handles the state data imported from FBX files.
@@ -53,11 +53,11 @@ public open class FBXState : GLTFState() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getAllowGeometryHelperNodesName: MethodStringName0<FBXState, Boolean> =
         MethodStringName0<FBXState, Boolean>("get_allow_geometry_helper_nodes")
 
-    @JvmStatic
+    @JvmField
     public val setAllowGeometryHelperNodesName: MethodStringName1<FBXState, Unit, Boolean> =
         MethodStringName1<FBXState, Unit, Boolean>("set_allow_geometry_helper_nodes")
   }

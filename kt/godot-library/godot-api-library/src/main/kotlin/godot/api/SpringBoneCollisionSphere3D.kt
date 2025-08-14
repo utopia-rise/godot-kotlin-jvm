@@ -20,8 +20,8 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A sphere shape collision that interacts with [SpringBoneSimulator3D].
@@ -77,19 +77,19 @@ public open class SpringBoneCollisionSphere3D : SpringBoneCollision3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<SpringBoneCollisionSphere3D, Unit, Float> =
         MethodStringName1<SpringBoneCollisionSphere3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<SpringBoneCollisionSphere3D, Float> =
         MethodStringName0<SpringBoneCollisionSphere3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setInsideName: MethodStringName1<SpringBoneCollisionSphere3D, Unit, Boolean> =
         MethodStringName1<SpringBoneCollisionSphere3D, Unit, Boolean>("set_inside")
 
-    @JvmStatic
+    @JvmField
     public val isInsideName: MethodStringName0<SpringBoneCollisionSphere3D, Boolean> =
         MethodStringName0<SpringBoneCollisionSphere3D, Boolean>("is_inside")
   }

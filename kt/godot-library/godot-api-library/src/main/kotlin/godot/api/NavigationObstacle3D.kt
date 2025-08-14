@@ -32,8 +32,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
@@ -405,96 +405,96 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<NavigationObstacle3D, RID> =
         MethodStringName0<NavigationObstacle3D, RID>("get_rid")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceEnabledName: MethodStringName1<NavigationObstacle3D, Unit, Boolean> =
         MethodStringName1<NavigationObstacle3D, Unit, Boolean>("set_avoidance_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceEnabledName: MethodStringName0<NavigationObstacle3D, Boolean> =
         MethodStringName0<NavigationObstacle3D, Boolean>("get_avoidance_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationMapName: MethodStringName1<NavigationObstacle3D, Unit, RID> =
         MethodStringName1<NavigationObstacle3D, Unit, RID>("set_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationMapName: MethodStringName0<NavigationObstacle3D, RID> =
         MethodStringName0<NavigationObstacle3D, RID>("get_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<NavigationObstacle3D, Unit, Float> =
         MethodStringName1<NavigationObstacle3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<NavigationObstacle3D, Float> =
         MethodStringName0<NavigationObstacle3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<NavigationObstacle3D, Unit, Float> =
         MethodStringName1<NavigationObstacle3D, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<NavigationObstacle3D, Float> =
         MethodStringName0<NavigationObstacle3D, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityName: MethodStringName1<NavigationObstacle3D, Unit, Vector3> =
         MethodStringName1<NavigationObstacle3D, Unit, Vector3>("set_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityName: MethodStringName0<NavigationObstacle3D, Vector3> =
         MethodStringName0<NavigationObstacle3D, Vector3>("get_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setVerticesName: MethodStringName1<NavigationObstacle3D, Unit, PackedVector3Array> =
         MethodStringName1<NavigationObstacle3D, Unit, PackedVector3Array>("set_vertices")
 
-    @JvmStatic
+    @JvmField
     public val getVerticesName: MethodStringName0<NavigationObstacle3D, PackedVector3Array> =
         MethodStringName0<NavigationObstacle3D, PackedVector3Array>("get_vertices")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceLayersName: MethodStringName1<NavigationObstacle3D, Unit, Long> =
         MethodStringName1<NavigationObstacle3D, Unit, Long>("set_avoidance_layers")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceLayersName: MethodStringName0<NavigationObstacle3D, Long> =
         MethodStringName0<NavigationObstacle3D, Long>("get_avoidance_layers")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceLayerValueName:
         MethodStringName2<NavigationObstacle3D, Unit, Int, Boolean> =
         MethodStringName2<NavigationObstacle3D, Unit, Int, Boolean>("set_avoidance_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceLayerValueName: MethodStringName1<NavigationObstacle3D, Boolean, Int> =
         MethodStringName1<NavigationObstacle3D, Boolean, Int>("get_avoidance_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val setUse3dAvoidanceName: MethodStringName1<NavigationObstacle3D, Unit, Boolean> =
         MethodStringName1<NavigationObstacle3D, Unit, Boolean>("set_use_3d_avoidance")
 
-    @JvmStatic
+    @JvmField
     public val getUse3dAvoidanceName: MethodStringName0<NavigationObstacle3D, Boolean> =
         MethodStringName0<NavigationObstacle3D, Boolean>("get_use_3d_avoidance")
 
-    @JvmStatic
+    @JvmField
     public val setAffectNavigationMeshName: MethodStringName1<NavigationObstacle3D, Unit, Boolean> =
         MethodStringName1<NavigationObstacle3D, Unit, Boolean>("set_affect_navigation_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getAffectNavigationMeshName: MethodStringName0<NavigationObstacle3D, Boolean> =
         MethodStringName0<NavigationObstacle3D, Boolean>("get_affect_navigation_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setCarveNavigationMeshName: MethodStringName1<NavigationObstacle3D, Unit, Boolean> =
         MethodStringName1<NavigationObstacle3D, Unit, Boolean>("set_carve_navigation_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getCarveNavigationMeshName: MethodStringName0<NavigationObstacle3D, Boolean> =
         MethodStringName0<NavigationObstacle3D, Boolean>("get_carve_navigation_mesh")
   }

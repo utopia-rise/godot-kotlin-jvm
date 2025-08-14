@@ -28,8 +28,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from
@@ -270,59 +270,59 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<Sprite3D, Unit, Texture2D?> =
         MethodStringName1<Sprite3D, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<Sprite3D, Texture2D?> =
         MethodStringName0<Sprite3D, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setRegionEnabledName: MethodStringName1<Sprite3D, Unit, Boolean> =
         MethodStringName1<Sprite3D, Unit, Boolean>("set_region_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isRegionEnabledName: MethodStringName0<Sprite3D, Boolean> =
         MethodStringName0<Sprite3D, Boolean>("is_region_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setRegionRectName: MethodStringName1<Sprite3D, Unit, Rect2> =
         MethodStringName1<Sprite3D, Unit, Rect2>("set_region_rect")
 
-    @JvmStatic
+    @JvmField
     public val getRegionRectName: MethodStringName0<Sprite3D, Rect2> =
         MethodStringName0<Sprite3D, Rect2>("get_region_rect")
 
-    @JvmStatic
+    @JvmField
     public val setFrameName: MethodStringName1<Sprite3D, Unit, Int> =
         MethodStringName1<Sprite3D, Unit, Int>("set_frame")
 
-    @JvmStatic
+    @JvmField
     public val getFrameName: MethodStringName0<Sprite3D, Int> =
         MethodStringName0<Sprite3D, Int>("get_frame")
 
-    @JvmStatic
+    @JvmField
     public val setFrameCoordsName: MethodStringName1<Sprite3D, Unit, Vector2i> =
         MethodStringName1<Sprite3D, Unit, Vector2i>("set_frame_coords")
 
-    @JvmStatic
+    @JvmField
     public val getFrameCoordsName: MethodStringName0<Sprite3D, Vector2i> =
         MethodStringName0<Sprite3D, Vector2i>("get_frame_coords")
 
-    @JvmStatic
+    @JvmField
     public val setVframesName: MethodStringName1<Sprite3D, Unit, Int> =
         MethodStringName1<Sprite3D, Unit, Int>("set_vframes")
 
-    @JvmStatic
+    @JvmField
     public val getVframesName: MethodStringName0<Sprite3D, Int> =
         MethodStringName0<Sprite3D, Int>("get_vframes")
 
-    @JvmStatic
+    @JvmField
     public val setHframesName: MethodStringName1<Sprite3D, Unit, Int> =
         MethodStringName1<Sprite3D, Unit, Int>("set_hframes")
 
-    @JvmStatic
+    @JvmField
     public val getHframesName: MethodStringName0<Sprite3D, Int> =
         MethodStringName0<Sprite3D, Int>("get_hframes")
   }

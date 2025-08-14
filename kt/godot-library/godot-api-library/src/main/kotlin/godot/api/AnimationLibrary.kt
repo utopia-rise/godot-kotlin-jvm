@@ -31,7 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * An animation library stores a set of animations accessible through [StringName] keys, for use
@@ -157,32 +157,32 @@ public open class AnimationLibrary : Resource() {
   public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addAnimationName: MethodStringName2<AnimationLibrary, Error, StringName, Animation?>
         = MethodStringName2<AnimationLibrary, Error, StringName, Animation?>("add_animation")
 
-    @JvmStatic
+    @JvmField
     public val removeAnimationName: MethodStringName1<AnimationLibrary, Unit, StringName> =
         MethodStringName1<AnimationLibrary, Unit, StringName>("remove_animation")
 
-    @JvmStatic
+    @JvmField
     public val renameAnimationName:
         MethodStringName2<AnimationLibrary, Unit, StringName, StringName> =
         MethodStringName2<AnimationLibrary, Unit, StringName, StringName>("rename_animation")
 
-    @JvmStatic
+    @JvmField
     public val hasAnimationName: MethodStringName1<AnimationLibrary, Boolean, StringName> =
         MethodStringName1<AnimationLibrary, Boolean, StringName>("has_animation")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationName: MethodStringName1<AnimationLibrary, Animation?, StringName> =
         MethodStringName1<AnimationLibrary, Animation?, StringName>("get_animation")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationListName: MethodStringName0<AnimationLibrary, VariantArray<StringName>> =
         MethodStringName0<AnimationLibrary, VariantArray<StringName>>("get_animation_list")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationListSizeName: MethodStringName0<AnimationLibrary, Int> =
         MethodStringName0<AnimationLibrary, Int>("get_animation_list_size")
   }

@@ -22,7 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Playback component of [AudioStreamInteractive]. Contains functions to change the currently played
@@ -74,16 +74,16 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
       switchToClipByName(clipName.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val switchToClipByNameName:
         MethodStringName1<AudioStreamPlaybackInteractive, Unit, StringName> =
         MethodStringName1<AudioStreamPlaybackInteractive, Unit, StringName>("switch_to_clip_by_name")
 
-    @JvmStatic
+    @JvmField
     public val switchToClipName: MethodStringName1<AudioStreamPlaybackInteractive, Unit, Int> =
         MethodStringName1<AudioStreamPlaybackInteractive, Unit, Int>("switch_to_clip")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentClipIndexName: MethodStringName0<AudioStreamPlaybackInteractive, Int> =
         MethodStringName0<AudioStreamPlaybackInteractive, Int>("get_current_clip_index")
   }

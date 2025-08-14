@@ -17,8 +17,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Particle emitter nodes can be used in "start" step of particle shaders and they define the
@@ -54,11 +54,11 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMode2dName: MethodStringName1<VisualShaderNodeParticleEmitter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeParticleEmitter, Unit, Boolean>("set_mode_2d")
 
-    @JvmStatic
+    @JvmField
     public val isMode2dName: MethodStringName0<VisualShaderNodeParticleEmitter, Boolean> =
         MethodStringName0<VisualShaderNodeParticleEmitter, Boolean>("is_mode_2d")
   }

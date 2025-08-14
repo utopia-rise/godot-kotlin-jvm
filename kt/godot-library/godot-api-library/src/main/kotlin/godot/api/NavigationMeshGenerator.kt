@@ -22,6 +22,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -62,21 +63,21 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
-  @JvmStatic
+  @JvmField
   public val bakeName: MethodStringName2<NavigationMeshGenerator, Unit, NavigationMesh?, Node?> =
       MethodStringName2<NavigationMeshGenerator, Unit, NavigationMesh?, Node?>("bake")
 
-  @JvmStatic
+  @JvmField
   public val clearName: MethodStringName1<NavigationMeshGenerator, Unit, NavigationMesh?> =
       MethodStringName1<NavigationMeshGenerator, Unit, NavigationMesh?>("clear")
 
-  @JvmStatic
+  @JvmField
   public val parseSourceGeometryDataName:
       MethodStringName4<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>
       =
       MethodStringName4<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Node?, Callable>("parse_source_geometry_data")
 
-  @JvmStatic
+  @JvmField
   public val bakeFromSourceGeometryDataName:
       MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>
       =

@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A sequence of Ogg packets.
@@ -162,34 +162,34 @@ public open class OggPacketSequence : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPacketDataName:
         MethodStringName1<OggPacketSequence, Unit, VariantArray<VariantArray<Any?>>> =
         MethodStringName1<OggPacketSequence, Unit, VariantArray<VariantArray<Any?>>>("set_packet_data")
 
-    @JvmStatic
+    @JvmField
     public val getPacketDataName:
         MethodStringName0<OggPacketSequence, VariantArray<VariantArray<Any?>>> =
         MethodStringName0<OggPacketSequence, VariantArray<VariantArray<Any?>>>("get_packet_data")
 
-    @JvmStatic
+    @JvmField
     public val setPacketGranulePositionsName:
         MethodStringName1<OggPacketSequence, Unit, PackedInt64Array> =
         MethodStringName1<OggPacketSequence, Unit, PackedInt64Array>("set_packet_granule_positions")
 
-    @JvmStatic
+    @JvmField
     public val getPacketGranulePositionsName: MethodStringName0<OggPacketSequence, PackedInt64Array>
         = MethodStringName0<OggPacketSequence, PackedInt64Array>("get_packet_granule_positions")
 
-    @JvmStatic
+    @JvmField
     public val setSamplingRateName: MethodStringName1<OggPacketSequence, Unit, Float> =
         MethodStringName1<OggPacketSequence, Unit, Float>("set_sampling_rate")
 
-    @JvmStatic
+    @JvmField
     public val getSamplingRateName: MethodStringName0<OggPacketSequence, Float> =
         MethodStringName0<OggPacketSequence, Float>("get_sampling_rate")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<OggPacketSequence, Float> =
         MethodStringName0<OggPacketSequence, Float>("get_length")
   }

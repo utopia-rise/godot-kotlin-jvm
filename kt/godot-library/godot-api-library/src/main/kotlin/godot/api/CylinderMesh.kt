@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a cylindrical [PrimitiveMesh]. This class can be used to create cones by
@@ -205,59 +205,59 @@ public open class CylinderMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTopRadiusName: MethodStringName1<CylinderMesh, Unit, Float> =
         MethodStringName1<CylinderMesh, Unit, Float>("set_top_radius")
 
-    @JvmStatic
+    @JvmField
     public val getTopRadiusName: MethodStringName0<CylinderMesh, Float> =
         MethodStringName0<CylinderMesh, Float>("get_top_radius")
 
-    @JvmStatic
+    @JvmField
     public val setBottomRadiusName: MethodStringName1<CylinderMesh, Unit, Float> =
         MethodStringName1<CylinderMesh, Unit, Float>("set_bottom_radius")
 
-    @JvmStatic
+    @JvmField
     public val getBottomRadiusName: MethodStringName0<CylinderMesh, Float> =
         MethodStringName0<CylinderMesh, Float>("get_bottom_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<CylinderMesh, Unit, Float> =
         MethodStringName1<CylinderMesh, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<CylinderMesh, Float> =
         MethodStringName0<CylinderMesh, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setRadialSegmentsName: MethodStringName1<CylinderMesh, Unit, Int> =
         MethodStringName1<CylinderMesh, Unit, Int>("set_radial_segments")
 
-    @JvmStatic
+    @JvmField
     public val getRadialSegmentsName: MethodStringName0<CylinderMesh, Int> =
         MethodStringName0<CylinderMesh, Int>("get_radial_segments")
 
-    @JvmStatic
+    @JvmField
     public val setRingsName: MethodStringName1<CylinderMesh, Unit, Int> =
         MethodStringName1<CylinderMesh, Unit, Int>("set_rings")
 
-    @JvmStatic
+    @JvmField
     public val getRingsName: MethodStringName0<CylinderMesh, Int> =
         MethodStringName0<CylinderMesh, Int>("get_rings")
 
-    @JvmStatic
+    @JvmField
     public val setCapTopName: MethodStringName1<CylinderMesh, Unit, Boolean> =
         MethodStringName1<CylinderMesh, Unit, Boolean>("set_cap_top")
 
-    @JvmStatic
+    @JvmField
     public val isCapTopName: MethodStringName0<CylinderMesh, Boolean> =
         MethodStringName0<CylinderMesh, Boolean>("is_cap_top")
 
-    @JvmStatic
+    @JvmField
     public val setCapBottomName: MethodStringName1<CylinderMesh, Unit, Boolean> =
         MethodStringName1<CylinderMesh, Unit, Boolean>("set_cap_bottom")
 
-    @JvmStatic
+    @JvmField
     public val isCapBottomName: MethodStringName0<CylinderMesh, Boolean> =
         MethodStringName0<CylinderMesh, Boolean>("is_cap_bottom")
   }

@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],
@@ -118,31 +118,31 @@ public open class MenuButton : Button() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getPopupName: MethodStringName0<MenuButton, PopupMenu?> =
         MethodStringName0<MenuButton, PopupMenu?>("get_popup")
 
-    @JvmStatic
+    @JvmField
     public val showPopupName: MethodStringName0<MenuButton, Unit> =
         MethodStringName0<MenuButton, Unit>("show_popup")
 
-    @JvmStatic
+    @JvmField
     public val setSwitchOnHoverName: MethodStringName1<MenuButton, Unit, Boolean> =
         MethodStringName1<MenuButton, Unit, Boolean>("set_switch_on_hover")
 
-    @JvmStatic
+    @JvmField
     public val isSwitchOnHoverName: MethodStringName0<MenuButton, Boolean> =
         MethodStringName0<MenuButton, Boolean>("is_switch_on_hover")
 
-    @JvmStatic
+    @JvmField
     public val setDisableShortcutsName: MethodStringName1<MenuButton, Unit, Boolean> =
         MethodStringName1<MenuButton, Unit, Boolean>("set_disable_shortcuts")
 
-    @JvmStatic
+    @JvmField
     public val setItemCountName: MethodStringName1<MenuButton, Unit, Int> =
         MethodStringName1<MenuButton, Unit, Int>("set_item_count")
 
-    @JvmStatic
+    @JvmField
     public val getItemCountName: MethodStringName0<MenuButton, Int> =
         MethodStringName0<MenuButton, Int>("get_item_count")
   }

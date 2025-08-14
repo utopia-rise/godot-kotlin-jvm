@@ -19,8 +19,8 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -90,11 +90,11 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<GPUParticlesCollisionBox3D, Unit, Vector3> =
         MethodStringName1<GPUParticlesCollisionBox3D, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<GPUParticlesCollisionBox3D, Vector3> =
         MethodStringName0<GPUParticlesCollisionBox3D, Vector3>("get_size")
   }

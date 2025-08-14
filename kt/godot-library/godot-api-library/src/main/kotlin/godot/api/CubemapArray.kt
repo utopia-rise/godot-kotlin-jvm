@@ -14,7 +14,7 @@ import godot.core.MethodStringName0
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [CubemapArray]s are made of an array of [Cubemap]s. Like [Cubemap]s, they are made of multiple
@@ -74,7 +74,7 @@ public open class CubemapArray : ImageTextureLayered() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createPlaceholderName: MethodStringName0<CubemapArray, Resource?> =
         MethodStringName0<CubemapArray, Resource?>("create_placeholder")
   }

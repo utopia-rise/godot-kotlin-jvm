@@ -19,6 +19,7 @@ import godot.core.VariantParser._RID
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -33,7 +34,7 @@ public open class UniformSetCacheRD : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getCacheName:
         MethodStringName3<UniformSetCacheRD, RID, RID, Long, VariantArray<RDUniform>> =
         MethodStringName3<UniformSetCacheRD, RID, RID, Long, VariantArray<RDUniform>>("get_cache")

@@ -43,8 +43,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Contains all nodes and resources of a glTF file. This is used by [GLTFDocument] as data storage,
@@ -996,281 +996,281 @@ public open class GLTFState : Resource() {
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addUsedExtensionName: MethodStringName2<GLTFState, Unit, String, Boolean> =
         MethodStringName2<GLTFState, Unit, String, Boolean>("add_used_extension")
 
-    @JvmStatic
+    @JvmField
     public val appendDataToBuffersName: MethodStringName2<GLTFState, Int, PackedByteArray, Boolean>
         = MethodStringName2<GLTFState, Int, PackedByteArray, Boolean>("append_data_to_buffers")
 
-    @JvmStatic
+    @JvmField
     public val appendGltfNodeName: MethodStringName3<GLTFState, Int, GLTFNode?, Node?, Int> =
         MethodStringName3<GLTFState, Int, GLTFNode?, Node?, Int>("append_gltf_node")
 
-    @JvmStatic
+    @JvmField
     public val getJsonName: MethodStringName0<GLTFState, Dictionary<Any?, Any?>> =
         MethodStringName0<GLTFState, Dictionary<Any?, Any?>>("get_json")
 
-    @JvmStatic
+    @JvmField
     public val setJsonName: MethodStringName1<GLTFState, Unit, Dictionary<Any?, Any?>> =
         MethodStringName1<GLTFState, Unit, Dictionary<Any?, Any?>>("set_json")
 
-    @JvmStatic
+    @JvmField
     public val getMajorVersionName: MethodStringName0<GLTFState, Int> =
         MethodStringName0<GLTFState, Int>("get_major_version")
 
-    @JvmStatic
+    @JvmField
     public val setMajorVersionName: MethodStringName1<GLTFState, Unit, Int> =
         MethodStringName1<GLTFState, Unit, Int>("set_major_version")
 
-    @JvmStatic
+    @JvmField
     public val getMinorVersionName: MethodStringName0<GLTFState, Int> =
         MethodStringName0<GLTFState, Int>("get_minor_version")
 
-    @JvmStatic
+    @JvmField
     public val setMinorVersionName: MethodStringName1<GLTFState, Unit, Int> =
         MethodStringName1<GLTFState, Unit, Int>("set_minor_version")
 
-    @JvmStatic
+    @JvmField
     public val getCopyrightName: MethodStringName0<GLTFState, String> =
         MethodStringName0<GLTFState, String>("get_copyright")
 
-    @JvmStatic
+    @JvmField
     public val setCopyrightName: MethodStringName1<GLTFState, Unit, String> =
         MethodStringName1<GLTFState, Unit, String>("set_copyright")
 
-    @JvmStatic
+    @JvmField
     public val getGlbDataName: MethodStringName0<GLTFState, PackedByteArray> =
         MethodStringName0<GLTFState, PackedByteArray>("get_glb_data")
 
-    @JvmStatic
+    @JvmField
     public val setGlbDataName: MethodStringName1<GLTFState, Unit, PackedByteArray> =
         MethodStringName1<GLTFState, Unit, PackedByteArray>("set_glb_data")
 
-    @JvmStatic
+    @JvmField
     public val getUseNamedSkinBindsName: MethodStringName0<GLTFState, Boolean> =
         MethodStringName0<GLTFState, Boolean>("get_use_named_skin_binds")
 
-    @JvmStatic
+    @JvmField
     public val setUseNamedSkinBindsName: MethodStringName1<GLTFState, Unit, Boolean> =
         MethodStringName1<GLTFState, Unit, Boolean>("set_use_named_skin_binds")
 
-    @JvmStatic
+    @JvmField
     public val getNodesName: MethodStringName0<GLTFState, VariantArray<GLTFNode>> =
         MethodStringName0<GLTFState, VariantArray<GLTFNode>>("get_nodes")
 
-    @JvmStatic
+    @JvmField
     public val setNodesName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFNode>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFNode>>("set_nodes")
 
-    @JvmStatic
+    @JvmField
     public val getBuffersName: MethodStringName0<GLTFState, VariantArray<PackedByteArray>> =
         MethodStringName0<GLTFState, VariantArray<PackedByteArray>>("get_buffers")
 
-    @JvmStatic
+    @JvmField
     public val setBuffersName: MethodStringName1<GLTFState, Unit, VariantArray<PackedByteArray>> =
         MethodStringName1<GLTFState, Unit, VariantArray<PackedByteArray>>("set_buffers")
 
-    @JvmStatic
+    @JvmField
     public val getBufferViewsName: MethodStringName0<GLTFState, VariantArray<GLTFBufferView>> =
         MethodStringName0<GLTFState, VariantArray<GLTFBufferView>>("get_buffer_views")
 
-    @JvmStatic
+    @JvmField
     public val setBufferViewsName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFBufferView>>
         = MethodStringName1<GLTFState, Unit, VariantArray<GLTFBufferView>>("set_buffer_views")
 
-    @JvmStatic
+    @JvmField
     public val getAccessorsName: MethodStringName0<GLTFState, VariantArray<GLTFAccessor>> =
         MethodStringName0<GLTFState, VariantArray<GLTFAccessor>>("get_accessors")
 
-    @JvmStatic
+    @JvmField
     public val setAccessorsName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFAccessor>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFAccessor>>("set_accessors")
 
-    @JvmStatic
+    @JvmField
     public val getMeshesName: MethodStringName0<GLTFState, VariantArray<GLTFMesh>> =
         MethodStringName0<GLTFState, VariantArray<GLTFMesh>>("get_meshes")
 
-    @JvmStatic
+    @JvmField
     public val setMeshesName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFMesh>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFMesh>>("set_meshes")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationPlayersCountName: MethodStringName1<GLTFState, Int, Int> =
         MethodStringName1<GLTFState, Int, Int>("get_animation_players_count")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationPlayerName: MethodStringName1<GLTFState, AnimationPlayer?, Int> =
         MethodStringName1<GLTFState, AnimationPlayer?, Int>("get_animation_player")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialsName: MethodStringName0<GLTFState, VariantArray<Material>> =
         MethodStringName0<GLTFState, VariantArray<Material>>("get_materials")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialsName: MethodStringName1<GLTFState, Unit, VariantArray<Material>> =
         MethodStringName1<GLTFState, Unit, VariantArray<Material>>("set_materials")
 
-    @JvmStatic
+    @JvmField
     public val getSceneNameName: MethodStringName0<GLTFState, String> =
         MethodStringName0<GLTFState, String>("get_scene_name")
 
-    @JvmStatic
+    @JvmField
     public val setSceneNameName: MethodStringName1<GLTFState, Unit, String> =
         MethodStringName1<GLTFState, Unit, String>("set_scene_name")
 
-    @JvmStatic
+    @JvmField
     public val getBasePathName: MethodStringName0<GLTFState, String> =
         MethodStringName0<GLTFState, String>("get_base_path")
 
-    @JvmStatic
+    @JvmField
     public val setBasePathName: MethodStringName1<GLTFState, Unit, String> =
         MethodStringName1<GLTFState, Unit, String>("set_base_path")
 
-    @JvmStatic
+    @JvmField
     public val getFilenameName: MethodStringName0<GLTFState, String> =
         MethodStringName0<GLTFState, String>("get_filename")
 
-    @JvmStatic
+    @JvmField
     public val setFilenameName: MethodStringName1<GLTFState, Unit, String> =
         MethodStringName1<GLTFState, Unit, String>("set_filename")
 
-    @JvmStatic
+    @JvmField
     public val getRootNodesName: MethodStringName0<GLTFState, PackedInt32Array> =
         MethodStringName0<GLTFState, PackedInt32Array>("get_root_nodes")
 
-    @JvmStatic
+    @JvmField
     public val setRootNodesName: MethodStringName1<GLTFState, Unit, PackedInt32Array> =
         MethodStringName1<GLTFState, Unit, PackedInt32Array>("set_root_nodes")
 
-    @JvmStatic
+    @JvmField
     public val getTexturesName: MethodStringName0<GLTFState, VariantArray<GLTFTexture>> =
         MethodStringName0<GLTFState, VariantArray<GLTFTexture>>("get_textures")
 
-    @JvmStatic
+    @JvmField
     public val setTexturesName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFTexture>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFTexture>>("set_textures")
 
-    @JvmStatic
+    @JvmField
     public val getTextureSamplersName:
         MethodStringName0<GLTFState, VariantArray<GLTFTextureSampler>> =
         MethodStringName0<GLTFState, VariantArray<GLTFTextureSampler>>("get_texture_samplers")
 
-    @JvmStatic
+    @JvmField
     public val setTextureSamplersName:
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFTextureSampler>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFTextureSampler>>("set_texture_samplers")
 
-    @JvmStatic
+    @JvmField
     public val getImagesName: MethodStringName0<GLTFState, VariantArray<Texture2D>> =
         MethodStringName0<GLTFState, VariantArray<Texture2D>>("get_images")
 
-    @JvmStatic
+    @JvmField
     public val setImagesName: MethodStringName1<GLTFState, Unit, VariantArray<Texture2D>> =
         MethodStringName1<GLTFState, Unit, VariantArray<Texture2D>>("set_images")
 
-    @JvmStatic
+    @JvmField
     public val getSkinsName: MethodStringName0<GLTFState, VariantArray<GLTFSkin>> =
         MethodStringName0<GLTFState, VariantArray<GLTFSkin>>("get_skins")
 
-    @JvmStatic
+    @JvmField
     public val setSkinsName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFSkin>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFSkin>>("set_skins")
 
-    @JvmStatic
+    @JvmField
     public val getCamerasName: MethodStringName0<GLTFState, VariantArray<GLTFCamera>> =
         MethodStringName0<GLTFState, VariantArray<GLTFCamera>>("get_cameras")
 
-    @JvmStatic
+    @JvmField
     public val setCamerasName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFCamera>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFCamera>>("set_cameras")
 
-    @JvmStatic
+    @JvmField
     public val getLightsName: MethodStringName0<GLTFState, VariantArray<GLTFLight>> =
         MethodStringName0<GLTFState, VariantArray<GLTFLight>>("get_lights")
 
-    @JvmStatic
+    @JvmField
     public val setLightsName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFLight>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFLight>>("set_lights")
 
-    @JvmStatic
+    @JvmField
     public val getUniqueNamesName: MethodStringName0<GLTFState, VariantArray<String>> =
         MethodStringName0<GLTFState, VariantArray<String>>("get_unique_names")
 
-    @JvmStatic
+    @JvmField
     public val setUniqueNamesName: MethodStringName1<GLTFState, Unit, VariantArray<String>> =
         MethodStringName1<GLTFState, Unit, VariantArray<String>>("set_unique_names")
 
-    @JvmStatic
+    @JvmField
     public val getUniqueAnimationNamesName: MethodStringName0<GLTFState, VariantArray<String>> =
         MethodStringName0<GLTFState, VariantArray<String>>("get_unique_animation_names")
 
-    @JvmStatic
+    @JvmField
     public val setUniqueAnimationNamesName: MethodStringName1<GLTFState, Unit, VariantArray<String>>
         = MethodStringName1<GLTFState, Unit, VariantArray<String>>("set_unique_animation_names")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonsName: MethodStringName0<GLTFState, VariantArray<GLTFSkeleton>> =
         MethodStringName0<GLTFState, VariantArray<GLTFSkeleton>>("get_skeletons")
 
-    @JvmStatic
+    @JvmField
     public val setSkeletonsName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFSkeleton>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFSkeleton>>("set_skeletons")
 
-    @JvmStatic
+    @JvmField
     public val getCreateAnimationsName: MethodStringName0<GLTFState, Boolean> =
         MethodStringName0<GLTFState, Boolean>("get_create_animations")
 
-    @JvmStatic
+    @JvmField
     public val setCreateAnimationsName: MethodStringName1<GLTFState, Unit, Boolean> =
         MethodStringName1<GLTFState, Unit, Boolean>("set_create_animations")
 
-    @JvmStatic
+    @JvmField
     public val getImportAsSkeletonBonesName: MethodStringName0<GLTFState, Boolean> =
         MethodStringName0<GLTFState, Boolean>("get_import_as_skeleton_bones")
 
-    @JvmStatic
+    @JvmField
     public val setImportAsSkeletonBonesName: MethodStringName1<GLTFState, Unit, Boolean> =
         MethodStringName1<GLTFState, Unit, Boolean>("set_import_as_skeleton_bones")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationsName: MethodStringName0<GLTFState, VariantArray<GLTFAnimation>> =
         MethodStringName0<GLTFState, VariantArray<GLTFAnimation>>("get_animations")
 
-    @JvmStatic
+    @JvmField
     public val setAnimationsName: MethodStringName1<GLTFState, Unit, VariantArray<GLTFAnimation>> =
         MethodStringName1<GLTFState, Unit, VariantArray<GLTFAnimation>>("set_animations")
 
-    @JvmStatic
+    @JvmField
     public val getSceneNodeName: MethodStringName1<GLTFState, Node?, Int> =
         MethodStringName1<GLTFState, Node?, Int>("get_scene_node")
 
-    @JvmStatic
+    @JvmField
     public val getNodeIndexName: MethodStringName1<GLTFState, Int, Node?> =
         MethodStringName1<GLTFState, Int, Node?>("get_node_index")
 
-    @JvmStatic
+    @JvmField
     public val getAdditionalDataName: MethodStringName1<GLTFState, Any?, StringName> =
         MethodStringName1<GLTFState, Any?, StringName>("get_additional_data")
 
-    @JvmStatic
+    @JvmField
     public val setAdditionalDataName: MethodStringName2<GLTFState, Unit, StringName, Any?> =
         MethodStringName2<GLTFState, Unit, StringName, Any?>("set_additional_data")
 
-    @JvmStatic
+    @JvmField
     public val getHandleBinaryImageName: MethodStringName0<GLTFState, Int> =
         MethodStringName0<GLTFState, Int>("get_handle_binary_image")
 
-    @JvmStatic
+    @JvmField
     public val setHandleBinaryImageName: MethodStringName1<GLTFState, Unit, Int> =
         MethodStringName1<GLTFState, Unit, Int>("set_handle_binary_image")
 
-    @JvmStatic
+    @JvmField
     public val setBakeFpsName: MethodStringName1<GLTFState, Unit, Double> =
         MethodStringName1<GLTFState, Unit, Double>("set_bake_fps")
 
-    @JvmStatic
+    @JvmField
     public val getBakeFpsName: MethodStringName0<GLTFState, Double> =
         MethodStringName0<GLTFState, Double>("get_bake_fps")
 

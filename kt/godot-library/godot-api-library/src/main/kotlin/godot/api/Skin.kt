@@ -26,7 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 @GodotBaseType
 public open class Skin : Resource() {
@@ -97,47 +97,47 @@ public open class Skin : Resource() {
       setBindName(bindIndex, name.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setBindCountName: MethodStringName1<Skin, Unit, Int> =
         MethodStringName1<Skin, Unit, Int>("set_bind_count")
 
-    @JvmStatic
+    @JvmField
     public val getBindCountName: MethodStringName0<Skin, Int> =
         MethodStringName0<Skin, Int>("get_bind_count")
 
-    @JvmStatic
+    @JvmField
     public val addBindName: MethodStringName2<Skin, Unit, Int, Transform3D> =
         MethodStringName2<Skin, Unit, Int, Transform3D>("add_bind")
 
-    @JvmStatic
+    @JvmField
     public val addNamedBindName: MethodStringName2<Skin, Unit, String, Transform3D> =
         MethodStringName2<Skin, Unit, String, Transform3D>("add_named_bind")
 
-    @JvmStatic
+    @JvmField
     public val setBindPoseName: MethodStringName2<Skin, Unit, Int, Transform3D> =
         MethodStringName2<Skin, Unit, Int, Transform3D>("set_bind_pose")
 
-    @JvmStatic
+    @JvmField
     public val getBindPoseName: MethodStringName1<Skin, Transform3D, Int> =
         MethodStringName1<Skin, Transform3D, Int>("get_bind_pose")
 
-    @JvmStatic
+    @JvmField
     public val setBindNameName: MethodStringName2<Skin, Unit, Int, StringName> =
         MethodStringName2<Skin, Unit, Int, StringName>("set_bind_name")
 
-    @JvmStatic
+    @JvmField
     public val getBindNameName: MethodStringName1<Skin, StringName, Int> =
         MethodStringName1<Skin, StringName, Int>("get_bind_name")
 
-    @JvmStatic
+    @JvmField
     public val setBindBoneName: MethodStringName2<Skin, Unit, Int, Int> =
         MethodStringName2<Skin, Unit, Int, Int>("set_bind_bone")
 
-    @JvmStatic
+    @JvmField
     public val getBindBoneName: MethodStringName1<Skin, Int, Int> =
         MethodStringName1<Skin, Int, Int>("get_bind_bone")
 
-    @JvmStatic
+    @JvmField
     public val clearBindsName: MethodStringName0<Skin, Unit> =
         MethodStringName0<Skin, Unit>("clear_binds")
   }

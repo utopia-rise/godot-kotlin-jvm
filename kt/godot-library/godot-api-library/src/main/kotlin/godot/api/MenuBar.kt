@@ -24,8 +24,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A horizontal menu bar that creates a menu for each [PopupMenu] child. New items are created by
@@ -284,99 +284,99 @@ public open class MenuBar : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSwitchOnHoverName: MethodStringName1<MenuBar, Unit, Boolean> =
         MethodStringName1<MenuBar, Unit, Boolean>("set_switch_on_hover")
 
-    @JvmStatic
+    @JvmField
     public val isSwitchOnHoverName: MethodStringName0<MenuBar, Boolean> =
         MethodStringName0<MenuBar, Boolean>("is_switch_on_hover")
 
-    @JvmStatic
+    @JvmField
     public val setDisableShortcutsName: MethodStringName1<MenuBar, Unit, Boolean> =
         MethodStringName1<MenuBar, Unit, Boolean>("set_disable_shortcuts")
 
-    @JvmStatic
+    @JvmField
     public val setPreferGlobalMenuName: MethodStringName1<MenuBar, Unit, Boolean> =
         MethodStringName1<MenuBar, Unit, Boolean>("set_prefer_global_menu")
 
-    @JvmStatic
+    @JvmField
     public val isPreferGlobalMenuName: MethodStringName0<MenuBar, Boolean> =
         MethodStringName0<MenuBar, Boolean>("is_prefer_global_menu")
 
-    @JvmStatic
+    @JvmField
     public val isNativeMenuName: MethodStringName0<MenuBar, Boolean> =
         MethodStringName0<MenuBar, Boolean>("is_native_menu")
 
-    @JvmStatic
+    @JvmField
     public val getMenuCountName: MethodStringName0<MenuBar, Int> =
         MethodStringName0<MenuBar, Int>("get_menu_count")
 
-    @JvmStatic
+    @JvmField
     public val setTextDirectionName: MethodStringName1<MenuBar, Unit, Control.TextDirection> =
         MethodStringName1<MenuBar, Unit, Control.TextDirection>("set_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val getTextDirectionName: MethodStringName0<MenuBar, Control.TextDirection> =
         MethodStringName0<MenuBar, Control.TextDirection>("get_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val setLanguageName: MethodStringName1<MenuBar, Unit, String> =
         MethodStringName1<MenuBar, Unit, String>("set_language")
 
-    @JvmStatic
+    @JvmField
     public val getLanguageName: MethodStringName0<MenuBar, String> =
         MethodStringName0<MenuBar, String>("get_language")
 
-    @JvmStatic
+    @JvmField
     public val setFlatName: MethodStringName1<MenuBar, Unit, Boolean> =
         MethodStringName1<MenuBar, Unit, Boolean>("set_flat")
 
-    @JvmStatic
+    @JvmField
     public val isFlatName: MethodStringName0<MenuBar, Boolean> =
         MethodStringName0<MenuBar, Boolean>("is_flat")
 
-    @JvmStatic
+    @JvmField
     public val setStartIndexName: MethodStringName1<MenuBar, Unit, Int> =
         MethodStringName1<MenuBar, Unit, Int>("set_start_index")
 
-    @JvmStatic
+    @JvmField
     public val getStartIndexName: MethodStringName0<MenuBar, Int> =
         MethodStringName0<MenuBar, Int>("get_start_index")
 
-    @JvmStatic
+    @JvmField
     public val setMenuTitleName: MethodStringName2<MenuBar, Unit, Int, String> =
         MethodStringName2<MenuBar, Unit, Int, String>("set_menu_title")
 
-    @JvmStatic
+    @JvmField
     public val getMenuTitleName: MethodStringName1<MenuBar, String, Int> =
         MethodStringName1<MenuBar, String, Int>("get_menu_title")
 
-    @JvmStatic
+    @JvmField
     public val setMenuTooltipName: MethodStringName2<MenuBar, Unit, Int, String> =
         MethodStringName2<MenuBar, Unit, Int, String>("set_menu_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val getMenuTooltipName: MethodStringName1<MenuBar, String, Int> =
         MethodStringName1<MenuBar, String, Int>("get_menu_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val setMenuDisabledName: MethodStringName2<MenuBar, Unit, Int, Boolean> =
         MethodStringName2<MenuBar, Unit, Int, Boolean>("set_menu_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isMenuDisabledName: MethodStringName1<MenuBar, Boolean, Int> =
         MethodStringName1<MenuBar, Boolean, Int>("is_menu_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setMenuHiddenName: MethodStringName2<MenuBar, Unit, Int, Boolean> =
         MethodStringName2<MenuBar, Unit, Int, Boolean>("set_menu_hidden")
 
-    @JvmStatic
+    @JvmField
     public val isMenuHiddenName: MethodStringName1<MenuBar, Boolean, Int> =
         MethodStringName1<MenuBar, Boolean, Int>("is_menu_hidden")
 
-    @JvmStatic
+    @JvmField
     public val getMenuPopupName: MethodStringName1<MenuBar, PopupMenu?, Int> =
         MethodStringName1<MenuBar, PopupMenu?, Int>("get_menu_popup")
   }

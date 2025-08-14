@@ -19,8 +19,8 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D box shape, intended for use in physics. Usually used to provide a shape for a
@@ -85,11 +85,11 @@ public open class BoxShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<BoxShape3D, Unit, Vector3> =
         MethodStringName1<BoxShape3D, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<BoxShape3D, Vector3> =
         MethodStringName0<BoxShape3D, Vector3>("get_size")
   }

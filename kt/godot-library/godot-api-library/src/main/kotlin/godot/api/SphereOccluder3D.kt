@@ -18,8 +18,8 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [SphereOccluder3D] stores a sphere shape that can be used by the engine's occlusion culling
@@ -56,11 +56,11 @@ public open class SphereOccluder3D : Occluder3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<SphereOccluder3D, Unit, Float> =
         MethodStringName1<SphereOccluder3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<SphereOccluder3D, Float> =
         MethodStringName0<SphereOccluder3D, Float>("get_radius")
   }

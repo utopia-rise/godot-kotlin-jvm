@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -288,60 +289,60 @@ public open class AudioStreamMP3 : AudioStream() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val loadFromBufferName:
         MethodStringName1<AudioStreamMP3, AudioStreamMP3?, PackedByteArray> =
         MethodStringName1<AudioStreamMP3, AudioStreamMP3?, PackedByteArray>("load_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadFromFileName: MethodStringName1<AudioStreamMP3, AudioStreamMP3?, String> =
         MethodStringName1<AudioStreamMP3, AudioStreamMP3?, String>("load_from_file")
 
-    @JvmStatic
+    @JvmField
     public val setDataName: MethodStringName1<AudioStreamMP3, Unit, PackedByteArray> =
         MethodStringName1<AudioStreamMP3, Unit, PackedByteArray>("set_data")
 
-    @JvmStatic
+    @JvmField
     public val getDataName: MethodStringName0<AudioStreamMP3, PackedByteArray> =
         MethodStringName0<AudioStreamMP3, PackedByteArray>("get_data")
 
-    @JvmStatic
+    @JvmField
     public val setLoopName: MethodStringName1<AudioStreamMP3, Unit, Boolean> =
         MethodStringName1<AudioStreamMP3, Unit, Boolean>("set_loop")
 
-    @JvmStatic
+    @JvmField
     public val hasLoopName: MethodStringName0<AudioStreamMP3, Boolean> =
         MethodStringName0<AudioStreamMP3, Boolean>("has_loop")
 
-    @JvmStatic
+    @JvmField
     public val setLoopOffsetName: MethodStringName1<AudioStreamMP3, Unit, Double> =
         MethodStringName1<AudioStreamMP3, Unit, Double>("set_loop_offset")
 
-    @JvmStatic
+    @JvmField
     public val getLoopOffsetName: MethodStringName0<AudioStreamMP3, Double> =
         MethodStringName0<AudioStreamMP3, Double>("get_loop_offset")
 
-    @JvmStatic
+    @JvmField
     public val setBpmName: MethodStringName1<AudioStreamMP3, Unit, Double> =
         MethodStringName1<AudioStreamMP3, Unit, Double>("set_bpm")
 
-    @JvmStatic
+    @JvmField
     public val getBpmName: MethodStringName0<AudioStreamMP3, Double> =
         MethodStringName0<AudioStreamMP3, Double>("get_bpm")
 
-    @JvmStatic
+    @JvmField
     public val setBeatCountName: MethodStringName1<AudioStreamMP3, Unit, Int> =
         MethodStringName1<AudioStreamMP3, Unit, Int>("set_beat_count")
 
-    @JvmStatic
+    @JvmField
     public val getBeatCountName: MethodStringName0<AudioStreamMP3, Int> =
         MethodStringName0<AudioStreamMP3, Int>("get_beat_count")
 
-    @JvmStatic
+    @JvmField
     public val setBarBeatsName: MethodStringName1<AudioStreamMP3, Unit, Int> =
         MethodStringName1<AudioStreamMP3, Unit, Int>("set_bar_beats")
 
-    @JvmStatic
+    @JvmField
     public val getBarBeatsName: MethodStringName0<AudioStreamMP3, Int> =
         MethodStringName0<AudioStreamMP3, Int>("get_bar_beats")
 

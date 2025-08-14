@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed
@@ -225,67 +225,67 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<TubeTrailMesh, Unit, Float> =
         MethodStringName1<TubeTrailMesh, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<TubeTrailMesh, Float> =
         MethodStringName0<TubeTrailMesh, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setRadialStepsName: MethodStringName1<TubeTrailMesh, Unit, Int> =
         MethodStringName1<TubeTrailMesh, Unit, Int>("set_radial_steps")
 
-    @JvmStatic
+    @JvmField
     public val getRadialStepsName: MethodStringName0<TubeTrailMesh, Int> =
         MethodStringName0<TubeTrailMesh, Int>("get_radial_steps")
 
-    @JvmStatic
+    @JvmField
     public val setSectionsName: MethodStringName1<TubeTrailMesh, Unit, Int> =
         MethodStringName1<TubeTrailMesh, Unit, Int>("set_sections")
 
-    @JvmStatic
+    @JvmField
     public val getSectionsName: MethodStringName0<TubeTrailMesh, Int> =
         MethodStringName0<TubeTrailMesh, Int>("get_sections")
 
-    @JvmStatic
+    @JvmField
     public val setSectionLengthName: MethodStringName1<TubeTrailMesh, Unit, Float> =
         MethodStringName1<TubeTrailMesh, Unit, Float>("set_section_length")
 
-    @JvmStatic
+    @JvmField
     public val getSectionLengthName: MethodStringName0<TubeTrailMesh, Float> =
         MethodStringName0<TubeTrailMesh, Float>("get_section_length")
 
-    @JvmStatic
+    @JvmField
     public val setSectionRingsName: MethodStringName1<TubeTrailMesh, Unit, Int> =
         MethodStringName1<TubeTrailMesh, Unit, Int>("set_section_rings")
 
-    @JvmStatic
+    @JvmField
     public val getSectionRingsName: MethodStringName0<TubeTrailMesh, Int> =
         MethodStringName0<TubeTrailMesh, Int>("get_section_rings")
 
-    @JvmStatic
+    @JvmField
     public val setCapTopName: MethodStringName1<TubeTrailMesh, Unit, Boolean> =
         MethodStringName1<TubeTrailMesh, Unit, Boolean>("set_cap_top")
 
-    @JvmStatic
+    @JvmField
     public val isCapTopName: MethodStringName0<TubeTrailMesh, Boolean> =
         MethodStringName0<TubeTrailMesh, Boolean>("is_cap_top")
 
-    @JvmStatic
+    @JvmField
     public val setCapBottomName: MethodStringName1<TubeTrailMesh, Unit, Boolean> =
         MethodStringName1<TubeTrailMesh, Unit, Boolean>("set_cap_bottom")
 
-    @JvmStatic
+    @JvmField
     public val isCapBottomName: MethodStringName0<TubeTrailMesh, Boolean> =
         MethodStringName0<TubeTrailMesh, Boolean>("is_cap_bottom")
 
-    @JvmStatic
+    @JvmField
     public val setCurveName: MethodStringName1<TubeTrailMesh, Unit, Curve?> =
         MethodStringName1<TubeTrailMesh, Unit, Curve?>("set_curve")
 
-    @JvmStatic
+    @JvmField
     public val getCurveName: MethodStringName0<TubeTrailMesh, Curve?> =
         MethodStringName0<TubeTrailMesh, Curve?>("get_curve")
   }

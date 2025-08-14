@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -130,7 +131,7 @@ public abstract class MovieWriter : Object() {
   public abstract fun _writeEnd(): Unit
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addWriterName: MethodStringName1<MovieWriter, Unit, MovieWriter?> =
         MethodStringName1<MovieWriter, Unit, MovieWriter?>("add_writer")
 

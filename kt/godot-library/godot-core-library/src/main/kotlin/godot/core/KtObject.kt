@@ -10,7 +10,11 @@ import godot.internal.memory.TransferContext
 import godot.internal.reflection.TypeManager
 import kotlin.contracts.ExperimentalContracts
 
-class GodotNotification internal constructor(val block: Any.(Int) -> Unit)
+class GodotNotification @PublishedApi internal constructor(val block: NotificationFunction<*>)
+
+fun interface NotificationFunction<T : KtObject> {
+    fun invoke(obj: T, notification: Int)
+}
 
 @OptIn(ExperimentalContracts::class)
 @Suppress("LeakingThis", "FunctionName")
@@ -57,21 +61,22 @@ abstract class KtObject : NativeWrapper {
 
     open fun _get(property: StringName): Any = throw NotImplementedError("_get is not implemented for Object")
     open fun _getPropertyList(): VariantArray<Dictionary<Any, Any>> = throw NotImplementedError("_getPropertyList is not implemented for Object")
-    open fun _propertyCanRevert(name: StringName) : Boolean = throw NotImplementedError("_propertyCanRevert is not implemented for Object")
+    open fun _propertyCanRevert(name: StringName): Boolean = throw NotImplementedError("_propertyCanRevert is not implemented for Object")
     open fun _propertyGetRevert(name: StringName): Any = throw NotImplementedError("_propertyGetRevert is not implemented for Object")
-    open fun _set(name: StringName, value: Any) : Unit = throw NotImplementedError("_set is not implemented for Object")
+    open fun _set(name: StringName, value: Any): Unit = throw NotImplementedError("_set is not implemented for Object")
     open fun _toString(): String = throw NotImplementedError("_toString is not implemented for Object")
     open fun _validateProperty(): Boolean = throw NotImplementedError("_validateProperty is not implemented for Object")
 
 
-    open fun _notification(): GodotNotification = godotNotification {}
+    open fun _notification(): GodotNotification = GodotNotification { _, _ -> }
 
-    @Suppress("UNCHECKED_CAST")
     @JvmName("kotlinNotification")
-    protected fun <T : KtObject> T.godotNotification(block: T.(Int) -> Unit): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
+    protected inline fun <T : KtObject> T.godotNotification(crossinline block: T.(Int) -> Unit): GodotNotification {
+        return GodotNotification(NotificationFunction<T> { obj, notification -> obj.block(notification) })
+    }
 
     @JvmName("godotNotification")
-    protected fun <T : KtObject> javaGodotNotification(obj: T, block: T.(Int) -> Unit) = obj.godotNotification(block)
+    protected fun <T : KtObject> godotNotification(block: NotificationFunction<T>) = GodotNotification(block)
 
     fun free() = freeObject(ptr)
 

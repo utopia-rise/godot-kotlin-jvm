@@ -19,8 +19,8 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Displays a rectangle filled with a solid [color]. If you need to display the border alone,
@@ -82,11 +82,11 @@ public open class ColorRect : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setColorName: MethodStringName1<ColorRect, Unit, Color> =
         MethodStringName1<ColorRect, Unit, Color>("set_color")
 
-    @JvmStatic
+    @JvmField
     public val getColorName: MethodStringName0<ColorRect, Color> =
         MethodStringName0<ColorRect, Color>("get_color")
   }

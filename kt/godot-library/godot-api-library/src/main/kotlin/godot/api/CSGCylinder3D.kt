@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node allows you to create a cylinder (or cone) for use with the CSG system.
@@ -176,51 +176,51 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<CSGCylinder3D, Unit, Float> =
         MethodStringName1<CSGCylinder3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<CSGCylinder3D, Float> =
         MethodStringName0<CSGCylinder3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<CSGCylinder3D, Unit, Float> =
         MethodStringName1<CSGCylinder3D, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<CSGCylinder3D, Float> =
         MethodStringName0<CSGCylinder3D, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setSidesName: MethodStringName1<CSGCylinder3D, Unit, Int> =
         MethodStringName1<CSGCylinder3D, Unit, Int>("set_sides")
 
-    @JvmStatic
+    @JvmField
     public val getSidesName: MethodStringName0<CSGCylinder3D, Int> =
         MethodStringName0<CSGCylinder3D, Int>("get_sides")
 
-    @JvmStatic
+    @JvmField
     public val setConeName: MethodStringName1<CSGCylinder3D, Unit, Boolean> =
         MethodStringName1<CSGCylinder3D, Unit, Boolean>("set_cone")
 
-    @JvmStatic
+    @JvmField
     public val isConeName: MethodStringName0<CSGCylinder3D, Boolean> =
         MethodStringName0<CSGCylinder3D, Boolean>("is_cone")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<CSGCylinder3D, Unit, Material?> =
         MethodStringName1<CSGCylinder3D, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<CSGCylinder3D, Material?> =
         MethodStringName0<CSGCylinder3D, Material?>("get_material")
 
-    @JvmStatic
+    @JvmField
     public val setSmoothFacesName: MethodStringName1<CSGCylinder3D, Unit, Boolean> =
         MethodStringName1<CSGCylinder3D, Unit, Boolean>("set_smooth_faces")
 
-    @JvmStatic
+    @JvmField
     public val getSmoothFacesName: MethodStringName0<CSGCylinder3D, Boolean> =
         MethodStringName0<CSGCylinder3D, Boolean>("get_smooth_faces")
   }
